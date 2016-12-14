@@ -1,0 +1,25 @@
+{
+    "name": "sporchia/alttp_php_randmizer",
+    "description": "PHP based Randomizer for ALttP",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "veetorp",
+            "email": "veetor+alttp@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "sami/sami": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Randomizer\\": "."
+        }
+    },
+    "require": {
+        "monolog/monolog": "^1.22"
+    }
+}

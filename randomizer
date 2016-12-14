@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php namespace Randomizer;
+$start = microtime(true);
+require_once('vendor/autoload.php');
+
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Logger;
+
+/**
+ * Egs:
+ *
+ * do {
+ *    $rand = new Randomizer($logger);
+ *    $rand->setSpoilerFile(false)->makeSeed();
+ * } while (!$rand->getWorld()->getLocations()['Ether']->hasItem(Item::get('MoonPearl')));
+ * $rand->save();
+ *
+ * $rand->getWorld()->getLocations()["[cave-040] Link's House"]->setItem(Item::get('MoonPearl'));
+ */
+
+$logger = new Logger('randomizer');
+$logger->pushHandler((new ErrorLogHandler(null, Logger::INFO))->setFormatter(new LineFormatter('%message%')));
+
+$rand = new Randomizer($logger);
+$rand->makeSeed();
+$rand->save();
+
+$logger->debug("Stats:");
+$logger->debug("Run Time: " . round(microtime(true) - $start, 2) . "s");
+$logger->debug("Memory Usage: " . memory_get_usage(true) / 1024 / 1204 . "MB");
