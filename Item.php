@@ -25,27 +25,26 @@ class Item {
 
 		static::$items = new ItemCollection([
 			new Item('Nothing', 'Nothing', 0xFF),
-			new Item\Sword('L1Sword', 'Fighters Sword', 0x49), // can't be used until after uncle dies
-			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', 0x00), // can't be used until after uncle dies
-			//new Item\Sword('L2Sword', 'Master Sword', 0x01), // crashes game
+			new Item\Sword('L1Sword', 'Fighters Sword', 0x49), // Uncle must be dead
+			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', 0x00), // Uncle must be dead
 			new Item\Sword('MasterSword', 'Master Sword', 0x50),
-			new Item\Sword('L3Sword', 'Tempered Sword', 0x02), // can't be used until after uncle dies
-			new Item\Sword('L4Sword', 'Golden Sword', 0x03), // can't be used until after uncle dies
-			new Item('BlueShield', 'Fighters Shield', 0x04), // can't be used until after uncle dies
-			new Item('RedShield', 'Fire Shield', 0x05), // can't be used until after uncle dies
-			new Item('MirrorShield', 'Mirror Shied', 0x06), // can't be used until after uncle dies
+			new Item\Sword('L3Sword', 'Tempered Sword', 0x02), // Uncle must be dead
+			new Item\Sword('L4Sword', 'Golden Sword', 0x03), // Uncle must be dead
+			new Item('BlueShield', 'Fighters Shield', 0x04), // Uncle must be dead
+			new Item('RedShield', 'Fire Shield', 0x05), // Uncle must be dead
+			new Item('MirrorShield', 'Mirror Shied', 0x06), // Uncle must be dead
 			new Item('FireRod', 'Fire Rod', 0x07),
 			new Item('IceRod', 'Ice Rod', 0x08),
 			new Item('Hammer', 'Hammer', 0x09),
 			new Item('Hookshot', 'Hookshot', 0x0a),
 			new Item('Bow', 'Bow', 0x0b),
-			new Item('Boomerang', 'Boomerang', 0x0c), // alt: 10 arrows
+			new Item('Boomerang', 'Boomerang', 0x0c), // alternate: 10 arrows
 			new Item('Powder', 'Magic Powder', 0x0d),
-			new Item('Bee', 'Bee', 0x0e), // does nothing if no bottle
+			new Item('Bee', 'Bee', 0x0e), // bottle required
 			new Item\Medallion('Bombos', 'Bombos', 0x0f, [0x00, 't0' => 0x31, 't1' => 0x90, 't2' => 0x00, 'm0' => 0x31, 'm1' => 0x80, 'm2' => 0x00]),
 			new Item\Medallion('Ether', 'Ether', 0x10, [0x01, 't0' => 0x31, 't1' => 0x98, 't2' => 0x00]),
 			new Item\Medallion('Quake', 'Quake', 0x11, [0x02, 'm0' => 0x31, 'm1' => 0x88, 'm2' => 0x00]),
-			new Item('Lamp', 'Lamp', 0x12), // alt: 5 rupees
+			new Item('Lamp', 'Lamp', 0x12), // alternate: 5 rupees
 			new Item('Shovel', 'Shovel', 0x13),
 			new Item('OcarinaInactive', 'Flute', 0x14),
 			new Item('CaneOfSomaria', 'Cane Of Somaria', 0x15),
@@ -59,7 +58,6 @@ class Item {
 			new Item('BookOfMudora', 'Book Of Mudora', 0x1d),
 			new Item('Flippers', 'Flippers', 0x1e),
 			new Item('MoonPearl', 'Moon Pearl', 0x1f),
-			//new Item\Crystal('Crystal', '', 0x20), // crashes game
 			new Item('BugCatchingNet', 'Bug Catching Net', 0x21),
 			new Item('BlueMail', 'Blue Mail', 0x22),
 			new Item('RedMail', 'Red Mail', 0x23),
@@ -73,18 +71,18 @@ class Item {
 			new Item('BottleWithRedPotion', 'Bottle (Red Potion)', 0x2b),
 			new Item('BottleWithGreenPotion', 'Bottle (Green Potion)', 0x2c),
 			new Item('BottleWithBluePotion', 'Bottle (Blue Potion)', 0x2d),
-			new Item('RedPotion', 'Red Potion', 0x2e), // does nothing if no bottle
-			new Item('GreenPotion', 'Green Potion', 0x2f), // does nothing if no bottle
-			new Item('BluePotion', 'Blue Potion', 0x30), // does nothing if no bottle
+			new Item('RedPotion', 'Red Potion', 0x2e), // bottle required
+			new Item('GreenPotion', 'Green Potion', 0x2f), // bottle required
+			new Item('BluePotion', 'Blue Potion', 0x30), // bottle required
 			new Item('TenBombs', 'Ten Bombs', 0x31),
 			new Item('BigKey', 'Big Key', 0x32),
 			new Item('Map', 'Dungeon Map', 0x33),
 			new Item('OneRupee', 'One Rupee', 0x34),
 			new Item('FiveRupees', 'Five Rupees', 0x35),
 			new Item('TwentyRupees', 'Twenty Rupees', 0x36),
-			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', 0x37, [0x04, 0x04, 0x38, 0x37]), // green
-			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', 0x38, [0x01, 0x01, 0x32, 0x38]), // red
-			new Item\Pendant('PendantOfPower', 'Pendant Of Power', 0x39, [0x02, 0x02, 0x34, 0x39]), // blue
+			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', 0x37, [0x04, 0x04, 0x38, 0x37]),
+			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', 0x38, [0x01, 0x01, 0x32, 0x38]),
+			new Item\Pendant('PendantOfPower', 'Pendant Of Power', 0x39, [0x02, 0x02, 0x34, 0x39]),
 			new Item('BowAndArrows', 'Bow And Arrows', 0x3a),
 			new Item('BowAndSilverArrows', 'Bow And Silver Arrows', 0x3b),
 			new Item('BottleWithBee', 'Bottle (Bee)', 0x3c),
@@ -106,13 +104,13 @@ class Item {
 			new Item('ArrowUpgrade70', 'Arrow Upgrade (70)', 0x4d),
 			new Item('HalfMagic', 'Half Magic', 0x4e),
 			new Item('QuarterMagic', 'Quarter Magic', 0x4f),
-        	new Item\Crystal('Crystal1', 'Crystal 1', null, [0x02, 0x02, 0x7F]),
-        	new Item\Crystal('Crystal2', 'Crystal 2', null, [0x10, 0x10, 0x79]),
-        	new Item\Crystal('Crystal3', 'Crystal 3', null, [0x40, 0x40, 0x6C]),
-        	new Item\Crystal('Crystal4', 'Crystal 4', null, [0x20, 0x20, 0x6D]),
-        	new Item\Crystal('Crystal5', 'Crystal 5', null, [0x04, 0x04, 0x6E]),
-        	new Item\Crystal('Crystal6', 'Crystal 6', null, [0x01, 0x01, 0x6F]),
-        	new Item\Crystal('Crystal7', 'Crystal 7', null, [0x08, 0x08, 0x7C]),
+			new Item\Crystal('Crystal1', 'Crystal 1', null, [0x02, 0x02, 0x7F]),
+			new Item\Crystal('Crystal2', 'Crystal 2', null, [0x10, 0x10, 0x79]),
+			new Item\Crystal('Crystal3', 'Crystal 3', null, [0x40, 0x40, 0x6C]),
+			new Item\Crystal('Crystal4', 'Crystal 4', null, [0x20, 0x20, 0x6D]),
+			new Item\Crystal('Crystal5', 'Crystal 5', null, [0x04, 0x04, 0x6E]),
+			new Item\Crystal('Crystal6', 'Crystal 6', null, [0x01, 0x01, 0x6F]),
+			new Item\Crystal('Crystal7', 'Crystal 7', null, [0x08, 0x08, 0x7C]),
 		]);
 		return static::all();
 	}
