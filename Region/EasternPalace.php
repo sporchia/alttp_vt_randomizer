@@ -13,12 +13,12 @@ class EasternPalace extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-L1-1F] Eastern Palace - compass room", 0xE977, null, $this),
-			new Location("[dungeon-L1-1F] Eastern Palace - big chest", 0xE97D, null, $this),
-			new Location("[dungeon-L1-1F] Eastern Palace - big ball room", 0xE9B3, null, $this),
-			new Location("[dungeon-L1-1F] Eastern Palace - Big key", 0xE9B9, null, $this),
-			new Location("[dungeon-L1-1F] Eastern Palace - map room", 0xE9F5, null, $this),
-			new Location("Heart Container - Armos Knights", 0x180150, null, $this),
+			new Location\Chest("[dungeon-L1-1F] Eastern Palace - compass room", 0xE977, null, $this),
+			new Location\BigChest("[dungeon-L1-1F] Eastern Palace - big chest", 0xE97D, null, $this),
+			new Location\Chest("[dungeon-L1-1F] Eastern Palace - big ball room", 0xE9B3, null, $this),
+			new Location\Chest("[dungeon-L1-1F] Eastern Palace - Big key", 0xE9B9, null, $this),
+			new Location\Chest("[dungeon-L1-1F] Eastern Palace - map room", 0xE9F5, null, $this),
+			new Location\Drop("Heart Container - Armos Knights", 0x180150, null, $this),
 		]);
 	}
 

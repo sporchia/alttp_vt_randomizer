@@ -4,13 +4,7 @@
  * Wrapper for ROM file
  */
 class ALttPRom {
-	/**
-	 * @var string location of tempory file used for writing
-	 */
 	private $tmp_file;
-	/**
-	 * @var resource file pointer to tempory ROM we are editing
-	 */
 	protected $rom;
 
 	/**
@@ -81,7 +75,7 @@ class ALttPRom {
 	 *
 	 * @return bool
 	 */
-	public function save($output_location) {
+	public function save(string $output_location) {
 		return copy($this->tmp_file, $output_location);
 	}
 
@@ -93,7 +87,7 @@ class ALttPRom {
 	 *
 	 * @return $this
 	 */
-	public function write($offset, $data) {
+	public function write(int $offset, $data) {
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 
@@ -108,7 +102,7 @@ class ALttPRom {
 	 *
 	 * @return array
 	 */
-	public function read($offset, $length = 1) {
+	public function read(int $offset, int $length = 1) {
 		fseek($this->rom, $offset);
 		return unpack('H*', fread($this->rom, $length))[1];
 	}
@@ -122,7 +116,7 @@ class ALttPRom {
 		unlink($this->tmp_file);
 	}
 
-	public function convertDialog($string) {
+	public function convertDialog(string $string) {
 		$new_string = [];
 		$lines = explode("\n", $string);
 		$i = 0;

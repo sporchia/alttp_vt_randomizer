@@ -13,11 +13,11 @@ class DesertPalace extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-L2-B1] Desert Palace - big chest", 0xE98F, null, $this),
-			new Location("[dungeon-L2-B1] Desert Palace - Map room", 0xE9B6, null, $this),
-			new Location("[dungeon-L2-B1] Desert Palace - Big key room", 0xE9C2, null, $this),
-			new Location("[dungeon-L2-B1] Desert Palace - compass room", 0xE9CB, null, $this),
-			new Location("Heart Container - Lanmolas", 0x180151, null, $this),
+			new Location\BigChest("[dungeon-L2-B1] Desert Palace - big chest", 0xE98F, null, $this),
+			new Location\Chest("[dungeon-L2-B1] Desert Palace - Map room", 0xE9B6, null, $this),
+			new Location\Chest("[dungeon-L2-B1] Desert Palace - Big key room", 0xE9C2, null, $this),
+			new Location\Chest("[dungeon-L2-B1] Desert Palace - compass room", 0xE9CB, null, $this),
+			new Location\Drop("Heart Container - Lanmolas", 0x180151, null, $this),
 		]);
 	}
 

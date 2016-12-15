@@ -13,14 +13,14 @@ class SkullWoods extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D3-B1] Skull Woods - big chest", 0xE998, null, $this),
-			new Location("[dungeon-D3-B1] Skull Woods - Big Key room", 0xE99E, null, $this),
-			new Location("[dungeon-D3-B1] Skull Woods - Compass room", 0xE992, null, $this),
-			new Location("[dungeon-D3-B1] Skull Woods - east of Fire Rod room", 0xE99B, null, $this),
-			new Location("[dungeon-D3-B1] Skull Woods - Entrance to part 2", 0xE9FE, null, $this),
-			new Location("[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", 0xE9A1, null, $this),
-			new Location("[dungeon-D3-B1] Skull Woods - south of Fire Rod room", 0xE9C8, null, $this),
-			new Location("Heart Container - Mothula", 0x180155, null, $this),
+			new Location\BigChest("[dungeon-D3-B1] Skull Woods - big chest", 0xE998, null, $this),
+			new Location\Chest("[dungeon-D3-B1] Skull Woods - Big Key room", 0xE99E, null, $this),
+			new Location\Chest("[dungeon-D3-B1] Skull Woods - Compass room", 0xE992, null, $this),
+			new Location\Chest("[dungeon-D3-B1] Skull Woods - east of Fire Rod room", 0xE99B, null, $this),
+			new Location\Chest("[dungeon-D3-B1] Skull Woods - Entrance to part 2", 0xE9FE, null, $this),
+			new Location\Chest("[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", 0xE9A1, null, $this),
+			new Location\Chest("[dungeon-D3-B1] Skull Woods - south of Fire Rod room", 0xE9C8, null, $this),
+			new Location\Drop("Heart Container - Mothula", 0x180155, null, $this),
 		]);
 	}
 

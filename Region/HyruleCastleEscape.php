@@ -13,14 +13,14 @@ class HyruleCastleEscape extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-C-1F] Sanctuary", 0xEA79, null, $this),
-			new Location("[dungeon-C-B1] Escape - final basement room [left chest]", 0xEB5D, null, $this),
-			new Location("[dungeon-C-B1] Escape - final basement room [middle chest]", 0xEB60, null, $this),
-			new Location("[dungeon-C-B1] Escape - final basement room [right chest]", 0xEB63, null, $this),
-			new Location("[dungeon-C-B1] Escape - first B1 room", 0xE96E, null, $this),
-			new Location("[dungeon-C-B1] Hyrule Castle - boomerang room", 0xE974, null, $this),
-			new Location("[dungeon-C-B1] Hyrule Castle - map room", 0xEB0C, null, $this),
-			new Location("[dungeon-C-B3] Hyrule Castle - next to Zelda", 0xEB09, null, $this),
+			new Location\Chest("[dungeon-C-1F] Sanctuary", 0xEA79, null, $this),
+			new Location\Chest("[dungeon-C-B1] Escape - final basement room [left chest]", 0xEB5D, null, $this),
+			new Location\Chest("[dungeon-C-B1] Escape - final basement room [middle chest]", 0xEB60, null, $this),
+			new Location\Chest("[dungeon-C-B1] Escape - final basement room [right chest]", 0xEB63, null, $this),
+			new Location\Chest("[dungeon-C-B1] Escape - first B1 room", 0xE96E, null, $this),
+			new Location\Chest("[dungeon-C-B1] Hyrule Castle - boomerang room", 0xE974, null, $this),
+			new Location\Chest("[dungeon-C-B1] Hyrule Castle - map room", 0xEB0C, null, $this),
+			new Location\Chest("[dungeon-C-B3] Hyrule Castle - next to Zelda", 0xEB09, null, $this),
 		]);
 	}
 

@@ -13,20 +13,20 @@ class DeathMountain extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[cave-012-1F] Death Mountain - wall of caves - left cave", 0xE9BF, null, $this),
-			new Location("[cave-013] Mimic cave (from Turtle Rock)", 0xE9C5, null, $this),
-			new Location("[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", 0xEB2A, null, $this),
-			new Location("[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", 0xEB2D, null, $this),
-			new Location("[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", 0xEB30, null, $this),
-			new Location("[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", 0xEB33, null, $this),
-			new Location("[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", 0xEB36, null, $this),
-			new Location("[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", 0xEB39, null, $this),
-			new Location("[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", 0xEB3C, null, $this),
+			new Location\Chest("[cave-012-1F] Death Mountain - wall of caves - left cave", 0xE9BF, null, $this),
+			new Location\Chest("[cave-013] Mimic cave (from Turtle Rock)", 0xE9C5, null, $this),
+			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", 0xEB2A, null, $this),
+			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", 0xEB2D, null, $this),
+			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", 0xEB30, null, $this),
+			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", 0xEB33, null, $this),
+			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", 0xEB36, null, $this),
+			new Location\Chest("[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", 0xEB39, null, $this),
+			new Location\Chest("[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", 0xEB3C, null, $this),
 			new Location\Drop("Ether Tablet", 0x180016, null, $this),
 			new Location\Npc("Old Mountain Man", 0xF69FA, null, $this),
-			new Location("Piece of Heart (Spectacle Rock Cave)", 0x180002, null, $this),
-			new Location("Piece of Heart (Spectacle Rock)", 0x180140, null, $this),
-			new Location("Piece of Heart (Death Mountain - floating island)", 0x180141, null, $this),
+			new Location\Standing("Piece of Heart (Spectacle Rock Cave)", 0x180002, null, $this),
+			new Location\Standing("Piece of Heart (Spectacle Rock)", 0x180140, null, $this),
+			new Location\Standing("Piece of Heart (Death Mountain - floating island)", 0x180141, null, $this),
 		]);
 	}
 

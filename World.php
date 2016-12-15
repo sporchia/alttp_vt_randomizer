@@ -6,13 +6,7 @@ use Randomizer\Support\LocationCollection;
  * This is the container for all the regions and locations one can find items in the game.
  */
 class World {
-	/**
-	 * @var array $regions Regions in this World
-	 */
 	protected $regions = [];
-	/**
-	 * @var LocationCollection $locations Locations in Regions in this World
-	 */
 	protected $locations;
 
 	/**

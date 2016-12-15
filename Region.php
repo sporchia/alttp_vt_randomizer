@@ -5,29 +5,11 @@
  * and can_complete function set to validate that the region prize (if set) can be obtained.
  */
 class Region {
-	/**
-	 * @var LocationCollection $locations Locations in this Region.
-	 */
 	protected $locations;
-	/**
-	 * @var Callable $can_enter function applied as a check before any location specific logic is applied.
-	 */
 	protected $can_enter;
-	/**
-	 * @var Callable $can_complete function to determine if the Region can be completed.
-	 */
 	protected $can_complete;
-	/**
-	 * @var string $name Nice name for the Region.
-	 */
 	protected $name = 'Unknown';
-	/**
-	 * @var boolean $boss_location_in_base Whether a boss location can have Compass/Map/Keys.
-	 */
 	protected $boss_location_in_base = true;
-	/**
-	 * @var Location $prize_location Location for the prize for completing the Region
-	 */
 	protected $prize_location;
 
 	/**

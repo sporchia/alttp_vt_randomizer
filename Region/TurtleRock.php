@@ -13,18 +13,18 @@ class TurtleRock extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D7-1F] Turtle Rock - Chain chomp room", 0xEA16, null, $this),
-			new Location("[dungeon-D7-1F] Turtle Rock - compass room", 0xEA22, null, $this),
-			new Location("[dungeon-D7-1F] Turtle Rock - Map room [left chest]", 0xEA1C, null, $this),
-			new Location("[dungeon-D7-1F] Turtle Rock - Map room [right chest]", 0xEA1F, null, $this),
-			new Location("[dungeon-D7-B1] Turtle Rock - big chest", 0xEA19, null, $this),
-			new Location("[dungeon-D7-B1] Turtle Rock - big key room", 0xEA25, null, $this),
-			new Location("[dungeon-D7-B1] Turtle Rock - Roller switch room", 0xEA34, null, $this),
-			new Location("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", 0xEA31, null, $this),
-			new Location("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", 0xEA2E, null, $this),
-			new Location("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", 0xEA2B, null, $this),
-			new Location("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", 0xEA28, null, $this),
-			new Location("Heart Container - Trinexx", 0x180159, null, $this),
+			new Location\Chest("[dungeon-D7-1F] Turtle Rock - Chain chomp room", 0xEA16, null, $this),
+			new Location\Chest("[dungeon-D7-1F] Turtle Rock - compass room", 0xEA22, null, $this),
+			new Location\Chest("[dungeon-D7-1F] Turtle Rock - Map room [left chest]", 0xEA1C, null, $this),
+			new Location\Chest("[dungeon-D7-1F] Turtle Rock - Map room [right chest]", 0xEA1F, null, $this),
+			new Location\BigChest("[dungeon-D7-B1] Turtle Rock - big chest", 0xEA19, null, $this),
+			new Location\Chest("[dungeon-D7-B1] Turtle Rock - big key room", 0xEA25, null, $this),
+			new Location\Chest("[dungeon-D7-B1] Turtle Rock - Roller switch room", 0xEA34, null, $this),
+			new Location\Chest("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", 0xEA31, null, $this),
+			new Location\Chest("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", 0xEA2E, null, $this),
+			new Location\Chest("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", 0xEA2B, null, $this),
+			new Location\Chest("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", 0xEA28, null, $this),
+			new Location\Drop("Heart Container - Trinexx", 0x180159, null, $this),
 		]);
 	}
 
