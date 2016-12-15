@@ -1,6 +1,6 @@
 # ALttP PHP Randomizer
 
-## First and foremost, big thanks to Dessyreqt and Karkat for their work.
+## First and foremost, big thanks to Dessyreqt, Christos, and Karkat for their work.
 ### Without their work none of this would even be remotely possible.
 
 ### I wanted to create an API that modeled the Randomizer. This happened.

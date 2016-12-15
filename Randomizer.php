@@ -7,7 +7,8 @@ use Randomizer\Support\ItemCollection;
 use Randomizer\Support\LocationCollection;
 
 /**
- * Main class for randomization. All the magic happens here.
+ * Main class for randomization. All the magic happens here. We use mt_rand as it is much faster than rand. Not all PHP
+ * functions support mt_rand (e.g. array_shuffle), so those had to be cloned to maintain seed integrity.
  */
 class Randomizer {
 	protected $seed;
@@ -225,6 +226,11 @@ class Randomizer {
 
 		foreach ($this->world->getRegions() as $name => $region) {
 			$region->getLocations()->getNonEmptyLocations()->each(function($location) use ($rom) {
+				$location->writeItem($rom);
+			});
+			// Clear out remaining locations if the pool was smaller than number of locations
+			$region->getLocations()->getEmptyLocations()->each(function($location) use ($rom) {
+				$location->setItem(Item::get('Nothing'));
 				$location->writeItem($rom);
 			});
 		}
