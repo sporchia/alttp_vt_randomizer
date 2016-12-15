@@ -5,6 +5,21 @@
 
 ### I wanted to create an API that modeled the Randomizer. This happened.
 
+### Install
+You will need [Composer](https://getcomposer.org/) for the Monolog/Logger Dependency. Once you have that, run the following
+
+```
+$ composer install
+```
+
+### Running
+To generate a seed one simply runs the command. This should output a file in the format of *ALttP - V1.XXXXXX.rom* (where XXXXXX is the seed number)
+as well as a *ALttP - V1.XXXXXX.txt* file, which is the spoiler, to the *./out/* directory. A spoiler will be dumped to the terminal as well.
+
+```
+./randomizer
+```
+
 #### This is a port of the ALttP Randomizer "intended" to be a webservice.
 
 #### Features include
@@ -16,3 +31,10 @@
 * Documentation of classes and objects (paritally done).
 * Ability to create as many "seeds" as you want.
 * With a little logic create any seed with items in specific places (might take a while, or never finish if you are looking for dead locks).
+
+### API Documentation
+The API documentation can be generated after you install by running:
+
+```
+$ composer documentation
+```

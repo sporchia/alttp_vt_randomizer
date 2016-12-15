@@ -53,7 +53,7 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		fseek($this->rom, 0x1022A9);
+		fseek($this->rom, 0x102324);
 		foreach ($this->convertDialog($string) as $byte) {
 			fwrite($this->rom, pack('c', $byte));
 		}
