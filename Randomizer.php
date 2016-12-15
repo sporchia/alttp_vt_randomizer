@@ -6,6 +6,9 @@ use Monolog\Logger;
 use Randomizer\Support\ItemCollection;
 use Randomizer\Support\LocationCollection;
 
+/**
+ * Main class for randomization. All the magic happens here.
+ */
 class Randomizer {
 	protected $seed;
 	protected $log;
@@ -13,6 +16,13 @@ class Randomizer {
 	protected $debug = false;
 	protected $spoiler = true;
 
+	/**
+	 * Create a new Randomizer
+	 *
+	 * @param Logger $log|null Optional Logger to capture log messages
+	 *
+	 * @return void
+	 */
 	public function __construct(Logger $log = null) {
 		$this->world = new World;
 		if ($log) {
@@ -22,12 +32,26 @@ class Randomizer {
 		}
 	}
 
-	public function setSpoilerFile($show = true) {
+	/**
+	 * Enable/Disable Spoiler Log to file.
+	 *
+	 * @param bool $show log to file or not
+	 *
+	 * @return $this
+	 */
+	public function setSpoilerFile(bool $show = true) {
 		$this->spoiler = $show;
 		return $this;
 	}
 
-	public function makeSeed($seed = null) {
+	/**
+	 * Fill all empty Locations with Items using logic from the World.
+	 *
+	 * @param int|null $seed Seed to create, or random if null
+	 *
+	 * @return $this
+	 */
+	public function makeSeed(int $seed = null) {
 		$seed = $seed ?: mt_rand(1, 9999999999);
 		$this->seed = $seed;
 		mt_srand($seed);
@@ -41,14 +65,13 @@ class Randomizer {
 
 		$regions = $this->world->getRegions();
 
-		// for base items assume you have everything
+		// for filling base (Maps/Compasses/Keys) items assume you have everything
 		foreach ($regions as $region) {
 			$region->fillBaseItems(Item::all());
 		}
 
 		$locations = $this->world->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Pendant::class)
-				&& !is_a($location, Location\Crystal::class)
+			return !is_a($location, Location\Prize::class)
 				&& !is_a($location, Location\Medallion::class);
 		});
 
@@ -64,7 +87,8 @@ class Randomizer {
 		}
 		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
 
-		$crystals = [
+		// @TODO: make cross world Prizes configurable
+		$prizes = $this->mt_shuffle([
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
 			Item::get('Crystal3'),
@@ -72,21 +96,18 @@ class Randomizer {
 			Item::get('Crystal5'),
 			Item::get('Crystal6'),
 			Item::get('Crystal7'),
-		];
-
-		while (count($crystals) > 0) {
-			$item = array_shift($crystals);
-			while(!$regions['Crystals']->getEmptyLocations()->random()->fill($item, Item::all()));
-		}
-
-		$pendants = [
 			Item::get('PendantOfCourage'),
 			Item::get('PendantOfPower'),
 			Item::get('PendantOfWisdom'),
-		];
+		]);
 
-		while (count($pendants) > 0) {
-			$item = array_shift($pendants);
+		while (count($prizes) > 3) {
+			$item = array_shift($prizes);
+			while(!$regions['Crystals']->getEmptyLocations()->random()->fill($item, Item::all()));
+		}
+
+		while (count($prizes) > 0) {
+			$item = array_shift($prizes);
 			while(!$regions['Pendants']->getEmptyLocations()->random()->fill($item, Item::all()));
 		}
 
@@ -186,8 +207,13 @@ class Randomizer {
 		return $this;
 	}
 
+	/**
+	 * Save all changes made by this Randomizer to a new ROM file.
+	 *
+	 * @return bool
+	 */
 	public function save() {
-		$rom = new ALttPRom('in/alttp.sfc');
+		$rom = new ALttPRom('in/alttp-v8.sfc');
 
 		if ($this->debug) {
 			$rom->enableDebugMode();
@@ -206,7 +232,15 @@ class Randomizer {
 		return $rom->save(sprintf('out/alttp - V1.%s.sfc', $this->seed));
 	}
 
-	public function setStartText($rom) {
+	/**
+	 * Randomly set the starting text for the Uncle, there is a chance he will tell you the Region Pegasus Boots
+	 * reside in
+	 *
+	 * @param ALttPRom $rom ROM to write to
+	 *
+	 * @return bool
+	 */
+	public function setStartText(ALttPRom $rom) {
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
 		if (mt_rand() % 7 == 0 && $boots_location) {
@@ -219,6 +253,11 @@ class Randomizer {
 		return $this;
 	}
 
+	/**
+	 * Get a shuffled array of Item's necessary for giving access to more locations as well as completing the game.
+	 *
+	 * @return array
+	 */
 	public function getAdvancementItems() {
 		// Items that on their own open up more locations
 		$early_items = [
@@ -255,7 +294,14 @@ class Randomizer {
 		return $items;
 	}
 
-	public function mt_shuffle($array) {
+	/**
+	 * Shuffle the contents of an array using mt_rand
+	 *
+	 * @var array $array array to shuffle
+	 *
+	 * @return array
+	 */
+	public function mt_shuffle(array $array) {
 		$new_array = [];
 		while(count($array)) {
 			$pull_key = mt_rand(0, count($array) - 1);
@@ -264,6 +310,12 @@ class Randomizer {
 		return $new_array;
 	}
 
+	/**
+	 * Get all the Items to insert into the Locations Available, should be randomly shuffled with required advancement
+	 * Item's first
+	 *
+	 * @return array
+	 */
 	public function getItemPool() {
 		$items_to_find = [];
 
@@ -286,15 +338,25 @@ class Randomizer {
 			array_push($items_to_find, Item::get('BossHeartContainer'));
 		}
 
-		array_push($items_to_find, Item::get('BombUpgrade50'));
-		array_push($items_to_find, Item::get('ArrowUpgrade70'));
+		for ($i = 0; $i < 4; $i++) {
+			array_push($items_to_find, Item::get('BombUpgrade5'));
+		}
+		for ($i = 0; $i < 2; $i++) {
+			array_push($items_to_find, Item::get('BombUpgrade10'));
+		}
+		for ($i = 0; $i < 4; $i++) {
+			array_push($items_to_find, Item::get('ArrowUpgrade5'));
+		}
+		for ($i = 0; $i < 2; $i++) {
+			array_push($items_to_find, Item::get('ArrowUpgrade10'));
+		}
 
 		array_push($items_to_find, Item::get('Arrow'));
-		for ($i = 0; $i < 11; $i++) {
+		for ($i = 0; $i < 7; $i++) {
 			array_push($items_to_find, Item::get('TenArrows'));
 		}
 
-		for ($i = 0; $i < 17; $i++) {
+		for ($i = 0; $i < 12; $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
 
@@ -304,7 +366,7 @@ class Randomizer {
 		for ($i = 0; $i < 2; $i++) {
 			array_push($items_to_find, Item::get('FiveRupees'));
 		}
-		for ($i = 0; $i < 24; $i++) {
+		for ($i = 0; $i < 23; $i++) {
 			array_push($items_to_find, Item::get('TwentyRupees'));
 		}
 		for ($i = 0; $i < 7; $i++) {

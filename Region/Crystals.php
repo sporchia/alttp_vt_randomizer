@@ -1,6 +1,6 @@
 <?php namespace Randomizer\Region;
 
-use Randomizer\Location\Crystal;
+use Randomizer\Location\Prize;
 use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
@@ -10,13 +10,13 @@ class Crystals extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Crystal("Palace of Darkness Crystal", [0x545D1, 0x120A1, 0x5452D], $this),
-			new Crystal("Swamp Palace Crystal", [0x545D7, 0x120A0, 0x54527], $this),
-			new Crystal("Skull Woods Crystal", [0x545D2, 0x120A3, 0x5452C], $this),
-			new Crystal("Thieves Town Crystal", [0x545D4, 0x120A6, 0x5452A], $this),
-			new Crystal("Ice Palace Crystal", [0x545D6, 0x120A4, 0x54528], $this),
-			new Crystal("Misery Mire Crystal", [0x545D5, 0x120A2, 0x54529], $this),
-			new Crystal("Turtle Rock Crystal", [0x545D3, 0x120A7, 0x5452B], $this),
+			new Prize("Palace of Darkness Crystal", [null, 0x545D1, 0x120A1, 0x5452D, 0x180056, 0xC702], [0x5A], $this),
+			new Prize("Swamp Palace Crystal", [null, 0x545D7, 0x120A0, 0x54527, 0x180055, 0xC701], [0x06], $this),
+			new Prize("Skull Woods Crystal", [null, 0x545D2, 0x120A3, 0x5452C, 0x180058, 0xC704], [0x29], $this),
+			new Prize("Thieves Town Crystal", [null, 0x545D4, 0x120A6, 0x5452A, 0x18005B, 0xC707], [0xAC], $this),
+			new Prize("Ice Palace Crystal", [null, 0x545D6, 0x120A4, 0x54528, 0x180059, 0xC705], [0xDE], $this),
+			new Prize("Misery Mire Crystal", [null, 0x545D5, 0x120A2, 0x54529, 0x180057, 0xC703], [0x90], $this),
+			new Prize("Turtle Rock Crystal", [null, 0x545D3, 0x120A7, 0x5452B, 0x18005C, 0xC708], [0xA4], $this),
 		]);
 	}
 }

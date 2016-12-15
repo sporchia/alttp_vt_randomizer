@@ -8,7 +8,7 @@
  * <samp>
  * $lz2 = new Lz2();
  *
- * $data = array_values(unpack("C*",file_get_contents('newitems.gfx')));
+ * $data = array_values(unpack("C*", file_get_contents('newitems.gfx')));
  *
  * $uncompressed  = $lz2->decompress($data, 0);
  *
@@ -20,7 +20,7 @@
  * <samp>
  * $lz2 = new Lz2();
  *
- * $data = array_values(unpack("C*",file_get_contents('newitems.bin')));
+ * $data = array_values(unpack("C*", file_get_contents('newitems.bin')));
  *
  * $compressed  = $lz2->compress($data, 0);
  *

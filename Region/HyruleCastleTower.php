@@ -13,8 +13,8 @@ class HyruleCastleTower extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room", 0xEAB5, $this),
-			new Location("[dungeon-A1-3F] Hyrule Castle Tower - maze room", 0xEAB2, $this),
+			new Location("[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room", 0xEAB5, null, $this),
+			new Location("[dungeon-A1-3F] Hyrule Castle Tower - maze room", 0xEAB2, null, $this),
 		]);
 	}
 

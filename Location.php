@@ -5,13 +5,15 @@ use Randomizer\Support\LocationCollection;
 class Location {
 	protected $name;
 	protected $address;
+	protected $bytes;
 	protected $region;
 	protected $requirement_callback;
 	protected $item = null;
 
-	public function __construct($name, $address, Region $region = null, Callable $requirement_callback = null) {
+	public function __construct($name, $address, $bytes = null, Region $region = null, Callable $requirement_callback = null) {
 		$this->name = $name;
-		$this->address = $address;
+		$this->address = (array) $address;
+		$this->bytes = (array) $bytes;
 		$this->region = $region;
 		$this->requirement_callback = $requirement_callback;
 	}
@@ -67,7 +69,17 @@ class Location {
 			throw new \Exception('No Item set to be written');
 		}
 
-		$rom->setLocationItem($this, $this->item);
+		$item_bytes = $this->item->getBytes();
+
+		foreach ($this->address as $key => $address) {
+			if (!isset($item_bytes[$key]) || !isset($address)) continue;
+			$rom->write($address, pack('C', $item_bytes[$key]));
+		}
+
+		foreach ($this->item->getAddress() as $key => $address) {
+			if (!isset($this->bytes[$key]) || !isset($address)) continue;
+			$rom->write($address, pack('C', $this->bytes[$key]));
+		}
 	}
 
 	public function getName() {

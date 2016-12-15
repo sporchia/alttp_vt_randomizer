@@ -13,14 +13,14 @@ class ThievesTown extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D4-1F] Thieves' Town - Room above boss", 0xEA0D, $this),
-			new Location("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", 0xEA04, $this),
-			new Location("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", 0xEA01, $this),
-			new Location("[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", 0xEA07, $this),
-			new Location("[dungeon-D4-B1] Thieves' Town - Top left of huge room", 0xEA0A, $this),
-			new Location("[dungeon-D4-B2] Thieves' Town - big chest", 0xEA10, $this),
-			new Location("[dungeon-D4-B2] Thieves' Town - next to Blind", 0xEA13, $this),
-			new Location("Heart Container - Blind", 0x180156, $this),
+			new Location("[dungeon-D4-1F] Thieves' Town - Room above boss", 0xEA0D, null, $this),
+			new Location("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", 0xEA04, null, $this),
+			new Location("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", 0xEA01, null, $this),
+			new Location("[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", 0xEA07, null, $this),
+			new Location("[dungeon-D4-B1] Thieves' Town - Top left of huge room", 0xEA0A, null, $this),
+			new Location("[dungeon-D4-B2] Thieves' Town - big chest", 0xEA10, null, $this),
+			new Location("[dungeon-D4-B2] Thieves' Town - next to Blind", 0xEA13, null, $this),
+			new Location("Heart Container - Blind", 0x180156, null, $this),
 		]);
 	}
 

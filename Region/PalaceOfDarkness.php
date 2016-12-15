@@ -13,20 +13,20 @@ class PalaceOfDarkness extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D1-1F] Dark Palace - big key room", 0xEA37, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - jump room [right chest]", 0xEA3A, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - jump room [left chest]", 0xEA3D, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - big chest", 0xEA40, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - compass room", 0xEA43, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - spike statue room", 0xEA46, $this),
-			new Location("[dungeon-D1-B1] Dark Palace - turtle stalfos room", 0xEA49, $this),
-			new Location("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", 0xEA4C, $this),
-			new Location("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", 0xEA4F, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - statue push room", 0xEA52, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - maze room [top chest]", 0xEA55, $this),
-			new Location("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", 0xEA58, $this),
-			new Location("[dungeon-D1-B1] Dark Palace - shooter room", 0xEA5B, $this),
-			new Location("Heart Container - Helmasaur King", 0x180153, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - big key room", 0xEA37, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - jump room [right chest]", 0xEA3A, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - jump room [left chest]", 0xEA3D, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - big chest", 0xEA40, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - compass room", 0xEA43, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - spike statue room", 0xEA46, null, $this),
+			new Location("[dungeon-D1-B1] Dark Palace - turtle stalfos room", 0xEA49, null, $this),
+			new Location("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", 0xEA4C, null, $this),
+			new Location("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", 0xEA4F, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - statue push room", 0xEA52, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - maze room [top chest]", 0xEA55, null, $this),
+			new Location("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", 0xEA58, null, $this),
+			new Location("[dungeon-D1-B1] Dark Palace - shooter room", 0xEA5B, null, $this),
+			new Location("Heart Container - Helmasaur King", 0x180153, null, $this),
 		]);
 	}
 

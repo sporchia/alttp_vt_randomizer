@@ -2,8 +2,12 @@
 
 use Randomizer\Support\ItemCollection;
 
+/**
+ * An Item is any collectable thing in game.
+ */
 class Item {
-	protected $byte;
+	protected $bytes;
+	protected $address;
 	protected $name;
 	protected $nice_name;
 
@@ -32,7 +36,7 @@ class Item {
 			new Item\Sword('L4Sword', 'Golden Sword', 0x03), // Uncle must be dead
 			new Item('BlueShield', 'Fighters Shield', 0x04), // Uncle must be dead
 			new Item('RedShield', 'Fire Shield', 0x05), // Uncle must be dead
-			new Item('MirrorShield', 'Mirror Shied', 0x06), // Uncle must be dead
+			new Item('MirrorShield', 'Mirror Shield', 0x06), // Uncle must be dead
 			new Item('FireRod', 'Fire Rod', 0x07),
 			new Item('IceRod', 'Ice Rod', 0x08),
 			new Item('Hammer', 'Hammer', 0x09),
@@ -41,9 +45,9 @@ class Item {
 			new Item('Boomerang', 'Boomerang', 0x0c), // alternate: 10 arrows
 			new Item('Powder', 'Magic Powder', 0x0d),
 			new Item('Bee', 'Bee', 0x0e), // bottle required
-			new Item\Medallion('Bombos', 'Bombos', 0x0f, [0x00, 't0' => 0x31, 't1' => 0x90, 't2' => 0x00, 'm0' => 0x31, 'm1' => 0x80, 'm2' => 0x00]),
-			new Item\Medallion('Ether', 'Ether', 0x10, [0x01, 't0' => 0x31, 't1' => 0x98, 't2' => 0x00]),
-			new Item\Medallion('Quake', 'Quake', 0x11, [0x02, 'm0' => 0x31, 'm1' => 0x88, 'm2' => 0x00]),
+			new Item\Medallion('Bombos', 'Bombos', [0x0f, 0x00, 't0' => 0x31, 't1' => 0x90, 't2' => 0x00, 'm0' => 0x31, 'm1' => 0x80, 'm2' => 0x00]),
+			new Item\Medallion('Ether', 'Ether', [0x10, 0x01, 't0' => 0x31, 't1' => 0x98, 't2' => 0x00]),
+			new Item\Medallion('Quake', 'Quake', [0x11, 0x02, 'm0' => 0x31, 'm1' => 0x88, 'm2' => 0x00]),
 			new Item('Lamp', 'Lamp', 0x12), // alternate: 5 rupees
 			new Item('Shovel', 'Shovel', 0x13),
 			new Item('OcarinaInactive', 'Flute', 0x14),
@@ -80,9 +84,9 @@ class Item {
 			new Item('OneRupee', 'One Rupee', 0x34),
 			new Item('FiveRupees', 'Five Rupees', 0x35),
 			new Item('TwentyRupees', 'Twenty Rupees', 0x36),
-			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', 0x37, [0x04, 0x04, 0x38, 0x37]),
-			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', 0x38, [0x01, 0x01, 0x32, 0x38]),
-			new Item\Pendant('PendantOfPower', 'Pendant Of Power', 0x39, [0x02, 0x02, 0x34, 0x39]),
+			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x04, 0x38, 0x00, 0x01]),
+			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', [0x38, 0x01, 0x01, 0x32, 0x00, 0x02]),
+			new Item\Pendant('PendantOfPower', 'Pendant Of Power', [0x39, 0x02, 0x02, 0x34, 0x00, 0x03]),
 			new Item('BowAndArrows', 'Bow And Arrows', 0x3a),
 			new Item('BowAndSilverArrows', 'Bow And Silver Arrows', 0x3b),
 			new Item('BottleWithBee', 'Bottle (Bee)', 0x3c),
@@ -100,25 +104,30 @@ class Item {
 			new Item('BottleWithGoldBee', 'Bottle (Golden Bee)', 0x48),
 			new Item('OcarinaActive', 'Flute', 0x4a),
 			new Item('PegasusBoots', 'Pegasus Boots', 0x4b),
+			new Item('BombUpgrade5', 'Bomb Upgrade (5)', 0x51),
+			new Item('BombUpgrade10', 'Bomb Upgrade (10)', 0x52),
 			new Item('BombUpgrade50', 'Bomb Upgrade (50)', 0x4c),
+			new Item('ArrowUpgrade5', 'Arrow Upgrade (5)', 0x53),
+			new Item('ArrowUpgrade10', 'Arrow Upgrade (10)', 0x54),
 			new Item('ArrowUpgrade70', 'Arrow Upgrade (70)', 0x4d),
 			new Item('HalfMagic', 'Half Magic', 0x4e),
 			new Item('QuarterMagic', 'Quarter Magic', 0x4f),
-			new Item\Crystal('Crystal1', 'Crystal 1', null, [0x02, 0x02, 0x7F]),
-			new Item\Crystal('Crystal2', 'Crystal 2', null, [0x10, 0x10, 0x79]),
-			new Item\Crystal('Crystal3', 'Crystal 3', null, [0x40, 0x40, 0x6C]),
-			new Item\Crystal('Crystal4', 'Crystal 4', null, [0x20, 0x20, 0x6D]),
-			new Item\Crystal('Crystal5', 'Crystal 5', null, [0x04, 0x04, 0x6E]),
-			new Item\Crystal('Crystal6', 'Crystal 6', null, [0x01, 0x01, 0x6F]),
-			new Item\Crystal('Crystal7', 'Crystal 7', null, [0x08, 0x08, 0x7C]),
+			new Item\Crystal('Crystal1', 'Crystal 1', [null, 0x02, 0x02, 0x7F, 0x40, 0x06], [0x10860]),
+			new Item\Crystal('Crystal2', 'Crystal 2', [null, 0x10, 0x10, 0x79, 0x40, 0x06], [0x1085E]),
+			new Item\Crystal('Crystal3', 'Crystal 3', [null, 0x40, 0x40, 0x6C, 0x40, 0x06], [0x10862]),
+			new Item\Crystal('Crystal4', 'Crystal 4', [null, 0x20, 0x20, 0x6D, 0x40, 0x06], [0x1086A]),
+			new Item\Crystal('Crystal5', 'Crystal 5', [null, 0x04, 0x04, 0x6E, 0x40, 0x06], [0x10866]),
+			new Item\Crystal('Crystal6', 'Crystal 6', [null, 0x01, 0x01, 0x6F, 0x40, 0x06], [0x10864]),
+			new Item\Crystal('Crystal7', 'Crystal 7', [null, 0x08, 0x08, 0x7C, 0x40, 0x06], [0x10868]),
 		]);
 		return static::all();
 	}
 
-	public function __construct($name, $nice_name, $byte) {
+	public function __construct($name, $nice_name, $bytes, $address = null) {
 		$this->name = $name;
 		$this->nice_name = $nice_name;
-		$this->byte = $byte;
+		$this->bytes = (array) $bytes;
+		$this->address = (array) $address;
 	}
 
 	public function getName() {
@@ -129,7 +138,11 @@ class Item {
 		return $this->nice_name;
 	}
 
-	public function getPacked() {
-		return pack('c', $this->byte);
+	public function getBytes() {
+		return $this->bytes;
+	}
+
+	public function getAddress() {
+		return $this->address;
 	}
 }

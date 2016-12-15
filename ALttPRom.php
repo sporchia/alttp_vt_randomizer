@@ -21,7 +21,7 @@ class ALttPRom {
 	 * @return void
 	 */
 	public function __construct(string $source_location) {
-		if (is_readable($source_location) && hash_file('md5', $source_location) !== '64b87baf0c1205b910aa1f6dbc96ca8d') {
+		if (is_readable($source_location) && hash_file('md5', $source_location) !== '996e25eae027b15be8d8abce75dd69f5') {
 			throw new \Exception('Source ROM not readable or incorrect md5 hash');
 		}
 
@@ -70,6 +70,7 @@ class ALttPRom {
 		fwrite($this->rom, pack('c', 0xEA) . pack('c', 0xEA));
 		fseek($this->rom, 0x65B91);
 		fwrite($this->rom, pack('c', 0xEA) . pack('c', 0xEA));
+
 		return $this;
 	}
 
@@ -84,20 +85,39 @@ class ALttPRom {
 		return copy($this->tmp_file, $output_location);
 	}
 
-	public function setLocationItem(Location $location, Item $item) {
-		$this->write($location->getAddress(), $item->getPacked());
-	}
-
+	/**
+	 * Write packed data at the given offset
+	 *
+	 * @param int $offset location in the ROM to begin writing
+	 * @param string $data data to write to the ROM
+	 *
+	 * @return $this
+	 */
 	public function write($offset, $data) {
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
+
+		return $this;
 	}
 
+	/**
+	 * Read data from the ROM file into an array
+	 *
+	 * @param int $offset location in the ROM to begin reading
+	 * @param int $length data to read
+	 *
+	 * @return array
+	 */
 	public function read($offset, $length = 1) {
 		fseek($this->rom, $offset);
 		return unpack('H*', fread($this->rom, $length))[1];
 	}
 
+	/**
+	 * Object destruction magic method
+	 *
+	 * @return void
+	 */
 	public function __destruct() {
 		unlink($this->tmp_file);
 	}

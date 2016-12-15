@@ -1,18 +1,28 @@
 <?php namespace Randomizer\Region;
 
-use Randomizer\Support\LocationCollection;
-use Randomizer\Location\Pendant;
+use Randomizer\Location\Prize;
 use Randomizer\Region;
+use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Region to hold the Pendant prizes in the world
+ */
 class Pendants extends Region {
+    /**
+     * Create a new Pendants Region to hold pendant drop locations.
+     *
+     * @param World $world World this Region is part of
+     *
+     * @return void
+     */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Pendant("Eastern Palace Pendant", [0x545B8, 0x1209D, 0x53EF8, 0x48B7D], $this),
-			new Pendant("Desert Palace Pendant", [0x545BA, 0x1209E, 0x53F1C, 0x48B7E], $this),
-			new Pendant("Tower of Hera Pendant", [0x545B9, 0x120A5, 0x53F0A, 0x48B7F], $this),
+			new Prize("Eastern Palace Pendant", [null, 0x545B8, 0x1209D, 0x53EF8, 0x180052, 0xC6FE], [0xC8], $this),
+			new Prize("Desert Palace Pendant", [null, 0x545BA, 0x1209E, 0x53F1C, 0x180053, 0xC6FF], [0x33], $this),
+			new Prize("Tower of Hera Pendant", [null, 0x545B9, 0x120A5, 0x53F0A, 0x18005A, 0xC706], [0x07], $this),
 		]);
 	}
 }

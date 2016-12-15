@@ -13,10 +13,10 @@ use Monolog\Logger;
  * do {
  *    $rand = new Randomizer($logger);
  *    $rand->setSpoilerFile(false)->makeSeed();
- * } while (!$rand->getWorld()->getLocations()['Ether']->hasItem(Item::get('MoonPearl')));
+ * } while (!$rand->getWorld()->getLocation('Ether Tablet')->hasItem(Item::get('MoonPearl')));
  * $rand->save();
  *
- * $rand->getWorld()->getLocations()["[cave-040] Link's House"]->setItem(Item::get('MoonPearl'));
+ * $rand->getWorld()->getLocation("[cave-040] Link's House")->setItem(Item::get('MoonPearl'));
  */
 
 $logger = new Logger('randomizer');

@@ -13,16 +13,16 @@ class SwampPalace extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D2-1F] Swamp Palace - first room", 0xEA9D, $this),
-			new Location("[dungeon-D2-B1] Swamp Palace - big chest", 0xE989, $this),
-			new Location("[dungeon-D2-B1] Swamp Palace - big key room", 0xEAA6, $this),
-			new Location("[dungeon-D2-B1] Swamp Palace - map room", 0xE986, $this),
-			new Location("[dungeon-D2-B1] Swamp Palace - push 4 blocks room", 0xEAA3, $this),
-			new Location("[dungeon-D2-B1] Swamp Palace - south of hookshot room", 0xEAA0, $this),
-			new Location("[dungeon-D2-B2] Swamp Palace - flooded room [left chest]", 0xEAA9, $this),
-			new Location("[dungeon-D2-B2] Swamp Palace - flooded room [right chest]", 0xEAAC, $this),
-			new Location("[dungeon-D2-B2] Swamp Palace - hidden waterfall door room", 0xEAAF, $this),
-			new Location("Heart Container - Arrghus", 0x180154, $this),
+			new Location("[dungeon-D2-1F] Swamp Palace - first room", 0xEA9D, null, $this),
+			new Location("[dungeon-D2-B1] Swamp Palace - big chest", 0xE989, null, $this),
+			new Location("[dungeon-D2-B1] Swamp Palace - big key room", 0xEAA6, null, $this),
+			new Location("[dungeon-D2-B1] Swamp Palace - map room", 0xE986, null, $this),
+			new Location("[dungeon-D2-B1] Swamp Palace - push 4 blocks room", 0xEAA3, null, $this),
+			new Location("[dungeon-D2-B1] Swamp Palace - south of hookshot room", 0xEAA0, null, $this),
+			new Location("[dungeon-D2-B2] Swamp Palace - flooded room [left chest]", 0xEAA9, null, $this),
+			new Location("[dungeon-D2-B2] Swamp Palace - flooded room [right chest]", 0xEAAC, null, $this),
+			new Location("[dungeon-D2-B2] Swamp Palace - hidden waterfall door room", 0xEAAF, null, $this),
+			new Location("Heart Container - Arrghus", 0x180154, null, $this),
 		]);
 	}
 

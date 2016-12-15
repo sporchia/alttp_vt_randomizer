@@ -10,9 +10,9 @@ class Swords extends Region {
         parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("Pyramid", 0x180028, $this),
-			new Location("Blacksmiths", 0x3355C, $this),
-			new Location("Alter", 0x289B0, $this),
+			new Location("Pyramid", 0x180028, null, $this),
+			new Location("Blacksmiths", 0x3355C, null, $this),
+			new Location("Alter", 0x289B0, null, $this),
 		]);
 	}
 }

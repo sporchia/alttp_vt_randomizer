@@ -13,14 +13,14 @@ class IcePalace extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D5-B1] Ice Palace - Big Key room", 0xE9A4, $this),
-			new Location("[dungeon-D5-B1] Ice Palace - compass room", 0xE9D4, $this),
-			new Location("[dungeon-D5-B2] Ice Palace - map room", 0xE9DD, $this),
-			new Location("[dungeon-D5-B3] Ice Palace - spike room", 0xE9E0, $this),
-			new Location("[dungeon-D5-B4] Ice Palace - above Blue Mail room", 0xE995, $this),
-			new Location("[dungeon-D5-B5] Ice Palace - b5 up staircase", 0xE9E3, $this),
-			new Location("[dungeon-D5-B5] Ice Palace - big chest", 0xE9AA, $this),
-			new Location("Heart Container - Kholdstare", 0x180157, $this),
+			new Location("[dungeon-D5-B1] Ice Palace - Big Key room", 0xE9A4, null, $this),
+			new Location("[dungeon-D5-B1] Ice Palace - compass room", 0xE9D4, null, $this),
+			new Location("[dungeon-D5-B2] Ice Palace - map room", 0xE9DD, null, $this),
+			new Location("[dungeon-D5-B3] Ice Palace - spike room", 0xE9E0, null, $this),
+			new Location("[dungeon-D5-B4] Ice Palace - above Blue Mail room", 0xE995, null, $this),
+			new Location("[dungeon-D5-B5] Ice Palace - b5 up staircase", 0xE9E3, null, $this),
+			new Location("[dungeon-D5-B5] Ice Palace - big chest", 0xE9AA, null, $this),
+			new Location("Heart Container - Kholdstare", 0x180157, null, $this),
 		]);
 	}
 

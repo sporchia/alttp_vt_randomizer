@@ -13,14 +13,14 @@ class MiseryMire extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("[dungeon-D6-B1] Misery Mire - big chest", 0xEA67, $this),
-			new Location("[dungeon-D6-B1] Misery Mire - big hub room", 0xEA5E, $this),
-			new Location("[dungeon-D6-B1] Misery Mire - big key", 0xEA6D, $this),
-			new Location("[dungeon-D6-B1] Misery Mire - compass", 0xEA64, $this),
-			new Location("[dungeon-D6-B1] Misery Mire - end of bridge", 0xEA61, $this),
-			new Location("[dungeon-D6-B1] Misery Mire - map room", 0xEA6A, $this),
-			new Location("[dungeon-D6-B1] Misery Mire - spike room", 0xE9DA, $this),
-			new Location("Heart Container - Vitreous", 0x180158, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - big chest", 0xEA67, null, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - big hub room", 0xEA5E, null, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - big key", 0xEA6D, null, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - compass", 0xEA64, null, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - end of bridge", 0xEA61, null, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - map room", 0xEA6A, null, $this),
+			new Location("[dungeon-D6-B1] Misery Mire - spike room", 0xE9DA, null, $this),
+			new Location("Heart Container - Vitreous", 0x180158, null, $this),
 		]);
 	}
 

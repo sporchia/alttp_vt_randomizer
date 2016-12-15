@@ -20,6 +20,12 @@
         }
     },
     "require": {
+        "php": ">=7.0.0",
         "monolog/monolog": "^1.22"
+    },
+    "scripts": {
+        "documentation": [
+            "./vendor/sami/sami/sami.php update sami.php"
+        ]
     }
 }

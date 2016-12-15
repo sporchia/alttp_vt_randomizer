@@ -94,7 +94,7 @@ class World {
 	 *
 	 * @return Region
 	 */
-	public function getRegion($name) {
+	public function getRegion(string $name) {
 		return $this->regions[$name];
 	}
 
@@ -117,9 +117,20 @@ class World {
 	}
 
 	/**
+	 * Get Location in this world by name
+	 *
+	 * @var string $name name of the Location
+	 *
+	 * @return Location
+	 */
+	public function getLocation(string $name) {
+		return $this->locations[$name];
+	}
+
+	/**
 	 * Get all the Locations that contain the requested Item
 	 *
-	 * @param Item $item item we are looking for
+	 * @param Item|null $item item we are looking for
 	 *
 	 * @return LocationCollection
 	 */
@@ -130,7 +141,7 @@ class World {
 	/**
 	 * Get all the Regions that contain the requested Item
 	 *
-	 * @param Item $item item we are looking for
+	 * @param Item|null $item item we are looking for
 	 *
 	 * @return array
 	 */

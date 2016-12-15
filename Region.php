@@ -33,7 +33,7 @@ class Region {
 	/**
 	 * Create a new Region.
 	 *
-	 * @param World $world World with Region is part of
+	 * @param World $world World this Region is part of
 	 *
 	 * @return void
 	 */

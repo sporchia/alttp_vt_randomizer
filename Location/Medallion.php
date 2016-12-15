@@ -5,8 +5,17 @@ use Randomizer\Item;
 use Randomizer\Item\Medallion as MedallionItem;
 use Randomizer\Location;
 
+/**
+ * Medallion required Location. E.g. Turtle Rock entrance.
+ */
 class Medallion extends Location {
-
+    /**
+     * sets the item for this location.
+     *
+     * @var Medallion $item can only be magic items that unlock something.
+     *
+     * @return $this
+     */
 	public function setItem(Item $item = null) {
 		if (!is_a($item, MedallionItem::class)) {
 			throw new \Exception('Trying to set non-Medallion in a Medallion Location');
@@ -14,19 +23,5 @@ class Medallion extends Location {
 
 		$this->item = $item;
 		return $this;
-	}
-
-	public function writeItem(ALttPRom $rom, Item $item = null) {
-		if ($item) {
-			$this->setItem($item);
-		}
-
-		$item_bytes = $this->item->getExtraBytes();
-
-		foreach ($this->address as $key => $address) {
-			if (!array_key_exists($key, $item_bytes)) continue;
-
-			$rom->write($address, pack('c', $item_bytes[$key]));
-		}
 	}
 }
