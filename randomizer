@@ -21,17 +21,18 @@ use Randomizer\Support\Config;
  */
 
 $config_v7 = new Config([
-    'shuffle_prizes_cross_world' => false,
-    'count_TenArrows' => 11,
-    'count_ThreeBombs' => 17,
-    'count_BombUpgrade5' => 0,
-    'count_BombUpgrade10' => 0,
-    'count_BombUpgrade50' => 1,
-    'count_ArrowUpgrade5' => 0,
-    'count_ArrowUpgrade10' => 0,
-    'count_ArrowUpgrade70' => 1,
-    'count_TwentyRupees' => 24,
-    'boss_location_in_base' => false,
+	'prize.crossWorld' => false,
+	'item.count.TenArrows' => 11,
+	'item.count.ThreeBombs' => 17,
+	'item.count.BombUpgrade5' => 0,
+	'item.count.BombUpgrade10' => 0,
+	'item.count.BombUpgrade50' => 1,
+	'item.count.ArrowUpgrade5' => 0,
+	'item.count.ArrowUpgrade10' => 0,
+	'item.count.ArrowUpgrade70' => 1,
+	'item.count.TwentyRupees' => 24,
+	'region.bossNormalLocation' => false,
+	'spoil.BootsLocation' => false,
 ]);
 
 $logger = new Logger('randomizer');
@@ -39,7 +40,7 @@ $logger->pushHandler((new ErrorLogHandler(null, Logger::INFO))->setFormatter(new
 
 $rand = new Randomizer($config_v7, $logger);
 $rand->makeSeed();
-$rand->save();
+$rand->save('out/alttp - v7p.%s.sfc');
 
 $logger->debug("Stats:");
 $logger->debug("Run Time: " . round(microtime(true) - $start, 2) . "s");

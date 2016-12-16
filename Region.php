@@ -22,7 +22,7 @@ class Region {
 	public function __construct(World $world) {
 		$this->world = $world;
 
-		$this->boss_location_in_base = $this->world->config->get('boss_location_in_base', true);
+		$this->boss_location_in_base = $this->world->config->get('region.bossNormalLocation', true);
 	}
 
 	/**

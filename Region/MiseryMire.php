@@ -82,7 +82,7 @@ class MiseryMire extends Region {
 		});
 
 		$this->locations["Heart Container - Vitreous"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('BigKey'), [
+			return ($locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D6-B1] Misery Mire - big hub room",
 					"[dungeon-D6-B1] Misery Mire - end of bridge",
 					"[dungeon-D6-B1] Misery Mire - map room",
@@ -100,7 +100,7 @@ class MiseryMire extends Region {
 				"[dungeon-D6-B1] Misery Mire - map room",
 				"[dungeon-D6-B1] Misery Mire - spike room",
 				"[dungeon-D6-B1] Misery Mire - big chest",
-			], 3)
+			], 3))
 			&& $items->has('CaneOfSomaria') && $items->has('Lamp');
 		});
 
