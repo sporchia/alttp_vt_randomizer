@@ -57,8 +57,8 @@ class ItemCollection extends Collection {
 
 	public function canAccessSouthDarkWorld() {
 		return $this->has('MoonPearl')
-			&& (($this->canDefeatAgahnim1() && $this->has('Hammer'))
-				|| ($this->has('Hookshot') && ($this->has('Flippers') || $this->canLiftRocks()))
+			&& (($this->canDefeatAgahnim1() && ($this->has('Hammer')
+				|| ($this->has('Hookshot') && ($this->has('Flippers') || $this->canLiftRocks()))))
 				|| ($this->has('Hammer') && $this->canLiftRocks())
 				|| $this->has('TitansMitt'));
 	}

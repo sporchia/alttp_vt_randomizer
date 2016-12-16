@@ -3,6 +3,7 @@
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Randomizer\Support\Config;
 use Randomizer\Support\ItemCollection;
 use Randomizer\Support\LocationCollection;
 
@@ -14,23 +15,22 @@ class Randomizer {
 	protected $seed;
 	protected $log;
 	protected $world;
+	protected $config;
 	protected $debug = false;
 	protected $spoiler = true;
 
 	/**
 	 * Create a new Randomizer
 	 *
+	 * @param array $config Options for the randomizer
 	 * @param Logger $log|null Optional Logger to capture log messages
 	 *
 	 * @return void
 	 */
-	public function __construct(Logger $log = null) {
-		$this->world = new World;
-		if ($log) {
-			$this->log = $log;
-		} else {
-			$this->log = new Logger('randomizer');
-		}
+	public function __construct(Config $config = null, Logger $log = null) {
+		$this->log = $log ?: new Logger('randomizer');
+		$this->config = $config ?: new Config;
+		$this->world = new World($config);
 	}
 
 	/**
@@ -88,8 +88,7 @@ class Randomizer {
 		}
 		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
 
-		// @TODO: make cross world Prizes configurable
-		$prizes = $this->mt_shuffle([
+		$prizes = [
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
 			Item::get('Crystal3'),
@@ -100,7 +99,11 @@ class Randomizer {
 			Item::get('PendantOfCourage'),
 			Item::get('PendantOfPower'),
 			Item::get('PendantOfWisdom'),
-		]);
+		];
+
+		if ($this->config->get('shuffle_prizes_cross_world', true)) {
+			$prizes = $this->mt_shuffle($prizes);
+		}
 
 		while (count($prizes) > 3) {
 			$item = array_shift($prizes);
@@ -203,6 +206,9 @@ class Randomizer {
 			$region->getLocations()->getNonEmptyLocations()->each(function($location) {
 				$this->log->info(sprintf("%-'.90s%s", $location->getName(), $location->getItem()->getNiceName()));
 			});
+			$region->getLocations()->getEmptyLocations()->each(function($location) {
+				$this->log->info(sprintf("%-'.90s%s", $location->getName(), 'Nothing'));
+			});
 		}
 
 		return $this;
@@ -303,7 +309,7 @@ class Randomizer {
 	/**
 	 * Shuffle the contents of an array using mt_rand
 	 *
-	 * @var array $array array to shuffle
+	 * @param array $array array to shuffle
 	 *
 	 * @return array
 	 */
@@ -331,7 +337,7 @@ class Randomizer {
 		array_push($items_to_find, Item::get('HeartContainer'));
 		array_push($items_to_find, Item::get('MirrorShield'));
 
-		for ($i = 0; $i < 24; $i++) {
+		for ($i = 0; $i < $this->config->get('count_PieceOfHeart', 24); $i++) {
 			array_push($items_to_find, Item::get('PieceOfHeart'));
 		}
 
@@ -340,52 +346,58 @@ class Randomizer {
 		array_push($items_to_find, Item::get('StaffOfByrna'));
 		array_push($items_to_find, Item::get('RedMail'));
 
-		for ($i = 0; $i < 10; $i++) {
+		for ($i = 0; $i < $this->config->get('count_BossHeartContainer', 10); $i++) {
 			array_push($items_to_find, Item::get('BossHeartContainer'));
 		}
 
-		for ($i = 0; $i < 4; $i++) {
+		for ($i = 0; $i < $this->config->get('count_BombUpgrade5', 6); $i++) {
 			array_push($items_to_find, Item::get('BombUpgrade5'));
 		}
-		for ($i = 0; $i < 2; $i++) {
+		for ($i = 0; $i < $this->config->get('count_BombUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('BombUpgrade10'));
 		}
-		for ($i = 0; $i < 4; $i++) {
+		for ($i = 0; $i < $this->config->get('count_BombUpgrade50', 0); $i++) {
+			array_push($items_to_find, Item::get('BombUpgrade50'));
+		}
+		for ($i = 0; $i < $this->config->get('count_ArrowUpgrade5', 6); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade5'));
 		}
-		for ($i = 0; $i < 2; $i++) {
+		for ($i = 0; $i < $this->config->get('count_ArrowUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade10'));
+		}
+		for ($i = 0; $i < $this->config->get('count_ArrowUpgrade70', 1); $i++) {
+			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
 		array_push($items_to_find, Item::get('Arrow'));
-		for ($i = 0; $i < 7; $i++) {
+		for ($i = 0; $i < $this->config->get('count_TenArrows', 7); $i++) {
 			array_push($items_to_find, Item::get('TenArrows'));
 		}
 
-		for ($i = 0; $i < 12; $i++) {
+		for ($i = 0; $i < $this->config->get('count_ThreeBombs', 12); $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
 
-		for ($i = 0; $i < 2; $i++) {
+		for ($i = 0; $i < $this->config->get('count_OneRupee', 2); $i++) {
 			array_push($items_to_find, Item::get('OneRupee'));
 		}
-		for ($i = 0; $i < 2; $i++) {
+		for ($i = 0; $i < $this->config->get('count_FiveRupees', 2); $i++) {
 			array_push($items_to_find, Item::get('FiveRupees'));
 		}
-		for ($i = 0; $i < 23; $i++) {
+		for ($i = 0; $i < $this->config->get('count_TwentyRupees', 21); $i++) {
 			array_push($items_to_find, Item::get('TwentyRupees'));
 		}
-		for ($i = 0; $i < 7; $i++) {
+		for ($i = 0; $i < $this->config->get('count_FiftyRupees', 7); $i++) {
 			array_push($items_to_find, Item::get('FiftyRupees'));
 		}
-		for ($i = 0; $i < 6; $i++) {
+		for ($i = 0; $i < $this->config->get('count_OneHundredRupees', 6); $i++) {
 			array_push($items_to_find, Item::get('OneHundredRupees'));
 		}
-		for ($i = 0; $i < 4; $i++) {
+		for ($i = 0; $i < $this->config->get('count_ThreeHundredRupees', 4); $i++) {
 			array_push($items_to_find, Item::get('ThreeHundredRupees'));
 		}
 
-		for ($i = 0; $i < 3; $i++) {
+		for ($i = 0; $i < $this->config->get('count_ExtraBottles', 3); $i++) {
 			array_push($items_to_find, $this->getBottle());
 		}
 

@@ -13,6 +13,15 @@ class Item {
 
 	static protected $items;
 
+	/**
+	 * Get the Item by name
+	 *
+	 * @param string $name Name of Item
+	 *
+	 * @throws Exception if the Item doesn't exist
+	 *
+	 * @return Item
+	 */
 	static public function get($name) {
 		$items = static::all();
 		if (isset($items[$name])) {
@@ -22,6 +31,11 @@ class Item {
 		throw new \Exception('Unknown Item: ' . $name);
 	}
 
+	/**
+	 * Get the all known Items
+	 *
+	 * @return ItemCollection
+	 */
 	static public function all() {
 		if (static::$items) {
 			return static::$items;
@@ -123,6 +137,16 @@ class Item {
 		return static::all();
 	}
 
+	/**
+	 * Create a new Item
+	 *
+	 * @param string $name Unique name of item
+	 * @param string $nice_name Well formatted name for item
+	 * @param array $bytes data to write to Location addresses
+	 * @param array|null $address Addresses in ROM to write back Location data if set
+	 *
+	 * @return void
+	 */
 	public function __construct($name, $nice_name, $bytes, $address = null) {
 		$this->name = $name;
 		$this->nice_name = $nice_name;
@@ -130,18 +154,38 @@ class Item {
 		$this->address = (array) $address;
 	}
 
+	/**
+	 * Get the name of this Item
+	 *
+	 * @return string
+	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 * Get the nice name of this Item
+	 *
+	 * @return string
+	 */
 	public function getNiceName() {
 		return $this->nice_name;
 	}
 
+	/**
+	 * Get the bytes to write
+	 *
+	 * @return array
+	 */
 	public function getBytes() {
 		return $this->bytes;
 	}
 
+	/**
+	 * Get the addresses to write to
+	 *
+	 * @return array
+	 */
 	public function getAddress() {
 		return $this->address;
 	}

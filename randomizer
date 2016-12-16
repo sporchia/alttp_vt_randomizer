@@ -6,6 +6,7 @@ require_once('vendor/autoload.php');
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Logger;
+use Randomizer\Support\Config;
 
 /**
  * Egs:
@@ -19,10 +20,24 @@ use Monolog\Logger;
  * $rand->getWorld()->getLocation("[cave-040] Link's House")->setItem(Item::get('MoonPearl'));
  */
 
+$config_v7 = new Config([
+    'shuffle_prizes_cross_world' => false,
+    'count_TenArrows' => 11,
+    'count_ThreeBombs' => 17,
+    'count_BombUpgrade5' => 0,
+    'count_BombUpgrade10' => 0,
+    'count_BombUpgrade50' => 1,
+    'count_ArrowUpgrade5' => 0,
+    'count_ArrowUpgrade10' => 0,
+    'count_ArrowUpgrade70' => 1,
+    'count_TwentyRupees' => 24,
+    'boss_location_in_base' => false,
+]);
+
 $logger = new Logger('randomizer');
 $logger->pushHandler((new ErrorLogHandler(null, Logger::INFO))->setFormatter(new LineFormatter('%message%')));
 
-$rand = new Randomizer($logger);
+$rand = new Randomizer($config_v7, $logger);
 $rand->makeSeed();
 $rand->save();
 

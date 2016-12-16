@@ -116,6 +116,13 @@ class ALttPRom {
 		unlink($this->tmp_file);
 	}
 
+	/**
+	 * Convert string to byte array that can be written to ROM
+	 *
+	 * @param string $string string to convert
+	 *
+	 * @return array
+	 */
 	public function convertDialog(string $string) {
 		$new_string = [];
 		$lines = explode("\n", $string);
@@ -150,6 +157,13 @@ class ALttPRom {
 		return $new_string;
 	}
 
+	/**
+	 * Convert character to byte for ROM
+	 *
+	 * @param string $string character to convert
+	 *
+	 * @return int
+	 */
 	private function charToHex($char) {
 		$char = strtoupper($char);
 		if (preg_match('/\d/', $char)) {

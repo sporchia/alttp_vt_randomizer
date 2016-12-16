@@ -1,11 +1,16 @@
 <?php namespace Randomizer;
 
 use Randomizer\Support\LocationCollection;
+use Randomizer\Support\Config;
 
 /**
  * This is the container for all the regions and locations one can find items in the game.
  */
 class World {
+	/**
+	 * @var Config $config access to config object
+	 */
+	public $config;
 	protected $regions = [];
 	protected $locations;
 
@@ -16,7 +21,9 @@ class World {
 	 *
 	 * @return void
 	 */
-	public function __construct($type = 'NoMajorGlitches') {
+	public function __construct(Config $config = null, $type = 'NoMajorGlitches') {
+		$this->config = $config ?: new Config;
+
 		$this->regions = [
 			'Light World' => new Region\LightWorld($this),
 			'Escape' => new Region\HyruleCastleEscape($this),
@@ -43,6 +50,7 @@ class World {
 
 		$this->locations = new LocationCollection;
 
+		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
 			$region->init($type);
 			$this->locations = $this->locations->merge($region->getLocations());
@@ -113,7 +121,7 @@ class World {
 	/**
 	 * Get Location in this world by name
 	 *
-	 * @var string $name name of the Location
+	 * @param string $name name of the Location
 	 *
 	 * @return Location
 	 */

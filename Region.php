@@ -21,6 +21,8 @@ class Region {
 	 */
 	public function __construct(World $world) {
 		$this->world = $world;
+
+		$this->boss_location_in_base = $this->world->config->get('boss_location_in_base', true);
 	}
 
 	/**
@@ -41,15 +43,32 @@ class Region {
 		return $this->name;
 	}
 
-	public function setPrizeLocation(Location $location) {
+	/**
+	 * Set the Prize Location for completeing this Region.
+	 *
+	 * @param Location\Prize $location location to put item that will be the prize
+	 *
+	 * @return $this
+	 */
+	public function setPrizeLocation(Location\Prize $location) {
 		$this->prize_location = $location;
 		return $this;
 	}
 
+	/**
+	 * Get the Prize Location for completeing this Region.
+	 *
+	 * @return Location\Prize|null
+	 */
 	public function getPrizeLocation() {
 		return $this->prize_location;
 	}
 
+	/**
+	 * Get the Prize for completeing this Region.
+	 *
+	 * @return Item|null
+	 */
 	public function getPrize() {
 		if (!isset($this->prize_location) || !$this->prize_location->hasItem()) {
 			return null;
@@ -58,7 +77,14 @@ class Region {
 		return $this->prize_location->getItem();
 	}
 
-	public function hasPrize(Item $item) {
+	/**
+	 * Determine if a (particular) Prize Item is set for the Region
+	 *
+	 * @param Item|null $item Item to check against
+	 *
+	 * @return bool
+	 */
+	public function hasPrize(Item $item = null) {
 		if (!isset($this->prize_location) || !$this->prize_location->hasItem()) {
 			return false;
 		}
@@ -66,19 +92,45 @@ class Region {
 		return $this->prize_location->hasItem($item);
 	}
 
-	// These should be fillable no matter what. Items like keys/maps/compass'
+	/**
+	 * Fill the normal required Items for a Region, this usually includes Keys/Maps/Compasses
+	 *
+	 * @param Support\ItemColletion $my_items set of Items available when filling base Items in the Region
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		return $this;
 	}
 
-	public function init($type = 'NoMajorGlitches') {
+	/**
+	 * Initalize the logic for the Region
+	 *
+	 * @param string $type the ruleset to apply to Locations
+	 *
+	 * @return $this
+	 */
+	public function init(string $type = 'NoMajorGlitches') {
 		return call_user_func([$this, 'init' . $type]);
 	}
 
+	/**
+	 * Initalize the No Major Glitches logic for the Region
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		return $this;
 	}
 
+	/**
+	 * Determine if the Region is completable given the locations and items available
+	 *
+	 * @param Support\LocationCollection $locations current list of Locations
+	 * @param ItemsCollection $items current list of Items collected
+	 *
+	 * @return bool
+	 */
 	public function canComplete($locations, $items) {
 		if ($this->can_complete) {
 			return call_user_func($this->can_complete, $locations, $items);
@@ -86,6 +138,14 @@ class Region {
 		return true;
 	}
 
+	/**
+	 * Determine if the Region can be entered given the locations and items available
+	 *
+	 * @param Support\LocationCollection $locations current list of Locations
+	 * @param ItemsCollection $items current list of Items collected
+	 *
+	 * @return bool
+	 */
 	public function canEnter($locations, $items) {
 		if ($this->can_enter) {
 			return call_user_func($this->can_enter, $locations, $items);
@@ -93,20 +153,44 @@ class Region {
 		return true;
 	}
 
-	public function getLocation(string $name) {
-		return $this->locations[$name];
-	}
-
+	/**
+	 * Get all the Locations in this Region
+	 *
+	 * @return Support\LocationCollection
+	 */
 	public function getLocations() {
 		return $this->locations;
 	}
 
+	/**
+	 * Get Location in this Region by name
+	 *
+	 * @param string $name name of the Location
+	 *
+	 * @return Location
+	 */
+	public function getLocation(string $name) {
+		return $this->locations[$name];
+	}
+
+	/**
+	 * Get all the Locations in this Region that do not have an Item assigned
+	 *
+	 * @return Support\LocationCollection
+	 */
 	public function getEmptyLocations() {
 		return $this->locations->filter(function($location) {
 			return !$location->hasItem();
 		});
 	}
 
+	/**
+	 * Get all the Locations in this Region that have (a particular) Item assigned to them
+	 *
+	 * @param Item $item item to search locations for
+	 *
+	 * @return Support\LocationCollection
+	 */
 	public function locationsWithItem(Item $item = null) {
 		return $this->locations->locationsWithItem($item);
 	}
