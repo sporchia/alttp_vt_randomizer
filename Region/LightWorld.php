@@ -227,7 +227,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
-			return $items->canDefeatAgahnim1();
+			return $items->canDefeatAgahnim1() && $items->has('PegasusBoots');
 		});
 
 		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {
