@@ -2,6 +2,9 @@
 
 use Randomizer\Support\LocationCollection;
 
+/**
+ * A Location is any place an Item can be found in game
+ */
 class Location {
 	protected $name;
 	protected $address;

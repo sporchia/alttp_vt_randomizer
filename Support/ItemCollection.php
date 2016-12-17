@@ -3,46 +3,118 @@
 use Randomizer\Item;
 use Randomizer\World;
 
+/**
+ * Collection of Items
+ */
 class ItemCollection extends Collection {
 	protected $world;
 	protected $no_upgrade_sword_check = false;
 
+	/**
+	 * Create a new collection.
+	 *
+	 * @param mixed $items
+	 *
+	 * @return void
+	 */
+	public function __construct($items = []) {
+		foreach ($this->getArrayableItems($items) as $item) {
+			$this->addItem($item);
+		}
+	}
+
+	/**
+	 * Set the World in which these Items reside
+	 * @TODO: this was a sort of hack for some of the restriction functions, I think those should be moved to
+	 * new Regions, and only have the functions that don't rely on a world in here.
+	 *
+	 * @param World $world World this item collection belongs to
+	 *
+	 * @return $this
+	 */
 	public function setWorld(World $world) {
 		$this->world = $world;
+		return $this;
 	}
 
+	/**
+	 * Add an Item to this Collection
+	 *
+	 * @param Item $item
+	 *
+	 * @return $this
+	 */
 	public function addItem(Item $item) {
 		$this->offsetSet($item->getName(), $item);
+		return $this;
 	}
 
+	/**
+	 * Add an Item to a copy of this Collection
+	 *
+	 * @param Item $item
+	 *
+	 * @return static
+	 */
 	public function tempAdd(Item $item) {
 		$new = new static(array_merge($this->items, [$item]));
 		$new->setWorld($this->world);
 		return $new;
 	}
 
+	/**
+	 * Requirements for lifting rocks
+	 *
+	 * @return bool
+	 */
 	public function canLiftRocks() {
 		return $this->has("PowerGlove") || $this->has("TitansMitt");
 	}
 
+	/**
+	 * Requirements for lighting torches
+	 *
+	 * @return bool
+	 */
 	public function canLightTorches() {
 		return $this->has('FireRod') || $this->has('Lamp');
 	}
 
+	/**
+	 * Requirements for melting things, like ice statues
+	 *
+	 * @return bool
+	 */
 	public function canMeltThings() {
 		return $this->has('FireRod') || $this->has('Bombos');
 	}
 
+	/**
+	 * Requirements for fast travel through the duck
+	 *
+	 * @return bool
+	 */
 	public function canFly() {
 		return $this->has('OcarinaActive') || $this->has('OcarinaInactive');
 	}
 
+	/**
+	 * Requirements for lobbing arrows at things
+	 *
+	 * @return bool
+	 */
 	public function canShootArrows() {
 		return $this->has('Bow')
 			|| $this->has('BowAndArrows')
 			|| $this->has('BowAndSilverArrows');
 	}
 
+	/**
+	 * Requirements for accessing the NW DW.
+	 * @TODO: consider moving this to it's own Region
+	 *
+	 * @return bool
+	 */
 	public function canAccessNorthWestDarkWorld() {
 		return ($this->canAccessPyramid()
 			&& ($this->has('Hookshot')
@@ -55,6 +127,12 @@ class ItemCollection extends Collection {
 		&& $this->has('MoonPearl');
 	}
 
+	/**
+	 * Requirements for accessing the S DW.
+	 * @TODO: consider moving this to it's own Region
+	 *
+	 * @return bool
+	 */
 	public function canAccessSouthDarkWorld() {
 		return $this->has('MoonPearl')
 			&& (($this->canDefeatAgahnim1() && ($this->has('Hammer')
@@ -63,26 +141,54 @@ class ItemCollection extends Collection {
 				|| $this->has('TitansMitt'));
 	}
 
+	/**
+	 * Requirements for accessing the NE DW.
+	 * @TODO: consider moving this to it's own Region
+	 *
+	 * @return bool
+	 */
 	public function canAccessPyramid() {
 		return $this->canDefeatAgahnim1()
 			|| ($this->has('Hammer') && $this->canLiftRocks() && $this->has('MoonPearl'))
 			|| ($this->has("TitansMitt") && $this->has('Flippers') && $this->has('MoonPearl'));
 	}
 
+	/**
+	 * Requirements for accessing the W DM.
+	 * @TODO: consider moving this to the Death Mountain Region
+	 *
+	 * @return bool
+	 */
 	public function canAccessWestDeathMountain() {
 		return $this->canFly() || $this->canLiftRocks();
 	}
 
+	/**
+	 * Requirements for accessing the E DM.
+	 * @TODO: consider moving this to the Death Mountain Region
+	 *
+	 * @return bool
+	 */
 	public function canAccessEastDeathMountain() {
 		return $this->canAccessWestDeathMountain()
 			&& (($this->has('Hammer') && $this->has('MagicMirror'))
 			|| $this->has('Hookshot'));
 	}
 
+	/**
+	 * Requirements for defeating AG1
+	 *
+	 * @return bool
+	 */
 	public function canDefeatAgahnim1() {
 		return $this->has('Cape') || (!$this->no_upgrade_sword_check && $this->canUpgradeSword());
 	}
 
+	/**
+	 * Requirements for upgrading sword
+	 *
+	 * @return bool
+	 */
 	public function canUpgradeSword() {
 		$locations = $this->world->getLocations();
 		$this->no_upgrade_sword_check = true;
@@ -130,6 +236,11 @@ class ItemCollection extends Collection {
 		return $can_upgrade;
 	}
 
+	/**
+	 * Requirements for collecing all 3 pendants
+	 *
+	 * @return bool
+	 */
 	public function canCollectPendants() {
 		$locations = $this->world->getLocations();
 
@@ -181,6 +292,11 @@ class ItemCollection extends Collection {
 		return $p1 + $p2 + $p3 + $d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 == 3;
 	}
 
+	/**
+	 * Requirements for having a bottle
+	 *
+	 * @return bool
+	 */
 	public function hasABottle() {
 		return $this->has('BottleWithBee')
 			|| $this->has('BottleWithFairy')

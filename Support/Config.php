@@ -4,10 +4,6 @@
  * Wrapper for Config options
  */
 class Config extends Collection {
-	public function __construct($items = []) {
-		$this->items = is_array($items) ? $items : $this->getArrayableItems($items);
-	}
-
 	/**
 	 * Get an item from the collection by key.
 	 *
@@ -48,7 +44,7 @@ class Config extends Collection {
 					'spoil.BootsLocation' => false,
 				]);
 			case 'v7_hard':
-				return static::rules('v7')->clone()->merge([
+				return static::rules('v7')->copy()->merge([
 					'item.count.BlueMail' => 0,
 					'item.count.Boomerang' => 0,
 					'item.count.BugCatchingNet' => 0,

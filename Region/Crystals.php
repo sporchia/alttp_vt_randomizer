@@ -5,7 +5,17 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Region containing the 7 Crystals required to beat the game
+ */
 class Crystals extends Region {
+	/**
+	 * Create a new Crystals Region and generate all it's Locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 

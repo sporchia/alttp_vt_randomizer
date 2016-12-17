@@ -4,11 +4,12 @@ use ArrayAccess;
 use Countable;
 use IteratorAggregate;
 use ArrayIterator;
+
 /**
  * Collection's aim to expand on the array native, and give meaningful accessors and extra functionality related to the
  * underlying elements.
  */
-abstract class Collection implements ArrayAccess, Countable, IteratorAggregate {
+class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	protected $items = [];
 
 	/**
@@ -19,9 +20,7 @@ abstract class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	 * @return void
 	 */
 	public function __construct($items = []) {
-		foreach ($this->getArrayableItems($items) as $item) {
-			$this->addItem($item);
-		}
+		$this->items = is_array($items) ? $items : $this->getArrayableItems($items);
 	}
 
 	/**
@@ -47,7 +46,7 @@ abstract class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	/**
 	 * Get a random subset of the collection of given size
 	 *
-	 * @param int $amount size of the new collection
+	 * @param int $number size of the new collection
 	 *
 	 * @return static
 	 */
@@ -146,7 +145,7 @@ abstract class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	 *
 	 * @return static
 	 */
-	public function clone() {
+	public function copy() {
 		return new static($this->items);
 	}
 
