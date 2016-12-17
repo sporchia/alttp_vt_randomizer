@@ -46,18 +46,18 @@ class TowerOfHera extends Region {
 		});
 
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setRequirements(function($locations, $items) {
-			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches()
-				|| $locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->hasItem(Item::get("BigKey")));
+			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
+				|| $locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->hasItem(Item::get("BigKey"));
 		});
 
 		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setRequirements(function($locations, $items) {
-			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches()
-				|| $locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->hasItem(Item::get("BigKey")));
+			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
+				|| $locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->hasItem(Item::get("BigKey"));
 		});
 
 		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
-			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches()
-				|| $locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->hasItem(Item::get("BigKey")));
+			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
+				|| $locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->hasItem(Item::get("BigKey"));
 		});
 
 		$this->can_complete = function($locations, $items) {

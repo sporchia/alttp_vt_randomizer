@@ -132,7 +132,7 @@ class IcePalace extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('TitansMitt') && $items->canMeltThings();
+			return $items->has('MoonPearl') && $items->has('Flippers') && $items->has('TitansMitt') && $items->canMeltThings();
 		};
 
 		return $this;

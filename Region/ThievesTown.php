@@ -80,7 +80,7 @@ class ThievesTown extends Region {
 		});
 
 		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('Hammer');
 		});
 
 		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setRequirements(function($locations, $items) {

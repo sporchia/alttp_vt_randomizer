@@ -38,11 +38,11 @@ class DesertPalace extends Region {
 
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-L2-B1] Desert Palace - big chest"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('BigKey'), [
-				"[dungeon-L2-B1] Desert Palace - Map room",
-				"[dungeon-L2-B1] Desert Palace - Big key room",
-				"[dungeon-L2-B1] Desert Palace - compass room",
-			]);
+			return $locations->itemInLocations(Item::get('BigKey'), ["[dungeon-L2-B1] Desert Palace - Map room", ])
+				|| ($locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-L2-B1] Desert Palace - Big key room",
+					"[dungeon-L2-B1] Desert Palace - compass room",
+				]) && $items->has('PegasusBoots'));
 		});
 
 		$this->locations["[dungeon-L2-B1] Desert Palace - Map room"]->setRequirements(function($locations, $items) {
