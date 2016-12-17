@@ -24,6 +24,48 @@ class ALttPRom {
 		copy($source_location, $this->tmp_file);
 
 		$this->rom = fopen($this->tmp_file, "r+");
+		$this->setMaxArrows();
+		$this->setMaxBombs();
+		$this->setHeartBeepSpeed(0x40);
+	}
+
+	/**
+	 * Set the Low Health Beep Speed
+	 *
+	 * @param int $byte setting (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
+	 *
+	 * @return $this
+	 */
+	public function setHeartBeepSpeed($byte) {
+		fseek($this->rom, 0x180033);
+		fwrite($this->rom, pack('c', $byte));
+		return $this;
+	}
+
+	/**
+	 * Set the starting Max Arrows
+	 *
+	 * @param int $max
+	 *
+	 * @return $this
+	 */
+	public function setMaxArrows($max = 30) {
+		fseek($this->rom, 0x180035);
+		fwrite($this->rom, pack('c', $max));
+		return $this;
+	}
+
+	/**
+	 * Set the starting Max Bombs
+	 *
+	 * @param int $max
+	 *
+	 * @return $this
+	 */
+	public function setMaxBombs($max = 10) {
+		fseek($this->rom, 0x180034);
+		fwrite($this->rom, pack('c', $max));
+		return $this;
 	}
 
 	/**

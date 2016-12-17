@@ -20,25 +20,10 @@ use Randomizer\Support\Config;
  * $rand->getWorld()->getLocation("[cave-040] Link's House")->setItem(Item::get('MoonPearl'));
  */
 
-$config_v7 = new Config([
-	'prize.crossWorld' => false,
-	'item.count.TenArrows' => 11,
-	'item.count.ThreeBombs' => 17,
-	'item.count.BombUpgrade5' => 0,
-	'item.count.BombUpgrade10' => 0,
-	'item.count.BombUpgrade50' => 1,
-	'item.count.ArrowUpgrade5' => 0,
-	'item.count.ArrowUpgrade10' => 0,
-	'item.count.ArrowUpgrade70' => 1,
-	'item.count.TwentyRupees' => 24,
-	'region.bossNormalLocation' => false,
-	'spoil.BootsLocation' => false,
-]);
-
 $logger = new Logger('randomizer');
 $logger->pushHandler((new ErrorLogHandler(null, Logger::INFO))->setFormatter(new LineFormatter('%message%')));
 
-$rand = new Randomizer($config_v7, $logger);
+$rand = new Randomizer(Config::rules('v7'), $logger);
 $rand->makeSeed();
 $rand->save('out/alttp - v7p.%s.sfc');
 

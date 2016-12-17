@@ -361,21 +361,38 @@ class Randomizer {
 	public function getItemPool() {
 		$items_to_find = [];
 
-		array_push($items_to_find, Item::get('BlueMail'));
-		array_push($items_to_find, Item::get('Boomerang'));
-		array_push($items_to_find, Item::get('BugCatchingNet'));
-		array_push($items_to_find, Item::get('HeartContainer'));
-		array_push($items_to_find, Item::get('MirrorShield'));
+		for ($i = 0; $i < $this->config->get('item.count.BlueMail', 1); $i++) {
+			array_push($items_to_find, Item::get('BlueMail'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.Boomerang', 1); $i++) {
+			array_push($items_to_find, Item::get('Boomerang'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.BugCatchingNet', 1); $i++) {
+			array_push($items_to_find, Item::get('BugCatchingNet'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.HeartContainer', 1); $i++) {
+			array_push($items_to_find, Item::get('HeartContainer'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.MirrorShield', 1); $i++) {
+			array_push($items_to_find, Item::get('MirrorShield'));
+		}
 
 		for ($i = 0; $i < $this->config->get('item.count.PieceOfHeart', 24); $i++) {
 			array_push($items_to_find, Item::get('PieceOfHeart'));
 		}
 
-		array_push($items_to_find, Item::get('RedBoomerang'));
-		array_push($items_to_find, Item::get('RedShield'));
-		array_push($items_to_find, Item::get('StaffOfByrna'));
-		array_push($items_to_find, Item::get('RedMail'));
-
+		for ($i = 0; $i < $this->config->get('item.count.RedBoomerang', 1); $i++) {
+			array_push($items_to_find, Item::get('RedBoomerang'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.RedShield', 1); $i++) {
+			array_push($items_to_find, Item::get('RedShield'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.StaffOfByrna', 1); $i++) {
+			array_push($items_to_find, Item::get('StaffOfByrna'));
+		}
+		for ($i = 0; $i < $this->config->get('item.count.RedMail', 1); $i++) {
+			array_push($items_to_find, Item::get('RedMail'));
+		}
 		for ($i = 0; $i < $this->config->get('item.count.BossHeartContainer', 10); $i++) {
 			array_push($items_to_find, Item::get('BossHeartContainer'));
 		}
@@ -399,11 +416,16 @@ class Randomizer {
 			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
-		array_push($items_to_find, Item::get('Arrow'));
+		for ($i = 0; $i < $this->config->get('item.count.Arrow', 1); $i++) {
+			array_push($items_to_find, Item::get('Arrow'));
+		}
 		for ($i = 0; $i < $this->config->get('item.count.TenArrows', 7); $i++) {
 			array_push($items_to_find, Item::get('TenArrows'));
 		}
 
+		for ($i = 0; $i < $this->config->get('item.count.Bomb', 0); $i++) {
+			array_push($items_to_find, Item::get('Bomb'));
+		}
 		for ($i = 0; $i < $this->config->get('item.count.ThreeBombs', 12); $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
