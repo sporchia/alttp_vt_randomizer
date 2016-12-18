@@ -23,7 +23,7 @@ class Randomizer {
 	 * Create a new Randomizer
 	 *
 	 * @param array $config Options for the randomizer
-	 * @param Logger $log|null Optional Logger to capture log messages
+	 * @param Logger|null $log Optional Logger to capture log messages
 	 *
 	 * @return void
 	 */
@@ -58,7 +58,7 @@ class Randomizer {
 		mt_srand($seed);
 
 		if ($this->spoiler) {
-			$spoiler = sprintf('out/alttp - V1.%s.txt', $this->seed);
+			$spoiler = sprintf('out/' . $this->config->get('output.file.spoiler', 'alttp - p.%s.txt'), $this->seed);
 			if (file_exists($spoiler)) unlink($spoiler);
 			$this->log->pushHandler((new StreamHandler($spoiler, Logger::INFO))->setFormatter(new LineFormatter("%message%\n")));
 		}
@@ -257,7 +257,7 @@ class Randomizer {
 	 * @return bool
 	 */
 	public function save($save_file) {
-		$rom = new ALttPRom('in/alttp-v8.sfc');
+		$rom = new ALttPRom('in/alttp-v8.sfc', $this->log);
 
 		if ($this->debug) {
 			$rom->enableDebugMode();
@@ -265,7 +265,6 @@ class Randomizer {
 		} else {
 			$this->setStartText($rom);
 		}
-
 
 		foreach ($this->world->getRegions() as $name => $region) {
 			$region->getLocations()->getNonEmptyLocations()->each(function($location) use ($rom) {
@@ -278,7 +277,7 @@ class Randomizer {
 			});
 		}
 
-		return $rom->save(sprintf($save_file, $this->seed));
+		return $rom->save(sprintf($save_file . $this->config->get('output.file.name', 'alttp - p.%s.sfc'), $this->seed));
 	}
 
 	/**
@@ -337,24 +336,7 @@ class Randomizer {
 	}
 
 	/**
-	 * Shuffle the contents of an array using mt_rand
-	 *
-	 * @param array $array array to shuffle
-	 *
-	 * @return array
-	 */
-	public function mt_shuffle(array $array) {
-		$new_array = [];
-		while(count($array)) {
-			$pull_key = mt_rand(0, count($array) - 1);
-			$new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
-		}
-		return $new_array;
-	}
-
-	/**
-	 * Get all the Items to insert into the Locations Available, should be randomly shuffled with required advancement
-	 * Item's first
+	 * Get all the Items to insert into the Locations Available, should be randomly shuffled
 	 *
 	 * @return array
 	 */
@@ -486,5 +468,21 @@ class Randomizer {
 	 */
 	public function getWorld() {
 		return $this->world;
+	}
+
+	/**
+	 * Shuffle the contents of an array using mt_rand
+	 *
+	 * @param array $array array to shuffle
+	 *
+	 * @return array
+	 */
+	public function mt_shuffle(array $array) {
+		$new_array = [];
+		while(count($array)) {
+			$pull_key = mt_rand(0, count($array) - 1);
+			$new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
+		}
+		return $new_array;
 	}
 }

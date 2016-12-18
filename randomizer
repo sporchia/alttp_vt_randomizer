@@ -25,7 +25,7 @@ $logger->pushHandler((new ErrorLogHandler(null, Logger::INFO))->setFormatter(new
 
 $rand = new Randomizer(Config::rules('v7'), $logger);
 $rand->makeSeed();
-$rand->save('out/alttp - v7p.%s.sfc');
+$rand->save('out/');
 
 $logger->debug("Stats:");
 $logger->debug("Run Time: " . round(microtime(true) - $start, 2) . "s");

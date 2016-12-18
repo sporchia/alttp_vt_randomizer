@@ -1,6 +1,5 @@
 <?php namespace Randomizer\Location;
 
-use Randomizer\ALttPRom;
 use Randomizer\Item;
 use Randomizer\Item\Medallion as MedallionItem;
 use Randomizer\Location;

@@ -1,24 +1,28 @@
 <?php namespace Randomizer;
 
+use Monolog\Logger;
+
 /**
  * Wrapper for ROM file
  */
 class ALttPRom {
 	private $tmp_file;
+	protected $log;
 	protected $rom;
 
 	/**
 	 * Create a new wrapper
 	 *
 	 * @param string $source_location location of source ROM to edit
+	 * @param Logger|null $log Monolog Logger instance to log to
 	 *
 	 * @return void
 	 */
-	public function __construct(string $source_location) {
-		if (is_readable($source_location) && hash_file('md5', $source_location) !== '996e25eae027b15be8d8abce75dd69f5') {
+	public function __construct(string $source_location, Logger $log = null) {
+		if (is_readable($source_location) && hash_file('md5', $source_location) !== 'ba0093e40e29b1f279cae0d9f06859c6') {
 			throw new \Exception('Source ROM not readable or incorrect md5 hash');
 		}
-
+		$this->log = $log ?: new Logger('alttp');
 		$this->tmp_file = tempnam(sys_get_temp_dir(), __CLASS__);
 
 		copy($source_location, $this->tmp_file);
@@ -89,7 +93,7 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		fseek($this->rom, 0x102324);
+		fseek($this->rom, 0x102330);
 		foreach ($this->convertDialog($string) as $byte) {
 			fwrite($this->rom, pack('c', $byte));
 		}
@@ -130,6 +134,7 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function write(int $offset, $data) {
+		$this->log->debug(sprintf("write: 0x%s: 0x%2s\n", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 

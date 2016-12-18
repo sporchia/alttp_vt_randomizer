@@ -45,6 +45,7 @@ class Item {
 			new Item('Nothing', 'Nothing', 0xFF),
 			new Item\Sword('L1Sword', 'Fighters Sword', 0x49), // Uncle must be dead
 			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', 0x00), // Uncle must be dead
+			new Item\Sword('L2Sword', 'Master Sword', 0x01),
 			new Item\Sword('MasterSword', 'Master Sword', 0x50),
 			new Item\Sword('L3Sword', 'Tempered Sword', 0x02), // Uncle must be dead
 			new Item\Sword('L4Sword', 'Golden Sword', 0x03), // Uncle must be dead

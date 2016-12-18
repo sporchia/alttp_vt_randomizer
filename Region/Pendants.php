@@ -9,13 +9,13 @@ use Randomizer\World;
  * Region to hold the Pendant prizes in the world
  */
 class Pendants extends Region {
-    /**
-     * Create a new Pendants Region to hold pendant drop locations.
-     *
-     * @param World $world World this Region is part of
-     *
-     * @return void
-     */
+	/**
+	 * Create a new Pendants Region to hold pendant drop locations.
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 

@@ -1,6 +1,5 @@
 <?php namespace Randomizer\Location;
 
-use Randomizer\ALttPRom;
 use Randomizer\Item;
 use Randomizer\Item\Crystal;
 use Randomizer\Item\Pendant;

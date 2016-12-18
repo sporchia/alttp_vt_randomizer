@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Turtle Rock Region and it's Locations contained within
+ */
 class TurtleRock extends Region {
 	protected $name = 'Turtle Rock';
 
+	/**
+	 * Create a new Turtle Rock Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -28,12 +38,18 @@ class TurtleRock extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Turtle Rock has: Big Key, Map, Compass, and 4 keys
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Trinexx";
 		});
 
-		// Big Key, Map, Compass, 4 keys
 		while(!$locations->getEmptyLocations()->filter(function($location) {
 			return in_array($location->getName(), [
 				"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
@@ -79,6 +95,12 @@ class TurtleRock extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->setRequirements(function($locations, $items) {
 			return true;
