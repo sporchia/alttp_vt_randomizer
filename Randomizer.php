@@ -251,6 +251,7 @@ class Randomizer {
 
 	/**
 	 * Save all changes made by this Randomizer to a new ROM file.
+	 * @TODO: should really dep inject the ROM
 	 *
 	 * @param string $save_file filename to save the file
 	 *

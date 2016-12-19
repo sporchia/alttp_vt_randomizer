@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Ice Palace Region and it's Locations contained within
+ */
 class IcePalace extends Region {
 	protected $name = 'Ice Palace';
 
+	/**
+	 * Create a new Ice Palace Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -24,11 +34,18 @@ class IcePalace extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Ice Palace has: Big Key, Map, Compass, 2 Keys
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Kholdstare";
 		});
-		// Big Key, Map, Compass, 2 keys
+
 		while(!$locations->getEmptyLocations()->filter(function($location) {
 			return in_array($location->getName(), [
 				"[dungeon-D5-B1] Ice Palace - compass room",
@@ -58,6 +75,12 @@ class IcePalace extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canLiftRocks();

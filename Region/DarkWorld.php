@@ -5,9 +5,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Dark World Region and it's Locations contained within
+ */
 class DarkWorld extends Region {
 	protected $name = 'Dark World';
 
+	/**
+	 * Create a new Dark World Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -38,6 +48,12 @@ class DarkWorld extends Region {
 		]);
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()

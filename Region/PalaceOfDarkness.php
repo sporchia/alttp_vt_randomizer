@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Item;
 use Randomizer\World;
 
+/**
+ * Palace of Darkness Region and it's Locations contained within
+ */
 class PalaceOfDarkness extends Region {
 	protected $name = 'Dark Palace';
 
+	/**
+	 * Create a new Palace of Darkness Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -30,12 +40,18 @@ class PalaceOfDarkness extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Palace of Darkness has: Big Key, Map, Compass, 6 Keys
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Helmasaur King";
 		});
 
-		// Big Key, Map, Compass, 6 keys
 		$keyable_locations = [
 			"[dungeon-D1-1F] Dark Palace - big key room",
 			"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
@@ -75,6 +91,12 @@ class PalaceOfDarkness extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows();

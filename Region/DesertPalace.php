@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Desert Palace Region and it's Locations contained within
+ */
 class DesertPalace extends Region {
 	protected $name = 'Desert Palace';
 
+	/**
+	 * Create a new Desert Palace Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -21,12 +31,18 @@ class DesertPalace extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Desert Palace has: Big Key, Map, Compass
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Lanmolas";
 		});
 
-		// Big Key, Map, Compass
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
@@ -36,6 +52,12 @@ class DesertPalace extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-L2-B1] Desert Palace - big chest"]->setRequirements(function($locations, $items) {
 			return $locations->itemInLocations(Item::get('BigKey'), ["[dungeon-L2-B1] Desert Palace - Map room", ])

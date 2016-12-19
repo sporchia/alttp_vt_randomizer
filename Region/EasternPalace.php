@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Eastern Palace Region and it's Locations contained within
+ */
 class EasternPalace extends Region {
 	protected $name = 'Eastern Palace';
 
+	/**
+	 * Create a new Eastern Palace Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -22,12 +32,18 @@ class EasternPalace extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Eastern Palace has: Big Key, Map, Compass
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Armos Knights";
 		});
 
-		// Big Key, Map, Compass
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
@@ -37,6 +53,12 @@ class EasternPalace extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setRequirements(function($locations, $items) {
 			return true;

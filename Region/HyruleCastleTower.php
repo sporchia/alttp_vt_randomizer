@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Hyrule Castle Tower Region and it's Locations contained within
+ */
 class HyruleCastleTower extends Region {
 	protected $name = 'Castle Tower';
 
+	/**
+	 * Create a new Hyrule Castle Tower Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -18,6 +28,13 @@ class HyruleCastleTower extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Hyrule Castle Tower has: 2 Keys
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$this->locations->each(function($location) {
 			$location->setItem(Item::get('Key'));

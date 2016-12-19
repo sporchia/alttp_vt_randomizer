@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Hyrule Castle Escape Region and it's Locations contained within
+ */
 class HyruleCastleEscape extends Region {
 	protected $name = 'Hyrule Castle';
 
+	/**
+	 * Create a new Hyrule Castle Escape Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -24,8 +34,14 @@ class HyruleCastleEscape extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Hyrule Castle Escape has: Map, Key
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
-		// 1 Key, Map
 		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
 		while(!$this->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
@@ -33,6 +49,12 @@ class HyruleCastleEscape extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-C-1F] Sanctuary"]->setRequirements(function($locations, $items) {
 			return $locations->itemInLocations(Item::get('Key'), [
@@ -71,7 +93,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->canLiftRocks();
 		});
 
 		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setRequirements(function($locations, $items) {

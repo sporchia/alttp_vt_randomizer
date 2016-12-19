@@ -111,11 +111,11 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('FireRod');
 		});
 
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('FireRod');
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big chest"]->setRequirements(function($locations, $items) {

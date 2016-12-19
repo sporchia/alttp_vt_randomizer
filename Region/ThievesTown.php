@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Thieves Town Region and it's Locations contained within
+ */
 class ThievesTown extends Region {
 	protected $name = 'Thieves Town';
 
+	/**
+	 * Create a new Thieves Town Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -24,12 +34,18 @@ class ThievesTown extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Thieves Town has: Big Key, Map, Compass, 1 Key
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Blind";
 		});
 
-		// Big Key, Map, Compass, 1 key
 		while(!$locations->getEmptyLocations()->filter(function($location) {
 			return in_array($location->getName(), [
 				"[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]",
@@ -58,6 +74,12 @@ class ThievesTown extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setRequirements(function($locations, $items) {
 			return true;

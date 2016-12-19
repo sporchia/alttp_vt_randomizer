@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Support\LocationCollection;
 use Randomizer\World;
 
+/**
+ * Swamp Palace Region and it's Locations contained within
+ */
 class SwampPalace extends Region {
 	protected $name = 'Swamp Palace';
 
+	/**
+	 * Create a new Swamp Palace Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -26,12 +36,18 @@ class SwampPalace extends Region {
 		]);
 	}
 
+	/**
+	 * Place Keys, Map, and Compass in Region. Swamp Palace has: Big Key, Map, Compass, 1 Key
+	 *
+	 * @param ItemCollection $my_items full list of items for placement
+	 *
+	 * @return $this
+	 */
 	public function fillBaseItems($my_items) {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Arrghus";
 		});
 
-		// Big Key, Map, Compass, 1 key
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
@@ -43,6 +59,12 @@ class SwampPalace extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setRequirements(function($locations, $items) {
 			return true;

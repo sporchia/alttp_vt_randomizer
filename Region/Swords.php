@@ -5,9 +5,19 @@ use Randomizer\Location;
 use Randomizer\Region;
 use Randomizer\World;
 
+/**
+ * Region to hold the Sword Locations in the world
+ */
 class Swords extends Region {
-    public function __construct(World $world) {
-        parent::__construct($world);
+	/**
+	 * Create a new Swords Region to hold sword locations.
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
+	public function __construct(World $world) {
+		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
 			new Location\Standing("Pyramid", 0x180028, null, $this),

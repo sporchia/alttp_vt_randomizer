@@ -6,9 +6,19 @@ use Randomizer\Region;
 use Randomizer\Item;
 use Randomizer\World;
 
+/**
+ * Death Mountain Region and it's Locations contained within
+ */
 class DeathMountain extends Region {
 	protected $name = 'Death Mountain';
 
+	/**
+	 * Create a new Death Mountain Region and initalize it's locations
+	 *
+	 * @param World $world World this Region is part of
+	 *
+	 * @return void
+	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
 
@@ -30,6 +40,12 @@ class DeathMountain extends Region {
 		]);
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[cave-012-1F] Death Mountain - wall of caves - left cave"]->setRequirements(function($locations, $items) {
 			return $items->canAccessEastDeathMountain();
