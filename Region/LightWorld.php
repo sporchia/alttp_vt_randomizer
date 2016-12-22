@@ -57,7 +57,7 @@ class LightWorld extends Region {
 			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 			new Location\Npc("Hobo", 0x33E7D, null, $this),
 			new Location\Drop("Bombos Tablet", 0x180017, null, $this),
-			new Location\Npc("King Zora", 0xEE1C3, null, $this),
+			new Location\Standing("King Zora", 0xEE1C3, null, $this),
 			new Location\Standing("Piece of Heart (Thieves' Forest Hideout)", 0x180000, null, $this),
 			new Location\Standing("Piece of Heart (Lumberjack Tree)", 0x180001, null, $this),
 			new Location\Standing("Piece of Heart (south of Haunted Grove)", 0x180003, null, $this),

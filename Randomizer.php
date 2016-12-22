@@ -46,6 +46,15 @@ class Randomizer {
 	}
 
 	/**
+	 * Get the current seed number
+	 *
+	 * @return int
+	 */
+	public function getSeed() {
+		return $this->seed;
+	}
+
+	/**
 	 * Fill all empty Locations with Items using logic from the World.
 	 *
 	 * @param int|null $seed Seed to create, or random if null

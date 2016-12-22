@@ -9,6 +9,7 @@ class ALttPRom {
 	private $tmp_file;
 	protected $log;
 	protected $rom;
+	protected $write_log = [];
 
 	/**
 	 * Create a new wrapper
@@ -41,8 +42,8 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setHeartBeepSpeed($byte) {
-		fseek($this->rom, 0x180033);
-		fwrite($this->rom, pack('c', $byte));
+		$this->write(0x180033, pack('C', $byte));
+
 		return $this;
 	}
 
@@ -54,8 +55,8 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setMaxArrows($max = 30) {
-		fseek($this->rom, 0x180035);
-		fwrite($this->rom, pack('c', $max));
+		$this->write(0x180035, pack('C', $max));
+
 		return $this;
 	}
 
@@ -67,8 +68,8 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setMaxBombs($max = 10) {
-		fseek($this->rom, 0x180034);
-		fwrite($this->rom, pack('c', $max));
+		$this->write(0x180034, pack('C', $max));
+
 		return $this;
 	}
 
@@ -80,8 +81,8 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setUncleText($byte) {
-		fseek($this->rom, 0x180040);
-		fwrite($this->rom, pack('c', $byte));
+		$this->write(0x180040, pack('C', $byte));
+
 		return $this;
 	}
 
@@ -93,10 +94,11 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		fseek($this->rom, 0x102330);
+		$offset = 0x102330;
 		foreach ($this->convertDialog($string) as $byte) {
-			fwrite($this->rom, pack('c', $byte));
+			$this->write($offset++, pack('C', $byte));
 		}
+
 		return $this;
 	}
 
@@ -106,10 +108,8 @@ class ALttPRom {
 	 * @return $this
 	 */
 	public function enableDebugMode() {
-		fseek($this->rom, 0x65B88);
-		fwrite($this->rom, pack('c', 0xEA) . pack('c', 0xEA));
-		fseek($this->rom, 0x65B91);
-		fwrite($this->rom, pack('c', 0xEA) . pack('c', 0xEA));
+		$this->write(0x65B88, pack('C*', 0xEA, 0xEA));
+		$this->write(0x65B91, pack('C*', 0xEA, 0xEA));
 
 		return $this;
 	}
@@ -122,6 +122,7 @@ class ALttPRom {
 	 * @return bool
 	 */
 	public function save(string $output_location) {
+		echo json_encode($this->write_log), "\n\n";
 		return copy($this->tmp_file, $output_location);
 	}
 
@@ -135,10 +136,15 @@ class ALttPRom {
 	 */
 	public function write(int $offset, $data) {
 		$this->log->debug(sprintf("write: 0x%s: 0x%2s\n", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
+		$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 
 		return $this;
+	}
+
+	public function getWriteLog() {
+		return $this->write_log;
 	}
 
 	/**

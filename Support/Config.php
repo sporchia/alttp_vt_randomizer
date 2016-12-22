@@ -30,8 +30,8 @@ class Config extends Collection {
 		switch ($rules_name) {
 			case 'v7':
 				return new Config([
-					'output.file.name' => 'alttp - v7p.%s.sfc',
-					'output.file.spoiler' => 'alttp - v7p.%s.txt',
+					'output.file.name' => 'alttp - VT7.%s.sfc',
+					'output.file.spoiler' => 'alttp - VT7.%s.txt',
 					'prize.crossWorld' => false,
 					'item.count.TenArrows' => 11,
 					'item.count.ThreeBombs' => 17,
@@ -47,8 +47,8 @@ class Config extends Collection {
 				]);
 			case 'v7_hard':
 				return static::rules('v7')->copy()->merge([
-					'output.file.name' => 'alttp (hard) - v7p.%s.sfc',
-					'output.file.spoiler' => 'alttp (hard) - v7p.%s.txt',
+					'output.file.name' => 'alttp (hard) - VT7.%s.sfc',
+					'output.file.spoiler' => 'alttp (hard) - VT7.%s.txt',
 					'item.count.BlueMail' => 0,
 					'item.count.Boomerang' => 0,
 					'item.count.BugCatchingNet' => 0,
@@ -73,8 +73,8 @@ class Config extends Collection {
 				]);
 			case 'v8':
 				return new Config([
-					'output.file.name' => 'alttp - v8p.%s.sfc',
-					'output.file.spoiler' => 'alttp - v8p.%s.txt',
+					'output.file.name' => 'alttp - VT8.%s.sfc',
+					'output.file.spoiler' => 'alttp - VT8.%s.txt',
 					'prize.crossWorld' => true,
 					'item.count.TenArrows' => 7,
 					'item.count.ThreeBombs' => 12,

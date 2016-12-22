@@ -46,13 +46,10 @@ class SkullWoods extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Mothula";
 		});
 
+		$locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->fill(Item::get('Key'), $my_items);
+
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), [
-				"[dungeon-D3-B1] Skull Woods - south of Fire Rod room",
-			]);
-		})->random()->fill(Item::get("Key"), $my_items));
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
