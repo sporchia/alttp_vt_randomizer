@@ -108,4 +108,16 @@ return [
 			'BootsLocation' => true,
 		],
 	],
+	'custom' => [
+		'prize' => [
+			'crossWorld' => false,
+		],
+		'region' => [
+			'bossNormalLocation' => false,
+			'swordShuffle' => false,
+		],
+		'spoil' => [
+			'BootsLocation' => false,
+		],
+	],
 ];

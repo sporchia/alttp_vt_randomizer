@@ -10,8 +10,11 @@ Route::get('about', function () {
 	return view('about');
 });
 
-Route::get('seed/{seed_id?}', function(Request $request, $seed_id = null) {
+Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rules = $request->input('rules', 'v7');
+	if ($rules == 'custom') {
+		config($request->input('data'));
+	}
 	$rom = new ALttP\Rom();
 	$rand = new ALttP\Randomizer($rules);
 	$rand->makeSeed($seed_id);
@@ -20,7 +23,11 @@ Route::get('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 });
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
-	$rand = new ALttP\Randomizer($request->input('rules', 'v7'));
+	$rules = $request->input('rules', 'v7');
+	if ($rules == 'custom') {
+		config($request->input('data'));
+	}
+	$rand = new ALttP\Randomizer($rules);
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });

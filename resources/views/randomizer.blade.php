@@ -6,15 +6,158 @@
   <span class="sr-only">Error:</span>
   <span class="message">Cannot Read ROM file.</span>
 </div>
-<label id="rom-select" class="btn btn-default btn-file">
-	Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
-</label>
-<progress value="0" max="100" class="hidden"></progress>
-<div id="seed-generate" style="display:none">
-	<label for="seed">Seed </label>
-	<input type="text" name="seed" id="seed" />
-	<button name="generate" class="btn" disabled>Please Select File.</button>
+<div id="rom-select">
+	<div>To get started, please:
+		<label class="btn btn-default btn-file">
+			Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
+		</label>
+	</div>
 </div>
+<div id="seed-generate" style="display:none">
+	<div class="col-md-6">
+		<div class="input-group">
+			<span class="input-group-addon">Seed</span>
+			<input type="text" id="seed" class="seed form-control" placeholder="leave blank for random">
+			<span class="input-group-btn">
+				<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+			</span>
+		</div>
+	</div>
+	<button name="generate" class="btn" disabled>Please Select File.</button>
+	<button name="save" class="btn" disabled>Save</button>
+</div>
+<form id="config">
+	{{ csrf_field() }}
+	<label for="rules">Then pick your Rules:</label>
+	<select id="rules" name="rules">
+		<option value="v7" selected>v7</option>
+		<option value="v7_hard">v7 (hard mode)</option>
+		<option value="v8">v8</option>
+		<option value="custom">Custom</option>
+	</select>
+	<div class="custom-rules">
+		<div class="row">Total Items: <input id="custom-count" type="text" readonly value="0"></div>
+		<div class="col-md-4">
+			<input id="item-count-Arrow" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.Arrow]" class="custom-items">
+			<label for="item-count-Arrow">Single Arrow</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-ArrowUpgrade10" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.ArrowUpgrade10]" class="custom-items">
+			<label for="item-count-ArrowUpgrade10">Arrow Upgrade (+10)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-ArrowUpgrade5" type="number" value="6" min="0" max="200" step="1" name="data[alttp.custom.item.count.ArrowUpgrade5]" class="custom-items">
+			<label for="item-count-ArrowUpgrade5">Arrow Upgrade (+5)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-ArrowUpgrade70" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.ArrowUpgrade70]" class="custom-items">
+			<label for="item-count-ArrowUpgrade70">Arrow Upgrade (+70)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BlueMail" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BlueMail]" class="custom-items">
+			<label for="item-count-BlueMail">Blue Mail</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Bomb" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.Bomb]" class="custom-items">
+			<label for="item-count-Bomb">Single Bomb</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BombUpgrade10" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BombUpgrade10]" class="custom-items">
+			<label for="item-count-BombUpgrade10">Bomb Upgrade (+10)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BombUpgrade5" type="number" value="6" min="0" max="200" step="1" name="data[alttp.custom.item.count.BombUpgrade5]" class="custom-items">
+			<label for="item-count-BombUpgrade5">Bomb Upgrade (+5)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BombUpgrade50" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.BombUpgrade50]" class="custom-items">
+			<label for="item-count-BombUpgrade50">Bomb Upgrade (+50)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Boomerang" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.Boomerang]" class="custom-items">
+			<label for="item-count-Boomerang">Blue Boomerang</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BossHeartContainer" type="number" value="10" min="0" max="200" step="1" name="data[alttp.custom.item.count.BossHeartContainer]" class="custom-items">
+			<label for="item-count-BossHeartContainer">Boss Heart Container</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BugCatchingNet" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BugCatchingNet]" class="custom-items">
+			<label for="item-count-BugCatchingNet">Bug Catching Net</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-ExtraBottles" type="number" value="3" min="0" max="200" step="1" name="data[alttp.custom.item.count.ExtraBottles]" class="custom-items">
+			<label for="item-count-ExtraBottles">Extra Bottles</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-HeartContainer" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.HeartContainer]" class="custom-items">
+			<label for="item-count-HeartContainer">Sancturary Heart Container</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-MirrorShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.MirrorShield]" class="custom-items">
+			<label for="item-count-MirrorShield">Mirror Shield</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-OneHundredRupees" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.OneHundredRupees]" class="custom-items">
+			<label for="item-count-OneHundredRupees">Rupees (100)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-PieceOfHeart" type="number" value="24" min="0" max="200" step="1" name="data[alttp.custom.item.count.PieceOfHeart]" class="custom-items">
+			<label for="item-count-PieceOfHeart">Piece Of Heart Container</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-RedBoomerang" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedBoomerang]" class="custom-items">
+			<label for="item-count-RedBoomerang">Red Boomerang</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-RedMail" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedMail]" class="custom-items">
+			<label for="item-count-RedMail">Red Mail</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-RedShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedShield]" class="custom-items">
+			<label for="item-count-RedShield">Red Shield</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-StaffOfByrna" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.StaffOfByrna]" class="custom-items">
+			<label for="item-count-StaffOfByrna">Staff Of Byrna</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-TenArrows" type="number" value="7" min="0" max="200" step="1" name="data[alttp.custom.item.count.TenArrows]" class="custom-items">
+			<label for="item-count-TenArrows">Arrows (10)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-ThreeBombs" type="number" value="12" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeBombs]" class="custom-items">
+			<label for="item-count-ThreeBombs">Bombs (3)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-ThreeHundredRupees" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeHundredRupees]" class="custom-items">
+			<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-TwentyRupees" type="number" value="21" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+			<label for="item-count-TwentyRupees">Rupees (20)</label>
+		</div>
+
+		<div class="col-md-12">
+			<input id="cust-prize-crossworld" type="checkbox" name="data[alttp.custom.prize.crossWorld]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for"cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
+		</div>
+		<div class="col-md-12">
+			<input id="cust-region-bossnormal" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-bossnormal">Boss Hearts can contain Dungeon Items</label>
+		</div>
+		<div class="col-md-12">
+			<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-swordShuffle">Shuffle the Swords</label>
+		</div>
+		<div class="col-md-12">
+			<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-spoil-boots">Chance for boots region to be spoiled by Uncle</label>
+		</div>
+
+	</div>
+</form>
+
 <div class="row">
 	<div class="info">
 		<div>Logic: <span class="logic"></span></div>
@@ -80,25 +223,30 @@ var ROM = ROM || (function(blob, loaded_callback) {
 
 function applySeed(rom, seed) {
 	return new Promise(function(resolve, reject) {
-		$prog = $('progress');
-		$.getJSON('/seed/' + (seed ? seed : ''), {rules: 'v7'}, function(patch) {
+		$.post('/seed/' + (seed ? seed : ''), getFormData($('form#config')), function(patch) {
 			$('#seed').val(patch.seed);
-			rom.parsePatch(patch.patch, function(percentage) {
-				$prog.val(percentage * 100);
-			}).then(function(rom) {
+			rom.parsePatch(patch.patch).then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			});
-		});
+		}, 'json');
 	});
+}
+
+function getFormData($form){
+	var unindexed_array = $form.serializeArray();
+	var indexed_array = {};
+
+	$.map(unindexed_array, function(n, i){
+		indexed_array[n['name']] = n['value'];
+	});
+
+	return indexed_array;
 }
 
 function patchRomFromJSON(rom, uri) {
 	return new Promise(function(resolve, reject) {
-		$prog = $('progress');
 		$.getJSON(uri, function(patch) {
-			rom.parsePatch(patch, function(percentage) {
-				$prog.val(percentage * 100);
-			}).then(function(rom) {
+			rom.parsePatch(patch).then(function(rom) {
 				resolve(rom);
 			});
 		});
@@ -108,10 +256,15 @@ function patchRomFromJSON(rom, uri) {
 function romOk() {
 	$('button[name=generate]').html('Generate').prop('disabled', false);
 	$('#seed-generate').show();
+	$('#config').show();
 }
+$('button[name=save]').on('click', function() {
+	return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+});
 
 $('button[name=generate]').on('click', function() {
 	$('button[name=generate]').html('Generating...').prop('disabled', true);
+	$('button[name=save]').prop('disabled', true);
 	applySeed(rom, $('#seed').val()).then(function(data) {
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('.info').show();
@@ -123,7 +276,10 @@ $('button[name=generate]').on('click', function() {
 			$('.spoiler-toggle').trigger('click');
 		}
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
-		return data.rom.save('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.sfc');
+		rom.logic = data.patch.logic;
+		rom.rules = data.patch.rules;
+		rom.seed = data.patch.seed;
+		$('button[name=save]').show().prop('disabled', false);
 	});
 });
 
@@ -133,7 +289,6 @@ $('input[name=f2u]').on('change', function() {
 	rom = new ROM(this.files[0], function(rom) {
 		switch (rom.checkMD5()) {
 			case 'bb3bf2ef68b983d17f082b8054f111dd':
-				$('progress').val(100);
 				romOk();
 				break;
 			case '118597172b984bfffaff1a1b7d06804d':
@@ -149,7 +304,6 @@ $('input[name=f2u]').on('change', function() {
 						if (rom.checkMD5() == 'bb3bf2ef68b983d17f082b8054f111dd') {
 							romOk();
 						} else {
-							rom.save('bad.sfc');
 							$('.alert .message').html('ROM not recognized. Please try another.');
 							$('.alert').show();
 							$('#rom-select').show();
@@ -161,8 +315,9 @@ $('input[name=f2u]').on('change', function() {
 	});
 });
 
-$(function(){
-	$('.alert, .info').hide();
+$(function() {
+	$('.alert, .info, #config, .custom-rules').hide();
+	$('button[name=save]').hide();
 	$('.spoiler').hide();
 	$('.spoiler-text').hide();
 	$('.spoiler-toggle').on('click', function() {
@@ -172,6 +327,23 @@ $(function(){
 		} else {
 			$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
 		}
+	});
+	$('#config select[name=rules]').on('change', function() {
+		if ($(this).val() == 'custom') {
+			$('.custom-rules').show();
+		} else {
+			$('.custom-rules').hide();
+		}
+	});
+	$('.custom-items').on('change click blur', function(e) {
+		e.stopPropagation();
+		$('#custom-count').val($('.custom-items').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
+	});
+
+	$('.custom-items').first().trigger('change');
+
+	$('#seed-clear').on('click', function() {
+		$('#seed').val('');
 	});
 });
 </script>

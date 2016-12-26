@@ -89,6 +89,12 @@ class Randomizer {
 		}
 		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
 
+		if (!$this->config('region.swordShuffle', true)) {
+			$locations["Pyramid"]->setItem(Item::get('L4Sword'));
+			$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+			$locations["Alter"]->setItem(Item::get('MasterSword'));
+		}
+
 		$prizes = [
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),

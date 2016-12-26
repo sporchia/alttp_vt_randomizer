@@ -93,7 +93,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x102330;
+		$offset = 0x10233D;
 		foreach ($this->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
