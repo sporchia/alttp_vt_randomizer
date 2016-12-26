@@ -19,7 +19,6 @@ class Randomizer {
 	protected $seed;
 	protected $world;
 	protected $rules;
-	protected $debug = false;
 
 	/**
 	 * Create a new Randomizer
@@ -303,7 +302,7 @@ class Randomizer {
 	 * @return Rom
 	 */
 	public function writeToRom(Rom $rom) {
-		if ($this->debug) {
+		if (config('debug', false)) {
 			$rom->enableDebugMode();
 			$rom->setUncleTextCustom("Test Seed\n\n" . $this->seed);
 		} else {

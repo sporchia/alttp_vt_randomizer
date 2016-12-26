@@ -323,9 +323,20 @@ var ROM = ROM || (function(blob, loaded_callback) {
 	};
 });
 
-function applySeed(rom, seed) {
+function applySeed(rom, seed, second_attempt) {
+	if (rom.checkMD5() != 'bb3bf2ef68b983d17f082b8054f111dd') {
+		if (second_attempt) {
+			$('.alert .message').html('Could not reset ROM.');
+			$('.alert').show();
+			return;
+		}
+		return patchRomFromJSON(rom, 'js/romreset.json')
+			.then(function(rom) {
+				return applySeed(rom, seed, true);
+			});
+	}
 	return new Promise(function(resolve, reject) {
-		$.post('/seed/' + (seed ? seed : ''), getFormData($('form#config')), function(patch) {
+		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form#config')), function(patch) {
 			rom.parsePatch(patch.patch).then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			});
