@@ -80,12 +80,12 @@ class DarkWorld extends Region {
 
 		// Super Bunny
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) {
-			return $items->canAccessEastDeathMountain();
+			return $items->canAccessEastDeathMountain() && $items->has('TitansMitt');
 		});
 
 		// Super Bunny
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setRequirements(function($locations, $items) {
-			return $items->canAccessEastDeathMountain();
+			return $items->canAccessEastDeathMountain() && $items->has('TitansMitt');
 		});
 
 		$this->locations["[cave-073] cave northeast of swamp palace [top chest]"]->setRequirements(function($locations, $items) {
@@ -109,22 +109,22 @@ class DarkWorld extends Region {
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftRocks() && $items->has('Hookshot')
+			return $items->has('MoonPearl') && $items->has('TitansMitt') && $items->has('Hookshot')
 				&& $items->canAccessEastDeathMountain();
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftRocks() && $items->has('Hookshot')
+			return $items->has('MoonPearl') && $items->has('TitansMitt') && $items->has('Hookshot')
 				&& $items->canAccessEastDeathMountain();
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftRocks() && $items->has('Hookshot')
+			return $items->has('MoonPearl') && $items->has('TitansMitt') && $items->has('Hookshot')
 				&& $items->canAccessEastDeathMountain();
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftRocks()
+			return $items->has('MoonPearl') && $items->has('TitansMitt')
 				&& $items->canAccessEastDeathMountain();
 		});
 

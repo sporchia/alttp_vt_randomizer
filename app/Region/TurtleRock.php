@@ -88,9 +88,11 @@ class TurtleRock extends Region {
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+		if ($this->world->config('region.CompassesMaps', true)) {
+			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
 
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+		}
 
 		return $this;
 	}

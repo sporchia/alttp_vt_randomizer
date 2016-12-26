@@ -44,7 +44,9 @@ class HyruleCastleEscape extends Region {
 	public function fillBaseItems($my_items) {
 		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
-		while(!$this->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+		if ($this->world->config('region.CompassesMaps', true)) {
+			while(!$this->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+		}
 
 		return $this;
 	}

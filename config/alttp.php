@@ -115,6 +115,7 @@ return [
 		'region' => [
 			'bossNormalLocation' => false,
 			'swordShuffle' => false,
+			'CompassesMaps' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,

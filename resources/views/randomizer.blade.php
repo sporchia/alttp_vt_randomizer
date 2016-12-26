@@ -36,7 +36,124 @@
 		<option value="custom">Custom</option>
 	</select>
 	<div class="custom-rules">
-		<div class="row">Total Items: <input id="custom-count" type="text" readonly value="0"></div>
+		<div class="col-md-12"><h1>Custom Rules</h1></div>
+		<div class="col-md-6">
+			<input id="cust-prize-crossworld" type="checkbox" name="data[alttp.custom.prize.crossWorld]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for"cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-region-bossnormal" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-bossnormal">Boss Hearts can contain Dungeon Items</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-swordShuffle">Shuffle the Swords (within themselves)</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-spoil-boots">Chance for boots region to be spoiled by Uncle</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-region-CompassesMaps" type="checkbox" name="data[alttp.custom.region.CompassesMaps]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
+		</div>
+
+		<div class="col-md-12"><h2>Items</h2></div>
+		<div class="col-md-12">Total Items: <span id="custom-count">132</span> / <span id="custom-count-total">132</span></div>
+		<div class="col-md-12"><h3>Advancement</h3></div>
+		<div class="col-md-4">
+			<input id="item-count-Bow" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Bow]" readonly class="custom-items">
+			<label for="item-count-Bow">Bow</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-BookOfMudora" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.BookOfMudora]" readonly class="custom-items">
+			<label for="item-count-BookOfMudora">Book Of Mudora</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Hammer" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Hammer]" readonly class="custom-items">
+			<label for="item-count-Hammer">Hammer</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Hookshot" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Hookshot]" readonly class="custom-items">
+			<label for="item-count-Hookshot">Hookshot</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-MagicMirror" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.MagicMirror]" readonly class="custom-items">
+			<label for="item-count-MagicMirror">Magic Mirror</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Ocarina" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Ocarina]" readonly class="custom-items">
+			<label for="item-count-Ocarina">Ocarina</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-PegasusBoots" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.PegasusBoots]" readonly class="custom-items">
+			<label for="item-count-PegasusBoots">Pegasus Boots</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-PowerGlove" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.PowerGlove]" readonly class="custom-items">
+			<label for="item-count-PowerGlove">Power Glove</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Cape" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Cape]" readonly class="custom-items">
+			<label for="item-count-Cape">Cape</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Mushroom" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Mushroom]" readonly class="custom-items">
+			<label for="item-count-Mushroom">Mushroom</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Shovel" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Shovel]" readonly class="custom-items">
+			<label for="item-count-Shovel">Shovel</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Lamp" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Lamp]" readonly class="custom-items">
+			<label for="item-count-Lamp">Lamp</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Powder" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Powder]" readonly class="custom-items">
+			<label for="item-count-Powder">Powder</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-MoonPearl" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.MoonPearl]" readonly class="custom-items">
+			<label for="item-count-MoonPearl">Moon Pearl</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-CaneOfSomaria" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.CaneOfSomaria]" readonly class="custom-items">
+			<label for="item-count-CaneOfSomaria">Cane Of Somaria</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-FireRod" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.FireRod]" readonly class="custom-items">
+			<label for="item-count-FireRod">Fire Rod</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Flippers" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Flippers]" readonly class="custom-items">
+			<label for="item-count-Flippers">Flippers</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-IceRod" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.IceRod]" readonly class="custom-items">
+			<label for="item-count-IceRod">Ice Rod</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-TitansMitt" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.TitansMitt]" readonly class="custom-items">
+			<label for="item-count-TitansMitt">Titans Mitt</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Ether" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Ether]" readonly class="custom-items">
+			<label for="item-count-Ether">Ether</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Bombos" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Bombos]" readonly class="custom-items">
+			<label for="item-count-Bombos">Bombos</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Quake" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Quake]" readonly class="custom-items">
+			<label for="item-count-Quake">Quake</label>
+		</div>
+		<div class="col-md-4">
+			<input id="item-count-Bottle" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Bottle]" readonly class="custom-items">
+			<label for="item-count-Bottle">Bottle</label>
+		</div>
+		<div class="col-md-12"><h3>Extra</h3></div>
 		<div class="col-md-4">
 			<input id="item-count-Arrow" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.Arrow]" class="custom-items">
 			<label for="item-count-Arrow">Single Arrow</label>
@@ -138,22 +255,7 @@
 			<label for="item-count-TwentyRupees">Rupees (20)</label>
 		</div>
 
-		<div class="col-md-12">
-			<input id="cust-prize-crossworld" type="checkbox" name="data[alttp.custom.prize.crossWorld]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for"cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
-		</div>
-		<div class="col-md-12">
-			<input id="cust-region-bossnormal" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-region-bossnormal">Boss Hearts can contain Dungeon Items</label>
-		</div>
-		<div class="col-md-12">
-			<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-region-swordShuffle">Shuffle the Swords</label>
-		</div>
-		<div class="col-md-12">
-			<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-spoil-boots">Chance for boots region to be spoiled by Uncle</label>
-		</div>
+
 
 	</div>
 </form>
@@ -224,7 +326,6 @@ var ROM = ROM || (function(blob, loaded_callback) {
 function applySeed(rom, seed) {
 	return new Promise(function(resolve, reject) {
 		$.post('/seed/' + (seed ? seed : ''), getFormData($('form#config')), function(patch) {
-			$('#seed').val(patch.seed);
 			rom.parsePatch(patch.patch).then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			});
@@ -337,10 +438,17 @@ $(function() {
 	});
 	$('.custom-items').on('change click blur', function(e) {
 		e.stopPropagation();
-		$('#custom-count').val($('.custom-items').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
+		$('#custom-count').html($('.custom-items').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
 	});
-
 	$('.custom-items').first().trigger('change');
+
+	$('#cust-region-CompassesMaps').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('#custom-count-total').html('132');
+		} else {
+			$('#custom-count-total').html('157');
+		}
+	});
 
 	$('#seed-clear').on('click', function() {
 		$('#seed').val('');
