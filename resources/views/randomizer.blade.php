@@ -332,7 +332,6 @@ function applySeed(rom, seed, second_attempt) {
 		if (second_attempt) {
 			$('.alert .message').html('Could not reset ROM.');
 			$('.alert').show();
-			rom.save('bad.sfc');
 			return;
 		}
 		return patchRomFromJSON(rom, 'js/romreset.json')
