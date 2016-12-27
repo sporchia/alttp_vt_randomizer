@@ -24,6 +24,7 @@
 		</div>
 	</div>
 	<button name="generate" class="btn" disabled>Please Select File.</button>
+	<button name="save-spoiler" class="btn" disabled>Save Spoiler</button>
 	<button name="save" class="btn" disabled>Save</button>
 </div>
 <form id="config">
@@ -373,10 +374,13 @@ function romOk() {
 $('button[name=save]').on('click', function() {
 	return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
 });
+$('button[name=save-spoiler]').on('click', function() {
+	return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.txt');
+});
 
 $('button[name=generate]').on('click', function() {
 	$('button[name=generate]').html('Generating...').prop('disabled', true);
-	$('button[name=save]').prop('disabled', true);
+	$('button[name=save], button[name=save-spoiler]').prop('disabled', true);
 	applySeed(rom, $('#seed').val()).then(function(data) {
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('.info').show();
@@ -391,7 +395,7 @@ $('button[name=generate]').on('click', function() {
 		rom.logic = data.patch.logic;
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
-		$('button[name=save]').show().prop('disabled', false);
+		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 	});
 });
 
@@ -429,7 +433,7 @@ $('input[name=f2u]').on('change', function() {
 
 $(function() {
 	$('.alert, .info, #config, .custom-rules').hide();
-	$('button[name=save]').hide();
+	$('button[name=save], button[name=save-spoiler]').hide();
 	$('.spoiler').hide();
 	$('.spoiler-text').hide();
 	$('.spoiler-toggle').on('click', function() {

@@ -240,22 +240,6 @@ class Randomizer {
 	}
 
 	/**
-	 * Save all changes made by this Randomizer to a new ROM file.
-	 * @TODO: should really dep inject the ROM
-	 *
-	 * @param string $save_file filename to save the file
-	 *
-	 * @return bool
-	 */
-	public function save($save_file) {
-		$rom = new Rom('in/alttp-v8.sfc');
-
-		$this->writeToRom($rom);
-
-		$rom->save(sprintf($save_file . $this->config('output.file.name', 'alttp - p.%s.sfc'), $this->seed));
-	}
-
-	/**
 	 * Get the current spoiler for this seed
 	 *
 	 * @return array
