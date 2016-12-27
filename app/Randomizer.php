@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 'web-3';
+	const LOGIC = 3;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -47,7 +47,7 @@ class Randomizer {
 	 * @return string
 	 */
 	public function getLogic() {
-		return static::LOGIC;
+		return 'web-' . static::LOGIC;
 	}
 
 	/**
@@ -58,8 +58,8 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function makeSeed(int $seed = null) {
-		$seed = $seed ?: mt_rand(1, 9999999999);
-		$this->seed = $seed;
+		$seed = $seed ?: mt_rand(1, 999999999);
+		$this->seed = $seed % 1000000000;
 		mt_srand($seed);
 
 		Log::info(sprintf("Seed: %s", $this->seed));
@@ -271,7 +271,7 @@ class Randomizer {
 		$spoiler['playthrough'] = $this->getPlayThrough($this->world);
 		$spoiler['meta'] = [
 			'rules' => $this->rules,
-			'logic' => static::LOGIC,
+			'logic' => $this->getLogic(),
 			'seed' => $this->seed,
 		];
 		return $spoiler;
@@ -372,6 +372,8 @@ class Randomizer {
 				$location->writeItem($rom);
 			});
 		}
+
+		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", 'C', $this->seed, static::LOGIC, $this->rules), 22, ' '));
 
 		return $rom;
 	}

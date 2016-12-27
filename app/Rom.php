@@ -114,6 +114,19 @@ class Rom {
 	}
 
 	/**
+	 * Write the seed identifier
+	 *
+	 * @param string $seed identifier for this seed
+	 *
+	 * @return $this
+	 */
+	public function setSeedString(string $seed) {
+		$this->write(0x7FC0, substr($seed, 0, 22));
+		return $this;
+	}
+
+
+	/**
 	 * Save the changes to this output file
 	 *
 	 * @param string $output_location location on the filesystem to write the new ROM.

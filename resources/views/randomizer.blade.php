@@ -17,15 +17,18 @@
 	<div class="col-md-6">
 		<div class="input-group">
 			<span class="input-group-addon">Seed</span>
-			<input type="text" id="seed" class="seed form-control" placeholder="leave blank for random">
+			<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
 			<span class="input-group-btn">
 				<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
 			</span>
 		</div>
 	</div>
-	<button name="generate" class="btn" disabled>Please Select File.</button>
-	<button name="save-spoiler" class="btn" disabled>Save Spoiler</button>
-	<button name="save" class="btn" disabled>Save</button>
+	<div class="btn-group" role="group">
+		<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
+		<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+	</div>
+	<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
+	<button name="save" class="btn btn-default" disabled>Save</button>
 </div>
 <form id="config">
 	{{ csrf_field() }}
@@ -329,6 +332,7 @@ function applySeed(rom, seed, second_attempt) {
 		if (second_attempt) {
 			$('.alert .message').html('Could not reset ROM.');
 			$('.alert').show();
+			rom.save('bad.sfc');
 			return;
 		}
 		return patchRomFromJSON(rom, 'js/romreset.json')
@@ -368,6 +372,7 @@ function patchRomFromJSON(rom, uri) {
 
 function romOk() {
 	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate-save]').prop('disabled', false);
 	$('#seed-generate').show();
 	$('#config').show();
 }
@@ -378,11 +383,10 @@ $('button[name=save-spoiler]').on('click', function() {
 	return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.txt');
 });
 
-$('button[name=generate]').on('click', function() {
-	$('button[name=generate]').html('Generating...').prop('disabled', true);
-	$('button[name=save], button[name=save-spoiler]').prop('disabled', true);
-	applySeed(rom, $('#seed').val()).then(function(data) {
+function seedApplied(data) {
+	return new Promise(function(resolve, reject) {
 		$('button[name=generate]').html('Generate').prop('disabled', false);
+		$('button[name=generate-save]').prop('disabled', false);
 		$('.info').show();
 		$('.info .seed').html(data.patch.seed);
 		$('.info .logic').html(data.patch.logic);
@@ -393,7 +397,22 @@ $('button[name=generate]').on('click', function() {
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
+		resolve(rom);
 	});
+}
+
+$('button[name=generate-save]').on('click', function() {
+	applySeed(rom, $('#seed').val())
+		.then(seedApplied)
+		.then(function(rom) {
+			return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+		});
+});
+
+$('button[name=generate]').on('click', function() {
+	$('button[name=generate]').html('Generating...').prop('disabled', true);
+	$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
+	applySeed(rom, $('#seed').val()).then(seedApplied);
 });
 
 $('input[name=f2u]').on('change', function() {
