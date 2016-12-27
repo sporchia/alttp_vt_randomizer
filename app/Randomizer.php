@@ -249,7 +249,8 @@ class Randomizer {
 
 		$locations = $this->world->getLocations()->filter(function($location) {
 			return !is_a($location, Location\Prize::class)
-				&& !is_a($location, Location\Medallion::class);
+				&& !is_a($location, Location\Medallion::class)
+				&& !is_a($location, Location\Fountain::class);
 		});
 
 		foreach ($this->world->getRegions() as $name => $region) {
@@ -267,6 +268,11 @@ class Randomizer {
 			});
 		}
 		$spoiler['playthrough'] = $this->getPlayThrough($this->world);
+		$spoiler['meta'] = [
+			'rules' => $this->rules,
+			'logic' => static::LOGIC,
+			'seed' => $this->seed,
+		];
 		return $spoiler;
 	}
 
@@ -275,33 +281,48 @@ class Randomizer {
 		$my_items->setWorld($world);
 		$locations = $world->getLocations()->filter(function($location) {
 			return !is_a($location, Location\Prize::class)
-				&& !is_a($location, Location\Medallion::class);
+				&& !is_a($location, Location\Medallion::class)
+				&& !is_a($location, Location\Fountain::class);
 		});
 
 		$location_order = [];
+		$location_round = [];
 
 		$progression_items = $this->getAdvancementItems();
 
+		$complexity = 0;
 		do {
+			$complexity++;
+			$location_round[$complexity] = [];
 			$available_locations = $locations->filter(function($location) use ($my_items) {
 				return $location->canAccess($my_items);
 			});
 
 			$found_items = $available_locations->getItems();
+			$have_bottle = $my_items->hasABottle();
 
-			$available_locations->each(function($location) use (&$location_order, $progression_items) {
-				if (in_array($location->getItem(), $progression_items) && !in_array($location, $location_order)) {
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $have_bottle, $progression_items, $complexity) {
+				if ((in_array($location->getItem(), $progression_items) || (!$have_bottle && is_a($location->getItem(), Item\Bottle::class)))
+						&& !in_array($location, $location_order)) {
 					array_push($location_order, $location);
+					array_push($location_round[$complexity], $location);
 				}
 			});
-
 			$new_items = $found_items->diff($my_items);
 			$my_items = $found_items;
 		} while ($new_items->count() > 0);
 
-		return array_map(function($location) {
-			return [$location->getName() => $location->getItem()->getNiceName()];
-		}, $location_order);
+		$ret = ['complexity' => count($location_round)];
+		foreach ($location_round as $round => $locations) {
+			if (!count($locations)) {
+				$ret['complexity']--;
+			}
+			foreach ($locations as $location) {
+				$ret[$round][$location->getName()] = $location->getItem()->getNiceName();
+			}
+		}
+
+		return $ret;
 	}
 
 	/**

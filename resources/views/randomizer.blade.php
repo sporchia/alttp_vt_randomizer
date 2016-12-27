@@ -388,9 +388,6 @@ $('button[name=generate]').on('click', function() {
 		$('.info .logic').html(data.patch.logic);
 		$('.info .rules').html(data.patch.rules);
 		$('.spoiler').show();
-		if ($('.spoiler-text').is(':visible')) {
-			$('.spoiler-toggle').trigger('click');
-		}
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		rom.logic = data.patch.logic;
 		rom.rules = data.patch.rules;

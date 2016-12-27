@@ -20,8 +20,8 @@ class Fountains extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location("Waterfall Bottle", 0x348FF, null, $this),
-			new Location("Pyramid Bottle", 0x3493B, null, $this),
+			new Location\Fountain("Waterfall Bottle", 0x348FF, null, $this),
+			new Location\Fountain("Pyramid Bottle", 0x3493B, null, $this),
 		]);
 	}
 }
