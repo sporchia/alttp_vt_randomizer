@@ -262,7 +262,7 @@
 </form>
 
 <div class="row">
-	<div class="info">
+	<div class="info col-md-12">
 		<div>Logic: <span class="logic"></span></div>
 		<div>Rules: <span class="rules"></span></div>
 		<div>Seed: <span class="seed"></span></div>
