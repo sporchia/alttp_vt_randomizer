@@ -190,4 +190,13 @@ class Item {
 	public function getAddress() {
 		return $this->address;
 	}
+
+	/**
+	 * serialized version of Item
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->name . serialize($this->bytes);
+	}
 }

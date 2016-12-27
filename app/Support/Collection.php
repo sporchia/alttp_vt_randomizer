@@ -166,14 +166,14 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	 *
 	 * @param callable $callback
 	 *
-	 * @return static
+	 * @return array
 	 */
 	public function map(callable $callback) {
 		$keys = array_keys($this->items);
 
 		$items = array_map($callback, $this->items, $keys);
 
-		return new static(array_combine($keys, $items));
+		return array_combine($keys, $items);
 	}
 
 	/**

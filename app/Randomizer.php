@@ -266,7 +266,42 @@ class Randomizer {
 				}
 			});
 		}
+		$spoiler['playthrough'] = $this->getPlayThrough($this->world);
 		return $spoiler;
+	}
+
+	public function getPlayThrough(World $world) {
+		$my_items = new ItemCollection;
+		$my_items->setWorld($world);
+		$locations = $world->getLocations()->filter(function($location) {
+			return !is_a($location, Location\Prize::class)
+				&& !is_a($location, Location\Medallion::class);
+		});
+
+		$location_order = [];
+
+		$progression_items = $this->getAdvancementItems();
+
+		do {
+			$available_locations = $locations->filter(function($location) use ($my_items) {
+				return $location->canAccess($my_items);
+			});
+
+			$found_items = $available_locations->getItems();
+
+			$available_locations->each(function($location) use (&$location_order, $progression_items) {
+				if (in_array($location->getItem(), $progression_items) && !in_array($location, $location_order)) {
+					array_push($location_order, $location);
+				}
+			});
+
+			$new_items = $found_items->diff($my_items);
+			$my_items = $found_items;
+		} while ($new_items->count() > 0);
+
+		return array_map(function($location) {
+			return [$location->getName() => $location->getItem()->getNiceName()];
+		}, $location_order);
 	}
 
 	/**
