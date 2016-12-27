@@ -55,7 +55,7 @@ class LocationCollection extends Collection {
 	}
 
 	/**
-	 * Deterime if the Locations given have a particular amount of a particular Item
+	 * Deterime if the Locations given has at least a particular amount of a particular Item
 	 *
 	 * @param Item $item Item to search for
 	 * @param LocationCollection $locations locations to search against

@@ -11,9 +11,7 @@ use ALttP\World;
  */
 class Medallions extends Region {
 	/**
-	 * Create a new Medallions Region to hold sword locations. We initalize these locations with Items in them so when
-	 * we fill in base Items for each region they can fill them, as Entry is not really a consideration for Keys, Maps,
-	 * and Compasses
+	 * Create a new Medallions Region to hold sword locations.
 	 *
 	 * @param World $world World this Region is part of
 	 *
@@ -23,8 +21,8 @@ class Medallions extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			(new Medallion("Turtle Rock Medallion", [null, 0x180023, 't0' => 0x5020, 't1' => 0x50FF, 't2' => 0x51DE], null, $this))->setItem(Item::get('Quake')),
-			(new Medallion("Misery Mire Medallion", [null, 0x180022, 'm0' => 0x4FF2, 'm1' => 0x50D1, 'm2' => 0x51B0], null, $this))->setItem(Item::get('Ether')),
+			new Medallion("Turtle Rock Medallion", [null, 0x180023, 't0' => 0x5020, 't1' => 0x50FF, 't2' => 0x51DE], null, $this),
+			new Medallion("Misery Mire Medallion", [null, 0x180022, 'm0' => 0x4FF2, 'm1' => 0x50D1, 'm2' => 0x51B0], null, $this),
 		]);
 	}
 }

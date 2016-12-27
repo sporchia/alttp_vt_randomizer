@@ -35,7 +35,9 @@ class MiseryMire extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Misery Mire has: Big Key, Map, Compass, 3 Keys
+	 * Place Keys, Map, and Compass in Region. Misery Mire has: Big Key, Map, Compass, 3 Keys.
+	 * Note: 2 keys can end up in big key, and compass locations, which can make them inaccessable, but the dungeon will
+	 * still be beatable.
 	 *
 	 * @param ItemCollection $my_items full list of items for placement
 	 *

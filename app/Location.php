@@ -11,6 +11,7 @@ class Location {
 	protected $bytes;
 	protected $region;
 	protected $requirement_callback;
+	protected $fill_callback;
 	protected $item = null;
 
 	/**
@@ -58,7 +59,8 @@ class Location {
 	 * @return bool
 	 */
 	public function canFill(Item $item, $items) {
-			return $this->canAccess($items);
+			return (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+			 	&& $this->canAccess($items);
 	}
 
 	/**
@@ -91,6 +93,18 @@ class Location {
 	 */
 	public function setRequirements(Callable $callback) {
 		$this->requirement_callback = $callback;
+		return $this;
+	}
+
+	/**
+	 * Set the rules for filling this location
+	 *
+	 * @param Callable $callback
+	 *
+	 * @return $this
+	 */
+	public function setFillRules(Callable $callback) {
+		$this->fill_callback = $callback;
 		return $this;
 	}
 

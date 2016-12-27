@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 'web-2';
+	const LOGIC = 'web-3';
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -66,34 +66,7 @@ class Randomizer {
 
 		$regions = $this->world->getRegions();
 
-		// for filling base (Maps/Compasses/Keys) items assume you have everything
-		foreach ($regions as $region) {
-			$region->fillBaseItems(Item::all());
-		}
-
-		$locations = $this->world->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Prize::class)
-				&& !is_a($location, Location\Medallion::class);
-		});
-
-		$swords = [
-			Item::get('MasterSword'),
-			Item::get('L3Sword'),
-			Item::get('L4Sword'),
-		];
-
-		while (count($swords) > 0) {
-			$item = array_shift($swords);
-			while(!$regions['Swords']->getEmptyLocations()->random()->fill($item, Item::all()));
-		}
-		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
-
-		if (!$this->config('region.swordShuffle', true)) {
-			$locations["Pyramid"]->setItem(Item::get('L4Sword'));
-			$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
-			$locations["Alter"]->setItem(Item::get('MasterSword'));
-		}
-
+		// Set up World before we fill dungeons
 		$prizes = [
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
@@ -138,6 +111,34 @@ class Randomizer {
 		$regions['Fountains']->getLocations()->each(function($fountain) {
 			$fountain->setItem($this->getBottle(true));
 		});
+
+		$locations = $this->world->getLocations()->filter(function($location) {
+			return !is_a($location, Location\Prize::class)
+				&& !is_a($location, Location\Medallion::class);
+		});
+
+		$swords = [
+			Item::get('MasterSword'),
+			Item::get('L3Sword'),
+			Item::get('L4Sword'),
+		];
+
+		while (count($swords) > 0) {
+			$item = array_shift($swords);
+			while(!$regions['Swords']->getEmptyLocations()->random()->fill($item, Item::all()));
+		}
+		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
+
+		if (!$this->config('region.swordShuffle', true)) {
+			$locations["Pyramid"]->setItem(Item::get('L4Sword'));
+			$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+			$locations["Alter"]->setItem(Item::get('MasterSword'));
+		}
+
+		// for filling base (Maps/Compasses/Keys) items assume you have everything
+		foreach ($regions as $region) {
+			$region->fillBaseItems(Item::all());
+		}
 
 		$my_items = new ItemCollection;
 		$my_items->setWorld($this->world);
@@ -276,6 +277,13 @@ class Randomizer {
 		return $spoiler;
 	}
 
+	/**
+	 * Return an array of Locations to collect all Advancement Items in the game in order.
+	 *
+	 * @param World $world World with locations filled with items
+	 *
+	 * @return array
+	 */
 	public function getPlayThrough(World $world) {
 		$my_items = new ItemCollection;
 		$my_items->setWorld($world);
@@ -289,6 +297,10 @@ class Randomizer {
 		$location_round = [];
 
 		$progression_items = $this->getAdvancementItems();
+		$required_medallions = [
+			$world->getLocation("Misery Mire Medallion")->getItem(),
+			$world->getLocation("Turtle Rock Medallion")->getItem(),
+		];
 
 		$complexity = 0;
 		do {
@@ -301,8 +313,9 @@ class Randomizer {
 			$found_items = $available_locations->getItems();
 			$have_bottle = $my_items->hasABottle();
 
-			$available_locations->each(function($location) use (&$location_order, &$location_round, $have_bottle, $progression_items, $complexity) {
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $have_bottle, $progression_items, $required_medallions, $complexity) {
 				if ((in_array($location->getItem(), $progression_items) || (!$have_bottle && is_a($location->getItem(), Item\Bottle::class)))
+					&& (!is_a($location->getItem(), Item\Medallion::class) || in_array($location->getItem(), $required_medallions))
 						&& !in_array($location, $location_order)) {
 					array_push($location_order, $location);
 					array_push($location_round[$complexity], $location);
@@ -318,7 +331,7 @@ class Randomizer {
 				$ret['complexity']--;
 			}
 			foreach ($locations as $location) {
-				$ret[$round][$location->getName()] = $location->getItem()->getNiceName();
+				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getNiceName();
 			}
 		}
 
