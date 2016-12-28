@@ -10,7 +10,7 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--spoiler} {--rules=v7} {--seed=}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v7} {--seed=}';
 
 	/**
 	 * The console command description.
@@ -45,6 +45,10 @@ class Randomize extends Command {
 		$rom = new Rom($this->argument('input_file'));
 		$rand = new Randomizer($this->option('rules'));
 		$rand->makeSeed($this->option('seed'));
+
+		if ($this->option('debug')) {
+			$rom->enableDebugMode();
+		}
 
 		$rand->writeToRom($rom);
 

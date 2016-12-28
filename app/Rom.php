@@ -1,5 +1,6 @@
 <?php namespace ALttP;
 
+use Closure;
 use Log;
 
 /**
@@ -18,7 +19,7 @@ class Rom {
 	 * @return void
 	 */
 	public function __construct(string $source_location = null) {
-		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== 'bb3bf2ef68b983d17f082b8054f111dd') {
+		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== '629b96e26daa54b199bfebaf578044cb') {
 			throw new \Exception('Source ROM not readable or incorrect md5 hash');
 		}
 		$this->tmp_file = tempnam(sys_get_temp_dir(), __CLASS__);
@@ -93,7 +94,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x10233D;
+		$offset = 0x102392;
 		foreach ($this->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
@@ -125,6 +126,21 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * Write a block of data to RNG Block in ROM.
+	 *
+	 * @param Closure $random prng byte generator
+	 *
+	 * @return $this
+	 */
+	public function writeRNGBlock(Closure $random) {
+		$string = '';
+		for ($i = 0; $i < 1024; $i++) {
+			$string .= pack('C*', $random());
+		}
+		$this->write(0x178000, $string);
+		return $this;
+	}
 
 	/**
 	 * Save the changes to this output file

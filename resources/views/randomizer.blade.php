@@ -280,6 +280,7 @@
 </div>
 <script>
 var rom;
+var current_rom_hash = '629b96e26daa54b199bfebaf578044cb';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -328,7 +329,7 @@ var ROM = ROM || (function(blob, loaded_callback) {
 });
 
 function applySeed(rom, seed, second_attempt) {
-	if (rom.checkMD5() != 'bb3bf2ef68b983d17f082b8054f111dd') {
+	if (rom.checkMD5() != current_rom_hash) {
 		if (second_attempt) {
 			$('.alert .message').html('Could not reset ROM.');
 			$('.alert').show();
@@ -419,7 +420,7 @@ $('input[name=f2u]').on('change', function() {
 	$('.alert').hide();
 	rom = new ROM(this.files[0], function(rom) {
 		switch (rom.checkMD5()) {
-			case 'bb3bf2ef68b983d17f082b8054f111dd':
+			case current_rom_hash:
 				romOk();
 				break;
 			case '118597172b984bfffaff1a1b7d06804d':
@@ -432,7 +433,7 @@ $('input[name=f2u]').on('change', function() {
 				.then(function(rom) {
 					patchRomFromJSON(rom, 'js/romreset.json')
 					.then(function(rom) {
-						if (rom.checkMD5() == 'bb3bf2ef68b983d17f082b8054f111dd') {
+						if (rom.checkMD5() == current_rom_hash) {
 							romOk();
 						} else {
 							$('.alert .message').html('ROM not recognized. Please try another.');
