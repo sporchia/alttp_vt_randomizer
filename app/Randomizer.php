@@ -376,7 +376,7 @@ class Randomizer {
 		$rom->writeRNGBlock(function() {
 			return mt_rand(0, 0x100);
 		});
-		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", 'C', $this->seed, static::LOGIC, $this->rules), 22, ' '));
+		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", 'C', $this->seed, static::LOGIC, $this->rules), 21, ' '));
 
 		return $rom;
 	}

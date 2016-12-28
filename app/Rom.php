@@ -122,7 +122,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSeedString(string $seed) {
-		$this->write(0x7FC0, substr($seed, 0, 22));
+		$this->write(0x7FC0, substr($seed, 0, 21));
 		return $this;
 	}
 
