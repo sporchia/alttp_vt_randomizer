@@ -111,6 +111,8 @@ return [
 	'custom' => [
 		'prize' => [
 			'crossWorld' => false,
+			'shufflePendants' => false,
+			'shuffleCrystals' => false,
 		],
 		'region' => [
 			'bossNormalLocation' => false,

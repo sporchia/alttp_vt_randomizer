@@ -298,6 +298,12 @@ bootstrap-sass@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.3.7.tgz#6596c7ab40f6637393323ab0bc80d064fc630498"
 
+bootstrap-select@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.12.1.tgz#5825ff0ac4e4e7101c9cda51ef3928c0fb8e42bd"
+  dependencies:
+    jquery ">=1.8"
+
 bootstrap-toggle@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/bootstrap-toggle/-/bootstrap-toggle-2.2.2.tgz#2b88534fc1b998674f877f98ba0d8b5b743e96fe"
@@ -2000,7 +2006,7 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery@^3.1.0:
+jquery@>=1.8, jquery@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 

@@ -80,7 +80,7 @@ class Randomizer {
 			Item::get('PendantOfWisdom'),
 		];
 
-		if ($this->config('prize.crossWorld', true)) {
+		if ($this->config('prize.crossWorld', true) && $this->config('prize.shufflePendants', true) && $this->config('prize.shuffleCrystals', true)) {
 			$prizes = $this->mt_shuffle($prizes);
 		}
 
@@ -89,9 +89,27 @@ class Randomizer {
 			while(!$regions['Crystals']->getEmptyLocations()->random()->fill($item, Item::all()));
 		}
 
+		if (!$this->config('prize.shuffleCrystals', true)) {
+			$crystal_locations = $this->world->getRegion('Crystals')->getLocations();
+			$crystal_locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
+			$crystal_locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
+			$crystal_locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
+			$crystal_locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
+			$crystal_locations["Ice Palace Crystal"]->setItem(Item::get('Crystal5'));
+			$crystal_locations["Misery Mire Crystal"]->setItem(Item::get('Crystal6'));
+			$crystal_locations["Turtle Rock Crystal"]->setItem(Item::get('Crystal7'));
+		}
+
 		while (count($prizes) > 0) {
 			$item = array_shift($prizes);
 			while(!$regions['Pendants']->getEmptyLocations()->random()->fill($item, Item::all()));
+		}
+
+		if (!$this->config('prize.shufflePendants', true)) {
+			$pendant_locations = $this->world->getRegion('Pendants')->getLocations();
+			$pendant_locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
+			$pendant_locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfPower'));
+			$pendant_locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfWisdom'));
 		}
 
 		$required = $this->getAdvancementItems();

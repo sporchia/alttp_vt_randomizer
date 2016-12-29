@@ -10,4 +10,5 @@ window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 require('bootstrap-toggle');
+require('bootstrap-select');
 

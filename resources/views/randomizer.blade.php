@@ -13,7 +13,7 @@
 		</label>
 	</div>
 </div>
-<div id="seed-generate" style="display:none">
+<div id="seed-generate" class="row" style="display:none">
 	<div class="col-md-6">
 		<div class="input-group">
 			<span class="input-group-addon">Seed</span>
@@ -23,27 +23,59 @@
 			</span>
 		</div>
 	</div>
-	<div class="btn-group" role="group">
-		<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-		<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+	<div class="col-md-3">
+		<div class="input-group">
+			<span class="input-group-addon">Rules</span>
+			<div id="rules-select"></div>
+			<select id="rules" class="form-control selectpicker">
+				<option value="v7" selected>v7</option>
+				<option value="v7_hard">v7 (hard mode)</option>
+				<option value="v8">v8</option>
+				<option value="custom">Custom</option>
+			</select>
+		</div>
 	</div>
-	<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
-	<button name="save" class="btn btn-default" disabled>Save</button>
+	<div class="col-md-3">
+		<div class="btn-group" role="group">
+			<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
+			<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+		</div>
+	</div>
+</div>
+<div class="info panel panel-default">
+	<div class="panel-heading"><h3 class="panel-title">Seed Details</h3></div>
+	<div class="panel-body">
+		<div class="col-md-6">
+			<div>Logic: <span class="logic"></span></div>
+			<div>Rules: <span class="rules"></span></div>
+			<div>Seed: <span class="seed"></span></div>
+		</div>
+		<div class="col-md-6">
+			<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
+			<button name="save" class="btn btn-default" disabled>Save</button>
+		</div>
+	<div class="spoiler col-md-12">
+		<div class="spoiler-toggle"><span class="glyphicon glyphicon-plus"></span> Spoiler!</div>
+		<div id="spoiler" class="spoiler-text">
+		</div>
+	</div>
+	</div>
 </div>
 <form id="config">
-	{{ csrf_field() }}
-	<label for="rules">Then pick your Rules:</label>
-	<select id="rules" name="rules">
-		<option value="v7" selected>v7</option>
-		<option value="v7_hard">v7 (hard mode)</option>
-		<option value="v8">v8</option>
-		<option value="custom">Custom</option>
-	</select>
+	<input type="hidden" name="rules" value="v7" />
 	<div class="custom-rules">
 		<div class="col-md-12"><h1>Custom Rules</h1></div>
 		<div class="col-md-6">
 			<input id="cust-prize-crossworld" type="checkbox" name="data[alttp.custom.prize.crossWorld]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for"cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-prize-shufflePendants" type="checkbox" name="data[alttp.custom.prize.shufflePendants]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for"cust-prize-shufflePendants">Shuffle Pendants</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-prize-shuffleCrystals" type="checkbox" name="data[alttp.custom.prize.shuffleCrystals]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for"cust-prize-shuffleCrystals">Shuffle Crystals</label>
 		</div>
 		<div class="col-md-6">
 			<input id="cust-region-bossnormal" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -63,7 +95,7 @@
 		</div>
 
 		<div class="col-md-12"><h2>Items</h2></div>
-		<div class="col-md-12">Total Items: <span id="custom-count">132</span> / <span id="custom-count-total">132</span></div>
+		<div class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">134</span> / <span id="custom-count-total">134</span></div>
 		<div class="col-md-12"><h3>Advancement</h3></div>
 		<div class="col-md-4">
 			<input id="item-count-Bow" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Bow]" readonly class="custom-items">
@@ -255,29 +287,12 @@
 			<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 		</div>
 		<div class="col-md-4">
-			<input id="item-count-TwentyRupees" type="number" value="21" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+			<input id="item-count-TwentyRupees" type="number" value="23" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
 			<label for="item-count-TwentyRupees">Rupees (20)</label>
 		</div>
-
-
-
 	</div>
 </form>
 
-<div class="row">
-	<div class="info col-md-12">
-		<div>Logic: <span class="logic"></span></div>
-		<div>Rules: <span class="rules"></span></div>
-		<div>Seed: <span class="seed"></span></div>
-	</div>
-</div>
-<div class="row">
-	<div class="spoiler">
-		<div class="spoiler-toggle"><span class="glyphicon glyphicon-plus"></span> Spoiler!</div>
-		<div id="spoiler" class="spoiler-text">
-		</div>
-	</div>
-</div>
 <script>
 var rom;
 var current_rom_hash = '629b96e26daa54b199bfebaf578044cb';
@@ -460,7 +475,8 @@ $(function() {
 			$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
 		}
 	});
-	$('#config select[name=rules]').on('change', function() {
+	$('#rules').on('change', function() {
+		$('input[name=rules').val($(this).val());
 		if ($(this).val() == 'custom') {
 			$('.custom-rules').show();
 		} else {
@@ -470,14 +486,31 @@ $(function() {
 	$('.custom-items').on('change click blur', function(e) {
 		e.stopPropagation();
 		$('#custom-count').html($('.custom-items').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
+		if ($('#custom-count').html() != $('#custom-count-total').html()) {
+			$('.total-items').removeClass('bg-success').addClass('bg-danger');
+		} else {
+			$('.total-items').removeClass('bg-danger').addClass('bg-success');
+		}
 	});
 	$('.custom-items').first().trigger('change');
 
 	$('#cust-region-CompassesMaps').on('change', function() {
 		if ($(this).prop('checked')) {
-			$('#custom-count-total').html('132');
+			$('#custom-count-total').html('134');
 		} else {
 			$('#custom-count-total').html('157');
+		}
+		$('.custom-items').first().trigger('change');
+	});
+
+	$('#cust-prize-shuffleCrystals, #cust-prize-shufflePendants').on('change', function() {
+		if (!$(this).prop('checked')) {
+			$('#cust-prize-crossworld').prop('checked', false).bootstrapToggle('off');
+		}
+	});
+	$('#cust-prize-crossworld').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('#cust-prize-shuffleCrystals, #cust-prize-shufflePendants').prop('checked', true).bootstrapToggle('on');
 		}
 	});
 

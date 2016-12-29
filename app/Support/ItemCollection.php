@@ -177,6 +177,7 @@ class ItemCollection extends Collection {
 
 	/**
 	 * Requirements for defeating AG1
+	 * @TODO: consider moving this to canComplete for HyruleTower Region
 	 *
 	 * @return bool
 	 */
@@ -186,6 +187,7 @@ class ItemCollection extends Collection {
 
 	/**
 	 * Requirements for upgrading sword
+	 * @TODO: consider moving this to World so we don't have to dep inject World into this collection
 	 *
 	 * @return bool
 	 */
@@ -238,6 +240,7 @@ class ItemCollection extends Collection {
 
 	/**
 	 * Requirements for collecing all 3 pendants
+	 * @TODO: consider moving this to World so we don't have to dep inject World into this collection
 	 *
 	 * @return bool
 	 */
