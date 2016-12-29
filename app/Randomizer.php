@@ -410,7 +410,7 @@ class Randomizer {
 	public function setStartText(Rom $rom) {
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
-		if ($this->config('spoil.BootsLocation', true) && mt_rand() % 7 == 0 && $boots_location) {
+		if ($this->config('spoil.BootsLocation', true) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
 			$rom->setUncleTextCustom("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 		} else {

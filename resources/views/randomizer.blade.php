@@ -14,7 +14,7 @@
 	</div>
 </div>
 <div id="seed-generate" class="row" style="display:none">
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon">Seed</span>
 			<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
@@ -26,7 +26,6 @@
 	<div class="col-md-3">
 		<div class="input-group">
 			<span class="input-group-addon">Rules</span>
-			<div id="rules-select"></div>
 			<select id="rules" class="form-control selectpicker">
 				<option value="v7" selected>v7</option>
 				<option value="v7_hard">v7 (hard mode)</option>
@@ -36,6 +35,17 @@
 		</div>
 	</div>
 	<div class="col-md-3">
+		<div class="input-group">
+			<span class="input-group-addon">Heart Beep</span>
+			<select id="heart-speed" class="form-control selectpicker">
+				<option value="off">Off</option>
+				<option value="normal">Normal Speed</option>
+				<option value="half" selected>Half Speed</option>
+				<option value="quarter">Quarter Speed</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-md-2">
 		<div class="btn-group" role="group">
 			<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
 			<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
@@ -63,6 +73,7 @@
 </div>
 <form id="config">
 	<input type="hidden" name="rules" value="v7" />
+	<input type="hidden" name="heart_speed" value="half" />
 	<div class="custom-rules">
 		<div class="col-md-12"><h1>Custom Rules</h1></div>
 		<div class="col-md-6">
@@ -87,7 +98,7 @@
 		</div>
 		<div class="col-md-6">
 			<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-spoil-boots">Chance for boots region to be spoiled by Uncle</label>
+			<label for="cust-spoil-boots">Chance (5%) for boots region to be spoiled by Uncle</label>
 		</div>
 		<div class="col-md-6">
 			<input id="cust-region-CompassesMaps" type="checkbox" name="data[alttp.custom.region.CompassesMaps]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -493,6 +504,10 @@ $(function() {
 		}
 	});
 	$('.custom-items').first().trigger('change');
+
+	$('#heart-speed').on('change', function() {
+		$('input[name=heart_speed').val($(this).val());
+	});
 
 	$('#cust-region-CompassesMaps').on('change', function() {
 		if ($(this).prop('checked')) {

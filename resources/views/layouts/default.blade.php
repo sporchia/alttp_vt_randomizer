@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ALttP Web Randomizer</title>
+	<title>ALttP Web VT Randomizer</title>
 	<meta name="keywords" content="stuff">
 	<meta name="description" content="things">
 	<meta charset="utf-8" />
@@ -20,7 +20,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="/">ALttP Web Randomizer</a>
+		  <a class="navbar-brand" href="/">ALttP Web VT Randomizer</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 		  <ul class="nav navbar-nav navbar-right">

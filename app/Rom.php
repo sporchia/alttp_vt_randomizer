@@ -31,17 +31,32 @@ class Rom {
 		$this->rom = fopen($this->tmp_file, "r+");
 		$this->setMaxArrows();
 		$this->setMaxBombs();
-		$this->setHeartBeepSpeed(0x40);
+		$this->setHeartBeepSpeed('half');
 	}
 
 	/**
 	 * Set the Low Health Beep Speed
 	 *
-	 * @param int $byte setting (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
+	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
 	 *
 	 * @return $this
 	 */
-	public function setHeartBeepSpeed($byte) {
+	public function setHeartBeepSpeed(string $setting) {
+		switch ($setting) {
+			case 'off':
+				$byte = 0x00;
+				break;
+			case 'half':
+				$byte = 0x40;
+				break;
+			case 'quarter':
+				$byte = 0x80;
+				break;
+			case 'normal':
+			default:
+				$byte = 0x20;
+		}
+
 		$this->write(0x180033, pack('C', $byte));
 
 		return $this;

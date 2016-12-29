@@ -16,6 +16,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		config($request->input('data'));
 	}
 	$rom = new ALttP\Rom();
+	if ($request->input('heart_speed')) {
+		$rom->setHeartBeepSpeed($request->input('heart_speed'));
+	}
 	$rand = new ALttP\Randomizer($rules);
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
