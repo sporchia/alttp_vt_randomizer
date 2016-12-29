@@ -20,9 +20,9 @@ class Pendants extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Prize("Eastern Palace Pendant", [null, 0x545B8, 0x1209D, 0x53EF8, 0x180052, 0xC6FE], [0xC8], $this),
-			new Prize("Desert Palace Pendant", [null, 0x545BA, 0x1209E, 0x53F1C, 0x180053, 0xC6FF], [0x33], $this),
-			new Prize("Tower of Hera Pendant", [null, 0x545B9, 0x120A5, 0x53F0A, 0x18005A, 0xC706], [0x07], $this),
+			new Prize("Eastern Palace Pendant", [null, 0x545B8, 0x1209D, 0x53EF8, 0x53EF9, 0x180052, 0x18007C, 0xC6FE], [0xC8], $this),
+			new Prize("Desert Palace Pendant", [null, 0x545BA, 0x1209E, 0x53F1C, 0x53F1D, 0x180053, 0x180078, 0xC6FF], [0x33], $this),
+			new Prize("Tower of Hera Pendant", [null, 0x545B9, 0x120A5, 0x53F0A, 0x53F0B, 0x18005A, 0x18007A, 0xC706], [0x07], $this),
 		]);
 	}
 }

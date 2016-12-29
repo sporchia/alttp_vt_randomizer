@@ -19,7 +19,7 @@ class Rom {
 	 * @return void
 	 */
 	public function __construct(string $source_location = null) {
-		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== '629b96e26daa54b199bfebaf578044cb') {
+		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== '155592d364b1f4d2272dbae833653fdd') {
 			throw new \Exception('Source ROM not readable or incorrect md5 hash');
 		}
 		$this->tmp_file = tempnam(sys_get_temp_dir(), __CLASS__);
