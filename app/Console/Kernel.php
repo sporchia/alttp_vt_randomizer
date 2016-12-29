@@ -6,6 +6,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel {
 	protected $commands = [
 		Commands\Randomize::class,
+        Commands\UpdateResetJson::class,
 	];
 
 	protected function commands() {

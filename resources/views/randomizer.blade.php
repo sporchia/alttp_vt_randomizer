@@ -97,6 +97,10 @@
 			<label for="cust-region-bossNormalLocation">Boss Hearts can contain Dungeon Items</label>
 		</div>
 		<div class="col-md-6">
+			<input id="cust-region-bossHaveKey" type="checkbox" name="data[alttp.custom.region.bossHaveKey]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-bossHaveKey">Boss Hearts can contain Keys</label>
+		</div>
+		<div class="col-md-6">
 			<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-region-swordShuffle">Shuffle the Swords (within themselves)</label>
 		</div>
@@ -534,8 +538,23 @@ $(function() {
 	});
 
 	$('#cust-region-bossNormalLocation').on('change', function() {
-		if ($(this).prop('checked') && !$('#cust-region-bossHeartsInPool').prop('checked')) {
-			$('#cust-region-bossHeartsInPool').prop('checked', true).bootstrapToggle('on');
+		if ($(this).prop('checked')) {
+			if (!$('#cust-region-bossHeartsInPool').prop('checked')) {
+				$('#cust-region-bossHeartsInPool').prop('checked', true).bootstrapToggle('on');
+			}
+		} else {
+			$('#cust-region-bossHaveKey').prop('checked', false).bootstrapToggle('off');
+		}
+
+	});
+	$('#cust-region-bossHaveKey').on('change', function() {
+		if ($(this).prop('checked')) {
+			if (!$('#cust-region-bossHeartsInPool').prop('checked')) {
+				$('#cust-region-bossHeartsInPool').prop('checked', true).bootstrapToggle('on');
+			}
+			if (!$('#cust-region-bossNormalLocation').prop('checked')) {
+				$('#cust-region-bossNormalLocation').prop('checked', true).bootstrapToggle('on');
+			}
 		}
 
 	});
@@ -545,6 +564,7 @@ $(function() {
 			$('#item-count-BossHeartContainer').val(Number($('#item-count-BossHeartContainer').val()) + 10);
 		} else {
 			$('#cust-region-bossNormalLocation').prop('checked', false).bootstrapToggle('off');
+			$('#cust-region-bossHaveKey').prop('checked', false).bootstrapToggle('off');
 			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 10);
 			$('#item-count-BossHeartContainer').val(Number($('#item-count-BossHeartContainer').val()) - 10);
 		}

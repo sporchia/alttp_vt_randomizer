@@ -25,7 +25,7 @@ return [
 			'crossWorld' => false,
 		],
 		'region' => [
-			'bossNormalLocation' => false,
+			'bossHaveKey' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -72,7 +72,7 @@ return [
 			'crossWorld' => false,
 		],
 		'region' => [
-			'bossNormalLocation' => false,
+			'bossHaveKey' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -119,6 +119,7 @@ return [
 			'swordShuffle' => false,
 			'CompassesMaps' => false,
 			'bossHeartsInPool' => false,
+			'bossHaveKey' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,

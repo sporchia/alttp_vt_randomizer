@@ -131,6 +131,11 @@ class SwampPalace extends Region {
 			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
+		})->setFillRules(function($item, $locations, $items) {
+			if ($this->world->config('region.bossHaveKey', true)) {
+				return true;
+			}
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 

@@ -113,6 +113,11 @@ class ThievesTown extends Region {
 
 		$this->locations["Heart Container - Blind"]->setRequirements(function($locations, $items) {
 			return true;
+		})->setFillRules(function($item, $locations, $items) {
+			if ($this->world->config('region.bossHaveKey', true)) {
+				return true;
+			}
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {

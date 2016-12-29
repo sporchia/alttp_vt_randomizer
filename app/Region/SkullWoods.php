@@ -107,6 +107,11 @@ class SkullWoods extends Region {
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod');
+		})->setFillRules(function($item, $locations, $items) {
+			if ($this->world->config('region.bossHaveKey', true)) {
+				return true;
+			}
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
