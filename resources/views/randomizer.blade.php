@@ -89,8 +89,12 @@
 			<label for"cust-prize-shuffleCrystals">Shuffle Crystals</label>
 		</div>
 		<div class="col-md-6">
-			<input id="cust-region-bossnormal" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-region-bossnormal">Boss Hearts can contain Dungeon Items</label>
+			<input id="cust-region-bossHeartsInPool" type="checkbox" name="data[alttp.custom.region.bossHeartsInPool]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-bossHeartsInPool">Boss Hearts In Pool</label>
+		</div>
+		<div class="col-md-6">
+			<input id="cust-region-bossNormalLocation" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-bossNormalLocation">Boss Hearts can contain Dungeon Items</label>
 		</div>
 		<div class="col-md-6">
 			<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -511,9 +515,9 @@ $(function() {
 
 	$('#cust-region-CompassesMaps').on('change', function() {
 		if ($(this).prop('checked')) {
-			$('#custom-count-total').html('134');
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 23);
 		} else {
-			$('#custom-count-total').html('157');
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 23);
 		}
 		$('.custom-items').first().trigger('change');
 	});
@@ -528,6 +532,25 @@ $(function() {
 			$('#cust-prize-shuffleCrystals, #cust-prize-shufflePendants').prop('checked', true).bootstrapToggle('on');
 		}
 	});
+
+	$('#cust-region-bossNormalLocation').on('change', function() {
+		if ($(this).prop('checked') && !$('#cust-region-bossHeartsInPool').prop('checked')) {
+			$('#cust-region-bossHeartsInPool').prop('checked', true).bootstrapToggle('on');
+		}
+
+	});
+	$('#cust-region-bossHeartsInPool').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 10);
+			$('#item-count-BossHeartContainer').val(Number($('#item-count-BossHeartContainer').val()) + 10);
+		} else {
+			$('#cust-region-bossNormalLocation').prop('checked', false).bootstrapToggle('off');
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 10);
+			$('#item-count-BossHeartContainer').val(Number($('#item-count-BossHeartContainer').val()) - 10);
+		}
+		$('.custom-items').first().trigger('change');
+	});
+
 
 	$('#seed-clear').on('click', function() {
 		$('#seed').val('');

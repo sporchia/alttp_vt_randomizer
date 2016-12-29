@@ -153,6 +153,20 @@ class Randomizer {
 			$locations["Alter"]->setItem(Item::get('MasterSword'));
 		}
 
+		// fill boss hearts before anything else if we need to
+		if (!$this->config('region.bossHeartsInPool', true)) {
+			$locations["Heart Container - Lanmolas"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Kholdstare"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Vitreous"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Helmasaur King"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Mothula"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Arrghus"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Blind"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Trinexx"]->setItem(Item::get('BossHeartContainer'));
+			$locations["Heart Container - Moldorm"]->setItem(Item::get('BossHeartContainer'));
+		}
+
 		// for filling base (Maps/Compasses/Keys) items assume you have everything
 		foreach ($regions as $region) {
 			$region->fillBaseItems(Item::all());

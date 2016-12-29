@@ -118,6 +118,7 @@ return [
 			'bossNormalLocation' => false,
 			'swordShuffle' => false,
 			'CompassesMaps' => false,
+			'bossHeartsInPool' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
