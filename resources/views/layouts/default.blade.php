@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<title>ALttP Web VT Randomizer</title>
-	<meta name="keywords" content="stuff">
-	<meta name="description" content="things">
+	<meta name="keywords" content="ALttP, Randomizer, patcher">
+	<meta name="description" content="ALttP Web VT Randomizer">
 	<meta charset="utf-8" />
 
 	<link rel="stylesheet" href="{{ elixir('css/app.css') }}">
