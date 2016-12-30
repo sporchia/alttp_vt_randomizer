@@ -314,7 +314,7 @@
 
 <script>
 var rom;
-var current_rom_hash = '155592d364b1f4d2272dbae833653fdd';
+var current_rom_hash = '956a119e4bd67bd239f0880af1f639e0';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;

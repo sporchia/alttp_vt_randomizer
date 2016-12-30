@@ -19,7 +19,7 @@ class Rom {
 	 * @return void
 	 */
 	public function __construct(string $source_location = null) {
-		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== '155592d364b1f4d2272dbae833653fdd') {
+		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== '956a119e4bd67bd239f0880af1f639e0') {
 			throw new \Exception('Source ROM not readable or incorrect md5 hash');
 		}
 		$this->tmp_file = tempnam(sys_get_temp_dir(), __CLASS__);
@@ -109,7 +109,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x1023A5;
+		$offset = 0x1023FC;
 		foreach ($this->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
