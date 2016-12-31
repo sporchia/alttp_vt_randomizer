@@ -6,18 +6,26 @@
 ### I wanted to create an API that modeled the Randomizer. This happened.
 
 ### Install
-You will need [Composer](https://getcomposer.org/) for the Monolog/Logger Dependency. Once you have that, run the following
+You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following
 
 ```
 $ composer install
 ```
 
 ### Running
-To generate a seed one simply runs the command. This should output a file in the format of *ALttP - V1.XXXXXX.rom* (where XXXXXX is the seed number)
-as well as a *ALttP - V1.XXXXXX.txt* file, which is the spoiler, to the *./out/* directory. A spoiler will be dumped to the terminal as well.
+
+#### Command line
+To generate a seed one simply runs the command.
 
 ```
-./randomizer
+php artisan alttp:randomize {input_file.sfc} {output_directory}
+```
+
+#### Web interface
+To use the built-in php webserver you can run this in development mode. Run the following command then navigate to http://localhost:8000/.
+
+```
+php artisan serve
 ```
 
 #### This is a port of the ALttP Randomizer "intended" to be a webservice.
