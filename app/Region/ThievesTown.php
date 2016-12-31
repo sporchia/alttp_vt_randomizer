@@ -52,9 +52,7 @@ class ThievesTown extends Region {
 				"[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]",
 				"[dungeon-D4-B1] Thieves' Town - Bottom right of huge room",
 				"[dungeon-D4-B1] Thieves' Town - Top left of huge room",
-				"[dungeon-D4-1F] Thieves' Town - Room above boss",
 				"[dungeon-D4-B2] Thieves' Town - next to Blind",
-				"Heart Container - Blind",
 			]);
 		})->random()->fill(Item::get("Key"), $my_items));
 

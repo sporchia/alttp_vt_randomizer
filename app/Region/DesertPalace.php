@@ -84,8 +84,10 @@ class DesertPalace extends Region {
 			return $items->has('PegasusBoots');
 		});
 
+		// adding boots to prevent key stealing softlock
+		// @TODO: revisit when "[dungeon-L2-B1] Desert Palace - Small key room" implemented
 		$this->locations["Heart Container - Lanmolas"]->setRequirements(function($locations, $items) {
-			return ($locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get("BigKey"))
+			return $items->has('PegasusBoots') && ($locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get("BigKey"))
 				|| ($locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-L2-B1] Desert Palace - Big key room",
 						"[dungeon-L2-B1] Desert Palace - compass room"
@@ -93,8 +95,10 @@ class DesertPalace extends Region {
 				&& $items->canLiftRocks() && $items->canLightTorches();
 		});
 
+		// adding boots to prevent key stealing softlock
+		// @TODO: revisit when "[dungeon-L2-B1] Desert Palace - Small key room" implemented
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canLiftRocks() && $items->canLightTorches();
+			return $this->canEnter($locations, $items) && $items->canLiftRocks() && $items->canLightTorches() && $items->has('PegasusBoots');
 		};
 
 		$this->can_enter = function($locations, $items) {
