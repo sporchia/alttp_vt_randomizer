@@ -366,6 +366,9 @@ class Randomizer {
 				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getNiceName();
 			}
 		}
+		$ret['sub_complexity'] = array_reduce($ret, function($carry, $item) {
+			return (is_array($item)) ? $carry + count($item) : $carry;
+		});
 
 		return $ret;
 	}

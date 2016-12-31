@@ -15,7 +15,7 @@
 </div>
 <div id="seed-generate" class="row" style="display:none">
 	<div class="col-md-4">
-		<div class="input-group">
+		<div class="input-group" role="group">
 			<span class="input-group-addon">Seed</span>
 			<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
 			<span class="input-group-btn">
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="input-group">
+		<div class="input-group" role="group">
 			<span class="input-group-addon">Rules</span>
 			<select id="rules" class="form-control selectpicker">
 				<option value="v7" selected>v7</option>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="input-group">
+		<div class="input-group" role="group">
 			<span class="input-group-addon">Heart Beep</span>
 			<select id="heart-speed" class="form-control selectpicker">
 				<option value="off">Off</option>
@@ -48,7 +48,9 @@
 	<div class="col-md-2">
 		<div class="btn-group" role="group">
 			<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-			<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+			<span class="input-group-btn">
+				<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+			</span>
 		</div>
 	</div>
 </div>
@@ -59,10 +61,11 @@
 			<div>Logic: <span class="logic"></span></div>
 			<div>Rules: <span class="rules"></span></div>
 			<div>Seed: <span class="seed"></span></div>
+			<div>Complexity: <span class="complexity"></span></div>
 		</div>
 		<div class="col-md-6">
 			<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
-			<button name="save" class="btn btn-default" disabled>Save</button>
+			<button name="save" class="btn btn-default" disabled>Save Rom</button>
 		</div>
 	<div class="spoiler col-md-12">
 		<div class="spoiler-toggle"><span class="glyphicon glyphicon-plus"></span> Spoiler!</div>
@@ -425,11 +428,14 @@ function seedApplied(data) {
 		$('.info .seed').html(data.patch.seed);
 		$('.info .logic').html(data.patch.logic);
 		$('.info .rules').html(data.patch.rules);
+		$('.info .complexity').html(data.patch.spoiler.playthrough.complexity + ' (' + data.patch.spoiler.playthrough.sub_complexity + ')');
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		rom.logic = data.patch.logic;
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
+		rom.complexity = data.patch.spoiler.playthrough.complexity;
+		rom.sub_complexity = data.patch.spoiler.playthrough.sub_complexity;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 		resolve(rom);
 	});
@@ -495,7 +501,7 @@ $(function() {
 		}
 	});
 	$('#rules').on('change', function() {
-		$('input[name=rules').val($(this).val());
+		$('input[name=rules]').val($(this).val());
 		if ($(this).val() == 'custom') {
 			$('.custom-rules').show();
 		} else {
@@ -514,7 +520,7 @@ $(function() {
 	$('.custom-items').first().trigger('change');
 
 	$('#heart-speed').on('change', function() {
-		$('input[name=heart_speed').val($(this).val());
+		$('input[name=heart_speed]').val($(this).val());
 	});
 
 	$('#cust-region-CompassesMaps').on('change', function() {

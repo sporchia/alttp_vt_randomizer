@@ -4,8 +4,8 @@ return [
 	'v7' => [
 		'output' => [
 			'file' => [
-				'name' => 'alttp - VT7.%s.sfc',
-				'spoiler' => 'alttp - VT7.%s.txt',
+				'name' => 'ALttP - VT_%s_v7_%s.sfc',
+				'spoiler' => 'ALttP - VT_%s_v7_%s.txt',
 			],
 		],
 		'item' => [
@@ -34,8 +34,8 @@ return [
 	'v7_hard' => [
 		'output' => [
 			'file' => [
-				'name' => 'alttp (hard) - VT7.%s.sfc',
-				'spoiler' => 'alttp (hard) - VT7.%s.txt',
+				'name' => 'alttp (hard) - VT_%s_v7_%s.sfc',
+				'spoiler' => 'alttp (hard) - VT_%s_v7_%s.txt',
 			],
 		],
 		'item' => [
@@ -81,8 +81,8 @@ return [
 	'v8' => [
 		'output' => [
 			'file' => [
-				'name' => 'alttp - VT8.%s.sfc',
-				'spoiler' => 'alttp - VT8.%s.txt',
+				'name' => 'alttp - VT_%s_v8_%s.sfc',
+				'spoiler' => 'alttp - VT_%s_v8_%s.txt',
 			],
 		],
 		'item' => [
