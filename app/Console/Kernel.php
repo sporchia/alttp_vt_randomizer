@@ -8,6 +8,7 @@ class Kernel extends ConsoleKernel {
 		Commands\FindUncleText::class,
 		Commands\Randomize::class,
 		Commands\UpdateResetJson::class,
+		Commands\UpdateBaseJson::class,
 	];
 
 	protected function commands() {
