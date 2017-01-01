@@ -91,7 +91,7 @@ class TowerOfHera extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canAccessWestDeathMountain()
+			return $this->world->getRegion('Death Mountain')->canEnter($locations, $items)
 				&& ($items->has('MagicMirror')
 					|| ($items->has('Hammer') && $items->has('Hookshot')));
 		};

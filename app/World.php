@@ -2,6 +2,7 @@
 
 use ALttP\Support\LocationCollection;
 use Log;
+
 /**
  * This is the container for all the regions and locations one can find items in the game.
  */
@@ -26,9 +27,13 @@ class World {
 			'Eastern Palace' => new Region\EasternPalace($this),
 			'Desert Palace' => new Region\DesertPalace($this),
 			'Death Mountain' => new Region\DeathMountain($this),
+			'East Death Mountain' => new Region\DeathMountain\East($this),
 			'Tower of Hera' => new Region\TowerOfHera($this),
 			'Hyrule Castle Tower' => new Region\HyruleCastleTower($this),
 			'Dark World' => new Region\DarkWorld($this),
+			'North East Dark World' => new Region\DarkWorld\NorthEast($this),
+			'North West Dark World' => new Region\DarkWorld\NorthWest($this),
+			'South Dark World' => new Region\DarkWorld\South($this),
 			'Palace of Darkness' => new Region\PalaceOfDarkness($this),
 			'Swamp Palace' => new Region\SwampPalace($this),
 			'Skull Woods' => new Region\SkullWoods($this),
@@ -85,12 +90,27 @@ class World {
 		}
 	}
 
+	/**
+	 * Set the rules to use for this world
+	 *
+	 * @param string $rules rules set to use from config('alttp.{$rules}')
+	 *
+	 * @return $this
+	 */
 	public function setRules(string $rules) {
 		$this->rules = $rules;
 		return $this;
 	}
 
-	public function config($key, $default = null) {
+	/**
+	 * Get config value based on the currently set rules
+	 *
+	 * @param string $key dot notation key of config
+	 * @param mixed|null $default value to return if $key is not found
+	 *
+	 * @return mixed
+	 */
+	public function config(string $key, $default = null) {
 		return config("alttp.{$this->rules}.$key", $default);
 	}
 

@@ -42,4 +42,25 @@ class HyruleCastleTower extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for No Major Glitches
+	 *
+	 * @return $this
+	 */
+	public function initNoMajorGlitches() {
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items);
+		};
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('Cape')
+				|| $locations["Alter"]->canAccess($items)
+				|| $locations["Blacksmiths"]->canAccess($items)
+				|| $locations["Pyramid"]->canAccess($items);
+		};
+
+		return $this;
+	}
 }

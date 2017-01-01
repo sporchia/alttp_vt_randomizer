@@ -243,7 +243,7 @@ class PalaceOfDarkness extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canAccessPyramid();
+			return $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
 		};
 
 		return $this;

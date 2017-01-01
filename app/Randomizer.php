@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 5;
+	const LOGIC = 6;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -143,7 +143,7 @@ class Randomizer {
 
 		while (count($swords) > 0) {
 			$item = array_shift($swords);
-			while(!$regions['Swords']->getEmptyLocations()->random()->fill($item, Item::all()));
+			while(!$regions['Swords']->getEmptyLocations()->random()->setItem($item));
 		}
 		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
 
@@ -173,12 +173,12 @@ class Randomizer {
 		}
 
 		$my_items = new ItemCollection;
-		$my_items->setWorld($this->world);
 
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 			return $location->canAccess($my_items);
 		});
 
+		// @TODO: refactor next two blocks into a single function, repeated logic
 		// fill advancement items
 		$advancement_items = $this->getAdvancementItems();
 		$cycle = count($advancement_items);
@@ -211,6 +211,10 @@ class Randomizer {
 				$available_locations = $diff->merge($available_locations->randomCollection(ceil($diff->count() / 4)));
 			}
 
+			if ($available_locations->count() == 0) {
+				throw new \Exception(sprintf('No Available Locations: "%s"', $item->getNiceName()));
+			}
+
 			foreach ($available_locations as $location) {
 				Log::debug("Available Location: " . $location->getName());
 			}
@@ -235,11 +239,15 @@ class Randomizer {
 		// Remaining Items
 		while (count($items_to_find) > 0 && $locations->getEmptyLocations()->count()) {
 			$item = array_shift($items_to_find);
-			Log::debug(sprintf("Item: %s [%s]", $item->getNiceName(), $item->getName()));
+			Log::debug(sprintf("Item: %s [%s] Locations: %s", $item->getNiceName(), $item->getName(), $locations->getEmptyLocations()->count()));
 
 			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($item, $my_items) {
 				return $location->canFill($item, $my_items);
 			});
+
+			if ($available_locations->count() == 0) {
+				throw new \Exception(sprintf('No Available Locations:: "%s"', $item->getNiceName()));
+			}
 
 			foreach ($available_locations as $location) {
 				Log::debug("Available Location: " . $location->getName());
@@ -318,7 +326,6 @@ class Randomizer {
 	 */
 	public function getPlayThrough(World $world) {
 		$my_items = new ItemCollection;
-		$my_items->setWorld($world);
 		$locations = $world->getLocations()->filter(function($location) {
 			return !is_a($location, Location\Prize::class)
 				&& !is_a($location, Location\Medallion::class)
@@ -374,7 +381,10 @@ class Randomizer {
 	}
 
 	/**
-	 * get config values based on the rulesset for this Randomizer
+	 * Get config value based on the currently set rules
+	 *
+	 * @param string $key dot notation key of config
+	 * @param mixed|null $default value to return if $key is not found
 	 *
 	 * @return mixed
 	 */

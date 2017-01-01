@@ -78,13 +78,11 @@ class LocationCollection extends Collection {
 	 * @return ItemCollection
 	 */
 	public function getItems() {
-		$item_collection = new ItemCollection($this->filter(function($location) {
+		return new ItemCollection($this->filter(function($location) {
 				return $location->hasItem();
 			})->map(function ($location) {
 				return $location->getItem();
 			}));
-		$item_collection->setWorld($this->first()->getRegion()->getWorld());
-		return $item_collection;
 	}
 
 	/**

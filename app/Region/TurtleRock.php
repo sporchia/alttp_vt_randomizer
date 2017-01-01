@@ -181,7 +181,8 @@ class TurtleRock extends Region {
 			return (($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 				|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-			 && $items->has('MoonPearl') && $items->has('CaneOfSomaria') && $items->canAccessEastDeathMountain()
+			 && $items->has('MoonPearl') && $items->has('CaneOfSomaria')
+			 && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
 			 && $items->has('TitansMitt') && $items->has('Hammer');
 		};
 
