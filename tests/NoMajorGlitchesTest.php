@@ -29,6 +29,12 @@ class NoMajorGlitchesTest extends TestCase {
 		return $items;
 	}
 
+	// Light World
+	public function testLinksHouseCannotHaveGloves() {
+		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('PowerGlove'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('TitansMitt'), $this->allItems()));
+	}
+
 	// Death Mountain
 	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMitt() {
 		$no_mitt = $this->allItemsExcept(['TitansMitt']);
