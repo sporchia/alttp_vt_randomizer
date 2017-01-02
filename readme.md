@@ -1,4 +1,6 @@
-# ALttP PHP Randomizer
+[![Build Status](https://travis-ci.org/sporchia/alttp_php_randomizer.svg?branch=master)](https://travis-ci.org/sporchia/alttp_php_randomizer)
+
+# ALttP PHP VT Randomizer
 
 ## First and foremost, big thanks to Dessyreqt, Christos, and Karkat for their work.
 ### Without their work none of this would even be remotely possible.
@@ -18,27 +20,49 @@ $ composer install
 To generate a seed one simply runs the command.
 
 ```
-php artisan alttp:randomize {input_file.sfc} {output_directory}
+$ php artisan alttp:randomize {input_file.sfc} {output_directory} {--seed=#} {--spoiler}
+```
+
+For bulk generation
+
+```
+$ php artisan alttp:randomize {input_file.sfc} {output_directory} --bulk=10 {--spoiler}
 ```
 
 #### Web interface
 To use the built-in php webserver you can run this in development mode. Run the following command then navigate to http://localhost:8000/.
 
 ```
-php artisan serve
+$ php artisan serve
 ```
 
-#### This is a port of the ALttP Randomizer "intended" to be a webservice.
+you may want to build the assets for this to work with
+
+```
+$ ./node_modules/gulp/bin/gulp.js --production
+```
+
+#### This is a port of the ALttP Randomizer which can be used as a web service.
+
+It has the ability to patch a ROM file completely in the browser.
 
 #### Features include
 * Randomization of Items including Boss Hearts, Swords, Crystals and Pendants.
+* Custom mode allowing one to switch on and off a bunch of different features.
 * Tries to distrobute the items in a way as to not have everything way too early.
 * Logic updates with the Boss Hearts and Dungeon Prize locations randomized.
 * Ability to set custom Uncle Text.
 * Ability to have Boss item in regular dungeon pool (Compass/Map/Keys)
-* Documentation of classes and objects (paritally done).
+* Documentation of classes and objects.
+* Unit Tests (partially done).
 * Ability to create as many "seeds" as you want.
-* With a little logic create any seed with items in specific places (might take a while, or never finish if you are looking for dead locks).
+
+### Running tests
+You can run the current test suite with the following command (you may need to install [PHPUnit](https://phpunit.de/))
+
+```
+$ phpunit
+```
 
 ### API Documentation
 The API documentation can be generated after you install by running:

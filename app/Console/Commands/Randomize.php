@@ -10,7 +10,7 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v7} {--seed=}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v7} {--seed=} {--bulk=1}';
 
 	/**
 	 * The console command description.
@@ -33,22 +33,26 @@ class Randomize extends Command {
 			return $this->error('Target Directory not writable');
 		}
 
-		$rom = new Rom($this->argument('input_file'));
-		$rand = new Randomizer($this->option('rules'));
-		$rand->makeSeed($this->option('seed'));
+		$bulk = ($this->option('seed') == null) ? $this->option('bulk') : 1;
 
-		if ($this->option('debug')) {
-			$rom->enableDebugMode();
+		for ($i = 0; $i < $bulk; $i++) {
+			$rom = new Rom($this->argument('input_file'));
+			$rand = new Randomizer($this->option('rules'));
+			$rand->makeSeed($this->option('seed'));
+
+			if ($this->option('debug')) {
+				$rom->enableDebugMode();
+			}
+
+			$rand->writeToRom($rom);
+
+			$output_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.name', 'alttp - p.%s_%s.sfc'), $rand->getLogic(), $rand->getSeed());
+			$rom->save($output_file);
+			if ($this->option('spoiler')) {
+				$spoiler_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.spoiler', 'alttp - p.%s_%s.txt'), $rand->getLogic(), $rand->getSeed());
+				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
+			}
+			$this->info(sprintf('Rom Saved: %s', $output_file));
 		}
-
-		$rand->writeToRom($rom);
-
-		$output_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.name', 'alttp - p.%s_%s.sfc'), $rand->getLogic(), $rand->getSeed());
-		$rom->save($output_file);
-		if ($this->option('spoiler')) {
-			$spoiler_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.spoiler', 'alttp - p.%s_%s.txt'), $rand->getLogic(), $rand->getSeed());
-			file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
-		}
-		$this->info(sprintf('Rom Saved: %s', $output_file));
 	}
 }
