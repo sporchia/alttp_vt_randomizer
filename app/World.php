@@ -103,6 +103,15 @@ class World {
 	}
 
 	/**
+	 * Get the rules currently used for this world
+	 *
+	 * @return string
+	 */
+	public function getRules() {
+		return $this->rules;
+	}
+
+	/**
 	 * Get config value based on the currently set rules
 	 *
 	 * @param string $key dot notation key of config
@@ -119,10 +128,10 @@ class World {
 	 *
 	 * @param string $name Name of region to return
 	 *
-	 * @return Region
+	 * @return Region|null
 	 */
 	public function getRegion(string $name) {
-		return $this->regions[$name];
+		return $this->regions[$name] ?? null;
 	}
 
 	/**

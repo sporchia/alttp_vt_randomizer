@@ -115,6 +115,10 @@
 			<input id="cust-region-CompassesMaps" type="checkbox" name="data[alttp.custom.region.CompassesMaps]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
 		</div>
+		<div class="col-md-6">
+			<input id="cust-region-superBunnyDM" type="checkbox" name="data[alttp.custom.region.superBunnyDM]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-superBunnyDM">Allow Moon Pearl on Dark World DM (Super Bunny)</label>
+		</div>
 
 		<div class="col-md-12"><h2>Items</h2></div>
 		<div class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">134</span> / <span id="custom-count-total">134</span></div>

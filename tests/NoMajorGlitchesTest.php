@@ -35,6 +35,23 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('TitansMitt'), $this->allItems()));
 	}
 
+	// Dark World
+	public function testSuperBunnyDMNotAllowed() {
+		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
+
+		config(['alttp.test_rules.region.superBunnyDM' => false]);
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")->canAccess($no_moonpearl));
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")->canAccess($no_moonpearl));
+	}
+
+	public function testSuperBunnyDMAllowed() {
+		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
+
+		config(['alttp.test_rules.region.superBunnyDM' => true]);
+		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")->canAccess($no_moonpearl));
+		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")->canAccess($no_moonpearl));
+	}
+
 	// Death Mountain
 	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMitt() {
 		$no_mitt = $this->allItemsExcept(['TitansMitt']);

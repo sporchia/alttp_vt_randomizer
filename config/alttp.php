@@ -26,6 +26,7 @@ return [
 		],
 		'region' => [
 			'bossHaveKey' => false,
+			'superBunnyDM' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -73,6 +74,7 @@ return [
 		],
 		'region' => [
 			'bossHaveKey' => false,
+			'superBunnyDM' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -103,6 +105,7 @@ return [
 		],
 		'region' => [
 			'bossNormalLocation' => true,
+			'superBunnyDM' => true,
 		],
 		'spoil' => [
 			'BootsLocation' => true,
@@ -120,6 +123,7 @@ return [
 			'CompassesMaps' => false,
 			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
+			'superBunnyDM' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
