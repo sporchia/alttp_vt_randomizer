@@ -7,8 +7,12 @@ use ALttP\World;
 
 /**
  * Region containing the 7 Crystals required to beat the game
+ *
+ * @TODO: consider actually putting these locations directly on the regions they belong to.
  */
 class Crystals extends Region {
+	protected $name = 'Prize';
+
 	/**
 	 * Create a new Crystals Region and generate all it's Locations
 	 *

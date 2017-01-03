@@ -86,7 +86,7 @@ class Randomizer {
 
 		while (count($prizes) > 3) {
 			$item = array_shift($prizes);
-			while(!$regions['Crystals']->getEmptyLocations()->random()->fill($item, Item::all()));
+			while(!$regions['Crystals']->getEmptyLocations()->random()->setItem($item));
 		}
 
 		if (!$this->config('prize.shuffleCrystals', true)) {
@@ -102,7 +102,7 @@ class Randomizer {
 
 		while (count($prizes) > 0) {
 			$item = array_shift($prizes);
-			while(!$regions['Pendants']->getEmptyLocations()->random()->fill($item, Item::all()));
+			while(!$regions['Pendants']->getEmptyLocations()->random()->setItem($item));
 		}
 
 		if (!$this->config('prize.shufflePendants', true)) {
@@ -327,15 +327,22 @@ class Randomizer {
 	public function getPlayThrough(World $world) {
 		$my_items = new ItemCollection;
 		$locations = $world->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Prize::class)
-				&& !is_a($location, Location\Medallion::class)
+			return !is_a($location, Location\Medallion::class)
 				&& !is_a($location, Location\Fountain::class);
 		});
 
 		$location_order = [];
 		$location_round = [];
 
-		$progression_items = $this->getAdvancementItems();
+		$progression_items = array_merge($this->getAdvancementItems(), [
+			Item::get('Crystal1'),
+			Item::get('Crystal2'),
+			Item::get('Crystal3'),
+			Item::get('Crystal4'),
+			Item::get('Crystal5'),
+			Item::get('Crystal6'),
+			Item::get('Crystal7'),
+		]);
 		$required_medallions = [
 			$world->getLocation("Misery Mire Medallion")->getItem(),
 			$world->getLocation("Turtle Rock Medallion")->getItem(),

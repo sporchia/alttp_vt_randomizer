@@ -11,7 +11,6 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "type": "project",
     "require": {
         "php": ">=7.0.0",
         "laravel/framework": "5.3.*"

@@ -7,8 +7,12 @@ use ALttP\World;
 
 /**
  * Region to hold the Pendant prizes in the world
+ *
+ * @TODO: consider actually putting these locations directly on the regions they belong to.
  */
 class Pendants extends Region {
+	protected $name = 'Prize';
+
 	/**
 	 * Create a new Pendants Region to hold pendant drop locations.
 	 *

@@ -52,6 +52,12 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")->canAccess($no_moonpearl));
 	}
 
+	public function testGlovesRequiredToEnterBumperCave() {
+		$no_lifting = $this->allItemsExcept(['PowerGlove', 'TitansMitt']);
+
+		$this->assertFalse($this->world->getLocation("Piece of Heart (Dark World - bumper cave)")->canAccess($no_lifting));
+	}
+
 	// Death Mountain
 	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMitt() {
 		$no_mitt = $this->allItemsExcept(['TitansMitt']);

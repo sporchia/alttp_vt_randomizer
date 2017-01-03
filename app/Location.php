@@ -193,6 +193,19 @@ class Location {
 	}
 
 	/**
+	 * Set the Region of this Location.
+	 * @TODO: determine if this has side affects that are extremely negitive.
+	 *
+	 * @param Region $region new region to assign location to.
+	 *
+	 * @return $this
+	 */
+	public function setRegion(Region $region) {
+		$this->region = $region;
+		return $this;
+	}
+
+	/**
 	 * Get the Region of this Location.
 	 *
 	 * @return Region

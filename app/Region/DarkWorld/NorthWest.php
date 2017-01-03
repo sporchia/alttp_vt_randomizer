@@ -54,7 +54,7 @@ class NorthWest extends Region {
 		});
 
 		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
-			return $items->has('Cape');
+			return $items->canLiftRocks() && $items->has('Cape');
 		});
 
 		$this->can_enter = function($locations, $items) {

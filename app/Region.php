@@ -44,7 +44,7 @@ class Region {
 	}
 
 	/**
-	 * Set the Prize Location for completeing this Region.
+	 * Set the Prize Location for completeing this Region and set it's rules for access to completing the region.
 	 *
 	 * @param Location\Prize $location location to put item that will be the prize
 	 *
@@ -52,6 +52,12 @@ class Region {
 	 */
 	public function setPrizeLocation(Location\Prize $location) {
 		$this->prize_location = $location;
+
+		$this->prize_location->setRegion($this);
+		if ($this->can_complete) {
+			$this->prize_location->setRequirements($this->can_complete);
+		}
+
 		return $this;
 	}
 
