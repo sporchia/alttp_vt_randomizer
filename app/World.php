@@ -1,5 +1,6 @@
 <?php namespace ALttP;
 
+use ALttP\Support\ItemCollection;
 use ALttP\Support\LocationCollection;
 use Log;
 
@@ -10,6 +11,7 @@ class World {
 	protected $rules;
 	protected $regions = [];
 	protected $locations;
+	protected $win_condition;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -55,6 +57,7 @@ class World {
 		foreach ($this->regions as $name => $region) {
 			$region->init($type);
 			$this->locations = $this->locations->merge($region->getLocations());
+			// @TODO: make the prize just part of the Region?
 			switch ($name) {
 				case 'Eastern Palace':
 					$region->setPrizeLocation($this->regions['Pendants']->getLocation("Eastern Palace Pendant"));
@@ -88,6 +91,138 @@ class World {
 					break;
 			}
 		}
+
+		switch($type) {
+			case 'NoMajorGlitches':
+			default:
+				$this->win_condition = function($items) {
+					return $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($items);
+				};
+				break;
+		}
+	}
+
+	/**
+	 * Determine the absolute minimum items required to complete the game. we do this by cycling through the items until
+	 * we can't remove any more items.
+	 * @TODO: sometimes Cape doesn't get listed as this is strictly based on items, might be better to use playthough to
+	 * determine items and remove this function entirely
+	 *
+	 * @return array
+	 */
+	public function getRequiredItems(ItemCollection $items = null) {
+		$items = $items ?? $this->getLocations()->filter(function($location) {
+			return !is_a($location, Location\Medallion::class)
+				&& !is_a($location, Location\Fountain::class);
+		})->getItems();
+		$original_items = $items->copy();
+
+		$cycle = $items->count();
+
+		do {
+			$item = $items->shift();
+			$cycle--;
+			Log::debug(sprintf("Required: Pulling: %s", $item->getNiceName()));
+
+			if (!$this->getWinCondition()($items)) {
+				Log::debug(sprintf("Required: Putting: %s", $item->getNiceName()));
+				$items->addItem($item);
+			} else {
+				foreach ($items as $check_access) {
+					$secondary = $items->diff([$check_access]);
+					foreach ($this->getLocationsWithItem($check_access) as $check_location) {
+						if (!$check_location->canAccess($secondary)) {
+							Log::debug(sprintf("Required: Putting (chain): %s", $item->getNiceName()));
+							$items->addItem($item);
+							continue 3;
+						}
+					}
+				}
+
+				$cycle = $items->count();
+			}
+		} while ($cycle > 0);
+
+		return $items->toArray();
+	}
+
+	/**
+	 * Return an array of Locations to collect all Advancement Items in the game in order.
+	 *
+	 * @return array
+	 */
+	public function getPlayThrough(ItemCollection $items = null) {
+		$my_items = new ItemCollection;
+		$locations = $this->getLocations()->filter(function($location) {
+			return !is_a($location, Location\Medallion::class)
+				&& !is_a($location, Location\Fountain::class);
+		});
+
+		$location_order = [];
+		$location_round = [];
+
+		// @TODO: if Prizes become part of the region locations this can be simplified.
+		$progression_items = array_merge($items->toArray(), [
+			Item::get('Crystal1'),
+			Item::get('Crystal2'),
+			Item::get('Crystal3'),
+			Item::get('Crystal4'),
+			Item::get('Crystal5'),
+			Item::get('Crystal6'),
+			Item::get('Crystal7'),
+			Item::get('PendantOfCourage'),
+		]);
+
+		$bottle_needed = false;
+		foreach ($progression_items as $item) {
+			if (is_a($item, Item\Bottle::class)) {
+				$bottle_needed = true;
+				break;
+			}
+		}
+
+		$complexity = 0;
+		do {
+			$complexity++;
+			$location_round[$complexity] = [];
+			$available_locations = $locations->filter(function($location) use ($my_items) {
+				return $location->canAccess($my_items);
+			});
+
+			$found_items = $available_locations->getItems();
+
+			$available_locations->each(function($location) use (&$location_order, &$location_round, &$bottle_needed, $progression_items, $complexity) {
+				if ((in_array($location->getItem(), $progression_items) || ($bottle_needed && is_a($location->getItem(), Item\Bottle::class)))
+						&& !in_array($location, $location_order)) {
+					if (is_a($location->getItem(), Item\Bottle::class)) {
+						if (!$bottle_needed) {
+							return;
+						}
+						$bottle_needed = false;
+					}
+					array_push($location_order, $location);
+					array_push($location_round[$complexity], $location);
+				}
+			});
+			$new_items = $found_items->diff($my_items);
+			$my_items = $found_items;
+		} while ($new_items->count() > 0);
+
+		$ret = ['complexity' => count($location_round)];
+		foreach ($location_round as $round => $locations) {
+			if (!count($locations)) {
+				$ret['complexity']--;
+			}
+			foreach ($locations as $location) {
+				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getNiceName();
+			}
+		}
+
+		$ret['sub_complexity'] = array_reduce($ret, function($carry, $item) {
+			return (is_array($item)) ? $carry + count($item) : $carry;
+		});
+
+		return $ret;
 	}
 
 	/**
@@ -109,6 +244,15 @@ class World {
 	 */
 	public function getRules() {
 		return $this->rules;
+	}
+
+	/**
+	 * Get the function that determines the win condition for this world.
+	 *
+	 * @return Closure
+	 */
+	public function getWinCondition() {
+		return $this->win_condition;
 	}
 
 	/**

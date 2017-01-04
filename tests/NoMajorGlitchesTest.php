@@ -35,6 +35,12 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('TitansMitt'), $this->allItems()));
 	}
 
+	// Shields seems to all downgrade on S&Q to Fighters Shield, lets just avoid that
+	public function testLinksHouseCannotHaveShields() {
+		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('RedShield'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('MirrorShield'), $this->allItems()));
+	}
+
 	// Dark World
 	public function testSuperBunnyDMNotAllowed() {
 		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
@@ -84,6 +90,15 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->world->getLocation("[dungeon-D2-B2] Swamp Palace - flooded room [right chest]")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D2-B1] Swamp Palace - big chest")->fill(Item::get('Hookshot'), $no_hookshot));
+	}
+
+	public function testSwampPalaceHookshotCanBeInBigChest() {
+		$no_hookshot = $this->allItemsExcept(['Hookshot']);
+
+		$this->world->getLocation("[dungeon-D2-1F] Swamp Palace - first room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D2-B1] Swamp Palace - south of hookshot room")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D2-B1] Swamp Palace - big chest")->fill(Item::get('Hookshot'), $no_hookshot));
 	}
 
 	// Palace of Darkness

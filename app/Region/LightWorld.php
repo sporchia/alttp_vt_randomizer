@@ -103,7 +103,7 @@ class LightWorld extends Region {
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove')]);
+			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove'), Item::get('RedShield'), Item::get('MirrorShield')]);
 		});
 
 		$this->locations["[cave-031] Tavern"]->setRequirements(function($locations, $items) {

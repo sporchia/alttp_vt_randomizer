@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 7;
+	const LOGIC = 8;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -86,7 +86,7 @@ class Randomizer {
 
 		while (count($prizes) > 3) {
 			$item = array_shift($prizes);
-			while(!$regions['Crystals']->getEmptyLocations()->random()->setItem($item));
+			$regions['Crystals']->getEmptyLocations()->random()->setItem($item);
 		}
 
 		if (!$this->config('prize.shuffleCrystals', true)) {
@@ -102,7 +102,7 @@ class Randomizer {
 
 		while (count($prizes) > 0) {
 			$item = array_shift($prizes);
-			while(!$regions['Pendants']->getEmptyLocations()->random()->setItem($item));
+			$regions['Pendants']->getEmptyLocations()->random()->setItem($item);
 		}
 
 		if (!$this->config('prize.shufflePendants', true)) {
@@ -112,8 +112,6 @@ class Randomizer {
 			$pendant_locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfWisdom'));
 		}
 
-		$required = $this->getAdvancementItems();
-
 		$medallions = [
 			Item::get('Ether'),
 			Item::get('Bombos'),
@@ -122,7 +120,6 @@ class Randomizer {
 
 		foreach ($regions['Medallions']->getLocations() as $medallion_location) {
 			$medallion = $medallions[mt_rand(0, 2)];
-			array_push($required, $medallion);
 			$medallion_location->setItem($medallion);
 		}
 
@@ -143,7 +140,7 @@ class Randomizer {
 
 		while (count($swords) > 0) {
 			$item = array_shift($swords);
-			while(!$regions['Swords']->getEmptyLocations()->random()->setItem($item));
+			$regions['Swords']->getEmptyLocations()->random()->setItem($item);
 		}
 		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
 
@@ -178,37 +175,45 @@ class Randomizer {
 			return $location->canAccess($my_items);
 		});
 
-		// @TODO: refactor next two blocks into a single function, repeated logic
-		// fill advancement items
-		$advancement_items = $this->getAdvancementItems();
-		$cycle = count($advancement_items);
-		while (count($advancement_items)) {
-			$item = array_shift($advancement_items);
+		$this->fillItemsInLocations($this->getAdvancementItems(), $my_items, $locations, $base_locations);
+
+		// Remaining Items
+		$this->fillItemsInLocations($this->getItemPool(), $my_items, $locations);
+
+		return $this;
+	}
+
+	protected function fillItemsInLocations($fill_items, $my_items, $locations, $base_locations = null) {
+		$cycle = count($fill_items);
+		while (count($fill_items)) {
+			$item = array_shift($fill_items);
 			Log::debug(sprintf("Item: %s [%s]", $item->getNiceName(), $item->getName()));
 
 			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($item, $my_items) {
 				return $location->canFill($item, $my_items);
 			});
 
-			$my_new_items = $my_items->tempAdd($item);
+			if ($base_locations) {
+				$my_new_items = $my_items->tempAdd($item);
 
-			$available_after_placement = $locations->getEmptyLocations()->filter(function($location) use ($my_new_items) {
-				return $location->canAccess($my_new_items);
-			});
+				$available_after_placement = $locations->getEmptyLocations()->filter(function($location) use ($my_new_items) {
+					return $location->canAccess($my_new_items);
+				});
 
-			if ($cycle > 0 && $available_after_placement->count() == $available_locations->count()) {
-				$cycle--;
-				Log::debug(sprintf("Skipping Item: %s [%s]", $item->getNiceName(), $item->getName()));
-				array_push($advancement_items, $item);
-				continue;
-			}
-			$cycle = count($advancement_items);
+				if ($cycle > 0 && $available_after_placement->count() == $available_locations->count()) {
+					$cycle--;
+					Log::debug(sprintf("Skipping Item: %s [%s]", $item->getNiceName(), $item->getName()));
+					array_push($fill_items, $item);
+					continue;
+				}
+				$cycle = count($fill_items);
 
-			// prioritize new locations for branching paths, saves from too many advancement items showing up early
-			$diff = $available_locations->diff($base_locations);
-			Log::debug("DIFF: " . $diff->count());
-			if ($diff->count() > 0) {
-				$available_locations = $diff->merge($available_locations->randomCollection(ceil($diff->count() / 4)));
+				// prioritize new locations for branching paths, saves from too many advancement items showing up early
+				$diff = $available_locations->diff($base_locations);
+				Log::debug("DIFF: " . $diff->count());
+				if ($diff->count() > 0) {
+					$available_locations = $diff->merge($available_locations->randomCollection(ceil($diff->count() / 4)));
+				}
 			}
 
 			if ($available_locations->count() == 0) {
@@ -233,51 +238,6 @@ class Randomizer {
 
 			$my_items->addItem($item);
 		}
-
-		$items_to_find = $this->getItemPool();
-
-		// Remaining Items
-		while (count($items_to_find) > 0 && $locations->getEmptyLocations()->count()) {
-			$item = array_shift($items_to_find);
-			Log::debug(sprintf("Item: %s [%s] Locations: %s", $item->getNiceName(), $item->getName(), $locations->getEmptyLocations()->count()));
-
-			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($item, $my_items) {
-				return $location->canFill($item, $my_items);
-			});
-
-			if ($available_locations->count() == 0) {
-				throw new \Exception(sprintf('No Available Locations:: "%s"', $item->getNiceName()));
-			}
-
-			foreach ($available_locations as $location) {
-				Log::debug("Available Location: " . $location->getName());
-			}
-
-			$limit = 500;
-			$found = false;
-			while (!$found && $limit-- > 0) {
-				$location = $available_locations->random();
-				Log::debug("Placing: " . $location->getName());
-				$found = $location->fill($item, $my_items);
-			};
-
-			if ($limit <= 0) {
-				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location', $item->getNiceName()));
-			}
-
-			$my_items->addItem($item);
-		}
-
-		Log::info('Important Items:');
-		$locations->filter(function($location) use ($required) {
-			return in_array($location->getItem(), $required);
-		})->each(function($location) {
-			Log::info(sprintf("%-'.90s%s", $location->getName(), $location->getItem()->getNiceName()));
-		});
-
-		$this->getSpoiler();
-
-		return $this;
 	}
 
 	/**
@@ -308,83 +268,13 @@ class Randomizer {
 				}
 			});
 		}
-		$spoiler['playthrough'] = $this->getPlayThrough($this->world);
+		$spoiler['playthrough'] = $this->world->getPlayThrough(new ItemCollection($this->getAdvancementItems()));
 		$spoiler['meta'] = [
 			'rules' => $this->rules,
 			'logic' => $this->getLogic(),
 			'seed' => $this->seed,
 		];
 		return $spoiler;
-	}
-
-	/**
-	 * Return an array of Locations to collect all Advancement Items in the game in order.
-	 *
-	 * @param World $world World with locations filled with items
-	 *
-	 * @return array
-	 */
-	public function getPlayThrough(World $world) {
-		$my_items = new ItemCollection;
-		$locations = $world->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Medallion::class)
-				&& !is_a($location, Location\Fountain::class);
-		});
-
-		$location_order = [];
-		$location_round = [];
-
-		$progression_items = array_merge($this->getAdvancementItems(), [
-			Item::get('Crystal1'),
-			Item::get('Crystal2'),
-			Item::get('Crystal3'),
-			Item::get('Crystal4'),
-			Item::get('Crystal5'),
-			Item::get('Crystal6'),
-			Item::get('Crystal7'),
-		]);
-		$required_medallions = [
-			$world->getLocation("Misery Mire Medallion")->getItem(),
-			$world->getLocation("Turtle Rock Medallion")->getItem(),
-		];
-
-		$complexity = 0;
-		do {
-			$complexity++;
-			$location_round[$complexity] = [];
-			$available_locations = $locations->filter(function($location) use ($my_items) {
-				return $location->canAccess($my_items);
-			});
-
-			$found_items = $available_locations->getItems();
-			$have_bottle = $my_items->hasABottle();
-
-			$available_locations->each(function($location) use (&$location_order, &$location_round, $have_bottle, $progression_items, $required_medallions, $complexity) {
-				if ((in_array($location->getItem(), $progression_items) || (!$have_bottle && is_a($location->getItem(), Item\Bottle::class)))
-					&& (!is_a($location->getItem(), Item\Medallion::class) || in_array($location->getItem(), $required_medallions))
-						&& !in_array($location, $location_order)) {
-					array_push($location_order, $location);
-					array_push($location_round[$complexity], $location);
-				}
-			});
-			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items;
-		} while ($new_items->count() > 0);
-
-		$ret = ['complexity' => count($location_round)];
-		foreach ($location_round as $round => $locations) {
-			if (!count($locations)) {
-				$ret['complexity']--;
-			}
-			foreach ($locations as $location) {
-				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getNiceName();
-			}
-		}
-		$ret['sub_complexity'] = array_reduce($ret, function($carry, $item) {
-			return (is_array($item)) ? $carry + count($item) : $carry;
-		});
-
-		return $ret;
 	}
 
 	/**
@@ -460,7 +350,6 @@ class Randomizer {
 	 * @return array
 	 */
 	public function getAdvancementItems() {
-		// Items that open up more locations
 		return $this->mt_shuffle([
 			Item::get('Bow'),
 			Item::get('BookOfMudora'),

@@ -130,6 +130,37 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/**
+	 * Get and remove the last item from the collection.
+	 *
+	 * @return mixed
+	 */
+	public function pop() {
+		return array_pop($this->items);
+	}
+
+	/**
+	 * Push an item onto the beginning of the collection.
+	 *
+	 * @param  mixed  $value
+	 *
+	 * @return $this
+	 */
+	public function unshift($value) {
+		array_unshift($this->items, $value);
+
+		return $this;
+	}
+
+	/**
+	 * Get and remove an item from the begining collection.
+	 *
+	 * @return mixed
+	 */
+	public function shift() {
+		return array_shift($this->items);
+	}
+
+	/**
 	 * Merge the collection with the given items.
 	 *
 	 * @param mixed $items
