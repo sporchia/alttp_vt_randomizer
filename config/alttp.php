@@ -97,7 +97,7 @@ return [
 				'BombUpgrade50' => 0,
 				'TenArrows' => 7,
 				'ThreeBombs' => 12,
-				'TwentyRupees' => 23,
+				'TwentyRupees' => 21,
 			],
 		],
 		'prize' => [
