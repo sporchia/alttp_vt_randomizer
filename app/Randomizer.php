@@ -185,9 +185,9 @@ class Randomizer {
 
 	protected function fillItemsInLocations($fill_items, $my_items, $locations, $base_locations = null) {
 		$cycle = count($fill_items);
-		while (count($fill_items)) {
+		while (count($fill_items) && $locations->getEmptyLocations()->count()) {
 			$item = array_shift($fill_items);
-			Log::debug(sprintf("Item: %s [%s]", $item->getNiceName(), $item->getName()));
+			Log::debug(sprintf("Item: %s [%s] Locations: %s", $item->getNiceName(), $item->getName(), $locations->getEmptyLocations()->count()));
 
 			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($item, $my_items) {
 				return $location->canFill($item, $my_items);
