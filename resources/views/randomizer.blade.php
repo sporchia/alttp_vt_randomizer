@@ -119,6 +119,10 @@
 			<input id="cust-region-superBunnyDM" type="checkbox" name="data[alttp.custom.region.superBunnyDM]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-region-superBunnyDM">Allow Moon Pearl on Dark World DM (Super Bunny)</label>
 		</div>
+		<div class="col-md-6">
+			<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-region-bonkItems">Bonk Keys in Pool</label>
+		</div>
 
 		<div class="col-md-12"><h2>Items</h2></div>
 		<div class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">134</span> / <span id="custom-count-total">134</span></div>
@@ -321,7 +325,7 @@
 
 <script>
 var rom;
-var current_rom_hash = '2bea1e825a29f75e446a638fe9f8d74c';
+var current_rom_hash = '537ddab63bfa12f5f8891a19cfb0d5b2';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;

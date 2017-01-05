@@ -27,6 +27,7 @@ return [
 		'region' => [
 			'bossHaveKey' => false,
 			'superBunnyDM' => false,
+			'bonkItems' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -75,6 +76,7 @@ return [
 		'region' => [
 			'bossHaveKey' => false,
 			'superBunnyDM' => false,
+			'bonkItems' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -106,6 +108,7 @@ return [
 		'region' => [
 			'bossNormalLocation' => true,
 			'superBunnyDM' => true,
+			'bonkItems' => true,
 		],
 		'spoil' => [
 			'BootsLocation' => true,
@@ -124,6 +127,7 @@ return [
 			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
 			'superBunnyDM' => false,
+			'bonkItems' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,

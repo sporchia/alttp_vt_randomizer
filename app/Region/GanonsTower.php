@@ -23,6 +23,7 @@ class GanonsTower extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
+			new Location\Dash("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", 0x180161, null, $this),
 			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", 0xEAB8, null, $this),
 			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", 0xEABB, null, $this),
 			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", 0xEABE, null, $this),
@@ -53,19 +54,27 @@ class GanonsTower extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Ganons Tower has: Big Key, Map, Compass, 3 Keys
+	 * Place Keys, Map, and Compass in Region. Ganons Tower has: Big Key, Map, Compass, 4 Keys
 	 *
 	 * @param ItemCollection $my_items full list of items for placement
 	 *
 	 * @return $this
 	 */
 	public function fillBaseItems($my_items) {
-		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		$locations = $this->locations;
 
-		while(!$this->getEmptyLocations()->filter(function($location) {
+		if ($this->world->config('region.bonkItems', true)) {
+			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		} else {
+			$locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setItem(Item::get('Key'));
+		}
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+
+		while(!$locations->getEmptyLocations()->filter(function($location) {
 			return in_array($location->getName(), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]",
@@ -91,9 +100,9 @@ class GanonsTower extends Region {
 		})->random()->fill(Item::get("BigKey"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
-			while(!$this->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
 
-			while(!$this->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
 		}
 
 		return $this;
@@ -106,6 +115,10 @@ class GanonsTower extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]"]->setRequirements(function($locations, $items) {
 			return true;
 		});
@@ -196,6 +209,7 @@ class GanonsTower extends Region {
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setRequirements(function($locations, $items) {
 			return $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]",
@@ -218,11 +232,12 @@ class GanonsTower extends Region {
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]",
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]",
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
-			], 2);
+			], 3);
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setRequirements(function($locations, $items) {
 			return $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]",
@@ -245,11 +260,12 @@ class GanonsTower extends Region {
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]",
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]",
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
-			], 2);
+			], 3);
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setRequirements(function($locations, $items) {
 			return $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]",
@@ -274,11 +290,12 @@ class GanonsTower extends Region {
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
 				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
 				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
-			], 3);
+			], 4);
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
 			return $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]",
 				"[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]",
@@ -303,7 +320,7 @@ class GanonsTower extends Region {
 				"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
 				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
 				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
-			], 3);
+			], 4);
 		});
 
 		$this->can_enter = function($locations, $items) {

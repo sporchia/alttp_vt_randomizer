@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 8;
+	const LOGIC = 9;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -81,7 +81,7 @@ class Randomizer {
 		];
 
 		if ($this->config('prize.crossWorld', true) && $this->config('prize.shufflePendants', true) && $this->config('prize.shuffleCrystals', true)) {
-			$prizes = $this->mt_shuffle($prizes);
+			$prizes = mt_shuffle($prizes);
 		}
 
 		while (count($prizes) > 3) {
@@ -217,6 +217,9 @@ class Randomizer {
 			}
 
 			if ($available_locations->count() == 0) {
+				foreach ($locations->getEmptyLocations() as $log_loc) {
+					Log::debug("SOFT LOCK LOCATION: " . $log_loc->getName());
+				}
 				throw new \Exception(sprintf('No Available Locations: "%s"', $item->getNiceName()));
 			}
 
@@ -353,7 +356,7 @@ class Randomizer {
 	 * @return array
 	 */
 	public function getAdvancementItems() {
-		return $this->mt_shuffle([
+		return mt_shuffle([
 			Item::get('Bow'),
 			Item::get('BookOfMudora'),
 			Item::get('Hammer'),
@@ -482,7 +485,7 @@ class Randomizer {
 
 		array_push($items_to_find, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 
-		return $this->mt_shuffle($items_to_find);
+		return mt_shuffle($items_to_find);
 	}
 
 	/**
@@ -513,21 +516,5 @@ class Randomizer {
 	 */
 	public function getWorld() {
 		return $this->world;
-	}
-
-	/**
-	 * Shuffle the contents of an array using mt_rand
-	 *
-	 * @param array $array array to shuffle
-	 *
-	 * @return array
-	 */
-	public function mt_shuffle(array $array) {
-		$new_array = [];
-		while(count($array)) {
-			$pull_key = mt_rand(0, count($array) - 1);
-			$new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
-		}
-		return $new_array;
 	}
 }

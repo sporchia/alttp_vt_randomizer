@@ -177,6 +177,7 @@ return [
 		// ALttP\Providers\BroadcastServiceProvider::class,
 		ALttP\Providers\EventServiceProvider::class,
 		ALttP\Providers\RouteServiceProvider::class,
+		ALttP\Providers\HelperServiceProvider::class,
 
 	],
 

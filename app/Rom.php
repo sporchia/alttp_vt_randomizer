@@ -37,7 +37,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) !== '2bea1e825a29f75e446a638fe9f8d74c';
+		return hash_file('md5', $this->tmp_file) !== '537ddab63bfa12f5f8891a19cfb0d5b2';
 	}
 
 	/**
@@ -115,7 +115,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x1023DE;
+		$offset = 0x10242D;
 		foreach ($this->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}

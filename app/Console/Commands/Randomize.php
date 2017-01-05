@@ -10,7 +10,7 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v7} {--seed=} {--bulk=1}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v8} {--seed=} {--bulk=1}';
 
 	/**
 	 * The console command description.

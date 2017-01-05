@@ -25,7 +25,7 @@ class DesertPalace extends Region {
 		$this->locations = new LocationCollection([
 			new Location\BigChest("[dungeon-L2-B1] Desert Palace - big chest", 0xE98F, null, $this),
 			new Location\Chest("[dungeon-L2-B1] Desert Palace - Map room", 0xE9B6, null, $this),
-			//new Location\Dash("[dungeon-L2-B1] Desert Palace - Small key room", 0x180160, null, $this),
+			new Location\Dash("[dungeon-L2-B1] Desert Palace - Small key room", 0x180160, null, $this),
 			new Location\Chest("[dungeon-L2-B1] Desert Palace - Big key room", 0xE9C2, null, $this),
 			new Location\Chest("[dungeon-L2-B1] Desert Palace - compass room", 0xE9CB, null, $this),
 			new Location\Drop("Heart Container - Lanmolas", 0x180151, null, $this),
@@ -33,7 +33,7 @@ class DesertPalace extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Desert Palace has: Big Key, Map, Compass
+	 * Place Keys, Map, and Compass in Region. Desert Palace has: Big Key, Map, Compass, Key
 	 *
 	 * @param ItemCollection $my_items full list of items for placement
 	 *
@@ -44,13 +44,16 @@ class DesertPalace extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Lanmolas";
 		});
 
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
+		if ($this->world->config('region.bonkItems', true)) {
+			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		} else {
+			$locations["[dungeon-L2-B1] Desert Palace - Small key room"]->setItem(Item::get('Key'));
+		}
 
-		//while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
 			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-
 			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
 		}
 
@@ -65,11 +68,10 @@ class DesertPalace extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-L2-B1] Desert Palace - big chest"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('BigKey'), ["[dungeon-L2-B1] Desert Palace - Map room", ])
-				|| ($locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-L2-B1] Desert Palace - Big key room",
-					"[dungeon-L2-B1] Desert Palace - compass room",
-				]) && $items->has('PegasusBoots'));
+			return !$locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))
+				|| $items->has('PegasusBoots');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-L2-B1] Desert Palace - Map room"]->setRequirements(function($locations, $items) {
@@ -77,28 +79,44 @@ class DesertPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L2-B1] Desert Palace - Big key room"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots');
+			return ($locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))
+				&& $items->has('PegasusBoots'))
+				|| $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-L2-B1] Desert Palace - big chest",
+						"[dungeon-L2-B1] Desert Palace - Map room",
+					]);
+		})->setFillRules(function($item, $locations, $items) {
+			return !($locations["[dungeon-L2-B1] Desert Palace - big chest"]->hasItem(Item::get('Key')) && $item == Item::get('BigKey'));
 		});
 
 		$this->locations["[dungeon-L2-B1] Desert Palace - compass room"]->setRequirements(function($locations, $items) {
+			return ($locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))
+				&& $items->has('PegasusBoots'))
+				|| $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-L2-B1] Desert Palace - big chest",
+						"[dungeon-L2-B1] Desert Palace - Map room",
+					]);
+		})->setFillRules(function($item, $locations, $items) {
+			return !($locations["[dungeon-L2-B1] Desert Palace - big chest"]->hasItem(Item::get('Key')) && $item == Item::get('BigKey'));
+		});
+
+		$this->locations["[dungeon-L2-B1] Desert Palace - Small key room"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots');
 		});
 
-		// adding boots to prevent key stealing softlock
-		// @TODO: revisit when "[dungeon-L2-B1] Desert Palace - Small key room" implemented
 		$this->locations["Heart Container - Lanmolas"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots') && ($locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get("BigKey"))
+			return ($locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get("BigKey"))
 				|| ($locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-L2-B1] Desert Palace - Big key room",
-						"[dungeon-L2-B1] Desert Palace - compass room"
+						"[dungeon-L2-B1] Desert Palace - compass room",
+						"[dungeon-L2-B1] Desert Palace - Small key room",
 					]) && $items->has('PegasusBoots')))
 				&& $items->canLiftRocks() && $items->canLightTorches();
 		});
 
-		// adding boots to prevent key stealing softlock
-		// @TODO: revisit when "[dungeon-L2-B1] Desert Palace - Small key room" implemented
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canLiftRocks() && $items->canLightTorches() && $items->has('PegasusBoots');
+			return $this->canEnter($locations, $items) && $items->canLiftRocks() && $items->canLightTorches()
+				&& (!$locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key')) || $items->has('PegasusBoots'));
 		};
 
 		$this->can_enter = function($locations, $items) {
