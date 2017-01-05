@@ -19,8 +19,8 @@ class Rom {
 	 * @return void
 	 */
 	public function __construct(string $source_location = null) {
-		if ($source_location !== null && is_readable($source_location) && hash_file('md5', $source_location) !== '2bea1e825a29f75e446a638fe9f8d74c') {
-			throw new \Exception('Source ROM not readable or incorrect md5 hash');
+		if ($source_location !== null && !is_readable($source_location)) {
+			throw new \Exception('Source ROM not readable');
 		}
 		$this->tmp_file = tempnam(sys_get_temp_dir(), __CLASS__);
 
@@ -29,9 +29,15 @@ class Rom {
 		}
 
 		$this->rom = fopen($this->tmp_file, "r+");
-		$this->setMaxArrows();
-		$this->setMaxBombs();
-		$this->setHeartBeepSpeed('half');
+	}
+
+	/**
+	 * Check to see if this ROM matches base randomizer ROM.
+	 *
+	 * @return bool
+	 */
+	public function checkMD5() {
+		return hash_file('md5', $this->tmp_file) !== '2bea1e825a29f75e446a638fe9f8d74c';
 	}
 
 	/**
@@ -130,6 +136,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable the SRAM Trace function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function enableSRAMTrace($enable = true) {
+		$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Write the seed identifier
 	 *
 	 * @param string $seed identifier for this seed
@@ -199,7 +218,7 @@ class Rom {
 	 */
 	public function read(int $offset, int $length = 1) {
 		fseek($this->rom, $offset);
-		return unpack('H*', fread($this->rom, $length))[1];
+		return unpack('C*', fread($this->rom, $length))[1];
 	}
 
 	/**

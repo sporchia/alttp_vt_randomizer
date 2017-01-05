@@ -320,6 +320,9 @@ class Randomizer {
 		});
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", 'C', $this->seed, static::LOGIC, $this->rules), 21, ' '));
 
+		$rom->setMaxArrows();
+		$rom->setMaxBombs();
+
 		return $rom;
 	}
 

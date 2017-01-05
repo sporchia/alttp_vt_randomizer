@@ -175,6 +175,27 @@ class Location {
 	}
 
 	/**
+	 * Read Item from ROM into this Location.
+	 *
+	 * @param Rom $rom ROM we are reading from
+	 *
+	 * @throws Exception if cannot read Item
+	 *
+	 * @return $this
+	 */
+	public function readItem(Rom $rom) {
+		if (!$this->address[0]) {
+			throw new \Exception(sprintf("No Address to read: %s", $this->getName()));
+		}
+
+		$read_byte = $rom->read($this->address[0]);
+
+		$this->setItem(Item::getWithByte($read_byte));
+
+		return $this;
+	}
+
+	/**
 	 * Get the name of this Location.
 	 *
 	 * @return string

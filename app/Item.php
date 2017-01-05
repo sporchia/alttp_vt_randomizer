@@ -32,6 +32,47 @@ class Item {
 	}
 
 	/**
+	 * Get the Item by byte
+	 *
+	 * @param int $byte byte of Item
+	 *
+	 * @throws Exception if the Item doesn't exist
+	 *
+	 * @return Item
+	 */
+	static public function getWithByte($byte) {
+		foreach (static::all() as $item) {
+			if ($item->bytes[0] == $byte) {
+				return $item;
+			}
+		}
+
+		throw new \Exception('Unknown Item: ' . $name);
+	}
+
+	/**
+	 * Get the Item by bytes
+	 *
+	 * @param array $bytes array of bytes of Item
+	 *
+	 * @throws Exception if the Item doesn't exist
+	 *
+	 * @return Item
+	 */
+	static public function getWithBytes($bytes) {
+		foreach (static::all() as $item) {
+			foreach ($bytes as $key => $byte) {
+				if (!isset($item->bytes[$key]) || $item->bytes[$key] != $byte) {
+					continue 2;
+				}
+			}
+			return $item;
+		}
+
+		throw new \Exception('Unknown Item: ' . $name);
+	}
+
+	/**
 	 * Get the all known Items
 	 *
 	 * @return ItemCollection

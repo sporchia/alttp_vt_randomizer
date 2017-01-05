@@ -9,6 +9,7 @@ use Log;
  */
 class World {
 	protected $rules;
+	protected $type;
 	protected $regions = [];
 	protected $locations;
 	protected $win_condition;
@@ -22,6 +23,7 @@ class World {
 	 */
 	public function __construct($rules = 'v8', $type = 'NoMajorGlitches') {
 		$this->rules = $rules;
+		$this->type = $type;
 
 		$this->regions = [
 			'Light World' => new Region\LightWorld($this),
@@ -92,7 +94,7 @@ class World {
 			}
 		}
 
-		switch($type) {
+		switch($this->type) {
 			case 'NoMajorGlitches':
 			default:
 				$this->win_condition = function($items) {
@@ -147,6 +149,36 @@ class World {
 	}
 
 	/**
+	 * Get a copy of this world with items in locations.
+	 *
+	 * @return static
+	 */
+	public function copy() {
+		$copy = new static($this->rules, $this->type);
+		foreach ($this->locations as $name => $location) {
+			$copy->locations[$name]->setItem($location->getItem());
+		}
+
+		return $copy;
+	}
+
+	/**
+	 * Create world based on ROM file we read. Might only function with newer v7+ ROMs.
+	 * TODO: is this better here or on the Rom object?
+	 *
+	 * @param Rom $rom Rom object to read from.
+	 *
+	 * @return $this
+	 */
+	public function modelFromRom(Rom $rom) {
+		foreach ($this->locations as $location) {
+			$location->readItem($rom);
+		}
+		return $this;
+	}
+
+
+	/**
 	 * Return an array of Locations to collect all Advancement Items in the game in order.
 	 *
 	 * @return array
@@ -161,8 +193,14 @@ class World {
 		$location_order = [];
 		$location_round = [];
 
+		if ($items === null) {
+			$items = $this->getRequiredItems();
+		} else  {
+			$items = $items->toArray();
+		}
+
 		// @TODO: if Prizes become part of the region locations this can be simplified.
-		$progression_items = array_merge($items->toArray(), [
+		$progression_items = array_merge($items, [
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
 			Item::get('Crystal3'),
