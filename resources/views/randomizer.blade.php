@@ -13,44 +13,52 @@
 		</label>
 	</div>
 </div>
-<div id="seed-generate" class="row" style="display:none">
-	<div class="col-md-4">
-		<div class="input-group" role="group">
-			<span class="input-group-addon">Seed</span>
-			<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
-			<span class="input-group-btn">
-				<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
-			</span>
+<div id="seed-generate" style="display:none">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="input-group" role="group">
+				<span class="input-group-addon">Seed</span>
+				<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
+				<span class="input-group-btn">
+					<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+				</span>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="input-group" role="group">
+				<span class="input-group-addon">Rules</span>
+				<select id="rules" class="form-control selectpicker">
+					<option value="v7" selected>v7</option>
+					<option value="v7_hard">v7 (hard mode)</option>
+					<option value="v8">v8</option>
+					<option value="custom">Custom</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="input-group" role="group">
+				<span class="input-group-addon">Heart Beep</span>
+				<select id="heart-speed" class="form-control selectpicker">
+					<option value="off">Off</option>
+					<option value="normal">Normal Speed</option>
+					<option value="half" selected>Half Speed</option>
+					<option value="quarter">Quarter Speed</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="btn-group" role="group">
+				<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
+				<span class="input-group-btn">
+					<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+				</span>
+			</div>
 		</div>
 	</div>
-	<div class="col-md-3">
-		<div class="input-group" role="group">
-			<span class="input-group-addon">Rules</span>
-			<select id="rules" class="form-control selectpicker">
-				<option value="v7" selected>v7</option>
-				<option value="v7_hard">v7 (hard mode)</option>
-				<option value="v8">v8</option>
-				<option value="custom">Custom</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-md-3">
-		<div class="input-group" role="group">
-			<span class="input-group-addon">Heart Beep</span>
-			<select id="heart-speed" class="form-control selectpicker">
-				<option value="off">Off</option>
-				<option value="normal">Normal Speed</option>
-				<option value="half" selected>Half Speed</option>
-				<option value="quarter">Quarter Speed</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-md-2">
-		<div class="btn-group" role="group">
-			<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-			<span class="input-group-btn">
-				<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
-			</span>
+	<div class="row">
+		<div class="col-md-6">
+			<input id="generate-complexity-show" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for"generate-complexity-show">Show Complexity</label>
 		</div>
 	</div>
 </div>
@@ -514,6 +522,13 @@ $(function() {
 			$('.custom-rules').show();
 		} else {
 			$('.custom-rules').hide();
+		}
+	});
+	$('#generate-complexity-show').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('.complexity').show();
+		} else {
+			$('.complexity').hide();
 		}
 	});
 	$('.custom-items').on('change click blur', function(e) {
