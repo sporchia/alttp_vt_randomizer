@@ -199,18 +199,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Sahasrahla"]->setRequirements(function($locations, $items) {
-			$c1 = Item::get('PendantOfCourage');
-
-			return  ($this->world->getRegion('Eastern Palace')->hasPrize($c1) && $this->world->getRegion('Eastern Palace')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Desert Palace')->hasPrize($c1) && $this->world->getRegion('Desert Palace')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Tower of Hera')->hasPrize($c1) && $this->world->getRegion('Tower of Hera')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Palace of Darkness')->hasPrize($c1) && $this->world->getRegion('Palace of Darkness')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Swamp Palace')->hasPrize($c1) && $this->world->getRegion('Swamp Palace')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Skull Woods')->hasPrize($c1) && $this->world->getRegion('Skull Woods')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Thieves Town')->hasPrize($c1) && $this->world->getRegion('Thieves Town')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Ice Palace')->hasPrize($c1) && $this->world->getRegion('Ice Palace')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Misery Mire')->hasPrize($c1) && $this->world->getRegion('Misery Mire')->canComplete($locations, $items))
-				|| ($this->world->getRegion('Turtle Rock')->hasPrize($c1) && $this->world->getRegion('Turtle Rock')->canComplete($locations, $items));
+			return $items->has('PendantOfCourage');
 		});
 
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
@@ -232,9 +221,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($locations["Alter"]->canAccess($items)
-				|| $locations["Blacksmiths"]->canAccess($items)
-				|| $locations["Pyramid"]->canAccess($items))
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items) && $items->has('MagicMirror');
 		});
 

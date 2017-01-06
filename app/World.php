@@ -13,6 +13,7 @@ class World {
 	protected $regions = [];
 	protected $locations;
 	protected $win_condition;
+	protected $collectable_locations;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -97,55 +98,34 @@ class World {
 		switch($this->type) {
 			case 'NoMajorGlitches':
 			default:
-				$this->win_condition = function($items) {
-					return $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($items);
+				$this->win_condition = function($collected_items) {
+					return $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
 		}
 	}
 
 	/**
-	 * Determine the absolute minimum items required to complete the game. we do this by cycling through the items until
-	 * we can't remove any more items.
-	 * @TODO: sometimes Cape doesn't get listed as this is strictly based on items, might be better to use playthough to
-	 * determine items and remove this function entirely
+	 * Return Items in locations not magically filled by randomizer.
+	 * This function is a HACK for dealing with specially set Items, like Pendants/Crystals/Swords
 	 *
-	 * @return array
+	 * @param ItemCollection $items currently collected Items
+	 *
+	 * @return ItemCollection
 	 */
-	public function getRequiredItems(ItemCollection $items = null) {
-		$items = $items ?? $this->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Medallion::class)
-				&& !is_a($location, Location\Fountain::class);
-		})->getItems();
-		$original_items = $items->copy();
-
-		$cycle = $items->count();
-
-		do {
-			$item = $items->shift();
-			$cycle--;
-			Log::debug(sprintf("Required: Pulling: %s", $item->getNiceName()));
-
-			if (!$this->getWinCondition()($items)) {
-				Log::debug(sprintf("Required: Putting: %s", $item->getNiceName()));
-				$items->addItem($item);
-			} else {
-				foreach ($items as $check_access) {
-					$secondary = $items->diff([$check_access]);
-					foreach ($this->getLocationsWithItem($check_access) as $check_location) {
-						if (!$check_location->canAccess($secondary)) {
-							Log::debug(sprintf("Required: Putting (chain): %s", $item->getNiceName()));
-							$items->addItem($item);
-							continue 3;
-						}
-					}
-				}
-
-				$cycle = $items->count();
+	public function collectPrizes(ItemCollection $items) {
+		$prizes = new ItemCollection;
+		foreach ($this->regions as $region) {
+			if ($region->hasPrize() && $region->getPrizeLocation()->canAccess($items)) {
+				$prizes->addItem($region->getPrize());
 			}
-		} while ($cycle > 0);
-
-		return $items->toArray();
+		}
+		foreach ($this->regions['Swords']->getLocations() as $location) {
+			if ($location->canAccess($items)) {
+				$prizes->addItem($location->getItem());
+			}
+		}
+		return $prizes;
 	}
 
 	/**
@@ -177,71 +157,138 @@ class World {
 		return $this;
 	}
 
-
 	/**
-	 * Return an array of Locations to collect all Advancement Items in the game in order.
+	 * Return an array of Locations to collect all Advancement Items in the game in order. This works by cloning the
+	 * current world (new Locations and all). Then it groups the locations into collection spheres (all reachable
+	 * locations based on the items in the previous sphere). It then attempts to remove each item (starting from the
+	 * outer most sphere [latest game locations]), checking the win condition after each removal. If the removed item
+	 * makes it impossile to achieve the win condition, it is placed back at the location (and marked as a required
+	 * location). If the item is safe to remove, we then take all the items out of the higher spheres and see if we can
+	 * still access them with the items available in the lower spheres. If we cannot reach a required item from a higher
+	 * sphere we put it back (and mark the location as required). We repeat this process until all spheres have been
+	 * pruned. We then take that list of locations with items and run a playthrough of them so we know collection order.
 	 *
 	 * @return array
 	 */
-	public function getPlayThrough(ItemCollection $items = null) {
+	public function getPlayThrough() {
+		$shadow_world = $this->copy();
+		$sphere = 0;
+		$location_sphere = [];
 		$my_items = new ItemCollection;
-		$locations = $this->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Medallion::class)
-				&& !is_a($location, Location\Fountain::class);
-		});
+		$found_locations = new LocationCollection;
+		do {
+			$sphere++;
+			$available_locations = $shadow_world->locations->filter(function($location) use ($my_items) {
+				return !is_a($location, Location\Medallion::class)
+					&& !is_a($location, Location\Fountain::class)
+					&& !in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])
+					&& $location->canAccess($my_items);
+			});
+			$location_sphere[$sphere] = $available_locations->diff($found_locations);
 
-		$location_order = [];
-		$location_round = [];
+			$found_items = $available_locations->getItems();
+			$found_locations = $available_locations;
 
-		if ($items === null) {
-			$items = $this->getRequiredItems();
-		} else  {
-			$items = $items->toArray();
-		}
+			$new_items = $found_items->diff($my_items);
+			$my_items = $found_items;
+		} while ($new_items->count() > 0);
 
-		// @TODO: if Prizes become part of the region locations this can be simplified.
-		$progression_items = array_merge($items, [
-			Item::get('Crystal1'),
-			Item::get('Crystal2'),
-			Item::get('Crystal3'),
-			Item::get('Crystal4'),
-			Item::get('Crystal5'),
-			Item::get('Crystal6'),
-			Item::get('Crystal7'),
-			Item::get('PendantOfCourage'),
-		]);
+		$required_locations = new LocationCollection;
+		$required_locations_sphere = [];
+		$reverse_location_sphere = array_reverse($location_sphere, true);
+		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
+			Log::debug("playthrough SPHERE: $sphere_level");
+			foreach ($sphere as $location) {
+				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
+				// pull item out
+				$pulled_item = $location->getItem();
+				$location->setItem();
 
-		$bottle_needed = false;
-		foreach ($progression_items as $item) {
-			if (is_a($item, Item\Bottle::class)) {
-				$bottle_needed = true;
-				break;
+				if (!$shadow_world->getWinCondition()($shadow_world->getCollectableLocations()->getItems())) {
+					// put item back
+					$location->setItem($this->locations[$location->getName()]->getItem());
+					$required_locations->addItem($location);
+					$required_locations_sphere[$sphere_level][] = $location;
+					Log::debug(sprintf("playthrough Keep: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
+					continue;
+				}
+
+				// Itterate all spheres bubbling up -_-
+				foreach (array_reverse(array_keys($required_locations_sphere)) as $check_sphere) {
+					// don't check the current sphere (thats a waste of time).
+					if ($check_sphere == $sphere_level || $required_locations->has($location->getName())) {
+						continue;
+					}
+					Log::debug("CHECKING: $check_sphere");
+					// remove all higher sphere items from their locations
+					foreach ($required_locations_sphere as $higher_sphere => $higher_locations) {
+						if ($higher_sphere < $check_sphere) {
+							continue;
+						}
+						foreach ($higher_locations as $higher_location) {
+							$higher_location->setItem();
+						}
+					}
+
+					// test access of items in the outer sphere
+					foreach ($required_locations_sphere as $higher_sphere => $higher_locations) {
+						if ($higher_sphere != $check_sphere) {
+							continue;
+						}
+						foreach ($higher_locations as $higher_location) {
+							// remove the item we are trying to get
+							$temp_pull = $higher_location->getItem();
+							$higher_location->setItem();
+							$current_items = $shadow_world->getCollectableLocations()->getItems();
+
+							if (!$higher_location->canAccess($current_items)) {
+								// put item back
+								$location->setItem($this->locations[$location->getName()]->getItem());
+								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(), $this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+								$required_locations->addItem($location);
+								$required_locations_sphere[$sphere_level][] = $location;
+								Log::debug(sprintf("playthrough Readd: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
+								break 2;
+							}
+							$higher_location->setItem($temp_pull);
+						}
+					}
+					// put all higher items back
+					foreach ($required_locations as $higher_location) {
+						$higher_location->setItem($this->locations[$higher_location->getName()]->getItem());
+					}
+				}
 			}
 		}
 
+		foreach ($required_locations as $higher_location) {
+			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(), $this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+		}
+
+		// RUN PLAYTHROUGH of locations found above
+		$my_items = new ItemCollection;
+		$location_order = [];
+		$location_round = [];
 		$complexity = 0;
 		do {
 			$complexity++;
 			$location_round[$complexity] = [];
-			$available_locations = $locations->filter(function($location) use ($my_items) {
+			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items) {
 				return $location->canAccess($my_items);
 			});
 
 			$found_items = $available_locations->getItems();
 
-			$available_locations->each(function($location) use (&$location_order, &$location_round, &$bottle_needed, $progression_items, $complexity) {
-				if ((in_array($location->getItem(), $progression_items) || ($bottle_needed && is_a($location->getItem(), Item\Bottle::class)))
-						&& !in_array($location, $location_order)) {
-					if (is_a($location->getItem(), Item\Bottle::class)) {
-						if (!$bottle_needed) {
-							return;
-						}
-						$bottle_needed = false;
-					}
-					array_push($location_order, $location);
-					array_push($location_round[$complexity], $location);
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $complexity) {
+				if (in_array($location, $location_order)
+						|| !$location->hasItem()
+						|| in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])) {
+					return;
 				}
+				array_push($location_order, $location);
+				array_push($location_round[$complexity], $location);
 			});
+
 			$new_items = $found_items->diff($my_items);
 			$my_items = $found_items;
 		} while ($new_items->count() > 0);
@@ -332,6 +379,22 @@ class World {
 	 */
 	public function getLocations() {
 		return $this->locations;
+	}
+
+	/**
+	 * Get Locations considered collectable. I.E. can contain items that Link can have.
+	 * This is cached for faster retrevial
+	 *
+	 * @return LocationCollection
+	 */
+	public function getCollectableLocations() {
+		if (!$this->collectable_locations) {
+			$this->collectable_locations = $this->locations->filter(function($location) {
+				return !is_a($location, Location\Medallion::class)
+					&& !is_a($location, Location\Fountain::class);
+			});
+		}
+		return $this->collectable_locations;
 	}
 
 	/**

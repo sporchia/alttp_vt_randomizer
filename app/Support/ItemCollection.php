@@ -91,6 +91,13 @@ class ItemCollection extends Collection {
 			|| $this->has('BowAndSilverArrows');
 	}
 
+	public function hasUpgradedSword() {
+		return $this->has('L2Sword')
+			|| $this->has('MasterSword')
+			|| $this->has('L3Sword')
+			|| $this->has('L4Sword');
+	}
+
 	/**
 	 * Requirements for having a bottle
 	 *

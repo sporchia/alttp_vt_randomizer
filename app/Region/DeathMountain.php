@@ -38,9 +38,8 @@ class DeathMountain extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($locations["Alter"]->canAccess($items)
-				|| $locations["Blacksmiths"]->canAccess($items)
-				|| $locations["Pyramid"]->canAccess($items))
+			return $items->has('BookOfMudora')
+				&& $items->hasUpgradedSword()
 				&& ($items->has('MagicMirror')
 					|| ($this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->has('Hammer')));
 		});

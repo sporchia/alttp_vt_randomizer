@@ -56,9 +56,7 @@ class HyruleCastleTower extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('Cape')
-				|| $locations["Alter"]->canAccess($items)
-				|| $locations["Blacksmiths"]->canAccess($items)
-				|| $locations["Pyramid"]->canAccess($items);
+				|| $items->hasUpgradedSword();
 		};
 
 		return $this;

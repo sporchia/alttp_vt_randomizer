@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 9;
+	const LOGIC = 10;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -240,6 +240,14 @@ class Randomizer {
 			}
 
 			$my_items->addItem($item);
+
+			// HACK to allow us to use Item::has logic when checking access to locations.
+			// @TODO: remove methed from World class and have this just collect any non-randomly placed items.
+			foreach ($this->world->collectPrizes($my_items) as $prize) {
+				if (!$my_items->has($prize->getName())) {
+					$my_items->addItem($prize);
+				}
+			}
 		}
 	}
 
@@ -271,7 +279,7 @@ class Randomizer {
 				}
 			});
 		}
-		$spoiler['playthrough'] = $this->world->getPlayThrough(new ItemCollection($this->getAdvancementItems()));
+		$spoiler['playthrough'] = $this->world->getPlayThrough();
 		$spoiler['meta'] = [
 			'rules' => $this->rules,
 			'logic' => $this->getLogic(),

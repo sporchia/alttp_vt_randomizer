@@ -64,6 +64,10 @@ class DesertPalace extends Region {
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *
+	 * Notes: Key placement
+	 * * Big Key can be anywhere in P1, except the big chest
+	 * * Small Key can be in Big chest, on Torch, or in Map room
+	 *
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {

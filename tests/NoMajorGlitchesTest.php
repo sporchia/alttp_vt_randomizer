@@ -127,7 +127,7 @@ class NoMajorGlitchesTest extends TestCase {
 	}
 
 	// Turtle Rock
-	public function testTurtleRockCantHaveBigKeyPastBidKeyDoor() {
+	public function testTurtleRockCantHaveBigKeyPastBigKeyDoor() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->fill(Item::get('BigKey'), $this->allItems()));
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")->fill(Item::get('BigKey'), $this->allItems()));
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")->fill(Item::get('BigKey'), $this->allItems()));

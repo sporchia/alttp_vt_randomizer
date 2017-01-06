@@ -324,29 +324,14 @@ class GanonsTower extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			$p1 = (is_a($this->world->getRegion('Eastern Palace')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Eastern Palace')->canComplete($locations, $items)) ? 1 : 0;
-			$p2 = (is_a($this->world->getRegion('Desert Palace')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Desert Palace')->canComplete($locations, $items)) ? 1 : 0;
-			$p3 = (is_a($this->world->getRegion('Tower of Hera')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Tower of Hera')->canComplete($locations, $items)) ? 1 : 0;
-			$d1 = (is_a($this->world->getRegion('Palace of Darkness')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Palace of Darkness')->canComplete($locations, $items)) ? 1 : 0;
-			$d2 = (is_a($this->world->getRegion('Swamp Palace')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Swamp Palace')->canComplete($locations, $items)) ? 1 : 0;
-			$d3 = (is_a($this->world->getRegion('Skull Woods')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Skull Woods')->canComplete($locations, $items)) ? 1 : 0;
-			$d4 = (is_a($this->world->getRegion('Thieves Town')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Thieves Town')->canComplete($locations, $items)) ? 1 : 0;
-			$d5 = (is_a($this->world->getRegion('Ice Palace')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Ice Palace')->canComplete($locations, $items)) ? 1 : 0;
-			$d6 = (is_a($this->world->getRegion('Misery Mire')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Misery Mire')->canComplete($locations, $items)) ? 1 : 0;
-			$d7 = (is_a($this->world->getRegion('Turtle Rock')->getPrize(), Item\Crystal::class)
-				&& $this->world->getRegion('Turtle Rock')->canComplete($locations, $items)) ? 1 : 0;
-
 			return $items->has('MoonPearl')
-				&& ($p1 + $p2 + $p3 + $d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 == 7);
+				&& $items->has('Crystal1')
+				&& $items->has('Crystal2')
+				&& $items->has('Crystal3')
+				&& $items->has('Crystal4')
+				&& $items->has('Crystal5')
+				&& $items->has('Crystal6')
+				&& $items->has('Crystal7');
 		};
 
 		return $this;
