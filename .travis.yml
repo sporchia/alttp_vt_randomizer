@@ -5,4 +5,5 @@ php:
   - nightly
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - composer install --no-interaction
