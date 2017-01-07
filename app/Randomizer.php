@@ -309,7 +309,7 @@ class Randomizer {
 	 */
 	public function writeToRom(Rom $rom) {
 		if (config('debug', false)) {
-			$rom->enableDebugMode();
+			$rom->setDebugMode(true);
 			$rom->setUncleTextCustom("Test Seed\n\n" . $this->seed);
 		} else {
 			$this->setStartText($rom);

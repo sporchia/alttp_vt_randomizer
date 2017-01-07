@@ -72,6 +72,53 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")->fill(Item::get('TitansMitt'), $no_mitt));
 	}
 
+	// Desert Palace
+	public function testDesertPalaceBigKeyCantBeRightSideIfTorchHasKeyAndNoBoots() {
+		$no_boots = $this->allItemsExcept(['PegasusBoots']);
+
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->fill(Item::get('BigKey'), $no_boots));
+		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->fill(Item::get('BigKey'), $no_boots));
+	}
+
+	public function testDesertPalaceDoesntRequireBootsIfSmallKeyIsInMapChest() {
+		$no_boots = $this->allItemsExcept(['PegasusBoots']);
+
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $no_boots));
+	}
+
+	public function testDesertPalaceDoesntRequireBootsIfSmallKeyIsInMapChestBigKeyInCompassRoom() {
+		$no_boots = $this->allItemsExcept(['PegasusBoots']);
+
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $no_boots));
+	}
+
+	public function testDesertPalaceDoesntRequireBootsIfBigKeyIsInMapChestAndSmallKeyInBigChest() {
+		$no_boots = $this->allItemsExcept(['PegasusBoots']);
+
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $no_boots));
+	}
+
+	public function testDesertPalaceDoesntRequiresBootsIfSmallKeyAtTorch() {
+		$no_boots = $this->allItemsExcept(['PegasusBoots']);
+
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $no_boots));
+	}
+
+
 	// Tower of Hera
 	public function testMoldormCantHaveFireRodIfLampUnobtainableWithoutIt() {
 		$no_lighting = $this->allItemsExcept(['Lamp', 'FireRod']);

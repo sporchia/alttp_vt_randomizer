@@ -124,26 +124,65 @@ class Rom {
 	}
 
 	/**
-	 * Enable the predefined ROM debug mode: Starts after Zelda is saved with all items. No chests are open.
+	 * Enable/Disable the predefined ROM debug mode: Starts after Zelda is saved with all items. No chests are open.
 	 *
 	 * @return $this
 	 */
-	public function enableDebugMode() {
-		$this->write(0x65B88, pack('C*', 0xEA, 0xEA));
-		$this->write(0x65B91, pack('C*', 0xEA, 0xEA));
+	public function setDebugMode($enable = true) {
+		$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
+		$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
 
 		return $this;
 	}
 
 	/**
-	 * Enable the SRAM Trace function
+	 * Enable/Disable the SRAM Trace function
 	 *
 	 * @param bool $enable switch on or off
 	 *
 	 * @return $this
 	 */
-	public function enableSRAMTrace($enable = true) {
+	public function setSRAMTrace($enable = true) {
 		$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the ROM Hack that doesn't leave Link stranded in DW
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setMirrorlessSaveAneQuitToLightWorld($enable = true) {
+		$this->write(0x1800A0, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the ROM Hack that drains the Swamp on transition
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSwampWaterLevel($enable = true) {
+		$this->write(0x1800A1, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the ROM Hack that sends Link to Real DW on death in DW dungeon if AG1 is not dead
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setPreAgahnimDarkWorldDeathInDungeon($enable = true) {
+		$this->write(0x1800A2, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}

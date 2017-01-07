@@ -478,7 +478,6 @@ function pasrseSpoilerToTabs(spoiler) {
 	var active_nav = nav.find('.active a').html();
 	nav.html('');
 	var content = spoilertabs.find('.tab-content').html('');
-	console.log(active_nav);
 
 	for (section in spoiler) {
 		nav.append($('<li ' + ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section + '</a></li>'));

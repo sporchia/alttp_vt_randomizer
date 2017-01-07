@@ -41,7 +41,7 @@ class Randomize extends Command {
 			$rand->makeSeed($this->option('seed'));
 
 			if ($this->option('debug')) {
-				$rom->enableDebugMode();
+				$rom->setDebugMode(true);
 			}
 
 			$rand->writeToRom($rom);
