@@ -359,7 +359,13 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		arrayBuffer = this.result;
 	}
 	fileReader.onloadend = function() {
+		// fill out rom to 2mb
+		if (arrayBuffer.byteLength < 2097152) {
+			arrayBuffer = resizeUint8(arrayBuffer, 2097152);
+		}
+
 		u_array = new Uint8Array(arrayBuffer);
+
 		if (loaded_callback) loaded_callback(this);
 	}.bind(this);
 
@@ -395,6 +401,16 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		}.bind(this));
 	};
 });
+
+function resizeUint8(baseArrayBuffer, newByteSize) {
+	var resizedArrayBuffer = new ArrayBuffer(newByteSize),
+		len = baseArrayBuffer.byteLength,
+		resizeLen = (len > newByteSize)? newByteSize : len;
+
+	(new Uint8Array(resizedArrayBuffer, 0, resizeLen)).set(new Uint8Array(baseArrayBuffer, 0, resizeLen));
+
+	return resizedArrayBuffer;
+}
 
 function applySeed(rom, seed, second_attempt) {
 	if (rom.checkMD5() != current_rom_hash) {
