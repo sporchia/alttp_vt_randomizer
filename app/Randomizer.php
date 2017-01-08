@@ -60,6 +60,7 @@ class Randomizer {
 	public function makeSeed(int $seed = null) {
 		$seed = $seed ?: mt_rand(1, 999999999);
 		$this->seed = $seed % 1000000000;
+		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
 		mt_srand($seed);
 
 		Log::info(sprintf("Seed: %s", $this->seed));
