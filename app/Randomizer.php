@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 10;
+	const LOGIC = 11;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -285,6 +285,7 @@ class Randomizer {
 			'rules' => $this->rules,
 			'logic' => $this->getLogic(),
 			'seed' => $this->seed,
+			'build' => Rom::BUILD,
 		];
 		return $spoiler;
 	}

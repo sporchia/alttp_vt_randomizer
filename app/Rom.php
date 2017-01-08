@@ -7,6 +7,7 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
+	const BUILD = '2017-01-07';
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -37,7 +38,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) !== 'd4fcc0984c495cce050517e3989e3072';
+		return hash_file('md5', $this->tmp_file) !== 'bf3c1af19d06ab9f19220eeaac4d5487';
 	}
 
 	/**
@@ -115,7 +116,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x102427;
+		$offset = 0x10243A;
 		foreach ($this->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}

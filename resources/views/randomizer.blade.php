@@ -67,6 +67,7 @@
 	<div class="panel-body">
 		<div class="col-md-6">
 			<div>Logic: <span class="logic"></span></div>
+			<div>ROM build: <span class="build"></span></div>
 			<div>Rules: <span class="rules"></span></div>
 			<div>Seed: <span class="seed"></span></div>
 			<div>Complexity: <span class="complexity"></span></div>
@@ -347,7 +348,7 @@
 
 <script>
 var rom;
-var current_rom_hash = 'd4fcc0984c495cce050517e3989e3072';
+var current_rom_hash = 'bf3c1af19d06ab9f19220eeaac4d5487';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -457,12 +458,14 @@ function seedApplied(data) {
 		$('.info').show();
 		$('.info .seed').html(data.patch.seed);
 		$('.info .logic').html(data.patch.logic);
+		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .rules').html(data.patch.rules);
 		$('.info .complexity').html(data.patch.spoiler.playthrough.complexity + ' (' + data.patch.spoiler.playthrough.sub_complexity + ')');
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
+		rom.build = data.patch.spoiler.meta.build;
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
 		rom.complexity = data.patch.spoiler.playthrough.complexity;

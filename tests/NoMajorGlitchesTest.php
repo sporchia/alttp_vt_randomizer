@@ -129,6 +129,32 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("Heart Container - Moldorm")->fill(Item::get('FireRod'), $no_lighting));
 	}
 
+	// Palace of Darkness
+	public function testPalaceOfDarknessKeys() {
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - spike statue room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]")->fill(Item::get('Key'), $this->allItems()));
+		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testPalaceOfDarknessCanHaveBowIfFirstChestIsKey() {
+		$this->addCollected(['PowerGlove', 'Hammer', 'MoonPearl']);
+
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->fill(Item::get('Bow'), $this->collected));
+	}
+
+	public function testPalaceOfDarknessCannotHaveBowIfFirstChestIsNotKey() {
+		$no_bow = $this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows']);
+
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Nothing'));
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->fill(Item::get('Bow'), $no_bow));
+	}
+
 	// Swamp Palace
 	public function testSwampPalaceHookshotCantBeInBigChestWithBigKeyInLateDungeon() {
 		$no_hookshot = $this->allItemsExcept(['Hookshot']);
@@ -146,21 +172,6 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->world->getLocation("[dungeon-D2-B1] Swamp Palace - south of hookshot room")->setItem(Item::get('BigKey'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D2-B1] Swamp Palace - big chest")->fill(Item::get('Hookshot'), $no_hookshot));
-	}
-
-	// Palace of Darkness
-	public function testPalaceOfDarknessCanHaveBowIfFirstChestIsKey() {
-		$this->addCollected(['PowerGlove', 'Hammer', 'MoonPearl']);
-
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->fill(Item::get('Bow'), $this->collected));
-	}
-
-	public function testPalaceOfDarknessCannotHaveBowIfFirstChestIsNotKey() {
-		$no_bow = $this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows']);
-
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Nothing'));
-		$this->assertFalse($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->fill(Item::get('Bow'), $no_bow));
 	}
 
 	// Misery Mire
