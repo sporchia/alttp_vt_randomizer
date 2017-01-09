@@ -81,6 +81,9 @@ class MiseryMire extends Region {
 					"[dungeon-D6-B1] Misery Mire - big key",
 					"[dungeon-D6-B1] Misery Mire - compass",
 					]) && $items->canLightTorches());
+		})->setFillRules(function($item, $locations, $items) {
+			return !($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('BigKey')
+					&& $item == Item::get('Key'));
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setRequirements(function($locations, $items) {
@@ -93,6 +96,9 @@ class MiseryMire extends Region {
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setRequirements(function($locations, $items) {
 			return $items->canLightTorches();
+		})->setFillRules(function($item, $locations, $items) {
+			return !($locations["[dungeon-D6-B1] Misery Mire - big chest"]->getItem() == Item::get('Key')
+					&& $item == Item::get('BigKey'));
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - end of bridge"]->setRequirements(function($locations, $items) {

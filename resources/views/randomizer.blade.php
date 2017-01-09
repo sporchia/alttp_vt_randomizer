@@ -60,6 +60,10 @@
 			<input id="generate-complexity-show" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for"generate-complexity-show">Show Complexity</label>
 		</div>
+		<div class="col-md-6">
+			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for"generate-sram-trace">SRAM Trace</label>
+		</div>
 	</div>
 </div>
 <div class="info panel panel-default" style="display:none">
@@ -91,6 +95,7 @@
 <form id="config" style="display:none">
 	<input type="hidden" name="rules" value="v7" />
 	<input type="hidden" name="heart_speed" value="half" />
+	<input type="hidden" name="sram_trace" value="false" />
 	<div class="custom-rules">
 		<ul class="nav nav-tabs" data-tabs="tabs">
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
@@ -591,6 +596,9 @@ $(function() {
 
 	$('#heart-speed').on('change', function() {
 		$('input[name=heart_speed]').val($(this).val());
+	});
+	$('#generate-sram-trace').on('change', function() {
+		$('input[name=sram_trace]').val($(this).prop('checked'));
 	});
 
 	$('#cust-region-CompassesMaps').on('change', function() {

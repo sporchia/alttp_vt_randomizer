@@ -16,8 +16,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		config($request->input('data'));
 	}
 	$rom = new ALttP\Rom();
-	if ($request->input('heart_speed')) {
+	if ($request->has('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
+	}
+	if ($request->has('sram_trace')) {
+		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
 	$rand = new ALttP\Randomizer($rules);
 	$rand->makeSeed($seed_id);

@@ -109,7 +109,7 @@ class SkullWoods extends Region {
 			return $items->has('FireRod');
 		})->setFillRules(function($item, $locations, $items) {
 			if ($this->world->config('region.bossHaveKey', true)) {
-				return true;
+				return $item != Item::get('Key');
 			}
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});

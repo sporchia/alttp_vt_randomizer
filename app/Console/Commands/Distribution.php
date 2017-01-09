@@ -62,6 +62,8 @@ class Distribution extends Command {
 
 	private function region_fill(string $region_name, &$locations) {
 		$world = new World($this->option('rules'));
+		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
+		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 		$region = $world->getRegion($region_name);
 		$region->fillBaseItems(Item::all());
 		foreach ($region->getLocations() as $location) {

@@ -130,22 +130,32 @@ class TurtleRock extends Region {
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setRequirements(function($locations, $items) {
 			return true;
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) {
