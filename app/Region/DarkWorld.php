@@ -82,7 +82,7 @@ class DarkWorld extends Region {
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('TitansMitt')
+			return $items->has('MoonPearl') && $items->has('TitansMitt') && ($items->has('Hookshot') || $items->has('PegasusBoots'))
 				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
 		});
 
