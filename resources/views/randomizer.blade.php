@@ -353,7 +353,7 @@
 
 <script>
 var rom;
-var current_rom_hash = 'bf3c1af19d06ab9f19220eeaac4d5487';
+var current_rom_hash = '9d06a6a993ad8b18ce13cbabb1254d61';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -378,7 +378,11 @@ var ROM = ROM || (function(blob, loaded_callback) {
 
 	this.checkMD5 = function() {
 		return SparkMD5.ArrayBuffer.hash(arrayBuffer);
-	}
+	};
+
+	this.getArrayBuffer = function() {
+		return arrayBuffer;
+	};
 
 	this.write = function(seek, bytes) {
 		if (!bytes.length) {
@@ -388,11 +392,11 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		for (var i = 0; i < bytes.length; i++) {
 			u_array[seek + i] = bytes[i];
 		}
-	},
+	};
 
 	this.save = function(filename) {
 		saveAs(new Blob([u_array]), filename);
-	},
+	};
 
 	this.parsePatch = function(patch, progressCallback) {
 		return new Promise(function(resolve, reject) {
@@ -422,6 +426,7 @@ function applySeed(rom, seed, second_attempt) {
 		if (second_attempt) {
 			$('.alert .message').html('Could not reset ROM.');
 			$('.alert').show();
+			$('#rom-select').show();
 			return;
 		}
 		return patchRomFromJSON(rom, 'js/romreset.json')
@@ -459,11 +464,12 @@ function patchRomFromJSON(rom, uri) {
 	});
 }
 
-function romOk() {
+function romOk(rom) {
 	$('button[name=generate]').html('Generate').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
 	$('#seed-generate').show();
 	$('#config').show();
+	localforage.setItem('rom', rom.getArrayBuffer());
 }
 $('button[name=save]').on('click', function() {
 	return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
@@ -526,10 +532,14 @@ $('button[name=generate]').on('click', function() {
 $('input[name=f2u]').on('change', function() {
 	$('#rom-select').hide();
 	$('.alert').hide();
-	rom = new ROM(this.files[0], function(rom) {
+	loadBlob(this.files[0], true);
+});
+
+function loadBlob(blob, show_error) {
+	rom = new ROM(blob, function(rom) {
 		switch (rom.checkMD5()) {
 			case current_rom_hash:
-				romOk();
+				romOk(rom);
 				break;
 			case '118597172b984bfffaff1a1b7d06804d':
 				patchRomFromJSON(rom, 'js/base2current.json')
@@ -542,10 +552,12 @@ $('input[name=f2u]').on('change', function() {
 					patchRomFromJSON(rom, 'js/romreset.json')
 					.then(function(rom) {
 						if (rom.checkMD5() == current_rom_hash) {
-							romOk();
+							romOk(rom);
 						} else {
-							$('.alert .message').html('ROM not recognized. Please try another.');
-							$('.alert').show();
+							if (show_error) {
+								$('.alert .message').html('ROM not recognized. Please try another.');
+								$('.alert').show();
+							}
 							$('#rom-select').show();
 						}
 					});
@@ -553,7 +565,20 @@ $('input[name=f2u]').on('change', function() {
 				return;
 		}
 	});
-});
+}
+
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
+}
 
 $(function() {
 	$('.alert, .info, #config, .custom-rules').hide();
@@ -659,6 +684,15 @@ $(function() {
 	$('#seed-clear').on('click', function() {
 		$('#seed').val('');
 	});
+
+	// Load ROM from local storage if it's there
+	if (localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.INDEXEDDB)) {
+		$('#rom-select').hide();
+		$('.alert').hide();
+		localforage.getItem('rom').then(function(blob) {
+			loadBlob(new Blob([blob]));
+		});
+	}
 });
 </script>
 @overwrite
