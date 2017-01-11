@@ -130,4 +130,16 @@ class DesertPalace extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		// @TODO: implement, bonk key probably changes all the Glitched logic
+
+		return $this;
+	}
 }

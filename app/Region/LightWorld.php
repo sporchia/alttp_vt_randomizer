@@ -293,4 +293,72 @@ class LightWorld extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots') && ($items->has('TitansMitt')
+				|| ($this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('MagicMirror')));
+		});
+
+		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
+		$this->locations["Sahasrahla"]->setRequirements(function($locations, $items) {
+			return $items->has('PendantOfCourage');
+		});
+
+		$this->locations["Sick Kid"]->setRequirements(function($locations, $items) {
+			return $items->hasABottle();
+		});
+
+		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& ($items->hasABottle())
+					|| ($items->has('TitansMitt') && $items->has("MoonPearl")));
+		});
+
+		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
+		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks();
+		});
+
+		$this->locations["Library"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
+		$this->locations["Witch"]->setRequirements(function($locations, $items) {
+			return $items->has('Mushroom');
+		});
+
+		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
+			return $items->has('Powder')
+				&& ($items->has('Hammer')
+					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('TitansMitt')));
+		});
+
+		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
+		});
+
+		$this->locations["Haunted Grove item"]->setRequirements(function($locations, $items) {
+			return $items->has('Shovel');
+		});
+
+		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers')
+				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
+		});
+
+		return $this;
+	}
 }

@@ -79,6 +79,8 @@ class SkullWoods extends Region {
 				"[dungeon-D3-B1] Skull Woods - south of Fire Rod room",
 				"Heart Container - Mothula",
 			]);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-D3-B1] Skull Woods - Big Key room"]->setRequirements(function($locations, $items) {
@@ -120,6 +122,37 @@ class SkullWoods extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setRequirements(function($locations, $items) {
+			return $items->has('FireRod');
+		});
+
+		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
+			return $items->has('FireRod');
+		})->setFillRules(function($item, $locations, $items) {
+			if ($this->world->config('region.bossHaveKey', true)) {
+				return $item != Item::get('Key');
+			}
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return $items->has('FireRod');
 		};
 
 		return $this;

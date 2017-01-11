@@ -19,17 +19,20 @@ class Randomizer {
 	protected $seed;
 	protected $world;
 	protected $rules;
+	protected $type;
 
 	/**
 	 * Create a new Randomizer
 	 *
 	 * @param string $rules rules from config to apply to randomization
+	 * @param string $type Ruleset to use when deciding if Locations can be reached
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'v8') {
+	public function __construct($rules = 'v8', $type = 'NoMajorGlitches') {
 		$this->rules = $rules;
-		$this->world = new World($rules);
+		$this->type = $type;
+		$this->world = new World($rules, $type);
 	}
 
 	/**
@@ -335,6 +338,13 @@ class Randomizer {
 
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
+
+		if ($this->type == 'Glitched') {
+			$rom->setMirrorlessSaveAneQuitToLightWorld(false);
+			$rom->setSwampWaterLevel(false);
+			$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
+			$rom->setRandomizerSeedType('Glitched');
+		}
 
 		return $rom;
 	}

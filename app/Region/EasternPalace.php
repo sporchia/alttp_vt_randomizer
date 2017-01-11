@@ -103,4 +103,28 @@ class EasternPalace extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["Heart Container - Armos Knights"]->setRequirements(function($locations, $items) {
+			return $items->has('Bow');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return $items->has('Bow');
+		};
+
+		return $this;
+	}
 }

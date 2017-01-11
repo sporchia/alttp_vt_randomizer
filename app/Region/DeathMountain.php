@@ -62,4 +62,18 @@ class DeathMountain extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
+		});
+
+		return $this;
+	}
 }

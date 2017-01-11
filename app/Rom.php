@@ -150,6 +150,56 @@ class Rom {
 	}
 
 	/**
+	 * Set the Seed Type
+	 *
+	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
+	 *
+	 * @return $this
+	 */
+	public function setRandomizerSeedType(string $setting) {
+		switch ($setting) {
+			case 'Glitched':
+				$byte = 0x01;
+				break;
+			case 'off':
+				$byte = 0xFF;
+				break;
+			case 'NoMajorGlitches':
+			default:
+				$byte = 0x00;
+		}
+
+		$this->write(0x180210, pack('C', $byte));
+
+		return $this;
+	}
+
+	/**
+	 * Set the Game Type
+	 *
+	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
+	 *
+	 * @return $this
+	 */
+	public function setGameType(string $setting) {
+		switch ($setting) {
+			case 'Plandomizer':
+				$byte = 0x01;
+				break;
+			case 'other':
+				$byte = 0xFF;
+				break;
+			case 'Randomizer':
+			default:
+				$byte = 0x00;
+		}
+
+		$this->write(0x180211, pack('C', $byte));
+
+		return $this;
+	}
+
+	/**
 	 * Enable/Disable the ROM Hack that doesn't leave Link stranded in DW
 	 *
 	 * @param bool $enable switch on or off

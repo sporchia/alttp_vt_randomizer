@@ -18,6 +18,7 @@ class World {
 	/**
 	 * Create a new world and initialize all of the Regions within it
 	 *
+	 * @param string $rules rules from config to apply to randomization
 	 * @param string $type Ruleset to use when deciding if Locations can be reached
 	 *
 	 * @return void
@@ -96,6 +97,18 @@ class World {
 		}
 
 		switch($this->type) {
+			case 'Glitched':
+				$this->win_condition = function($collected_items) {
+					return $items->has('Crystal1')
+						&& $items->has('Crystal2')
+						&& $items->has('Crystal3')
+						&& $items->has('Crystal4')
+						&& $items->has('Crystal5')
+						&& $items->has('Crystal6')
+						&& $items->has('Crystal7')
+						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+				};
+				break;
 			case 'NoMajorGlitches':
 			default:
 				$this->win_condition = function($collected_items) {

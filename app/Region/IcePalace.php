@@ -144,20 +144,62 @@ class IcePalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('Hammer');
-			(($locations->itemInLocations(Item::get('BigKey'), ["[dungeon-D5-B1] Ice Palace - compass room"])
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D5-B4] Ice Palace - above Blue Mail room", "[dungeon-D5-B5] Ice Palace - b5 up staircase"], 2))
-			|| ($locations->itemInLocations(Item::get('BigKey'), ["[dungeon-D5-B4] Ice Palace - above Blue Mail room"])
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D5-B1] Ice Palace - compass room", "[dungeon-D5-B5] Ice Palace - b5 up staircase"], 2))
-			|| ($locations->itemInLocations(Item::get('BigKey'), ["[dungeon-D5-B5] Ice Palace - b5 up staircase"])
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D5-B1] Ice Palace - compass room", "[dungeon-D5-B4] Ice Palace - above Blue Mail room"], 2)))
-			|| ($items->has('Hookshot') && $locations->itemInLocations(Item::get('BigKey'), ["[dungeon-D5-B1] Ice Palace - compass room", "[dungeon-D5-B4] Ice Palace - above Blue Mail room", "[dungeon-D5-B5] Ice Palace - b5 up staircase"]))
-			|| ($locations->itemInLocations(Item::get('BigKey'), ["[dungeon-D5-B1] Ice Palace - Big Key room", "[dungeon-D5-B2] Ice Palace - map room", "[dungeon-D5-B3] Ice Palace - spike room", "[dungeon-D5-B5] Ice Palace - big chest"])
-			 	&& ($items->has('Hookshot') || $locations->itemInLocations(Item::get('Key'), ["[dungeon-D5-B1] Ice Palace - compass room", "[dungeon-D5-B4] Ice Palace - above Blue Mail room", "[dungeon-D5-B5] Ice Palace - b5 up staircase"])));
+			return $this->canEnter($locations, $items) && $items->canMeltThings() && $items->has('Hammer');
 		};
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Flippers') && $items->has('TitansMitt') && $items->canMeltThings();
+		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer') && $items->canLiftRocks();
+		});
+
+		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer') && $items->canLiftRocks();
+		});
+
+		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setRequirements(function($locations, $items) {
+			return $items->canMeltThings();
+		});
+
+		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setRequirements(function($locations, $items) {
+			return $locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D5-B1] Ice Palace - compass room",
+					"[dungeon-D5-B3] Ice Palace - spike room",
+					"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
+					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
+				])
+				|| ($locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D5-B1] Ice Palace - Big Key room",
+						"[dungeon-D5-B2] Ice Palace - map room",
+						"Heart Container - Kholdstare",
+					])
+					&& $items->has('Hammer') && $items->canLiftRocks());
+		});
+
+		$this->locations["Heart Container - Kholdstare"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer') && $items->canMeltThings();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->canMeltThings() && $items->canLiftRocks() && $items->has('Hammer');
+		};
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('MagicMirror') || $items->has('TitansMitt');
 		};
 
 		return $this;
