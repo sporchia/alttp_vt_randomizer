@@ -68,6 +68,18 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Dark World - bumper cave)")->canAccess($no_lifting));
 	}
 
+	public function testCanAccessPyramidFairyWithMirrorAndAG1() {
+		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'MagicMirror', 'Cape', 'TitansMitt']);
+
+		$this->assertTrue($this->world->getLocation("Pyramid")->canAccess($this->collected));
+	}
+
+	public function testCanAccessPyramidFairyWithHammer() {
+		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'PowerGlove', 'Hammer']);
+
+		$this->assertTrue($this->world->getLocation("Pyramid")->canAccess($this->collected));
+	}
+
 	// Death Mountain
 	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMitt() {
 		$no_mitt = $this->allItemsExcept(['TitansMitt']);

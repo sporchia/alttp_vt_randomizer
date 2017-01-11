@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ALttP Web VT Randomizer</title>
+	<title>ALttP VT Randomizer</title>
 	<meta name="keywords" content="ALttP, Randomizer, patcher">
 	<meta name="description" content="ALttP Web VT Randomizer">
 	<meta charset="utf-8" />
@@ -20,11 +20,11 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="/">ALttP Web VT Randomizer</a>
+		  <a class="navbar-brand" href="/">ALttP VT Randomizer</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 		  <ul class="nav navbar-nav navbar-right">
-		  	<li><a href="https://github.com/sporchia/alttp_php_randomizer/issues/new" target="_blank">Report Logic Issue</a></li>
+		  	<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 			<li{!! (request()->path() == 'about') ? ' class="active"' : '' !!}><a href="/about">About</a></li>
 			@if (Auth::check())
 			<li class="dropdown">
