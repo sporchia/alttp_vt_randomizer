@@ -178,6 +178,31 @@ class NoMajorGlitchesTest extends TestCase {
 		$this->assertTrue($this->world->getLocation("[dungeon-D2-B1] Swamp Palace - big chest")->fill(Item::get('Hookshot'), $no_hookshot));
 	}
 
+	// Skull Woods
+	public function testBigKeyInLateDungeonShouldStopFireRodInBigChest() {
+		$no_firerod = $this->allItemsExcept(['FireRod']);
+
+		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - Entrance to part 2")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->fill(Item::get('FireRod'), $no_firerod));
+	}
+
+	public function testBigKeyNotInLateDungeonShouldAllowFireRodInBigChest() {
+		$no_firerod = $this->allItemsExcept(['FireRod']);
+
+		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->fill(Item::get('FireRod'), $no_firerod));
+	}
+
+	public function testBigKeyInLateDungeonShouldNotStopFireRodInChest() {
+		$no_firerod = $this->allItemsExcept(['FireRod']);
+
+		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - Entrance to part 2")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")->fill(Item::get('FireRod'), $no_firerod));
+	}
+
 	// Misery Mire
 	public function testCompassRoomCantHaveLampIfFirerodUnobtainableWithoutIt() {
 		$no_lighting = $this->allItemsExcept(['Lamp', 'FireRod']);
