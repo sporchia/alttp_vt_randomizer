@@ -65,6 +65,7 @@ class PalaceOfDarkness extends Region {
 			"[dungeon-D1-B1] Dark Palace - shooter room",
 		];
 
+		// @TODO: this feels wrong, this means that the randomizer will never generate the base game -_-
 		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->fill(Item::get("Key"), $my_items);
 		while(!$locations->getEmptyLocations()->filter(function($location) use ($keyable_locations) {
 			return in_array($location->getName(), $keyable_locations);
