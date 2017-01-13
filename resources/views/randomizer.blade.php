@@ -686,7 +686,7 @@ $(function() {
 	});
 
 	// Load ROM from local storage if it's there
-	if (localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.INDEXEDDB)) {
+	if (localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.WEBSQL) || localforage.supports(localforage.LOCALSTORAGE)) {
 		$('#rom-select').hide();
 		$('.alert').hide();
 		localforage.getItem('rom').then(function(blob) {

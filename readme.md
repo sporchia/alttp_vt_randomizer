@@ -1,11 +1,9 @@
-[![Build Status](https://travis-ci.org/sporchia/alttp_php_randomizer.svg?branch=master)](https://travis-ci.org/sporchia/alttp_php_randomizer)
+[![Build Status](https://travis-ci.org/sporchia/alttp_vt_randomizer.svg?branch=master)](https://travis-ci.org/sporchia/alttp_vt_randomizer)
 
-# ALttP PHP VT Randomizer
+# ALttP VT Randomizer
 
-## First and foremost, big thanks to Dessyreqt, Christos, and Karkat for their work.
+## First and foremost, big thanks to Dessyreqt, Christos, Smallhacker, and Karkat for their work.
 ### Without their work none of this would even be remotely possible.
-
-### I wanted to create an API that modeled the Randomizer. This happened.
 
 ### Install
 You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following

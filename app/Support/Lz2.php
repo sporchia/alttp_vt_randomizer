@@ -10,7 +10,7 @@
  *
  * $data = array_values(unpack("C*", file_get_contents('newitems.gfx')));
  *
- * $uncompressed  = $lz2->decompress($data, 0);
+ * $uncompressed  = $lz2->decompress($data);
  *
  * file_put_contents('newitems.bin', pack('C*', ...$uncompressed));
  * </samp>
@@ -22,7 +22,7 @@
  *
  * $data = array_values(unpack("C*", file_get_contents('newitems.bin')));
  *
- * $compressed  = $lz2->compress($data, 0);
+ * $compressed  = $lz2->compress($data);
  *
  * file_put_contents('newitems.gfx', pack('C*', ...$compressed));
  * </samp>
@@ -50,6 +50,8 @@ class Lz2 {
 	 * compress array of bytes;
 	 *
 	 * @param array $data array of byte data to compress
+	 *
+	 * @throws Exception if invoked on empty data
 	 *
 	 * @return array compressed byte array
 	 */
@@ -187,8 +189,6 @@ class Lz2 {
 					array_push($output, $repeatAddress % 256);
 					array_push($output, $repeatAddress >> 8);
 					break;
-				default:
-					throw new Exception("Internal error: Unknown command chosen.");
 			}
 
 			$position += ($nextCommandByteCount) - 1;
@@ -212,78 +212,73 @@ class Lz2 {
 	 * @param array $compressedData array of bytes
 	 * @param int $start starting point in array
 	 *
+	 * @throws Exception if encounters an unknown decompress command or invoked on empty data
+	 *
 	 * @return array decompressed bytes in array
 	 */
-	public function decompress(array $compressedData, int $start) {
+	public function decompress(array $compressedData, int $start = 0) {
 		if (empty($compressedData)) {
 			throw new \Exception("Compressed data is null.");
 		}
 
-		try {
-			$output = [];
-			$position = $start;
+		$output = [];
+		$position = $start;
 
-			while (true) {
-				$commandLength = $compressedData[$position++];
-				if ($commandLength == 0xFF) {
-					break;
-				}
-
-				$command = ($commandLength >> 5);
-
-				if ($command == self::LONG_COMMAND) {
-					$length = $compressedData[$position++];
-					$length |= (($commandLength & 3) << 8);
-					$length++;
-					$command = (($commandLength >> 2) & 7);
-				} else {
-					$length = ($commandLength & 0x1F) + 1;
-				}
-
-				switch ($command) {
-					case self::DIRECT_COPY:
-						for ($i = 0; $i < $length; $i++) {
-							array_push($output, $compressedData[$position++]);
-						}
-						break;
-					case self::BYTE_FILL:
-						$fillByte = $compressedData[$position++];
-						for ($i = 0; $i < $length; $i++) {
-							array_push($output, $fillByte);
-						}
-						break;
-					case self::WORD_FILL:
-						$fillByteEven = $compressedData[$position++];
-						$fillByteOdd = $compressedData[$position++];
-						for ($i = 0; $i < $length; $i++) {
-							$thisByte = ($i & 1) == 0 ? $fillByteEven : $fillByteOdd;
-							array_push($output, $thisByte);
-						}
-						break;
-					case self::INCREASE_FILL:
-						$increaseFillByte = $compressedData[$position++];
-						for ($i = 0; $i < $length; $i++) {
-							array_push($output, $increaseFillByte++);
-						}
-						break;
-					case self::REPEAT:
-						$origin = ($compressedData[$position++] | ($compressedData[$position++] << 8));
-						for ($i = 0; $i < $length; $i++) {
-							array_push($output, $output[$origin++]);
-						}
-						break;
-
-					default:
-						throw new \Exception("Invalid Lz2 command: " + $command);
-				}
+		while (true) {
+			$commandLength = $compressedData[$position++];
+			if ($commandLength == 0xFF) {
+				break;
 			}
 
-			return $output;
-		} catch (IndexOutOfRangeException $e) {
-			throw new \Exception("Reached unexpected end of compressed data.");
-		} catch (ArgumentOutOfRangeException $e) {
-			throw new \Exception("Compressed data contains invalid Lz2 Repeat command.");
+			$command = ($commandLength >> 5);
+
+			if ($command == self::LONG_COMMAND) {
+				$length = $compressedData[$position++];
+				$length |= (($commandLength & 3) << 8);
+				$length++;
+				$command = (($commandLength >> 2) & 7);
+			} else {
+				$length = ($commandLength & 0x1F) + 1;
+			}
+
+			switch ($command) {
+				case self::DIRECT_COPY:
+					for ($i = 0; $i < $length; $i++) {
+						array_push($output, $compressedData[$position++]);
+					}
+					break;
+				case self::BYTE_FILL:
+					$fillByte = $compressedData[$position++];
+					for ($i = 0; $i < $length; $i++) {
+						array_push($output, $fillByte);
+					}
+					break;
+				case self::WORD_FILL:
+					$fillByteEven = $compressedData[$position++];
+					$fillByteOdd = $compressedData[$position++];
+					for ($i = 0; $i < $length; $i++) {
+						$thisByte = ($i & 1) == 0 ? $fillByteEven : $fillByteOdd;
+						array_push($output, $thisByte);
+					}
+					break;
+				case self::INCREASE_FILL:
+					$increaseFillByte = $compressedData[$position++];
+					for ($i = 0; $i < $length; $i++) {
+						array_push($output, $increaseFillByte++);
+					}
+					break;
+				case self::REPEAT:
+					$origin = ($compressedData[$position++] | ($compressedData[$position++] << 8));
+					for ($i = 0; $i < $length; $i++) {
+						array_push($output, $output[$origin++]);
+					}
+					break;
+				default:
+					throw new \Exception("Invalid Lz2 command: " + $command);
+			}
 		}
+
+		return $output;
 	}
 
 	/**
@@ -296,9 +291,6 @@ class Lz2 {
 	 * @return void
 	 */
 	private function outputCommand(int $command, int $length, array &$output) {
-		if ($length < 1 || $length >= 1024) {
-			throw new \Exception("Internal error: Length assertion failed.");
-		}
 		if ($length > 32) {
 			// Long command
 			$length--;
