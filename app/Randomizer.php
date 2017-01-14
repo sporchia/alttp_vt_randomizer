@@ -175,11 +175,20 @@ class Randomizer {
 
 		$my_items = new ItemCollection;
 
+		$advancement_items = $this->getAdvancementItems();
+
+		if ($this->type == 'Glitched') {
+			$this->world->getLocation("[cave-040] Link's House")->setItem(Item::get('PegasusBoots'));
+			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
+			$my_items->addItem(Item::get('PegasusBoots'));
+			unset($advancement_items[$key]);
+		}
+
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 			return $location->canAccess($my_items);
 		});
 
-		$this->fillItemsInLocations($this->getAdvancementItems(), $my_items, $locations, $base_locations);
+		$this->fillItemsInLocations($advancement_items, $my_items, $locations, $base_locations);
 
 		// Remaining Items
 		$this->fillItemsInLocations($this->getItemPool(), $my_items, $locations);

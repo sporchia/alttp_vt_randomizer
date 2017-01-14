@@ -84,7 +84,7 @@ class NorthWest extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') || $items->hasBottle();
+			return $items->has('MoonPearl') || $items->hasABottle();
 		};
 
 		return $this;

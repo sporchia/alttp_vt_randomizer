@@ -320,7 +320,7 @@ class LightWorld extends Region {
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
-				&& ($items->hasABottle())
+				&& ($items->hasABottle()
 					|| ($items->has('TitansMitt') && $items->has("MoonPearl")));
 		});
 

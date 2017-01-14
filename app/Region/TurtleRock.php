@@ -200,7 +200,7 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasBottle()))
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
 				|| (!$locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
@@ -210,7 +210,7 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasBottle()))
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
 				|| (!$locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
@@ -220,7 +220,7 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setRequirements(function($locations, $items) {
-			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasBottle()))
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
 				|| (!$locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
@@ -230,7 +230,7 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) {
-			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasBottle()))
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
 				|| (!$locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
@@ -240,7 +240,7 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setRequirements(function($locations, $items) {
-			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasBottle()))
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
 				|| !$locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
 					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",

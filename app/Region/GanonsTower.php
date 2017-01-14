@@ -468,6 +468,10 @@ class GanonsTower extends Region {
 			"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]",
 			"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]",
 			"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]",
+			"[dungeon-A2-1F] Ganon's Tower - above Armos",
+			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]",
+			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]",
+			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
 		]);
 	}
 
@@ -478,6 +482,10 @@ class GanonsTower extends Region {
 			"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
 			"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
 			"[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrace",
+			"[dungeon-A2-1F] Ganon's Tower - above Armos",
+			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]",
+			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]",
+			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
 		]);
 	}
 }

@@ -186,7 +186,7 @@ class MiseryMire extends Region {
 		});
 
 		$this->locations["Heart Container - Vitreous"]->setRequirements(function($locations, $items) {
-			return ($locations->itemInLocations(Item::get('BigKey'), [
+			return $locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D6-B1] Misery Mire - big hub room",
 					"[dungeon-D6-B1] Misery Mire - end of bridge",
 					"[dungeon-D6-B1] Misery Mire - map room",
@@ -210,7 +210,7 @@ class MiseryMire extends Region {
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
-			&& ($items->has('MoonPearl') || $items->hasBottle());
+			&& ($items->has('MoonPearl') || $items->hasABottle());
 		};
 
 		return $this;

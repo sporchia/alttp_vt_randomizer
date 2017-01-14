@@ -59,7 +59,7 @@ class NorthEast extends Region {
 	 */
 	public function initGlitched() {
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') || $items->hasBottle();
+			return $items->has('MoonPearl') || $items->hasABottle();
 		};
 
 		return $this;

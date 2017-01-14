@@ -99,13 +99,13 @@ class World {
 		switch($this->type) {
 			case 'Glitched':
 				$this->win_condition = function($collected_items) {
-					return $items->has('Crystal1')
-						&& $items->has('Crystal2')
-						&& $items->has('Crystal3')
-						&& $items->has('Crystal4')
-						&& $items->has('Crystal5')
-						&& $items->has('Crystal6')
-						&& $items->has('Crystal7')
+					return $collected_items->has('Crystal1')
+						&& $collected_items->has('Crystal2')
+						&& $collected_items->has('Crystal3')
+						&& $collected_items->has('Crystal4')
+						&& $collected_items->has('Crystal5')
+						&& $collected_items->has('Crystal6')
+						&& $collected_items->has('Crystal7')
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
@@ -134,7 +134,7 @@ class World {
 			}
 		}
 		foreach ($this->regions['Swords']->getLocations() as $location) {
-			if ($location->canAccess($items)) {
+			if ($location->canAccess($items) && $location->getItem()) {
 				$prizes->addItem($location->getItem());
 			}
 		}

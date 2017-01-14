@@ -22,7 +22,8 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	if ($request->has('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
-	$rand = new ALttP\Randomizer($rules);
+
+	$rand = new ALttP\Randomizer($rules, $request->input('game_mode', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	return json_encode(['seed' => $rand->getSeed(), 'logic' => $rand->getLogic(), 'rules' => $rules, 'patch' => $rom->getWriteLog(), 'spoiler' => $rand->getSpoiler()]);

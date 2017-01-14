@@ -207,7 +207,7 @@ class PalaceOfDarkness extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]-->setFillRules(function($item, $locations, $items) {
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('Key');
 		});
 

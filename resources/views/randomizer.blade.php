@@ -56,11 +56,20 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-3">
+			<div class="input-group" role="group">
+				<span class="input-group-addon">Mode</span>
+				<select id="game-mode" class="form-control selectpicker">
+					<option value="NoMajorGlitches">No Major Glitches</option>
+					<option value="Glitched">Minor Glicthes</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-5">
 			<input id="generate-complexity-show" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for"generate-complexity-show">Show Complexity</label>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for"generate-sram-trace">SRAM Trace</label>
 		</div>
@@ -93,6 +102,7 @@
 	</div>
 </div>
 <form id="config" style="display:none">
+	<input type="hidden" name="game_mode" value="NoMajorGlitches" />
 	<input type="hidden" name="rules" value="v7" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
@@ -625,6 +635,10 @@ $(function() {
 	$('#generate-sram-trace').on('change', function() {
 		$('input[name=sram_trace]').val($(this).prop('checked'));
 	});
+	$('#game-mode').on('change', function() {
+		$('input[name=game_mode]').val($(this).val());
+	});
+
 
 	$('#cust-region-CompassesMaps').on('change', function() {
 		if ($(this).prop('checked')) {
