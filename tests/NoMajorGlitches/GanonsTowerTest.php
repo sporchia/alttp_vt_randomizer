@@ -146,9 +146,19 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
+	public function testNorthOfTeleportRoomRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
+			->canAccess($this->allItemsExcept(['Hammer'])));
+	}
+
 	public function testWestOfTeleportRoomChestTLRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
+	}
+
+	public function testWestOfTeleportRoomChestTLRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
+			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
 	public function testWestOfTeleportRoomChestTRRequiresHookshot() {
@@ -156,14 +166,29 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
+	public function testWestOfTeleportRoomChestTRRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
+			->canAccess($this->allItemsExcept(['Hammer'])));
+	}
+
 	public function testWestOfTeleportRoomChestBLRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
+	public function testWestOfTeleportRoomChestBLRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['Hammer'])));
+	}
+
 	public function testWestOfTeleportRoomChestBRRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
+	}
+
+	public function testWestOfTeleportRoomChestBRRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
 	// Right side
