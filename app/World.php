@@ -212,7 +212,7 @@ class World {
 		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
 			Log::debug("playthrough SPHERE: $sphere_level");
 			foreach ($sphere as $location) {
-				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
+				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(), $location->getItem() ? $location->getItem()->getNiceName() : 'Nothing'));
 				// pull item out
 				$pulled_item = $location->getItem();
 				$location->setItem();

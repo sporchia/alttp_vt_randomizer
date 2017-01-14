@@ -29,10 +29,11 @@ class Swords extends Region {
 	}
 
 	public function initNoMajorGlitches() {
-		// @TODO: This logic is a little off, we need to account for beating AG1 and having Mirror
 		$this->locations["Pyramid"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('Crystal5') && $items->has('Crystal6')
-				&& $items->has('Hammer');
+			return $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
+				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+					&& ($items->has('Hammer')
+						|| ($items->has('MagicMirror') && $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)));
 		});
 
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {

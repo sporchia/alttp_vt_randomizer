@@ -38,7 +38,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) !== '9d06a6a993ad8b18ce13cbabb1254d61';
+		return hash_file('md5', $this->tmp_file) === '9d06a6a993ad8b18ce13cbabb1254d61';
 	}
 
 	/**
@@ -308,7 +308,8 @@ class Rom {
 	 */
 	public function read(int $offset, int $length = 1) {
 		fseek($this->rom, $offset);
-		return unpack('C*', fread($this->rom, $length))[1];
+		$unpacked = unpack('C*', fread($this->rom, $length));
+		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);
 	}
 
 	/**

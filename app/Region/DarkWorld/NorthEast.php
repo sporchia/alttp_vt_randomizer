@@ -43,9 +43,9 @@ class NorthEast extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-		return $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)
-			|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
-			|| ($items->has("TitansMitt") && $items->has('Flippers') && $items->has('MoonPearl'));
+			return $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)
+				|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
+				|| ($items->has("TitansMitt") && $items->has('Flippers') && $items->has('MoonPearl'));
 		};
 
 		return $this;

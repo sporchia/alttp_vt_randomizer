@@ -70,15 +70,10 @@ class SkullWoods extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('BigKey'), [
-				"[dungeon-D3-B1] Skull Woods - Big Key room",
-				"[dungeon-D3-B1] Skull Woods - Compass room",
-				"[dungeon-D3-B1] Skull Woods - east of Fire Rod room",
-				"[dungeon-D3-B1] Skull Woods - Entrance to part 2",
-				"[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room",
-				"[dungeon-D3-B1] Skull Woods - south of Fire Rod room",
-				"Heart Container - Mothula",
-			]);
+			return !$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D3-B1] Skull Woods - Entrance to part 2",
+						"Heart Container - Mothula",
+					]) || $items->has('FireRod');
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});

@@ -298,19 +298,27 @@ class GanonsTower extends Region {
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && $items->canShootArrows();
+			return $items->canLightTorches() && $items->canShootArrows();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && $items->canShootArrows();
+			return $items->canLightTorches() && $items->canShootArrows();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && $items->canShootArrows();
+			return $items->canLightTorches() && $items->canShootArrows();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && $items->has('Hookshot') && $items->canShootArrows();
+			return $items->canLightTorches() && $items->has('Hookshot') && $items->canShootArrows();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->can_enter = function($locations, $items) {
