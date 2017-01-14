@@ -327,7 +327,7 @@ class BaseGameTest extends TestCase {
 
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")->fill(Item::get('MirrorShield'), $this->collected));
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")->fill(Item::get('RedMail'), $this->collected));
 	}
 
 	public function testGanonsTowerAccessable() {

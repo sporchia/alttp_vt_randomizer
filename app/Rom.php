@@ -258,7 +258,8 @@ class Rom {
 	 */
 	public function read(int $offset, int $length = 1) {
 		fseek($this->rom, $offset);
-		return unpack('C*', fread($this->rom, $length))[1];
+		$unpacked = unpack('C*', fread($this->rom, $length));
+		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);
 	}
 
 	/**
