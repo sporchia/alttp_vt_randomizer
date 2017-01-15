@@ -36,8 +36,6 @@ class MiseryMire extends Region {
 
 	/**
 	 * Place Keys, Map, and Compass in Region. Misery Mire has: Big Key, Map, Compass, 3 Keys.
-	 * Note: 2 keys can end up in big key, and compass locations, which can make them inaccessable, but the dungeon will
-	 * still be beatable.
 	 *
 	 * @param ItemCollection $my_items full list of items for placement
 	 *
@@ -82,7 +80,11 @@ class MiseryMire extends Region {
 					"[dungeon-D6-B1] Misery Mire - compass",
 					]) && $items->canLightTorches());
 		})->setFillRules(function($item, $locations, $items) {
-			return !($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('BigKey')
+			return $item != Item::get('BigKey')
+				&& !(($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('BigKey')
+						&& $locations["[dungeon-D6-B1] Misery Mire - big key"]->getItem() == Item::get('Key'))
+					|| ($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('Key')
+						&& $locations["[dungeon-D6-B1] Misery Mire - big key"]->getItem() == Item::get('BigKey'))
 					&& $item == Item::get('Key'));
 		});
 
@@ -92,12 +94,17 @@ class MiseryMire extends Region {
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setRequirements(function($locations, $items) {
 			return $items->canLightTorches();
+		})->setFillRules(function($item, $locations, $items) {
+			return !($locations["[dungeon-D6-B1] Misery Mire - big chest"]->getItem() == Item::get('Key')
+					&& $locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('Key')
+					&& $item == Item::get('BigKey'));
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setRequirements(function($locations, $items) {
 			return $items->canLightTorches();
 		})->setFillRules(function($item, $locations, $items) {
 			return !($locations["[dungeon-D6-B1] Misery Mire - big chest"]->getItem() == Item::get('Key')
+					&& $locations["[dungeon-D6-B1] Misery Mire - big key"]->getItem() == Item::get('Key')
 					&& $item == Item::get('BigKey'));
 		});
 
@@ -123,17 +130,10 @@ class MiseryMire extends Region {
 				|| ($locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-D6-B1] Misery Mire - big key",
 					"[dungeon-D6-B1] Misery Mire - compass",
-					]) && $items->canLightTorches())
-			&& $locations->itemInLocations(Item::get('Key'), [
-				"[dungeon-D6-B1] Misery Mire - big hub room",
-				"[dungeon-D6-B1] Misery Mire - big key",
-				"[dungeon-D6-B1] Misery Mire - compass",
-				"[dungeon-D6-B1] Misery Mire - end of bridge",
-				"[dungeon-D6-B1] Misery Mire - map room",
-				"[dungeon-D6-B1] Misery Mire - spike room",
-				"[dungeon-D6-B1] Misery Mire - big chest",
-			], 3))
+					]) && $items->canLightTorches()))
 			&& $items->has('CaneOfSomaria') && $items->has('Lamp');
+		})->setFillRules(function($item, $locations, $items) {
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
