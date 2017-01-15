@@ -82,6 +82,7 @@
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
 			<div>Rules: <span class="rules"></span></div>
+			<div>Mode: <span class="mode"></span></div>
 			<div>Seed: <span class="seed"></span></div>
 			<div>Complexity: <span class="complexity"></span></div>
 		</div>
@@ -496,6 +497,7 @@ function seedApplied(data) {
 		$('.info .seed').html(data.patch.seed);
 		$('.info .logic').html(data.patch.logic);
 		$('.info .build').html(data.patch.spoiler.meta.build);
+		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .rules').html(data.patch.rules);
 		$('.info .complexity').html(data.patch.spoiler.playthrough.complexity + ' (' + data.patch.spoiler.playthrough.sub_complexity + ')');
 		$('.spoiler').show();
@@ -503,6 +505,7 @@ function seedApplied(data) {
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
 		rom.build = data.patch.spoiler.meta.build;
+		rom.mode = data.patch.spoiler.meta.mode;
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
 		rom.complexity = data.patch.spoiler.playthrough.complexity;

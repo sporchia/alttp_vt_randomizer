@@ -342,6 +342,10 @@ class GanonsTower extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer');
 		});
@@ -432,26 +436,42 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (($this->bigKeyRequiresHammer() && $items->has('Hammer'))
-					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria')));
+					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria'))
+					|| (!$this->bigKeyRequiresHammer() && !$this->bigKeyRequiresCaneOfSomaria()));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
+
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (($this->bigKeyRequiresHammer() && $items->has('Hammer'))
-					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria')));
+					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria'))
+					|| (!$this->bigKeyRequiresHammer() && !$this->bigKeyRequiresCaneOfSomaria()));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
+
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (($this->bigKeyRequiresHammer() && $items->has('Hammer'))
-					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria')));
+					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria'))
+					|| (!$this->bigKeyRequiresHammer() && !$this->bigKeyRequiresCaneOfSomaria()));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
+
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches() && $items->has('Hookshot')
 				&& (($this->bigKeyRequiresHammer() && $items->has('Hammer'))
-					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria')));
+					|| ($this->bigKeyRequiresCaneOfSomaria() && $items->has('CaneOfSomaria'))
+					|| (!$this->bigKeyRequiresHammer() && !$this->bigKeyRequiresCaneOfSomaria()));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
+
 
 		return $this;
 	}

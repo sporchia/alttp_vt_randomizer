@@ -13,6 +13,11 @@ class LightWorldTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testUncleRequiresNothing() {
 		$this->assertTrue($this->world->getLocation("Uncle")->canAccess($this->collected));
 	}

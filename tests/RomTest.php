@@ -8,6 +8,11 @@ class RomTest extends TestCase {
 		$this->rom = new Rom;
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->rom);
+	}
+
 	public function testCheckMD5WithNoBaseFile() {
 		$this->assertFalse($this->rom->checkMD5());
 	}

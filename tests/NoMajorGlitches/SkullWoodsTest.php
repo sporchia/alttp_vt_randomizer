@@ -13,6 +13,11 @@ class SkullWoodsTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testBigKeyInLateDungeonShouldStopFireRodInBigChest() {
 		$no_firerod = $this->allItemsExcept(['FireRod']);
 

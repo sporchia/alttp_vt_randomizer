@@ -12,6 +12,11 @@ class RandomizerTest extends TestCase {
 		$this->randomizer = new Randomizer('test_rules');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->randomizer);
+	}
+
 	public function testGetSeedIsNullBeforeRandomization() {
 		$this->assertNull($this->randomizer->getSeed());
 	}

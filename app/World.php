@@ -99,7 +99,8 @@ class World {
 		switch($this->type) {
 			case 'Glitched':
 				$this->win_condition = function($collected_items) {
-					return $collected_items->has('Crystal1')
+					return $collected_items->has('MoonPearl')
+						&& $collected_items->has('Crystal1')
 						&& $collected_items->has('Crystal2')
 						&& $collected_items->has('Crystal3')
 						&& $collected_items->has('Crystal4')

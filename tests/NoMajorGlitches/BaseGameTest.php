@@ -16,6 +16,11 @@ class BaseGameTest extends TestCase {
 		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testEasternPalace() {
 		$this->addCollected(['Lamp']);
 

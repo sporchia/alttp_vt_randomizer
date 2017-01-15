@@ -298,6 +298,7 @@ class Randomizer {
 			'logic' => $this->getLogic(),
 			'seed' => $this->seed,
 			'build' => Rom::BUILD,
+			'mode' => preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $this->type),
 		];
 		return $spoiler;
 	}

@@ -13,6 +13,11 @@ class DarkWorldTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testSuperBunnyDMNotAllowedTopChest() {
 		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
 

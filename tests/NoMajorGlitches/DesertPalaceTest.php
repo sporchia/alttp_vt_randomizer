@@ -13,6 +13,11 @@ class DesertPalaceTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testBigKeyCantBeRightSideTopIfTorchHasKeyAndNoBoots() {
 		$no_boots = $this->allItemsExcept(['PegasusBoots']);
 
