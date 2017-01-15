@@ -81,10 +81,10 @@ class MiseryMire extends Region {
 					]) && $items->canLightTorches());
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey')
-				&& !(($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('BigKey')
+				&& !((($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('BigKey')
 						&& $locations["[dungeon-D6-B1] Misery Mire - big key"]->getItem() == Item::get('Key'))
 					|| ($locations["[dungeon-D6-B1] Misery Mire - compass"]->getItem() == Item::get('Key')
-						&& $locations["[dungeon-D6-B1] Misery Mire - big key"]->getItem() == Item::get('BigKey'))
+						&& $locations["[dungeon-D6-B1] Misery Mire - big key"]->getItem() == Item::get('BigKey')))
 					&& $item == Item::get('Key'));
 		});
 
