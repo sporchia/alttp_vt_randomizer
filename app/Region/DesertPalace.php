@@ -138,7 +138,8 @@ class DesertPalace extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		// @TODO: implement, bonk key probably changes all the Glitched logic
+		// @TODO: implement, bonk key probably changes all the Glitched logic, for now assume more restrictive NMG logic
+		$this->initNoMajorGlitches();
 
 		return $this;
 	}

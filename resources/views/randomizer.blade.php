@@ -13,65 +13,83 @@
 		</label>
 	</div>
 </div>
-<div id="seed-generate" style="display:none">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Seed</span>
-				<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
-				<span class="input-group-btn">
-					<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
-				</span>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Rules</span>
-				<select id="rules" class="form-control selectpicker">
-					<option value="v7" selected>v7</option>
-					<option value="v7_hard">v7 (hard mode)</option>
-					<option value="v8">v8</option>
-					<option value="custom">Custom</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Heart Beep</span>
-				<select id="heart-speed" class="form-control selectpicker">
-					<option value="off">Off</option>
-					<option value="normal">Normal Speed</option>
-					<option value="half" selected>Half Speed</option>
-					<option value="quarter">Quarter Speed</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="btn-group" role="group">
-				<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-				<span class="input-group-btn">
-					<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
-				</span>
-			</div>
-		</div>
+<div id="seed-generate" class="panel panel-default" style="display:none">
+	<div class="panel-heading panel-heading-btn">
+		<h3 class="panel-title pull-left">Generate</h3>
+		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog"></span></button>
+		<div class="clearfix"></div>
 	</div>
-	<div class="row">
-		<div class="col-md-3">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Mode</span>
-				<select id="game-mode" class="form-control selectpicker">
-					<option value="NoMajorGlitches">No Major Glitches</option>
-					<option value="Glitched">Minor Glicthes</option>
-				</select>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Seed</span>
+					<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="leave blank for random">
+					<span class="input-group-btn">
+						<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+					</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Rules</span>
+					<select id="rules" class="form-control selectpicker">
+						<option value="v8" selected>v8</option>
+						<option value="v7">v7</option>
+						<option value="v7_hard">v7 (hard mode)</option>
+						<option value="custom">Custom</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Mode</span>
+					<select id="game-mode" class="form-control selectpicker">
+						<option value="NoMajorGlitches">No Major Glitches</option>
+						<option value="Glitched">Glitched</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="btn-group btn-flex" role="group">
+					<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
+					<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-5">
-			<input id="generate-complexity-show" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for"generate-complexity-show">Show Complexity</label>
-		</div>
-		<div class="col-md-4">
-			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for"generate-sram-trace">SRAM Trace</label>
+		<div class="row">
+			<div class="panel panel-info panel-collapse collapse" id="rom-settings">
+				<div class="panel-heading">
+					<h4 class="panel-title">ROM Settings</h4>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-6">
+						<div class="row">
+							<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+							<label for"generate-sram-trace">SRAM Trace</label>
+						</div>
+						<div class="secrets" style="display:none">
+							<div class="row">
+								<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+								<label for"generate-debug">Debug Mode</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Heart Beep</span>
+								<select id="heart-speed" class="form-control selectpicker">
+									<option value="off">Off</option>
+									<option value="normal">Normal Speed</option>
+									<option value="half" selected>Half Speed</option>
+									<option value="quarter">Quarter Speed</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -87,8 +105,14 @@
 			<div>Complexity: <span class="complexity"></span></div>
 		</div>
 		<div class="col-md-6">
-			<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
-			<button name="save" class="btn btn-default" disabled>Save Rom</button>
+			<div class="row">
+				<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
+				<button name="save" class="btn btn-default" disabled>Save Rom</button>
+			</div>
+			<div class="row">
+				<input id="generate-complexity-show" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+				<label for"generate-complexity-show">Show Complexity</label>
+			</div>
 		</div>
 		<div class="spoiler col-md-12">
 			<div class="spoiler-toggle"><span class="glyphicon glyphicon-plus"></span> Spoiler!</div>
@@ -104,9 +128,10 @@
 </div>
 <form id="config" style="display:none">
 	<input type="hidden" name="game_mode" value="NoMajorGlitches" />
-	<input type="hidden" name="rules" value="v7" />
+	<input type="hidden" name="rules" value="v8" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
+	<input type="hidden" name="debug" value="false" />
 	<div class="custom-rules">
 		<ul class="nav nav-tabs" data-tabs="tabs">
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
@@ -482,12 +507,6 @@ function romOk(rom) {
 	$('#config').show();
 	localforage.setItem('rom', rom.getArrayBuffer());
 }
-$('button[name=save]').on('click', function() {
-	return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
-});
-$('button[name=save-spoiler]').on('click', function() {
-	return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.txt');
-});
 
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
@@ -528,26 +547,6 @@ function pasrseSpoilerToTabs(spoiler) {
 	}
 }
 
-$('button[name=generate-save]').on('click', function() {
-	applySeed(rom, $('#seed').val())
-		.then(seedApplied)
-		.then(function(rom) {
-			return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
-		});
-});
-
-$('button[name=generate]').on('click', function() {
-	$('button[name=generate]').html('Generating...').prop('disabled', true);
-	$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
-	applySeed(rom, $('#seed').val()).then(seedApplied);
-});
-
-$('input[name=f2u]').on('change', function() {
-	$('#rom-select').hide();
-	$('.alert').hide();
-	loadBlob(this.files[0], true);
-});
-
 function loadBlob(blob, show_error) {
 	rom = new ROM(blob, function(rom) {
 		switch (rom.checkMD5()) {
@@ -580,19 +579,6 @@ function loadBlob(blob, show_error) {
 	});
 }
 
-function storageAvailable(type) {
-	try {
-		var storage = window[type],
-			x = '__storage_test__';
-		storage.setItem(x, x);
-		storage.removeItem(x);
-		return true;
-	}
-	catch(e) {
-		return false;
-	}
-}
-
 $(function() {
 	$('.alert, .info, #config, .custom-rules').hide();
 	$('button[name=save], button[name=save-spoiler]').hide();
@@ -600,7 +586,7 @@ $(function() {
 	$('.spoiler-tabed').hide();
 	$('.spoiler-toggle').on('click', function() {
 		$(this).next().animate({height: 'toggle'});
-		if ($('.spoiler-tabed').is(':visible')) {
+		if ($(this).find('span').hasClass('glyphicon-plus')) {
 			$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
 		} else {
 			$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
@@ -610,6 +596,9 @@ $(function() {
 		$('input[name=rules]').val($(this).val());
 		if ($(this).val() == 'custom') {
 			$('.custom-rules').show();
+			if ($('.spoiler-tabed').is(':visible')) {
+				$('.spoiler-toggle').trigger('click');
+			}
 		} else {
 			$('.custom-rules').hide();
 		}
@@ -621,6 +610,35 @@ $(function() {
 			$('.complexity').hide();
 		}
 	});
+	$('#generate-complexity-show').trigger('change');
+
+	$('button[name=save]').on('click', function() {
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+	});
+	$('button[name=save-spoiler]').on('click', function() {
+		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.txt');
+	});
+
+	$('button[name=generate-save]').on('click', function() {
+		applySeed(rom, $('#seed').val())
+			.then(seedApplied)
+			.then(function(rom) {
+				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+			});
+	});
+
+	$('button[name=generate]').on('click', function() {
+		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
+		applySeed(rom, $('#seed').val()).then(seedApplied);
+	});
+
+	$('input[name=f2u]').on('change', function() {
+		$('#rom-select').hide();
+		$('.alert').hide();
+		loadBlob(this.files[0], true);
+	});
+
 	$('.custom-items').on('change click blur', function(e) {
 		e.stopPropagation();
 		$('#custom-count').html($('.custom-items').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
@@ -641,7 +659,9 @@ $(function() {
 	$('#game-mode').on('change', function() {
 		$('input[name=game_mode]').val($(this).val());
 	});
-
+	$('#generate-debug').on('change', function() {
+		$('input[name=debug]').val($(this).prop('checked'));
+	});
 
 	$('#cust-region-CompassesMaps').on('change', function() {
 		if ($(this).prop('checked')) {
@@ -710,6 +730,10 @@ $(function() {
 			loadBlob(new Blob([blob]));
 		});
 	}
+
+	new secrets(function() {
+		$('.secrets').show();
+	});
 });
 </script>
 @overwrite

@@ -24,6 +24,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 		  <ul class="nav navbar-nav navbar-right">
+			<li{!! (request()->path() == 'stuck') ? ' class="active"' : '' !!}><a href="/stuck">Stuck?</a></li>
 		  	<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 			<li{!! (request()->path() == 'about') ? ' class="active"' : '' !!}><a href="/about">About</a></li>
 			@if (Auth::check())

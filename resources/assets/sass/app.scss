@@ -15,6 +15,17 @@ body {
 	padding-top: 70px;
 }
 
+.btn-flex {
+	display: flex;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.btn-flex .btn:first-child {
+	flex-grow: 1;
+	text-align: left;
+}
+
 .btn-file {
 	position: relative;
 	overflow: hidden;
@@ -33,6 +44,15 @@ body {
 	background: white;
 	cursor: inherit;
 	display: block;
+}
+
+.panel-heading-btn h3 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: normal;
+	width: 75%;
+	padding-top: 8px;
 }
 
 .spoiler {

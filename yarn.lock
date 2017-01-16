@@ -1363,6 +1363,13 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
+gestures@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/gestures/-/gestures-0.0.2.tgz#671203947b8cdb3dc49a6247b1682fa81770e3ba"
+  dependencies:
+    interact-js "^0.4.6"
+    math-js "^0.0.4"
+
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
@@ -1870,6 +1877,10 @@ inline-process-browser@^1.0.0:
     falafel "^1.0.1"
     through2 "^0.6.5"
 
+interact-js@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/interact-js/-/interact-js-0.4.6.tgz#afa098e7b83eeec5ede0b92a825645abc25c946d"
+
 interpret@^0.6.4:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-0.6.6.tgz#fecd7a18e7ce5ca6abfb953e1f86213a49f1625b"
@@ -2126,11 +2137,35 @@ jstransform@~3.0.0:
     esprima-fb "~3001.1.0-dev-harmony-fb"
     source-map "0.1.31"
 
+keyboard-code@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/keyboard-code/-/keyboard-code-0.0.2.tgz#5562cd1b36798a1698a547a85ee6ff0aeb938488"
+
 kind-of@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.1.0.tgz#475d698a5e49ff5e53d14e3e732429dc8bf4cf47"
   dependencies:
     is-buffer "^1.0.2"
+
+konami-js@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/konami-js/-/konami-js-0.0.2.tgz#35ab27483f27e23e91e470da851954e4468fc6d9"
+  dependencies:
+    konami-keyboard "^0.0.1"
+    konami-touch "^0.0.3"
+
+konami-keyboard@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/konami-keyboard/-/konami-keyboard-0.0.1.tgz#df4459717ca67ce6de5ee141508d1357e255d4bc"
+  dependencies:
+    keyboard-code "0.0.2"
+
+konami-touch@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/konami-touch/-/konami-touch-0.0.3.tgz#151b299898840eaca26670e9e4942146a0afdb00"
+  dependencies:
+    gestures "^0.0.2"
+    math-js "^0.0.4"
 
 laravel-elixir-vue-2@^0.2.0:
   version "0.2.0"
@@ -2552,6 +2587,10 @@ math-expression-evaluator@^1.2.14:
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.14.tgz#39511771ed9602405fba9affff17eb4d2a3843ab"
   dependencies:
     lodash.indexof "^4.0.5"
+
+math-js@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/math-js/-/math-js-0.0.4.tgz#e0ce5059a2a110b5ddad9ec6d4322aa52e894fb9"
 
 memory-fs@^0.2.0:
   version "0.2.0"
