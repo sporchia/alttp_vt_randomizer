@@ -151,4 +151,26 @@ class SwampPalace extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode. Glitched for Swap simply is the NMG but with the added acces of a wall clip from Hera.
+	 * We will use access to the small chest on floor four to represent being able to initate the wall clip.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->initNoMajorGlitches();
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->has('Flippers') && $items->has('Hookshot');
+		};
+
+		$this->can_enter = function($locations, $items) {
+			return ($items->has('Flippers') && $items->has('MagicMirror') && $items->has('MoonPearl'))
+				|| $locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->canAccess($items);
+		};
+
+		return $this;
+	}
 }

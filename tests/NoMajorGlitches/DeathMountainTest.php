@@ -13,6 +13,11 @@ class DeathMountainTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMittTopChest() {
 		$no_mitt = $this->allItemsExcept(['TitansMitt']);
 

@@ -48,4 +48,16 @@ class Swords extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->initNoMajorGlitches();
+
+		return $this;
+	}
 }

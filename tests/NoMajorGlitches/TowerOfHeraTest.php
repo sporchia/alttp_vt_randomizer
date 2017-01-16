@@ -13,6 +13,11 @@ class TowerOfHeraTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testMoldormCantHaveFireRodIfLampUnobtainableWithoutIt() {
 		$no_lighting = $this->allItemsExcept(['Lamp', 'FireRod']);
 

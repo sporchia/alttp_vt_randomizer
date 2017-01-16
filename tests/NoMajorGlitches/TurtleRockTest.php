@@ -15,6 +15,11 @@ class TurtleRockTest extends TestCase {
 		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testCantHaveBigKeyPastBigKeyDoorRollerSwitch() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->fill(Item::get('BigKey'), $this->allItems()));
 	}

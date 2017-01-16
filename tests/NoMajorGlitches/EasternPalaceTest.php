@@ -13,6 +13,11 @@ class EasternPalaceTest extends TestCase {
 		$this->world = new World('test_rules', 'NoMajorGlitches');
 	}
 
+    public function tearDown() {
+        parent::tearDown();
+        unset($this->world);
+    }
+
 	public function testNoBigKeyInBigChest() {
 		$this->assertFalse($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - big chest")->fill(Item::get('BigKey'), $this->allItems()));
 	}

@@ -98,4 +98,45 @@ class TowerOfHera extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setRequirements(function($locations, $items) {
+			return $items->canLightTorches();
+		});
+
+		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setRequirements(function($locations, $items) {
+			return $this->canComplete($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setRequirements(function($locations, $items) {
+			return $this->canComplete($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
+			return $this->canComplete($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
+				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
+					&& (!$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D6-B1] Misery Mire - big key",
+						"[dungeon-D6-B1] Misery Mire - compass",
+						]) || $items->canLightTorches()));
+		};
+
+		return $this;
+	}
 }

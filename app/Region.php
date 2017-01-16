@@ -130,6 +130,15 @@ class Region {
 	}
 
 	/**
+	 * Initalize the Glitched logic for the Region
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		return $this;
+	}
+
+	/**
 	 * Determine if the Region is completable given the locations and items available
 	 *
 	 * @param Support\LocationCollection $locations current list of Locations

@@ -18,6 +18,7 @@ class World {
 	/**
 	 * Create a new world and initialize all of the Regions within it
 	 *
+	 * @param string $rules rules from config to apply to randomization
 	 * @param string $type Ruleset to use when deciding if Locations can be reached
 	 *
 	 * @return void
@@ -96,6 +97,19 @@ class World {
 		}
 
 		switch($this->type) {
+			case 'Glitched':
+				$this->win_condition = function($collected_items) {
+					return $collected_items->has('MoonPearl')
+						&& $collected_items->has('Crystal1')
+						&& $collected_items->has('Crystal2')
+						&& $collected_items->has('Crystal3')
+						&& $collected_items->has('Crystal4')
+						&& $collected_items->has('Crystal5')
+						&& $collected_items->has('Crystal6')
+						&& $collected_items->has('Crystal7')
+						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+				};
+				break;
 			case 'NoMajorGlitches':
 			default:
 				$this->win_condition = function($collected_items) {
@@ -121,7 +135,7 @@ class World {
 			}
 		}
 		foreach ($this->regions['Swords']->getLocations() as $location) {
-			if ($location->canAccess($items)) {
+			if ($location->canAccess($items) && $location->getItem()) {
 				$prizes->addItem($location->getItem());
 			}
 		}

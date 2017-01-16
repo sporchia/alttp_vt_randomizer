@@ -10,6 +10,10 @@ Route::get('about', function () {
 	return view('about');
 });
 
+Route::get('stuck', function () {
+	return view('stuck');
+});
+
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rules = $request->input('rules', 'v7');
 	if ($rules == 'custom') {
@@ -22,7 +26,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	if ($request->has('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
-	$rand = new ALttP\Randomizer($rules);
+	if ($request->has('debug')) {
+		$rom->setDebugMode($request->input('debug') == 'true');
+	}
+
+	$rand = new ALttP\Randomizer($rules, $request->input('game_mode', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	return json_encode(['seed' => $rand->getSeed(), 'logic' => $rand->getLogic(), 'rules' => $rules, 'patch' => $rom->getWriteLog(), 'spoiler' => $rand->getSpoiler()]);

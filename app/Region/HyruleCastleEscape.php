@@ -42,7 +42,14 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	public function fillBaseItems($my_items) {
-		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$this->getEmptyLocations()->filter(function($location) {
+			return in_array($location->getName(), [
+					"[dungeon-C-B1] Escape - first B1 room",
+					"[dungeon-C-B1] Hyrule Castle - boomerang room",
+					"[dungeon-C-B1] Hyrule Castle - map room",
+					"[dungeon-C-B3] Hyrule Castle - next to Zelda",
+			]);
+		})->random()->fill(Item::get("Key"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
 			while(!$this->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
@@ -59,39 +66,19 @@ class HyruleCastleEscape extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-C-1F] Sanctuary"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - first B1 room",
-					"[dungeon-C-B1] Hyrule Castle - boomerang room",
-					"[dungeon-C-B1] Hyrule Castle - map room",
-					"[dungeon-C-B3] Hyrule Castle - next to Zelda",
-				]);
+			return true;
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - first B1 room",
-					"[dungeon-C-B1] Hyrule Castle - boomerang room",
-					"[dungeon-C-B1] Hyrule Castle - map room",
-					"[dungeon-C-B3] Hyrule Castle - next to Zelda",
-				]) && $items->canLiftRocks();
+			return $items->canLiftRocks();
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - first B1 room",
-					"[dungeon-C-B1] Hyrule Castle - boomerang room",
-					"[dungeon-C-B1] Hyrule Castle - map room",
-					"[dungeon-C-B3] Hyrule Castle - next to Zelda",
-				]) && $items->canLiftRocks();
+			return $items->canLiftRocks();
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - first B1 room",
-					"[dungeon-C-B1] Hyrule Castle - boomerang room",
-					"[dungeon-C-B1] Hyrule Castle - map room",
-					"[dungeon-C-B3] Hyrule Castle - next to Zelda",
-				]) && $items->canLiftRocks();
+			return $items->canLiftRocks();
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {

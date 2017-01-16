@@ -15,6 +15,11 @@ class MiseryMireTest extends TestCase {
 		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Ether'));
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->world);
+	}
+
 	public function testCanEnterWithEverything() {
 		$this->assertTrue($this->world->getRegion('Misery Mire')->canEnter($this->world->getLocations(), $this->allItems()));
 	}

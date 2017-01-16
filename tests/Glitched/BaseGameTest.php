@@ -1,4 +1,4 @@
-<?php namespace NoMajorGlitches;
+<?php namespace Glitched;
 
 use ALttP\Item;
 use ALttP\World;
@@ -10,7 +10,7 @@ use TestCase;
 class BaseGameTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'Glitched');
 
 		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Ether'));
 		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
@@ -333,7 +333,6 @@ class BaseGameTest extends TestCase {
 			'Crystal6', 'Crystal7']);
 
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
-
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")->fill(Item::get('RedMail'), $this->collected));
 	}
 

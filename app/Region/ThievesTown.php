@@ -128,4 +128,19 @@ class ThievesTown extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+		};
+		return $this;
+	}
 }

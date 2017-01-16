@@ -179,4 +179,88 @@ class TurtleRock extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode.
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setRequirements(function($locations, $items) {
+			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		});
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->setRequirements(function($locations, $items) {
+			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		});
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - compass room"]->setRequirements(function($locations, $items) {
+			return $items->has('CaneOfSomaria');
+		});
+
+		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setRequirements(function($locations, $items) {
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
+				|| (!$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
+					]) && $items->has('CaneOfSomaria'));
+		});
+
+		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setRequirements(function($locations, $items) {
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
+				|| (!$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
+					]) && $items->has('CaneOfSomaria'));
+		});
+
+		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setRequirements(function($locations, $items) {
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
+				|| (!$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
+					]) && $items->has('CaneOfSomaria'));
+		});
+
+		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) {
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
+				|| (!$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
+					]) && $items->has('CaneOfSomaria'));
+		});
+
+		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setRequirements(function($locations, $items) {
+			return ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()))
+				|| !$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
+					"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
+					]);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) {
+			return  $items->has('FireRod') && $items->has('IceRod') && $items->has('CaneOfSomaria');
+		})->setFillRules(function($item, $locations, $items) {
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return $items->has('FireRod') && $items->has('IceRod') && $items->has('CaneOfSomaria');
+		};
+
+		return $this;
+	}
 }

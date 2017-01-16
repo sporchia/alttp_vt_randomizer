@@ -93,4 +93,22 @@ class East extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initGlitched() {
+		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer') && $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror') || $items->has('Flippers');
+		});
+
+		return $this;
+	}
 }

@@ -15,21 +15,24 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 12;
+	const LOGIC = 13;
 	protected $seed;
 	protected $world;
 	protected $rules;
+	protected $type;
 
 	/**
 	 * Create a new Randomizer
 	 *
 	 * @param string $rules rules from config to apply to randomization
+	 * @param string $type Ruleset to use when deciding if Locations can be reached
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'v8') {
+	public function __construct($rules = 'v8', $type = 'NoMajorGlitches') {
 		$this->rules = $rules;
-		$this->world = new World($rules);
+		$this->type = $type;
+		$this->world = new World($rules, $type);
 	}
 
 	/**
@@ -172,11 +175,20 @@ class Randomizer {
 
 		$my_items = new ItemCollection;
 
+		$advancement_items = $this->getAdvancementItems();
+
+		if ($this->type == 'Glitched') {
+			$this->world->getLocation("[cave-040] Link's House")->setItem(Item::get('PegasusBoots'));
+			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
+			$my_items->addItem(Item::get('PegasusBoots'));
+			unset($advancement_items[$key]);
+		}
+
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 			return $location->canAccess($my_items);
 		});
 
-		$this->fillItemsInLocations($this->getAdvancementItems(), $my_items, $locations, $base_locations);
+		$this->fillItemsInLocations($advancement_items, $my_items, $locations, $base_locations);
 
 		// Remaining Items
 		$this->fillItemsInLocations($this->getItemPool(), $my_items, $locations);
@@ -286,6 +298,7 @@ class Randomizer {
 			'logic' => $this->getLogic(),
 			'seed' => $this->seed,
 			'build' => Rom::BUILD,
+			'mode' => preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $this->type),
 		];
 		return $spoiler;
 	}
@@ -335,6 +348,13 @@ class Randomizer {
 
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
+
+		if ($this->type == 'Glitched') {
+			$rom->setMirrorlessSaveAneQuitToLightWorld(false);
+			$rom->setSwampWaterLevel(false);
+			$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
+			$rom->setRandomizerSeedType('Glitched');
+		}
 
 		return $rom;
 	}
