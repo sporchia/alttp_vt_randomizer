@@ -20,6 +20,7 @@ class MiseryMireTest extends TestCase {
 		unset($this->world);
 	}
 
+	// Entry
 	public function testCanEnterWithEverything() {
 		$this->assertTrue($this->world->getRegion('Misery Mire')->canEnter($this->world->getLocations(), $this->allItems()));
 	}
@@ -66,11 +67,7 @@ class MiseryMireTest extends TestCase {
 		$this->assertTrue($this->world->getRegion('Misery Mire')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Hookshot'])));
 	}
 
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
+	// Item Locations
 	public function testBigChestRequiresFireIfBigKeyInBigKeyRoom() {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
 
@@ -192,7 +189,6 @@ class MiseryMireTest extends TestCase {
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Arrow'), $this->allItems()));
 	}
 
-
 	public function testBigKeyCanBeInCompassRoom() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->fill(Item::get('BigKey'), $this->allItems()));
 	}
@@ -201,8 +197,9 @@ class MiseryMireTest extends TestCase {
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testNoBigKeyInBigChest() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('BigKey'), $this->allItems()));
+	public function testBigChestCannotBeBigKey() {
+		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	// Soft Locks
