@@ -49,7 +49,10 @@ class East extends Region {
 
 		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
 			return $this->world->getRegion('Turtle Rock')->canEnter($locations, $items)
-				&& $items->has('MagicMirror');
+				&& $items->has('MagicMirror')
+				&& (($locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('Key'))
+				&& $locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->hasItem(Item::get('Key')))
+					|| $items->has('FireRod'));
 		});
 
 		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]"]->setRequirements(function($locations, $items) {
