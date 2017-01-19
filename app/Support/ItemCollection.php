@@ -91,6 +91,22 @@ class ItemCollection extends Collection {
 			|| $this->has('BowAndSilverArrows');
 	}
 
+	/**
+	 * Requirements for having a sword
+	 *
+	 * @return bool
+	 */
+	public function hasSword() {
+		return $this->has('L1Sword')
+			|| $this->has('L1SwordAndShield')
+			|| $this->hasUpgradedSword();
+	}
+
+	/**
+	 * Requirements for having an upgraded sword
+	 *
+	 * @return bool
+	 */
 	public function hasUpgradedSword() {
 		return $this->has('L2Sword')
 			|| $this->has('MasterSword')

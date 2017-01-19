@@ -100,10 +100,12 @@ class SkullWoods extends Region {
 
 		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setRequirements(function($locations, $items) {
 			return true;
+		})->setFillRules(function($item, $locations, $items) {
+			return $item == Item::get('Key');
 		});
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod');
+			return $items->has('FireRod') && $items->hasSword();
 		})->setFillRules(function($item, $locations, $items) {
 			if ($this->world->config('region.bossHaveKey', true)) {
 				return $item != Item::get('Key');

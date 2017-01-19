@@ -177,7 +177,7 @@ class Randomizer {
 			$region->fillBaseItems(Item::all());
 		}
 
-		$my_items = new ItemCollection;
+		$my_items = new ItemCollection([Item::get('L1SwordAndShield')]);
 
 		$advancement_items = $this->getAdvancementItems();
 

@@ -18,27 +18,99 @@ class SkullWoodsTest extends TestCase {
 		unset($this->world);
 	}
 
-	public function testBigKeyInLateDungeonShouldStopFireRodInBigChest() {
-		$no_firerod = $this->allItemsExcept(['FireRod']);
 
-		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - Entrance to part 2")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->fill(Item::get('FireRod'), $no_firerod));
+	// Entry
+	public function testCanEnterWithEverything() {
+		$this->assertTrue($this->world->getRegion('Skull Woods')->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
-	public function testBigKeyNotInLateDungeonShouldAllowFireRodInBigChest() {
-		$no_firerod = $this->allItemsExcept(['FireRod']);
-
-		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->fill(Item::get('FireRod'), $no_firerod));
+	public function testMoonPearlRequiredForEntry() {
+		$this->assertFalse($this->world->getRegion('Skull Woods')->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
 	}
 
-	public function testBigKeyInLateDungeonShouldNotStopFireRodInChest() {
-		$no_firerod = $this->allItemsExcept(['FireRod']);
+	public function testNorthWestDarkWorldAccessRequiredForEntry() {
+		$this->assertFalse($this->world->getRegion('Skull Woods')->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
+	}
 
+	// Item Locations
+	public function testBigChestRequiresFireRodIfBigKeyInEntrancePart2() {
 		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - Entrance to part 2")->setItem(Item::get('BigKey'));
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")->fill(Item::get('FireRod'), $no_firerod));
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testBigChestRequiresFireRodIfBigKeyAtMothula() {
+		$this->world->getLocation("Heart Container - Mothula")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testBigKeyRoomOnlyRequiresEntry() {
+		$this->addCollected(['TitansMitt', 'MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Big Key room")
+			->canAccess($this->collected));
+	}
+
+	public function testCompassRoomOnlyRequiresEntry() {
+		$this->addCollected(['TitansMitt', 'MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Compass room")
+			->canAccess($this->collected));
+	}
+
+	public function testEastOfFireRodRoomOnlyRequiresEntry() {
+		$this->addCollected(['TitansMitt', 'MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - east of Fire Rod room")
+			->canAccess($this->collected));
+	}
+
+	public function testGibdoStalfosRoomOnlyRequiresEntry() {
+		$this->addCollected(['TitansMitt', 'MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room")
+			->canAccess($this->collected));
+	}
+
+	public function testSouthOfFireRodMustBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")
+			->canFill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testEntranceToPart2RequiresFireRod() {
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Entrance to part 2")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testMothulaRequiresFireRod() {
+		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testMothulaRequiresASword() {
+		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+			->canAccess($this->allItemsExcept(['L1Sword', 'L1SwordAndShield', 'L2Sword', 'MasterSword', 'L3Sword', 'L4Sword'])));
+	}
+
+	// Key filling
+	public function testMothulaCantHaveKey() {
+		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testMothulaCanHaveKey() {
+		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")->fill(Item::get('BigKey'), $this->allItems()));
+	}
+
+	public function testSouthOfFireRodCantNotBeKey() {
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")
+			->canFill(Item::get('Arrow'), $this->allItems()));
+	}
+
+	public function testBigChestCannotBeBigKey() {
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 }
