@@ -2,5 +2,6 @@
 /public/storage
 /storage/*.key
 /vendor
+/docs
 /.idea
 .env

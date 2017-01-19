@@ -123,24 +123,9 @@ class IcePalace extends Region {
 		});
 
 		$this->locations["Heart Container - Kholdstare"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('BigKey'), [
-				"[dungeon-D5-B1] Ice Palace - Big Key room",
-				"[dungeon-D5-B1] Ice Palace - compass room",
-				"[dungeon-D5-B2] Ice Palace - map room",
-				"[dungeon-D5-B3] Ice Palace - spike room",
-				"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-				"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-			])
-			&& $locations->itemInLocations(Item::get('Key'), [
-				"[dungeon-D5-B1] Ice Palace - Big Key room",
-				"[dungeon-D5-B1] Ice Palace - compass room",
-				"[dungeon-D5-B2] Ice Palace - map room",
-				"[dungeon-D5-B3] Ice Palace - spike room",
-				"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-				"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-				"[dungeon-D5-B5] Ice Palace - big chest",
-			], 2)
-			&& $items->has('Hammer') && $items->canMeltThings();
+			return $items->has('Hammer') && $items->canMeltThings();
+		})->setFillRules(function($item, $locations, $items) {
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {

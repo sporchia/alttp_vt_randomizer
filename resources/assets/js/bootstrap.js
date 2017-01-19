@@ -13,3 +13,4 @@ require('bootstrap-toggle');
 require('bootstrap-select');
 window.localforage = require('localforage');
 window.secrets = require('konami-js');
+window.jszip = require('jszip');

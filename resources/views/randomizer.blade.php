@@ -30,30 +30,42 @@
 					</span>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Rules</span>
-					<select id="rules" class="form-control selectpicker">
-						<option value="v8" selected>v8</option>
-						<option value="v7">v7</option>
-						<option value="v7_hard">v7 (hard mode)</option>
-						<option value="custom">Custom</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Mode</span>
-					<select id="game-mode" class="form-control selectpicker">
-						<option value="NoMajorGlitches">No Major Glitches</option>
-						<option value="Glitched">Glitched</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="btn-group btn-flex" role="group">
-					<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-					<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="input-group" role="group">
+							<span class="input-group-addon">Rules</span>
+							<select id="rules" class="form-control selectpicker">
+								<option value="v8" selected>v8</option>
+								<option value="v7">v7</option>
+								<option value="v7_hard">v7 (hard mode)</option>
+								<option value="custom">Custom</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group" role="group">
+							<span class="input-group-addon">Mode</span>
+							<select id="game-mode" class="form-control selectpicker">
+								<option value="NoMajorGlitches">No Major Glitches</option>
+								<option value="Glitched">Glitched</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="btn-group btn-flex" role="group">
+							<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
+							<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+							</button>
+							<ul id="generate-multi" class="dropdown-menu dropdown-menu-right">
+								@for ($i = 1; $i <= 10; $i++)
+								<li><a data-value="{{ $i }}">Generate {{ $i }} seeds</a></li>
+								@endfor
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -527,6 +539,7 @@ function seedApplied(data) {
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
+		rom.spoiler = data.patch.spoiler;
 		rom.complexity = data.patch.spoiler.playthrough.complexity;
 		rom.sub_complexity = data.patch.spoiler.playthrough.sub_complexity;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
@@ -603,14 +616,21 @@ $(function() {
 			$('.custom-rules').hide();
 		}
 	});
+
+	// Complexity switch
 	$('#generate-complexity-show').on('change', function() {
 		if ($(this).prop('checked')) {
 			$('.complexity').show();
+			localforage.setItem('generate.complexity.show', true);
 		} else {
 			$('.complexity').hide();
+			localforage.setItem('generate.complexity.show', false);
 		}
 	});
-	$('#generate-complexity-show').trigger('change');
+	localforage.getItem('generate.complexity.show').then(function(value) {
+		$('#generate-complexity-show').prop('checked', value);
+		$('#generate-complexity-show').trigger('change');
+	});
 
 	$('button[name=save]').on('click', function() {
 		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
@@ -651,11 +671,22 @@ $(function() {
 	$('.custom-items').first().trigger('change');
 
 	$('#heart-speed').on('change', function() {
+		localforage.setItem('rom.heart-speed', $(this).val());
 		$('input[name=heart_speed]').val($(this).val());
 	});
+	localforage.getItem('rom.heart-speed').then(function(value) {
+		$('#heart-speed').val(value);
+	});
+
 	$('#generate-sram-trace').on('change', function() {
+		localforage.setItem('rom.sram-trace', $(this).prop('checked'));
 		$('input[name=sram_trace]').val($(this).prop('checked'));
 	});
+	localforage.getItem('rom.sram-trace').then(function(value) {
+		$('#generate-sram-trace').prop('checked', value);
+		$('#generate-sram-trace').trigger('change');
+	});
+
 	$('#game-mode').on('change', function() {
 		$('input[name=game_mode]').val($(this).val());
 	});
@@ -717,10 +748,43 @@ $(function() {
 		$('.custom-items').first().trigger('change');
 	});
 
-
 	$('#seed-clear').on('click', function() {
 		$('#seed').val('');
 	});
+
+	$('#generate-multi a').on('click', function() {
+		var itters = $(this).data('value');
+		var zip = new jszip();
+		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
+
+		genToZip(zip, itters).then(function(zip) {
+			zip.generateAsync({type:"blob"})
+			.then(function(content) {
+				saveAs(content, "VT-alttp-roms.zip");
+				$('button[name=generate]').html('Generate').prop('disabled', false);
+				$('button[name=generate-save]').prop('disabled', false);
+			});
+		});
+
+	});
+
+	function genToZip(zip, left) {
+		return new Promise(function(resolve, reject) {
+			applySeed(rom, $('#seed').val()).then(function(data) {
+				var buffer = data.rom.getArrayBuffer().slice(0);
+				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.sfc', buffer);
+				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				if (left - 1 > 0) {
+					genToZip(zip, left - 1).then(function() {
+						resolve(zip);
+					});
+				} else {
+					resolve(zip);
+				}
+			});
+		});
+	}
 
 	// Load ROM from local storage if it's there
 	if (localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.WEBSQL) || localforage.supports(localforage.LOCALSTORAGE)) {

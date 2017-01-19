@@ -83,6 +83,8 @@ class ThievesTown extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setRequirements(function($locations, $items) {
 			return true;
+		})->setFillRules(function($item, $locations, $items) {
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]"]->setRequirements(function($locations, $items) {
@@ -103,18 +105,19 @@ class ThievesTown extends Region {
 
 		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer');
+		})->setFillRules(function($item, $locations, $items) {
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setRequirements(function($locations, $items) {
 			return true;
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["Heart Container - Blind"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return true;
-			}
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 

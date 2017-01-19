@@ -10,6 +10,7 @@ $iterator = Finder::create()
 	->exclude('out')
 	->exclude('vendor')
 	->exclude('docs')
+    ->exclude('tests')
 	->in('.');
 
 return new Sami($iterator, [
