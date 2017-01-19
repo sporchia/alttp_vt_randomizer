@@ -676,6 +676,7 @@ $(function() {
 	});
 	localforage.getItem('rom.heart-speed').then(function(value) {
 		$('#heart-speed').val(value);
+		$('#heart-speed').trigger('change');
 	});
 
 	$('#generate-sram-trace').on('change', function() {
