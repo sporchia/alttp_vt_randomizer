@@ -139,6 +139,16 @@ class Region {
 	}
 
 	/**
+	 * Initalize the SpeedRunner logic for the Region
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		return $this->initNoMajorGlitches();
+	}
+
+
+	/**
 	 * Determine if the Region is completable given the locations and items available
 	 *
 	 * @param Support\LocationCollection $locations current list of Locations

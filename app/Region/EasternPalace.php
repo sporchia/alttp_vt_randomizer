@@ -67,12 +67,9 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
-			return ($locations->itemInLocations(Item::get("BigKey"), [
-					"[dungeon-L1-1F] Eastern Palace - compass room",
-					"[dungeon-L1-1F] Eastern Palace - big ball room",
-					"[dungeon-L1-1F] Eastern Palace - Big key",
-					"[dungeon-L1-1F] Eastern Palace - map room",
-				]));
+			return true;
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big ball room"]->setRequirements(function($locations, $items) {
@@ -88,17 +85,13 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["Heart Container - Armos Knights"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get("BigKey"), [
-					"[dungeon-L1-1F] Eastern Palace - compass room",
-					"[dungeon-L1-1F] Eastern Palace - big ball room",
-					"[dungeon-L1-1F] Eastern Palace - Big key",
-					"[dungeon-L1-1F] Eastern Palace - map room",
-				])
-				&& $items->has('Bow');
+			return $items->canShootArrows();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('Bow');
+			return $this->canEnter($locations, $items) && $items->canShootArrows();
 		};
 
 		return $this;
@@ -111,19 +104,7 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["Heart Container - Armos Knights"]->setRequirements(function($locations, $items) {
-			return $items->has('Bow');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->can_complete = function($locations, $items) {
-			return $items->has('Bow');
-		};
+		$this->initNoMajorGlitches();
 
 		return $this;
 	}

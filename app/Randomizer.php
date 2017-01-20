@@ -150,7 +150,7 @@ class Randomizer {
 			$item = array_shift($swords);
 			$regions['Swords']->getEmptyLocations()->random()->setItem($item);
 		}
-		$locations['Uncle']->setItem(Item::get('L1SwordAndShield'));
+		$locations['Uncle']->setItem(Item::get('L1Sword'));
 
 		if (!$this->config('region.swordShuffle', true)) {
 			$locations["Pyramid"]->setItem(Item::get('L4Sword'));
@@ -235,9 +235,9 @@ class Randomizer {
 
 			if ($available_locations->count() == 0) {
 				foreach ($locations->getEmptyLocations() as $log_loc) {
-					Log::debug("SOFT LOCK LOCATION: " . $log_loc->getName());
+					Log::error("SOFT LOCK LOCATION: " . $log_loc->getName());
 				}
-				throw new \Exception(sprintf('No Available Locations: "%s"', $item->getNiceName()));
+				throw new \Exception(sprintf('No Available Locations: "%s [seed:%s]"', $item->getNiceName(), $this->seed));
 			}
 
 			foreach ($available_locations as $location) {
@@ -253,7 +253,7 @@ class Randomizer {
 			};
 
 			if ($limit <= 0) {
-				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location', $item->getNiceName()));
+				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location [seed:%s]', $item->getNiceName(), $this->seed));
 			}
 
 			$my_items->addItem($item);

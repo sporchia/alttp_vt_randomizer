@@ -24,6 +24,7 @@ class TowerOfHera extends Region {
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("[dungeon-L3-1F] Tower of Hera - first floor", 0xE9E6, null, $this),
+			//new Location\Standing("[dungeon-L3-1F] Tower of Hera - freestanding key", null, null, $this),
 			new Location\Chest("[dungeon-L3-2F] Tower of Hera - Entrance", 0xE9AD, null, $this),
 			new Location\Chest("[dungeon-L3-4F] Tower of Hera - 4F [small chest]", 0xE9FB, null, $this),
 			new Location\BigChest("[dungeon-L3-4F] Tower of Hera - big chest", 0xE9F8, null, $this),
@@ -42,6 +43,8 @@ class TowerOfHera extends Region {
 		$locations = $this->locations->filter(function($location) {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Moldorm";
 		});
+
+		//$locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setItem(Item::get('Key'));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 

@@ -110,7 +110,7 @@ class RandomizerTest extends TestCase {
 		});
 
 		$this->assertEquals($loc_item_array, [
-			"Uncle" => "L1SwordAndShield",
+			"Uncle" => "L1Sword",
 			"[cave-034] Hyrule Castle secret entrance" => "OcarinaInactive",
 			"[cave-018] Graveyard - top right grave" => "BookOfMudora",
 			"[cave-047] Dam" => "PieceOfHeart",

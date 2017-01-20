@@ -37,7 +37,7 @@ class LightWorldTest extends TestCase {
 	}
 
 	public function testGraveyardGraveRequiresBootsMirrorMoonPearlAndAccessToNWDW() {
-		$this->addCollected(['PegasusBoots', 'Cape', 'Hookshot', 'Hammer', 'MagicMirror', 'MoonPearl']);
+		$this->addCollected(['PegasusBoots', 'Cape', 'Hookshot', 'Hammer', 'MagicMirror', 'MoonPearl', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[cave-018] Graveyard - top right grave")->canAccess($this->collected));
 	}
@@ -56,15 +56,6 @@ class LightWorldTest extends TestCase {
 
 	public function testLinksHouseCannotHaveTitanMitts() {
 		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('TitansMitt'), $this->allItems()));
-	}
-
-	// Shields seems to all downgrade on S&Q to Fighters Shield, lets just avoid that
-	public function testLinksHouseCannotHaveRedShield() {
-		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('RedShield'), $this->allItems()));
-	}
-
-	public function testLinksHouseCannotHaveMirrorShield() {
-		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")->fill(Item::get('MirrorShield'), $this->allItems()));
 	}
 
 	public function testTavernRequiresNothing() {
@@ -256,7 +247,7 @@ class LightWorldTest extends TestCase {
 	}
 
 	public function testLumberjackTreeRequiresBootsAndAgahnimDestruction() {
-		$this->addCollected(['PegasusBoots', 'Cape']);
+		$this->addCollected(['PegasusBoots', 'Cape', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Lumberjack Tree)")->canAccess($this->collected));
 	}

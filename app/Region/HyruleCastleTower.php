@@ -51,7 +51,7 @@ class HyruleCastleTower extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items);
+			return $this->canEnter($locations, $items) && $items->hasSword();
 		};
 
 		$this->can_enter = function($locations, $items) {
@@ -69,6 +69,9 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
+		$this->can_complete = function($locations, $items) {
+			return $items->hasSword();
+		};
 
 		return $this;
 	}

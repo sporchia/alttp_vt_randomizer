@@ -73,6 +73,8 @@ class BaseGameTest extends TestCase {
 	public function testDesertPalaceCompletable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove']);
 
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $this->collected));
 	}
 

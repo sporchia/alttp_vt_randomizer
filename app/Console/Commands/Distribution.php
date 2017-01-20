@@ -32,6 +32,10 @@ class Distribution extends Command {
 				$function = [$this, 'item'];
 				$thing = Item::get($this->argument('thing'));
 				break;
+			case 'location':
+				$function = [$this, 'location'];
+				$thing = $this->argument('thing');
+				break;
 			case 'region_fill':
 				$function = [$this, 'region_fill'];
 				$thing = $this->argument('thing');
@@ -58,6 +62,18 @@ class Distribution extends Command {
 			}
 			$locations[$location->getName()]++;
 		}
+	}
+
+	private function location($location_name, &$locations) {
+		$rand = new Randomizer($this->option('rules'));
+		$rand->makeSeed();
+
+		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
+
+		if (!isset($locations[$location_name][$item_name])) {
+			$locations[$location_name][$item_name] = 0;
+		}
+		$locations[$location_name][$item_name]++;
 	}
 
 	private function region_fill(string $region_name, &$locations) {

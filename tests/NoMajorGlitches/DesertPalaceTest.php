@@ -55,8 +55,8 @@ class DesertPalaceTest extends TestCase {
 	public function testDoesntRequireBootsIfBigKeyIsInMapChestAndSmallKeyInBigChest() {
 		$no_boots = $this->allItemsExcept(['PegasusBoots']);
 
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $no_boots));
 	}
@@ -65,7 +65,7 @@ class DesertPalaceTest extends TestCase {
 		$no_boots = $this->allItemsExcept(['PegasusBoots']);
 
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $no_boots));
 	}

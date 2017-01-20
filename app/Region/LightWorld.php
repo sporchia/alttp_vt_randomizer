@@ -103,7 +103,7 @@ class LightWorld extends Region {
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove'), Item::get('RedShield'), Item::get('MirrorShield')]);
+			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove')]);
 		});
 
 		$this->locations["[cave-031] Tavern"]->setRequirements(function($locations, $items) {
@@ -276,7 +276,8 @@ class LightWorld extends Region {
 
 		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers') && $items->has('MoonPearl') && $items->has('MagicMirror')
-				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items);
+				&& ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
+					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
 		});
 
 		$this->locations["Piece of Heart (Dam)"]->setRequirements(function($locations, $items) {
@@ -320,12 +321,15 @@ class LightWorld extends Region {
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
-				&& ($items->hasABottle()
-					|| ($items->has('TitansMitt') && $items->has("MoonPearl")));
+				&& ($items->hasABottle() || $items->has("MoonPearl"))
+				&& ($items->has('TitansMitt')
+					|| $items->has('Flippers')
+					|| $items->has('Hammer')
+					|| $this->world->getRegion('East Dark World')->canEnter($locations, $items));
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots');
+			return $items->has('PegasusBoots') && $items->hasSword();
 		});
 
 		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
@@ -343,7 +347,11 @@ class LightWorld extends Region {
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
 			return $items->has('Powder')
 				&& ($items->has('Hammer')
-					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('TitansMitt')));
+					|| (($items->has('MoonPearl') || $items->hasABottle())
+					&& $items->has('MagicMirror')
+					&& ($items->has('TitansMitt')
+						|| $items->has('Flippers')
+						|| $this->world->getRegion('East Dark World')->canEnter($locations, $items))));
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
@@ -360,5 +368,24 @@ class LightWorld extends Region {
 		});
 
 		return $this;
+	}
+
+	function initSpeedRunner() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
+			return true;
+		});
+
+		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
+			return true;
+		});
+
+		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& (($this->world->getRegion('East Dark World')->canEnter($locations, $items)
+					&& $items->has('MoonPearl') && ($items->canLiftRocks() || $items->has('Hammer')))
+				|| ($this->world->getRegion('East Dark World')->canEnter($locations, $items) && $items->has('Flippers')));
+		});
 	}
 }
