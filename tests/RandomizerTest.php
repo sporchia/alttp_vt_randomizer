@@ -195,6 +195,7 @@ class RandomizerTest extends TestCase {
 			"[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]" => "MagicMirror",
 			"Piece of Heart (Death Mountain - floating island)" => "TwentyRupees",
 			"[dungeon-L3-1F] Tower of Hera - first floor" => "BombUpgrade5",
+			"[dungeon-L3-1F] Tower of Hera - freestanding key" => "Key",
 			"[dungeon-L3-2F] Tower of Hera - Entrance" => "BigKey",
 			"[dungeon-L3-4F] Tower of Hera - 4F [small chest]" => "OneHundredRupees",
 			"[dungeon-L3-4F] Tower of Hera - big chest" => "Map",
