@@ -335,6 +335,10 @@
 					<label for="item-count-Boomerang">Blue Boomerang</label>
 				</div>
 				<div class="col-md-4">
+					<input id="item-count-BlueShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BlueShield]" class="custom-items">
+					<label for="item-count-BlueShield">Blue Shield</label>
+				</div>
+				<div class="col-md-4">
 					<input id="item-count-BossHeartContainer" type="number" value="10" min="0" max="200" step="1" name="data[alttp.custom.item.count.BossHeartContainer]" class="custom-items">
 					<label for="item-count-BossHeartContainer">Boss Heart Container</label>
 				</div>
@@ -391,7 +395,7 @@
 					<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TwentyRupees" type="number" value="23" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+					<input id="item-count-TwentyRupees" type="number" value="22" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
 					<label for="item-count-TwentyRupees">Rupees (20)</label>
 				</div>
 			</div>

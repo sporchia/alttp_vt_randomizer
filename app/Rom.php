@@ -125,6 +125,23 @@ class Rom {
 	}
 
 	/**
+	 * Set the Zora credits text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setZoraCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
+		$offset = 0x76A85;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Enable/Disable the predefined ROM debug mode: Starts after Zelda is saved with all items. No chests are open.
 	 *
 	 * @return $this
@@ -294,6 +311,11 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * Get the array of bytes written in the order they were written to the rom
+	 *
+	 * @return array
+	 */
 	public function getWriteLog() {
 		return $this->write_log;
 	}
@@ -322,7 +344,7 @@ class Rom {
 	}
 
 	/**
-	 * Convert string to byte array that can be written to ROM
+	 * Convert string to byte array for Dialog Box that can be written to ROM
 	 *
 	 * @param string $string string to convert
 	 *
@@ -360,6 +382,22 @@ class Rom {
 		$new_string[] = 0x7F;
 		$new_string[] = 0x7F;
 		return $new_string;
+	}
+
+	/**
+	 * Convert string to byte array for Credits that can be written to ROM
+	 *
+	 * @param string $string string to convert
+	 *
+	 * @return array
+	 */
+	public function convertCredits(string $string) {
+		$byte_array = [];
+		foreach (str_split(strtolower($string)) as $char) {
+			$byte_array[] = $this->charToCreditsHex($char);
+		}
+
+		return $byte_array;
 	}
 
 	/**

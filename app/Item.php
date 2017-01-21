@@ -90,9 +90,9 @@ class Item {
 			new Item\Sword('MasterSword', 'Master Sword', 0x50),
 			new Item\Sword('L3Sword', 'Tempered Sword', 0x02), // Uncle must be dead
 			new Item\Sword('L4Sword', 'Golden Sword', 0x03), // Uncle must be dead
-			new Item('BlueShield', 'Fighters Shield', 0x04), // Uncle must be dead
-			new Item('RedShield', 'Fire Shield', 0x05), // Uncle must be dead
-			new Item('MirrorShield', 'Mirror Shield', 0x06), // Uncle must be dead
+			new Item\Shield('BlueShield', 'Fighters Shield', 0x04), // Uncle must be dead
+			new Item\Shield('RedShield', 'Fire Shield', 0x05), // Uncle must be dead
+			new Item\Shield('MirrorShield', 'Mirror Shield', 0x06), // Uncle must be dead
 			new Item('FireRod', 'Fire Rod', 0x07),
 			new Item('IceRod', 'Ice Rod', 0x08),
 			new Item('Hammer', 'Hammer', 0x09),

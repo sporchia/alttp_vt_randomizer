@@ -184,7 +184,7 @@ class Location {
 	 * @return $this
 	 */
 	public function readItem(Rom $rom) {
-		if (!$this->address[0]) {
+		if (empty($this->address) || !$this->address[0]) {
 			throw new \Exception(sprintf("No Address to read: %s", $this->getName()));
 		}
 

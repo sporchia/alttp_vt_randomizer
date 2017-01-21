@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 13;
+	const LOGIC = 14;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -276,12 +276,6 @@ class Randomizer {
 	public function getSpoiler() {
 		$spoiler = [];
 
-		$locations = $this->world->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Prize::class)
-				&& !is_a($location, Location\Medallion::class)
-				&& !is_a($location, Location\Fountain::class);
-		});
-
 		foreach ($this->world->getRegions() as $name => $region) {
 			$spoiler[$name] = [];
 			Log::info("");
@@ -348,17 +342,28 @@ class Randomizer {
 		$rom->writeRNGBlock(function() {
 			return mt_rand(0, 0x100);
 		});
-		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", 'C', $this->seed, static::LOGIC, $this->rules), 21, ' '));
 
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
 
-		if ($this->type == 'Glitched') {
-			$rom->setMirrorlessSaveAneQuitToLightWorld(false);
-			$rom->setSwampWaterLevel(false);
-			$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
-			$rom->setRandomizerSeedType('Glitched');
+		switch ($this->type) {
+			case 'Glitched':
+				$type_flag = 'G';
+				$rom->setMirrorlessSaveAneQuitToLightWorld(false);
+				$rom->setSwampWaterLevel(false);
+				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
+				$rom->setRandomizerSeedType('Glitched');
+				break;
+			case 'SpeedRunner':
+				$type_flag = 'S';
+				break;
+			case 'NoMajorGlitches':
+			default:
+				$type_flag = 'C';
+				break;
 		}
+
+		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->seed, static::LOGIC, $this->rules), 21, ' '));
 
 		return $rom;
 	}
@@ -425,6 +430,10 @@ class Randomizer {
 	public function getItemPool() {
 		$items_to_find = [];
 
+		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
+			array_push($items_to_find, Item::get('BlueShield'));
+		}
+
 		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
 			array_push($items_to_find, Item::get('BlueMail'));
 		}
@@ -476,7 +485,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade10'));
 		}
-		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade70', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade70', 0); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
@@ -500,7 +509,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.FiveRupees', 2); $i++) {
 			array_push($items_to_find, Item::get('FiveRupees'));
 		}
-		for ($i = 0; $i < $this->config('item.count.TwentyRupees', 21); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TwentyRupees', 20); $i++) {
 			array_push($items_to_find, Item::get('TwentyRupees'));
 		}
 		for ($i = 0; $i < $this->config('item.count.FiftyRupees', 7); $i++) {

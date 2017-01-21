@@ -37,7 +37,7 @@ class PalaceOfDarknessTest extends TestCase {
 	// So basically all doors that have no doors behind them and more than one chest behind them can not have keys behind them
 	//
 	public function testShooterRoomRequiresOnlyEntry() {
-		$this->addCollected(['MoonPearl', 'Cape']);
+		$this->addCollected(['MoonPearl', 'Cape', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")
 			->canAccess($this->collected));

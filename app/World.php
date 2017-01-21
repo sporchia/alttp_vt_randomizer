@@ -166,7 +166,11 @@ class World {
 	 */
 	public function modelFromRom(Rom $rom) {
 		foreach ($this->locations as $location) {
-			$location->readItem($rom);
+			try {
+				$location->readItem($rom);
+			} catch (\Exception $e) {
+				continue;
+			}
 		}
 		return $this;
 	}
