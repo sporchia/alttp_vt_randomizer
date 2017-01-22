@@ -325,7 +325,7 @@ class LightWorld extends Region {
 				&& ($items->has('TitansMitt')
 					|| $items->has('Flippers')
 					|| $items->has('Hammer')
-					|| $this->world->getRegion('East Dark World')->canEnter($locations, $items));
+					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
@@ -351,7 +351,7 @@ class LightWorld extends Region {
 					&& $items->has('MagicMirror')
 					&& ($items->has('TitansMitt')
 						|| $items->has('Flippers')
-						|| $this->world->getRegion('East Dark World')->canEnter($locations, $items))));
+						|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
@@ -383,9 +383,9 @@ class LightWorld extends Region {
 
 		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
-				&& (($this->world->getRegion('East Dark World')->canEnter($locations, $items)
+				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
 					&& $items->has('MoonPearl') && ($items->canLiftRocks() || $items->has('Hammer')))
-				|| ($this->world->getRegion('East Dark World')->canEnter($locations, $items) && $items->has('Flippers')));
+				|| ($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && $items->has('Flippers')));
 		});
 	}
 }

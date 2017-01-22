@@ -42,10 +42,13 @@ class Location {
 	 * @return bool
 	 */
 	public function fill(Item $item, $items) {
+		$old_item = $this->item;
+		$this->setItem($item);
 		if ($this->canFill($item, $items)) {
-			$this->setItem($item);
 			return true;
 		}
+
+		$this->setItem($old_item);
 
 		return false;
 	}

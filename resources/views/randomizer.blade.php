@@ -48,6 +48,7 @@
 							<span class="input-group-addon">Mode</span>
 							<select id="game-mode" class="form-control selectpicker">
 								<option value="NoMajorGlitches">No Major Glitches</option>
+								<option value="SpeedRunner">Speed Runner</option>
 								<option value="Glitched">Glitched</option>
 							</select>
 						</div>

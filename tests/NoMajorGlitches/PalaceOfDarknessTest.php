@@ -18,24 +18,7 @@ class PalaceOfDarknessTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Chest("[dungeon-D1-1F] Dark Palace - big key room",
-	// Chest("[dungeon-D1-1F] Dark Palace - jump room [right chest]",
-	// Chest("[dungeon-D1-1F] Dark Palace - jump room [left chest]",
-	// BigChest("[dungeon-D1-1F] Dark Palace - big chest",
-	// Chest("[dungeon-D1-1F] Dark Palace - compass room",
-	// Chest("[dungeon-D1-1F] Dark Palace - spike statue room",
-	// Chest("[dungeon-D1-B1] Dark Palace - turtle stalfos room",
-	// Chest("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]",
-	// Chest("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]",
-	// Chest("[dungeon-D1-1F] Dark Palace - statue push room",
-	// Chest("[dungeon-D1-1F] Dark Palace - maze room [top chest]",
-	// Chest("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]",
-	// Chest("[dungeon-D1-B1] Dark Palace - shooter room",
-	// Drop("Heart Container - Helmasaur King",
-	// so need to find a way to test this better, and want to look at each location and actually solve the logic for each place individually
-	// like
-	// So basically all doors that have no doors behind them and more than one chest behind them can not have keys behind them
-	//
+	// Entry
 	public function testShooterRoomRequiresOnlyEntry() {
 		$this->addCollected(['MoonPearl', 'Cape', 'L1Sword']);
 
@@ -107,16 +90,16 @@ class PalaceOfDarknessTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	// Chest("[dungeon-D1-1F] Dark Palace - big key room",
-	// Chest("[dungeon-D1-1F] Dark Palace - jump room [right chest]",
-	// Chest("[dungeon-D1-1F] Dark Palace - jump room [left chest]",
-	// Chest("[dungeon-D1-B1] Dark Palace - turtle stalfos room",
-	// Chest("[dungeon-D1-1F] Dark Palace - statue push room",
-	// Chest("[dungeon-D1-B1] Dark Palace - shooter room",
+	// Key filling
+	public function testBigKeyRoomMustHaveKeyIfOnly3RoomsHaveKeyBeforeBridgeBowless() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
 
-	// Can go through front door, or around with Bow and Hammer, but will need access to at least 2 more keys as they
-	// use a key downstairs if they have Hammer
-	// Big Key Room is locked behind a door, basically we need to guarentee 4 keys before falling bridge in all cases
+		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")
+			->fill(Item::get('Key'), $this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
+	}
+
 	public function testBigKeyRoomMustHaveKeyIfOnly3RoomsHaveKeyBeforeBridge() {
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
