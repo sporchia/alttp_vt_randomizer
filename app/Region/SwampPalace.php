@@ -68,8 +68,8 @@ class SwampPalace extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setRequirements(function($locations, $items) {
-			return true;
+		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setFillRules(function($item, $locations, $items) {
+			return $item == Item::get('Key');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setRequirements(function($locations, $items) {
@@ -88,6 +88,8 @@ class SwampPalace extends Region {
 					"[dungeon-D2-B2] Swamp Palace - hidden waterfall door room",
 					"Heart Container - Arrghus",
 					]) && $items->has('Hookshot')));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setRequirements(function($locations, $items) {

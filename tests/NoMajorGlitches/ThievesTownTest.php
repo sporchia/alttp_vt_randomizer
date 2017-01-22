@@ -20,15 +20,18 @@ class ThievesTownTest extends TestCase {
 
 	// Entry
 	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Thieves Town')->canEnter($this->world->getLocations(), $this->allItems()));
+		$this->assertTrue($this->world->getRegion('Thieves Town')
+			->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
 	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Thieves Town')->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
+		$this->assertFalse($this->world->getRegion('Thieves Town')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
 	}
 
 	public function testNorthWestDarkWorldAccessRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Thieves Town')->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
+		$this->assertFalse($this->world->getRegion('Thieves Town')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
 	}
 
 	// Item Locations
@@ -88,23 +91,28 @@ class ThievesTownTest extends TestCase {
 
 	// Key filling
 	public function testAboveBlindCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")->fill(Item::get('Key'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")
+			->fill(Item::get('Key'), $this->allItems()));
 	}
 
 	public function testAboveBlindCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")->fill(Item::get('BigKey'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	public function testNextToBlindCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - next to Blind")->fill(Item::get('BigKey'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - next to Blind")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	public function testBlindCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Blind")->fill(Item::get('Key'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("Heart Container - Blind")
+			->fill(Item::get('Key'), $this->allItems()));
 	}
 
 	public function testBlindCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Blind")->fill(Item::get('BigKey'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("Heart Container - Blind")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	public function testBigChestCannotBeKey() {

@@ -35,7 +35,11 @@ class FindUncleText extends Command {
 		$search_length = count($search);
 		$search_left = $search_length;
 		while (!feof($rom)) {
-			$byte = unpack('C*', fread($rom, 1))[1];
+			try {
+				$byte = unpack('C*', fread($rom, 1))[1];
+			} catch (\Exception $e) {
+				break;
+			}
 			if ($byte !== $search[$search_length - $search_left]) {
 				$search_left = $search_length;
 			} else {

@@ -36,6 +36,10 @@ class Distribution extends Command {
 				$function = [$this, 'location'];
 				$thing = $this->argument('thing');
 				break;
+			case 'complexity':
+				$function = [$this, 'complexity'];
+				$thing = $this->argument('thing');
+				break;
 			case 'region_fill':
 				$function = [$this, 'region_fill'];
 				$thing = $this->argument('thing');
@@ -48,7 +52,7 @@ class Distribution extends Command {
 			call_user_func_array($function, [$thing, &$locations]);
 		}
 
-		ksort($locations);
+		ksortr($locations);
 		$this->info(json_encode($locations, JSON_PRETTY_PRINT));
 	}
 
@@ -62,6 +66,27 @@ class Distribution extends Command {
 			}
 			$locations[$location->getName()]++;
 		}
+	}
+
+	private function complexity($type, &$locations) {
+		$rand = new Randomizer($this->option('rules'));
+		$rand->makeSeed();
+		$spoiler = $rand->getWorld()->getPlaythrough();
+		$vt_complexity = $spoiler['vt_complexity'];
+		$complexity = $spoiler['complexity'];
+		$mix_complexity = sprintf("%s (%s)", $spoiler['vt_complexity'], $spoiler['complexity']);
+		if (!isset($locations['org'][$complexity])) {
+			$locations['org'][$complexity] = 0;
+		}
+		$locations['org'][$complexity]++;
+		if (!isset($locations['mix'][$mix_complexity])) {
+			$locations['mix'][$mix_complexity] = 0;
+		}
+		$locations['mix'][$mix_complexity]++;
+		if (!isset($locations['vt'][$vt_complexity])) {
+			$locations['vt'][$vt_complexity] = 0;
+		}
+		$locations['vt'][$vt_complexity]++;
 	}
 
 	private function location($location_name, &$locations) {

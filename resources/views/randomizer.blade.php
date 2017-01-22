@@ -534,7 +534,7 @@ function seedApplied(data) {
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .rules').html(data.patch.rules);
-		$('.info .complexity').html(data.patch.spoiler.playthrough.complexity + ' (' + data.patch.spoiler.playthrough.sub_complexity + ')');
+		$('.info .complexity').html(data.patch.spoiler.playthrough.vt_complexity + ' (' + data.patch.spoiler.playthrough.complexity + ')');
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		pasrseSpoilerToTabs(data.patch.spoiler);
@@ -545,7 +545,7 @@ function seedApplied(data) {
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
 		rom.complexity = data.patch.spoiler.playthrough.complexity;
-		rom.sub_complexity = data.patch.spoiler.playthrough.sub_complexity;
+		rom.vt_complexity = data.patch.spoiler.playthrough.vt_complexity;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 		resolve(rom);
 	});

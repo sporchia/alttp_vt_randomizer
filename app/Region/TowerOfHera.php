@@ -45,7 +45,11 @@ class TowerOfHera extends Region {
 		});
 
 		$locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setItem(Item::get('Key'));
+		// since key logic requires placement of Big Key for checks we temporaily set it in a room the Key cannot be in
+		// then unset it for actual placement.
+		//$locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem(Item::get('BigKey'));
 		//while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		//$locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem();
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
