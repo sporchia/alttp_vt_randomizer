@@ -83,6 +83,10 @@ class MiseryMireTest extends TestCase {
 	}
 
 	public function testBigChestDoesNotRequireFireIfBigKeyInBigHubRoom() {
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - map room")->setItem(Item::get('Key'));
+
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('BigKey'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
@@ -171,6 +175,8 @@ class MiseryMireTest extends TestCase {
 	public function testItemCanBeInBigChestIfBigKeyInCompassRoomAndKeyInBigKeyRoom() {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Arrow'), $this->allItems()));
 	}
@@ -185,15 +191,23 @@ class MiseryMireTest extends TestCase {
 	public function testItemCanBeInBigChestIfKeyInCompassRoomAndBigKeyInBigKeyRoom() {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Arrow'), $this->allItems()));
 	}
 
 	public function testBigKeyCanBeInCompassRoom() {
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	public function testBigKeyCanBeInBigKeyRoom() {
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->fill(Item::get('BigKey'), $this->allItems()));
 	}
 

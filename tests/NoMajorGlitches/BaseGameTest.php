@@ -278,6 +278,8 @@ class BaseGameTest extends TestCase {
 			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
 			'Ether', 'Quake']);
 
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('CaneOfSomaria'), $this->collected));

@@ -83,6 +83,8 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("Flute Boy")->setItem(Item::get('Shovel'));
 		$this->world->getLocation("Haunted Grove item")->setItem(Item::get('OcarinaInactive'));
 
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('CaneOfSomaria'));
 

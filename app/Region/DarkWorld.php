@@ -147,8 +147,24 @@ class DarkWorld extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
 	public function initSpeedRunner() {
 		$this->initNoMajorGlitches();
+
+		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
+			return $items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
+				|| ($items->has('Flippers') && $items->hasABottle() && $items->has('BugCatchingNet')));
+		});
+
+		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
+			return $items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
+				|| ($items->has('Flippers') && $items->hasABottle() && $items->has('BugCatchingNet')));
+		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) {
 			return $this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->has('TitansMitt');

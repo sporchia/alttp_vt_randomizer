@@ -35,7 +35,7 @@ class Zora extends Npc {
 			case Item::get('MirrorShield'):
 				return "face shield for sale";
 			case Item::get('FireRod'):
-				return "flame staff for sale";
+				return "rage rod for sale";
 			case Item::get('IceRod'):
 				return "ice cream for sale";
 			case Item::get('Hammer'):

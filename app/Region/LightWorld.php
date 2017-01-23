@@ -346,12 +346,7 @@ class LightWorld extends Region {
 
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
 			return $items->has('Powder')
-				&& ($items->has('Hammer')
-					|| (($items->has('MoonPearl') || $items->hasABottle())
-					&& $items->has('MagicMirror')
-					&& ($items->has('TitansMitt')
-						|| $items->has('Flippers')
-						|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
+				&& ($items->has('Hammer') || $items->has('MagicMirror'));
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
@@ -370,6 +365,12 @@ class LightWorld extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
 	function initSpeedRunner() {
 		$this->initNoMajorGlitches();
 

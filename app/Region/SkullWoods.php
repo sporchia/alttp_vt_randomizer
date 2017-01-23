@@ -46,6 +46,7 @@ class SkullWoods extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Mothula";
 		});
 
+		// @TODO: this is wrong for SpeedRunner, we want to allow this to not be a key
 		$locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->fill(Item::get('Key'), $my_items);
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
@@ -114,7 +115,7 @@ class SkullWoods extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('FireRod');
+			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->hasSword();
 		};
 
 		$this->can_enter = function($locations, $items) {
@@ -131,7 +132,12 @@ class SkullWoods extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setRequirements(function($locations, $items) {
+			return !$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D3-B1] Skull Woods - Entrance to part 2",
+						"Heart Container - Mothula",
+					]) || $items->has('FireRod');
+		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
 
@@ -140,17 +146,36 @@ class SkullWoods extends Region {
 		});
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod');
+			return $items->has('FireRod') && $items->hasSword();
 		})->setFillRules(function($item, $locations, $items) {
 			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('Key');
+				return true;
 			}
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $items->has('FireRod');
+			return $items->has('FireRod') && $items->hasSword();
 		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["Heart Container - Mothula"]->setFillRules(function($item, $locations, $items) {
+			if ($this->world->config('region.bossHaveKey', true)) {
+				return true;
+			}
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+		});
 
 		return $this;
 	}

@@ -179,7 +179,12 @@ class DesertPalace extends Region {
 							"[dungeon-L2-B1] Desert Palace - Big key room",
 							"[dungeon-L2-B1] Desert Palace - compass room",
 						]))))
-				|| $locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get('BigKey')))
+				|| $locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get('BigKey'))
+				|| ($locations["[dungeon-L2-B1] Desert Palace - Map room"]->hasItem(Item::get('Key'))
+					&& $locations->itemInLocations(Item::get('BigKey'), [
+							"[dungeon-L2-B1] Desert Palace - Big key room",
+							"[dungeon-L2-B1] Desert Palace - compass room",
+						])))
 				&& $items->canLightTorches();
 		});
 
