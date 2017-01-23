@@ -158,8 +158,8 @@ class IcePalaceTest extends TestCase {
 	}
 
 	// Key filling
-	public function testKholdstareCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Kholdstare")->fill(Item::get('Key'), $this->allItems()));
+	public function testKholdstareCanHaveKey() {
+		$this->assertTrue($this->world->getLocation("Heart Container - Kholdstare")->fill(Item::get('Key'), $this->allItems()));
 	}
 
 	public function testKholdstareCantHaveBigKey() {

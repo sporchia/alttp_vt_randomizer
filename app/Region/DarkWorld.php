@@ -156,12 +156,12 @@ class DarkWorld extends Region {
 	public function initSpeedRunner() {
 		$this->initNoMajorGlitches();
 
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
+		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
 				|| ($items->has('Flippers') && $items->hasABottle() && $items->has('BugCatchingNet')));
 		});
 
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
+		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
 				|| ($items->has('Flippers') && $items->hasABottle() && $items->has('BugCatchingNet')));
 		});
