@@ -492,7 +492,8 @@ function applySeed(rom, seed, second_attempt) {
 			rom.parsePatch(patch.patch).then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			});
-		}, 'json');
+		}, 'json')
+		.fail(reject);
 	});
 }
 
@@ -523,6 +524,13 @@ function romOk(rom) {
 	$('#seed-generate').show();
 	$('#config').show();
 	localforage.setItem('rom', rom.getArrayBuffer());
+}
+
+function seedFailed(data) {
+	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate-save]').prop('disabled', false);
+	$('.alert .message').html('Failed Creating Seed :(');
+	$('.alert').show().delay(2000).fadeOut("slow");
 }
 
 function seedApplied(data) {
@@ -646,7 +654,7 @@ $(function() {
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
-			.then(seedApplied)
+			.then(seedApplied, seedFailed)
 			.then(function(rom) {
 				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
 			});
@@ -655,7 +663,7 @@ $(function() {
 	$('button[name=generate]').on('click', function() {
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
 		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
-		applySeed(rom, $('#seed').val()).then(seedApplied);
+		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
 
 	$('input[name=f2u]').on('change', function() {
@@ -694,8 +702,14 @@ $(function() {
 	});
 
 	$('#game-mode').on('change', function() {
+		localforage.setItem('rom.game-mode', $(this).val());
 		$('input[name=game_mode]').val($(this).val());
 	});
+	localforage.getItem('rom.game-mode').then(function(value) {
+		$('#game-mode').val(value);
+		$('#game-mode').trigger('change');
+	});
+
 	$('#generate-debug').on('change', function() {
 		$('input[name=debug]').val($(this).prop('checked'));
 	});
