@@ -68,7 +68,8 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canMeltThings() {
-		return $this->has('FireRod') || $this->has('Bombos');
+		return $this->has('FireRod')
+			|| ($this->has('Bombos') && $this->hasSword());
 	}
 
 	/**

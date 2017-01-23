@@ -11,7 +11,7 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=v8}';
+	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=v8} {--mode=NoMajorGlitches}';
 
 	/**
 	 * The console command description.
@@ -102,7 +102,7 @@ class Distribution extends Command {
 	}
 
 	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('rules'));
+		$world = new World($this->option('rules'), $this->option('mode'));
 		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
 		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 		$region = $world->getRegion($region_name);

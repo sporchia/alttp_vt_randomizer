@@ -147,7 +147,18 @@ class TowerOfHera extends Region {
 	 */
 	public function initGlitched() {
 		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches();
+			return $items->canLightTorches()
+				&& ($locations->itemInLocations(Item::get('Key'), [
+					"[dungeon-L3-1F] Tower of Hera - freestanding key",
+					"[dungeon-L3-2F] Tower of Hera - Entrance",
+				])
+				|| $locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-L3-1F] Tower of Hera - freestanding key",
+					"[dungeon-L3-2F] Tower of Hera - Entrance",
+				])
+				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setRequirements(function($locations, $items) {
@@ -156,6 +167,8 @@ class TowerOfHera extends Region {
 
 		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setRequirements(function($locations, $items) {
 			return $this->canComplete($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
@@ -163,12 +176,11 @@ class TowerOfHera extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
-				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					&& (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D6-B1] Misery Mire - big key",
-						"[dungeon-D6-B1] Misery Mire - compass",
-						]) || $items->canLightTorches()));
+			return ($locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-L3-1F] Tower of Hera - freestanding key",
+					"[dungeon-L3-2F] Tower of Hera - Entrance",
+				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()))
+				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
 		};
 
 		return $this;

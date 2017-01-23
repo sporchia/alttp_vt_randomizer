@@ -94,28 +94,28 @@ class MiseryMireTest extends TestCase {
 	}
 
 	public function testBigHubRoomOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl']);
+		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")
 			->canAccess($this->collected));
 	}
 
 	public function testEndOfBridgeOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl']);
+		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")
 			->canAccess($this->collected));
 	}
 
 	public function testMapRoomOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl']);
+		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - map room")
 			->canAccess($this->collected));
 	}
 
 	public function testSpikeRoomOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl']);
+		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")
 			->canAccess($this->collected));

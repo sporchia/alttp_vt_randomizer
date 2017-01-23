@@ -219,6 +219,7 @@ class MiseryMire extends Region {
 			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+			&& $items->hasSword()
 			&& $items->has('TitansMitt') && $items->has('MoonPearl') && $items->canFly()
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
 		};
