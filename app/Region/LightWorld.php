@@ -388,5 +388,7 @@ class LightWorld extends Region {
 					&& $items->has('MoonPearl') && ($items->canLiftRocks() || $items->has('Hammer')))
 				|| ($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && $items->has('Flippers')));
 		});
+
+		return $this;
 	}
 }

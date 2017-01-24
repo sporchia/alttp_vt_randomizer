@@ -140,7 +140,6 @@ class SwampPalace extends Region {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
-
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->has('Hammer')
 				&& $items->has('Hookshot');
@@ -156,21 +155,70 @@ class SwampPalace extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode. Glitched for Swap simply is the NMG but with the added acces of a wall clip from Hera.
-	 * We will use access to the small chest on floor four to represent being able to initate the wall clip.
+	 * within for Glitched Mode.
 	 *
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initNoMajorGlitches();
+		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setRequirements(function($locations, $items) {
+			return ($this->world->getRegion('Misery Mire')->canEnter($locations, $items) && (!$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D6-B1] Misery Mire - big key",
+					"[dungeon-D6-B1] Misery Mire - compass",
+				])
+				|| $items->canLightTorches()))
+			|| ($items->has('Hammer') && (!$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D2-B2] Swamp Palace - flooded room [left chest]",
+					"[dungeon-D2-B2] Swamp Palace - flooded room [right chest]",
+					"[dungeon-D2-B2] Swamp Palace - hidden waterfall door room",
+					"Heart Container - Arrghus",
+				]) || $items->has('Hookshot')));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setRequirements(function($locations, $items) {
+			return $this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer');
+		});
+
+		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setRequirements(function($locations, $items) {
+			return $this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer');
+		});
+
+		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setRequirements(function($locations, $items) {
+			return $this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer');
+		});
+
+		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setRequirements(function($locations, $items) {
+			return $items->has('Hookshot')
+				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer'));
+		});
+
+		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setRequirements(function($locations, $items) {
+			return $items->has('Hookshot')
+				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer'));
+		});
+
+		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setRequirements(function($locations, $items) {
+			return $items->has('Hookshot')
+				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer'));
+		});
+
+		$this->locations["Heart Container - Arrghus"]->setRequirements(function($locations, $items) {
+			return ($this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer'))
+				&& $items->has('MoonPearl') && $items->has('MagicMirror')
+				&& $items->has('Flippers') && $items->has('Hookshot');
+		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('Flippers') && $items->has('Hookshot');
+			return $this->canEnter($locations, $items)
+				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items) || $items->has('Hammer'))
+				&& $items->has('MoonPearl') && $items->has('MagicMirror')
+				&& $items->has('Flippers') && $items->has('Hookshot');
 		};
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->has('Flippers') && $items->has('MagicMirror') && $items->has('MoonPearl'))
-				|| $locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->canAccess($items);
+				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
 		};
 
 		return $this;

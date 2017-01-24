@@ -106,8 +106,7 @@ class East extends Region {
 	 */
 	public function initGlitched() {
 		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer') && $items->has('MagicMirror')
-				&& ($items->has('MoonPearl') || $items->hasABottle() || $items->has('TitansMitt'));
+			return $items->has('Hammer') && $items->has('MagicMirror');
 		});
 
 		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {

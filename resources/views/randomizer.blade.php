@@ -406,7 +406,7 @@
 
 <script>
 var rom;
-var current_rom_hash = '9d06a6a993ad8b18ce13cbabb1254d61';
+var current_rom_hash = '93f0d6800928d17f0bbdf86aba51fa17';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -620,6 +620,7 @@ $(function() {
 	});
 	$('#rules').on('change', function() {
 		$('input[name=rules]').val($(this).val());
+		localforage.setItem('rom.rules', $(this).val());
 		if ($(this).val() == 'custom') {
 			$('.custom-rules').show();
 			if ($('.spoiler-tabed').is(':visible')) {
@@ -628,6 +629,11 @@ $(function() {
 		} else {
 			$('.custom-rules').hide();
 		}
+	});
+	localforage.getItem('rom.rules').then(function(value) {
+		if (!value) return;
+		$('#rules').val(value);
+		$('#rules').trigger('change');
 	});
 
 	// Complexity switch
@@ -641,22 +647,23 @@ $(function() {
 		}
 	});
 	localforage.getItem('generate.complexity.show').then(function(value) {
+		if (!value) return;
 		$('#generate-complexity-show').prop('checked', value);
 		$('#generate-complexity-show').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
-		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.txt');
+		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.sfc');
 			});
 	});
 
@@ -688,6 +695,7 @@ $(function() {
 		$('input[name=heart_speed]').val($(this).val());
 	});
 	localforage.getItem('rom.heart-speed').then(function(value) {
+		if (!value) return;
 		$('#heart-speed').val(value);
 		$('#heart-speed').trigger('change');
 	});
@@ -697,6 +705,7 @@ $(function() {
 		$('input[name=sram_trace]').val($(this).prop('checked'));
 	});
 	localforage.getItem('rom.sram-trace').then(function(value) {
+		if (!value) return;
 		$('#generate-sram-trace').prop('checked', value);
 		$('#generate-sram-trace').trigger('change');
 	});
@@ -706,6 +715,7 @@ $(function() {
 		$('input[name=game_mode]').val($(this).val());
 	});
 	localforage.getItem('rom.game-mode').then(function(value) {
+		if (!value) return;
 		$('#game-mode').val(value);
 		$('#game-mode').trigger('change');
 	});
@@ -793,8 +803,8 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + rom.mode + '_' + data.patch.seed + '.sfc', buffer);
+				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + rom.mode + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);

@@ -99,4 +99,26 @@ class HyruleCastleEscape extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode. Everything is free.
+	 *
+	 * @return $this
+	 */
+	function initSpeedRunner() {
+		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks();
+		});
+
+		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks();
+		});
+
+		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks();
+		});
+
+		return $this;
+	}
 }

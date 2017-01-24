@@ -248,7 +248,7 @@ class GanonsTower extends Region {
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
 				&& (!$this->bigKeyRequiresHookshot() || $items->has('Hookshot'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'));
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
@@ -305,7 +305,7 @@ class GanonsTower extends Region {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
 				&& (!$this->bigKeyRequiresHookshot() || $items->has('Hookshot'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
 				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
 					|| ($items->has('Hammer') && $items->has('Hookshot')) || ($items->has('FireRod') && $items->has('CaneOfSomaria')));
@@ -317,7 +317,7 @@ class GanonsTower extends Region {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
 				&& (!$this->bigKeyRequiresHookshot() || $items->has('Hookshot'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
 				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
 					|| ($items->has('Hammer') && $items->has('Hookshot')) || ($items->has('FireRod') && $items->has('CaneOfSomaria')));
@@ -329,7 +329,7 @@ class GanonsTower extends Region {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
 				&& (!$this->bigKeyRequiresHookshot() || $items->has('Hookshot'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
 				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
 					|| ($items->has('Hammer') && $items->has('Hookshot')) || ($items->has('FireRod') && $items->has('CaneOfSomaria')));
@@ -341,7 +341,7 @@ class GanonsTower extends Region {
 			return $items->canShootArrows() && $items->canLightTorches() && $items->has('Hookshot')
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
 				&& (!$this->bigKeyRequiresHookshot() || $items->has('Hookshot'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
 				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
 					|| ($items->has('Hammer') && $items->has('Hookshot')) || ($items->has('FireRod') && $items->has('CaneOfSomaria')));
@@ -415,8 +415,10 @@ class GanonsTower extends Region {
 		});
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer')
-				|| ($items->has('FireRod') && $items->has('CaneOfSomaria'));
+			return ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria')))
+				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
+				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
@@ -464,9 +466,10 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
-				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria() || ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
+				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
+					|| ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
@@ -475,9 +478,10 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
-				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria() || ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
+				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
+					|| ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
@@ -486,9 +490,10 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
-				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria() || ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
+				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
+					|| ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
@@ -497,13 +502,36 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches() && $items->has('Hookshot')
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
-				&& (!$this->bigKeyRequiresCaneOfFireRod() || $items->has('FireRod'))
+				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))
 				&& (!$this->bigKeyRequiresCaneOfSomaria() || $items->has('CaneOfSomaria'))
-				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria() || ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
+				&& (!$this->bigKeyRequiresHammerAndHookshotOrFireRodAndCaneOfSomaria()
+					|| ($items->has('Hammer') || ($items->has('FireRod') && $items->has('CaneOfSomaria'))));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
 
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		$this->initGlitched();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& $items->has('Crystal1')
+				&& $items->has('Crystal2')
+				&& $items->has('Crystal3')
+				&& $items->has('Crystal4')
+				&& $items->has('Crystal5')
+				&& $items->has('Crystal6')
+				&& $items->has('Crystal7');
+		};
 
 		return $this;
 	}
@@ -543,6 +571,7 @@ class GanonsTower extends Region {
 			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]",
 			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]",
 			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
+			"[dungeon-A2-1F] Ganon's Tower - big chest",
 		]);
 	}
 
@@ -556,7 +585,7 @@ class GanonsTower extends Region {
 		]);
 	}
 
-	protected function bigKeyRequiresCaneOfFireRod() {
+	protected function bigKeyRequiresFireRod() {
 		return $this->locations->itemInLocations(Item::get('BigKey'), [
 			"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
 			"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",

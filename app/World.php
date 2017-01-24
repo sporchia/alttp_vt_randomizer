@@ -96,10 +96,13 @@ class World {
 			}
 		}
 
-		switch($this->type) {
+		switch ($this->type) {
 			case 'Glitched':
 				$this->win_condition = function($collected_items) {
-					return $collected_items->has('MoonPearl')
+					return ($collected_items->has('MoonPearl') || $collected_items->hasABottle())
+						&& $collected_items->canLightTorches()
+						&& $collected_items->hasUpgradedSword()
+						&& $collected_items->has('PegasusBoots')
 						&& $collected_items->has('Crystal1')
 						&& $collected_items->has('Crystal2')
 						&& $collected_items->has('Crystal3')
@@ -111,9 +114,12 @@ class World {
 				};
 				break;
 			case 'NoMajorGlitches':
+			case 'SpeedRunner':
 			default:
 				$this->win_condition = function($collected_items) {
-					return $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+					return $collected_items->hasUpgradedSword()
+						&& $collected_items->canLightTorches()
+						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
 		}

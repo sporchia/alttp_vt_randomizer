@@ -108,7 +108,7 @@ return [
 		],
 		'region' => [
 			'bossNormalLocation' => true,
-			'superBunnyDM' => true,
+			'superBunnyDM' => false,
 			'bonkItems' => true,
 		],
 		'spoil' => [

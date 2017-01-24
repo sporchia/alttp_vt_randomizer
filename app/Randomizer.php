@@ -190,7 +190,7 @@ class Randomizer {
 
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 			return $location->canAccess($my_items);
-		});
+		})->merge($this->world->getRegion('Escape')->getLocations());
 
 		$this->fillItemsInLocations($advancement_items, $my_items, $locations, $base_locations);
 
@@ -356,6 +356,7 @@ class Randomizer {
 				break;
 			case 'SpeedRunner':
 				$type_flag = 'S';
+				$rom->setSwampWaterLevel(false);
 				break;
 			case 'NoMajorGlitches':
 			default:

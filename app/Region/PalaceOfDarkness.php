@@ -304,6 +304,12 @@ class PalaceOfDarkness extends Region {
 		return $this;
 	}
 
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
 	public function initSpeedRunner() {
 		$access_post_bridge = function($locations, $items) {
 			return ($locations["[dungeon-D1-B1] Dark Palace - shooter room"]->hasItem(Item::get('Key'))

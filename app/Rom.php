@@ -38,7 +38,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) === '9d06a6a993ad8b18ce13cbabb1254d61';
+		return hash_file('md5', $this->tmp_file) === '93f0d6800928d17f0bbdf86aba51fa17';
 	}
 
 	/**
