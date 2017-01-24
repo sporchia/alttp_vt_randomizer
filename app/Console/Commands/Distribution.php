@@ -57,7 +57,7 @@ class Distribution extends Command {
 	}
 
 	private function item(Item $item, &$locations) {
-		$rand = new Randomizer($this->option('rules'));
+		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocationsWithItem($item) as $location) {
@@ -69,7 +69,7 @@ class Distribution extends Command {
 	}
 
 	private function complexity($type, &$locations) {
-		$rand = new Randomizer($this->option('rules'));
+		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 		$rand->makeSeed();
 		$spoiler = $rand->getWorld()->getPlaythrough();
 		$vt_complexity = $spoiler['vt_complexity'];
@@ -90,7 +90,7 @@ class Distribution extends Command {
 	}
 
 	private function location($location_name, &$locations) {
-		$rand = new Randomizer($this->option('rules'));
+		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 		$rand->makeSeed();
 
 		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();

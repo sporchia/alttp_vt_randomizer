@@ -37,6 +37,7 @@
 							<span class="input-group-addon">Rules</span>
 							<select id="rules" class="form-control selectpicker">
 								<option value="v8" selected>v8</option>
+								<option value="v8_hard" selected>v8 (hard mode)</option>
 								<option value="v7">v7</option>
 								<option value="v7_hard">v7 (hard mode)</option>
 								<option value="custom">Custom</option>

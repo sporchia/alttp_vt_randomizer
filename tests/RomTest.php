@@ -99,6 +99,54 @@ class RomTest extends TestCase {
 		$this->assertEquals(0x00, $this->rom->read(0x180030));
 	}
 
+	public function testSetRandomizerSeedTypeGlitched() {
+		$this->rom->setRandomizerSeedType('Glitched');
+
+		$this->assertEquals(0x01, $this->rom->read(0x180210));
+	}
+
+	public function testSetRandomizerSeedTypeNormal() {
+		$this->rom->setRandomizerSeedType('NoMajorGlitches');
+
+		$this->assertEquals(0x00, $this->rom->read(0x180210));
+	}
+
+	public function testSetRandomizerSeedTypeDefaultsToNMG() {
+		$this->rom->setRandomizerSeedType('badType');
+
+		$this->assertEquals(0x00, $this->rom->read(0x180210));
+	}
+
+	public function testSetRandomizerSeedTypeOff() {
+		$this->rom->setRandomizerSeedType('off');
+
+		$this->assertEquals(0xFF, $this->rom->read(0x180210));
+	}
+
+	public function testSetGameTypePlandomizer() {
+		$this->rom->setGameType('Plandomizer');
+
+		$this->assertEquals(0x01, $this->rom->read(0x180211));
+	}
+
+	public function testSeGameTypeRandomizer() {
+		$this->rom->setGameType('Randomizer');
+
+		$this->assertEquals(0x00, $this->rom->read(0x180211));
+	}
+
+	public function testSeGameTypeDefaultsToRandomizer() {
+		$this->rom->setGameType('badType');
+
+		$this->assertEquals(0x00, $this->rom->read(0x180211));
+	}
+
+	public function testSeGameTypeOther() {
+		$this->rom->setGameType('other');
+
+		$this->assertEquals(0xFF, $this->rom->read(0x180211));
+	}
+
 	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {
 		$this->rom->setMirrorlessSaveAneQuitToLightWorld(true);
 
@@ -110,4 +158,41 @@ class RomTest extends TestCase {
 
 		$this->assertEquals(0x00, $this->rom->read(0x1800A0));
 	}
+
+	public function testSetSwampWaterLevelOn() {
+		$this->rom->setSwampWaterLevel(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x1800A1));
+	}
+
+	public function testSetSwampWaterLevelOff() {
+		$this->rom->setSwampWaterLevel(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x1800A1));
+	}
+
+	public function testSetPreAgahnimDarkWorldDeathInDungeonOn() {
+		$this->rom->setPreAgahnimDarkWorldDeathInDungeon(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x1800A2));
+	}
+
+	public function testSetPreAgahnimDarkWorldDeathInDungeonOff() {
+		$this->rom->setPreAgahnimDarkWorldDeathInDungeon(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x1800A2));
+	}
+
+	public function testSetSeedString() {
+		$this->rom->setSeedString('123456789012345678901');
+
+		$this->assertEquals([49,50,51,52,53,54,55,56,57,48,49,50,51,52,53,54,55,56,57,48,49], $this->rom->read(0x7FC0, 21));
+	}
+
+	public function testSetSeedStringNotLongerThan21Chars() {
+		$this->rom->setSeedString('aaaaaaaaaaaaaaaaaaaaaaaaa');
+
+		$this->assertEquals([97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97,97], $this->rom->read(0x7FC0, 25));
+	}
+
 }
