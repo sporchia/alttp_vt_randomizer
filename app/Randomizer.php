@@ -390,7 +390,7 @@ class Randomizer {
 			Log::info('Boots revealed');
 			$rom->setUncleTextCustom("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 		} else {
-			$rom->setUncleText(mt_rand(0, 31));
+			$rom->setUncleText(mt_rand(0, 32));
 		}
 
 		return $this;

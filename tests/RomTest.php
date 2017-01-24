@@ -3,6 +3,8 @@
 use ALttP\Rom;
 
 class RomTest extends TestCase {
+	const UNCLE_TEXT_0_ADDRESS = 0x102450;
+
 	public function setUp() {
 		parent::setUp();
 		$this->rom = new Rom;
@@ -65,6 +67,16 @@ class RomTest extends TestCase {
 		$this->assertEquals(0x02, $this->rom->read(0x180040));
 	}
 
+	public function testSetExtenedUncleText32() {
+		$this->rom->setUncleText(32);
+
+		$converted = [0, 165, 0, 200, 0, 160, 0, 160, 0, 160, 0, 255, 0, 187, 0, 190, 0, 185, 0, 174, 0, 174, 117, 0,
+			187, 0, 174, 0, 192, 0, 170, 0, 187, 0, 173, 0, 255, 0, 175, 0, 184, 0, 187, 0, 255, 0, 210, 0, 211, 118, 0,
+			194, 0, 184, 0, 190, 0, 216, 0, 187, 0, 174, 0, 255, 0, 171, 0, 184, 0, 183, 0, 174, 0, 173, 127, 127];
+
+		$this->assertEquals($converted, $this->rom->read(static::UNCLE_TEXT_0_ADDRESS, 76));
+	}
+
 	public function testSetUncleTextCustom() {
 		$this->rom->setUncleTextCustom("1234567890abcd\nline2 specials\n ?!,-.~'");
 
@@ -72,7 +84,7 @@ class RomTest extends TestCase {
 			172, 0, 173, 117, 0, 181, 0, 178, 0, 183, 0, 174, 0, 162, 0, 255, 0, 188, 0, 185, 0, 174, 0, 172, 0, 178, 0,
 			170, 0, 181, 0, 188, 118, 0, 255, 0, 198, 0, 199, 0, 200, 0, 201, 0, 205, 0, 206, 0, 216, 127, 127];
 
-		$this->assertEquals($converted, $this->rom->read(0x10244A, 76));
+		$this->assertEquals($converted, $this->rom->read(static::UNCLE_TEXT_0_ADDRESS, 76));
 	}
 
 	public function testSetDebugModeOn() {

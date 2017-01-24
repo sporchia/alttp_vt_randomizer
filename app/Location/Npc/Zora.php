@@ -29,7 +29,7 @@ class Zora extends Npc {
 			case Item::get('L4Sword'):
 				return "butter for sale";
 			case Item::get('BlueShield'):
-				return "shield for sale";
+				return "bad defense for sale";
 			case Item::get('RedShield'):
 				return "red shield for sale";
 			case Item::get('MirrorShield'):
@@ -47,7 +47,7 @@ class Zora extends Npc {
 			case Item::get('BowAndArrows'):
 				return "point stick for sale";
 			case Item::get('BowAndSilverArrows'):
-				return "sharp stick for sale";
+				return "you got lucky";
 			case Item::get('Boomerang'):
 				return "bent stick for sale";
 			case Item::get('RedBoomerang'):

@@ -103,7 +103,16 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleText($byte) {
-		$this->write(0x180040, pack('C', $byte));
+		if ($byte < 32) {
+			$this->write(0x180040, pack('C', $byte));
+		} else {
+			switch ($byte) {
+				case 32:
+				default:
+					$this->setUncleTextCustom("5,000 Rupee\nreward for @>\nYou're boned");
+					break;
+			}
+		}
 
 		return $this;
 	}
@@ -116,7 +125,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x10244A;
+		$offset = 0x102450;
 		foreach ($this->convertDialog(mb_strtoupper($string)) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
