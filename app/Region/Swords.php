@@ -58,6 +58,7 @@ class Swords extends Region {
 	public function initGlitched() {
 		$this->initNoMajorGlitches();
 
+		// @TODO: when S+Q follower fix is removed this will need to be readdressed
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
 				&& ($items->hasABottle() || $items->has("MoonPearl"));

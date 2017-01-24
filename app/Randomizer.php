@@ -349,7 +349,6 @@ class Randomizer {
 		switch ($this->type) {
 			case 'Glitched':
 				$type_flag = 'G';
-				$rom->setMirrorlessSaveAneQuitToLightWorld(false);
 				$rom->setSwampWaterLevel(false);
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
 				$rom->setRandomizerSeedType('Glitched');
@@ -490,33 +489,37 @@ class Randomizer {
 			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.BowAndSilverArrows', 0); $i++) {
+			array_push($items_to_find, Item::get('BowAndSilverArrows'));
+		}
+
 		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {
 			array_push($items_to_find, Item::get('Arrow'));
 		}
-		for ($i = 0; $i < $this->config('item.count.TenArrows', 7); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TenArrows', 4); $i++) {
 			array_push($items_to_find, Item::get('TenArrows'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Bomb', 0); $i++) {
 			array_push($items_to_find, Item::get('Bomb'));
 		}
-		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 12); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 10); $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.OneRupee', 2); $i++) {
 			array_push($items_to_find, Item::get('OneRupee'));
 		}
-		for ($i = 0; $i < $this->config('item.count.FiveRupees', 2); $i++) {
+		for ($i = 0; $i < $this->config('item.count.FiveRupees', 4); $i++) {
 			array_push($items_to_find, Item::get('FiveRupees'));
 		}
-		for ($i = 0; $i < $this->config('item.count.TwentyRupees', 20); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TwentyRupees', 28); $i++) {
 			array_push($items_to_find, Item::get('TwentyRupees'));
 		}
 		for ($i = 0; $i < $this->config('item.count.FiftyRupees', 7); $i++) {
 			array_push($items_to_find, Item::get('FiftyRupees'));
 		}
-		for ($i = 0; $i < $this->config('item.count.OneHundredRupees', 6); $i++) {
+		for ($i = 0; $i < $this->config('item.count.OneHundredRupees', 1); $i++) {
 			array_push($items_to_find, Item::get('OneHundredRupees'));
 		}
 		for ($i = 0; $i < $this->config('item.count.ThreeHundredRupees', 4); $i++) {

@@ -98,9 +98,8 @@ return [
 				'BombUpgrade5' => 6,
 				'BombUpgrade10' => 1,
 				'BombUpgrade50' => 0,
-				'TenArrows' => 7,
-				'ThreeBombs' => 12,
-				'TwentyRupees' => 20,
+				'TwentyRupees' => 27,
+				'BowAndSilverArrows' => 1,
 			],
 		],
 		'prize' => [
