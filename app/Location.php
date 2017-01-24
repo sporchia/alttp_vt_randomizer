@@ -42,10 +42,13 @@ class Location {
 	 * @return bool
 	 */
 	public function fill(Item $item, $items) {
+		$old_item = $this->item;
+		$this->setItem($item);
 		if ($this->canFill($item, $items)) {
-			$this->setItem($item);
 			return true;
 		}
+
+		$this->setItem($old_item);
 
 		return false;
 	}
@@ -184,7 +187,7 @@ class Location {
 	 * @return $this
 	 */
 	public function readItem(Rom $rom) {
-		if (!$this->address[0]) {
+		if (empty($this->address) || !$this->address[0]) {
 			throw new \Exception(sprintf("No Address to read: %s", $this->getName()));
 		}
 

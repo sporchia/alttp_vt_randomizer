@@ -73,6 +73,8 @@ class BaseGameTest extends TestCase {
 	public function testDesertPalaceCompletable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove']);
 
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getRegion('Desert Palace')->canComplete($this->world->getLocations(), $this->collected));
 	}
 
@@ -120,10 +122,11 @@ class BaseGameTest extends TestCase {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
 			'MasterSword']);
 
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key')); // logic should allow big key here
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")->fill(Item::get('Hammer'), $this->collected));
 	}
@@ -275,6 +278,8 @@ class BaseGameTest extends TestCase {
 			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
 			'Ether', 'Quake']);
 
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('CaneOfSomaria'), $this->collected));

@@ -57,7 +57,7 @@ class LightWorld extends Region {
 			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 			new Location\Npc("Hobo", 0x33E7D, null, $this),
 			new Location\Drop("Bombos Tablet", 0x180017, null, $this),
-			new Location\Standing("King Zora", 0xEE1C3, null, $this),
+			new Location\Npc\Zora("King Zora", 0xEE1C3, null, $this),
 			new Location\Standing("Piece of Heart (Thieves' Forest Hideout)", 0x180000, null, $this),
 			new Location\Standing("Piece of Heart (Lumberjack Tree)", 0x180001, null, $this),
 			new Location\Standing("Piece of Heart (south of Haunted Grove)", 0x180003, null, $this),
@@ -103,7 +103,7 @@ class LightWorld extends Region {
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove'), Item::get('RedShield'), Item::get('MirrorShield')]);
+			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove')]);
 		});
 
 		$this->locations["[cave-031] Tavern"]->setRequirements(function($locations, $items) {
@@ -276,7 +276,8 @@ class LightWorld extends Region {
 
 		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers') && $items->has('MoonPearl') && $items->has('MagicMirror')
-				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items);
+				&& ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
+					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
 		});
 
 		$this->locations["Piece of Heart (Dam)"]->setRequirements(function($locations, $items) {
@@ -320,12 +321,15 @@ class LightWorld extends Region {
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
-				&& ($items->hasABottle()
-					|| ($items->has('TitansMitt') && $items->has("MoonPearl")));
+				&& ($items->hasABottle() || $items->has("MoonPearl"))
+				&& ($items->has('TitansMitt')
+					|| $items->has('Flippers')
+					|| $items->has('Hammer')
+					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots');
+			return $items->has('PegasusBoots') && $items->hasSword();
 		});
 
 		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
@@ -342,8 +346,7 @@ class LightWorld extends Region {
 
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
 			return $items->has('Powder')
-				&& ($items->has('Hammer')
-					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('TitansMitt')));
+				&& ($items->has('Hammer') || $items->has('MagicMirror'));
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
@@ -357,6 +360,33 @@ class LightWorld extends Region {
 		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
 				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
+		});
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	function initSpeedRunner() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
+			return true;
+		});
+
+		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
+			return true;
+		});
+
+		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+					&& $items->has('MoonPearl') && ($items->canLiftRocks() || $items->has('Hammer')))
+				|| ($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && $items->has('Flippers')));
 		});
 
 		return $this;

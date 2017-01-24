@@ -48,6 +48,7 @@
 							<span class="input-group-addon">Mode</span>
 							<select id="game-mode" class="form-control selectpicker">
 								<option value="NoMajorGlitches">No Major Glitches</option>
+								<option value="SpeedRunner">Speed Runner</option>
 								<option value="Glitched">Glitched</option>
 							</select>
 						</div>
@@ -335,6 +336,10 @@
 					<label for="item-count-Boomerang">Blue Boomerang</label>
 				</div>
 				<div class="col-md-4">
+					<input id="item-count-BlueShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BlueShield]" class="custom-items">
+					<label for="item-count-BlueShield">Blue Shield</label>
+				</div>
+				<div class="col-md-4">
 					<input id="item-count-BossHeartContainer" type="number" value="10" min="0" max="200" step="1" name="data[alttp.custom.item.count.BossHeartContainer]" class="custom-items">
 					<label for="item-count-BossHeartContainer">Boss Heart Container</label>
 				</div>
@@ -391,7 +396,7 @@
 					<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TwentyRupees" type="number" value="23" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+					<input id="item-count-TwentyRupees" type="number" value="22" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
 					<label for="item-count-TwentyRupees">Rupees (20)</label>
 				</div>
 			</div>
@@ -401,7 +406,7 @@
 
 <script>
 var rom;
-var current_rom_hash = '9d06a6a993ad8b18ce13cbabb1254d61';
+var current_rom_hash = '93f0d6800928d17f0bbdf86aba51fa17';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -487,7 +492,8 @@ function applySeed(rom, seed, second_attempt) {
 			rom.parsePatch(patch.patch).then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			});
-		}, 'json');
+		}, 'json')
+		.fail(reject);
 	});
 }
 
@@ -520,6 +526,13 @@ function romOk(rom) {
 	localforage.setItem('rom', rom.getArrayBuffer());
 }
 
+function seedFailed(data) {
+	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate-save]').prop('disabled', false);
+	$('.alert .message').html('Failed Creating Seed :(');
+	$('.alert').show().delay(2000).fadeOut("slow");
+}
+
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		$('button[name=generate]').html('Generate').prop('disabled', false);
@@ -530,7 +543,7 @@ function seedApplied(data) {
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .rules').html(data.patch.rules);
-		$('.info .complexity').html(data.patch.spoiler.playthrough.complexity + ' (' + data.patch.spoiler.playthrough.sub_complexity + ')');
+		$('.info .complexity').html(data.patch.spoiler.playthrough.vt_complexity + ' (' + data.patch.spoiler.playthrough.complexity + ')');
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		pasrseSpoilerToTabs(data.patch.spoiler);
@@ -541,7 +554,7 @@ function seedApplied(data) {
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
 		rom.complexity = data.patch.spoiler.playthrough.complexity;
-		rom.sub_complexity = data.patch.spoiler.playthrough.sub_complexity;
+		rom.vt_complexity = data.patch.spoiler.playthrough.vt_complexity;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 		resolve(rom);
 	});
@@ -607,6 +620,7 @@ $(function() {
 	});
 	$('#rules').on('change', function() {
 		$('input[name=rules]').val($(this).val());
+		localforage.setItem('rom.rules', $(this).val());
 		if ($(this).val() == 'custom') {
 			$('.custom-rules').show();
 			if ($('.spoiler-tabed').is(':visible')) {
@@ -615,6 +629,11 @@ $(function() {
 		} else {
 			$('.custom-rules').hide();
 		}
+	});
+	localforage.getItem('rom.rules').then(function(value) {
+		if (!value) return;
+		$('#rules').val(value);
+		$('#rules').trigger('change');
 	});
 
 	// Complexity switch
@@ -628,29 +647,30 @@ $(function() {
 		}
 	});
 	localforage.getItem('generate.complexity.show').then(function(value) {
+		if (!value) return;
 		$('#generate-complexity-show').prop('checked', value);
 		$('#generate-complexity-show').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
-		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.txt');
+		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
-			.then(seedApplied)
+			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '_' + rom.seed + '.sfc');
+				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.sfc');
 			});
 	});
 
 	$('button[name=generate]').on('click', function() {
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
 		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
-		applySeed(rom, $('#seed').val()).then(seedApplied);
+		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
 
 	$('input[name=f2u]').on('change', function() {
@@ -675,6 +695,7 @@ $(function() {
 		$('input[name=heart_speed]').val($(this).val());
 	});
 	localforage.getItem('rom.heart-speed').then(function(value) {
+		if (!value) return;
 		$('#heart-speed').val(value);
 		$('#heart-speed').trigger('change');
 	});
@@ -684,13 +705,21 @@ $(function() {
 		$('input[name=sram_trace]').val($(this).prop('checked'));
 	});
 	localforage.getItem('rom.sram-trace').then(function(value) {
+		if (!value) return;
 		$('#generate-sram-trace').prop('checked', value);
 		$('#generate-sram-trace').trigger('change');
 	});
 
 	$('#game-mode').on('change', function() {
+		localforage.setItem('rom.game-mode', $(this).val());
 		$('input[name=game_mode]').val($(this).val());
 	});
+	localforage.getItem('rom.game-mode').then(function(value) {
+		if (!value) return;
+		$('#game-mode').val(value);
+		$('#game-mode').trigger('change');
+	});
+
 	$('#generate-debug').on('change', function() {
 		$('input[name=debug]').val($(this).prop('checked'));
 	});
@@ -774,8 +803,8 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + rom.mode + '_' + data.patch.seed + '.sfc', buffer);
+				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + rom.mode + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);

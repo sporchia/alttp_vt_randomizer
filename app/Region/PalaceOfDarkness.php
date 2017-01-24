@@ -52,36 +52,12 @@ class PalaceOfDarkness extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Helmasaur King";
 		});
 
-		$keyable_locations = [
-			"[dungeon-D1-1F] Dark Palace - big key room",
-			"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
-			"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
-			"[dungeon-D1-1F] Dark Palace - compass room",
-			"[dungeon-D1-1F] Dark Palace - spike statue room",
-			"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
-			"[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]",
-			"[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]",
-			"[dungeon-D1-1F] Dark Palace - statue push room",
-			"[dungeon-D1-B1] Dark Palace - shooter room",
-		];
-
-		// @TODO: this feels wrong, this means that the randomizer will never generate the base game -_-
-		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->fill(Item::get("Key"), $my_items);
-		while(!$locations->getEmptyLocations()->filter(function($location) use ($keyable_locations) {
-			return in_array($location->getName(), $keyable_locations);
-		})->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->filter(function($location) use ($keyable_locations) {
-			return in_array($location->getName(), $keyable_locations);
-		})->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->filter(function($location) use ($keyable_locations) {
-			return in_array($location->getName(), $keyable_locations);
-		})->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->filter(function($location) use ($keyable_locations) {
-			return in_array($location->getName(), $keyable_locations);
-		})->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->filter(function($location) use ($keyable_locations) {
-			return in_array($location->getName(), $keyable_locations);
-		})->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
@@ -101,8 +77,75 @@ class PalaceOfDarkness extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$four_accessable_keys_before_bridge = function($locations, $items) {
+			return
+				($locations["[dungeon-D1-B1] Dark Palace - shooter room"]->hasItem(Item::get('Key'))
+					&& (
+					$locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+						"[dungeon-D1-1F] Dark Palace - big key room",
+					], 3)
+					||
+					($items->canShootArrows()
+						&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+					]))
+					||
+					($items->canShootArrows() && $items->has('Hammer') && $items->has('Lamp')
+						&& $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key'))
+						&& $locations->itemInLocations(Item::get('BigKey'), [
+							"[dungeon-D1-1F] Dark Palace - statue push room",
+							"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+							"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+							"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+							"[dungeon-D1-B1] Dark Palace - shooter room",
+							]))
+				))
+			|| ($items->canShootArrows()
+				&& ($locations->itemInLocations(Item::get('Key'), [
+					"[dungeon-D1-1F] Dark Palace - statue push room",
+					"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+					"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+					"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+					"[dungeon-D1-1F] Dark Palace - big key room",
+				], 4)
+				||
+				($items->has('Hammer') && $items->has('Lamp') && $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key'))
+					&& $locations->itemInLocations(Item::get('Key'), [
+					"[dungeon-D1-1F] Dark Palace - statue push room",
+					"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+					"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+					"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+					"[dungeon-D1-1F] Dark Palace - big key room",
+				], 3) && $locations->itemInLocations(Item::get('BigKey'), [
+							"[dungeon-D1-1F] Dark Palace - statue push room",
+							"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+							"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+							"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+							"[dungeon-D1-B1] Dark Palace - shooter room",
+							])
+					)
+				));
+		};
+
 		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows();
+		});
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setRequirements($four_accessable_keys_before_bridge)
+		->setFillRules(function($item, $locations, $items) {
+			return ($locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+						"[dungeon-D1-B1] Dark Palace - shooter room",
+						"[dungeon-D1-1F] Dark Palace - big key room",
+						"Heart Container - Helmasaur King",
+					], 4) || $item == Item::get('Key'))
+				&& !($item == Item::get('BigKey') && $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key')));
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [left chest]"]->setRequirements(function($locations, $items) {
@@ -112,28 +155,43 @@ class PalaceOfDarkness extends Region {
 						&& $items->canShootArrows());
 		});
 
-		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& (($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-				|| ($items->canShootArrows()
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3)));
+		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
+			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items);
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
-		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setRequirements(function($locations, $items) {
-			return ($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-			|| ($items->canShootArrows()
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3));
+		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setRequirements($four_accessable_keys_before_bridge)
+		->setFillRules(function($item, $locations, $items) {
+			return $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+						"[dungeon-D1-B1] Dark Palace - shooter room",
+						"[dungeon-D1-1F] Dark Palace - big key room",
+						"Heart Container - Helmasaur King",
+					], 4)
+				&& !($item == Item::get('BigKey') && $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key')));
 		});
 
-		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setRequirements(function($locations, $items) {
-			return ($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-			|| ($items->canShootArrows()
-				&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3));
+		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
+			return $four_accessable_keys_before_bridge($locations, $items)
+				&& (!$locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]",
+						"[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]",
+					], 2) || $items->has('Lamp'));
+		})->setFillRules(function($item, $locations, $items) {
+			return $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+						"[dungeon-D1-B1] Dark Palace - shooter room",
+						"[dungeon-D1-1F] Dark Palace - big key room",
+						"Heart Container - Helmasaur King",
+					], 4)
+				&& !($item == Item::get('BigKey') && $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key')));
 		});
 
 		$this->locations["[dungeon-D1-B1] Dark Palace - turtle stalfos room"]->setRequirements(function($locations, $items) {
@@ -143,40 +201,54 @@ class PalaceOfDarkness extends Region {
 						&& $items->canShootArrows());
 		});
 
-		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& (($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-				|| ($items->canShootArrows()
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3)));
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
+			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+						"[dungeon-D1-B1] Dark Palace - shooter room",
+						"[dungeon-D1-1F] Dark Palace - big key room",
+						"Heart Container - Helmasaur King",
+					], 4)
+				&& !($item == Item::get('BigKey') && $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key')));
 		});
 
-		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& (($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-				|| ($items->canShootArrows()
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3)));
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
+			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+						"[dungeon-D1-B1] Dark Palace - shooter room",
+						"[dungeon-D1-1F] Dark Palace - big key room",
+						"Heart Container - Helmasaur King",
+					], 4)
+				&& !($item == Item::get('BigKey') && $locations["Heart Container - Helmasaur King"]->hasItem(Item::get('Key')));
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows();
 		});
 
-		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& (($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-				|| ($items->canShootArrows()
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3)));
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
+			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key')
+				|| ($locations->itemInLocations(Item::get('Hammer'), ["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", "[dungeon-D1-1F] Dark Palace - big chest"])
+					&& !$locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", "[dungeon-D1-1F] Dark Palace - big chest"]));
 		});
 
-		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& (($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"]))
-				|| ($items->canShootArrows()
-					&& $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]", "[dungeon-D1-1F] Dark Palace - jump room [left chest]", "[dungeon-D1-B1] Dark Palace - turtle stalfos room"], 3)));
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
+			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items);
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key')
+				|| ($locations->itemInLocations(Item::get('Hammer'), ["[dungeon-D1-1F] Dark Palace - maze room [top chest]", "[dungeon-D1-1F] Dark Palace - big chest"])
+					&& !$locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - maze room [top chest]", "[dungeon-D1-1F] Dark Palace - big chest"]));
 		});
 
 		$this->locations["[dungeon-D1-B1] Dark Palace - shooter room"]->setRequirements(function($locations, $items) {
@@ -207,22 +279,109 @@ class PalaceOfDarkness extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('Key');
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows();
 		});
 
-		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('Key');
+		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows();
 		});
 
 		$this->locations["Heart Container - Helmasaur King"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canShootArrows();
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
 		});
 
 		$this->can_complete = function($locations, $items) {
 			return $items->has('Hammer') && $items->canShootArrows();
+		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		$access_post_bridge = function($locations, $items) {
+			return ($locations["[dungeon-D1-B1] Dark Palace - shooter room"]->hasItem(Item::get('Key'))
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+					]))
+				|| ($items->canShootArrows()
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+					])
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+					], 2))
+				|| ($items->canShootArrows() && $items->has('Hammer')
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - jump room [left chest]",
+						"[dungeon-D1-B1] Dark Palace - turtle stalfos room",
+					], 2));
+		};
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows();
+		});
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows();
+		});
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setRequirements($access_post_bridge);
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]"]->setRequirements($access_post_bridge);
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setRequirements($access_post_bridge);
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements($access_post_bridge);
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements($access_post_bridge);
+		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements($access_post_bridge);
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setRequirements($access_post_bridge);
+		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setRequirements($access_post_bridge);
+
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [left chest]"]->setRequirements(function($locations, $items) {
+			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
+				|| ($items->canShootArrows() && $items->has('Hammer'))
+				|| ($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]"])
+						&& $items->canShootArrows());
+		});
+
+		$this->locations["[dungeon-D1-B1] Dark Palace - turtle stalfos room"]->setRequirements(function($locations, $items) {
+			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-B1] Dark Palace - shooter room"])
+				|| ($items->canShootArrows() && $items->has('Hammer'))
+				|| ($locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - statue push room", "[dungeon-D1-1F] Dark Palace - jump room [right chest]"])
+						&& $items->canShootArrows());
+		});
+
+		$this->locations["Heart Container - Helmasaur King"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer') && $items->canShootArrows();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->has('Hammer') && $items->canShootArrows();
+		};
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
 		};
 
 		return $this;

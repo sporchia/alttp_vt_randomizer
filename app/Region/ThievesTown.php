@@ -139,11 +139,36 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initNoMajorGlitches();
+		$this->initSpeedRunner();
 
 		$this->can_enter = function($locations, $items) {
 			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->locations["Heart Container - Blind"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
 		return $this;
 	}
 }

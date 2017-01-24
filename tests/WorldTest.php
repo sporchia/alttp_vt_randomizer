@@ -56,10 +56,11 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")->setItem(Item::get('MoonPearl'));
 
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")->setItem(Item::get('Hammer'));
 
 		$this->world->getLocation("King Zora")->setItem(Item::get('Flippers'));
@@ -82,6 +83,8 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("Flute Boy")->setItem(Item::get('Shovel'));
 		$this->world->getLocation("Haunted Grove item")->setItem(Item::get('OcarinaInactive'));
 
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('CaneOfSomaria'));
 
@@ -93,6 +96,6 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")->setItem(Item::get('RedMail'));
 
-		$this->assertArraySubset(['complexity' => 13, 'sub_complexity' => 26], $this->world->getPlaythrough());
+		$this->assertArraySubset(['complexity' => 13, 'vt_complexity' => 26], $this->world->getPlaythrough());
 	}
 }

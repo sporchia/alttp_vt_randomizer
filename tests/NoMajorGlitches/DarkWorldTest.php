@@ -53,13 +53,13 @@ class DarkWorldTest extends TestCase {
 	}
 
 	public function testCanAccessPyramidFairyWithMirrorAndAG1() {
-		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'MagicMirror', 'Cape', 'TitansMitt']);
+		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'MagicMirror', 'Cape', 'TitansMitt', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("Pyramid")->canAccess($this->collected));
 	}
 
 	public function testCanAccessPyramidFairyWithHammer() {
-		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'PowerGlove', 'Hammer']);
+		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'PowerGlove', 'Hammer', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("Pyramid")->canAccess($this->collected));
 	}

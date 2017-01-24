@@ -11,7 +11,7 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=v8}';
+	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=v8} {--mode=NoMajorGlitches}';
 
 	/**
 	 * The console command description.
@@ -32,6 +32,14 @@ class Distribution extends Command {
 				$function = [$this, 'item'];
 				$thing = Item::get($this->argument('thing'));
 				break;
+			case 'location':
+				$function = [$this, 'location'];
+				$thing = $this->argument('thing');
+				break;
+			case 'complexity':
+				$function = [$this, 'complexity'];
+				$thing = $this->argument('thing');
+				break;
 			case 'region_fill':
 				$function = [$this, 'region_fill'];
 				$thing = $this->argument('thing');
@@ -44,7 +52,7 @@ class Distribution extends Command {
 			call_user_func_array($function, [$thing, &$locations]);
 		}
 
-		ksort($locations);
+		ksortr($locations);
 		$this->info(json_encode($locations, JSON_PRETTY_PRINT));
 	}
 
@@ -60,8 +68,41 @@ class Distribution extends Command {
 		}
 	}
 
+	private function complexity($type, &$locations) {
+		$rand = new Randomizer($this->option('rules'));
+		$rand->makeSeed();
+		$spoiler = $rand->getWorld()->getPlaythrough();
+		$vt_complexity = $spoiler['vt_complexity'];
+		$complexity = $spoiler['complexity'];
+		$mix_complexity = sprintf("%s (%s)", $spoiler['vt_complexity'], $spoiler['complexity']);
+		if (!isset($locations['org'][$complexity])) {
+			$locations['org'][$complexity] = 0;
+		}
+		$locations['org'][$complexity]++;
+		if (!isset($locations['mix'][$mix_complexity])) {
+			$locations['mix'][$mix_complexity] = 0;
+		}
+		$locations['mix'][$mix_complexity]++;
+		if (!isset($locations['vt'][$vt_complexity])) {
+			$locations['vt'][$vt_complexity] = 0;
+		}
+		$locations['vt'][$vt_complexity]++;
+	}
+
+	private function location($location_name, &$locations) {
+		$rand = new Randomizer($this->option('rules'));
+		$rand->makeSeed();
+
+		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
+
+		if (!isset($locations[$location_name][$item_name])) {
+			$locations[$location_name][$item_name] = 0;
+		}
+		$locations[$location_name][$item_name]++;
+	}
+
 	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('rules'));
+		$world = new World($this->option('rules'), $this->option('mode'));
 		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
 		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 		$region = $world->getRegion($region_name);

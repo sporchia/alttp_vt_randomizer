@@ -61,18 +61,8 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
-	public function testNorthOfGapRoomChestTLRequiresHookshotOrBoots() {
+	public function testNorthOfGapRoomChestTLRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestTLDoesNotRequireOnlyBoots() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestTLDoesNotRequireOnlyHookshot() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
@@ -81,18 +71,8 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
-	public function testNorthOfGapRoomChestTRRequiresHookshotOrBoots() {
+	public function testNorthOfGapRoomChestTRRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestTRDoesNotRequireOnlyBoots() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestTRDoesNotRequireOnlyHookshot() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
@@ -101,18 +81,8 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
-	public function testNorthOfGapRoomChestBLRequiresHookshotOrBoots() {
+	public function testNorthOfGapRoomChestBLRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestBLDoesNotRequireOnlyBoots() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestBLDoesNotRequireOnlyHookshot() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
@@ -121,18 +91,8 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
-	public function testNorthOfGapRoomChestBRRequiresHookshotOrBoots() {
+	public function testNorthOfGapRoomChestBRRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestBRDoesNotRequireOnlyBoots() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestBRDoesNotRequireOnlyHookshot() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
@@ -144,6 +104,21 @@ class GanonsTowerTest extends TestCase {
 	public function testMapRoomRequiresHookshotOrBoots() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
 			->canAccess($this->allItemsExcept(['Hookshot', 'PegasusBoots'])));
+	}
+
+	public function testMapDoesNotRequireOnlyBoots() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMapDoesNotRequireOnlyHookshot() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['Hookshot'])));
+	}
+
+	public function testMapRoomRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
 	public function testNorthOfTeleportRoomRequiresHookshot() {
@@ -263,56 +238,78 @@ class GanonsTowerTest extends TestCase {
 	}
 
 	public function testBigChestRequiresHookshotAndHammerOrCaneAndFireRod() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer', 'CaneOfSomaria', 'FireRod'])));
 	}
 
 	public function testBigChestAccessableWithoutCaneAndFireRod() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
 	}
 
 	public function testBigChestAccessableWithoutHookshotAndHammer() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer'])));
 	}
 
 	public function testBigChestDoesntRequiresOnlyHookshot() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
 	public function testBigChestDoesntRequiresOnlyHammer() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
 	public function testBigChestDoesntRequiresOnlyCane() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
 	}
 
 	public function testBigChestDoesntRequiresOnlyFireRod() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
 	public function testBigChestRequiresCaneIfNoHookshot() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hookshot'])));
 	}
 
 	public function testBigChestRequiresCaneIfNoHammer() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
 	}
 
 	public function testBigChestRequiresFireRodIfNoHookshot() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['FireRod', 'Hookshot'])));
 	}
 
 	public function testBigChestRequiresFireRodIfNoHammer() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
 			->canAccess($this->allItemsExcept(['FireRod', 'Hammer'])));
 	}

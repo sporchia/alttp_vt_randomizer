@@ -35,13 +35,16 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 		}
 	}
 
+	/**
+	 * Lets pretend all items doesn't include keys just in case it affects things
+	 */
 	protected function allItems() {
-		return Item::all()->copy();
+		return $this->allItemsExcept(['BigKey', 'Key']);
 	}
 
 	protected function allItemsExcept(array $remove_items) {
-		$items = $this->allItems();
-		foreach ($remove_items as $item) {
+		$items = Item::all()->copy();
+		foreach (array_merge($remove_items, ['BigKey', 'Key']) as $item) {
 			$items->removeItem($item);
 		}
 		return $items;

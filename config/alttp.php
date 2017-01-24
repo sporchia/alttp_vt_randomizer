@@ -10,15 +10,15 @@ return [
 		],
 		'item' => [
 			'count' => [
-				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade5' => 0,
+				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade70' => 1,
-				'BombUpgrade10' => 0,
 				'BombUpgrade5' => 0,
+				'BombUpgrade10' => 0,
 				'BombUpgrade50' => 1,
 				'TenArrows' => 11,
 				'ThreeBombs' => 17,
-				'TwentyRupees' => 24,
+				'TwentyRupees' => 23,
 			],
 		],
 		'prize' => [
@@ -43,13 +43,14 @@ return [
 		'item' => [
 			'count' => [
 				'Arrow' => 10,
-				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade5' => 0,
+				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade70' => 0,
 				'BlueMail' => 0,
+				'BlueShield' => 0,
 				'Bomb' => 5,
-				'BombUpgrade10' => 0,
 				'BombUpgrade5' => 0,
+				'BombUpgrade10' => 0,
 				'BombUpgrade50' => 0,
 				'Boomerang' => 0,
 				'BossHeartContainer' => 5,
@@ -91,15 +92,15 @@ return [
 		],
 		'item' => [
 			'count' => [
-				'ArrowUpgrade10' => 1,
 				'ArrowUpgrade5' => 6,
+				'ArrowUpgrade10' => 1,
 				'ArrowUpgrade70' => 0,
-				'BombUpgrade10' => 1,
 				'BombUpgrade5' => 6,
+				'BombUpgrade10' => 1,
 				'BombUpgrade50' => 0,
 				'TenArrows' => 7,
 				'ThreeBombs' => 12,
-				'TwentyRupees' => 21,
+				'TwentyRupees' => 20,
 			],
 		],
 		'prize' => [
@@ -107,7 +108,7 @@ return [
 		],
 		'region' => [
 			'bossNormalLocation' => true,
-			'superBunnyDM' => true,
+			'superBunnyDM' => false,
 			'bonkItems' => true,
 		],
 		'spoil' => [

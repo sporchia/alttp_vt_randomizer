@@ -72,15 +72,13 @@ class TurtleRockTest extends TestCase {
 	}
 
 	// Item Locations
-	public function testChainChompRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'Quake', 'CaneOfSomaria', 'Hookshot']);
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")
-			->canAccess($this->collected));
+	public function testChainChompRoomRequiresFireRodIfKeyNotAtCompassRoom() {
+		$this->assertFalse($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")
+			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
 	public function testCompassRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'Quake', 'CaneOfSomaria', 'Hookshot']);
+		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'Quake', 'CaneOfSomaria', 'Hookshot', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")
 			->canAccess($this->collected));

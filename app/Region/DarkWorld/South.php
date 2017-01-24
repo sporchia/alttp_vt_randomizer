@@ -69,7 +69,7 @@ class South extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl')
-				&& (($this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items) && ($items->has('Hammer')
+				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && ($items->has('Hammer')
 					|| ($items->has('Hookshot') && ($items->has('Flippers') || $items->canLiftRocks()))))
 					|| ($items->has('Hammer') && $items->canLiftRocks())
 					|| $items->has('TitansMitt'));

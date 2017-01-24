@@ -58,6 +58,17 @@ class Swords extends Region {
 	public function initGlitched() {
 		$this->initNoMajorGlitches();
 
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& ($items->hasABottle() || $items->has("MoonPearl"));
+		});
+
+		$this->locations["Pyramid"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
+					&& ($items->hasABottle() || $items->has("MoonPearl")));
+		});
+
 		return $this;
 	}
 }
