@@ -47,7 +47,7 @@ It has the ability to patch a ROM file completely in the browser.
 #### Features include
 * Randomization of Items including Boss Hearts, Swords, Crystals and Pendants.
 * Custom mode allowing one to switch on and off a bunch of different features.
-* Tries to distrobute the items in a way as to not have everything way too early.
+* Tries to distribute the items in a way as to not have everything way too early.
 * Logic updates with the Boss Hearts and Dungeon Prize locations randomized.
 * Ability to set custom Uncle Text.
 * Ability to have Boss item in regular dungeon pool (Compass/Map/Keys)
