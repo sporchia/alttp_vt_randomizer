@@ -48,7 +48,7 @@
 						<div class="input-group" role="group">
 							<span class="input-group-addon">Mode</span>
 							<select id="game-mode" class="form-control selectpicker">
-								<option value="NoMajorGlitches">No Major Glitches</option>
+								<option value="NoMajorGlitches">Casual (NMG)</option>
 								<option value="SpeedRunner">Speed Runner</option>
 								<option value="Glitched">Glitched</option>
 							</select>
@@ -620,6 +620,7 @@ $(function() {
 		}
 	});
 	$('#rules').on('change', function() {
+		$('.info').hide();
 		$('input[name=rules]').val($(this).val());
 		localforage.setItem('rom.rules', $(this).val());
 		if ($(this).val() == 'custom') {
@@ -712,6 +713,7 @@ $(function() {
 	});
 
 	$('#game-mode').on('change', function() {
+		$('.info').hide();
 		localforage.setItem('rom.game-mode', $(this).val());
 		$('input[name=game_mode]').val($(this).val());
 	});

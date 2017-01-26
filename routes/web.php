@@ -14,6 +14,10 @@ Route::get('stuck', function () {
 	return view('stuck');
 });
 
+Route::get('help', function () {
+	return view('help');
+});
+
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rules = $request->input('rules', 'v7');
 	if ($rules == 'custom') {

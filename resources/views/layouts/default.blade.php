@@ -27,6 +27,7 @@
 			<li{!! (request()->path() == 'stuck') ? ' class="active"' : '' !!}><a href="/stuck">Stuck?</a></li>
 		  	<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 			<li{!! (request()->path() == 'about') ? ' class="active"' : '' !!}><a href="/about">About</a></li>
+			<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help Using This</a></li>
 			@if (Auth::check())
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
