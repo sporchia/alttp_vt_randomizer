@@ -1,11 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
-<h2>VT Randomizer</h2>
-<p>The VT randomizer was written and maintained by Veetorp. The idea behind it is to always use the newest ROM available
-	and try to create new innovative features. While maintaining rules that match up with the main ALttP Randomizer
-	project.</p>
-<p></p>
-<p>A Big thanks to Dessyreqt, Christos, Smallhacker, and Karkat for their work -
-Without their work none of this would even be remotely possible.</p>
+<h1>What is A Link to the Past: VT Randomizer?</h1>
+<div class="well">
+	<p>The basic idea is that all item locations in the game have their items shuffled around… so for example you
+		never know what you’re going to find when you open a treasure chest! There are many item locations in the
+		game beyond treasure chests, for example overworld heart pieces and NPC’s that give you items
+		- these are all included too!</p>
+	<p>This was written and is maintained by Veetorp. A big thanks to Dessyreqt, ChristosOwen, Smallhacker and Karkat
+		for their work - without which none of this would have been even remotely possible!</p>
+</div>
 @overwrite

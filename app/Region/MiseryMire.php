@@ -244,6 +244,8 @@ class MiseryMire extends Region {
 			&& ($items->has('MoonPearl') || $items->hasABottle());
 		};
 
+		$this->can_complete = $this->can_enter;
+
 		return $this;
 	}
 

@@ -194,6 +194,13 @@ class DesertPalaceTest extends TestCase {
 			->fill(Item::get('BigKey'), $this->allItemsExcept(['PegasusBoots'])));
 	}
 
+	public function testBigKeyCantBeRightSideTopIfKeyInBigChest() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
+			->fill(Item::get('BigKey'), $this->allItems()));
+	}
+
 	public function testCompassRoomCannotHaveKey() {
 		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
 			->fill(Item::get('Key'), $this->allItems()));
@@ -204,6 +211,13 @@ class DesertPalaceTest extends TestCase {
 
 		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
 			->fill(Item::get('BigKey'), $this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBigKeyCantBeRightSideBottomIfKeyInBigChest() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	// Completion

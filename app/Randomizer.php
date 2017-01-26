@@ -407,73 +407,73 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Bottles', 1); $i++) {
 			array_push($advancement_items, $this->getBottle());
 		}
-		for ($i = 0; $i < $this->config('item.count.Bombos', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Bombos', 1)); $i++) {
 			array_push($advancement_items, Item::get('Bombos'));
 		}
-		for ($i = 0; $i < $this->config('item.count.BookOfMudora', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.BookOfMudora', 1)); $i++) {
 			array_push($advancement_items, Item::get('BookOfMudora'));
 		}
-		for ($i = 0; $i < $this->config('item.count.Bow', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Bow', 1)); $i++) {
 			array_push($advancement_items, Item::get('Bow'));
 		}
-		for ($i = 0; $i < $this->config('item.count.CaneOfSomaria', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.CaneOfSomaria', 1)); $i++) {
 			array_push($advancement_items, Item::get('CaneOfSomaria'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Cape', 1); $i++) {
 			array_push($advancement_items, Item::get('Cape'));
 		}
-		for ($i = 0; $i < $this->config('item.count.Ether', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Ether', 1)); $i++) {
 			array_push($advancement_items, Item::get('Ether'));
 		}
-		for ($i = 0; $i < $this->config('item.count.FireRod', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.FireRod', 1)); $i++) {
 			array_push($advancement_items, Item::get('FireRod'));
 		}
-		for ($i = 0; $i < $this->config('item.count.Flippers', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Flippers', 1)); $i++) {
 			array_push($advancement_items, Item::get('Flippers'));
 		}
-		for ($i = 0; $i < $this->config('item.count.Hammer', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Hammer', 1)); $i++) {
 			array_push($advancement_items, Item::get('Hammer'));
 		}
-		for ($i = 0; $i < $this->config('item.count.Hookshot', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Hookshot', 1)); $i++) {
 			array_push($advancement_items, Item::get('Hookshot'));
 		}
-		for ($i = 0; $i < $this->config('item.count.IceRod', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.IceRod', 1)); $i++) {
 			array_push($advancement_items, Item::get('IceRod'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Lamp', 1); $i++) {
 			array_push($advancement_items, Item::get('Lamp'));
 		}
-		for ($i = 0; $i < $this->config('item.count.MagicMirror', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.MagicMirror', 1)); $i++) {
 			array_push($advancement_items, Item::get('MagicMirror'));
 		}
-		for ($i = 0; $i < $this->config('item.count.MoonPearl', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.MoonPearl', 1)); $i++) {
 			array_push($advancement_items, Item::get('MoonPearl'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Mushroom', 1); $i++) {
 			array_push($advancement_items, Item::get('Mushroom'));
 		}
-		for ($i = 0; $i < $this->config('item.count.OcarinaInactive', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.OcarinaInactive', 1)); $i++) {
 			array_push($advancement_items, Item::get('OcarinaInactive'));
 		}
 		for ($i = 0; $i < $this->config('item.count.OcarinaActive', 0); $i++) {
 			array_push($advancement_items, Item::get('OcarinaActive'));
 		}
-		for ($i = 0; $i < $this->config('item.count.PegasusBoots', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.PegasusBoots', 1)); $i++) {
 			array_push($advancement_items, Item::get('PegasusBoots'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Powder', 1); $i++) {
 			array_push($advancement_items, Item::get('Powder'));
 		}
-		for ($i = 0; $i < $this->config('item.count.PowerGlove', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.PowerGlove', 1)); $i++) {
 			array_push($advancement_items, Item::get('PowerGlove'));
 		}
-		for ($i = 0; $i < $this->config('item.count.Quake', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.Quake', 1)); $i++) {
 			array_push($advancement_items, Item::get('Quake'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Shovel', 1); $i++) {
 			array_push($advancement_items, Item::get('Shovel'));
 		}
-		for ($i = 0; $i < $this->config('item.count.TitansMitt', 1); $i++) {
+		for ($i = 0; $i < max(1, $this->config('item.count.TitansMitt', 1)); $i++) {
 			array_push($advancement_items, Item::get('TitansMitt'));
 		}
 
@@ -588,7 +588,9 @@ class Randomizer {
 			array_push($items_to_find, $this->getBottle());
 		}
 
-		array_push($items_to_find, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
+		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 1); $i++) {
+			array_push($items_to_find, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
+		}
 
 		return mt_shuffle($items_to_find);
 	}

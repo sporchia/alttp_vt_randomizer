@@ -100,8 +100,6 @@ return [
 				'BombUpgrade5' => 6,
 				'BombUpgrade10' => 1,
 				'BombUpgrade50' => 0,
-				'TwentyRupees' => 27,
-				'BowAndSilverArrows' => 1,
 			],
 		],
 		'prize' => [

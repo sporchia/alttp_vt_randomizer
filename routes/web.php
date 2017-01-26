@@ -2,12 +2,24 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
+Route::get('randomize{r?}', function () {
 	return view('randomizer');
+});
+
+Route::get('/', function () {
+	return view('about');
 });
 
 Route::get('about', function () {
 	return view('about');
+});
+
+Route::get('game_modes', function () {
+	return view('game_modes');
+});
+
+Route::get('info', function () {
+	return view('info');
 });
 
 Route::get('stuck', function () {

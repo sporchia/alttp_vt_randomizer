@@ -7,7 +7,7 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-01-09';
+	const BUILD = '2017-01-23';
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -133,6 +133,24 @@ class Rom {
 
 		return $this;
 	}
+
+	/**
+	 * Set the Flute Boy credits to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setFluteBoyCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
+		$offset = 0x76B34;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
 
 	/**
 	 * Set the Zora credits text to a custom value

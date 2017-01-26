@@ -151,7 +151,7 @@
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-advancement">Advancement Items</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-extra">Other Items</a></li>
-			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">134</span> / <span id="custom-count-total">134</span></span></li>
+			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">146</span> / <span id="custom-count-total">146</span></span></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="custom-settings">
@@ -301,6 +301,10 @@
 					<label for="item-count-Arrow">Single Arrow</label>
 				</div>
 				<div class="col-md-4">
+					<input id="item-count-TenArrows" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.TenArrows]" class="custom-items">
+					<label for="item-count-TenArrows">Arrows (10)</label>
+				</div>
+				<div class="col-md-4">
 					<input id="item-count-ArrowUpgrade10" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.ArrowUpgrade10]" class="custom-items">
 					<label for="item-count-ArrowUpgrade10">Arrow Upgrade (+10)</label>
 				</div>
@@ -321,6 +325,10 @@
 					<label for="item-count-Bomb">Single Bomb</label>
 				</div>
 				<div class="col-md-4">
+					<input id="item-count-ThreeBombs" type="number" value="10" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeBombs]" class="custom-items">
+					<label for="item-count-ThreeBombs">Bombs (3)</label>
+				</div>
+				<div class="col-md-4">
 					<input id="item-count-BombUpgrade10" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BombUpgrade10]" class="custom-items">
 					<label for="item-count-BombUpgrade10">Bomb Upgrade (+10)</label>
 				</div>
@@ -337,8 +345,20 @@
 					<label for="item-count-Boomerang">Blue Boomerang</label>
 				</div>
 				<div class="col-md-4">
+					<input id="item-count-RedBoomerang" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedBoomerang]" class="custom-items">
+					<label for="item-count-RedBoomerang">Red Boomerang</label>
+				</div>
+				<div class="col-md-4">
 					<input id="item-count-BlueShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.BlueShield]" class="custom-items">
 					<label for="item-count-BlueShield">Blue Shield</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-RedShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedShield]" class="custom-items">
+					<label for="item-count-RedShield">Red Shield</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-MirrorShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.MirrorShield]" class="custom-items">
+					<label for="item-count-MirrorShield">Mirror Shield</label>
 				</div>
 				<div class="col-md-4">
 					<input id="item-count-BossHeartContainer" type="number" value="10" min="0" max="200" step="1" name="data[alttp.custom.item.count.BossHeartContainer]" class="custom-items">
@@ -357,49 +377,46 @@
 					<label for="item-count-HeartContainer">Sancturary Heart Container</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-MirrorShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.MirrorShield]" class="custom-items">
-					<label for="item-count-MirrorShield">Mirror Shield</label>
-				</div>
-				<div class="col-md-4">
-					<input id="item-count-OneHundredRupees" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.OneHundredRupees]" class="custom-items">
-					<label for="item-count-OneHundredRupees">Rupees (100)</label>
-				</div>
-				<div class="col-md-4">
 					<input id="item-count-PieceOfHeart" type="number" value="24" min="0" max="200" step="1" name="data[alttp.custom.item.count.PieceOfHeart]" class="custom-items">
 					<label for="item-count-PieceOfHeart">Piece Of Heart Container</label>
-				</div>
-				<div class="col-md-4">
-					<input id="item-count-RedBoomerang" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedBoomerang]" class="custom-items">
-					<label for="item-count-RedBoomerang">Red Boomerang</label>
 				</div>
 				<div class="col-md-4">
 					<input id="item-count-RedMail" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedMail]" class="custom-items">
 					<label for="item-count-RedMail">Red Mail</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-RedShield" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.RedShield]" class="custom-items">
-					<label for="item-count-RedShield">Red Shield</label>
-				</div>
-				<div class="col-md-4">
 					<input id="item-count-StaffOfByrna" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.StaffOfByrna]" class="custom-items">
 					<label for="item-count-StaffOfByrna">Staff Of Byrna</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TenArrows" type="number" value="7" min="0" max="200" step="1" name="data[alttp.custom.item.count.TenArrows]" class="custom-items">
-					<label for="item-count-TenArrows">Arrows (10)</label>
+					<input id="item-count-OneRupee" type="number" value="2" min="0" max="200" step="1" name="data[alttp.custom.item.count.OneRupee]" class="custom-items">
+					<label for="item-count-OneRupee">Rupee (1)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-ThreeBombs" type="number" value="12" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeBombs]" class="custom-items">
-					<label for="item-count-ThreeBombs">Bombs (3)</label>
+					<input id="item-count-FiveRupees" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.FiveRupees]" class="custom-items">
+					<label for="item-count-FiveRupees">Rupees (5)</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-TwentyRupees" type="number" value="28" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+					<label for="item-count-TwentyRupees">Rupees (20)</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-FiftyRupees" type="number" value="7" min="0" max="200" step="1" name="data[alttp.custom.item.count.FiftyRupees]" class="custom-items">
+					<label for="item-count-FiftyRupees">Rupees (50)</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-OneHundredRupees" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.OneHundredRupees]" class="custom-items">
+					<label for="item-count-OneHundredRupees">Rupees (100)</label>
 				</div>
 				<div class="col-md-4">
 					<input id="item-count-ThreeHundredRupees" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeHundredRupees]" class="custom-items">
 					<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TwentyRupees" type="number" value="22" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
-					<label for="item-count-TwentyRupees">Rupees (20)</label>
+					<input id="item-count-MagicUpgrade" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.MagicUpgrade]" class="custom-items">
+					<label for="item-count-MagicUpgrade">Magic Upgrade (1/2 or 1/4)</label>
 				</div>
+
 			</div>
 		</div>
 	</div>

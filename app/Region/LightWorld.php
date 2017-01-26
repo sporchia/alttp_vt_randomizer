@@ -72,7 +72,7 @@ class LightWorld extends Region {
 			new Location\Standing("Piece of Heart (Lake Hylia)", 0x180144, null, $this),
 			new Location\Standing("Piece of Heart (Dam)", 0x180145, null, $this),
 			new Location\Standing("Piece of Heart (Zora's River)", 0x180149, null, $this),
-			new Location\Dig("Haunted Grove item", 0x18014A, null, $this),
+			new Location\Dig\HauntedGrove("Haunted Grove item", 0x18014A, null, $this),
 		]);
 	}
 
