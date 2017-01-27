@@ -188,6 +188,10 @@ class Randomizer {
 			unset($advancement_items[$key]);
 		}
 
+		if ($this->config('region.RedMailByrnaCave', false)) {
+			$this->world->getLocation("[cave-055] Spike cave")->setItem(Item::get('RedMail'));
+		}
+
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 			return $location->canAccess($my_items);
 		})->merge($this->world->getRegion('Escape')->getLocations());

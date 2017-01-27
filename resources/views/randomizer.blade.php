@@ -386,7 +386,7 @@
 				</div>
 				<div class="col-md-4">
 					<input id="item-count-StaffOfByrna" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.StaffOfByrna]" class="custom-items">
-					<label for="item-count-StaffOfByrna">Staff Of Byrna</label>
+					<label for="item-count-StaffOfByrna">Cane Of Byrna</label>
 				</div>
 				<div class="col-md-4">
 					<input id="item-count-OneRupee" type="number" value="2" min="0" max="200" step="1" name="data[alttp.custom.item.count.OneRupee]" class="custom-items">
@@ -666,7 +666,6 @@ $(function() {
 		}
 	});
 	localforage.getItem('generate.complexity.show').then(function(value) {
-		if (!value) return;
 		$('#generate-complexity-show').prop('checked', value);
 		$('#generate-complexity-show').trigger('change');
 	});

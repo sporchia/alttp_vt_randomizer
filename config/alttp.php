@@ -58,6 +58,7 @@ return [
 				'Bottles' => 0,
 				'ExtraBottles' => 0,
 				'HeartContainer' => 0,
+				'MagicUpgrade' => 0,
 				'MirrorShield' => 0,
 				'OneHundredRupees' => 2,
 				'PieceOfHeart' => 12,
@@ -70,9 +71,9 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 5,
 				'Powder' => 0,
+				'Cape' => 0,
 			],
 		],
-
 		'prize' => [
 			'crossWorld' => false,
 		],
@@ -80,6 +81,7 @@ return [
 			'bossHaveKey' => false,
 			'superBunnyDM' => false,
 			'bonkItems' => false,
+			'RedMailByrnaCave' => true,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -117,8 +119,8 @@ return [
 	'v8_hard' => [
 		'output' => [
 			'file' => [
-				'name' => 'alttp - VT_%s_v8_%s.sfc',
-				'spoiler' => 'alttp - VT_%s_v8_%s.txt',
+				'name' => 'alttp (hard) - VT_%s_v8_%s.sfc',
+				'spoiler' => 'alttp (hard) - VT_%s_v8_%s.txt',
 			],
 		],
 		'item' => [
@@ -139,6 +141,7 @@ return [
 				'Bottles' => 0,
 				'ExtraBottles' => 0,
 				'HeartContainer' => 0,
+				'MagicUpgrade' => 0,
 				'MirrorShield' => 0,
 				'OneHundredRupees' => 2,
 				'PieceOfHeart' => 16,
@@ -151,6 +154,7 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 5,
 				'Powder' => 0,
+				'Cape' => 0,
 			],
 		],
 		'prize' => [
@@ -161,6 +165,7 @@ return [
 			'CompassesMaps' => false,
 			'superBunnyDM' => false,
 			'bonkItems' => true,
+			'RedMailByrnaCave' => true,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -180,6 +185,7 @@ return [
 			'bossHaveKey' => false,
 			'superBunnyDM' => false,
 			'bonkItems' => false,
+			'RedMailByrnaCave' => false, // this is for hard mode
 		],
 		'spoil' => [
 			'BootsLocation' => false,

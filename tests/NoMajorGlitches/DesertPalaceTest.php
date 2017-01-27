@@ -69,6 +69,22 @@ class DesertPalaceTest extends TestCase {
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
+	public function testBigChestRequiresBootsIfBigKeyAtBigKeyAndKeyOnTorch() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBigChestRequiresBootsIfBigKeyAtCompassAndKeyOnTorch() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
 	public function testBigChestDoesNotRequireBootsIfBigKeyInMapRoom() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
@@ -98,6 +114,13 @@ class DesertPalaceTest extends TestCase {
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
+	public function testBigKeyRoomDoesNotRequiresBootsIfMapRoomHasKey() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
 	public function testBigKeyRoomRequiresBootsIfSmallKeyRoomHasKey() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
 
@@ -110,6 +133,13 @@ class DesertPalaceTest extends TestCase {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomDoesNotRequireBootsIfMapRoomHasKey() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
@@ -136,11 +166,11 @@ class DesertPalaceTest extends TestCase {
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
-	public function testLanmolasDoesNotRequireBootsIfBigKeyInMapRoom() {
+	public function testLanmolasRequiresBootsIfKeyOnTorch() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
 
-		$this->assertTrue($this->world->getLocation("Heart Container - Lanmolas")
+		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
@@ -155,6 +185,14 @@ class DesertPalaceTest extends TestCase {
 	public function testLanmolasDoesNotRequireBootsIfBigKeyInBigKeyRoomAndKeyInMapRoom() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
+
+		$this->assertTrue($this->world->getLocation("Heart Container - Lanmolas")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testLanmolasDoesNotRequireBootsIfKeyInBigChestAndBigKeyInMapRoom() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
 
 		$this->assertTrue($this->world->getLocation("Heart Container - Lanmolas")
 			->canAccess($this->allItemsExcept(['PegasusBoots'])));
@@ -220,6 +258,21 @@ class DesertPalaceTest extends TestCase {
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
+	public function testBigKeyCantBeAtLanmolas() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
+			->fill(Item::get('BigKey'), $this->allItems()));
+	}
+
+	public function testKeyCantBeAtLanmolas() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+
 	// Completion
 	public function testDoesntRequireBootsIfSmallKeyIsInMapChest() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
@@ -245,11 +298,20 @@ class DesertPalaceTest extends TestCase {
 			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
 	}
 
-	public function testDoesntRequiresBootsIfSmallKeyAtTorch() {
+	public function testRequiresBootsIfKeyAtTorch() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getRegion('Desert Palace')
 			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
 	}
+
+	public function testRequiresBootsIfBigKeyAtTorch() {
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getRegion('Desert Palace')
+			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
+	}
+
 }

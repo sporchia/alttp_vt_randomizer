@@ -36,6 +36,35 @@
 </ul>
 </div>
 
+<h1>What’s hard mode?</h1>
+<div class="well">
+<p>Hard mode was designed for people who really like a challenge. It doesn't affect what you need to do, but what
+	tools you will have available to you. The following items have been removed:</p>
+<ul>
+	<li>Arrow Capacity Upgrades</li>
+	<li>Bomb Capacity Upgrades</li>
+	<li>Boomerangs</li>
+	<li>Bottles</li>
+	<li>Bug Catching Net</li>
+	<li>Compasses</li>
+	<li>Heart Containers</li>
+	<li>Magic Cape</li>
+	<li>Magic Powder</li>
+	<li>Magic Upgrade</li>
+	<li>Mails</li>
+	<li>Maps</li>
+	<li>Shields</li>
+	<li>Cane Of Byrna</li>
+</ul>
+<p>And the following items reduced in count:</p>
+<ul>
+	<li>Arrows</li>
+	<li>Bombs</li>
+	<li>Rupees</li>
+	<li>Pieces of Heart (only 16 available)</li>
+</ul>
+</div>
+
 <h1>What differences are there from the original game?</h1>
 <div class="well">
 	<p>There are a few changes from the original game which enhance gameplay and prevent you getting stuck. The Japanese
@@ -100,6 +129,7 @@
 		<li>Bomb capacity upgrades (six +5 upgrades and one +10 upgrade)</li>
 		<li>Arrow capacity upgrades (six +5 upgrades and one +10 upgrade)</li>
 		<li>The Fighter’s Shield and Fire Shield</li>
+		<li>Magic upgrade (½ Magic or ¼ Magic)</li>
 	</ul>
 </div>
 @overwrite
