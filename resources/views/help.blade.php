@@ -17,7 +17,7 @@
 		<li>Sahasrahla requires the Pendant of Courage (the green one) irrespective of whether Eastern Palace has
 			been completed.</li>
 		<li>If you have the 5th and 6th crystal (which could be located in any dungeons) you can purchase the
-			Super Bomb which grants you access to the Fat Faerie in the Pyramid of Power. Check your map to see
+			Super Bomb which grants you access to the Fat Faerie in the Pyramid. Check your map to see
 			where crystals are located!</li>
 	</ul>
 </div>

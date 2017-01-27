@@ -351,7 +351,9 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements($access_post_bridge);
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements($access_post_bridge);
-		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements($access_post_bridge);
+		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements($access_post_bridge)->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setRequirements($access_post_bridge);
 		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setRequirements($access_post_bridge);
