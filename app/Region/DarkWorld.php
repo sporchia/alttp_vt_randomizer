@@ -163,7 +163,7 @@ class DarkWorld extends Region {
 
 		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
-				|| ($items->has('Flippers') && $items->hasABottle() && $items->has('BugCatchingNet')));
+				|| ($items->has('Flippers') && $items->has('MagicMirror') && $items->hasABottle() && $items->has('BugCatchingNet')));
 		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) {

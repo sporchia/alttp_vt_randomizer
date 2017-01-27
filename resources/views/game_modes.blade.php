@@ -14,9 +14,7 @@
 	<div class="panel-body">
 		<p>This mode requires no advanced knowledge about the game. It’s designed as if you were playing the original
 			game for the first time.</p>
-		<p>The logic will prevent you from getting stuck anywhere regardless of how you use small keys within dungeons.
-			However one small caveat - you will never be required to use a small key found in the second part of Desert
-			Palace to unlock the door in the first part. Doing this could lead to a softlock.</p>
+		<p>The logic will prevent you from getting stuck anywhere regardless of how you use small keys within dungeons.</p>
 	</div>
 </div>
 
@@ -38,9 +36,11 @@
 		<p>In addition there are some other minor changes from Casual mode.</p>
 		<ol>
 			<li>The small key distribution within dungeons is less restrictive which means poor pathing can potentially
-				lead to softlocks. However you are never required to gamble between one door or another.</li>
+				lead to softlocks.</li>
+			{{--
 			<li>You no longer have the ability to see in dark rooms without the Lamp within the Light World (except for
 				Sewers).</li>
+			--}}
 			<li>You may be required to navigate through dark rooms without the Lamp within both the Light World and Dark
 				World.</li>
 			{{--
@@ -58,7 +58,7 @@
 		<p>This mode accounts for everything besides EG and semi-EG which are two extremely powerful glitches allowing
 			you to walk through floors or under walls… and even reach the Triforce in under 2 minutes! This mode is
 			very difficult and may require advanced knowledge of some other major glitches in addition to everything
-			in Speedrunner mode.</p>
+			in Speed Runner mode.</p>
 		<ul>
 			<li>Overworld YBA</li>
 			<li>Clipping out of bounds (underworld and overworld)</li>
