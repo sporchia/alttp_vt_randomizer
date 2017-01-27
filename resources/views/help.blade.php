@@ -6,10 +6,10 @@
 	<p>Randomizing the game definitely tests your knowledge of the game! If you think you’re stuck try
 		considering the below.</p>
 	<ul>
-		<li>You can sneak through Aghanim's barrier with the Magic Cape if you don’t yet have an upgraded sword.</li>
+		<li>You can sneak through Agahnim's barrier with the Magic Cape if you don’t yet have an upgraded sword.</li>
 		<li>You can reach Desert Palace without the Book of Mudora if you have access to the Misery Mire area in the
 			Dark World and the Magic Mirror.</li>
-		<li>You can use Bombos to burn things as well as the Fire Rod. This allows you to complete Ice Palace and
+		<li>You can use Bombos to burn things as well as the Fire Rod. This allows you to enter Ice Palace and
 			defeat Kholdstare.</li>
 		<li>You can cross small pits by bonking against walls/blocks if you have the Pegasus Boots. This may allow you
 			to explore Misery Mire or the left wing of Ganon’s Tower without the Hookshot. You can also reach a treasure

@@ -182,7 +182,7 @@ class Randomizer {
 		$advancement_items = $this->getAdvancementItems();
 
 		if ($this->type == 'Glitched') {
-			$this->world->getLocation("[cave-040] Link's House")->setItem(Item::get('PegasusBoots'));
+			$this->world->getLocation("[dungeon-C-1F] Sanctuary")->setItem(Item::get('PegasusBoots'));
 			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
 			$my_items->addItem(Item::get('PegasusBoots'));
 			unset($advancement_items[$key]);

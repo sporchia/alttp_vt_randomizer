@@ -29,7 +29,7 @@
 <ul>
 	<li>Link’s Uncle will still always give you the Fighter’s Sword.</li>
 	<li>Great Faerie upgrade fountains in Zora’s Domain and Lake Hylia remain unchanged.</li>
-	<li>The Great Faerie in the Pyramid of Power will still always upgrade your Bow to Silver Arrows.</li>
+	<li>The Great Faerie in the Pyramid will still always upgrade your Bow to Silver Arrows.</li>
 	<li>All shops throughout Hyrule remain unchanged.</li>
 	<li>The archery minigame remains unchanged.</li>
 	<li>Small keys underneath pots or held by enemies remain unchanged.</li>
@@ -38,14 +38,15 @@
 
 <h1>What’s hard mode?</h1>
 <div class="well">
-<p>Hard mode was designed for people who really like a challenge. It doesn't affect what you need to do, but what
-	tools you will have available to you. The following items have been removed:</p>
+<p>Hard mode was designed for people who really like a challenge.  It doesn't affect what you need to do but it
+	does affect what items you will have available to you. The following items have been removed:</p>
 <ul>
 	<li>Arrow Capacity Upgrades</li>
 	<li>Bomb Capacity Upgrades</li>
 	<li>Boomerangs</li>
 	<li>Bottles</li>
 	<li>Bug Catching Net</li>
+	<li>Cane Of Byrna</li>
 	<li>Compasses</li>
 	<li>Heart Containers</li>
 	<li>Magic Cape</li>
@@ -54,14 +55,13 @@
 	<li>Mails</li>
 	<li>Maps</li>
 	<li>Shields</li>
-	<li>Cane Of Byrna</li>
 </ul>
-<p>And the following items reduced in count:</p>
+<p>The following items have had their count reduced:</p>
 <ul>
 	<li>Arrows</li>
 	<li>Bombs</li>
-	<li>Rupees</li>
 	<li>Pieces of Heart (only 16 available)</li>
+	<li>Rupees</li>
 </ul>
 </div>
 
@@ -80,9 +80,9 @@
 			the Bottles no longer automatically opens and you can open it with X or toggle between them with Y. You can
 			also toggle between viewing your Pendants or Crystals by pressing Select.</li>
 		<li>If you defeat Agahnim but don’t have the Magic Mirror ordinarily you would not be able to return to the
-			Light World, even if you save and quit. However s+q will now return you to the Light World if you don’t have
+			Light World even if you save and quit. However s+q will now return you to the Light World if you don’t have
 			the Magic Mirror to prevent this. If you do have the Magic Mirror you will correctly s+q to the Pyramid of
-			Power in the Dark World.</li>
+			Power.</li>
 		<li>The water levels within Swamp Palace will always revert to being drained when you exit the overworld screen.
 			This prevents you accidentally drowning keys under water and getting stuck!</li>
 		<li>The file select screen has a random row of symbols at the top. These are a unique identifier for each seed
@@ -99,13 +99,13 @@
 		<li>The maximum rupee count is now 9999</li>
 		<li>You now have a ⅓ chance to find ¼ Magic instead of ½ Magic</li>
 		<li>Bottles are randomly filled upon collection with an equal chance for each bottle prize (including empty)</li>
-		<li>Throwing bottles into Faerie fountains now yields an equal chance for each bottle prize (including empty)</li>
-		<li>The bomb/arrow upgrades from the Great Faerie only increase your capacity by 1 (since they’re in the item pool)</li>
+		<li>Throwing bottles into Faerie Fountains now yields an equal chance for each bottle prize</li>
+		<li>The bomb/arrow upgrades from the Great Faerie in Lake Hylia only increase your capacity by 1 (since they’re in the item pool)</li>
 		<li>You can now dig up items with the shovel (e.g. bombs, arrows, hearts, rupees)</li>
 		<li>The doors to Hyrule Castle remain unlocked after defeating Agahnim</li>
 		<li>The Smithy no longer needs to be rescued to spawn the Super Bomb (only crystals 5 and 6 are required)</li>
 		<li>Mothula now takes damage from the Gold Sword (Tempered Sword damage values)</li>
-		<li>The door to Aghanim's Tower is now locked until Zelda has been rescued</li>
+		<li>The door to Agahnim's Tower is now locked until Zelda has been rescued</li>
 		<li>The purple chest now returns to its initial location if left on the overworld when you enter a dungeon</li>
 		<li>You will always respawn on the Pyramid if you die to Ganon (even if Agahnim has not been defeated)</li>
 		<li>The light world flute boy has been removed (fixed issues with game crashes)</li>
@@ -115,7 +115,7 @@
 		<li>Link’s Uncle no longer gives you a shield</li>
 		<li>The Mirror Shield can now reflect some projectiles</li>
 		<li>The Sanctuary priest no longer dies when you upgrade your sword or beat Agahnim</li>
-		<li>Link’s Uncle selects text from a pool of phrases and has a 5% chance to tell you where the Pegasus Boots are</li>
+		<li>Link’s Uncle selects text from a pool of phrases and has a 5% chance to tell you where the Pegasus Boots are hidden</li>
 		<li>The Pendant of Courage has been flipped horizontally on the map to make it more identifiable</li>
 		<li>The credits have been updated to also include statistics of your playthrough (check King Zora’s message!)</li>
 	</ul>
@@ -123,8 +123,8 @@
 
 <h1>What non-standard items are in the item pool?</h1>
 <div class="well">
-	<p>Almost everything you find is something you would ordinarily find in a unique location which is part of the
-		item pool somewhere in the original game. There are however a few exceptions.<p>
+	<p>Almost everything you find is something you would ordinarily find in a unique location somewhere
+		in the original game. There are however a few exceptions.<p>
 	<ul>
 		<li>Bomb capacity upgrades (six +5 upgrades and one +10 upgrade)</li>
 		<li>Arrow capacity upgrades (six +5 upgrades and one +10 upgrade)</li>

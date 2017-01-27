@@ -61,7 +61,7 @@
 			in Speed Runner mode.</p>
 		<ul>
 			<li>Overworld YBA</li>
-			<li>Clipping out of bounds (underworld and overworld)</li>
+			<li>Clipping out of bounds</li>
 			<li>Screenwraps</li>
 		</ul>
 
@@ -74,7 +74,7 @@
 			<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>
 			{{--
 			<li>The door to Aghanim's Tower is no longer locked before Zelda has been rescued</li>
-			<li>You will always s+q to the Pyramid of Power after defeating Agahnim when in the Dark World</li>
+			<li>You will always s+q to the Pyramid after defeating Agahnim when in the Dark World</li>
 			<li>The cursed dwarf is no longer removed when you s+q</li>
 			--}}
 		</ul>
