@@ -808,7 +808,7 @@ $(function() {
 		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
 
 		genToZip(zip, itters).then(function(zip) {
-			zip.generateAsync({type:"blob"})
+			zip.generateAsync({type: "blob", compression: "DEFLATE"})
 			.then(function(content) {
 				saveAs(content, "VT-alttp-roms.zip");
 				$('button[name=generate]').html('Generate').prop('disabled', false);
@@ -822,8 +822,8 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + rom.mode + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + rom.mode + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + data.patch.mode + '_' + data.patch.seed + '.sfc', buffer);
+				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + data.patch.mode + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);
