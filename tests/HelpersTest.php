@@ -17,7 +17,7 @@ class HelpersTest extends TestCase {
 
 		$this->assertEquals($unshuffled, $shuffled);
 	}
-
+/*
 	public function testKsortr() {
 		$unsorted = [
 			'zed' => [
@@ -45,4 +45,5 @@ class HelpersTest extends TestCase {
 			],
 		], $unsorted);
 	}
+	*/
 }
