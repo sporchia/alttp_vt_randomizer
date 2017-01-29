@@ -188,6 +188,7 @@ class Randomizer {
 			unset($advancement_items[$key]);
 		}
 
+		// @TODO: consider using hard mode for this? and not having it be red mail
 		if ($this->config('region.RedMailByrnaCave', false)) {
 			$this->world->getLocation("[cave-055] Spike cave")->setItem(Item::get('RedMail'));
 		}
@@ -348,6 +349,10 @@ class Randomizer {
 				$location->setItem(Item::get('Nothing'));
 				$location->writeItem($rom);
 			});
+		}
+
+		if ($this->config('rom.HardMode', false)) {
+			$rom->setHardMode(true);
 		}
 
 		$rom->writeRNGBlock(function() {

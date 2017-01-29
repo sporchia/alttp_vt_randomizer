@@ -159,6 +159,18 @@ class RomTest extends TestCase {
 		$this->assertEquals(0xFF, $this->rom->read(0x180211));
 	}
 
+	public function testSetHardModeOnChangesCapeMagicUsage() {
+		$this->rom->setHardMode(true);
+
+		$this->assertEquals([0x01, 0x01, 0x01], $this->rom->read(0x3ADA7, 3));
+	}
+
+	public function testSetHardModeOffChangesCapeMagicUsage() {
+		$this->rom->setHardMode(false);
+
+		$this->assertEquals([0x04, 0x08, 0x10], $this->rom->read(0x3ADA7, 3));
+	}
+
 	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {
 		$this->rom->setMirrorlessSaveAneQuitToLightWorld(true);
 

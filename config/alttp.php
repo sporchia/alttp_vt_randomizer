@@ -83,6 +83,9 @@ return [
 			'bonkItems' => false,
 			'RedMailByrnaCave' => true,
 		],
+		'rom' => [
+			'HardMode' => true,
+		],
 		'spoil' => [
 			'BootsLocation' => false,
 		],
@@ -167,6 +170,9 @@ return [
 			'bonkItems' => true,
 			'RedMailByrnaCave' => true,
 		],
+		'rom' => [
+			'HardMode' => true,
+		],
 		'spoil' => [
 			'BootsLocation' => false,
 		],
@@ -186,6 +192,9 @@ return [
 			'superBunnyDM' => false,
 			'bonkItems' => false,
 			'RedMailByrnaCave' => false, // this is for hard mode
+		],
+		'rom' => [
+			'HardMode' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => false,

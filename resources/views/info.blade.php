@@ -49,7 +49,6 @@
 	<li>Cane Of Byrna</li>
 	<li>Compasses</li>
 	<li>Heart Containers</li>
-	<li>Magic Cape</li>
 	<li>Magic Powder</li>
 	<li>Magic Upgrade</li>
 	<li>Mails</li>
@@ -62,6 +61,10 @@
 	<li>Bombs</li>
 	<li>Pieces of Heart (only 16 available)</li>
 	<li>Rupees</li>
+</ul>
+<p>The following items have been adjusted:</p>
+<ul>
+	<li>Magic Cape uses 4x Magic</li>
 </ul>
 </div>
 

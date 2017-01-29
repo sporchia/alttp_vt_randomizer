@@ -245,6 +245,20 @@ class Rom {
 	}
 
 	/**
+	 * Adjust some settings for hard mode
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setHardMode($enable = true) {
+		// adjust cape magic usage
+		$this->write(0x3ADA7, $enable ? pack('C*', 0x01, 0x01, 0x01) : pack('C*', 0x04, 0x08, 0x10));
+
+		return $this;
+	}
+
+	/**
 	 * Enable/Disable the ROM Hack that doesn't leave Link stranded in DW
 	 *
 	 * @param bool $enable switch on or off
