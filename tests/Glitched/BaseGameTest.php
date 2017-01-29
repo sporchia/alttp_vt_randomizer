@@ -5,7 +5,7 @@ use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group Glitched
  */
 class BaseGameTest extends TestCase {
 	public function setUp() {

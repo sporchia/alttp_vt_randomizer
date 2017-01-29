@@ -19,6 +19,17 @@ class PalaceOfDarknessTest extends TestCase {
 	}
 
 	// Entry
+	public function testCanEnterWithEverything() {
+		$this->assertTrue($this->world->getRegion('Palace of Darkness')
+			->canEnter($this->world->getLocations(), $this->allItems()));
+	}
+
+	public function testMoonPearlRequiredForEntry() {
+		$this->assertFalse($this->world->getRegion('Palace of Darkness')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
+	}
+
+	// Item Locations
 	public function testShooterRoomRequiresOnlyEntry() {
 		$this->addCollected(['MoonPearl', 'Cape', 'L1Sword']);
 

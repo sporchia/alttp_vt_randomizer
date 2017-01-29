@@ -17,4 +17,32 @@ class HelpersTest extends TestCase {
 
 		$this->assertEquals($unshuffled, $shuffled);
 	}
+
+	public function testKsortr() {
+		$unsorted = [
+			'zed' => [
+				'1' => '2',
+				'red' => '4',
+				'fed' => 0,
+			],
+			'yo' => [
+				'3' => 'hello',
+				'goo' => 'foo',
+				'bar' => 'baz',
+			],
+		];
+		ksortr($unsorted);
+		$this->assertSame([
+			'yo' => [
+				'bar' => 'baz',
+				'goo' => 'foo',
+				'3' => 'hello',
+			],
+			'zed' => [
+				'fed' => 0,
+				'red' => '4',
+				'1' => '2',
+			],
+		], $unsorted);
+	}
 }

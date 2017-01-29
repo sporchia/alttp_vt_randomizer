@@ -113,11 +113,11 @@ class DarkWorld extends Region {
 		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) || $items->has('TitansMitt');
+			return $access_dark_world($items) || $items->has('TitansMitt') || $items->has('Hammer');
 		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) || $items->has('TitansMitt');
+			return $access_dark_world($items) || $items->has('TitansMitt') || $items->has('Hammer');
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {

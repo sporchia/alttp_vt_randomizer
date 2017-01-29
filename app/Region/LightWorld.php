@@ -383,10 +383,9 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror')
-				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
-					&& $items->has('MoonPearl') && ($items->canLiftRocks() || $items->has('Hammer')))
-				|| ($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && $items->has('Flippers')));
+			return $items->has('MagicMirror') && $items->has('Flippers')
+				&& ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+					|| ($items->has('MoonPearl') && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
 		});
 
 		return $this;
