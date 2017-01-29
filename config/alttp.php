@@ -71,7 +71,6 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 5,
 				'Powder' => 0,
-				'Cape' => 0,
 			],
 		],
 		'prize' => [
@@ -157,7 +156,6 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 5,
 				'Powder' => 0,
-				'Cape' => 0,
 			],
 		],
 		'prize' => [
