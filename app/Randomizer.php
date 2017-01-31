@@ -359,6 +359,19 @@ class Randomizer {
 			return mt_rand(0, 0x100);
 		});
 
+		// Little fun with the end credits
+		switch (mt_rand(0, 2)) {
+			case 0:
+				$rom->setKingsReturnCredits('fellowship of the ring');
+				break;
+			case 1:
+				$rom->setKingsReturnCredits('the two towers');
+				break;
+			case 2:
+				$rom->setKingsReturnCredits('the return of the king');
+				break;
+		}
+
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
 

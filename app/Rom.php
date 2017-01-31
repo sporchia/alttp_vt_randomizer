@@ -135,15 +135,16 @@ class Rom {
 	}
 
 	/**
-	 * Set the Flute Boy credits to a custom value
+	 * Set the King's Return credits to a custom value
+	 * Original: the return of the king
 	 *
 	 * @param string $string
 	 *
 	 * @return $this
 	 */
-	public function setFluteBoyCredits(string $string) {
-		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
-		$offset = 0x76B34;
+	public function setKingsReturnCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 22), 22, ' ', STR_PAD_BOTH);
+		$offset = 0x76928;
 		foreach ($this->convertCredits($write_string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
@@ -151,9 +152,9 @@ class Rom {
 		return $this;
 	}
 
-
 	/**
 	 * Set the Zora credits text to a custom value
+	 * Original: finger webs for sale
 	 *
 	 * @param string $string
 	 *
@@ -170,6 +171,42 @@ class Rom {
 	}
 
 	/**
+	 * Set the Flute Boy credits to a custom value
+	 * Original: ocarina boy plays again
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setFluteBoyCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
+		$offset = 0x76B34;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Alter credits to a custom value
+	 * Original: and the master sword
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setAlterCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
+		$offset = 0x76C81;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Enable/Disable the predefined ROM debug mode: Starts after Zelda is saved with all items. No chests are open.
 	 *
 	 * @return $this
@@ -178,6 +215,18 @@ class Rom {
 		$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
 		$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
 
+		return $this;
+	}
+
+	public function setEndGameMode() {
+		$this->setDebugMode();
+		$debug_offset = 0x2716A;
+		$this->write($debug_offset + 26, pack('C*', 0x04)); // sword
+		$this->write($debug_offset + 27, pack('C*', 0x03)); // shield
+		$this->write($debug_offset + 28, pack('C*', 0x02)); // mail
+		$this->write($debug_offset + 53, pack('C*', 0x07)); // pendants
+		$this->write($debug_offset + 59, pack('C*', 0xFF)); // crystals
+		$this->write($debug_offset + 60, pack('C*', 0x02)); // magic
 		return $this;
 	}
 

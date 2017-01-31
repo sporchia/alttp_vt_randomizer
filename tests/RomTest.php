@@ -87,6 +87,34 @@ class RomTest extends TestCase {
 		$this->assertEquals($converted, $this->rom->read(static::UNCLE_TEXT_0_ADDRESS, 76));
 	}
 
+	public function testSetKingsReturnCredits() {
+		$this->rom->setKingsReturnCredits("this is a test");
+
+		$this->assertEquals([159, 159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
+			159, 159, 159, 159], $this->rom->read(0x76928, 22));
+	}
+
+	public function testSetZoraCredits() {
+		$this->rom->setZoraCredits("this is a test");
+
+		$this->assertEquals([159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
+			159, 159, 159], $this->rom->read(0x76A85, 20));
+	}
+
+	public function testSetFluteBoyCredits() {
+		$this->rom->setFluteBoyCredits("this is a test");
+
+		$this->assertEquals([159, 159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
+			159, 159, 159, 159, 159], $this->rom->read(0x76B34, 23));
+	}
+
+	public function testSetAlterCredits() {
+		$this->rom->setAlterCredits("this is a test");
+
+		$this->assertEquals([159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
+			159, 159, 159], $this->rom->read(0x76C81, 20));
+	}
+
 	public function testSetDebugModeOn() {
 		$this->rom->setDebugMode(true);
 
