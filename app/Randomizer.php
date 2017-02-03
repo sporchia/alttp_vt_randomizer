@@ -359,6 +359,8 @@ class Randomizer {
 			return mt_rand(0, 0x100);
 		});
 
+		$this->writePrizeShuffleToRom($rom);
+
 		// Little fun with the end credits
 		switch (mt_rand(0, 2)) {
 			case 0:
@@ -615,6 +617,45 @@ class Randomizer {
 		}
 
 		return mt_shuffle($items_to_find);
+	}
+
+	/**
+	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites
+	 *
+	 * @TODO: create sprite classes
+	 * @TODO: create prize pack classes
+	 */
+	public function writePrizeShuffleToRom(Rom $rom) {
+		// Sprite prize pack
+		$offset = 0x6B632;
+		$bytes = $rom->read(0x6B632, 243);
+		for ($i = 0; $i < 243; $i++) {
+			if (!isset($byte[$i])) {
+				$byte[$i] = 0;
+			}
+			$byte[$i] = ($byte[$i] >> 4 << 4) + mt_rand(0,7);
+		}
+		$rom->write($offset, pack('C*', ...$bytes));
+
+		// Pack drop chance
+		$offset = 0x37A62;
+		for ($i = 0; $i < 7; $i++) {
+			$rom->write($offset + $i, pack('C*', floor(mt_rand(0, 7) / 7)));
+		}
+
+		// Pack shuffle
+		$offset = 0x37A78;
+		$prizes = [
+			0xD8, 0xD8, 0xD8, 0xD8, 0xD9, 0xD8, 0xD8, 0xD9,
+			0xDA, 0xD9, 0xDA, 0xDB, 0xDA, 0xD9, 0xDA, 0xDA,
+			0xE0, 0xDF, 0xDF, 0xDA, 0xE0, 0xDF, 0xD8, 0xDF,
+			0xDC, 0xDC, 0xDC, 0xDD, 0xDC, 0xDC, 0xDE, 0xDC,
+			0xE1, 0xD8, 0xE1, 0xE2, 0xE1, 0xD8, 0xE1, 0xE2,
+			0xDF, 0xD9, 0xD8, 0xE1, 0xDF, 0xDC, 0xD9, 0xD8,
+			0xD8, 0xE3, 0xE0, 0xDB, 0xDE, 0xD8, 0xDB, 0xE2,
+		];
+		$shuffled = mt_shuffle($prizes);
+		$rom->write($offset, pack('C*', ...$shuffled));
 	}
 
 	/**
