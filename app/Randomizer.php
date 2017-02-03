@@ -359,7 +359,9 @@ class Randomizer {
 			return mt_rand(0, 0x100);
 		});
 
-		$this->writePrizeShuffleToRom($rom);
+		if ($this->config('sprite.shufflePrizePack', true)) {
+			$this->writePrizeShuffleToRom($rom);
+		}
 
 		// Little fun with the end credits
 		switch (mt_rand(0, 2)) {
@@ -626,23 +628,6 @@ class Randomizer {
 	 * @TODO: create prize pack classes
 	 */
 	public function writePrizeShuffleToRom(Rom $rom) {
-		// Sprite prize pack
-		$offset = 0x6B632;
-		$bytes = $rom->read(0x6B632, 243);
-		for ($i = 0; $i < 243; $i++) {
-			if (!isset($byte[$i])) {
-				$byte[$i] = 0;
-			}
-			$byte[$i] = ($byte[$i] >> 4 << 4) + mt_rand(0,7);
-		}
-		$rom->write($offset, pack('C*', ...$bytes));
-
-		// Pack drop chance
-		$offset = 0x37A62;
-		for ($i = 0; $i < 7; $i++) {
-			$rom->write($offset + $i, pack('C*', floor(mt_rand(0, 7) / 7)));
-		}
-
 		// Pack shuffle
 		$offset = 0x37A78;
 		$prizes = [

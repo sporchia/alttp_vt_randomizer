@@ -6,21 +6,27 @@
   <span class="sr-only">Error:</span>
   <span class="message">Cannot Read ROM file.</span>
 </div>
-<div id="rom-select">
-	<div>To get started, please:
-		<label class="btn btn-default btn-file">
-			Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
-		</label>
+<div id="rom-select" class="panel panel-info" style="display:none">
+	<div class="panel-heading">
+		<h4 class="panel-title">Getting Started</h4>
+	</div>
+	<div class="panel-body">
+		<p>
+			<label class="btn btn-default btn-file">
+				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
+			</label>
+		</p>
+		<p>Please use a Zelda no Densetsu: Kamigami no Triforce v1.0 ROM</p>
 	</div>
 </div>
-<div id="seed-generate" class="panel panel-default" style="display:none">
+<div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Generate</h3>
 		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog"></span></button>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
-		<div class="row">
+		<div class="row" style="padding-bottom:5px;">
 			<div class="col-md-4">
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Seed</span>
@@ -71,7 +77,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
 			<div class="panel panel-info panel-collapse collapse" id="rom-settings">
 				<div class="panel-heading">
 					<h4 class="panel-title">ROM Settings</h4>
@@ -104,10 +109,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 </div>
-<div class="info panel panel-default" style="display:none">
+<div id="seed-details" class="info panel panel-info" style="display:none">
 	<div class="panel-heading"><h3 class="panel-title">Seed Details</h3></div>
 	<div class="panel-body">
 		<div class="col-md-6">
@@ -198,6 +202,10 @@
 				<div class="col-md-6">
 					<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-bonkItems">Bonk Keys in Pool</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-region-shufflePrizePack" type="checkbox" name="data[alttp.custom.sprite.shufflePrizePack]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-region-shufflePrizePack">Shuffle Prize Packs</label>
 				</div>
 			</div>
 
@@ -495,10 +503,13 @@ function resizeUint8(baseArrayBuffer, newByteSize) {
 function applySeed(rom, seed, second_attempt) {
 	if (rom.checkMD5() != current_rom_hash) {
 		if (second_attempt) {
+			$('#seed-generate, #seed-details, #config').hide();
 			$('.alert .message').html('Could not reset ROM.');
 			$('.alert').show();
 			$('#rom-select').show();
-			return;
+			return new Promise(function(resolve, reject) {
+				reject(rom);
+			});
 		}
 		return patchRomFromJSON(rom, 'js/romreset.json')
 			.then(function(rom) {

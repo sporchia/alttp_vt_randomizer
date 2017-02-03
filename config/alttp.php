@@ -32,6 +32,9 @@ return [
 		'spoil' => [
 			'BootsLocation' => false,
 		],
+		'sprite' => [
+			'shufflePrizePack' => false,
+		],
 	],
 	'v7_hard' => [
 		'output' => [
@@ -87,6 +90,9 @@ return [
 		],
 		'spoil' => [
 			'BootsLocation' => false,
+		],
+		'sprite' => [
+			'shufflePrizePack' => false,
 		],
 	],
 	'v8' => [
@@ -196,6 +202,9 @@ return [
 		],
 		'spoil' => [
 			'BootsLocation' => false,
+		],
+		'sprite' => [
+			'shufflePrizePack' => false,
 		],
 	],
 ];

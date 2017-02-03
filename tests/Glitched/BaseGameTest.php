@@ -172,6 +172,8 @@ class BaseGameTest extends TestCase {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
 			'MasterSword', 'Hammer', 'Flippers', 'Hookshot']);
 
+		$this->world->getLocation("[dungeon-D2-1F] Swamp Palace - first room")->setItem(Item::get('Key'));
+
 		$this->assertTrue($this->world->getRegion('Swamp Palace')->canComplete($this->world->getLocations(), $this->collected));
 	}
 

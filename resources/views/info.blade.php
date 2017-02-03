@@ -21,6 +21,7 @@
 		<li>All pendants/crystals are also randomized between themselves. Check your map to see where they are!</li>
 		<li>The medallions required to open Misery Mire and Turtle Rock and also randomized.</li>
 		<li>The Master Sword, Tempered Sword and Gold Sword are randomized between themselves.</li>
+		<li>Enemy prizes have been randomized by randomly selecting 8 prizes per prize pack from the drop pool.</li>
 	</ul>
 </div>
 
