@@ -149,8 +149,8 @@ class Randomizer {
 		if ($this->config('rom.HardMode', false)) {
 			$swords = [
 				Item::get('MasterSword'),
-				Item::get('L1Sword'),
-				Item::get('L1Sword'),
+				Item::get('MasterSword'),
+				Item::get('MasterSword'),
 			];
 		}
 
