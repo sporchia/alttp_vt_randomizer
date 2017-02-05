@@ -441,6 +441,8 @@
 <script>
 var rom;
 var current_rom_hash = '{{ ALttP\Rom::HASH }}';
+var resetjsonfile = "{{ elixir('js/romreset.json') }}";
+var basejsonfile = "{{ elixir('js/base2current.json') }}";
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -519,7 +521,7 @@ function applySeed(rom, seed, second_attempt) {
 				reject(rom);
 			});
 		}
-		return patchRomFromJSON(rom, 'js/romreset.json')
+		return patchRomFromJSON(rom, resetjsonfile)
 			.then(function(rom) {
 				return applySeed(rom, seed, true);
 			});
@@ -617,14 +619,14 @@ function loadBlob(blob, show_error) {
 				romOk(rom);
 				break;
 			case '118597172b984bfffaff1a1b7d06804d':
-				patchRomFromJSON(rom, 'js/base2current.json')
+				patchRomFromJSON(rom, basejsonfile)
 					.then(romOk);
 				break;
 			default:
 				// attempt to reset
-				patchRomFromJSON(rom, 'js/base2current.json')
+				patchRomFromJSON(rom, basejsonfile)
 				.then(function(rom) {
-					patchRomFromJSON(rom, 'js/romreset.json')
+					patchRomFromJSON(rom, resetjsonfile)
 					.then(function(rom) {
 						if (rom.checkMD5() == current_rom_hash) {
 							romOk(rom);

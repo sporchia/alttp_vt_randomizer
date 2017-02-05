@@ -21,5 +21,5 @@ elixir((mix) => {
 });
 
 elixir(function(mix) {
-	mix.version(['css/app.css', 'js/app.js', 'js/all.js']);
+	mix.version(['css/app.css', 'js/app.js', 'js/all.js', 'js/romreset.json', 'js/base2current.json']);
 });
