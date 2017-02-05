@@ -5,13 +5,13 @@ use ALttP\Location\Npc;
 use ALttP\Rom;
 
 /**
- * Zora specifically changes the credits when you write an item.
+ * Bug-Catching Kid specifically changes the credits when you write an item.
  */
-class Zora extends Npc {
+class BugCatchingKid extends Npc {
 	public function writeItem(Rom $rom, Item $item = null) {
 		parent::writeItem($rom, $item);
 
-		$rom->setZoraCredits($this->getItemCreditsText());
+		$rom->setBugCatchingKidCredits($this->getItemCreditsText());
 
 		return $this;
 	}
@@ -20,148 +20,142 @@ class Zora extends Npc {
 		switch ($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "sword for sale";
+				return "sword-wielding kid";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "glow sword for sale";
+				return "sword-wielding kid";
 			case Item::get('L3Sword'):
-				return "flame sword for sale";
+				return "sword-wielding kid";
 			case Item::get('L4Sword'):
-				return "butter for sale";
+				return "sword-wielding kid";
 			case Item::get('BlueShield'):
-				return "bad defense for sale";
+				return "shield-wielding kid";
 			case Item::get('RedShield'):
-				return "red shield for sale";
+				return "shield-wielding kid";
 			case Item::get('MirrorShield'):
-				return "face shield for sale";
+				return "shield-wielding kid";
 			case Item::get('FireRod'):
-				return "rage rod for sale";
+				return "fire-starting kid";
 			case Item::get('IceRod'):
-				return "ice cream for sale";
+				return "the ice-bending kid";
 			case Item::get('Hammer'):
-				return "m c hammer for sale";
+				return "hammer-smashing kid";
 			case Item::get('Hookshot'):
-				return "tickle beam for sale";
+				return "tickle-monster kid";
 			case Item::get('Bow'):
-				return "arrow sling for sale";
+				return "arrow-slinging kid";
 			case Item::get('BowAndArrows'):
-				return "point stick for sale";
+				return "arrow-slinging kid";
 			case Item::get('BowAndSilverArrows'):
-				return "you got lucky";
+				return "arrow-slinging kid";
 			case Item::get('Boomerang'):
-				return "bent stick for sale";
+				return "the bat-throwing kid";
 			case Item::get('RedBoomerang'):
-				return "air foil for sale";
+				return "the bat-throwing kid";
 			case Item::get('Powder'):
-				return "sack for sale";
+				return "the sack-holding kid";
 			case Item::get('Bombos'):
-				return "swirly coin for sale";
+				return "coin-collecting kid";
 			case Item::get('Ether'):
-				return "bolt coin for sale";
+				return "coin-collecting kid";
 			case Item::get('Quake'):
-				return "wavy coin for sale";
+				return "coin-collecting kid";
 			case Item::get('Lamp'):
-				return "candle for sale";
+				return "light-shining kid";
 			case Item::get('Shovel'):
-				return "dirt spade for sale";
+				return "archaeologist kid";
 			case Item::get('CaneOfSomaria'):
-				return "block stick for sale";
+				return "the block-making kid";
 			case Item::get('StaffOfByrna'):
-				return "shiny stick for sale";
+				return "the spark-making kid";
 			case Item::get('Cape'):
-				return "red hood for sale";
+				return "red riding-hood kid";
 			case Item::get('MagicMirror'):
-				return "your face for sale";
+				return "the narcissistic kid";
 			case Item::get('PowerGlove'):
-				return "lift glove for sale";
+				return "body-building kid";
 			case Item::get('TitansMitt'):
-				return "carry glove for sale";
+				return "body-building kid";
 			case Item::get('BookOfMudora'):
-				return "moon runes for sale";
+				return "the scholarly kid";
 			case Item::get('Flippers'):
-				return "finger webs for sale";
+				return "the swimming kid";
 			case Item::get('MoonPearl'):
-				return "lunar orb for sale";
+				return "fortune-telling kid";
 			case Item::get('BugCatchingNet'):
-				return "stick web for sale";
+				return "the bug-catching kid";
 			case Item::get('BlueMail'):
-				return "banana hat for sale";
+				return "the protected kid";
 			case Item::get('RedMail'):
-				return "purple hat for sale";
+				return "well-protected kid";
 			case Item::get('Key'):
 			case Item::get('BigKey'):
-				return "advancement for sale";
+				return "the key-holding kid";
 			case Item::get('Compass'):
-				return "bearings for sale";
+				return "the navigating kid";
 			case Item::get('Map'):
-				return "the world for sale";
+				return "the cartographer kid";
 			case Item::get('PieceOfHeart'):
-				return "little love for sale";
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
 			case Item::get('HeartContainerNoAnimation'):
-				return "love for sale";
+				return "the life-giving kid";
 			case Item::get('Bomb'):
-				return "firecracker for sale";
 			case Item::get('ThreeBombs'):
-				return "fireworks for sale";
 			case Item::get('TenBombs'):
-				return "boom boom for sale";
+				return "the bomb-holding kid";
 			case Item::get('Mushroom'):
-				return "legal drugs for sale";
+				return "the drug-dealing kid";
 			case Item::get('Bottle'):
-				return "terrarium for sale";
+				return "the terrarium kid";
 			case Item::get('BottleWithRedPotion'):
-				return "red goo for sale";
 			case Item::get('BottleWithGreenPotion'):
-				return "green goo for sale";
 			case Item::get('BottleWithBluePotion'):
-				return "blue goo for sale";
+				return "potion-slinging kid";
 			case Item::get('BottleWithGoldBee'):
-				return "beetor for sale";
 			case Item::get('BottleWithBee'):
-				return "mad friend for sale";
+				return "the bug-caught kid";
 			case Item::get('BottleWithFairy'):
-				return "friend for sale";
+				return "fairy-catching kid";
 			case Item::get('Heart'):
-				return "affection for sale";
+				return "affection-giving kid";
 			case Item::get('Arrow'):
-				return "sewing kit for sale";
 			case Item::get('TenArrows'):
-				return "sewing kit for sale";
+				return "stick-collecting kid";
 			case Item::get('SmallMagic'):
-				return "alchemy for sale";
+				return "magic-slinging kid";
 			case Item::get('OneRupee'):
 			case Item::get('FiveRupees'):
+				return "poverty-struck kid";
 			case Item::get('TwentyRupees'):
 			case Item::get('TwentyRupees2'):
 			case Item::get('FiftyRupees'):
-				return "life lesson for sale";
+				return "the piggy-bank kid";
 			case Item::get('OneHundredRupees'):
-				return "fair trade for sale";
+				return "the kind-of-rich kid";
 			case Item::get('ThreeHundredRupees'):
-				return "good return for sale";
+				return "the really-rich kid";
 			case Item::get('OcarinaInactive'):
 			case Item::get('OcarinaActive'):
-				return "duck call for sale";
+				return "the duck-call kid";
 			case Item::get('PegasusBoots'):
-				return "sprint shoe for sale";
+				return "the running-man kid";
 			case Item::get('BombUpgrade5'):
 			case Item::get('BombUpgrade10'):
 			case Item::get('BombUpgrade50'):
-				return "bomb boost for sale";
+				return "boom-enlarging kid";
 			case Item::get('ArrowUpgrade5'):
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
-				return "arrow boost for sale";
+				return "quiver-enlarging kid";
 			case Item::get('SilverArrowUpgrade'):
-				return "sharp arrow for sale";
+				return "arrow-sharpening kid";
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
-				return "wizardry for sale";
+				return "the magic-saving kid";
 			case Item::get('Nothing'):
 			default:
-				return "Nothing, so stupid";
+				return "nothing-having kid";
 		}
 	}
 }

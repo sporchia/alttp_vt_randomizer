@@ -172,6 +172,8 @@ class Alter extends Location {
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
 				return "and the arrow boost";
+			case Item::get('SilverArrowUpgrade'):
+				return "and the razer blade";
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "and the magic saver";

@@ -3,7 +3,7 @@
 use ALttP\Rom;
 
 class RomTest extends TestCase {
-	const UNCLE_TEXT_0_ADDRESS = 0x102450;
+	const UNCLE_TEXT_0_ADDRESS = 0x102494;
 
 	public function setUp() {
 		parent::setUp();
@@ -61,6 +61,12 @@ class RomTest extends TestCase {
 		$this->assertEquals(40, $this->rom->read(0x180034));
 	}
 
+	public function testSetCapacityUpgradeFills() {
+		$this->rom->setCapacityUpgradeFills([1, 2, 0, 0, 20]);
+
+		$this->assertEquals([1, 2, 0, 0], $this->rom->read(0x180080, 5));
+	}
+
 	public function testSetUncleText() {
 		$this->rom->setUncleText(0x02);
 
@@ -106,6 +112,20 @@ class RomTest extends TestCase {
 
 		$this->assertEquals([159, 159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
 			159, 159, 159, 159, 159], $this->rom->read(0x76B34, 23));
+	}
+
+	public function testSetSwordsmithsCredits() {
+		$this->rom->setSwordsmithsCredits("this is a test");
+
+		$this->assertEquals([159, 159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
+			159, 159, 159, 159, 159], $this->rom->read(0x76BAC, 23));
+	}
+
+	public function testSetBugCatchingKidCredits() {
+		$this->rom->setBugCatchingKidCredits("this is a test");
+
+		$this->assertEquals([159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
+			159, 159, 159], $this->rom->read(0x76BDF, 20));
 	}
 
 	public function testSetAlterCredits() {
@@ -197,6 +217,18 @@ class RomTest extends TestCase {
 		$this->rom->setHardMode(false);
 
 		$this->assertEquals([0x04, 0x08, 0x10], $this->rom->read(0x3ADA7, 3));
+	}
+
+	public function testSetHardModeOnChangesBubbleTransform() {
+		$this->rom->setHardMode(true);
+
+		$this->assertEquals(0x79, $this->rom->read(0x36DD0));
+	}
+
+	public function testSetHardModeOffChangesBubbleTransform() {
+		$this->rom->setHardMode(false);
+
+		$this->assertEquals(0xE3, $this->rom->read(0x36DD0));
 	}
 
 	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {

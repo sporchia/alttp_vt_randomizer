@@ -305,6 +305,14 @@
 			</div>
 			<div class="tab-pane" id="custom-items-extra">
 				<div class="col-md-4">
+					<input id="item-count-BowAndSilverArrows" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.BowAndSilverArrows]" class="custom-items">
+					<label for="item-count-BowAndSilverArrows">Bow And Silver Arrows</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-SilverArrowUpgrade" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.SilverArrowUpgrade]" class="custom-items">
+					<label for="item-count-SilverArrowUpgrade">Silver Arrows Upgrade</label>
+				</div>
+				<div class="col-md-4">
 					<input id="item-count-Arrow" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.Arrow]" class="custom-items">
 					<label for="item-count-Arrow">Single Arrow</label>
 				</div>
@@ -432,7 +440,7 @@
 
 <script>
 var rom;
-var current_rom_hash = '93f0d6800928d17f0bbdf86aba51fa17';
+var current_rom_hash = '{{ ALttP\Rom::HASH }}';
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;

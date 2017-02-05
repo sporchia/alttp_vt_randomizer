@@ -206,7 +206,7 @@ class Sprite {
 			new Sprite("Zelda", "Princess Zelda", 0x76),
 			new Sprite("Antifairy2", "Antifairy (Alternate)", 0x77),
 			new Sprite("VillageElder", "Village Elder", 0x78),
-			new Sprite("Bee", "Bee", 0x79),
+			new Sprite("Bee", "Bee", 0x79), // Bee hoard?
 			new Sprite("Agahnim", "Agahnim", 0x7A),
 			new Sprite("AgahnimBall", "Agahnim Energy Ball", 0x7B),
 			new Sprite("Hyu", "Hyu", 0x7C),
@@ -383,6 +383,19 @@ class Sprite {
 	 */
 	public function getAddress() {
 		return $this->address;
+	}
+
+	public function dumpBinBlock(Rom $rom) {
+		return [
+			'0x6B080' => sprintf("%08b", $rom->read(0x6B080 + $this->bytes[0], 1)),
+			'0x6B173' => sprintf("%08b", $rom->read(0x6B173 + $this->bytes[0], 1)),
+			'0x6B266' => sprintf("%08b", $rom->read(0x6B266 + $this->bytes[0], 1)),
+			'0x6B359' => sprintf("%08b", $rom->read(0x6B359 + $this->bytes[0], 1)),
+			'0x6B44C' => sprintf("%08b", $rom->read(0x6B44C + $this->bytes[0], 1)),
+			'0x6B53F' => sprintf("%08b", $rom->read(0x6B53F + $this->bytes[0], 1)),
+			'0x6B632' => sprintf("%08b", $rom->read(0x6B632 + $this->bytes[0], 1)),
+			'0x6B725' => sprintf("%08b", $rom->read(0x6B725 + $this->bytes[0], 1)),
+		];
 	}
 
 	public function readPropertiesFromRom(Rom $rom) {

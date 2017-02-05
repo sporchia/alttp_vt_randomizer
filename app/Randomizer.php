@@ -146,6 +146,14 @@ class Randomizer {
 			Item::get('L4Sword'),
 		];
 
+		if ($this->config('rom.HardMode', false)) {
+			$swords = [
+				Item::get('MasterSword'),
+				Item::get('L1Sword'),
+				Item::get('L1Sword'),
+			];
+		}
+
 		while (count($swords) > 0) {
 			$item = array_shift($swords);
 			$regions['Swords']->getEmptyLocations()->random()->setItem($item);
@@ -363,21 +371,11 @@ class Randomizer {
 			$this->writePrizeShuffleToRom($rom);
 		}
 
-		// Little fun with the end credits
-		switch (mt_rand(0, 2)) {
-			case 0:
-				$rom->setKingsReturnCredits('fellowship of the ring');
-				break;
-			case 1:
-				$rom->setKingsReturnCredits('the two towers');
-				break;
-			case 2:
-				$rom->setKingsReturnCredits('the return of the king');
-				break;
-		}
+		$this->randomizeCredits($rom);
 
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
+		$rom->setCapacityUpgradeFills([1, 2, 0, 0]);
 
 		switch ($this->type) {
 			case 'Glitched':
@@ -402,12 +400,38 @@ class Randomizer {
 	}
 
 	/**
+	 * Randomize portions of the ending credits sequence
+	 *
+	 * @param Rom $rom ROM to write to
+	 *
+	 * @return $this
+	 */
+	public function randomizeCredits(Rom $rom) {
+		switch (mt_rand(0, 2)) {
+			case 1:
+				$rom->setKingsReturnCredits('fellowship of the ring');
+				break;
+			case 2:
+				$rom->setKingsReturnCredits('the two towers');
+				break;
+		}
+
+		switch (mt_rand(0, 1)) {
+			case 1:
+				$rom->setSwordsmithsCredits('the dwarven breadsmiths');
+				break;
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Randomly set the starting text for the Uncle, there is a chance he will tell you the Region Pegasus Boots
 	 * reside in
 	 *
 	 * @param Rom $rom ROM to write to
 	 *
-	 * @return bool
+	 * @return $this
 	 */
 	public function setStartText(Rom $rom) {
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
@@ -575,6 +599,9 @@ class Randomizer {
 
 		for ($i = 0; $i < $this->config('item.count.BowAndSilverArrows', 0); $i++) {
 			array_push($items_to_find, Item::get('BowAndSilverArrows'));
+		}
+		for ($i = 0; $i < $this->config('item.count.SilverArrowUpgrade', 0); $i++) {
+			array_push($items_to_find, Item::get('SilverArrowUpgrade'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {

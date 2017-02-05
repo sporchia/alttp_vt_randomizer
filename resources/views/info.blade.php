@@ -49,12 +49,13 @@
 	<li>Bug Catching Net</li>
 	<li>Cane Of Byrna</li>
 	<li>Compasses</li>
+	<li>Golden Sword</li>
 	<li>Heart Containers</li>
-	<li>Magic Powder</li>
 	<li>Magic Upgrade</li>
 	<li>Mails</li>
 	<li>Maps</li>
 	<li>Shields</li>
+	<li>Tempered Sword</li>
 </ul>
 <p>The following items have had their count reduced:</p>
 <ul>
@@ -66,6 +67,7 @@
 <p>The following items have been adjusted:</p>
 <ul>
 	<li>Magic Cape uses 4x Magic</li>
+	<li>Magic Powder does not turn Bubbles into Fairies</li>
 </ul>
 </div>
 
@@ -134,6 +136,7 @@
 		<li>Arrow capacity upgrades (six +5 upgrades and one +10 upgrade)</li>
 		<li>The Fighter’s Shield and Fire Shield</li>
 		<li>Magic upgrade (½ Magic or ¼ Magic)</li>
+		<li>Silver Arrow upgrade</li>
 	</ul>
 </div>
 @overwrite

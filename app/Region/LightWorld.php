@@ -53,7 +53,7 @@ class LightWorld extends Region {
 			new Location\Npc("Bottle Vendor", 0x2EB18, null, $this),
 			new Location\Npc("Sahasrahla", 0x2F1FC, null, $this),
 			new Location\Npc("Magic Bat", 0x180015, null, $this),
-			new Location\Npc("Sick Kid", 0x339CF, null, $this),
+			new Location\Npc\BugCatchingKid("Sick Kid", 0x339CF, null, $this),
 			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 			new Location\Npc("Hobo", 0x33E7D, null, $this),
 			new Location\Drop("Bombos Tablet", 0x180017, null, $this),

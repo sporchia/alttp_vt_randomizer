@@ -154,6 +154,8 @@ class HauntedGrove extends Dig {
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
 				return "boy sews more again";
+			case Item::get('SilverArrowUpgrade'):
+				return "boy sharpens again";
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "boy saves magic again";

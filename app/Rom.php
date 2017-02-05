@@ -7,7 +7,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-01-23';
+	const BUILD = '2017-02-04';
+	const HASH = '6420cc89e27aae857dad0ffea8ab315d';
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -38,7 +39,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) === '93f0d6800928d17f0bbdf86aba51fa17';
+		return hash_file('md5', $this->tmp_file) === static::BUILD;
 	}
 
 	/**
@@ -96,6 +97,20 @@ class Rom {
 	}
 
 	/**
+	 * Set values to fill for Capacity Upgrades
+	 * currently only 4 things: Bomb5, Bomb10, Arrow5, Arrow10
+	 *
+	 * @param array $fills array of values to fill in
+	 *
+	 * @return $this
+	 */
+	public function setCapacityUpgradeFills(array $fills) {
+		$this->write(0x180080, pack('C*', ...array_slice($fills, 0, 4)));
+
+		return $this;
+	}
+
+	/**
 	 * Set the opening Uncle text to one of the predefined values in he ROM
 	 *
 	 * @param int $byte which text to use: 0x00 -> 0x1F
@@ -125,7 +140,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x102450;
+		$offset = 0x102494;
 		foreach ($this->convertDialog(mb_strtoupper($string)) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
@@ -181,6 +196,42 @@ class Rom {
 	public function setFluteBoyCredits(string $string) {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76B34;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Swordsmiths credits to a custom value
+	 * Original: the dwarven swordsmiths
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setSwordsmithsCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
+		$offset = 0x76BAC;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Bug-Catching Kid credits to a custom value
+	 * Original: the bug-catching kid
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setBugCatchingKidCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
+		$offset = 0x76BDF;
 		foreach ($this->convertCredits($write_string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
@@ -303,6 +354,8 @@ class Rom {
 	public function setHardMode($enable = true) {
 		// adjust cape magic usage
 		$this->write(0x3ADA7, $enable ? pack('C*', 0x01, 0x01, 0x01) : pack('C*', 0x04, 0x08, 0x10));
+		// Bubbles turn into Bee Hoards
+		$this->write(0x36DD0, $enable ? pack('C*', 0x79) : pack('C*', 0xE3));
 
 		return $this;
 	}
