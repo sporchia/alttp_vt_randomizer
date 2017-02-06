@@ -34,9 +34,16 @@ class RandomizerTest extends TestCase {
 		Config::set('alttp.test_rules.region.swordShuffle', false);
 
 		$this->randomizer->makeSeed(1337);
-		$this->assertEquals(Item::get('L2Sword'), $this->randomizer->getWorld()->getLocation("Alter")->getItem());
-		$this->assertEquals(Item::get('L3Sword'), $this->randomizer->getWorld()->getLocation("Blacksmiths")->getItem());
-		$this->assertEquals(Item::get('L4Sword'), $this->randomizer->getWorld()->getLocation("Pyramid")->getItem());
+
+		$this->assertEquals([
+			Item::get('L2Sword'),
+			Item::get('L3Sword'),
+			Item::get('L4Sword'),
+		], [
+			$this->randomizer->getWorld()->getLocation("Alter")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Blacksmiths")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Pyramid")->getItem(),
+		]);
 	}
 
 	/**
@@ -47,13 +54,23 @@ class RandomizerTest extends TestCase {
 		Config::set('alttp.test_rules.prize.shuffleCrystals', false);
 
 		$this->randomizer->makeSeed(1337);
-		$this->assertEquals(Item::get('Crystal1'), $this->randomizer->getWorld()->getLocation("Palace of Darkness Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal2'), $this->randomizer->getWorld()->getLocation("Swamp Palace Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal3'), $this->randomizer->getWorld()->getLocation("Skull Woods Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal4'), $this->randomizer->getWorld()->getLocation("Thieves Town Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal5'), $this->randomizer->getWorld()->getLocation("Ice Palace Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal6'), $this->randomizer->getWorld()->getLocation("Misery Mire Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal7'), $this->randomizer->getWorld()->getLocation("Turtle Rock Crystal")->getItem());
+		$this->assertEquals([
+			Item::get('Crystal1'),
+			Item::get('Crystal2'),
+			Item::get('Crystal3'),
+			Item::get('Crystal4'),
+			Item::get('Crystal5'),
+			Item::get('Crystal6'),
+			Item::get('Crystal7'),
+		], [
+			$this->randomizer->getWorld()->getLocation("Palace of Darkness Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Swamp Palace Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Skull Woods Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Thieves Town Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Ice Palace Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Misery Mire Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Turtle Rock Crystal")->getItem(),
+		]);
 	}
 
 	/**
@@ -64,13 +81,24 @@ class RandomizerTest extends TestCase {
 		Config::set('alttp.test_rules.prize.shuffleCrystals', false);
 
 		$this->randomizer->makeSeed(1337);
-		$this->assertEquals(Item::get('Crystal1'), $this->randomizer->getWorld()->getLocation("Palace of Darkness Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal2'), $this->randomizer->getWorld()->getLocation("Swamp Palace Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal3'), $this->randomizer->getWorld()->getLocation("Skull Woods Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal4'), $this->randomizer->getWorld()->getLocation("Thieves Town Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal5'), $this->randomizer->getWorld()->getLocation("Ice Palace Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal6'), $this->randomizer->getWorld()->getLocation("Misery Mire Crystal")->getItem());
-		$this->assertEquals(Item::get('Crystal7'), $this->randomizer->getWorld()->getLocation("Turtle Rock Crystal")->getItem());
+
+		$this->assertEquals([
+			Item::get('Crystal1'),
+			Item::get('Crystal2'),
+			Item::get('Crystal3'),
+			Item::get('Crystal4'),
+			Item::get('Crystal5'),
+			Item::get('Crystal6'),
+			Item::get('Crystal7'),
+		], [
+			$this->randomizer->getWorld()->getLocation("Palace of Darkness Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Swamp Palace Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Skull Woods Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Thieves Town Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Ice Palace Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Misery Mire Crystal")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Turtle Rock Crystal")->getItem(),
+		]);
 	}
 
 
@@ -82,9 +110,16 @@ class RandomizerTest extends TestCase {
 		Config::set('alttp.test_rules.prize.shufflePendants', false);
 
 		$this->randomizer->makeSeed(1337);
-		$this->assertEquals(Item::get('PendantOfCourage'), $this->randomizer->getWorld()->getLocation("Eastern Palace Pendant")->getItem());
-		$this->assertEquals(Item::get('PendantOfPower'), $this->randomizer->getWorld()->getLocation("Desert Palace Pendant")->getItem());
-		$this->assertEquals(Item::get('PendantOfWisdom'), $this->randomizer->getWorld()->getLocation("Tower of Hera Pendant")->getItem());
+
+		$this->assertEquals([
+			Item::get('PendantOfCourage'),
+			Item::get('PendantOfPower'),
+			Item::get('PendantOfWisdom'),
+		], [
+			$this->randomizer->getWorld()->getLocation("Eastern Palace Pendant")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Desert Palace Pendant")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Tower of Hera Pendant")->getItem(),
+		]);
 	}
 
 	/**
@@ -95,9 +130,16 @@ class RandomizerTest extends TestCase {
 		Config::set('alttp.test_rules.prize.shufflePendants', false);
 
 		$this->randomizer->makeSeed(1337);
-		$this->assertEquals(Item::get('PendantOfCourage'), $this->randomizer->getWorld()->getLocation("Eastern Palace Pendant")->getItem());
-		$this->assertEquals(Item::get('PendantOfPower'), $this->randomizer->getWorld()->getLocation("Desert Palace Pendant")->getItem());
-		$this->assertEquals(Item::get('PendantOfWisdom'), $this->randomizer->getWorld()->getLocation("Tower of Hera Pendant")->getItem());
+
+		$this->assertEquals([
+			Item::get('PendantOfCourage'),
+			Item::get('PendantOfPower'),
+			Item::get('PendantOfWisdom'),
+		], [
+			$this->randomizer->getWorld()->getLocation("Eastern Palace Pendant")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Desert Palace Pendant")->getItem(),
+			$this->randomizer->getWorld()->getLocation("Tower of Hera Pendant")->getItem(),
+		]);
 	}
 
 	/**

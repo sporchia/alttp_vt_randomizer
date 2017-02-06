@@ -18,37 +18,177 @@ class DarkWorldTest extends TestCase {
 		unset($this->world);
 	}
 
-	public function testSuperBunnyDMNotAllowedTopChest() {
-		config(['alttp.test_rules.region.superBunnyDM' => false]);
+	public function testSpikeCaveRequiresGloves() {
+		$this->assertFalse($this->world->getLocation("[cave-055] Spike cave")
+			->canAccess($this->allItemsExcept(['Gloves'])));
+	}
 
+	public function testSpikeCaveRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-055] Spike cave")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testSpikeCaveRequiresHammer() {
+		$this->assertFalse($this->world->getLocation("[cave-055] Spike cave")
+			->canAccess($this->allItemsExcept(['Hammer'])));
+	}
+
+	public function testWestOfMireChestLRequiresFlute() {
+		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
+			->canAccess($this->allItemsExcept(['Flute'])));
+	}
+
+	public function testWestOfMireChestLRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testWestOfMireChestLRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testWestOfMireChestRRequiresFlute() {
+		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
+			->canAccess($this->allItemsExcept(['Flute'])));
+	}
+
+	public function testWestOfMireChestRRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testWestOfMireChestRRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainChestTRequiresMitt() {
 		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
-			->canAccess($this->allItemsExcept(['MoonPearl'])));
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
 	}
 
-	public function testSuperBunnyDMNotAllowedBottomChest() {
-		config(['alttp.test_rules.region.superBunnyDM' => false]);
-
-		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
-			->canAccess($this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testSuperBunnyDMAllowedTopChest() {
+	public function testDeathMountainChestTSuperBunny() {
 		config(['alttp.test_rules.region.superBunnyDM' => true]);
 
 		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
 			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
-	public function testSuperBunnyDMAllowedBottomChest() {
+	public function testDeathMountainChestTNoSuperBunny() {
+		config(['alttp.test_rules.region.superBunnyDM' => false]);
+
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainChestTRequresMirrorIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->canAccess($this->allItemsExcept(['MagicMirror', 'Hookshot'])));
+	}
+
+	public function testDeathMountainChestTRequresHammerIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->canAccess($this->allItemsExcept(['Hammer', 'Hookshot'])));
+	}
+
+	public function testDeathMountainChestBRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testDeathMountainChestBSuperBunny() {
 		config(['alttp.test_rules.region.superBunnyDM' => true]);
 
 		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
 			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
-	public function testGlovesRequiredToEnterBumperCave() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Dark World - bumper cave)")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+	public function testDeathMountainChestBNoSuperBunny() {
+		config(['alttp.test_rules.region.superBunnyDM' => false]);
+
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainChestBRequresMirrorIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->allItemsExcept(['MagicMirror', 'Hookshot'])));
+	}
+
+	public function testDeathMountainChestBRequresHammerIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->allItemsExcept(['Hammer', 'Hookshot'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBRRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBRRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBRRequresMirrorIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]")
+			->canAccess($this->allItemsExcept(['MagicMirror', 'Hookshot'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBRRequresHammerIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]")
+			->canAccess($this->allItemsExcept(['Hammer', 'Hookshot'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBRRequresBootsIfNoHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'Hookshot'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBLRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBLRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestBLRequresHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]")
+			->canAccess($this->allItemsExcept(['Hookshot'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestTLRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [top left chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestTLRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [top left chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestTLRequresHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [top left chest]")
+			->canAccess($this->allItemsExcept(['Hookshot'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestTRRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [top right chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestTRRequiresMitt() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [top right chest]")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testDeathMountainHookshotCaveChestTRRequresHookshot() {
+		$this->assertFalse($this->world->getLocation("[cave-056] Dark World Death Mountain - cave under boulder [top right chest]")
+			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
 
 	public function testCanAccessPyramidFairyWithMirrorAndAG1() {

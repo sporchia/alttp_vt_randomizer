@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches\DeathMountain;
+<?php namespace SpeedRunner\DeathMountain;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group SpeedRunner
  */
 class EastTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'SpeedRunner');
 	}
 
 	public function tearDown() {

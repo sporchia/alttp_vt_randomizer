@@ -11,6 +11,7 @@ class Region {
 	protected $name = 'Unknown';
 	protected $boss_location_in_base = true;
 	protected $prize_location;
+	protected $world;
 
 	/**
 	 * Create a new Region.
