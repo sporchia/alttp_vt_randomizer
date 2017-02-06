@@ -19,48 +19,60 @@ class DarkWorldTest extends TestCase {
 	}
 
 	public function testSuperBunnyDMNotAllowedTopChest() {
-		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
-
 		config(['alttp.test_rules.region.superBunnyDM' => false]);
-		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")->canAccess($no_moonpearl));
+
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
 	public function testSuperBunnyDMNotAllowedBottomChest() {
-		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
-
 		config(['alttp.test_rules.region.superBunnyDM' => false]);
-		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")->canAccess($no_moonpearl));
+
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
 	public function testSuperBunnyDMAllowedTopChest() {
-		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
-
 		config(['alttp.test_rules.region.superBunnyDM' => true]);
-		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")->canAccess($no_moonpearl));
+
+		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
 	public function testSuperBunnyDMAllowedBottomChest() {
-		$no_moonpearl = $this->allItemsExcept(['MoonPearl']);
-
 		config(['alttp.test_rules.region.superBunnyDM' => true]);
-		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")->canAccess($no_moonpearl));
+
+		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
 	public function testGlovesRequiredToEnterBumperCave() {
-		$no_lifting = $this->allItemsExcept(['PowerGlove', 'TitansMitt']);
-
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Dark World - bumper cave)")->canAccess($no_lifting));
+		$this->assertFalse($this->world->getLocation("Piece of Heart (Dark World - bumper cave)")
+			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
 	}
 
 	public function testCanAccessPyramidFairyWithMirrorAndAG1() {
 		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'MagicMirror', 'Cape', 'TitansMitt', 'L1Sword']);
 
-		$this->assertTrue($this->world->getLocation("Pyramid")->canAccess($this->collected));
+		$this->assertTrue($this->world->getLocation("Pyramid")
+			->canAccess($this->collected));
 	}
 
 	public function testCanAccessPyramidFairyWithHammer() {
 		$this->addCollected(['Crystal5', 'Crystal6', 'MoonPearl', 'PowerGlove', 'Hammer', 'L1Sword']);
 
-		$this->assertTrue($this->world->getLocation("Pyramid")->canAccess($this->collected));
+		$this->assertTrue($this->world->getLocation("Pyramid")
+			->canAccess($this->collected));
+	}
+
+	// Found Issues
+	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMittTopChest() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->fill(Item::get('TitansMitt'), $this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testDarkWorldEastDeathMountainCanNeverHaveTitansMittBottomChest() {
+		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->fill(Item::get('TitansMitt'), $this->allItemsExcept(['TitansMitt'])));
 	}
 }
