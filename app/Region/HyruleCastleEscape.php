@@ -65,20 +65,26 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-C-1F] Sanctuary"]->setRequirements(function($locations, $items) {
-			return true;
+		$this->locations["[dungeon-C-1F] Sanctuary"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
@@ -107,16 +113,26 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	function initSpeedRunner() {
+		$this->locations["[dungeon-C-1F] Sanctuary"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
+		});
+
 		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks();
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key');
 		});
 
 		return $this;

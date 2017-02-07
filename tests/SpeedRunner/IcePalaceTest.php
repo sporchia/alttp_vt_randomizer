@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace SpeedRunner;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group SpeedRunner
  */
 class IcePalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'SpeedRunner');
 	}
 
 	public function tearDown() {
@@ -22,16 +22,6 @@ class IcePalaceTest extends TestCase {
 	public function testCanEnterWithEverything() {
 		$this->assertTrue($this->world->getRegion('Ice Palace')
 			->canEnter($this->world->getLocations(), $this->allItems()));
-	}
-
-	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ice Palace')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testFlippersRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ice Palace')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Flippers'])));
 	}
 
 	public function testMittRequiredForEntry() {
@@ -168,11 +158,6 @@ class IcePalaceTest extends TestCase {
 	public function testKholdstareCanHaveKey() {
 		$this->assertTrue($this->world->getLocation("Heart Container - Kholdstare")
 			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testKholdstareCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Kholdstare")
-			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	public function testBigChestCannotBeBigKey() {

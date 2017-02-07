@@ -361,6 +361,12 @@ class Randomizer {
 
 		if ($this->config('rom.HardMode', false)) {
 			$rom->setHardMode(true);
+
+			// @TODO: currently Empty magic bat gives 1/2 magic, this fixes that for time being
+			$magic_bat = $this->world->getLocation("Magic Bat");
+			if ($magic_bat->hasItem(Item::get('Nothing'))) {
+				$magic_bat->writeItem($rom, Item::get('Arrow'));
+			}
 		}
 
 		$rom->writeRNGBlock(function() {
