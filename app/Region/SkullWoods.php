@@ -49,10 +49,10 @@ class SkullWoods extends Region {
 		// @TODO: this is wrong for SpeedRunner, we want to allow this to not be a key
 		$locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->fill(Item::get('Key'), $my_items);
 
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
 			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
@@ -76,7 +76,8 @@ class SkullWoods extends Region {
 						"Heart Container - Mothula",
 					]) || $items->has('FireRod');
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKey')
+				&& ($item != Item::get('Key') || !$locations["Heart Container - Mothula"]->hasItem(Item::get('BigKey')));
 		});
 
 		$this->locations["[dungeon-D3-B1] Skull Woods - Big Key room"]->setRequirements(function($locations, $items) {
@@ -109,7 +110,8 @@ class SkullWoods extends Region {
 			return $items->has('FireRod') && $items->hasSword();
 		})->setFillRules(function($item, $locations, $items) {
 			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('Key');
+				return $item != Item::get('Key')
+					&& ($item != Item::get('BigKey') || !$locations["[dungeon-D3-B1] Skull Woods - big chest"]->hasItem(Item::get('Key')));
 			}
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});

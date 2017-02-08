@@ -21,15 +21,18 @@ class SkullWoodsTest extends TestCase {
 
 	// Entry
 	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Skull Woods')->canEnter($this->world->getLocations(), $this->allItems()));
+		$this->assertTrue($this->world->getRegion('Skull Woods')
+			->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
 	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Skull Woods')->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
+		$this->assertFalse($this->world->getRegion('Skull Woods')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
 	}
 
 	public function testNorthWestDarkWorldAccessRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Skull Woods')->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
+		$this->assertFalse($this->world->getRegion('Skull Woods')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
 	}
 
 	// Item Locations
@@ -97,17 +100,39 @@ class SkullWoodsTest extends TestCase {
 
 	// Key filling
 	public function testMothulaCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")->fill(Item::get('Key'), $this->allItems()));
+		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+			->fill(Item::get('Key'), $this->allItems()));
 	}
 
-	public function testMothulaCanHaveKey() {
-		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")->fill(Item::get('BigKey'), $this->allItems()));
+	public function testMothulaCanHaveBigKey() {
+		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")
+			->fill(Item::get('BigKey'), $this->allItems()));
+	}
+
+	public function testMothulaCantHaveBigKeyIfBigChestHasKey() {
+		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
 	public function testSouthOfFireRodCantNotBeKey() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")
 			->canFill(Item::get('Arrow'), $this->allItems()));
 	}
+
+	public function testBigChestCanBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testBigChestCannotBeKeyIfMothulaHasBigKey() {
+		$this->world->getLocation("Heart Container - Mothula")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
 
 	public function testBigChestCannotBeBigKey() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
