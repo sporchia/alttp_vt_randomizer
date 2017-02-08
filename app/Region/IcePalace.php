@@ -276,7 +276,7 @@ class IcePalace extends Region {
 		$this->initSpeedRunner();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('TitansMitt') && ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
+			return $items->has('TitansMitt') || ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
 		};
 
 		return $this;
@@ -297,16 +297,12 @@ class IcePalace extends Region {
 			return  $items->has('Hammer') && $items->canLiftRocks();
 		});
 
-		$this->locations["[dungeon-D5-B3] Ice Palace - spike room"]->setRequirements(function($locations, $items) {
-			return  $items->has('Hammer') && $items->canLiftRocks();
-		});
-
 		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setRequirements(function($locations, $items) {
 			return $items->canMeltThings();
 		});
 
 		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer')
+			return ($items->has('Hammer') && $items->canLiftRocks())
 				|| !$locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-D5-B1] Ice Palace - Big Key room",
 						"[dungeon-D5-B2] Ice Palace - map room",

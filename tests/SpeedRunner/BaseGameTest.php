@@ -108,7 +108,7 @@ class BaseGameTest extends TestCase {
 	public function testGetMasterSword() {
 		$this->addCollected(['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']);
 
-		$this->assertTrue($this->world->getLocation("Alter")->canAccess($this->collected));
+		$this->assertTrue($this->world->getLocation("Altar")->canAccess($this->collected));
 	}
 
 	public function testAgahnim1() {

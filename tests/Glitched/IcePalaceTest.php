@@ -1,16 +1,16 @@
-<?php namespace SpeedRunner;
+<?php namespace Glitched;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group SpeedRunner
+ * @group Glitched
  */
 class IcePalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'SpeedRunner');
+		$this->world = new World('test_rules', 'Glitched');
 	}
 
 	public function tearDown() {
@@ -24,43 +24,76 @@ class IcePalaceTest extends TestCase {
 			->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
-	public function testMittRequiredForEntry() {
+	public function testMittRequiredForEntryIfNoMoonPearlOrBottle() {
 		$this->assertFalse($this->world->getRegion('Ice Palace')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'MoonPearl', 'AnyBottle'])));
 	}
 
-	public function testMeltingRequiredForEntry() {
+	public function testMittRequiredForEntryIfNoMirror() {
 		$this->assertFalse($this->world->getRegion('Ice Palace')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['FireRod', 'Bombos'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'MagicMirror'])));
 	}
 
-	public function testNotOnlyFireRodRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Ice Palace')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testNotOnlyBombosRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Ice Palace')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Bombos'])));
-	}
 
 	// Item Locations
-	public function testCompassRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'FireRod', 'Flippers']);
+	public function testCompassRoomOnlyRequiresEntryWithMitt() {
+		$this->addCollected(['TitansMitt']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D5-B1] Ice Palace - compass room")
 			->canAccess($this->collected));
 	}
 
-	public function testB5UpStaircaseRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'FireRod', 'Flippers']);
+	public function testCompassRoomOnlyRequiresEntryWithMirrorAndBottle() {
+		$this->addCollected(['MagicMirror', 'Bottle']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B1] Ice Palace - compass room")
+			->canAccess($this->collected));
+	}
+
+	public function testCompassRoomOnlyRequiresEntryWithMirrorAndMoonPearl() {
+		$this->addCollected(['MagicMirror', 'MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B1] Ice Palace - compass room")
+			->canAccess($this->collected));
+	}
+
+	public function testB5UpStaircaseRoomOnlyRequiresEntryWithMitt() {
+		$this->addCollected(['TitansMitt']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D5-B5] Ice Palace - b5 up staircase")
 			->canAccess($this->collected));
 	}
 
-	public function testSpikeRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'FireRod', 'Flippers']);
+	public function testB5UpStaircaseRoomOnlyRequiresEntryWithMirrorAndBottle() {
+		$this->addCollected(['MagicMirror', 'Bottle']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B5] Ice Palace - b5 up staircase")
+			->canAccess($this->collected));
+	}
+
+	public function testB5UpStaircaseRoomOnlyRequiresEntryWithMirrorAndMoonPearl() {
+		$this->addCollected(['MagicMirror', 'MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B5] Ice Palace - b5 up staircase")
+			->canAccess($this->collected));
+	}
+
+	public function testSpikeRoomOnlyRequiresEntryWithMitt() {
+		$this->addCollected(['TitansMitt']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B3] Ice Palace - spike room")
+			->canAccess($this->collected));
+	}
+
+	public function testSpikeRoomOnlyRequiresEntryWithMirrorAndBottle() {
+		$this->addCollected(['MagicMirror', 'Bottle']);
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B3] Ice Palace - spike room")
+			->canAccess($this->collected));
+	}
+
+	public function testSpikeRoomOnlyRequiresEntryWithMirrorAndMoonPearl() {
+		$this->addCollected(['MagicMirror', 'MoonPearl']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D5-B3] Ice Palace - spike room")
 			->canAccess($this->collected));

@@ -5,9 +5,9 @@ use ALttP\Item;
 use ALttP\Rom;
 
 /**
- * Master Sword Alter Location
+ * Master Sword Altar Location
  */
-class Alter extends Location {
+class Altar extends Location {
 	/**
 	 * Sets the item for this location. The L2Sword normally sits here, so if we get MasterSword as our Item we need to
 	 * change it to the L2Sword, it will make the pulling of the sword look better.
@@ -27,7 +27,7 @@ class Alter extends Location {
 	public function writeItem(Rom $rom, Item $item = null) {
 		parent::writeItem($rom, $item);
 
-		$rom->setAlterCredits($this->getItemCreditsText());
+		$rom->setAltarCredits($this->getItemCreditsText());
 
 		return $this;
 	}

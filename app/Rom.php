@@ -168,6 +168,96 @@ class Rom {
 	}
 
 	/**
+	 * Set the Sanctuary credits to a custom value
+	 * Original: the loyal priest
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setSanctuaryCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
+		$offset = 0x76964;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Kakariko Town credits to a custom value
+	 * Original: sahasralah's homecoming
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setKakarikoTownCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
+		$offset = 0x76997;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Desert Palace credits to a custom value
+	 * Original: vultures rule the desert
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setDesertPalaceCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 24), 24, ' ', STR_PAD_BOTH);
+		$offset = 0x769D4;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Mountain Tower credits to a custom value
+	 * Original: the bully makes a friend
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setMountainTowerCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 24), 24, ' ', STR_PAD_BOTH);
+		$offset = 0x76A12;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Links House credits to a custom value
+	 * Original: your uncle recovers
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setLinksHouseCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 19), 19, ' ', STR_PAD_BOTH);
+		$offset = 0x76A52;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Set the Zora credits text to a custom value
 	 * Original: finger webs for sale
 	 *
@@ -186,6 +276,42 @@ class Rom {
 	}
 
 	/**
+	 * Set the Magic Shop credits text to a custom value
+	 * Original: the witch and assistant
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setMagicShopCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
+		$offset = 0x76AC5;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Woodsmans Hut credits text to a custom value
+	 * Original: twin lumberjacks
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setWoodsmansHutCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
+		$offset = 0x76AFC;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Set the Flute Boy credits to a custom value
 	 * Original: ocarina boy plays again
 	 *
@@ -196,6 +322,24 @@ class Rom {
 	public function setFluteBoyCredits(string $string) {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76B34;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Wishing Well credits to a custom value
+	 * Original: venus. queen of faeries
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setWishingWellCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
+		$offset = 0x76B71;
 		foreach ($this->convertCredits($write_string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
@@ -240,14 +384,50 @@ class Rom {
 	}
 
 	/**
-	 * Set the Alter credits to a custom value
+	 * Set the Death Mountain credits to a custom value
+	 * Original: the lost old man
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setDeathMountainCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
+		$offset = 0x76C19;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Lost Woods credits to a custom value
+	 * Original: the forest thief
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setLostWoodsCredits(string $string) {
+		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
+		$offset = 0x76C51;
+		foreach ($this->convertCredits($write_string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Altar credits to a custom value
 	 * Original: and the master sword
 	 *
 	 * @param string $string
 	 *
 	 * @return $this
 	 */
-	public function setAlterCredits(string $string) {
+	public function setAltarCredits(string $string) {
 		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
 		$offset = 0x76C81;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -351,11 +531,56 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setHardMode($enable = true) {
+	public function setHardMode($enable = true, $dont_nerf_blue_potion = false) {
 		// adjust cape magic usage
 		$this->write(0x3ADA7, $enable ? pack('C*', 0x01, 0x01, 0x01) : pack('C*', 0x04, 0x08, 0x10));
 		// Bubbles turn into Bee Hoards
 		$this->write(0x36DD0, $enable ? pack('C*', 0x79) : pack('C*', 0xE3));
+
+		// nerf potions and blue shield
+
+		// Potion Shop
+		// Red Bottle Cost
+		$this->write(0x2F803, pack('S*', 0x03E7)); // 999 Rupees
+		$this->write(0x2F822, pack('S*', 0x03E7)); // 999 Rupees
+		$this->write(0x2F859, pack('C*', 0x33));
+		$this->write(0x2F861, pack('C*', 0x33));
+		$this->write(0x2F869, pack('C*', 0x33));
+		// Green Bottle Cost
+		$this->write(0x2F6C1, pack('S*', 0x03E7)); // 999 Rupees
+		$this->write(0x2F6E0, pack('S*', 0x03E7)); // 999 Rupees
+		$this->write(0x2F70C, pack('C*', 0x2D));
+		$this->write(0x2F714, pack('C*', 0x2D));
+
+		if (!$dont_nerf_blue_potion) {
+			// Blue Bottle Cost
+			$this->write(0x2F75E, pack('S*', 0x0001)); // 999 Rupees
+			$this->write(0x2F77D, pack('S*', 0x0001)); // 999 Rupees
+			$this->write(0x2F7B9, pack('C*', 0x33));
+			$this->write(0x2F7B1, pack('C*', 0x33));
+			$this->write(0x2F7A9, pack('C*', 0x33));
+		}
+
+		// Other Shops
+		// 0x07 Red Potion
+		$this->write(0xF717A, pack('C*', 0x03)); // cost: 768 +
+		$this->write(0xF7178, pack('C*', 0xE7)); // cost: 231
+		$this->write(0xF73AE, pack('C*', 0x33));
+		$this->write(0xF73B6, pack('C*', 0x33));
+		$this->write(0xF73BE, pack('C*', 0x33));
+
+
+		//0x08 Blue Shield
+		$this->write(0xF7201, pack('C*', 0x03)); // cost: 768 +
+		$this->write(0xF71FF, pack('C*', 0xE7)); // cost: 231
+		// reposition gfx
+		$this->write(0xf73d2, pack('C*', 0xfc, 0xff));
+		$this->write(0xf73da, pack('C*', 0x04, 0x00));
+		$this->write(0xf73e2, pack('C*', 0x0c, 0x00));
+
+		$this->write(0xF73D6, pack('C*', 0x33));
+		$this->write(0xf73de, pack('C*', 0x33));
+		$this->write(0xf73e6, pack('C*', 0x33));
 
 		return $this;
 	}

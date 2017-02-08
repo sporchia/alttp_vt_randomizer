@@ -15,7 +15,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 14;
+	const LOGIC = 15;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -163,7 +163,7 @@ class Randomizer {
 		if (!$this->config('region.swordShuffle', true)) {
 			$locations["Pyramid"]->setItem(Item::get('L4Sword'));
 			$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
-			$locations["Alter"]->setItem(Item::get('MasterSword'));
+			$locations["Altar"]->setItem(Item::get('MasterSword'));
 		}
 
 		// fill boss hearts before anything else if we need to
@@ -360,9 +360,11 @@ class Randomizer {
 		}
 
 		if ($this->config('rom.HardMode', false)) {
-			$rom->setHardMode(true);
+			$rom->setHardMode(true, in_array($this->type, ['Glitched']));
 
 			// @TODO: currently Empty magic bat gives 1/2 magic, this fixes that for time being
+			// basically setting item to 0xFF reverts Magic Bat to old behavior, we can remove this once we have a
+			// proper 'Nothing' item.
 			$magic_bat = $this->world->getLocation("Magic Bat");
 			if ($magic_bat->hasItem(Item::get('Nothing'))) {
 				$magic_bat->writeItem($rom, Item::get('Arrow'));
@@ -424,9 +426,22 @@ class Randomizer {
 
 		switch (mt_rand(0, 1)) {
 			case 1:
+				$rom->setWoodsmansHutCredits('fresh flapjacks');
+				break;
+		}
+
+		switch (mt_rand(0, 1)) {
+			case 1:
 				$rom->setSwordsmithsCredits('the dwarven breadsmiths');
 				break;
 		}
+
+		switch (mt_rand(0, 1)) {
+			case 1:
+				$rom->setLostWoodsCredits('dancing pickles');
+				break;
+		}
+
 
 		return $this;
 	}
@@ -684,6 +699,10 @@ class Randomizer {
 	 * @return Item
 	 */
 	public function getBottle($filled = false) {
+		if ($this->config('rom.HardMode', false)) {
+			return Item::get('BottleWithBee');
+		}
+
 		$bottles = [
 			Item::get('Bottle'),
 			Item::get('BottleWithRedPotion'),

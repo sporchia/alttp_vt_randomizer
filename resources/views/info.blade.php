@@ -45,7 +45,6 @@
 	<li>Arrow Capacity Upgrades</li>
 	<li>Bomb Capacity Upgrades</li>
 	<li>Boomerangs</li>
-	<li>Bottles</li>
 	<li>Bug Catching Net</li>
 	<li>Cane Of Byrna</li>
 	<li>Compasses</li>
@@ -68,6 +67,8 @@
 <ul>
 	<li>Magic Cape uses 4x Magic</li>
 	<li>Magic Powder does not turn Bubbles into Fairies</li>
+	<li>There is only 1 Bottle</li>
+	<li>Potions cost considerably more</li>
 </ul>
 </div>
 

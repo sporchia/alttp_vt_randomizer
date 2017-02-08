@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace SpeedRunner;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group SpeedRunner
  */
 class MiseryMireTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'SpeedRunner');
 
 		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Ether'));
 	}
@@ -57,9 +57,24 @@ class MiseryMireTest extends TestCase {
 			->canEnter($this->world->getLocations(), $this->allItemsExcept(['OcarinaInactive', 'OcarinaActive'])));
 	}
 
-	public function testMoonPearlRequiredForEntry() {
+	public function testMoonPearlRequiredForEntryIfNoFlippers() {
 		$this->assertFalse($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl', 'Flippers'])));
+	}
+
+	public function testMoonPearlRequiredForEntryIfNoBottle() {
+		$this->assertFalse($this->world->getRegion('Misery Mire')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl', 'AnyBottle'])));
+	}
+
+	public function testMoonPearlRequiredForEntryIfNoNet() {
+		$this->assertFalse($this->world->getRegion('Misery Mire')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl', 'BugCatchingNet'])));
+	}
+
+	public function testMoonPearlRequiredForEntryIfNoMirror() {
+		$this->assertFalse($this->world->getRegion('Misery Mire')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl', 'MagicMirror'])));
 	}
 
 	public function testBootsOrHookshotRequiredForEntry() {
@@ -146,13 +161,6 @@ class MiseryMireTest extends TestCase {
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testVitreousRequiresLamp() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Vitreous")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
 	public function testVitreousRequiresCane() {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
 
@@ -161,27 +169,6 @@ class MiseryMireTest extends TestCase {
 	}
 
 	// Key filling
-	public function testBigKeyCantBeInCompassRoomIfKeyInBigChestAndKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeInBigKeyRoomIfKeyInBigChestAndKeyInCompassRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testKeyCantBeInBigChestIfBigKeyInCompassRoomAndKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Key'), $this->allItems()));
-	}
-
 	public function testItemCanBeInBigChestIfBigKeyInCompassRoomAndKeyInBigKeyRoom() {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
@@ -189,13 +176,6 @@ class MiseryMireTest extends TestCase {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Arrow'), $this->allItems()));
-	}
-
-	public function testKeyCantBeInBigChestIfKeyInCompassRoomAndBigKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Key'), $this->allItems()));
 	}
 
 	public function testItemCanBeInBigChestIfKeyInCompassRoomAndBigKeyInBigKeyRoom() {

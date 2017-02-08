@@ -1,16 +1,16 @@
-<?php namespace SpeedRunner;
+<?php namespace Glitched;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group SpeedRunner
+ * @group Glitched
  */
 class LightWorldTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'SpeedRunner');
+		$this->world = new World('test_rules', 'Glitched');
 	}
 
 	public function tearDown() {
@@ -55,16 +55,6 @@ class LightWorldTest extends TestCase {
 	public function testLinksHouseRequiresNothing() {
 		$this->assertTrue($this->world->getLocation("[cave-040] Link's House")
 			->canAccess($this->collected));
-	}
-
-	public function testLinksHouseCannotHavePowerGloves() {
-		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")
-			->fill(Item::get('PowerGlove'), $this->allItems()));
-	}
-
-	public function testLinksHouseCannotHaveTitanMitts() {
-		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")
-			->fill(Item::get('TitansMitt'), $this->allItems()));
 	}
 
 	public function testTavernRequiresNothing() {
@@ -284,39 +274,18 @@ class LightWorldTest extends TestCase {
 	}
 
 	public function testSouthOfHauntedGroveRequiresNothing() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (south of Haunted Grove)")
-			->canAccess($this->collected));
-	}
-
-	public function testSouthOfHauntedGroveRequiresMirrorMoonPearlAndSDW() {
-		$this->addCollected(['MagicMirror', 'MoonPearl', 'TitansMitt']);
-
 		$this->assertTrue($this->world->getLocation("Piece of Heart (south of Haunted Grove)")
 			->canAccess($this->collected));
 	}
 
 	public function testAboveGraveyardRequiresNothing() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Graveyard)")
-			->canAccess($this->collected));
-	}
-
-	public function testAboveGraveyardRequiresMirrorMoonPearlAndNWDW() {
-		$this->addCollected(['MoonPearl', 'TitansMitt', 'MagicMirror']);
-
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Graveyard)")
 			->canAccess($this->collected));
 	}
 
-	public function testNorthEastDesertRequiresNothing() {
+	public function testNorthEastDesertRequiresGloves() {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Desert - northeast corner)")
-			->canAccess($this->collected));
-	}
-
-	public function testNorthEastDesertRequiresFluteMittsAndMirror() {
-		$this->addCollected(['OcarinaInactive', 'MagicMirror', 'TitansMitt']);
-
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Desert - northeast corner)")
-			->canAccess($this->collected));
+			->canAccess($this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testCaveSWLakeHyliaGenerousGuyRequiresNothing() {
@@ -359,47 +328,13 @@ class LightWorldTest extends TestCase {
 	}
 
 	public function testDesertWestRequiresNothing() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Desert - west side)")
-			->canAccess($this->collected));
-	}
-
-	public function testDesertWestRequiresBook() {
-		$this->addCollected(['BookOfMudora']);
-
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Desert - west side)")
-			->canAccess($this->collected));
-	}
-
-	public function testDesertWestRequiresFluteMittsAndMirror() {
-		$this->addCollected(['OcarinaInactive', 'MagicMirror', 'TitansMitt']);
-
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Desert - west side)")
 			->canAccess($this->collected));
 	}
 
 	public function testRageRodIslandRequiresNothing() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Lake Hylia)")
-			->canAccess($this->collected));
-	}
-
-	public function testRageRodIslandRequiresMirror() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Lake Hylia)")
-			->canAccess($this->allItemsExcept(['MagicMirror'])));
-	}
-
-	public function testRageRodIslandRequiresFlippers() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Lake Hylia)")
-			->canAccess($this->allItemsExcept(['Flippers'])));
-	}
-
-	public function testRageRodIslandRequiresMoonPearlIfCantAccessNEDarkWorld() {
-		$this->assertFalse($this->world->getLocation("Piece of Heart (Lake Hylia)")
-			->canAccess($this->allItemsExcept(['MoonPearl', 'Hammer', 'Cape', 'UpgradedSword'])));
-	}
-
-	public function testRageRodIslandDoesNotRequireMoonPearlIfCanAccessNEDarkWorld() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Lake Hylia)")
-			->canAccess($this->allItemsExcept(['MoonPearl', 'Hammer', 'UpgradedSword'])));
+			->canAccess($this->collected));
 	}
 
 	public function testDrainedDamRequiresNothing() {
@@ -407,27 +342,18 @@ class LightWorldTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testZorasHeartRequiresNothing() {
+	public function testZorasHeartRequiresFlippersIfNoBoots() {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Zora's River)")
-			->canAccess($this->collected));
+			->canAccess($this->allItemsExcept(['Flippers', 'PegasusBoots'])));
 	}
 
-	public function testZorasHeartRequiresFlippers() {
-		$this->addCollected(['Flippers']);
-
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Zora's River)")
-			->canAccess($this->collected));
-	}
-
-	public function testHauntedGroveRequiresNothing() {
-		$this->assertFalse($this->world->getLocation("Haunted Grove item")
-			->canAccess($this->collected));
+	public function testZorasHeartRequiresFlippersIfNoMoonPearl() {
+		$this->assertFalse($this->world->getLocation("Piece of Heart (Zora's River)")
+			->canAccess($this->allItemsExcept(['Flippers', 'MoonPearl'])));
 	}
 
 	public function testHauntedGroveRequiresShovel() {
-		$this->addCollected(['Shovel']);
-
-		$this->assertTrue($this->world->getLocation("Haunted Grove item")
-			->canAccess($this->collected));
+		$this->assertFalse($this->world->getLocation("Haunted Grove item")
+			->canAccess($this->allItemsExcept(['Shovel'])));
 	}
 }

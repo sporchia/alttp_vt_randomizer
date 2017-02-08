@@ -65,14 +65,14 @@ class IcePalaceTest extends TestCase {
 	public function testB5UpStaircaseRoomOnlyRequiresEntry() {
 		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'FireRod', 'Flippers']);
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D5-B1] Ice Palace - compass room")
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B5] Ice Palace - b5 up staircase")
 			->canAccess($this->collected));
 	}
 
 	public function testSpikeRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'FireRod', 'Flippers']);
+		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hookshot', 'FireRod', 'Flippers']);
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D5-B1] Ice Palace - compass room")
+		$this->assertTrue($this->world->getLocation("[dungeon-D5-B3] Ice Palace - spike room")
 			->canAccess($this->collected));
 	}
 

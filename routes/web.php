@@ -31,7 +31,7 @@ Route::get('help', function () {
 });
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
-	$rules = $request->input('rules', 'v7');
+	$rules = $request->input('rules', 'v8');
 	if ($rules == 'custom') {
 		config($request->input('data'));
 	}
@@ -53,11 +53,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 });
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
-	$rules = $request->input('rules', 'v7');
+	$rules = $request->input('rules', 'v8');
 	if ($rules == 'custom') {
 		config($request->input('data'));
 	}
-	$rand = new ALttP\Randomizer($rules);
+	$rand = new ALttP\Randomizer($rules, $request->input('game_mode', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });

@@ -24,7 +24,7 @@ class Swords extends Region {
 		$this->locations = new LocationCollection([
 			new Location\Standing("Pyramid", 0x180028, null, $this),
 			new Location\Npc("Blacksmiths", 0x3355C, null, $this),
-			new Location\Alter("Alter", 0x289B0, null, $this),
+			new Location\Altar("Altar", 0x289B0, null, $this),
 		]);
 	}
 
@@ -40,7 +40,7 @@ class Swords extends Region {
 			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('TitansMitt') && $items->has('MagicMirror');
 		});
 
-		$this->locations["Alter"]->setRequirements(function($locations, $items) {
+		$this->locations["Altar"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')
 				&& $items->has('PendantOfCourage');

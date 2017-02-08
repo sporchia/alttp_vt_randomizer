@@ -37,7 +37,7 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("Ice Palace Crystal")->setItem(Item::get('Crystal5'));
 		$this->world->getLocation("Misery Mire Crystal")->setItem(Item::get('Crystal6'));
 		$this->world->getLocation("Turtle Rock Crystal")->setItem(Item::get('Crystal7'));
-		$this->world->getLocation("Alter")->setItem(Item::get('MasterSword'));
+		$this->world->getLocation("Altar")->setItem(Item::get('MasterSword'));
 
 		$this->world->getLocation("[cave-040] Link's House")->setItem(Item::get('Lamp'));
 
