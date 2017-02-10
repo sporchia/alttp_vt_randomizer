@@ -10,7 +10,7 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--seed=} {--bulk=1}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--heartbeep=half} {--trace}  {--seed=} {--bulk=1}';
 
 	/**
 	 * The console command description.
@@ -47,6 +47,11 @@ class Randomize extends Command {
 
 			$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 			$rand->makeSeed($this->option('seed'));
+
+			$rom->setHeartBeepSpeed($this->option('heartbeep'));
+			if ($this->option('trace')) {
+				$rom->setSRAMTrace(true);
+			}
 
 			if ($this->option('debug')) {
 				$rom->setDebugMode(true);
