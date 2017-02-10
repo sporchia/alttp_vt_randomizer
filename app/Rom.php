@@ -9,6 +9,7 @@ use Log;
 class Rom {
 	const BUILD = '2017-02-10';
 	const HASH = 'f14c5f1ee129a824f87a9d9c9022f31d';
+	const ROM_SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -49,6 +50,7 @@ class Rom {
 		}
 
 		$this->rom = fopen($this->tmp_file, "r+");
+		$this->extend(static::ROM_SIZE);
 	}
 
 	/**
@@ -719,6 +721,17 @@ class Rom {
 		fseek($this->rom, $offset);
 		$unpacked = unpack('C*', fread($this->rom, $length));
 		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);
+	}
+
+	/**
+	 * Extend ROM to a given size
+	 *
+	 * @param int $size minimum number of bytes the ROM should be
+	 *
+	 */
+	public function extend(int $size) {
+		ftruncate($this->rom, $size);
+		rewind($this->rom);
 	}
 
 	/**
