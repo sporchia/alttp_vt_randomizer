@@ -375,7 +375,7 @@ class PalaceOfDarkness extends Region {
 		$this->locations["Heart Container - Helmasaur King"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canShootArrows();
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {

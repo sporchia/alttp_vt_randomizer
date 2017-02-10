@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace SpeedRunner;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group SpeedRunner
  */
 class SkullWoodsTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'SpeedRunner');
 	}
 
 	public function tearDown() {
@@ -98,8 +98,8 @@ class SkullWoodsTest extends TestCase {
 	}
 
 	// Key filling
-	public function testMothulaCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+	public function testMothulaCanHaveKey() {
+		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")
 			->fill(Item::get('Key'), $this->allItems()));
 	}
 
@@ -108,10 +108,10 @@ class SkullWoodsTest extends TestCase {
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testMothulaCantHaveBigKeyIfBigChestHasKey() {
+	public function testMothulaCanHaveBigKeyIfBigChestHasKey() {
 		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->setItem(Item::get('Key'));
 
-		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 

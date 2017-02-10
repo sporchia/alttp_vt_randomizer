@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace Glitched;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group Glitched
  */
 class SkullWoodsTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'Glitched');
 	}
 
 	public function tearDown() {
@@ -24,14 +24,9 @@ class SkullWoodsTest extends TestCase {
 			->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
-	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Skull Woods')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testNorthWestDarkWorldAccessRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Skull Woods')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
+	public function testCanEnterWithNothing() {
+		$this->assertTrue($this->world->getRegion('Skull Woods')
+			->canEnter($this->world->getLocations(), $this->collected));
 	}
 
 	// Item Locations
@@ -50,29 +45,21 @@ class SkullWoodsTest extends TestCase {
 	}
 
 	public function testBigKeyRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
-
 		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Big Key room")
 			->canAccess($this->collected));
 	}
 
 	public function testCompassRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
-
 		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Compass room")
 			->canAccess($this->collected));
 	}
 
 	public function testEastOfFireRodRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
-
 		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - east of Fire Rod room")
 			->canAccess($this->collected));
 	}
 
 	public function testGibdoStalfosRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
-
 		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room")
 			->canAccess($this->collected));
 	}
@@ -98,8 +85,8 @@ class SkullWoodsTest extends TestCase {
 	}
 
 	// Key filling
-	public function testMothulaCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+	public function testMothulaCanHaveKey() {
+		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")
 			->fill(Item::get('Key'), $this->allItems()));
 	}
 
@@ -108,27 +95,20 @@ class SkullWoodsTest extends TestCase {
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testMothulaCantHaveBigKeyIfBigChestHasKey() {
+	public function testMothulaCanHaveBigKeyIfBigChestHasKey() {
 		$this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")->setItem(Item::get('Key'));
 
-		$this->assertFalse($this->world->getLocation("Heart Container - Mothula")
+		$this->assertTrue($this->world->getLocation("Heart Container - Mothula")
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testSouthOfFireRodCantNotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")
+	public function testSouthOfFireRodCanNotBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - south of Fire Rod room")
 			->canFill(Item::get('Arrow'), $this->allItems()));
 	}
 
 	public function testBigChestCanBeKey() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testBigChestCannotBeKeyIfMothulaHasBigKey() {
-		$this->world->getLocation("Heart Container - Mothula")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D3-B1] Skull Woods - big chest")
 			->fill(Item::get('Key'), $this->allItems()));
 	}
 

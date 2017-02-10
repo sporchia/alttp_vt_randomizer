@@ -16,6 +16,7 @@ class Randomizer {
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
 	const LOGIC = 15;
+	protected $rng_seed;
 	protected $seed;
 	protected $world;
 	protected $rules;
@@ -33,15 +34,16 @@ class Randomizer {
 		$this->rules = $rules;
 		$this->type = $type;
 		$this->world = new World($rules, $type);
+		$this->seed = new Seed;
 	}
 
 	/**
-	 * Get the current seed number
+	 * Get the current RNG seed number
 	 *
 	 * @return int
 	 */
 	public function getSeed() {
-		return $this->seed;
+		return $this->rng_seed;
 	}
 
 	/**
@@ -56,21 +58,22 @@ class Randomizer {
 	/**
 	 * Fill all empty Locations with Items using logic from the World.
 	 *
-	 * @param int|null $seed Seed to create, or random if null
+	 * @param int|null $rng_seed Seed to create, or random if null
 	 *
 	 * @return $this
 	 */
-	public function makeSeed(int $seed = null) {
-		$seed = $seed ?: mt_rand(1, 999999999);
-		$this->seed = $seed % 1000000000;
-		mt_srand($seed);
+	public function makeSeed(int $rng_seed = null) {
+		$rng_seed = $rng_seed ?: mt_rand(1, 999999999);
+		$this->rng_seed = $rng_seed % 1000000000;
+		mt_srand($rng_seed);
+		$this->seed->seed = $rng_seed;
 
 		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
 		if (defined('MT_RAND_PHP')) {
-			mt_srand($seed, MT_RAND_PHP);
+			mt_srand($rng_seed, MT_RAND_PHP);
 		}
 
-		Log::info(sprintf("Seed: %s", $this->seed));
+		Log::info(sprintf("Seed: %s", $this->rng_seed));
 
 		$regions = $this->world->getRegions();
 
@@ -257,7 +260,7 @@ class Randomizer {
 				foreach ($locations->getEmptyLocations() as $log_loc) {
 					Log::error("SOFT LOCK LOCATION: " . $log_loc->getName());
 				}
-				throw new \Exception(sprintf('No Available Locations: "%s [seed:%s]"', $item->getNiceName(), $this->seed));
+				throw new \Exception(sprintf('No Available Locations: "%s [seed:%s]"', $item->getNiceName(), $this->rng_seed));
 			}
 
 			foreach ($available_locations as $location) {
@@ -273,7 +276,7 @@ class Randomizer {
 			};
 
 			if ($limit <= 0) {
-				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location [seed:%s]', $item->getNiceName(), $this->seed));
+				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location [seed:%s]', $item->getNiceName(), $this->rng_seed));
 			}
 
 			$my_items->addItem($item);
@@ -314,10 +317,13 @@ class Randomizer {
 		$spoiler['meta'] = [
 			'rules' => $this->rules,
 			'logic' => $this->getLogic(),
-			'seed' => $this->seed,
+			'seed' => $this->rng_seed,
 			'build' => Rom::BUILD,
 			'mode' => preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $this->type),
 		];
+
+		$this->seed->spoiler = json_encode($spoiler);
+
 		return $spoiler;
 	}
 
@@ -343,7 +349,7 @@ class Randomizer {
 	public function writeToRom(Rom $rom) {
 		if (config('debug', false)) {
 			$rom->setDebugMode(true);
-			$rom->setUncleTextCustom("Test Seed\n\n" . $this->seed);
+			$rom->setUncleTextCustom("Test Seed\n\n" . $this->rng_seed);
 		} else {
 			$this->setStartText($rom);
 		}
@@ -402,9 +408,25 @@ class Randomizer {
 				break;
 		}
 
-		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->seed, static::LOGIC, $this->rules), 21, ' '));
+		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->rules), 21, ' '));
+
+		$this->seed->patch = json_encode($rom->getWriteLog());
 
 		return $rom;
+	}
+
+	/**
+	 * Save a seed record to DB
+	 *
+	 * @return string hash of record
+	 */
+	public function saveSeedRecord() {
+		$this->seed->logic = static::LOGIC;
+		$this->seed->rules = $this->rules;
+		$this->seed->game_mode = $this->type;
+		$this->seed->save();
+
+		return $this->seed->hash;
 	}
 
 	/**

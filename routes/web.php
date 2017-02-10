@@ -49,7 +49,15 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rand = new ALttP\Randomizer($rules, $request->input('game_mode', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
-	return json_encode(['seed' => $rand->getSeed(), 'logic' => $rand->getLogic(), 'rules' => $rules, 'patch' => $rom->getWriteLog(), 'spoiler' => $rand->getSpoiler()]);
+
+	return json_encode([
+		'seed' => $rand->getSeed(),
+		'logic' => $rand->getLogic(),
+		'rules' => $rules,
+		'patch' => $rom->getWriteLog(),
+		'spoiler' => $rand->getSpoiler(),
+		'hash' => $rand->saveSeedRecord(),
+	]);
 });
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
