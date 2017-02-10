@@ -59,7 +59,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) === static::BUILD;
+		return hash_file('md5', $this->tmp_file) === static::HASH;
 	}
 
 	/**
@@ -697,6 +697,26 @@ class Rom {
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 
+		return $this;
+	}
+
+	/**
+	 * Apply a JSON string containing patches to the ROM
+	 *
+	 * The string should consist of an array of patches, where each patch is an object
+	 * with keys of integer addresses and values of data to write at that address in
+	 * the form of arrays of integers between 0 and 255.
+	 *
+	 * @param string $patches JSON string of patches to apply
+	 *
+	 **/
+	public function applyJSONPatches(string $json) {
+		$patches = json_decode($json, true);
+		foreach ($patches as $patch) {
+		foreach ($patch as $address => $data) {
+			$this->write(intval($address), pack('C*', ...array_values($data)));
+		}
+		}
 		return $this;
 	}
 

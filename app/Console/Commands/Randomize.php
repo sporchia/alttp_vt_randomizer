@@ -37,6 +37,14 @@ class Randomize extends Command {
 
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
+
+			$basejson = file_get_contents(public_path('js/base2current.json'));
+
+			$rom->applyJSONPatches($basejson);
+			if (!$rom->checkMD5()) {
+				return $this->error('Error patching vanilla ROM');
+			}
+
 			$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 			$rand->makeSeed($this->option('seed'));
 
