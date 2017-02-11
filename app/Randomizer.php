@@ -319,10 +319,12 @@ class Randomizer {
 			'logic' => $this->getLogic(),
 			'seed' => $this->rng_seed,
 			'build' => Rom::BUILD,
-			'mode' => preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $this->type),
+			'mode' => trim(preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $this->type)),
 		];
 
 		$this->seed->spoiler = json_encode($spoiler);
+		$this->seed->complexity = $spoiler['playthrough']['complexity'];
+		$this->seed->vt_complexity = $spoiler['playthrough']['vt_complexity'];
 
 		return $spoiler;
 	}
@@ -411,6 +413,7 @@ class Randomizer {
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->rules), 21, ' '));
 
 		$this->seed->patch = json_encode($rom->getWriteLog());
+		$this->seed->build = Rom::BUILD;
 
 		return $rom;
 	}

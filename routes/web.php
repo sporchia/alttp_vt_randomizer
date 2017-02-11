@@ -30,6 +30,20 @@ Route::get('help', function () {
 	return view('help');
 });
 
+Route::any('hash/{hash}', function(Request $request, $hash) {
+	$seed = ALttP\Seed::where('hash', $hash)->first();
+	if ($seed) {
+		return json_encode([
+			'logic' => $seed->logic,
+			'rules' => $seed->rules,
+			'patch' => json_decode($seed->patch),
+			'spoiler' => array_except(array_only(json_decode($seed->spoiler, true), ['meta']), ['meta.seed']),
+			'hash' => $seed->hash,
+		]);
+	}
+	abort(404);
+});
+
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rules = $request->input('rules', 'v8');
 	if ($rules == 'custom') {
@@ -70,3 +84,15 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	return json_encode($rand->getSpoiler());
 });
 
+Route::get('h/{hash}', function(Request $request, $hash) {
+	$seed = ALttP\Seed::where('hash', $hash)->first();
+	if ($seed) {
+		$build = ALttP\Build::where('build', $seed->build)->first();
+		return view('patch_from_hash', [
+			'hash' => $hash,
+			'md5' => $build->hash,
+			'patch' => $build->patch,
+		]);
+	}
+	abort(404);
+});

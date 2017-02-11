@@ -38,3 +38,51 @@ function ksortr(array &$array, int $sort_flags = SORT_REGULAR) {
 
 	return true;
 }
+
+/**
+ * Take our patch format and merge it down to a more compact version
+ *
+ * @param array $patch_left Left side of patch
+ * @param array $patch_right patch to add to left side
+ *
+ * @return array
+ */
+function patch_merge_minify(array $patch_left, array $patch_right = []) {
+	$write_array = [];
+	// decompose left
+	foreach ($patch_left as $wri) {
+		foreach ($wri as $seek => $bytes) {
+			for ($i = 0; $i < count($bytes); $i++) {
+				$write_array[$seek + $i] = [$bytes[$i]];
+			}
+		}
+	}
+	// decompose right and overwrite
+	foreach ($patch_right as $wri) {
+		foreach ($wri as $seek => $bytes) {
+			for ($i = 0; $i < count($bytes); $i++) {
+				$write_array[$seek + $i] = [$bytes[$i]];
+			}
+		}
+	}
+	$out = $write_array;
+	ksort($out);
+
+	$backwards = array_reverse($out, true);
+
+	// merge down
+	foreach ($backwards as $off => $value) {
+		if (isset($backwards[$off - 1])) {
+			$backwards[$off - 1] = array_merge($backwards[$off - 1], $backwards[$off]);
+			unset($backwards[$off]);
+		}
+	}
+
+	$forwards = array_reverse($backwards, true);
+
+	array_walk($forwards, function(&$write, $address) {
+		$write = [$address => $write];
+	});
+
+	return array_values($forwards);
+}

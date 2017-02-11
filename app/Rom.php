@@ -7,11 +7,29 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-02-04';
-	const HASH = '6420cc89e27aae857dad0ffea8ab315d';
+	const BUILD = '2017-02-10';
+	const HASH = 'f14c5f1ee129a824f87a9d9c9022f31d';
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
+
+	/**
+	 * Save a ROM build the DB for later retervial if someone is patching for an old seed.
+	 *
+	 * @param array $patch for the build
+	 *
+	 * @return Build
+	 */
+	public static function saveBuild(array $patch) {
+		$build = Build::firstOrCreate([
+			'build' => static::BUILD,
+			'hash' => static::HASH,
+		]);
+		$build->patch = json_encode($patch);
+		$build->save();
+
+		return $build;
+	}
 
 	/**
 	 * Create a new wrapper
@@ -140,7 +158,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x102494;
+		$offset = 0x1024C6;
 		foreach ($this->convertDialog(mb_strtoupper($string)) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}

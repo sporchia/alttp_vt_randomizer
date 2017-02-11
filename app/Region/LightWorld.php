@@ -66,7 +66,7 @@ class LightWorld extends Region {
 			new Location\Npc("[cave-050] cave southwest of Lake Hylia - generous guy", 0x180010, null, $this),
 			new Location\Dash("Library", 0x180012, null, $this),
 			new Location\Standing("Mushroom", 0x180013, null, $this),
-			new Location\Npc("Witch", 0x180014, null, $this),
+			new Location\Npc\Witch("Witch", 0x180014, null, $this),
 			new Location\Standing("Piece of Heart (Maze Race)", 0x180142, null, $this),
 			new Location\Standing("Piece of Heart (Desert - west side)", 0x180143, null, $this),
 			new Location\Standing("Piece of Heart (Lake Hylia)", 0x180144, null, $this),

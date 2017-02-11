@@ -125,7 +125,7 @@
 		<div class="col-md-6">
 			<div class="row">
 				<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
-				<button name="save" class="btn btn-default" disabled>Save Rom</button>
+				<button name="save" class="btn btn-success" disabled>Save Rom</button>
 			</div>
 			<div class="row">
 				<input id="generate-complexity-show" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">

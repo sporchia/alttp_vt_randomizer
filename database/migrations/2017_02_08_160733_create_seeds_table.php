@@ -16,11 +16,17 @@ class CreateSeedsTable extends Migration {
 			$table->char('hash', 10)->nullable();
 			$table->bigInteger('seed');
 			$table->string('rules', 32);
+			$table->date('build');
 			$table->integer('logic');
+			$table->integer('vt_complexity')->default(0);
+			$table->integer('complexity')->default(0);
 			$table->string('game_mode', 32);
 			$table->json('patch');
 			$table->json('spoiler')->nullable();
 			$table->timestamps();
+
+			$table->index('seed');
+			$table->index(['vt_complexity', 'complexity']);
 		});
 	}
 

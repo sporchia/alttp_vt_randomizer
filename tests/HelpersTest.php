@@ -45,4 +45,51 @@ class HelpersTest extends TestCase {
 			],
 		], $unsorted);
 	}
+
+	public function testPatchMinify() {
+		$patch = [
+			[1 => [2]],
+			[2 => [3]],
+			[5 => [5, 4]],
+			[2 => [4]],
+		];
+
+		$this->assertEquals([
+			[1 => [2, 4]],
+			[5 => [5, 4]],
+		], patch_merge_minify($patch));
+	}
+
+	public function testPatchMinifyParam2() {
+		$patch = [
+			[1 => [2]],
+			[2 => [3]],
+			[5 => [5, 4]],
+			[2 => [4]],
+		];
+
+		$this->assertEquals([
+			[1 => [2, 4]],
+			[5 => [5, 4]],
+		], patch_merge_minify([], $patch));
+	}
+
+	public function testPatchMergeMinify() {
+		$patch = [
+			[1 => [2]],
+			[2 => [3]],
+			[5 => [5, 4]],
+			[2 => [4]],
+		];
+		$patch_2 = [
+			[1 => [0]],
+			[2 => [2, 3, 4]],
+			[7 => [0, 1]],
+			[8 => [4]],
+		];
+		$this->assertEquals([
+			[1 => [0, 2, 3, 4, 5, 4, 0, 4]],
+		], patch_merge_minify($patch, $patch_2));
+	}
+
 }

@@ -3,7 +3,7 @@
 use ALttP\Rom;
 
 class RomTest extends TestCase {
-	const UNCLE_TEXT_0_ADDRESS = 0x102494;
+	const UNCLE_TEXT_0_ADDRESS = 0x1024C6;
 
 	public function setUp() {
 		parent::setUp();
