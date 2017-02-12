@@ -10,7 +10,7 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--seed=} {--bulk=1}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--heartbeep=half} {--trace}  {--seed=} {--bulk=1}';
 
 	/**
 	 * The console command description.
@@ -37,8 +37,21 @@ class Randomize extends Command {
 
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
+
+			$basejson = file_get_contents(public_path('js/base2current.json'));
+
+			$rom->applyJSONPatches($basejson);
+			if (!$rom->checkMD5()) {
+				return $this->error('Error patching vanilla ROM');
+			}
+
 			$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 			$rand->makeSeed($this->option('seed'));
+
+			$rom->setHeartBeepSpeed($this->option('heartbeep'));
+			if ($this->option('trace')) {
+				$rom->setSRAMTrace(true);
+			}
 
 			if ($this->option('debug')) {
 				$rom->setDebugMode(true);

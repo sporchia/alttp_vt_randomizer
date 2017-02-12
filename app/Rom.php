@@ -9,6 +9,7 @@ use Log;
 class Rom {
 	const BUILD = '2017-02-10';
 	const HASH = 'f14c5f1ee129a824f87a9d9c9022f31d';
+	const ROM_SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -49,6 +50,7 @@ class Rom {
 		}
 
 		$this->rom = fopen($this->tmp_file, "r+");
+		$this->extend(static::ROM_SIZE);
 	}
 
 	/**
@@ -57,7 +59,7 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) === static::BUILD;
+		return hash_file('md5', $this->tmp_file) === static::HASH;
 	}
 
 	/**
@@ -699,6 +701,28 @@ class Rom {
 	}
 
 	/**
+	 * Apply a JSON string containing patches to the ROM
+	 *
+	 * The string should consist of an array of patches, where each patch is an object
+	 * with keys of integer addresses and values of data to write at that address in
+	 * the form of arrays of integers between 0 and 255.
+	 *
+	 * @param string $patches JSON string of patches to apply
+	 *
+	 * @return $this
+	 *
+	 **/
+	public function applyJSONPatches(string $json) {
+		$patches = json_decode($json, true);
+		foreach ($patches as $patch) {
+			foreach ($patch as $address => $data) {
+				$this->write($address, pack('C*', ...array_values($data)));
+			}
+		}
+		return $this;
+	}
+
+	/**
 	 * Get the array of bytes written in the order they were written to the rom
 	 *
 	 * @return array
@@ -719,6 +743,20 @@ class Rom {
 		fseek($this->rom, $offset);
 		$unpacked = unpack('C*', fread($this->rom, $length));
 		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);
+	}
+
+	/**
+	 * Extend ROM to a given size
+	 *
+	 * @param int $size minimum number of bytes the ROM should be
+	 *
+	 * @return $this
+	 *
+	 */
+	public function extend(int $size) {
+		ftruncate($this->rom, $size);
+		rewind($this->rom);
+		return $this;
 	}
 
 	/**
