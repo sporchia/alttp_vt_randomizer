@@ -709,13 +709,15 @@ class Rom {
 	 *
 	 * @param string $patches JSON string of patches to apply
 	 *
+	 * @return $this
+	 *
 	 **/
 	public function applyJSONPatches(string $json) {
 		$patches = json_decode($json, true);
 		foreach ($patches as $patch) {
-		foreach ($patch as $address => $data) {
-			$this->write(intval($address), pack('C*', ...array_values($data)));
-		}
+			foreach ($patch as $address => $data) {
+				$this->write($address, pack('C*', ...array_values($data)));
+			}
 		}
 		return $this;
 	}
@@ -748,10 +750,13 @@ class Rom {
 	 *
 	 * @param int $size minimum number of bytes the ROM should be
 	 *
+	 * @return $this
+	 *
 	 */
 	public function extend(int $size) {
 		ftruncate($this->rom, $size);
 		rewind($this->rom);
+		return $this;
 	}
 
 	/**
