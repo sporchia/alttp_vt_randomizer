@@ -64,7 +64,7 @@ class RomTest extends TestCase {
 	public function testSetCapacityUpgradeFills() {
 		$this->rom->setCapacityUpgradeFills([1, 2, 0, 0, 20]);
 
-		$this->assertEquals([1, 2, 0, 0], $this->rom->read(0x180080, 5));
+		$this->assertEquals([1, 2, 0, 0], $this->rom->read(0x180080, 4));
 	}
 
 	public function testSetUncleText() {

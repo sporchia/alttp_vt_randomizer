@@ -9,6 +9,7 @@ use Log;
 class Rom {
 	const BUILD = '2017-02-10';
 	const HASH = 'f14c5f1ee129a824f87a9d9c9022f31d';
+	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -51,13 +52,27 @@ class Rom {
 		$this->rom = fopen($this->tmp_file, "r+");
 	}
 
+ 	/**
+	 * resize ROM to a given size
+	 *
+	 * @param int|null $size number of bytes the ROM should be
+	 *
+	 * @return $this
+	 *
+	 */
+	public function resize(int $size = null) {
+		ftruncate($this->rom, $size ?? static::SIZE);
+
+		return $this;
+	}
+
 	/**
 	 * Check to see if this ROM matches base randomizer ROM.
 	 *
 	 * @return bool
 	 */
 	public function checkMD5() {
-		return hash_file('md5', $this->tmp_file) === static::BUILD;
+		return hash_file('md5', $this->tmp_file) === static::HASH;
 	}
 
 	/**
@@ -667,6 +682,23 @@ class Rom {
 			$string .= pack('C*', $random());
 		}
 		$this->write(0x178000, $string);
+		return $this;
+	}
+
+	/**
+	 * Apply a patch to the ROM
+	 *
+	 * @param array $patch patch to apply
+	 *
+	 * @return $this
+	 *
+	 **/
+	public function applyPatch(array $patch) {
+		foreach ($patch as $part) {
+			foreach ($part as $address => $data) {
+				$this->write($address, pack('C*', ...array_values($data)));
+			}
+		}
 		return $this;
 	}
 

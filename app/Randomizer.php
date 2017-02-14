@@ -197,6 +197,9 @@ class Randomizer {
 			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
 			$my_items->addItem(Item::get('PegasusBoots'));
 			unset($advancement_items[$key]);
+
+			// Glitched always has 4 bottles, no matter what
+			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
 		}
 
 		// @TODO: consider using hard mode for this? and not having it be red mail

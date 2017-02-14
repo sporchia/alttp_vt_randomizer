@@ -10,7 +10,7 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--seed=} {--bulk=1}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--unrandomized} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--heartbeep=half} {--trace}  {--seed=} {--bulk=1}';
 
 	/**
 	 * The console command description.
@@ -18,6 +18,8 @@ class Randomize extends Command {
 	 * @var string
 	 */
 	protected $description = 'Generate a randomized rom.';
+
+	protected $reset_patch;
 
 	/**
 	 * Execute the console command.
@@ -37,12 +39,32 @@ class Randomize extends Command {
 
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
+
+			if (!$rom->checkMD5()) {
+				$rom->resize();
+
+				$rom->applyPatch($this->resetPatch());
+			}
+
+			if (!$rom->checkMD5()) {
+				return $this->error('Could not Reset Rom');
+			}
+
+			$rom->setDebugMode($this->option('debug'));
+
+			$rom->setHeartBeepSpeed($this->option('heartbeep'));
+
+			$rom->setSRAMTrace($this->option('trace'));
+
+			// break out for unrandomized base game
+			if ($this->option('unrandomized')) {
+				$output_file = sprintf('%s/alttp-v8-%s.sfc', $this->argument('output_directory'), Rom::BUILD);
+				$rom->save($output_file);
+				return $this->info(sprintf('Rom Saved: %s', $output_file));
+			}
+
 			$rand = new Randomizer($this->option('rules'), $this->option('mode'));
 			$rand->makeSeed($this->option('seed'));
-
-			if ($this->option('debug')) {
-				$rom->setDebugMode(true);
-			}
 
 			$rand->writeToRom($rom);
 
@@ -54,5 +76,22 @@ class Randomize extends Command {
 			}
 			$this->info(sprintf('Rom Saved: %s', $output_file));
 		}
+	}
+
+	protected function resetPatch() {
+		if ($this->reset_patch) {
+			return $this->reset_patch;
+		}
+
+		if (is_readable(public_path('js/base2current.json'))) {
+			$patch_left = json_decode(file_get_contents(public_path('js/base2current.json')), true);
+		}
+		if (is_readable(public_path('js/romreset.json'))) {
+			$patch_right = json_decode(file_get_contents(public_path('js/romreset.json')), true);
+		}
+
+		$this->reset_patch = patch_merge_minify($patch_left, $patch_right);
+
+		return $this->reset_patch;
 	}
 }
