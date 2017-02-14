@@ -7,8 +7,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-02-10';
-	const HASH = 'f14c5f1ee129a824f87a9d9c9022f31d';
+	const BUILD = '2017-02-14';
+	const HASH = '0a429fc3c896ea9bf9d3a13bee38b098';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -173,7 +173,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x1024C6;
+		$offset = 0x1024D4;
 		foreach ($this->convertDialog(mb_strtoupper($string)) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
