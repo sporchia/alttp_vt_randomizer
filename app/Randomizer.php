@@ -396,6 +396,8 @@ class Randomizer {
 		$rom->setMaxBombs();
 		$rom->setCapacityUpgradeFills([1, 2, 0, 0]);
 
+		$rom->removeUnclesShield();
+
 		switch ($this->type) {
 			case 'Glitched':
 				$type_flag = 'G';
