@@ -142,7 +142,7 @@ class ThievesTown extends Region {
 		$this->initSpeedRunner();
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+			return $items->has('MoonPearl') || $items->hasABottle();
 		};
 
 		return $this;

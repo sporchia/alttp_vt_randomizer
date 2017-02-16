@@ -304,7 +304,7 @@ class LightWorld extends Region {
 	public function initGlitched() {
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->has('TitansMitt')
-				|| ($this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('MagicMirror')));
+				|| ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle())));
 		});
 
 		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {

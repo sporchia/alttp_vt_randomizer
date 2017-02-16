@@ -33,14 +33,56 @@ class DarkWorldTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
-	public function testWestOfMireChestLRequiresMoonPearlOrBottle() {
+	public function testWestOfMireChestLRequiresMoonPearlOrBottleOrMirror() {
 		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
-			->canAccess($this->allItemsExcept(['MoonPearl', 'AnyBottle'])));
+			->canAccess($this->allItemsExcept(['MoonPearl', 'AnyBottle', 'MagicMirror'])));
 	}
 
-	public function testWestOfMireChestRRequiresMoonPearlOrBottle() {
+	public function testWestOfMireChestLRequiresOnlyBottle() {
+		$this->addCollected(['Bottle']);
+
+		$this->assertTrue($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
+			->canAccess($this->collected));
+	}
+
+	public function testWestOfMireChestLRequiresOnlyMoonPearl() {
+		$this->addCollected(['MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
+			->canAccess($this->collected));
+	}
+
+	public function testWestOfMireChestLRequiresOnlyMirror() {
+		$this->addCollected(['MagicMirror']);
+
+		$this->assertTrue($this->world->getLocation("[cave-071] Misery Mire west area [left chest]")
+			->canAccess($this->collected));
+	}
+
+	public function testWestOfMireChestRRequiresMoonPearlOrBottleOrMirror() {
 		$this->assertFalse($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
-			->canAccess($this->allItemsExcept(['MoonPearl', 'AnyBottle'])));
+			->canAccess($this->allItemsExcept(['MoonPearl', 'AnyBottle', 'MagicMirror'])));
+	}
+
+	public function testWestOfMireChestRRequiresOnlyBottle() {
+		$this->addCollected(['Bottle']);
+
+		$this->assertTrue($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
+			->canAccess($this->collected));
+	}
+
+	public function testWestOfMireChestRRequiresOnlyMoonPearl() {
+		$this->addCollected(['MoonPearl']);
+
+		$this->assertTrue($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
+			->canAccess($this->collected));
+	}
+
+	public function testWestOfMireChestRRequiresOnlyMirror() {
+		$this->addCollected(['MagicMirror']);
+
+		$this->assertTrue($this->world->getLocation("[cave-071] Misery Mire west area [right chest]")
+			->canAccess($this->collected));
 	}
 
 	public function testDeathMountainChestTAccessibleWithMitt() {

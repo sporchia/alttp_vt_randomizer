@@ -80,12 +80,25 @@ class NorthWest extends Region {
 	 */
 	public function initGlitched() {
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer');
+			return $items->has('Hammer')
+				&& ($items->has('MoonPearl') || $items->hasABottle());
 		});
 
-		$this->can_enter = function($locations, $items) {
+		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') || $items->hasABottle();
-		};
+		});
+
+		$this->locations["[cave-062] C-shaped house"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->hasABottle() || $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Treasure Chest Game)"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->hasABottle() || $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->hasABottle();
+		});
 
 		return $this;
 	}

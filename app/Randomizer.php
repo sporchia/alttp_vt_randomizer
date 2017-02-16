@@ -688,6 +688,11 @@ class Randomizer {
 			array_push($items_to_find, Item::get('ThreeHundredRupees'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.Heart', 0); $i++) {
+			array_push($items_to_find, Item::get('Heart'));
+		}
+
+
 		for ($i = 0; $i < $this->config('item.count.ExtraBottles', 3); $i++) {
 			array_push($items_to_find, $this->getBottle());
 		}

@@ -105,11 +105,11 @@ class DarkWorld extends Region {
 		});
 
 		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items);
+			return $access_dark_world($items) || $items->has('MagicMirror');
 		});
 
 		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items);
+			return $access_dark_world($items) || $items->has('MagicMirror');
 		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {

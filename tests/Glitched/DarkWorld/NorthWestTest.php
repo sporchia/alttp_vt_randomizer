@@ -38,9 +38,9 @@ class NorthWestTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testCShapedHouseRequiresMoonPearlOrBottle() {
+	public function testCShapedHouseRequiresMoonPearlOrBottleOrMirror() {
 		$this->assertFalse($this->world->getLocation("[cave-062] C-shaped house")
-			->canAccess($this->allItemsExcept(['AnyBottle', 'MoonPearl'])));
+			->canAccess($this->allItemsExcept(['AnyBottle', 'MoonPearl', 'MagicMirror'])));
 	}
 
 	public function testCShapedHouseRequiresOnlyBottle() {
@@ -57,9 +57,16 @@ class NorthWestTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testTreasureChestGameRequiresMoonPearlOrBottle() {
+	public function testCShapedHouseRequiresOnlyMirror() {
+		$this->addCollected(['MagicMirror']);
+
+		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
+			->canAccess($this->collected));
+	}
+
+	public function testTreasureChestGameRequiresMoonPearlOrBottleOrMirror() {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
-			->canAccess($this->allItemsExcept(['AnyBottle', 'MoonPearl'])));
+			->canAccess($this->allItemsExcept(['AnyBottle', 'MoonPearl', 'MagicMirror'])));
 	}
 
 	public function testTreasureChestGameRequiresOnlyMoonPearl() {
@@ -71,6 +78,13 @@ class NorthWestTest extends TestCase {
 
 	public function testTreasureChestGameRequiresOnlyBottle() {
 		$this->addCollected(['Bottle']);
+
+		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
+			->canAccess($this->collected));
+	}
+
+	public function testTreasureChestGameRequiresOnlyMirror() {
+		$this->addCollected(['MagicMirror']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));

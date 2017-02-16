@@ -72,32 +72,8 @@ class EastTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testFloatingIslandAccessibleWithFlippers() {
-		$this->addCollected(['Flippers']);
-
+	public function testFloatingIslandRequiresNothing() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Death Mountain - floating island)")
 			->canAccess($this->collected));
 	}
-
-	public function testFloatingIslandAccessibleWithMirrorAndMoonPearl() {
-		$this->addCollected(['MagicMirror', 'MoonPearl']);
-
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Death Mountain - floating island)")
-			->canAccess($this->collected));
-	}
-
-	public function testFloatingIslandAccessibleWithMirrorAndBottle() {
-		$this->addCollected(['MagicMirror', 'Bottle']);
-
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Death Mountain - floating island)")
-			->canAccess($this->collected));
-	}
-
-	public function testFloatingIslandAccessibleWithMirrorAndMitt() {
-		$this->addCollected(['MagicMirror', 'TitansMitt']);
-
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Death Mountain - floating island)")
-			->canAccess($this->collected));
-	}
-
 }
