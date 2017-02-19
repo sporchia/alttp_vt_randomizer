@@ -113,6 +113,13 @@ class DarkWorldTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
+	public function testDeathMountainChestTAccessibleWithMirror() {
+		$this->addCollected(['MagicMirror']);
+
+		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
+			->canAccess($this->collected));
+	}
+
 	public function testDeathMountainChestBAccessibleWithMitt() {
 		$this->addCollected(['TitansMitt']);
 
@@ -136,6 +143,13 @@ class DarkWorldTest extends TestCase {
 
 	public function testDeathMountainChestBAccessibleWithHammer() {
 		$this->addCollected(['Hammer']);
+
+		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
+			->canAccess($this->collected));
+	}
+
+	public function testDeathMountainChestBAccessibleWithMirror() {
+		$this->addCollected(['MagicMirror']);
 
 		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
 			->canAccess($this->collected));
