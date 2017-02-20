@@ -3,8 +3,6 @@
 use ALttP\Support\ItemCollection;
 use ALttP\Support\LocationCollection;
 use Log;
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\StreamHandler;
 
 /**
  * Main class for randomization. All the magic happens here. We use mt_rand as it is much faster than rand. Not all PHP
@@ -326,8 +324,6 @@ class Randomizer {
 		];
 
 		$this->seed->spoiler = json_encode($spoiler);
-		$this->seed->complexity = $spoiler['playthrough']['complexity'];
-		$this->seed->vt_complexity = $spoiler['playthrough']['vt_complexity'];
 
 		return $spoiler;
 	}

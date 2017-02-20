@@ -44,8 +44,6 @@
 							<select id="rules" class="form-control selectpicker">
 								<option value="v8">v8</option>
 								<option value="v8_hard">v8 (hard mode)</option>
-								<option value="v7">v7</option>
-								<option value="v7_hard">v7 (hard mode)</option>
 								<option value="custom">Custom</option>
 							</select>
 						</div>
@@ -120,16 +118,11 @@
 			<div>Rules: <span class="rules"></span></div>
 			<div>Mode: <span class="mode"></span></div>
 			<div>Seed: <span class="seed"></span></div>
-			<div>Complexity: <span class="complexity"></span></div>
 		</div>
 		<div class="col-md-6">
 			<div class="row">
 				<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
 				<button name="save" class="btn btn-success" disabled>Save Rom</button>
-			</div>
-			<div class="row">
-				<input id="generate-complexity-show" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-				<label for"generate-complexity-show">Show Complexity</label>
 			</div>
 		</div>
 		<div class="spoiler col-md-12">
@@ -582,7 +575,6 @@ function seedApplied(data) {
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .rules').html(data.patch.rules);
-		$('.info .complexity').html(data.patch.spoiler.playthrough.vt_complexity + ' (' + data.patch.spoiler.playthrough.complexity + ')');
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		pasrseSpoilerToTabs(data.patch.spoiler);
@@ -592,8 +584,6 @@ function seedApplied(data) {
 		rom.rules = data.patch.rules;
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
-		rom.complexity = data.patch.spoiler.playthrough.complexity;
-		rom.vt_complexity = data.patch.spoiler.playthrough.vt_complexity;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 		resolve(rom);
 	});
@@ -674,21 +664,6 @@ $(function() {
 		if (!value) return;
 		$('#rules').val(value);
 		$('#rules').trigger('change');
-	});
-
-	// Complexity switch
-	$('#generate-complexity-show').on('change', function() {
-		if ($(this).prop('checked')) {
-			$('.complexity').show();
-			localforage.setItem('generate.complexity.show', true);
-		} else {
-			$('.complexity').hide();
-			localforage.setItem('generate.complexity.show', false);
-		}
-	});
-	localforage.getItem('generate.complexity.show').then(function(value) {
-		$('#generate-complexity-show').prop('checked', value);
-		$('#generate-complexity-show').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {
@@ -843,8 +818,8 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + data.patch.mode + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + data.patch.mode + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + data.patch.spoiler.meta.mode + '_' + data.patch.seed + '.sfc', buffer);
+				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.rules + '-' + data.patch.spoiler.meta.mode + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);

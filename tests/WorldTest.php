@@ -75,6 +75,8 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D4-B2] Thieves' Town - big chest")->setItem(Item::get('TitansMitt'));
 
+		$this->world->getLocation("Blacksmiths")->setItem(Item::get('L3Sword'));
+
 		$this->world->getLocation("[dungeon-D5-B1] Ice Palace - Big Key room")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D5-B5] Ice Palace - big chest")->setItem(Item::get('BlueMail'));
 
@@ -89,6 +91,7 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('CaneOfSomaria'));
 
 		$this->world->getLocation("[cave-051] Ice Cave")->setItem(Item::get('IceRod'));
+		$this->world->getLocation("Pyramid")->setItem(Item::get('SilverArrowUpgrade'));
 
 		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big key room")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")->setItem(Item::get('MirrorShield'));
@@ -96,6 +99,6 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")->setItem(Item::get('RedMail'));
 
-		$this->assertArraySubset(['complexity' => 13, 'vt_complexity' => 26], $this->world->getPlaythrough());
+		$this->assertArraySubset(['longest_item_chain' => 14, 'regions_visited' => 27], $this->world->getPlaythrough());
 	}
 }

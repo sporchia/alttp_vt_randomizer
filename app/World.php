@@ -113,12 +113,29 @@ class World {
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
-			case 'NoMajorGlitches':
 			case 'SpeedRunner':
-			default:
 				$this->win_condition = function($collected_items) {
 					return $collected_items->hasUpgradedSword()
 						&& $collected_items->canLightTorches()
+						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+				};
+			case 'NoMajorGlitches':
+			default:
+				if ($this->config('rom.HardMode', false)) {
+					$this->win_condition = function($collected_items) {
+						return $collected_items->hasUpgradedSword()
+							&& $collected_items->canLightTorches()
+							&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+					};
+					break;
+				}
+
+				$this->win_condition = function($collected_items) {
+					return $collected_items->canLightTorches()
+						&& ($collected_items->has('BowAndSilverArrows')
+							|| ($collected_items->has('SilverArrowUpgrade')
+								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows'))))
+						&& ($collected_items->has('L3Sword') || $collected_items->has('L4Sword'))
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
@@ -293,41 +310,41 @@ class World {
 		$my_items = new ItemCollection;
 		$location_order = [];
 		$location_round = [];
-		$complexity = 0;
+		$longest_item_chain = 0;
 		do {
-			$complexity++;
-			$location_round[$complexity] = [];
+			$longest_item_chain++;
+			$location_round[$longest_item_chain] = [];
 			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items) {
 				return $location->canAccess($my_items);
 			});
 
 			$found_items = $available_locations->getItems();
 
-			$available_locations->each(function($location) use (&$location_order, &$location_round, $complexity) {
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain) {
 				if (in_array($location, $location_order)
 						|| !$location->hasItem()
 						|| in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])) {
 					return;
 				}
 				array_push($location_order, $location);
-				array_push($location_round[$complexity], $location);
+				array_push($location_round[$longest_item_chain], $location);
 			});
 
 			$new_items = $found_items->diff($my_items);
 			$my_items = $found_items;
 		} while ($new_items->count() > 0);
 
-		$ret = ['complexity' => count($location_round)];
+		$ret = ['longest_item_chain' => count($location_round)];
 		foreach ($location_round as $round => $locations) {
 			if (!count($locations)) {
-				$ret['complexity']--;
+				$ret['longest_item_chain']--;
 			}
 			foreach ($locations as $location) {
 				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getNiceName();
 			}
 		}
 
-		$ret['vt_complexity'] = array_reduce($ret, function($carry, $item) {
+		$ret['regions_visited'] = array_reduce($ret, function($carry, $item) {
 			return (is_array($item)) ? $carry + count($item) : $carry;
 		});
 

@@ -144,6 +144,8 @@ class RandomizerTest extends TestCase {
 
 	/**
 	 * Adjust this test and increment Logic on Randomizer if this fails.
+	 *
+	 * @group logic
 	 */
 	public function testLogicHasntChangedNoMajorGlitches() {
 		$this->randomizer->makeSeed(1337);
@@ -384,6 +386,8 @@ class RandomizerTest extends TestCase {
 
 	/**
 	 * Adjust this test and increment Logic on Randomizer if this fails.
+	 *
+	 * @group logic
 	 */
 	public function testLogicHasntChangedSpeedRunner() {
 		$this->randomizer = new Randomizer('test_rules', 'SpeedRunner');
@@ -625,6 +629,8 @@ class RandomizerTest extends TestCase {
 
 	/**
 	 * Adjust this test and increment Logic on Randomizer if this fails.
+	 *
+	 * @group logic
 	 */
 	public function testLogicHasntChangedGlitched() {
 		$this->randomizer = new Randomizer('test_rules', 'Glitched');
