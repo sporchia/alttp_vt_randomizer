@@ -106,7 +106,8 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testGetMasterSword() {
-		$this->addCollected(['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']);
+		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
+			'PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']);
 
 		$this->assertTrue($this->world->getLocation("Altar")->canAccess($this->collected));
 	}

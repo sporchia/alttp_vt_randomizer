@@ -106,7 +106,8 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testGetMasterSword() {
-		$this->addCollected(['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']);
+		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
+			'PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']);
 
 		$this->assertTrue($this->world->getLocation("Altar")->canAccess($this->collected));
 	}
@@ -305,10 +306,20 @@ class BaseGameTest extends TestCase {
 		$this->assertTrue($this->world->getLocation("[cave-051] Ice Cave")->fill(Item::get('IceRod'), $this->collected));
 	}
 
-	public function testTurtleRock() {
+	// @TODO: this needs to be set to proper location when created
+	public function testSilverArrows() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
 			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod']);
+			'Ether', 'Quake', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5',
+			'Crystal6']);
+
+		$this->assertTrue($this->world->getLocation("Pyramid")->fill(Item::get('SilverArrowUpgrade'), $this->collected));
+	}
+
+	public function testTurtleRock() {
+		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
+			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
+			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade']);
 
 		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big key room")->setItem(Item::get('BigKey'));
 
@@ -317,25 +328,25 @@ class BaseGameTest extends TestCase {
 
 	public function testTurtleRockAccessable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod']);
+			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
+			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade']);
 
 		$this->assertTrue($this->world->getRegion('Turtle Rock')->canEnter($this->world->getLocations(), $this->collected));
 	}
 
 	public function testTurtleRockCompletable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod']);
+			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
+			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade']);
 
 		$this->assertTrue($this->world->getRegion('Turtle Rock')->canComplete($this->world->getLocations(), $this->collected));
 	}
 
 	public function testGanonsTower() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5',
-			'Crystal6', 'Crystal7']);
+			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
+			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade', 'Crystal1', 'Crystal2', 'Crystal3',
+			'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']);
 
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 
@@ -344,9 +355,9 @@ class BaseGameTest extends TestCase {
 
 	public function testGanonsTowerAccessable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5',
-			'Crystal6', 'Crystal7']);
+			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
+			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade', 'Crystal1', 'Crystal2', 'Crystal3',
+			'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']);
 
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->collected));
@@ -354,9 +365,9 @@ class BaseGameTest extends TestCase {
 
 	public function testCanWin() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5',
-			'Crystal6', 'Crystal7']);
+			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
+			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade', 'Crystal1', 'Crystal2', 'Crystal3',
+			'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']);
 
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getWinCondition()($this->collected));
