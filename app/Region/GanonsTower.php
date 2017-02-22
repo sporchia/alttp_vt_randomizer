@@ -272,18 +272,46 @@ class GanonsTower extends Region {
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key') || !$locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
+			], 2);
 		});
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key') || !$locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
+			], 2);
 		});
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key') || !$locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
+			], 2);
 		});
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('Key') || !$locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
+			], 2);
 		});
 
 		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]"]->setRequirements(function($locations, $items) {

@@ -639,4 +639,109 @@ class GanonsTowerTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
 	}
+
+	// Key fill
+	public function testCompassRoomChestBRCanBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBRCannotBeKeyIfChestTRHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBRCannotBeKeyIfChestTLHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBRCannotBeKeyIfChestBLHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTRCanBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTRCannotBeKeyIfChestBRHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTRCannotBeKeyIfChestTLHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTRCannotBeKeyIfChestBLHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBLCanBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBLCannotBeKeyIfChestTRHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBLCannotBeKeyIfChestTLHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestBLCannotBeKeyIfChestBRHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTLCanBeKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTLCannotBeKeyIfChestBRHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTLCannotBeKeyIfChestBLHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testCompassRoomChestTLCannotBeKeyIfChestTRHasKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
 }
