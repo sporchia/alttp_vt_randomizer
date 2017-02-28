@@ -409,9 +409,8 @@ class Randomizer {
 			$this->writeTreeShuffleToRom($rom);
 		}
 
-		if (!$this->config('region.swordShuffle', true)) {
-			$rom->testSetPyramidFairyChestsOn(false);
-		}
+		$rom->setPyramidFairyChests($this->config('region.swordsInPool', true));
+		$rom->setSmithyQuickItemGive($this->config('region.swordsInPool', true));
 
 		$rom->setOpenMode(config('game-mode') == 'open');
 
