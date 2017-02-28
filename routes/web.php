@@ -75,14 +75,25 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
+	$seed = $rand->getSeed();
+	$hash = $rand->saveSeedRecord();
+	$patch = $rom->getWriteLog();
+	$spoiler = $rand->getSpoiler();
+
+	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+		$patch = patch_merge_minify($rom->getWriteLog());
+		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+		$seed = $hash;
+	}
 
 	return json_encode([
-		'seed' => $rand->getSeed(),
+		'seed' => $seed,
 		'logic' => $rand->getLogic(),
 		'difficulty' => $difficulty,
-		'patch' => $rom->getWriteLog(),
-		'spoiler' => $rand->getSpoiler(),
-		'hash' => $rand->saveSeedRecord(),
+		'patch' => $patch,
+		'spoiler' => $spoiler,
+		'hash' => $hash,
 	]);
 });
 

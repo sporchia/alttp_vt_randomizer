@@ -102,6 +102,10 @@
 								<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 								<label for"generate-debug">Debug Mode</label>
 							</div>
+							<div class="row">
+								<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+								<label for"generate-tournament">Tournament Mode</label>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -156,6 +160,7 @@
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="debug" value="false" />
+	<input type="hidden" name="tournament" value="false" />
 	<div class="custom-difficulty">
 		<ul class="nav nav-tabs" data-tabs="tabs">
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
@@ -771,6 +776,9 @@ $(function() {
 
 	$('#generate-debug').on('change', function() {
 		$('input[name=debug]').val($(this).prop('checked'));
+	});
+	$('#generate-tournament').on('change', function() {
+		$('input[name=tournament]').val($(this).prop('checked'));
 	});
 
 	// Custom switch dependencies
