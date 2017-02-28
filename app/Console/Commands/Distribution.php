@@ -11,7 +11,7 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=v8} {--mode=NoMajorGlitches}';
+	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=normal} {--mode=NoMajorGlitches}';
 
 	/**
 	 * The console command description.

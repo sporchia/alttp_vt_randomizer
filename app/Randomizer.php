@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 15;
+	const LOGIC = 16;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
@@ -28,7 +28,7 @@ class Randomizer {
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'v8', $type = 'NoMajorGlitches') {
+	public function __construct($rules = 'normal', $type = 'NoMajorGlitches') {
 		$this->rules = $rules;
 		$this->type = $type;
 		$this->world = new World($rules, $type);
@@ -50,7 +50,12 @@ class Randomizer {
 	 * @return string
 	 */
 	public function getLogic() {
-		return 'web-' . static::LOGIC;
+		switch ($this->type) {
+			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC;
+			case 'SpeedRunner': return 'minor-glitches-' . static::LOGIC;
+			case 'Glitched': return 'major-glitches-' . static::LOGIC;
+		}
+		return 'unknown-' . static::LOGIC;
 	}
 
 	/**
@@ -141,30 +146,60 @@ class Randomizer {
 				&& !is_a($location, Location\Medallion::class);
 		});
 
-		$swords = [
-			Item::get('MasterSword'),
-			Item::get('L3Sword'),
-			Item::get('L4Sword'),
-		];
+		$my_items = new ItemCollection();
 
-		if ($this->config('rom.HardMode', false)) {
-			$swords = [
-				Item::get('MasterSword'),
-				Item::get('MasterSword'),
-				Item::get('MasterSword'),
-			];
-		}
+		$locations["Pyramid - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
+			? Item::get('BowAndSilverArrows')
+			: Item::get('BowAndArrows'));
 
-		while (count($swords) > 0) {
-			$item = array_shift($swords);
-			$regions['Swords']->getEmptyLocations()->random()->setItem($item);
-		}
-		$locations['Uncle']->setItem(Item::get('L1Sword'));
+		$sword_locations = new LocationCollection([
+			$locations["Pyramid - Sword"],
+			$locations["Blacksmiths"],
+			$locations["Altar"],
+		]);
 
-		if (!$this->config('region.swordShuffle', true)) {
-			$locations["Pyramid"]->setItem(Item::get('L4Sword'));
-			$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
-			$locations["Altar"]->setItem(Item::get('MasterSword'));
+		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
+			$locations["Uncle"]->setItem(Item::get('L1Sword'));
+			$my_items->addItem(Item::get('L1Sword'));
+
+			$swords = [Item::get('MasterSword')];
+
+			switch ($this->config('rom.HardMode', 0)) {
+				case 2:
+					array_push($swords, Item::get('MasterSword'));
+					array_push($swords, Item::get('MasterSword'));
+					break;
+				case 1:
+					array_push($swords, Item::get('MasterSword'));
+					array_push($swords, Item::get('L3Sword'));
+					break;
+				default:
+					array_push($swords, Item::get('L3Sword'));
+					array_push($swords, Item::get('L4Sword'));
+					break;
+			}
+
+			while (count($swords) > 0) {
+				$item = array_shift($swords);
+				$sword_locations->getEmptyLocations()->random()->setItem($item);
+			}
+
+			if (!$this->config('region.swordShuffle', true)) {
+				$locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
+				$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+				$locations["Altar"]->setItem(Item::get('MasterSword'));
+			}
+			config(["alttp.{$this->rules}.item.count.MasterSword" => $this->config('item.count.MasterSword', 1) - 1]);
+			config(["alttp.{$this->rules}.item.count.L3Sword" => $this->config('item.count.L3Sword', 1) - 1]);
+			config(["alttp.{$this->rules}.item.count.L4Sword" => $this->config('item.count.L4Sword', 1) - 1]);
+		} else {
+			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
+			if (config('game-mode') == 'open') {
+				config(["alttp.{$this->rules}.item.count.L1Sword" => $this->config('item.count.L1Sword', 1) + 1]);
+			} else {
+				$locations["Uncle"]->setItem(Item::get('L1Sword'));
+				$my_items->addItem(Item::get('L1Sword'));
+			}
 		}
 
 		// fill boss hearts before anything else if we need to
@@ -186,8 +221,6 @@ class Randomizer {
 			$region->fillBaseItems(Item::all());
 		}
 
-		$my_items = new ItemCollection([Item::get('L1SwordAndShield')]);
-
 		$advancement_items = $this->getAdvancementItems();
 
 		if ($this->type == 'Glitched') {
@@ -196,13 +229,12 @@ class Randomizer {
 			$my_items->addItem(Item::get('PegasusBoots'));
 			unset($advancement_items[$key]);
 
-			// Glitched always has 4 bottles, no matter what
+			// Glitched always has 3 extra bottles, no matter what
 			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
 		}
 
-		// @TODO: consider using hard mode for this? and not having it be red mail
-		if ($this->config('region.RedMailByrnaCave', false)) {
-			$this->world->getLocation("[cave-055] Spike cave")->setItem(Item::get('RedMail'));
+		if ($this->config('rom.HardMode', 0) > 0) {
+			$this->world->getLocation("[cave-055] Spike cave")->setItem(Item::get('Rupoor'));
 		}
 
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
@@ -316,11 +348,11 @@ class Randomizer {
 		}
 		$spoiler['playthrough'] = $this->world->getPlayThrough();
 		$spoiler['meta'] = [
-			'rules' => $this->rules,
+			'difficulty' => $this->rules,
 			'logic' => $this->getLogic(),
 			'seed' => $this->rng_seed,
 			'build' => Rom::BUILD,
-			'mode' => trim(preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]/', ' $0', $this->type)),
+			'mode' => config('game-mode', 'Standard'),
 		];
 
 		$this->seed->spoiler = json_encode($spoiler);
@@ -361,22 +393,12 @@ class Randomizer {
 			});
 			// Clear out remaining locations if the pool was smaller than number of locations
 			$region->getLocations()->getEmptyLocations()->each(function($location) use ($rom) {
-				$location->setItem(Item::get('Nothing'));
+				$location->setItem(Item::get('Rupoor'));
 				$location->writeItem($rom);
 			});
 		}
 
-		if ($this->config('rom.HardMode', false)) {
-			$rom->setHardMode(true, in_array($this->type, ['Glitched']));
-
-			// @TODO: currently Empty magic bat gives 1/2 magic, this fixes that for time being
-			// basically setting item to 0xFF reverts Magic Bat to old behavior, we can remove this once we have a
-			// proper 'Nothing' item.
-			$magic_bat = $this->world->getLocation("Magic Bat");
-			if ($magic_bat->hasItem(Item::get('Nothing'))) {
-				$magic_bat->writeItem($rom, Item::get('Arrow'));
-			}
-		}
+		$rom->setHardMode($this->config('rom.HardMode', 0), in_array($this->type, ['Glitched']));
 
 		$rom->writeRNGBlock(function() {
 			return mt_rand(0, 0x100);
@@ -384,10 +406,18 @@ class Randomizer {
 
 		if ($this->config('sprite.shufflePrizePack', true)) {
 			$this->writePrizeShuffleToRom($rom);
+			$this->writeTreeShuffleToRom($rom);
 		}
+
+		if (!$this->config('region.swordShuffle', true)) {
+			$rom->testSetPyramidFairyChestsOn(false);
+		}
+
+		$rom->setOpenMode(config('game-mode') == 'open');
 
 		$this->randomizeCredits($rom);
 
+		$rom->skipZeldaSwordCheck();
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
 		$rom->setCapacityUpgradeFills([1, 2, 0, 0]);
@@ -400,10 +430,12 @@ class Randomizer {
 				$rom->setSwampWaterLevel(false);
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
 				$rom->setRandomizerSeedType('Glitched');
+				$rom->setLightWorldLampCone(false);
 				break;
 			case 'SpeedRunner':
 				$type_flag = 'S';
 				$rom->setSwampWaterLevel(false);
+				$rom->setLightWorldLampCone(false);
 				break;
 			case 'NoMajorGlitches':
 			default:
@@ -443,31 +475,53 @@ class Randomizer {
 	public function randomizeCredits(Rom $rom) {
 		switch (mt_rand(0, 2)) {
 			case 1:
-				$rom->setKingsReturnCredits('fellowship of the ring');
+				$rom->setKingsReturnCredits("fellowship of the ring");
 				break;
 			case 2:
-				$rom->setKingsReturnCredits('the two towers');
+				$rom->setKingsReturnCredits("the two towers");
 				break;
 		}
 
 		switch (mt_rand(0, 1)) {
 			case 1:
-				$rom->setWoodsmansHutCredits('fresh flapjacks');
+				$rom->setSanctuaryCredits('read a book');
+		}
+
+		switch (mt_rand(0, 1)) {
+			case 1:
+				$rom->setWoodsmansHutCredits("fresh flapjacks");
 				break;
 		}
 
 		switch (mt_rand(0, 1)) {
 			case 1:
-				$rom->setSwordsmithsCredits('the dwarven breadsmiths');
+				$rom->setSwordsmithsCredits("the dwarven breadsmiths");
 				break;
 		}
 
 		switch (mt_rand(0, 1)) {
 			case 1:
-				$rom->setLostWoodsCredits('dancing pickles');
+				$rom->setLostWoodsCredits("dancing pickles");
 				break;
 		}
 
+		switch (mt_rand(0, 5)) {
+			case 1:
+				$rom->setWishingWellCredits("Venus was her name");
+				break;
+			case 2:
+				$rom->setWishingWellCredits("I'm your Venus");
+				break;
+			case 3:
+				$rom->setWishingWellCredits("Yeah, baby, shes got it");
+				break;
+			case 4:
+				$rom->setWishingWellCredits("Venus, I'm your fire");
+				break;
+			case 5:
+				$rom->setWishingWellCredits("Venus, At your desire");
+				break;
+		}
 
 		return $this;
 	}
@@ -500,6 +554,19 @@ class Randomizer {
 	 */
 	public function getAdvancementItems() {
 		$advancement_items = [];
+
+		for ($i = 0; $i < $this->config('item.count.L1Sword', 0); $i++) {
+			array_push($advancement_items, Item::get('L1Sword'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MasterSword', 1); $i++) {
+			array_push($advancement_items, Item::get('MasterSword'));
+		}
+		for ($i = 0; $i < $this->config('item.count.L3Sword', 1); $i++) {
+			array_push($advancement_items, Item::get('L3Sword'));
+		}
+		for ($i = 0; $i < $this->config('item.count.L4Sword', 1); $i++) {
+			array_push($advancement_items, Item::get('L4Sword'));
+		}
 
 		for ($i = 0; $i < $this->config('item.count.Bottles', 1); $i++) {
 			array_push($advancement_items, $this->getBottle());
@@ -615,8 +682,8 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.RedShield', 1); $i++) {
 			array_push($items_to_find, Item::get('RedShield'));
 		}
-		for ($i = 0; $i < $this->config('item.count.StaffOfByrna', 1); $i++) {
-			array_push($items_to_find, Item::get('StaffOfByrna'));
+		for ($i = 0; $i < $this->config('item.count.CaneOfByrna', 1); $i++) {
+			array_push($items_to_find, Item::get('CaneOfByrna'));
 		}
 		for ($i = 0; $i < $this->config('item.count.RedMail', 1); $i++) {
 			array_push($items_to_find, Item::get('RedMail'));
@@ -647,7 +714,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.BowAndSilverArrows', 0); $i++) {
 			array_push($items_to_find, Item::get('BowAndSilverArrows'));
 		}
-		for ($i = 0; $i < $this->config('item.count.SilverArrowUpgrade', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.SilverArrowUpgrade', 1); $i++) {
 			array_push($items_to_find, Item::get('SilverArrowUpgrade'));
 		}
 
@@ -688,9 +755,20 @@ class Randomizer {
 			array_push($items_to_find, Item::get('Heart'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.Rupoor', 0); $i++) {
+			array_push($items_to_find, Item::get('Rupoor'));
+		}
 
 		for ($i = 0; $i < $this->config('item.count.ExtraBottles', 3); $i++) {
 			array_push($items_to_find, $this->getBottle());
+		}
+
+		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 0); $i++) {
+			array_push($items_to_find, Item::get('HalfMagic'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.QuarterMagicUpgrade', 0); $i++) {
+			array_push($items_to_find, Item::get('QuarterMagic'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 1); $i++) {
@@ -722,6 +800,16 @@ class Randomizer {
 		$rom->write($offset, pack('C*', ...$shuffled));
 	}
 
+	public function writeTreeShuffleToRom(Rom $rom) {
+		$shuffled = array_slice(mt_shuffle([
+			0xD9, 0xDA, 0xDB, 0xDC, 0xDD, 0xDE, // rupees and bombs
+			0xDF, 0xE0, 0xE1, 0xE2, // magic and arrows
+			0xE3, 0xD8, // fairy and heart
+		]), 0, 3);
+
+		$rom->write(0xEFBD4, pack('C*', ...$shuffled));
+	}
+
 	/**
 	 * Get a random bottle item
 	 *
@@ -730,7 +818,7 @@ class Randomizer {
 	 * @return Item
 	 */
 	public function getBottle($filled = false) {
-		if ($this->config('rom.HardMode', false)) {
+		if ($this->config('rom.HardMode', 0) > 0) {
 			return Item::get('BottleWithBee');
 		}
 

@@ -10,7 +10,9 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--unrandomized} {--debug} {--spoiler} {--rules=v8} {--mode=NoMajorGlitches} {--heartbeep=half} {--trace}  {--seed=} {--bulk=1}';
+	protected $signature = 'alttp:randomize {input_file} {output_directory} {--unrandomized} {--debug} {--spoiler}'
+		. ' {--difficulty=normal} {--mode=NoMajorGlitches} {--heartbeep=half} {--skip-md5} {--trace}  {--seed=} {--bulk=1}'
+		. ' {--open-mode}';
 
 	/**
 	 * The console command description.
@@ -40,13 +42,13 @@ class Randomize extends Command {
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
 
-			if (!$rom->checkMD5()) {
+			if (!$this->option('skip-md5') && !$rom->checkMD5()) {
 				$rom->resize();
 
 				$rom->applyPatch($this->resetPatch());
 			}
 
-			if (!$rom->checkMD5()) {
+			if (!$this->option('skip-md5') && !$rom->checkMD5()) {
 				return $this->error('Could not Reset Rom');
 			}
 
@@ -57,21 +59,26 @@ class Randomize extends Command {
 			$rom->setSRAMTrace($this->option('trace'));
 
 			// break out for unrandomized base game
+			// @TODO: need option to place items correctly
 			if ($this->option('unrandomized')) {
-				$output_file = sprintf('%s/alttp-v8-%s.sfc', $this->argument('output_directory'), Rom::BUILD);
+				$output_file = sprintf('%s/alttp-%s.sfc', $this->argument('output_directory'), Rom::BUILD);
 				$rom->save($output_file);
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 
-			$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+			if ($this->option('open-mode')) {
+				config(['game-mode' => 'open']);
+			}
+
+			$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);
 
-			$output_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.name', 'alttp - p.%s_%s.sfc'), $rand->getLogic(), $rand->getSeed());
+			$output_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.name', 'alttp - VT_%s_%s.sfc'), $rand->getLogic(), $rand->getSeed());
 			$rom->save($output_file);
 			if ($this->option('spoiler')) {
-				$spoiler_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.spoiler', 'alttp - p.%s_%s.txt'), $rand->getLogic(), $rand->getSeed());
+				$spoiler_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.spoiler', 'alttp - VT_%s_%s.txt'), $rand->getLogic(), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 			}
 			$this->info(sprintf('Rom Saved: %s', $output_file));

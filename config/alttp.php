@@ -1,42 +1,74 @@
 <?php
 
 return [
-	'v8' => [
+	'normal' => [
 		'output' => [
 			'file' => [
-				'name' => 'alttp - VT_%s_v8_%s.sfc',
-				'spoiler' => 'alttp - VT_%s_v8_%s.txt',
+				'name' => 'alttp - VT_%s_%s.sfc',
+				'spoiler' => 'alttp - VT_%s_%s.txt',
 			],
-		],
-		'item' => [
-			'count' => [
-				'ArrowUpgrade5' => 6,
-				'ArrowUpgrade10' => 1,
-				'ArrowUpgrade70' => 0,
-				'BombUpgrade5' => 6,
-				'BombUpgrade10' => 1,
-				'BombUpgrade50' => 0,
-				'SilverArrowUpgrade' => 1,
-				'TwentyRupees' => 27,
-			],
-		],
-		'prize' => [
-			'crossWorld' => true,
 		],
 		'region' => [
-			'bossNormalLocation' => true,
 			'superBunnyDM' => false,
-			'bonkItems' => true,
+			'swordsInPool' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => true,
 		],
 	],
-	'v8_hard' => [
+	'hard' => [
 		'output' => [
 			'file' => [
-				'name' => 'alttp (hard) - VT_%s_v8_%s.sfc',
-				'spoiler' => 'alttp (hard) - VT_%s_v8_%s.txt',
+				'name' => 'alttp (hard) - VT_%s_%s.sfc',
+				'spoiler' => 'alttp (hard) - VT_%s_%s.txt',
+			],
+		],
+		'item' => [
+			'count' => [
+				'Arrow' => 20,
+				'ArrowUpgrade5' => 0,
+				'ArrowUpgrade10' => 0,
+				'ArrowUpgrade70' => 0,
+				'Bomb' => 5,
+				'BombUpgrade5' => 0,
+				'BombUpgrade10' => 0,
+				'BombUpgrade50' => 0,
+				'Boomerang' => 0,
+				'BossHeartContainer' => 0,
+				'BugCatchingNet' => 0,
+				'ExtraBottles' => 1,
+				'FiftyRupees' => 5,
+				'HeartContainer' => 0,
+				'MagicUpgrade' => 0,
+				'MirrorShield' => 0,
+				'OneHundredRupees' => 3,
+				'RedBoomerang' => 0,
+				'RedMail' => 0,
+				'CaneOfByrna' => 0,
+				'TenArrows' => 5,
+				'ThreeBombs' => 5,
+				'ThreeHundredRupees' => 1,
+				'TwentyRupees' => 10,
+				'L4Sword' => 0,
+			],
+		],
+		'region' => [
+			'CompassesMaps' => false,
+			'superBunnyDM' => false,
+			'swordsInPool' => false,
+		],
+		'rom' => [
+			'HardMode' => 1,
+		],
+		'spoil' => [
+			'BootsLocation' => false,
+		],
+	],
+	'masochist' => [
+		'output' => [
+			'file' => [
+				'name' => 'alttp (masochist) - VT_%s_%s.sfc',
+				'spoiler' => 'alttp (masochist) - VT_%s_%s.txt',
 			],
 		],
 		'item' => [
@@ -55,33 +87,31 @@ return [
 				'BossHeartContainer' => 0,
 				'BugCatchingNet' => 0,
 				'ExtraBottles' => 0,
+				'FiftyRupees' => 3,
 				'HeartContainer' => 0,
 				'MagicUpgrade' => 0,
 				'MirrorShield' => 0,
-				'OneHundredRupees' => 2,
-				'PieceOfHeart' => 16,
+				'OneHundredRupees' => 0,
+				'PieceOfHeart' => 12,
 				'RedBoomerang' => 0,
 				'RedMail' => 0,
 				'RedShield' => 0,
-				'StaffOfByrna' => 0,
+				'CaneOfByrna' => 0,
 				'TenArrows' => 1,
-				'ThreeBombs' => 2,
+				'ThreeBombs' => 1,
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 5,
+				'L3Sword' => 0,
+				'L4Sword' => 0,
 			],
 		],
-		'prize' => [
-			'crossWorld' => true,
-		],
 		'region' => [
-			'bossNormalLocation' => true,
 			'CompassesMaps' => false,
 			'superBunnyDM' => false,
-			'bonkItems' => true,
-			'RedMailByrnaCave' => true,
+			'swordsInPool' => false,
 		],
 		'rom' => [
-			'HardMode' => true,
+			'HardMode' => 2,
 		],
 		'spoil' => [
 			'BootsLocation' => false,
@@ -96,15 +126,16 @@ return [
 		'region' => [
 			'bossNormalLocation' => false,
 			'swordShuffle' => false,
+			'swordsInPool' => false,
+			'pyramidBowUpgrade' => false,
 			'CompassesMaps' => false,
 			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
 			'superBunnyDM' => false,
 			'bonkItems' => false,
-			'RedMailByrnaCave' => false, // this is for hard mode
 		],
 		'rom' => [
-			'HardMode' => false,
+			'HardMode' => 0,
 		],
 		'spoil' => [
 			'BootsLocation' => false,

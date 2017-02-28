@@ -112,7 +112,8 @@ class TowerOfHera extends Region {
 		});
 
 		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
-			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
+			return ($items->hasSword() || $items->has('Hammer'))
+				&& ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
 				|| $locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-L3-1F] Tower of Hera - freestanding key",
 					"[dungeon-L3-2F] Tower of Hera - Entrance",
@@ -172,7 +173,7 @@ class TowerOfHera extends Region {
 		});
 
 		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
-			return $this->canComplete($locations, $items);
+			return ($items->hasSword() || $items->has('Hammer')) && $this->canComplete($locations, $items);
 		});
 
 		$this->can_complete = function($locations, $items) {

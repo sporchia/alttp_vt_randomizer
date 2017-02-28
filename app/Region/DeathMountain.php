@@ -45,6 +45,9 @@ class DeathMountain extends Region {
 		});
 
 		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $items->has('Lamp');
+			}
 			return true;
 		});
 
@@ -57,6 +60,9 @@ class DeathMountain extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+			}
 			return $items->canFly() || $items->canLiftRocks();
 		};
 

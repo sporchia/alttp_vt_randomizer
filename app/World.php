@@ -2,6 +2,7 @@
 
 use ALttP\Support\ItemCollection;
 use ALttP\Support\LocationCollection;
+use Closure;
 use Log;
 
 /**
@@ -23,7 +24,7 @@ class World {
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'v8', $type = 'NoMajorGlitches') {
+	public function __construct($rules = 'normal', $type = 'NoMajorGlitches') {
 		$this->rules = $rules;
 		$this->type = $type;
 
@@ -50,7 +51,6 @@ class World {
 			'Ganons Tower' => new Region\GanonsTower($this),
 			'Pendants' => new Region\Pendants($this),
 			'Crystals' => new Region\Crystals($this),
-			'Swords' => new Region\Swords($this),
 			'Medallions' => new Region\Medallions($this),
 			'Fountains' => new Region\Fountains($this),
 		];
@@ -121,7 +121,7 @@ class World {
 				};
 			case 'NoMajorGlitches':
 			default:
-				if ($this->config('rom.HardMode', false)) {
+				if ($this->config('rom.HardMode', 0) > 0) {
 					$this->win_condition = function($collected_items) {
 						return $collected_items->hasUpgradedSword()
 							&& $collected_items->canLightTorches()
@@ -157,11 +157,19 @@ class World {
 				$prizes->addItem($region->getPrize());
 			}
 		}
-		foreach ($this->regions['Swords']->getLocations() as $location) {
-			if ($location->canAccess($items) && $location->getItem()) {
-				$prizes->addItem($location->getItem());
+
+		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
+			if ($this->locations["Pyramid - Sword"]->canAccess($items) && $this->locations["Pyramid - Sword"]->getItem()) {
+					$prizes->addItem($this->locations["Pyramid - Sword"]->getItem());
+			}
+			if ($this->locations["Blacksmiths"]->canAccess($items) && $this->locations["Blacksmiths"]->getItem()) {
+					$prizes->addItem($this->locations["Blacksmiths"]->getItem());
+			}
+			if ($this->locations["Altar"]->canAccess($items) && $this->locations["Altar"]->getItem()) {
+					$prizes->addItem($this->locations["Altar"]->getItem());
 			}
 		}
+
 		return $prizes;
 	}
 

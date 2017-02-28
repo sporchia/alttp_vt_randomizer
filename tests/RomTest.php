@@ -3,7 +3,7 @@
 use ALttP\Rom;
 
 class RomTest extends TestCase {
-	const UNCLE_TEXT_0_ADDRESS = 0x1024D4;
+	const UNCLE_TEXT_0_ADDRESS = 0x102943;
 
 	public function setUp() {
 		parent::setUp();
@@ -47,6 +47,18 @@ class RomTest extends TestCase {
 		$this->rom->setHeartBeepSpeed('testing');
 
 		$this->assertEquals(0x20, $this->rom->read(0x180033));
+	}
+
+	public function testSetRupoor() {
+		$this->rom->setRupoorValue(40);
+
+		$this->assertEquals([0x28, 0x00], $this->rom->read(0x180036, 2));
+	}
+
+	public function testSetRupoorLarge() {
+		$this->rom->setRupoorValue(999);
+
+		$this->assertEquals([0xE7, 0x03], $this->rom->read(0x180036, 2));
 	}
 
 	public function testSetMaxArrows() {
@@ -278,29 +290,127 @@ class RomTest extends TestCase {
 		$this->assertEquals(0xFF, $this->rom->read(0x180211));
 	}
 
-	public function testSetHardModeOnChangesCapeMagicUsage() {
-		$this->rom->setHardMode(true);
+	public function testSetHardMode2ChangesCapeMagicUsage() {
+		$this->rom->setHardMode(2);
 
 		$this->assertEquals([0x01, 0x01, 0x01], $this->rom->read(0x3ADA7, 3));
 	}
 
-	public function testSetHardModeOffChangesCapeMagicUsage() {
-		$this->rom->setHardMode(false);
+	public function testSetHardMode1ChangesCapeMagicUsage() {
+		$this->rom->setHardMode(1);
+
+		$this->assertEquals([0x02, 0x02, 0x02], $this->rom->read(0x3ADA7, 3));
+	}
+
+	public function testSetHardMode0ChangesCapeMagicUsage() {
+		$this->rom->setHardMode(0);
 
 		$this->assertEquals([0x04, 0x08, 0x10], $this->rom->read(0x3ADA7, 3));
 	}
 
-	public function testSetHardModeOnChangesBubbleTransform() {
-		$this->rom->setHardMode(true);
+	public function testSetHardMode2ChangesBubbleTransform() {
+		$this->rom->setHardMode(2);
 
 		$this->assertEquals(0x79, $this->rom->read(0x36DD0));
 	}
 
-	public function testSetHardModeOffChangesBubbleTransform() {
-		$this->rom->setHardMode(false);
+	public function testSetHardMode1ChangesBubbleTransform() {
+		$this->rom->setHardMode(1);
+
+		$this->assertEquals(0x79, $this->rom->read(0x36DD0));
+	}
+
+	public function testSetHardMode0ChangesBubbleTransform() {
+		$this->rom->setHardMode(0);
 
 		$this->assertEquals(0xE3, $this->rom->read(0x36DD0));
 	}
+
+	public function testSetSmithyQuickItemGiveOn() {
+		$this->rom->setSmithyQuickItemGive(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x180029));
+	}
+
+	public function testSetSmithyQuickItemGiveOff() {
+		$this->rom->setSmithyQuickItemGive(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x180029));
+	}
+
+
+	public function testSetPyramidFairyChestsOn() {
+		$this->rom->setPyramidFairyChests(true);
+
+		$this->assertEquals([0xB1, 0xC6, 0xF9, 0xC9, 0xC6, 0xF9], $this->rom->read(0x1FC16, 6));
+	}
+
+	public function testSetPyramidFairyChestsOff() {
+		$this->rom->setPyramidFairyChests(false);
+
+		$this->assertEquals([0xA8, 0xB8, 0x3D, 0xD0, 0xB8, 0x3D], $this->rom->read(0x1FC16, 6));
+	}
+
+	public function testSetOpenModeOn() {
+		$this->rom->setOpenMode(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x180032));
+	}
+
+	public function testSetOpenModeOff() {
+		$this->rom->setOpenMode(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x180032));
+	}
+
+	public function testSetSewersLampConeOn() {
+		$this->rom->setSewersLampCone(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x180038));
+	}
+
+	public function testSetSewersLampConeOff() {
+		$this->rom->setSewersLampCone(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x180038));
+	}
+
+	public function testSetLightWorldLampConeOn() {
+		$this->rom->setLightWorldLampCone(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x180039));
+	}
+
+	public function testSetLightWorldLampConeOff() {
+		$this->rom->setLightWorldLampCone(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x180039));
+	}
+
+	public function testSetDarkWorldLampConeOn() {
+		$this->rom->setDarkWorldLampCone(true);
+
+		$this->assertEquals(0x01, $this->rom->read(0x18003A));
+	}
+
+	public function testSetDarkWorldLampConeOff() {
+		$this->rom->setDarkWorldLampCone(false);
+
+		$this->assertEquals(0x00, $this->rom->read(0x18003A));
+	}
+
+	public function testSkipZeldaSwordCheckOn() {
+		$this->rom->skipZeldaSwordCheck(true);
+
+		$this->assertEquals(0x05, $this->rom->read(0x2EBD4));
+	}
+
+	public function testSkipZeldaSwordCheckOff() {
+		$this->rom->skipZeldaSwordCheck(false);
+
+		$this->assertEquals(0x02, $this->rom->read(0x2EBD4));
+	}
+
 
 	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {
 		$this->rom->setMirrorlessSaveAneQuitToLightWorld(true);

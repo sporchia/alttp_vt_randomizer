@@ -66,7 +66,7 @@ class BugCatchingKid extends Npc {
 				return "archaeologist kid";
 			case Item::get('CaneOfSomaria'):
 				return "the block-making kid";
-			case Item::get('StaffOfByrna'):
+			case Item::get('CaneOfByrna'):
 				return "the spark-making kid";
 			case Item::get('Cape'):
 				return "red riding-hood kid";
@@ -153,6 +153,8 @@ class BugCatchingKid extends Npc {
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "the magic-saving kid";
+			case Item::get('Rupoor'):
+				return "the toll-booth kid";
 			case Item::get('Nothing'):
 			default:
 				return "nothing-having kid";

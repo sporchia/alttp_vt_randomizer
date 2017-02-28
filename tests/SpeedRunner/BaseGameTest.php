@@ -313,7 +313,7 @@ class BaseGameTest extends TestCase {
 			'Ether', 'Quake', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5',
 			'Crystal6']);
 
-		$this->assertTrue($this->world->getLocation("Pyramid")->fill(Item::get('SilverArrowUpgrade'), $this->collected));
+		$this->assertTrue($this->world->getLocation("Pyramid - Sword")->fill(Item::get('SilverArrowUpgrade'), $this->collected));
 	}
 
 	public function testTurtleRock() {

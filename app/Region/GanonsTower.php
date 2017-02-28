@@ -528,6 +528,10 @@ class GanonsTower extends Region {
 
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
+			if (config('game-mode') == 'open' && !($items->hasSword() || $items->has('Hammer'))) {
+				return false;
+			}
+
 			return $items->canShootArrows() && $items->canLightTorches() && $items->has('Hookshot')
 				&& (!$this->bigKeyRequiresHammer() || $items->has('Hammer'))
 				&& (!$this->bigKeyRequiresFireRod() || $items->has('FireRod'))

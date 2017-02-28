@@ -66,7 +66,7 @@ class Witch extends Npc {
 				return "can you dig it";
 			case Item::get('CaneOfSomaria'):
 				return "twizzle-stick for trade";
-			case Item::get('StaffOfByrna'):
+			case Item::get('CaneOfByrna'):
 				return "spark-stick for trade";
 			case Item::get('Cape'):
 				return "hood from a hood";
@@ -152,6 +152,8 @@ class Witch extends Npc {
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "mekalekahi mekahiney ho";
+			case Item::get('Rupoor'):
+				return "witch stole your rupees";
 			case Item::get('Nothing'):
 			default:
 				return "mushrooms go poof";

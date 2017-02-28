@@ -35,9 +35,9 @@ class UpdateResetJson extends Command {
 		$out = [];
 		while (!feof($bad_rom)) {
 			$base_byte = fread($bad_rom, 1);
-			$v8_byte = fread($base_rom, 1);
-			if ($base_byte !== $v8_byte) {
-				$out[$i] = [unpack('C*', $v8_byte)[1]];
+			$vt_byte = fread($base_rom, 1);
+			if ($base_byte !== $vt_byte) {
+				$out[$i] = [unpack('C*', $vt_byte)[1]];
 			}
 			$i++;
 		}

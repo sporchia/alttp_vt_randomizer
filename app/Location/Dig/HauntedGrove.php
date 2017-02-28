@@ -66,7 +66,7 @@ class HauntedGrove extends Dig {
 				return "boy digs again";
 			case Item::get('CaneOfSomaria'):
 				return "boy makes blocks again";
-			case Item::get('StaffOfByrna'):
+			case Item::get('CaneOfByrna'):
 				return "boy encircles again";
 			case Item::get('Cape'):
 				return "boy hides again";
@@ -159,6 +159,8 @@ class HauntedGrove extends Dig {
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "boy saves magic again";
+			case Item::get('Rupoor'):
+				return "boy steals rupees";
 			case Item::get('Nothing'):
 			default:
 				return "boy does nothing again";

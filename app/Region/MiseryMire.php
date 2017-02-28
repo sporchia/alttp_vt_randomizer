@@ -240,6 +240,7 @@ class MiseryMire extends Region {
 			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+			&& $items->hasSword()
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
 			&& ($items->has('MoonPearl') || $items->hasABottle());
 		};
@@ -299,6 +300,7 @@ class MiseryMire extends Region {
 			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+			&& $items->hasSword()
 			&& ($items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
 				|| ($items->has('Flippers') && $items->has('MagicMirror') && $items->hasABottle() && $items->has('BugCatchingNet'))))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));

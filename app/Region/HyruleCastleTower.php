@@ -51,6 +51,10 @@ class HyruleCastleTower extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->can_complete = function($locations, $items) {
+			if (config('game-mode') == 'open' && !$items->has('Lamp')) {
+				return false;
+			}
+
 			return $this->canEnter($locations, $items) && $items->hasSword();
 		};
 
@@ -71,6 +75,25 @@ class HyruleCastleTower extends Region {
 	public function initGlitched() {
 		$this->can_complete = function($locations, $items) {
 			return $items->hasSword();
+		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->hasSword();
+		};
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('Cape')
+				|| $items->hasUpgradedSword();
 		};
 
 		return $this;

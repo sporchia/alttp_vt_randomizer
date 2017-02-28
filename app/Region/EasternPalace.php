@@ -67,6 +67,10 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
+			if (config('game-mode') == 'open' && $locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
+				return $items->has('Lamp');
+			}
+
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
@@ -77,6 +81,10 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setRequirements(function($locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $items->has('Lamp');
+			}
+
 			return true;
 		});
 
@@ -84,15 +92,19 @@ class EasternPalace extends Region {
 			return true;
 		});
 
-		$this->locations["Heart Container - Armos Knights"]->setRequirements(function($locations, $items) {
-			return $items->canShootArrows();
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
 		$this->can_complete = function($locations, $items) {
+			if (config('game-mode') == 'open' && !$items->has('Lamp')) {
+				return false;
+			}
+
 			return $this->canEnter($locations, $items) && $items->canShootArrows();
 		};
+
+		$this->locations["Heart Container - Armos Knights"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				return $item != Item::get('BigKey');
+			});
+
 
 		return $this;
 	}
@@ -104,7 +116,30 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initNoMajorGlitches();
+		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey');
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->canShootArrows();
+		};
+
+		$this->locations["Heart Container - Armos Knights"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				return $item != Item::get('BigKey');
+			});
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Minor Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initSpeedRunner() {
+		$this->initGlitched();
 
 		return $this;
 	}

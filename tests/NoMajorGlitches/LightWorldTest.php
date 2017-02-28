@@ -18,6 +18,50 @@ class LightWorldTest extends TestCase {
 		unset($this->world);
 	}
 
+	public function testAltarRequiresPendantOfCourage() {
+		$this->assertFalse($this->world->getLocation("Altar")
+			->canAccess($this->allItemsExcept(['PendantOfCourage'])));
+	}
+
+	public function testAltarRequiresPendantOfPower() {
+		$this->assertFalse($this->world->getLocation("Altar")
+			->canAccess($this->allItemsExcept(['PendantOfPower'])));
+	}
+
+	public function testAltarRequiresPendantOfWisdom() {
+		$this->assertFalse($this->world->getLocation("Altar")
+			->canAccess($this->allItemsExcept(['PendantOfWisdom'])));
+	}
+
+	public function testAltarRequiresBookIfSwordsInPool() {
+		config(['alttp.test_rules.region.swordsInPool' => true]);
+
+		$this->assertFalse($this->world->getLocation("Altar")
+			->canAccess($this->allItemsExcept(['BookOfMudora'])));
+	}
+
+	public function testAltarDoesNotRequiresBookIfNotSwordsInPool() {
+		config(['alttp.test_rules.region.swordsInPool' => false]);
+
+		$this->assertTrue($this->world->getLocation("Altar")
+			->canAccess($this->allItemsExcept(['BookOfMudora'])));
+	}
+
+	public function testBlacksmithsRequiresTitansMitt() {
+		$this->assertFalse($this->world->getLocation("Blacksmiths")
+			->canAccess($this->allItemsExcept(['TitansMitt'])));
+	}
+
+	public function testBlacksmithsRequiresMirror() {
+		$this->assertFalse($this->world->getLocation("Blacksmiths")
+			->canAccess($this->allItemsExcept(['MagicMirror'])));
+	}
+
+	public function testBlacksmithsRequiresMoonPearl() {
+		$this->assertFalse($this->world->getLocation("Blacksmiths")
+			->canAccess($this->allItemsExcept(['MoonPearl'])));
+	}
+
 	public function testUncleRequiresNothing() {
 		$this->assertTrue($this->world->getLocation("Uncle")
 			->canAccess($this->collected));

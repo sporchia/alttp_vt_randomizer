@@ -1,5 +1,6 @@
 <?php namespace ALttP;
 
+use ALttP\Support\Dialog;
 use Closure;
 use Log;
 
@@ -7,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-02-14';
-	const HASH = '0a429fc3c896ea9bf9d3a13bee38b098';
+	const BUILD = '2017-02-27';
+	const HASH = 'bfdd6cb81ceeee6255d371fca8803f20';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -104,6 +105,19 @@ class Rom {
 	}
 
 	/**
+	 * Set the Rupoor value to take rupees
+	 *
+	 * @param int $value
+	 *
+	 * @return $this
+	 */
+	public function setRupoorValue($value = 10) {
+		$this->write(0x180036, pack('v*', $value));
+
+		return $this;
+	}
+
+	/**
 	 * Set the starting Max Arrows
 	 *
 	 * @param int $max
@@ -173,11 +187,31 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextCustom(string $string) {
-		$offset = 0x1024D4;
-		foreach ($this->convertDialog(mb_strtoupper($string)) as $byte) {
+		$offset = 0x102943;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
 		$this->setUncleText(0x00);
+
+		return $this;
+	}
+
+	/**
+	 * Set the Altar text to a custom value
+	 *
+	 * @param string $string Altar text can be 3 lines of 14 characters each
+	 *
+	 * @return $this
+	 */
+	public function setPedestalTextbox(string $string) {
+		$offset = 0x180300;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
 
 		return $this;
 	}
@@ -482,6 +516,11 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * dont use this. It's not properly set up yet
+	 *
+	 * @return $this
+	 */
 	public function setEndGameMode() {
 		$this->setDebugMode();
 		$debug_offset = 0x2716A;
@@ -491,6 +530,7 @@ class Rom {
 		$this->write($debug_offset + 53, pack('C*', 0x07)); // pendants
 		$this->write($debug_offset + 59, pack('C*', 0xFF)); // crystals
 		$this->write($debug_offset + 60, pack('C*', 0x02)); // magic
+
 		return $this;
 	}
 
@@ -571,66 +611,236 @@ class Rom {
 		$this->write(0x6D2FB, pack('C*', 0x00, 0x00, 0xf7, 0xff, 0x02, 0x0E));
 		$this->write(0x6D313, pack('C*', 0x00, 0x00, 0xe4, 0xff, 0x08, 0x0E));
 
+		//$rom->write(0x1E9C4, pack('S*', 0x0120)); // Halloween Heads Hobo
+
 		return $this;
 	}
 
 	/**
 	 * Adjust some settings for hard mode
 	 *
+	 * @param int $level how hard to make it, higher should be harder
+	 *
+	 * @return $this
+	 */
+	public function setHardMode($level = 0, $dont_nerf_blue_potion = false) {
+		switch ($level) {
+			case 0:
+				// Cape magic
+				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
+				// Bubble transform
+				$this->write(0x36DD0, pack('C*', 0xE3));
+				// Red Potion Cost
+				$this->write(0x2F803, pack('S*', 0x0078)); // 120 Rupees
+				$this->write(0x2F822, pack('S*', 0x0078)); // 120 Rupees
+				$this->write(0x2F869, pack('C*', 0x31)); // 1
+				$this->write(0x2F861, pack('C*', 0x02)); // 2
+				$this->write(0x2F859, pack('C*', 0x30)); // 0
+				// Green Potion Cost
+				$this->write(0x2F6C1, pack('S*', 0x003C)); // 60 Rupees
+				$this->write(0x2F6E0, pack('S*', 0x003C)); // 60 Rupees
+				$this->write(0x2F714, pack('C*', 0x22)); // 6
+				$this->write(0x2F70C, pack('C*', 0x30)); // 0
+				// 0x07 Red Potion General
+				$this->write(0xF7178, pack('C*', 0x78)); // cost: 120
+				$this->write(0xF73AE, pack('C*', 0x31)); // 1
+				$this->write(0xF73B6, pack('C*', 0x02)); // 2
+				$this->write(0xF73BE, pack('C*', 0x30)); // 0
+				// 0x08 Blue Shield
+				$this->write(0xF71FF, pack('C*', 0x32)); // cost: 50
+				$this->write(0xF73D2, pack('C*', 0x00, 0x00)); // reposition gfx
+				$this->write(0xF73DA, pack('C*', 0x00, 0x00)); // reposition gfx
+				$this->write(0xF73E2, pack('C*', 0x08, 0x00)); // reposition gfx
+				$this->write(0xF73D6, pack('C*', 0x31)); // 5
+				$this->write(0xF73DE, pack('C*', 0x30)); // 5
+				$this->write(0xF73E6, pack('C*', 0x30)); // 0
+
+				$this->setRupoorValue(0);
+
+				$dont_nerf_blue_potion = true;
+				break;
+			case 1:
+				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
+				$this->write(0x36DD0, pack('C*', 0x79));
+				// Red Potion Cost
+				$this->write(0x2F803, pack('S*', 0x00F0)); // 240 Rupees
+				$this->write(0x2F822, pack('S*', 0x00F0)); // 240 Rupees
+				$this->write(0x2F869, pack('C*', 0x02)); // 2
+				$this->write(0x2F861, pack('C*', 0x12)); // 4
+				$this->write(0x2F859, pack('C*', 0x30)); // 0
+				// Green Potion Cost
+				$this->write(0x2F6C1, pack('S*', 0x0063)); // 99 Rupees
+				$this->write(0x2F6E0, pack('S*', 0x0063)); // 99 Rupees
+				$this->write(0x2F70C, pack('C*', 0x33)); // 9
+				$this->write(0x2F714, pack('C*', 0x33)); // 9
+				// Blue Potion Cost
+				$this->write(0x2F75E, pack('S*', 0x0140)); // 320 Rupees
+				$this->write(0x2F77D, pack('S*', 0x0140)); // 320 Rupees
+				$this->write(0x2F7B9, pack('C*', 0x03)); // 3
+				$this->write(0x2F7B1, pack('C*', 0x02)); // 2
+				$this->write(0x2F7A9, pack('C*', 0x30)); // 0
+
+				// 0x07 Red Potion General
+				$this->write(0xF7178, pack('C*', 0xF0)); // cost: 240
+				$this->write(0xF73AE, pack('C*', 0x02)); // 2
+				$this->write(0xF73B6, pack('C*', 0x12)); // 4
+				$this->write(0xF73BE, pack('C*', 0x30)); // 0
+				// 0x08 Blue Shield
+				$this->write(0xF71FF, pack('C*', 0x64)); // cost: 100
+				$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
+				$this->write(0xF73DA, pack('C*', 0x04, 0x00)); // reposition gfx
+				$this->write(0xF73E2, pack('C*', 0x0C, 0x00)); // reposition gfx
+				$this->write(0xF73D6, pack('C*', 0x31)); // 1
+				$this->write(0xF73DE, pack('C*', 0x30)); // 0
+				$this->write(0xF73E6, pack('C*', 0x30)); // 0
+
+				$this->setRupoorValue(5);
+
+				break;
+			case 2:
+				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
+				$this->write(0x36DD0, pack('C*', 0x79));
+
+				// Red Potion
+				$this->write(0x2F803, pack('S*', 0x2706)); // 9999 Rupees
+				$this->write(0x2F822, pack('S*', 0x2706)); // 9999 Rupees
+				$this->write(0x2F859, pack('C*', 0x3C)); // -
+				$this->write(0x2F861, pack('C*', 0x3C)); // -
+				$this->write(0x2F869, pack('C*', 0x3C)); // -
+				// Green Potion Cost
+				$this->write(0x2F6C1, pack('S*', 0x2706)); // 9999 Rupees
+				$this->write(0x2F6E0, pack('S*', 0x2706)); // 9999 Rupees
+				$this->write(0x2F70C, pack('C*', 0x3C)); // -
+				$this->write(0x2F714, pack('C*', 0x3C)); // -
+				// Blue Potion Cost
+				$this->write(0x2F75E, pack('S*', 0x2706)); // 9999 Rupees
+				$this->write(0x2F77D, pack('S*', 0x2706)); // 9999 Rupees
+				$this->write(0x2F7B9, pack('C*', 0x3C)); // -
+				$this->write(0x2F7B1, pack('C*', 0x3C)); // -
+				$this->write(0x2F7A9, pack('C*', 0x3C)); // -
+
+				// 0x07 Red Potion General
+				$this->write(0xF717A, pack('C*', 0x27)); // cost: 9984 +
+				$this->write(0xF7178, pack('C*', 0x06)); // cost: 6
+				$this->write(0xF73AE, pack('C*', 0x3C)); // -
+				$this->write(0xF73B6, pack('C*', 0x3C)); // -
+				$this->write(0xF73BE, pack('C*', 0x3C)); // -
+				// 0x08 Blue Shield
+				$this->write(0xF7201, pack('C*', 0x27)); // cost: 9984 +
+				$this->write(0xF71FF, pack('C*', 0x06)); // cost: 6
+				$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
+				$this->write(0xF73DA, pack('C*', 0x04, 0x00)); // reposition gfx
+				$this->write(0xF73E2, pack('C*', 0x0C, 0x00)); // reposition gfx
+				$this->write(0xF73D6, pack('C*', 0x3C)); // -
+				$this->write(0xF73DE, pack('C*', 0x3C)); // -
+				$this->write(0xF73E6, pack('C*', 0x3C)); // -
+
+				$this->setRupoorValue(10);
+
+				break;
+		}
+
+		if ($dont_nerf_blue_potion) {
+			// Blue Bottle Cost
+			$this->write(0x2F75E, pack('S*', 0x00A0)); // 160 Rupees
+			$this->write(0x2F77D, pack('S*', 0x00A0)); // 160 Rupees
+			$this->write(0x2F7B9, pack('C*', 0x31)); // 1
+			$this->write(0x2F7B1, pack('C*', 0x22)); // 6
+			$this->write(0x2F7A9, pack('C*', 0x30)); // 0
+		}
+		return $this;
+	}
+
+	/**
+	 * Set Smithy Quick Item Give mode. I.E. just gives an item if you rescue him with no sword bogarting
+	 *
 	 * @param bool $enable switch on or off
 	 *
 	 * @return $this
 	 */
-	public function setHardMode($enable = true, $dont_nerf_blue_potion = false) {
-		// adjust cape magic usage
-		$this->write(0x3ADA7, $enable ? pack('C*', 0x01, 0x01, 0x01) : pack('C*', 0x04, 0x08, 0x10));
-		// Bubbles turn into Bee Hoards
-		$this->write(0x36DD0, $enable ? pack('C*', 0x79) : pack('C*', 0xE3));
+	public function setSmithyQuickItemGive($enable = true) {
+		$this->write(0x180029, pack('C*', $enable ? 0x01 : 0x00));
 
-		// nerf potions and blue shield
+		return $this;
+	}
 
-		// Potion Shop
-		// Red Bottle Cost
-		$this->write(0x2F803, pack('S*', 0x03E7)); // 999 Rupees
-		$this->write(0x2F822, pack('S*', 0x03E7)); // 999 Rupees
-		$this->write(0x2F859, pack('C*', 0x33));
-		$this->write(0x2F861, pack('C*', 0x33));
-		$this->write(0x2F869, pack('C*', 0x33));
-		// Green Bottle Cost
-		$this->write(0x2F6C1, pack('S*', 0x03E7)); // 999 Rupees
-		$this->write(0x2F6E0, pack('S*', 0x03E7)); // 999 Rupees
-		$this->write(0x2F70C, pack('C*', 0x2D));
-		$this->write(0x2F714, pack('C*', 0x2D));
+	/**
+	 * Set Pyramid Fountain to have 2 chests
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setPyramidFairyChests($enable = true) {
+		$this->write(0x1FC16, $enable
+			? pack('C*', 0xB1, 0xC6, 0xF9, 0xC9, 0xC6, 0xF9)
+			: pack('C*', 0xA8, 0xB8, 0x3D, 0xD0, 0xB8, 0x3D));
 
-		if (!$dont_nerf_blue_potion) {
-			// Blue Bottle Cost
-			$this->write(0x2F75E, pack('S*', 0x0001)); // 999 Rupees
-			$this->write(0x2F77D, pack('S*', 0x0001)); // 999 Rupees
-			$this->write(0x2F7B9, pack('C*', 0x33));
-			$this->write(0x2F7B1, pack('C*', 0x33));
-			$this->write(0x2F7A9, pack('C*', 0x33));
-		}
+		return $this;
+	}
 
-		// Other Shops
-		// 0x07 Red Potion
-		$this->write(0xF717A, pack('C*', 0x03)); // cost: 768 +
-		$this->write(0xF7178, pack('C*', 0xE7)); // cost: 231
-		$this->write(0xF73AE, pack('C*', 0x33));
-		$this->write(0xF73B6, pack('C*', 0x33));
-		$this->write(0xF73BE, pack('C*', 0x33));
+	/**
+	 * Set Game in Open Mode. (Post rain state with Escape undone)
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setOpenMode($enable = true) {
+		$this->write(0x180032, pack('C*', $enable ? 0x01 : 0x00));
+		$this->setSewersLampCone(!$enable);
+		$this->setLightWorldLampCone(!$enable);
+		$this->setDarkWorldLampCone(false);
 
+		return $this;
+	}
 
-		//0x08 Blue Shield
-		$this->write(0xF7201, pack('C*', 0x03)); // cost: 768 +
-		$this->write(0xF71FF, pack('C*', 0xE7)); // cost: 231
-		// reposition gfx
-		$this->write(0xf73d2, pack('C*', 0xfc, 0xff));
-		$this->write(0xf73da, pack('C*', 0x04, 0x00));
-		$this->write(0xf73e2, pack('C*', 0x0c, 0x00));
+	/**
+	 * Enable lampless light cone in Sewers
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSewersLampCone($enable = true) {
+		$this->write(0x180038, pack('C*', $enable ? 0x01 : 0x00));
 
-		$this->write(0xF73D6, pack('C*', 0x33));
-		$this->write(0xf73de, pack('C*', 0x33));
-		$this->write(0xf73e6, pack('C*', 0x33));
+		return $this;
+	}
+
+	/**
+	 * Enable lampless light cone in Light World Dungeons
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setLightWorldLampCone($enable = true) {
+		$this->write(0x180039, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable lampless light cone in Dark World Dungeons
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setDarkWorldLampCone($enable = true) {
+		$this->write(0x18003A, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * without this enabled upgraded swords will cause Zelda not to spawn in her cell
+	 *
+	 * @return $this
+	 */
+	public function skipZeldaSwordCheck($enable = true) {
+		$this->write(0x2EBD4, pack('C*', $enable ? 0x05 : 0x02));
 
 		return $this;
 	}
@@ -780,47 +990,6 @@ class Rom {
 	}
 
 	/**
-	 * Convert string to byte array for Dialog Box that can be written to ROM
-	 *
-	 * @param string $string string to convert
-	 *
-	 * @return array
-	 */
-	public function convertDialog(string $string) {
-		$new_string = [];
-		$lines = explode("\n", $string);
-		$i = 0;
-		foreach ($lines as $line) {
-			switch ($i) {
-				case 0:
-					$new_string[] = 0x00;
-					break;
-				case 1:
-					$new_string[] = 0x75;
-					$new_string[] = 0x00;
-					break;
-				case 2:
-					$new_string[] = 0x76;
-					$new_string[] = 0x00;
-					break;
-			}
-			$line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
-			foreach ($line_chars as $char) {
-				$new_string[] = $this->charToHex($char);
-				$new_string[] = 0x00;
-			}
-			array_pop($new_string);
-			if (++$i > 2) {
-				break;
-			}
-		}
-
-		$new_string[] = 0x7F;
-		$new_string[] = 0x7F;
-		return $new_string;
-	}
-
-	/**
 	 * Convert string to byte array for Credits that can be written to ROM
 	 *
 	 * @param string $string string to convert
@@ -853,202 +1022,5 @@ class Rom {
 			case '-': return 0x36;
 			case "'": return 0x35;
 		}
-	}
-
-	/**
-	 * Convert character to byte for ROM
-	 * @TODO: consider moving this out to a seperate encoding class
-	 *
-	 * @param string $string character to convert
-	 *
-	 * @return int
-	 */
-	private function charToHex($char) {
-		if (preg_match('/\d/', $char)) {
-			return $char + 0xA0;
-		}
-		if (preg_match('/[A-Z]/', $char)) {
-			return ord($char) - 65 + 0xAA;
-		}
-		switch ($char) {
-			case ' ': return 0xFF;
-			case '?': return 0xC6;
-			case '!': return 0xC7;
-			case ',': return 0xC8;
-			case '-': return 0xC9;
-			case '.': return 0xCD;
-			case '~': return 0xCE;
-			case "'": return 0xD8;
-			case "@": return 0xD2; // left half link face
-			case ">": return 0xD3; // right half link face
-			case "%": return 0xDD; // Hylian Bird
-			case "^": return 0xDE; // Hylian Ankh
-			case "=": return 0xDF; // Hylian Wavy lines
-			case "↑": return 0xE0;
-			case "↓": return 0xE1;
-			case "→": return 0xE2;
-			case "←": return 0xE3;
-			case "あ": return 0x00;
-			case "い": return 0x01;
-			case "う": return 0x02;
-			case "え": return 0x03;
-			case "お": return 0x04;
-			case "や": return 0x05;
-			case "ゆ": return 0x06;
-			case "よ": return 0x07;
-			case "か": return 0x08;
-			case "き": return 0x09;
-			case "く": return 0x0A;
-			case "け": return 0x0B;
-			case "こ": return 0x0C;
-			case "わ": return 0x0D;
-			case "を": return 0x0E;
-			case "ん": return 0x0F;
-			case "さ": return 0x10;
-			case "し": return 0x11;
-			case "す": return 0x12;
-			case "せ": return 0x13;
-			case "そ": return 0x14;
-			case "が": return 0x15;
-			case "ぎ": return 0x16;
-			case "ぐ": return 0x17;
-			case "た": return 0x18;
-			case "ち": return 0x19;
-			case "つ": return 0x1A;
-			case "て": return 0x1B;
-			case "と": return 0x1C;
-			case "げ": return 0x1D;
-			case "ご": return 0x1E;
-			case "ざ": return 0x1F;
-			case "な": return 0x20;
-			case "に": return 0x21;
-			case "ぬ": return 0x22;
-			case "ね": return 0x23;
-			case "の": return 0x24;
-			case "じ": return 0x25;
-			case "ず": return 0x26;
-			case "ぜ": return 0x27;
-			case "は": return 0x28;
-			case "ひ": return 0x29;
-			case "ふ": return 0x2A;
-			case "へ": return 0x2B;
-			case "ほ": return 0x2C;
-			case "ぞ": return 0x2D;
-			case "だ": return 0x2E;
-			case "ぢ": return 0x2F;
-			case "ま": return 0x30;
-			case "み": return 0x31;
-			case "む": return 0x32;
-			case "め": return 0x33;
-			case "も": return 0x34;
-			case "づ": return 0x35;
-			case "で": return 0x36;
-			case "ど": return 0x37;
-			case "ら": return 0x38;
-			case "り": return 0x39;
-			case "る": return 0x3A;
-			case "れ": return 0x3B;
-			case "ろ": return 0x3C;
-			case "ば": return 0x3D;
-			case "び": return 0x3E;
-			case "ぶ": return 0x3F;
-			case "べ": return 0x40;
-			case "ぼ": return 0x41;
-			case "ぱ": return 0x42;
-			case "ぴ": return 0x43;
-			case "ぷ": return 0x44;
-			case "ぺ": return 0x45;
-			case "ぽ": return 0x46;
-			case "ゃ": return 0x47;
-			case "ゅ": return 0x48;
-			case "ょ": return 0x49;
-			case "っ": return 0x4A;
-			case "ぁ": return 0x4B;
-			case "ぃ": return 0x4C;
-			case "ぅ": return 0x4D;
-			case "ぇ": return 0x4E;
-			case "ぉ": return 0x4F;
-			case "ア": return 0x50;
-			case "イ": return 0x51;
-			case "ウ": return 0x52;
-			case "エ": return 0x53;
-			case "オ": return 0x54;
-			case "ヤ": return 0x55;
-			case "ユ": return 0x56;
-			case "ヨ": return 0x57;
-			case "カ": return 0x58;
-			case "キ": return 0x59;
-			case "ク": return 0x5A;
-			case "ケ": return 0x5B;
-			case "コ": return 0x5C;
-			case "ワ": return 0x5D;
-			case "ヲ": return 0x5E;
-			case "ン": return 0x5F;
-			case "サ": return 0x60;
-			case "シ": return 0x61;
-			case "ス": return 0x62;
-			case "セ": return 0x63;
-			case "ソ": return 0x64;
-			case "ガ": return 0x65;
-			case "ギ": return 0x66;
-			case "グ": return 0x67;
-			case "タ": return 0x68;
-			case "チ": return 0x69;
-			case "ツ": return 0x6A;
-			case "テ": return 0x6B;
-			case "ト": return 0x6C;
-			case "ゲ": return 0x6D;
-			case "ゴ": return 0x6E;
-			case "ザ": return 0x6F;
-			case "ナ": return 0x70;
-			case "ニ": return 0x71;
-			case "ヌ": return 0x72;
-			case "ネ": return 0x73;
-			case "ノ": return 0x74;
-			case "ジ": return 0x75;
-			case "ズ": return 0x76;
-			case "ゼ": return 0x77;
-			case "ハ": return 0x78;
-			case "ヒ": return 0x79;
-			case "フ": return 0x7A;
-			case "ヘ": return 0x7B;
-			case "ホ": return 0x7C;
-			case "ゾ": return 0x7D;
-			case "ダ": return 0x7E;
-			case "マ": return 0x80;
-			case "ミ": return 0x81;
-			case "ム": return 0x82;
-			case "メ": return 0x83;
-			case "モ": return 0x84;
-			case "ヅ": return 0x85;
-			case "デ": return 0x86;
-			case "ド": return 0x87;
-			case "ラ": return 0x88;
-			case "リ": return 0x89;
-			case "ル": return 0x8A;
-			case "レ": return 0x8B;
-			case "ロ": return 0x8C;
-			case "バ": return 0x8D;
-			case "ビ": return 0x8E;
-			case "ブ": return 0x8F;
-			case "ベ": return 0x90;
-			case "ボ": return 0x91;
-			case "パ": return 0x92;
-			case "ピ": return 0x93;
-			case "プ": return 0x94;
-			case "ペ": return 0x95;
-			case "ポ": return 0x96;
-			case "ャ": return 0x97;
-			case "ュ": return 0x98;
-			case "ョ": return 0x99;
-			case "ッ": return 0x9A;
-			case "ァ": return 0x9B;
-			case "ィ": return 0x9C;
-			case "ゥ": return 0x9D;
-			case "ェ": return 0x9E;
-			case "ォ": return 0x9F;
-		}
-
-		return 0xFF;
 	}
 }

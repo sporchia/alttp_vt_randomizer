@@ -83,7 +83,7 @@ class ThievesTownTest extends TestCase {
 	}
 
 	public function testBlindOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
+		$this->addCollected(['TitansMitt', 'MoonPearl', 'L1Sword']);
 
 		$this->assertTrue($this->world->getLocation("Heart Container - Blind")
 			->canAccess($this->collected));

@@ -107,22 +107,24 @@ class DesertPalace extends Region {
 			return $items->has('PegasusBoots');
 		});
 
-		$this->locations["Heart Container - Lanmolas"]->setRequirements(function($locations, $items) {
-			return $items->canLiftRocks() && $items->canLightTorches()
-				&& ($items->has('PegasusBoots')
-				|| !($locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('BigKey'))
-					|| $locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))));
-		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
-		});
-
 		$this->can_complete = function($locations, $items) {
+			if (config('game-mode') == 'open' && !($items->hasSword() || $items->has('Hammer')
+					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
+					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
+				return false;
+			}
+
 			return $this->canEnter($locations, $items)
 				&& $items->canLiftRocks() && $items->canLightTorches()
 				&& ($items->has('PegasusBoots')
 				|| !($locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('BigKey'))
 					|| $locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))));
 		};
+
+		$this->locations["Heart Container - Lanmolas"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('BookOfMudora')
@@ -141,22 +143,25 @@ class DesertPalace extends Region {
 	public function initGlitched() {
 		$this->initNoMajorGlitches();
 
-		$this->locations["Heart Container - Lanmolas"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches()
-				&& ($items->has('PegasusBoots')
-				|| !($locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('BigKey'))
-					|| $locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))));
-		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
-		});
-
 		$this->can_complete = function($locations, $items) {
+			if (config('game-mode') == 'open' && !($items->hasSword() || $items->has('Hammer')
+					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
+					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
+				return false;
+			}
+
 			return $this->canEnter($locations, $items)
 				&& $items->canLightTorches()
 				&& ($items->has('PegasusBoots')
 				|| !($locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('BigKey'))
 					|| $locations["[dungeon-L2-B1] Desert Palace - Small key room"]->hasItem(Item::get('Key'))));
 		};
+
+		$this->locations["Heart Container - Lanmolas"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			});
+
 
 		$this->can_enter = function($locations, $items) {
 			return true;

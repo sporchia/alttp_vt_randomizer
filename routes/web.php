@@ -18,8 +18,16 @@ Route::get('game_modes', function () {
 	return view('game_modes');
 });
 
+Route::get('game_logics', function () {
+	return view('game_logics');
+});
+
+Route::get('game_difficulties', function () {
+	return view('game_difficulties');
+});
+
 Route::get('info', function () {
-	return view('info');
+	return redirect('help');
 });
 
 Route::get('stuck', function () {
@@ -35,7 +43,7 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 	if ($seed) {
 		return json_encode([
 			'logic' => $seed->logic,
-			'rules' => $seed->rules,
+			'difficulty' => $seed->rules,
 			'patch' => json_decode($seed->patch),
 			'spoiler' => array_except(array_only(json_decode($seed->spoiler, true), ['meta']), ['meta.seed']),
 			'hash' => $seed->hash,
@@ -45,10 +53,14 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 });
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
-	$rules = $request->input('rules', 'v8');
-	if ($rules == 'custom') {
+	$difficulty = $request->input('difficulty', 'normal');
+	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
+
+	config(['game-mode' => $request->input('mode', 'standard')]);
+	config(['game-mode' => 'standard']); // currently overriding mode to be standard
+
 	$rom = new ALttP\Rom();
 	if ($request->has('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
@@ -60,14 +72,14 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
-	$rand = new ALttP\Randomizer($rules, $request->input('game_mode', 'NoMajorGlitches'));
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 
 	return json_encode([
 		'seed' => $rand->getSeed(),
 		'logic' => $rand->getLogic(),
-		'rules' => $rules,
+		'difficulty' => $difficulty,
 		'patch' => $rom->getWriteLog(),
 		'spoiler' => $rand->getSpoiler(),
 		'hash' => $rand->saveSeedRecord(),
@@ -75,11 +87,15 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 });
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
-	$rules = $request->input('rules', 'v8');
-	if ($rules == 'custom') {
+	$difficulty = $request->input('difficulty', 'normal');
+	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
-	$rand = new ALttP\Randomizer($rules, $request->input('game_mode', 'NoMajorGlitches'));
+
+	config(['game-mode' => $request->input('mode', 'standard')]);
+	config(['game-mode' => 'standard']); // currently overriding mode to be standard
+
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });

@@ -269,7 +269,7 @@ class TurtleRock extends Region {
 		};
 
 		$middle = function($locations, $items) {
-			return ($items->has('MagicMirror') && ($items->has('TitansMitt') || $items->has('Hammer'))) || $items->has('MoonPearl') || $items->hasABottle();
+			return $items->has('MagicMirror') || $items->has('MoonPearl') || $items->hasABottle();
 		};
 
 		$upper = function($locations, $items) {
@@ -309,7 +309,8 @@ class TurtleRock extends Region {
 						&& (!$locations->itemInLocations(Item::get('BigKey'), [
 							"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
 							"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-						]) || ($items->has('CaneOfSomaria') && $items->has('FireRod')))));		})->setFillRules(function($item, $locations, $items) {
+						]) || ($items->has('CaneOfSomaria') && $items->has('FireRod')))));
+		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
 
@@ -399,7 +400,8 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) use ($lower, $middle) {
-			return $items->has('CaneOfSomaria') && $items->has('FireRod') && $items->has('IceRod')
+			return ($items->hasUpgradedSword() || $items->has('Hammer'))
+				&& $items->has('CaneOfSomaria') && $items->has('FireRod') && $items->has('IceRod')
 				&& ($lower($locations, $items)
 				|| ($middle($locations, $items) && !$locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",

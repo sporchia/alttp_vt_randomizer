@@ -23,6 +23,7 @@ class LightWorld extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
+			new Location\Altar("Altar", 0x289B0, null, $this),
 			new Location\Npc("Uncle", 0x2DF45, null, $this),
 			new Location\Chest("[cave-034] Hyrule Castle secret entrance", 0xE971, null, $this),
 			new Location\Chest("[cave-018] Graveyard - top right grave", 0xE97A, null, $this),
@@ -44,6 +45,7 @@ class LightWorld extends Region {
 			new Location\Chest("[cave-022-B1] Thief's hut [top right chest]", 0xEB15, null, $this),
 			new Location\Chest("[cave-022-B1] Thief's hut [bottom left chest]", 0xEB18, null, $this),
 			new Location\Chest("[cave-022-B1] Thief's hut [bottom right chest]", 0xEB1B, null, $this),
+			new Location\Npc("Blacksmiths", $world->config('region.swordsInPool', true) ? 0x18002A : 0x3355C, null, $this),
 			new Location\Chest("[cave-016] cave under rocks west of Santuary", 0xEB3F, null, $this),
 			new Location\Chest("[cave-050] cave southwest of Lake Hylia [bottom left chest]", 0xEB42, null, $this),
 			new Location\Chest("[cave-050] cave southwest of Lake Hylia [top left chest]", 0xEB45, null, $this),
@@ -83,6 +85,13 @@ class LightWorld extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->locations["Altar"]->setRequirements(function($locations, $items) {
+			return $items->has('PendantOfPower')
+				&& $items->has('PendantOfWisdom')
+				&& $items->has('PendantOfCourage')
+				&& (!$this->world->config('region.swordsInPool', true) || $items->has('BookOfMudora'));
+		});
+
 		$this->locations["Uncle"]->setRequirements(function($locations, $items) {
 			return true;
 		});
@@ -103,6 +112,10 @@ class LightWorld extends Region {
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
+			if (config('game-mode') == 'open') {
+				return true;
+			}
+
 			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove')]);
 		});
 
@@ -168,6 +181,11 @@ class LightWorld extends Region {
 
 		$this->locations["[cave-022-B1] Thief's hut [bottom right chest]"]->setRequirements(function($locations, $items) {
 			return true;
+		});
+
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->has('TitansMitt') && $items->has('MagicMirror')
+				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {
@@ -302,6 +320,19 @@ class LightWorld extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
+		$this->locations["Altar"]->setRequirements(function($locations, $items) {
+			return $items->has('PendantOfPower')
+				&& $items->has('PendantOfWisdom')
+				&& $items->has('PendantOfCourage')
+				&& (!$this->world->config('region.swordsInPool', true) || $items->has('BookOfMudora'));
+		});
+
+		// @TODO: when S+Q follower fix is removed this will need to be readdressed
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& ($items->hasABottle() || $items->has("MoonPearl"));
+		});
+
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->has('TitansMitt')
 				|| ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle())));

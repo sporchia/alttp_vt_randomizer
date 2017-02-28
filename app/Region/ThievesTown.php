@@ -116,7 +116,8 @@ class ThievesTown extends Region {
 		});
 
 		$this->locations["Heart Container - Blind"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->hasSword() || $items->has('Hammer')
+				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna');
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
@@ -165,7 +166,10 @@ class ThievesTown extends Region {
 			return $item != Item::get('BigKey');
 		});
 
-		$this->locations["Heart Container - Blind"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Heart Container - Blind"]->setRequirements(function($locations, $items) {
+			return $items->hasSword() || $items->has('Hammer')
+				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna');
+		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
 

@@ -66,7 +66,7 @@ class Zora extends Npc {
 				return "dirt spade for sale";
 			case Item::get('CaneOfSomaria'):
 				return "block stick for sale";
-			case Item::get('StaffOfByrna'):
+			case Item::get('CaneOfByrna'):
 				return "shiny stick for sale";
 			case Item::get('Cape'):
 				return "red hood for sale";
@@ -159,6 +159,8 @@ class Zora extends Npc {
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "wizardry for sale";
+			case Item::get('Rupoor'):
+				return "double loss for sale";
 			case Item::get('Nothing'):
 			default:
 				return "Nothing, so stupid";
