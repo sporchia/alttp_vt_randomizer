@@ -8,40 +8,44 @@ class Dialog {
 	 * Convert string to byte array for Dialog Box that can be written to ROM
 	 *
 	 * @param string $string string to convert
+	 * @param int $max_bytes maximum bytes to return
 	 *
 	 * @return array
 	 */
-	public function convertDialog(string $string) {
+	public function convertDialog(string $string, $max_bytes = 256) {
 		$new_string = [];
 		$lines = explode("\n", mb_strtoupper($string));
 		$i = 0;
 		foreach ($lines as $line) {
 			switch ($i) {
 				case 0:
-					$new_string[] = 0x00;
+					$new_string[] = 0x74;
 					break;
 				case 1:
 					$new_string[] = 0x75;
-					$new_string[] = 0x00;
 					break;
 				case 2:
+				default:
 					$new_string[] = 0x76;
-					$new_string[] = 0x00;
 					break;
 			}
 			$line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
 			foreach ($line_chars as $char) {
-				$new_string[] = $this->charToHex($char);
 				$new_string[] = 0x00;
+				$new_string[] = $this->charToHex($char);
 			}
-			array_pop($new_string);
-			if (++$i > 2) {
-				break;
+			if (++$i % 3 == 0 && count($lines) > $i) {
+				$new_string[] = 0x7E;
+			}
+			if ($i >= 3 && $i < count($lines)) {
+				$new_string[] = 0x73;
 			}
 		}
 
 		$new_string[] = 0x7F;
-		$new_string[] = 0x7F;
+		if (count($new_string) > $max_bytes) {
+			return array_merge(array_slice($new_string, 0, $max_bytes - 1), [0x7F]);
+		}
 		return $new_string;
 	}
 
@@ -50,6 +54,10 @@ class Dialog {
 	 * @TODO: consider moving this out to a seperate encoding class
 	 *
 	 * @param string $string character to convert
+	 * E5E7=<1/4 heart>
+	 * E6E7=<1/2 heart>
+	 * E8E9=<3/4 heart>
+	 * EAEB=<full heart>
 	 *
 	 * @return int
 	 */
@@ -66,6 +74,7 @@ class Dialog {
 			case '!': return 0xC7;
 			case ',': return 0xC8;
 			case '-': return 0xC9;
+			case "…": return 0xCC;
 			case '.': return 0xCD;
 			case '~': return 0xCE;
 			case "'": return 0xD8;

@@ -3,8 +3,6 @@
 use ALttP\Rom;
 
 class RomTest extends TestCase {
-	const UNCLE_TEXT_0_ADDRESS = 0x102943;
-
 	public function setUp() {
 		parent::setUp();
 		$this->rom = new Rom;
@@ -82,27 +80,29 @@ class RomTest extends TestCase {
 	public function testSetUncleText() {
 		$this->rom->setUncleText(0x02);
 
-		$this->assertEquals(0x02, $this->rom->read(0x180040));
+		$this->assertEquals([116, 0, 192, 0, 177, 0, 194, 0, 255, 0, 173, 0, 184, 0, 255, 0, 192, 0, 174, 0, 255, 0,
+			184, 0, 183, 0, 181, 0, 194, 117, 0, 177, 0, 170, 0, 191, 0, 174, 0, 255, 0, 184, 0, 183, 0, 174, 0, 255,
+			0, 171, 0, 174, 0, 173, 0, 198, 127], $this->rom->read(0x180500, 100));
 	}
 
 	public function testSetExtenedUncleText32() {
 		$this->rom->setUncleText(32);
 
-		$converted = [0, 165, 0, 200, 0, 160, 0, 160, 0, 160, 0, 255, 0, 187, 0, 190, 0, 185, 0, 174, 0, 174, 117, 0,
-			187, 0, 174, 0, 192, 0, 170, 0, 187, 0, 173, 0, 255, 0, 175, 0, 184, 0, 187, 0, 255, 0, 210, 0, 211, 118, 0,
-			194, 0, 184, 0, 190, 0, 216, 0, 187, 0, 174, 0, 255, 0, 171, 0, 184, 0, 183, 0, 174, 0, 173, 127, 127];
+		$converted = [116, 0, 165, 0, 200, 0, 160, 0, 160, 0, 160, 0, 255, 0, 187, 0, 190, 0, 185, 0, 174, 0, 174, 117,
+			0, 187, 0, 174, 0, 192, 0, 170, 0, 187, 0, 173, 0, 255, 0, 175, 0, 184, 0, 187, 0, 255, 0, 210, 0, 211,
+			118, 0, 194, 0, 184, 0, 190, 0, 216, 0, 187, 0, 174, 0, 255, 0, 171, 0, 184, 0, 183, 0, 174, 0, 173, 127];
 
-		$this->assertEquals($converted, $this->rom->read(static::UNCLE_TEXT_0_ADDRESS, 76));
+		$this->assertEquals($converted, $this->rom->read(0x180500, 76));
 	}
 
 	public function testSetUncleTextCustom() {
-		$this->rom->setUncleTextCustom("1234567890abcd\nline2 specials\n ?!,-.~'");
+		$this->rom->setUncleTextString("1234567890abcd\nline2 specials\n ?!,-.~'");
 
-		$converted = [0, 161, 0, 162, 0, 163, 0, 164, 0, 165, 0, 166, 0, 167, 0, 168, 0, 169, 0, 160, 0, 170, 0, 171, 0,
-			172, 0, 173, 117, 0, 181, 0, 178, 0, 183, 0, 174, 0, 162, 0, 255, 0, 188, 0, 185, 0, 174, 0, 172, 0, 178, 0,
-			170, 0, 181, 0, 188, 118, 0, 255, 0, 198, 0, 199, 0, 200, 0, 201, 0, 205, 0, 206, 0, 216, 127, 127];
+		$converted = [116, 0, 161, 0, 162, 0, 163, 0, 164, 0, 165, 0, 166, 0, 167, 0, 168, 0, 169, 0, 160, 0, 170, 0,
+			171, 0, 172, 0, 173, 117, 0, 181, 0, 178, 0, 183, 0, 174, 0, 162, 0, 255, 0, 188, 0, 185, 0, 174, 0, 172,
+			0, 178, 0, 170, 0, 181, 0, 188, 118, 0, 255, 0, 198, 0, 199, 0, 200, 0, 201, 0, 205, 0, 206, 0, 216, 127];
 
-		$this->assertEquals($converted, $this->rom->read(static::UNCLE_TEXT_0_ADDRESS, 76));
+		$this->assertEquals($converted, $this->rom->read(0x180500, 76));
 	}
 
 	public function testSetKingsReturnCredits() {

@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 16;
+	const LOGIC = 17;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
@@ -195,7 +195,7 @@ class Randomizer {
 		} else {
 			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
 			if (config('game-mode') == 'open') {
-				config(["alttp.{$this->rules}.item.count.L1Sword" => $this->config('item.count.L1Sword', 1) + 1]);
+				config(["alttp.{$this->rules}.item.count.L1Sword" => $this->config('item.count.L1Sword', 0) + 1]);
 			} else {
 				$locations["Uncle"]->setItem(Item::get('L1Sword'));
 				$my_items->addItem(Item::get('L1Sword'));
@@ -322,6 +322,7 @@ class Randomizer {
 				}
 			}
 		}
+		Log::debug(sprintf("Extra Items: %s", count($fill_items)));
 	}
 
 	/**
@@ -380,12 +381,7 @@ class Randomizer {
 	 * @return Rom
 	 */
 	public function writeToRom(Rom $rom) {
-		if (config('debug', false)) {
-			$rom->setDebugMode(true);
-			$rom->setUncleTextCustom("Test Seed\n\n" . $this->rng_seed);
-		} else {
-			$this->setStartText($rom);
-		}
+		$this->setTexts($rom);
 
 		foreach ($this->world->getRegions() as $name => $region) {
 			$region->getLocations()->getNonEmptyLocations()->each(function($location) use ($rom) {
@@ -483,8 +479,17 @@ class Randomizer {
 
 		switch (mt_rand(0, 1)) {
 			case 1:
-				$rom->setSanctuaryCredits('read a book');
+				$rom->setSanctuaryCredits("read a book");
 		}
+
+		$name = array_first(mt_shuffle([
+			"sahasralah", "sabotaging", "sacahuista", "sacahuiste", "saccharase", "saccharide", "saccharify",
+			"saccharine", "saccharins", "sacerdotal", "sackcloths", "salmonella", "saltarelli", "saltarello",
+			"saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
+			"sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
+			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara",
+		]));
+		$rom->setKakarikoTownCredits("$name's homecoming");
 
 		switch (mt_rand(0, 1)) {
 			case 1:
@@ -527,21 +532,53 @@ class Randomizer {
 
 	/**
 	 * Randomly set the starting text for the Uncle, there is a chance he will tell you the Region Pegasus Boots
-	 * reside in
+	 * reside in.
+	 * as well as Ganon Texts
 	 *
 	 * @param Rom $rom ROM to write to
 	 *
 	 * @return $this
 	 */
-	public function setStartText(Rom $rom) {
+	public function setTexts(Rom $rom) {
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
 		if ($this->config('spoil.BootsLocation', true) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
-			$rom->setUncleTextCustom("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
+			$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 		} else {
 			$rom->setUncleText(mt_rand(0, 32));
 		}
+
+		$rom->setBlindTextString(array_first(mt_shuffle([
+			"What do you\ncall a blind\ndinosaur?\nadoyouthink-\nhesaurus\n",
+			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.\n",
+			"What do ducks\nlike to eat?\n\nQuackers!\n",
+			"How do you\nset up a party\nin space?\n\nYou planet!\n",
+			"I'm glad I\nknow sign\nlanguage,\nit's pretty\nhandy.\n",
+			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
+			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
+			"I hate insect\npuns, they\nreally bug me.",
+			"I haven't seen\nthe eye doctor\nin years",
+		])));
+
+		$rom->setGanon1TextString(array_first(mt_shuffle([
+			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
+			"You drove\naway my other\nself, Aghanim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
+		])));
+
+		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
+
+		if (!$silver_arrows_location) {
+			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes");
+		} else {
+			$rom->setGanon2TextString("Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
+		}
+
+		$rom->setTriforceTextString(array_first(mt_shuffle([
+			"\n     G G",
+			"\n     G G",
+			"All your base\nare belong\nto us.",
+		])));
 
 		return $this;
 	}

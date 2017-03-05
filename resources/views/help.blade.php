@@ -33,6 +33,9 @@
 				<li>Freestanding items (heart pieces, Mushroom, Book of Mudora and freestanding/bonk small keys)</li>
 				<li>Boss heart containers</li>
 				<li>Ether and Bombos tablets</li>
+				<li>Master Sword Pedestal</li>
+				<li>Blacksmiths</li>
+				<li>Pyramid Fairy</li>
 				<li>The Potion Shop Witch (which usually gives you Magic Powder in exchange for the Mushroom)</li>
 				<li>The Magic Bat Statue (which usually gives you ½ Magic when sprinkled with the Magic Powder)</li>
 				<li>The diggable item in the Sacred Grove (where the Flute is usually hidden)</li>
@@ -52,7 +55,6 @@
 <ul>
 	<li>Link’s Uncle will still always give you the Fighter’s Sword.</li>
 	<li>Great Faerie upgrade fountains in Zora’s Domain and Lake Hylia remain unchanged.</li>
-	<li>The Great Faerie in the Pyramid will still always upgrade your Bow to Silver Arrows.</li>
 	<li>All shops throughout Hyrule remain unchanged.</li>
 	<li>The archery minigame remains unchanged.</li>
 	<li>Small keys underneath pots or held by enemies remain unchanged.</li>
@@ -81,6 +83,8 @@
 			This prevents you accidentally drowning keys under water and getting stuck!</li>
 		<li>The file select screen has a random row of symbols at the top. These are a unique identifier for each seed
 			generated and do not have any other relevance.</li>
+		<li>The Pyramid Fairy will return empty bottles filled, but now has two chests in her cave to replace the sword
+			and silver arrows upgrade she used to have.</li>
 	</ul>
 </div>
 

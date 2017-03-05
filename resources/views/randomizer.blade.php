@@ -198,12 +198,10 @@
 					<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-swordShuffle">Shuffle the Swords (within themselves)</label>
 				</div>
-{{--
 				<div class="col-md-6">
 					<input id="cust-region-swordsInPool" type="checkbox" name="data[alttp.custom.region.swordsInPool]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-swordsInPool">Shuffle the Swords (into item pool)</label>
 				</div>
---}}
 				<div class="col-md-6">
 					<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-spoil-boots">Chance (5%) for boots region to be spoiled by Uncle</label>
@@ -213,7 +211,7 @@
 					<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
 				</div>
 				<div class="col-md-6">
-					<input id="cust-region-superBunnyDM" type="checkbox" name="data[alttp.custom.region.superBunnyDM]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<input id="cust-region-superBunnyDM" type="checkbox" name="data[alttp.custom.region.superBunnyDM]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-superBunnyDM">Allow Moon Pearl on Dark World DM (Super Bunny)</label>
 				</div>
 				<div class="col-md-6">
@@ -225,7 +223,7 @@
 					<label for="cust-sprite-shufflePrizePack">Shuffle Prize Packs</label>
 				</div>
 				<div class="col-md-6">
-					<input id="cust-region-pyramidBowUpgrade" type="checkbox" name="data[alttp.custom.region.pyramidBowUpgrade]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<input id="cust-region-pyramidBowUpgrade" type="checkbox" name="data[alttp.custom.region.pyramidBowUpgrade]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-pyramidBowUpgrade">Pyramid Faerie Upgrades Bow</label>
 				</div>
 			</div>
@@ -670,6 +668,7 @@ $(function() {
 	$('.spoiler-toggle').on('click', function() {
 		$(this).next().animate({height: 'toggle'});
 		if ($(this).find('span').hasClass('glyphicon-plus')) {
+			$.get("/spoiler_click/" + rom.seed);
 			$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
 		} else {
 			$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
@@ -698,6 +697,7 @@ $(function() {
 		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
+		$.get("/spoiler_click/" + rom.seed);
 		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.txt');
 	});
 
@@ -838,13 +838,28 @@ $(function() {
 
 	$('#cust-region-swordsInPool').on('change', function() {
 		if ($(this).prop('checked')) {
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
 			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
+		} else {
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
 		}
+		$('.custom-items').first().trigger('change');
 	});
 	$('#cust-region-swordShuffle').on('change', function() {
 		if (!$(this).prop('checked')) {
-			$('#cust-region-swordsInPool').prop('checked', true).bootstrapToggle('off');
+			if ($('#cust-region-swordsInPool').prop('checked')) {
+				$('#cust-region-swordsInPool').prop('checked', true).bootstrapToggle('off');
+			}
 		}
+	});
+
+	$('#cust-region-pyramidBowUpgrade').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('#item-count-SilverArrowUpgrade').val(Number($('#item-count-SilverArrowUpgrade').val()) - 1);
+		} else {
+			$('#item-count-SilverArrowUpgrade').val(Number($('#item-count-SilverArrowUpgrade').val()) + 1);
+		}
+		$('.custom-items').first().trigger('change');
 	});
 
 	$('#seed-clear').on('click', function() {

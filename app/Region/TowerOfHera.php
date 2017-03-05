@@ -24,7 +24,7 @@ class TowerOfHera extends Region {
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("[dungeon-L3-1F] Tower of Hera - first floor", 0xE9E6, null, $this),
-			new Location\Standing("[dungeon-L3-1F] Tower of Hera - freestanding key", null, null, $this),
+			new Location\Standing\HeraBasement("[dungeon-L3-1F] Tower of Hera - freestanding key", 0x180162, null, $this),
 			new Location\Chest("[dungeon-L3-2F] Tower of Hera - Entrance", 0xE9AD, null, $this),
 			new Location\Chest("[dungeon-L3-4F] Tower of Hera - 4F [small chest]", 0xE9FB, null, $this),
 			new Location\BigChest("[dungeon-L3-4F] Tower of Hera - big chest", 0xE9F8, null, $this),
@@ -44,12 +44,11 @@ class TowerOfHera extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Moldorm";
 		});
 
-		$locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setItem(Item::get('Key'));
 		// since key logic requires placement of Big Key for checks we temporaily set it in a room the Key cannot be in
 		// then unset it for actual placement.
-		//$locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem(Item::get('BigKey'));
-		//while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		//$locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem();
+		$locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem(Item::get('BigKey'));
+		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
+		$locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem();
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 

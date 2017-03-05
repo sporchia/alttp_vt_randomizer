@@ -37,10 +37,8 @@
 		<ol>
 			<li>The small key distribution within dungeons is less restrictive which means poor pathing can potentially
 				lead to softlocks.</li>
-			{{--
 			<li>You no longer have the ability to see in dark rooms without the Lamp within the Light World (except for
 				Sewers).</li>
-			--}}
 			<li>You may be required to navigate through dark rooms without the Lamp within both the Light World and Dark
 				World.</li>
 			{{--

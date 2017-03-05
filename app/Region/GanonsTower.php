@@ -400,7 +400,39 @@ class GanonsTower extends Region {
 	public function initGlitched() {
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey') || $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - before Moldorm",
+			]);
 		});
+
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey') || $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - before Moldorm",
+			]);
+		});
+
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]"]->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey') || $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - before Moldorm",
+			]);
+		});
+
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer');
@@ -473,6 +505,15 @@ class GanonsTower extends Region {
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrace"]->setRequirements(function($locations, $items) {
 			return $items->has('CaneOfSomaria');
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKey') || $locations->itemInLocations(Item::get('Key'), [
+				"[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]",
+				"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
+				"[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
+				"[dungeon-A2-6F] Ganon's Tower - before Moldorm",
+			]);
 		});
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]"]->setRequirements(function($locations, $items) {

@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-02-27';
-	const HASH = 'bfdd6cb81ceeee6255d371fca8803f20';
+	const BUILD = '2017-03-04';
+	const HASH = '4d09247076be6b318d645c87b164c0c2';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -160,21 +160,48 @@ class Rom {
 	/**
 	 * Set the opening Uncle text to one of the predefined values in he ROM
 	 *
-	 * @param int $byte which text to use: 0x00 -> 0x1F
+	 * @param int $offset which text to use: 0x00 -> 0x1F
 	 *
 	 * @return $this
 	 */
-	public function setUncleText($byte) {
-		if ($byte < 32) {
-			$this->write(0x180040, pack('C', $byte));
-		} else {
-			switch ($byte) {
-				case 32:
-				default:
-					$this->setUncleTextCustom("5,000 Rupee\nreward for @>\nYou're boned");
-					break;
-			}
-		}
+	public function setUncleText(int $offset = 0) {
+		$texts = [
+			"We're out of\nWeetabix. To\nthe store!",
+			"This seed is\nbootless\nuntil boots.",
+			"Why do we only\nhave one bed?",
+			"This is the\nonly textbox.",
+			"I'm going to\ngo watch the\nMoth tutorial.",
+			"This seed is\nthe worst.",
+			"Chasing tail.\nFly ladies.\nDo not follow.",
+			"I feel like\nI've done this\nbefore...",
+			"Magic cape can\npass through\nthe barrier!",
+			"Boots at race?\nSeed confirmed\nimpossible.",
+			"If this is a\nKanzeon seed,\nI'm quitting.",
+			"I am not your\nreal uncle.",
+			"You're going\nto have a very\nbad time.",
+			"Today you\nwill have\nbad luck.",
+			"I am leaving\nforever.\nGoodbye.",
+			"Don’t worry.\nI got this\ncovered.",
+			"Race you to\nthe castle!",
+			"\n~69 Blaze It!~",
+			"\n      hi",
+			"I'M JUST GOING\nOUT FOR A\nPACK OF SMOKES",
+			"It's dangerous\nto go alone.\nSee ya!",
+			"ARE YOU A BAD\nENOUGH DUDE TO\nRESCUE ZELDA?",
+			"\n\n    I AM ERROR",
+			"This seed is\nsub 2 hours,\nguaranteed.",
+			"The chest is\na secret to\neverybody.",
+			"I'm off to\nfind the\nwind fish.",
+			"The shortcut\nto Ganon\nis this way!",
+			"THE MOON IS\nCRASHING! RUN\nFOR YOUR LIFE!",
+			"Time to fight\nhe who must\nnot be named.",
+			"RED MAIL\nIS FOR\nCOWARDS.",
+			"HEY!\n\nLISTEN!",
+			"Well\nexcuuuuuse me,\nprincess!",
+			"5,000 Rupee\nreward for @>\nYou're boned",
+		];
+
+		$this->setUncleTextString($texts[$offset % count($texts)]);
 
 		return $this;
 	}
@@ -186,14 +213,103 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setUncleTextCustom(string $string) {
-		$offset = 0x102943;
+	public function setUncleTextString(string $string) {
+		$offset = 0x180500;
 
 		$converter = new Dialog;
 		foreach ($converter->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
-		$this->setUncleText(0x00);
+
+		return $this;
+	}
+
+	/**
+	 * Set the opening Ganon 1 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setGanon1TextString(string $string) {
+		$offset = 0x180600;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the opening Ganon 2 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setGanon2TextString(string $string) {
+		$offset = 0x180700;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Triforce text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setTriforceTextString(string $string) {
+		$offset = 0x180400;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Blind text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setBlindTextString(string $string) {
+		$offset = 0x180800;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Pyramid Fairy text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setPyramidFairyTextString(string $string) {
+		$offset = 0x180900;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
 
 		return $this;
 	}
@@ -550,12 +666,15 @@ class Rom {
 	/**
 	 * Set the Seed Type
 	 *
-	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
+	 * @param string $setting name
 	 *
 	 * @return $this
 	 */
 	public function setRandomizerSeedType(string $setting) {
 		switch ($setting) {
+			case 'SpeedRunner':
+				$byte = 0x02;
+				break;
 			case 'Glitched':
 				$byte = 0x01;
 				break;
@@ -575,7 +694,7 @@ class Rom {
 	/**
 	 * Set the Game Type
 	 *
-	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
+	 * @param string $setting name
 	 *
 	 * @return $this
 	 */
@@ -593,6 +712,28 @@ class Rom {
 		}
 
 		$this->write(0x180211, pack('C', $byte));
+
+		return $this;
+	}
+
+	/**
+	 * Set the Tournament Type
+	 *
+	 * @param string $setting name
+	 *
+	 * @return $this
+	 */
+	public function setTournamentType(string $setting) {
+		switch ($setting) {
+			case 'standard':
+				$byte = 0x01;
+				break;
+			case 'none':
+			default:
+				$byte = 0x00;
+		}
+
+		$this->write(0x180213, pack('C', $byte));
 
 		return $this;
 	}
@@ -735,7 +876,7 @@ class Rom {
 				$this->write(0xF73DE, pack('C*', 0x3C)); // -
 				$this->write(0xF73E6, pack('C*', 0x3C)); // -
 
-				$this->setRupoorValue(10);
+				$this->setRupoorValue(5);
 
 				break;
 		}

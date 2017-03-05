@@ -61,7 +61,7 @@ class Witch extends Npc {
 			case Item::get('Quake'):
 				return "shrooms for wavy-coin";
 			case Item::get('Lamp'):
-				return "funus for illumination";
+				return "fungus for illumination";
 			case Item::get('Shovel'):
 				return "can you dig it";
 			case Item::get('CaneOfSomaria'):

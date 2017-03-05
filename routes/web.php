@@ -38,6 +38,10 @@ Route::get('help', function () {
 	return view('help');
 });
 
+Route::get('spoiler_click/{seed_id?}', function() {
+	return "Ok";
+});
+
 Route::any('hash/{hash}', function(Request $request, $hash) {
 	$seed = ALttP\Seed::where('hash', $hash)->first();
 	if ($seed) {
@@ -82,9 +86,12 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+		$rom->setTournamentType('standard');
 		$patch = patch_merge_minify($rom->getWriteLog());
 		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
 		$seed = $hash;
+	} else {
+		$rom->setTournamentType('none');
 	}
 
 	return json_encode([
