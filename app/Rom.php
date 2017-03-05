@@ -9,7 +9,7 @@ use Log;
  */
 class Rom {
 	const BUILD = '2017-03-04';
-	const HASH = '4d09247076be6b318d645c87b164c0c2';
+	const HASH = '63260fed8e484eaae929b133bafbbb38';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
