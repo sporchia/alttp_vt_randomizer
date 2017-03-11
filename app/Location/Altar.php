@@ -30,9 +30,6 @@ class Altar extends Location {
 		$rom->setAltarCredits($this->getItemCreditsText());
 		$rom->setPedestalTextbox($this->getItemPedestalText());
 
-		// Write the music check
-		$rom->write(0x44435, pack('C', $this->item->getBytes()[0]));
-
 		return $this;
 	}
 

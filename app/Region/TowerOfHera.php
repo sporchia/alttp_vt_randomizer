@@ -33,7 +33,7 @@ class TowerOfHera extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Tower of Hera has: Big Key, Map, Compass
+	 * Place Keys, Map, and Compass in Region. Tower of Hera has: Big Key, Map, Compass, Key
 	 *
 	 * @param ItemCollection $my_items full list of items for placement
 	 *

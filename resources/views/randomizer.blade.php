@@ -38,7 +38,7 @@
 			</div>
 			<div class="col-md-9">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="input-group" role="group">
 							<span class="input-group-addon">Difficulty</span>
 							<select id="difficulty" class="form-control selectpicker">
@@ -49,7 +49,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="input-group" role="group">
 							<span class="input-group-addon">Logic</span>
 							<select id="logic" class="form-control selectpicker">
@@ -59,7 +59,6 @@
 							</select>
 						</div>
 					</div>
-{{--
 					<div class="col-md-3">
 						<div class="input-group" role="group">
 							<span class="input-group-addon">Mode</span>
@@ -69,8 +68,7 @@
 							</select>
 						</div>
 					</div>
---}}
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="btn-group btn-flex" role="group">
 							<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
 							<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
@@ -87,42 +85,42 @@
 				</div>
 			</div>
 		</div>
-			<div class="panel panel-info panel-collapse collapse" id="rom-settings">
-				<div class="panel-heading">
-					<h4 class="panel-title">ROM Settings</h4>
-				</div>
-				<div class="panel-body">
-					<div class="col-md-6">
+		<div class="panel panel-info panel-collapse collapse" id="rom-settings">
+			<div class="panel-heading">
+				<h4 class="panel-title">ROM Settings</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-6">
+					<div class="row">
+						<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+						<label for"generate-sram-trace">SRAM Trace</label>
+					</div>
+					<div class="secrets" style="display:none">
 						<div class="row">
-							<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-							<label for"generate-sram-trace">SRAM Trace</label>
+							<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+							<label for"generate-debug">Debug Mode</label>
 						</div>
-						<div class="secrets" style="display:none">
-							<div class="row">
-								<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-								<label for"generate-debug">Debug Mode</label>
-							</div>
-							<div class="row">
-								<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-								<label for"generate-tournament">Tournament Mode</label>
-							</div>
+						<div class="row">
+							<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+							<label for"generate-tournament">Tournament Mode</label>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="row">
-							<div class="input-group" role="group">
-								<span class="input-group-addon">Heart Beep</span>
-								<select id="heart-speed" class="form-control selectpicker">
-									<option value="off">Off</option>
-									<option value="normal">Normal Speed</option>
-									<option value="half" selected>Half Speed</option>
-									<option value="quarter">Quarter Speed</option>
-								</select>
-							</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="input-group" role="group">
+							<span class="input-group-addon">Heart Beep</span>
+							<select id="heart-speed" class="form-control selectpicker">
+								<option value="off">Off</option>
+								<option value="normal">Normal Speed</option>
+								<option value="half" selected>Half Speed</option>
+								<option value="quarter">Quarter Speed</option>
+							</select>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 	</div>
 </div>
 <div id="seed-details" class="info panel panel-info" style="display:none">
@@ -733,6 +731,15 @@ $(function() {
 	$('.custom-items').first().trigger('change');
 
 	$('#heart-speed').on('change', function() {
+		if (rom) {
+			var sbyte = 0x20;
+			switch ($(this).val()) {
+				case 'off': sbyte = 0x00; break;
+				case 'half': sbyte = 0x40; break;
+				case 'quarter': sbyte = 0x80; break;
+			}
+			rom.write(0x180033, sbyte);
+		}
 		localforage.setItem('rom.heart-speed', $(this).val());
 		$('input[name=heart_speed]').val($(this).val());
 	});
@@ -743,6 +750,9 @@ $(function() {
 	});
 
 	$('#generate-sram-trace').on('change', function() {
+		if (rom) {
+			rom.write(0x180030, $(this).prop('checked') ? 0x01 : 0x00);
+		}
 		localforage.setItem('rom.sram-trace', $(this).prop('checked'));
 		$('input[name=sram_trace]').val($(this).prop('checked'));
 	});

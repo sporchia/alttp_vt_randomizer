@@ -29,7 +29,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li{!! (request()->path() == 'game_difficulties') ? ' class="active"' : '' !!}><a href="/game_difficulties">Difficulties</a></li>
 					<li{!! (request()->path() == 'game_logics') ? ' class="active"' : '' !!}><a href="/game_logics">Logics</a></li>
-{{--					<li{!! (request()->path() == 'game_modes') ? ' class="active"' : '' !!}><a href="/game_modes">Modes</a></li> --}}
+					<li{!! (request()->path() == 'game_modes') ? ' class="active"' : '' !!}><a href="/game_modes">Modes</a></li>
 					<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help</a></li>
 			  		<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 					@if (Auth::check())

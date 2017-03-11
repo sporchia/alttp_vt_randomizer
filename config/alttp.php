@@ -51,6 +51,8 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 10,
 				'L4Sword' => 0,
+				'SilverArrowUpgrade' => 0,
+				'Rupoor' => 20,
 			],
 		],
 		'region' => [
@@ -106,6 +108,7 @@ return [
 				'L3Sword' => 0,
 				'L4Sword' => 0,
 				'SilverArrowUpgrade' => 0,
+				'Rupoor' => 20,
 			],
 		],
 		'region' => [

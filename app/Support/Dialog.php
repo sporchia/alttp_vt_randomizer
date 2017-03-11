@@ -50,6 +50,83 @@ class Dialog {
 	}
 
 	/**
+	 * Convert string to byte array for Compressed Dialog Box that can be written to ROM
+	 *
+	 * @param string $string string to convert
+	 * @param int $max_bytes maximum bytes to return
+	 *
+	 * @return array
+	 */
+	public function convertDialogCompressed(string $string, $max_bytes = 256) {
+		$new_string = [];
+		$lines = explode("\n", mb_strtoupper($string));
+		$i = 0;
+		foreach ($lines as $line) {
+			switch ($i) {
+				case 0:
+					break;
+				case 1:
+					$new_string[] = 0xF8;
+					break;
+				case 2:
+				default:
+					$new_string[] = 0xF9;
+					break;
+			}
+			$line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
+			// command
+			if (reset($line_chars) == "{") {
+				switch ($line) {
+					case "{PAUSE5}":
+						$new_string = array_merge($new_string, [0xFE, 0x78, 0x05]);
+						break;
+					case "{PAUSE7}":
+						$new_string = array_merge($new_string, [0xFE, 0x78, 0x07]);
+						break;
+					case "{PAUSE9}":
+						$new_string = array_merge($new_string, [0xFE, 0x78, 0x09]);
+						break;
+					case "{CHANGEPIC}":
+						$new_string = array_merge($new_string, [0xFE, 0x67, 0xFE, 0x67]);
+						break;
+					case "{INTRO}":
+						$new_string = array_merge($new_string, [0xFE, 0x6E, 0x00, 0xFE, 0x77, 0x07, 0xFC, 0x03, 0xFE, 0x6B, 0x02, 0xFE, 0x67]);
+						break;
+					case "{IBOX}":
+						$new_string = array_merge($new_string, [0xFE, 0x6B, 0x02, 0xFE, 0x77, 0x07, 0xFC, 0x03, 0xF7]);
+						break;
+					case "{BREAK}":
+						$new_string = array_merge($new_string, [0xFB]);
+						$i = 0;
+						break;
+				}
+				if (count($new_string) > $max_bytes) {
+					throw new \Exception("command overflowed byte length");
+				}
+				continue;
+			}
+
+			foreach ($line_chars as $char) {
+				$new_string[] = $this->charToHex($char);
+			}
+			$i++;
+
+			if ($i % 3 == 0 && count($lines) > $i) {
+				$new_string[] = 0xF7; // ? perhaps FA
+			}
+			if ($i >= 3 && $i < count($lines)) {
+				$new_string[] = 0xF6;
+			}
+		}
+
+		$new_string[] = 0xFB;
+		if (count($new_string) > $max_bytes) {
+			return array_merge(array_slice($new_string, 0, $max_bytes - 1), [0xFB]);
+		}
+		return $new_string;
+	}
+
+	/**
 	 * Convert character to byte for ROM
 	 * @TODO: consider moving this out to a seperate encoding class
 	 *

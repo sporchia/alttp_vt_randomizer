@@ -129,6 +129,7 @@
 		<li>The Fighter’s Shield and Fire Shield</li>
 		<li>Magic upgrade (½ Magic or ¼ Magic)</li>
 		<li>Silver Arrow upgrade</li>
+		<li>Rupoors (only in Hard/Masochist difficulty)</li>
 	</ul>
 </div>
 @overwrite

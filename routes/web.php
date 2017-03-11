@@ -63,7 +63,6 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
-	config(['game-mode' => 'standard']); // currently overriding mode to be standard
 
 	$rom = new ALttP\Rom();
 	if ($request->has('heart_speed')) {
@@ -80,9 +79,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
-	$hash = $rand->saveSeedRecord();
 	$patch = $rom->getWriteLog();
 	$spoiler = $rand->getSpoiler();
+	$hash = $rand->saveSeedRecord();
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
@@ -111,7 +110,6 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	}
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
-	config(['game-mode' => 'standard']); // currently overriding mode to be standard
 
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);

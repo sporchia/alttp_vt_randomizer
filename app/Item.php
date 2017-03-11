@@ -83,7 +83,7 @@ class Item {
 		}
 
 		static::$items = new ItemCollection([
-			new Item('Nothing', 'Nothing', 0xFF),
+			new Item('Nothing', 'Nothing', 0x5A),
 			new Item\Sword('L1Sword', 'Fighters Sword', 0x49), // Uncle must be dead
 			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', 0x00), // Uncle must be dead
 			new Item\Sword('L2Sword', 'Master Sword', 0x01),

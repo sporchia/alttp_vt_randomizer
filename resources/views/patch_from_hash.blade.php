@@ -20,8 +20,13 @@
 	</div>
 </div>
 <div id="seed-details" class="info panel panel-info" style="display:none">
-	<div class="panel-heading"><h3 class="panel-title">Seed Details: <span class="seed"></span></h3></div>
+	<div class="panel-heading panel-heading-btn">
+		<h3 class="panel-title pull-left">Seed Details: <span class="seed"></span></h3>
+		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog"></span></button>
+		<div class="clearfix"></div>
+	</div>
 	<div class="panel-body">
+		<div class="row" style="padding-bottom:5px;">
 		<div class="col-md-6">
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
@@ -31,6 +36,33 @@
 		<div class="col-md-6">
 			<div class="row">
 				<button name="save" class="btn btn-success" disabled>Save Rom</button>
+			</div>
+		</div>
+	</div>
+		<div class="panel panel-success panel-collapse collapse" id="rom-settings">
+			<div class="panel-heading">
+				<h4 class="panel-title">ROM Settings</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-6">
+					<div class="row">
+						<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+						<label for"generate-sram-trace">SRAM Trace</label>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="input-group" role="group">
+							<span class="input-group-addon">Heart Beep</span>
+							<select id="heart-speed" class="form-control selectpicker">
+								<option value="off">Off</option>
+								<option value="normal">Normal Speed</option>
+								<option value="half" selected>Half Speed</option>
+								<option value="quarter">Quarter Speed</option>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -197,6 +229,24 @@ $(function() {
 		$('#rom-select').hide();
 		$('.alert').hide();
 		loadBlob(this.files[0], true);
+	});
+
+	$('#heart-speed').on('change', function() {
+		if (rom) {
+			var sbyte = 0x20;
+			switch ($(this).val()) {
+				case 'off': sbyte = 0x00; break;
+				case 'half': sbyte = 0x40; break;
+				case 'quarter': sbyte = 0x80; break;
+			}
+			rom.write(0x180033, sbyte);
+		}
+	});
+
+	$('#generate-sram-trace').on('change', function() {
+		if (rom) {
+			rom.write(0x180030, $(this).prop('checked') ? 0x01 : 0x00);
+		}
 	});
 
 	// Load ROM from local storage if it's there

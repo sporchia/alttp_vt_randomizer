@@ -19,6 +19,7 @@ class Randomizer {
 	protected $world;
 	protected $rules;
 	protected $type;
+	static protected $logic_array;
 
 	/**
 	 * Create a new Randomizer
@@ -29,6 +30,11 @@ class Randomizer {
 	 * @return void
 	 */
 	public function __construct($rules = 'normal', $type = 'NoMajorGlitches') {
+		if (!self::$logic_array) {
+			mt_srand(self::LOGIC);
+			self::$logic_array = mt_shuffle(range(0, 255));
+			mt_srand();
+		}
 		$this->rules = $rules;
 		$this->type = $type;
 		$this->world = new World($rules, $type);
@@ -389,7 +395,7 @@ class Randomizer {
 			});
 			// Clear out remaining locations if the pool was smaller than number of locations
 			$region->getLocations()->getEmptyLocations()->each(function($location) use ($rom) {
-				$location->setItem(Item::get('Rupoor'));
+				$location->setItem(Item::get('Nothing'));
 				$location->writeItem($rom);
 			});
 		}
@@ -410,6 +416,10 @@ class Randomizer {
 
 		$rom->setOpenMode(config('game-mode') == 'open');
 
+		if (config('game-mode') == 'open') {
+			$rom->removeUnclesSword();
+		}
+
 		$this->randomizeCredits($rom);
 
 		$rom->skipZeldaSwordCheck();
@@ -426,11 +436,13 @@ class Randomizer {
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
 				$rom->setRandomizerSeedType('Glitched');
 				$rom->setLightWorldLampCone(false);
+				$rom->setWarningFlags(bindec('01100000'));
 				break;
 			case 'SpeedRunner':
 				$type_flag = 'S';
 				$rom->setSwampWaterLevel(false);
 				$rom->setLightWorldLampCone(false);
+				$rom->setWarningFlags(bindec('01000000'));
 				break;
 			case 'NoMajorGlitches':
 			default:
@@ -438,6 +450,7 @@ class Randomizer {
 				break;
 		}
 
+		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->rules), 21, ' '));
 
 		$this->seed->patch = json_encode($rom->getWriteLog());
@@ -563,7 +576,8 @@ class Randomizer {
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
 			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
-			"You drove\naway my other\nself, Aghanim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
+			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
+			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurect me.",
 		])));
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
@@ -578,6 +592,11 @@ class Randomizer {
 			"\n     G G",
 			"\n     G G",
 			"All your base\nare belong\nto us.",
+			"You have ended\nthe domination\nof dr. wily",
+			"  thanks for\n  playing!!!",
+			"\n   You Win!",
+			"  Thank you!\n  your quest\n   is over.",
+			"   A winner\n      is\n     you!",
 		])));
 
 		return $this;

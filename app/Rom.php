@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-03-04';
-	const HASH = '63260fed8e484eaae929b133bafbbb38';
+	const BUILD = '2017-03-11';
+	const HASH = '670097e45b9110548e65a068a0177a41';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -22,7 +22,7 @@ class Rom {
 	 *
 	 * @return Build
 	 */
-	public static function saveBuild(array $patch) {
+	public static function saveBuild(array $patch) : Build {
 		$build = Build::firstOrCreate([
 			'build' => static::BUILD,
 			'hash' => static::HASH,
@@ -61,7 +61,7 @@ class Rom {
 	 * @return $this
 	 *
 	 */
-	public function resize(int $size = null) {
+	public function resize(int $size = null) : self {
 		ftruncate($this->rom, $size ?? static::SIZE);
 
 		return $this;
@@ -72,7 +72,7 @@ class Rom {
 	 *
 	 * @return bool
 	 */
-	public function checkMD5() {
+	public function checkMD5() : bool {
 		return hash_file('md5', $this->tmp_file) === static::HASH;
 	}
 
@@ -83,7 +83,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setHeartBeepSpeed(string $setting) {
+	public function setHeartBeepSpeed(string $setting) : self {
 		switch ($setting) {
 			case 'off':
 				$byte = 0x00;
@@ -111,7 +111,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setRupoorValue($value = 10) {
+	public function setRupoorValue($value = 10) : self {
 		$this->write(0x180036, pack('v*', $value));
 
 		return $this;
@@ -124,7 +124,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMaxArrows($max = 30) {
+	public function setMaxArrows($max = 30) : self {
 		$this->write(0x180035, pack('C', $max));
 
 		return $this;
@@ -137,7 +137,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMaxBombs($max = 10) {
+	public function setMaxBombs($max = 10) : self {
 		$this->write(0x180034, pack('C', $max));
 
 		return $this;
@@ -151,7 +151,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setCapacityUpgradeFills(array $fills) {
+	public function setCapacityUpgradeFills(array $fills) : self {
 		$this->write(0x180080, pack('C*', ...array_slice($fills, 0, 4)));
 
 		return $this;
@@ -164,7 +164,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setUncleText(int $offset = 0) {
+	public function setUncleText(int $offset = 0) : self {
 		$texts = [
 			"We're out of\nWeetabix. To\nthe store!",
 			"This seed is\nbootless\nuntil boots.",
@@ -213,7 +213,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setUncleTextString(string $string) {
+	public function setUncleTextString(string $string) : self {
 		$offset = 0x180500;
 
 		$converter = new Dialog;
@@ -231,7 +231,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGanon1TextString(string $string) {
+	public function setGanon1TextString(string $string) : self {
 		$offset = 0x180600;
 
 		$converter = new Dialog;
@@ -249,7 +249,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGanon2TextString(string $string) {
+	public function setGanon2TextString(string $string) : self {
 		$offset = 0x180700;
 
 		$converter = new Dialog;
@@ -267,7 +267,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setTriforceTextString(string $string) {
+	public function setTriforceTextString(string $string) : self {
 		$offset = 0x180400;
 
 		$converter = new Dialog;
@@ -285,7 +285,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setBlindTextString(string $string) {
+	public function setBlindTextString(string $string) : self {
 		$offset = 0x180800;
 
 		$converter = new Dialog;
@@ -303,7 +303,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setPyramidFairyTextString(string $string) {
+	public function setPyramidFairyTextString(string $string) : self {
 		$offset = 0x180900;
 
 		$converter = new Dialog;
@@ -321,7 +321,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setPedestalTextbox(string $string) {
+	public function setPedestalTextbox(string $string) : self {
 		$offset = 0x180300;
 
 		$converter = new Dialog;
@@ -340,7 +340,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setKingsReturnCredits(string $string) {
+	public function setKingsReturnCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 22), 22, ' ', STR_PAD_BOTH);
 		$offset = 0x76928;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -358,7 +358,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSanctuaryCredits(string $string) {
+	public function setSanctuaryCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
 		$offset = 0x76964;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -376,7 +376,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setKakarikoTownCredits(string $string) {
+	public function setKakarikoTownCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76997;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -394,7 +394,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setDesertPalaceCredits(string $string) {
+	public function setDesertPalaceCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 24), 24, ' ', STR_PAD_BOTH);
 		$offset = 0x769D4;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -412,7 +412,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMountainTowerCredits(string $string) {
+	public function setMountainTowerCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 24), 24, ' ', STR_PAD_BOTH);
 		$offset = 0x76A12;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -430,7 +430,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLinksHouseCredits(string $string) {
+	public function setLinksHouseCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 19), 19, ' ', STR_PAD_BOTH);
 		$offset = 0x76A52;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -448,7 +448,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setZoraCredits(string $string) {
+	public function setZoraCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
 		$offset = 0x76A85;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -466,7 +466,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMagicShopCredits(string $string) {
+	public function setMagicShopCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76AC5;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -484,7 +484,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setWoodsmansHutCredits(string $string) {
+	public function setWoodsmansHutCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
 		$offset = 0x76AFC;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -502,7 +502,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setFluteBoyCredits(string $string) {
+	public function setFluteBoyCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76B34;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -520,7 +520,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setWishingWellCredits(string $string) {
+	public function setWishingWellCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76B71;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -538,7 +538,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSwordsmithsCredits(string $string) {
+	public function setSwordsmithsCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
 		$offset = 0x76BAC;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -556,7 +556,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setBugCatchingKidCredits(string $string) {
+	public function setBugCatchingKidCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
 		$offset = 0x76BDF;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -574,7 +574,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setDeathMountainCredits(string $string) {
+	public function setDeathMountainCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
 		$offset = 0x76C19;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -592,7 +592,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLostWoodsCredits(string $string) {
+	public function setLostWoodsCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
 		$offset = 0x76C51;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -610,7 +610,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setAltarCredits(string $string) {
+	public function setAltarCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
 		$offset = 0x76C81;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -625,27 +625,9 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setDebugMode($enable = true) {
+	public function setDebugMode($enable = true) : self {
 		$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
 		$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
-
-		return $this;
-	}
-
-	/**
-	 * dont use this. It's not properly set up yet
-	 *
-	 * @return $this
-	 */
-	public function setEndGameMode() {
-		$this->setDebugMode();
-		$debug_offset = 0x2716A;
-		$this->write($debug_offset + 26, pack('C*', 0x04)); // sword
-		$this->write($debug_offset + 27, pack('C*', 0x03)); // shield
-		$this->write($debug_offset + 28, pack('C*', 0x02)); // mail
-		$this->write($debug_offset + 53, pack('C*', 0x07)); // pendants
-		$this->write($debug_offset + 59, pack('C*', 0xFF)); // crystals
-		$this->write($debug_offset + 60, pack('C*', 0x02)); // magic
 
 		return $this;
 	}
@@ -657,7 +639,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSRAMTrace($enable = true) {
+	public function setSRAMTrace($enable = true) : self {
 		$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -670,7 +652,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setRandomizerSeedType(string $setting) {
+	public function setRandomizerSeedType(string $setting) : self {
 		switch ($setting) {
 			case 'SpeedRunner':
 				$byte = 0x02;
@@ -698,7 +680,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGameType(string $setting) {
+	public function setGameType(string $setting) : self {
 		switch ($setting) {
 			case 'Plandomizer':
 				$byte = 0x01;
@@ -723,17 +705,17 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setTournamentType(string $setting) {
+	public function setTournamentType(string $setting) : self {
 		switch ($setting) {
 			case 'standard':
-				$byte = 0x01;
+				$bytes = [0x01, 0x00];
 				break;
 			case 'none':
 			default:
-				$byte = 0x00;
+				$bytes = [0x00, 0x01];
 		}
 
-		$this->write(0x180213, pack('C', $byte));
+		$this->write(0x180213, pack('C*', ...$bytes));
 
 		return $this;
 	}
@@ -743,7 +725,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function removeUnclesShield() {
+	public function removeUnclesShield() : self {
 		$this->write(0x6D253, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x00, 0x0E));
 		$this->write(0x6D25B, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x00, 0x0E));
 		$this->write(0x6D283, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x00, 0x0E));
@@ -752,7 +734,25 @@ class Rom {
 		$this->write(0x6D2FB, pack('C*', 0x00, 0x00, 0xf7, 0xff, 0x02, 0x0E));
 		$this->write(0x6D313, pack('C*', 0x00, 0x00, 0xe4, 0xff, 0x08, 0x0E));
 
-		//$rom->write(0x1E9C4, pack('S*', 0x0120)); // Halloween Heads Hobo
+		return $this;
+	}
+
+	/**
+	 * Removes Sword from Uncle by moving the tiles for sword to his head and replaces them with his head.
+	 *
+	 * @return $this
+	 */
+	public function removeUnclesSword() : self {
+		$this->write(0x6D263, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x00, 0x0E));
+		$this->write(0x6D26B, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x00, 0x0E));
+		$this->write(0x6D293, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x00, 0x0E));
+		$this->write(0x6D29B, pack('C*', 0x00, 0x00, 0xf7, 0xff, 0x00, 0x0E));
+		$this->write(0x6D2B3, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x02, 0x0E));
+		$this->write(0x6D2BB, pack('C*', 0x00, 0x00, 0xf6, 0xff, 0x02, 0x0E));
+		$this->write(0x6D2E3, pack('C*', 0x00, 0x00, 0xf7, 0xff, 0x02, 0x0E));
+		$this->write(0x6D2EB, pack('C*', 0x00, 0x00, 0xf7, 0xff, 0x02, 0x0E));
+		$this->write(0x6D31B, pack('C*', 0x00, 0x00, 0xe4, 0xff, 0x08, 0x0E));
+		$this->write(0x6D323, pack('C*', 0x00, 0x00, 0xe4, 0xff, 0x08, 0x0E));
 
 		return $this;
 	}
@@ -764,7 +764,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setHardMode($level = 0, $dont_nerf_blue_potion = false) {
+	public function setHardMode($level = 0, $dont_nerf_blue_potion = false) : self {
 		switch ($level) {
 			case 0:
 				// Cape magic
@@ -797,6 +797,7 @@ class Rom {
 				$this->write(0xF73E6, pack('C*', 0x30)); // 0
 
 				$this->setRupoorValue(0);
+				$this->setBelowGanonChest(false);
 
 				$dont_nerf_blue_potion = true;
 				break;
@@ -835,7 +836,9 @@ class Rom {
 				$this->write(0xF73DE, pack('C*', 0x30)); // 0
 				$this->write(0xF73E6, pack('C*', 0x30)); // 0
 
-				$this->setRupoorValue(5);
+				$this->setRupoorValue(10);
+				$this->setBelowGanonChest(true);
+				$this->write(0xE9A7, 0x58); // silver arrow upgrade
 
 				break;
 			case 2:
@@ -876,7 +879,9 @@ class Rom {
 				$this->write(0xF73DE, pack('C*', 0x3C)); // -
 				$this->write(0xF73E6, pack('C*', 0x3C)); // -
 
-				$this->setRupoorValue(5);
+				$this->setRupoorValue(20);
+				$this->setBelowGanonChest(true);
+				$this->write(0xE9A7, 0x02); // tempered sword
 
 				break;
 		}
@@ -889,6 +894,7 @@ class Rom {
 			$this->write(0x2F7B1, pack('C*', 0x22)); // 6
 			$this->write(0x2F7A9, pack('C*', 0x30)); // 0
 		}
+
 		return $this;
 	}
 
@@ -899,7 +905,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSmithyQuickItemGive($enable = true) {
+	public function setSmithyQuickItemGive($enable = true) : self {
 		$this->write(0x180029, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -912,10 +918,28 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setPyramidFairyChests($enable = true) {
+	public function setPyramidFairyChests($enable = true) : self {
 		$this->write(0x1FC16, $enable
 			? pack('C*', 0xB1, 0xC6, 0xF9, 0xC9, 0xC6, 0xF9)
 			: pack('C*', 0xA8, 0xB8, 0x3D, 0xD0, 0xB8, 0x3D));
+
+		return $this;
+	}
+
+	/**
+	 * Set space directly below Ganon to have a chest
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setBelowGanonChest($enable = true) : self {
+		// convert telepathic tile to chest and place it
+		$this->write(0x50563, $enable ? pack('C*', 0xC5, 0x76) : pack('C*', 0x3F, 0x14));
+		// lock door to under ganon
+		$this->write(0x50599, $enable ? pack('C*', 0x38) : pack('C*', 0x00));
+		// set dungeon secret to this chest
+		$this->write(0xE9A5, $enable ? pack('C*', 0x10, 0x00, 0x58) : pack('C*', 0x7E, 0x00, 0x24));
 
 		return $this;
 	}
@@ -927,7 +951,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setOpenMode($enable = true) {
+	public function setOpenMode($enable = true) : self {
 		$this->write(0x180032, pack('C*', $enable ? 0x01 : 0x00));
 		$this->setSewersLampCone(!$enable);
 		$this->setLightWorldLampCone(!$enable);
@@ -943,7 +967,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSewersLampCone($enable = true) {
+	public function setSewersLampCone($enable = true) : self {
 		$this->write(0x180038, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -956,7 +980,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLightWorldLampCone($enable = true) {
+	public function setLightWorldLampCone($enable = true) : self {
 		$this->write(0x180039, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -969,7 +993,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setDarkWorldLampCone($enable = true) {
+	public function setDarkWorldLampCone($enable = true) : self {
 		$this->write(0x18003A, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -980,7 +1004,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function skipZeldaSwordCheck($enable = true) {
+	public function skipZeldaSwordCheck($enable = true) : self {
 		$this->write(0x2EBD4, pack('C*', $enable ? 0x05 : 0x02));
 
 		return $this;
@@ -993,7 +1017,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMirrorlessSaveAneQuitToLightWorld($enable = true) {
+	public function setMirrorlessSaveAneQuitToLightWorld($enable = true) : self {
 		$this->write(0x1800A0, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1006,7 +1030,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSwampWaterLevel($enable = true) {
+	public function setSwampWaterLevel($enable = true) : self {
 		$this->write(0x1800A1, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1019,7 +1043,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setPreAgahnimDarkWorldDeathInDungeon($enable = true) {
+	public function setPreAgahnimDarkWorldDeathInDungeon($enable = true) : self {
 		$this->write(0x1800A2, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1032,8 +1056,22 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSeedString(string $seed) {
+	public function setSeedString(string $seed) : self {
 		$this->write(0x7FC0, substr($seed, 0, 21));
+
+		return $this;
+	}
+
+	/**
+	 * Write a hash of Logic version in ROM.
+	 *
+	 * @param array $byte byte array that relates to logic
+	 *
+	 * @return $this
+	 */
+	public function writeRandomizerLogicHash(array $bytes) : self {
+		$this->write(0x181000, pack('C*', ...$bytes));
+
 		return $this;
 	}
 
@@ -1044,12 +1082,37 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function writeRNGBlock(Closure $random) {
+	public function writeRNGBlock(Closure $random) : self {
 		$string = '';
 		for ($i = 0; $i < 1024; $i++) {
 			$string .= pack('C*', $random());
 		}
 		$this->write(0x178000, $string);
+
+		return $this;
+	}
+
+	/**
+	 * set the flags byte in ROM
+	 *
+	 * dgGe mutT
+	 * d - Nonstandard Dungeon Configuration (Not Map/Compass/BigKey/SmallKeys in same quantity as vanilla)
+	 * g - Requires Minor Glitches (Fake flippers, bomb jumps, etc)
+	 * G - Requires Major Glitches (OW YBA/Clips, etc)
+	 * e - Requires EG
+	 *
+	 * m - Contains Multiples of Major Items
+	 * u - Contains Unreachable Items
+	 * t - Minor Trolling (Swapped around levers, etc)
+	 * T - Major Trolling (Forced-guess softlocks, impossible seed, etc)
+	 *
+	 * @param int $flags byte of flags to set
+	 *
+	 * @return $this
+	 */
+	public function setWarningFlags(int $flags) : self {
+		$this->write(0x180212, pack('C*', $flags));
+
 		return $this;
 	}
 
@@ -1061,12 +1124,13 @@ class Rom {
 	 * @return $this
 	 *
 	 **/
-	public function applyPatch(array $patch) {
+	public function applyPatch(array $patch) : self {
 		foreach ($patch as $part) {
 			foreach ($part as $address => $data) {
 				$this->write($address, pack('C*', ...array_values($data)));
 			}
 		}
+
 		return $this;
 	}
 
@@ -1077,7 +1141,7 @@ class Rom {
 	 *
 	 * @return bool
 	 */
-	public function save(string $output_location) {
+	public function save(string $output_location) : bool {
 		return copy($this->tmp_file, $output_location);
 	}
 
@@ -1089,7 +1153,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function write(int $offset, $data) {
+	public function write(int $offset, $data) : self {
 		Log::debug(sprintf("write: 0x%s: 0x%2s\n", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 		$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		fseek($this->rom, $offset);
@@ -1103,7 +1167,7 @@ class Rom {
 	 *
 	 * @return array
 	 */
-	public function getWriteLog() {
+	public function getWriteLog() : array {
 		return $this->write_log;
 	}
 
@@ -1112,7 +1176,7 @@ class Rom {
 	 *
 	 * @param int $offset location in the ROM to begin reading
 	 * @param int $length data to read
-	 *
+	 * // TODO: this should probably always be an array, or a new Bytes object
 	 * @return array
 	 */
 	public function read(int $offset, int $length = 1) {
@@ -1137,7 +1201,7 @@ class Rom {
 	 *
 	 * @return array
 	 */
-	public function convertCredits(string $string) {
+	public function convertCredits(string $string) : array {
 		$byte_array = [];
 		foreach (str_split(strtolower($string)) as $char) {
 			$byte_array[] = $this->charToCreditsHex($char);
@@ -1153,7 +1217,7 @@ class Rom {
 	 *
 	 * @return int
 	 */
-	private function charToCreditsHex($char) {
+	private function charToCreditsHex($char) : int {
 		if (preg_match('/[a-z]/', $char)) {
 			return ord($char) - 0x47;
 		}

@@ -66,9 +66,7 @@ class Randomize extends Command {
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 
-			if ($this->option('open-mode')) {
-				config(['game-mode' => 'open']);
-			}
+			config(['game-mode' => $this->option('open-mode') ? 'open' : 'standard']);
 
 			$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 			$rand->makeSeed($this->option('seed'));
