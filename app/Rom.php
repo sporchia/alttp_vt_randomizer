@@ -1224,8 +1224,10 @@ class Rom {
 		switch ($char) {
 			case ' ': return 0x9F;
 			case ',': return 0x37;
+			case '.': return 0x37;
 			case '-': return 0x36;
 			case "'": return 0x35;
+			default: return 0x9F;
 		}
 	}
 }
