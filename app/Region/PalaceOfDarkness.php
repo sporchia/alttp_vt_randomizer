@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class PalaceOfDarkness extends Region {
 	protected $name = 'Dark Palace';
+	public $music_addresses = [
+		0x155B8,
+	];
 
 	/**
 	 * Create a new Palace of Darkness Region and initalize it's locations

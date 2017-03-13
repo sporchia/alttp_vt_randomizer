@@ -11,6 +11,12 @@ use ALttP\World;
  */
 class TurtleRock extends Region {
 	protected $name = 'Turtle Rock';
+	public $music_addresses = [
+		0x155C7,
+		0x155A7,
+		0x155AA,
+		0x155AB,
+	];
 	private $key_fill_1 = [
 		"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
 		"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",

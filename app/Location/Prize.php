@@ -27,6 +27,27 @@ class Prize extends Location {
 	}
 
 	/**
+	 * When writing a prize we also change the music for the region
+	 *
+	 * @param Rom $rom ROM we are writing to
+	 * @param Item $item item we are placing at this location
+	 *
+	 * @return $this
+	 */
+	public function writeItem(Rom $rom, Item $item = null) {
+		parent::writeItem($rom, $item);
+
+		if (isset($this->region->music_addresses) && is_array($this->region->music_addresses)) {
+			$item = $this->getItem();
+			foreach ($this->region->music_addresses as $address) {
+				$rom->write($address, pack('C*', is_a($item, Pendant::class) ? 0x11 : 0x16));
+			}
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Read Item from ROM into this Location.
 	 *
 	 * @param Rom $rom ROM we are reading from

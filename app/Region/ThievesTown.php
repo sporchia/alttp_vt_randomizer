@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class ThievesTown extends Region {
 	protected $name = 'Thieves Town';
+	public $music_addresses = [
+		0x155C6,
+	];
 
 	/**
 	 * Create a new Thieves Town Region and initalize it's locations

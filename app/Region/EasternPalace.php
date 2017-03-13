@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class EasternPalace extends Region {
 	protected $name = 'Eastern Palace';
+	public $music_addresses = [
+		0x1559A,
+	];
 
 	/**
 	 * Create a new Eastern Palace Region and initalize it's locations

@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class SwampPalace extends Region {
 	protected $name = 'Swamp Palace';
+	public $music_addresses = [
+		0x155B7,
+	];
 
 	/**
 	 * Create a new Swamp Palace Region and initalize it's locations

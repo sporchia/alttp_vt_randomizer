@@ -572,6 +572,8 @@ class Randomizer {
 			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
 			"I hate insect\npuns, they\nreally bug me.",
 			"I haven't seen\nthe eye doctor\nin years",
+			"I don't see\nyou having a\nbright future",
+			"Are you doing\na blind run\nof this game?",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([

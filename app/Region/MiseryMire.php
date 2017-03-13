@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class MiseryMire extends Region {
 	protected $name = 'Misery Mire';
+	public $music_addresses = [
+		0x155B9,
+	];
 
 	/**
 	 * Create a new Misery Mire Region and initalize it's locations

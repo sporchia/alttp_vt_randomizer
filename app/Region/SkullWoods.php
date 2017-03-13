@@ -11,6 +11,16 @@ use ALttP\World;
  */
 class SkullWoods extends Region {
 	protected $name = 'Skull Woods';
+	public $music_addresses = [
+		0x155BA,
+		0x155BB,
+		0x155BC,
+		0x155BD,
+		0x15608,
+		0x15609,
+		0x1560A,
+		0x1560B,
+	];
 
 	/**
 	 * Create a new Skull Woods Region and initalize it's locations

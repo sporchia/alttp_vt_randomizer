@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class TowerOfHera extends Region {
 	protected $name = 'Tower Of Hera';
+	public $music_addresses = [
+		0x155C5,
+	];
 
 	/**
 	 * Create a new Tower of Hera Region and initalize it's locations
