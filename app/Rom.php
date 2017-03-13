@@ -838,7 +838,7 @@ class Rom {
 
 				$this->setRupoorValue(10);
 				$this->setBelowGanonChest(true);
-				$this->write(0xE9A7, 0x58); // silver arrow upgrade
+				$this->write(0xE9A7, pack('C*', 0x58)); // silver arrow upgrade
 
 				break;
 			case 2:
@@ -881,7 +881,7 @@ class Rom {
 
 				$this->setRupoorValue(20);
 				$this->setBelowGanonChest(true);
-				$this->write(0xE9A7, 0x02); // tempered sword
+				$this->write(0xE9A7, pack('C*', 0x02)); // tempered sword
 
 				break;
 		}
