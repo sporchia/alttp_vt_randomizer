@@ -54,29 +54,34 @@ class Dialog {
 	 *
 	 * @param string $string string to convert
 	 * @param int $max_bytes maximum bytes to return
+	 * @param bool $pause whether to pause for input
+	 * @param int $wrap if greater than 0 wrap lines to this value
 	 *
 	 * @return array
 	 */
-	public function convertDialogCompressed(string $string, $max_bytes = 256) {
+	public function convertDialogCompressed(string $string, $max_bytes = 256, $pause = true, $wrap = 0) {
 		$new_string = [];
 		$lines = explode("\n", mb_strtoupper($string));
+		if ($wrap > 0) {
+			$new_lines = [];
+			foreach ($lines as $line) {
+				$new_line = wordwrap($line, $wrap, "\n");
+				$new_lines = array_merge($new_lines, explode("\n", mb_strtoupper($new_line)));
+			}
+			$lines = $new_lines;
+		}
 		$i = 0;
 		foreach ($lines as $line) {
-			switch ($i) {
-				case 0:
-					break;
-				case 1:
-					$new_string[] = 0xF8;
-					break;
-				case 2:
-				default:
-					$new_string[] = 0xF9;
-					break;
-			}
 			$line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
 			// command
 			if (reset($line_chars) == "{") {
-				switch ($line) {
+				switch (trim($line)) {
+					case "{PAUSE1}":
+						$new_string = array_merge($new_string, [0xFE, 0x78, 0x01]);
+						break;
+					case "{PAUSE3}":
+						$new_string = array_merge($new_string, [0xFE, 0x78, 0x03]);
+						break;
 					case "{PAUSE5}":
 						$new_string = array_merge($new_string, [0xFE, 0x78, 0x05]);
 						break;
@@ -106,16 +111,33 @@ class Dialog {
 				continue;
 			}
 
+			switch ($i) {
+				case 0:
+					break;
+				case 1:
+					$new_string[] = 0xF8;
+					break;
+				case 2:
+				default:
+					if ($i >= 3 && $i < count($lines)) {
+						$new_string[] = 0xF6;
+					}
+					$new_string[] = 0xF9;
+					break;
+			}
+
+			// the first box needs to fill the full width with spaces as the palette is loaded weird.
+			if (!$pause && $i < 3) {
+				$line_chars = array_pad($line_chars, 14, ' ');
+			}
+
 			foreach ($line_chars as $char) {
 				$new_string[] = $this->charToHex($char);
 			}
 			$i++;
 
-			if ($i % 3 == 0 && count($lines) > $i) {
-				$new_string[] = 0xF7; // ? perhaps FA
-			}
-			if ($i >= 3 && $i < count($lines)) {
-				$new_string[] = 0xF6;
+			if ($pause && $i % 3 == 0 && count($lines) > $i) {
+				$new_string[] = 0xF7;
 			}
 		}
 

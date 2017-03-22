@@ -8,6 +8,11 @@ class Lz2Test extends TestCase {
 		$this->lz2 = new Lz2;
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+		unset($this->lz2);
+	}
+
 	public function testCompressDirectCopy() {
 		$this->assertEquals([0 << 5 | 4, 1, 3, 5, 7, 9, 255], $this->lz2->compress([1, 3, 5, 7, 9]));
 	}

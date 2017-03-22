@@ -35,6 +35,24 @@ class HyruleCastleEscape extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-C-1F] Sanctuary"]->setItem(Item::get('HeartContainer'));
+		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setItem(Item::get('TenArrows'));
+		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setItem(Item::get('Boomerang'));
+		$this->locations["[dungeon-C-B1] Hyrule Castle - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setItem(Item::get('Lamp'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Hyrule Castle Escape has: Map, Key
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

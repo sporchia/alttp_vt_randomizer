@@ -38,6 +38,24 @@ class IcePalace extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-D5-B1] Ice Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D5-B3] Ice Palace - spike room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[dungeon-D5-B5] Ice Palace - b5 up staircase"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setItem(Item::get('BlueMail'));
+		$this->locations["Heart Container - Kholdstare"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Ice Palace has: Big Key, Map, Compass, 2 Keys
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

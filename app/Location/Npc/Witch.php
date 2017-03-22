@@ -154,6 +154,12 @@ class Witch extends Npc {
 				return "mekalekahi mekahiney ho";
 			case Item::get('Rupoor'):
 				return "witch stole your rupees";
+			case Item::get('RedClock'):
+				return "shrooms for ruby time";
+			case Item::get('BlueClock'):
+				return "fungus for blue time";
+			case Item::get('GreenClock'):
+				return "shrooms for green time";
 			case Item::get('Nothing'):
 			default:
 				return "mushrooms go poof";

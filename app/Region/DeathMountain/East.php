@@ -1,9 +1,9 @@
 <?php namespace ALttP\Region\DeathMountain;
 
-use ALttP\Support\LocationCollection;
+use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
-use ALttP\Item;
+use ALttP\Support\LocationCollection;
 use ALttP\World;
 
 /**
@@ -34,6 +34,26 @@ class East extends Region {
 			new Location\Chest("[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", 0xEB3C, null, $this),
 			new Location\Standing("Piece of Heart (Death Mountain - floating island)", 0x180141, null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[cave-012-1F] Death Mountain - wall of caves - left cave"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]"]->setItem(Item::get('TenArrows'));
+		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setItem(Item::get('PieceOfHeart'));
+
+		return $this;
 	}
 
 	/**

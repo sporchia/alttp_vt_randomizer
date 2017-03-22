@@ -59,6 +59,85 @@ class RomTest extends TestCase {
 		$this->assertEquals([0xE7, 0x03], $this->rom->read(0x180036, 2));
 	}
 
+	public function testSetByrnaCaveSpikeDamageDefault() {
+		$this->rom->setByrnaCaveSpikeDamage();
+
+		$this->assertEquals(0x08, $this->rom->read(0x180168));
+	}
+
+	public function testSetByrnaCaveSpikeDamage() {
+		$this->rom->setByrnaCaveSpikeDamage(0x02);
+
+		$this->assertEquals(0x02, $this->rom->read(0x180168));
+	}
+
+	public function testSetClockModeDefault() {
+		$this->rom->setClockMode();
+
+		$this->assertEquals([0x00, 0x00, 0x00], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetClockModeCountdownStopNoReset() {
+		$this->rom->setClockMode('countdown-stop');
+
+		$this->assertEquals([0x01, 0x00, 0x00], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetClockModeCountdownContinueNoReset() {
+		$this->rom->setClockMode('countdown-continue');
+
+		$this->assertEquals([0x01, 0x01, 0x00], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetClockModeStopwatchNoReset() {
+		$this->rom->setClockMode('stopwatch');
+
+		$this->assertEquals([0x02, 0x01, 0x00], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetClockModeCountdownStopReset() {
+		$this->rom->setClockMode('countdown-stop', true);
+
+		$this->assertEquals([0x01, 0x00, 0x01], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetClockModeCountdownContinueReset() {
+		$this->rom->setClockMode('countdown-continue', true);
+
+		$this->assertEquals([0x01, 0x01, 0x01], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetClockModeStopwatchReset() {
+		$this->rom->setClockMode('stopwatch', true);
+
+		$this->assertEquals([0x02, 0x01, 0x01], $this->rom->read(0x180190, 3));
+	}
+
+	public function testSetStartingTime() {
+		// 5 hours
+		$this->rom->setStartingTime(5 * 60 * 60);
+
+		$this->assertEquals([0xC0, 0x7A, 0x10, 0x00], $this->rom->read(0x18020C, 4));
+	}
+
+	public function testSetRedClock() {
+		$this->rom->setRedClock(5 * 60);
+
+		$this->assertEquals([0x50, 0x46, 0x00, 0x00], $this->rom->read(0x180200, 4));
+	}
+
+	public function testSetBlueClock() {
+		$this->rom->setBlueClock(5 * 60);
+
+		$this->assertEquals([0x50, 0x46, 0x00, 0x00], $this->rom->read(0x180204, 4));
+	}
+
+	public function testSetGreenClock() {
+		$this->rom->setGreenClock(5 * 60);
+
+		$this->assertEquals([0x50, 0x46, 0x00, 0x00], $this->rom->read(0x180208, 4));
+	}
+
 	public function testSetMaxArrows() {
 		$this->rom->setMaxArrows(40);
 
@@ -85,8 +164,8 @@ class RomTest extends TestCase {
 			0, 171, 0, 174, 0, 173, 0, 198, 127], $this->rom->read(0x180500, 100));
 	}
 
-	public function testSetExtenedUncleText32() {
-		$this->rom->setUncleText(32);
+	public function testSetExtenedUncleText31() {
+		$this->rom->setUncleText(31);
 
 		$converted = [116, 0, 165, 0, 200, 0, 160, 0, 160, 0, 160, 0, 255, 0, 187, 0, 190, 0, 185, 0, 174, 0, 174, 117,
 			0, 187, 0, 174, 0, 192, 0, 170, 0, 187, 0, 173, 0, 255, 0, 175, 0, 184, 0, 187, 0, 255, 0, 210, 0, 211,

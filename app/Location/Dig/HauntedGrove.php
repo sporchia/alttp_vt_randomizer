@@ -161,6 +161,12 @@ class HauntedGrove extends Dig {
 				return "boy saves magic again";
 			case Item::get('Rupoor'):
 				return "boy steals rupees";
+			case Item::get('RedClock'):
+				return "boy travels time again";
+			case Item::get('BlueClock'):
+				return "boy time travels again";
+			case Item::get('GreenClock'):
+				return "boy adjusts time again";
 			case Item::get('Nothing'):
 			default:
 				return "boy does nothing again";

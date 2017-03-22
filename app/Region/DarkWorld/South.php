@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region\DarkWorld;
 
+use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
 use ALttP\Support\LocationCollection;
@@ -30,6 +31,23 @@ class South extends Region {
 			new Location\Npc("[cave-073] cave northeast of swamp palace - generous guy", 0x180011, null, $this),
 			new Location\Dig("Piece of Heart (Digging Game)", 0x180148, null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[cave-073] cave northeast of swamp palace [top chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-073] cave northeast of swamp palace [top middle chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-073] cave northeast of swamp palace [bottom middle chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-073] cave northeast of swamp palace [bottom chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Flute Boy"]->setItem(Item::get('Shovel'));
+		$this->locations["[cave-073] cave northeast of swamp palace - generous guy"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Piece of Heart (Digging Game)"]->setItem(Item::get('PieceOfHeart'));
+
+		return $this;
 	}
 
 	/**

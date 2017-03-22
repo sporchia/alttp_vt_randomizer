@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-03-11';
-	const HASH = '670097e45b9110548e65a068a0177a41';
+	const BUILD = '2017-03-21';
+	const HASH = 'cb1a549cb4d820aa811bc16f74f44778';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -73,7 +73,16 @@ class Rom {
 	 * @return bool
 	 */
 	public function checkMD5() : bool {
-		return hash_file('md5', $this->tmp_file) === static::HASH;
+		return $this->getMD5() === static::HASH;
+	}
+
+	/**
+	 * Get MD5 of current file.
+	 *
+	 * @return string
+	 */
+	public function getMD5() : string {
+		return hash_file('md5', $this->tmp_file);
 	}
 
 	/**
@@ -113,6 +122,103 @@ class Rom {
 	 */
 	public function setRupoorValue($value = 10) : self {
 		$this->write(0x180036, pack('v*', $value));
+
+		return $this;
+	}
+
+	/**
+	 * Set Cane of Byrna Cave spike floor damage
+	 *
+	 * @param int $dmg_value (0x08: 1 Heart, 0x02: 1/4 Heart)
+	 *
+	 * @return $this
+	 */
+	public function setByrnaCaveSpikeDamage($dmg_value = 0x08) {
+		$this->write(0x180168, pack('C*', $dmg_value));
+
+		return $this;
+	}
+
+	/**
+	 * Set mode for HUD clock
+	 *
+	 * @param string $mode off|stopwatch|countdown-stop|countdown-continue
+	 * @param bool $restart wether to restart the timer
+	 *
+	 * @return $this;
+	 */
+	public function setClockMode($mode = 'off', $restart = false) {
+		switch ($mode) {
+			case 'stopwatch':
+				$bytes = [0x02, 0x01];
+				break;
+			case 'countdown-continue':
+				$bytes = [0x01, 0x01];
+				break;
+			case 'countdown-stop':
+				$bytes = [0x01, 0x00];
+				break;
+			case 'off':
+			default:
+				$bytes = [0x00, 0x00];
+				break;
+		}
+
+		$bytes = array_merge($bytes, [$restart ? 0x01 : 0x00]);
+
+		$this->write(0x180190, pack('C*', ...$bytes));
+
+		return $this;
+	}
+
+	/**
+	 * Set starting time for HUD clock
+	 *
+	 * @param int $seconds time in seconds
+	 *
+	 * @return $this;
+	 */
+	public function setStartingTime($seconds = 0) {
+		$this->write(0x18020C, pack('l*', $seconds * 60));
+
+		return $this;
+	}
+
+	/**
+	 * Set time adjustment for collecting Red Clock Item
+	 *
+	 * @param int $seconds time in seconds
+	 *
+	 * @return $this;
+	 */
+	public function setRedClock($seconds = 0) {
+		$this->write(0x180200, pack('l*', $seconds * 60));
+
+		return $this;
+	}
+
+	/**
+	 * Set time adjustment for collecting Blue Clock Item
+	 *
+	 * @param int $seconds time in seconds
+	 *
+	 * @return $this;
+	 */
+	public function setBlueClock($seconds = 0) {
+		$this->write(0x180204, pack('l*', $seconds * 60));
+
+		return $this;
+	}
+
+	/**
+	 * Set time adjustment for collecting Green Clock Item
+	 *
+	 * @param int $seconds time in seconds
+	 *
+	 * @return $this;
+	 */
+	public function setGreenClock($seconds = 0) {
+		$this->write(0x180208, pack('l*', $seconds * 60));
 
 		return $this;
 	}
@@ -175,13 +281,12 @@ class Rom {
 			"Chasing tail.\nFly ladies.\nDo not follow.",
 			"I feel like\nI've done this\nbefore...",
 			"Magic cape can\npass through\nthe barrier!",
-			"Boots at race?\nSeed confirmed\nimpossible.",
 			"If this is a\nKanzeon seed,\nI'm quitting.",
 			"I am not your\nreal uncle.",
 			"You're going\nto have a very\nbad time.",
 			"Today you\nwill have\nbad luck.",
 			"I am leaving\nforever.\nGoodbye.",
-			"Don’t worry.\nI got this\ncovered.",
+			"Don't worry.\nI got this\ncovered.",
 			"Race you to\nthe castle!",
 			"\n~69 Blaze It!~",
 			"\n      hi",
@@ -798,6 +903,7 @@ class Rom {
 
 				$this->setRupoorValue(0);
 				$this->setBelowGanonChest(false);
+				$this->setByrnaCaveSpikeDamage(0x08);
 
 				$dont_nerf_blue_potion = true;
 				break;
@@ -839,6 +945,7 @@ class Rom {
 				$this->setRupoorValue(10);
 				$this->setBelowGanonChest(true);
 				$this->write(0xE9A7, pack('C*', 0x58)); // silver arrow upgrade
+				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 			case 2:
@@ -882,6 +989,7 @@ class Rom {
 				$this->setRupoorValue(20);
 				$this->setBelowGanonChest(true);
 				$this->write(0xE9A7, pack('C*', 0x02)); // tempered sword
+				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 		}

@@ -45,6 +45,24 @@ class SkullWoods extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setItem(Item::get('FireRod'));
+		$this->locations["[dungeon-D3-B1] Skull Woods - Big Key room"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-D3-B1] Skull Woods - Compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D3-B1] Skull Woods - east of Fire Rod room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('Key'));
+		$this->locations["Heart Container - Mothula"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Skull Woods has: Big Key, Map, Compass, 3 Keys
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

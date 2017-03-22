@@ -36,6 +36,22 @@ class EasternPalace extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setItem(Item::get('Bow'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - big ball room"]->setItem(Item::get('OneHundredRupees'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('Map'));
+		$this->locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Eastern Palace has: Big Key, Map, Compass
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

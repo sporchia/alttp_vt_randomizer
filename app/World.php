@@ -135,11 +135,28 @@ class World {
 						&& ($collected_items->has('BowAndSilverArrows')
 							|| ($collected_items->has('SilverArrowUpgrade')
 								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows'))))
-						&& ($collected_items->has('L3Sword') || $collected_items->has('L4Sword'))
+						&& (
+							$collected_items->has('L3Sword')
+							|| $collected_items->has('L4Sword')
+							|| $collected_items->has('ProgressiveSword', 3)
+						)
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
 		}
+	}
+
+	/**
+	 * Set the world to the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		foreach ($this->regions as $name => $region) {
+			$region->setVanilla();
+		}
+
+		return $this;
 	}
 
 	/**
@@ -455,6 +472,17 @@ class World {
 	 */
 	public function getLocation(string $name) {
 		return $this->locations[$name];
+	}
+
+	/**
+	 * Get all the Locations in this Region that do not have an Item assigned
+	 *
+	 * @return Support\LocationCollection
+	 */
+	public function getEmptyLocations() {
+		return $this->locations->filter(function($location) {
+			return !$location->hasItem();
+		});
 	}
 
 	/**

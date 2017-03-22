@@ -75,6 +75,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
+	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+		config(["alttp.{$difficulty}.spoil.BootsLocation" => false]);
+	}
+
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
@@ -110,6 +114,10 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	}
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
+
+	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+		config(["alttp.{$difficulty}.spoil.BootsLocation" => false]);
+	}
 
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);

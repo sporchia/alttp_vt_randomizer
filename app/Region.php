@@ -111,6 +111,15 @@ class Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		return $this;
+	}
+
+	/**
 	 * Initalize the logic for the Region
 	 *
 	 * @param string $type the ruleset to apply to Locations

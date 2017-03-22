@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
 use ALttP\Support\LocationCollection;
@@ -32,6 +33,25 @@ class DarkWorld extends Region {
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]", 0xEB57, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]", 0xEB5A, null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[cave-055] Spike cave"]->setItem(Item::get('CaneOfByrna'));
+		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setItem(Item::get('FiftyRupees'));
+
+		return $this;
 	}
 
 	/**

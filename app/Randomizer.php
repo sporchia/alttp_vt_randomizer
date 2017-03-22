@@ -172,17 +172,35 @@ class Randomizer {
 
 			switch ($this->config('rom.HardMode', 0)) {
 				case 2:
-					array_push($swords, Item::get('MasterSword'));
-					array_push($swords, Item::get('MasterSword'));
+					array_push($swords, Item::get('L1Sword'));
+					array_push($swords, Item::get('L1Sword'));
 					break;
 				case 1:
-					array_push($swords, Item::get('MasterSword'));
+					array_push($swords, Item::get('L1Sword'));
 					array_push($swords, Item::get('L3Sword'));
 					break;
 				default:
 					array_push($swords, Item::get('L3Sword'));
 					array_push($swords, Item::get('L4Sword'));
 					break;
+			}
+
+			if (config('progressive-swords', false)) {
+				$swords = [Item::get('ProgressiveSword')];
+				switch ($this->config('rom.HardMode', 0)) {
+					case 2:
+						array_push($swords, Item::get('L1Sword'));
+						array_push($swords, Item::get('L1Sword'));
+						break;
+					case 1:
+						array_push($swords, Item::get('L1Sword'));
+						array_push($swords, Item::get('ProgressiveSword'));
+						break;
+					default:
+						array_push($swords, Item::get('ProgressiveSword'));
+						array_push($swords, Item::get('ProgressiveSword'));
+						break;
+				}
 			}
 
 			while (count($swords) > 0) {
@@ -201,11 +219,49 @@ class Randomizer {
 		} else {
 			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
 			if (config('game-mode') == 'open') {
-				config(["alttp.{$this->rules}.item.count.L1Sword" => $this->config('item.count.L1Sword', 0) + 1]);
+				if (config('progressive-swords', false)) {
+					config(["alttp.{$this->rules}.item.count.MasterSword" => $this->config('item.count.MasterSword', 1) - 1]);
+					config(["alttp.{$this->rules}.item.count.L3Sword" => $this->config('item.count.L3Sword', 1) - 1]);
+					config(["alttp.{$this->rules}.item.count.L4Sword" => $this->config('item.count.L4Sword', 1) - 1]);
+					config(["alttp.{$this->rules}.item.count.ProgressiveSword" => $this->config('item.count.ProgressiveSword', 0) + 4]);
+				} else {
+					config(["alttp.{$this->rules}.item.count.L1Sword" => $this->config('item.count.L1Sword', 0) + 1]);
+				}
 			} else {
 				$locations["Uncle"]->setItem(Item::get('L1Sword'));
 				$my_items->addItem(Item::get('L1Sword'));
+
+				if (config('progressive-swords', false)) {
+					config(["alttp.{$this->rules}.item.count.MasterSword" => $this->config('item.count.MasterSword', 1) - 1]);
+					config(["alttp.{$this->rules}.item.count.L3Sword" => $this->config('item.count.L3Sword', 1) - 1]);
+					config(["alttp.{$this->rules}.item.count.L4Sword" => $this->config('item.count.L4Sword', 1) - 1]);
+					config(["alttp.{$this->rules}.item.count.ProgressiveSword" => $this->config('item.count.ProgressiveSword', 0) + 4]);
+				}
 			}
+		}
+
+		if (config('progressive-armor', false)) {
+			$blue = $this->config('item.count.BlueMail', 0);
+			$red = $this->config('item.count.RedMail', 0);
+
+			config(["alttp.{$this->rules}.item.count.BlueMail" => 0]);
+			config(["alttp.{$this->rules}.item.count.RedMail" => 0]);
+
+			config(["alttp.{$this->rules}.item.count.ProgressiveArmor"
+				=> $this->config('item.count.ProgressiveArmor', 0) + $blue + $red]);
+		}
+
+		if (config('progressive-shield', false)) {
+			$blue = $this->config('item.count.BlueShield', 0);
+			$red = $this->config('item.count.RedShield', 0);
+			$mirror = $this->config('item.count.MirrorShield', 0);
+
+			config(["alttp.{$this->rules}.item.count.BlueShield" => 0]);
+			config(["alttp.{$this->rules}.item.count.RedShield" => 0]);
+			config(["alttp.{$this->rules}.item.count.MirrorShield" => 0]);
+
+			config(["alttp.{$this->rules}.item.count.ProgressiveShield"
+				=> $this->config('item.count.ProgressiveShield', 0) + $blue + $red + $mirror]);
 		}
 
 		// fill boss hearts before anything else if we need to
@@ -237,10 +293,6 @@ class Randomizer {
 
 			// Glitched always has 3 extra bottles, no matter what
 			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
-		}
-
-		if ($this->config('rom.HardMode', 0) > 0) {
-			$this->world->getLocation("[cave-055] Spike cave")->setItem(Item::get('Rupoor'));
 		}
 
 		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
@@ -400,6 +452,8 @@ class Randomizer {
 			});
 		}
 
+		$rom->setClockMode($this->config('rom.timerMode', 'off'));
+
 		$rom->setHardMode($this->config('rom.HardMode', 0), in_array($this->type, ['Glitched']));
 
 		$rom->writeRNGBlock(function() {
@@ -425,7 +479,17 @@ class Randomizer {
 		$rom->skipZeldaSwordCheck();
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
-		$rom->setCapacityUpgradeFills([1, 2, 0, 0]);
+		$rom->setCapacityUpgradeFills([
+			$this->config('item.value.BombUpgrade5', 1),
+			$this->config('item.value.BombUpgrade10', 2),
+			$this->config('item.value.ArrowUpgrade5', 0),
+			$this->config('item.value.ArrowUpgrade10', 0),
+		]);
+
+		$rom->setBlueClock($this->config('item.value.BlueClock', 0));
+		$rom->setRedClock($this->config('item.value.RedClock', 0));
+		$rom->setGreenClock($this->config('item.value.GreenClock', 0));
+		$rom->setStartingTime($this->config('rom.timerStart', 0));
 
 		$rom->removeUnclesShield();
 
@@ -490,9 +554,13 @@ class Randomizer {
 				break;
 		}
 
-		switch (mt_rand(0, 1)) {
+		switch (mt_rand(0, 2)) {
 			case 1:
 				$rom->setSanctuaryCredits("read a book");
+				break;
+			case 2:
+				$rom->setSanctuaryCredits("sits in own pew");
+				break;
 		}
 
 		$name = array_first(mt_shuffle([
@@ -504,9 +572,15 @@ class Randomizer {
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
-		switch (mt_rand(0, 1)) {
+		switch (mt_rand(0, 3)) {
 			case 1:
 				$rom->setWoodsmansHutCredits("fresh flapjacks");
+				break;
+			case 2:
+				$rom->setWoodsmansHutCredits("two woodchoppers");
+				break;
+			case 3:
+				$rom->setWoodsmansHutCredits("double lumberman");
 				break;
 		}
 
@@ -516,9 +590,12 @@ class Randomizer {
 				break;
 		}
 
-		switch (mt_rand(0, 1)) {
+		switch (mt_rand(0, 2)) {
 			case 1:
 				$rom->setLostWoodsCredits("dancing pickles");
+				break;
+			case 2:
+				$rom->setLostWoodsCredits("flying vultures");
 				break;
 		}
 
@@ -557,9 +634,15 @@ class Randomizer {
 
 		if ($this->config('spoil.BootsLocation', true) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
-			$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
+			switch ($boots_location->getName()) {
+				case "Piece of Heart (Maze Race)":
+					$rom->setUncleTextString("Boots at race?\nSeed confirmed\nimpossible.");
+					break;
+				default:
+					$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
+			}
 		} else {
-			$rom->setUncleText(mt_rand(0, 32));
+			$rom->setUncleText(mt_rand(0, 31));
 		}
 
 		$rom->setBlindTextString(array_first(mt_shuffle([
@@ -570,10 +653,14 @@ class Randomizer {
 			"I'm glad I\nknow sign\nlanguage,\nit's pretty\nhandy.\n",
 			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
 			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
+			"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
+			"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!",
+			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!",
 			"I hate insect\npuns, they\nreally bug me.",
 			"I haven't seen\nthe eye doctor\nin years",
 			"I don't see\nyou having a\nbright future",
 			"Are you doing\na blind run\nof this game?",
+			"pizza joke? no\nI think it's a\nbit too cheesy",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
@@ -623,6 +710,10 @@ class Randomizer {
 		}
 		for ($i = 0; $i < $this->config('item.count.L4Sword', 1); $i++) {
 			array_push($advancement_items, Item::get('L4Sword'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ProgressiveSword', 0); $i++) {
+			array_push($advancement_items, Item::get('ProgressiveSword'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Bottles', 1); $i++) {
@@ -711,6 +802,14 @@ class Randomizer {
 
 		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
 			array_push($items_to_find, Item::get('BlueShield'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 0); $i++) {
+			array_push($advancement_items, Item::get('ProgressiveShield'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
+			array_push($advancement_items, Item::get('ProgressiveArmor'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
@@ -818,6 +917,16 @@ class Randomizer {
 
 		for ($i = 0; $i < $this->config('item.count.ExtraBottles', 3); $i++) {
 			array_push($items_to_find, $this->getBottle());
+		}
+
+		for ($i = 0; $i < $this->config('item.count.BlueClock', 0); $i++) {
+			array_push($items_to_find, Item::get('BlueClock'));
+		}
+		for ($i = 0; $i < $this->config('item.count.RedClock', 0); $i++) {
+			array_push($items_to_find, Item::get('RedClock'));
+		}
+		for ($i = 0; $i < $this->config('item.count.GreenClock', 0); $i++) {
+			array_push($items_to_find, Item::get('GreenClock'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 0); $i++) {

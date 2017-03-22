@@ -31,6 +31,20 @@ class DeathMountain extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["Ether Tablet"]->setItem(Item::get('Ether'));
+		$this->locations["Old Mountain Man"]->setItem(Item::get('MagicMirror'));
+		$this->locations["Piece of Heart (Spectacle Rock Cave)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Spectacle Rock)"]->setItem(Item::get('PieceOfHeart'));
+
+		return $this;
+	}
+
+	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *

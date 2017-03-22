@@ -3,10 +3,11 @@
 use ALttP\Item;
 
 /**
- * Collection of Items
+ * Collection of Items, maintains counts of items collected as well.
  */
 class ItemCollection extends Collection {
 	protected $no_upgrade_sword_check = false;
+	protected $item_counts = [];
 
 	/**
 	 * Create a new collection.
@@ -30,7 +31,64 @@ class ItemCollection extends Collection {
 	 */
 	public function addItem(Item $item) {
 		$this->offsetSet($item->getName(), $item);
+		if (!isset($this->item_counts[$item->getName()])) {
+			$this->item_counts[$item->getName()] = 0;
+		}
+
+		$this->item_counts[$item->getName()]++;
+
 		return $this;
+	}
+
+	/**
+	 * Remove an item from the collection by name.
+	 *
+	 * @return $this
+	 */
+	public function removeItem($name) {
+		if (!isset($this->item_counts[$name])) {
+			return $this;
+		}
+
+		$this->item_counts[$name]--;
+		if ($this->item_counts[$name] === 0) {
+			$this->offsetUnset($name);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Determine if an item exists in the collection by key.
+	 *
+	 * @param mixed $key
+	 * @param int $at_least mininum number of item in collection
+	 *
+	 * @return bool
+	 */
+	public function has($key, $at_least = 1) {
+		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
+	}
+
+	/**
+	 * Count the number of items in the collection.
+	 *
+	 * @return int
+	 */
+	public function count() {
+		return array_sum($this->item_counts);
+	}
+
+	/**
+	 * Unset the item at a given offset.
+	 *
+	 * @param mixed $offset
+	 *
+	 * @return void
+	 */
+	public function offsetUnset($offset) {
+		unset($this->item_counts[$offset]);
+		unset($this->items[$offset]);
 	}
 
 	/**
@@ -100,6 +158,7 @@ class ItemCollection extends Collection {
 	public function hasSword() {
 		return $this->has('L1Sword')
 			|| $this->has('L1SwordAndShield')
+			|| $this->has('ProgressiveSword')
 			|| $this->hasUpgradedSword();
 	}
 
@@ -112,7 +171,8 @@ class ItemCollection extends Collection {
 		return $this->has('L2Sword')
 			|| $this->has('MasterSword')
 			|| $this->has('L3Sword')
-			|| $this->has('L4Sword');
+			|| $this->has('L4Sword')
+			|| $this->has('ProgressiveSword', 2);
 	}
 
 	/**

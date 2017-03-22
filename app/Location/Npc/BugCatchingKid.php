@@ -155,6 +155,12 @@ class BugCatchingKid extends Npc {
 				return "the magic-saving kid";
 			case Item::get('Rupoor'):
 				return "the toll-booth kid";
+			case Item::get('RedClock'):
+				return "the ruby-time kid";
+			case Item::get('BlueClock'):
+				return "the indigo-time kid";
+			case Item::get('GreenClock'):
+				return "the emerald-time kid";
 			case Item::get('Nothing'):
 			default:
 				return "nothing-having kid";

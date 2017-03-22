@@ -117,6 +117,7 @@
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
 				<li>There are only 2 Bottles</li>
 				<li>Potions and Shields in shops cost twice as much</li>
+				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 				<li>Silver Arrow Upgrade can only be found after falling to Ganon</li>
 			</ul>
 			<p>The following items have been added:</p>
@@ -160,6 +161,7 @@
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
 				<li>There is only 1 Bottle</li>
 				<li>Potions and Shields in Shops are unpurchasable</li>
+				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 				<li>Tempered Sword can only be found after falling to Ganon</li>
 			</ul>
 			<p>The following items have been added:</p>

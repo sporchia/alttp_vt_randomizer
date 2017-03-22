@@ -49,6 +49,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 				case 'AnySword':
 					$items->removeItem('L1Sword');
 					$items->removeItem('L1SwordAndShield');
+					$items->removeItem('ProgressiveSword');
 				case 'UpgradedSword':
 					$items->removeItem('L2Sword');
 					$items->removeItem('MasterSword');

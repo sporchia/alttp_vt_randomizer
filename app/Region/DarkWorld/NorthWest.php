@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region\DarkWorld;
 
+use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
 use ALttP\Support\LocationCollection;
@@ -28,6 +29,21 @@ class NorthWest extends Region {
 			new Location\Standing("Piece of Heart (Dark World blacksmith pegs)", 0x180006, null, $this),
 			new Location\Standing("Piece of Heart (Dark World - bumper cave)", 0x180146, null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[cave-063] doorless hut"]->setItem(Item::get('RedBoomerang'));
+		$this->locations["[cave-062] C-shaped house"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Piece of Heart (Treasure Chest Game)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setItem(Item::get('PieceOfHeart'));
+
+		return $this;
 	}
 
 	/**

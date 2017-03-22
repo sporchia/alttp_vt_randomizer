@@ -2,12 +2,6 @@
 
 return [
 	'normal' => [
-		'output' => [
-			'file' => [
-				'name' => 'alttp - VT_%s_%s.sfc',
-				'spoiler' => 'alttp - VT_%s_%s.txt',
-			],
-		],
 		'region' => [
 			'superBunnyDM' => false,
 		],
@@ -15,13 +9,69 @@ return [
 			'BootsLocation' => true,
 		],
 	],
-	'hard' => [
-		'output' => [
-			'file' => [
-				'name' => 'alttp (hard) - VT_%s_%s.sfc',
-				'spoiler' => 'alttp (hard) - VT_%s_%s.txt',
+	'timed' => [
+		'item' => [
+			'count' => [
+				'TwentyRupees' => 0, // 28 : 560
+				'OneRupee' => 0, // 2 : 2
+				'FiveRupees' => 0, // 4 : 200
+				'ThreeBombs' => 0, // 10
+				'OneHundredRupees' => 3, // 1 : + 200
+				'ThreeHundredRupees' => 6, // 4 + 600
+				'GreenClock' => 25,
+				'RedClock' => 15,
+			],
+			'value' => [
+				'GreenClock' => 300,
+				'RedClock' => -150,
+				'BombUpgrade5' => 2,
+				'BombUpgrade10' => 3,
 			],
 		],
+		'region' => [
+			'superBunnyDM' => false,
+		],
+		'rom' => [
+			'timerMode' => 'countdown-stop',
+			'timerStart' => 45 * 60,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
+		],
+	],
+	'timed-race' => [
+		'item' => [
+			'count' => [
+				'TwentyRupees' => 0, // 28 : 560
+				'OneRupee' => 0, // 2 : 2
+				'FiveRupees' => 0, // 4 : 200
+				'ThreeBombs' => 0, // 10
+				'OneHundredRupees' => 3, // 1 : + 200
+				'ThreeHundredRupees' => 6, // 4 + 600
+				'GreenClock' => 20,
+				'BlueClock' => 10,
+				'RedClock' => 10,
+			],
+			'value' => [
+				'GreenClock' => 240, // reversed for stopwatch
+				'BlueClock' => 120,
+				'RedClock' => -120,
+				'BombUpgrade5' => 2,
+				'BombUpgrade10' => 3,
+			],
+		],
+		'region' => [
+			'superBunnyDM' => false,
+		],
+		'rom' => [
+			'timerMode' => 'stopwatch',
+			'timerStart' => 0,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
+		],
+	],
+	'hard' => [
 		'item' => [
 			'count' => [
 				'Arrow' => 20,
@@ -67,12 +117,6 @@ return [
 		],
 	],
 	'masochist' => [
-		'output' => [
-			'file' => [
-				'name' => 'alttp (masochist) - VT_%s_%s.sfc',
-				'spoiler' => 'alttp (masochist) - VT_%s_%s.txt',
-			],
-		],
 		'item' => [
 			'count' => [
 				'Arrow' => 10,

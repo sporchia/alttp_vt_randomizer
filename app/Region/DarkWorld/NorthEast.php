@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region\DarkWorld;
 
+use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
 use ALttP\Support\LocationCollection;
@@ -35,6 +36,25 @@ class NorthEast extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["Catfish"]->setItem(Item::get('Quake'));
+		$this->locations["Piece of Heart (Pyramid)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
+		$this->locations["Pyramid - Bow"]->setItem(Item::get('BowAndSilverArrows'));
+
+		if ($this->world->config('region.swordsInPool', true)) {
+			$this->locations["Pyramid Fairy - Left"]->setItem(Item::get('L4Sword'));
+			$this->locations["Pyramid Fairy - Right"]->setItem(Item::get('SilverArrowUpgrade'));
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *
@@ -57,7 +77,7 @@ class NorthEast extends Region {
 		});
 
 		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
-			return $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
+			return $items->canShootArrows() && $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hammer')
 						|| ($items->has('MagicMirror') && $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)));
@@ -103,9 +123,9 @@ class NorthEast extends Region {
 		});
 
 		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror')
+			return $items->canShootArrows() && ($items->has('MagicMirror')
 				|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
-					&& ($items->hasABottle() || $items->has("MoonPearl")));
+					&& ($items->hasABottle() || $items->has("MoonPearl"))));
 		});
 
 		if ($this->world->config('region.swordsInPool', true)) {

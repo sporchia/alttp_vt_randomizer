@@ -13,6 +13,7 @@ class TowerOfHera extends Region {
 	protected $name = 'Tower Of Hera';
 	public $music_addresses = [
 		0x155C5,
+		0x1107A,
 	];
 
 	/**
@@ -33,6 +34,22 @@ class TowerOfHera extends Region {
 			new Location\BigChest("[dungeon-L3-4F] Tower of Hera - big chest", 0xE9F8, null, $this),
 			new Location\Drop("Heart Container - Moldorm", 0x180152, null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setItem(Item::get('MoonPearl'));
+		$this->locations["Heart Container - Moldorm"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
 	}
 
 	/**

@@ -79,6 +79,69 @@ class LightWorld extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["Altar"]->setItem(Item::get('MasterSword'));
+		$this->locations["Uncle"]->setItem(Item::get('L1Sword'));
+		$this->locations["[cave-034] Hyrule Castle secret entrance"]->setItem(Item::get('Lamp'));
+		$this->locations["[cave-018] Graveyard - top right grave"]->setItem(Item::get('Cape'));
+		$this->locations["[cave-047] Dam"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[cave-040] Link's House"]->setItem(Item::get('Lamp'));
+		$this->locations["[cave-031] Tavern"]->setItem(Item::get('Bottle'));
+		$this->locations["[cave-026] chicken house"]->setItem(Item::get('TenArrows'));
+		$this->locations["[cave-044] Aginah's cave"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-035] Sahasrahla's Hut [left chest]"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["[cave-035] Sahasrahla's Hut [center chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[cave-035] Sahasrahla's Hut [right chest]"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["[cave-021] Kakariko well [top chest]"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-021] Kakariko well [left chest row of 3]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-021] Kakariko well [center chest row of 3]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-021] Kakariko well [right chest row of 3]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-021] Kakariko well [bottom chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[cave-022-B1] Thief's hut [top chest]"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-022-B1] Thief's hut [top left chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-022-B1] Thief's hut [top right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-022-B1] Thief's hut [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-022-B1] Thief's hut [bottom right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+		$this->locations["[cave-016] cave under rocks west of Santuary"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom left chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[cave-050] cave southwest of Lake Hylia [top left chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-050] cave southwest of Lake Hylia [top right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom right chest]"]->setItem(Item::get('TenArrows'));
+		$this->locations["[cave-051] Ice Cave"]->setItem(Item::get('IceRod'));
+		$this->locations["Bottle Vendor"]->setItem(Item::get('Bottle'));
+		$this->locations["Sahasrahla"]->setItem(Item::get('PegasusBoots'));
+		$this->locations["Magic Bat"]->setItem(Item::get('HalfMagic')); // @TODO: perhaps use 0xFF here
+		$this->locations["Sick Kid"]->setItem(Item::get('BugCatchingNet'));
+		$this->locations["Purple Chest"]->setItem(Item::get('Bottle'));
+		$this->locations["Hobo"]->setItem(Item::get('Bottle'));
+		$this->locations["Bombos Tablet"]->setItem(Item::get('Bombos'));
+		$this->locations["King Zora"]->setItem(Item::get('Flippers'));
+		$this->locations["Piece of Heart (Thieves' Forest Hideout)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Lumberjack Tree)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (south of Haunted Grove)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Graveyard)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Desert - northeast corner)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["[cave-050] cave southwest of Lake Hylia - generous guy"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Library"]->setItem(Item::get('BookOfMudora'));
+		$this->locations["Mushroom"]->setItem(Item::get('Mushroom'));
+		$this->locations["Witch"]->setItem(Item::get('Powder'));
+		$this->locations["Piece of Heart (Maze Race)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Desert - west side)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Lake Hylia)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Dam)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Piece of Heart (Zora's River)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Haunted Grove item"]->setItem(Item::get('OcarinaInactive'));
+
+		return $this;
+	}
+
+
+	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *

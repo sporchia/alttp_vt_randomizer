@@ -44,6 +44,30 @@ class PalaceOfDarkness extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [left chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setItem(Item::get('Hammer'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setItem(Item::get('FiveRupees'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - turtle stalfos room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]"]->setItem(Item::get('Arrow'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - shooter room"]->setItem(Item::get('Key'));
+		$this->locations["Heart Container - Helmasaur King"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Palace of Darkness has: Big Key, Map, Compass, 6 Keys
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

@@ -39,6 +39,22 @@ class DesertPalace extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-L2-B1] Desert Palace - big chest"]->setItem(Item::get('PowerGlove'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - Map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - Small key room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - Big key room"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["Heart Container - Lanmolas"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Desert Palace has: Big Key, Map, Compass, Key
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

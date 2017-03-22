@@ -180,6 +180,12 @@ class Altar extends Location {
 				return "and the magic saver";
 			case Item::get('Rupoor'):
 				return "and the toll-booth";
+			case Item::get('RedClock'):
+				return "and the ruby clock";
+			case Item::get('BlueClock'):
+				return "the sapphire clock";
+			case Item::get('GreenClock'):
+				return "the emerald clock";
 			case Item::get('Nothing'):
 			default:
 				return "and nothing";
@@ -296,7 +302,7 @@ class Altar extends Location {
 			case Item::get('Heart'):
 				return "I'm a lonely\nheart.";
 			case Item::get('Arrow'):
-				return "This will give\nyou one shot\nwith your bow!";
+				return "a lonely arrow\nsits here.";
 			case Item::get('TenArrows'):
 				return "This will give\nyou ten shots\nwith your bow!";
 			case Item::get('SmallMagic'):
@@ -339,6 +345,12 @@ class Altar extends Location {
 				return "Power for\nthose who\nalready had it";
 			case Item::get('Rupoor'):
 				return "This is not\nreally worth\nyour time";
+			case Item::get('RedClock'):
+				return "like the sands\nthrough a red\nhourglass";
+			case Item::get('BlueClock'):
+				return "sapphire sand\ntrickles down";
+			case Item::get('GreenClock'):
+				return "tick tock\ntick tock";
 			case Item::get('Nothing'):
 			default:
 				return "Don't waste\nyour time!";

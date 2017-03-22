@@ -40,14 +40,14 @@ class Item {
 	 *
 	 * @return Item
 	 */
-	static public function getWithByte($byte) {
+	static public function getWithByte(int $byte) {
 		foreach (static::all() as $item) {
 			if ($item->bytes[0] == $byte) {
 				return $item;
 			}
 		}
 
-		throw new \Exception('Unknown Item: ' . $name);
+		throw new \Exception('Unknown Item with byte: ' . $byte);
 	}
 
 	/**
@@ -59,7 +59,7 @@ class Item {
 	 *
 	 * @return Item
 	 */
-	static public function getWithBytes($bytes) {
+	static public function getWithBytes(array $bytes) {
 		foreach (static::all() as $item) {
 			foreach ($bytes as $key => $byte) {
 				if (!isset($item->bytes[$key]) || $item->bytes[$key] != $byte) {
@@ -69,7 +69,7 @@ class Item {
 			return $item;
 		}
 
-		throw new \Exception('Unknown Item: ' . $name);
+		throw new \Exception('Unknown Item with bytes: ' . json_encode($bytes));
 	}
 
 	/**
@@ -127,7 +127,7 @@ class Item {
 			new Item('Bomb', 'Bomb', 0x27),
 			new Item('ThreeBombs', 'Three Bombs', 0x28),
 			new Item('Mushroom', 'Mushroom', 0x29),
-			new Item('RedBoomerang', 'Magical Boomerang', 0x2a),
+			new Item('RedBoomerang', 'Magical Boomerang', 0x2a), // alternate: 300 rupees
 			new Item\Bottle('BottleWithRedPotion', 'Bottle (Red Potion)', 0x2b),
 			new Item\Bottle('BottleWithGreenPotion', 'Bottle (Green Potion)', 0x2c),
 			new Item\Bottle('BottleWithBluePotion', 'Bottle (Blue Potion)', 0x2d),
@@ -173,6 +173,12 @@ class Item {
 			new Item('Programmable3', 'Programmable 3', 0x57),
 			new Item('SilverArrowUpgrade', 'Silver Arrows Upgrade', 0x58),
 			new Item('Rupoor', 'Rupoor', 0x59),
+			new Item('RedClock', 'Red Clock', 0x5B),
+			new Item('BlueClock', 'Blue Clock', 0x5C),
+			new Item('GreenClock', 'Green Clock', 0x5D),
+			new Item\Sword('ProgressiveSword', 'Progressive Sword', 0x5E),
+			new Item\Shield('ProgressiveShield', 'Progressive Shield', 0x5F),
+			new Item('ProgressiveArmor', 'Progressive Armor', 0x60),
 			new Item\Crystal('Crystal1', 'Crystal 1', [null, 0x02, 0x34, 0x64, 0x40, 0x7F, 0x06]),
 			new Item\Crystal('Crystal2', 'Crystal 2', [null, 0x10, 0x34, 0x64, 0x40, 0x79, 0x06]),
 			new Item\Crystal('Crystal3', 'Crystal 3', [null, 0x40, 0x34, 0x64, 0x40, 0x6C, 0x06]),

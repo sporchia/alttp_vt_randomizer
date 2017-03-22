@@ -40,6 +40,26 @@ class SwampPalace extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setItem(Item::get('Hookshot'));
+		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-D2-B1] Swamp Palace - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Heart Container - Arrghus"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Swamp Palace has: Big Key, Map, Compass, 1 Key
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

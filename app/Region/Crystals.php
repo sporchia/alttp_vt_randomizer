@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Item;
 use ALttP\Location\Prize;
 use ALttP\Region;
 use ALttP\Support\LocationCollection;
@@ -32,5 +33,22 @@ class Crystals extends Region {
 			new Prize("Misery Mire Crystal", [null, 0x120A2, 0x53F48, 0x53F49, 0x180057, 0x180075, 0xC703], null, $this),
 			new Prize("Turtle Rock Crystal", [null, 0x120A7, 0x53F24, 0x53F25, 0x18005C, 0x180079, 0xC708], null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
+		$this->locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
+		$this->locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
+		$this->locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
+		$this->locations["Ice Palace Crystal"]->setItem(Item::get('Crystal5'));
+		$this->locations["Misery Mire Crystal"]->setItem(Item::get('Crystal6'));
+		$this->locations["Turtle Rock Crystal"]->setItem(Item::get('Crystal7'));
+
+		return $this;
 	}
 }

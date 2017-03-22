@@ -38,6 +38,24 @@ class MiseryMire extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-D6-B1] Misery Mire - big chest"]->setItem(Item::get('CaneOfSomaria'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - end of bridge"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - spike room"]->setItem(Item::get('Key'));
+		$this->locations["Heart Container - Vitreous"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Misery Mire has: Big Key, Map, Compass, 3 Keys.
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

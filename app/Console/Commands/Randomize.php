@@ -73,10 +73,10 @@ class Randomize extends Command {
 
 			$rand->writeToRom($rom);
 
-			$output_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.name', 'alttp - VT_%s_%s.sfc'), $rand->getLogic(), $rand->getSeed());
+			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.sfc', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 			$rom->save($output_file);
 			if ($this->option('spoiler')) {
-				$spoiler_file = sprintf($this->argument('output_directory') . '/' . $rand->config('output.file.spoiler', 'alttp - VT_%s_%s.txt'), $rand->getLogic(), $rand->getSeed());
+				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.txt', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 			}
 			$this->info(sprintf('Rom Saved: %s', $output_file));

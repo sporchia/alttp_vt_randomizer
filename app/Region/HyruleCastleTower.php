@@ -29,6 +29,18 @@ class HyruleCastleTower extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Hyrule Castle Tower has: 2 Keys
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

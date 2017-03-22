@@ -38,6 +38,24 @@ class ThievesTown extends Region {
 	}
 
 	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Top left of huge room"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setItem(Item::get('TitansMitt'));
+		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setItem(Item::get('Key'));
+		$this->locations["Heart Container - Blind"]->setItem(Item::get('BossHeartContainer'));
+
+		return $this;
+	}
+
+	/**
 	 * Place Keys, Map, and Compass in Region. Thieves Town has: Big Key, Map, Compass, 1 Key
 	 *
 	 * @param ItemCollection $my_items full list of items for placement

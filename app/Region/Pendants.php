@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Item;
 use ALttP\Location\Prize;
 use ALttP\Region;
 use ALttP\Support\LocationCollection;
@@ -28,5 +29,18 @@ class Pendants extends Region {
 			new Prize("Desert Palace Pendant", [null, 0x1209E, 0x53F1C, 0x53F1D, 0x180053, 0x180078, 0xC6FF], null, $this),
 			new Prize("Tower of Hera Pendant", [null, 0x120A5, 0x53F0A, 0x53F0B, 0x18005A, 0x18007A, 0xC706], null, $this),
 		]);
+	}
+
+	/**
+	 * Set Locations to have Items like the vanilla game.
+	 *
+	 * @return $this
+	 */
+	public function setVanilla() {
+		$this->locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
+		$this->locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfWisdom'));
+		$this->locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfPower'));
+
+		return $this;
 	}
 }
