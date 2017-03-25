@@ -17,159 +17,254 @@ class HauntedGrove extends Dig {
 	}
 
 	private function getItemCreditsText() {
-		switch ($this->item) {
+		$credit = "";
+		switch($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "boy fights again";
 			case Item::get('L2Sword'):
-			case Item::get('MasterSword'):
-				return "boy fights again";
 			case Item::get('L3Sword'):
-				return "boy fights again";
 			case Item::get('L4Sword'):
-				return "boy fights again";
+			case Item::get('MasterSword'):
+				$credit = "fights";
+				break;
+
 			case Item::get('BlueShield'):
-				return "boy defends again";
-			case Item::get('RedShield'):
-				return "boy defends again";
 			case Item::get('MirrorShield'):
-				return "boy defends again";
+			case Item::get('RedShield'):
+				$credit = "defends";
+				break;
+
 			case Item::get('FireRod'):
-				return "boy burns again";
+				$credit = "burns";
+				break;
+
 			case Item::get('IceRod'):
-				return "boy freezes again";
-			case Item::get('Hammer'):
-				return "stop, hammer time";
+				$credit = "freezes";
+				break;
+
 			case Item::get('Hookshot'):
-				return "boy tickles again";
+				$credit = "tickles";
+				break;
+
 			case Item::get('Bow'):
-				return "boy shoots again";
 			case Item::get('BowAndArrows'):
-				return "boy shoots again";
 			case Item::get('BowAndSilverArrows'):
-				return "boy shoots again";
+				$credit = "shoots";
+				break;
+
 			case Item::get('Boomerang'):
-				return "boy plays fetch again";
 			case Item::get('RedBoomerang'):
-				return "boy plays fetch again";
+				$credit = "plays fetch";
+				break;
+
 			case Item::get('Powder'):
-				return "boy plays marbles again";
+				$credit = "plays marbles";
+				break;
+
 			case Item::get('Bombos'):
-				return "boy hides coin again";
 			case Item::get('Ether'):
-				return "boy hides coin again";
 			case Item::get('Quake'):
-				return "boy hides coin again";
+				$credit = "hides coin";
+				break;
+
 			case Item::get('Lamp'):
-				return "boy sees at night again";
+				$credit = "sees at night";
+				break;
+
 			case Item::get('Shovel'):
-				return "boy digs again";
+				$credit = "digs";
+				break;
+
 			case Item::get('CaneOfSomaria'):
-				return "boy makes blocks again";
+				$credit = "makes blocks";
+				break;
+
 			case Item::get('CaneOfByrna'):
-				return "boy encircles again";
+				$credit = "encircles";
+				break;
+
 			case Item::get('Cape'):
-				return "boy hides again";
+				$credit = "hides";
+				break;
+
 			case Item::get('MagicMirror'):
-				return "boy sees himself again";
+				$credit = "sees himself";
+				break;
+
 			case Item::get('PowerGlove'):
-				return "boy lifts again";
+				$credit = "lifts";
+				break;
+
 			case Item::get('TitansMitt'):
-				return "boy has bling again";
+				$credit = "has bling";
+				break;
+
 			case Item::get('BookOfMudora'):
-				return "boy can read again";
+				$credit = "can read";
+				break;
+
 			case Item::get('Flippers'):
-				return "boy swims again";
+				$credit = "swims";
+				break;
+
 			case Item::get('MoonPearl'):
-				return "boy plays ball again";
+				$credit = "plays ball";
+				break;
+
 			case Item::get('BugCatchingNet'):
-				return "boy catches bees again";
+				$credit = "catches bees";
+				break;
+
 			case Item::get('BlueMail'):
-				return "boy banana hatted again";
+				$credit = "banana hatted";
+				break;
+
 			case Item::get('RedMail'):
-				return "boy fears nothing again";
-			case Item::get('Key'):
+				$credit = "fears nothing";
+				break;
+
 			case Item::get('BigKey'):
-				return "boy picks locks again";
+			case Item::get('Key'):
+				$credit = "picks locks";
+				break;
+
 			case Item::get('Compass'):
-				return "boy finds boss again";
+				$credit = "finds boss";
+				break;
+
 			case Item::get('Map'):
-				return "boy navigates again";
-			case Item::get('PieceOfHeart'):
-				return "boy feels love again";
+				$credit = "navigates";
+				break;
+
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
 			case Item::get('HeartContainerNoAnimation'):
-				return "boy feels love again";
+			case Item::get('PieceOfHeart'):
+				$credit = "feels love";
+				break;
+
 			case Item::get('Bomb'):
-				return "boy explodes again";
-			case Item::get('ThreeBombs'):
-				return "boy explodes again";
 			case Item::get('TenBombs'):
-				return "boy explodes again";
+			case Item::get('ThreeBombs'):
+				$credit = "explodes";
+				break;
+
 			case Item::get('Mushroom'):
-				return "boy sells drugs again";
+				$credit = "sells drugs";
+				break;
+
 			case Item::get('Bottle'):
-				return "boy has terrarium again";
+				$credit = "has terrarium";
+				break;
+
 			case Item::get('BottleWithRedPotion'):
-				return "boy has red goo again";
+				$credit = "has red goo";
+				break;
+
 			case Item::get('BottleWithGreenPotion'):
-				return "boy has green goo again";
+				$credit = "has green goo";
+				break;
+
 			case Item::get('BottleWithBluePotion'):
-				return "boy has blue goo again";
+				$credit = "has blue goo";
+				break;
+
 			case Item::get('BottleWithGoldBee'):
-				return "boy has beetor again";
+				$credit = "has beetor";
+				break;
+
 			case Item::get('BottleWithBee'):
-				return "boy has mad bee again";
+				$credit = "has mad bee";
+				break;
+
 			case Item::get('BottleWithFairy'):
-				return "boy has friend again";
+				$credit = "has friend";
+				break;
+
 			case Item::get('Heart'):
-				return "boy has affection again";
+				$credit = "has affection";
+				break;
+
 			case Item::get('Arrow'):
-				return "boy sews again";
 			case Item::get('TenArrows'):
-				return "boy sews again";
+				$credit = "sews";
+				break;
+
 			case Item::get('SmallMagic'):
-				return "boy summons again";
-			case Item::get('OneRupee'):
+				$credit = "summons";
+				break;
+
+			case Item::get('FiftyRupees'):
 			case Item::get('FiveRupees'):
+			case Item::get('OneRupee'):
 			case Item::get('TwentyRupees'):
 			case Item::get('TwentyRupees2'):
-			case Item::get('FiftyRupees'):
-				return "boy has lunch again";
+				$credit = "has lunch";
+				break;
+
 			case Item::get('OneHundredRupees'):
-				return "boy goes drinking again";
+				$credit = "goes drinking";
+				break;
+
 			case Item::get('ThreeHundredRupees'):
-				return "boy is rich again";
-			case Item::get('OcarinaInactive'):
-			case Item::get('OcarinaActive'):
-				return "ocarina boy plays again";
+				$credit = "is rich";
+				break;
+
 			case Item::get('PegasusBoots'):
-				return "boy runs again";
+				$credit = "runs";
+				break;
+
 			case Item::get('BombUpgrade5'):
 			case Item::get('BombUpgrade10'):
 			case Item::get('BombUpgrade50'):
-				return "boy explodes more again";
+				$credit = "explodes more";
+				break;
+
 			case Item::get('ArrowUpgrade5'):
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
-				return "boy sews more again";
+				$credit = "sews more";
+				break;
+
 			case Item::get('SilverArrowUpgrade'):
-				return "boy sharpens again";
+				$credit = "sharpens";
+				break;
+
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
-				return "boy saves magic again";
+				$credit = "saves magic";
+				break;
+
 			case Item::get('Rupoor'):
-				return "boy steals rupees";
+				$credit = "steals rupees";
+				break;
+
 			case Item::get('RedClock'):
-				return "boy travels time again";
+				$credit = "travels time";
+				break;
+
 			case Item::get('BlueClock'):
-				return "boy time travels again";
+				$credit = "time travels";
+				break;
+
 			case Item::get('GreenClock'):
-				return "boy adjusts time again";
+				$credit = "adjusts time";
+				break;
+
 			case Item::get('Nothing'):
-			default:
-				return "boy does nothing again";
+				$credit = "does nothing";
+				break;
+
 		}
+
+		$credit = "boy " . $credit . " again";
+
+		if($this->item == Item::get('Hammer')) {
+			$credit = "stop, hammer time";
+		} elseif($this->item == Item::get('OcarinaActive') || $this->item == Item::get('OcarinaInactive')) {
+			$credit = "ocarina boy plays again";
+		}
+
+		return $credit;
 	}
 }

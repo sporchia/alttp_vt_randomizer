@@ -35,161 +35,294 @@ class Altar extends Location {
 
 
 	private function getItemCreditsText() {
-		switch ($this->item) {
+		$credit = "";
+		switch($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "the plastic sword";
+				$credit = "plastic sword";
+				break;
+
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "and the master sword";
+				$credit = "master sword";
+				break;
+
 			case Item::get('L3Sword'):
-				return "the tempered sword";
+				$credit = "tempered sword";
+				break;
+
 			case Item::get('L4Sword'):
-				return "and the butter sword";
+				$credit = "butter sword";
+				break;
+
 			case Item::get('BlueShield'):
-				return "the useless shield";
+				$credit = "useless shield";
+				break;
+
 			case Item::get('RedShield'):
-				return "near useless shield";
+				$credit = "near-useless shield";
+				break;
+
 			case Item::get('MirrorShield'):
-				return "and the ditto shield";
+				$credit = "ditto shield";
+				break;
+
 			case Item::get('FireRod'):
-				return "and the rage rod";
+				$credit = "rage rod";
+				break;
+
 			case Item::get('IceRod'):
-				return "and the freeze ray";
+				$credit = "freeze ray";
+				break;
+
 			case Item::get('Hammer'):
-				return "and m c hammer";
+				$credit = "m c hammer";
+				break;
+
 			case Item::get('Hookshot'):
-				return "and the tickle beam";
+				$credit = "tickle beam";
+				break;
+
 			case Item::get('Bow'):
-				return "the stick and twine";
 			case Item::get('BowAndArrows'):
-				return "the stick and twine";
 			case Item::get('BowAndSilverArrows'):
-				return "the stick and twine";
+				$credit = "stick and twine";
+				break;
+
 			case Item::get('Boomerang'):
-				return "the backlash stick";
+				$credit = "backlash stick";
+				break;
+
 			case Item::get('RedBoomerang'):
-				return "and the rebound rod";
+				$credit = "rebound rod";
+				break;
+
 			case Item::get('Powder'):
-				return "and the magic sack";
+				$credit = "magic sack";
+				break;
+
 			case Item::get('Bombos'):
-				return "and the swirly coin";
+				$credit = "swirly coin";
+				break;
+
 			case Item::get('Ether'):
-				return "and the bolt coin";
+				$credit = "bolt coin";
+				break;
+
 			case Item::get('Quake'):
-				return "and the wavy coin";
+				$credit = "wavy coin";
+				break;
+
 			case Item::get('Lamp'):
-				return "and the flashlight";
+				$credit = "flashlight";
+				break;
+
 			case Item::get('Shovel'):
-				return "and the flute scoop";
+				$credit = "flute scoop";
+				break;
+
 			case Item::get('CaneOfSomaria'):
-				return "the walking stick";
+				$credit = "walking stick";
+				break;
+
 			case Item::get('CaneOfByrna'):
-				return "and the blue bat";
+				$credit = "blue bat";
+				break;
+
 			case Item::get('Cape'):
-				return "the camouflage cape";
+				$credit = "camouflage cape";
+				break;
+
 			case Item::get('MagicMirror'):
-				return "the face reflector";
+				$credit = "face reflector";
+				break;
+
 			case Item::get('PowerGlove'):
-				return "and the grey mittens";
+				$credit = "grey mittens";
+				break;
+
 			case Item::get('TitansMitt'):
-				return "and the golden glove";
+				$credit = "golden glove";
+				break;
+
 			case Item::get('BookOfMudora'):
-				return "and the story book";
+				$credit = "story book";
+				break;
+
 			case Item::get('Flippers'):
-				return "the water airfoil";
+				$credit = "water airfoil";
+				break;
+
 			case Item::get('MoonPearl'):
-				return "and the jaw breaker";
+				$credit = "jaw breaker";
+				break;
+
 			case Item::get('BugCatchingNet'):
-				return "and the surprise net";
+				$credit = "surprise net";
+				break;
+
 			case Item::get('BlueMail'):
-				return "and the banana hat";
+				$credit = "banana hat";
+				break;
+
 			case Item::get('RedMail'):
-				return "and the eggplant hat";
-			case Item::get('Key'):
+				$credit = "eggplant hat";
+				break;
+
 			case Item::get('BigKey'):
-				return "and the key";
+			case Item::get('Key'):
+				$credit = "key";
+				break;
+
 			case Item::get('Compass'):
-				return "and the compass";
+				$credit = "compass";
+				break;
+
 			case Item::get('Map'):
-				return "and the map";
+				$credit = "map";
+				break;
+
 			case Item::get('PieceOfHeart'):
-				return "and the broken heart";
+				$credit = "broken heart";
+				break;
+
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
 			case Item::get('HeartContainerNoAnimation'):
-				return "and the full heart";
+				$credit = "full heart";
+				break;
+
 			case Item::get('Bomb'):
-				return "and the explosions";
 			case Item::get('ThreeBombs'):
-				return "the explosions";
+				$credit = "explosions";
+				break;
+
 			case Item::get('TenBombs'):
-				return "the many explosions";
+				$credit = "many explosions";
+				break;
+
 			case Item::get('Mushroom'):
-				return "and the legal drugs";
+				$credit = "legal drugs";
+				break;
+
 			case Item::get('Bottle'):
-				return "and the terrarium";
+				$credit = "terrarium";
+				break;
+
 			case Item::get('BottleWithRedPotion'):
-				return "and the red goo";
+				$credit = "red goo";
+				break;
+
 			case Item::get('BottleWithGreenPotion'):
-				return "and the green goo";
+				$credit = "green goo";
+				break;
+
 			case Item::get('BottleWithBluePotion'):
-				return "and the blue goo";
+				$credit = "blue goo";
+				break;
+
 			case Item::get('BottleWithGoldBee'):
-				return "and the beetor";
+				$credit = "beetor";
+				break;
+
 			case Item::get('BottleWithBee'):
-				return "and the mad friend";
+				$credit = "mad friend";
+				break;
+
 			case Item::get('BottleWithFairy'):
-				return "and the fairy friend";
+				$credit = "fairy friend";
+				break;
+
 			case Item::get('Heart'):
-				return "and the tiny heart";
+				$credit = "tiny heart";
+				break;
+
 			case Item::get('Arrow'):
-				return "the vampire skewer";
+				$credit = "vampire skewer";
+				break;
+
 			case Item::get('TenArrows'):
-				return "the vampire skewers";
+				$credit = "vampire skewers";
+				break;
+
 			case Item::get('SmallMagic'):
-				return "and the tiny pouch";
-			case Item::get('OneRupee'):
+				$credit = "tiny pouch";
+				break;
+
 			case Item::get('FiveRupees'):
-				return "the pocket change";
+			case Item::get('OneRupee'):
+				$credit = "pocket change";
+				break;
+
+			case Item::get('FiftyRupees'):
 			case Item::get('TwentyRupees'):
 			case Item::get('TwentyRupees2'):
-			case Item::get('FiftyRupees'):
-				return "and the couch cash";
+				$credit = "couch cash";
+				break;
+
 			case Item::get('OneHundredRupees'):
-				return "and the rupee stash";
+				$credit = "rupee stash";
+				break;
+
 			case Item::get('ThreeHundredRupees'):
-				return "and the rupee hoard";
-			case Item::get('OcarinaInactive'):
+				$credit = "rupee hoard";
+				break;
+
 			case Item::get('OcarinaActive'):
-				return "and the duck call";
+			case Item::get('OcarinaInactive'):
+				$credit = "duck call";
+				break;
+
 			case Item::get('PegasusBoots'):
-				return "and the sprint shoes";
+				$credit = "sprint shoes";
+				break;
+
 			case Item::get('BombUpgrade5'):
 			case Item::get('BombUpgrade10'):
 			case Item::get('BombUpgrade50'):
-				return "and the bomb booster";
+				$credit = "bomb booster";
+				break;
+
 			case Item::get('ArrowUpgrade5'):
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
-				return "and the arrow boost";
+				$credit = "arrow booster";
+				break;
+
 			case Item::get('SilverArrowUpgrade'):
-				return "and the razer blade";
+				$credit = "razor blade";
+				break;
+
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
-				return "and the magic saver";
+				$credit = "magic-saver";
+				break;
+
 			case Item::get('Rupoor'):
-				return "and the toll-booth";
+				$credit = "toll-booth";
+				break;
+
 			case Item::get('RedClock'):
-				return "and the ruby clock";
+				$credit = "ruby clock";
+				break;
+
 			case Item::get('BlueClock'):
-				return "the sapphire clock";
+				$credit = "sapphire clock";
+				break;
+
 			case Item::get('GreenClock'):
-				return "the emerald clock";
+				$credit = "emerald clock";
+				break;
+
 			case Item::get('Nothing'):
 			default:
-				return "and nothing";
+				$credit = "nothing";
+				break;
+
 		}
+
+		$credit = "and the " . $credit;
+		return $credit;
 	}
 
 	private function getItemPedestalText() {
@@ -255,7 +388,7 @@ class Altar extends Location {
 			case Item::get('BookOfMudora'):
 				return "This is a\nparadox?!";
 			case Item::get('Flippers'):
-				return "fancy a swim?";
+				return "Fancy a swim?";
 			case Item::get('MoonPearl'):
 				return "  Bunny Link\n      be\n     gone!";
 			case Item::get('BugCatchingNet'):
@@ -302,7 +435,7 @@ class Altar extends Location {
 			case Item::get('Heart'):
 				return "I'm a lonely\nheart.";
 			case Item::get('Arrow'):
-				return "a lonely arrow\nsits here.";
+				return "A lonely arrow\nsits here.";
 			case Item::get('TenArrows'):
 				return "This will give\nyou ten shots\nwith your bow!";
 			case Item::get('SmallMagic'):
@@ -326,11 +459,11 @@ class Altar extends Location {
 			case Item::get('BombUpgrade5'):
 			case Item::get('BombUpgrade10'):
 			case Item::get('BombUpgrade50'):
-				return "increase bomb\nstorage, low\nlow price";
+				return "Increase bomb\nstorage, low\nlow price";
 			case Item::get('ArrowUpgrade5'):
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
-				return "increase arrow\nstorage, low\nlow price";
+				return "Increase arrow\nstorage, low\nlow price";
 			case Item::get('SilverArrowUpgrade'):
 				return "Do you fancy\nsilver tipped\narrows?";
 			case Item::get('HalfMagic'):
@@ -346,9 +479,9 @@ class Altar extends Location {
 			case Item::get('Rupoor'):
 				return "This is not\nreally worth\nyour time";
 			case Item::get('RedClock'):
-				return "like the sands\nthrough a red\nhourglass";
+				return "Like the sands\nthrough a red\nhourglass";
 			case Item::get('BlueClock'):
-				return "sapphire sand\ntrickles down";
+				return "Sapphire sand\ntrickles down";
 			case Item::get('GreenClock'):
 				return "tick tock\ntick tock";
 			case Item::get('Nothing'):

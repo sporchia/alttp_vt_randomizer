@@ -17,153 +17,247 @@ class BugCatchingKid extends Npc {
 	}
 
 	private function getItemCreditsText() {
-		switch ($this->item) {
+		$credit = "";
+		switch($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "sword-wielding kid";
 			case Item::get('L2Sword'):
-			case Item::get('MasterSword'):
-				return "sword-wielding kid";
 			case Item::get('L3Sword'):
-				return "sword-wielding kid";
 			case Item::get('L4Sword'):
-				return "sword-wielding kid";
+			case Item::get('MasterSword'):
+				$credit = "sword-wielding";
+				break;
+
 			case Item::get('BlueShield'):
-				return "shield-wielding kid";
-			case Item::get('RedShield'):
-				return "shield-wielding kid";
 			case Item::get('MirrorShield'):
-				return "shield-wielding kid";
+			case Item::get('RedShield'):
+				$credit = "shield-wielding";
+				break;
+
 			case Item::get('FireRod'):
-				return "fire-starting kid";
+				$credit = "fire-starting";
+				break;
+
 			case Item::get('IceRod'):
-				return "the ice-bending kid";
+				$credit = "ice-bending";
+				break;
+
 			case Item::get('Hammer'):
-				return "hammer-smashing kid";
+				$credit = "hammer-smashing";
+				break;
+
 			case Item::get('Hookshot'):
-				return "tickle-monster kid";
+				$credit = "tickle-monster";
+				break;
+
 			case Item::get('Bow'):
-				return "arrow-slinging kid";
 			case Item::get('BowAndArrows'):
-				return "arrow-slinging kid";
 			case Item::get('BowAndSilverArrows'):
-				return "arrow-slinging kid";
+				$credit = "arrow-slinging";
+				break;
+
 			case Item::get('Boomerang'):
-				return "the bat-throwing kid";
 			case Item::get('RedBoomerang'):
-				return "the bat-throwing kid";
+				$credit = "bat-throwing";
+				break;
+
 			case Item::get('Powder'):
-				return "the sack-holding kid";
+				$credit = "sack-holding";
+				break;
+
 			case Item::get('Bombos'):
-				return "coin-collecting kid";
 			case Item::get('Ether'):
-				return "coin-collecting kid";
 			case Item::get('Quake'):
-				return "coin-collecting kid";
+				$credit = "coin-collecting";
+				break;
+
 			case Item::get('Lamp'):
-				return "light-shining kid";
+				$credit = "light-shining";
+				break;
+
 			case Item::get('Shovel'):
-				return "archaeologist kid";
+				$credit = "archaeologist";
+				break;
+
 			case Item::get('CaneOfSomaria'):
-				return "the block-making kid";
+				$credit = "block-making";
+				break;
+
 			case Item::get('CaneOfByrna'):
-				return "the spark-making kid";
+				$credit = "spark-making";
+				break;
+
 			case Item::get('Cape'):
-				return "red riding-hood kid";
+				$credit = "red riding-hood";
+				break;
+
 			case Item::get('MagicMirror'):
-				return "the narcissistic kid";
+				$credit = "narcissistic";
+				break;
+
 			case Item::get('PowerGlove'):
-				return "body-building kid";
 			case Item::get('TitansMitt'):
-				return "body-building kid";
+				$credit = "body-building";
+				break;
+
 			case Item::get('BookOfMudora'):
-				return "the scholarly kid";
+				$credit = "scholarly";
+				break;
+
 			case Item::get('Flippers'):
-				return "the swimming kid";
+				$credit = "swimming";
+				break;
+
 			case Item::get('MoonPearl'):
-				return "fortune-telling kid";
+				$credit = "fortune-telling";
+				break;
+
 			case Item::get('BugCatchingNet'):
-				return "the bug-catching kid";
+				$credit = "bug-catching";
+				break;
+
 			case Item::get('BlueMail'):
-				return "the protected kid";
+				$credit = "protected";
+				break;
+
 			case Item::get('RedMail'):
-				return "well-protected kid";
-			case Item::get('Key'):
+				$credit = "well-protected";
+				break;
+
 			case Item::get('BigKey'):
-				return "the key-holding kid";
+			case Item::get('Key'):
+				$credit = "key-holding";
+				break;
+
 			case Item::get('Compass'):
-				return "the navigating kid";
+				$credit = "navigating";
+				break;
+
 			case Item::get('Map'):
-				return "the cartographer kid";
-			case Item::get('PieceOfHeart'):
+				$credit = "cartographer";
+				break;
+
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
 			case Item::get('HeartContainerNoAnimation'):
-				return "the life-giving kid";
+			case Item::get('PieceOfHeart'):
+				$credit = "life-giving";
+				break;
+
 			case Item::get('Bomb'):
-			case Item::get('ThreeBombs'):
 			case Item::get('TenBombs'):
-				return "the bomb-holding kid";
+			case Item::get('ThreeBombs'):
+				$credit = "bomb-holding";
+				break;
+
 			case Item::get('Mushroom'):
-				return "the drug-dealing kid";
+				$credit = "drug-dealing";
+				break;
+
 			case Item::get('Bottle'):
-				return "the terrarium kid";
-			case Item::get('BottleWithRedPotion'):
-			case Item::get('BottleWithGreenPotion'):
+				$credit = "terrarium";
+				break;
+
 			case Item::get('BottleWithBluePotion'):
-				return "potion-slinging kid";
-			case Item::get('BottleWithGoldBee'):
+			case Item::get('BottleWithGreenPotion'):
+			case Item::get('BottleWithRedPotion'):
+				$credit = "potion-slinging";
+				break;
+
 			case Item::get('BottleWithBee'):
-				return "the bug-caught kid";
+			case Item::get('BottleWithGoldBee'):
+				$credit = "bug-caught";
+				break;
+
 			case Item::get('BottleWithFairy'):
-				return "fairy-catching kid";
+				$credit = "fairy-catching";
+				break;
+
 			case Item::get('Heart'):
-				return "affection-giving kid";
+				$credit = "affection-giving";
+				break;
+
 			case Item::get('Arrow'):
 			case Item::get('TenArrows'):
-				return "stick-collecting kid";
+				$credit = "stick-collecting";
+				break;
+
 			case Item::get('SmallMagic'):
-				return "magic-slinging kid";
-			case Item::get('OneRupee'):
+				$credit = "magic-slinging";
+				break;
+
 			case Item::get('FiveRupees'):
-				return "poverty-struck kid";
+			case Item::get('OneRupee'):
+				$credit = "poverty-struck";
+				break;
+
+			case Item::get('FiftyRupees'):
 			case Item::get('TwentyRupees'):
 			case Item::get('TwentyRupees2'):
-			case Item::get('FiftyRupees'):
-				return "the piggy-bank kid";
+				$credit = "piggy-bank";
+				break;
+
 			case Item::get('OneHundredRupees'):
-				return "the kind-of-rich kid";
+				$credit = "kind-of-rich";
+				break;
+
 			case Item::get('ThreeHundredRupees'):
-				return "the really-rich kid";
-			case Item::get('OcarinaInactive'):
+				$credit = "really-rich";
+				break;
+
 			case Item::get('OcarinaActive'):
-				return "the duck-call kid";
+			case Item::get('OcarinaInactive'):
+				$credit = "duck-call";
+				break;
+
 			case Item::get('PegasusBoots'):
-				return "the running-man kid";
+				$credit = "running-man";
+				break;
+
 			case Item::get('BombUpgrade5'):
 			case Item::get('BombUpgrade10'):
 			case Item::get('BombUpgrade50'):
-				return "boom-enlarging kid";
+				$credit = "boom-enlarging";
+				break;
+
 			case Item::get('ArrowUpgrade5'):
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
-				return "quiver-enlarging kid";
+				$credit = "quiver-enlarging";
+				break;
+
 			case Item::get('SilverArrowUpgrade'):
-				return "arrow-sharpening kid";
+				$credit = "arrow-sharpening";
+				break;
+
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
-				return "the magic-saving kid";
+				$credit = "magic-saving";
+				break;
+
 			case Item::get('Rupoor'):
-				return "the toll-booth kid";
+				$credit = "toll-booth";
+				break;
+
 			case Item::get('RedClock'):
-				return "the ruby-time kid";
+				$credit = "ruby-time";
+				break;
+
 			case Item::get('BlueClock'):
-				return "the indigo-time kid";
+				$credit = "indigo-time";
+				break;
+
 			case Item::get('GreenClock'):
-				return "the emerald-time kid";
+				$credit = "emerald-time";
+				break;
+
 			case Item::get('Nothing'):
-			default:
-				return "nothing-having kid";
+				$credit = "nothing-having";
+				break;
+
 		}
+
+		$credit = "the " . $credit . " kid";
+		return $credit;
 	}
 }
