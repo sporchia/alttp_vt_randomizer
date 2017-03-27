@@ -80,6 +80,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 			"tournament-mode" => true,
 			"alttp.{$difficulty}.spoil.BootsLocation" => false,
 		]);
+		$rom->setTournamentType('standard');
+	} else {
+		$rom->setTournamentType('none');
 	}
 
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
@@ -92,12 +95,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
-		$rom->setTournamentType('standard');
 		$patch = patch_merge_minify($rom->getWriteLog());
+		$rand->updateSeedRecordPatch($patch);
 		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
 		$seed = $hash;
-	} else {
-		$rom->setTournamentType('none');
 	}
 
 	return json_encode([

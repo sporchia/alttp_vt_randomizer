@@ -538,6 +538,20 @@ class Randomizer {
 	}
 
 	/**
+	 * Update patch of seed record to DB
+	 *
+	 * @param array $patch new patch that will be applies
+	 *
+	 * @return $this
+	 */
+	public function updateSeedRecordPatch($patch) {
+		$this->seed->patch = json_encode($patch);
+		$this->seed->save();
+
+		return $this;
+	}
+
+	/**
 	 * Randomize portions of the ending credits sequence
 	 *
 	 * @param Rom $rom ROM to write to
