@@ -222,7 +222,7 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.sfc');
 	});
 
 	$('input[name=f2u]').on('change', function() {
