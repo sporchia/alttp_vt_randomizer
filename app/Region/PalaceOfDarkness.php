@@ -183,7 +183,11 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements(function($locations, $items) use ($four_accessable_keys_before_bridge) {
-			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items);
+			return $items->has('Lamp') && $four_accessable_keys_before_bridge($locations, $items)
+				&& ($items->canShootArrows() || !$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+						"[dungeon-D1-1F] Dark Palace - statue push room",
+					]));
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
@@ -378,7 +382,13 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements($access_post_bridge);
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements($access_post_bridge);
-		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements($access_post_bridge)->setFillRules(function($item, $locations, $items) {
+		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements(function($locations, $items) use ($access_post_bridge) {
+			return $access_post_bridge($locations, $items)
+				&& ($items->canShootArrows() || !$locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-D1-1F] Dark Palace - jump room [right chest]",
+					"[dungeon-D1-1F] Dark Palace - statue push room",
+				]));
+		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
 
