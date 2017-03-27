@@ -288,7 +288,6 @@ class Rom {
 			"I am leaving\nforever.\nGoodbye.",
 			"Don't worry.\nI got this\ncovered.",
 			"Race you to\nthe castle!",
-			"\n~69 Blaze It!~",
 			"\n      hi",
 			"I'M JUST GOING\nOUT FOR A\nPACK OF SMOKES",
 			"It's dangerous\nto go alone.\nSee ya!",
@@ -304,6 +303,7 @@ class Rom {
 			"HEY!\n\nLISTEN!",
 			"Well\nexcuuuuuse me,\nprincess!",
 			"5,000 Rupee\nreward for @>\nYou're boned",
+			"Welcome to\nStoops Lonk's\nHoose",
 		];
 
 		$this->setUncleTextString($texts[$offset % count($texts)]);

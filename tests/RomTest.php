@@ -164,8 +164,8 @@ class RomTest extends TestCase {
 			0, 171, 0, 174, 0, 173, 0, 198, 127], $this->rom->read(0x180500, 100));
 	}
 
-	public function testSetExtenedUncleText31() {
-		$this->rom->setUncleText(31);
+	public function testSetExtenedUncleText30() {
+		$this->rom->setUncleText(30);
 
 		$converted = [116, 0, 165, 0, 200, 0, 160, 0, 160, 0, 160, 0, 255, 0, 187, 0, 190, 0, 185, 0, 174, 0, 174, 117,
 			0, 187, 0, 174, 0, 192, 0, 170, 0, 187, 0, 173, 0, 255, 0, 175, 0, 184, 0, 187, 0, 255, 0, 210, 0, 211,

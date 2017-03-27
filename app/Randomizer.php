@@ -642,26 +642,33 @@ class Randomizer {
 					$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 			}
 		} else {
-			$rom->setUncleText(mt_rand(0, 31));
+			$rom->setUncleText(mt_rand(0, 32));
 		}
 
-		$rom->setBlindTextString(array_first(mt_shuffle([
-			"What do you\ncall a blind\ndinosaur?\nadoyouthink-\nhesaurus\n",
-			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.\n",
-			"What do ducks\nlike to eat?\n\nQuackers!\n",
-			"How do you\nset up a party\nin space?\n\nYou planet!\n",
-			"I'm glad I\nknow sign\nlanguage,\nit's pretty\nhandy.\n",
-			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
-			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
-			"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
-			"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!",
-			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!",
+		$blind_dialogs = [
 			"I hate insect\npuns, they\nreally bug me.",
 			"I haven't seen\nthe eye doctor\nin years",
 			"I don't see\nyou having a\nbright future",
 			"Are you doing\na blind run\nof this game?",
 			"pizza joke? no\nI think it's a\nbit too cheesy",
-		])));
+		];
+
+		if (!config('tournament-mode', false)) {
+			$blind_dialogs = array_merge($blind_dialogs, [
+				"What do you\ncall a blind\ndinosaur?\nadoyouthink-\nhesaurus\n",
+				"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.\n",
+				"What do ducks\nlike to eat?\n\nQuackers!\n",
+				"How do you\nset up a party\nin space?\n\nYou planet!\n",
+				"I'm glad I\nknow sign\nlanguage,\nit's pretty\nhandy.\n",
+				"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
+				"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
+				"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
+				"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!\n",
+				"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!\n",
+			]);
+		}
+
+		$rom->setBlindTextString(array_first(mt_shuffle($blind_dialogs)));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
 			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
