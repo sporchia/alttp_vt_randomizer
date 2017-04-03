@@ -16,13 +16,22 @@
 				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
 			</label>
 		</p>
-		<p>Please use a Zelda no Densetsu: Kamigami no Triforce v1.0 ROM</p>
+		<p>Getting started couldn't be easier. VT Randomizer allows you to patch a rom file entirely in your browser.</p>
+		<ol>
+			<li>Select your rom file and load it into the browser
+				(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM)</li>
+			<li>Select the options for how you would like your game randomized</li>
+			<li>Click Generate</li>
+			<li>Then Save your rom and get to playing</li>
+		</ol>
+		<p>You may want to check out the other sections of this site for more information on all the different ways
+			one can Randomize their game.</p>
 	</div>
 </div>
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Generate</h3>
-		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog"></span></button>
+		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
@@ -124,7 +133,7 @@
 	</div>
 </div>
 <div id="seed-details" class="info panel panel-info" style="display:none">
-	<div class="panel-heading"><h3 class="panel-title">Seed Details</h3></div>
+	<div class="panel-heading"><h3 class="panel-title">Game Details</h3></div>
 	<div class="panel-body">
 		<div class="col-md-6">
 			<div>Logic: <span class="logic"></span></div>
