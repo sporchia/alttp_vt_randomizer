@@ -17,153 +17,284 @@ class Zora extends Npc {
 	}
 
 	private function getItemCreditsText() {
-		switch ($this->item) {
+		$credit = "";
+		switch($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "sword for sale";
+				$credit = "sword";
+				break;
+
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "glow sword for sale";
+				$credit = "glow sword";
+				break;
+
 			case Item::get('L3Sword'):
-				return "flame sword for sale";
+				$credit = "flame sword";
+				break;
+
 			case Item::get('L4Sword'):
-				return "butter for sale";
+				$credit = "butter";
+				break;
+
 			case Item::get('BlueShield'):
-				return "bad defense for sale";
+				$credit = "bad defense";
+				break;
+
 			case Item::get('RedShield'):
-				return "red shield for sale";
+				$credit = "red shield";
+				break;
+
 			case Item::get('MirrorShield'):
-				return "face shield for sale";
+				$credit = "face shield";
+				break;
+
 			case Item::get('FireRod'):
-				return "rage rod for sale";
+				$credit = "rage rod";
+				break;
+
 			case Item::get('IceRod'):
-				return "ice cream for sale";
+				$credit = "ice cream";
+				break;
+
 			case Item::get('Hammer'):
-				return "m c hammer for sale";
+				$credit = "m c hammer";
+				break;
+
 			case Item::get('Hookshot'):
-				return "tickle beam for sale";
+				$credit = "tickle beam";
+				break;
+
 			case Item::get('Bow'):
-				return "arrow sling for sale";
+				$credit = "arrow sling";
+				break;
+
 			case Item::get('BowAndArrows'):
-				return "point stick for sale";
-			case Item::get('BowAndSilverArrows'):
-				return "you got lucky";
+				$credit = "point stick";
+				break;
+
 			case Item::get('Boomerang'):
-				return "bent stick for sale";
+				$credit = "bent stick";
+				break;
+
 			case Item::get('RedBoomerang'):
-				return "air foil for sale";
+				$credit = "air foil";
+				break;
+
 			case Item::get('Powder'):
-				return "sack for sale";
+				$credit = "sack";
+				break;
+
 			case Item::get('Bombos'):
-				return "swirly coin for sale";
+				$credit = "swirly coin";
+				break;
+
 			case Item::get('Ether'):
-				return "bolt coin for sale";
+				$credit = "bolt coin";
+				break;
+
 			case Item::get('Quake'):
-				return "wavy coin for sale";
+				$credit = "wavy coin";
+				break;
+
 			case Item::get('Lamp'):
-				return "candle for sale";
+				$credit = "candle";
+				break;
+
 			case Item::get('Shovel'):
-				return "dirt spade for sale";
+				$credit = "dirt spade";
+				break;
+
 			case Item::get('CaneOfSomaria'):
-				return "block stick for sale";
+				$credit = "block stick";
+				break;
+
 			case Item::get('CaneOfByrna'):
-				return "shiny stick for sale";
+				$credit = "shiny stick";
+				break;
+
 			case Item::get('Cape'):
-				return "red hood for sale";
+				$credit = "red hood";
+				break;
+
 			case Item::get('MagicMirror'):
-				return "your face for sale";
+				$credit = "your face";
+				break;
+
 			case Item::get('PowerGlove'):
-				return "lift glove for sale";
+				$credit = "lift glove";
+				break;
+
 			case Item::get('TitansMitt'):
-				return "carry glove for sale";
+				$credit = "carry glove";
+				break;
+
 			case Item::get('BookOfMudora'):
-				return "moon runes for sale";
+				$credit = "moon runes";
+				break;
+
 			case Item::get('Flippers'):
-				return "finger webs for sale";
+				$credit = "finger webs";
+				break;
+
 			case Item::get('MoonPearl'):
-				return "lunar orb for sale";
+				$credit = "lunar orb";
+				break;
+
 			case Item::get('BugCatchingNet'):
-				return "stick web for sale";
+				$credit = "stick web";
+				break;
+
 			case Item::get('BlueMail'):
-				return "banana hat for sale";
+				$credit = "banana hat";
+				break;
+
 			case Item::get('RedMail'):
-				return "purple hat for sale";
-			case Item::get('Key'):
+				$credit = "purple hat";
+				break;
+
 			case Item::get('BigKey'):
-				return "advancement for sale";
+			case Item::get('Key'):
+				$credit = "advancement";
+				break;
+
 			case Item::get('Compass'):
-				return "bearings for sale";
+				$credit = "bearings";
+				break;
+
 			case Item::get('Map'):
-				return "the world for sale";
+				$credit = "world";
+				break;
+
 			case Item::get('PieceOfHeart'):
-				return "little love for sale";
+				$credit = "little love";
+				break;
+
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
 			case Item::get('HeartContainerNoAnimation'):
-				return "love for sale";
+				$credit = "love";
+				break;
+
 			case Item::get('Bomb'):
-				return "firecracker for sale";
+				$credit = "firecracker";
+				break;
+
 			case Item::get('ThreeBombs'):
-				return "fireworks for sale";
+				$credit = "fireworks";
+				break;
+
 			case Item::get('TenBombs'):
-				return "boom boom for sale";
+				$credit = "boom boom";
+				break;
+
 			case Item::get('Mushroom'):
-				return "legal drugs for sale";
+				$credit = "legal drugs";
+				break;
+
 			case Item::get('Bottle'):
-				return "terrarium for sale";
+				$credit = "terrarium";
+				break;
+
 			case Item::get('BottleWithRedPotion'):
-				return "red goo for sale";
+				$credit = "red goo";
+				break;
+
 			case Item::get('BottleWithGreenPotion'):
-				return "green goo for sale";
+				$credit = "green goo";
+				break;
+
 			case Item::get('BottleWithBluePotion'):
-				return "blue goo for sale";
+				$credit = "blue goo";
+				break;
+
 			case Item::get('BottleWithGoldBee'):
-				return "beetor for sale";
+				$credit = "beetor";
+				break;
+
 			case Item::get('BottleWithBee'):
-				return "mad friend for sale";
+				$credit = "mad friend";
+				break;
+
 			case Item::get('BottleWithFairy'):
-				return "friend for sale";
+				$credit = "friend";
+				break;
+
 			case Item::get('Heart'):
-				return "affection for sale";
+				$credit = "affection";
+				break;
+
 			case Item::get('Arrow'):
-				return "sewing kit for sale";
 			case Item::get('TenArrows'):
-				return "sewing kit for sale";
+				$credit = "sewing kit";
+				break;
+
 			case Item::get('SmallMagic'):
-				return "alchemy for sale";
-			case Item::get('OneRupee'):
+				$credit = "alchemy";
+				break;
+
+			case Item::get('FiftyRupees'):
 			case Item::get('FiveRupees'):
+			case Item::get('OneRupee'):
 			case Item::get('TwentyRupees'):
 			case Item::get('TwentyRupees2'):
-			case Item::get('FiftyRupees'):
-				return "life lesson for sale";
+				$credit = "life lesson";
+				break;
+
 			case Item::get('OneHundredRupees'):
-				return "fair trade for sale";
+				$credit = "fair trade";
+				break;
+
 			case Item::get('ThreeHundredRupees'):
-				return "good return for sale";
-			case Item::get('OcarinaInactive'):
+				$credit = "good return";
+				break;
+
 			case Item::get('OcarinaActive'):
-				return "duck call for sale";
+			case Item::get('OcarinaInactive'):
+				$credit = "duck call";
+				break;
+
 			case Item::get('PegasusBoots'):
-				return "sprint shoe for sale";
+				$credit = "sprint shoe";
+				break;
+
 			case Item::get('BombUpgrade5'):
 			case Item::get('BombUpgrade10'):
 			case Item::get('BombUpgrade50'):
-				return "bomb boost for sale";
+				$credit = "bomb boost";
+				break;
+
 			case Item::get('ArrowUpgrade5'):
 			case Item::get('ArrowUpgrade10'):
 			case Item::get('ArrowUpgrade70'):
-				return "arrow boost for sale";
+				$credit = "arrow booster";
+				break;
+
 			case Item::get('SilverArrowUpgrade'):
-				return "sharp arrow for sale";
+				$credit = "sharp arrow";
+				break;
+
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
-				return "wizardry for sale";
+				$credit = "wizardry";
+				break;
+
 			case Item::get('Rupoor'):
-				return "double loss for sale";
+				$credit = "double loss";
+				break;
+
 			case Item::get('Nothing'):
-			default:
-				return "Nothing, so stupid";
+				$credit = "nothing";
+				break;
+
 		}
+
+		$credit = $credit . " for sale";
+
+		if($this->item == Item::get('BowAndSilverArrows')) {
+			$credit = "you got lucky";
+		}
+
+		return $credit;
 	}
 }
