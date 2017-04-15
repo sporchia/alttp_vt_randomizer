@@ -15,7 +15,7 @@ class CreateBuildsTable extends Migration {
 			$table->increments('id');
 			$table->date('build')->unique();
 			$table->char('hash', 32);
-			$table->json('patch')->default('[]');
+			$table->json('patch');
 			$table->timestamps();
 		});
 	}

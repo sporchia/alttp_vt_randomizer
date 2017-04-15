@@ -160,6 +160,14 @@ class Witch extends Npc {
 				return "fungus for blue time";
 			case Item::get('GreenClock'):
 				return "shrooms for green time";
+			case Item::get('ProgressiveSword'):
+				return "fungus for some slasher";
+			case Item::get('ProgressiveShield'):
+				return "fungus for some shield";
+			case Item::get('ProgressiveArmor'):
+				return "the clothing store";
+			case Item::get('ProgressiveGlove'):
+				return "fungus for gloves";
 			case Item::get('Nothing'):
 			default:
 				return "mushrooms go poof";

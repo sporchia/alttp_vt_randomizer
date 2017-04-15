@@ -161,6 +161,20 @@ class Zora extends Npc {
 				return "wizardry for sale";
 			case Item::get('Rupoor'):
 				return "double loss for sale";
+			case Item::get('RedClock'):
+				return "ruby clock for sale";
+			case Item::get('BlueClock'):
+				return "blue clock for sale";
+			case Item::get('GreenClock'):
+				return "green clock for sale";
+			case Item::get('ProgressiveSword'):
+				return "some sword for sale";
+			case Item::get('ProgressiveShield'):
+				return "some shield for sale";
+			case Item::get('ProgressiveArmor'):
+				return "unknown hat for sale";
+			case Item::get('ProgressiveGlove'):
+				return "some glove for sale";
 			case Item::get('Nothing'):
 			default:
 				return "Nothing, so stupid";

@@ -150,7 +150,7 @@ class DesertPalace extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('BookOfMudora')
-				|| ($items->has('MagicMirror') && $items->has('TitansMitt') && $items->canFly());
+				|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly());
 		};
 
 		return $this;

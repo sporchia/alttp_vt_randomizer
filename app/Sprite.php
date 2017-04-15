@@ -206,7 +206,7 @@ class Sprite {
 			new Sprite("Zelda", "Princess Zelda", [0x76]),
 			new Sprite("Antifairy2", "Antifairy (Alternate)", [0x77]),
 			new Sprite("VillageElder", "Village Elder", [0x78]),
-			new Sprite("Bee", "Bee", 0x79), // Bee [hoar]d?
+			new Sprite("Bee", "Bee", [0x79]), // Bee hoard?
 			new Sprite("Agahnim", "Agahnim", [0x7A]),
 			new Sprite("AgahnimBall", "Agahnim Energy Ball", [0x7B]),
 			new Sprite("Hyu", "Hyu", [0x7C]),
@@ -289,8 +289,8 @@ class Sprite {
 			new Sprite("Tektite", "Tektite", [0xC9]),
 			new Sprite("ChainChomp", "Chain Chomp", [0xCA]),
 			new Sprite("Trinexx", "Trinexx", [0xCB]),
-			new Sprite("TrinexxHeadFire", "Another part of trinexx", 0xCC), // might be[ wro]ng
-			new Sprite("TrinexxHeadIce", "Yet another part of trinexx", 0xCD), // might be[ wro]ng
+			new Sprite("TrinexxHeadFire", "Another part of trinexx", [0xCC]), // might be wrong
+			new Sprite("TrinexxHeadIce", "Yet another part of trinexx", [0xCD]), // might be wrong
 			new Sprite("Blind", "Blind The Thief (Boss)", [0xCE]),
 			new Sprite("Swamola", "Swamola", [0xCF]),
 			new Sprite("Lynel", "Lynel", [0xD0]),

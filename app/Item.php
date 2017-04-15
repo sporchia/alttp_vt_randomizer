@@ -179,6 +179,7 @@ class Item {
 			new Item\Sword('ProgressiveSword', 'Progressive Sword', 0x5E),
 			new Item\Shield('ProgressiveShield', 'Progressive Shield', 0x5F),
 			new Item('ProgressiveArmor', 'Progressive Armor', 0x60),
+			new Item('ProgressiveGlove', 'Progressive Glove', 0x61),
 			new Item\Crystal('Crystal1', 'Crystal 1', [null, 0x02, 0x34, 0x64, 0x40, 0x7F, 0x06]),
 			new Item\Crystal('Crystal2', 'Crystal 2', [null, 0x10, 0x34, 0x64, 0x40, 0x79, 0x06]),
 			new Item\Crystal('Crystal3', 'Crystal 3', [null, 0x40, 0x34, 0x64, 0x40, 0x6C, 0x06]),

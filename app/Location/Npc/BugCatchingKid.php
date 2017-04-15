@@ -18,20 +18,17 @@ class BugCatchingKid extends Npc {
 
 	private function getItemCreditsText() {
 		switch ($this->item) {
+			case Item::get('ProgressiveSword'):
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "sword-wielding kid";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "sword-wielding kid";
 			case Item::get('L3Sword'):
-				return "sword-wielding kid";
 			case Item::get('L4Sword'):
 				return "sword-wielding kid";
+			case Item::get('ProgressiveShield'):
 			case Item::get('BlueShield'):
-				return "shield-wielding kid";
 			case Item::get('RedShield'):
-				return "shield-wielding kid";
 			case Item::get('MirrorShield'):
 				return "shield-wielding kid";
 			case Item::get('FireRod'):
@@ -72,8 +69,8 @@ class BugCatchingKid extends Npc {
 				return "red riding-hood kid";
 			case Item::get('MagicMirror'):
 				return "the narcissistic kid";
+			case Item::get('ProgressiveGlove'):
 			case Item::get('PowerGlove'):
-				return "body-building kid";
 			case Item::get('TitansMitt'):
 				return "body-building kid";
 			case Item::get('BookOfMudora'):
@@ -84,6 +81,7 @@ class BugCatchingKid extends Npc {
 				return "fortune-telling kid";
 			case Item::get('BugCatchingNet'):
 				return "the bug-catching kid";
+			case Item::get('ProgressiveArmor'):
 			case Item::get('BlueMail'):
 				return "the protected kid";
 			case Item::get('RedMail'):

@@ -20,40 +20,55 @@ class GanonsTowerTest extends TestCase {
 
 	// Entry
 	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItems()));
+		$this->assertTrue($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
 	public function testCrystal1RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal1'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal1'])));
 	}
 
 	public function testCrystal2RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal2'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal2'])));
 	}
 
 	public function testCrystal3RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal3'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal3'])));
 	}
 
 	public function testCrystal4RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal4'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal4'])));
 	}
 
 	public function testCrystal5RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal5'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal5'])));
 	}
 
 	public function testCrystal6RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal6'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal6'])));
 	}
 
 	public function testCrystal7RequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal7'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Crystal7'])));
 	}
 
 	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
 	}
+
+	public function testMittsRequiredForEntry() {
+		$this->assertFalse($this->world->getRegion('Ganons Tower')
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt'])));
+	}
+
 
 	// Left side
 	public function testDownLeftStaircaseRequiresBoots() {
@@ -121,6 +136,36 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
+	public function testMapRoomDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMapRoomRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMapRoomDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMapRoomRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - map room")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	public function testNorthOfTeleportRoomRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
@@ -129,6 +174,36 @@ class GanonsTowerTest extends TestCase {
 	public function testNorthOfTeleportRoomRequiresHammer() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
 			->canAccess($this->allItemsExcept(['Hammer'])));
+	}
+
+	public function testNorthOfTeleportRoomDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfTeleportRoomRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfTeleportRoomDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfTeleportRoomRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	public function testWestOfTeleportRoomChestTLRequiresHookshot() {
@@ -141,6 +216,36 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
+	public function testWestOfTeleportRoomChestTLDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestTLRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestTLDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestTLRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	public function testWestOfTeleportRoomChestTRRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
@@ -149,6 +254,36 @@ class GanonsTowerTest extends TestCase {
 	public function testWestOfTeleportRoomChestTRRequiresHammer() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
 			->canAccess($this->allItemsExcept(['Hammer'])));
+	}
+
+	public function testWestOfTeleportRoomChestTRDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestTRRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestTRDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestTRRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	public function testWestOfTeleportRoomChestBLRequiresHookshot() {
@@ -161,6 +296,36 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
+	public function testWestOfTeleportRoomChestBLDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestBLRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestBLDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestBLRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	public function testWestOfTeleportRoomChestBRRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
@@ -171,23 +336,53 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['Hammer'])));
 	}
 
+	public function testWestOfTeleportRoomChestBRDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestBRRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestBRDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testWestOfTeleportRoomChestBRRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	// Right side
 	public function testRightStaircaseRoomChestLOnlyRequiresCrystalsAndMoonPearl() {
-		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'MoonPearl']);
+		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'MoonPearl', 'TitansMitt']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")
 			->canAccess($this->collected));
 	}
 
 	public function testRightStaircaseRoomChestROnlyRequiresCrystalsAndMoonPearl() {
-		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'MoonPearl']);
+		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'MoonPearl', 'TitansMitt']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]")
 			->canAccess($this->collected));
 	}
 
 	public function testFlyingTilesRoomRequiresCane() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrace")
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
 	}
 
@@ -201,6 +396,27 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
 	}
 
+	public function testCompassRoomChestTLDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestTLRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestTLDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
 	public function testCompassRoomChestTRRequiresFireRod() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
@@ -209,6 +425,27 @@ class GanonsTowerTest extends TestCase {
 	public function testCompassRoomChestTRRequiresCane() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
+	}
+
+	public function testCompassRoomChestTRDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestTRRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestTRDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
 	public function testCompassRoomChestBLRequiresFireRod() {
@@ -221,6 +458,27 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
 	}
 
+	public function testCompassRoomChestBLDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestBLRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestBLDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
 	public function testCompassRoomChestBRRequiresFireRod() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
@@ -229,6 +487,27 @@ class GanonsTowerTest extends TestCase {
 	public function testCompassRoomChestBRRequiresCane() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
+	}
+
+	public function testCompassRoomChestBRDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestBRRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testCompassRoomChestBRDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
 	}
 
 	// Convergence
@@ -314,6 +593,36 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['FireRod', 'Hammer'])));
 	}
 
+	public function testBigChestDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBigChestRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBigChestDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBigChestRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	public function testAboveArmosRequiresHookshotAndHammerOrCaneAndFireRod() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
 			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer', 'CaneOfSomaria', 'FireRod'])));
@@ -367,6 +676,36 @@ class GanonsTowerTest extends TestCase {
 	public function testAboveArmosRequiresFireRodIfNoHammer() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
 			->canAccess($this->allItemsExcept(['FireRod', 'Hammer'])));
+	}
+
+	public function testAboveArmosDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testAboveArmosRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testAboveArmosDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testAboveArmosRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	public function testNorthOfArmosChestBRequiresHookshotAndHammerOrCaneAndFireRod() {
@@ -424,6 +763,36 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['FireRod', 'Hammer'])));
 	}
 
+	public function testNorthOfArmosChestBDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestBRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestBDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestBRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	public function testNorthOfArmosChestLRequiresHookshotAndHammerOrCaneAndFireRod() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
 			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer', 'CaneOfSomaria', 'FireRod'])));
@@ -477,6 +846,36 @@ class GanonsTowerTest extends TestCase {
 	public function testNorthOfArmosChestLRequiresFireRodIfNoHammer() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
 			->canAccess($this->allItemsExcept(['FireRod', 'Hammer'])));
+	}
+
+	public function testNorthOfArmosChestLDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestLRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestLDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestLRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	public function testNorthOfArmosChestRRequiresHookshotAndHammerOrCaneAndFireRod() {
@@ -534,55 +933,159 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['FireRod', 'Hammer'])));
 	}
 
+	public function testNorthOfArmosChestRDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestRRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestRDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfArmosChestRRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
 	// Climb
-	public function testNothOfFallingFloorRoomChestLCannotBeBigKey() {
+	public function testNorthOfFallingFloorRoomChestLCannotBeBigKey() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testNothOfFallingFloorRoomChestLDoesNotRequireOnlyFireRod() {
+	public function testNorthOfFallingFloorRoomChestLDoesNotRequireOnlyFireRod() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestLDoesNotRequireOnlyLamp() {
+	public function testNorthOfFallingFloorRoomChestLDoesNotRequireOnlyLamp() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
 			->canAccess($this->allItemsExcept(['Lamp'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestLRequiresFire() {
+	public function testNorthOfFallingFloorRoomChestLRequiresFire() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
 			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestLRequiresBow() {
+	public function testNorthOfFallingFloorRoomChestLRequiresBow() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
 			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestRCannotBeBigKey() {
+	public function testNorthOfFallingFloorRoomChestLRequiresBootsIfBigKeyOnTorch() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestLDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestLRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestLDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestLRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestRCannotBeBigKey() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
 			->fill(Item::get('BigKey'), $this->allItems()));
 	}
 
-	public function testNothOfFallingFloorRoomChestRDoesNotRequireOnlyFireRod() {
+	public function testNorthOfFallingFloorRoomChestRDoesNotRequireOnlyFireRod() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestRDoesNotRequireOnlyLamp() {
+	public function testNorthOfFallingFloorRoomChestRDoesNotRequireOnlyLamp() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
 			->canAccess($this->allItemsExcept(['Lamp'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestRRequiresFire() {
+	public function testNorthOfFallingFloorRoomChestRRequiresFire() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
 			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
 	}
 
-	public function testNothOfFallingFloorRoomChestRRequiresBow() {
+	public function testNorthOfFallingFloorRoomChestRRequiresBow() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
 			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestRRequiresBootsIfBigKeyOnTorch() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestRDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestRRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestRDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testNorthOfFallingFloorRoomChestRRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	public function testBeforeMoldormCannotBeBigKey() {
@@ -608,6 +1111,43 @@ class GanonsTowerTest extends TestCase {
 	public function testBeforeMoldormRequiresBow() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
 			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
+	}
+
+	public function testBeforeMoldormRoomRequiresBootsIfBigKeyOnTorch() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBeforeMoldormRoomDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBeforeMoldormRoomRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBeforeMoldormRoomDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testBeforeMoldormRoomRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	public function testMoldormRoomCannotBeBigKey() {
@@ -638,6 +1178,43 @@ class GanonsTowerTest extends TestCase {
 	public function testMoldormRoomRequiresHookshot() {
 		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
+	}
+
+	public function testMoldormRoomRequiresBootsIfBigKeyOnTorch() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMoldormRoomDoesNotRequireBootsIfNotBonkKey() {
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMoldormRoomRequiresBootsIfBonkKey() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMoldormRoomDoesNotRequireBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
+			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+	}
+
+	public function testMoldormRoomRequiresSomariaButNotRequiresBootsIfBonkKeyAndMoreKeys() {
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
+			->canAccess($this->allItemsExcept(['PegasusBoots', 'CaneOfSomaria'])));
 	}
 
 	// Key fill

@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-03-21';
-	const HASH = 'cb1a549cb4d820aa811bc16f74f44778';
+	const BUILD = '2017-04-15';
+	const HASH = 'a7584e174d71e6630f98fdbf2b19ad12';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -152,6 +152,10 @@ class Rom {
 			case 'stopwatch':
 				$bytes = [0x02, 0x01];
 				break;
+			case 'countdown-ohko':
+				$bytes = [0x01, 0x02];
+				$restart = true;
+				break;
 			case 'countdown-continue':
 				$bytes = [0x01, 0x01];
 				break;
@@ -265,6 +269,7 @@ class Rom {
 
 	/**
 	 * Set the opening Uncle text to one of the predefined values in he ROM
+	 * @TODO: move this out of this file into the randomizer with all other text strings.
 	 *
 	 * @param int $offset which text to use: 0x00 -> 0x1F
 	 *
@@ -304,6 +309,7 @@ class Rom {
 			"Well\nexcuuuuuse me,\nprincess!",
 			"5,000 Rupee\nreward for @>\nYou're boned",
 			"Welcome to\nStoops Lonk's\nHoose",
+			"Erreur de\ntraduction.\nsvp reessayer",
 		];
 
 		$this->setUncleTextString($texts[$offset % count($texts)]);
@@ -392,6 +398,96 @@ class Rom {
 	 */
 	public function setBlindTextString(string $string) : self {
 		$offset = 0x180800;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Tavern Man text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setTavernManTextString(string $string) : self {
+		$offset = 0x180C00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Sahasrahla before item collection text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setSahasrahla1TextString(string $string) : self {
+		$offset = 0x180A00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Sahasrahla after item collection text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setSahasrahla2TextString(string $string) : self {
+		$offset = 0x180B00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Bomb Shop before crystals 5 & 6 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setBombShop1TextString(string $string) : self {
+		$offset = 0x180E00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Bomb Shop after crystals 5 & 6 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setBombShop2TextString(string $string) : self {
+		$offset = 0x180D00;
 
 		$converter = new Dialog;
 		foreach ($converter->convertDialog($string) as $byte) {
@@ -987,8 +1083,7 @@ class Rom {
 				$this->write(0xF73E6, pack('C*', 0x3C)); // -
 
 				$this->setRupoorValue(20);
-				$this->setBelowGanonChest(true);
-				$this->write(0xE9A7, pack('C*', 0x02)); // tempered sword
+				$this->setBelowGanonChest(false);
 				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
@@ -1262,7 +1357,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function write(int $offset, $data) : self {
-		Log::debug(sprintf("write: 0x%s: 0x%2s\n", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
+		Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 		$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);

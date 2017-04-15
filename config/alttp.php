@@ -14,7 +14,7 @@ return [
 			'count' => [
 				'TwentyRupees' => 0, // 28 : 560
 				'OneRupee' => 0, // 2 : 2
-				'FiveRupees' => 0, // 4 : 200
+				'FiveRupees' => 0, // 4 : 20
 				'ThreeBombs' => 0, // 10
 				'OneHundredRupees' => 3, // 1 : + 200
 				'ThreeHundredRupees' => 6, // 4 + 600
@@ -39,12 +39,35 @@ return [
 			'BootsLocation' => true,
 		],
 	],
+	'timed-ohko' => [
+		'item' => [
+			'count' => [
+				'TwentyRupees' => 0, // 28 : 560
+				'OneHundredRupees' => 3, // 1 : + 200
+				'ThreeHundredRupees' => 5, // 4 + 300
+				'GreenClock' => 25,
+			],
+			'value' => [
+				'GreenClock' => 300,
+			],
+		],
+		'region' => [
+			'superBunnyDM' => false,
+		],
+		'rom' => [
+			'timerMode' => 'countdown-ohko',
+			'timerStart' => 10 * 60,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
+		],
+	],
 	'timed-race' => [
 		'item' => [
 			'count' => [
 				'TwentyRupees' => 0, // 28 : 560
 				'OneRupee' => 0, // 2 : 2
-				'FiveRupees' => 0, // 4 : 200
+				'FiveRupees' => 0, // 4 : 20
 				'ThreeBombs' => 0, // 10
 				'OneHundredRupees' => 3, // 1 : + 200
 				'ThreeHundredRupees' => 6, // 4 + 600
@@ -167,6 +190,12 @@ return [
 		],
 	],
 	'custom' => [
+		'item' => [
+			'progressiveArmor' => false,
+			'progressiveGloves' => false,
+			'progressiveShields' => false,
+			'progressiveSwords' => false,
+		],
 		'prize' => [
 			'crossWorld' => false,
 			'shufflePendants' => false,

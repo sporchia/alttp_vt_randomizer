@@ -46,6 +46,8 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("Turtle Rock Crystal")->setItem(Item::get('Crystal7'));
 		$this->world->getLocation("Altar")->setItem(Item::get('MasterSword'));
 
+		$this->world->getLocation("Uncle")->setItem(Item::get('L1Sword'));
+
 		$this->world->getLocation("[cave-040] Link's House")->setItem(Item::get('Lamp'));
 
 		$this->world->getLocation("[dungeon-L1-1F] Eastern Palace - Big key")->setItem(Item::get('BigKey'));

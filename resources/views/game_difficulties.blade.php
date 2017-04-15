@@ -162,15 +162,77 @@
 				<li>There is only 1 Bottle</li>
 				<li>Potions and Shields in Shops are unpurchasable</li>
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
-				<li>Tempered Sword can only be found after falling to Ganon</li>
 			</ul>
 			<p>The following items have been added:</p>
 			<ul>
 				<li>20x Rupoors (-20 rupees when collected)</li>
 			</ul>
-
 		</div>
 	</div>
 
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Timed</h3>
+		</div>
+		<div class="panel-body">
+			<p>Timed mode is a new way of playing Randomizer. When digging through the graphics packed into the rom
+				we found a clock. Much like the clocks in The Legend of Zelda. With those available we decided to
+				make a few different Timed modes with a timer at the top.</p>
+			<p>In all these modes you will find an assortment of Red, Blue, and Green clocks. They mean different
+				things in different modes. Generally small rupee drops were removed to make space for the new
+				clocks. But don't worry we added more large rupee drops to make up for it.</p>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Default</h3>
+				</div>
+				<div class="panel-body">
+					<p>Racing the timer. Can you beat the game before the timer runs out? Your game wont end,
+						but you will see DNF on top of the screen for the remainder of the run. Picking up
+						extra clocks once you DNF will not restart your timer.</p>
+					<p>This mode has:</p>
+					<ul>
+						<li>Start with 45 minutes on the timer</li>
+						<li>25 Green clocks that add 5 minutes to your timer</li>
+						<li>15 Red clocks that subtract 2.5 minutes to your timer</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title">Race</h3>
+				</div>
+				<div class="panel-body">
+					<p>In this mode the timer is counting up, and the person with the best time wins the game
+						irrelevent of who beats Ganon first.</p>
+					<p>Do you spend some time looking for a clock to adjust your timer down? Or just race
+						to the end?</p>
+					<p>This mode has:</p>
+					<ul>
+						<li>Start with 0 minutes on the timer</li>
+						<li>20 Green clocks that subtract 4 minutes from your timer</li>
+						<li>10 Blue clocks that subtract 2 minutes to your timer</li>
+						<li>10 Red clocks that add 2 minutes to your timer</li>
+					</ul>
+
+				</div>
+			</div>
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">OHKO (one hit knock out)</h3>
+				</div>
+				<div class="panel-body">
+					<p>In this mode you start with 10 minutes on the timer, every clock you find will add time to
+						your total time. But if you let the timer reach 0, then you'll be in OHKO mode.</p>
+					<p>Don't dispair though, if you are in OHKO mode and find another clock (no matter how
+						long you have been in OHKO), you get the time of the clock added to your timer.</p>
+					<p>This mode has:</p>
+					<ul>
+						<li>Start with 10 minutes on the timer</li>
+						<li>25 Green clocks that add 5 minutes to your timer</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @overwrite

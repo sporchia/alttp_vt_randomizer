@@ -85,6 +85,8 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$rom->setTournamentType('none');
 	}
 
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
@@ -125,6 +127,8 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 			"alttp.{$difficulty}.spoil.BootsLocation" => false,
 		]);
 	}
+
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
 	$rand->makeSeed($seed_id);

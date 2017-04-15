@@ -90,7 +90,7 @@ class South extends Region {
 				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && ($items->has('Hammer')
 					|| ($items->has('Hookshot') && ($items->has('Flippers') || $items->canLiftRocks()))))
 					|| ($items->has('Hammer') && $items->canLiftRocks())
-					|| $items->has('TitansMitt'));
+					|| $items->canLiftDarkRocks());
 		};
 
 		return $this;

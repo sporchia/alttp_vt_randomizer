@@ -171,6 +171,7 @@ class World {
 		$prizes = new ItemCollection;
 		foreach ($this->regions as $region) {
 			if ($region->hasPrize() && $region->getPrizeLocation()->canAccess($items)) {
+				// TODO: check that this isn't adding hundreds of prizes
 				$prizes->addItem($region->getPrize());
 			}
 		}

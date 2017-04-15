@@ -7,4 +7,8 @@ class Build extends Model {
 		'build',
 		'hash',
 	];
+
+	protected $attributes = [
+		'patch' => '[]',
+	];
 }

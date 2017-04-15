@@ -11,7 +11,8 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=normal} {--mode=NoMajorGlitches}';
+	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=normal} {--mode=NoMajorGlitches}'
+		. '{--csv}';
 
 	/**
 	 * The console command description.
@@ -40,6 +41,10 @@ class Distribution extends Command {
 				$function = [$this, 'region_fill'];
 				$thing = $this->argument('thing');
 				break;
+			case 'full':
+				$function = [$this, 'full'];
+				$thing = $this->argument('thing');
+				break;
 			default:
 				return $this->error('Invalid distribution');
 		}
@@ -48,8 +53,35 @@ class Distribution extends Command {
 			call_user_func_array($function, [$thing, &$locations]);
 		}
 
-		ksortr($locations);
-		$this->info(json_encode($locations, JSON_PRETTY_PRINT));
+		if ($this->option('csv')) {
+			$locations = $this->_assureColumnsExist($locations);
+			ksortr($locations);
+			$out = fopen('php://output', 'w');
+			fputcsv($out, array_merge(['location'], array_keys(reset($locations))));
+			foreach ($locations as $name => $location) {
+				fputcsv($out, array_merge([$name], $location));
+			}
+			fclose($out);
+		} else {
+			ksortr($locations);
+			$this->info(json_encode($locations, JSON_PRETTY_PRINT));
+		}
+	}
+
+	private function _assureColumnsExist($array) : array {
+		$keys = [];
+		foreach ($array as $part) {
+			$keys = array_merge($keys, array_keys($part));
+		}
+		$keys = array_unique($keys);
+		foreach ($array as $k => $part) {
+			foreach ($keys as $key) {
+				if (!isset($part[$key])) {
+					$array[$k][$key] = 0;
+				}
+			}
+		}
+		return $array;
 	}
 
 	private function item(Item $item, &$locations) {
@@ -93,6 +125,21 @@ class Distribution extends Command {
 				$locations[$location->getName()][$location->getItem()->getNiceName()] = 0;
 			}
 			$locations[$location->getName()][$location->getItem()->getNiceName()]++;
+		}
+	}
+
+	private function full($unused, &$locations) {
+		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+		$rand->makeSeed();
+
+		foreach ($rand->getWorld()->getLocations() as $location) {
+			$location_name = $location->getName();
+			$item_name = $location->getItem()->getNiceName();
+
+			if (!isset($locations[$location_name][$item_name])) {
+				$locations[$location_name][$item_name] = 0;
+			}
+			$locations[$location_name][$item_name]++;
 		}
 	}
 }

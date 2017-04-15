@@ -121,8 +121,9 @@ class Dialog {
 				default:
 					if ($i >= 3 && $i < count($lines)) {
 						$new_string[] = 0xF6;
+					} else {
+						$new_string[] = 0xF9;
 					}
-					$new_string[] = 0xF9;
 					break;
 			}
 
@@ -137,7 +138,7 @@ class Dialog {
 			$i++;
 
 			if ($pause && $i % 3 == 0 && count($lines) > $i) {
-				$new_string[] = 0xF7;
+				$new_string[] = 0xFA;
 			}
 		}
 
@@ -150,7 +151,6 @@ class Dialog {
 
 	/**
 	 * Convert character to byte for ROM
-	 * @TODO: consider moving this out to a seperate encoding class
 	 *
 	 * @param string $string character to convert
 	 * E5E7=<1/4 heart>
@@ -176,7 +176,9 @@ class Dialog {
 			case "…": return 0xCC;
 			case '.': return 0xCD;
 			case '~': return 0xCE;
+			case '～': return 0xCE;
 			case "'": return 0xD8;
+			case "’": return 0xD8;
 			case "@": return 0xD2; // left half link face
 			case ">": return 0xD3; // right half link face
 			case "%": return 0xDD; // Hylian Bird

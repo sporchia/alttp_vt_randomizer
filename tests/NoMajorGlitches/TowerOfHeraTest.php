@@ -50,12 +50,12 @@ class TowerOfHeraTest extends TestCase {
 
 	public function testLiftingRocksOrFluteRequiredForEntry() {
 		$this->assertFalse($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['PowerGlove', 'TitansMitt', 'OcarinaActive', 'OcarinaInactive'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves', 'OcarinaActive', 'OcarinaInactive'])));
 	}
 
 	public function testNotOnlyLiftingRocksRequiredForEntry() {
 		$this->assertTrue($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testNotOnlyFluteRequiredForEntry() {
@@ -96,6 +96,15 @@ class TowerOfHeraTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
 			->canAccess($this->allItems()));
 	}
+
+	public function testFisrtFloorChestRequiresHammerOrSwordIfMoldormHasKey() {
+		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKey'));
+		$this->world->getLocation("Heart Container - Moldorm")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
+			->canAccess($this->allItemsExcept(['Hammer', 'AnySword'])));
+	}
+
 
 	public function test4FRequiresFireIfFirstFloorChestHasBigKey() {
 		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('Key'));
@@ -140,6 +149,13 @@ class TowerOfHeraTest extends TestCase {
 
 		$this->assertTrue($this->world->getLocation("Heart Container - Moldorm")
 			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
+	}
+
+	public function testMoldormRequiresHammerOrSword() {
+		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("Heart Container - Moldorm")
+			->canAccess($this->allItemsExcept(['Hammer', 'AnySword'])));
 	}
 
 	// Key filling

@@ -66,7 +66,7 @@ class NorthWest extends Region {
 		});
 
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
-			return $items->has('TitansMitt') && $items->has('Hammer');
+			return $items->canLiftDarkRocks() && $items->has('Hammer');
 		});
 
 		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
@@ -81,7 +81,7 @@ class NorthWest extends Region {
 						|| $items->has('Flippers')))
 				|| ($items->has('Hammer')
 					&& $items->canLiftRocks())
-				|| $items->has("TitansMitt"))
+				|| $items->canLiftDarkRocks())
 			&& $items->has('MoonPearl');
 		};
 

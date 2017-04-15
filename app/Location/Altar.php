@@ -186,6 +186,14 @@ class Altar extends Location {
 				return "the sapphire clock";
 			case Item::get('GreenClock'):
 				return "the emerald clock";
+			case Item::get('ProgressiveSword'):
+				return "the unknown sword";
+			case Item::get('ProgressiveShield'):
+				return "the unknown shield";
+			case Item::get('ProgressiveArmor'):
+				return "the unknown hat";
+			case Item::get('ProgressiveGlove'):
+				return "the magic hand cover";
 			case Item::get('Nothing'):
 			default:
 				return "and nothing";
@@ -207,7 +215,7 @@ class Altar extends Location {
 			case Item::get('BlueShield'):
 				return "Now you can\ndefend against\npebbles!";
 			case Item::get('RedShield'):
-				return "Now you can\ndefend against\fireballs!";
+				return "Now you can\ndefend against\nfireballs!";
 			case Item::get('MirrorShield'):
 				return "Now you can\ndefend against\nlasers!";
 			case Item::get('FireRod'):
@@ -351,6 +359,14 @@ class Altar extends Location {
 				return "sapphire sand\ntrickles down";
 			case Item::get('GreenClock'):
 				return "tick tock\ntick tock";
+			case Item::get('ProgressiveSword'):
+				return "a better copy\nof your sword\nfor your time";
+			case Item::get('ProgressiveShield'):
+				return "have a better\nblocker in\nfront of you";
+			case Item::get('ProgressiveArmor'):
+				return "time for a\nchange of\nclothes?";
+			case Item::get('ProgressiveGlove'):
+				return "a way to lift\nheavier things";
 			case Item::get('Nothing'):
 			default:
 				return "Don't waste\nyour time!";

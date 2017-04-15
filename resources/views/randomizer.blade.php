@@ -31,7 +31,10 @@
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Generate</h3>
-		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
+		<div class="btn-toolbar pull-right">
+			<button class="btn btn-info" name="generate-tournament-rom">Genrate Race ROM</button>
+			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
+		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
@@ -54,6 +57,9 @@
 								<option value="normal">Normal</option>
 								<option value="hard">Hard</option>
 								<option value="masochist">Masochist</option>
+								<option value="timed">Timed</option>
+								<option value="timed-race">Timed Race</option>
+								<option value="timed-ohko">Timed OHKO</option>
 								<option value="custom">Custom</option>
 							</select>
 						</div>
@@ -233,6 +239,23 @@
 					<input id="cust-region-pyramidBowUpgrade" type="checkbox" name="data[alttp.custom.region.pyramidBowUpgrade]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-pyramidBowUpgrade">Pyramid Faerie Upgrades Bow</label>
 				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveSwords" type="checkbox" name="data[alttp.custom.item.progressiveSwords]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveSwords">Progressive Swords</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveGloves" type="checkbox" name="data[alttp.custom.item.progressiveGloves]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveGloves">Progressive Gloves</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveArmor" type="checkbox" name="data[alttp.custom.item.progressiveArmor]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveArmor">Progressive Armor</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveShields" type="checkbox" name="data[alttp.custom.item.progressiveShields]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveShields">Progressive Shields</label>
+				</div>
+
 			</div>
 
 			<div class="tab-pane" id="custom-items-advancement">
@@ -600,6 +623,7 @@ function seedFailed(data) {
 
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
+		$('button[name=generate-tournament-rom]').html('Generate Race ROM').prop('disabled', false);
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('button[name=generate-save]').prop('disabled', false);
 		$('.info').show();
@@ -717,6 +741,15 @@ $(function() {
 	});
 
 	$('button[name=generate]').on('click', function() {
+		$('input[name=tournament]').val($('#generate-tournament').prop('checked'));
+		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
+		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
+	});
+
+	$('button[name=generate-tournament-rom]').on('click', function() {
+		$('input[name=tournament]').val(true);
+		$('button[name=generate-tournament-rom]').html('Generating...').prop('disabled', true);
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
 		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
@@ -869,8 +902,17 @@ $(function() {
 			if ($('#cust-region-swordsInPool').prop('checked')) {
 				$('#cust-region-swordsInPool').prop('checked', true).bootstrapToggle('off');
 			}
+			if ($('#cust-item-progressiveSwords').prop('checked')) {
+				$('#cust-item-progressiveSwords').prop('checked', true).bootstrapToggle('off');
+			}
 		}
 	});
+	$('#cust-item-progressiveSwords').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
+		}
+	});
+
 
 	$('#cust-region-pyramidBowUpgrade').on('change', function() {
 		if ($(this).prop('checked')) {

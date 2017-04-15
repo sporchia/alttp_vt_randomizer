@@ -18,20 +18,17 @@ class HauntedGrove extends Dig {
 
 	private function getItemCreditsText() {
 		switch ($this->item) {
+			case Item::get('ProgressiveSword'):
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "boy fights again";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "boy fights again";
 			case Item::get('L3Sword'):
-				return "boy fights again";
 			case Item::get('L4Sword'):
 				return "boy fights again";
+			case Item::get('ProgressiveShield'):
 			case Item::get('BlueShield'):
-				return "boy defends again";
 			case Item::get('RedShield'):
-				return "boy defends again";
 			case Item::get('MirrorShield'):
 				return "boy defends again";
 			case Item::get('FireRod'):
@@ -72,6 +69,7 @@ class HauntedGrove extends Dig {
 				return "boy hides again";
 			case Item::get('MagicMirror'):
 				return "boy sees himself again";
+			case Item::get('ProgressiveGlove'):
 			case Item::get('PowerGlove'):
 				return "boy lifts again";
 			case Item::get('TitansMitt'):
@@ -167,6 +165,8 @@ class HauntedGrove extends Dig {
 				return "boy time travels again";
 			case Item::get('GreenClock'):
 				return "boy adjusts time again";
+			case Item::get('ProgressiveArmor'):
+				return "boy has threads again";
 			case Item::get('Nothing'):
 			default:
 				return "boy does nothing again";
