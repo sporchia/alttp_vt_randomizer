@@ -179,7 +179,7 @@
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-advancement">Advancement Items</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-extra">Other Items</a></li>
-			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">147</span> / <span id="custom-count-total">147</span></span></li>
+			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">150</span> / <span id="custom-count-total">150</span></span></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="custom-settings">
@@ -350,6 +350,18 @@
 				<div class="col-md-4">
 					<input id="item-count-Bottle" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Bottle]" readonly class="custom-items">
 					<label for="item-count-Bottle">Bottle</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-MasterSword" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.MasterSword]" class="custom-items">
+					<label for="item-count-MasterSword">Master Sword</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-L3Sword" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.L3Sword]" class="custom-items">
+					<label for="item-count-L3Sword">Tempered Sword</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-L4Sword" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.L4Sword]" class="custom-items">
+					<label for="item-count-L4Sword">Golden Sword</label>
 				</div>
 			</div>
 			<div class="tab-pane" id="custom-items-extra">
@@ -628,6 +640,9 @@ function seedApplied(data) {
 		$('button[name=generate-save]').prop('disabled', false);
 		$('.info').show();
 		$('.info .seed').html(data.patch.seed);
+		if ($('input[name=tournament]').val() == 'true') {
+			$('.info .seed').html("<a href='/h/" + data.patch.seed + "'>" + data.patch.seed + "</a>");
+		}
 		$('.info .logic').html(data.patch.logic);
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);

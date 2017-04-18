@@ -1115,10 +1115,10 @@ class Randomizer {
 				list($low, $high) = [3, 4]; // 12.5%, 6.25%
 				break;
 			case 1:
-				list($low, $high) = [2, 4]; // 25%, 12.5%, 6.25%
+				list($low, $high) = [2, 3]; // 25%, 12.5%
 				break;
 			default:
-				list($low, $high) = [1, 3]; // 50%, 25%, 12.5%
+				list($low, $high) = [1, 2]; // 50%, 25%
 		}
 		$offset = 0x37A62;
 		for ($i = 0; $i < 7; $i++) {

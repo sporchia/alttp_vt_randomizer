@@ -144,6 +144,14 @@ class World {
 				};
 				break;
 		}
+
+		if ($this->rules == 'custom') {
+			$this->win_condition = function($collected_items) {
+				return $collected_items->hasUpgradedSword()
+					&& $collected_items->canLightTorches()
+					&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+			};
+		}
 	}
 
 	/**
