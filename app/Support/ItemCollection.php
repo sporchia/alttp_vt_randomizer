@@ -88,6 +88,25 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Execute a callback over each item.
+	 *
+	 * @param callable $callback
+	 *
+	 * @return $this
+	 */
+	public function each(callable $callback) {
+		foreach ($this->items as $key => $item) {
+			for ($i = 0; $i < $this->item_counts[$key]; $i++) {
+				if ($callback($item, $key) === false) {
+					break;
+				}
+			}
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Merge the collection with the given items.
 	 *
 	 * @TODO: this whole function may be incorrect
@@ -124,6 +143,25 @@ class ItemCollection extends Collection {
 		$new->item_counts = $this->item_counts;
 
 		return $new;
+	}
+
+	/**
+	 * Run a map over each of the items.
+	 *
+	 * @param callable $callback
+	 *
+	 * @return array
+	 */
+	public function map(callable $callback) {
+		$items = [];
+
+		foreach ($this->item_counts as $key => $count) {
+			for ($i = 0; $i < $count; $i++) {
+				$items[] = $this->items[$key];
+			}
+		}
+
+		return array_map($callback, $items);
 	}
 
 	/**

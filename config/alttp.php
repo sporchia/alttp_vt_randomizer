@@ -3,7 +3,6 @@
 return [
 	'normal' => [
 		'region' => [
-			'superBunnyDM' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => true,
@@ -28,9 +27,6 @@ return [
 				'BombUpgrade10' => 3,
 			],
 		],
-		'region' => [
-			'superBunnyDM' => false,
-		],
 		'rom' => [
 			'timerMode' => 'countdown-stop',
 			'timerStart' => 45 * 60,
@@ -50,9 +46,6 @@ return [
 			'value' => [
 				'GreenClock' => 300,
 			],
-		],
-		'region' => [
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'timerMode' => 'countdown-ohko',
@@ -82,9 +75,6 @@ return [
 				'BombUpgrade5' => 2,
 				'BombUpgrade10' => 3,
 			],
-		],
-		'region' => [
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'timerMode' => 'stopwatch',
@@ -130,7 +120,6 @@ return [
 		],
 		'region' => [
 			'CompassesMaps' => false,
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'HardMode' => 1,
@@ -180,7 +169,6 @@ return [
 		],
 		'region' => [
 			'CompassesMaps' => false,
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'HardMode' => 2,
@@ -209,7 +197,6 @@ return [
 			'CompassesMaps' => false,
 			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
-			'superBunnyDM' => false,
 			'bonkItems' => false,
 		],
 		'rom' => [

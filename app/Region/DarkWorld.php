@@ -74,16 +74,14 @@ class DarkWorld extends Region {
 			return $items->has('MoonPearl') && $items->canFly() && $items->canLiftDarkRocks();
 		});
 
-		// Super Bunny
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) {
 			return $this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->canLiftDarkRocks()
-				&& ($this->world->config('region.superBunnyDM', false) || $items->has('MoonPearl'));
+				&& $items->has('MoonPearl');
 		});
 
-		// Super Bunny
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setRequirements(function($locations, $items) {
 			return $this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->canLiftDarkRocks()
-				&& ($this->world->config('region.superBunnyDM', false) || $items->has('MoonPearl'));
+				&& $items->has('MoonPearl');
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) {

@@ -297,7 +297,7 @@ class Randomizer {
 		$locations->filter(function($location) use ($my_items) {
 			return !$location->canAccess($my_items);
 		})->each(function($location) {
-			$location->setItem(new Item('ChocoboEgg', 'Chocobo Egg', null));
+			$location->setItem(new Item('ChocoboEgg', 'Chocobo Egg', [0x5A]));
 		});
 
 		return $this;
@@ -649,6 +649,12 @@ class Randomizer {
 				break;
 		}
 
+		switch (mt_rand(0, 1)) {
+			case 1:
+				$rom->setDeathMountainCredits("gary the old man");
+				break;
+		}
+
 		switch (mt_rand(0, 2)) {
 			case 1:
 				$rom->setLostWoodsCredits("dancing pickles");
@@ -736,6 +742,7 @@ class Randomizer {
 			"My optometrist\nsaid I have\nvision!",
 			"when you're a\nbaker, don't\nloaf around",
 			"mire requires\nether quake,\nor bombos",
+			"Broken pencils\nare pointless.",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([

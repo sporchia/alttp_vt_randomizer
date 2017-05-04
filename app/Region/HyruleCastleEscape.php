@@ -86,6 +86,21 @@ class HyruleCastleEscape extends Region {
 			return $items->canLiftRocks();
 		});
 
+		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setFillRules(function($item, $locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $item != Item::get('Key');
+			}
+
+			return true;
+		});
+
+		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setFillRules(function($item, $locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $item != Item::get('Key');
+			}
+
+			return true;
+		});
 
 		return $this;
 	}

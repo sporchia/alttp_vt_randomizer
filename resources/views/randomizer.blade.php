@@ -32,7 +32,7 @@
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Generate</h3>
 		<div class="btn-toolbar pull-right">
-			<button class="btn btn-info" name="generate-tournament-rom">Genrate Race ROM</button>
+			<button class="btn btn-info" name="generate-tournament-rom">Generate Race ROM (no spoilers)</button>
 			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
 		</div>
 		<div class="clearfix"></div>
@@ -224,8 +224,6 @@
 					<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
 				</div>
 				<div class="col-md-6">
-					<input id="cust-region-superBunnyDM" type="checkbox" name="data[alttp.custom.region.superBunnyDM]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for="cust-region-superBunnyDM">Allow Moon Pearl on Dark World DM (Super Bunny)</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -619,7 +617,7 @@ function patchRomFromJSON(rom, uri) {
 }
 
 function romOk(rom) {
-	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
 	$('#seed-generate').show();
 	$('#config').show();
@@ -627,7 +625,7 @@ function romOk(rom) {
 }
 
 function seedFailed(data) {
-	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
 	$('.alert .message').html('Failed Creating Seed :(');
 	$('.alert').show().delay(2000).fadeOut("slow");
@@ -635,7 +633,7 @@ function seedFailed(data) {
 
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
-		$('button[name=generate-tournament-rom]').html('Generate Race ROM').prop('disabled', false);
+		$('button[name=generate-tournament-rom]').html('Generate Race ROM (no spoilers)').prop('disabled', false);
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('button[name=generate-save]').prop('disabled', false);
 		$('.info').show();

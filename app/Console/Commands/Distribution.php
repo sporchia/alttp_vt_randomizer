@@ -11,7 +11,7 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=normal} {--mode=NoMajorGlitches}'
+	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--difficulty=normal} {--mode=NoMajorGlitches}'
 		. '{--csv}';
 
 	/**
@@ -85,7 +85,7 @@ class Distribution extends Command {
 	}
 
 	private function item(Item $item, &$locations) {
-		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocationsWithItem($item) as $location) {
@@ -97,7 +97,7 @@ class Distribution extends Command {
 	}
 
 	private function location($location_name, &$locations) {
-		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 		$rand->makeSeed();
 
 		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
@@ -109,7 +109,7 @@ class Distribution extends Command {
 	}
 
 	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('rules'), $this->option('mode'));
+		$world = new World($this->option('difficulty'), $this->option('mode'));
 		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
 		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 		$region = $world->getRegion($region_name);
@@ -129,7 +129,7 @@ class Distribution extends Command {
 	}
 
 	private function full($unused, &$locations) {
-		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocations() as $location) {

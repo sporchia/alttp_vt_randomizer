@@ -85,4 +85,26 @@ class HyruleCastleEscapeTest extends TestCase {
 		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [right chest]")
 			->fill(Item::get('Key'), $this->allItems()));
 	}
+
+	// Open Mode
+	public function testWhenInOpenModeDarkRoomChestRequiresLamp() {
+		config(['game-mode' => 'open']);
+
+		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
+			->canAccess($this->allItemsExcept(['Lamp'])));
+	}
+
+	public function testWhenInOpenModeZeldaCantHaveKey() {
+		config(['game-mode' => 'open']);
+
+		$this->assertFalse($this->world->getLocation("[dungeon-C-B3] Hyrule Castle - next to Zelda")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
+
+	public function testWhenInOpenModeBoomerangRoomCantHaveKey() {
+		config(['game-mode' => 'open']);
+
+		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Hyrule Castle - boomerang room")
+			->fill(Item::get('Key'), $this->allItems()));
+	}
 }
