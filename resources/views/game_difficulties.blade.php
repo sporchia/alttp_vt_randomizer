@@ -181,25 +181,9 @@
 			<p>In all these modes you will find an assortment of Red, Blue, and Green clocks. They mean different
 				things in different modes. Generally small rupee drops were removed to make space for the new
 				clocks. But don't worry we added more large rupee drops to make up for it.</p>
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<h3 class="panel-title">Default</h3>
-				</div>
-				<div class="panel-body">
-					<p>Racing the timer. Can you beat the game before the timer runs out? Your game wont end,
-						but you will see DNF on top of the screen for the remainder of the run. Picking up
-						extra clocks once you DNF will not restart your timer.</p>
-					<p>This mode has:</p>
-					<ul>
-						<li>Start with 45 minutes on the timer</li>
-						<li>25 Green clocks that add 5 minutes to your timer</li>
-						<li>15 Red clocks that subtract 2.5 minutes to your timer</li>
-					</ul>
-				</div>
-			</div>
 			<div class="panel panel-warning">
 				<div class="panel-heading">
-					<h3 class="panel-title">Race</h3>
+					<h3 class="panel-title">Timed Race</h3>
 				</div>
 				<div class="panel-body">
 					<p>In this mode the timer is counting up, and the person with the best time wins the game
@@ -218,7 +202,7 @@
 			</div>
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<h3 class="panel-title">OHKO (one hit knock out)</h3>
+					<h3 class="panel-title">Timed OHKO (one hit knock out)</h3>
 				</div>
 				<div class="panel-body">
 					<p>In this mode you start with 10 minutes on the timer, every clock you find will add time to
@@ -232,6 +216,15 @@
 					</ul>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">OHKO (one hit knock out)</h3>
+		</div>
+		<div class="panel-body">
+			<p>Same game as normal, but take any damage and Link is a goner.</p>
 		</div>
 	</div>
 </div>
