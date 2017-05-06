@@ -17,6 +17,16 @@ class Witch extends Npc {
 	}
 
 	private function getItemCreditsText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+			case Item\BigKey::class:
+				return "keys, keys, keys";
+			case Item\Map::class:
+				return "shrooms find secrets";
+			case Item\Compass::class:
+				return "shrooms for navigation";
+		}
+
 		switch ($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
@@ -88,12 +98,6 @@ class Witch extends Npc {
 				return "the clothing store";
 			case Item::get('RedMail'):
 				return "the nice clothing store";
-			case Item::get('Key'):
-			case Item::get('BigKey'):
-				return "keys, keys, keys";
-			case Item::get('Compass'):
-			case Item::get('Map'):
-				return "shrooms for navigation";
 			case Item::get('PieceOfHeart'):
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
@@ -168,6 +172,15 @@ class Witch extends Npc {
 				return "the clothing store";
 			case Item::get('ProgressiveGlove'):
 				return "fungus for gloves";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "fungus for something";
+			case Item::get('Triforce'):
+				return "mushrooms win the game";
+			case Item::get('PowerStar'):
+				return "the powder or the stars";
+			case Item::get('TriforcePiece'):
+				return "witches hold the key";
 			case Item::get('Nothing'):
 			default:
 				return "mushrooms go poof";

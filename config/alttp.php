@@ -35,6 +35,15 @@ return [
 			'BootsLocation' => true,
 		],
 	],
+	'ohko' => [
+		'rom' => [
+			'timerMode' => 'countdown-ohko',
+			'timerStart' => 0,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
+		],
+	],
 	'timed-ohko' => [
 		'item' => [
 			'count' => [

@@ -60,22 +60,26 @@ class Dialog {
 	 * @return array
 	 */
 	public function convertDialogCompressed(string $string, $max_bytes = 256, $pause = true, $wrap = 0) {
-		$new_string = [];
+		$new_string = [0xFB];
 		$lines = explode("\n", mb_strtoupper($string));
 		if ($wrap > 0) {
 			$new_lines = [];
 			foreach ($lines as $line) {
-				$new_line = wordwrap($line, $wrap, "\n");
+				$new_line = mb_wordwrap($line, $wrap, "\n");
 				$new_lines = array_merge($new_lines, explode("\n", mb_strtoupper($new_line)));
 			}
 			$lines = $new_lines;
 		}
 		$i = 0;
+		$line_count = count($lines);
 		foreach ($lines as $line) {
 			$line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
 			// command
 			if (reset($line_chars) == "{") {
 				switch (trim($line)) {
+					case "{SPEED0}":
+						$new_string = array_merge($new_string, [0xFC, 0x00]);
+						break;
 					case "{PAUSE1}":
 						$new_string = array_merge($new_string, [0xFE, 0x78, 0x01]);
 						break;
@@ -100,11 +104,8 @@ class Dialog {
 					case "{IBOX}":
 						$new_string = array_merge($new_string, [0xFE, 0x6B, 0x02, 0xFE, 0x77, 0x07, 0xFC, 0x03, 0xF7]);
 						break;
-					case "{BREAK}":
-						$new_string = array_merge($new_string, [0xFB]);
-						$i = 0;
-						break;
 				}
+				$line_count--;
 				if (count($new_string) > $max_bytes) {
 					throw new \Exception("command overflowed byte length");
 				}
@@ -115,14 +116,14 @@ class Dialog {
 				case 0:
 					break;
 				case 1:
-					$new_string[] = 0xF8;
+					$new_string[] = 0xF8; // row 2
 					break;
 				case 2:
 				default:
 					if ($i >= 3 && $i < count($lines)) {
-						$new_string[] = 0xF6;
+						$new_string[] = 0xF6; // scroll
 					} else {
-						$new_string[] = 0xF9;
+						$new_string[] = 0xF9; // row 3
 					}
 					break;
 			}
@@ -137,14 +138,13 @@ class Dialog {
 			}
 			$i++;
 
-			if ($pause && $i % 3 == 0 && count($lines) > $i) {
-				$new_string[] = 0xFA;
+			if ($pause && $i % 3 == 0 && $line_count > $i) {
+				$new_string[] = 0xFA; // wait for input
 			}
 		}
 
-		$new_string[] = 0xFB;
 		if (count($new_string) > $max_bytes) {
-			return array_merge(array_slice($new_string, 0, $max_bytes - 1), [0xFB]);
+			return array_merge(array_slice($new_string, 0, $max_bytes));
 		}
 		return $new_string;
 	}
@@ -188,6 +188,7 @@ class Dialog {
 			case "↓": return 0xE1;
 			case "→": return 0xE2;
 			case "←": return 0xE3;
+			case "≥": return 0xE4; // cursor
 			case "あ": return 0x00;
 			case "い": return 0x01;
 			case "う": return 0x02;

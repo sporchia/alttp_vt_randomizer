@@ -87,7 +87,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
@@ -130,7 +130,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'));
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });

@@ -1,6 +1,8 @@
 <?php
 
+use ALttP\Item;
 use ALttP\Rom;
+use ALttP\Support\ItemCollection;
 
 class RomTest extends TestCase {
 	public function setUp() {
@@ -321,6 +323,33 @@ class RomTest extends TestCase {
 		$this->assertEquals(0x00, $this->rom->read(0x180030));
 	}
 
+	public function testSetSingleRNGTable() {
+		$items = new ItemCollection([
+			Item::get('ProgressiveSword'),
+			Item::get('ProgressiveSword'),
+			Item::get('ProgressiveSword'),
+			Item::get('ProgressiveGlove'),
+		]);
+
+		$this->rom->setSingleRNGTable($items);
+
+		$this->assertEquals([[0x5E, 0x5E, 0x5E, 0x61], 0x04],
+			[$this->rom->read(0x182000, 4), $this->rom->read(0x18207F)]);
+	}
+
+	public function testSetMultiRNGTable() {
+		$items = new ItemCollection([
+			Item::get('ProgressiveSword'),
+			Item::get('ProgressiveSword'),
+			Item::get('ProgressiveGlove'),
+		]);
+
+		$this->rom->setMultiRNGTable($items);
+
+		$this->assertEquals([[0x5E, 0x5E, 0x61], 0x03],
+			[$this->rom->read(0x182080, 3), $this->rom->read(0x1820FF)]);
+	}
+
 	public function testSetRandomizerSeedTypeGlitched() {
 		$this->rom->setRandomizerSeedType('Glitched');
 
@@ -417,7 +446,6 @@ class RomTest extends TestCase {
 		$this->assertEquals(0x00, $this->rom->read(0x180029));
 	}
 
-
 	public function testSetPyramidFairyChestsOn() {
 		$this->rom->setPyramidFairyChests(true);
 
@@ -489,7 +517,6 @@ class RomTest extends TestCase {
 
 		$this->assertEquals(0x02, $this->rom->read(0x2EBD4));
 	}
-
 
 	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {
 		$this->rom->setMirrorlessSaveAneQuitToLightWorld(true);

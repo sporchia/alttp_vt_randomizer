@@ -17,6 +17,16 @@ class HauntedGrove extends Dig {
 	}
 
 	private function getItemCreditsText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+			case Item\BigKey::class:
+				return "boy picks locks again";
+			case Item\Map::class:
+				return "boy navigates again";
+			case Item\Compass::class:
+				return "boy finds boss again";
+		}
+
 		switch ($this->item) {
 			case Item::get('ProgressiveSword'):
 			case Item::get('L1Sword'):
@@ -86,13 +96,6 @@ class HauntedGrove extends Dig {
 				return "boy banana hatted again";
 			case Item::get('RedMail'):
 				return "boy fears nothing again";
-			case Item::get('Key'):
-			case Item::get('BigKey'):
-				return "boy picks locks again";
-			case Item::get('Compass'):
-				return "boy finds boss again";
-			case Item::get('Map'):
-				return "boy navigates again";
 			case Item::get('PieceOfHeart'):
 				return "boy feels love again";
 			case Item::get('BossHeartContainer'):
@@ -167,6 +170,15 @@ class HauntedGrove extends Dig {
 				return "boy adjusts time again";
 			case Item::get('ProgressiveArmor'):
 				return "boy has threads again";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "boy something's again";
+			case Item::get('Triforce'):
+				return "boy wins game again";
+			case Item::get('PowerStar'):
+				return "boy powers up again";
+			case Item::get('TriforcePiece'):
+				return "boy has triangle again";
 			case Item::get('Nothing'):
 			default:
 				return "boy does nothing again";

@@ -151,8 +151,7 @@ class LightWorld extends Region {
 		$this->locations["Altar"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')
-				&& $items->has('PendantOfCourage')
-				&& (!$this->world->config('region.swordsInPool', true) || $items->has('BookOfMudora'));
+				&& $items->has('PendantOfCourage');
 		});
 
 		$this->locations["Uncle"]->setRequirements(function($locations, $items) {
@@ -390,8 +389,7 @@ class LightWorld extends Region {
 		$this->locations["Altar"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')
-				&& $items->has('PendantOfCourage')
-				&& (!$this->world->config('region.swordsInPool', true) || $items->has('BookOfMudora'));
+				&& $items->has('PendantOfCourage');
 		});
 
 		// @TODO: when S+Q follower fix is removed this will need to be readdressed

@@ -12,7 +12,7 @@ class Randomize extends Command {
 	 */
 	protected $signature = 'alttp:randomize {input_file} {output_directory} {--unrandomized} {--vanilla} {--debug} {--spoiler}'
 		. ' {--difficulty=normal} {--mode=NoMajorGlitches} {--heartbeep=half} {--skip-md5} {--trace}  {--seed=} {--bulk=1}'
-		. ' {--open-mode} {--no-rom}';
+		. ' {--goal=ganon} {--open-mode} {--no-rom}';
 
 	/**
 	 * The console command description.
@@ -73,7 +73,7 @@ class Randomize extends Command {
 
 			config(['game-mode' => $this->option('open-mode') ? 'open' : 'standard']);
 
-			$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
+			$rand = new Randomizer($this->option('difficulty'), $this->option('mode'), $this->option('goal'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);

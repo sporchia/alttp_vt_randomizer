@@ -646,7 +646,7 @@ class RandomizerTest extends TestCase {
 		});
 
 		$this->assertEquals([
-			"Altar" => "Bombos",
+			"Altar" => "BookOfMudora",
 			"Uncle" => "ProgressiveSword",
 			"[cave-034] Hyrule Castle secret entrance" => "TwentyRupees",
 			"[cave-018] Graveyard - top right grave" => "TwentyRupees",
@@ -844,7 +844,7 @@ class RandomizerTest extends TestCase {
 			"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]" => "FiftyRupees",
 			"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]" => "Compass",
 			"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]" => "TwentyRupees",
-			"[dungeon-A2-1F] Ganon's Tower - north of teleport room" => "SilverArrowUpgrade",
+			"[dungeon-A2-1F] Ganon's Tower - north of teleport room" => "Bombos",
 			"[dungeon-A2-1F] Ganon's Tower - map room" => "PieceOfHeart",
 			"[dungeon-A2-1F] Ganon's Tower - big chest" => "ProgressiveShield",
 			"[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]" => "Key",
@@ -852,7 +852,7 @@ class RandomizerTest extends TestCase {
 			"[dungeon-A2-1F] Ganon's Tower - above Armos" => "PieceOfHeart",
 			"[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance" => "Key",
 			"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]" => "TwentyRupees",
-			"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]" => "BookOfMudora",
+			"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]" => "SilverArrowUpgrade",
 			"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]" => "FiftyRupees",
 			"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]" => "ArrowUpgrade5",
 			"[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]" => "Flippers",

@@ -33,20 +33,6 @@ class LightWorldTest extends TestCase {
 			->canAccess($this->allItemsExcept(['PendantOfWisdom'])));
 	}
 
-	public function testAltarRequiresBookIfSwordsInPool() {
-		config(['alttp.test_rules.region.swordsInPool' => true]);
-
-		$this->assertFalse($this->world->getLocation("Altar")
-			->canAccess($this->allItemsExcept(['BookOfMudora'])));
-	}
-
-	public function testAltarDoesNotRequiresBookIfNotSwordsInPool() {
-		config(['alttp.test_rules.region.swordsInPool' => false]);
-
-		$this->assertTrue($this->world->getLocation("Altar")
-			->canAccess($this->allItemsExcept(['BookOfMudora'])));
-	}
-
 	public function testBlacksmithsRequiresMirror() {
 		$this->assertFalse($this->world->getLocation("Blacksmiths")
 			->canAccess($this->allItemsExcept(['MagicMirror'])));

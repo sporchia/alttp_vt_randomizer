@@ -1,15 +1,15 @@
 <?php namespace ALttP;
 
 use ALttP\Support\Dialog;
-use Closure;
+use ALttP\Support\ItemCollection;
 use Log;
 
 /**
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-04-15';
-	const HASH = 'a7584e174d71e6630f98fdbf2b19ad12';
+	const BUILD = '2017-05-06';
+	const HASH = 'f260bb42255ced3fc2a0ab14f29237bb';
 	const SIZE = 2097152;
 	private $tmp_file;
 	protected $rom;
@@ -263,6 +263,41 @@ class Rom {
 	 */
 	public function setCapacityUpgradeFills(array $fills) : self {
 		$this->write(0x180080, pack('C*', ...array_slice($fills, 0, 4)));
+
+		return $this;
+	}
+
+	/**
+	 * Set the number of goal items to collect
+	 *
+	 * @param int $goal
+	 *
+	 * @return $this
+	 */
+	public function setGoalRequiredCount($goal = 0) : self {
+		$this->write(0x180167, pack('C', $goal));
+
+		return $this;
+	}
+
+	/**
+	 * Set the goal item icon
+	 *
+	 * @param string $goal_icon
+	 *
+	 * @return $this
+	 */
+	public function setGoalIcon($goal_icon = 'star') : self {
+		switch ($goal_icon) {
+			case 'triforce':
+				$byte = pack('S*', 0x280E);
+				break;
+			case 'star':
+			default:
+				$byte = pack('S*', 0x280D);
+				break;
+		}
+		$this->write(0x180165, $byte);
 
 		return $this;
 	}
@@ -847,6 +882,42 @@ class Rom {
 	}
 
 	/**
+	 * Set the single RNG Item table. These items will only get collected by player once per game.
+	 *
+	 * @param ItemCollection $items
+	 *
+	 * @return $this
+	 */
+	public function setSingleRNGTable(ItemCollection $items) : self {
+		$bytes = $items->map(function($item) {
+			return $item->getBytes()[0];
+		});
+
+		$this->write(0x182000, pack('C*', ...$bytes));
+		$this->write(0x18207F, pack('C*', count($bytes)));
+
+		return $this;
+	}
+
+	/**
+	 * Set the multi RNG Item table. These items can be collected multiple times per game.
+	 *
+	 * @param ItemCollection $items
+	 *
+	 * @return $this
+	 */
+	public function setMultiRNGTable(ItemCollection $items) : self {
+		$bytes = $items->map(function($item) {
+			return $item->getBytes()[0];
+		});
+
+		$this->write(0x182080, pack('C*', ...$bytes));
+		$this->write(0x1820FF, pack('C*', count($bytes)));
+
+		return $this;
+	}
+
+	/**
 	 * Set the Seed Type
 	 *
 	 * @param string $setting name
@@ -959,6 +1030,32 @@ class Rom {
 	}
 
 	/**
+	 * Set the sprite that spawns when a stunned Enemy is killed
+	 *
+	 * @param int $sprite id of sprite to drop
+	 *
+	 * @return $this
+	 */
+	public function setStunnedSpritePrize(int $sprite = 0xD9) : self {
+		$this->write(0x37993, pack('C*', $sprite));
+
+		return $this;
+	}
+
+	/**
+	 * Set the sprite that spawns when powdered sprite that usually spawns a faerie is powdered.
+	 *
+	 * @param int $sprite id of sprite to drop
+	 *
+	 * @return $this
+	 */
+	public function setPowderedSpriteFairyPrize(int $sprite = 0xE3) : self {
+		$this->write(0x36DD0, pack('C*', $sprite));
+
+		return $this;
+	}
+
+	/**
 	 * Adjust some settings for hard mode
 	 *
 	 * @param int $level how hard to make it, higher should be harder
@@ -970,8 +1067,7 @@ class Rom {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-				// Bubble transform
-				$this->write(0x36DD0, pack('C*', 0xE3));
+				$this->setPowderedSpriteFairyPrize(0xE3);
 				// Red Potion Cost
 				$this->write(0x2F803, pack('S*', 0x0078)); // 120 Rupees
 				$this->write(0x2F822, pack('S*', 0x0078)); // 120 Rupees
@@ -1005,7 +1101,7 @@ class Rom {
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
-				$this->write(0x36DD0, pack('C*', 0x79));
+				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				// Red Potion Cost
 				$this->write(0x2F803, pack('S*', 0x00F0)); // 240 Rupees
 				$this->write(0x2F822, pack('S*', 0x00F0)); // 240 Rupees
@@ -1046,7 +1142,7 @@ class Rom {
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x36DD0, pack('C*', 0x79));
+				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 
 				// Red Potion
 				$this->write(0x2F803, pack('S*', 0x2706)); // 9999 Rupees
@@ -1159,6 +1255,32 @@ class Rom {
 		$this->setSewersLampCone(!$enable);
 		$this->setLightWorldLampCone(!$enable);
 		$this->setDarkWorldLampCone(false);
+
+		return $this;
+	}
+
+	/**
+	 * Enable maps to show crystals on overworld map
+	 *
+	 * @param bool $require_map switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setMapMode($require_map = false) : self {
+		$this->write(0x18003B, pack('C*', $require_map ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable compass to show dungeon count
+	 *
+	 * @param bool $show_count switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCompassMode($show_count = false) : self {
+		$this->write(0x18003C, pack('C*', $show_count ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -1281,11 +1403,11 @@ class Rom {
 	/**
 	 * Write a block of data to RNG Block in ROM.
 	 *
-	 * @param Closure $random prng byte generator
+	 * @param callable $random prng byte generator
 	 *
 	 * @return $this
 	 */
-	public function writeRNGBlock(Closure $random) : self {
+	public function writeRNGBlock(callable $random) : self {
 		$string = '';
 		for ($i = 0; $i < 1024; $i++) {
 			$string .= pack('C*', $random());

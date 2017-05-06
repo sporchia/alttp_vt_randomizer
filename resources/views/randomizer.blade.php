@@ -48,55 +48,67 @@
 					</span>
 				</div>
 			</div>
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Difficulty</span>
-							<select id="difficulty" class="form-control selectpicker">
-								<option value="normal">Normal</option>
-								<option value="hard">Hard</option>
-								<option value="masochist">Masochist</option>
-								<option value="timed">Timed</option>
-								<option value="timed-race">Timed Race</option>
-								<option value="timed-ohko">Timed OHKO</option>
-								<option value="custom">Custom</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Logic</span>
-							<select id="logic" class="form-control selectpicker">
-								<option value="NoMajorGlitches">No Glitches</option>
-								<option value="SpeedRunner">Minor Glitches</option>
-								<option value="Glitched">Major Glitches</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Mode</span>
-							<select id="mode" class="form-control selectpicker">
-								<option value="standard">Standard</option>
-								<option value="open">Open</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="btn-group btn-flex" role="group">
-							<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-							<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<span class="caret"></span>
-							</button>
-							<ul id="generate-multi" class="dropdown-menu dropdown-menu-right">
-								@for ($i = 1; $i <= 10; $i++)
-								<li><a data-value="{{ $i }}">Generate {{ $i }} seeds</a></li>
-								@endfor
-							</ul>
-						</div>
-					</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Difficulty</span>
+					<select id="difficulty" class="form-control selectpicker">
+						<option value="normal">Normal</option>
+						<option value="hard">Hard</option>
+						<option value="masochist">Masochist</option>
+						<option value="timed-race">Timed Race</option>
+						<option value="timed-ohko">Timed OHKO</option>
+						<option value="ohko">OHKO</option>
+						<option value="custom">Custom</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Logic</span>
+					<select id="logic" class="form-control selectpicker">
+						<option value="NoMajorGlitches">No Glitches</option>
+						<option value="SpeedRunner">Minor Glitches</option>
+						<option value="Glitched">Major Glitches</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Mode</span>
+					<select id="mode" class="form-control selectpicker">
+						<option value="standard">Standard</option>
+						<option value="open">Open</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="padding-bottom:5px;">
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Goal</span>
+					<select id="goal" class="form-control selectpicker">
+						<option value="ganon">Defeat Ganon</option>
+						<option value="dungeons">All Dungeons</option>
+						<option value="pedestal">Master Sword Pedestal</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-3">
+				<div class="btn-group btn-flex" role="group">
+					<button name="generate" class="btn btn-success" disabled>Generate ROM</button>
+					<button name="generate-save" class="btn btn-success" disabled><span class="glyphicon glyphicon-save"></span></button>
+					<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul id="generate-multi" class="dropdown-menu dropdown-menu-right">
+						@for ($i = 1; $i <= 10; $i++)
+						<li><a data-value="{{ $i }}">Generate {{ $i }} seeds</a></li>
+						@endfor
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -146,6 +158,7 @@
 			<div>ROM build: <span class="build"></span></div>
 			<div>Difficulty: <span class="difficulty"></span></div>
 			<div>Mode: <span class="mode"></span></div>
+			<div>Goal: <span class="goal"></span></div>
 			<div>Seed: <span class="seed"></span></div>
 		</div>
 		<div class="col-md-6">
@@ -170,6 +183,7 @@
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
 	<input type="hidden" name="mode" value="standard" />
+	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="debug" value="false" />
@@ -643,12 +657,14 @@ function seedApplied(data) {
 		}
 		$('.info .logic').html(data.patch.logic);
 		$('.info .build').html(data.patch.spoiler.meta.build);
+		$('.info .goal').html(data.patch.spoiler.meta.goal);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .difficulty').html(data.patch.difficulty);
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
+		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.difficulty = data.patch.difficulty;
@@ -837,6 +853,17 @@ $(function() {
 		if (!value) return;
 		$('#mode').val(value);
 		$('#mode').trigger('change');
+	});
+
+	$('#goal').on('change', function() {
+		$('.info').hide();
+		localforage.setItem('rom.goal', $(this).val());
+		$('input[name=goal]').val($(this).val());
+	});
+	localforage.getItem('rom.goal').then(function(value) {
+		if (!value) return;
+		$('#goal').val(value);
+		$('#goal').trigger('change');
 	});
 
 	$('#generate-debug').on('change', function() {
