@@ -238,8 +238,6 @@
 					<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
 				</div>
 				<div class="col-md-6">
-				</div>
-				<div class="col-md-6">
 					<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-bonkItems">Bonk Keys in Pool</label>
 				</div>
