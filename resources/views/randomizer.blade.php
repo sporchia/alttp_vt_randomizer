@@ -754,18 +754,18 @@ $(function() {
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.txt');
+		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.sfc');
+				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
 			});
 	});
 
