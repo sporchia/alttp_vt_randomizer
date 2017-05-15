@@ -123,7 +123,7 @@ class Item {
 			new Item('RedMail', 'Red Mail', [0x23]),
 			new Item\Key('Key', 'Key', [0x24]),
 			new Item\Compass('Compass', 'Compass', [0x25]),
-			new Item('HeartContainerNoAnimation', 'Heart Container', [0x26]),
+			new Item('HeartContainerNoAnimation', 'Heart Container (no animation)', [0x26]),
 			new Item('Bomb', 'Bomb', [0x27]),
 			new Item('ThreeBombs', 'Three Bombs', [0x28]),
 			new Item('Mushroom', 'Mushroom', [0x29]),

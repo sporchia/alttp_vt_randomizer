@@ -57,6 +57,36 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Run a filter over each of the items.
+	 *
+	 * @param callable|null $callback
+	 *
+	 * @return static
+	 */
+	public function filter(callable $callback = null) {
+		if ($callback) {
+			return new static(array_filter($this->values(), $callback));
+		}
+
+		return new static(array_filter($this->values()));
+	}
+
+	/**
+	 * Get an array of the underlying elements
+	 *
+	 * @return array
+	 */
+	public function values() {
+		$values = [];
+		foreach ($this->items as $item) {
+			for ($i = 0; $i < $this->item_counts[$item->getName()]; $i++) {
+				$values[] = $item;
+			}
+		}
+		return $values;
+	}
+
+	/**
 	 * Get the items in the collection that are not present in the given items.
 	 *
 	 * @param mixed $items items to diff against
@@ -205,7 +235,8 @@ class ItemCollection extends Collection {
 	 * @return static
 	 */
 	public function tempAdd(Item $item) {
-		return new static(array_merge($this->items, [$item]));
+		$temp = $this->copy();
+		return $temp->addItem($item);
 	}
 
 	/**

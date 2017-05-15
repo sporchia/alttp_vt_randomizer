@@ -158,22 +158,10 @@ class RomTest extends TestCase {
 		$this->assertEquals([1, 2, 0, 0], $this->rom->read(0x180080, 4));
 	}
 
-	public function testSetUncleText() {
-		$this->rom->setUncleText(0x02);
+	public function setBottleFills() {
+		$this->rom->setCapacityUpgradeFills([1, 2, 0, 0, 20]);
 
-		$this->assertEquals([116, 0, 192, 0, 177, 0, 194, 0, 255, 0, 173, 0, 184, 0, 255, 0, 192, 0, 174, 0, 255, 0,
-			184, 0, 183, 0, 181, 0, 194, 117, 0, 177, 0, 170, 0, 191, 0, 174, 0, 255, 0, 184, 0, 183, 0, 174, 0, 255,
-			0, 171, 0, 174, 0, 173, 0, 198, 127], $this->rom->read(0x180500, 100));
-	}
-
-	public function testSetExtenedUncleText30() {
-		$this->rom->setUncleText(30);
-
-		$converted = [116, 0, 165, 0, 200, 0, 160, 0, 160, 0, 160, 0, 255, 0, 187, 0, 190, 0, 185, 0, 174, 0, 174, 117,
-			0, 187, 0, 174, 0, 192, 0, 170, 0, 187, 0, 173, 0, 255, 0, 175, 0, 184, 0, 187, 0, 255, 0, 210, 0, 211,
-			118, 0, 194, 0, 184, 0, 190, 0, 216, 0, 187, 0, 174, 0, 255, 0, 171, 0, 184, 0, 183, 0, 174, 0, 173, 127];
-
-		$this->assertEquals($converted, $this->rom->read(0x180500, 76));
+		$this->assertEquals([1, 2], $this->rom->read(0x180084, 2));
 	}
 
 	public function testSetUncleTextCustom() {
@@ -425,7 +413,7 @@ class RomTest extends TestCase {
 	public function testSetHardMode1ChangesBubbleTransform() {
 		$this->rom->setHardMode(1);
 
-		$this->assertEquals(0x79, $this->rom->read(0x36DD0));
+		$this->assertEquals(0xD8, $this->rom->read(0x36DD0));
 	}
 
 	public function testSetHardMode0ChangesBubbleTransform() {

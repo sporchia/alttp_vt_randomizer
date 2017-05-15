@@ -1,8 +1,10 @@
 <?php namespace ALttP\Console\Commands;
 
-use Illuminate\Console\Command;
-use ALttP\Rom;
+use ALttP\Item;
 use ALttP\Randomizer;
+use ALttP\Rom;
+use ALttP\World;
+use Illuminate\Console\Command;
 
 class Randomize extends Command {
 	/**
@@ -10,9 +12,22 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--unrandomized} {--vanilla} {--debug} {--spoiler}'
-		. ' {--difficulty=normal} {--mode=NoMajorGlitches} {--heartbeep=half} {--skip-md5} {--trace}  {--seed=} {--bulk=1}'
-		. ' {--goal=ganon} {--open-mode} {--no-rom}';
+	protected $signature = 'alttp:randomize {input_file : base rom to randomize}'
+		. ' {output_directory : where to place randomized rom}'
+		. ' {--unrandomized : do not apply randomization to the rom}'
+		. ' {--vanilla : set game to vanilla item locations}'
+		. ' {--debug : enable BAGE mode}'
+		. ' {--spoiler : generate a spoiler file}'
+		. ' {--difficulty=normal : set difficulty}'
+		. ' {--logic=NoMajorGlitches : set logic}'
+		. ' {--heartbeep=half : set heart beep speed}'
+		. ' {--skip-md5 : do not validate md5 of base rom}'
+		. ' {--trace : enable SRAM trace}'
+		. ' {--seed= : set seed number}'
+		. ' {--bulk=1 : generate multiple roms}'
+		. ' {--goal=ganon : set game goal}'
+		. ' {--mode=standard : set game mode}'
+		. ' {--no-rom : no not generate output rom}';
 
 	/**
 	 * The console command description.
@@ -71,9 +86,9 @@ class Randomize extends Command {
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 
-			config(['game-mode' => $this->option('open-mode') ? 'open' : 'standard']);
+			config(['game-mode' => $this->option('mode')]);
 
-			$rand = new Randomizer($this->option('difficulty'), $this->option('mode'), $this->option('goal'));
+			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);
@@ -92,7 +107,7 @@ class Randomize extends Command {
 	}
 
 	protected function setVanilla(Rom $rom) {
-		$world = new World($this->option('difficulty'), $this->option('mode'));
+		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 		$world->setVanilla();
 
 		foreach ($world->getLocations() as $name => $region) {

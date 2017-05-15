@@ -115,8 +115,8 @@
 			<ul>
 				<li>Magic Cape uses 2x Magic</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
-				<li>There are only 2 Bottles</li>
-				<li>Potions and Shields in shops cost twice as much</li>
+				<li>There are only 2 Bottles (4 in Major Glitches)</li>
+				<li>Potions heal 5 hearts and restore 1/2 magic</li>
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 				<li>Silver Arrow Upgrade can only be found after falling to Ganon</li>
 			</ul>
@@ -147,6 +147,7 @@
 				<li>Maps</li>
 				<li>Shields</li>
 				<li>Silver Arrow Upgrade</li>
+				<li>Tempered Sword</li>
 			</ul>
 			<p>The following items have had their count reduced:</p>
 			<ul>
@@ -159,8 +160,9 @@
 			<ul>
 				<li>Magic Cape uses 4x Magic</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
-				<li>There is only 1 Bottle</li>
-				<li>Potions and Shields in Shops are unpurchasable</li>
+				<li>There is only 1 Bottle (4 in Major Glitches)</li>
+				<li>Potions heal 1 heart and restore 1/4 magic</li>
+				<li>Shields in Shops are unpurchasable</li>
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 			</ul>
 			<p>The following items have been added:</p>
