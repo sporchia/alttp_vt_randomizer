@@ -190,6 +190,7 @@ function seedApplied(data) {
 		rom.difficulty = data.patch.difficulty;
 		rom.seed = data.patch.hash;
 		$('button[name=save]').show().prop('disabled', false);
+		$('#heart-speed').trigger('change');
 		resolve(rom);
 	});
 }

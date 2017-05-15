@@ -246,6 +246,10 @@
 					<label for="cust-sprite-shufflePrizePack">Shuffle Prize Packs</label>
 				</div>
 				<div class="col-md-6">
+					<input id="cust-sprite-shuffleOverworldBonkPrizes" type="checkbox" name="data[alttp.custom.sprite.shuffleOverworldBonkPrizes]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-sprite-shuffleOverworldBonkPrizes">Shuffle Overworld Bonk Prizes</label>
+				</div>
+				<div class="col-md-6">
 					<input id="cust-region-pyramidBowUpgrade" type="checkbox" name="data[alttp.custom.region.pyramidBowUpgrade]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-pyramidBowUpgrade">Pyramid Faerie Upgrades Bow</label>
 				</div>

@@ -216,6 +216,7 @@ return [
 		],
 		'sprite' => [
 			'shufflePrizePack' => false,
+			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
 ];
