@@ -284,7 +284,7 @@ class Altar extends Location {
 			case Item::get('TitansMitt'):
 				return "Now you can\nlift heavy\nstuff!";
 			case Item::get('BookOfMudora'):
-				return "This is a\nparadox?!";
+				return "Why are you\nreading this\nnow?!";
 			case Item::get('Flippers'):
 				return "fancy a swim?";
 			case Item::get('MoonPearl'):
