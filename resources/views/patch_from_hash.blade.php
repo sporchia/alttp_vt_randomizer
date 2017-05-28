@@ -32,6 +32,7 @@
 			<div>ROM build: <span class="build"></span></div>
 			<div>Difficulty: <span class="difficulty"></span></div>
 			<div>Mode: <span class="mode"></span></div>
+			<div>Goal: <span class="goal"></span></div>
 		</div>
 		<div class="col-md-6">
 			<div class="row">
