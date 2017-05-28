@@ -182,10 +182,12 @@ function seedApplied(data) {
 		$('.info .seed').html(data.patch.hash);
 		$('.info .logic').html(data.patch.spoiler.meta.logic);
 		$('.info .build').html(data.patch.spoiler.meta.build);
+		$('.info .goal').html(data.patch.spoiler.meta.goal);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .difficulty').html(data.patch.difficulty);
 		rom.logic = data.patch.spoiler.meta.logic;
 		rom.build = data.patch.spoiler.meta.build;
+		rom.goal = data.patch.spoiler.meta.goal;
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.difficulty = data.patch.difficulty;
 		rom.seed = data.patch.hash;
@@ -223,7 +225,7 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
 	});
 
 	$('input[name=f2u]').on('change', function() {
