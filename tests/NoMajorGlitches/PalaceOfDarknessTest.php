@@ -6,6 +6,7 @@ use TestCase;
 
 /**
  * @group NMG
+ * @TODO: update all tests related to keys to place all keys in them
  */
 class PalaceOfDarknessTest extends TestCase {
 	public function setUp() {
@@ -72,6 +73,18 @@ class PalaceOfDarknessTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
+	public function testBigKeyChestDoesNotRequireBowIfTwoKeysOnRightSide() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
 	public function testRoomLeadingToHelmasaurChestLRequresLamp() {
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
@@ -132,6 +145,18 @@ class PalaceOfDarknessTest extends TestCase {
 			->canAccess($this->allItemsExcept(['AnyBow'])));
 	}
 
+	public function testDarkMazeChestTRequresBowIfTwoKeysOnRightSide() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - maze room [top chest]")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
 	public function testDarkMazeChestBRequresLamp() {
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
@@ -146,6 +171,18 @@ class PalaceOfDarknessTest extends TestCase {
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
+	public function testDarkMazeChestBRequresBowIfTwoKeysOnRightSide() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]")
@@ -172,13 +209,61 @@ class PalaceOfDarknessTest extends TestCase {
 			->canAccess($this->allItemsExcept(['AnyBow'])));
 	}
 
+	public function testBigChestRequresBowIfRequredBigKeyOnRightSideJRC() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
+	public function testBigChestRequresBowIfRequredBigKeyOnRightSideSPC() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('BigKey'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
+	public function testBigChestRequresBowIfTwoKeysOnRightSide() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
 	public function testCompassRoomRequresBowIfRequredKeyOnRightSide() {
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - compass room")
+			->canAccess($this->allItemsExcept(['AnyBow'])));
+	}
+
+	public function testSpikeStatueRoomRequresBowIfTwoKeysOnRightSide() {
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - spike statue room")
 			->canAccess($this->allItemsExcept(['AnyBow'])));
 	}
 
@@ -187,6 +272,8 @@ class PalaceOfDarknessTest extends TestCase {
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - spike statue room")
 			->canAccess($this->allItemsExcept(['AnyBow'])));

@@ -193,10 +193,31 @@ class TurtleRockTest extends TestCase {
 	}
 
 	public function testEyeBridgehRoomChestTRRequiresFireRodIfTwoKeysInMapRoom() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestTRRequiresFireRodIfThirdKeyNotAccessable() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestTRDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
@@ -207,7 +228,7 @@ class TurtleRockTest extends TestCase {
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
-	public function testREyeBridgeRoomRChestTRequiresFireRodIfBigKeyInMapRoomChestL() {
+	public function testEyeBridgeRoomTRChestRequiresFireRodIfBigKeyInMapRoomChestL() {
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
@@ -220,10 +241,31 @@ class TurtleRockTest extends TestCase {
 	}
 
 	public function testEyeBridgehRoomChestTLRequiresFireRodIfTwoKeysInMapRoom() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestTLRequiresFireRodIfThirdKeyNotAccessable() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestTLDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
@@ -247,10 +289,31 @@ class TurtleRockTest extends TestCase {
 	}
 
 	public function testEyeBridgehRoomChestBRRequiresFireRodIfTwoKeysInMapRoom() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestBRRequiresFireRodIfThirdKeyNotAccessable() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestBRDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
@@ -274,10 +337,31 @@ class TurtleRockTest extends TestCase {
 	}
 
 	public function testEyeBridgehRoomChestBLRequiresFireRodIfTwoKeysInMapRoom() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestBLRequiresFireRodIfThirdKeyNotAccessable() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")->setItem(Item::get('Key'));
+
+		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
+			->canAccess($this->allItemsExcept(['FireRod'])));
+	}
+
+	public function testEyeBridgehRoomChestBLDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
+		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
+
+		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
 			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 

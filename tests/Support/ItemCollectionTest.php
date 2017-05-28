@@ -46,4 +46,94 @@ class ItemCollectionTest extends TestCase {
 
 		$this->assertEquals(2, $this->collection->count());
 	}
+
+	public function testEachWithSameItem() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L1Sword'));
+
+		$times_run = 0;
+
+		$this->collection->each(function($item) use (&$times_run) {
+			$times_run++;
+		});
+
+		$this->assertEquals(2, $times_run);
+	}
+
+	public function testMap() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L2Sword'));
+
+		$mapped = $this->collection->map(function($item) {
+			return $item->getName();
+		});
+
+		$this->assertEquals(['L1Sword', 'L2Sword'], $mapped);
+	}
+
+	public function testMapWithSameItem() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L2Sword'));
+
+		$mapped = $this->collection->map(function($item) {
+			return $item->getName();
+		});
+
+		$this->assertEquals(['L1Sword', 'L1Sword', 'L2Sword'], $mapped);
+	}
+
+	public function testFilter() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L2Sword'));
+		$this->collection->addItem(Item::get('Map'));
+
+		$filtered = $this->collection->filter(function($item) {
+			return is_a($item, Item\Sword::class);
+		});
+
+		$this->assertEquals([
+			Item::get('L1Sword'),
+			Item::get('L2Sword'),
+		], $filtered->values());
+	}
+
+	public function testFilterSameItem() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('Map'));
+
+		$filtered = $this->collection->filter(function($item) {
+			return is_a($item, Item\Sword::class);
+		});
+
+		$this->assertEquals([
+			Item::get('L1Sword'),
+			Item::get('L1Sword'),
+		], $filtered->values());
+	}
+
+	public function testValues() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L2Sword'));
+		$this->collection->addItem(Item::get('L3Sword'));
+
+		$this->assertEquals([
+			Item::get('L1Sword'),
+			Item::get('L2Sword'),
+			Item::get('L3Sword'),
+		], $this->collection->values());
+	}
+
+	public function testValuesSameItem() {
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L1Sword'));
+		$this->collection->addItem(Item::get('L2Sword'));
+
+		$this->assertEquals([
+			Item::get('L1Sword'),
+			Item::get('L1Sword'),
+			Item::get('L2Sword'),
+		], $this->collection->values());
+	}
 }

@@ -62,7 +62,7 @@ class HyruleCastleEscape extends Region {
 	public function fillBaseItems($my_items) {
 		while(!$this->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
-		if ($this->world->config('region.CompassesMaps', true)) {
+		if ($this->world->config('region.CompassesMaps', true) && $this->world->config('region.mapsInDungeons', true)) {
 			while(!$this->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
 		}
 
@@ -86,6 +86,21 @@ class HyruleCastleEscape extends Region {
 			return $items->canLiftRocks();
 		});
 
+		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setFillRules(function($item, $locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $item != Item::get('Key');
+			}
+
+			return true;
+		});
+
+		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setFillRules(function($item, $locations, $items) {
+			if (config('game-mode') == 'open') {
+				return $item != Item::get('Key');
+			}
+
+			return true;
+		});
 
 		return $this;
 	}

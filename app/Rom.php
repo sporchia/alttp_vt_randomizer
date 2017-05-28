@@ -1,16 +1,29 @@
 <?php namespace ALttP;
 
 use ALttP\Support\Dialog;
-use Closure;
+use ALttP\Support\ItemCollection;
 use Log;
 
 /**
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-03-21';
-	const HASH = 'cb1a549cb4d820aa811bc16f74f44778';
+	const BUILD = '2017-05-12';
+	const HASH = 'de0100dc53a8e755a0fa9a3f15f1d100';
 	const SIZE = 2097152;
+	static private $digit_gfx = [
+		0 => 0x30,
+		1 => 0x31,
+		2 => 0x02,
+		3 => 0x03,
+		4 => 0x12,
+		5 => 0x13,
+		6 => 0x22,
+		7 => 0x23,
+		8 => 0x32,
+		9 => 0x33,
+	];
+
 	private $tmp_file;
 	protected $rom;
 	protected $write_log = [];
@@ -152,6 +165,10 @@ class Rom {
 			case 'stopwatch':
 				$bytes = [0x02, 0x01];
 				break;
+			case 'countdown-ohko':
+				$bytes = [0x01, 0x02];
+				$restart = true;
+				break;
 			case 'countdown-continue':
 				$bytes = [0x01, 0x01];
 				break;
@@ -264,49 +281,50 @@ class Rom {
 	}
 
 	/**
-	 * Set the opening Uncle text to one of the predefined values in he ROM
+	 * Set values to fill for Health/Magic fills from Bottles
+	 * currently only 2 things: Health, Magic
 	 *
-	 * @param int $offset which text to use: 0x00 -> 0x1F
+	 * @param array $fills array of values to fill in [health (0xA0 default), magic (0x80 default)]
 	 *
 	 * @return $this
 	 */
-	public function setUncleText(int $offset = 0) : self {
-		$texts = [
-			"We're out of\nWeetabix. To\nthe store!",
-			"This seed is\nbootless\nuntil boots.",
-			"Why do we only\nhave one bed?",
-			"This is the\nonly textbox.",
-			"I'm going to\ngo watch the\nMoth tutorial.",
-			"This seed is\nthe worst.",
-			"Chasing tail.\nFly ladies.\nDo not follow.",
-			"I feel like\nI've done this\nbefore...",
-			"Magic cape can\npass through\nthe barrier!",
-			"If this is a\nKanzeon seed,\nI'm quitting.",
-			"I am not your\nreal uncle.",
-			"You're going\nto have a very\nbad time.",
-			"Today you\nwill have\nbad luck.",
-			"I am leaving\nforever.\nGoodbye.",
-			"Don't worry.\nI got this\ncovered.",
-			"Race you to\nthe castle!",
-			"\n~69 Blaze It!~",
-			"\n      hi",
-			"I'M JUST GOING\nOUT FOR A\nPACK OF SMOKES",
-			"It's dangerous\nto go alone.\nSee ya!",
-			"ARE YOU A BAD\nENOUGH DUDE TO\nRESCUE ZELDA?",
-			"\n\n    I AM ERROR",
-			"This seed is\nsub 2 hours,\nguaranteed.",
-			"The chest is\na secret to\neverybody.",
-			"I'm off to\nfind the\nwind fish.",
-			"The shortcut\nto Ganon\nis this way!",
-			"THE MOON IS\nCRASHING! RUN\nFOR YOUR LIFE!",
-			"Time to fight\nhe who must\nnot be named.",
-			"RED MAIL\nIS FOR\nCOWARDS.",
-			"HEY!\n\nLISTEN!",
-			"Well\nexcuuuuuse me,\nprincess!",
-			"5,000 Rupee\nreward for @>\nYou're boned",
-		];
+	public function setBottleFills(array $fills) : self {
+		$this->write(0x180084, pack('C*', ...array_slice($fills, 0, 2)));
 
-		$this->setUncleTextString($texts[$offset % count($texts)]);
+		return $this;
+	}
+
+	/**
+	 * Set the number of goal items to collect
+	 *
+	 * @param int $goal
+	 *
+	 * @return $this
+	 */
+	public function setGoalRequiredCount($goal = 0) : self {
+		$this->write(0x180167, pack('C', $goal));
+
+		return $this;
+	}
+
+	/**
+	 * Set the goal item icon
+	 *
+	 * @param string $goal_icon
+	 *
+	 * @return $this
+	 */
+	public function setGoalIcon($goal_icon = 'star') : self {
+		switch ($goal_icon) {
+			case 'triforce':
+				$byte = pack('S*', 0x280E);
+				break;
+			case 'star':
+			default:
+				$byte = pack('S*', 0x280D);
+				break;
+		}
+		$this->write(0x180165, $byte);
 
 		return $this;
 	}
@@ -392,6 +410,96 @@ class Rom {
 	 */
 	public function setBlindTextString(string $string) : self {
 		$offset = 0x180800;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Tavern Man text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setTavernManTextString(string $string) : self {
+		$offset = 0x180C00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Sahasrahla before item collection text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setSahasrahla1TextString(string $string) : self {
+		$offset = 0x180A00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Sahasrahla after item collection text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setSahasrahla2TextString(string $string) : self {
+		$offset = 0x180B00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Bomb Shop before crystals 5 & 6 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setBombShop1TextString(string $string) : self {
+		$offset = 0x180E00;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Bomb Shop after crystals 5 & 6 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setBombShop2TextString(string $string) : self {
+		$offset = 0x180D00;
 
 		$converter = new Dialog;
 		foreach ($converter->convertDialog($string) as $byte) {
@@ -751,6 +859,42 @@ class Rom {
 	}
 
 	/**
+	 * Set the single RNG Item table. These items will only get collected by player once per game.
+	 *
+	 * @param ItemCollection $items
+	 *
+	 * @return $this
+	 */
+	public function setSingleRNGTable(ItemCollection $items) : self {
+		$bytes = $items->map(function($item) {
+			return $item->getBytes()[0];
+		});
+
+		$this->write(0x182000, pack('C*', ...$bytes));
+		$this->write(0x18207F, pack('C*', count($bytes)));
+
+		return $this;
+	}
+
+	/**
+	 * Set the multi RNG Item table. These items can be collected multiple times per game.
+	 *
+	 * @param ItemCollection $items
+	 *
+	 * @return $this
+	 */
+	public function setMultiRNGTable(ItemCollection $items) : self {
+		$bytes = $items->map(function($item) {
+			return $item->getBytes()[0];
+		});
+
+		$this->write(0x182080, pack('C*', ...$bytes));
+		$this->write(0x1820FF, pack('C*', count($bytes)));
+
+		return $this;
+	}
+
+	/**
 	 * Set the Seed Type
 	 *
 	 * @param string $setting name
@@ -863,84 +1007,130 @@ class Rom {
 	}
 
 	/**
+	 * Set the sprite that spawns when a stunned Enemy is killed
+	 *
+	 * @param int $sprite id of sprite to drop (0xD9 green rupee)
+	 *
+	 * @return $this
+	 */
+	public function setStunnedSpritePrize(int $sprite = 0xD9) : self {
+		$this->write(0x37993, pack('C*', $sprite));
+
+		return $this;
+	}
+
+	/**
+	 * Set the sprite that spawns when powdered sprite that usually spawns a faerie is powdered.
+	 *
+	 * @param int $sprite id of sprite to drop
+	 *
+	 * @return $this
+	 */
+	public function setPowderedSpriteFairyPrize(int $sprite = 0xE3) : self {
+		$this->write(0x36DD0, pack('C*', $sprite));
+
+		return $this;
+	}
+
+	/**
+	 * Set pull tree prizes
+	 *
+	 * @param int $low id of sprite to drop (0xD9 green rupee)
+	 * @param int $mid id of sprite to drop (0xDA blue rupee)
+	 * @param int $high id of sprite to drop (0xDB red rupee)
+	 *
+	 * @return $this
+	 */
+	public function setPullTreePrizes(int $low = 0xD9, int $mid = 0xDA, int $high = 0xDB) : self {
+		$this->write(0xEFBD4, pack('C*', $low, $mid, $high));
+
+		return $this;
+	}
+
+
+	/**
+	 * Set rupee crab, first and final prizes
+	 *
+	 * @param int $main id of sprite to drop (0xD9 green rupee)
+	 * @param int $final id of sprite to drop (0xDB red rupee)
+	 *
+	 * @return $this
+	 */
+	public function setRupeeCrabPrizes(int $main = 0xD9, int $final = 0xDB) : self {
+		$this->write(0x329C8, pack('C*', $main));
+		$this->write(0x329C4, pack('C*', $final));
+
+		return $this;
+	}
+
+	/**
+	 * Set fish save prize
+	 *
+	 * @param int $prize id of sprite to drop (0xDB red rupee)
+	 *
+	 * @return $this
+	 */
+	public function setFishSavePrize(int $prize = 0xDB) : self {
+		$this->write(0xE82CC, pack('C*', $prize));
+
+		return $this;
+	}
+
+	/**
+	 * Set Overworld bonk prizes
+	 *
+	 * @param array $prizes ids of sprites to drop (0x03 empty)
+	 *
+	 * @return $this
+	 */
+	public function setOverworldBonkPrizes(array $prize = []) : self {
+		$addresses = [
+			0x4CF6C, 0x4CFBA, 0x4CFE0, 0x4CFFB, 0x4D018, 0x4D01B, 0x4D028, 0x4D03C,
+			0x4D059, 0x4D07A, 0x4D09E, 0x4D0A8, 0x4D0AB, 0x4D0AE, 0x4D0BE, 0x4D0DD,
+			0x4D16A, 0x4D1E5, 0x4D1EE, 0x4D20B, 0x4CBBF, 0x4CBBF, 0x4CC17, 0x4CC1A,
+			0x4CC4A, 0x4CC4D, 0x4CC53, 0x4CC69, 0x4CC6F, 0x4CC7C, 0x4CCEF, 0x4CD51,
+			0x4CDC0, 0x4CDC3, 0x4CDC6, 0x4CE37, 0x4D2DE, 0x4D32F, 0x4D355, 0x4D367,
+			0x4D384, 0x4D387, 0x4D397, 0x4D39E, 0x4D3AB, 0x4D3AE, 0x4D3D1, 0x4D3D7,
+			0x4D3F8, 0x4D416, 0x4D420, 0x4D423, 0x4D42D, 0x4D449, 0x4D48C, 0x4D4D9,
+			0x4D4DC, 0x4D4E3, 0x4D504, 0x4D507, 0x4D55E, 0x4D56A,
+		];
+
+		foreach ($addresses as $address) {
+			$item = array_pop($prize);
+			$this->write($address, pack('C*', $item ?? 0x03));
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Adjust some settings for hard mode
 	 *
 	 * @param int $level how hard to make it, higher should be harder
 	 *
 	 * @return $this
 	 */
-	public function setHardMode($level = 0, $dont_nerf_blue_potion = false) : self {
+	public function setHardMode($level = 0) : self {
 		switch ($level) {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-				// Bubble transform
-				$this->write(0x36DD0, pack('C*', 0xE3));
-				// Red Potion Cost
-				$this->write(0x2F803, pack('S*', 0x0078)); // 120 Rupees
-				$this->write(0x2F822, pack('S*', 0x0078)); // 120 Rupees
-				$this->write(0x2F869, pack('C*', 0x31)); // 1
-				$this->write(0x2F861, pack('C*', 0x02)); // 2
-				$this->write(0x2F859, pack('C*', 0x30)); // 0
-				// Green Potion Cost
-				$this->write(0x2F6C1, pack('S*', 0x003C)); // 60 Rupees
-				$this->write(0x2F6E0, pack('S*', 0x003C)); // 60 Rupees
-				$this->write(0x2F714, pack('C*', 0x22)); // 6
-				$this->write(0x2F70C, pack('C*', 0x30)); // 0
-				// 0x07 Red Potion General
-				$this->write(0xF7178, pack('C*', 0x78)); // cost: 120
-				$this->write(0xF73AE, pack('C*', 0x31)); // 1
-				$this->write(0xF73B6, pack('C*', 0x02)); // 2
-				$this->write(0xF73BE, pack('C*', 0x30)); // 0
-				// 0x08 Blue Shield
-				$this->write(0xF71FF, pack('C*', 0x32)); // cost: 50
-				$this->write(0xF73D2, pack('C*', 0x00, 0x00)); // reposition gfx
-				$this->write(0xF73DA, pack('C*', 0x00, 0x00)); // reposition gfx
-				$this->write(0xF73E2, pack('C*', 0x08, 0x00)); // reposition gfx
-				$this->write(0xF73D6, pack('C*', 0x31)); // 5
-				$this->write(0xF73DE, pack('C*', 0x30)); // 5
-				$this->write(0xF73E6, pack('C*', 0x30)); // 0
+				$this->setPowderedSpriteFairyPrize(0xE3);
+				$this->setBottleFills([0xA0, 0x80]);
+				$this->setShopBlueShieldCost(50);
+				$this->setShopRedShieldCost(500);
 
 				$this->setRupoorValue(0);
 				$this->setBelowGanonChest(false);
 				$this->setByrnaCaveSpikeDamage(0x08);
 
-				$dont_nerf_blue_potion = true;
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
-				$this->write(0x36DD0, pack('C*', 0x79));
-				// Red Potion Cost
-				$this->write(0x2F803, pack('S*', 0x00F0)); // 240 Rupees
-				$this->write(0x2F822, pack('S*', 0x00F0)); // 240 Rupees
-				$this->write(0x2F869, pack('C*', 0x02)); // 2
-				$this->write(0x2F861, pack('C*', 0x12)); // 4
-				$this->write(0x2F859, pack('C*', 0x30)); // 0
-				// Green Potion Cost
-				$this->write(0x2F6C1, pack('S*', 0x0063)); // 99 Rupees
-				$this->write(0x2F6E0, pack('S*', 0x0063)); // 99 Rupees
-				$this->write(0x2F70C, pack('C*', 0x33)); // 9
-				$this->write(0x2F714, pack('C*', 0x33)); // 9
-				// Blue Potion Cost
-				$this->write(0x2F75E, pack('S*', 0x0140)); // 320 Rupees
-				$this->write(0x2F77D, pack('S*', 0x0140)); // 320 Rupees
-				$this->write(0x2F7B9, pack('C*', 0x03)); // 3
-				$this->write(0x2F7B1, pack('C*', 0x02)); // 2
-				$this->write(0x2F7A9, pack('C*', 0x30)); // 0
-
-				// 0x07 Red Potion General
-				$this->write(0xF7178, pack('C*', 0xF0)); // cost: 240
-				$this->write(0xF73AE, pack('C*', 0x02)); // 2
-				$this->write(0xF73B6, pack('C*', 0x12)); // 4
-				$this->write(0xF73BE, pack('C*', 0x30)); // 0
-				// 0x08 Blue Shield
-				$this->write(0xF71FF, pack('C*', 0x64)); // cost: 100
-				$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
-				$this->write(0xF73DA, pack('C*', 0x04, 0x00)); // reposition gfx
-				$this->write(0xF73E2, pack('C*', 0x0C, 0x00)); // reposition gfx
-				$this->write(0xF73D6, pack('C*', 0x31)); // 1
-				$this->write(0xF73DE, pack('C*', 0x30)); // 0
-				$this->write(0xF73E6, pack('C*', 0x30)); // 0
+				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
+				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
+				$this->setShopBlueShieldCost(100);
+				$this->setShopRedShieldCost(999);
 
 				$this->setRupoorValue(10);
 				$this->setBelowGanonChest(true);
@@ -950,61 +1140,97 @@ class Rom {
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x36DD0, pack('C*', 0x79));
-
-				// Red Potion
-				$this->write(0x2F803, pack('S*', 0x2706)); // 9999 Rupees
-				$this->write(0x2F822, pack('S*', 0x2706)); // 9999 Rupees
-				$this->write(0x2F859, pack('C*', 0x3C)); // -
-				$this->write(0x2F861, pack('C*', 0x3C)); // -
-				$this->write(0x2F869, pack('C*', 0x3C)); // -
-				// Green Potion Cost
-				$this->write(0x2F6C1, pack('S*', 0x2706)); // 9999 Rupees
-				$this->write(0x2F6E0, pack('S*', 0x2706)); // 9999 Rupees
-				$this->write(0x2F70C, pack('C*', 0x3C)); // -
-				$this->write(0x2F714, pack('C*', 0x3C)); // -
-				// Blue Potion Cost
-				$this->write(0x2F75E, pack('S*', 0x2706)); // 9999 Rupees
-				$this->write(0x2F77D, pack('S*', 0x2706)); // 9999 Rupees
-				$this->write(0x2F7B9, pack('C*', 0x3C)); // -
-				$this->write(0x2F7B1, pack('C*', 0x3C)); // -
-				$this->write(0x2F7A9, pack('C*', 0x3C)); // -
-
-				// 0x07 Red Potion General
-				$this->write(0xF717A, pack('C*', 0x27)); // cost: 9984 +
-				$this->write(0xF7178, pack('C*', 0x06)); // cost: 6
-				$this->write(0xF73AE, pack('C*', 0x3C)); // -
-				$this->write(0xF73B6, pack('C*', 0x3C)); // -
-				$this->write(0xF73BE, pack('C*', 0x3C)); // -
-				// 0x08 Blue Shield
-				$this->write(0xF7201, pack('C*', 0x27)); // cost: 9984 +
-				$this->write(0xF71FF, pack('C*', 0x06)); // cost: 6
-				$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
-				$this->write(0xF73DA, pack('C*', 0x04, 0x00)); // reposition gfx
-				$this->write(0xF73E2, pack('C*', 0x0C, 0x00)); // reposition gfx
-				$this->write(0xF73D6, pack('C*', 0x3C)); // -
-				$this->write(0xF73DE, pack('C*', 0x3C)); // -
-				$this->write(0xF73E6, pack('C*', 0x3C)); // -
+				$this->setPowderedSpriteFairyPrize(0x79); // Bees
+				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
+				$this->setShopBlueShieldCost(9990);
+				$this->setShopRedShieldCost(9990);
 
 				$this->setRupoorValue(20);
-				$this->setBelowGanonChest(true);
-				$this->write(0xE9A7, pack('C*', 0x02)); // tempered sword
+				$this->setBelowGanonChest(false);
 				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 		}
 
-		if ($dont_nerf_blue_potion) {
-			// Blue Bottle Cost
-			$this->write(0x2F75E, pack('S*', 0x00A0)); // 160 Rupees
-			$this->write(0x2F77D, pack('S*', 0x00A0)); // 160 Rupees
-			$this->write(0x2F7B9, pack('C*', 0x31)); // 1
-			$this->write(0x2F7B1, pack('C*', 0x22)); // 6
-			$this->write(0x2F7A9, pack('C*', 0x30)); // 0
+		return $this;
+	}
+
+	/**
+	 * Set the cost of Blue Shields in shops (shop sprite: 0x08).
+	 *
+	 * @param int $cost
+	 *
+	 * @return $this
+	 */
+	public function setShopBlueShieldCost($cost = 50) : self {
+		$cost_digits = str_split($cost);
+		if ($cost > 999) {
+			$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
+			$this->write(0xF73DA, pack('C*', 0x04, 0x00)); // reposition gfx
+			$this->write(0xF73E2, pack('C*', 0x0C, 0x00)); // reposition gfx
+			$this->write(0xF73D6, pack('C*', 0x3C)); // -
+			$this->write(0xF73DE, pack('C*', 0x3C)); // -
+			$this->write(0xF73E6, pack('C*', 0x3C)); // -
+		} else if ($cost > 99) {
+			$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
+			$this->write(0xF73DA, pack('C*', 0x04, 0x00)); // reposition gfx
+			$this->write(0xF73E2, pack('C*', 0x0C, 0x00)); // reposition gfx
+			$this->write(0xF73D6, pack('C*', static::$digit_gfx[$cost_digits[0]]));
+			$this->write(0xF73DE, pack('C*', static::$digit_gfx[$cost_digits[1]]));
+			$this->write(0xF73E6, pack('C*', static::$digit_gfx[$cost_digits[2]]));
+		} else {
+			$this->write(0xF73D2, pack('C*', 0x00, 0x00)); // reposition gfx
+			$this->write(0xF73DA, pack('C*', 0x00, 0x00)); // reposition gfx
+			$this->write(0xF73E2, pack('C*', 0x08, 0x00)); // reposition gfx
+			$this->write(0xF73D6, pack('C*', static::$digit_gfx[$cost_digits[0]]));
+			$this->write(0xF73DE, pack('C*', static::$digit_gfx[$cost_digits[0]]));
+			$this->write(0xF73E6, pack('C*', static::$digit_gfx[$cost_digits[1]]));
 		}
+
+		$this->write(0xF7201, pack('C*', $cost >> 8));
+		$this->write(0xF71FF, pack('C*', $cost & 0xFF));
 
 		return $this;
 	}
+
+	/**
+	 * Set the cost of Red Shields in shops (shop sprite: ??).
+	 *
+	 * @param int $cost
+	 *
+	 * @return $this
+	 */
+	public function setShopRedShieldCost($cost = 500) : self {
+		$cost_digits = str_split($cost);
+		if ($cost > 999) {
+			$this->write(0xF73FA, pack('C*', 0xFC, 0xFF)); // reposition gfx
+			$this->write(0xF7402, pack('C*', 0x04, 0x00)); // reposition gfx
+			$this->write(0xF740A, pack('C*', 0x0C, 0x00)); // reposition gfx
+			$this->write(0xF73FE, pack('C*', 0x3C)); // -
+			$this->write(0xF7406, pack('C*', 0x3C)); // -
+			$this->write(0xF740E, pack('C*', 0x3C)); // -
+		} else if ($cost > 99) {
+			$this->write(0xF73FA, pack('C*', 0xFC, 0xFF)); // reposition gfx
+			$this->write(0xF7402, pack('C*', 0x04, 0x00)); // reposition gfx
+			$this->write(0xF740A, pack('C*', 0x0C, 0x00)); // reposition gfx
+			$this->write(0xF73FE, pack('C*', static::$digit_gfx[$cost_digits[0]]));
+			$this->write(0xF7406, pack('C*', static::$digit_gfx[$cost_digits[1]]));
+			$this->write(0xF740E, pack('C*', static::$digit_gfx[$cost_digits[2]]));
+		} else {
+			$this->write(0xF73FA, pack('C*', 0x00, 0x00)); // reposition gfx
+			$this->write(0xF7402, pack('C*', 0x00, 0x00)); // reposition gfx
+			$this->write(0xF740A, pack('C*', 0x08, 0x00)); // reposition gfx
+			$this->write(0xF73FE, pack('C*', static::$digit_gfx[$cost_digits[0]]));
+			$this->write(0xF7406, pack('C*', static::$digit_gfx[$cost_digits[0]]));
+			$this->write(0xF740E, pack('C*', static::$digit_gfx[$cost_digits[1]]));
+		}
+
+		$this->write(0xF7241, pack('C*', $cost >> 8));
+		$this->write(0xF723F, pack('C*', $cost & 0xFF));
+
+		return $this;
+	}
+
 
 	/**
 	 * Set Smithy Quick Item Give mode. I.E. just gives an item if you rescue him with no sword bogarting
@@ -1064,6 +1290,32 @@ class Rom {
 		$this->setSewersLampCone(!$enable);
 		$this->setLightWorldLampCone(!$enable);
 		$this->setDarkWorldLampCone(false);
+
+		return $this;
+	}
+
+	/**
+	 * Enable maps to show crystals on overworld map
+	 *
+	 * @param bool $require_map switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setMapMode($require_map = false) : self {
+		$this->write(0x18003B, pack('C*', $require_map ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable compass to show dungeon count
+	 *
+	 * @param bool $show_count switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCompassMode($show_count = false) : self {
+		$this->write(0x18003C, pack('C*', $show_count ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -1186,11 +1438,11 @@ class Rom {
 	/**
 	 * Write a block of data to RNG Block in ROM.
 	 *
-	 * @param Closure $random prng byte generator
+	 * @param callable $random prng byte generator
 	 *
 	 * @return $this
 	 */
-	public function writeRNGBlock(Closure $random) : self {
+	public function writeRNGBlock(callable $random) : self {
 		$string = '';
 		for ($i = 0; $i < 1024; $i++) {
 			$string .= pack('C*', $random());
@@ -1262,7 +1514,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function write(int $offset, $data) : self {
-		Log::debug(sprintf("write: 0x%s: 0x%2s\n", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
+		Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 		$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);

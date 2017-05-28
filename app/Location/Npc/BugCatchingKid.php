@@ -17,21 +17,28 @@ class BugCatchingKid extends Npc {
 	}
 
 	private function getItemCreditsText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+			case Item\BigKey::class:
+				return "the key-holding kid";
+			case Item\Map::class:
+				return "the cartographer kid";
+			case Item\Compass::class:
+				return "the navigating kid";
+		}
+
 		switch ($this->item) {
+			case Item::get('ProgressiveSword'):
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "sword-wielding kid";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "sword-wielding kid";
 			case Item::get('L3Sword'):
-				return "sword-wielding kid";
 			case Item::get('L4Sword'):
 				return "sword-wielding kid";
+			case Item::get('ProgressiveShield'):
 			case Item::get('BlueShield'):
-				return "shield-wielding kid";
 			case Item::get('RedShield'):
-				return "shield-wielding kid";
 			case Item::get('MirrorShield'):
 				return "shield-wielding kid";
 			case Item::get('FireRod'):
@@ -72,8 +79,8 @@ class BugCatchingKid extends Npc {
 				return "red riding-hood kid";
 			case Item::get('MagicMirror'):
 				return "the narcissistic kid";
+			case Item::get('ProgressiveGlove'):
 			case Item::get('PowerGlove'):
-				return "body-building kid";
 			case Item::get('TitansMitt'):
 				return "body-building kid";
 			case Item::get('BookOfMudora'):
@@ -84,17 +91,11 @@ class BugCatchingKid extends Npc {
 				return "fortune-telling kid";
 			case Item::get('BugCatchingNet'):
 				return "the bug-catching kid";
+			case Item::get('ProgressiveArmor'):
 			case Item::get('BlueMail'):
 				return "the protected kid";
 			case Item::get('RedMail'):
 				return "well-protected kid";
-			case Item::get('Key'):
-			case Item::get('BigKey'):
-				return "the key-holding kid";
-			case Item::get('Compass'):
-				return "the navigating kid";
-			case Item::get('Map'):
-				return "the cartographer kid";
 			case Item::get('PieceOfHeart'):
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
@@ -161,6 +162,15 @@ class BugCatchingKid extends Npc {
 				return "the indigo-time kid";
 			case Item::get('GreenClock'):
 				return "the emerald-time kid";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "the something kid";
+			case Item::get('Triforce'):
+				return "the game-winning kid";
+			case Item::get('PowerStar'):
+				return "the stary-eyed kid";
+			case Item::get('TriforcePiece'):
+				return "triforce-holding kid";
 			case Item::get('Nothing'):
 			default:
 				return "nothing-having kid";

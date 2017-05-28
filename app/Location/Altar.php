@@ -35,6 +35,16 @@ class Altar extends Location {
 
 
 	private function getItemCreditsText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+			case Item\BigKey::class:
+				return "and the key";
+			case Item\Map::class:
+				return "and the map";
+			case Item\Compass::class:
+				return "and the compass";
+		}
+
 		switch ($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
@@ -106,13 +116,6 @@ class Altar extends Location {
 				return "and the banana hat";
 			case Item::get('RedMail'):
 				return "and the eggplant hat";
-			case Item::get('Key'):
-			case Item::get('BigKey'):
-				return "and the key";
-			case Item::get('Compass'):
-				return "and the compass";
-			case Item::get('Map'):
-				return "and the map";
 			case Item::get('PieceOfHeart'):
 				return "and the broken heart";
 			case Item::get('BossHeartContainer'):
@@ -186,6 +189,23 @@ class Altar extends Location {
 				return "the sapphire clock";
 			case Item::get('GreenClock'):
 				return "the emerald clock";
+			case Item::get('ProgressiveSword'):
+				return "the unknown sword";
+			case Item::get('ProgressiveShield'):
+				return "the unknown shield";
+			case Item::get('ProgressiveArmor'):
+				return "the unknown hat";
+			case Item::get('ProgressiveGlove'):
+				return "the magic hand cover";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "the whatever";
+			case Item::get('Triforce'):
+				return "and the triforce";
+			case Item::get('PowerStar'):
+				return "and the power star";
+			case Item::get('TriforcePiece'):
+				return "the triforce piece";
 			case Item::get('Nothing'):
 			default:
 				return "and nothing";
@@ -193,6 +213,17 @@ class Altar extends Location {
 	}
 
 	private function getItemPedestalText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+				return "The small key\nto the Kingdom";
+			case Item\BigKey::class:
+				return "The big key\nto the Kingdom";
+			case Item\Map::class:
+				return "You can now\nfind your way\nhome!";
+			case Item\Compass::class:
+				return "Now you know\nwhere the boss\nhides!";
+		}
+
 		switch ($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
@@ -207,7 +238,7 @@ class Altar extends Location {
 			case Item::get('BlueShield'):
 				return "Now you can\ndefend against\npebbles!";
 			case Item::get('RedShield'):
-				return "Now you can\ndefend against\fireballs!";
+				return "Now you can\ndefend against\nfireballs!";
 			case Item::get('MirrorShield'):
 				return "Now you can\ndefend against\nlasers!";
 			case Item::get('FireRod'):
@@ -264,14 +295,6 @@ class Altar extends Location {
 				return "Now you're a\nblue elf!";
 			case Item::get('RedMail'):
 				return "Now you're a\nred elf!";
-			case Item::get('Key'):
-				return "The small key\nto the Kingdom";
-			case Item::get('BigKey'):
-				return "The big key\nto the Kingdom";
-			case Item::get('Compass'):
-				return "Now you know\nwhere the boss\nhides!";
-			case Item::get('Map'):
-				return "You can now\nfind your way\nhome!";
 			case Item::get('PieceOfHeart'):
 				return "Just a little\npiece of love!";
 			case Item::get('BossHeartContainer'):
@@ -351,6 +374,23 @@ class Altar extends Location {
 				return "sapphire sand\ntrickles down";
 			case Item::get('GreenClock'):
 				return "tick tock\ntick tock";
+			case Item::get('ProgressiveSword'):
+				return "a better copy\nof your sword\nfor your time";
+			case Item::get('ProgressiveShield'):
+				return "have a better\nblocker in\nfront of you";
+			case Item::get('ProgressiveArmor'):
+				return "time for a\nchange of\nclothes?";
+			case Item::get('ProgressiveGlove'):
+				return "a way to lift\nheavier things";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "who knows? you\nprobably don't\nneed this.";
+			case Item::get('Triforce'):
+				return "\n   YOU WIN!";
+			case Item::get('PowerStar'):
+				return "Aim for the\nmoon. You may\nhit a 'star'";
+			case Item::get('TriforcePiece'):
+				return "a yellow\ntriangle\nyou need this";
 			case Item::get('Nothing'):
 			default:
 				return "Don't waste\nyour time!";

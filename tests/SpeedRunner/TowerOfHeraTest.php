@@ -50,12 +50,12 @@ class TowerOfHeraTest extends TestCase {
 
 	public function testLiftingRocksOrFluteRequiredForEntry() {
 		$this->assertFalse($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['PowerGlove', 'TitansMitt', 'OcarinaActive', 'OcarinaInactive'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves', 'OcarinaActive', 'OcarinaInactive'])));
 	}
 
 	public function testNotOnlyLiftingRocksRequiredForEntry() {
 		$this->assertTrue($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testNotOnlyFluteRequiredForEntry() {

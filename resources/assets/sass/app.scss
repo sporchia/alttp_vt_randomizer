@@ -1,6 +1,6 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url('https://fonts.googleapis.com/css?family=Cabin:300,400,600');
 
 // Variables
 @import "variables";
@@ -51,7 +51,6 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	line-height: normal;
-	width: 75%;
 	padding-top: 8px;
 }
 
@@ -70,4 +69,37 @@ body {
 }
 .spoiler-text {
 	padding: 5px;
+}
+.pulse {
+	border-radius: 50%;
+	animation: pulse 4s infinite;
+}
+.pulse:hover {
+	animation: none;
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0.4);
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 10px rgba(200, 200, 200, 0);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
+	}
+}
+@keyframes pulse {
+	0% {
+		-moz-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0.4);
+		box-shadow: 0 0 0 0 rgba(200, 200, 200, 0.4);
+	}
+	70% {
+		-moz-box-shadow: 0 0 0 10px rgba(200, 200, 200, 0);
+		box-shadow: 0 0 0 10px rgba(200, 200, 200, 0);
+	}
+	100% {
+		-moz-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
+		box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
+	}
 }

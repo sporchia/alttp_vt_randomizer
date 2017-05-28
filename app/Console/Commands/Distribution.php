@@ -11,7 +11,8 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--rules=normal} {--mode=NoMajorGlitches}';
+	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--difficulty=normal} {--mode=NoMajorGlitches}'
+		. '{--csv}';
 
 	/**
 	 * The console command description.
@@ -40,6 +41,10 @@ class Distribution extends Command {
 				$function = [$this, 'region_fill'];
 				$thing = $this->argument('thing');
 				break;
+			case 'full':
+				$function = [$this, 'full'];
+				$thing = $this->argument('thing');
+				break;
 			default:
 				return $this->error('Invalid distribution');
 		}
@@ -48,12 +53,39 @@ class Distribution extends Command {
 			call_user_func_array($function, [$thing, &$locations]);
 		}
 
-		ksortr($locations);
-		$this->info(json_encode($locations, JSON_PRETTY_PRINT));
+		if ($this->option('csv')) {
+			$locations = $this->_assureColumnsExist($locations);
+			ksortr($locations);
+			$out = fopen('php://output', 'w');
+			fputcsv($out, array_merge(['location'], array_keys(reset($locations))));
+			foreach ($locations as $name => $location) {
+				fputcsv($out, array_merge([$name], $location));
+			}
+			fclose($out);
+		} else {
+			ksortr($locations);
+			$this->info(json_encode($locations, JSON_PRETTY_PRINT));
+		}
+	}
+
+	private function _assureColumnsExist($array) : array {
+		$keys = [];
+		foreach ($array as $part) {
+			$keys = array_merge($keys, array_keys($part));
+		}
+		$keys = array_unique($keys);
+		foreach ($array as $k => $part) {
+			foreach ($keys as $key) {
+				if (!isset($part[$key])) {
+					$array[$k][$key] = 0;
+				}
+			}
+		}
+		return $array;
 	}
 
 	private function item(Item $item, &$locations) {
-		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocationsWithItem($item) as $location) {
@@ -65,7 +97,7 @@ class Distribution extends Command {
 	}
 
 	private function location($location_name, &$locations) {
-		$rand = new Randomizer($this->option('rules'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
 		$rand->makeSeed();
 
 		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
@@ -77,7 +109,7 @@ class Distribution extends Command {
 	}
 
 	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('rules'), $this->option('mode'));
+		$world = new World($this->option('difficulty'), $this->option('mode'));
 		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
 		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 		$region = $world->getRegion($region_name);
@@ -93,6 +125,21 @@ class Distribution extends Command {
 				$locations[$location->getName()][$location->getItem()->getNiceName()] = 0;
 			}
 			$locations[$location->getName()][$location->getItem()->getNiceName()]++;
+		}
+	}
+
+	private function full($unused, &$locations) {
+		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
+		$rand->makeSeed();
+
+		foreach ($rand->getWorld()->getLocations() as $location) {
+			$location_name = $location->getName();
+			$item_name = $location->getItem()->getNiceName();
+
+			if (!isset($locations[$location_name][$item_name])) {
+				$locations[$location_name][$item_name] = 0;
+			}
+			$locations[$location_name][$item_name]++;
 		}
 	}
 }

@@ -209,14 +209,14 @@ class DesertPalaceTest extends TestCase {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt', 'MagicMirror'])));
+			->canAccess($this->allItemsExcept(['Gloves', 'MagicMirror'])));
 	}
 
 	public function testLanmolasRequiresLiftingIfNoFlute() {
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt', 'OcarinaInactive', 'OcarinaActive'])));
+			->canAccess($this->allItemsExcept(['Gloves', 'OcarinaInactive', 'OcarinaActive'])));
 	}
 
 	// Key filling

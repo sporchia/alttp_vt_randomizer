@@ -17,21 +17,28 @@ class HauntedGrove extends Dig {
 	}
 
 	private function getItemCreditsText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+			case Item\BigKey::class:
+				return "boy picks locks again";
+			case Item\Map::class:
+				return "boy navigates again";
+			case Item\Compass::class:
+				return "boy finds boss again";
+		}
+
 		switch ($this->item) {
+			case Item::get('ProgressiveSword'):
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
-				return "boy fights again";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "boy fights again";
 			case Item::get('L3Sword'):
-				return "boy fights again";
 			case Item::get('L4Sword'):
 				return "boy fights again";
+			case Item::get('ProgressiveShield'):
 			case Item::get('BlueShield'):
-				return "boy defends again";
 			case Item::get('RedShield'):
-				return "boy defends again";
 			case Item::get('MirrorShield'):
 				return "boy defends again";
 			case Item::get('FireRod'):
@@ -72,6 +79,7 @@ class HauntedGrove extends Dig {
 				return "boy hides again";
 			case Item::get('MagicMirror'):
 				return "boy sees himself again";
+			case Item::get('ProgressiveGlove'):
 			case Item::get('PowerGlove'):
 				return "boy lifts again";
 			case Item::get('TitansMitt'):
@@ -88,13 +96,6 @@ class HauntedGrove extends Dig {
 				return "boy banana hatted again";
 			case Item::get('RedMail'):
 				return "boy fears nothing again";
-			case Item::get('Key'):
-			case Item::get('BigKey'):
-				return "boy picks locks again";
-			case Item::get('Compass'):
-				return "boy finds boss again";
-			case Item::get('Map'):
-				return "boy navigates again";
 			case Item::get('PieceOfHeart'):
 				return "boy feels love again";
 			case Item::get('BossHeartContainer'):
@@ -167,6 +168,17 @@ class HauntedGrove extends Dig {
 				return "boy time travels again";
 			case Item::get('GreenClock'):
 				return "boy adjusts time again";
+			case Item::get('ProgressiveArmor'):
+				return "boy has threads again";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "boy something's again";
+			case Item::get('Triforce'):
+				return "boy wins game again";
+			case Item::get('PowerStar'):
+				return "boy powers up again";
+			case Item::get('TriforcePiece'):
+				return "boy has triangle again";
 			case Item::get('Nothing'):
 			default:
 				return "boy does nothing again";

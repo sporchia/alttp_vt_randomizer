@@ -75,6 +75,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 					$items->removeItem('OcarinaInactive');
 					break;
 				case 'Gloves':
+					$items->removeItem('ProgressiveGlove');
 					$items->removeItem('PowerGlove');
 					$items->removeItem('TitansMitt');
 					break;

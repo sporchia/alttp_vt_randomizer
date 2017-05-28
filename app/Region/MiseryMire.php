@@ -74,9 +74,13 @@ class MiseryMire extends Region {
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			if ($this->world->config('region.mapsInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			}
 
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			if ($this->world->config('region.compassesInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			}
 		}
 
 		return $this;
@@ -241,7 +245,7 @@ class MiseryMire extends Region {
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 			&& $items->hasSword()
-			&& $items->has('TitansMitt') && $items->has('MoonPearl') && $items->canFly()
+			&& $items->canLiftDarkRocks() && $items->has('MoonPearl') && $items->canFly()
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
 		};
 
@@ -322,7 +326,7 @@ class MiseryMire extends Region {
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 			&& $items->hasSword()
-			&& ($items->has('TitansMitt') && $items->canFly() && ($items->has('MoonPearl')
+			&& ($items->canLiftDarkRocks() && $items->canFly() && ($items->has('MoonPearl')
 				|| ($items->has('Flippers') && $items->has('MagicMirror') && $items->hasABottle() && $items->has('BugCatchingNet'))))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
 		};

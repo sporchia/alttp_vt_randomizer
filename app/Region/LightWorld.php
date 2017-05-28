@@ -151,8 +151,7 @@ class LightWorld extends Region {
 		$this->locations["Altar"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')
-				&& $items->has('PendantOfCourage')
-				&& (!$this->world->config('region.swordsInPool', true) || $items->has('BookOfMudora'));
+				&& $items->has('PendantOfCourage');
 		});
 
 		$this->locations["Uncle"]->setRequirements(function($locations, $items) {
@@ -165,7 +164,7 @@ class LightWorld extends Region {
 
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return (($this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('MagicMirror'))
-				|| $items->has('TitansMitt')) && $items->has('PegasusBoots');
+				|| $items->canLiftDarkRocks()) && $items->has('PegasusBoots');
 		});
 
 		$this->locations["[cave-047] Dam"]->setRequirements(function($locations, $items) {
@@ -179,7 +178,11 @@ class LightWorld extends Region {
 				return true;
 			}
 
-			return !in_array($item, [Item::get('TitansMitt'), Item::get('PowerGlove')]);
+			return !in_array($item, [
+				Item::get('TitansMitt'),
+				Item::get('PowerGlove'),
+				Item::get('ProgressiveGlove'),
+			]);
 		});
 
 		$this->locations["[cave-031] Tavern"]->setRequirements(function($locations, $items) {
@@ -247,7 +250,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
-			return $items->has('TitansMitt') && $items->has('MagicMirror')
+			return $items->canLiftDarkRocks() && $items->has('MagicMirror')
 				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
@@ -286,7 +289,7 @@ class LightWorld extends Region {
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
 			return $items->has('Powder')
 				&& ($items->has('Hammer')
-					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('TitansMitt')));
+					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->canLiftDarkRocks()));
 		});
 
 		$this->locations["Sick Kid"]->setRequirements(function($locations, $items) {
@@ -294,7 +297,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror') && $items->has('TitansMitt') && $items->has("MoonPearl");
+			return $items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->has("MoonPearl");
 		});
 
 		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
@@ -327,7 +330,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
-			return $items->canFly() && $items->has('TitansMitt') && $items->has('MagicMirror');
+			return $items->canFly() && $items->canLiftDarkRocks() && $items->has('MagicMirror');
 		});
 
 		$this->locations["[cave-050] cave southwest of Lake Hylia - generous guy"]->setRequirements(function($locations, $items) {
@@ -352,7 +355,7 @@ class LightWorld extends Region {
 
 		$this->locations["Piece of Heart (Desert - west side)"]->setRequirements(function($locations, $items) {
 			return $items->has('BookOfMudora')
-				|| ($items->has('MagicMirror') && $items->has('TitansMitt') && $items->canFly());
+				|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly());
 		});
 
 		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
@@ -386,8 +389,7 @@ class LightWorld extends Region {
 		$this->locations["Altar"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')
-				&& $items->has('PendantOfCourage')
-				&& (!$this->world->config('region.swordsInPool', true) || $items->has('BookOfMudora'));
+				&& $items->has('PendantOfCourage');
 		});
 
 		// @TODO: when S+Q follower fix is removed this will need to be readdressed
@@ -397,7 +399,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots') && ($items->has('TitansMitt')
+			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
 				|| ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle())));
 		});
 
@@ -416,7 +418,7 @@ class LightWorld extends Region {
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
 				&& ($items->hasABottle() || $items->has("MoonPearl"))
-				&& ($items->has('TitansMitt')
+				&& ($items->canLiftDarkRocks()
 					|| $items->has('Flippers')
 					|| $items->has('Hammer')
 					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));

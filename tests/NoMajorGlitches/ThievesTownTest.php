@@ -31,7 +31,7 @@ class ThievesTownTest extends TestCase {
 
 	public function testNorthWestDarkWorldAccessRequiredForEntry() {
 		$this->assertFalse($this->world->getRegion('Thieves Town')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt', 'PowerGlove', 'Hookshot'])));
+			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves', 'Hookshot'])));
 	}
 
 	// Item Locations

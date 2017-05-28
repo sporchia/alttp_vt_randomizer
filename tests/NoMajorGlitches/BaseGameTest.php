@@ -22,20 +22,20 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testEasternPalace() {
-		$this->addCollected(['Lamp']);
+		$this->addCollected(['L1Sword', 'Lamp']);
 
 		$this->world->getLocation("[dungeon-L1-1F] Eastern Palace - Big key")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - big chest")->fill(Item::get('Bow'), $this->collected));
 	}
 
 	public function testEasternPalaceAccessable() {
-		$this->addCollected(['Lamp']);
+		$this->addCollected(['L1Sword', 'Lamp']);
 
 		$this->assertTrue($this->world->getRegion('Eastern Palace')->canEnter($this->world->getLocations(), $this->collected));
 	}
 
 	public function testEasternPalaceCompletable() {
-		$this->addCollected(['Lamp', 'Bow']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow']);
 
 		$this->assertTrue($this->world->getRegion('Eastern Palace')->canComplete($this->world->getLocations(), $this->collected));
 	}
@@ -43,7 +43,7 @@ class BaseGameTest extends TestCase {
 	public function testEasternCantCollectPendant() {
 		$this->world->getRegion('Eastern Palace')->getPrizeLocation()->setItem(Item::get('PendantOfCourage'));
 
-		$this->addCollected(['Lamp']);
+		$this->addCollected(['L1Sword', 'Lamp']);
 
 		$this->assertNotContains(Item::get('PendantOfCourage'), $this->world->collectPrizes($this->collected));
 	}
@@ -51,13 +51,13 @@ class BaseGameTest extends TestCase {
 	public function testEasternCollectPendant() {
 		$this->world->getRegion('Eastern Palace')->getPrizeLocation()->setItem(Item::get('PendantOfCourage'));
 
-		$this->addCollected(['Lamp', 'Bow']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow']);
 
 		$this->assertContains(Item::get('PendantOfCourage'), $this->world->collectPrizes($this->collected));
 	}
 
 	public function testDesertPalace() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora']);
 
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
@@ -65,13 +65,13 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testDesertPalaceAccessable() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora']);
 
 		$this->assertTrue($this->world->getRegion('Desert Palace')->canEnter($this->world->getLocations(), $this->collected));
 	}
 
 	public function testDesertPalaceCompletable() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove']);
 
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
 		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
@@ -79,34 +79,34 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testOldMan() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove']);
 
 		$this->assertTrue($this->world->getLocation("Old Mountain Man")->fill(Item::get('MagicMirror'), $this->collected));
 	}
 
 	public function testTowerOfHera() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror']);
 
 		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")->fill(Item::get('MoonPearl'), $this->collected));
 	}
 
 	public function testTowerOfHeraAccessable() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror']);
 
 		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getRegion('Tower of Hera')->canEnter($this->world->getLocations(), $this->collected));
 	}
 
 	public function testTowerOfHeraCompletable() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl']);
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl']);
 
 		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getRegion('Tower of Hera')->canComplete($this->world->getLocations(), $this->collected));
 	}
 
 	public function testGetMasterSword() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
+		$this->addCollected(['L1Sword', 'Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
 			'PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']);
 
 		$this->assertTrue($this->world->getLocation("Altar")->canAccess($this->collected));

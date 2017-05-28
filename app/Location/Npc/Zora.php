@@ -17,6 +17,16 @@ class Zora extends Npc {
 	}
 
 	private function getItemCreditsText() {
+		switch (get_class($this->item)) {
+			case Item\Key::class:
+			case Item\BigKey::class:
+				return "advancement for sale";
+			case Item\Map::class:
+				return "the world for sale";
+			case Item\Compass::class:
+				return "bearings for sale";
+		}
+
 		switch ($this->item) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
@@ -88,13 +98,6 @@ class Zora extends Npc {
 				return "banana hat for sale";
 			case Item::get('RedMail'):
 				return "purple hat for sale";
-			case Item::get('Key'):
-			case Item::get('BigKey'):
-				return "advancement for sale";
-			case Item::get('Compass'):
-				return "bearings for sale";
-			case Item::get('Map'):
-				return "the world for sale";
 			case Item::get('PieceOfHeart'):
 				return "little love for sale";
 			case Item::get('BossHeartContainer'):
@@ -161,6 +164,29 @@ class Zora extends Npc {
 				return "wizardry for sale";
 			case Item::get('Rupoor'):
 				return "double loss for sale";
+			case Item::get('RedClock'):
+				return "ruby clock for sale";
+			case Item::get('BlueClock'):
+				return "blue clock for sale";
+			case Item::get('GreenClock'):
+				return "green clock for sale";
+			case Item::get('ProgressiveSword'):
+				return "some sword for sale";
+			case Item::get('ProgressiveShield'):
+				return "some shield for sale";
+			case Item::get('ProgressiveArmor'):
+				return "unknown hat for sale";
+			case Item::get('ProgressiveGlove'):
+				return "some glove for sale";
+			case Item::get('singleRNG'):
+			case Item::get('multiRNG'):
+				return "some item for sale";
+			case Item::get('Triforce'):
+				return "game win for sale";
+			case Item::get('PowerStar'):
+				return "power star for sale";
+			case Item::get('TriforcePiece'):
+				return "triangle for sale";
 			case Item::get('Nothing'):
 			default:
 				return "Nothing, so stupid";

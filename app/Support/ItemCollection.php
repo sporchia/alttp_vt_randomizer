@@ -6,7 +6,6 @@ use ALttP\Item;
  * Collection of Items, maintains counts of items collected as well.
  */
 class ItemCollection extends Collection {
-	protected $no_upgrade_sword_check = false;
 	protected $item_counts = [];
 
 	/**
@@ -49,13 +48,150 @@ class ItemCollection extends Collection {
 		if (!isset($this->item_counts[$name])) {
 			return $this;
 		}
-
 		$this->item_counts[$name]--;
 		if ($this->item_counts[$name] === 0) {
 			$this->offsetUnset($name);
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Run a filter over each of the items.
+	 *
+	 * @param callable|null $callback
+	 *
+	 * @return static
+	 */
+	public function filter(callable $callback = null) {
+		if ($callback) {
+			return new static(array_filter($this->values(), $callback));
+		}
+
+		return new static(array_filter($this->values()));
+	}
+
+	/**
+	 * Get an array of the underlying elements
+	 *
+	 * @return array
+	 */
+	public function values() {
+		$values = [];
+		foreach ($this->items as $item) {
+			for ($i = 0; $i < $this->item_counts[$item->getName()]; $i++) {
+				$values[] = $item;
+			}
+		}
+		return $values;
+	}
+
+	/**
+	 * Get the items in the collection that are not present in the given items.
+	 *
+	 * @param mixed $items items to diff against
+	 *
+	 * @return static
+	 */
+	public function diff($items) {
+		if (!count($items)) {
+			return $this->copy();
+		}
+
+		// TODO: this might not be correct
+		if (!is_a($items, static::class)) {
+			return parent::diff($items);
+		}
+
+		$diffed = $this->copy();
+
+		foreach ($diffed->item_counts as $name => $amount) {
+			if (isset($items->item_counts[$name])) {
+				if ($items->item_counts[$name] < $amount) {
+					$diffed->item_counts[$name] = $amount - $items->item_counts[$name];
+				} else {
+					$diffed->offsetUnset($name);
+				}
+			}
+		}
+		return $diffed;
+	}
+
+	/**
+	 * Execute a callback over each item.
+	 *
+	 * @param callable $callback
+	 *
+	 * @return $this
+	 */
+	public function each(callable $callback) {
+		foreach ($this->items as $key => $item) {
+			for ($i = 0; $i < $this->item_counts[$key]; $i++) {
+				if ($callback($item, $key) === false) {
+					break;
+				}
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Merge the collection with the given items.
+	 *
+	 * @TODO: this whole function may be incorrect
+	 *
+	 * @param mixed $items
+	 *
+	 * @return static
+	 */
+	public function merge($items) {
+		if (!count($items)) {
+			return $this->copy();
+		}
+
+		if (!is_a($items, static::class)) {
+			return parent::diff($items);
+		}
+
+		$merged = $this->copy();
+
+		foreach ($this->getArrayableItems($items) as $item) {
+			$merged->addItem($item);
+		}
+
+		return $merged;
+	}
+
+	/**
+	 * Get a fresh copy of this object, the underlying items will still be the same
+	 *
+	 * @return static
+	 */
+	public function copy() {
+		$new = new static($this->items);
+		$new->item_counts = $this->item_counts;
+
+		return $new;
+	}
+
+	/**
+	 * Run a map over each of the items.
+	 *
+	 * @param callable $callback
+	 *
+	 * @return array
+	 */
+	public function map(callable $callback) {
+		$items = [];
+
+		foreach ($this->item_counts as $key => $count) {
+			for ($i = 0; $i < $count; $i++) {
+				$items[] = $this->items[$key];
+			}
+		}
+
+		return array_map($callback, $items);
 	}
 
 	/**
@@ -99,7 +235,8 @@ class ItemCollection extends Collection {
 	 * @return static
 	 */
 	public function tempAdd(Item $item) {
-		return new static(array_merge($this->items, [$item]));
+		$temp = $this->copy();
+		return $temp->addItem($item);
 	}
 
 	/**
@@ -108,7 +245,19 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canLiftRocks() {
-		return $this->has("PowerGlove") || $this->has("TitansMitt");
+		return $this->has('PowerGlove')
+			|| $this->has('ProgressiveGlove')
+			|| $this->has('TitansMitt');
+	}
+
+	/**
+	 * Requirements for lifting dark rocks
+	 *
+	 * @return bool
+	 */
+	public function canLiftDarkRocks() {
+		return $this->has('TitansMitt')
+			|| $this->has('ProgressiveGlove', 2);
 	}
 
 	/**

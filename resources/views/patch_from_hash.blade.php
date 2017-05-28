@@ -30,7 +30,7 @@
 		<div class="col-md-6">
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
-			<div>Rules: <span class="rules"></span></div>
+			<div>Difficulty: <span class="difficulty"></span></div>
 			<div>Mode: <span class="mode"></span></div>
 		</div>
 		<div class="col-md-6">
@@ -180,16 +180,17 @@ function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		$('.info').show();
 		$('.info .seed').html(data.patch.hash);
-		$('.info .logic').html(data.patch.logic);
+		$('.info .logic').html(data.patch.spoiler.meta.logic);
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
-		$('.info .rules').html(data.patch.rules);
-		rom.logic = data.patch.logic;
+		$('.info .difficulty').html(data.patch.difficulty);
+		rom.logic = data.patch.spoiler.meta.logic;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
-		rom.rules = data.patch.rules;
+		rom.difficulty = data.patch.difficulty;
 		rom.seed = data.patch.hash;
 		$('button[name=save]').show().prop('disabled', false);
+		$('#heart-speed').trigger('change');
 		resolve(rom);
 	});
 }
@@ -222,7 +223,7 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.rules + '-' + rom.mode + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '_' + rom.seed + '.sfc');
 	});
 
 	$('input[name=f2u]').on('change', function() {

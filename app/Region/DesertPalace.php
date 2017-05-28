@@ -75,8 +75,13 @@ class DesertPalace extends Region {
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			if ($this->world->config('region.mapsInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			}
+
+			if ($this->world->config('region.compassesInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			}
 		}
 
 		return $this;
@@ -150,7 +155,7 @@ class DesertPalace extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('BookOfMudora')
-				|| ($items->has('MagicMirror') && $items->has('TitansMitt') && $items->canFly());
+				|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly());
 		};
 
 		return $this;

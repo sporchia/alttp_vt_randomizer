@@ -76,10 +76,18 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
-		config(["alttp.{$difficulty}.spoil.BootsLocation" => false]);
+		config([
+			"tournament-mode" => true,
+			"alttp.{$difficulty}.spoil.BootsLocation" => false,
+		]);
+		$rom->setTournamentType('standard');
+	} else {
+		$rom->setTournamentType('none');
 	}
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'));
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
@@ -89,12 +97,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
-		$rom->setTournamentType('standard');
 		$patch = patch_merge_minify($rom->getWriteLog());
+		$rand->updateSeedRecordPatch($patch);
 		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
 		$seed = $hash;
-	} else {
-		$rom->setTournamentType('none');
 	}
 
 	return json_encode([
@@ -116,10 +122,15 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
-		config(["alttp.{$difficulty}.spoil.BootsLocation" => false]);
+		config([
+			"tournament-mode" => true,
+			"alttp.{$difficulty}.spoil.BootsLocation" => false,
+		]);
 	}
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'));
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'));
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });

@@ -16,13 +16,25 @@
 				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
 			</label>
 		</p>
-		<p>Please use a Zelda no Densetsu: Kamigami no Triforce v1.0 ROM</p>
+		<p>Getting started couldn't be easier. VT Randomizer allows you to patch a rom file entirely in your browser.</p>
+		<ol>
+			<li>Select your rom file and load it into the browser
+				(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM)</li>
+			<li>Select the options for how you would like your game randomized</li>
+			<li>Click Generate</li>
+			<li>Then Save your rom and get to playing</li>
+		</ol>
+		<p>You may want to check out the other sections of this site for more information on all the different ways
+			one can Randomize their game.</p>
 	</div>
 </div>
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Generate</h3>
-		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog"></span></button>
+		<div class="btn-toolbar pull-right">
+			<button class="btn btn-info" name="generate-tournament-rom">Generate Race ROM (no spoilers)</button>
+			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
+		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
@@ -36,52 +48,67 @@
 					</span>
 				</div>
 			</div>
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Difficulty</span>
-							<select id="difficulty" class="form-control selectpicker">
-								<option value="normal">Normal</option>
-								<option value="hard">Hard</option>
-								<option value="masochist">Masochist</option>
-								<option value="custom">Custom</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Logic</span>
-							<select id="logic" class="form-control selectpicker">
-								<option value="NoMajorGlitches">No Glitches</option>
-								<option value="SpeedRunner">Minor Glitches</option>
-								<option value="Glitched">Major Glitches</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Mode</span>
-							<select id="mode" class="form-control selectpicker">
-								<option value="standard">Standard</option>
-								<option value="open">Open</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="btn-group btn-flex" role="group">
-							<button name="generate" class="btn btn-default" disabled>Please Select File.</button>
-							<button name="generate-save" class="btn btn-default" disabled><span class="glyphicon glyphicon-save"></span></button>
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<span class="caret"></span>
-							</button>
-							<ul id="generate-multi" class="dropdown-menu dropdown-menu-right">
-								@for ($i = 1; $i <= 10; $i++)
-								<li><a data-value="{{ $i }}">Generate {{ $i }} seeds</a></li>
-								@endfor
-							</ul>
-						</div>
-					</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Difficulty</span>
+					<select id="difficulty" class="form-control selectpicker">
+						<option value="normal">Normal</option>
+						<option value="hard">Hard</option>
+						<option value="masochist">Masochist</option>
+						<option value="timed-race">Timed Race</option>
+						<option value="timed-ohko">Timed OHKO</option>
+						<option value="ohko">OHKO</option>
+						<option value="custom">Custom</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Logic</span>
+					<select id="logic" class="form-control selectpicker">
+						<option value="NoMajorGlitches">No Glitches</option>
+						<option value="SpeedRunner">Minor Glitches</option>
+						<option value="Glitched">Major Glitches</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Mode</span>
+					<select id="mode" class="form-control selectpicker">
+						<option value="standard">Standard</option>
+						<option value="open">Open</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="padding-bottom:5px;">
+			<div class="col-md-3">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Goal</span>
+					<select id="goal" class="form-control selectpicker">
+						<option value="ganon">Defeat Ganon</option>
+						<option value="dungeons">All Dungeons</option>
+						<option value="pedestal">Master Sword Pedestal</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-3">
+				<div class="btn-group btn-flex" role="group">
+					<button name="generate" class="btn btn-success" disabled>Generate ROM</button>
+					<button name="generate-save" class="btn btn-success" disabled><span class="glyphicon glyphicon-save"></span></button>
+					<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul id="generate-multi" class="dropdown-menu dropdown-menu-right">
+						@for ($i = 1; $i <= 10; $i++)
+						<li><a data-value="{{ $i }}">Generate {{ $i }} seeds</a></li>
+						@endfor
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -124,13 +151,14 @@
 	</div>
 </div>
 <div id="seed-details" class="info panel panel-info" style="display:none">
-	<div class="panel-heading"><h3 class="panel-title">Seed Details</h3></div>
+	<div class="panel-heading"><h3 class="panel-title">Game Details</h3></div>
 	<div class="panel-body">
 		<div class="col-md-6">
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
 			<div>Difficulty: <span class="difficulty"></span></div>
 			<div>Mode: <span class="mode"></span></div>
+			<div>Goal: <span class="goal"></span></div>
 			<div>Seed: <span class="seed"></span></div>
 		</div>
 		<div class="col-md-6">
@@ -155,6 +183,7 @@
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
 	<input type="hidden" name="mode" value="standard" />
+	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="debug" value="false" />
@@ -164,7 +193,7 @@
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-advancement">Advancement Items</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-extra">Other Items</a></li>
-			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">147</span> / <span id="custom-count-total">147</span></span></li>
+			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">150</span> / <span id="custom-count-total">150</span></span></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="custom-settings">
@@ -209,10 +238,6 @@
 					<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
 				</div>
 				<div class="col-md-6">
-					<input id="cust-region-superBunnyDM" type="checkbox" name="data[alttp.custom.region.superBunnyDM]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for="cust-region-superBunnyDM">Allow Moon Pearl on Dark World DM (Super Bunny)</label>
-				</div>
-				<div class="col-md-6">
 					<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-bonkItems">Bonk Keys in Pool</label>
 				</div>
@@ -221,9 +246,30 @@
 					<label for="cust-sprite-shufflePrizePack">Shuffle Prize Packs</label>
 				</div>
 				<div class="col-md-6">
+					<input id="cust-sprite-shuffleOverworldBonkPrizes" type="checkbox" name="data[alttp.custom.sprite.shuffleOverworldBonkPrizes]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-sprite-shuffleOverworldBonkPrizes">Shuffle Overworld Bonk Prizes</label>
+				</div>
+				<div class="col-md-6">
 					<input id="cust-region-pyramidBowUpgrade" type="checkbox" name="data[alttp.custom.region.pyramidBowUpgrade]" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-pyramidBowUpgrade">Pyramid Faerie Upgrades Bow</label>
 				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveSwords" type="checkbox" name="data[alttp.custom.item.progressiveSwords]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveSwords">Progressive Swords</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveGloves" type="checkbox" name="data[alttp.custom.item.progressiveGloves]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveGloves">Progressive Gloves</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveArmor" type="checkbox" name="data[alttp.custom.item.progressiveArmor]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveArmor">Progressive Armor</label>
+				</div>
+				<div class="col-md-6">
+					<input id="cust-item-progressiveShields" type="checkbox" name="data[alttp.custom.item.progressiveShields]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for="cust-item-progressiveShields">Progressive Shields</label>
+				</div>
+
 			</div>
 
 			<div class="tab-pane" id="custom-items-advancement">
@@ -318,6 +364,18 @@
 				<div class="col-md-4">
 					<input id="item-count-Bottle" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.Bottle]" readonly class="custom-items">
 					<label for="item-count-Bottle">Bottle</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-MasterSword" type="number" value="1" min="1" max="200" step="1" name="data[alttp.custom.item.count.MasterSword]" class="custom-items">
+					<label for="item-count-MasterSword">Master Sword</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-L3Sword" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.L3Sword]" class="custom-items">
+					<label for="item-count-L3Sword">Tempered Sword</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-L4Sword" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.L4Sword]" class="custom-items">
+					<label for="item-count-L4Sword">Golden Sword</label>
 				</div>
 			</div>
 			<div class="tab-pane" id="custom-items-extra">
@@ -575,7 +633,7 @@ function patchRomFromJSON(rom, uri) {
 }
 
 function romOk(rom) {
-	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
 	$('#seed-generate').show();
 	$('#config').show();
@@ -583,7 +641,7 @@ function romOk(rom) {
 }
 
 function seedFailed(data) {
-	$('button[name=generate]').html('Generate').prop('disabled', false);
+	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
 	$('.alert .message').html('Failed Creating Seed :(');
 	$('.alert').show().delay(2000).fadeOut("slow");
@@ -591,18 +649,24 @@ function seedFailed(data) {
 
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
+		$('button[name=generate-tournament-rom]').html('Generate Race ROM (no spoilers)').prop('disabled', false);
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('button[name=generate-save]').prop('disabled', false);
 		$('.info').show();
 		$('.info .seed').html(data.patch.seed);
+		if ($('input[name=tournament]').val() == 'true') {
+			$('.info .seed').html("<a href='/h/" + data.patch.seed + "'>" + data.patch.seed + "</a>");
+		}
 		$('.info .logic').html(data.patch.logic);
 		$('.info .build').html(data.patch.spoiler.meta.build);
+		$('.info .goal').html(data.patch.spoiler.meta.goal);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
 		$('.info .difficulty').html(data.patch.difficulty);
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
+		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.difficulty = data.patch.difficulty;
@@ -708,6 +772,15 @@ $(function() {
 	});
 
 	$('button[name=generate]').on('click', function() {
+		$('input[name=tournament]').val($('#generate-tournament').prop('checked'));
+		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
+		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
+	});
+
+	$('button[name=generate-tournament-rom]').on('click', function() {
+		$('input[name=tournament]').val(true);
+		$('button[name=generate-tournament-rom]').html('Generating...').prop('disabled', true);
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
 		$('button[name=generate-save], button[name=save], button[name=save-spoiler]').prop('disabled', true);
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
@@ -782,6 +855,17 @@ $(function() {
 		if (!value) return;
 		$('#mode').val(value);
 		$('#mode').trigger('change');
+	});
+
+	$('#goal').on('change', function() {
+		$('.info').hide();
+		localforage.setItem('rom.goal', $(this).val());
+		$('input[name=goal]').val($(this).val());
+	});
+	localforage.getItem('rom.goal').then(function(value) {
+		if (!value) return;
+		$('#goal').val(value);
+		$('#goal').trigger('change');
 	});
 
 	$('#generate-debug').on('change', function() {
@@ -860,8 +944,17 @@ $(function() {
 			if ($('#cust-region-swordsInPool').prop('checked')) {
 				$('#cust-region-swordsInPool').prop('checked', true).bootstrapToggle('off');
 			}
+			if ($('#cust-item-progressiveSwords').prop('checked')) {
+				$('#cust-item-progressiveSwords').prop('checked', true).bootstrapToggle('off');
+			}
 		}
 	});
+	$('#cust-item-progressiveSwords').on('change', function() {
+		if ($(this).prop('checked')) {
+			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
+		}
+	});
+
 
 	$('#cust-region-pyramidBowUpgrade').on('change', function() {
 		if ($(this).prop('checked')) {

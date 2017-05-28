@@ -1,8 +1,10 @@
 <?php namespace ALttP\Console\Commands;
 
-use Illuminate\Console\Command;
-use ALttP\Rom;
+use ALttP\Item;
 use ALttP\Randomizer;
+use ALttP\Rom;
+use ALttP\World;
+use Illuminate\Console\Command;
 
 class Randomize extends Command {
 	/**
@@ -10,9 +12,22 @@ class Randomize extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:randomize {input_file} {output_directory} {--unrandomized} {--debug} {--spoiler}'
-		. ' {--difficulty=normal} {--mode=NoMajorGlitches} {--heartbeep=half} {--skip-md5} {--trace}  {--seed=} {--bulk=1}'
-		. ' {--open-mode}';
+	protected $signature = 'alttp:randomize {input_file : base rom to randomize}'
+		. ' {output_directory : where to place randomized rom}'
+		. ' {--unrandomized : do not apply randomization to the rom}'
+		. ' {--vanilla : set game to vanilla item locations}'
+		. ' {--debug : enable BAGE mode}'
+		. ' {--spoiler : generate a spoiler file}'
+		. ' {--difficulty=normal : set difficulty}'
+		. ' {--logic=NoMajorGlitches : set logic}'
+		. ' {--heartbeep=half : set heart beep speed}'
+		. ' {--skip-md5 : do not validate md5 of base rom}'
+		. ' {--trace : enable SRAM trace}'
+		. ' {--seed= : set seed number}'
+		. ' {--bulk=1 : generate multiple roms}'
+		. ' {--goal=ganon : set game goal}'
+		. ' {--mode=standard : set game mode}'
+		. ' {--no-rom : no not generate output rom}';
 
 	/**
 	 * The console command description.
@@ -58,29 +73,62 @@ class Randomize extends Command {
 
 			$rom->setSRAMTrace($this->option('trace'));
 
-			// break out for unrandomized base game
-			// @TODO: need option to place items correctly
+			// break out for unrandomized/vanilla base game
+			if ($this->option('vanilla')) {
+				$rom = $this->setVanilla($rom);
+				$output_file = sprintf('%s/alttp-%s-vanilla.sfc', $this->argument('output_directory'), Rom::BUILD);
+				$rom->save($output_file);
+				return $this->info(sprintf('Rom Saved: %s', $output_file));
+			}
 			if ($this->option('unrandomized')) {
 				$output_file = sprintf('%s/alttp-%s.sfc', $this->argument('output_directory'), Rom::BUILD);
 				$rom->save($output_file);
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 
-			config(['game-mode' => $this->option('open-mode') ? 'open' : 'standard']);
+			config(['game-mode' => $this->option('mode')]);
 
-			$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
+			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);
 
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.sfc', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
-			$rom->save($output_file);
+			if (!$this->option('no-rom', false)) {
+				$rom->save($output_file);
+				$this->info(sprintf('Rom Saved: %s', $output_file));
+			}
 			if ($this->option('spoiler')) {
 				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.txt', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
+				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}
-			$this->info(sprintf('Rom Saved: %s', $output_file));
 		}
+	}
+
+	protected function setVanilla(Rom $rom) {
+		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$world->setVanilla();
+
+		foreach ($world->getLocations() as $name => $region) {
+			$location->writeItem($rom);
+		}
+
+		$rom->setClockMode('off');
+		$rom->setHardMode(0);
+
+		$rom->setPyramidFairyChests(false);
+		$rom->setSmithyQuickItemGive(false);
+
+		$rom->setOpenMode(false);
+
+		$rom->setMaxArrows();
+		$rom->setMaxBombs();
+		$rom->setStartingTime(0);
+
+		$rom->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
+
+		return $rom;
 	}
 
 	protected function resetPatch() {

@@ -24,9 +24,10 @@ class World {
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'NoMajorGlitches') {
+	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon') {
 		$this->rules = $rules;
 		$this->type = $type;
+		$this->goal = $goal;
 
 		$this->regions = [
 			'Light World' => new Region\LightWorld($this),
@@ -99,6 +100,14 @@ class World {
 		switch ($this->type) {
 			case 'Glitched':
 				$this->win_condition = function($collected_items) {
+					if ($this->goal == 'dungeons') {
+						if (!$collected_items->has('PendantOfCourage')
+							|| !$collected_items->has('PendantOfWisdom')
+							|| !$collected_items->has('PendantOfPower')) {
+							return false;
+						}
+					}
+
 					return ($collected_items->has('MoonPearl') || $collected_items->hasABottle())
 						&& $collected_items->canLightTorches()
 						&& $collected_items->hasUpgradedSword()
@@ -115,6 +124,14 @@ class World {
 				break;
 			case 'SpeedRunner':
 				$this->win_condition = function($collected_items) {
+					if ($this->goal == 'dungeons') {
+						if (!$collected_items->has('PendantOfCourage')
+							|| !$collected_items->has('PendantOfWisdom')
+							|| !$collected_items->has('PendantOfPower')) {
+							return false;
+						}
+					}
+
 					return $collected_items->hasUpgradedSword()
 						&& $collected_items->canLightTorches()
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
@@ -123,6 +140,14 @@ class World {
 			default:
 				if ($this->config('rom.HardMode', 0) > 0) {
 					$this->win_condition = function($collected_items) {
+						if ($this->goal == 'dungeons') {
+							if (!$collected_items->has('PendantOfCourage')
+								|| !$collected_items->has('PendantOfWisdom')
+								|| !$collected_items->has('PendantOfPower')) {
+								return false;
+							}
+						}
+
 						return $collected_items->hasUpgradedSword()
 							&& $collected_items->canLightTorches()
 							&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
@@ -131,6 +156,14 @@ class World {
 				}
 
 				$this->win_condition = function($collected_items) {
+					if ($this->goal == 'dungeons') {
+						if (!$collected_items->has('PendantOfCourage')
+							|| !$collected_items->has('PendantOfWisdom')
+							|| !$collected_items->has('PendantOfPower')) {
+							return false;
+						}
+					}
+
 					return $collected_items->canLightTorches()
 						&& ($collected_items->has('BowAndSilverArrows')
 							|| ($collected_items->has('SilverArrowUpgrade')
@@ -143,6 +176,28 @@ class World {
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
+		}
+
+		if ($this->rules == 'custom') {
+			$this->win_condition = function($collected_items) {
+				if ($this->goal == 'dungeons') {
+					if (!$collected_items->has('PendantOfCourage')
+						|| !$collected_items->has('PendantOfWisdom')
+						|| !$collected_items->has('PendantOfPower')) {
+						return false;
+					}
+				}
+
+				return $collected_items->hasUpgradedSword()
+					&& $collected_items->canLightTorches()
+					&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+			};
+		}
+
+		if ($this->goal == 'pedestal') {
+			$this->win_condition = function($collected_items) {
+				return $this->getLocation("Altar")->canAccess($collected_items);
+			};
 		}
 	}
 
@@ -171,6 +226,7 @@ class World {
 		$prizes = new ItemCollection;
 		foreach ($this->regions as $region) {
 			if ($region->hasPrize() && $region->getPrizeLocation()->canAccess($items)) {
+				// TODO: check that this isn't adding hundreds of prizes
 				$prizes->addItem($region->getPrize());
 			}
 		}
@@ -196,7 +252,7 @@ class World {
 	 * @return static
 	 */
 	public function copy() {
-		$copy = new static($this->rules, $this->type);
+		$copy = new static($this->rules, $this->type, $this->goal);
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}

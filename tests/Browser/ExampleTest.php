@@ -1,8 +1,9 @@
 <?php namespace Tests\Browser;
 
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\Browser\Pages\Difficulties;
+use Tests\DuskTestCase;
 
 class ExampleTest extends DuskTestCase {
 	/**
@@ -16,4 +17,12 @@ class ExampleTest extends DuskTestCase {
 					->assertTitle('ALttP VT Randomizer');
 		});
 	}
+
+	public function testDifficultiesPage() {
+		$this->browse(function (Browser $browser) {
+			$browser->visit(new Difficulties)
+				->assertSee("Normal");
+		});
+	}
+
 }

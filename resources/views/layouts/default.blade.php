@@ -24,7 +24,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li{!! (request()->path() == 'randomizer') ? ' class="active"' : '' !!}><a href="/randomizer">Generate Seed</a></li>
+					<li{!! (request()->path() == 'randomizer') ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li{!! (request()->path() == 'game_difficulties') ? ' class="active"' : '' !!}><a href="/game_difficulties">Difficulties</a></li>

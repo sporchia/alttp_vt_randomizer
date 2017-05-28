@@ -106,7 +106,7 @@ class East extends Region {
 
 		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $items->has('MoonPearl')
-				&& $items->has('TitansMitt');
+				&& $items->canLiftDarkRocks();
 		});
 
 		$this->can_enter = function($locations, $items) {

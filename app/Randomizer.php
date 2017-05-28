@@ -13,13 +13,30 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 17;
+	const LOGIC = 21;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
 	protected $rules;
 	protected $type;
-	static protected $logic_array;
+	static protected $logic_array = [
+		0xF2, 0x31, 0x4A, 0xAE, 0xB8, 0x09, 0x05, 0xF3,0x36, 0xB2, 0x0E, 0x29, 0x50, 0x27, 0x5B, 0xA9,
+		0x52, 0xD4, 0x95, 0x2E, 0x13, 0x79, 0x21, 0x1A,0x24, 0xC8, 0xD5, 0x65, 0x84, 0x71, 0x26, 0xF8,
+		0xC4, 0x4C, 0xF9, 0x97, 0x41, 0x83, 0x9F, 0x4F,0x99, 0x93, 0x4B, 0xE1, 0x47, 0xEC, 0x23, 0xF5,
+		0x16, 0xB6, 0x3F, 0x3E, 0x7E, 0x49, 0x2D, 0x15,0xB7, 0x44, 0x55, 0x6B, 0x5F, 0xA2, 0x90, 0xDA,
+		0x7C, 0x6E, 0x3A, 0xD1, 0x34, 0x7D, 0x4D, 0xC7,0x28, 0x6F, 0x4E, 0x37, 0x70, 0xDD, 0x64, 0x11,
+		0xA7, 0xF0, 0x75, 0x8F, 0x33, 0xA8, 0x73, 0xCA,0x19, 0xCF, 0x89, 0x17, 0x2C, 0xCC, 0x22, 0x7A,
+		0xD2, 0x30, 0x1C, 0x04, 0x5C, 0x58, 0x86, 0x59,0xBC, 0x72, 0x38, 0xAA, 0xE4, 0xC3, 0x77, 0x56,
+		0x43, 0x7B, 0xA5, 0x91, 0x18, 0xE5, 0x63, 0x6A,0xD9, 0x81, 0xD7, 0xBE, 0x61, 0x08, 0xCB, 0x5E,
+		0xDE, 0x51, 0x9C, 0x78, 0xC6, 0x0D, 0x8C, 0x76,0xE8, 0x14, 0x5A, 0x06, 0xE2, 0x54, 0xE0, 0xB1,
+		0x2A, 0x0A, 0x74, 0xCE, 0x80, 0xBF, 0x07, 0x57,0xB3, 0xB4, 0x3B, 0xFD, 0x1D, 0x8B, 0xDF, 0x1F,
+		0x2F, 0xC9, 0xE6, 0x82, 0x7F, 0xD6, 0xAF, 0xD3,0x8A, 0x68, 0x9B, 0x3C, 0xA0, 0x62, 0x98, 0xA4,
+		0x0C, 0x92, 0xD8, 0xBA, 0x39, 0xDC, 0xEA, 0x0B,0x5D, 0x6C, 0x66, 0xE7, 0xF7, 0x60, 0x0F, 0xA6,
+		0xE3, 0xAD, 0xFC, 0x8D, 0x9A, 0x48, 0x8E, 0x96,0x46, 0x20, 0xE9, 0xF1, 0x02, 0xA3, 0x10, 0x00,
+		0x87, 0xEB, 0xC2, 0x1E, 0xEF, 0x53, 0xB9, 0xD0,0xEE, 0xF6, 0x94, 0xAC, 0x01, 0xF4, 0xDB, 0x25,
+		0x45, 0x3D, 0x9D, 0x85, 0x1B, 0xB5, 0xC5, 0xC1,0x03, 0xAB, 0xBD, 0xFF, 0x6D, 0x67, 0x9E, 0xC0,
+		0xB0, 0x35, 0x69, 0xCD, 0x40, 0xBB, 0xFA, 0x42,0xED, 0x32, 0xFE, 0x88, 0xFB, 0x12, 0xA1, 0x2B,
+	];
 
 	/**
 	 * Create a new Randomizer
@@ -29,15 +46,11 @@ class Randomizer {
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'NoMajorGlitches') {
-		if (!self::$logic_array) {
-			mt_srand(self::LOGIC);
-			self::$logic_array = mt_shuffle(range(0, 255));
-			mt_srand();
-		}
+	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon') {
 		$this->rules = $rules;
 		$this->type = $type;
-		$this->world = new World($rules, $type);
+		$this->goal = $goal;
+ 		$this->world = new World($rules, $type, $goal);
 		$this->seed = new Seed;
 	}
 
@@ -65,7 +78,9 @@ class Randomizer {
 	}
 
 	/**
-	 * Fill all empty Locations with Items using logic from the World.
+	 * Fill all empty Locations with Items using logic from the World. This is achieved by first setting up base
+	 * portions of the world. Then taking the remaining empty locations we order them, and try to fill them in
+	 * order in a way that opens more locations.
 	 *
 	 * @param int|null $rng_seed Seed to create, or random if null
 	 *
@@ -87,6 +102,297 @@ class Randomizer {
 		$regions = $this->world->getRegions();
 
 		// Set up World before we fill dungeons
+		$this->fillPrizes($regions);
+		$this->setMedallions($regions);
+
+		$regions['Fountains']->getLocations()->each(function($fountain) {
+			$fountain->setItem($this->getBottle(true));
+		});
+
+		$locations = $this->world->getLocations()->filter(function($location) {
+			return !is_a($location, Location\Prize::class)
+				&& !is_a($location, Location\Medallion::class);
+		});
+
+		$my_items = new ItemCollection();
+
+		$locations["Pyramid - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
+			? Item::get('BowAndSilverArrows')
+			: Item::get('BowAndArrows'));
+
+		// @TODO: this swords stuff is getting silly, break it out into a managable function or something.
+		$sword_locations = new LocationCollection([
+			$locations["Pyramid - Sword"],
+			$locations["Blacksmiths"],
+			$locations["Altar"],
+		]);
+
+		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
+			$locations["Uncle"]->setItem(Item::get('L1Sword'));
+			$my_items->addItem(Item::get('L1Sword'));
+
+			$swords = [Item::get('MasterSword')];
+
+			switch ($this->config('rom.HardMode', 0)) {
+				case 2:
+					array_push($swords, Item::get('L1Sword'));
+					array_push($swords, Item::get('L1Sword'));
+					break;
+				case 1:
+					array_push($swords, Item::get('L1Sword'));
+					array_push($swords, Item::get('L3Sword'));
+					break;
+				default:
+					array_push($swords, Item::get('L3Sword'));
+					array_push($swords, Item::get('L4Sword'));
+					break;
+			}
+
+			if ($this->config('item.progressiveSwords', true)) {
+				$swords = [Item::get('ProgressiveSword')];
+				switch ($this->config('rom.HardMode', 0)) {
+					case 2:
+						array_push($swords, Item::get('L1Sword'));
+						array_push($swords, Item::get('L1Sword'));
+						break;
+					case 1:
+						array_push($swords, Item::get('L1Sword'));
+						array_push($swords, Item::get('ProgressiveSword'));
+						break;
+					default:
+						array_push($swords, Item::get('ProgressiveSword'));
+						array_push($swords, Item::get('ProgressiveSword'));
+						break;
+				}
+			}
+
+			while (count($swords) > 0) {
+				$item = array_shift($swords);
+				$sword_locations->getEmptyLocations()->random()->setItem($item);
+			}
+
+			if (!$this->config('region.swordShuffle', true)) {
+				$locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
+				$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+				$locations["Altar"]->setItem(Item::get('MasterSword'));
+			}
+			config(["alttp.{$this->rules}.item.count.MasterSword" => 0]);
+			config(["alttp.{$this->rules}.item.count.L3Sword" => 0]);
+			config(["alttp.{$this->rules}.item.count.L4Sword" => 0]);
+		} else {
+			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
+			if (config('game-mode') == 'open') {
+				if ($this->config('item.progressiveSwords', true)) {
+					$l1 = $this->config('item.count.L1Sword', 1);
+					$l2 = $this->config('item.count.MasterSword', 1);
+					$l3 = $this->config('item.count.L3Sword', 1);
+					$l4 = $this->config('item.count.L4Sword', 1);
+
+					config(["alttp.{$this->rules}.item.count.L1Sword" => 0]);
+					config(["alttp.{$this->rules}.item.count.MasterSword" => 0]);
+					config(["alttp.{$this->rules}.item.count.L3Sword" => 0]);
+					config(["alttp.{$this->rules}.item.count.L4Sword" => 0]);
+
+					config(["alttp.{$this->rules}.item.count.ProgressiveSword"
+						=> $this->config('item.count.ProgressiveSword', 0) + $l1 + $l2 + $l3 + $l4]);
+				} else {
+					config(["alttp.{$this->rules}.item.count.L1Sword" => 1]);
+				}
+			} else {
+				if ($this->config('item.progressiveSwords', true)) {
+					$l2 = $this->config('item.count.MasterSword', 1);
+					$l3 = $this->config('item.count.L3Sword', 1);
+					$l4 = $this->config('item.count.L4Sword', 1);
+
+					config(["alttp.{$this->rules}.item.count.MasterSword" => 0]);
+					config(["alttp.{$this->rules}.item.count.L3Sword" => 0]);
+					config(["alttp.{$this->rules}.item.count.L4Sword" => 0]);
+
+					config(["alttp.{$this->rules}.item.count.ProgressiveSword"
+						=> $this->config('item.count.ProgressiveSword', 0) + $l2 + $l3 + $l4]);
+
+					$locations["Uncle"]->setItem(Item::get('ProgressiveSword'));
+					$my_items->addItem(Item::get('ProgressiveSword'));
+				}  else {
+					$locations["Uncle"]->setItem(Item::get('L1Sword'));
+					$my_items->addItem(Item::get('L1Sword'));
+				}
+			}
+		}
+
+		if ($this->config('item.progressiveArmor', true)) {
+			$blue = $this->config('item.count.BlueMail', 1);
+			$red = $this->config('item.count.RedMail', 1);
+
+			config(["alttp.{$this->rules}.item.count.BlueMail" => 0]);
+			config(["alttp.{$this->rules}.item.count.RedMail" => 0]);
+
+			config(["alttp.{$this->rules}.item.count.ProgressiveArmor"
+				=> $this->config('item.count.ProgressiveArmor', 0) + $blue + $red]);
+		}
+
+		if ($this->config('item.progressiveShields', true)) {
+			$blue = $this->config('item.count.BlueShield', 1);
+			$red = $this->config('item.count.RedShield', 1);
+			$mirror = $this->config('item.count.MirrorShield', 1);
+
+			config(["alttp.{$this->rules}.item.count.BlueShield" => 0]);
+			config(["alttp.{$this->rules}.item.count.RedShield" => 0]);
+			config(["alttp.{$this->rules}.item.count.MirrorShield" => 0]);
+
+			config(["alttp.{$this->rules}.item.count.ProgressiveShield"
+				=> $this->config('item.count.ProgressiveShield', 0) + $blue + $red + $mirror]);
+		}
+
+		if ($this->config('item.progressiveGloves', true)) {
+			$glove = $this->config('item.count.PowerGlove', 1);
+			$mitt = $this->config('item.count.TitansMitt', 1);
+
+			config(["alttp.{$this->rules}.item.count.PowerGlove" => 0]);
+			config(["alttp.{$this->rules}.item.count.TitansMitt" => 0]);
+
+			config(["alttp.{$this->rules}.item.count.ProgressiveGlove"
+				=> $this->config('item.count.ProgressiveGlove', 0) + $glove + $mitt]);
+		}
+
+		// fill boss hearts before anything else if we need to
+		if ($this->config('region.bossesHaveItem', false) || !$this->config('region.bossHeartsInPool', true)) {
+			$boss_item = !$this->config('region.bossHeartsInPool', true)
+				 ? Item::get('BossHeartContainer')
+				 : Item::get($this->config('region.bossesHaveItem'));
+			$locations["Heart Container - Lanmolas"]->setItem($boss_item);
+			$locations["Heart Container - Armos Knights"]->setItem($boss_item);
+			$locations["Heart Container - Kholdstare"]->setItem($boss_item);
+			$locations["Heart Container - Vitreous"]->setItem($boss_item);
+			$locations["Heart Container - Helmasaur King"]->setItem($boss_item);
+			$locations["Heart Container - Mothula"]->setItem($boss_item);
+			$locations["Heart Container - Arrghus"]->setItem($boss_item);
+			$locations["Heart Container - Blind"]->setItem($boss_item);
+			$locations["Heart Container - Trinexx"]->setItem($boss_item);
+			$locations["Heart Container - Moldorm"]->setItem($boss_item);
+		}
+
+		// Pedestal is the goal
+		if ($this->goal == 'pedestal') {
+			$locations["Altar"]->setItem(Item::get('Triforce'));
+			config(["alttp.{$this->rules}.item.count.Arrow" => 0]);
+		}
+
+		if ($this->type == 'Glitched') {
+			$this->world->getLocation("[dungeon-C-1F] Sanctuary")->setItem(Item::get('PegasusBoots'));
+
+			// Glitched always has 3 extra bottles, no matter what
+			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
+		}
+
+		// for filling base (Maps/Compasses/Keys) items assume you have everything
+		foreach ($regions as $region) {
+			$region->fillBaseItems(Item::all());
+		}
+
+		// at this point we have filled all the base locations that will affect the rest of the actual item placements
+		$randomized_order_locations = Filler::factory('Random')->shuffleLocations($locations->getEmptyLocations());
+
+		$advancement_items = $this->getAdvancementItems();
+
+		if ($this->type == 'Glitched') {
+			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
+			$my_items->addItem(Item::get('PegasusBoots'));
+			unset($advancement_items[$key]);
+		}
+
+		$this->fillItemsInLocations($advancement_items, $my_items, $randomized_order_locations, true);
+
+		// Remaining Items
+		if ($this->config('rng_items')) {
+			$this->fillItemsInLocations(array_fill(0, count($this->getItemPool()), Item::get('singleRNG')), $my_items, $randomized_order_locations);
+		} else {
+			$this->fillItemsInLocations($this->getItemPool(), $my_items, $randomized_order_locations);
+		}
+
+		// Inaccessible Locations
+		$locations->filter(function($location) use ($my_items) {
+			return !$location->canAccess($my_items);
+		})->each(function($location) {
+			$location->setItem(new Item('ChocoboEgg', 'Chocobo Egg', [0x5A]));
+		});
+
+		return $this;
+	}
+
+	protected function fillItemsInLocations($fill_items, $my_items, $locations, $check_for_new_locations = false) {
+		Log::debug(sprintf("Filling %s items in %s locations", count($fill_items), $locations->getEmptyLocations()->count()));
+		reset($fill_items);
+		while (count($fill_items) && $locations->getEmptyLocations()->count()) {
+			$item = current($fill_items);
+
+			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
+				return $location->canAccess($my_items);
+			});
+			// we can speed this up by just taking the first available location?
+			$fillable_locations = $available_locations->filter(function($location) use ($item, $my_items) {
+				return $location->canFill($item, $my_items);
+			});
+
+			if ($fillable_locations->count() == 0) {
+				foreach ($locations->getEmptyLocations() as $log_loc) {
+					Log::error("SOFT LOCK LOCATION: " . $log_loc->getName());
+				}
+				throw new \Exception(sprintf('No Available Locations: "%s [seed:%s]"', $item->getNiceName(), $this->rng_seed));
+			}
+
+			Log::debug(sprintf("Item: %s [%s] Locations: %s of %s",
+				$item->getNiceName(), $item->getName(), $locations->getEmptyLocations()->count(), $available_locations->count()));
+
+			if ($check_for_new_locations) {
+				$my_new_items = $my_items->tempAdd($item);
+
+				$available_after_placement = $locations->getEmptyLocations()->filter(function($location) use ($my_new_items) {
+					return $location->canAccess($my_new_items);
+				});
+
+				Log::debug(sprintf("Before: %s After: %s", $available_locations->count(), $available_after_placement->count()));
+				if ($available_after_placement->count() <= $available_locations->count()) {
+					if (next($fill_items) !== false) {
+						Log::debug(sprintf("Skipping Item: %s [%s]", $item->getNiceName(), $item->getName()));
+						continue;
+					} else {
+						end($fill_items);
+					}
+				}
+			}
+
+			$found = false;
+			foreach ($available_locations as $location) {
+				Log::debug("Available Location: " . $location->getName());
+				if ($found = $location->fill($item, $my_items)) {
+					Log::debug("Placing: " . $location->getName());
+					break;
+				}
+			}
+
+			if (!$found) {
+				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location [seed:%s]', $item->getNiceName(), $this->rng_seed));
+			}
+
+			unset($fill_items[key($fill_items)]);
+			reset($fill_items);
+
+			$my_items->addItem($item);
+
+			// HACK to allow us to use Item::has logic when checking access to locations.
+			// @TODO: remove methed from World class and have this just collect any non-randomly placed items.
+			foreach ($this->world->collectPrizes($my_items) as $prize) {
+				if (!$my_items->has($prize->getName())) {
+					$my_items->addItem($prize);
+				}
+			}
+		}
+		Log::debug(sprintf("Extra Items: %s", count($fill_items)));
+	}
+
+	// @TODO: make this non-destructive
+	protected function fillPrizes($regions) {
 		$prizes = [
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
@@ -131,7 +437,9 @@ class Randomizer {
 			$pendant_locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfPower'));
 			$pendant_locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfWisdom'));
 		}
+	}
 
+	protected function setMedallions($regions) {
 		$medallions = [
 			Item::get('Ether'),
 			Item::get('Bombos'),
@@ -142,245 +450,6 @@ class Randomizer {
 			$medallion = $medallions[mt_rand(0, 2)];
 			$medallion_location->setItem($medallion);
 		}
-
-		$regions['Fountains']->getLocations()->each(function($fountain) {
-			$fountain->setItem($this->getBottle(true));
-		});
-
-		$locations = $this->world->getLocations()->filter(function($location) {
-			return !is_a($location, Location\Prize::class)
-				&& !is_a($location, Location\Medallion::class);
-		});
-
-		$my_items = new ItemCollection();
-
-		$locations["Pyramid - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
-			? Item::get('BowAndSilverArrows')
-			: Item::get('BowAndArrows'));
-
-		$sword_locations = new LocationCollection([
-			$locations["Pyramid - Sword"],
-			$locations["Blacksmiths"],
-			$locations["Altar"],
-		]);
-
-		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
-			$locations["Uncle"]->setItem(Item::get('L1Sword'));
-			$my_items->addItem(Item::get('L1Sword'));
-
-			$swords = [Item::get('MasterSword')];
-
-			switch ($this->config('rom.HardMode', 0)) {
-				case 2:
-					array_push($swords, Item::get('L1Sword'));
-					array_push($swords, Item::get('L1Sword'));
-					break;
-				case 1:
-					array_push($swords, Item::get('L1Sword'));
-					array_push($swords, Item::get('L3Sword'));
-					break;
-				default:
-					array_push($swords, Item::get('L3Sword'));
-					array_push($swords, Item::get('L4Sword'));
-					break;
-			}
-
-			if (config('progressive-swords', false)) {
-				$swords = [Item::get('ProgressiveSword')];
-				switch ($this->config('rom.HardMode', 0)) {
-					case 2:
-						array_push($swords, Item::get('L1Sword'));
-						array_push($swords, Item::get('L1Sword'));
-						break;
-					case 1:
-						array_push($swords, Item::get('L1Sword'));
-						array_push($swords, Item::get('ProgressiveSword'));
-						break;
-					default:
-						array_push($swords, Item::get('ProgressiveSword'));
-						array_push($swords, Item::get('ProgressiveSword'));
-						break;
-				}
-			}
-
-			while (count($swords) > 0) {
-				$item = array_shift($swords);
-				$sword_locations->getEmptyLocations()->random()->setItem($item);
-			}
-
-			if (!$this->config('region.swordShuffle', true)) {
-				$locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
-				$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
-				$locations["Altar"]->setItem(Item::get('MasterSword'));
-			}
-			config(["alttp.{$this->rules}.item.count.MasterSword" => $this->config('item.count.MasterSword', 1) - 1]);
-			config(["alttp.{$this->rules}.item.count.L3Sword" => $this->config('item.count.L3Sword', 1) - 1]);
-			config(["alttp.{$this->rules}.item.count.L4Sword" => $this->config('item.count.L4Sword', 1) - 1]);
-		} else {
-			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
-			if (config('game-mode') == 'open') {
-				if (config('progressive-swords', false)) {
-					config(["alttp.{$this->rules}.item.count.MasterSword" => $this->config('item.count.MasterSword', 1) - 1]);
-					config(["alttp.{$this->rules}.item.count.L3Sword" => $this->config('item.count.L3Sword', 1) - 1]);
-					config(["alttp.{$this->rules}.item.count.L4Sword" => $this->config('item.count.L4Sword', 1) - 1]);
-					config(["alttp.{$this->rules}.item.count.ProgressiveSword" => $this->config('item.count.ProgressiveSword', 0) + 4]);
-				} else {
-					config(["alttp.{$this->rules}.item.count.L1Sword" => $this->config('item.count.L1Sword', 0) + 1]);
-				}
-			} else {
-				$locations["Uncle"]->setItem(Item::get('L1Sword'));
-				$my_items->addItem(Item::get('L1Sword'));
-
-				if (config('progressive-swords', false)) {
-					config(["alttp.{$this->rules}.item.count.MasterSword" => $this->config('item.count.MasterSword', 1) - 1]);
-					config(["alttp.{$this->rules}.item.count.L3Sword" => $this->config('item.count.L3Sword', 1) - 1]);
-					config(["alttp.{$this->rules}.item.count.L4Sword" => $this->config('item.count.L4Sword', 1) - 1]);
-					config(["alttp.{$this->rules}.item.count.ProgressiveSword" => $this->config('item.count.ProgressiveSword', 0) + 4]);
-				}
-			}
-		}
-
-		if (config('progressive-armor', false)) {
-			$blue = $this->config('item.count.BlueMail', 0);
-			$red = $this->config('item.count.RedMail', 0);
-
-			config(["alttp.{$this->rules}.item.count.BlueMail" => 0]);
-			config(["alttp.{$this->rules}.item.count.RedMail" => 0]);
-
-			config(["alttp.{$this->rules}.item.count.ProgressiveArmor"
-				=> $this->config('item.count.ProgressiveArmor', 0) + $blue + $red]);
-		}
-
-		if (config('progressive-shield', false)) {
-			$blue = $this->config('item.count.BlueShield', 0);
-			$red = $this->config('item.count.RedShield', 0);
-			$mirror = $this->config('item.count.MirrorShield', 0);
-
-			config(["alttp.{$this->rules}.item.count.BlueShield" => 0]);
-			config(["alttp.{$this->rules}.item.count.RedShield" => 0]);
-			config(["alttp.{$this->rules}.item.count.MirrorShield" => 0]);
-
-			config(["alttp.{$this->rules}.item.count.ProgressiveShield"
-				=> $this->config('item.count.ProgressiveShield', 0) + $blue + $red + $mirror]);
-		}
-
-		// fill boss hearts before anything else if we need to
-		if (!$this->config('region.bossHeartsInPool', true)) {
-			$locations["Heart Container - Lanmolas"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Kholdstare"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Vitreous"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Helmasaur King"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Mothula"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Arrghus"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Blind"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Trinexx"]->setItem(Item::get('BossHeartContainer'));
-			$locations["Heart Container - Moldorm"]->setItem(Item::get('BossHeartContainer'));
-		}
-
-		// for filling base (Maps/Compasses/Keys) items assume you have everything
-		foreach ($regions as $region) {
-			$region->fillBaseItems(Item::all());
-		}
-
-		$advancement_items = $this->getAdvancementItems();
-
-		if ($this->type == 'Glitched') {
-			$this->world->getLocation("[dungeon-C-1F] Sanctuary")->setItem(Item::get('PegasusBoots'));
-			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
-			$my_items->addItem(Item::get('PegasusBoots'));
-			unset($advancement_items[$key]);
-
-			// Glitched always has 3 extra bottles, no matter what
-			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
-		}
-
-		$base_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
-			return $location->canAccess($my_items);
-		})->merge($this->world->getRegion('Escape')->getLocations());
-
-		$this->fillItemsInLocations($advancement_items, $my_items, $locations, $base_locations);
-
-		// Remaining Items
-		$this->fillItemsInLocations($this->getItemPool(), $my_items, $locations);
-
-		// Inaccessible Locations
-		$locations->filter(function($location) use ($my_items) {
-			return !$location->canAccess($my_items);
-		})->each(function($location) {
-			$location->setItem(new Item('ChocoboEgg', 'Chocobo Egg', null));
-		});
-
-		return $this;
-	}
-
-	protected function fillItemsInLocations($fill_items, $my_items, $locations, $base_locations = null) {
-		$cycle = count($fill_items);
-		while (count($fill_items) && $locations->getEmptyLocations()->count()) {
-			$item = array_shift($fill_items);
-			Log::debug(sprintf("Item: %s [%s] Locations: %s", $item->getNiceName(), $item->getName(), $locations->getEmptyLocations()->count()));
-
-			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($item, $my_items) {
-				return $location->canFill($item, $my_items);
-			});
-
-			if ($base_locations) {
-				$my_new_items = $my_items->tempAdd($item);
-
-				$available_after_placement = $locations->getEmptyLocations()->filter(function($location) use ($my_new_items) {
-					return $location->canAccess($my_new_items);
-				});
-
-				if ($cycle > 0 && $available_after_placement->count() == $available_locations->count()) {
-					$cycle--;
-					Log::debug(sprintf("Skipping Item: %s [%s]", $item->getNiceName(), $item->getName()));
-					array_push($fill_items, $item);
-					continue;
-				}
-				$cycle = count($fill_items);
-
-				// prioritize new locations for branching paths, saves from too many advancement items showing up early
-				$diff = $available_locations->diff($base_locations);
-				Log::debug("DIFF: " . $diff->count());
-				if ($diff->count() > 0) {
-					$available_locations = $diff->merge($available_locations->randomCollection(ceil($diff->count() / 4)));
-				}
-			}
-
-			if ($available_locations->count() == 0) {
-				foreach ($locations->getEmptyLocations() as $log_loc) {
-					Log::error("SOFT LOCK LOCATION: " . $log_loc->getName());
-				}
-				throw new \Exception(sprintf('No Available Locations: "%s [seed:%s]"', $item->getNiceName(), $this->rng_seed));
-			}
-
-			foreach ($available_locations as $location) {
-				Log::debug("Available Location: " . $location->getName());
-			}
-
-			$limit = 500;
-			$found = false;
-			while (!$found && $limit-- > 0) {
-				$location = $available_locations->random();
-				Log::debug("Placing: " . $location->getName());
-				$found = $location->fill($item, $my_items);
-			};
-
-			if ($limit <= 0) {
-				throw new \Exception(sprintf('Unable to put Item: "%s" in a Location [seed:%s]', $item->getNiceName(), $this->rng_seed));
-			}
-
-			$my_items->addItem($item);
-
-			// HACK to allow us to use Item::has logic when checking access to locations.
-			// @TODO: remove methed from World class and have this just collect any non-randomly placed items.
-			foreach ($this->world->collectPrizes($my_items) as $prize) {
-				if (!$my_items->has($prize->getName())) {
-					$my_items->addItem($prize);
-				}
-			}
-		}
-		Log::debug(sprintf("Extra Items: %s", count($fill_items)));
 	}
 
 	/**
@@ -410,6 +479,7 @@ class Randomizer {
 			'difficulty' => $this->rules,
 			'logic' => $this->getLogic(),
 			'seed' => $this->rng_seed,
+			'goal' => $this->goal,
 			'build' => Rom::BUILD,
 			'mode' => config('game-mode', 'Standard'),
 		];
@@ -452,9 +522,16 @@ class Randomizer {
 			});
 		}
 
+		if ($this->config('rng_items')) {
+			$rom->setSingleRNGTable(new ItemCollection($this->getItemPool()));
+		}
+
+		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0));
+		$rom->setGoalIcon($this->config('item.Goal.Icon', 'star'));
+
 		$rom->setClockMode($this->config('rom.timerMode', 'off'));
 
-		$rom->setHardMode($this->config('rom.HardMode', 0), in_array($this->type, ['Glitched']));
+		$rom->setHardMode($this->config('rom.HardMode', 0));
 
 		$rom->writeRNGBlock(function() {
 			return mt_rand(0, 0x100);
@@ -462,7 +539,10 @@ class Randomizer {
 
 		if ($this->config('sprite.shufflePrizePack', true)) {
 			$this->writePrizeShuffleToRom($rom);
-			$this->writeTreeShuffleToRom($rom);
+		}
+
+		if ($this->config('sprite.shuffleOverworldBonkPrizes', true)) {
+			$this->writeOverworldBonkPrizeToRom($rom);
 		}
 
 		$rom->setPyramidFairyChests($this->config('region.swordsInPool', true));
@@ -480,8 +560,8 @@ class Randomizer {
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
 		$rom->setCapacityUpgradeFills([
-			$this->config('item.value.BombUpgrade5', 1),
-			$this->config('item.value.BombUpgrade10', 2),
+			$this->config('item.value.BombUpgrade5', 0),
+			$this->config('item.value.BombUpgrade10', 0),
 			$this->config('item.value.ArrowUpgrade5', 0),
 			$this->config('item.value.ArrowUpgrade10', 0),
 		]);
@@ -538,6 +618,20 @@ class Randomizer {
 	}
 
 	/**
+	 * Update patch of seed record to DB
+	 *
+	 * @param array $patch new patch that will be applies
+	 *
+	 * @return $this
+	 */
+	public function updateSeedRecordPatch($patch) {
+		$this->seed->patch = json_encode($patch);
+		$this->seed->save();
+
+		return $this;
+	}
+
+	/**
 	 * Randomize portions of the ending credits sequence
 	 *
 	 * @param Rom $rom ROM to write to
@@ -568,7 +662,7 @@ class Randomizer {
 			"saccharine", "saccharins", "sacerdotal", "sackcloths", "salmonella", "saltarelli", "saltarello",
 			"saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
 			"sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
-			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara",
+			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
@@ -587,6 +681,15 @@ class Randomizer {
 		switch (mt_rand(0, 1)) {
 			case 1:
 				$rom->setSwordsmithsCredits("the dwarven breadsmiths");
+				break;
+		}
+
+		switch (mt_rand(0, 2)) {
+			case 1:
+				$rom->setDeathMountainCredits("gary the old man");
+				break;
+			case 2:
+				$rom->setDeathMountainCredits("Your ad here");
 				break;
 		}
 
@@ -642,10 +745,79 @@ class Randomizer {
 					$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 			}
 		} else {
-			$rom->setUncleText(mt_rand(0, 31));
+			$rom->setUncleTextString(array_first(mt_shuffle([
+				"We're out of\nWeetabix. To\nthe store!",
+				"This seed is\nbootless\nuntil boots.",
+				"Why do we only\nhave one bed?",
+				"This is the\nonly textbox.",
+				"I'm going to\ngo watch the\nMoth tutorial.",
+				"This seed is\nthe worst.",
+				"Chasing tail.\nFly ladies.\nDo not follow.",
+				"I feel like\nI've done this\nbefore...",
+				"Magic cape can\npass through\nthe barrier!",
+				"If this is a\nKanzeon seed,\nI'm quitting.",
+				"I am not your\nreal uncle.",
+				"You're going\nto have a very\nbad time.",
+				"Today you\nwill have\nbad luck.",
+				"I am leaving\nforever.\nGoodbye.",
+				"Don't worry.\nI got this\ncovered.",
+				"Race you to\nthe castle!",
+				"\n      hi",
+				"I'M JUST GOING\nOUT FOR A\nPACK OF SMOKES",
+				"It's dangerous\nto go alone.\nSee ya!",
+				"ARE YOU A BAD\nENOUGH DUDE TO\nRESCUE ZELDA?",
+				"\n\n    I AM ERROR",
+				"This seed is\nsub 2 hours,\nguaranteed.",
+				"The chest is\na secret to\neverybody.",
+				"I'm off to\nfind the\nwind fish.",
+				"The shortcut\nto Ganon\nis this way!",
+				"THE MOON IS\nCRASHING! RUN\nFOR YOUR LIFE!",
+				"Time to fight\nhe who must\nnot be named.",
+				"RED MAIL\nIS FOR\nCOWARDS.",
+				"HEY!\n\nLISTEN!",
+				"Well\nexcuuuuuse me,\nprincess!",
+				"5,000 Rupee\nreward for >\nYou're boned",
+				"Welcome to\nStoops Lonk's\nHoose",
+				"Erreur de\ntraduction.\nsvp reessayer",
+			])));
 		}
 
+		if (!config('tournament-mode', false)) {
+			$green_pendant_location = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first();
+
+			$rom->setSahasrahla1TextString("Want something\nfor free? Go\nearn the green\npendant in\n"
+				. $green_pendant_location->getRegion()->getName()
+				. "\nand I'll give\nyou something.");
+		}
+
+		$crystal5_location = $this->world->getLocationsWithItem(Item::get('Crystal5'))->first();
+		$crystal6_location = $this->world->getLocationsWithItem(Item::get('Crystal6'))->first();
+
+		$rom->setBombShop1TextString("bring me the\ncrystals from\n"
+			. $crystal5_location->getRegion()->getName()
+			. "\nand\n"
+			. $crystal6_location->getRegion()->getName()
+			. "\nso I can make\na big bomb!");
+
 		$rom->setBlindTextString(array_first(mt_shuffle([
+			"I hate insect\npuns, they\nreally bug me.",
+			"I haven't seen\nthe eye doctor\nin years",
+			"I don't see\nyou having a\nbright future",
+			"Are you doing\na blind run\nof this game?",
+			"pizza joke? no\nI think it's a\nbit too cheesy",
+			"A novice skier\noften jumps to\ncontusions.",
+			"the beach?\nI'm not shore\nI can make it.",
+			"Rental agents\noffer quarters\nfor dollars.",
+			"I got my tires\nfixed for a\nflat rate.",
+			"New lightbulb\ninvented?\nEnlighten me.",
+			"A baker's job\nis a piece of\ncake.",
+			"My optometrist\nsaid I have\nvision!",
+			"when you're a\nbaker, don't\nloaf around",
+			"mire requires\nether quake,\nor bombos",
+			"Broken pencils\nare pointless.",
+		])));
+
+		$rom->setTavernManTextString(array_first(mt_shuffle([
 			"What do you\ncall a blind\ndinosaur?\nadoyouthink-\nhesaurus\n",
 			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.\n",
 			"What do ducks\nlike to eat?\n\nQuackers!\n",
@@ -654,19 +826,43 @@ class Randomizer {
 			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
 			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
 			"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
-			"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!",
-			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!",
-			"I hate insect\npuns, they\nreally bug me.",
-			"I haven't seen\nthe eye doctor\nin years",
-			"I don't see\nyou having a\nbright future",
-			"Are you doing\na blind run\nof this game?",
-			"pizza joke? no\nI think it's a\nbit too cheesy",
+			"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!\n",
+			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!\n",
+			"If you haven't\nfound Quake\nyet…\nit's not your\nfault.",
+			"Why is Peter\nPan always\nflying?\nBecause he\nNeverlands!",
+			"I once told a\njoke to Armos.\n\nBut he\nremained\nstone-faced!",
+			"Lanmola was\nlate to our\ndinner party.\nHe just came\nfor the desert",
+			"Moldorm is\nsuch a\nprankster.\nAnd I fall for\nit every time!",
+			"Helmasaur is\nthrowing a\nparty.\nI hope it's\na masquerade!",
+			"I'd like to\nknow Arrghus\nbetter.\nBut he won't\ncome out of\nhis shell!",
+			"Mothula didn't\nhave much fun\nat the party.\nHe's immune to\nspiked punch!",
+			"Don't set me\nup with that\nchick from\nSteve's Town.\n\n\nI'm not\ninterested in\na Blind date!",
+			"Kholdstare is\nafraid to go\nto the circus.\nHungry kids\nthought he was\ncotton candy!",
+			"I asked who\nVitreous' best\nfriends are.\nHe said,\n'Me, Myself,\nand Eye!'",
+			"Trinexx can be\na hothead or\nhe can be an\nice guy. In\nthe end, he's\na solid\nindividual!",
+			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
+			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
+			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
+			"I offered to a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
+			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
+			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
+			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nbar exam!",
+			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
+			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
+			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
+			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
+			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
 			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
 			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
 			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurect me.",
+			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nback off buddy",
+			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
+			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
+			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
+			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 		])));
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
@@ -674,7 +870,14 @@ class Randomizer {
 		if (!$silver_arrows_location) {
 			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes");
 		} else {
-			$rom->setGanon2TextString("Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
+			switch ($silver_arrows_location->getRegion()->getName()) {
+				case "Ganons Tower":
+					$rom->setGanon2TextString("Did you find\nthe arrows in\nMy tower?");
+					break;
+				default:
+					$rom->setGanon2TextString("Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
+			}
+
 		}
 
 		$rom->setTriforceTextString(array_first(mt_shuffle([
@@ -776,7 +979,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Powder', 1); $i++) {
 			array_push($advancement_items, Item::get('Powder'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.PowerGlove', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.PowerGlove', 1); $i++) {
 			array_push($advancement_items, Item::get('PowerGlove'));
 		}
 		for ($i = 0; $i < max(1, $this->config('item.count.Quake', 1)); $i++) {
@@ -785,8 +988,23 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Shovel', 1); $i++) {
 			array_push($advancement_items, Item::get('Shovel'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.TitansMitt', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TitansMitt', 1); $i++) {
 			array_push($advancement_items, Item::get('TitansMitt'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.BowAndSilverArrows', 0); $i++) {
+			array_push($advancement_items, Item::get('BowAndSilverArrows'));
+		}
+		for ($i = 0; $i < $this->config('item.count.SilverArrowUpgrade', 1); $i++) {
+			array_push($advancement_items, Item::get('SilverArrowUpgrade'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ProgressiveGlove', 0); $i++) {
+			array_push($advancement_items, Item::get('ProgressiveGlove'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.PowerStar', 0); $i++) {
+			array_push($advancement_items, Item::get('PowerStar'));
 		}
 
 		return mt_shuffle($advancement_items);
@@ -805,11 +1023,11 @@ class Randomizer {
 		}
 
 		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 0); $i++) {
-			array_push($advancement_items, Item::get('ProgressiveShield'));
+			array_push($items_to_find, Item::get('ProgressiveShield'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
-			array_push($advancement_items, Item::get('ProgressiveArmor'));
+			array_push($items_to_find, Item::get('ProgressiveArmor'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
@@ -865,13 +1083,6 @@ class Randomizer {
 		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade70', 0); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade70'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.BowAndSilverArrows', 0); $i++) {
-			array_push($items_to_find, Item::get('BowAndSilverArrows'));
-		}
-		for ($i = 0; $i < $this->config('item.count.SilverArrowUpgrade', 1); $i++) {
-			array_push($items_to_find, Item::get('SilverArrowUpgrade'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {
@@ -941,39 +1152,133 @@ class Randomizer {
 			array_push($items_to_find, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 		}
 
+		if ($this->world->config('region.CompassesMaps', true) && !$this->world->config('region.mapsInDungeons', true)) {
+			array_push($items_to_find, Item::get('MapA2'));
+			array_push($items_to_find, Item::get('MapD7'));
+			array_push($items_to_find, Item::get('MapD4'));
+			array_push($items_to_find, Item::get('MapP3'));
+			array_push($items_to_find, Item::get('MapD5'));
+			array_push($items_to_find, Item::get('MapD3'));
+			array_push($items_to_find, Item::get('MapD6'));
+			array_push($items_to_find, Item::get('MapD1'));
+			array_push($items_to_find, Item::get('MapD2'));
+			array_push($items_to_find, Item::get('MapA1'));
+			array_push($items_to_find, Item::get('MapP2'));
+			array_push($items_to_find, Item::get('MapP1'));
+			array_push($items_to_find, Item::get('MapH1'));
+			array_push($items_to_find, Item::get('MapH2'));
+		}
+
+		if ($this->world->config('region.CompassesMaps', true) && !$this->world->config('region.compassesInDungeons', true)) {
+			array_push($items_to_find, Item::get('CompassA2'));
+			array_push($items_to_find, Item::get('CompassD7'));
+			array_push($items_to_find, Item::get('CompassD4'));
+			array_push($items_to_find, Item::get('CompassP3'));
+			array_push($items_to_find, Item::get('CompassD5'));
+			array_push($items_to_find, Item::get('CompassD3'));
+			array_push($items_to_find, Item::get('CompassD6'));
+			array_push($items_to_find, Item::get('CompassD1'));
+			array_push($items_to_find, Item::get('CompassD2'));
+			array_push($items_to_find, Item::get('CompassA1'));
+			array_push($items_to_find, Item::get('CompassP2'));
+			array_push($items_to_find, Item::get('CompassP1'));
+			array_push($items_to_find, Item::get('CompassH1'));
+		}
+
 		return mt_shuffle($items_to_find);
 	}
 
 	/**
-	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites
+	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.
+	 * this now also handles prize pull trees.
 	 *
 	 * @TODO: create sprite classes
 	 * @TODO: create prize pack classes
+	 * @TODO: move remaining writes to Rom class
 	 */
 	public function writePrizeShuffleToRom(Rom $rom) {
 		// Pack shuffle
-		$offset = 0x37A78;
 		$prizes = [
-			0xD8, 0xD8, 0xD8, 0xD8, 0xD9, 0xD8, 0xD8, 0xD9,
-			0xDA, 0xD9, 0xDA, 0xDB, 0xDA, 0xD9, 0xDA, 0xDA,
-			0xE0, 0xDF, 0xDF, 0xDA, 0xE0, 0xDF, 0xD8, 0xDF,
-			0xDC, 0xDC, 0xDC, 0xDD, 0xDC, 0xDC, 0xDE, 0xDC,
-			0xE1, 0xD8, 0xE1, 0xE2, 0xE1, 0xD8, 0xE1, 0xE2,
-			0xDF, 0xD9, 0xD8, 0xE1, 0xDF, 0xDC, 0xD9, 0xD8,
-			0xD8, 0xE3, 0xE0, 0xDB, 0xDE, 0xD8, 0xDB, 0xE2,
+			0xD8, 0xD8, 0xD8, 0xD8, 0xD9, 0xD8, 0xD8, 0xD9, // pack 1
+			0xDA, 0xD9, 0xDA, 0xDB, 0xDA, 0xD9, 0xDA, 0xDA, // pack 2
+			0xE0, 0xDF, 0xDF, 0xDA, 0xE0, 0xDF, 0xD8, 0xDF, // pack 3
+			0xDC, 0xDC, 0xDC, 0xDD, 0xDC, 0xDC, 0xDE, 0xDC, // pack 4
+			0xE1, 0xD8, 0xE1, 0xE2, 0xE1, 0xD8, 0xE1, 0xE2, // pack 5
+			0xDF, 0xD9, 0xD8, 0xE1, 0xDF, 0xDC, 0xD9, 0xD8, // pack 6
+			0xD8, 0xE3, 0xE0, 0xDB, 0xDE, 0xD8, 0xDB, 0xE2, // pack 7
+			0xD9, 0xDA, 0xDB, // from pull trees
+			0xD9, 0xDB, // from prize crab
+			0xD9, // stunned prize
+			0xDB, // saved fish prize
 		];
 		$shuffled = mt_shuffle($prizes);
-		$rom->write($offset, pack('C*', ...$shuffled));
+
+		// write to trees
+		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
+
+		// write to prize crab
+		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
+
+		// write to stunned
+		$rom->setStunnedSpritePrize(array_pop($shuffled));
+
+		// write to saved fish
+		$rom->setFishSavePrize(array_pop($shuffled));
+
+		// write to prize packs
+		$rom->write(0x37A78, pack('C*', ...$shuffled));
+
+		// Sprite prize pack
+		$offset = 0x6B632;
+		$bytes = $rom->read($offset, 243);
+		for ($i = 0; $i < 243; $i++) {
+			// skip sprites that were not in prize packs before
+			if (!isset($bytes[$i]) || ($bytes[$i] & 0xF) == 0) {
+				continue;
+			}
+			$rom->write($offset + $i, pack('C*', ($bytes[$i] >> 4 << 4) + mt_rand(1, 7)));
+		}
+
+		// Pack drop chance
+		switch ($this->config('rom.HardMode', 0)) {
+			case 2:
+				list($low, $high) = [3, 4]; // 12.5%, 6.25%
+				break;
+			case 1:
+				list($low, $high) = [2, 3]; // 25%, 12.5%
+				break;
+			default:
+				list($low, $high) = [1, 1]; // 50%
+		}
+		$offset = 0x37A62;
+		for ($i = 0; $i < 7; $i++) {
+			$rom->write($offset + $i, pack('C*', pow(2, mt_rand($low, $high)) - 1));
+		}
 	}
 
-	public function writeTreeShuffleToRom(Rom $rom) {
-		$shuffled = array_slice(mt_shuffle([
-			0xD9, 0xDA, 0xDB, 0xDC, 0xDD, 0xDE, // rupees and bombs
-			0xDF, 0xE0, 0xE1, 0xE2, // magic and arrows
-			0xE3, 0xD8, // fairy and heart
-		]), 0, 3);
+	/**
+	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.
+	 * this now also handles prize pull trees.
+	 *
+	 * @TODO: create sprite classes
+	 * @TODO: create prize pack classes
+	 * @TODO: move remaining writes to Rom class
+	 */
+	public function writeOverworldBonkPrizeToRom(Rom $rom) {
+		// over world bonk things (no bees/apples)
+		$prizes = [
+			0x79, 0xE3, 0x79, 0xAC, 0xAC, 0xE0, 0xDC, 0xAC,
+			0xE3, 0xE3, 0xDA, 0xE3, 0xDA, 0xD8, 0xAC, 0xAC,
+			0xE3, 0xD8, 0xE3, 0xE3, 0xE3, 0xE3, 0xE3, 0xE3,
+			0xDC, 0xDB, 0xE3, 0xDA, 0x79, 0x79, 0xE3, 0xE3,
+			0xDA, 0x79, 0xAC, 0xAC, 0x79, 0xE3, 0x79, 0xAC,
+			0xAC, 0xE0, 0xDC, 0xE3, 0x79, 0xDE, 0xE3, 0xAC,
+			0xDB, 0x79, 0xE3, 0xD8, 0xAC, 0x79, 0xE3, 0xDB,
+			0xDB, 0xE3, 0xE3, 0x79, 0xD8, 0xDD
+		];
+		$shuffled = mt_shuffle($prizes);
 
-		$rom->write(0xEFBD4, pack('C*', ...$shuffled));
+		$rom->setOverworldBonkPrizes($shuffled);
 	}
 
 	/**

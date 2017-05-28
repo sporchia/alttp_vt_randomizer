@@ -68,16 +68,7 @@ class DarkWorldTest extends TestCase {
 			->canAccess($this->allItemsExcept(['TitansMitt'])));
 	}
 
-	public function testDeathMountainChestTSuperBunny() {
-		config(['alttp.test_rules.region.superBunnyDM' => true]);
-
-		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
-			->canAccess($this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testDeathMountainChestTNoSuperBunny() {
-		config(['alttp.test_rules.region.superBunnyDM' => false]);
-
+	public function testDeathMountainChestTRequiresMoonPearl() {
 		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]")
 			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
@@ -97,16 +88,7 @@ class DarkWorldTest extends TestCase {
 			->canAccess($this->allItemsExcept(['TitansMitt'])));
 	}
 
-	public function testDeathMountainChestBSuperBunny() {
-		config(['alttp.test_rules.region.superBunnyDM' => true]);
-
-		$this->assertTrue($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
-			->canAccess($this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testDeathMountainChestBNoSuperBunny() {
-		config(['alttp.test_rules.region.superBunnyDM' => false]);
-
+	public function testDeathMountainChestBRequiresMoonPearl() {
 		$this->assertFalse($this->world->getLocation("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]")
 			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}

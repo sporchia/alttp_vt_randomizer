@@ -8,6 +8,7 @@ class Kernel extends ConsoleKernel {
 		Commands\Distribution::class,
 		Commands\Randomize::class,
 		Commands\SpoilerFromRom::class,
+		Commands\LogicArray::class,
 		Commands\UpdateBaseJson::class,
 		Commands\UpdateBuildRecord::class,
 		Commands\UpdateResetJson::class,

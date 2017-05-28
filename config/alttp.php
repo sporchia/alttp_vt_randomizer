@@ -3,7 +3,6 @@
 return [
 	'normal' => [
 		'region' => [
-			'superBunnyDM' => false,
 		],
 		'spoil' => [
 			'BootsLocation' => true,
@@ -14,7 +13,7 @@ return [
 			'count' => [
 				'TwentyRupees' => 0, // 28 : 560
 				'OneRupee' => 0, // 2 : 2
-				'FiveRupees' => 0, // 4 : 200
+				'FiveRupees' => 0, // 4 : 20
 				'ThreeBombs' => 0, // 10
 				'OneHundredRupees' => 3, // 1 : + 200
 				'ThreeHundredRupees' => 6, // 4 + 600
@@ -28,12 +27,38 @@ return [
 				'BombUpgrade10' => 3,
 			],
 		],
-		'region' => [
-			'superBunnyDM' => false,
-		],
 		'rom' => [
 			'timerMode' => 'countdown-stop',
 			'timerStart' => 45 * 60,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
+		],
+	],
+	'ohko' => [
+		'rom' => [
+			'timerMode' => 'countdown-ohko',
+			'timerStart' => 0,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
+		],
+	],
+	'timed-ohko' => [
+		'item' => [
+			'count' => [
+				'TwentyRupees' => 0, // 28 : 560
+				'OneHundredRupees' => 3, // 1 : + 200
+				'ThreeHundredRupees' => 5, // 4 + 300
+				'GreenClock' => 25,
+			],
+			'value' => [
+				'GreenClock' => 300,
+			],
+		],
+		'rom' => [
+			'timerMode' => 'countdown-ohko',
+			'timerStart' => 10 * 60,
 		],
 		'spoil' => [
 			'BootsLocation' => true,
@@ -44,7 +69,7 @@ return [
 			'count' => [
 				'TwentyRupees' => 0, // 28 : 560
 				'OneRupee' => 0, // 2 : 2
-				'FiveRupees' => 0, // 4 : 200
+				'FiveRupees' => 0, // 4 : 20
 				'ThreeBombs' => 0, // 10
 				'OneHundredRupees' => 3, // 1 : + 200
 				'ThreeHundredRupees' => 6, // 4 + 600
@@ -59,9 +84,6 @@ return [
 				'BombUpgrade5' => 2,
 				'BombUpgrade10' => 3,
 			],
-		],
-		'region' => [
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'timerMode' => 'stopwatch',
@@ -107,7 +129,6 @@ return [
 		],
 		'region' => [
 			'CompassesMaps' => false,
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'HardMode' => 1,
@@ -157,7 +178,6 @@ return [
 		],
 		'region' => [
 			'CompassesMaps' => false,
-			'superBunnyDM' => false,
 		],
 		'rom' => [
 			'HardMode' => 2,
@@ -167,6 +187,12 @@ return [
 		],
 	],
 	'custom' => [
+		'item' => [
+			'progressiveArmor' => false,
+			'progressiveGloves' => false,
+			'progressiveShields' => false,
+			'progressiveSwords' => false,
+		],
 		'prize' => [
 			'crossWorld' => false,
 			'shufflePendants' => false,
@@ -180,7 +206,6 @@ return [
 			'CompassesMaps' => false,
 			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
-			'superBunnyDM' => false,
 			'bonkItems' => false,
 		],
 		'rom' => [
@@ -191,6 +216,7 @@ return [
 		],
 		'sprite' => [
 			'shufflePrizePack' => false,
+			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
 ];

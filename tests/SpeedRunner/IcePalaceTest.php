@@ -88,7 +88,7 @@ class IcePalaceTest extends TestCase {
 
 	public function testMapRoomRequiresLiftingRocks() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D5-B2] Ice Palace - map room")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testBigKeyRoomRequiresHammer() {
@@ -98,7 +98,7 @@ class IcePalaceTest extends TestCase {
 
 	public function testBigKeyRoomRequiresLiftingRocks() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D5-B1] Ice Palace - Big Key room")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testBigChestRequiresHammerIfBigKeyAtBigKey() {
@@ -119,14 +119,14 @@ class IcePalaceTest extends TestCase {
 		$this->world->getLocation("[dungeon-D5-B1] Ice Palace - Big Key room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D5-B5] Ice Palace - big chest")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testBigChestRequiresRockLiftingIfBigKeyAtMap() {
 		$this->world->getLocation("[dungeon-D5-B2] Ice Palace - map room")->setItem(Item::get('BigKey'));
 
 		$this->assertFalse($this->world->getLocation("[dungeon-D5-B5] Ice Palace - big chest")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['Gloves'])));
 	}
 
 	public function testKholdstareRequiresMelting() {
@@ -151,7 +151,7 @@ class IcePalaceTest extends TestCase {
 
 	public function testKholdstareRequiresLiftingRocks() {
 		$this->assertFalse($this->world->getLocation("Heart Container - Kholdstare")
-			->canAccess($this->allItemsExcept(['PowerGlove', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['Gloves'])));
 	}
 
 	// Key filling

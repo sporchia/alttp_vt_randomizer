@@ -73,9 +73,13 @@ class IcePalace extends Region {
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			if ($this->world->config('region.mapsInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			}
 
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			if ($this->world->config('region.compassesInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			}
 		}
 
 		return $this;
@@ -111,8 +115,8 @@ class IcePalace extends Region {
 					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
 					"[dungeon-D5-B5] Ice Palace - big chest",
 				]) && (($locations["Heart Container - Kholdstare"]->hasItem(Item::get('Key'))
-				&& $items->has('Hammer') && $items->canLiftRocks() && $items->canMeltThings() && $items->has('CaneOfSomaria'))
-					|| $items->has('Hookshot'))));
+					&& $items->canMeltThings() && $items->has('CaneOfSomaria'))
+						|| $items->has('Hookshot'))));
 		});
 
 		$this->locations["[dungeon-D5-B1] Ice Palace - compass room"]->setRequirements(function($locations, $items) {
@@ -142,8 +146,8 @@ class IcePalace extends Region {
 					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
 					"[dungeon-D5-B5] Ice Palace - big chest",
 				]) && (($locations["Heart Container - Kholdstare"]->hasItem(Item::get('Key'))
-				&& $items->has('Hammer') && $items->canLiftRocks() && $items->canMeltThings() && $items->has('CaneOfSomaria'))
-					|| $items->has('Hookshot'))));
+					&& $items->canMeltThings() && $items->has('CaneOfSomaria'))
+						|| $items->has('Hookshot'))));
 		});
 
 		$this->locations["[dungeon-D5-B3] Ice Palace - spike room"]->setRequirements(function($locations, $items) {
@@ -168,8 +172,9 @@ class IcePalace extends Region {
 					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
 					"[dungeon-D5-B5] Ice Palace - big chest",
 				]) && (($locations["Heart Container - Kholdstare"]->hasItem(Item::get('Key'))
-				&& $items->has('Hammer') && $items->canLiftRocks() && $items->canMeltThings() && $items->has('CaneOfSomaria'))
-					|| $items->has('Hookshot')));
+					&& $items->has('Hammer') && $items->canLiftRocks()
+					&& $items->canMeltThings() && $items->has('CaneOfSomaria'))
+						|| $items->has('Hookshot')));
 		});
 
 		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setRequirements(function($locations, $items) {
@@ -208,43 +213,6 @@ class IcePalace extends Region {
 			return $item != Item::get('BigKey');
 		});
 
-		$this->locations["Heart Container - Kholdstare"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer') && $items->canMeltThings() && $items->canLiftRocks()
-				&& ((!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D5-B1] Ice Palace - compass room",
-					"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-				])
-				&& ($items->has('Hookshot')
-				|| $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D5-B1] Ice Palace - compass room",
-					"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-				])))
-				|| ($locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D5-B1] Ice Palace - compass room",
-					"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-				]) && ($locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D5-B1] Ice Palace - compass room",
-					"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-					"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-					"[dungeon-D5-B5] Ice Palace - big chest",
-				], 2)
-					|| (($items->has('Hookshot') || $items->has('CaneOfSomaria'))
-						&& $locations->itemInLocations(Item::get('Key'), [
-							"[dungeon-D5-B1] Ice Palace - compass room",
-							"[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-							"[dungeon-D5-B5] Ice Palace - b5 up staircase",
-							"[dungeon-D5-B5] Ice Palace - big chest",
-						])))
-				));
-		})->setFillRules(function($item, $locations, $items) {
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('BigKey');
-			}
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
-		});
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
@@ -277,11 +245,20 @@ class IcePalace extends Region {
 							"[dungeon-D5-B5] Ice Palace - b5 up staircase",
 							"[dungeon-D5-B5] Ice Palace - big chest",
 						])))
-				));
+				)) && (!$locations["Heart Container - Kholdstare"]->hasItem(Item::get('Key')) || $items->has('CaneOfSomaria'));
 		};
 
+		$this->locations["Heart Container - Kholdstare"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				if ($this->world->config('region.bossHaveKey', true)) {
+					return $item != Item::get('BigKey');
+				}
+				return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			});
+
+
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('Flippers') && $items->has('TitansMitt') && $items->canMeltThings();
+			return $items->has('MoonPearl') && $items->has('Flippers') && $items->canLiftDarkRocks() && $items->canMeltThings();
 		};
 
 		return $this;
@@ -297,7 +274,7 @@ class IcePalace extends Region {
 		$this->initSpeedRunner();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('TitansMitt') || ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
+			return $items->canLiftDarkRocks() || ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
 		};
 
 		return $this;
@@ -342,7 +319,7 @@ class IcePalace extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('TitansMitt') && $items->canMeltThings();
+			return $items->canLiftDarkRocks() && $items->canMeltThings();
 		};
 
 		return $this;

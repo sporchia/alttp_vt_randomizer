@@ -14,6 +14,7 @@ class TowerOfHera extends Region {
 	public $music_addresses = [
 		0x155C5,
 		0x1107A,
+		0x10B8C,
 	];
 
 	/**
@@ -73,9 +74,13 @@ class TowerOfHera extends Region {
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
 
 		if ($this->world->config('region.CompassesMaps', true)) {
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			if ($this->world->config('region.mapsInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
+			}
 
-			while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			if ($this->world->config('region.compassesInDungeons', true)) {
+				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
+			}
 		}
 
 		return $this;
@@ -97,7 +102,9 @@ class TowerOfHera extends Region {
 				|| $locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-L3-1F] Tower of Hera - freestanding key",
 					"[dungeon-L3-2F] Tower of Hera - Entrance",
-				]));
+				]))
+				&& (!$locations["Heart Container - Moldorm"]->hasItem(Item::get('Key'))
+					|| $items->has('Hammer') || $items->hasSword());
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('Key');
 		});
@@ -130,25 +137,20 @@ class TowerOfHera extends Region {
 			return $item != Item::get('BigKey');
 		});
 
-		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
-			return ($items->hasSword() || $items->has('Hammer'))
-				&& ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& ($items->hasSword() || $items->has('Hammer'))
+				&& (($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
 				|| $locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-L3-1F] Tower of Hera - freestanding key",
 					"[dungeon-L3-2F] Tower of Hera - Entrance",
-				]);
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
-					|| $locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-L3-1F] Tower of Hera - freestanding key",
-						"[dungeon-L3-2F] Tower of Hera - Entrance",
-					]);
+				]));
 		};
+
+		$this->locations["Heart Container - Moldorm"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				return $item != Item::get('BigKey');
+			});
 
 		$this->can_enter = function($locations, $items) {
 			return $this->world->getRegion('Death Mountain')->canEnter($locations, $items)
