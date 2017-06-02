@@ -201,11 +201,14 @@ class TowerOfHera extends Region {
 			return ($locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-L3-1F] Tower of Hera - freestanding key",
 					"[dungeon-L3-2F] Tower of Hera - Entrance",
-				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()))
+				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-L3-1F] Tower of Hera - freestanding key",
+						"[dungeon-L3-2F] Tower of Hera - Entrance",
+					])))
 				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
 					&& (!$locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-L3-4F] Tower of Hera - big chest",
-						"Heart Container - Moldorm",
 					])
 					|| !$locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-D6-B1] Misery Mire - big key",

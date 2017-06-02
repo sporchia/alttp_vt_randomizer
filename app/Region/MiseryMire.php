@@ -270,7 +270,15 @@ class MiseryMire extends Region {
 			&& ($items->has('MoonPearl') || $items->hasABottle());
 		};
 
-		$this->can_complete = $this->can_enter;
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& ($items->has('CaneOfSomaria')
+					|| $items->hasSword() || $items->has('Hammer')
+					|| ($items->has('Hookshot') && $items->has('Flippers') && (
+						$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
+					))
+				);
+		};
 
 		return $this;
 	}

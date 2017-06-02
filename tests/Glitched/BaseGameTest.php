@@ -87,6 +87,8 @@ class BaseGameTest extends TestCase {
 	public function testTowerOfHera() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror']);
 
+		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - freestanding key")->setItem(Item::get('Key'));
+
 		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")->fill(Item::get('MoonPearl'), $this->collected));
 	}
@@ -100,6 +102,8 @@ class BaseGameTest extends TestCase {
 
 	public function testTowerOfHeraCompletable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl']);
+
+		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - freestanding key")->setItem(Item::get('Key'));
 
 		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getRegion('Tower of Hera')->canComplete($this->world->getLocations(), $this->collected));
