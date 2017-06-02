@@ -377,7 +377,7 @@ class Altar extends Location {
 			case Item::get('ProgressiveSword'):
 				return "a better copy\nof your sword\nfor your time";
 			case Item::get('ProgressiveShield'):
-				return "have a better\nblocker in\nfront of you";
+				return "have a better\ndefense in\nfront of you";
 			case Item::get('ProgressiveArmor'):
 				return "time for a\nchange of\nclothes?";
 			case Item::get('ProgressiveGlove'):

@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-05-12';
-	const HASH = 'de0100dc53a8e755a0fa9a3f15f1d100';
+	const BUILD = '2017-06-02';
+	const HASH = 'c6cc3f0028c351c53cc98b2978f540b5';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -328,6 +328,20 @@ class Rom {
 
 		return $this;
 	}
+
+	/**
+	 * Set Ganon to Invincible
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setGanonInvincble($enable = false) : self {
+		$this->write(0x18003E, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
 
 	/**
 	 * Set the opening Uncle text to a custom value
@@ -948,6 +962,19 @@ class Rom {
 	}
 
 	/**
+	 * Set the Plandomizer Author
+	 *
+	 * @param string $name name of author
+	 *
+	 * @return $this
+	 */
+	public function setPlandomizerAuthor(string $name) : self {
+		$this->write(0x180220, substr($name, 0, 31));
+
+		return $this;
+	}
+
+	/**
 	 * Set the Tournament Type
 	 *
 	 * @param string $setting name
@@ -1321,6 +1348,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable swordless mode
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSwordlessMode($enable = false) : self {
+		$this->write(0x18003F, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Enable lampless light cone in Sewers
 	 *
 	 * @param bool $enable switch on or off
@@ -1360,17 +1400,6 @@ class Rom {
 	}
 
 	/**
-	 * without this enabled upgraded swords will cause Zelda not to spawn in her cell
-	 *
-	 * @return $this
-	 */
-	public function skipZeldaSwordCheck($enable = true) : self {
-		$this->write(0x2EBD4, pack('C*', $enable ? 0x05 : 0x02));
-
-		return $this;
-	}
-
-	/**
 	 * Enable/Disable the ROM Hack that doesn't leave Link stranded in DW
 	 *
 	 * @param bool $enable switch on or off
@@ -1405,6 +1434,44 @@ class Rom {
 	 */
 	public function setPreAgahnimDarkWorldDeathInDungeon($enable = true) : self {
 		$this->write(0x1800A2, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable locking Hyrule Castle Door to AG1 during escape
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setLockAgahnimDoorInEscape($enable = true) : self {
+		$this->write(0x180169, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Set the Ganon Warp Phase and Agahnim BB mode
+	 *
+	 * @param string $setting name
+	 *
+	 * @return $this
+	 */
+	public function setGanonAgahnimRng(string $setting = 'table') : self {
+		switch ($setting) {
+			case 'none':
+				$byte = 0x01;
+				break;
+			case 'vanilla':
+				$byte = 0x00;
+				break;
+			case 'table':
+			default:
+				$byte = 0x02;
+		}
+
+		$this->write(0x180086, pack('C', $byte));
 
 		return $this;
 	}

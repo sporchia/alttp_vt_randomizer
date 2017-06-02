@@ -95,6 +95,15 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/**
+	 * Reverese the order of the items.
+	 *
+	 * @return static
+	 */
+	public function reverse() {
+		return new static(array_reverse($this->items));
+	}
+
+	/**
 	 * Execute a callback over each item.
 	 *
 	 * @param callable $callback
@@ -118,6 +127,15 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	 */
 	public function first() {
 		return reset($this->items);
+	}
+
+	/**
+	 * Get the last item from the collection.
+	 *
+	 * @return mixed
+	 */
+	public function last() {
+		return end($this->items);
 	}
 
 	/**

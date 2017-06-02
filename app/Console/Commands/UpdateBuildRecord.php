@@ -29,9 +29,6 @@ class UpdateBuildRecord extends Command {
 		if (is_readable(public_path('js/base2current.json'))) {
 			$patch_left = json_decode(file_get_contents(public_path('js/base2current.json')), true);
 		}
-		if (is_readable(public_path('js/romreset.json'))) {
-			$patch_right = json_decode(file_get_contents(public_path('js/romreset.json')), true);
-		}
 
 		Rom::saveBuild(patch_merge_minify($patch_left, $patch_right));
 

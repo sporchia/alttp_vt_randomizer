@@ -90,7 +90,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
-			if (config('game-mode') == 'open' && $locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
+			if (in_array(config('game-mode'), ['open', 'swordless']) && $locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
 				return $items->has('Lamp');
 			}
 
@@ -104,7 +104,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setRequirements(function($locations, $items) {
-			if (config('game-mode') == 'open') {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->has('Lamp');
 			}
 
@@ -116,7 +116,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'open' && !$items->has('Lamp')) {
+			if (in_array(config('game-mode'), ['open', 'swordless']) && !$items->has('Lamp')) {
 				return false;
 			}
 

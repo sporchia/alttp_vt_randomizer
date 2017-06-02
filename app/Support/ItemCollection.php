@@ -183,15 +183,7 @@ class ItemCollection extends Collection {
 	 * @return array
 	 */
 	public function map(callable $callback) {
-		$items = [];
-
-		foreach ($this->item_counts as $key => $count) {
-			for ($i = 0; $i < $count; $i++) {
-				$items[] = $this->items[$key];
-			}
-		}
-
-		return array_map($callback, $items);
+		return array_map($callback, $this->values());
 	}
 
 	/**
@@ -204,6 +196,17 @@ class ItemCollection extends Collection {
 	 */
 	public function has($key, $at_least = 1) {
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
+	}
+
+	/**
+	 * Get the collection of items as a plain array.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		return array_map(function ($value) {
+			return $value instanceof Arrayable ? $value->toArray() : $value;
+		}, $this->values());
 	}
 
 	/**

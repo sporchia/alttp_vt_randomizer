@@ -168,7 +168,6 @@ function applyHash(rom, hash, second_attempt) {
 }
 
 function romOk(rom) {
-	localforage.setItem('rom', rom.getArrayBuffer());
 	applyHash(rom, get_hash).then(seedApplied, seedFailed);
 }
 
@@ -200,24 +199,21 @@ function seedApplied(data) {
 
 function loadBlob(blob, show_error) {
 	rom = new ROM(blob, function(rom) {
-		switch (rom.checkMD5()) {
-			case current_rom_hash:
-				romOk(rom);
-				break;
-			default:
-				rom.parsePatch(patch).then(function(rom) {
-					if (rom.checkMD5() == current_rom_hash) {
-						romOk(rom);
-					} else {
-						if (show_error) {
-							$('.alert .message').html('ROM not recognized. Please try another.');
-							$('.alert').show();
-						}
-						$('#rom-select').show();
-					}
-				});
-				return;
+		if (show_error) {
+			localforage.setItem('rom', rom.getArrayBuffer());
 		}
+		patchRomFromJSON(rom).then(function(rom) {
+			if (rom.checkMD5() == current_rom_hash) {
+				romOk(rom);
+			} else {
+				if (show_error) {
+					$('.alert .message').html('ROM not recognized. Please try another.');
+					$('.alert').show();
+				}
+				$('#rom-select').show();
+			}
+		});
+		return;
 	});
 }
 
@@ -254,13 +250,10 @@ $(function() {
 	});
 
 	// Load ROM from local storage if it's there
-	if (localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.WEBSQL) || localforage.supports(localforage.LOCALSTORAGE)) {
-		$('#rom-select').hide();
-		$('.alert').hide();
-		localforage.getItem('rom').then(function(blob) {
-			loadBlob(new Blob([blob]));
-		});
-	}
+	localforage.getItem('rom').then(function(blob) {
+		loadBlob(new Blob([blob]));
+	});
+
 });
 </script>
 @overwrite

@@ -54,7 +54,7 @@
 					<select id="difficulty" class="form-control selectpicker">
 						<option value="normal">Normal</option>
 						<option value="hard">Hard</option>
-						<option value="masochist">Masochist</option>
+						<option value="expert">Expert</option>
 						<option value="timed-race">Timed Race</option>
 						<option value="timed-ohko">Timed OHKO</option>
 						<option value="ohko">OHKO</option>
@@ -142,6 +142,21 @@
 								<option value="normal">Normal Speed</option>
 								<option value="half" selected>Half Speed</option>
 								<option value="quarter">Quarter Speed</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="input-group" role="group">
+							<span class="input-group-addon">Play as</span>
+							<select id="sprite-gfx" class="form-control selectpicker">
+								<option value="link.spr">Link</option>
+								<option value="froglink.spr">Frog</option>
+								<option value="littlepony.spr">Pony</option>
+								<option value="mclink.spr">Minish Cap</option>
+								<option value="samusweird.spr">Samus</option>
+								<option value="zelda.spr">Zelda</option>
 							</select>
 						</div>
 					</div>
@@ -516,8 +531,7 @@
 <script>
 var rom;
 var current_rom_hash = '{{ ALttP\Rom::HASH }}';
-var resetjsonfile = "{{ elixir('js/romreset.json') }}";
-var basejsonfile = "{{ elixir('js/base2current.json') }}";
+var current_base_file = "{{ elixir('js/base2current.json') }}";
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
@@ -562,6 +576,18 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		saveAs(new Blob([u_array]), filename);
 	};
 
+	this.parseSprGfx = function(spr) {
+		return new Promise(function(resolve, reject) {
+			for (var i = 0; i < 0x7000; i++) {
+				u_array[0x80000 + i] = spr[i];
+			}
+			for (var i = 0; i < 90; i++) {
+				u_array[0xDD308 + i] = spr[0x7000 + i];
+			}
+			resolve(this);
+		});
+	};
+
 	this.parsePatch = function(patch, progressCallback) {
 		return new Promise(function(resolve, reject) {
 			patch.forEach(function(value, index, array) {
@@ -596,14 +622,16 @@ function applySeed(rom, seed, second_attempt) {
 				reject(rom);
 			});
 		}
-		return patchRomFromJSON(rom, resetjsonfile)
+		return resetRom()
 			.then(function(rom) {
 				return applySeed(rom, seed, true);
 			});
 	}
 	return new Promise(function(resolve, reject) {
 		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form#config')), function(patch) {
-			rom.parsePatch(patch.patch).then(function(rom) {
+			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+			.then(rom.parseSprGfx))
+			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			});
 		}, 'json')
@@ -622,12 +650,37 @@ function getFormData($form){
 	return indexed_array;
 }
 
-function patchRomFromJSON(rom, uri) {
+function resetRom() {
 	return new Promise(function(resolve, reject) {
-		$.getJSON(uri, function(patch) {
-			rom.parsePatch(patch).then(function(rom) {
-				resolve(rom);
+		localforage.getItem('rom').then(function(blob) {
+			rom = new ROM(new Blob([blob]), function(rom) {
+				patchRomFromJSON(rom).then(function() {
+					resolve(rom);
+				});
 			});
+		});
+	});
+}
+
+function patchRomFromJSON(rom) {
+	return new Promise(function(resolve, reject) {
+		localforage.getItem('vt_stored_base').then(function(stored_base_file) {
+			if (current_base_file == stored_base_file) {
+				localforage.getItem('vt_base_json').then(function(patch) {
+					rom.parsePatch(patch).then(function(rom) {
+						resolve(rom);
+					});
+				});
+			} else {
+				$.getJSON(current_base_file, function(patch) {
+					localforage.setItem('vt_stored_base', current_base_file)
+						.then(function() {
+							localforage.setItem('vt_base_json', patch)
+								.then(patchRomFromJSON(rom))
+								.then(resolve(rom));
+						});
+				});
+			}
 		});
 	});
 }
@@ -637,7 +690,6 @@ function romOk(rom) {
 	$('button[name=generate-save]').prop('disabled', false);
 	$('#seed-generate').show();
 	$('#config').show();
-	localforage.setItem('rom', rom.getArrayBuffer());
 }
 
 function seedFailed(data) {
@@ -690,35 +742,46 @@ function pasrseSpoilerToTabs(spoiler) {
 	}
 }
 
+function getSprite(sprite_name) {
+	return new Promise(function(resolve, reject) {
+		localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
+			if (spr) {
+				resolve(spr);
+				return;
+			}
+			var oReq = new XMLHttpRequest();
+			oReq.open("GET", "http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/" + sprite_name, true);
+			oReq.responseType = "arraybuffer";
+
+			oReq.onload = function(oEvent) {
+				var spr_array = new Uint8Array(oReq.response);
+				localforage.setItem('vt_sprites.' + sprite_name, spr_array).then(function(spr) {
+					resolve(spr);
+				});
+			};
+
+			oReq.send();
+		});
+	});
+}
+
 function loadBlob(blob, show_error) {
 	rom = new ROM(blob, function(rom) {
-		switch (rom.checkMD5()) {
-			case current_rom_hash:
-				romOk(rom);
-				break;
-			case '118597172b984bfffaff1a1b7d06804d':
-				patchRomFromJSON(rom, basejsonfile)
-					.then(romOk);
-				break;
-			default:
-				// attempt to reset
-				patchRomFromJSON(rom, basejsonfile)
-				.then(function(rom) {
-					patchRomFromJSON(rom, resetjsonfile)
-					.then(function(rom) {
-						if (rom.checkMD5() == current_rom_hash) {
-							romOk(rom);
-						} else {
-							if (show_error) {
-								$('.alert .message').html('ROM not recognized. Please try another.');
-								$('.alert').show();
-							}
-							$('#rom-select').show();
-						}
-					});
-				});
-				return;
+		if (show_error) {
+			localforage.setItem('rom', rom.getArrayBuffer());
 		}
+		patchRomFromJSON(rom).then(function(rom) {
+			if (rom.checkMD5() == current_rom_hash) {
+				romOk(rom);
+			} else {
+				if (show_error) {
+					$('.alert .message').html('ROM not recognized. Please try another.');
+					$('.alert').show();
+				}
+				$('#rom-select').show();
+			}
+		});
+		return;
 	});
 }
 
@@ -822,6 +885,18 @@ $(function() {
 		$('#heart-speed').trigger('change');
 	});
 
+	$('#sprite-gfx').on('change', function() {
+		if (rom) {
+			getSprite($(this).val())
+				.then(rom.parseSprGfx)
+		}
+		localforage.setItem('rom.sprite-gfx', $(this).val());
+	});
+	localforage.getItem('rom.sprite-gfx').then(function(value) {
+		if (!value) return;
+		$('#sprite-gfx').val(value);
+	});
+
 	$('#generate-sram-trace').on('change', function() {
 		if (rom) {
 			rom.write(0x180030, $(this).prop('checked') ? 0x01 : 0x00);
@@ -904,7 +979,6 @@ $(function() {
 		} else {
 			$('#cust-region-bossHaveKey').prop('checked', false).bootstrapToggle('off');
 		}
-
 	});
 	$('#cust-region-bossHaveKey').on('change', function() {
 		if ($(this).prop('checked')) {
@@ -915,7 +989,6 @@ $(function() {
 				$('#cust-region-bossNormalLocation').prop('checked', true).bootstrapToggle('on');
 			}
 		}
-
 	});
 	$('#cust-region-bossHeartsInPool').on('change', function() {
 		if ($(this).prop('checked')) {
@@ -935,6 +1008,7 @@ $(function() {
 			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
 			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
 		} else {
+			$('#cust-item-progressiveSwords').prop('checked', false).bootstrapToggle('off');
 			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
 		}
 		$('.custom-items').first().trigger('change');
@@ -951,10 +1025,10 @@ $(function() {
 	});
 	$('#cust-item-progressiveSwords').on('change', function() {
 		if ($(this).prop('checked')) {
+			$('#cust-region-swordsInPool').prop('checked', false).bootstrapToggle('on');
 			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
 		}
 	});
-
 
 	$('#cust-region-pyramidBowUpgrade').on('change', function() {
 		if ($(this).prop('checked')) {
@@ -1004,13 +1078,9 @@ $(function() {
 	}
 
 	// Load ROM from local storage if it's there
-	if (localforage.supports(localforage.INDEXEDDB) || localforage.supports(localforage.WEBSQL) || localforage.supports(localforage.LOCALSTORAGE)) {
-		$('#rom-select').hide();
-		$('.alert').hide();
-		localforage.getItem('rom').then(function(blob) {
-			loadBlob(new Blob([blob]));
-		});
-	}
+	localforage.getItem('rom').then(function(blob) {
+		loadBlob(new Blob([blob]));
+	});
 
 	new secrets(function() {
 		$('.secrets').show();

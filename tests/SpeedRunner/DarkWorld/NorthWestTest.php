@@ -39,42 +39,42 @@ class NorthWestTest extends TestCase {
 	}
 
 	public function testDoorlessHutRequiresCapeAndHookshotAndHammer() {
-		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-063] doorless hut")
 			->canAccess($this->collected));
 	}
 
 	public function testDoorlessHutRequiresUpgradedSwordAndHookshotAndHammer() {
-		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-063] doorless hut")
 			->canAccess($this->collected));
 	}
 
 	public function testDoorlessHutRequiresCapeAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-063] doorless hut")
 			->canAccess($this->collected));
 	}
 
 	public function testDoorlessHutRequiresUpgradedSwordAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-063] doorless hut")
 			->canAccess($this->collected));
 	}
 
 	public function testDoorlessHutRequiresCapeAndHookshotAndFlippers() {
-		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-063] doorless hut")
 			->canAccess($this->collected));
 	}
 
 	public function testDoorlessHutRequiresUpgradedSwordAndHookshotAndFlippers() {
-		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-063] doorless hut")
 			->canAccess($this->collected));
@@ -100,42 +100,42 @@ class NorthWestTest extends TestCase {
 	}
 
 	public function testCShapedHouseRequiresCapeAndHookshotAndHammer() {
-		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
 			->canAccess($this->collected));
 	}
 
 	public function testCShapedHouseRequiresUpgradedSwordAndHookshotAndHammer() {
-		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
 			->canAccess($this->collected));
 	}
 
 	public function testCShapedHouseRequiresCapeAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
 			->canAccess($this->collected));
 	}
 
 	public function testCShapedHouseRequiresUpgradedSwordAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
 			->canAccess($this->collected));
 	}
 
 	public function testCShapedHouseRequiresCapeAndHookshotAndFlippers() {
-		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
 			->canAccess($this->collected));
 	}
 
 	public function testCShapedHouseRequiresUpgradedSwordAndHookshotAndFlippers() {
-		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[cave-062] C-shaped house")
 			->canAccess($this->collected));
@@ -161,42 +161,42 @@ class NorthWestTest extends TestCase {
 	}
 
 	public function testTreasureChestGameRequiresCapeAndHookshotAndHammer() {
-		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));
 	}
 
 	public function testTreasureChestGameRequiresUpgradedSwordAndHookshotAndHammer() {
-		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'Hammer', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));
 	}
 
 	public function testTreasureChestGameRequiresCapeAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));
 	}
 
 	public function testTreasureChestGameRequiresUpgradedSwordAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));
 	}
 
 	public function testTreasureChestGameRequiresCapeAndHookshotAndFlippers() {
-		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));
 	}
 
 	public function testTreasureChestGameRequiresUpgradedSwordAndHookshotAndFlippers() {
-		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'L2Sword']);
+		$this->addCollected(['MoonPearl', 'Flippers', 'Hookshot', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Treasure Chest Game)")
 			->canAccess($this->collected));
@@ -254,7 +254,7 @@ class NorthWestTest extends TestCase {
 	}
 
 	public function testBumperCaveRequiresCapeAndHookshotAndGlove() {
-		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'PowerGlove', 'Hookshot', 'Cape', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Dark World - bumper cave)")
 			->canAccess($this->collected));

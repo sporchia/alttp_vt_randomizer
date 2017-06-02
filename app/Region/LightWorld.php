@@ -85,7 +85,7 @@ class LightWorld extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["Altar"]->setItem(Item::get('MasterSword'));
-		$this->locations["Uncle"]->setItem(Item::get('L1Sword'));
+		$this->locations["Uncle"]->setItem(Item::get('L1SwordAndShield'));
 		$this->locations["[cave-034] Hyrule Castle secret entrance"]->setItem(Item::get('Lamp'));
 		$this->locations["[cave-018] Graveyard - top right grave"]->setItem(Item::get('Cape'));
 		$this->locations["[cave-047] Dam"]->setItem(Item::get('ThreeBombs'));
@@ -174,7 +174,7 @@ class LightWorld extends Region {
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
-			if (config('game-mode') == 'open') {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return true;
 			}
 
@@ -318,7 +318,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
-			return $this->world->getRegion('Hyrule Castle Tower')->canComplete($locations, $items) && $items->has('PegasusBoots');
+			return $items->has('DefeatAgahnim') && $items->has('PegasusBoots');
 		});
 
 		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {

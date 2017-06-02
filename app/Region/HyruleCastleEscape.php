@@ -79,7 +79,7 @@ class HyruleCastleEscape extends Region {
 		$this->initSpeedRunner();
 
 		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
-			if (config('game-mode') == 'open') {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->canLiftRocks() && $items->has('Lamp');
 			}
 
@@ -87,7 +87,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setFillRules(function($item, $locations, $items) {
-			if (config('game-mode') == 'open') {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('Key');
 			}
 
@@ -95,7 +95,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setFillRules(function($item, $locations, $items) {
-			if (config('game-mode') == 'open') {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('Key');
 			}
 

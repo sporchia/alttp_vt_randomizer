@@ -1,12 +1,11 @@
 <?php namespace ALttP\Filler;
 
-use ALttP\Filler;
 use ALttP\Item;
 use ALttP\Support\LocationCollection as Locations;
 use ALttP\World;
 use Log;
 
-class Random extends Filler {
+class RandomBeatable extends Random {
 	/**
 	 * Fill algorithm application.
 	 *
@@ -21,22 +20,12 @@ class Random extends Filler {
 
 		$my_items = $this->world->collectItems();
 
-		$this->fillItemsInLocations($this->shuffleItems($required), $my_items, $randomized_order_locations, true);
+		// Random beatable might require the nice to haves (and even the trash later)
+		$items = $this->shuffleItems(array_merge($required, $nice));
+		$this->fillItemsInLocations($items, $my_items, $randomized_order_locations, true);
 
-		// at this point we assume all locations are accessable
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
-		$this->fastFillItemsInLocations($this->shuffleItems($nice), $my_items, $randomized_order_locations);
-
-		$this->fastFillItemsInLocations($this->shuffleItems($extra), $my_items, $randomized_order_locations->getEmptyLocations());
-
-		$my_items = $this->world->collectItems();
-
-		// Inaccessible Locations
-		$this->world->getEmptyLocations()->filter(function($location) use ($my_items) {
-			return !$location->canAccess($my_items);
-		})->each(function($location) {
-			$location->setItem(new Item('ChocoboEgg', 'Chocobo Egg', [0x5A]));
-		});
+		$this->fastFillItemsInLocations($this->shuffleItems($extra), $my_items, $randomized_order_locations);
 	}
 
 	protected function shuffleLocations(Locations $locations) {
@@ -53,10 +42,6 @@ class Random extends Filler {
 		reset($fill_items);
 		while (count($fill_items) && $locations->getEmptyLocations()->count()) {
 			$item = current($fill_items);
-
-			if (!$item) {
-				dd($fill_items);
-			}
 
 			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 				return $location->canAccess($my_items);
@@ -94,7 +79,7 @@ class Random extends Filler {
 				}
 			}
 
-			$fill_location = (count($fill_items) / $total_items <= .33)
+			$fill_location = (count($fill_items) / $total_items <= .25)
 				? $fillable_locations->first()
 				: $fillable_locations->last();
 			Log::debug(sprintf("Placing Item: %s in %s", $item->getNiceName(), $fill_location->getName()));
@@ -104,21 +89,18 @@ class Random extends Filler {
 			reset($fill_items);
 
 			$my_items = $this->world->collectItems();
-		}
-
-		Log::debug(sprintf("Extra Items: %s", count($fill_items)));
-	}
-
-	protected function fastFillItemsInLocations($fill_items, $my_items, $locations) {
-		foreach($locations as $location) {
-			if ($location->hasItem()) {
-				continue;
-			}
-			$item = array_pop($fill_items);
-			if (!$item) {
+			if ($this->world->getWinCondition()($my_items)) {
+				Log::debug("Beatable!");
 				break;
 			}
-			$location->setItem($item);
+		}
+
+		foreach ($fill_items as $item) {
+			Log::debug(sprintf('Left over: %s', $item->getNiceName()));
+		}
+
+		if (count($fill_items) && $locations->getEmptyLocations()->count()) {
+			$this->fastFillItemsInLocations($fill_items, $my_items, $locations->getEmptyLocations());
 		}
 	}
 }

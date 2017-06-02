@@ -71,7 +71,7 @@ class LightWorldTest extends TestCase {
 	}
 
 	public function testGraveyardGraveRequiresBootsMirrorMoonPearlAndAccessToNWDW() {
-		$this->addCollected(['PegasusBoots', 'Cape', 'Hookshot', 'Hammer', 'MagicMirror', 'MoonPearl', 'L1Sword']);
+		$this->addCollected(['PegasusBoots', 'DefeatAgahnim', 'Hookshot', 'Hammer', 'MagicMirror', 'MoonPearl']);
 
 		$this->assertTrue($this->world->getLocation("[cave-018] Graveyard - top right grave")
 			->canAccess($this->collected));
@@ -307,7 +307,7 @@ class LightWorldTest extends TestCase {
 	}
 
 	public function testLumberjackTreeRequiresBootsAndAgahnimDestruction() {
-		$this->addCollected(['PegasusBoots', 'Cape', 'L1Sword']);
+		$this->addCollected(['PegasusBoots', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Lumberjack Tree)")
 			->canAccess($this->collected));
@@ -424,7 +424,7 @@ class LightWorldTest extends TestCase {
 
 	public function testRageRodIslandRequiresMoonPearlIfCantAccessNEDarkWorld() {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Lake Hylia)")
-			->canAccess($this->allItemsExcept(['MoonPearl', 'Hammer', 'Cape', 'UpgradedSword'])));
+			->canAccess($this->allItemsExcept(['MoonPearl', 'Hammer', 'DefeatAgahnim'])));
 	}
 
 	public function testRageRodIslandDoesNotRequireMoonPearlIfCanAccessNEDarkWorld() {
