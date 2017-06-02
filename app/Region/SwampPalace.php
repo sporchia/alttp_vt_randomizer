@@ -259,15 +259,7 @@ class SwampPalace extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->has('Flippers') && $items->has('MagicMirror') && $items->has('MoonPearl'))
-				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-				|| ($locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-L3-1F] Tower of Hera - freestanding key",
-					"[dungeon-L3-2F] Tower of Hera - Entrance",
-				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-L3-1F] Tower of Hera - freestanding key",
-						"[dungeon-L3-2F] Tower of Hera - Entrance",
-					])));
+				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
 		};
 
 		return $this;
