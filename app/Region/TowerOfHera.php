@@ -192,15 +192,7 @@ class TowerOfHera extends Region {
 						"[dungeon-L3-1F] Tower of Hera - freestanding key",
 						"[dungeon-L3-2F] Tower of Hera - Entrance",
 					])))
-				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					&& (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-L3-4F] Tower of Hera - big chest",
-					])
-					|| !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D6-B1] Misery Mire - big key",
-						"[dungeon-D6-B1] Misery Mire - compass",
-					])
-					|| $items->canLightTorches()));
+				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
 		});
 
 		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setRequirements(function($locations, $items) {
@@ -232,15 +224,7 @@ class TowerOfHera extends Region {
 						"[dungeon-L3-1F] Tower of Hera - freestanding key",
 						"[dungeon-L3-2F] Tower of Hera - Entrance",
 					])))
-				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					&& (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-L3-4F] Tower of Hera - big chest",
-					])
-					|| !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D6-B1] Misery Mire - big key",
-						"[dungeon-D6-B1] Misery Mire - compass",
-					])
-					|| $items->canLightTorches())))
+				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items))
 			&& ($items->hasSword() || $items->has('Hammer'));
 		});
 
