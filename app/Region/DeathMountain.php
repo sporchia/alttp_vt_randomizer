@@ -59,10 +59,7 @@ class DeathMountain extends Region {
 		});
 
 		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->has('Lamp');
-			}
-			return true;
+			return $items->has('Lamp');
 		});
 
 		$this->locations["Piece of Heart (Spectacle Rock Cave)"]->setRequirements(function($locations, $items) {
@@ -74,10 +71,7 @@ class DeathMountain extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
-			}
-			return $items->canFly() || $items->canLiftRocks();
+			return $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
 		};
 
 		return $this;
@@ -92,6 +86,10 @@ class DeathMountain extends Region {
 	public function initGlitched() {
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
 			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
+		});
+
+		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
+			return $items->has('Lamp');
 		});
 
 		return $this;

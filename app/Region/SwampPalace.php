@@ -246,7 +246,8 @@ class SwampPalace extends Region {
 			return ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
 					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))))
 				&& $items->has('MoonPearl') && $items->has('MagicMirror')
-				&& $items->has('Flippers') && $items->has('Hookshot');
+				&& $items->has('Flippers') && $items->has('Hookshot')
+				&& ($items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows());
 		});
 
 		$this->can_complete = function($locations, $items) {

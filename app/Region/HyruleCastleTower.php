@@ -66,9 +66,6 @@ class HyruleCastleTower extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->can_complete = function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless']) && !$items->has('Lamp')) {
-				return false;
-			}
 			if (config('game-mode') == 'swordless') {
 				return $this->canEnter($locations, $items)
 					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
@@ -80,8 +77,8 @@ class HyruleCastleTower extends Region {
 		$this->prize_location->setRequirements($this->can_complete);
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('Cape')
-				|| $items->hasUpgradedSword();
+			return $items->has('Lamp') && ($items->has('Cape')
+				|| $items->hasUpgradedSword());
 		};
 
 		return $this;
@@ -94,8 +91,17 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
+		$this->can_enter = function($locations, $items) {
+			return $items->has('Lamp');
+		};
+
 		$this->can_complete = function($locations, $items) {
-			return $items->hasSword();
+			if (config('game-mode') == 'swordless') {
+				return $this->canEnter($locations, $items)
+					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
+			}
+
+			return $this->canEnter($locations, $items) && $items->hasSword();
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -110,16 +116,7 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initSpeedRunner() {
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->hasSword();
-		};
-
-		$this->prize_location->setRequirements($this->can_complete);
-
-		$this->can_enter = function($locations, $items) {
-			return $items->has('Cape')
-				|| $items->hasUpgradedSword();
-		};
+		$this->initNoMajorGlitches();
 
 		return $this;
 	}

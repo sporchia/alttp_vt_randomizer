@@ -1315,7 +1315,7 @@ class Rom {
 	public function setOpenMode($enable = true) : self {
 		$this->write(0x180032, pack('C*', $enable ? 0x01 : 0x00));
 		$this->setSewersLampCone(!$enable);
-		$this->setLightWorldLampCone(!$enable);
+		$this->setLightWorldLampCone(false);
 		$this->setDarkWorldLampCone(false);
 
 		return $this;

@@ -38,11 +38,6 @@ class LightWorldTest extends TestCase {
 			->canAccess($this->allItemsExcept(['TitansMitt'])));
 	}
 
-	public function testBlacksmithsRequiresMirror() {
-		$this->assertFalse($this->world->getLocation("Blacksmiths")
-			->canAccess($this->allItemsExcept(['MagicMirror'])));
-	}
-
 	public function testBlacksmithsRequiresMoonPearl() {
 		$this->assertFalse($this->world->getLocation("Blacksmiths")
 			->canAccess($this->allItemsExcept(['MoonPearl'])));
