@@ -184,20 +184,6 @@ class TowerOfHera extends Region {
 		});
 
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setRequirements(function($locations, $items) {
-			return $this->canComplete($locations, $items);
-		});
-
-		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setRequirements(function($locations, $items) {
-			return $this->canComplete($locations, $items);
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
-			return ($items->hasSword() || $items->has('Hammer')) && $this->canComplete($locations, $items);
-		});
-
-		$this->can_complete = function($locations, $items) {
 			return ($locations->itemInLocations(Item::get('BigKey'), [
 					"[dungeon-L3-1F] Tower of Hera - freestanding key",
 					"[dungeon-L3-2F] Tower of Hera - Entrance",
@@ -215,6 +201,72 @@ class TowerOfHera extends Region {
 						"[dungeon-D6-B1] Misery Mire - compass",
 					])
 					|| $items->canLightTorches()));
+		});
+
+		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setRequirements(function($locations, $items) {
+			return ($locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-L3-1F] Tower of Hera - freestanding key",
+					"[dungeon-L3-2F] Tower of Hera - Entrance",
+				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-L3-1F] Tower of Hera - freestanding key",
+						"[dungeon-L3-2F] Tower of Hera - Entrance",
+					])))
+				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
+					&& (!$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-L3-4F] Tower of Hera - big chest",
+					])
+					|| !$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D6-B1] Misery Mire - big key",
+						"[dungeon-D6-B1] Misery Mire - compass",
+					])
+					|| $items->canLightTorches()));
+		});
+
+		$this->locations["Heart Container - Moldorm"]->setRequirements(function($locations, $items) {
+			return (($locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-L3-1F] Tower of Hera - freestanding key",
+					"[dungeon-L3-2F] Tower of Hera - Entrance",
+				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-L3-1F] Tower of Hera - freestanding key",
+						"[dungeon-L3-2F] Tower of Hera - Entrance",
+					])))
+				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
+					&& (!$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-L3-4F] Tower of Hera - big chest",
+					])
+					|| !$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D6-B1] Misery Mire - big key",
+						"[dungeon-D6-B1] Misery Mire - compass",
+					])
+					|| $items->canLightTorches())))
+			&& ($items->hasSword() || $items->has('Hammer'));
+		});
+
+		$this->can_complete = function($locations, $items) {
+			return (($locations->itemInLocations(Item::get('BigKey'), [
+					"[dungeon-L3-1F] Tower of Hera - freestanding key",
+					"[dungeon-L3-2F] Tower of Hera - Entrance",
+				]) || ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get('BigKey')) && $items->canLightTorches()
+					&& $locations->itemInLocations(Item::get('Key'), [
+						"[dungeon-L3-1F] Tower of Hera - freestanding key",
+						"[dungeon-L3-2F] Tower of Hera - Entrance",
+					])))
+				|| ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
+					&& (!$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-L3-4F] Tower of Hera - big chest",
+					])
+					|| !$locations->itemInLocations(Item::get('BigKey'), [
+						"[dungeon-D6-B1] Misery Mire - big key",
+						"[dungeon-D6-B1] Misery Mire - compass",
+					])
+					|| $items->canLightTorches())))
+			&& (($items->hasSword() || $items->has('Hammer'))
+				|| ($items->has('Hookshot') && $items->has('Flippers') && (
+					$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
+				))
+			);
 		};
 
 		return $this;
