@@ -676,8 +676,10 @@ function patchRomFromJSON(rom) {
 					localforage.setItem('vt_stored_base', current_base_file)
 						.then(function() {
 							localforage.setItem('vt_base_json', patch)
-								.then(patchRomFromJSON(rom))
-								.then(resolve(rom));
+								.then(patchRomFromJSON(rom)
+								.then(function() {
+									return resolve(rom);
+								}));
 						});
 				});
 			}
@@ -895,6 +897,7 @@ $(function() {
 	localforage.getItem('rom.sprite-gfx').then(function(value) {
 		if (!value) return;
 		$('#sprite-gfx').val(value);
+		$('#sprite-gfx').trigger('change');
 	});
 
 	$('#generate-sram-trace').on('change', function() {

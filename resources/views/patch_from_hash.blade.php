@@ -64,6 +64,21 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="input-group" role="group">
+							<span class="input-group-addon">Play as</span>
+							<select id="sprite-gfx" class="form-control selectpicker">
+								<option value="link.spr">Link</option>
+								<option value="froglink.spr">Frog</option>
+								<option value="littlepony.spr">Pony</option>
+								<option value="mclink.spr">Minish Cap</option>
+								<option value="samusweird.spr">Samus</option>
+								<option value="zelda.spr">Zelda</option>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -118,6 +133,18 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		saveAs(new Blob([u_array]), filename);
 	};
 
+	this.parseSprGfx = function(spr) {
+		return new Promise(function(resolve, reject) {
+			for (var i = 0; i < 0x7000; i++) {
+				u_array[0x80000 + i] = spr[i];
+			}
+			for (var i = 0; i < 90; i++) {
+				u_array[0xDD308 + i] = spr[0x7000 + i];
+			}
+			resolve(this);
+		});
+	};
+
 	this.parsePatch = function(patch, progressCallback) {
 		return new Promise(function(resolve, reject) {
 			patch.forEach(function(value, index, array) {
@@ -152,8 +179,7 @@ function applyHash(rom, hash, second_attempt) {
 				reject(rom);
 			});
 		}
-		return patchRomFromJSON(rom, resetjsonfile)
-			.then(function(rom) {
+		return rom.parsePatch(patch).then(function(rom) {
 				return applyHash(rom, hash, true);
 			});
 	}
@@ -193,7 +219,31 @@ function seedApplied(data) {
 		rom.seed = data.patch.hash;
 		$('button[name=save]').show().prop('disabled', false);
 		$('#heart-speed').trigger('change');
+		$('#sprite-gfx').trigger('change');
 		resolve(rom);
+	});
+}
+
+function getSprite(sprite_name) {
+	return new Promise(function(resolve, reject) {
+		localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
+			if (spr) {
+				resolve(spr);
+				return;
+			}
+			var oReq = new XMLHttpRequest();
+			oReq.open("GET", "http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/" + sprite_name, true);
+			oReq.responseType = "arraybuffer";
+
+			oReq.onload = function(oEvent) {
+				var spr_array = new Uint8Array(oReq.response);
+				localforage.setItem('vt_sprites.' + sprite_name, spr_array).then(function(spr) {
+					resolve(spr);
+				});
+			};
+
+			oReq.send();
+		});
 	});
 }
 
@@ -202,7 +252,7 @@ function loadBlob(blob, show_error) {
 		if (show_error) {
 			localforage.setItem('rom', rom.getArrayBuffer());
 		}
-		patchRomFromJSON(rom).then(function(rom) {
+		rom.parsePatch(patch).then(function(rom) {
 			if (rom.checkMD5() == current_rom_hash) {
 				romOk(rom);
 			} else {
@@ -241,6 +291,25 @@ $(function() {
 			}
 			rom.write(0x180033, sbyte);
 		}
+		localforage.setItem('rom.heart-speed', $(this).val());
+	});
+	localforage.getItem('rom.heart-speed').then(function(value) {
+		if (!value) return;
+		$('#heart-speed').val(value);
+		$('#heart-speed').trigger('change');
+	});
+
+	$('#sprite-gfx').on('change', function() {
+		if (rom) {
+			getSprite($(this).val())
+				.then(rom.parseSprGfx)
+		}
+		localforage.setItem('rom.sprite-gfx', $(this).val());
+	});
+	localforage.getItem('rom.sprite-gfx').then(function(value) {
+		if (!value) return;
+		$('#sprite-gfx').val(value);
+		$('#sprite-gfx').trigger('change');
 	});
 
 	$('#generate-sram-trace').on('change', function() {
