@@ -630,10 +630,10 @@ function applySeed(rom, seed, second_attempt) {
 	return new Promise(function(resolve, reject) {
 		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form#config')), function(patch) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-			.then(rom.parseSprGfx))
+			.then(rom.parseSprGfx)
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
-			});
+			}));
 		}, 'json')
 		.fail(reject);
 	});
@@ -707,7 +707,7 @@ function seedApplied(data) {
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('button[name=generate-save]').prop('disabled', false);
 		$('.info').show();
-		$('.info .seed').html(data.patch.seed);
+		$('.info .seed').html(data.patch.seed + " [<a href='/h/" + data.patch.hash + "'>permalink</a>]");
 		if ($('input[name=tournament]').val() == 'true') {
 			$('.info .seed').html("<a href='/h/" + data.patch.seed + "'>" + data.patch.seed + "</a>");
 		}

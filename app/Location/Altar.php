@@ -264,7 +264,7 @@ class Altar extends Location {
 			case Item::get('Bombos'):
 				return "Burn, baby,\nburn! Fear my\nring of fire!";
 			case Item::get('Ether'):
-				return "Zero Kelvin!\nAbsolute zero!\nFear the cold!";
+				return "This magic\ncoin freezes\neverything!";
 			case Item::get('Quake'):
 				return "Maxing out the\nRichter scale\nis what I do!";
 			case Item::get('Lamp'):

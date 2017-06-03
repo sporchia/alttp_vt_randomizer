@@ -506,6 +506,7 @@ class Randomizer {
 		// testing features
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 		$rom->setLockAgahnimDoorInEscape(false);
+		$rom->setGanonInvincble($this->goal == 'pedestal');
 
 		$rom->writeRNGBlock(function() {
 			return mt_rand(0, 0x100);
@@ -553,13 +554,11 @@ class Randomizer {
 				$rom->setSwampWaterLevel(false);
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
 				$rom->setRandomizerSeedType('Glitched');
-				$rom->setLightWorldLampCone(false);
 				$rom->setWarningFlags(bindec('01100000'));
 				break;
 			case 'SpeedRunner':
 				$type_flag = 'S';
 				$rom->setSwampWaterLevel(false);
-				$rom->setLightWorldLampCone(false);
 				$rom->setWarningFlags(bindec('01000000'));
 				break;
 			case 'NoMajorGlitches':
@@ -839,6 +838,10 @@ class Randomizer {
 			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 		])));
+
+		if ($this->goal == 'pedestal') {
+			$rom->setGanon1TextString("you cannot\ndamage me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nyou dingus\n");
+		}
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
 
