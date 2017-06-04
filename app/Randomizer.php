@@ -506,7 +506,7 @@ class Randomizer {
 		// testing features
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 		$rom->setLockAgahnimDoorInEscape(false);
-		$rom->setGanonInvincble($this->goal == 'pedestal');
+		$rom->setGanonInvincible($this->goal == 'pedestal');
 
 		$rom->writeRNGBlock(function() {
 			return mt_rand(0, 0x100);
@@ -636,6 +636,7 @@ class Randomizer {
 			"saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
 			"sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
 			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
+			"sharshalah", "shahabadoo",
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 

@@ -336,7 +336,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGanonInvincble($enable = false) : self {
+	public function setGanonInvincible($enable = false) : self {
 		$this->write(0x18003E, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
