@@ -585,8 +585,8 @@ var ROM = ROM || (function(blob, loaded_callback) {
 				u_array[0xDD308 + i] = spr[0x7000 + i];
 			}
 			resolve(this);
-		});
-	};
+		}.bind(this));
+	}.bind(this);
 
 	this.parsePatch = function(patch, progressCallback) {
 		return new Promise(function(resolve, reject) {
