@@ -995,10 +995,10 @@ class Randomizer {
 		$items_to_find = [];
 
 		for ($i = 0; $i < $this->config('item.count.L3Sword', 1); $i++) {
-			array_push($advancement_items, Item::get('L3Sword'));
+			array_push($items_to_find, Item::get('L3Sword'));
 		}
 		for ($i = 0; $i < $this->config('item.count.L4Sword', 1); $i++) {
-			array_push($advancement_items, Item::get('L4Sword'));
+			array_push($items_to_find, Item::get('L4Sword'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
