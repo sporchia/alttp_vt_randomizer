@@ -25,7 +25,11 @@ class HyruleCastleTower extends Region {
 		$this->locations = new LocationCollection([
 			new Location\Chest("[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room", 0xEAB5, null, $this),
 			new Location\Chest("[dungeon-A1-3F] Hyrule Castle Tower - maze room", 0xEAB2, null, $this),
+			new Location\Prize\Event("Agahnim", null, null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Agahnim"];
+		$this->prize_location->setItem(Item::get('DefeatAgahnim'));
 	}
 
 	/**
@@ -48,9 +52,8 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function fillBaseItems($my_items) {
-		$this->locations->each(function($location) {
-			$location->setItem(Item::get('Key'));
-		});
+		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
 
 		return $this;
 	}
@@ -63,16 +66,19 @@ class HyruleCastleTower extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'open' && !$items->has('Lamp')) {
-				return false;
+			if (config('game-mode') == 'swordless') {
+				return $this->canEnter($locations, $items)
+					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
 			}
 
 			return $this->canEnter($locations, $items) && $items->hasSword();
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		$this->can_enter = function($locations, $items) {
-			return $items->has('Cape')
-				|| $items->hasUpgradedSword();
+			return $items->has('Lamp') && ($items->has('Cape')
+				|| $items->hasUpgradedSword());
 		};
 
 		return $this;
@@ -85,9 +91,20 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->can_complete = function($locations, $items) {
-			return $items->hasSword();
+		$this->can_enter = function($locations, $items) {
+			return $items->has('Lamp');
 		};
+
+		$this->can_complete = function($locations, $items) {
+			if (config('game-mode') == 'swordless') {
+				return $this->canEnter($locations, $items)
+					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
+			}
+
+			return $this->canEnter($locations, $items) && $items->hasSword();
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -99,14 +116,7 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initSpeedRunner() {
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->hasSword();
-		};
-
-		$this->can_enter = function($locations, $items) {
-			return $items->has('Cape')
-				|| $items->hasUpgradedSword();
-		};
+		$this->initNoMajorGlitches();
 
 		return $this;
 	}

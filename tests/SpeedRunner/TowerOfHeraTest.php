@@ -65,7 +65,7 @@ class TowerOfHeraTest extends TestCase {
 
 	// Item Locations
 	public function testFreestandingKeyOnlyRequiresEntry() {
-		$this->addCollected(['PowerGlove', 'MagicMirror']);
+		$this->addCollected(['PowerGlove', 'MagicMirror', 'Lamp']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - freestanding key")
 			->canAccess($this->collected));

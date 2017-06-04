@@ -705,7 +705,7 @@ class GanonsTower extends Region {
 
 
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
-			if (config('game-mode') == 'open' && !($items->hasSword() || $items->has('Hammer'))) {
+			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer'))) {
 				return false;
 			}
 

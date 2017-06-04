@@ -135,7 +135,7 @@ class DesertPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'open' && !($items->hasSword() || $items->has('Hammer')
+			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
 					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
 					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
 				return false;
@@ -171,7 +171,7 @@ class DesertPalace extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'open' && !($items->hasSword() || $items->has('Hammer')
+			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
 					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
 					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
 				return false;

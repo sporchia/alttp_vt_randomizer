@@ -8,6 +8,18 @@ return [
 			'BootsLocation' => true,
 		],
 	],
+	'triforcepieces' => [
+		'item' => [
+			'count' => [
+				'TriforcePiece' => 12,
+				'TwentyRupees' => 16,
+			],
+			'Goal' => [
+				'Required' => 10,
+				'Icon' => 'triforce',
+			],
+		],
+	],
 	'timed' => [
 		'item' => [
 			'count' => [
@@ -124,7 +136,6 @@ return [
 				'TwentyRupees' => 10,
 				'L4Sword' => 0,
 				'SilverArrowUpgrade' => 0,
-				'Rupoor' => 20,
 			],
 		],
 		'region' => [
@@ -137,7 +148,7 @@ return [
 			'BootsLocation' => false,
 		],
 	],
-	'masochist' => [
+	'expert' => [
 		'item' => [
 			'count' => [
 				'Arrow' => 10,
@@ -173,7 +184,6 @@ return [
 				'L3Sword' => 0,
 				'L4Sword' => 0,
 				'SilverArrowUpgrade' => 0,
-				'Rupoor' => 20,
 			],
 		],
 		'region' => [

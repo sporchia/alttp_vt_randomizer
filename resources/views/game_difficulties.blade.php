@@ -120,19 +120,15 @@
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 				<li>Silver Arrow Upgrade can only be found after falling to Ganon</li>
 			</ul>
-			<p>The following items have been added:</p>
-			<ul>
-				<li>20x Rupoors (-10 rupees when collected)</li>
-			</ul>
 		</div>
 	</div>
 
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title">Masochist</h3>
+			<h3 class="panel-title">Expert</h3>
 		</div>
 		<div class="panel-body">
-			<p>Masochist was designed for people who hate themselves. The following items have been removed:</p>
+			<p>Expert is for people really seeking a challenge. The following items have been removed:</p>
 			<ul>
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
@@ -164,10 +160,6 @@
 				<li>Potions heal 1 heart and restore 1/4 magic</li>
 				<li>Shields in Shops are unpurchasable</li>
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
-			</ul>
-			<p>The following items have been added:</p>
-			<ul>
-				<li>20x Rupoors (-20 rupees when collected)</li>
 			</ul>
 		</div>
 	</div>

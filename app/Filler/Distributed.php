@@ -1,10 +1,9 @@
 <?php namespace ALttP\Filler;
 
-use ALttP\Filler;
-use ALttP\Support\LocationCollection;
+use ALttP\Support\LocationCollection as Locations;
 
-class Distributed extends Filler {
-	public function shuffleLocations(LocationCollection $locations) {
+class Distributed extends Random {
+	protected function shuffleLocations(Locations $locations) {
 		$new_locations = [];
 		$regions = array_fill_keys(array_map(function($region) {
 			return get_class($region);
@@ -19,10 +18,6 @@ class Distributed extends Filler {
 				array_push($new_locations, $location);
 			}
 		}
-		return new LocationCollection($new_locations);
-	}
-
-	public function shuffleItems(array $items) {
-		return mt_shuffle($items);
+		return new Locations($new_locations);
 	}
 }

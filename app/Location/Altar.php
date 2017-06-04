@@ -264,7 +264,7 @@ class Altar extends Location {
 			case Item::get('Bombos'):
 				return "Burn, baby,\nburn! Fear my\nring of fire!";
 			case Item::get('Ether'):
-				return "Zero Kelvin!\nAbsolute zero!\nFear the cold!";
+				return "This magic\ncoin freezes\neverything!";
 			case Item::get('Quake'):
 				return "Maxing out the\nRichter scale\nis what I do!";
 			case Item::get('Lamp'):
@@ -377,7 +377,7 @@ class Altar extends Location {
 			case Item::get('ProgressiveSword'):
 				return "a better copy\nof your sword\nfor your time";
 			case Item::get('ProgressiveShield'):
-				return "have a better\nblocker in\nfront of you";
+				return "have a better\ndefense in\nfront of you";
 			case Item::get('ProgressiveArmor'):
 				return "time for a\nchange of\nclothes?";
 			case Item::get('ProgressiveGlove'):

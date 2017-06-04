@@ -1,8 +1,10 @@
 <?php namespace ALttP;
 
-use ALttP\Support\LocationCollection;
+use ALttP\World;
 
 abstract class Filler {
+	protected $world;
+
 	/**
 	 * Returns a Filler of a specified type.
 	 *
@@ -10,16 +12,25 @@ abstract class Filler {
 	 *
 	 * @return self
 	 */
-	public static function factory($type = null) : self {
+	public static function factory($type = null, World $world = null) : self {
+		if (!$world) {
+			$world = new World;
+		}
+
 		switch ($type) {
 			case 'Distributed':
-				return new Filler\Distributed;
+				return new Filler\Distributed($world);
+			case 'Beatable':
+				return new Filler\RandomBeatable($world);
 			case 'Random':
 			default:
-				return new Filler\Random;
+				return new Filler\Random($world);
 		}
 	}
 
-	abstract public function shuffleLocations(LocationCollection $locations);
-	abstract public function shuffleItems(array $items);
+	public function __construct(World $world) {
+		$this->world = $world;
+	}
+
+	abstract public function fill(array $required, array $nice, array $extra);
 }

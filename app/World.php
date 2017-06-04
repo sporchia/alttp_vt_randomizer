@@ -103,7 +103,8 @@ class World {
 					if ($this->goal == 'dungeons') {
 						if (!$collected_items->has('PendantOfCourage')
 							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')) {
+							|| !$collected_items->has('PendantOfPower')
+							|| !$collected_items->has('DefeatAgahnim')) {
 							return false;
 						}
 					}
@@ -127,7 +128,8 @@ class World {
 					if ($this->goal == 'dungeons') {
 						if (!$collected_items->has('PendantOfCourage')
 							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')) {
+							|| !$collected_items->has('PendantOfPower')
+							|| !$collected_items->has('DefeatAgahnim')) {
 							return false;
 						}
 					}
@@ -143,7 +145,8 @@ class World {
 						if ($this->goal == 'dungeons') {
 							if (!$collected_items->has('PendantOfCourage')
 								|| !$collected_items->has('PendantOfWisdom')
-								|| !$collected_items->has('PendantOfPower')) {
+								|| !$collected_items->has('PendantOfPower')
+								|| !$collected_items->has('DefeatAgahnim')) {
 								return false;
 							}
 						}
@@ -159,7 +162,8 @@ class World {
 					if ($this->goal == 'dungeons') {
 						if (!$collected_items->has('PendantOfCourage')
 							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')) {
+							|| !$collected_items->has('PendantOfPower')
+							|| !$collected_items->has('DefeatAgahnim')) {
 							return false;
 						}
 					}
@@ -183,7 +187,8 @@ class World {
 				if ($this->goal == 'dungeons') {
 					if (!$collected_items->has('PendantOfCourage')
 						|| !$collected_items->has('PendantOfWisdom')
-						|| !$collected_items->has('PendantOfPower')) {
+						|| !$collected_items->has('PendantOfPower')
+						|| !$collected_items->has('DefeatAgahnim')) {
 						return false;
 					}
 				}
@@ -290,9 +295,11 @@ class World {
 	 * sphere we put it back (and mark the location as required). We repeat this process until all spheres have been
 	 * pruned. We then take that list of locations with items and run a playthrough of them so we know collection order.
 	 *
+	 * @param bool $walkthrough include the play order
+	 *
 	 * @return array
 	 */
-	public function getPlayThrough() {
+	public function getPlayThrough($walkthrough = true) {
 		$shadow_world = $this->copy();
 		$sphere = 0;
 		$location_sphere = [];
@@ -385,6 +392,9 @@ class World {
 
 		foreach ($required_locations as $higher_location) {
 			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(), $this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+		}
+		if (!$walkthrough) {
+			return $required_locations->values();
 		}
 
 		// RUN PLAYTHROUGH of locations found above
@@ -517,6 +527,28 @@ class World {
 			});
 		}
 		return $this->collectable_locations;
+	}
+
+	public function collectItems() {
+		$my_items = new ItemCollection;
+		$available_locations = $this->locations->filter(function($location) use ($my_items) {
+			return !is_a($location, Location\Medallion::class)
+				&& !is_a($location, Location\Fountain::class)
+				&& $location->hasItem();
+		});
+
+		do {
+			$search_locations = $available_locations->filter(function($location) use ($my_items) {
+				return $location->canAccess($my_items);
+			});
+
+			$found_items = $search_locations->getItems();
+
+			$new_items = $found_items->diff($my_items);
+			$my_items = $found_items;
+		} while ($new_items->count() > 0);
+
+		return $my_items;
 	}
 
 	/**

@@ -241,10 +241,10 @@ class MiseryMire extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) {
-			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
-				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
-				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-			&& $items->hasSword()
+			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+				&& (config('game-mode') == 'swordless' || $items->hasSword()))
 			&& $items->canLiftDarkRocks() && $items->has('MoonPearl') && $items->canFly()
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
 		};
@@ -270,7 +270,15 @@ class MiseryMire extends Region {
 			&& ($items->has('MoonPearl') || $items->hasABottle());
 		};
 
-		$this->can_complete = $this->can_enter;
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& ($items->has('CaneOfSomaria')
+					|| $items->hasSword() || $items->has('Hammer')
+					|| ($items->has('Hookshot') && $items->has('Flippers') && (
+						$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
+					))
+				);
+		};
 
 		return $this;
 	}

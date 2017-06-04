@@ -374,6 +374,12 @@ class RomTest extends TestCase {
 		$this->assertEquals(0x00, $this->rom->read(0x180211));
 	}
 
+	public function testSetPlandomizerAuthor() {
+		$this->rom->setPlandomizerAuthor('123456789012345678901');
+
+		$this->assertEquals([49,50,51,52,53,54,55,56,57,48,49,50,51,52,53,54,55,56,57,48,49], $this->rom->read(0x180220, 31));
+	}
+
 	public function testSeGameTypeDefaultsToRandomizer() {
 		$this->rom->setGameType('badType');
 
@@ -492,18 +498,6 @@ class RomTest extends TestCase {
 		$this->rom->setDarkWorldLampCone(false);
 
 		$this->assertEquals(0x00, $this->rom->read(0x18003A));
-	}
-
-	public function testSkipZeldaSwordCheckOn() {
-		$this->rom->skipZeldaSwordCheck(true);
-
-		$this->assertEquals(0x05, $this->rom->read(0x2EBD4));
-	}
-
-	public function testSkipZeldaSwordCheckOff() {
-		$this->rom->skipZeldaSwordCheck(false);
-
-		$this->assertEquals(0x02, $this->rom->read(0x2EBD4));
 	}
 
 	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {

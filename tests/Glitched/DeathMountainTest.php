@@ -28,11 +28,6 @@ class DeathMountainTest extends TestCase {
 			->canAccess($this->allItemsExcept(['BookOfMudora'])));
 	}
 
-	public function testOldMountainManRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("Old Mountain Man")
-			->canAccess($this->collected));
-	}
-
 	public function testSpectacleRockCaveRequiresNothing() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Spectacle Rock Cave)")
 			->canAccess($this->collected));

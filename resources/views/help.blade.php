@@ -63,6 +63,7 @@
 		<li>The Super Bomb spawns when you have acquired crystals 5 and 6.</li>
 		<li>The digging game item is guaranteed to be gotten on the 15th dig.</li>
 		<li>The chest game item is guaranteed to be gotten on the 1st attempt (can be 1st or 2nd chest).</li>
+		<li>The Smith and the Purple chest will stay following you through Save and Quit</li>
 	</ul>
 </div>
 @overwrite

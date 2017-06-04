@@ -11,8 +11,12 @@ class Distribution extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:distribution {type} {thing} {itterations} {--difficulty=normal} {--mode=NoMajorGlitches}'
-		. '{--csv}';
+	protected $signature = 'alttp:distribution {type} {thing} {itterations=1}'
+		. ' {--difficulty=normal : set difficulty}'
+		. ' {--logic=NoMajorGlitches : set logic}'
+		. ' {--goal=ganon : set game goal}'
+		. ' {--mode=standard : set game mode}'
+		. ' {--csv=distribution.csv : file to write to}';
 
 	/**
 	 * The console command description.
@@ -31,14 +35,27 @@ class Distribution extends Command {
 		switch ($this->argument('type')) {
 			case 'item':
 				$function = [$this, 'item'];
+				if (!$this->argument('thing')) {
+					return $this->error("Need an Item Name");
+				}
 				$thing = Item::get($this->argument('thing'));
 				break;
 			case 'location':
 				$function = [$this, 'location'];
+				if (!$this->argument('thing')) {
+					return $this->error("Need an Location Name");
+				}
 				$thing = $this->argument('thing');
 				break;
 			case 'region_fill':
 				$function = [$this, 'region_fill'];
+				if (!$this->argument('thing')) {
+					return $this->error("Need an Region Name");
+				}
+				$thing = $this->argument('thing');
+				break;
+			case 'required':
+				$function = [$this, 'required'];
 				$thing = $this->argument('thing');
 				break;
 			case 'full':
@@ -49,14 +66,19 @@ class Distribution extends Command {
 				return $this->error('Invalid distribution');
 		}
 
+		$bar = $this->output->createProgressBar($this->argument('itterations'));
+
 		for ($i = 0; $i < $this->argument('itterations'); $i++) {
 			call_user_func_array($function, [$thing, &$locations]);
+			$bar->advance();
 		}
+
+		$bar->finish();
 
 		if ($this->option('csv')) {
 			$locations = $this->_assureColumnsExist($locations);
 			ksortr($locations);
-			$out = fopen('php://output', 'w');
+			$out = fopen($this->option('csv'), 'w');
 			fputcsv($out, array_merge(['location'], array_keys(reset($locations))));
 			foreach ($locations as $name => $location) {
 				fputcsv($out, array_merge([$name], $location));
@@ -85,7 +107,7 @@ class Distribution extends Command {
 	}
 
 	private function item(Item $item, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocationsWithItem($item) as $location) {
@@ -97,7 +119,7 @@ class Distribution extends Command {
 	}
 
 	private function location($location_name, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 		$rand->makeSeed();
 
 		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
@@ -109,7 +131,7 @@ class Distribution extends Command {
 	}
 
 	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('difficulty'), $this->option('mode'));
+		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
 		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 		$region = $world->getRegion($region_name);
@@ -128,13 +150,39 @@ class Distribution extends Command {
 		}
 	}
 
+	private function required($unused, &$locations) {
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand->makeSeed();
+
+		$required_locations = $rand->getWorld()->getPlayThrough(false);
+		foreach ($required_locations as $location) {
+			$location_name = $location->getName();
+			$item = $location->getItem();
+			if (!$item) {
+				continue;
+			}
+
+			$item_name = $item->getNiceName();
+
+			if (!isset($locations[$location_name][$item_name])) {
+				$locations[$location_name][$item_name] = 0;
+			}
+			$locations[$location_name][$item_name]++;
+		}
+	}
+
 	private function full($unused, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('mode'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocations() as $location) {
 			$location_name = $location->getName();
-			$item_name = $location->getItem()->getNiceName();
+			$item = $location->getItem();
+			if (!$item) {
+				continue;
+			}
+
+			$item_name = $item->getNiceName();
 
 			if (!isset($locations[$location_name][$item_name])) {
 				$locations[$location_name][$item_name] = 0;

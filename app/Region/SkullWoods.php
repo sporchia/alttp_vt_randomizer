@@ -74,8 +74,13 @@ class SkullWoods extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Mothula";
 		});
 
-		// @TODO: this is wrong for SpeedRunner, we want to allow this to not be a key
-		$locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->fill(Item::get('Key'), $my_items);
+		while(!$locations->getEmptyLocations()->filter(function($location) {
+			return in_array($location->getName(), [
+				"[dungeon-D3-B1] Skull Woods - Compass room",
+				"[dungeon-D3-B1] Skull Woods - south of Fire Rod room",
+				"[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room",
+			]);
+		})->random()->fill(Item::get("Key"), $my_items));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
@@ -139,7 +144,7 @@ class SkullWoods extends Region {
 		});
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && $items->hasSword();
+			return $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
 		})->setFillRules(function($item, $locations, $items) {
 			if ($this->world->config('region.bossHaveKey', true)) {
 				return $item != Item::get('Key')
@@ -149,7 +154,7 @@ class SkullWoods extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->hasSword();
+			return $this->canEnter($locations, $items) && $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
 		};
 
 		$this->can_enter = function($locations, $items) {

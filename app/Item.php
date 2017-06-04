@@ -22,10 +22,31 @@ class Item {
 	 *
 	 * @return Item
 	 */
-	static public function get($name) {
+	static public function get(string $name) {
 		$items = static::all();
 		if (isset($items[$name])) {
 			return $items[$name];
+		}
+
+		return static::getNice($name);
+	}
+
+	/**
+	 * Get the Item by nice name
+	 *
+	 * @param string $name Name of Item
+	 *
+	 * @throws Exception if the Item doesn't exist
+	 *
+	 * @return Item
+	 */
+	static public function getNice(string $name) {
+		$items = static::all();
+
+		foreach ($items as $item) {
+			if ($item->getNiceName() == $name) {
+				return $item;
+			}
 		}
 
 		throw new \Exception('Unknown Item: ' . $name);
@@ -248,6 +269,7 @@ class Item {
 			new Item\Crystal('Crystal5', 'Crystal 5', [null, 0x04, 0x34, 0x64, 0x40, 0x6E, 0x06]),
 			new Item\Crystal('Crystal6', 'Crystal 6', [null, 0x01, 0x34, 0x64, 0x40, 0x6F, 0x06]),
 			new Item\Crystal('Crystal7', 'Crystal 7', [null, 0x08, 0x34, 0x64, 0x40, 0x7C, 0x06]),
+			new Item\Event('DefeatAgahnim', 'Defeat Agahnim', [null]),
 		]);
 		return static::all();
 	}

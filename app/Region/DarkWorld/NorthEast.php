@@ -73,14 +73,14 @@ class NorthEast extends Region {
 			return $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hammer')
-						|| ($items->has('MagicMirror') && $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)));
+						|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')));
 		});
 
 		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hammer')
-						|| ($items->has('MagicMirror') && $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)));
+						|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')));
 		});
 
 
@@ -89,19 +89,19 @@ class NorthEast extends Region {
 				return $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 						&& ($items->has('Hammer')
-							|| ($items->has('MagicMirror') && $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)));
+							|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')));
 			});
 
 			$this->locations["Pyramid Fairy - Right"]->setRequirements(function($locations, $items) {
 				return $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 						&& ($items->has('Hammer')
-							|| ($items->has('MagicMirror') && $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)));
+							|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')));
 			});
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('Hyrule Castle Tower')->canComplete($this->world->getLocations(), $items)
+			return $items->has('DefeatAgahnim')
 				|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
 				|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl'));
 		};

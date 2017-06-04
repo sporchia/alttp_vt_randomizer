@@ -121,7 +121,7 @@ class BaseGameTest extends TestCase {
 
 	public function testPalaceOfDarkness() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword']);
+			'MasterSword', 'DefeatAgahnim']);
 
 		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
@@ -134,7 +134,7 @@ class BaseGameTest extends TestCase {
 
 	public function testPalaceOfDarknessAccessable() {
 		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'MasterSword']);
+			'MasterSword', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getRegion('Palace of Darkness')->canEnter($this->world->getLocations(), $this->collected));
 	}
