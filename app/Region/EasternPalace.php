@@ -90,7 +90,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
-			if (config('game-mode') == 'open' && $locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
+			if ($locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
 				return $items->has('Lamp');
 			}
 
@@ -104,11 +104,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setRequirements(function($locations, $items) {
-			if (config('game-mode') == 'open') {
-				return $items->has('Lamp');
-			}
-
-			return true;
+			return $items->has('Lamp');
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setRequirements(function($locations, $items) {
@@ -116,11 +112,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'open' && !$items->has('Lamp')) {
-				return false;
-			}
-
-			return $this->canEnter($locations, $items) && $items->canShootArrows();
+			return $this->canEnter($locations, $items) && $items->canShootArrows() && $items->has('Lamp');
 		};
 
 		$this->locations["Heart Container - Armos Knights"]->setRequirements($this->can_complete)
@@ -139,18 +131,7 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canShootArrows();
-		};
-
-		$this->locations["Heart Container - Armos Knights"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				return $item != Item::get('BigKey');
-			});
+		$this->initNoMajorGlitches();
 
 		return $this;
 	}

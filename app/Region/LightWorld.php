@@ -85,7 +85,7 @@ class LightWorld extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["Altar"]->setItem(Item::get('MasterSword'));
-		$this->locations["Uncle"]->setItem(Item::get('L1Sword'));
+		$this->locations["Uncle"]->setItem(Item::get('L1SwordAndShield'));
 		$this->locations["[cave-034] Hyrule Castle secret entrance"]->setItem(Item::get('Lamp'));
 		$this->locations["[cave-018] Graveyard - top right grave"]->setItem(Item::get('Cape'));
 		$this->locations["[cave-047] Dam"]->setItem(Item::get('ThreeBombs'));
@@ -154,27 +154,15 @@ class LightWorld extends Region {
 				&& $items->has('PendantOfCourage');
 		});
 
-		$this->locations["Uncle"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-034] Hyrule Castle secret entrance"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return (($this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('MagicMirror'))
 				|| $items->canLiftDarkRocks()) && $items->has('PegasusBoots');
 		});
 
-		$this->locations["[cave-047] Dam"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
 		})->setFillRules(function($item, $locations, $items) {
-			if (config('game-mode') == 'open') {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return true;
 			}
 
@@ -185,101 +173,13 @@ class LightWorld extends Region {
 			]);
 		});
 
-		$this->locations["[cave-031] Tavern"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-026] chicken house"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-044] Aginah's cave"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-035] Sahasrahla's Hut [left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-035] Sahasrahla's Hut [center chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-035] Sahasrahla's Hut [right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-021] Kakariko well [top chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-021] Kakariko well [left chest row of 3]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-021] Kakariko well [center chest row of 3]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-021] Kakariko well [right chest row of 3]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-021] Kakariko well [bottom chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-022-B1] Thief's hut [top chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-022-B1] Thief's hut [top left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-022-B1] Thief's hut [top right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-022-B1] Thief's hut [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-022-B1] Thief's hut [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
-			return $items->canLiftDarkRocks() && $items->has('MagicMirror')
+			return $items->canLiftDarkRocks()
 				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots');
-		});
-
-		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-050] cave southwest of Lake Hylia [top left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-050] cave southwest of Lake Hylia [top right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-051] Ice Cave"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["Bottle Vendor"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->locations["Sahasrahla"]->setRequirements(function($locations, $items) {
@@ -297,7 +197,8 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->has("MoonPearl");
+			return $items->canLiftDarkRocks() && $items->has("MoonPearl")
+				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
@@ -313,12 +214,8 @@ class LightWorld extends Region {
 			return $items->canLiftRocks() || $items->has('Flippers');
 		});
 
-		$this->locations["Piece of Heart (Thieves' Forest Hideout)"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
-			return $this->world->getRegion('Hyrule Castle Tower')->canComplete($locations, $items) && $items->has('PegasusBoots');
+			return $items->has('DefeatAgahnim') && $items->has('PegasusBoots');
 		});
 
 		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {
@@ -333,24 +230,12 @@ class LightWorld extends Region {
 			return $items->canFly() && $items->canLiftDarkRocks() && $items->has('MagicMirror');
 		});
 
-		$this->locations["[cave-050] cave southwest of Lake Hylia - generous guy"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["Library"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots');
 		});
 
-		$this->locations["Mushroom"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["Witch"]->setRequirements(function($locations, $items) {
 			return $items->has('Mushroom');
-		});
-
-		$this->locations["Piece of Heart (Maze Race)"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->locations["Piece of Heart (Desert - west side)"]->setRequirements(function($locations, $items) {
@@ -362,10 +247,6 @@ class LightWorld extends Region {
 			return $items->has('Flippers') && $items->has('MoonPearl') && $items->has('MagicMirror')
 				&& ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
-		});
-
-		$this->locations["Piece of Heart (Dam)"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
@@ -392,7 +273,6 @@ class LightWorld extends Region {
 				&& $items->has('PendantOfCourage');
 		});
 
-		// @TODO: when S+Q follower fix is removed this will need to be readdressed
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror')
 				&& ($items->hasABottle() || $items->has("MoonPearl"));

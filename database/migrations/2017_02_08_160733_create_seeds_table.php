@@ -26,6 +26,7 @@ class CreateSeedsTable extends Migration {
 			$table->timestamps();
 
 			$table->index('seed');
+			$table->index('hash');
 			$table->index(['vt_complexity', 'complexity']);
 		});
 	}

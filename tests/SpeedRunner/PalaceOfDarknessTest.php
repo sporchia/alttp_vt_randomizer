@@ -31,7 +31,7 @@ class PalaceOfDarknessTest extends TestCase {
 
 	// Item Locations
 	public function testShooterRoomRequiresOnlyEntry() {
-		$this->addCollected(['MoonPearl', 'Cape', 'L1Sword']);
+		$this->addCollected(['MoonPearl', 'DefeatAgahnim']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")
 			->canAccess($this->collected));
@@ -48,7 +48,7 @@ class PalaceOfDarknessTest extends TestCase {
 	}
 
 	public function testJumpRoomChestLIfKeyInShooterRoom() {
-		$this->addCollected(['MoonPearl', 'MasterSword']);
+		$this->addCollected(['MoonPearl', 'DefeatAgahnim']);
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")
@@ -166,7 +166,7 @@ class PalaceOfDarknessTest extends TestCase {
 	}
 
 	public function testTurtleStalfosRoomIfKeyInShooterRoom() {
-		$this->addCollected(['MoonPearl', 'MasterSword']);
+		$this->addCollected(['MoonPearl', 'DefeatAgahnim']);
 		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")

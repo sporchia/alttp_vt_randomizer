@@ -112,4 +112,29 @@ class LocationCollection extends Collection {
 			return $location->hasItem($item);
 		});
 	}
+
+	/**
+	 * cut the collection into two, and place the begginging at the end
+	 *
+	 * @param Location $location Location to cut at
+	 *
+	 * @return static
+	 */
+	public function reorderAt(Location $location) {
+		$key = array_search($location, array_values($this->items));
+		return new static(array_merge(array_slice($this->items, $key), array_slice($this->items, 0, $key)));
+	}
+
+	/**
+	 * Get a new Collection of Locations that the items have access to.
+	 *
+	 * @param ItemCollection $items Items available
+	 *
+	 * @return static
+	 */
+	public function canAccess(ItemCollection $items) {
+		return $this->filter(function($location) use ($items) {
+			return $location->canAccess($items);
+		});
+	}
 }

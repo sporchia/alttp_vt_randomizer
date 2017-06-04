@@ -19,10 +19,6 @@ class HyruleCastleTowerTest extends TestCase {
 	}
 
 	// Entry
-	public function testNothingRequiredToEnter() {
-		$this->assertTrue($this->world->getRegion('Hyrule Castle Tower')
-			->canEnter($this->world->getLocations(), $this->collected));
-	}
 
 	// Completion
 	public function testSwordRequiredToComplete() {

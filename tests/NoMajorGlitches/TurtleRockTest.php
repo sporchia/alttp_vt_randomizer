@@ -89,7 +89,7 @@ class TurtleRockTest extends TestCase {
 	}
 
 	public function testCompassRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'Quake', 'CaneOfSomaria', 'Hookshot', 'L1Sword']);
+		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'Quake', 'CaneOfSomaria', 'Hookshot', 'L1Sword', 'Lamp']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")
 			->canAccess($this->collected));

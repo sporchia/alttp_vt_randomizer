@@ -277,10 +277,10 @@ class TurtleRock extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) {
-			return (($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
-				|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
-				|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-			&& $items->hasSword()
+			return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+				&& (config('game-mode') == 'swordless' || $items->hasSword()))
 			&& $items->has('MoonPearl') && $items->has('CaneOfSomaria')
 			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
 			&& $items->canLiftDarkRocks() && $items->has('Hammer');

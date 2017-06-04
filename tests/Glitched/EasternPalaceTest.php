@@ -45,11 +45,6 @@ class EasternPalaceTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testBigKeyRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - Big key")
-			->canAccess($this->collected));
-	}
-
 	public function testArmosRequiresBow() {
 		$this->assertFalse($this->world->getLocation("Heart Container - Armos Knights")
 			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));

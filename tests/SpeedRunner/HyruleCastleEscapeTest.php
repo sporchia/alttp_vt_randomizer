@@ -45,11 +45,6 @@ class HyruleCastleEscapeTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testSewersFirstRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
-			->canAccess($this->collected));
-	}
-
 	public function testSewersFinalRoomChestLRequiresGloves() {
 		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [left chest]")
 			->canAccess($this->allItemsExcept(['Gloves'])));

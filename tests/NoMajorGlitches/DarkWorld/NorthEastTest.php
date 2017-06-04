@@ -29,29 +29,29 @@ class NorthEastTest extends TestCase {
 			->canAccess($this->allItemsExcept(['MoonPearl'])));
 	}
 
-	public function testCatfishRequiresCapeOrUpgradedSwordOrHammerOrFlippers() {
+	public function testCatfishRequiresAG1OrHammerOrFlippers() {
 		$this->assertFalse($this->world->getLocation("Catfish")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Hammer', 'Flippers'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Hammer', 'Flippers'])));
 	}
 
-	public function testCatfishRequiresTitansMittIfHasFlippersAndNotCapeOrUpgradedSwordOrHammer() {
+	public function testCatfishRequiresTitansMittIfHasFlippersAndNotAG1OrHammer() {
 		$this->assertFalse($this->world->getLocation("Catfish")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Hammer', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Hammer', 'TitansMitt'])));
 	}
 
-	public function testCatfishDoesNotRequireCapeOrUpgradedSwordIfHasFlippers() {
+	public function testCatfishDoesNotRequireAG1IfHasFlippers() {
 		$this->assertTrue($this->world->getLocation("Catfish")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Hammer'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Hammer'])));
 	}
 
-	public function testCatfishDoesNotRequireCapeOrUpgradedSwordIfHasHammer() {
+	public function testCatfishDoesNotRequireAG1IfHasHammer() {
 		$this->assertTrue($this->world->getLocation("Catfish")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Flippers'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Flippers'])));
 	}
 
 	public function testCatfishDoesNotRequireFlippersIfHasHammer() {
 		$this->assertTrue($this->world->getLocation("Catfish")
-			->canAccess($this->allItemsExcept(['Flippers', 'Cape', 'UpgradedSword'])));
+			->canAccess($this->allItemsExcept(['Flippers', 'DefeatAgahnim'])));
 	}
 
 	public function testCatfishDoesNotRequireFlippersIfHasCape() {
@@ -66,7 +66,7 @@ class NorthEastTest extends TestCase {
 
 	public function testCatfishDoesNotRequireHammerIfHasFlippers() {
 		$this->assertTrue($this->world->getLocation("Catfish")
-			->canAccess($this->allItemsExcept(['Hammer', 'Cape', 'UpgradedSword'])));
+			->canAccess($this->allItemsExcept(['Hammer', 'DefeatAgahnim'])));
 	}
 
 	public function testCatfishDoesNotRequireHammerIfHasCape() {
@@ -86,27 +86,27 @@ class NorthEastTest extends TestCase {
 
 	public function testPyramidRequiresCapeOrUpgradedSwordOrHammerOrFlippers() {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Pyramid)")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Hammer', 'Flippers'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Hammer', 'Flippers'])));
 	}
 
 	public function testPyramidRequiresTitansMittIfHasFlippersAndNotCapeOrUpgradedSwordOrHammer() {
 		$this->assertFalse($this->world->getLocation("Piece of Heart (Pyramid)")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Hammer', 'TitansMitt'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Hammer', 'TitansMitt'])));
 	}
 
 	public function testPyramidDoesNotRequireCapeOrUpgradedSwordIfHasFlippers() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Pyramid)")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Hammer'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Hammer'])));
 	}
 
 	public function testPyramidDoesNotRequireCapeOrUpgradedSwordIfHasHammer() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Pyramid)")
-			->canAccess($this->allItemsExcept(['Cape', 'UpgradedSword', 'Flippers'])));
+			->canAccess($this->allItemsExcept(['DefeatAgahnim', 'Flippers'])));
 	}
 
 	public function testPyramidDoesNotRequireFlippersIfHasHammer() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Pyramid)")
-			->canAccess($this->allItemsExcept(['Flippers', 'Cape', 'UpgradedSword'])));
+			->canAccess($this->allItemsExcept(['Flippers', 'DefeatAgahnim'])));
 	}
 
 	public function testPyramidDoesNotRequireFlippersIfHasCape() {
@@ -121,7 +121,7 @@ class NorthEastTest extends TestCase {
 
 	public function testPyramidDoesNotRequireHammerIfHasFlippers() {
 		$this->assertTrue($this->world->getLocation("Piece of Heart (Pyramid)")
-			->canAccess($this->allItemsExcept(['Hammer', 'Cape', 'UpgradedSword'])));
+			->canAccess($this->allItemsExcept(['Hammer', 'DefeatAgahnim'])));
 	}
 
 	public function testPyramidDoesNotRequireHammerIfHasCape() {

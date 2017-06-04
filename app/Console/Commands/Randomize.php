@@ -110,7 +110,7 @@ class Randomize extends Command {
 		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
 		$world->setVanilla();
 
-		foreach ($world->getLocations() as $name => $region) {
+		foreach ($world->getLocations() as $location) {
 			$location->writeItem($rom);
 		}
 
@@ -121,6 +121,8 @@ class Randomize extends Command {
 		$rom->setSmithyQuickItemGive(false);
 
 		$rom->setOpenMode(false);
+		$rom->setSwordlessMode(false);
+		$rom->setGanonAgahnimRng('vanilla');
 
 		$rom->setMaxArrows();
 		$rom->setMaxBombs();
@@ -138,9 +140,6 @@ class Randomize extends Command {
 
 		if (is_readable(public_path('js/base2current.json'))) {
 			$patch_left = json_decode(file_get_contents(public_path('js/base2current.json')), true);
-		}
-		if (is_readable(public_path('js/romreset.json'))) {
-			$patch_right = json_decode(file_get_contents(public_path('js/romreset.json')), true);
 		}
 
 		$this->reset_patch = patch_merge_minify($patch_left, $patch_right);
