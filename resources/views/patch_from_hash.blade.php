@@ -73,6 +73,7 @@
 								<option value="froglink.spr">Frog</option>
 								<option value="littlepony.spr">Pony</option>
 								<option value="mclink.spr">Minish Cap Link</option>
+								<option value="superbunny.spr">Super Bunny</option>
 								<option value="zelda.spr">Zelda</option>
 							</select>
 						</div>
