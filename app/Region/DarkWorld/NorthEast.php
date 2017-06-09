@@ -70,7 +70,7 @@ class NorthEast extends Region {
 		});
 
 		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
-			return $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
+			return $items->hasSword() && $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hammer')
 						|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')));
