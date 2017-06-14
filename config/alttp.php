@@ -229,4 +229,15 @@ return [
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
+	'sprites' => [
+		'link.spr' => 'Link',
+		'froglink.spr' => 'Frog',
+		'littlepony.spr' => 'Pony',
+		'mclink.spr' => 'Minish Cap Link',
+		'oldman.spr' => 'Old Man',
+		'superbunny.spr' => 'Super Bunny',
+		'wizzrobe.spr' => 'Wizzrobe',
+		'zelda.spr' => 'Zelda',
+		'random' => 'Random',
+	]
 ];
