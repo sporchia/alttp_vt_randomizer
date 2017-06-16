@@ -24,7 +24,7 @@ abstract class Filler {
 				return new Filler\RandomBeatable($world);
 			case 'Random':
 			default:
-				return new Filler\Random($world);
+				return new Filler\RandomSwap($world);
 		}
 	}
 

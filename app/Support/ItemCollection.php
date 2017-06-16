@@ -118,6 +118,17 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Intersect the collection with the given items.
+	 *
+	 * @param  mixed  $items
+	 *
+	 * @return static
+	 */
+	public function intersect($items) {
+		return new static(array_intersect($this->items, $this->getArrayableItems($items)));
+	}
+
+	/**
 	 * Execute a callback over each item.
 	 *
 	 * @param callable $callback

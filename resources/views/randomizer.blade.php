@@ -78,6 +78,7 @@
 					<select id="mode" class="form-control selectpicker">
 						<option value="standard">Standard</option>
 						<option value="open">Open</option>
+						<option value="swordless">Swordless</option>
 					</select>
 				</div>
 			</div>

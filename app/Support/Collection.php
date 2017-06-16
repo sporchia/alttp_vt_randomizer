@@ -246,6 +246,28 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/**
+	 * Intersect the collection with the given items.
+	 *
+	 * @param  mixed  $items
+	 *
+	 * @return static
+	 */
+	public function intersect($items) {
+		return new static(array_intersect($this->items, $this->getArrayableItems($items)));
+	}
+
+	/**
+	 * Determine if an item exists in the collection by key.
+	 *
+	 * @param mixed $key
+	 *
+	 * @return bool
+	 */
+	public function contains($item) {
+		return in_array($item, $this->items);
+	}
+
+	/**
 	 * Get the collection of items as a plain array.
 	 *
 	 * @return array

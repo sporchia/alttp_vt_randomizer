@@ -14,4 +14,25 @@ class Seed extends Model {
 			$seed->save();
 		});
 	}
+
+	public function setPatchAttribute($value) {
+		$sha1 = sha1($value);
+		$patch = Patch::firstOrCreate([
+			'sha1' => $sha1
+		]);
+		$patch->patch = $value;
+		$patch->save();
+
+		$this->attributes['patch'] = "[]";
+
+		$this->patch()->associate($patch);
+	}
+
+	public function getPatchAttribute() {
+		return $this->patch()->first()->patch;
+	}
+
+	public function patch() {
+		return $this->belongsTo(Patch::class, 'patch_id');
+	}
 }

@@ -16,7 +16,7 @@ class Distribution extends Command {
 		. ' {--logic=NoMajorGlitches : set logic}'
 		. ' {--goal=ganon : set game goal}'
 		. ' {--mode=standard : set game mode}'
-		. ' {--csv=distribution.csv : file to write to}';
+		. ' {--csv= : file to write to}';
 
 	/**
 	 * The console command description.
@@ -66,14 +66,16 @@ class Distribution extends Command {
 				return $this->error('Invalid distribution');
 		}
 
-		$bar = $this->output->createProgressBar($this->argument('itterations'));
+		if ($this->option('verbose')) {
+			$bar = $this->output->createProgressBar($this->argument('itterations'));
+		}
 
 		for ($i = 0; $i < $this->argument('itterations'); $i++) {
 			call_user_func_array($function, [$thing, &$locations]);
-			$bar->advance();
+			isset($bar) && $bar->advance();
 		}
 
-		$bar->finish();
+		isset($bar) && $bar->finish();
 
 		if ($this->option('csv')) {
 			$locations = $this->_assureColumnsExist($locations);

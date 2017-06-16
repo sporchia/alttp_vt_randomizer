@@ -111,7 +111,10 @@ class World {
 
 					return ($collected_items->has('MoonPearl') || $collected_items->hasABottle())
 						&& $collected_items->canLightTorches()
-						&& $collected_items->hasUpgradedSword()
+						&& (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
+						&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
+								|| ($collected_items->has('SilverArrowUpgrade')
+									&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 						&& $collected_items->has('PegasusBoots')
 						&& $collected_items->has('Crystal1')
 						&& $collected_items->has('Crystal2')
@@ -134,7 +137,10 @@ class World {
 						}
 					}
 
-					return $collected_items->hasUpgradedSword()
+					return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
+						&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
+								|| ($collected_items->has('SilverArrowUpgrade')
+									&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 						&& $collected_items->canLightTorches()
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
@@ -151,7 +157,10 @@ class World {
 							}
 						}
 
-						return $collected_items->hasUpgradedSword()
+						return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
+							&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
+									|| ($collected_items->has('SilverArrowUpgrade')
+										&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 							&& $collected_items->canLightTorches()
 							&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 					};
@@ -173,7 +182,8 @@ class World {
 							|| ($collected_items->has('SilverArrowUpgrade')
 								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows'))))
 						&& (
-							$collected_items->has('L3Sword')
+							config('game-mode') == 'swordless'
+							|| $collected_items->has('L3Sword')
 							|| $collected_items->has('L4Sword')
 							|| $collected_items->has('ProgressiveSword', 3)
 						)
@@ -193,7 +203,10 @@ class World {
 					}
 				}
 
-				return $collected_items->hasUpgradedSword()
+				return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
+					&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
+							|| ($collected_items->has('SilverArrowUpgrade')
+								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 					&& $collected_items->canLightTorches()
 					&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 			};
@@ -531,7 +544,7 @@ class World {
 
 	public function collectItems() {
 		$my_items = new ItemCollection;
-		$available_locations = $this->locations->filter(function($location) use ($my_items) {
+		$available_locations = $this->locations->filter(function($location) {
 			return !is_a($location, Location\Medallion::class)
 				&& !is_a($location, Location\Fountain::class)
 				&& $location->hasItem();
@@ -549,6 +562,31 @@ class World {
 		} while ($new_items->count() > 0);
 
 		return $my_items;
+	}
+
+	public function getLocationSpheres() {
+		$sphere = 0;
+		$location_sphere = [];
+		$my_items = new ItemCollection;
+		$found_locations = new LocationCollection;
+		do {
+			$sphere++;
+			$available_locations = $this->locations->filter(function($location) use ($my_items) {
+				return !is_a($location, Location\Medallion::class)
+					&& !is_a($location, Location\Fountain::class)
+					&& !in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])
+					&& $location->canAccess($my_items);
+			});
+			$location_sphere[$sphere] = $available_locations->diff($found_locations);
+
+			$found_items = $available_locations->getItems();
+			$found_locations = $available_locations;
+
+			$new_items = $found_items->diff($my_items);
+			$my_items = $found_items;
+		} while ($new_items->count() > 0);
+
+		return $location_sphere;
 	}
 
 	/**

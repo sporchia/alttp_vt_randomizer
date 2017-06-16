@@ -6,6 +6,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel {
 	protected $commands = [
 		Commands\Distribution::class,
+		Commands\JsonToCsv::class,
 		Commands\LogicArray::class,
 		Commands\Randomize::class,
 		Commands\SpoilerFromRom::class,

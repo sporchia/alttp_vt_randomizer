@@ -45,24 +45,24 @@ class HyruleCastleEscapeTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testSewersFirstRoomRequiresGloves() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
-			->canAccess($this->allItemsExcept(['Gloves'])));
+	public function testSewersFirstRoomRequiresNothing() {
+		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
+			->canAccess($this->collected));
 	}
 
-	public function testSewersFinalRoomChestLRequiresGloves() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [left chest]")
-			->canAccess($this->allItemsExcept(['Gloves'])));
+	public function testSewersFinalRoomChestLRequiresNothing() {
+		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [left chest]")
+			->canAccess($this->collected));
 	}
 
-	public function testSewersFinalRoomChestMRequiresGloves() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [middle chest]")
-			->canAccess($this->allItemsExcept(['Gloves'])));
+	public function testSewersFinalRoomChestMRequiresNothing() {
+		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [middle chest]")
+			->canAccess($this->collected));
 	}
 
-	public function testSewersFinalRoomChestRRequiresGloves() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [right chest]")
-			->canAccess($this->allItemsExcept(['Gloves'])));
+	public function testSewersFinalRoomChestRRequiresNothing() {
+		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [right chest]")
+			->canAccess($this->collected));
 	}
 
 	// Key filling

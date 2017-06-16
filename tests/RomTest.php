@@ -500,14 +500,14 @@ class RomTest extends TestCase {
 		$this->assertEquals(0x00, $this->rom->read(0x18003A));
 	}
 
-	public function testSetMirrorlessSaveAneQuitToLightWorldOn() {
-		$this->rom->setMirrorlessSaveAneQuitToLightWorld(true);
+	public function testSetMirrorlessSaveAndQuitToLightWorldOn() {
+		$this->rom->setMirrorlessSaveAndQuitToLightWorld(true);
 
 		$this->assertEquals(0x01, $this->rom->read(0x1800A0));
 	}
 
-	public function testSetMirrorlessSaveAneQuitToLightWorldOff() {
-		$this->rom->setMirrorlessSaveAneQuitToLightWorld(false);
+	public function testSetMirrorlessSaveAndQuitToLightWorldOff() {
+		$this->rom->setMirrorlessSaveAndQuitToLightWorld(false);
 
 		$this->assertEquals(0x00, $this->rom->read(0x1800A0));
 	}

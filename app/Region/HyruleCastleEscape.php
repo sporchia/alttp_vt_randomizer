@@ -136,7 +136,7 @@ class HyruleCastleEscape extends Region {
 					"[dungeon-C-B1] Escape - final basement room [right chest]",
 				]));
 			}
-			
+
 			return true;
 		});
 
@@ -183,7 +183,7 @@ class HyruleCastleEscape extends Region {
 				]));
 			}
 
-			return $items->canLiftRocks();
+			return true;
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
@@ -195,7 +195,7 @@ class HyruleCastleEscape extends Region {
 				]));
 			}
 
-			return $items->canLiftRocks();
+			return true;
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
@@ -207,7 +207,7 @@ class HyruleCastleEscape extends Region {
 				]));
 			}
 
-			return $items->canLiftRocks();
+			return true;
 		});
 
 		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
@@ -215,7 +215,7 @@ class HyruleCastleEscape extends Region {
 				return $items->has('Lamp');
 			}
 
-			return $items->canLiftRocks();
+			return true;
 		});
 
 		return $this;

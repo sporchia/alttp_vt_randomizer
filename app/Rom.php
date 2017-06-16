@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-06-06';
-	const HASH = 'd5b61947feef1972e0f546ba43180e62';
+	const BUILD = '2017-06-14';
+	const HASH = '4c109d24aa991777e17d0b5ef05d4ea7';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -249,6 +249,20 @@ class Rom {
 	 */
 	public function setMaxArrows($max = 30) : self {
 		$this->write(0x180035, pack('C', $max));
+
+		return $this;
+	}
+
+	/**
+	 * Set the Digging Game Rng
+	 *
+	 * @param int $digs
+	 *
+	 * @return $this
+	 */
+	public function setDiggingGameRng($digs = 15) : self {
+		$this->write(0x180020, pack('C', $digs));
+		$this->write(0xEFD95, pack('C', $digs));
 
 		return $this;
 	}
@@ -1348,6 +1362,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable text box to show with free roaming items
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setFreeItemTextMode($enable = true) : self {
+		$this->write(0x18016A, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Enable swordless mode
 	 *
 	 * @param bool $enable switch on or off
@@ -1355,7 +1382,10 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSwordlessMode($enable = false) : self {
-		$this->write(0x18003F, pack('C*', $enable ? 0x01 : 0x00));
+		$this->write(0x18003F, pack('C*', $enable ? 0x01 : 0x00)); // Hammer Ganon
+		$this->write(0x180040, pack('C*', $enable ? 0x01 : 0x00)); // Open Curtains
+		$this->write(0x180041, pack('C*', $enable ? 0x01 : 0x00)); // Swordless Medallions
+		$this->write(0x180043, pack('C*', $enable ? 0xFF : 0x00)); // set Link's starting sword 0xFF is taken sword
 
 		return $this;
 	}
@@ -1406,8 +1436,21 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMirrorlessSaveAneQuitToLightWorld($enable = true) : self {
+	public function setMirrorlessSaveAndQuitToLightWorld($enable = true) : self {
 		$this->write(0x1800A0, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable ability to Save and Quit from Boss room after item collection.
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSaveAndQuitFromBossRoom($enable = false) : self {
+		$this->write(0x180042, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -1439,6 +1482,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable/Disable World on Agahnim Death
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setWorldOnAgahnimDeath($enable = true) : self {
+		$this->write(0x1800A3, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Enable/Disable locking Hyrule Castle Door to AG1 during escape
 	 *
 	 * @param bool $enable switch on or off
@@ -1464,11 +1520,9 @@ class Rom {
 				$byte = 0x01;
 				break;
 			case 'vanilla':
-				$byte = 0x00;
-				break;
 			case 'table':
 			default:
-				$byte = 0x02;
+				$byte = 0x00;
 		}
 
 		$this->write(0x180086, pack('C', $byte));

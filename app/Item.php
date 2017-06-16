@@ -206,6 +206,8 @@ class Item {
 			new Item('Triforce', 'Triforce', [0x6A]),
 			new Item('PowerStar', 'Power Star', [0x6B]),
 			new Item('TriforcePiece', 'Triforce Piece', [0x6C]),
+			new Item\Map('MapLW', 'Light World Map', [0x70]),
+			new Item\Map('MapDW', 'Dark World Map', [0x71]),
 			new Item\Map('MapA2', 'Ganons Tower Map', [0x72]),
 			new Item\Map('MapD7', 'Turtle Rock Map', [0x73]),
 			new Item\Map('MapD4', 'Thieves Town Map', [0x74]),
