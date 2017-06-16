@@ -151,14 +151,9 @@
 						<div class="input-group" role="group">
 							<span class="input-group-addon">Play as</span>
 							<select id="sprite-gfx" class="form-control selectpicker">
-								<option value="link.spr">Link</option>
-								<option value="froglink.spr">Frog</option>
-								<option value="littlepony.spr">Pony</option>
-								<option value="mclink.spr">Minish Cap Link</option>
-								<option value="oldman.spr">Old Man</option>
-								<option value="superbunny.spr">Super Bunny</option>
-								<option value="wizzrobe.spr">Wizzrobe</option>
-								<option value="zelda.spr">Zelda</option>
+@foreach (config('alttp.sprites') as $sprite => $sprite_name)
+								<option value="{{ $sprite }}">{{ $sprite_name }}</option>
+@endforeach
 							</select>
 						</div>
 					</div>
@@ -748,6 +743,10 @@ function pasrseSpoilerToTabs(spoiler) {
 
 function getSprite(sprite_name) {
 	return new Promise(function(resolve, reject) {
+		if (sprite_name == 'random') {
+			var options = $('#sprite-gfx option');
+			sprite_name = options[Math.floor(Math.random() * (options.length - 1))].value;
+		}
 		localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
 			if (spr) {
 				resolve(spr);
