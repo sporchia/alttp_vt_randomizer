@@ -238,6 +238,5 @@ return [
 		'superbunny.spr' => 'Super Bunny',
 		'wizzrobe.spr' => 'Wizzrobe',
 		'zelda.spr' => 'Zelda',
-		'random' => 'Random',
-	]
+	],
 ];

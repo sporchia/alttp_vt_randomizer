@@ -151,9 +151,10 @@
 						<div class="input-group" role="group">
 							<span class="input-group-addon">Play as</span>
 							<select id="sprite-gfx" class="form-control selectpicker">
-@foreach (config('alttp.sprites') as $sprite => $sprite_name)
+							@foreach(config('alttp.sprites') as $sprite => $sprite_name)
 								<option value="{{ $sprite }}">{{ $sprite_name }}</option>
-@endforeach
+							@endforeach
+								<option value="random">Random</option>
 							</select>
 						</div>
 					</div>

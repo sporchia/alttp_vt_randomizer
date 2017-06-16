@@ -713,7 +713,7 @@ class Randomizer {
 			Log::info('Boots revealed');
 			switch ($boots_location->getName()) {
 				case "[cave-040] Link's House":
-					$rom->setUncleTextString("Lonk! Boots\nare in here!");
+					$rom->setUncleTextString("Lonk!\nYou'll never\nfind the boots");
 					break;
 				case "Piece of Heart (Maze Race)":
 					$rom->setUncleTextString("Boots at race?\nSeed confirmed\nimpossible.");
