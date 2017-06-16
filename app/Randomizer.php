@@ -712,6 +712,9 @@ class Randomizer {
 		if ($this->config('spoil.BootsLocation', true) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
 			switch ($boots_location->getName()) {
+				case "[cave-040] Link's House":
+					$rom->setUncleTextString("Lonk! Boots\nare in here!");
+					break;
 				case "Piece of Heart (Maze Race)":
 					$rom->setUncleTextString("Boots at race?\nSeed confirmed\nimpossible.");
 					break;
