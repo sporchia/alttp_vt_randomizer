@@ -138,9 +138,6 @@ return [
 				'SilverArrowUpgrade' => 0,
 			],
 		],
-		'region' => [
-			'CompassesMaps' => false,
-		],
 		'rom' => [
 			'HardMode' => 1,
 		],
@@ -185,9 +182,6 @@ return [
 				'L4Sword' => 0,
 				'SilverArrowUpgrade' => 0,
 			],
-		],
-		'region' => [
-			'CompassesMaps' => false,
 		],
 		'rom' => [
 			'HardMode' => 2,

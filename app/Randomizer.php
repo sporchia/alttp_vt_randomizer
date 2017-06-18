@@ -521,7 +521,18 @@ class Randomizer {
 		// testing features
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 		$rom->setLockAgahnimDoorInEscape(false);
-		$rom->setGanonInvincible($this->goal == 'pedestal');
+
+		switch ($this->goal) {
+			case 'pedestal':
+				$rom->setGanonInvincible('yes');
+				break;
+			case 'dungeons':
+				$rom->setGanonInvincible('dungeons');
+				break;
+			default:
+				$rom->setGanonInvincible('no');
+		}
+
 		$rom->setMapMode($this->config('rom.mapOnPickup'));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 

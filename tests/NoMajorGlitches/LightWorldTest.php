@@ -82,13 +82,13 @@ class LightWorldTest extends TestCase {
 			->canAccess($this->collected));
 	}
 
-	public function testLinksHouseCannotHavePowerGloves() {
-		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")
+	public function testLinksHouseCanHavePowerGloves() {
+		$this->assertTrue($this->world->getLocation("[cave-040] Link's House")
 			->fill(Item::get('PowerGlove'), $this->allItems()));
 	}
 
-	public function testLinksHouseCannotHaveTitanMitts() {
-		$this->assertFalse($this->world->getLocation("[cave-040] Link's House")
+	public function testLinksHouseCanHaveTitanMitts() {
+		$this->assertTrue($this->world->getLocation("[cave-040] Link's House")
 			->fill(Item::get('TitansMitt'), $this->allItems()));
 	}
 

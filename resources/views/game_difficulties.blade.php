@@ -97,12 +97,10 @@
 				<li>Boomerangs</li>
 				<li>Bug Catching Net</li>
 				<li>Cane Of Byrna</li>
-				<li>Compasses</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
 				<li>Red Mail</li>
-				<li>Maps</li>
 				<li>Mirror Shield</li>
 			</ul>
 			<p>The following items have had their count reduced:</p>
@@ -135,12 +133,10 @@
 				<li>Boomerangs</li>
 				<li>Bug Catching Net</li>
 				<li>Cane Of Byrna</li>
-				<li>Compasses</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
 				<li>Mails</li>
-				<li>Maps</li>
 				<li>Shields</li>
 				<li>Silver Arrow Upgrade</li>
 				<li>Tempered Sword</li>

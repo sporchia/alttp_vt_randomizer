@@ -161,16 +161,6 @@ class LightWorld extends Region {
 
 		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
 			return true;
-		})->setFillRules(function($item, $locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return true;
-			}
-
-			return !in_array($item, [
-				Item::get('TitansMitt'),
-				Item::get('PowerGlove'),
-				Item::get('ProgressiveGlove'),
-			]);
 		});
 
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {

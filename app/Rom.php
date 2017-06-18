@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-06-14';
-	const HASH = '4c109d24aa991777e17d0b5ef05d4ea7';
+	const BUILD = '2017-06-17';
+	const HASH = '2da16776168dada7f307cf044675eca7';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -344,14 +344,26 @@ class Rom {
 	}
 
 	/**
-	 * Set Ganon to Invincible
+	 * Set Ganon to Invincible. 'dungeons' will require all dungeon bosses are dead to be able to damage Ganon.
 	 *
-	 * @param bool $enable switch on or off
+	 * @param string $setting
 	 *
 	 * @return $this
 	 */
-	public function setGanonInvincible($enable = false) : self {
-		$this->write(0x18003E, pack('C*', $enable ? 0x01 : 0x00));
+	public function setGanonInvincible($setting = 'no') : self {
+		switch ($setting) {
+			case 'dungeons':
+				$byte = pack('C*', 0x02);
+				break;
+			case 'yes':
+				$byte = pack('C*', 0x01);
+				break;
+			case 'no':
+			default:
+				$byte = pack('C*', 0x00);
+				break;
+		}
+		$this->write(0x18003E, $byte);
 
 		return $this;
 	}

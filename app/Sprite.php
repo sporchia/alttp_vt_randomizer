@@ -430,7 +430,7 @@ class Sprite {
 			'persist' => $bytes[4] >> 5 & 1,
 			'hitbox' => $bytes[4] & 0x1F,
 			'hitbox_interaction' => $bytes[5] >> 4,
-			'unknown3' => $bytes[5] >> 3 & 1,
+			'deflect_arrows' => $bytes[5] >> 3 & 1,
 			'unknown4' => $bytes[5] >> 2 & 1,
 			'death_boss' => $bytes[5] >> 1 & 1,
 			'falls_in_holes' => $bytes[5] & 1,
