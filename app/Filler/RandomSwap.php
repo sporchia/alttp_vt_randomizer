@@ -21,6 +21,13 @@ class RandomSwap extends Filler {
 	public function fill(array $required, array $nice, array $extra) {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 		$requiredCollection = new Items($required);
+		// to make sure all bottles are accounted for
+		$bottles = Item::all()->filter(function($item) {
+			return is_a($item, Item\Bottle::class);
+		});
+		foreach ($bottles as $bottle) {
+			$requiredCollection->addItem($bottle);
+		}
 		$my_items = $this->world->collectItems();
 
 		$this->fastFillItemsInLocations($this->shuffleItems(array_merge($required, $nice)), $my_items, $randomized_order_locations);
