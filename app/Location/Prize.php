@@ -38,9 +38,15 @@ class Prize extends Location {
 		parent::writeItem($rom, $item);
 
 		if (isset($this->region->music_addresses) && is_array($this->region->music_addresses)) {
-			$item = $this->getItem();
+			if ($this->region->getWorld()->config('rom.mapOnPickup', false)) {
+				$music = mt_rand(0, 1) == 0 ? 0x11 : 0x16;
+			} else {
+				$item = $this->getItem();
+				$music = is_a($item, Pendant::class) ? 0x11 : 0x16;
+			}
+
 			foreach ($this->region->music_addresses as $address) {
-				$rom->write($address, pack('C*', is_a($item, Pendant::class) ? 0x11 : 0x16));
+				$rom->write($address, pack('C*', $music));
 			}
 		}
 

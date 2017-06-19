@@ -2,8 +2,6 @@
 
 return [
 	'normal' => [
-		'region' => [
-		],
 		'spoil' => [
 			'BootsLocation' => true,
 		],
@@ -18,6 +16,19 @@ return [
 				'Required' => 10,
 				'Icon' => 'triforce',
 			],
+		],
+	],
+	'freerange' => [
+		'rom' => [
+			'mapOnPickup' => true,
+			'compassOnPickup' => true,
+		],
+		'region' => [
+			'mapsInDungeons' => false,
+			'compassesInDungeons' => false,
+		],
+		'spoil' => [
+			'BootsLocation' => true,
 		],
 	],
 	'timed' => [
@@ -225,12 +236,15 @@ return [
 	],
 	'sprites' => [
 		'link.spr' => 'Link',
-		'froglink.spr' => 'Frog',
-		'littlepony.spr' => 'Pony',
-		'mclink.spr' => 'Minish Cap Link',
-		'oldman.spr' => 'Old Man',
-		'superbunny.spr' => 'Super Bunny',
-		'wizzrobe.spr' => 'Wizzrobe',
-		'zelda.spr' => 'Zelda',
+		'boo.2.spr' => 'Boo',
+		'froglink.1.spr' => 'Frog',
+		'littlepony.1.spr' => 'Pony',
+		'minishcaplink.1.spr' => 'Minish Cap Link',
+		'oldman.1.spr' => 'Old Man',
+		'samus.1.spr' => 'Samus',
+		'superbunny.1.spr' => 'Super Bunny',
+		'wizzrobe.1.spr' => 'Wizzrobe',
+		'zelda.1.spr' => 'Zelda',
+		'zora.1.spr' => 'Zora',
 	],
 ];

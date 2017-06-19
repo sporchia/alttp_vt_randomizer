@@ -580,7 +580,7 @@ var ROM = ROM || (function(blob, loaded_callback) {
 			for (var i = 0; i < 0x7000; i++) {
 				u_array[0x80000 + i] = spr[i];
 			}
-			for (var i = 0; i < 90; i++) {
+			for (var i = 0; i < 120; i++) {
 				u_array[0xDD308 + i] = spr[0x7000 + i];
 			}
 			resolve(this);

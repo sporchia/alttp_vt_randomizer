@@ -533,7 +533,9 @@ class Randomizer {
 				$rom->setGanonInvincible('no');
 		}
 
-		$rom->setMapMode($this->config('rom.mapOnPickup'));
+		$rom->setMapMode($this->config('rom.mapOnPickup', false));
+		$rom->setCompassMode($this->config('rom.compassOnPickup', false));
+		$rom->setFreeItemTextMode($this->config('rom.itemText', false));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 
 		$rom->writeRNGBlock(function() {
@@ -1195,9 +1197,7 @@ class Randomizer {
 			array_push($items_to_find, Item::get('MapD5'));
 			array_push($items_to_find, Item::get('MapD6'));
 			array_push($items_to_find, Item::get('MapD7'));
-			array_push($items_to_find, Item::get('MapDW'));
 			array_push($items_to_find, Item::get('MapH1'));
-			array_push($items_to_find, Item::get('MapLW'));
 			array_push($items_to_find, Item::get('MapP1'));
 			array_push($items_to_find, Item::get('MapP2'));
 			array_push($items_to_find, Item::get('MapP3'));
