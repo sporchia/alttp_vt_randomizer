@@ -58,6 +58,7 @@ class UpdateBaseJson extends Command {
 		});
 
 		file_put_contents(public_path('js/base2current.json'), json_encode(array_values($forwards)));
+		//file_put_contents(public_path('patch/base2current.ips'), (new \ALttP\Support\Ips)->patchToIps(array_values($forwards)));
 
 		$this->info(sprintf('file updated'));
 	}
