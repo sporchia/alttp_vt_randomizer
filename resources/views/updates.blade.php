@@ -32,6 +32,7 @@
 		<li>You can use medallions swordless outside Misery Mire and Turtle Rock (but nowhere else) [swordless]</li>
 		<li>The 4 swords have been removed from the pool and replaced with 20 rupees [swordless]</li>
 	</ul>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/GaUggPXL3M0?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <h2>VT8.22</h2>
@@ -80,6 +81,7 @@
 		<li>Map no longer breaks after you’ve beaten Ganon’s Tower [glitched]</li>
 		<li>Fake DW no longer corrupts Agahnim 2 [glitched]</li>
 	</ul>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/YCTbYA_eVNw?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <h2>V8 Updates</h2>
