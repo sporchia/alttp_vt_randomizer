@@ -329,6 +329,13 @@ class Randomizer {
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
 		} else {
+			// In swordless we need to catch all swords
+			foreach ($nice_items as $key => $item) {
+				if (is_a($item, Item\Sword::class)) {
+					unset($nice_items[$key]);
+					$nice_items_swords[] = $item;
+				}
+			}
 			// In swordless mode silvers are 100% required
 			foreach ($nice_items_swords as $unneeded) {
 				array_push($nice_items, Item::get('TwentyRupees2'));
