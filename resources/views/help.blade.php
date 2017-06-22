@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-
 <h1>What has been randomized?</h1>
 <div class="well">
 	<ul>
@@ -44,12 +43,6 @@
 		<li>The Fat Faerie does not upgrade your Sword or Bow but her cave now contains two randomized
 			chests which account for her usual upgrades having been shuffled into the mix.</li>
 	</ul>
-</div>
-
-<h1>What other changes have been made?</h1>
-<div class="well">
-	<p>There are many changes beyond what is listed above. A full changelog can
-		be found <a href="https://goo.gl/uJPmXT" target="_blank">here</a>.</p>
 </div>
 
 <h1>Hints</h1>

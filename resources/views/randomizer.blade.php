@@ -32,23 +32,46 @@
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Generate</h3>
 		<div class="btn-toolbar pull-right">
-			<button class="btn btn-info" name="generate-tournament-rom">Generate Race ROM (no spoilers)</button>
+
 			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
-		<div class="row" style="padding-bottom:5px;">
-			<div class="col-md-3">
+		<div class="row">
+			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Seed</span>
-					<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
-					<span class="input-group-btn">
-						<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
-					</span>
+					<span class="input-group-addon">Mode</span>
+					<select id="mode" class="form-control selectpicker">
+						<option value="standard">Standard</option>
+						<option value="open">Open</option>
+						<option value="swordless">Swordless</option>
+					</select>
 				</div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Logic</span>
+					<select id="logic" class="form-control selectpicker">
+						<option value="NoMajorGlitches">No Glitches</option>
+						<option value="SpeedRunner">Minor Glitches</option>
+						<option value="Glitched">Major Glitches</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Goal</span>
+					<select id="goal" class="form-control selectpicker">
+						<option value="ganon">Defeat Ganon</option>
+						<option value="dungeons">All Dungeons</option>
+						<option value="pedestal">Master Sword Pedestal</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
@@ -62,43 +85,72 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-3">
+		</div>
+		<div class="row">
+			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Logic</span>
-					<select id="logic" class="form-control selectpicker">
-						<option value="NoMajorGlitches">No Glitches</option>
-						<option value="SpeedRunner">Minor Glitches</option>
-						<option value="Glitched">Major Glitches</option>
-					</select>
+					<span class="input-group-addon">Seed</span>
+					<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
+					<span class="input-group-btn">
+						<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+					</span>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Mode</span>
-					<select id="mode" class="form-control selectpicker">
-						<option value="standard">Standard</option>
-						<option value="open">Open</option>
-						<option value="swordless">Swordless</option>
-					</select>
+			<div class="col-md-6 pb-5">
+			</div>
+		</div>
+		<div class="panel panel-info panel-collapse collapse" id="rom-settings">
+			<div class="panel-heading">
+				<h4 class="panel-title">ROM Settings</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-6 pb-5">
+					<div class="input-group" role="group">
+						<span class="input-group-addon">Heart Beep</span>
+						<select id="heart-speed" class="form-control selectpicker">
+							<option value="off">Off</option>
+							<option value="normal">Normal Speed</option>
+							<option value="half" selected>Half Speed</option>
+							<option value="quarter">Quarter Speed</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6 pb-5">
+					<div class="input-group" role="group">
+						<span class="input-group-addon">Play as</span>
+						<select id="sprite-gfx" class="form-control selectpicker">
+						@foreach(config('alttp.sprites') as $sprite => $sprite_name)
+							<option value="{{ $sprite }}">{{ $sprite_name }}</option>
+						@endforeach
+							<option value="random">Random</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for"generate-sram-trace">SRAM Trace</label>
+				</div>
+				<div class="secrets" style="display:none">
+					<div class="col-md-6">
+						<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+						<label for"generate-debug">Debug Mode</label>
+					</div>
+					<div class="col-md-6">
+						<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+						<label for"generate-tournament">Tournament Mode</label>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row" style="padding-bottom:5px;">
-			<div class="col-md-3">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Goal</span>
-					<select id="goal" class="form-control selectpicker">
-						<option value="ganon">Defeat Ganon</option>
-						<option value="dungeons">All Dungeons</option>
-						<option value="pedestal">Master Sword Pedestal</option>
-					</select>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="btn-group btn-flex" role="group">
+					<button class="btn btn-info" name="generate-tournament-rom">Generate Race ROM (no spoilers)</button>
 				</div>
 			</div>
-			<div class="col-md-3">
-			</div>
-			<div class="col-md-3">
-			</div>
-			<div class="col-md-3">
+			<div class="col-md-6">
 				<div class="btn-group btn-flex" role="group">
 					<button name="generate" class="btn btn-success" disabled>Generate ROM</button>
 					<button name="generate-save" class="btn btn-success" disabled><span class="glyphicon glyphicon-save"></span></button>
@@ -110,55 +162,6 @@
 						<li><a data-value="{{ $i }}">Generate {{ $i }} seeds</a></li>
 						@endfor
 					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-info panel-collapse collapse" id="rom-settings">
-			<div class="panel-heading">
-				<h4 class="panel-title">ROM Settings</h4>
-			</div>
-			<div class="panel-body">
-				<div class="col-md-6">
-					<div class="row">
-						<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-						<label for"generate-sram-trace">SRAM Trace</label>
-					</div>
-					<div class="secrets" style="display:none">
-						<div class="row">
-							<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-							<label for"generate-debug">Debug Mode</label>
-						</div>
-						<div class="row">
-							<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-							<label for"generate-tournament">Tournament Mode</label>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Heart Beep</span>
-							<select id="heart-speed" class="form-control selectpicker">
-								<option value="off">Off</option>
-								<option value="normal">Normal Speed</option>
-								<option value="half" selected>Half Speed</option>
-								<option value="quarter">Quarter Speed</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Play as</span>
-							<select id="sprite-gfx" class="form-control selectpicker">
-							@foreach(config('alttp.sprites') as $sprite => $sprite_name)
-								<option value="{{ $sprite }}">{{ $sprite_name }}</option>
-							@endforeach
-								<option value="random">Random</option>
-							</select>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

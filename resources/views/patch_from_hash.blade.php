@@ -19,9 +19,9 @@
 		<p>Please use a Zelda no Densetsu: Kamigami no Triforce v1.0 ROM</p>
 	</div>
 </div>
-<div id="seed-details" class="info panel panel-info" style="display:none">
+<div id="seed-details" class="info panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Seed Details: <span class="seed"></span></h3>
+		<h3 class="panel-title pull-left">Game Details: <span class="seed"></span></h3>
 		<button class="btn btn-default pull-right" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog"></span></button>
 		<div class="clearfix"></div>
 	</div>
@@ -40,42 +40,36 @@
 			</div>
 		</div>
 	</div>
-		<div class="panel panel-success panel-collapse collapse" id="rom-settings">
+		<div class="panel panel-info panel-collapse collapse" id="rom-settings">
 			<div class="panel-heading">
 				<h4 class="panel-title">ROM Settings</h4>
 			</div>
 			<div class="panel-body">
-				<div class="col-md-6">
-					<div class="row">
-						<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-						<label for"generate-sram-trace">SRAM Trace</label>
+				<div class="col-md-6 pb-5">
+					<div class="input-group" role="group">
+						<span class="input-group-addon">Heart Beep</span>
+						<select id="heart-speed" class="form-control selectpicker">
+							<option value="off">Off</option>
+							<option value="normal">Normal Speed</option>
+							<option value="half" selected>Half Speed</option>
+							<option value="quarter">Quarter Speed</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6 pb-5">
+					<div class="input-group" role="group">
+						<span class="input-group-addon">Play as</span>
+						<select id="sprite-gfx" class="form-control selectpicker">
+						@foreach(config('alttp.sprites') as $sprite => $sprite_name)
+							<option value="{{ $sprite }}">{{ $sprite_name }}</option>
+						@endforeach
+							<option value="random">Random</option>
+						</select>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="row">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Heart Beep</span>
-							<select id="heart-speed" class="form-control selectpicker">
-								<option value="off">Off</option>
-								<option value="normal">Normal Speed</option>
-								<option value="half" selected>Half Speed</option>
-								<option value="quarter">Quarter Speed</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<div class="input-group" role="group">
-							<span class="input-group-addon">Play as</span>
-							<select id="sprite-gfx" class="form-control selectpicker">
-							@foreach(config('alttp.sprites') as $sprite => $sprite_name)
-								<option value="{{ $sprite }}">{{ $sprite_name }}</option>
-							@endforeach
-								<option value="random">Random</option>
-							</select>
-						</div>
-					</div>
+					<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for"generate-sram-trace">SRAM Trace</label>
 				</div>
 			</div>
 		</div>

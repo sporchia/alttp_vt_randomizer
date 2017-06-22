@@ -38,6 +38,10 @@ Route::get('help', function () {
 	return view('help');
 });
 
+Route::get('updates', function () {
+	return view('updates');
+});
+
 Route::get('spoiler_click/{seed_id?}', function() {
 	return "Ok";
 });
@@ -139,6 +143,9 @@ Route::get('h/{hash}', function(Request $request, $hash) {
 	$seed = ALttP\Seed::where('hash', $hash)->first();
 	if ($seed) {
 		$build = ALttP\Build::where('build', $seed->build)->first();
+		if (!$build) {
+			abort(404);
+		}
 		return view('patch_from_hash', [
 			'hash' => $hash,
 			'md5' => $build->hash,

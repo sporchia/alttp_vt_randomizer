@@ -30,5 +30,24 @@
 		</div>
 	</div>
 
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h3 class="panel-title">Swordless</h3>
+		</div>
+		<div class="panel-body">
+			<p>Imagine a world without swords, we have! And now you can play it. Find the Hammer and smack
+				aruond Ganon, then skewer him with your silver arrows. You're going to have to use unconventional
+				methods to beat a lot of enemies, so be prepared for a hard time, and lots of fun.</p>
+			<ul>
+				<li>No swords are accessible. They have been replaced with 4 copies of 20 rupees (the green ones with a 20 on them).</li>
+				<li>The curtains/vines blocking progression in Agahnim's Tower and Skull Woods are pre-opened.</li>
+				<li>Hammer can break the barrier blocking entrance to Agahnim's Tower.</li>
+				<li>Medallions can only be used directly outside Misery Mire and Turtle Rock (they usually required a sword to use).</li>
+				<li>Ganon can be damaged by the Hammer.</li>
+				<li>Silver Arrows are available in all difficulties (normal/hard/expert).</li>
+				<li>Ether/Bombos tablets are currently not accessible and never required to progress.</li>
+			</ul>
+		</div>
+	</div>
 </div>
 @overwrite

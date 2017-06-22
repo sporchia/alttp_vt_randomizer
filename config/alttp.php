@@ -237,7 +237,9 @@ return [
 	'sprites' => [
 		'link.spr' => 'Link',
 		'boo.2.spr' => 'Boo',
+		'boy.1.spr' => 'Boy',
 		'froglink.1.spr' => 'Frog',
+		'girl.1.spr' => 'Girl',
 		'littlepony.1.spr' => 'Pony',
 		'minishcaplink.1.spr' => 'Minish Cap Link',
 		'oldman.1.spr' => 'Old Man',

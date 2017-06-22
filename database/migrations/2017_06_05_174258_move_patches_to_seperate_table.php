@@ -18,15 +18,20 @@ class MovePatchesToSeperateTable extends Migration {
 			$table->timestamps();
 		});
 
-		DB::statement("INSERT IGNORE INTO patches (sha1, patch, created_at, updated_at)
-			SELECT SHA1(patch) AS sha1, patch, created_at, updated_at FROM seeds;");
+		if (DB::getDriverName() == 'mysql') {
+			DB::statement("INSERT IGNORE INTO patches (sha1, patch, created_at, updated_at)
+				SELECT SHA1(patch) AS sha1, patch, created_at, updated_at FROM seeds;");
+		}
 
 		Schema::table('seeds', function (Blueprint $table) {
-			$table->integer('patch_id')->after('game_mode');
+			$table->integer('patch_id')->default(0)->after('game_mode');
 			$table->dropColumn(['vt_complexity', 'complexity']);
 		});
 
-		DB::update("UPDATE seeds JOIN patches ON patches.sha1 = SHA1(seeds.patch) SET seeds.patch_id = patches.id");
+		if (DB::getDriverName() == 'mysql') {
+			DB::update("UPDATE seeds JOIN patches ON patches.sha1 = SHA1(seeds.patch) SET seeds.patch_id = patches.id");
+			DB::update("UPDATE seeds SET seeds.patch = '[]'");
+		}
 	}
 
 	/**
@@ -35,7 +40,9 @@ class MovePatchesToSeperateTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		DB::update("UPDATE seeds JOIN patches ON patches.id = seeds.patch_id SET seeds.patch = patches.patch;");
+		if (DB::getDriverName() == 'mysql') {
+			DB::update("UPDATE seeds JOIN patches ON patches.id = seeds.patch_id SET seeds.patch = patches.patch;");
+		}
 
 		Schema::table('seeds', function (Blueprint $table) {
 			$table->dropColumn('patch_id');
