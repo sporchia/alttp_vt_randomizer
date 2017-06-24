@@ -54,7 +54,7 @@
 		<li>You can cross small gaps by rebounding off of walls or objects.</li>
 		<li>Sahasrahla gives you his item when you speak to him with the Pendant of Courage.</li>
 		<li>The Super Bomb spawns when you have acquired crystals 5 and 6.</li>
-		<li>The digging game item is guaranteed to be gotten on the 15th dig.</li>
+		<li>The digging game item is guaranteed to be gotten by the 30th dig.</li>
 		<li>The chest game item is guaranteed to be gotten on the 1st attempt (can be 1st or 2nd chest).</li>
 		<li>The Smith and the Purple chest will stay following you through Save and Quit</li>
 	</ul>
