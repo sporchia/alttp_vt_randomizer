@@ -142,7 +142,7 @@ class Randomize extends Command {
 			$patch_left = json_decode(file_get_contents(public_path('js/base2current.json')), true);
 		}
 
-		$this->reset_patch = patch_merge_minify($patch_left, $patch_right);
+		$this->reset_patch = patch_merge_minify($patch_left);
 
 		return $this->reset_patch;
 	}
