@@ -130,7 +130,7 @@ class RandomSwap extends Filler {
 							return $location->getName() != 'Uncle';
 							//return $location->locked();
 						});
-						if ($move_move->count()) {
+						if ($move_move->count() && !is_a($required, Item\Sword::class)) {
 							$my_new_items = $my_items->tempAdd($item);
 							$my_items_after_swap = $my_new_items->copy()->removeItem($required->getName());
 							$available_after_swap = $locations->filter(function($location) use ($my_items_after_swap) {
