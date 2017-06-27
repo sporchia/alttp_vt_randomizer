@@ -59,7 +59,7 @@
 				<div class="col-md-6 pb-5">
 					<div class="input-group" role="group">
 						<span class="input-group-addon">Play as</span>
-						<select id="sprite-gfx" class="form-control selectpicker">
+						<select id="sprite-gfx" class="form-control selectpicker" data-live-search="true" data-dropup-auto="false">
 						@foreach(config('alttp.sprites') as $sprite => $sprite_name)
 							<option value="{{ $sprite }}">{{ $sprite_name }}</option>
 						@endforeach
