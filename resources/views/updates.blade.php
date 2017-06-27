@@ -1,6 +1,19 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.24</h2>
+<div class="well">
+	<ul>
+		<li>Sword Upgrades are dealt with differently by the fill algorithm to be distributed more evenly over the game world.</li>
+		<li>New Full Distribution <a href="https://docs.google.com/spreadsheets/d/17-_wlQBC6Fnt6qSoAkao1NAEoBXeDUmrGCNX5y7auNA" target="_blank">here</a></li>
+		<li>Crystals 5 and 6 are now colored red in the menu (once collected) to avoid confusion over which crystal is which.</li>
+		<li>Fixed the bug where Purple Chest was removed when you s+q to Sanctuary</li>
+		<li>Fixed the bug where swords weren’t really removed in Swordless</li>
+		<li>Fixed the bug where Link sometimes turned into a black bunny…</li>
+		<li>Fixed the bug where you dug up vultures</li>
+	</ul>
+</div>
+
 <h2>VT8.23</h2>
 <div class="well">
 	<ul>
