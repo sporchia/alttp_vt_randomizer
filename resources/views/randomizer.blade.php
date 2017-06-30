@@ -1044,28 +1044,32 @@ $(function() {
 
 	$('#cust-region-swordsInPool').on('change', function() {
 		if ($(this).prop('checked')) {
-			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
-			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
+			if (!$('#cust-region-swordShuffle').prop('checked')) {
+				$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
+				$('#cust-region-swordShuffle').prop('checked', true).bootstrapToggle('on');
+			}
 		} else {
-			$('#cust-item-progressiveSwords').prop('checked', false).bootstrapToggle('off');
-			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
+			if ($('#cust-item-progressiveSwords').prop('checked')) {
+				$('#cust-item-progressiveSwords').prop('checked', false).bootstrapToggle('off');
+				$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
+			}
 		}
 		$('.custom-items').first().trigger('change');
 	});
 	$('#cust-region-swordShuffle').on('change', function() {
 		if (!$(this).prop('checked')) {
 			if ($('#cust-region-swordsInPool').prop('checked')) {
-				$('#cust-region-swordsInPool').prop('checked', true).bootstrapToggle('off');
+				$('#cust-region-swordsInPool').prop('checked', false).bootstrapToggle('off');
 			}
 			if ($('#cust-item-progressiveSwords').prop('checked')) {
-				$('#cust-item-progressiveSwords').prop('checked', true).bootstrapToggle('off');
+				$('#cust-item-progressiveSwords').prop('checked', false).bootstrapToggle('off');
 			}
 		}
 	});
 	$('#cust-item-progressiveSwords').on('change', function() {
 		if ($(this).prop('checked')) {
-			$('#cust-region-swordsInPool').prop('checked', false).bootstrapToggle('on');
-			$('#cust-region-swordShuffle').prop('checked', false).bootstrapToggle('on');
+			$('#cust-region-swordsInPool').prop('checked', true).bootstrapToggle('on');
+			$('#cust-region-swordShuffle').prop('checked', true).bootstrapToggle('on');
 		}
 	});
 
