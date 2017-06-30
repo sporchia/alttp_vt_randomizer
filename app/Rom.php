@@ -99,6 +99,26 @@ class Rom {
 	}
 
 	/**
+	 * Update the ROM's checksum to be proper
+	 *
+	 * @return $this
+	 */
+	public function updateChecksum() : self {
+		fseek($this->rom, 0x7FDC);
+		fwrite($this->rom, pack('C*', 0, 0, 0, 0));
+
+		fseek($this->rom, 0x0);
+		$bytes = unpack('C*', fread($this->rom, static::SIZE));
+
+		$checksum = array_sum($bytes) & 0xFFFF;
+		$inverse = $checksum ^ 0xFFFF;
+
+		$this->write(0x7FDC, pack('S*', $inverse, $checksum));
+
+		return $this;
+	}
+
+	/**
 	 * Set the Low Health Beep Speed
 	 *
 	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)
@@ -1643,12 +1663,15 @@ class Rom {
 	 *
 	 * @param int $offset location in the ROM to begin writing
 	 * @param string $data data to write to the ROM
+	 * @param bool $log write this write to the log
 	 *
 	 * @return $this
 	 */
-	public function write(int $offset, $data) : self {
-		Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
-		$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
+	public function write(int $offset, $data, $log = true) : self {
+		if ($log) {
+			Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
+			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
+		}
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 

@@ -27,6 +27,7 @@ class Randomize extends Command {
 		. ' {--bulk=1 : generate multiple roms}'
 		. ' {--goal=ganon : set game goal}'
 		. ' {--mode=standard : set game mode}'
+		. ' {--sprite= : sprite/rom file to change links graphics}'
 		. ' {--no-rom : no not generate output rom}';
 
 	/**
@@ -95,6 +96,19 @@ class Randomize extends Command {
 
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.sfc', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
+				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
+					if (filesize($this->option('sprite')) == 28792) {
+						$sprite_graphics = file_get_contents($this->option('sprite'), false, null, 0, 0x7000);
+						$sprite_palettes = file_get_contents($this->option('sprite'), false, null, 0x7000, 120);
+					} else if (filesize($this->option('sprite')) == 1048576 || filesize($this->option('sprite')) == 2097152) {
+						$sprite_graphics = file_get_contents($this->option('sprite'), false, null, 0x80000, 0x7000);
+						$sprite_palettes = file_get_contents($this->option('sprite'), false, null, 0xDD308, 120);
+					}
+					if (isset($sprite_graphics)) {
+						$rom->write(0x80000, $sprite_graphics, false);
+						$rom->write(0xDD308, $sprite_palettes, false);
+					}
+				}
 				$rom->save($output_file);
 				$this->info(sprintf('Rom Saved: %s', $output_file));
 			}

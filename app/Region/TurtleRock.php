@@ -69,7 +69,11 @@ class TurtleRock extends Region {
 			new Location\Chest("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", 0xEA2B, null, $this),
 			new Location\Chest("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", 0xEA28, null, $this),
 			new Location\Drop("Heart Container - Trinexx", 0x180159, null, $this),
+
+			new Location\Prize\Crystal("Turtle Rock Crystal", [null, 0x120A7, 0x53F24, 0x53F25, 0x18005C, 0x180079, 0xC708], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Turtle Rock Crystal"];
 	}
 
 	/**
@@ -90,6 +94,8 @@ class TurtleRock extends Region {
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setItem(Item::get('FiveRupees'));
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setItem(Item::get('OneRupee'));
 		$this->locations["Heart Container - Trinexx"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Turtle Rock Crystal"]->setItem(Item::get('Crystal7'));
 
 		return $this;
 	}
@@ -285,6 +291,8 @@ class TurtleRock extends Region {
 			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
 			&& $items->canLiftDarkRocks() && $items->has('Hammer');
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -493,6 +501,8 @@ class TurtleRock extends Region {
 			return $lower($locations, $items) || $middle($locations, $items);
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -590,6 +600,8 @@ class TurtleRock extends Region {
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->has('IceRod');
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

@@ -40,7 +40,11 @@ class PalaceOfDarkness extends Region {
 			new Location\Chest("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", 0xEA58, null, $this),
 			new Location\Chest("[dungeon-D1-B1] Dark Palace - shooter room", 0xEA5B, null, $this),
 			new Location\Drop("Heart Container - Helmasaur King", 0x180153, null, $this),
+
+			new Location\Prize\Crystal("Palace of Darkness Crystal", [null, 0x120A1, 0x53F00, 0x53F01, 0x180056, 0x18007D, 0xC702], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Palace of Darkness Crystal"];
 	}
 
 	/**
@@ -63,6 +67,8 @@ class PalaceOfDarkness extends Region {
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setItem(Item::get('Key'));
 		$this->locations["[dungeon-D1-B1] Dark Palace - shooter room"]->setItem(Item::get('Key'));
 		$this->locations["Heart Container - Helmasaur King"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
 
 		return $this;
 	}
@@ -326,6 +332,8 @@ class PalaceOfDarkness extends Region {
 			return $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -357,6 +365,8 @@ class PalaceOfDarkness extends Region {
 		$this->can_complete = function($locations, $items) {
 			return $items->has('Hammer') && $items->canShootArrows();
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -448,6 +458,8 @@ class PalaceOfDarkness extends Region {
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

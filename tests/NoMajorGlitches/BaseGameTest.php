@@ -45,7 +45,7 @@ class BaseGameTest extends TestCase {
 
 		$this->addCollected(['L1Sword', 'Lamp']);
 
-		$this->assertNotContains(Item::get('PendantOfCourage'), $this->world->collectPrizes($this->collected));
+		$this->assertNotContains(Item::get('PendantOfCourage'), $this->world->collectItems($this->collected));
 	}
 
 	public function testEasternCollectPendant() {
@@ -53,7 +53,7 @@ class BaseGameTest extends TestCase {
 
 		$this->addCollected(['L1Sword', 'Lamp', 'Bow']);
 
-		$this->assertContains(Item::get('PendantOfCourage'), $this->world->collectPrizes($this->collected));
+		$this->assertContains(Item::get('PendantOfCourage'), $this->world->collectItems($this->collected));
 	}
 
 	public function testDesertPalace() {
@@ -364,12 +364,8 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testCanWin() {
-		$this->addCollected(['Lamp', 'Bow', 'PegasusBoots', 'BookOfMudora', 'PowerGlove', 'MagicMirror', 'MoonPearl',
-			'L4Sword', 'Hammer', 'Flippers', 'Hookshot', 'FireRod', 'TitansMitt', 'Shovel', 'OcarinaInactive',
-			'Ether', 'Quake', 'CaneOfSomaria', 'IceRod', 'SilverArrowUpgrade', 'Crystal1', 'Crystal2', 'Crystal3',
-			'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']);
+		$this->addCollected(['DefeatGanon']);
 
-		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 		$this->assertTrue($this->world->getWinCondition()($this->collected));
 	}
 }

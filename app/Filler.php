@@ -1,6 +1,8 @@
 <?php namespace ALttP;
 
 use ALttP\World;
+use ALttP\Support\LocationCollection as Locations;
+use Log;
 
 abstract class Filler {
 	protected $world;
@@ -24,6 +26,8 @@ abstract class Filler {
 				return new Filler\Distributed($world);
 			case 'Beatable':
 				return new Filler\RandomBeatable($world);
+			case 'RandomAssumed':
+				return new Filler\RandomAssumed($world);
 			case 'Random':
 			default:
 				return new Filler\RandomSwap($world);
@@ -35,4 +39,26 @@ abstract class Filler {
 	}
 
 	abstract public function fill(array $required, array $nice, array $extra);
+
+	protected function shuffleLocations(Locations $locations) {
+		return $locations->randomCollection($locations->count());
+	}
+
+	protected function shuffleItems(array $items) {
+		return mt_shuffle($items);
+	}
+
+	protected function fastFillItemsInLocations($fill_items, $locations) {
+		foreach($locations as $location) {
+			if ($location->hasItem()) {
+				continue;
+			}
+			$item = array_pop($fill_items);
+			if (!$item) {
+				break;
+			}
+			Log::debug(sprintf('Placing: %s in %s', $item->getNiceName(), $location->getName()));
+			$location->setItem($item);
+		}
+	}
 }

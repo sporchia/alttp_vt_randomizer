@@ -272,6 +272,8 @@ class Item {
 			new Item\Crystal('Crystal6', 'Crystal 6', [null, 0x01, 0x34, 0x64, 0x40, 0x6F, 0x06]),
 			new Item\Crystal('Crystal7', 'Crystal 7', [null, 0x08, 0x34, 0x64, 0x40, 0x7C, 0x06]),
 			new Item\Event('DefeatAgahnim', 'Defeat Agahnim', [null]),
+			new Item\Event('DefeatAgahnim2', 'Defeat Agahnim 2', [null]),
+			new Item\Event('DefeatGanon', 'Defeat Ganon', [null]),
 		]);
 		return static::all();
 	}

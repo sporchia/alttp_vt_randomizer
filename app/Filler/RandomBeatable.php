@@ -25,15 +25,7 @@ class RandomBeatable extends Random {
 		$this->fillItemsInLocations($items, $my_items, $randomized_order_locations, true);
 
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
-		$this->fastFillItemsInLocations($this->shuffleItems($extra), $my_items, $randomized_order_locations);
-	}
-
-	protected function shuffleLocations(Locations $locations) {
-		return $locations->randomCollection($locations->count());
-	}
-
-	protected function shuffleItems(array $items) {
-		return mt_shuffle($items);
+		$this->fastFillItemsInLocations($this->shuffleItems($extra), $randomized_order_locations);
 	}
 
 	protected function fillItemsInLocations($fill_items, $my_items, $locations, $check_for_new_locations = false) {
@@ -100,7 +92,7 @@ class RandomBeatable extends Random {
 		}
 
 		if (count($fill_items) && $locations->getEmptyLocations()->count()) {
-			$this->fastFillItemsInLocations($fill_items, $my_items, $locations->getEmptyLocations());
+			$this->fastFillItemsInLocations($fill_items, $locations->getEmptyLocations());
 		}
 	}
 }

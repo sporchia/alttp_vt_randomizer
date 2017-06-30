@@ -32,7 +32,11 @@ class EasternPalace extends Region {
 			new Location\Chest("[dungeon-L1-1F] Eastern Palace - Big key", 0xE9B9, null, $this),
 			new Location\Chest("[dungeon-L1-1F] Eastern Palace - map room", 0xE9F5, null, $this),
 			new Location\Drop("Heart Container - Armos Knights", 0x180150, null, $this),
+
+			new Location\Prize\Pendant("Eastern Palace Pendant", [null, 0x1209D, 0x53EF8, 0x53EF9, 0x180052, 0x18007C, 0xC6FE], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Eastern Palace Pendant"];
 	}
 
 	/**
@@ -47,6 +51,8 @@ class EasternPalace extends Region {
 		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKey'));
 		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('Map'));
 		$this->locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
 
 		return $this;
 	}
@@ -85,10 +91,6 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
 			if ($locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
 				return $items->has('Lamp');
@@ -99,16 +101,8 @@ class EasternPalace extends Region {
 			return $item != Item::get('BigKey');
 		});
 
-		$this->locations["[dungeon-L1-1F] Eastern Palace - big ball room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
-		});
-
-		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->can_complete = function($locations, $items) {
@@ -120,30 +114,7 @@ class EasternPalace extends Region {
 				return $item != Item::get('BigKey');
 			});
 
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initGlitched() {
-		$this->initNoMajorGlitches();
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
-		$this->initGlitched();
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

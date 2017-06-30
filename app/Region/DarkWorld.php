@@ -32,7 +32,11 @@ class DarkWorld extends Region {
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [top left chest]", 0xEB54, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]", 0xEB57, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]", 0xEB5A, null, $this),
+			new Location\Prize\Event("Ganon", null, null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Ganon"];
+		$this->prize_location->setItem(Item::get('DefeatGanon'));
 	}
 
 	/**
@@ -102,6 +106,20 @@ class DarkWorld extends Region {
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->canLiftDarkRocks() && ($items->has('Hookshot') || $items->has('PegasusBoots'))
 				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+		});
+
+		// canbeataga2 && (MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows))) || (TS && (lamp || fire rod))
+		$this->prize_location->setRequirements(function($locations, $items) {
+			return $items->has('DefeatAgahnim2') && $items->canLightTorches()
+				&& ($items->has('BowAndSilverArrows')
+					|| ($items->has('SilverArrowUpgrade')
+						&& ($items->has('Bow') || $items->has('BowAndArrows'))))
+				&& (
+					(config('game-mode') == 'swordless' && $items->has('Hammer'))
+					|| $items->has('L3Sword')
+					|| $items->has('L4Sword')
+					|| $items->has('ProgressiveSword', 3)
+				);
 		});
 
 		return $this;

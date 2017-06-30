@@ -45,7 +45,7 @@ class BaseGameTest extends TestCase {
 
 		$this->addCollected(['Lamp']);
 
-		$this->assertNotContains(Item::get('PendantOfCourage'), $this->world->collectPrizes($this->collected));
+		$this->assertNotContains(Item::get('PendantOfCourage'), $this->world->collectItems($this->collected));
 	}
 
 	public function testEasternCollectPendant() {
@@ -53,7 +53,7 @@ class BaseGameTest extends TestCase {
 
 		$this->addCollected(['Lamp', 'Bow']);
 
-		$this->assertContains(Item::get('PendantOfCourage'), $this->world->collectPrizes($this->collected));
+		$this->assertContains(Item::get('PendantOfCourage'), $this->world->collectItems($this->collected));
 	}
 
 	public function testDesertPalace() {

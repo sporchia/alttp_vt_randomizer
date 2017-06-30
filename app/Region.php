@@ -145,7 +145,7 @@ class Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		return $this;
+		return $this->initNoMajorGlitches();
 	}
 
 	/**

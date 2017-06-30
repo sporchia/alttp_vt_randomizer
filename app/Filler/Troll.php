@@ -22,7 +22,7 @@ class Troll extends Filler {
 		$requiredCollection = new Items($required);
 		$my_items = $this->world->collectItems();
 
-		$this->fastFillItemsInLocations($this->shuffleItems(array_merge($required, $nice)), $my_items, $randomized_order_locations);
+		$this->fastFillItemsInLocations($this->shuffleItems(array_merge($required, $nice)), $randomized_order_locations);
 
 		// so now we have items in locations, lets check if there are any inaccessables
 		$i = 0;
@@ -45,7 +45,7 @@ class Troll extends Filler {
 		// at this point we assume all locations are accessable
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
-		$this->fastFillItemsInLocations($this->shuffleItems($extra), $my_items, $randomized_order_locations);
+		$this->fastFillItemsInLocations($this->shuffleItems($extra), $randomized_order_locations);
 
 		$my_items = $this->world->collectItems();
 
@@ -55,14 +55,6 @@ class Troll extends Filler {
 		})->each(function($location) {
 			$location->setItem(new Item('ChocoboEgg', 'Chocobo Egg', [0x5A]));
 		});
-	}
-
-	protected function shuffleLocations(Locations $locations) {
-		return $locations->randomCollection($locations->count());
-	}
-
-	protected function shuffleItems(array $items) {
-		return mt_shuffle($items);
 	}
 
 	/**
@@ -123,20 +115,6 @@ class Troll extends Filler {
 		if (!$swapped && count($uncollectable_items)) {
 			Log::debug("Forcing");
 			return $this->swapItems($uncollectable_items, $locations, true);
-		}
-	}
-
-	protected function fastFillItemsInLocations($fill_items, $my_items, $locations) {
-		foreach($locations as $location) {
-			if ($location->hasItem()) {
-				continue;
-			}
-			$item = array_pop($fill_items);
-			if (!$item) {
-				break;
-			}
-			Log::debug(sprintf('Placing: %s in %s', $item->getNiceName(), $location->getName()));
-			$location->setItem($item);
 		}
 	}
 }

@@ -34,7 +34,11 @@ class TowerOfHera extends Region {
 			new Location\Chest("[dungeon-L3-4F] Tower of Hera - 4F [small chest]", 0xE9FB, null, $this),
 			new Location\BigChest("[dungeon-L3-4F] Tower of Hera - big chest", 0xE9F8, null, $this),
 			new Location\Drop("Heart Container - Moldorm", 0x180152, null, $this),
+
+			new Location\Prize\Pendant("Tower of Hera Pendant", [null, 0x120A5, 0x53F0A, 0x53F0B, 0x18005A, 0x18007A, 0xC706], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Tower of Hera Pendant"];
 	}
 
 	/**
@@ -49,6 +53,8 @@ class TowerOfHera extends Region {
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setItem(Item::get('Compass'));
 		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setItem(Item::get('MoonPearl'));
 		$this->locations["Heart Container - Moldorm"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfPower'));
 
 		return $this;
 	}
@@ -158,6 +164,8 @@ class TowerOfHera extends Region {
 					|| ($items->has('Hammer') && $items->has('Hookshot')));
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -252,6 +260,8 @@ class TowerOfHera extends Region {
 				))
 			);
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

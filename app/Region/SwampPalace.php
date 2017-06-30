@@ -36,7 +36,11 @@ class SwampPalace extends Region {
 			new Location\Chest("[dungeon-D2-B2] Swamp Palace - flooded room [right chest]", 0xEAAC, null, $this),
 			new Location\Chest("[dungeon-D2-B2] Swamp Palace - hidden waterfall door room", 0xEAAF, null, $this),
 			new Location\Drop("Heart Container - Arrghus", 0x180154, null, $this),
+
+			new Location\Prize\Crystal("Swamp Palace Crystal", [null, 0x120A0, 0x53F6C, 0x53F6D, 0x180055, 0x180071, 0xC701], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Swamp Palace Crystal"];
 	}
 
 	/**
@@ -55,6 +59,8 @@ class SwampPalace extends Region {
 		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["Heart Container - Arrghus"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
 
 		return $this;
 	}
@@ -177,6 +183,8 @@ class SwampPalace extends Region {
 				&& $items->has('MagicMirror') && $items->has('Flippers');
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -262,6 +270,8 @@ class SwampPalace extends Region {
 			return ($items->has('Flippers') && $items->has('MagicMirror') && $items->has('MoonPearl'))
 				|| $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

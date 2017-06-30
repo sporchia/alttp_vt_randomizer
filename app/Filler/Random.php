@@ -25,9 +25,9 @@ class Random extends Filler {
 
 		// at this point we assume all locations are accessable
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
-		$this->fastFillItemsInLocations($this->shuffleItems($nice), $my_items, $randomized_order_locations);
+		$this->fastFillItemsInLocations($this->shuffleItems($nice), $randomized_order_locations);
 
-		$this->fastFillItemsInLocations($this->shuffleItems($extra), $my_items, $randomized_order_locations->getEmptyLocations());
+		$this->fastFillItemsInLocations($this->shuffleItems($extra), $randomized_order_locations->getEmptyLocations());
 
 		$my_items = $this->world->collectItems();
 
@@ -39,24 +39,12 @@ class Random extends Filler {
 		});
 	}
 
-	protected function shuffleLocations(Locations $locations) {
-		return $locations->randomCollection($locations->count());
-	}
-
-	protected function shuffleItems(array $items) {
-		return mt_shuffle($items);
-	}
-
 	protected function fillItemsInLocations($fill_items, $my_items, $locations, $check_for_new_locations = false) {
 		Log::debug(sprintf("Filling %s items in %s locations", count($fill_items), $locations->getEmptyLocations()->count()));
 		$total_items = count($fill_items);
 		reset($fill_items);
 		while (count($fill_items) && $locations->getEmptyLocations()->count()) {
 			$item = current($fill_items);
-
-			if (!$item) {
-				dd($fill_items);
-			}
 
 			$available_locations = $locations->getEmptyLocations()->filter(function($location) use ($my_items) {
 				return $location->canAccess($my_items);
@@ -107,18 +95,5 @@ class Random extends Filler {
 		}
 
 		Log::debug(sprintf("Extra Items: %s", count($fill_items)));
-	}
-
-	protected function fastFillItemsInLocations($fill_items, $my_items, $locations) {
-		foreach($locations as $location) {
-			if ($location->hasItem()) {
-				continue;
-			}
-			$item = array_pop($fill_items);
-			if (!$item) {
-				break;
-			}
-			$location->setItem($item);
-		}
 	}
 }

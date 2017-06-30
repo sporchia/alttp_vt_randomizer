@@ -50,8 +50,6 @@ class World {
 			'Misery Mire' => new Region\MiseryMire($this),
 			'Turtle Rock' => new Region\TurtleRock($this),
 			'Ganons Tower' => new Region\GanonsTower($this),
-			'Pendants' => new Region\Pendants($this),
-			'Crystals' => new Region\Crystals($this),
 			'Medallions' => new Region\Medallions($this),
 			'Fountains' => new Region\Fountains($this),
 		];
@@ -62,39 +60,6 @@ class World {
 		foreach ($this->regions as $name => $region) {
 			$region->init($type);
 			$this->locations = $this->locations->merge($region->getLocations());
-			// @TODO: make the prize just part of the Region?
-			switch ($name) {
-				case 'Eastern Palace':
-					$region->setPrizeLocation($this->regions['Pendants']->getLocation("Eastern Palace Pendant"));
-					break;
-				case 'Desert Palace':
-					$region->setPrizeLocation($this->regions['Pendants']->getLocation("Desert Palace Pendant"));
-					break;
-				case 'Tower of Hera':
-					$region->setPrizeLocation($this->regions['Pendants']->getLocation("Tower of Hera Pendant"));
-					break;
-				case 'Palace of Darkness':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Palace of Darkness Crystal"));
-					break;
-				case 'Swamp Palace':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Swamp Palace Crystal"));
-					break;
-				case 'Skull Woods':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Skull Woods Crystal"));
-					break;
-				case 'Thieves Town':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Thieves Town Crystal"));
-					break;
-				case 'Ice Palace':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Ice Palace Crystal"));
-					break;
-				case 'Misery Mire':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Misery Mire Crystal"));
-					break;
-				case 'Turtle Rock':
-					$region->setPrizeLocation($this->regions['Crystals']->getLocation("Turtle Rock Crystal"));
-					break;
-			}
 		}
 
 		switch ($this->type) {
@@ -172,22 +137,21 @@ class World {
 						if (!$collected_items->has('PendantOfCourage')
 							|| !$collected_items->has('PendantOfWisdom')
 							|| !$collected_items->has('PendantOfPower')
-							|| !$collected_items->has('DefeatAgahnim')) {
+							|| !$collected_items->has('Crystal1')
+							|| !$collected_items->has('Crystal2')
+							|| !$collected_items->has('Crystal3')
+							|| !$collected_items->has('Crystal4')
+							|| !$collected_items->has('Crystal5')
+							|| !$collected_items->has('Crystal6')
+							|| !$collected_items->has('Crystal7')
+							|| !$collected_items->has('DefeatAgahnim')
+							|| !$collected_items->has('DefeatAgahnim2')
+							|| !$collected_items->has('DefeatGanon')) {
 							return false;
 						}
 					}
 
-					return $collected_items->canLightTorches()
-						&& ($collected_items->has('BowAndSilverArrows')
-							|| ($collected_items->has('SilverArrowUpgrade')
-								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows'))))
-						&& (
-							config('game-mode') == 'swordless'
-							|| $collected_items->has('L3Sword')
-							|| $collected_items->has('L4Sword')
-							|| $collected_items->has('ProgressiveSword', 3)
-						)
-						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+					return $collected_items->has('DefeatGanon');
 				};
 				break;
 		}
@@ -230,38 +194,6 @@ class World {
 		}
 
 		return $this;
-	}
-
-	/**
-	 * Return Items in locations not magically filled by randomizer.
-	 * This function is a HACK for dealing with specially set Items, like Pendants/Crystals/Swords
-	 *
-	 * @param ItemCollection $items currently collected Items
-	 *
-	 * @return ItemCollection
-	 */
-	public function collectPrizes(ItemCollection $items) {
-		$prizes = new ItemCollection;
-		foreach ($this->regions as $region) {
-			if ($region->hasPrize() && $region->getPrizeLocation()->canAccess($items)) {
-				// TODO: check that this isn't adding hundreds of prizes
-				$prizes->addItem($region->getPrize());
-			}
-		}
-
-		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
-			if ($this->locations["Pyramid - Sword"]->canAccess($items) && $this->locations["Pyramid - Sword"]->getItem()) {
-					$prizes->addItem($this->locations["Pyramid - Sword"]->getItem());
-			}
-			if ($this->locations["Blacksmiths"]->canAccess($items) && $this->locations["Blacksmiths"]->getItem()) {
-					$prizes->addItem($this->locations["Blacksmiths"]->getItem());
-			}
-			if ($this->locations["Altar"]->canAccess($items) && $this->locations["Altar"]->getItem()) {
-					$prizes->addItem($this->locations["Altar"]->getItem());
-			}
-		}
-
-		return $prizes;
 	}
 
 	/**
@@ -314,26 +246,8 @@ class World {
 	 */
 	public function getPlayThrough($walkthrough = true) {
 		$shadow_world = $this->copy();
-		$sphere = 0;
-		$location_sphere = [];
-		$my_items = new ItemCollection;
-		$found_locations = new LocationCollection;
-		do {
-			$sphere++;
-			$available_locations = $shadow_world->locations->filter(function($location) use ($my_items) {
-				return !is_a($location, Location\Medallion::class)
-					&& !is_a($location, Location\Fountain::class)
-					&& !in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])
-					&& $location->canAccess($my_items);
-			});
-			$location_sphere[$sphere] = $available_locations->diff($found_locations);
 
-			$found_items = $available_locations->getItems();
-			$found_locations = $available_locations;
-
-			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items;
-		} while ($new_items->count() > 0);
+		$location_sphere = $shadow_world->getLocationSpheres();
 
 		$required_locations = new LocationCollection;
 		$required_locations_sphere = [];
@@ -341,12 +255,14 @@ class World {
 		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
 			Log::debug("playthrough SPHERE: $sphere_level");
 			foreach ($sphere as $location) {
-				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(), $location->getItem() ? $location->getItem()->getNiceName() : 'Nothing'));
+				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(),
+					$location->getItem() ? $location->getItem()->getNiceName() : 'Nothing'));
 				// pull item out
 				$pulled_item = $location->getItem();
 				$location->setItem();
 
 				if (!$shadow_world->getWinCondition()($shadow_world->getCollectableLocations()->getItems())) {
+				//if (!$shadow_world->getWinCondition()($shadow_world->collectItems())) { // this is more correct
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);
@@ -382,14 +298,17 @@ class World {
 							$temp_pull = $higher_location->getItem();
 							$higher_location->setItem();
 							$current_items = $shadow_world->getCollectableLocations()->getItems();
+							//$current_items = $shadow_world->collectItems(); // this is more correct
 
 							if (!$higher_location->canAccess($current_items)) {
 								// put item back
 								$location->setItem($this->locations[$location->getName()]->getItem());
-								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(), $this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(),
+									$this->locations[$higher_location->getName()]->getItem()->getNiceName()));
 								$required_locations->addItem($location);
 								$required_locations_sphere[$sphere_level][] = $location;
-								Log::debug(sprintf("playthrough Readd: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
+								Log::debug(sprintf("playthrough Readd: %s :: %s", $location->getName(),
+									$location->getItem()->getNiceName()));
 								break 2;
 							}
 							$higher_location->setItem($temp_pull);
@@ -404,7 +323,8 @@ class World {
 		}
 
 		foreach ($required_locations as $higher_location) {
-			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(), $this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(),
+				$this->locations[$higher_location->getName()]->getItem()->getNiceName()));
 		}
 		if (!$walkthrough) {
 			return $required_locations->values();
@@ -464,6 +384,7 @@ class World {
 	 */
 	public function setRules(string $rules) {
 		$this->rules = $rules;
+
 		return $this;
 	}
 
@@ -483,6 +404,24 @@ class World {
 	 */
 	public function getWinCondition() {
 		return $this->win_condition;
+	}
+
+	/**
+	 * perhaps allow winconditions to be added.
+	 *
+	 * @param ItemCollection $items
+	 *
+	 * @return bool
+	 */
+	public function checkWinCondition(ItemCollection $items) {
+		if (is_array($this->win_condition)) {
+			foreach ($this->win_condition as $condition) {
+				if (!call_user_func($condition, $items)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -539,15 +478,21 @@ class World {
 					&& !is_a($location, Location\Fountain::class);
 			});
 		}
+
 		return $this->collectable_locations;
 	}
 
-	public function collectItems() {
-		$my_items = new ItemCollection;
-		$available_locations = $this->locations->filter(function($location) {
-			return !is_a($location, Location\Medallion::class)
-				&& !is_a($location, Location\Fountain::class)
-				&& $location->hasItem();
+	/**
+	 * Collect the items in the world, you may pass in a set of pre-collected items.
+	 *
+	 * @param ItemCollection $collected precollected items for consideration in out collecting
+	 *
+	 * @return ItemCollection
+	 */
+	public function collectItems(ItemCollection $collected = null) {
+		$my_items = $collected ?? new ItemCollection;
+		$available_locations = $this->getCollectableLocations()->filter(function($location) {
+			return $location->hasItem();
 		});
 
 		do {
@@ -557,13 +502,19 @@ class World {
 
 			$found_items = $search_locations->getItems();
 
+			$pre_collected = $my_items->diff($found_items);
 			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items;
+			$my_items = $found_items->merge($pre_collected);
 		} while ($new_items->count() > 0);
 
 		return $my_items;
 	}
 
+	/**
+	 * Determine the spheres that locations are in based on the items in the world
+	 *
+	 * @return array
+	 */
 	public function getLocationSpheres() {
 		$sphere = 0;
 		$location_sphere = [];

@@ -35,7 +35,11 @@ class DesertPalace extends Region {
 			new Location\Chest("[dungeon-L2-B1] Desert Palace - Big key room", 0xE9C2, null, $this),
 			new Location\Chest("[dungeon-L2-B1] Desert Palace - compass room", 0xE9CB, null, $this),
 			new Location\Drop("Heart Container - Lanmolas", 0x180151, null, $this),
+
+			new Location\Prize\Pendant("Desert Palace Pendant", [null, 0x1209E, 0x53F1C, 0x53F1D, 0x180053, 0x180078, 0xC6FF], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Desert Palace Pendant"];
 	}
 
 	/**
@@ -50,6 +54,8 @@ class DesertPalace extends Region {
 		$this->locations["[dungeon-L2-B1] Desert Palace - Big key room"]->setItem(Item::get('BigKey'));
 		$this->locations["[dungeon-L2-B1] Desert Palace - compass room"]->setItem(Item::get('Compass'));
 		$this->locations["Heart Container - Lanmolas"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfWisdom'));
 
 		return $this;
 	}
@@ -158,6 +164,8 @@ class DesertPalace extends Region {
 				|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly());
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -193,6 +201,8 @@ class DesertPalace extends Region {
 		$this->can_enter = function($locations, $items) {
 			return true;
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

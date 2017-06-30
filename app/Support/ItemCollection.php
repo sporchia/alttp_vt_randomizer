@@ -167,9 +167,9 @@ class ItemCollection extends Collection {
 
 		$merged = $this->copy();
 
-		foreach ($this->getArrayableItems($items) as $item) {
+		$items->each(function($item) use ($merged) {
 			$merged->addItem($item);
-		}
+		});
 
 		return $merged;
 	}
@@ -207,6 +207,12 @@ class ItemCollection extends Collection {
 	 */
 	public function has($key, $at_least = 1) {
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
+	}
+
+	public function cantHave($key, LocationCollection $locations, $at_least = 0) {
+		if ($this->offsetExists($key)) {
+			return false;
+		}
 	}
 
 	/**

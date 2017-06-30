@@ -41,7 +41,11 @@ class SkullWoods extends Region {
 			new Location\Chest("[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", 0xE9A1, null, $this),
 			new Location\Chest("[dungeon-D3-B1] Skull Woods - south of Fire Rod room", 0xE9C8, null, $this),
 			new Location\Drop("Heart Container - Mothula", 0x180155, null, $this),
+
+			new Location\Prize\Crystal("Skull Woods Crystal", [null, 0x120A3, 0x53F12, 0x53F13, 0x180058, 0x18007B, 0xC704], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Skull Woods Crystal"];
 	}
 
 	/**
@@ -59,6 +63,8 @@ class SkullWoods extends Region {
 		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('Key'));
 		$this->locations["Heart Container - Mothula"]->setItem(Item::get('BossHeartContainer'));
 
+		$this->locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
+
 		return $this;
 	}
 
@@ -74,13 +80,7 @@ class SkullWoods extends Region {
 			return $this->boss_location_in_base || $location->getName() != "Heart Container - Mothula";
 		});
 
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), [
-				"[dungeon-D3-B1] Skull Woods - Compass room",
-				"[dungeon-D3-B1] Skull Woods - south of Fire Rod room",
-				"[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room",
-			]);
-		})->random()->fill(Item::get("Key"), $my_items));
+		$locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('Key'));
 
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
 		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
@@ -107,6 +107,10 @@ class SkullWoods extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setFillRules(function($item, $locations, $items) {
+			return $item == Item::get('Key');
+		});
+
 		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setRequirements(function($locations, $items) {
 			return !$locations->itemInLocations(Item::get('BigKey'), [
 						"[dungeon-D3-B1] Skull Woods - Entrance to part 2",
@@ -117,30 +121,8 @@ class SkullWoods extends Region {
 				&& ($item != Item::get('Key') || !$locations["Heart Container - Mothula"]->hasItem(Item::get('BigKey')));
 		});
 
-		$this->locations["[dungeon-D3-B1] Skull Woods - Big Key room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D3-B1] Skull Woods - Compass room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D3-B1] Skull Woods - east of Fire Rod room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod');
-		});
-
-		$this->locations["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setRequirements(function($locations, $items) {
-			return true;
-		})->setFillRules(function($item, $locations, $items) {
-			return $item == Item::get('Key');
 		});
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
@@ -160,6 +142,8 @@ class SkullWoods extends Region {
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -197,24 +181,7 @@ class SkullWoods extends Region {
 			return $items->has('FireRod') && $items->hasSword();
 		};
 
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
-		$this->initNoMajorGlitches();
-
-		$this->locations["Heart Container - Mothula"]->setFillRules(function($item, $locations, $items) {
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return true;
-			}
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
-		});
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

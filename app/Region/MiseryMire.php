@@ -34,7 +34,11 @@ class MiseryMire extends Region {
 			new Location\Chest("[dungeon-D6-B1] Misery Mire - map room", 0xEA6A, null, $this),
 			new Location\Chest("[dungeon-D6-B1] Misery Mire - spike room", 0xE9DA, null, $this),
 			new Location\Drop("Heart Container - Vitreous", 0x180158, null, $this),
+
+			new Location\Prize\Crystal("Misery Mire Crystal", [null, 0x120A2, 0x53F48, 0x53F49, 0x180057, 0x180075, 0xC703], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Misery Mire Crystal"];
 	}
 
 	/**
@@ -51,6 +55,8 @@ class MiseryMire extends Region {
 		$this->locations["[dungeon-D6-B1] Misery Mire - map room"]->setItem(Item::get('Map'));
 		$this->locations["[dungeon-D6-B1] Misery Mire - spike room"]->setItem(Item::get('Key'));
 		$this->locations["Heart Container - Vitreous"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Misery Mire Crystal"]->setItem(Item::get('Crystal6'));
 
 		return $this;
 	}
@@ -249,6 +255,8 @@ class MiseryMire extends Region {
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -279,6 +287,8 @@ class MiseryMire extends Region {
 					))
 				);
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -338,6 +348,8 @@ class MiseryMire extends Region {
 				|| ($items->has('Flippers') && $items->has('MagicMirror') && $items->hasABottle() && $items->has('BugCatchingNet'))))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
