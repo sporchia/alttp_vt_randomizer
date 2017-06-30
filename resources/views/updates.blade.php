@@ -1,6 +1,18 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.25</h2>
+<div class="well">
+	<ul>
+		<li>Uncle's boots hint removed</li>
+		<li>Overworld bonk locations are no longer randomized</li>
+		<li>Special chest under Ganon removed in all modes</li>
+		<li>Added search of spoilers to quickly find items</li>
+		<li>Skull Woods spike trap room chest set back to Key all the time</li>
+		<li>New Fill algorithm that maximizes item randimization</li>
+	</ul>
+</div>
+
 <h2>VT8.24</h2>
 <div class="well">
 	<ul>

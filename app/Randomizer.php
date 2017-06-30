@@ -549,7 +549,7 @@ class Randomizer {
 			$this->writePrizeShuffleToRom($rom);
 		}
 
-		if ($this->config('sprite.shuffleOverworldBonkPrizes', true)) {
+		if ($this->config('sprite.shuffleOverworldBonkPrizes', false)) {
 			$this->writeOverworldBonkPrizeToRom($rom);
 		}
 
@@ -737,9 +737,7 @@ class Randomizer {
 	}
 
 	/**
-	 * Randomly set the starting text for the Uncle, there is a chance he will tell you the Region Pegasus Boots
-	 * reside in.
-	 * as well as Ganon Texts
+	 * Set all texts for this randimization
 	 *
 	 * @param Rom $rom ROM to write to
 	 *
@@ -748,7 +746,7 @@ class Randomizer {
 	public function setTexts(Rom $rom) {
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
-		if ($this->config('spoil.BootsLocation', true) && mt_rand() % 20 == 0 && $boots_location) {
+		if ($this->config('spoil.BootsLocation', false) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
 			switch ($boots_location->getName()) {
 				case "[cave-040] Link's House":
@@ -799,13 +797,11 @@ class Randomizer {
 			])));
 		}
 
-		if (!config('tournament-mode', false)) {
-			$green_pendant_location = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first();
+		$green_pendant_location = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first();
 
-			$rom->setSahasrahla1TextString("Want something\nfor free? Go\nearn the green\npendant in\n"
-				. $green_pendant_location->getRegion()->getName()
-				. "\nand I'll give\nyou something.");
-		}
+		$rom->setSahasrahla1TextString("Want something\nfor free? Go\nearn the green\npendant in\n"
+			. $green_pendant_location->getRegion()->getName()
+			. "\nand I'll give\nyou something.");
 
 		$crystal5_location = $this->world->getLocationsWithItem(Item::get('Crystal5'))->first();
 		$crystal6_location = $this->world->getLocationsWithItem(Item::get('Crystal6'))->first();

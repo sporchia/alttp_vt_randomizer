@@ -116,7 +116,6 @@
 				<li>There are only 2 Bottles (4 in Major Glitches)</li>
 				<li>Potions heal 5 hearts and restore 1/2 magic</li>
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
-				<li>Silver Arrow Upgrade can only be found after falling to Ganon</li>
 			</ul>
 		</div>
 	</div>

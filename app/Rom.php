@@ -1184,6 +1184,8 @@ class Rom {
 	 * @return $this
 	 */
 	public function setHardMode($level = 0) : self {
+		$this->setBelowGanonChest(false);
+
 		switch ($level) {
 			case 0:
 				// Cape magic
@@ -1194,7 +1196,6 @@ class Rom {
 				$this->setShopRedShieldCost(500);
 
 				$this->setRupoorValue(0);
-				$this->setBelowGanonChest(false);
 				$this->setByrnaCaveSpikeDamage(0x08);
 
 				break;
@@ -1206,8 +1207,6 @@ class Rom {
 				$this->setShopRedShieldCost(999);
 
 				$this->setRupoorValue(10);
-				$this->setBelowGanonChest(true);
-				$this->write(0xE9A7, pack('C*', 0x58)); // silver arrow upgrade
 				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
@@ -1219,7 +1218,6 @@ class Rom {
 				$this->setShopRedShieldCost(9990);
 
 				$this->setRupoorValue(20);
-				$this->setBelowGanonChest(false);
 				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;

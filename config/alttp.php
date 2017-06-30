@@ -2,9 +2,6 @@
 
 return [
 	'normal' => [
-		'spoil' => [
-			'BootsLocation' => true,
-		],
 	],
 	'triforcepieces' => [
 		'item' => [
@@ -26,9 +23,6 @@ return [
 		'region' => [
 			'mapsInDungeons' => false,
 			'compassesInDungeons' => false,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'timed' => [
@@ -54,17 +48,11 @@ return [
 			'timerMode' => 'countdown-stop',
 			'timerStart' => 45 * 60,
 		],
-		'spoil' => [
-			'BootsLocation' => true,
-		],
 	],
 	'ohko' => [
 		'rom' => [
 			'timerMode' => 'countdown-ohko',
 			'timerStart' => 0,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'timed-ohko' => [
@@ -82,9 +70,6 @@ return [
 		'rom' => [
 			'timerMode' => 'countdown-ohko',
 			'timerStart' => 10 * 60,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'timed-race' => [
@@ -111,9 +96,6 @@ return [
 		'rom' => [
 			'timerMode' => 'stopwatch',
 			'timerStart' => 0,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'hard' => [
@@ -146,14 +128,11 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 10,
 				'L4Sword' => 0,
-				'SilverArrowUpgrade' => 0,
+				'SilverArrowUpgrade' => 1,
 			],
 		],
 		'rom' => [
 			'HardMode' => 1,
-		],
-		'spoil' => [
-			'BootsLocation' => false,
 		],
 	],
 	'expert' => [
@@ -196,9 +175,6 @@ return [
 		],
 		'rom' => [
 			'HardMode' => 2,
-		],
-		'spoil' => [
-			'BootsLocation' => false,
 		],
 	],
 	'custom' => [
