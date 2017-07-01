@@ -161,7 +161,7 @@ class Item {
 			new Item('OneRupee', 'One Rupee', [0x34]),
 			new Item('FiveRupees', 'Five Rupees', [0x35]),
 			new Item('TwentyRupees', 'Twenty Rupees', [0x36]),
-			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x38, 0x60, 0x00, 0x69, 0x01]),
+			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x38, 0x62, 0x00, 0x69, 0x01]),
 			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', [0x38, 0x01, 0x32, 0x60, 0x00, 0x69, 0x03]),
 			new Item\Pendant('PendantOfPower', 'Pendant Of Power', [0x39, 0x02, 0x34, 0x60, 0x00, 0x69, 0x02]),
 			new Item('BowAndArrows', 'Bow And Arrows', [0x3A]),
