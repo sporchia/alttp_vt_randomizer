@@ -104,13 +104,17 @@ class Rom {
 	 * @return $this
 	 */
 	public function updateChecksum() : self {
-		fseek($this->rom, 0x7FDC);
-		fwrite($this->rom, pack('C*', 0, 0, 0, 0));
-
 		fseek($this->rom, 0x0);
-		$bytes = unpack('C*', fread($this->rom, static::SIZE));
+		$sum = 0;
+		for ($i = 0; $i < static::SIZE; $i += 1024) {
+			if ($i >= 0x7FB0 && $i <= 0x7FE0) {
+				// this skip is true for LoROM, HiROM skips: 0xFFB0 - 0xFFB0
+				continue;
+			}
+			$sum += array_sum(unpack('C*', fread($this->rom, 1024)));
+		}
 
-		$checksum = array_sum($bytes) & 0xFFFF;
+		$checksum = $sum & 0xFFFF;
 		$inverse = $checksum ^ 0xFFFF;
 
 		$this->write(0x7FDC, pack('S*', $inverse, $checksum));

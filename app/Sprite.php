@@ -385,6 +385,66 @@ class Sprite {
 		return $this->address;
 	}
 
+	/**
+	 * converts 4bpp 8x8 to palette reference at a given offset
+	 *
+	 * @author Zarby89
+	 *
+	 * @param array $sprite byte array of gfx data
+	 * @param int $pos position in stream to pull 8x8 from
+	 *
+	 * @return array
+	 */
+	static public function load8x8(array $sprite, int $pos = 0) {
+		//pos = 32 bytes to read per 8x8 tiles, will return an array of 64bytes
+		$positions = [0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01];
+		$temp_array = [];
+		for ($x = 0; $x < 8; $x++) {
+			for ($y = 0; $y < 8; $y++) {
+				$tmpbyte = 0;
+				//There's 4 bit per pixel, 2 at the start, 2 at the middle, for every pixels
+				//so we read all of them in order up to 32 byte
+				if (($sprite[$pos + ($x * 2)] & $positions[$y]) == $positions[$y]) { $tmpbyte += 1; }
+				if (($sprite[$pos + ($x * 2) + 1] & $positions[$y]) == $positions[$y]) { $tmpbyte += 2; }
+				if (($sprite[$pos + 16 + ($x * 2)] & $positions[$y]) == $positions[$y]) { $tmpbyte += 4; }
+				if (($sprite[$pos + 16 + ($x * 2) + 1] & $positions[$y]) == $positions[$y]) { $tmpbyte += 8; }
+				$temp_array[$y + ($x * 8)] = $tmpbyte;
+			}
+		}
+
+		return $temp_array;
+	}
+
+	/**
+	 * converts 4bpp 16x16 to palette reference at a given offset
+	 *
+	 * @author Zarby89
+	 *
+	 * @param array $sprite byte array of gfx data
+	 * @param int $pos position in stream to pull 8x8 from
+	 *
+	 * @return array
+	 */
+	static public function load16x16(array $sprite, int $pos = 0) {
+		//pos 0x40 = head facing down, pos 0x4C0 = body facing down
+		$temp_array = array_fill(0, 16, []);
+		$top_left = static::load8x8($sprite, $pos );
+		$top_right = static::load8x8($sprite, $pos + 0x20);
+		$bottom_left = static::load8x8($sprite, $pos + 0x200);
+		$bottom_right = static::load8x8($sprite, $pos + 0x200 + 0x20);
+
+		//copy all the bytes at the correct position in the 2d array
+		for($x = 0; $x < 8; $x++) {
+			for ($y = 0; $y < 8; $y++) {
+				$temp_array[$x][$y] = $top_left[$x + ($y * 8)];
+				$temp_array[$x + 8][$y] = $top_right[$x + ($y * 8)];
+				$temp_array[$x][$y + 8] = $bottom_left[$x + ($y * 8)];
+				$temp_array[$x + 8][$y + 8] = $bottom_right[$x + ($y * 8)];
+			}
+		}
+		return $temp_array;
+	}
+
 	public function dumpBinBlock(Rom $rom) {
 		return [
 			'0x6B080' => sprintf("%08b", $rom->read(0x6B080 + $this->bytes[0], 1)),

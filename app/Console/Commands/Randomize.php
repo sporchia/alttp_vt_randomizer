@@ -109,6 +109,7 @@ class Randomize extends Command {
 						$rom->write(0xDD308, $sprite_palettes, false);
 					}
 				}
+				$rom->updateChecksum();
 				$rom->save($output_file);
 				$this->info(sprintf('Rom Saved: %s', $output_file));
 			}

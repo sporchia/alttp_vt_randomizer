@@ -59,11 +59,12 @@
 				<div class="col-md-6 pb-5">
 					<div class="input-group" role="group">
 						<span class="input-group-addon">Play as</span>
-						<select id="sprite-gfx" class="form-control selectpicker" data-live-search="true" data-dropup-auto="false">
+						<select id="sprite-gfx" class="form-control selectpicker" data-live-search="true"
+							data-style="sprite-icons" data-dropup-auto="false">
 						@foreach(config('alttp.sprites') as $sprite => $sprite_name)
-							<option value="{{ $sprite }}">{{ $sprite_name }}</option>
+							<option data-icon="icon-custom-{{ str_replace(' ', '', $sprite_name) }}" value="{{ $sprite }}">{{ $sprite_name }}</option>
 						@endforeach
-							<option value="random">Random</option>
+							<option data-icon="icon-custom-Random" value="random">Random</option>
 						</select>
 					</div>
 				</div>
@@ -121,8 +122,25 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		}
 	};
 
+	this.updateChecksum = function() {
+		return new Promise(function(resolve, reject) {
+			var sum = u_array.reduce(function(sum, mbyte, i) {
+				if (i >= 0x7FB0 && i <= 0x7FE0) {
+					return sum;
+				}
+				return sum + mbyte;
+			});
+			var checksum = sum & 0xFFFF;
+			var inverse = checksum ^ 0xFFFF;
+			this.write(0x7FDC, [inverse & 0xFF, inverse >> 8, checksum & 0xFF, checksum >> 8]);
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
 	this.save = function(filename) {
-		saveAs(new Blob([u_array]), filename);
+		this.updateChecksum().then(function() {
+			saveAs(new Blob([u_array]), filename);
+		});
 	};
 
 	this.parseSprGfx = function(spr) {
