@@ -455,6 +455,13 @@ class Randomizer {
 		foreach ($this->world->getRegions() as $name => $region) {
 			$spoiler[$name] = [];
 			$region->getLocations()->each(function($location) use (&$spoiler, $name) {
+				if ($this->config('region.swordsInPool', true)
+					&& in_array($location->getName(), [
+						"Pyramid - Sword",
+						"Pyramid - Bow",
+					])) {
+					return;
+				}
 				if ($location->hasItem()) {
 					$spoiler[$name][$location->getName()] = $location->getItem()->getNiceName();
 				} else {
