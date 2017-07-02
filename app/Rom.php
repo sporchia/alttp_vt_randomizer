@@ -107,11 +107,14 @@ class Rom {
 		fseek($this->rom, 0x0);
 		$sum = 0;
 		for ($i = 0; $i < static::SIZE; $i += 1024) {
-			if ($i >= 0x7FB0 && $i <= 0x7FE0) {
-				// this skip is true for LoROM, HiROM skips: 0xFFB0 - 0xFFB0
-				continue;
+			$bytes = array_values(unpack('C*', fread($this->rom, 1024)));
+			for ($j = 0; $j < 1024; ++$j) {
+				if ($j + $i >= 0x7FB0 && $j + $i <= 0x7FE0) {
+					// this skip is true for LoROM, HiROM skips: 0xFFB0 - 0xFFB0
+					continue;
+				}
+				$sum += $bytes[$j];
 			}
-			$sum += array_sum(unpack('C*', fread($this->rom, 1024)));
 		}
 
 		$checksum = $sum & 0xFFFF;
@@ -157,7 +160,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setRupoorValue($value = 10) : self {
+	public function setRupoorValue(int $value = 10) : self {
 		$this->write(0x180036, pack('v*', $value));
 
 		return $this;
@@ -170,7 +173,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setByrnaCaveSpikeDamage($dmg_value = 0x08) {
+	public function setByrnaCaveSpikeDamage(int $dmg_value = 0x08) : self {
 		$this->write(0x180168, pack('C*', $dmg_value));
 
 		return $this;
@@ -184,7 +187,7 @@ class Rom {
 	 *
 	 * @return $this;
 	 */
-	public function setClockMode($mode = 'off', $restart = false) {
+	public function setClockMode(string $mode = 'off', bool $restart = false) : self {
 		switch ($mode) {
 			case 'stopwatch':
 				$bytes = [0x02, 0x01];
@@ -219,7 +222,7 @@ class Rom {
 	 *
 	 * @return $this;
 	 */
-	public function setStartingTime($seconds = 0) {
+	public function setStartingTime(int $seconds = 0) : self {
 		$this->write(0x18020C, pack('l*', $seconds * 60));
 
 		return $this;
@@ -232,7 +235,7 @@ class Rom {
 	 *
 	 * @return $this;
 	 */
-	public function setRedClock($seconds = 0) {
+	public function setRedClock(int $seconds = 0) : self {
 		$this->write(0x180200, pack('l*', $seconds * 60));
 
 		return $this;
@@ -245,7 +248,7 @@ class Rom {
 	 *
 	 * @return $this;
 	 */
-	public function setBlueClock($seconds = 0) {
+	public function setBlueClock(int $seconds = 0) : self {
 		$this->write(0x180204, pack('l*', $seconds * 60));
 
 		return $this;
@@ -258,7 +261,7 @@ class Rom {
 	 *
 	 * @return $this;
 	 */
-	public function setGreenClock($seconds = 0) {
+	public function setGreenClock(int $seconds = 0) : self {
 		$this->write(0x180208, pack('l*', $seconds * 60));
 
 		return $this;
@@ -271,7 +274,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMaxArrows($max = 30) : self {
+	public function setMaxArrows(int $max = 30) : self {
 		$this->write(0x180035, pack('C', $max));
 
 		return $this;
@@ -284,7 +287,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setDiggingGameRng($digs = 15) : self {
+	public function setDiggingGameRng(int $digs = 15) : self {
 		$this->write(0x180020, pack('C', $digs));
 		$this->write(0xEFD95, pack('C', $digs));
 
@@ -298,7 +301,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMaxBombs($max = 10) : self {
+	public function setMaxBombs(int $max = 10) : self {
 		$this->write(0x180034, pack('C', $max));
 
 		return $this;
@@ -339,7 +342,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGoalRequiredCount($goal = 0) : self {
+	public function setGoalRequiredCount(int $goal = 0) : self {
 		$this->write(0x180167, pack('C', $goal));
 
 		return $this;
@@ -352,7 +355,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGoalIcon($goal_icon = 'star') : self {
+	public function setGoalIcon(string $goal_icon = 'star') : self {
 		switch ($goal_icon) {
 			case 'triforce':
 				$byte = pack('S*', 0x280E);
@@ -374,7 +377,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGanonInvincible($setting = 'no') : self {
+	public function setGanonInvincible(string $setting = 'no') : self {
 		switch ($setting) {
 			case 'dungeons':
 				$byte = pack('C*', 0x02);
@@ -1187,7 +1190,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setHardMode($level = 0) : self {
+	public function setHardMode(int $level = 0) : self {
 		$this->setBelowGanonChest(false);
 
 		switch ($level) {
@@ -1237,7 +1240,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setShopBlueShieldCost($cost = 50) : self {
+	public function setShopBlueShieldCost(int $cost = 50) : self {
 		$cost_digits = str_split($cost);
 		if ($cost > 999) {
 			$this->write(0xF73D2, pack('C*', 0xFC, 0xFF)); // reposition gfx
@@ -1275,7 +1278,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setShopRedShieldCost($cost = 500) : self {
+	public function setShopRedShieldCost(int $cost = 500) : self {
 		$cost_digits = str_split($cost);
 		if ($cost > 999) {
 			$this->write(0xF73FA, pack('C*', 0xFC, 0xFF)); // reposition gfx
@@ -1314,7 +1317,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSmithyQuickItemGive($enable = true) : self {
+	public function setSmithyQuickItemGive(bool $enable = true) : self {
 		$this->write(0x180029, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1327,7 +1330,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setPyramidFairyChests($enable = true) : self {
+	public function setPyramidFairyChests(bool $enable = true) : self {
 		$this->write(0x1FC16, $enable
 			? pack('C*', 0xB1, 0xC6, 0xF9, 0xC9, 0xC6, 0xF9)
 			: pack('C*', 0xA8, 0xB8, 0x3D, 0xD0, 0xB8, 0x3D));
@@ -1342,7 +1345,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setBelowGanonChest($enable = true) : self {
+	public function setBelowGanonChest(bool $enable = true) : self {
 		// convert telepathic tile to chest and place it
 		$this->write(0x50563, $enable ? pack('C*', 0xC5, 0x76) : pack('C*', 0x3F, 0x14));
 		// lock door to under ganon
@@ -1360,7 +1363,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setOpenMode($enable = true) : self {
+	public function setOpenMode(bool $enable = true) : self {
 		$this->write(0x180032, pack('C*', $enable ? 0x01 : 0x00));
 		$this->setSewersLampCone(!$enable);
 		$this->setLightWorldLampCone(false);
@@ -1376,7 +1379,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMapMode($require_map = false) : self {
+	public function setMapMode(bool $require_map = false) : self {
 		$this->write(0x18003B, pack('C*', $require_map ? 0x01 : 0x00));
 
 		return $this;
@@ -1389,7 +1392,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setCompassMode($show_count = false) : self {
+	public function setCompassMode(bool $show_count = false) : self {
 		$this->write(0x18003C, pack('C*', $show_count ? 0x01 : 0x00));
 
 		return $this;
@@ -1402,7 +1405,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setFreeItemTextMode($enable = true) : self {
+	public function setFreeItemTextMode(bool $enable = true) : self {
 		$this->write(0x18016A, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1415,7 +1418,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSwordlessMode($enable = false) : self {
+	public function setSwordlessMode(bool $enable = false) : self {
 		$this->write(0x18003F, pack('C*', $enable ? 0x01 : 0x00)); // Hammer Ganon
 		$this->write(0x180040, pack('C*', $enable ? 0x01 : 0x00)); // Open Curtains
 		$this->write(0x180041, pack('C*', $enable ? 0x01 : 0x00)); // Swordless Medallions
@@ -1431,7 +1434,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSewersLampCone($enable = true) : self {
+	public function setSewersLampCone(bool $enable = true) : self {
 		$this->write(0x180038, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1444,7 +1447,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLightWorldLampCone($enable = true) : self {
+	public function setLightWorldLampCone(bool $enable = true) : self {
 		$this->write(0x180039, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1457,7 +1460,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setDarkWorldLampCone($enable = true) : self {
+	public function setDarkWorldLampCone(bool $enable = true) : self {
 		$this->write(0x18003A, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1470,7 +1473,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setMirrorlessSaveAndQuitToLightWorld($enable = true) : self {
+	public function setMirrorlessSaveAndQuitToLightWorld(bool $enable = true) : self {
 		$this->write(0x1800A0, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1483,7 +1486,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSaveAndQuitFromBossRoom($enable = false) : self {
+	public function setSaveAndQuitFromBossRoom(bool $enable = false) : self {
 		$this->write(0x180042, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1496,7 +1499,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setSwampWaterLevel($enable = true) : self {
+	public function setSwampWaterLevel(bool $enable = true) : self {
 		$this->write(0x1800A1, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1509,7 +1512,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setPreAgahnimDarkWorldDeathInDungeon($enable = true) : self {
+	public function setPreAgahnimDarkWorldDeathInDungeon(bool $enable = true) : self {
 		$this->write(0x1800A2, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1522,7 +1525,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setWorldOnAgahnimDeath($enable = true) : self {
+	public function setWorldOnAgahnimDeath(bool $enable = true) : self {
 		$this->write(0x1800A3, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1535,7 +1538,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLockAgahnimDoorInEscape($enable = true) : self {
+	public function setLockAgahnimDoorInEscape(bool $enable = true) : self {
 		$this->write(0x180169, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
@@ -1669,7 +1672,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function write(int $offset, $data, $log = true) : self {
+	public function write(int $offset, string $data, bool $log = true) : self {
 		if ($log) {
 			Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
@@ -1735,7 +1738,7 @@ class Rom {
 	 *
 	 * @return int
 	 */
-	private function charToCreditsHex($char) : int {
+	private function charToCreditsHex(string $char) : int {
 		if (preg_match('/[a-z]/', $char)) {
 			return ord($char) - 0x47;
 		}
