@@ -267,39 +267,6 @@ class MiseryMire extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initSpeedRunner();
-
-		$this->can_enter = function($locations, $items) {
-			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
-				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
-				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-			&& $items->hasSword()
-			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
-			&& ($items->has('MoonPearl') || $items->hasABottle());
-		};
-
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& ($items->has('CaneOfSomaria')
-					|| $items->hasSword() || $items->has('Hammer')
-					|| ($items->has('Hookshot') && $items->has('Flippers') && (
-						$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
-					))
-				);
-		};
-
-		$this->prize_location->setRequirements($this->can_complete);
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
 		$this->initNoMajorGlitches();
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big chest"]->setRequirements(function($locations, $items) {
@@ -330,23 +297,23 @@ class MiseryMire extends Region {
 			return $item != Item::get('BigKey');
 		});
 
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('CaneOfSomaria')
-				&& (!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				])
-					|| $items->canLightTorches());
-		};
-
 		$this->can_enter = function($locations, $items) {
 			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 			&& $items->hasSword()
-			&& ($items->canLiftDarkRocks() && $items->canFly() && ($items->has('MoonPearl')
-				|| ($items->has('Flippers') && $items->has('MagicMirror') && $items->hasABottle() && $items->has('BugCatchingNet'))))
-			&& ($items->has('PegasusBoots') || $items->has('Hookshot'));
+			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
+			&& ($items->has('MoonPearl') || $items->hasABottle());
+		};
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& ($items->has('CaneOfSomaria')
+					|| $items->hasSword() || $items->has('Hammer')
+					|| ($items->has('Hookshot') && $items->has('Flippers') && (
+						$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
+					))
+				);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);

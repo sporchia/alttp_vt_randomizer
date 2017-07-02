@@ -970,7 +970,7 @@ class Rom {
 	 */
 	public function setRandomizerSeedType(string $setting) : self {
 		switch ($setting) {
-			case 'SpeedRunner':
+			case 'OverworldGlitches':
 				$byte = 0x02;
 				break;
 			case 'Glitched':

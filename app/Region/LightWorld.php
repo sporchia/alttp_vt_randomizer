@@ -330,30 +330,4 @@ class LightWorld extends Region {
 
 		return $this;
 	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	function initSpeedRunner() {
-		$this->initNoMajorGlitches();
-
-		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror') && $items->has('Flippers')
-				&& ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
-					|| ($items->has('MoonPearl') && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
-		});
-
-		return $this;
-	}
 }

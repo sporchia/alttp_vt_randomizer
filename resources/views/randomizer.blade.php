@@ -54,7 +54,7 @@
 					<span class="input-group-addon">Logic</span>
 					<select id="logic" class="form-control selectpicker">
 						<option value="NoMajorGlitches">No Glitches</option>
-						<option value="SpeedRunner">Minor Glitches</option>
+						<option value="OverworldGlitches">Overworld Glitches</option>
 						<option value="Glitched">Major Glitches</option>
 					</select>
 				</div>

@@ -76,7 +76,51 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->initSpeedRunner();
+		$this->initGlitched();
+
+		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return $items->canLiftRocks() || ($items->has('Lamp') && !$locations->itemInLocations(Item::get('Key'), [
+					"[dungeon-C-B1] Escape - final basement room [left chest]",
+					"[dungeon-C-B1] Escape - final basement room [middle chest]",
+					"[dungeon-C-B1] Escape - final basement room [right chest]",
+				]));
+			}
+
+			return true;
+		});
+
+		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return $items->canLiftRocks() || ($items->has('Lamp') && !$locations->itemInLocations(Item::get('Key'), [
+					"[dungeon-C-B1] Escape - final basement room [left chest]",
+					"[dungeon-C-B1] Escape - final basement room [middle chest]",
+					"[dungeon-C-B1] Escape - final basement room [right chest]",
+				]));
+			}
+
+			return true;
+		});
+
+		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return $items->canLiftRocks() || ($items->has('Lamp') && !$locations->itemInLocations(Item::get('Key'), [
+					"[dungeon-C-B1] Escape - final basement room [left chest]",
+					"[dungeon-C-B1] Escape - final basement room [middle chest]",
+					"[dungeon-C-B1] Escape - final basement room [right chest]",
+				]));
+			}
+
+			return true;
+		});
+
+		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return $items->has('Lamp');
+			}
+
+			return true;
+		});
 
 		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setFillRules(function($item, $locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
@@ -161,62 +205,6 @@ class HyruleCastleEscape extends Region {
 				return $items->has('Lamp');
 			});
 		}
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode. Everything is free.
-	 *
-	 * @return $this
-	 */
-	function initSpeedRunner() {
-		$this->initGlitched();
-
-		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canLiftRocks() || ($items->has('Lamp') && !$locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - final basement room [left chest]",
-					"[dungeon-C-B1] Escape - final basement room [middle chest]",
-					"[dungeon-C-B1] Escape - final basement room [right chest]",
-				]));
-			}
-
-			return true;
-		});
-
-		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canLiftRocks() || ($items->has('Lamp') && !$locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - final basement room [left chest]",
-					"[dungeon-C-B1] Escape - final basement room [middle chest]",
-					"[dungeon-C-B1] Escape - final basement room [right chest]",
-				]));
-			}
-
-			return true;
-		});
-
-		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canLiftRocks() || ($items->has('Lamp') && !$locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-C-B1] Escape - final basement room [left chest]",
-					"[dungeon-C-B1] Escape - final basement room [middle chest]",
-					"[dungeon-C-B1] Escape - final basement room [right chest]",
-				]));
-			}
-
-			return true;
-		});
-
-		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->has('Lamp');
-			}
-
-			return true;
-		});
 
 		return $this;
 	}

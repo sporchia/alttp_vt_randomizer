@@ -91,24 +91,7 @@ class World {
 						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
 				};
 				break;
-			case 'SpeedRunner':
-				$this->win_condition = function($collected_items) {
-					if ($this->goal == 'dungeons') {
-						if (!$collected_items->has('PendantOfCourage')
-							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')
-							|| !$collected_items->has('DefeatAgahnim')) {
-							return false;
-						}
-					}
-
-					return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-						&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
-								|| ($collected_items->has('SilverArrowUpgrade')
-									&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
-						&& $collected_items->canLightTorches()
-						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
-				};
+			case 'OverworldGlitches':
 			case 'NoMajorGlitches':
 			default:
 				if ($this->config('rom.HardMode', 0) > 0) {

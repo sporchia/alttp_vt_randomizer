@@ -743,30 +743,6 @@ class GanonsTower extends Region {
 		return $this;
 	}
 
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
-		$this->initGlitched();
-
-		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl')
-				&& $items->canLiftDarkRocks()
-				&& $items->has('Crystal1')
-				&& $items->has('Crystal2')
-				&& $items->has('Crystal3')
-				&& $items->has('Crystal4')
-				&& $items->has('Crystal5')
-				&& $items->has('Crystal6')
-				&& $items->has('Crystal7');
-		};
-
-		return $this;
-	}
-
 	protected function bootsIfKeyOnTorch($locations, $items) {
 		return $items->has('PegasusBoots')
 			|| !$locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->hasItem(Item::get('Key'))

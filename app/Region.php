@@ -149,11 +149,11 @@ class Region {
 	}
 
 	/**
-	 * Initalize the SpeedRunner logic for the Region
+	 * Initalize the Overworld Glitches logic for the Region
 	 *
 	 * @return $this
 	 */
-	public function initSpeedRunner() {
+	public function initOverworldGlitches() {
 		return $this->initNoMajorGlitches();
 	}
 

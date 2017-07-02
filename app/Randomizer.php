@@ -71,7 +71,7 @@ class Randomizer {
 	public function getLogic() {
 		switch ($this->type) {
 			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC;
-			case 'SpeedRunner': return 'minor-glitches-' . static::LOGIC;
+			case 'OverworldGlitches': return 'overworld-glitches-' . static::LOGIC;
 			case 'Glitched': return 'major-glitches-' . static::LOGIC;
 		}
 		return 'unknown-' . static::LOGIC;
@@ -598,9 +598,8 @@ class Randomizer {
 				$rom->setRandomizerSeedType('Glitched');
 				$rom->setWarningFlags(bindec('01100000'));
 				break;
-			case 'SpeedRunner':
+			case 'OverworldGlitches':
 				$type_flag = 'S';
-				$rom->setSwampWaterLevel(false);
 				$rom->setSaveAndQuitFromBossRoom(false);
 				$rom->setWorldOnAgahnimDeath(true);
 				$rom->setWarningFlags(bindec('01000000'));

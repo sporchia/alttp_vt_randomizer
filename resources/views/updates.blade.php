@@ -4,6 +4,8 @@
 <h2>VT8.25</h2>
 <div class="well">
 	<ul>
+		<li>Added Overworld Glitches Logic</li>
+		<li>Removed Minor Glitches (SpeedRunner) Logic</li>
 		<li>Uncle's boots hint removed</li>
 		<li>Overworld bonk locations are no longer randomized</li>
 		<li>Special chest under Ganon removed in all modes</li>

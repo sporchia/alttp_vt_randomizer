@@ -153,22 +153,6 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initSpeedRunner();
-
-		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') || $items->hasABottle();
-		};
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
 		$this->initNoMajorGlitches();
 
 		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setFillRules(function($item, $locations, $items) {
@@ -185,6 +169,10 @@ class ThievesTown extends Region {
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('MoonPearl') || $items->hasABottle();
+		};
 
 		return $this;
 	}
