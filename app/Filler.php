@@ -10,7 +10,8 @@ abstract class Filler {
 	/**
 	 * Returns a Filler of a specified type.
 	 *
-	 * @param string|null $type type of Filler requested
+	 * @param string $type type of Filler requested
+	 * @param World $world World to assocaite filler to
 	 *
 	 * @return self
 	 */
