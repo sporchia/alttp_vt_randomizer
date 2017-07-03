@@ -34,14 +34,17 @@ class World {
 			'Escape' => new Region\HyruleCastleEscape($this),
 			'Eastern Palace' => new Region\EasternPalace($this),
 			'Desert Palace' => new Region\DesertPalace($this),
-			'Death Mountain' => new Region\DeathMountain($this),
+			'West Death Mountain' => new Region\DeathMountain\West($this),
 			'East Death Mountain' => new Region\DeathMountain\East($this),
+			'Top Death Mountain' => new Region\DeathMountain\Top($this),
 			'Tower of Hera' => new Region\TowerOfHera($this),
 			'Hyrule Castle Tower' => new Region\HyruleCastleTower($this),
-			'Dark World' => new Region\DarkWorld($this),
+			'East Dark World Death Mountain' => new Region\DarkWorld\DeathMountain\East($this),
+			'West Dark World Death Mountain' => new Region\DarkWorld\DeathMountain\West($this),
 			'North East Dark World' => new Region\DarkWorld\NorthEast($this),
 			'North West Dark World' => new Region\DarkWorld\NorthWest($this),
 			'South Dark World' => new Region\DarkWorld\South($this),
+			'Mire' => new Region\DarkWorld\Mire($this),
 			'Palace of Darkness' => new Region\PalaceOfDarkness($this),
 			'Swamp Palace' => new Region\SwampPalace($this),
 			'Skull Woods' => new Region\SkullWoods($this),
@@ -134,7 +137,14 @@ class World {
 						}
 					}
 
-					return $collected_items->has('DefeatGanon');
+					return $collected_items->has('DefeatGanon')
+						&& 	$collected_items->has('Crystal1')
+						&& $collected_items->has('Crystal2')
+						&& $collected_items->has('Crystal3')
+						&& $collected_items->has('Crystal4')
+						&& $collected_items->has('Crystal5')
+						&& $collected_items->has('Crystal6')
+						&& $collected_items->has('Crystal7');
 				};
 				break;
 		}

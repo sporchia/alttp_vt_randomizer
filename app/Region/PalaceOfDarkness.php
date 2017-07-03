@@ -314,10 +314,6 @@ class PalaceOfDarkness extends Region {
 					&& !$locations->itemInLocations(Item::get('Key'), ["[dungeon-D1-1F] Dark Palace - maze room [top chest]", "[dungeon-D1-1F] Dark Palace - big chest"]));
 		});
 
-		$this->locations["[dungeon-D1-B1] Dark Palace - shooter room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["Heart Container - Helmasaur King"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Lamp') && $items->canShootArrows();
 		})->setFillRules(function($item, $locations, $items) {

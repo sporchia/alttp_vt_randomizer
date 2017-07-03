@@ -1,4 +1,4 @@
-<?php namespace ALttP\Region;
+<?php namespace ALttP\Region\DeathMountain;
 
 use ALttP\Support\LocationCollection;
 use ALttP\Location;
@@ -9,7 +9,7 @@ use ALttP\World;
 /**
  * Death Mountain Region and it's Locations contained within
  */
-class DeathMountain extends Region {
+class Top extends Region {
 	protected $name = 'Death Mountain';
 
 	/**
@@ -24,8 +24,6 @@ class DeathMountain extends Region {
 
 		$this->locations = new LocationCollection([
 			new Location\Drop("Ether Tablet", 0x180016, null, $this),
-			new Location\Npc("Old Mountain Man", 0xF69FA, null, $this),
-			new Location\Standing("Piece of Heart (Spectacle Rock Cave)", 0x180002, null, $this),
 			new Location\Standing("Piece of Heart (Spectacle Rock)", 0x180140, null, $this),
 		]);
 	}
@@ -37,8 +35,6 @@ class DeathMountain extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["Ether Tablet"]->setItem(Item::get('Ether'));
-		$this->locations["Old Mountain Man"]->setItem(Item::get('MagicMirror'));
-		$this->locations["Piece of Heart (Spectacle Rock Cave)"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Piece of Heart (Spectacle Rock)"]->setItem(Item::get('PieceOfHeart'));
 
 		return $this;
@@ -53,17 +49,7 @@ class DeathMountain extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
 			return $items->has('BookOfMudora')
-				&& $items->hasUpgradedSword()
-				&& ($items->has('MagicMirror')
-					|| ($this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->has('Hammer')));
-		});
-
-		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
-		});
-
-		$this->locations["Piece of Heart (Spectacle Rock Cave)"]->setRequirements(function($locations, $items) {
-			return true;
+				&& $items->hasUpgradedSword();
 		});
 
 		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
@@ -71,7 +57,9 @@ class DeathMountain extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+			return ($items->has('MagicMirror')
+					|| ($items->has('Hammer') && $items->has('Hookshot')))
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
 
 		return $this;
@@ -88,9 +76,28 @@ class DeathMountain extends Region {
 			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
 		});
 
-		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+		};
 
 		return $this;
 	}

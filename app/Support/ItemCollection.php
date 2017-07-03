@@ -309,6 +309,16 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Requirements for fast travel through the spin/hook speed
+	 *
+	 * @return bool
+	 */
+	public function canSpinSpeed() {
+		return $this->has('PegasusBoots')
+			&& ($this->hasSword() || $this->has('Hookshot'));
+	}
+
+	/**
 	 * Requirements for lobbing arrows at things
 	 *
 	 * @return bool

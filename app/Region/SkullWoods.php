@@ -185,4 +185,22 @@ class SkullWoods extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Glitched Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		// P2: CanAccessNWDW && Moon Pearl && Fire Rod
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+		};
+
+		return $this;
+	}
+
 }

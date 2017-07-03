@@ -1,4 +1,4 @@
-<?php namespace ALttP\Region;
+<?php namespace ALttP\Region\DarkWorld\DeathMountain;
 
 use ALttP\Item;
 use ALttP\Location;
@@ -9,7 +9,7 @@ use ALttP\World;
 /**
  * Dark World Region and it's Locations contained within
  */
-class DarkWorld extends Region {
+class East extends Region {
 	protected $name = 'Dark World';
 
 	/**
@@ -23,20 +23,13 @@ class DarkWorld extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-055] Spike cave", 0xEA8B, null, $this),
-			new Location\Chest("[cave-071] Misery Mire west area [left chest]", 0xEA73, null, $this),
-			new Location\Chest("[cave-071] Misery Mire west area [right chest]", 0xEA76, null, $this),
 			new Location\Chest("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]", 0xEA7C, null, $this),
 			new Location\Chest("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]", 0xEA7F, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [top right chest]", 0xEB51, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [top left chest]", 0xEB54, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]", 0xEB57, null, $this),
 			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]", 0xEB5A, null, $this),
-			new Location\Prize\Event("Ganon", null, null, $this),
 		]);
-
-		$this->prize_location = $this->locations["Ganon"];
-		$this->prize_location->setItem(Item::get('DefeatGanon'));
 	}
 
 	/**
@@ -45,9 +38,6 @@ class DarkWorld extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-055] Spike cave"]->setItem(Item::get('CaneOfByrna'));
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setItem(Item::get('FiftyRupees'));
@@ -65,62 +55,35 @@ class DarkWorld extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
-				&& $this->world->getRegion('Death Mountain')->canEnter($locations, $items);
-		});
-
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canFly() && $items->canLiftDarkRocks();
-		});
-
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canFly() && $items->canLiftDarkRocks();
-		});
-
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) {
-			return $this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->canLiftDarkRocks()
-				&& $items->has('MoonPearl');
+			return $items->has('MoonPearl');
 		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setRequirements(function($locations, $items) {
-			return $this->world->getRegion('East Death Mountain')->canEnter($locations, $items) && $items->canLiftDarkRocks()
-				&& $items->has('MoonPearl');
+			return $items->has('MoonPearl');
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftDarkRocks() && $items->has('Hookshot')
-				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+			return $items->has('MoonPearl') && $items->has('Hookshot');
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftDarkRocks() && $items->has('Hookshot')
-				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+			return $items->has('MoonPearl') && $items->has('Hookshot');
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftDarkRocks() && $items->has('Hookshot')
-				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+			return $items->has('MoonPearl')  && $items->has('Hookshot');
 		});
 
 		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftDarkRocks() && ($items->has('Hookshot') || $items->has('PegasusBoots'))
-				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+			return $items->has('MoonPearl') && ($items->has('Hookshot') || $items->has('PegasusBoots'));
 		});
 
-		// canbeataga2 && (MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows))) || (TS && (lamp || fire rod))
-		$this->prize_location->setRequirements(function($locations, $items) {
-			return $items->has('DefeatAgahnim2') && $items->canLightTorches()
-				&& ($items->has('BowAndSilverArrows')
-					|| ($items->has('SilverArrowUpgrade')
-						&& ($items->has('Bow') || $items->has('BowAndArrows'))))
-				&& (
-					(config('game-mode') == 'swordless' && $items->has('Hammer'))
-					|| $items->has('L3Sword')
-					|| $items->has('L4Sword')
-					|| $items->has('ProgressiveSword', 3)
-				);
-		});
+		$this->can_enter = function($locations, $items) {
+			return $items->canLiftDarkRocks()
+				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+		};
+
 
 		return $this;
 	}
@@ -135,18 +98,6 @@ class DarkWorld extends Region {
 		$access_dark_world = function($items) {
 			return $items->has('MoonPearl') || $items->hasABottle();
 		};
-
-		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) && $items->has('Hammer') && $items->canLiftRocks();
-		});
-
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) || $items->has('MagicMirror');
-		});
-
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) || $items->has('MagicMirror');
-		});
 
 		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
 			return $access_dark_world($items) || $items->canLiftDarkRocks() || $items->has('Hammer') || $items->has('MagicMirror');
@@ -182,4 +133,23 @@ class DarkWorld extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return ($items->has('PegasusBoots') && $items->has('MoonPearl'))
+				|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
+					&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items));
+		};
+
+		return $this;
+	}
+
 }

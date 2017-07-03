@@ -155,12 +155,8 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
-			return (($this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('MagicMirror'))
-				|| $items->canLiftDarkRocks()) && $items->has('PegasusBoots');
-		});
-
-		$this->locations["[cave-040] Link's House"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
+				|| ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
 		});
 
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
@@ -197,7 +193,7 @@ class LightWorld extends Region {
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
 			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
-				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items) && $items->has('MagicMirror');
+				&& $items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
@@ -209,11 +205,12 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {
-			return $this->world->getRegion('South Dark World')->canEnter($locations, $items) && $items->has('MagicMirror');
+			return $items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["Piece of Heart (Graveyard)"]->setRequirements(function($locations, $items) {
-			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items) && $items->has('MagicMirror');
+			return $items->has('MagicMirror') && $items->has('MoonPearl')
+				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
@@ -229,8 +226,7 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Piece of Heart (Desert - west side)"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora')
-				|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly());
+			return $this->world->getRegion('Desert Palace')->canEnter($locations, $items);
 		});
 
 		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
@@ -321,6 +317,87 @@ class LightWorld extends Region {
 
 		$this->locations["Haunted Grove item"]->setRequirements(function($locations, $items) {
 			return $items->has('Shovel');
+		});
+
+		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers')
+				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
+		});
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
+				|| ($items->has('MagicMirror') && $items->has('MoonPearl')));
+		});
+
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& ($items->canLiftDarkRocks()
+					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
+		});
+
+		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
+			return $items->has('Powder')
+				&& ($items->has('Hammer')
+					|| $items->has('PegasusBoots')
+					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->canLiftDarkRocks()
+						&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
+		});
+
+		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
+			return $locations["Blacksmiths"]->canAccess($items)
+				&& ($items->has("MoonPearl")
+					&& (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
+						|| ($items->has('PegasusBoots') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
+		});
+
+		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
+			return true;
+		});
+
+		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
+				&& ($items->has('PegasusBoots')
+					|| ($items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
+		});
+
+		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
+			return true;
+		});
+
+		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items));
+		});
+
+		$this->locations["Piece of Heart (Graveyard)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $items->has('MoonPearl')
+					&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items));
+		});
+
+		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks()
+				&& ($items->has('PegasusBoots')
+					|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
+		});
+
+		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('Flippers') && $items->has('MagicMirror')
+					&& (($items->has('MoonPearl') && $this->world->getRegion('South Dark World')->canEnter($locations, $items))
+						|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items)));
 		});
 
 		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {

@@ -256,7 +256,8 @@ class IcePalace extends Region {
 
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('Flippers') && $items->canLiftDarkRocks() && $items->canMeltThings();
+			return $items->has('MoonPearl') && $items->has('Flippers')
+				&& $items->canLiftDarkRocks() && $items->canMeltThings();
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -307,6 +308,22 @@ class IcePalace extends Region {
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->canLiftDarkRocks() && $items->canMeltThings();
+		};
 
 		return $this;
 	}

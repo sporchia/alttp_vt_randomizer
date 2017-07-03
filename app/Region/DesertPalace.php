@@ -206,4 +206,22 @@ class DesertPalace extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('BookOfMudora')
+				|| $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items));
+		};
+
+		return $this;
+	}
 }

@@ -10,6 +10,8 @@ use ALttP\World;
  * Region to hold the Fairy Fountain prizes in the world
  */
 class Fountains extends Region {
+	protected $name = 'Special';
+
 	/**
 	 * Create a new Fountains to hold fountain prizes
 	 *

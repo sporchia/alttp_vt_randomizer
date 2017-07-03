@@ -288,8 +288,8 @@ class TurtleRock extends Region {
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 				&& (config('game-mode') == 'swordless' || $items->hasSword()))
 			&& $items->has('MoonPearl') && $items->has('CaneOfSomaria')
-			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
-			&& $items->canLiftDarkRocks() && $items->has('Hammer');
+			&& $items->canLiftDarkRocks() && $items->has('Hammer')
+			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -505,4 +505,41 @@ class TurtleRock extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->key_fill_3 = [
+			"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
+			"[dungeon-D7-B1] Turtle Rock - big key room",
+		];
+
+		$middle = function($locations, $items) {
+			return ($items->has('MagicMirror') || ($items->has('MoonPearl') && $items->canSpinSpeed()))
+				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
+		};
+
+		$upper = function($locations, $items) {
+			return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+			&& $items->has('MoonPearl') && $items->has('CaneOfSomaria')
+			&& $items->has('Hammer') && ($items->canLiftDarkRocks() || $items->has('PegasusBoots'))
+			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+		};
+
+		$this->can_enter = function($locations, $items) use ($upper, $middle) {
+			return $upper($locations, $items) || $middle($locations, $items);
+		};
+
+		return $this;
+	}
+
 }

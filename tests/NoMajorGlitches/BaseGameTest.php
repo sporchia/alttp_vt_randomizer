@@ -364,7 +364,7 @@ class BaseGameTest extends TestCase {
 	}
 
 	public function testCanWin() {
-		$this->addCollected(['DefeatGanon']);
+		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'DefeatGanon']);
 
 		$this->assertTrue($this->world->getWinCondition()($this->collected));
 	}

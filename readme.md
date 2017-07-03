@@ -28,14 +28,14 @@ $ php artisan alttp:randomize -h
 ```
 
 #### Web interface
-You will need to build assets the first time (you will need [Yarn](https://yarnpkg.com/) to install the javascript dependicies).
+You will need to build assets the first time (you will need [Yarn](https://yarnpkg.com/) to install the javascript dependencies).
 
 ```
 $ yarn
 $ ./node_modules/gulp/bin/gulp.js --production
 ```
 
-Once you have the dependicies installed. Run the following command then navigate to http://localhost:8000/.
+Once you have the dependencies installed. Run the following command then navigate to http://localhost:8000/.
 
 ```
 $ php artisan serve

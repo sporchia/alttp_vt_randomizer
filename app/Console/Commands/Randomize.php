@@ -107,6 +107,8 @@ class Randomize extends Command {
 					if (isset($sprite_graphics)) {
 						$rom->write(0x80000, $sprite_graphics, false);
 						$rom->write(0xDD308, $sprite_palettes, false);
+						$rom->write(0xDEDF5, substr($sprite_palettes, 0x36, 2), false);
+						$rom->write(0xDEDF7, substr($sprite_palettes, 0x54, 2), false);
 					}
 				}
 				$rom->updateChecksum();

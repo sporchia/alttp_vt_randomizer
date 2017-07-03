@@ -63,10 +63,6 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-012-1F] Death Mountain - wall of caves - left cave"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer')
 				&& $this->world->getRegion('Turtle Rock')->canEnter($locations, $items)
@@ -76,41 +72,13 @@ class East extends Region {
 					|| $items->has('FireRod'));
 		});
 
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $items->has('MoonPearl')
 				&& $items->canLiftDarkRocks();
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('Death Mountain')->canEnter($locations, $items)
+			return $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
 				&& (($items->has('Hammer') && $items->has('MagicMirror'))
 				|| $items->has('Hookshot'));
 		};
@@ -128,6 +96,37 @@ class East extends Region {
 		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('MagicMirror');
 		});
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer')
+				&& $items->has('MagicMirror')
+				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
+		});
+
+		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $items->has('MoonPearl')
+					&& $items->canLiftRocks() && $this->world->getRegion('Top Death Mountain')->canEnter($locations, $items));
+		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('Hookshot') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+				|| (($items->has('MagicMirror') || $items->has('Hammer'))
+					&& $this->world->getRegion('Top Death Mountain')->canEnter($locations, $items));
+		};
 
 		return $this;
 	}

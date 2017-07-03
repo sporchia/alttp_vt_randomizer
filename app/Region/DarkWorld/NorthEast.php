@@ -27,12 +27,16 @@ class NorthEast extends Region {
 			new Location\Standing("Piece of Heart (Pyramid)", 0x180147, null, $this),
 			new Location\Standing("Pyramid - Sword", 0x180028, null, $this),
 			new Location\Standing("Pyramid - Bow", 0x34914, null, $this),
+			new Location\Prize\Event("Ganon", null, null, $this),
 		]);
 
 		if ($this->world->config('region.swordsInPool', true)) {
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Left", 0xE980, null, $this));
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Right", 0xE983, null, $this));
 		}
+
+		$this->prize_location = $this->locations["Ganon"];
+		$this->prize_location->setItem(Item::get('DefeatGanon'));
 	}
 
 	/**
@@ -63,10 +67,6 @@ class NorthEast extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->canLiftRocks();
-		});
-
-		$this->locations["Piece of Heart (Pyramid)"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
@@ -106,6 +106,20 @@ class NorthEast extends Region {
 				|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl'));
 		};
 
+		// canbeataga2 && (MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows))) || (TS && (lamp || fire rod))
+		$this->prize_location->setRequirements(function($locations, $items) {
+			return $items->has('DefeatAgahnim2') && $items->canLightTorches()
+				&& ($items->has('BowAndSilverArrows')
+					|| ($items->has('SilverArrowUpgrade')
+						&& ($items->has('Bow') || $items->has('BowAndArrows'))))
+				&& (
+					(config('game-mode') == 'swordless' && $items->has('Hammer'))
+					|| $items->has('L3Sword')
+					|| $items->has('L4Sword')
+					|| $items->has('ProgressiveSword', 3)
+				);
+		});
+
 		return $this;
 	}
 
@@ -117,7 +131,7 @@ class NorthEast extends Region {
 	 */
 	public function initGlitched() {
 		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror')
+			return $items->hasSword() && $items->has('MagicMirror')
 				|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
 					&& ($items->hasABottle() || $items->has("MoonPearl")));
 		});
@@ -144,6 +158,38 @@ class NorthEast extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') || $items->hasABottle();
+		};
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		// 2x check this one
+		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && $items->canLiftRocks();
+		});
+
+		// Do any of the things in this region actually use the can_enter function? I wonder what we are thinking here
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('DefeatAgahnim')
+				|| ($items->has('MagicMirror') && $items->canSpinSpeed())
+				|| ($items->has('MoonPearl')
+					&& ($items->canSpinSpeed()
+						|| ($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+						|| ($items->has('Hammer') && $items->canLiftRocks())
+						|| ($items->has('MagicMirror') && ($this->world->getRegion('Top Death Mountain')->canEnter($locations, $items)
+							|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)))
+						)
+					);
 		};
 
 		return $this;

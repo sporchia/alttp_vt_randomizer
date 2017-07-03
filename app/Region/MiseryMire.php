@@ -320,4 +320,25 @@ class MiseryMire extends Region {
 
 		return $this;
 	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+			&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
+			&& $this->world->getRegion('Mire')->canEnter($locations, $items);
+		};
+
+		return $this;
+	}
 }

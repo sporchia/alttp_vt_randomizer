@@ -609,6 +609,11 @@ var ROM = ROM || (function(blob, loaded_callback) {
 			for (var i = 0; i < 120; i++) {
 				u_array[0xDD308 + i] = spr[0x7000 + i];
 			}
+			// gloves color
+			u_array[0xDEDF5] = spr[0x7036];
+			u_array[0xDEDF6] = spr[0x7037];
+			u_array[0xDEDF7] = spr[0x7054];
+			u_array[0xDEDF8] = spr[0x7055];
 			resolve(this);
 		}.bind(this));
 	}.bind(this);
@@ -760,12 +765,12 @@ var tabsContent = new Map();
 function pasrseSpoilerToTabs(spoiler) {
 	var spoilertabs = $('.spoiler-tabed');
 	var nav = spoilertabs.find('.nav-pills');
-	var active_nav = nav.find('.active a').html();
+	var active_nav = nav.find('.active a').data('section');
 	nav.html('');
 	var content = spoilertabs.find('.tab-content').html('');
 	var items = {};
 	for (section in spoiler) {
-		nav.append($('<li id="n-spoiler-' + section.replace(/ /g, '_') + '" ' + ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section + '<span class="badge badge-pill"></span></a></li>'));
+		nav.append($('<li id="n-spoiler-' + section.replace(/ /g, '_') + '" ' + ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" data-section="' + section + '" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section + '<span class="badge badge-pill"></span></a></li>'));
 		content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane' + ((section == active_nav) ? ' active' : '') + '"><pre>' + JSON.stringify(spoiler[section], null, 4) + '</pre></div>'));
 		if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) === -1) {
 			tabsContent.set('spoiler-' + section.replace(/ /g, '_'), Object.keys(spoiler[section]).map(function (key) {
