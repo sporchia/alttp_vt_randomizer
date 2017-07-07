@@ -65,7 +65,7 @@ class Randomize extends Command {
 			}
 
 			if (!$this->option('skip-md5') && !$rom->checkMD5()) {
-				return $this->error('Could not Reset Rom');
+				return $this->error('MD5 check failed :(');
 			}
 
 			$rom->setDebugMode($this->option('debug'));

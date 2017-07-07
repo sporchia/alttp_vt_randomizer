@@ -141,7 +141,21 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks() && $items->has('MoonPearl') && $items->has('Hookshot');
+		});
+
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks() && $items->has('MoonPearl') && $items->has('Hookshot');
+		});
+
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks() && $items->has('MoonPearl')  && $items->has('Hookshot');
+		});
+
+		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks() && $items->has('MoonPearl') && ($items->has('Hookshot') || $items->has('PegasusBoots'));
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->has('PegasusBoots') && $items->has('MoonPearl'))

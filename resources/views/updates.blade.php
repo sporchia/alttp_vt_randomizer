@@ -12,6 +12,9 @@
 		<li>Added search of spoilers to quickly find items</li>
 		<li>Skull Woods spike trap room chest set back to Key all the time</li>
 		<li>New Fill algorithm that maximizes item randimization</li>
+		<li>Added many new player options<br />
+			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.2.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 </div>
 

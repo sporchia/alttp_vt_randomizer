@@ -84,7 +84,13 @@ class Mire extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->canLiftDarkRocks() && ($items->canFly() || $items->has('PegasusBoots')))

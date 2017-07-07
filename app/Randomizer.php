@@ -691,7 +691,7 @@ class Randomizer {
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
-		switch (mt_rand(0, 3)) {
+		switch (mt_rand(0, 4)) {
 			case 1:
 				$rom->setWoodsmansHutCredits("fresh flapjacks");
 				break;
@@ -700,6 +700,9 @@ class Randomizer {
 				break;
 			case 3:
 				$rom->setWoodsmansHutCredits("double lumberman");
+				break;
+			case 4:
+				$rom->setWoodsmansHutCredits("lumberclones");
 				break;
 		}
 

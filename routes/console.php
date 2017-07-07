@@ -41,6 +41,24 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 		}
 		imagefill($im, 0, 0, $palettes[0]);
 
+		// shadow
+		$shadow_color = imagecolorallocate($im, 40, 40, 40);
+		$shadow = [
+			[0,0,0,1,1,1,1,1,1,0,0,0],
+			[0,1,1,1,1,1,1,1,1,1,1,0],
+			[1,1,1,1,1,1,1,1,1,1,1,1],
+			[1,1,1,1,1,1,1,1,1,1,1,1],
+			[0,1,1,1,1,1,1,1,1,1,1,0],
+			[0,0,0,1,1,1,1,1,1,0,0,0],
+		];
+		for ($y = 0; $y < 6; ++$y) {
+			for ($x = 0; $x < 12; ++$x) {
+				if ($shadow[$y][$x]) {
+					imagesetpixel($im, $x + 2, $y + 17, $shadow_color);
+				}
+			}
+		}
+
 		$body = Sprite::load16x16($sprite, 0x4C0);
 
 		for ($x = 0; $x < 16; ++$x) {
@@ -64,6 +82,7 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 
 		imagepng($im, "$spr.png");
 		imagedestroy($im);
+		imagepng($dst, "$spr.lg.png");
 		imagedestroy($dst);
 	}
 });

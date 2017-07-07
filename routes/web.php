@@ -61,7 +61,7 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 });
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
-	$difficulty = $request->input('difficulty', 'normal');
+	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}

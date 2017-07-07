@@ -53,17 +53,6 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-062] C-shaped house"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["Piece of Heart (Treasure Chest Game)"]->setRequirements(function($locations, $items) {
-			return true;
-		});
 
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
 			return $items->canLiftDarkRocks() && $items->has('Hammer');
@@ -127,6 +116,29 @@ class NorthWest extends Region {
 	 */
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
+
+		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["[cave-062] C-shaped house"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Treasure Chest Game)"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer')
+				&& ($items->has('MoonPearl') && $items->canLiftRocks());
+		});
+
+		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& ($items->has('PegasusBoots')
+						|| ($items->canLiftRocks() && $items->has('Cape')));
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->has('MoonPearl')
