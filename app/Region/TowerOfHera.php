@@ -115,14 +115,6 @@ class TowerOfHera extends Region {
 			return $item != Item::get('Key');
 		});
 
-		$this->locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setRequirements(function($locations, $items) {
 			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
 				|| $locations->itemInLocations(Item::get('BigKey'), [
@@ -159,7 +151,8 @@ class TowerOfHera extends Region {
 			});
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('Top Death Mountain')->canEnter($locations, $items);
+			return ($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -260,6 +253,24 @@ class TowerOfHera extends Region {
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+		};
 
 		return $this;
 	}

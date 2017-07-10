@@ -186,8 +186,7 @@ class NorthEast extends Region {
 					&& ($items->canSpinSpeed()
 						|| ($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
 						|| ($items->has('Hammer') && $items->canLiftRocks())
-						|| ($items->has('MagicMirror') && ($this->world->getRegion('Top Death Mountain')->canEnter($locations, $items)
-							|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)))
+						|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
 						)
 					);
 		};

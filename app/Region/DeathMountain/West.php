@@ -25,6 +25,8 @@ class West extends Region {
 		$this->locations = new LocationCollection([
 			new Location\Npc("Old Mountain Man", 0xF69FA, null, $this),
 			new Location\Standing("Piece of Heart (Spectacle Rock Cave)", 0x180002, null, $this),
+			new Location\Drop("Ether Tablet", 0x180016, null, $this),
+			new Location\Standing("Piece of Heart (Spectacle Rock)", 0x180140, null, $this),
 		]);
 	}
 
@@ -36,6 +38,8 @@ class West extends Region {
 	public function setVanilla() {
 		$this->locations["Old Mountain Man"]->setItem(Item::get('MagicMirror'));
 		$this->locations["Piece of Heart (Spectacle Rock Cave)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Ether Tablet"]->setItem(Item::get('Ether'));
+		$this->locations["Piece of Heart (Spectacle Rock)"]->setItem(Item::get('PieceOfHeart'));
 
 		return $this;
 	}
@@ -49,6 +53,17 @@ class West extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
+		});
+
+		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora')
+				&& $items->hasUpgradedSword()
+				&& ($items->has('MagicMirror')
+					|| ($items->has('Hammer') && $items->has('Hookshot')));
+		});
+
+		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror');
 		});
 
 		$this->can_enter = function($locations, $items) {
@@ -69,6 +84,10 @@ class West extends Region {
 			return $items->has('Lamp');
 		});
 
+		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
+		});
+
 		return $this;
 	}
 
@@ -80,6 +99,12 @@ class West extends Region {
 	 */
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
+
+
+		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| $items->has('MagicMirror');
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('PegasusBoots')

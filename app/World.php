@@ -36,7 +36,6 @@ class World {
 			'Desert Palace' => new Region\DesertPalace($this),
 			'West Death Mountain' => new Region\DeathMountain\West($this),
 			'East Death Mountain' => new Region\DeathMountain\East($this),
-			'Top Death Mountain' => new Region\DeathMountain\Top($this),
 			'Tower of Hera' => new Region\TowerOfHera($this),
 			'Hyrule Castle Tower' => new Region\HyruleCastleTower($this),
 			'East Dark World Death Mountain' => new Region\DarkWorld\DeathMountain\East($this),
