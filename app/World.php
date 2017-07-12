@@ -11,6 +11,7 @@ use Log;
 class World {
 	protected $rules;
 	protected $type;
+	protected $goal;
 	protected $regions = [];
 	protected $locations;
 	protected $win_condition;

@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches\DarkWorld;
+<?php namespace OverworldGlitches\DarkWorld;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group OverworldGlitches
  */
 class NorthEastTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {

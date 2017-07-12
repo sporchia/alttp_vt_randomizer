@@ -179,7 +179,7 @@ class Item {
 			new Item('ThreeHundredRupees', 'Three Hundred Rupees', [0x46]),
 			new Item('TwentyRupees2', 'Twenty Rupees', [0x47]),
 			new Item\Bottle('BottleWithGoldBee', 'Bottle (Golden Bee)', [0x48]),
-			new Item('OcarinaActive', 'Flute', [0x4A]),
+			new Item('OcarinaActive', 'Flute (active)', [0x4A]),
 			new Item('PegasusBoots', 'Pegasus Boots', [0x4B]),
 			new Item('BombUpgrade5', 'Bomb Upgrade (5)', [0x51]),
 			new Item('BombUpgrade10', 'Bomb Upgrade (10)', [0x52]),

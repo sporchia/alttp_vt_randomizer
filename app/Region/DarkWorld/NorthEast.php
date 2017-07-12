@@ -108,7 +108,8 @@ class NorthEast extends Region {
 
 		// canbeataga2 && (MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows))) || (TS && (lamp || fire rod))
 		$this->prize_location->setRequirements(function($locations, $items) {
-			return $items->has('DefeatAgahnim2') && $items->canLightTorches()
+			return $items->has('MoonPearl')
+				&& $items->has('DefeatAgahnim2') && $items->canLightTorches()
 				&& ($items->has('BowAndSilverArrows')
 					|| ($items->has('SilverArrowUpgrade')
 						&& ($items->has('Bow') || $items->has('BowAndArrows'))))

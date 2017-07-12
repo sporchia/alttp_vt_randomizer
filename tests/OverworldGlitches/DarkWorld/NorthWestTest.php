@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches\DarkWorld;
+<?php namespace OverworldGlitches\DarkWorld;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group OverworldGlitches
  */
 class NorthWestTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {
@@ -50,7 +50,6 @@ class NorthWestTest extends TestCase {
 			["[cave-063] doorless hut", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
 			["[cave-062] C-shaped house", false, []],
-			["[cave-062] C-shaped house", false, [], ['MoonPearl']],
 			["[cave-062] C-shaped house", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[cave-062] C-shaped house", true, ['MoonPearl', 'TitansMitt']],
 			["[cave-062] C-shaped house", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
@@ -60,7 +59,6 @@ class NorthWestTest extends TestCase {
 			["[cave-062] C-shaped house", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
 			["Piece of Heart (Treasure Chest Game)", false, []],
-			["Piece of Heart (Treasure Chest Game)", false, [], ['MoonPearl']],
 			["Piece of Heart (Treasure Chest Game)", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (Treasure Chest Game)", true, ['MoonPearl', 'TitansMitt']],
 			["Piece of Heart (Treasure Chest Game)", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
@@ -77,9 +75,6 @@ class NorthWestTest extends TestCase {
 			["Piece of Heart (Dark World blacksmith pegs)", true, ['MoonPearl', 'Hammer', 'TitansMitt']],
 
 			["Piece of Heart (Dark World - bumper cave)", false, []],
-			["Piece of Heart (Dark World - bumper cave)", false, [], ['MoonPearl']],
-			["Piece of Heart (Dark World - bumper cave)", false, [], ['Cape']],
-			["Piece of Heart (Dark World - bumper cave)", false, [], ['Gloves']],
 			["Piece of Heart (Dark World - bumper cave)", true, ['MoonPearl', 'Cape', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (Dark World - bumper cave)", true, ['MoonPearl', 'Cape', 'TitansMitt']],
 			["Piece of Heart (Dark World - bumper cave)", true, ['MoonPearl', 'Cape', 'ProgressiveGlove', 'Hammer']],

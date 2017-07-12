@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace OverworldGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group OverworldGlitches
  */
 class LightWorldTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {
@@ -46,7 +46,6 @@ class LightWorldTest extends TestCase {
 			["Altar", true, ['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']],
 
 			["Blacksmiths", false, []],
-			["Blacksmiths", false, [], ['Gloves']],
 			["Blacksmiths", false, [], ['MoonPearl']],
 			["Blacksmiths", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Blacksmiths", true, ['MoonPearl', 'TitansMitt']],
@@ -139,20 +138,15 @@ class LightWorldTest extends TestCase {
 			["Sick Kid", true, ['BottleWithGoldBee']],
 
 			["Purple Chest", false, []],
-			["Purple Chest", false, [], ['Gloves']],
 			["Purple Chest", false, [], ['MoonPearl']],
 			["Purple Chest", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Purple Chest", true, ['MoonPearl', 'TitansMitt']],
 
-			["Hobo", false, []],
-			["Hobo", false, [], ['Flippers']],
-			["Hobo", true, ['Flippers']],
+			["Hobo", true, []],
 
 			["Bombos Tablet", false, []],
-			["Bombos Tablet", false, [], ['MagicMirror']],
 			["Bombos Tablet", false, [], ['UpgradedSword']],
 			["Bombos Tablet", false, [], ['BookOfMudora']],
-			["Bombos Tablet", false, [], ['MoonPearl']],
 			["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'ProgressiveGlove', 'ProgressiveGlove']],
@@ -182,12 +176,7 @@ class LightWorldTest extends TestCase {
 			["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 			["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-			["King Zora", false, []],
-			["King Zora", false, [], ['Gloves', 'Flippers']],
-			["King Zora", true, ['Flippers']],
-			["King Zora", true, ['ProgressiveGlove']],
-			["King Zora", true, ['PowerGlove']],
-			["King Zora", true, ['TitansMitt']],
+			["King Zora", true, []],
 
 			["Piece of Heart (Thieves' Forest Hideout)", true, []],
 
@@ -197,8 +186,6 @@ class LightWorldTest extends TestCase {
 			["Piece of Heart (Lumberjack Tree)", true, ['PegasusBoots', 'DefeatAgahnim']],
 
 			["Piece of Heart (south of Haunted Grove)", false, []],
-			["Piece of Heart (south of Haunted Grove)", false, [], ['MagicMirror']],
-			["Piece of Heart (south of Haunted Grove)", false, [], ['MoonPearl']],
 			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
 			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
@@ -208,8 +195,6 @@ class LightWorldTest extends TestCase {
 			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
 			["Piece of Heart (Graveyard)", false, []],
-			["Piece of Heart (Graveyard)", false, [], ['MagicMirror']],
-			["Piece of Heart (Graveyard)", false, [], ['MoonPearl']],
 			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
 			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
@@ -220,8 +205,6 @@ class LightWorldTest extends TestCase {
 
 			["Piece of Heart (Desert - northeast corner)", false, []],
 			["Piece of Heart (Desert - northeast corner)", false, [], ['Gloves']],
-			["Piece of Heart (Desert - northeast corner)", false, [], ['Flute']],
-			["Piece of Heart (Desert - northeast corner)", false, [], ['MagicMirror']],
 			["Piece of Heart (Desert - northeast corner)", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (Desert - northeast corner)", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
@@ -245,9 +228,6 @@ class LightWorldTest extends TestCase {
 			["Piece of Heart (Desert - west side)", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
 			["Piece of Heart (Lake Hylia)", false, []],
-			["Piece of Heart (Lake Hylia)", false, [], ['MagicMirror']],
-			["Piece of Heart (Lake Hylia)", false, [], ['MoonPearl']],
-			["Piece of Heart (Lake Hylia)", false, [], ['Flippers']],
 			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'TitansMitt']],
 			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
@@ -257,8 +237,8 @@ class LightWorldTest extends TestCase {
 			["Piece of Heart (Dam)", true, []],
 
 			["Piece of Heart (Zora's River)", false, []],
-			["Piece of Heart (Zora's River)", false, [], ['Flippers']],
 			["Piece of Heart (Zora's River)", true, ['Flippers']],
+			//["Piece of Heart (Zora's River)", true, ['MoonPearl']],
 
 			["Haunted Grove item", false, []],
 			["Haunted Grove item", false, [], ['Shovel']],

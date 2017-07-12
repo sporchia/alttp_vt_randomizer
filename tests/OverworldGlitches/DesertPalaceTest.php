@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace OverworldGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group OverworldGlitches
  */
 class DesertPalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {
@@ -68,6 +68,7 @@ class DesertPalaceTest extends TestCase {
 	public function entryPool() {
 		return [
 			[false, []],
+			[true, ['PegasusBoots']],
 			[true, ['BookOfMudora']],
 			[true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			[true, ['Flute', 'MagicMirror', 'TitansMitt']],
