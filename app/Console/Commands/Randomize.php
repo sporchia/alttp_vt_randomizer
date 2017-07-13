@@ -28,7 +28,8 @@ class Randomize extends Command {
 		. ' {--goal=ganon : set game goal}'
 		. ' {--mode=standard : set game mode}'
 		. ' {--sprite= : sprite/rom file to change links graphics}'
-		. ' {--no-rom : no not generate output rom}';
+		. ' {--no-rom : no not generate output rom}'
+		. ' {--no-music : mute all music}';
 
 	/**
 	 * The console command description.
@@ -93,7 +94,8 @@ class Randomize extends Command {
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);
-
+			$rom->muteMusic($this->option('no-music', false));
+			
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.sfc', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {

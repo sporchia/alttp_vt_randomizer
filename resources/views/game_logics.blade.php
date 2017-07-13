@@ -14,37 +14,24 @@
 	<div class="panel-body">
 		<p>This mode requires no advanced knowledge about the game. It’s designed as if you were playing the original
 			game for the first time.</p>
-		<p>The logic will prevent you from getting stuck anywhere regardless of how you use small keys within dungeons.</p>
+		<p>The logic will prevent you from getting stuck anywhere regardless of how you use small keys within dungeons.
+			However you may be required to Save and Quit in certain situations.</p>
 	</div>
 </div>
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Minor Glitches</h3>
+		<h3 class="panel-title">Overworld Glitches</h3>
 	</div>
 	<div class="panel-body">
-		<p>This mode may require knowledge of various techniques and minor glitches.</p>
+		<p>This mode is meant for people looking to dip their toes into the wonderful world of Link to the Past Glitches.</p>
 		<ul>
-			<li>Bomb jumps (may be required in Ice Palace and Ganon’s Tower)</li>
 			<li>Fake flippers (allows access to Ice Palace, King Zora, Lake Hylia HP and the Hobo without Flippers)</li>
 			<li>Dungeon bunny revival (allows access to Ice Palace without the Moon Pearl)</li>
 			<li>Overworld bunny revival (allows access to Misery Mire and the nearby two chests without the Moon Pearl)</li>
 			<li>Super bunny (allows access to two chests in Dark World Death Mountain without the Moon Pearl)</li>
 			<li>Surfing bunny (allows access to Lake Hylia HP without the Moon Pearl)</li>
 		</ul>
-
-		<p>In addition there are some other minor changes from Casual mode.</p>
-		<ol>
-			<li>The small key distribution within dungeons is less restrictive which means poor pathing can potentially
-				lead to softlocks.</li>
-			<li>You no longer have the ability to see in dark rooms without the Lamp within the Light World (except for
-				Sewers).</li>
-			<li>You may be required to navigate through dark rooms without the Lamp within both the Light World and Dark
-				World.</li>
-			{{--
-			<li>The Gold Sword no longer deals Tempered Sword damage to Mothula.</li>
-			--}}
-		</ol>
 	</div>
 </div>
 
@@ -55,8 +42,7 @@
 	<div class="panel-body">
 		<p>This mode accounts for everything besides EG and semi-EG which are two extremely powerful glitches allowing
 			you to walk through floors or under walls… and even reach the Triforce in under 2 minutes! This mode is
-			very difficult and may require advanced knowledge of some other major glitches in addition to everything
-			in Speed Runner mode.</p>
+			very difficult and may require advanced knowledge of major glitches.</p>
 		<ul>
 			<li>Overworld YBA</li>
 			<li>Clipping out of bounds</li>
@@ -70,11 +56,7 @@
 		<ul>
 			<li>The fake dark world is no longer patched out and crystals always drop irrespective of pendant conflicts</li>
 			<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>
-			{{--
-			<li>The door to Aghanim's Tower is no longer locked before Zelda has been rescued</li>
 			<li>You will always s+q to the Pyramid after defeating Agahnim when in the Dark World</li>
-			<li>The cursed dwarf is no longer removed when you s+q</li>
-			--}}
 		</ul>
 	</div>
 </div>
