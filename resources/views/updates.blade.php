@@ -4,6 +4,7 @@
 <h2>VT8.25</h2>
 <div class="well">
 	<ul>
+		<li>Added ability to mute background music</li>
 		<li>Added Overworld Glitches Logic</li>
 		<li>Removed Minor Glitches (SpeedRunner) Logic</li>
 		<li>Uncle's boots hint removed</li>

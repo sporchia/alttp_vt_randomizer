@@ -24,13 +24,31 @@
 		<h3 class="panel-title">Overworld Glitches</h3>
 	</div>
 	<div class="panel-body">
-		<p>This mode is meant for people looking to dip their toes into the wonderful world of Link to the Past Glitches.</p>
+		<p>This mode accounts for some of the easier to execute Overworld glitches in order to randomize
+			items more thoroughly. Two types of major glitch are required:</p>
 		<ul>
-			<li>Fake flippers (allows access to Ice Palace, King Zora, Lake Hylia HP and the Hobo without Flippers)</li>
-			<li>Dungeon bunny revival (allows access to Ice Palace without the Moon Pearl)</li>
-			<li>Overworld bunny revival (allows access to Misery Mire and the nearby two chests without the Moon Pearl)</li>
-			<li>Super bunny (allows access to two chests in Dark World Death Mountain without the Moon Pearl)</li>
-			<li>Surfing bunny (allows access to Lake Hylia HP without the Moon Pearl)</li>
+			<li>Overworld clipping with boots</li>
+			<li>Mirror clipping (DMD, TR Middle Clip and Fluteless Mire)</li>
+		</ul>
+
+		<p>All minor glitches are also accounted for:</p>
+		<ul>
+			<li>Fake Flippers (allows access to Ice Palace, King Zora, Lake Hylia HP and the Hobo
+				without Flippers)</li>
+			<li>Dungeon Bunny Revival (allows access to Ice Palace without the Moon Pearl)</li>
+			<li>Overworld Bunny Revival (allows access to Misery Mire and the nearby two chests
+				without the Moon Pearl and without doing DMD)</li>
+			<li>Super Bunny (allows access to two chests in Dark World Death Mountain without the Moon Pearl)</li>
+			<li>Surfing Bunny (allows access to Lake Hylia HP without the Moon Pearl)</li>
+			<li>Walk On Water (allows access to Zora's Domain Ledge without Flippers)</li>
+		</ul>
+
+		<p>Notably, no Overworld clips requiring buffers are required. No mirror screenwraps,
+			overworld YBAs or underworld clips are required either.</p>
+		<ul>
+			<li>Boots are randomized but the logic accounts for them where clips are necessary</li>
+			<li>Dark room navigation is never forced</li>
+			<li>Key logic remains softlock-proof</li>
 		</ul>
 	</div>
 </div>
