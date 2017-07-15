@@ -546,7 +546,7 @@ class Randomizer {
 				$rom->setGanonInvincible('dungeons');
 				break;
 			default:
-				$rom->setGanonInvincible('no');
+				$rom->setGanonInvincible('crystals');
 		}
 
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
@@ -891,11 +891,16 @@ class Randomizer {
 			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
 			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
+			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
 		])));
 
 		if ($this->goal == 'pedestal') {
-			$rom->setGanon1TextString("you cannot\ndamage me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nyou dingus\n");
+			$rom->setGanon1InvincibleTextString("You cannot\nkill me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nYou dingus\n");
+		} else {
+			$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 		}
+
+		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI can not die!");
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
 
@@ -921,6 +926,9 @@ class Randomizer {
 			"\n   You Win!",
 			"  Thank you!\n  your quest\n   is over.",
 			"   A winner\n      is\n     you!",
+			"\n   WINNER!!",
+			"\n  I'm  sorry\n\nbut your\nprincess is in\nanother castle",
+			"\n   success!",
 		])));
 
 		return $this;

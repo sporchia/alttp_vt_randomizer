@@ -4,6 +4,9 @@
 <h2>VT8.25</h2>
 <div class="well">
 	<ul>
+		<li>Non-killable Ganon is only not killable in 4th phase</li>
+		<li>Ganon is more helpful with his dialog when you can't kill him</li>
+		<li>Using book on a tablet when you don't have an upgraded sword will give you a hint like the Pedestal</li>
 		<li>Added ability to mute background music</li>
 		<li>Added Overworld Glitches Logic</li>
 		<li>Removed Minor Glitches (SpeedRunner) Logic</li>

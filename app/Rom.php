@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-07-01';
-	const HASH = 'e4beea3469ad700303f21d09ae34fa24';
+	const BUILD = '2017-07-15';
+	const HASH = '585426fd248286b2fa51b0e5990ffbca';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -371,6 +371,48 @@ class Rom {
 	}
 
 	/**
+	 * Set Progressive Sword limit and item after limit is reached
+	 *
+	 * @param int $limit max number to receive
+	 * @param int $item item byte to collect once limit is collected
+	 *
+	 * @return $this
+	 */
+	public function setLimitProgressiveSword(int $limit, int $item) : self {
+		$this->write(0x180090, pack('C*', $limit, $item));
+
+		return $this;
+	}
+
+	/**
+	 * Set Progressive Shield limit and item after limit is reached
+	 *
+	 * @param int $limit max number to receive
+	 * @param int $item item byte to collect once limit is collected
+	 *
+	 * @return $this
+	 */
+	public function setLimitProgressiveShield(int $limit, int $item) : self {
+		$this->write(0x180092, pack('C*', $limit, $item));
+
+		return $this;
+	}
+
+	/**
+	 * Set Progressive Armor limit and item after limit is reached
+	 *
+	 * @param int $limit max number to receive
+	 * @param int $item item byte to collect once limit is collected
+	 *
+	 * @return $this
+	 */
+	public function setLimitProgressiveArmor(int $limit, int $item) : self {
+		$this->write(0x180094, pack('C*', $limit, $item));
+
+		return $this;
+	}
+
+	/**
 	 * Set Ganon to Invincible. 'dungeons' will require all dungeon bosses are dead to be able to damage Ganon.
 	 *
 	 * @param string $setting
@@ -379,6 +421,9 @@ class Rom {
 	 */
 	public function setGanonInvincible(string $setting = 'no') : self {
 		switch ($setting) {
+			case 'crystals':
+				$byte = pack('C*', 0x03);
+				break;
 			case 'dungeons':
 				$byte = pack('C*', 0x02);
 				break;
@@ -449,6 +494,43 @@ class Rom {
 
 		return $this;
 	}
+
+	/**
+	 * Set the opening Ganon 1 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setGanon1InvincibleTextString(string $string) : self {
+		$offset = 0x181100;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the opening Ganon 2 text to a custom value
+	 *
+	 * @param string $string
+	 *
+	 * @return $this
+	 */
+	public function setGanon2InvincibleTextString(string $string) : self {
+		$offset = 0x181200;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
 
 	/**
 	 * Set the Triforce text to a custom value
@@ -603,6 +685,42 @@ class Rom {
 	 */
 	public function setPedestalTextbox(string $string) : self {
 		$offset = 0x180300;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Bombos Tablet (no upgraded sword) text to a custom value
+	 *
+	 * @param string $string Bombos text can be 3 lines of 14 characters each
+	 *
+	 * @return $this
+	 */
+	public function setBombosTextbox(string $string) : self {
+		$offset = 0x181000;
+
+		$converter = new Dialog;
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set the Ether Tablet (no upgraded sword) text to a custom value
+	 *
+	 * @param string $string Ether text can be 3 lines of 14 characters each
+	 *
+	 * @return $this
+	 */
+	public function setEtherTextbox(string $string) : self {
+		$offset = 0x180F00;
 
 		$converter = new Dialog;
 		foreach ($converter->convertDialog($string) as $byte) {
@@ -1371,7 +1489,7 @@ class Rom {
 		$this->write(0xE9AE, $enable ? pack('C*', 0x14, 0x01, $item_a) : pack('C*', 0x05, 0x00, 0x28));
 		$this->write(0xE9CF, $enable ? pack('C*', 0x14, 0x01, $item_b) : pack('C*', 0x3D, 0x01, 0x06));
 		$this->write(0x1F74F, $enable ? pack('C*', 0x39, 0xC6, 0xF9, 0x41, 0xC6, 0xF9) : pack('C*', 0x28, 0xB8, 0x3D, 0x50, 0xB8, 0x3D));
-		
+
 		return $this;
 	}
 
@@ -1607,7 +1725,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function writeRandomizerLogicHash(array $bytes) : self {
-		$this->write(0x181000, pack('C*', ...$bytes));
+		$this->write(0x187F00, pack('C*', ...$bytes));
 
 		return $this;
 	}
