@@ -50,6 +50,9 @@
 			<li>Dark room navigation is never forced</li>
 			<li>Key logic remains softlock-proof</li>
 		</ul>
+
+		<p>See SuperSKUJ's tutorial video for more information:</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/mf5mvuJaQaY?rel=0" frameborder="0" allowfullscreen></iframe>
 	</div>
 </div>
 
