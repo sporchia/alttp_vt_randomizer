@@ -1480,15 +1480,20 @@ class Rom {
 	 * @experimental do not use this feature yet, it places the chests in front of fairy
 	 *
 	 * @param bool $enable switch on or off
-	 * @param int $item_a id of left chest Item
-	 * @param int $item_b id of right chest Item
 	 *
 	 * @return $this
 	 */
-	public function setWishingWellChests(bool $enable = false, int $item_a = 0x36, int $item_b = 0x36) : self {
-		$this->write(0xE9AE, $enable ? pack('C*', 0x14, 0x01, $item_a) : pack('C*', 0x05, 0x00, 0x28));
-		$this->write(0xE9CF, $enable ? pack('C*', 0x14, 0x01, $item_b) : pack('C*', 0x3D, 0x01, 0x06));
-		$this->write(0x1F74F, $enable ? pack('C*', 0x39, 0xC6, 0xF9, 0x41, 0xC6, 0xF9) : pack('C*', 0x28, 0xB8, 0x3D, 0x50, 0xB8, 0x3D));
+	public function setWishingWellChests(bool $enable = false) : self {
+		$this->write(0xE9AE, $enable
+			? pack('C*', 0x14, 0x01, 0x36) // default to 20 rupees
+			: pack('C*', 0x05, 0x00, 0x28));
+		$this->write(0xE9CF, $enable
+			? pack('C*', 0x14, 0x01, 0x36) // default to 20 rupees
+			: pack('C*', 0x3D, 0x01, 0x06));
+
+		$this->write(0x1F74F, $enable
+			? pack('C*', 0x29, 0xBE, 0xF9, 0x51, 0xBE, 0xF9)
+			: pack('C*', 0x28, 0xB8, 0x3D, 0x50, 0xB8, 0x3D));
 
 		return $this;
 	}

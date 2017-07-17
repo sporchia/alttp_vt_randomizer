@@ -94,15 +94,38 @@ Artisan::command('alttp:ss {dir} {outdir}', function($dir, $outdir) {
 	$out = [
 		'items' => [
 			'spheres' => [],
+			'full' => [],
+			'required' => [],
 		],
 		'locations' => [
 			'spheres' => [],
+			'full' => [],
+			'required' => [],
 		],
 	];
 	foreach ($files as $file) {
 		$data = json_decode(file_get_contents("$dir/$file"), true);
 		if (!$data) {
 			continue;
+		}
+		foreach ($data as $section => $sdata) {
+			if (in_array($section, ['playthrough', 'meta', 'Special'])) {
+				continue;
+			}
+			foreach ($sdata as $location => $item) {
+				if (strpos($item, 'Bottle') === 0) {
+					$item = 'Bottle';
+				}
+				if (!isset($out['items']['full'][$item][$location])) {
+					$out['items']['full'][$item][$location] = 0;
+				}
+				if (!isset($out['locations']['full'][$location][$item])) {
+					$out['locations']['full'][$location][$item] = 0;
+				}
+				++$out['items']['full'][$item][$location];
+				++$out['locations']['full'][$location][$item];
+			}
+
 		}
 		foreach ($data['playthrough'] as $key => $sphere) {
 			if (!is_numeric($key)) {
@@ -112,34 +135,37 @@ Artisan::command('alttp:ss {dir} {outdir}', function($dir, $outdir) {
 				if (strpos($item, 'Bottle') === 0) {
 					$item = 'Bottle';
 				}
-				if (!isset($out['items']['spheres'][$key][$item])) {
-					$out['items']['spheres'][$key][$item] = 0;
+				if (!isset($out['items']['spheres'][$item][$key])) {
+					$out['items']['spheres'][$item][$key] = 0;
 				}
-				if (!isset($out['locations']['spheres'][$key][$location])) {
-					$out['locations']['spheres'][$key][$location] = 0;
+				if (!isset($out['locations']['spheres'][$location][$key])) {
+					$out['locations']['spheres'][$location][$key] = 0;
 				}
-				++$out['items']['spheres'][$key][$item];
-				++$out['locations']['spheres'][$key][$location];
+				++$out['items']['spheres'][$item][$key];
+				++$out['locations']['spheres'][$location][$key];
+				if (!isset($out['items']['required'][$item][$location])) {
+					$out['items']['required'][$item][$location] = 0;
+				}
+				if (!isset($out['locations']['required'][$location][$item])) {
+					$out['locations']['required'][$location][$item] = 0;
+				}
+				++$out['items']['required'][$item][$location];
+				++$out['locations']['required'][$location][$item];
 			}
 		}
 	}
-	$items = $out['items']['spheres'];
-	$items = Distribution::_assureColumnsExist($items);
-	ksortr($items);
-	$csv = fopen("$outdir/item_sphere.csv", 'w');
-	fputcsv($csv, array_merge(['item'], array_keys(reset($items))));
-	foreach ($items as $name => $item) {
-		fputcsv($csv, array_merge([$name], $item));
-	}
-	fclose($csv);
 
-	$locations = $out['locations']['spheres'];
-	$locations = Distribution::_assureColumnsExist($locations);
-	ksortr($locations);
-	$csv = fopen("$outdir/location_sphere.csv", 'w');
-	fputcsv($csv, array_merge(['item'], array_keys(reset($locations))));
-	foreach ($locations as $name => $location) {
-		fputcsv($csv, array_merge([$name], $location));
+	foreach ($out as $key => $section) {
+		foreach ($section as $type => $data) {
+			$mdata = Distribution::_assureColumnsExist($data);
+			ksortr($mdata);
+
+			$csv = fopen(sprintf("%s/%s_%s.csv", $outdir, $key, $type), 'w');
+			fputcsv($csv, array_merge(['item'], array_keys(reset($mdata))));
+			foreach ($mdata as $name => $item) {
+				fputcsv($csv, array_merge([$name], $item));
+			}
+			fclose($csv);
+		}
 	}
-	fclose($csv);
 });
