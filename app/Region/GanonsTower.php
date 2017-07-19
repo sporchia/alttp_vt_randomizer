@@ -53,7 +53,11 @@ class GanonsTower extends Region {
 			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", 0xEB00, null, $this),
 			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - before Moldorm", 0xEB03, null, $this),
 			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - Moldorm room", 0xEB06, null, $this),
+			new Location\Prize\Event("Agahnim 2", null, null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Agahnim 2"];
+		$this->prize_location->setItem(Item::get('DefeatAgahnim2'));
 	}
 
 	/**
@@ -506,16 +510,23 @@ class GanonsTower extends Region {
 			return $item != Item::get('BigKey') && $item != Item::get('Key');
 		});
 
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->canAccess($items);
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl')
-				&& $items->canLiftDarkRocks()
 				&& $items->has('Crystal1')
 				&& $items->has('Crystal2')
 				&& $items->has('Crystal3')
 				&& $items->has('Crystal4')
 				&& $items->has('Crystal5')
 				&& $items->has('Crystal6')
-				&& $items->has('Crystal7');
+				&& $items->has('Crystal7')
+				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		};
 
 		return $this;
@@ -721,28 +732,36 @@ class GanonsTower extends Region {
 			return $item != Item::get('BigKey');
 		});
 
+		$this->can_complete = function($locations, $items) {
+			return $this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->canAccess($items)
+				&& $items->has('Hookshot')
+				&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
+	 * within for Overworld Glitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initSpeedRunner() {
-		$this->initGlitched();
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl')
-				&& $items->canLiftDarkRocks()
-				&& $items->has('Crystal1')
-				&& $items->has('Crystal2')
-				&& $items->has('Crystal3')
-				&& $items->has('Crystal4')
-				&& $items->has('Crystal5')
-				&& $items->has('Crystal6')
-				&& $items->has('Crystal7');
+			return ($items->has('MoonPearl') && $items->has('PegasusBoots'))
+				|| ($items->has('Crystal1')
+					&& $items->has('Crystal2')
+					&& $items->has('Crystal3')
+					&& $items->has('Crystal4')
+					&& $items->has('Crystal5')
+					&& $items->has('Crystal6')
+					&& $items->has('Crystal7')
+					&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items));
 		};
 
 		return $this;

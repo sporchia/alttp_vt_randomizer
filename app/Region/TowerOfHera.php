@@ -34,7 +34,11 @@ class TowerOfHera extends Region {
 			new Location\Chest("[dungeon-L3-4F] Tower of Hera - 4F [small chest]", 0xE9FB, null, $this),
 			new Location\BigChest("[dungeon-L3-4F] Tower of Hera - big chest", 0xE9F8, null, $this),
 			new Location\Drop("Heart Container - Moldorm", 0x180152, null, $this),
+
+			new Location\Prize\Pendant("Tower of Hera Pendant", [null, 0x120A5, 0x53F0A, 0x53F0B, 0x18005A, 0x18007A, 0xC706], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Tower of Hera Pendant"];
 	}
 
 	/**
@@ -49,6 +53,8 @@ class TowerOfHera extends Region {
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setItem(Item::get('Compass'));
 		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setItem(Item::get('MoonPearl'));
 		$this->locations["Heart Container - Moldorm"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfPower'));
 
 		return $this;
 	}
@@ -109,14 +115,6 @@ class TowerOfHera extends Region {
 			return $item != Item::get('Key');
 		});
 
-		$this->locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setRequirements(function($locations, $items) {
 			return ($locations["[dungeon-L3-1F] Tower of Hera - first floor"]->hasItem(Item::get("BigKey")) && $items->canLightTorches())
 				|| $locations->itemInLocations(Item::get('BigKey'), [
@@ -153,10 +151,11 @@ class TowerOfHera extends Region {
 			});
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('Death Mountain')->canEnter($locations, $items)
-				&& ($items->has('MagicMirror')
-					|| ($items->has('Hammer') && $items->has('Hookshot')));
+			return ($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -251,6 +250,26 @@ class TowerOfHera extends Region {
 					$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
 				))
 			);
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 
 		return $this;

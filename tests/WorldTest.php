@@ -108,6 +108,6 @@ class WorldTest extends TestCase {
 		$this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")->setItem(Item::get('BigKey'));
 		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")->setItem(Item::get('RedMail'));
 
-		$this->assertArraySubset(['longest_item_chain' => 16, 'regions_visited' => 28], $this->world->getPlaythrough());
+		$this->assertArraySubset(['longest_item_chain' => 17, 'regions_visited' => 30], $this->world->getPlaythrough());
 	}
 }

@@ -78,7 +78,7 @@ class Distribution extends Command {
 		isset($bar) && $bar->finish();
 
 		if ($this->option('csv')) {
-			$locations = $this->_assureColumnsExist($locations);
+			$locations = static::_assureColumnsExist($locations);
 			ksortr($locations);
 			$out = fopen($this->option('csv'), 'w');
 			fputcsv($out, array_merge(['location'], array_keys(reset($locations))));
@@ -92,7 +92,7 @@ class Distribution extends Command {
 		}
 	}
 
-	private function _assureColumnsExist($array) : array {
+	public static function _assureColumnsExist($array) : array {
 		$keys = [];
 		foreach ($array as $part) {
 			$keys = array_merge($keys, array_keys($part));

@@ -161,7 +161,7 @@ class Item {
 			new Item('OneRupee', 'One Rupee', [0x34]),
 			new Item('FiveRupees', 'Five Rupees', [0x35]),
 			new Item('TwentyRupees', 'Twenty Rupees', [0x36]),
-			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x38, 0x60, 0x00, 0x69, 0x01]),
+			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x38, 0x62, 0x00, 0x69, 0x01]),
 			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', [0x38, 0x01, 0x32, 0x60, 0x00, 0x69, 0x03]),
 			new Item\Pendant('PendantOfPower', 'Pendant Of Power', [0x39, 0x02, 0x34, 0x60, 0x00, 0x69, 0x02]),
 			new Item('BowAndArrows', 'Bow And Arrows', [0x3A]),
@@ -179,7 +179,7 @@ class Item {
 			new Item('ThreeHundredRupees', 'Three Hundred Rupees', [0x46]),
 			new Item('TwentyRupees2', 'Twenty Rupees', [0x47]),
 			new Item\Bottle('BottleWithGoldBee', 'Bottle (Golden Bee)', [0x48]),
-			new Item('OcarinaActive', 'Flute', [0x4A]),
+			new Item('OcarinaActive', 'Flute (active)', [0x4A]),
 			new Item('PegasusBoots', 'Pegasus Boots', [0x4B]),
 			new Item('BombUpgrade5', 'Bomb Upgrade (5)', [0x51]),
 			new Item('BombUpgrade10', 'Bomb Upgrade (10)', [0x52]),
@@ -272,6 +272,8 @@ class Item {
 			new Item\Crystal('Crystal6', 'Crystal 6', [null, 0x01, 0x34, 0x64, 0x40, 0x6F, 0x06]),
 			new Item\Crystal('Crystal7', 'Crystal 7', [null, 0x08, 0x34, 0x64, 0x40, 0x7C, 0x06]),
 			new Item\Event('DefeatAgahnim', 'Defeat Agahnim', [null]),
+			new Item\Event('DefeatAgahnim2', 'Defeat Agahnim 2', [null]),
+			new Item\Event('DefeatGanon', 'Defeat Ganon', [null]),
 		]);
 		return static::all();
 	}

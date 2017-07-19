@@ -34,7 +34,11 @@ class IcePalace extends Region {
 			new Location\Chest("[dungeon-D5-B5] Ice Palace - b5 up staircase", 0xE9E3, null, $this),
 			new Location\BigChest("[dungeon-D5-B5] Ice Palace - big chest", 0xE9AA, null, $this),
 			new Location\Drop("Heart Container - Kholdstare", 0x180157, null, $this),
+
+			new Location\Prize\Crystal("Ice Palace Crystal", [null, 0x120A4, 0x53F5A, 0x53F5B, 0x180059, 0x180073, 0xC705], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Ice Palace Crystal"];
 	}
 
 	/**
@@ -51,6 +55,8 @@ class IcePalace extends Region {
 		$this->locations["[dungeon-D5-B5] Ice Palace - b5 up staircase"]->setItem(Item::get('Key'));
 		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setItem(Item::get('BlueMail'));
 		$this->locations["Heart Container - Kholdstare"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Ice Palace Crystal"]->setItem(Item::get('Crystal5'));
 
 		return $this;
 	}
@@ -119,10 +125,6 @@ class IcePalace extends Region {
 						|| $items->has('Hookshot'))));
 		});
 
-		$this->locations["[dungeon-D5-B1] Ice Palace - compass room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
 		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canLiftRocks()
 				&& ((!$locations->itemInLocations(Item::get('BigKey'), [
@@ -179,10 +181,6 @@ class IcePalace extends Region {
 
 		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setRequirements(function($locations, $items) {
 			return $items->canMeltThings();
-		});
-
-		$this->locations["[dungeon-D5-B5] Ice Palace - b5 up staircase"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setRequirements(function($locations, $items) {
@@ -258,8 +256,11 @@ class IcePalace extends Region {
 
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('Flippers') && $items->canLiftDarkRocks() && $items->canMeltThings();
+			return $items->has('MoonPearl') && $items->has('Flippers')
+				&& $items->canLiftDarkRocks() && $items->canMeltThings();
 		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
@@ -271,22 +272,6 @@ class IcePalace extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initSpeedRunner();
-
-		$this->can_enter = function($locations, $items) {
-			return $items->canLiftDarkRocks() || ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
-		};
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
 		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setRequirements(function($locations, $items) {
 			return  $items->has('Hammer') && $items->canLiftRocks();
 		});
@@ -317,6 +302,24 @@ class IcePalace extends Region {
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->canMeltThings() && $items->canLiftRocks() && $items->has('Hammer');
 		};
+
+		$this->can_enter = function($locations, $items) {
+			return $items->canLiftDarkRocks() || ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
 			return $items->canLiftDarkRocks() && $items->canMeltThings();

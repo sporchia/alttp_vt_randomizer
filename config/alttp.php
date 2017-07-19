@@ -2,9 +2,6 @@
 
 return [
 	'normal' => [
-		'spoil' => [
-			'BootsLocation' => true,
-		],
 	],
 	'triforcepieces' => [
 		'item' => [
@@ -26,9 +23,6 @@ return [
 		'region' => [
 			'mapsInDungeons' => false,
 			'compassesInDungeons' => false,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'timed' => [
@@ -54,17 +48,11 @@ return [
 			'timerMode' => 'countdown-stop',
 			'timerStart' => 45 * 60,
 		],
-		'spoil' => [
-			'BootsLocation' => true,
-		],
 	],
 	'ohko' => [
 		'rom' => [
 			'timerMode' => 'countdown-ohko',
 			'timerStart' => 0,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'timed-ohko' => [
@@ -82,9 +70,6 @@ return [
 		'rom' => [
 			'timerMode' => 'countdown-ohko',
 			'timerStart' => 10 * 60,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'timed-race' => [
@@ -111,9 +96,6 @@ return [
 		'rom' => [
 			'timerMode' => 'stopwatch',
 			'timerStart' => 0,
-		],
-		'spoil' => [
-			'BootsLocation' => true,
 		],
 	],
 	'hard' => [
@@ -146,14 +128,11 @@ return [
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 10,
 				'L4Sword' => 0,
-				'SilverArrowUpgrade' => 0,
+				'SilverArrowUpgrade' => 1,
 			],
 		],
 		'rom' => [
 			'HardMode' => 1,
-		],
-		'spoil' => [
-			'BootsLocation' => false,
 		],
 	],
 	'expert' => [
@@ -197,9 +176,6 @@ return [
 		'rom' => [
 			'HardMode' => 2,
 		],
-		'spoil' => [
-			'BootsLocation' => false,
-		],
 	],
 	'custom' => [
 		'item' => [
@@ -237,15 +213,26 @@ return [
 	'sprites' => [
 		'link.1.spr' => 'Link',
 		'boo.2.spr' => 'Boo',
-		'boy.1.spr' => 'Boy',
-		'froglink.1.spr' => 'Frog',
-		'girl.1.spr' => 'Girl',
+		'boy.2.spr' => 'Boy',
+		'catboo.1.spr' => 'Cat Boo',
+		'darklink.1.spr' => 'Dark Link',
+		'decidueye.1.spr' => 'Decidueye',
+		'demonlink.1.spr' => 'Demon Link',
+		'froglink.2.spr' => 'Frog',
+		'girl.2.spr' => 'Girl',
+		'invisibleman.1.spr' => 'Invisible Man',
 		'littlepony.1.spr' => 'Pony',
-		'minishcaplink.1.spr' => 'Minish Cap Link',
+		'maplequeen.1.spr' => 'Maple Queen',
+		'mikejones.1.spr' => 'Mike Jones',
+		'minishcaplink.2.spr' => 'Minish Cap Link',
+		'mog.1.spr' => 'Mog',
 		'oldman.1.spr' => 'Old Man',
-		'samus.1.spr' => 'Samus',
+		'rumia.1.spr' => 'Rumia',
+		'samus.3.spr' => 'Samus',
 		'superbunny.1.spr' => 'Super Bunny',
-		'wizzrobe.1.spr' => 'Wizzrobe',
+		'swatchy.1.spr' => 'Swatchy',
+		'toad.1.spr' => 'Toad',
+		'wizzrobe.4.spr' => 'Wizzrobe',
 		'zelda.1.spr' => 'Zelda',
 		'zora.1.spr' => 'Zora',
 	],

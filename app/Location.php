@@ -58,12 +58,13 @@ class Location {
 	 *
 	 * @param Item $item Item we are testing for placement
 	 * @param ItemCollection $items Items that can be collected
+	 * @param bool $check_access also test access
 	 *
 	 * @return bool
 	 */
-	public function canFill(Item $item, $items) {
-			return (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
-			 	&& $this->canAccess($items);
+	public function canFill(Item $item, $items, $check_access = true) {
+		return (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+		 	&& (!$check_access || $this->canAccess($items));
 	}
 
 	/**
@@ -108,6 +109,7 @@ class Location {
 	 */
 	public function setFillRules(Callable $callback) {
 		$this->fill_callback = $callback;
+
 		return $this;
 	}
 
@@ -120,6 +122,7 @@ class Location {
      */
 	public function setItem(Item $item = null) {
 		$this->item = $item;
+
 		return $this;
 	}
 
@@ -226,6 +229,7 @@ class Location {
 	 */
 	public function setRegion(Region $region) {
 		$this->region = $region;
+
 		return $this;
 	}
 

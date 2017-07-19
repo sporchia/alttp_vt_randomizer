@@ -61,7 +61,7 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 });
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
-	$difficulty = $request->input('difficulty', 'normal');
+	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
@@ -82,7 +82,6 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		config([
 			"tournament-mode" => true,
-			"alttp.{$difficulty}.spoil.BootsLocation" => false,
 		]);
 		$rom->setTournamentType('standard');
 	} else {
@@ -128,7 +127,6 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		config([
 			"tournament-mode" => true,
-			"alttp.{$difficulty}.spoil.BootsLocation" => false,
 		]);
 	}
 

@@ -1,6 +1,42 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.25</h2>
+<div class="well">
+	<ul>
+		<li>Fake Flippers death safey has been readded</li>
+		<li>Green Pendant has an asterisk in the map to help with low visual acuity</li>
+		<li>Digging game plays sound when prize is dug up</li>
+		<li>Fixed save and quit/continue inconsistencies with Ganon's Boss room</li>
+		<li>Fixed Cane of Byrna OHKO bug</li>
+		<li>Spoilers on site should be easier to navigate</li>
+		<li>Unique hash on player select screen is properly named "hash"</li>
+		<li>Non-killable Ganon is only not killable in 4th phase</li>
+		<li>Ganon is more helpful with his dialog when you can't kill him</li>
+		<li>Using book on a tablet when you don't have an upgraded sword will give you a hint like the Pedestal</li>
+		<li>Added ability to mute background music</li>
+		<li>Added Overworld Glitches Logic</li>
+		<li>Removed Minor Glitches (SpeedRunner) Logic</li>
+		<li>Uncle's boots hint removed</li>
+		<li>Overworld bonk locations are no longer randomized</li>
+		<li>Special chest under Ganon removed in all modes</li>
+		<li>Added search of spoilers to quickly find items</li>
+		<li>Skull Woods spike trap room chest set back to Key all the time</li>
+		<li>New Fill algorithm that maximizes item randimization</li>
+		<li>Added many new player options<br />
+			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.2.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
+	</ul>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/n0_SnUraLL8?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+
 <h2>VT8.24</h2>
 <div class="well">
 	<ul>
@@ -45,7 +81,14 @@
 		<li>You can use medallions swordless outside Misery Mire and Turtle Rock (but nowhere else) [swordless]</li>
 		<li>The 4 swords have been removed from the pool and replaced with 20 rupees [swordless]</li>
 	</ul>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/GaUggPXL3M0?rel=0" frameborder="0" allowfullscreen></iframe>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/GaUggPXL3M0?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
 </div>
 
 <h2>VT8.22</h2>
@@ -94,7 +137,14 @@
 		<li>Map no longer breaks after you’ve beaten Ganon’s Tower [glitched]</li>
 		<li>Fake DW no longer corrupts Agahnim 2 [glitched]</li>
 	</ul>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/YCTbYA_eVNw?rel=0" frameborder="0" allowfullscreen></iframe>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YCTbYA_eVNw?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
 </div>
 
 <h2>V8 Updates</h2>

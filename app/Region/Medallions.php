@@ -10,6 +10,8 @@ use ALttP\World;
  * Region to hold the Medallion Entry Locations in the world
  */
 class Medallions extends Region {
+	protected $name = 'Special';
+
 	/**
 	 * Create a new Medallions Region to hold sword locations.
 	 *

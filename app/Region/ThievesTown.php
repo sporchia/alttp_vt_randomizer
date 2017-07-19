@@ -34,7 +34,11 @@ class ThievesTown extends Region {
 			new Location\BigChest("[dungeon-D4-B2] Thieves' Town - big chest", 0xEA10, null, $this),
 			new Location\Chest("[dungeon-D4-B2] Thieves' Town - next to Blind", 0xEA13, null, $this),
 			new Location\Drop("Heart Container - Blind", 0x180156, null, $this),
+
+			new Location\Prize\Crystal("Thieves Town Crystal", [null, 0x120A6, 0x53F36, 0x53F37, 0x18005B, 0x180077, 0xC707], null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Thieves Town Crystal"];
 	}
 
 	/**
@@ -51,6 +55,8 @@ class ThievesTown extends Region {
 		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setItem(Item::get('TitansMitt'));
 		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setItem(Item::get('Key'));
 		$this->locations["Heart Container - Blind"]->setItem(Item::get('BossHeartContainer'));
+
+		$this->locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
 
 		return $this;
 	}
@@ -106,26 +112,8 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setRequirements(function($locations, $items) {
-			return true;
-		})->setFillRules(function($item, $locations, $items) {
+		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
-		});
-
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Top left of huge room"]->setRequirements(function($locations, $items) {
-			return true;
 		});
 
 		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setRequirements(function($locations, $items) {
@@ -134,9 +122,7 @@ class ThievesTown extends Region {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
-		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setRequirements(function($locations, $items) {
-			return true;
-		})->setFillRules(function($item, $locations, $items) {
+		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
 
@@ -155,6 +141,8 @@ class ThievesTown extends Region {
 			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 
@@ -165,22 +153,6 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->initSpeedRunner();
-
-		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') || $items->hasABottle();
-		};
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
 		$this->initNoMajorGlitches();
 
 		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setFillRules(function($item, $locations, $items) {
@@ -197,6 +169,10 @@ class ThievesTown extends Region {
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKey');
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('MoonPearl') || $items->hasABottle();
+		};
 
 		return $this;
 	}

@@ -109,16 +109,4 @@ class HyruleCastleTower extends Region {
 
 		return $this;
 	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Minor Glitched Mode
-	 *
-	 * @return $this
-	 */
-	public function initSpeedRunner() {
-		$this->initNoMajorGlitches();
-
-		return $this;
-	}
 }

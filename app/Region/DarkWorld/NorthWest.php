@@ -53,17 +53,6 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[cave-062] C-shaped house"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["Piece of Heart (Treasure Chest Game)"]->setRequirements(function($locations, $items) {
-			return true;
-		});
 
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
 			return $items->canLiftDarkRocks() && $items->has('Hammer');
@@ -115,6 +104,52 @@ class NorthWest extends Region {
 		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') || $items->hasABottle();
 		});
+
+		return $this;
+	}
+
+	/**
+	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
+	 * within for Overworld Glitches Mode
+	 *
+	 * @return $this
+	 */
+	public function initOverworldGlitches() {
+		$this->initNoMajorGlitches();
+
+		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["[cave-062] C-shaped house"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Treasure Chest Game)"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer')
+				&& ($items->has('MoonPearl') && $items->canLiftRocks());
+		});
+
+		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& ($items->has('PegasusBoots')
+						|| ($items->canLiftRocks() && $items->has('Cape')));
+		});
+
+		$this->can_enter = function($locations, $items) {
+			return ($items->has('MoonPearl')
+					&& ($items->canLiftRocks()
+						|| $items->canSpinSpeed()
+						|| ($items->has('Hammer') && $items->canLiftRocks())
+						|| ($items->has('DefeatAgahnim') && ($items->has('PegasusBoots')
+							|| ($items->has('Hookshot')
+								&& ($items->has('Hammer') || $items->canLiftRocks() || $items->has('Flippers')))))))
+				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+		};
 
 		return $this;
 	}

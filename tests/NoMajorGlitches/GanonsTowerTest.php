@@ -368,14 +368,16 @@ class GanonsTowerTest extends TestCase {
 
 	// Right side
 	public function testRightStaircaseRoomChestLOnlyRequiresCrystalsAndMoonPearl() {
-		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'MoonPearl', 'TitansMitt']);
+		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7',
+			'MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")
 			->canAccess($this->collected));
 	}
 
 	public function testRightStaircaseRoomChestROnlyRequiresCrystalsAndMoonPearl() {
-		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7', 'MoonPearl', 'TitansMitt']);
+		$this->addCollected(['Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7',
+			'MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']);
 
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]")
 			->canAccess($this->collected));
@@ -530,13 +532,6 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
 	}
 
-	public function testBigChestAccessableWithoutHookshotAndHammer() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer'])));
-	}
-
 	public function testBigChestDoesntRequiresOnlyHookshot() {
 		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
 
@@ -633,11 +628,6 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
 	}
 
-	public function testAboveArmosAccessableWithoutHookshotAndHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer'])));
-	}
-
 	public function testAboveArmosDoesntRequiresOnlyHookshot() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
@@ -716,11 +706,6 @@ class GanonsTowerTest extends TestCase {
 	public function testNorthOfArmosChestBAccessableWithoutCaneAndFireRod() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
-	}
-
-	public function testNorthOfArmosChestBAccessableWithoutHookshotAndHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer'])));
 	}
 
 	public function testNorthOfArmosChestBDoesntRequiresOnlyHookshot() {
@@ -803,11 +788,6 @@ class GanonsTowerTest extends TestCase {
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
 	}
 
-	public function testNorthOfArmosChestLAccessableWithoutHookshotAndHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer'])));
-	}
-
 	public function testNorthOfArmosChestLDoesntRequiresOnlyHookshot() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
 			->canAccess($this->allItemsExcept(['Hookshot'])));
@@ -886,11 +866,6 @@ class GanonsTowerTest extends TestCase {
 	public function testNorthOfArmosChestRAccessableWithoutCaneAndFireRod() {
 		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
 			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
-	}
-
-	public function testNorthOfArmosChestRAccessableWithoutHookshotAndHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['Hookshot', 'Hammer'])));
 	}
 
 	public function testNorthOfArmosChestRDoesntRequiresOnlyHookshot() {
