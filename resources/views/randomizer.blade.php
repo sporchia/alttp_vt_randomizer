@@ -30,7 +30,7 @@
 </div>
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Generate</h3>
+		<h3 class="panel-title pull-left">Generate Item Randomizer Game</h3>
 		<div class="btn-toolbar pull-right">
 
 			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>

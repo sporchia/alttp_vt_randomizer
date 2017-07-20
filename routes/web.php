@@ -6,6 +6,10 @@ Route::get('randomize{r?}', function () {
 	return view('randomizer');
 });
 
+Route::get('entrance/randomize{r?}', function () {
+	return view('entrance_randomizer');
+});
+
 Route::get('/', function () {
 	return view('about');
 });
@@ -58,6 +62,69 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 		]);
 	}
 	abort(404);
+});
+
+Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = null) {
+	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
+
+	// @TODO: wrap this in a class with setters/getters
+	$proc = new Symfony\Component\Process\Process('python3 '
+		. base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py')
+		. ' --mode ' . $request->input('mode', 'standard')
+		. ' --goal ' . $request->input('goal', 'ganon')
+		. ' --difficulty ' . $difficulty
+		. ' --shuffle ' .  $request->input('shuffle', 'full')
+		. ($seed_id !== null ? ' --seed ' . (is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id))) : '')
+		. ' --heartbeep ' . $request->input('heart_speed', 'half')
+		. ' --jsonout --loglevel error');
+
+	$proc->run();
+
+	if (!$proc->isSuccessful()) {
+		return response('Failed', 409);
+	}
+
+	$er = json_decode($proc->getOutput());
+	$patch = $er->patch;
+	array_walk($patch, function(&$write, $address) {
+		$write = [$address => $write];
+	});
+	$patch = array_values((array) $patch);
+
+	// possible temp fix
+	$spoiler = json_decode($er->spoiler);
+	$spoiler->meta->build = ALttP\Rom::BUILD;
+	$spoiler->meta->logic = 'er-no-glitches-0.4.3';
+
+	$seed_record = new ALttP\Seed;
+	$seed_record->seed = $spoiler->meta->seed;
+	$seed_record->spoiler = json_encode($spoiler);
+	$seed_record->patch = json_encode(array_values((array) $patch));
+	$seed_record->build = ALttP\Rom::BUILD;
+	$seed_record->logic = -1;
+	$seed_record->rules = $difficulty;
+	$seed_record->game_mode = 'er-no-glitches-0.4.3';
+	$seed_record->save();
+
+	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+		$rom = new ALttP\Rom();
+		$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $seed_record->hash), 21, ' '));
+		$patch = patch_merge_minify($patch, $rom->getWriteLog());
+		$meta = $spoiler->meta;
+		$spoiler = (object) array_except(array_only((array) $spoiler, ['meta']), ['meta.seed']);
+		$seed_record->patch = json_encode($patch);
+		$seed_record->save();
+		$spoiler->meta->seed = $seed_record->hash;
+	}
+
+	return json_encode([
+		'seed' => $spoiler->meta->seed,
+		'logic' => $spoiler->meta->logic,
+		'difficulty' => $difficulty,
+		'patch' => $patch,
+		'spoiler' => $spoiler,
+		'hash' => $seed_record->hash,
+	]);
 });
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {

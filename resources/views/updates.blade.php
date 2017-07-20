@@ -4,6 +4,7 @@
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
+		<li>Entrance Randomizer integration (thanks LLCoolDave)</li>
 		<li>Two new chests have been added to Waterfall fairy</li>
 	</ul>
 </div>
