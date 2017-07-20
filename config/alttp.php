@@ -3,15 +3,16 @@
 return [
 	'normal' => [
 	],
-	'triforcepieces' => [
+	'stars' => [
 		'item' => [
 			'count' => [
-				'TriforcePiece' => 12,
-				'TwentyRupees' => 16,
+				'PowerStar' => 30,
+				'TwentyRupees' => 2,
+				'FiveRupees' => 0,
 			],
 			'Goal' => [
-				'Required' => 10,
-				'Icon' => 'triforce',
+				'Required' => 20,
+				'Icon' => 'star',
 			],
 		],
 	],

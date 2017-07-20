@@ -95,7 +95,7 @@ class Randomize extends Command {
 
 			$rand->writeToRom($rom);
 			$rom->muteMusic($this->option('no-music', false));
-			
+
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.sfc', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
@@ -137,6 +137,7 @@ class Randomize extends Command {
 		$rom->setHardMode(0);
 
 		$rom->setPyramidFairyChests(false);
+		$rom->setWishingWellChests(false);
 		$rom->setSmithyQuickItemGive(false);
 
 		$rom->setOpenMode(false);

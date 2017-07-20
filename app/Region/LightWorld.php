@@ -75,8 +75,8 @@ class LightWorld extends Region {
 			new Location\Standing("Piece of Heart (Dam)", 0x180145, null, $this),
 			new Location\Standing("Piece of Heart (Zora's River)", 0x180149, null, $this),
 			new Location\Dig\HauntedGrove("Haunted Grove item", 0x18014A, null, $this),
-			//new Location\Chest("Waterfall Fairy - Left", 0xE9B0, null, $this),
-			//new Location\Chest("Waterfall Fairy - Right", 0xE9D1, null, $this),
+			new Location\Chest("Waterfall Fairy - Left", 0xE9B0, null, $this),
+			new Location\Chest("Waterfall Fairy - Right", 0xE9D1, null, $this),
 		]);
 	}
 
@@ -138,6 +138,8 @@ class LightWorld extends Region {
 		$this->locations["Piece of Heart (Dam)"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Piece of Heart (Zora's River)"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Haunted Grove item"]->setItem(Item::get('OcarinaInactive'));
+		$this->locations["Waterfall Fairy - Left"]->setItem(Item::get('RedShield'));
+		$this->locations["Waterfall Fairy - Right"]->setItem(Item::get('RedBoomerang'));
 
 		return $this;
 	}
@@ -245,6 +247,14 @@ class LightWorld extends Region {
 			return $items->has('Shovel');
 		});
 
+		$this->locations["Waterfall Fairy - Left"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers');
+		});
+
+		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers');
+		});
+
 		return $this;
 	}
 
@@ -326,6 +336,14 @@ class LightWorld extends Region {
 				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
 		});
 
+		$this->locations["Waterfall Fairy - Left"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers') || $items->has('MoonPearl');
+		});
+
+		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers') || $items->has('MoonPearl');
+		});
+
 		return $this;
 	}
 
@@ -405,6 +423,14 @@ class LightWorld extends Region {
 		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
 				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
+		});
+
+		$this->locations["Waterfall Fairy - Left"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers') || $items->has('MoonPearl');
+		});
+
+		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers') || $items->has('MoonPearl');
 		});
 
 		return $this;

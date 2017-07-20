@@ -174,6 +174,12 @@ class World {
 				return $this->getLocation("Altar")->canAccess($collected_items);
 			};
 		}
+
+		if ($this->rules == 'stars') {
+			$this->win_condition = function($collected_items) {
+				return $collected_items->has('PowerStar', $this->config('item.Goal.Required'));
+			};
+		}
 	}
 
 	/**

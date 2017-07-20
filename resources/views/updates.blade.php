@@ -1,6 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.26</h2>
+<div class="well">
+	<ul>
+		<li>Two new chests have been added to Waterfall fairy</li>
+	</ul>
+</div>
+
 <h2>VT8.25</h2>
 <div class="well">
 	<ul>

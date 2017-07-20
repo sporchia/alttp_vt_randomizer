@@ -30,7 +30,7 @@ class LightWorldTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -52,9 +52,9 @@ class LightWorldTest extends TestCase {
 			["Blacksmiths", true, ['MoonPearl', 'TitansMitt']],
 
 			["Uncle", true, []],
-			
+
 			["[cave-034] Hyrule Castle secret entrance", true, []],
-			
+
 			["[cave-018] Graveyard - top right grave", false, []],
 			["[cave-018] Graveyard - top right grave", false, [], ['PegasusBoots']],
 			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'ProgressiveGlove', 'ProgressiveGlove']],
@@ -73,7 +73,7 @@ class LightWorldTest extends TestCase {
 			["[cave-031] Tavern", true, []],
 
 			["[cave-026] chicken house", true, []],
-			
+
 			["[cave-044] Aginah's cave", true, []],
 
 			["[cave-035] Sahasrahla's Hut [left chest]", true, []],
@@ -263,6 +263,14 @@ class LightWorldTest extends TestCase {
 			["Haunted Grove item", false, []],
 			["Haunted Grove item", false, [], ['Shovel']],
 			["Haunted Grove item", true, ['Shovel']],
+
+			["Waterfall Fairy - Left", false, []],
+			["Waterfall Fairy - Left", false, [], ['Flippers']],
+			["Waterfall Fairy - Left", true, ['Flippers']],
+
+			["Waterfall Fairy - Right", false, []],
+			["Waterfall Fairy - Right", false, [], ['Flippers']],
+			["Waterfall Fairy - Right", true, ['Flippers']],
 		];
 	}
 }

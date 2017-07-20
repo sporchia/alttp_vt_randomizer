@@ -1484,13 +1484,11 @@ class Rom {
 	 * @return $this
 	 */
 	public function setWishingWellChests(bool $enable = false) : self {
-		$this->write(0xE9AE, $enable
-			? pack('C*', 0x14, 0x01, 0x36) // default to 20 rupees
-			: pack('C*', 0x05, 0x00, 0x28));
-		$this->write(0xE9CF, $enable
-			? pack('C*', 0x14, 0x01, 0x36) // default to 20 rupees
-			: pack('C*', 0x3D, 0x01, 0x06));
+		// set item table to proper room
+		$this->write(0xE9AE, $enable ? pack('C*', 0x14, 0x01) : pack('C*', 0x05, 0x00));
+		$this->write(0xE9CF, $enable ? pack('C*', 0x14, 0x01) : pack('C*', 0x3D, 0x01));
 
+		// turn torches into chests
 		$this->write(0x1F74F, $enable
 			? pack('C*', 0x29, 0xBE, 0xF9, 0x51, 0xBE, 0xF9)
 			: pack('C*', 0x28, 0xB8, 0x3D, 0x50, 0xB8, 0x3D));
