@@ -100,7 +100,7 @@ class South extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->has('MoonPearl')
-					&& ($items->canLiftRocks()
+					&& ($items->canLiftDarkRocks()
 						|| $items->canSpinSpeed()
 						|| ($items->has('Hammer') && $items->canLiftRocks())
 						|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')

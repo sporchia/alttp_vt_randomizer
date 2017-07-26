@@ -273,13 +273,15 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) {
-			return  $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp');
+			return  $items->has('FireRod') && $items->has('IceRod')
+				&& $items->has('Lamp') && $items->has('CaneOfSomaria');
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp');
+			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->has('IceRod')
+				&& $items->has('Lamp') && $items->has('CaneOfSomaria');
 		};
 
 		$this->can_enter = function($locations, $items) {
