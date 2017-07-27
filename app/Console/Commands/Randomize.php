@@ -18,6 +18,7 @@ class Randomize extends Command {
 		. ' {--vanilla : set game to vanilla item locations}'
 		. ' {--debug : enable BAGE mode}'
 		. ' {--spoiler : generate a spoiler file}'
+		. ' {--spheres : generate a spheres file}'
 		. ' {--difficulty=normal : set difficulty}'
 		. ' {--logic=NoMajorGlitches : set logic}'
 		. ' {--heartbeep=half : set heart beep speed}'
@@ -121,6 +122,11 @@ class Randomize extends Command {
 				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.txt', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
+			}
+			if ($this->option('spheres')) {
+				$spheres_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.spheres.txt', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
+				file_put_contents($spheres_file, json_encode($rand->getSpheres(), JSON_PRETTY_PRINT));
+				$this->info(sprintf('Spheres Saved: %s', $spheres_file));
 			}
 		}
 	}

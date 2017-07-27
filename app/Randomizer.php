@@ -78,6 +78,20 @@ class Randomizer {
 	}
 
 	/**
+	 * Get the current Type identifier's nice name
+	 *
+	 * @return string
+	 */
+	public function getTypeNiceName() {
+		switch ($this->type) {
+			case 'NoMajorGlitches': return 'No Glitches';
+			case 'OverworldGlitches': return 'Overworld Glitches';
+			case 'Glitched': return 'Major Glitches';
+		}
+		return 'Unknown';
+	}
+
+	/**
 	 * Fill all empty Locations with Items using logic from the World. This is achieved by first setting up base
 	 * portions of the world. Then taking the remaining empty locations we order them, and try to fill them in
 	 * order in a way that opens more locations.
@@ -488,6 +502,31 @@ class Randomizer {
 		$this->seed->spoiler = json_encode($spoiler);
 
 		return $spoiler;
+	}
+
+	/**
+	 * Get the current spoiler for this seed
+	 *
+	 * @return array
+	 */
+	public function getSpheres() {
+		$spheres = [];
+
+		$spheres['locationspheres'] = $this->world->getSpheres();
+		$spheres['meta'] = [
+			'difficulty' => $this->rules,
+			'logic' => $this->getLogic(),
+			'type' => $this->getTypeNiceName(),
+			'version' => static::LOGIC,
+			'seed' => $this->rng_seed,
+			'goal' => $this->goal,
+			'build' => Rom::BUILD,
+			'mode' => config('game-mode', 'standard'),
+		];
+
+		$this->seed->spheres = json_encode($spheres);
+
+		return $spheres;
 	}
 
 	/**
