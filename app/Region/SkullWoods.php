@@ -45,6 +45,9 @@ class SkullWoods extends Region {
 			new Location\Prize\Crystal("Skull Woods Crystal", [null, 0x120A3, 0x53F12, 0x53F13, 0x180058, 0x18007B, 0xC704], null, $this),
 		]);
 
+		// F this key
+		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('KeyD3'));
+
 		$this->prize_location = $this->locations["Skull Woods Crystal"];
 	}
 
@@ -69,35 +72,34 @@ class SkullWoods extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Skull Woods has: Big Key, Map, Compass, 3 Keys
+	 * Determine if the item being placed in this region can be placed here.
 	 *
-	 * @param ItemCollection $my_items full list of items for placement
+	 * @param Item $item item to test
 	 *
-	 * @return $this
+	 * @return bool
 	 */
-	public function fillBaseItems($my_items) {
-		$locations = $this->locations->filter(function($location) {
-			return $this->boss_location_in_base || $location->getName() != "Heart Container - Mothula";
-		});
-
-		$locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('Key'));
-
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
-
-		if ($this->world->config('region.CompassesMaps', true)) {
-			if ($this->world->config('region.mapsInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			}
-
-			if ($this->world->config('region.compassesInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
-			}
+	public function canFill(Item $item) : bool {
+		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD3')])) {
+			return false;
 		}
 
-		return $this;
+		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD3')])) {
+			return false;
+		}
+
+		if ($item instanceof Item\Map
+			&& (!$this->world->config('region.mapsInDungeons', true)
+				|| !in_array($item, [Item::get('Map'), Item::get('MapD3')]))) {
+			return false;
+		}
+
+		if ($item instanceof Item\Compass
+			&& (!$this->world->config('region.compassesInDungeons', true)
+				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD3')]))) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -108,17 +110,13 @@ class SkullWoods extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setFillRules(function($item, $locations, $items) {
-			return $item == Item::get('Key');
+			return $item == Item::get('KeyD3');
 		});
 
 		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setRequirements(function($locations, $items) {
-			return !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D3-B1] Skull Woods - Entrance to part 2",
-						"Heart Container - Mothula",
-					]) || $items->has('FireRod');
+			return $items->has('BigKeyD3');
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey')
-				&& ($item != Item::get('Key') || !$locations["Heart Container - Mothula"]->hasItem(Item::get('BigKey')));
+			return $item != Item::get('BigKeyD3');
 		});
 
 		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setRequirements(function($locations, $items) {
@@ -128,15 +126,22 @@ class SkullWoods extends Region {
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
 		})->setFillRules(function($item, $locations, $items) {
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('Key')
-					&& ($item != Item::get('BigKey') || !$locations["[dungeon-D3-B1] Skull Woods - big chest"]->hasItem(Item::get('Key')));
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
 			}
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+
+			if ($this->world->config('region.bossHaveKey', true)) {
+				return $item != Item::get('KeyD3');
+			}
+
+			return !in_array($item, [Item::get('KeyD3'), Item::get('BigKeyD3')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
+			return $this->canEnter($locations, $items)
+				&& $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
 		};
 
 		$this->can_enter = function($locations, $items) {
@@ -155,33 +160,11 @@ class SkullWoods extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setRequirements(function($locations, $items) {
-			return !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D3-B1] Skull Woods - Entrance to part 2",
-						"Heart Container - Mothula",
-					]) || $items->has('FireRod');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
+		$this->initNoMajorGlitches();
 
-		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod');
-		});
-
-		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && $items->hasSword();
-		})->setFillRules(function($item, $locations, $items) {
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return true;
-			}
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
-		});
-
-		$this->can_complete = function($locations, $items) {
-			return $items->has('FireRod') && $items->hasSword();
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
-
-		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

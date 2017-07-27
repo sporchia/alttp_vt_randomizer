@@ -198,7 +198,6 @@ return [
 			'CompassesMaps' => false,
 			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
-			'bonkItems' => false,
 		],
 		'rom' => [
 			'HardMode' => 0,

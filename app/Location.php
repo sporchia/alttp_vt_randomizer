@@ -63,7 +63,8 @@ class Location {
 	 * @return bool
 	 */
 	public function canFill(Item $item, $items, $check_access = true) {
-		return (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+		return $this->region->canFill($item)
+			&& (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
 		 	&& (!$check_access || $this->canAccess($items));
 	}
 

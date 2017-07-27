@@ -1315,6 +1315,8 @@ class Rom {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
+				// Bryna magic amount used per "cycle"
+				$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
@@ -1326,6 +1328,7 @@ class Rom {
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
+				$this->write(0x45C42, pack('C*', 0x08, 0x08, 0x08));
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
@@ -1337,6 +1340,7 @@ class Rom {
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
+				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
@@ -1898,7 +1902,6 @@ class Rom {
 	 */
 	public function write(int $offset, string $data, bool $log = true) : self {
 		if ($log) {
-			Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		}
 		fseek($this->rom, $offset);

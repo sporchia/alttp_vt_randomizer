@@ -62,47 +62,34 @@ class ThievesTown extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Thieves Town has: Big Key, Map, Compass, 1 Key
+	 * Determine if the item being placed in this region can be placed here.
 	 *
-	 * @param ItemCollection $my_items full list of items for placement
+	 * @param Item $item item to test
 	 *
-	 * @return $this
+	 * @return bool
 	 */
-	public function fillBaseItems($my_items) {
-		$locations = $this->locations->filter(function($location) {
-			return $this->boss_location_in_base || $location->getName() != "Heart Container - Blind";
-		});
-
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), [
-				"[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]",
-				"[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]",
-				"[dungeon-D4-B1] Thieves' Town - Bottom right of huge room",
-				"[dungeon-D4-B1] Thieves' Town - Top left of huge room",
-				"[dungeon-D4-B2] Thieves' Town - next to Blind",
-			]);
-		})->random()->fill(Item::get("Key"), $my_items));
-
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), [
-				"[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]",
-				"[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]",
-				"[dungeon-D4-B1] Thieves' Town - Bottom right of huge room",
-				"[dungeon-D4-B1] Thieves' Town - Top left of huge room",
-			]);
-		})->random()->fill(Item::get("BigKey"), $my_items));
-
-		if ($this->world->config('region.CompassesMaps', true)) {
-			if ($this->world->config('region.mapsInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			}
-
-			if ($this->world->config('region.compassesInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
-			}
+	public function canFill(Item $item) : bool {
+		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD4')])) {
+			return false;
 		}
 
-		return $this;
+		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD4')])) {
+			return false;
+		}
+
+		if ($item instanceof Item\Map
+			&& (!$this->world->config('region.mapsInDungeons', true)
+				|| !in_array($item, [Item::get('Map'), Item::get('MapD4')]))) {
+			return false;
+		}
+
+		if ($item instanceof Item\Compass
+			&& (!$this->world->config('region.compassesInDungeons', true)
+				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD4')]))) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -112,30 +99,40 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setRequirements(function($locations, $items) {
+			return $items->has('KeyD4') && $items->has('BigKeyD4');
+		})->setFillRules(function($item, $locations, $items) {
+			return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
 		});
 
 		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer');
+			return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
 		});
 
-		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["Heart Container - Blind"]->setRequirements(function($locations, $items) {
-			return $items->hasSword() || $items->has('Hammer')
-				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna');
+		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setRequirements(function($locations, $items) {
+			return $items->has('BigKeyD4');
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			return $item != Item::get('BigKeyD4');
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items);
+			return $this->canEnter($locations, $items)
+				&& ($items->hasSword() || $items->has('Hammer')
+				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna'));
 		};
+
+		$this->locations["Heart Container - Blind"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				if (!$this->world->config('region.bossNormalLocation', true)
+					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+					return false;
+				}
+
+				return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
+			});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
@@ -154,21 +151,6 @@ class ThievesTown extends Region {
 	 */
 	public function initGlitched() {
 		$this->initNoMajorGlitches();
-
-		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["Heart Container - Blind"]->setRequirements(function($locations, $items) {
-			return $items->hasSword() || $items->has('Hammer')
-				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') || $items->hasABottle();

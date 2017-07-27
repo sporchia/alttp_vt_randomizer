@@ -17,34 +17,6 @@ class TurtleRock extends Region {
 		0x155AA,
 		0x155AB,
 	];
-	private $key_fill_1 = [
-		"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-		"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-		"[dungeon-D7-1F] Turtle Rock - compass room",
-	];
-	private $key_fill_2 = [
-		"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-		"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-		"[dungeon-D7-1F] Turtle Rock - compass room",
-		"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-	];
-	private $key_fill_3 = [
-		"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-		"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-		"[dungeon-D7-1F] Turtle Rock - compass room",
-		"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-		"[dungeon-D7-B1] Turtle Rock - big key room",
-		"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-		"[dungeon-D7-B1] Turtle Rock - big chest",
-	];
-
-	private $big_key_fill = [
-		"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-		"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-		"[dungeon-D7-1F] Turtle Rock - compass room",
-		"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-		"[dungeon-D7-B1] Turtle Rock - big key room",
-	];
 
 	/**
 	 * Create a new Turtle Rock Region and initalize it's locations
@@ -100,46 +72,35 @@ class TurtleRock extends Region {
 		return $this;
 	}
 
-
 	/**
-	 * Place Keys, Map, and Compass in Region. Turtle Rock has: Big Key, Map, Compass, and 4 keys
+	 * Determine if the item being placed in this region can be placed here.
 	 *
-	 * @param ItemCollection $my_items full list of items for placement
+	 * @param Item $item item to test
 	 *
-	 * @return $this
+	 * @return bool
 	 */
-	public function fillBaseItems($my_items) {
-		$locations = $this->locations->filter(function($location) {
-			return $this->boss_location_in_base || $location->getName() != "Heart Container - Trinexx";
-		});
-
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), $this->big_key_fill);
-		})->random()->fill(Item::get("BigKey"), $my_items));
-
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), $this->key_fill_1);
-		})->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), $this->key_fill_2);
-		})->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->filter(function($location) {
-			return in_array($location->getName(), $this->key_fill_3);
-		})->random()->fill(Item::get("Key"), $my_items));
-
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-
-		if ($this->world->config('region.CompassesMaps', true)) {
-			if ($this->world->config('region.mapsInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			}
-
-			if ($this->world->config('region.compassesInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
-			}
+	public function canFill(Item $item) : bool {
+		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD7')])) {
+			return false;
 		}
 
-		return $this;
+		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD7')])) {
+			return false;
+		}
+
+		if ($item instanceof Item\Map
+			&& (!$this->world->config('region.mapsInDungeons', true)
+				|| !in_array($item, [Item::get('Map'), Item::get('MapD7')]))) {
+			return false;
+		}
+
+		if ($item instanceof Item\Compass
+			&& (!$this->world->config('region.compassesInDungeons', true)
+				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD7')]))) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -150,12 +111,7 @@ class TurtleRock extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->setRequirements(function($locations, $items) {
-			return $locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('Key'))
-				|| $items->has('FireRod');
-		});
-
-		$this->locations["[dungeon-D7-1F] Turtle Rock - compass room"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('KeyD7');
 		});
 
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setRequirements(function($locations, $items) {
@@ -167,120 +123,65 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big chest"]->setRequirements(function($locations, $items) {
-			return (!($locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->hasItem(Item::get('BigKey'))
-					|| $locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->hasItem(Item::get('BigKey')))
-				&& ($locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('Key'))
-					&& $locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->hasItem(Item::get('Key'))))
-				|| $items->has('FireRod');
+			return $items->has('BigKeyD7') && $items->has('KeyD7', 2);
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big key room"]->setRequirements(function($locations, $items) {
-			return ($locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('Key'))
-				&& $locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->hasItem(Item::get('Key')))
-					|| $items->has('FireRod');
+			return $items->has('KeyD7', 2);
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setRequirements(function($locations, $items) {
-			return (!($locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->hasItem(Item::get('BigKey'))
-					|| $locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->hasItem(Item::get('BigKey')))
-				&& ($locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('Key'))
-					&& $locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->hasItem(Item::get('Key'))))
-				|| $items->has('FireRod');
+			return $items->has('BigKeyD7') && $items->has('KeyD7', 2);
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& ((!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					])
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-1F] Turtle Rock - compass room",
-						"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-					], 2)
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-B1] Turtle Rock - big key room",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-						"[dungeon-D7-B1] Turtle Rock - big chest",
-					]))
-				|| $items->has('FireRod'));
+			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& ((!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					])
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-1F] Turtle Rock - compass room",
-						"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-					], 2)
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-B1] Turtle Rock - big key room",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-						"[dungeon-D7-B1] Turtle Rock - big chest",
-					]))
-				|| $items->has('FireRod'));
+			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& ((!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					])
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-1F] Turtle Rock - compass room",
-						"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-					], 2)
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-B1] Turtle Rock - big key room",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-						"[dungeon-D7-B1] Turtle Rock - big chest",
-					]))
-				|| $items->has('FireRod'));
+			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp')
-				&& ((!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					])
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-1F] Turtle Rock - compass room",
-						"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-					], 2)
-					&& $locations->itemInLocations(Item::get('Key'), [
-						"[dungeon-D7-B1] Turtle Rock - big key room",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-						"[dungeon-D7-B1] Turtle Rock - big chest",
-					]))
-				|| $items->has('FireRod'));
+			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) {
-			return  $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp');
-		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp');
+			return $this->canEnter($locations, $items)
+				&& $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp')
+				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria');
 		};
+
+		$this->locations["Heart Container - Trinexx"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				if (!$this->world->config('region.bossNormalLocation', true)
+					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+					return false;
+				}
+
+				return !in_array($item, [Item::get('KeyD7'), Item::get('BigKeyD7')]);
+			});
 
 		$this->can_enter = function($locations, $items) {
 			return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
@@ -304,44 +205,6 @@ class TurtleRock extends Region {
 	 * @return $this
 	 */
 	public function initGlitched() {
-		$this->key_fill_1 = [
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-			"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-		];
-		$this->key_fill_2 = [
-			"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-			"[dungeon-D7-B1] Turtle Rock - big key room",
-		];
-		$this->key_fill_3 = [
-			"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-			"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-			"[dungeon-D7-1F] Turtle Rock - compass room",
-			"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-			"[dungeon-D7-B1] Turtle Rock - big key room",
-			"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-			"[dungeon-D7-B1] Turtle Rock - big chest",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-		];
-
-		$this->big_key_fill = [
-			"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-			"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-			"[dungeon-D7-1F] Turtle Rock - compass room",
-			"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-			"[dungeon-D7-B1] Turtle Rock - big key room",
-			"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-			"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-		];
-
 		$lower = function($locations, $items) {
 			return $items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle());
 		};
@@ -370,26 +233,10 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big chest"]->setRequirements(function($locations, $items) use ($lower, $middle) {
-			return ($lower($locations, $items) && $items->has('CaneOfSomaria')
-					&& (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					]) || $items->has('FireRod')))
-				|| ($middle($locations, $items)
-					&& !$locations->itemInLocations(Item::get('BigKey'), [
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-							"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-						])
-						&& ((!$locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('BigKey')) || $items->has('CaneOfSomaria'))
-						&& (!$locations->itemInLocations(Item::get('BigKey'), [
-							"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-							"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-						]) || ($items->has('CaneOfSomaria') && $items->has('FireRod')))));
+			return ($lower($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'))
+				|| ($middle($locations, $items) && $items->has('BigKeyD7'));
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big key room"]->setRequirements(function($locations, $items) use ($lower, $middle) {
@@ -402,99 +249,40 @@ class TurtleRock extends Region {
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return ($lower($locations, $items) && $items->has('CaneOfSomaria'))
-				|| ($middle($locations, $items)
-					&& !$locations->itemInLocations(Item::get('BigKey'), [
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-							"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-							"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-						])
-						&& ((!$locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('BigKey')) || $items->has('CaneOfSomaria'))
-						&& (!$locations->itemInLocations(Item::get('BigKey'), [
-							"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-							"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-						]) || ($items->has('CaneOfSomaria') && $items->has('FireRod')))));
+				|| ($middle($locations, $items) && $items->has('BigKeyD7'));
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return $lower($locations, $items)
-				|| ($middle($locations, $items) && $items->has('CaneOfSomaria')
-					&& !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-					]) && (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					]) || $items->has('FireRod')));
+				|| ($middle($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'));
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return $lower($locations, $items)
-				|| ($middle($locations, $items) && $items->has('CaneOfSomaria')
-					&& !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-					]) && (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					]) || $items->has('FireRod')));
+				|| ($middle($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'));
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return $lower($locations, $items)
-				|| ($middle($locations, $items) && $items->has('CaneOfSomaria')
-					&& !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-					]) && (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					]) || $items->has('FireRod')));
+				|| ($middle($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'));
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return $lower($locations, $items)
-				|| ($middle($locations, $items) && $items->has('CaneOfSomaria')
-					&& !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-					]) && (!$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-						"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-					]) || $items->has('FireRod')));
-		});
+				|| ($middle($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'));		});
 
 		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) use ($lower, $middle) {
-			return ($items->hasUpgradedSword() || $items->has('Hammer'))
-				&& $items->has('CaneOfSomaria') && $items->has('FireRod') && $items->has('IceRod')
-				&& ($lower($locations, $items)
-				|| ($middle($locations, $items) && !$locations->itemInLocations(Item::get('BigKey'), [
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-						"[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-						"[dungeon-D7-B1] Turtle Rock - Roller switch room",
-					]))
-				);
+			return $items->has('BigKeyD7')
+				&& ($items->hasUpgradedSword() || $items->has('Hammer'))
+				&& $items->has('CaneOfSomaria') && $items->has('FireRod') && $items->has('IceRod');
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('FireRod') && $items->has('IceRod') && $items->has('CaneOfSomaria');
+			return $this->canEnter($locations, $items) && $items->has('FireRod')
+				&& $items->has('IceRod') && $items->has('CaneOfSomaria')
+				&& $items->has('BigKeyD7');
 		};
 
 		$this->can_enter = function($locations, $items) use ($lower, $middle) {
@@ -514,11 +302,6 @@ class TurtleRock extends Region {
 	 */
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
-
-		$this->key_fill_3 = [
-			"[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-			"[dungeon-D7-B1] Turtle Rock - big key room",
-		];
 
 		$middle = function($locations, $items) {
 			return ($items->has('MagicMirror') || ($items->has('MoonPearl') && $items->canSpinSpeed()))

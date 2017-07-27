@@ -66,32 +66,34 @@ class SwampPalace extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Swamp Palace has: Big Key, Map, Compass, 1 Key
+	 * Determine if the item being placed in this region can be placed here.
 	 *
-	 * @param ItemCollection $my_items full list of items for placement
+	 * @param Item $item item to test
 	 *
-	 * @return $this
+	 * @return bool
 	 */
-	public function fillBaseItems($my_items) {
-		$locations = $this->locations->filter(function($location) {
-			return $this->boss_location_in_base || $location->getName() != "Heart Container - Arrghus";
-		});
-
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
-
-		if ($this->world->config('region.CompassesMaps', true)) {
-			if ($this->world->config('region.mapsInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			}
-
-			if ($this->world->config('region.compassesInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
-			}
+	public function canFill(Item $item) : bool {
+		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD2')])) {
+			return false;
 		}
 
-		return $this;
+		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD2')])) {
+			return false;
+		}
+
+		if ($item instanceof Item\Map
+			&& (!$this->world->config('region.mapsInDungeons', true)
+				|| !in_array($item, [Item::get('Map'), Item::get('MapD2')]))) {
+			return false;
+		}
+
+		if ($item instanceof Item\Compass
+			&& (!$this->world->config('region.compassesInDungeons', true)
+				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD2')]))) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -102,75 +104,67 @@ class SwampPalace extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setFillRules(function($item, $locations, $items) {
-			return $item == Item::get('Key');
+			return $item == Item::get('KeyD2');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setRequirements(function($locations, $items) {
-				return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer')
-				&& ($locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D2-B1] Swamp Palace - map room",
-					"[dungeon-D2-B1] Swamp Palace - south of hookshot room",
-					"[dungeon-D2-B1] Swamp Palace - big key room",
-					"[dungeon-D2-B1] Swamp Palace - push 4 blocks room",
-					])
-				||
-				($locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D2-B2] Swamp Palace - flooded room [left chest]",
-					"[dungeon-D2-B2] Swamp Palace - flooded room [right chest]",
-					"[dungeon-D2-B2] Swamp Palace - hidden waterfall door room",
-					"Heart Container - Arrghus",
-					]) && $items->has('Hookshot')));
+				&& $items->has('BigKeyD2');
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD2');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - map room"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"]);
+			return $items->has('KeyD2');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer');
 		});
 
 		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		});
 
 		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		});
 
 		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		});
 
 		$this->locations["Heart Container - Arrghus"]->setRequirements(function($locations, $items) {
-			return $locations->itemInLocations(Item::get('Key'), ["[dungeon-D2-1F] Swamp Palace - first room"])
+			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		})->setFillRules(function($item, $locations, $items) {
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return true;
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
 			}
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+
+			return $this->world->config('region.bossHaveKey', true)
+				|| !in_array($item, [Item::get('KeyD2'), Item::get('BigKeyD2')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
@@ -197,71 +191,80 @@ class SwampPalace extends Region {
 	public function initGlitched() {
 		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
-				&& (($this->world->getRegion('Misery Mire')->canEnter($locations, $items) && (!$locations->itemInLocations(Item::get('BigKey'), [
+				&& (($this->world->getRegion('Misery Mire')->canEnter($locations, $items) && (!$locations->itemInLocations(Item::get('BigKeyD2'), [
 						"[dungeon-D6-B1] Misery Mire - big key",
 						"[dungeon-D6-B1] Misery Mire - compass",
 					])
 					|| $items->canLightTorches()))
 				|| (($items->has('Hammer')
-						&& $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key')))
-					&& (!$locations->itemInLocations(Item::get('BigKey'), [
+						&& $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2')))
+					&& (!$locations->itemInLocations(Item::get('BigKeyD2'), [
 						"[dungeon-D2-B2] Swamp Palace - flooded room [left chest]",
 						"[dungeon-D2-B2] Swamp Palace - flooded room [right chest]",
 						"[dungeon-D2-B2] Swamp Palace - hidden waterfall door room",
 						"Heart Container - Arrghus",
 					]) || $items->has('Hookshot'))));
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD2');
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))));
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))));
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))));
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))));
 		});
 
 		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))));
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))));
 		});
 
 		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Hookshot') && $items->has('Flippers')
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))));
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))));
 		});
 
 		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setRequirements(function($locations, $items) {
 			return $items->has('Hookshot') && $items->has('Flippers')
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))));
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))));
 		});
 
 		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setRequirements(function($locations, $items) {
 			return $items->has('Hookshot') && $items->has('Flippers')
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))));
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))));
 		});
 
 		$this->locations["Heart Container - Arrghus"]->setRequirements(function($locations, $items) {
 			return ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))))
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))))
 				&& $items->has('MoonPearl') && $items->has('MagicMirror')
 				&& $items->has('Flippers') && $items->has('Hookshot')
 				&& ($items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows());
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
+
+			return $this->world->config('region.bossHaveKey', true)
+				|| !in_array($item, [Item::get('KeyD2'), Item::get('BigKeyD2')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& ($this->world->getRegion('Misery Mire')->canEnter($locations, $items)
-					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('Key'))))
+					|| ($items->has('Hammer') && $locations["[dungeon-D2-1F] Swamp Palace - first room"]->hasItem(Item::get('KeyD2'))))
 				&& $items->has('MoonPearl') && $items->has('MagicMirror')
 				&& $items->has('Flippers') && $items->has('Hookshot');
 		};

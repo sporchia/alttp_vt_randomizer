@@ -44,7 +44,7 @@
 						<li>1x Flippers</li>
 						<li>1x Flute</li>
 						<li>1x Golden Sword</li>
-						<li>1x ½ Magic or ¼ Magic</li>
+						<li>1x ½ Magic</li>
 						<li>1x Hammer</li>
 					</ul>
 				</div>
@@ -112,6 +112,7 @@
 			<p>The following items have been adjusted:</p>
 			<ul>
 				<li>Magic Cape uses 2x Magic</li>
+				<li>Cane of Byrna uses 2x Magic</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
 				<li>There are only 2 Bottles (4 in Major Glitches)</li>
 				<li>Potions heal 5 hearts and restore 1/2 magic</li>
@@ -150,6 +151,7 @@
 			<p>The following items have been adjusted:</p>
 			<ul>
 				<li>Magic Cape uses 4x Magic</li>
+				<li>Cane of Byrna uses 4x Magic</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
 				<li>There is only 1 Bottle (4 in Major Glitches)</li>
 				<li>Potions heal 1 heart and restore 1/4 magic</li>

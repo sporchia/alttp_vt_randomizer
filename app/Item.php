@@ -10,6 +10,7 @@ class Item {
 	protected $address;
 	protected $name;
 	protected $nice_name;
+	protected $linked_region;
 
 	static protected $items;
 
@@ -329,6 +330,16 @@ class Item {
 	 */
 	public function getAddress() {
 		return $this->address;
+	}
+
+	public function linkRegion(Region $region) {
+		$this->linked_region = $region;
+
+		return $this;
+	}
+
+	public function getLinkedRegion() {
+		return $this->linked_region;
 	}
 
 	/**

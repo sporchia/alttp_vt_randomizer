@@ -161,8 +161,12 @@ class ItemCollection extends Collection {
 			return $this->copy();
 		}
 
+		if (is_array($items)) {
+			return $this->merge(new static($items));
+		}
+
 		if (!is_a($items, static::class)) {
-			return parent::diff($items);
+			return parent::merge($items);
 		}
 
 		$merged = $this->copy();
@@ -327,6 +331,16 @@ class ItemCollection extends Collection {
 		return $this->has('Bow')
 			|| $this->has('BowAndArrows')
 			|| $this->has('BowAndSilverArrows');
+	}
+
+	/**
+	 * Requirements for blocking lasers
+	 *
+	 * @return bool
+	 */
+	public function canBlockLasers() {
+		return $this->has('MirrorShield')
+			|| $this->has('ProgressiveShield', 3);
 	}
 
 	/**

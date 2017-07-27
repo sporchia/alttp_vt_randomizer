@@ -62,34 +62,34 @@ class MiseryMire extends Region {
 	}
 
 	/**
-	 * Place Keys, Map, and Compass in Region. Misery Mire has: Big Key, Map, Compass, 3 Keys.
+	 * Determine if the item being placed in this region can be placed here.
 	 *
-	 * @param ItemCollection $my_items full list of items for placement
+	 * @param Item $item item to test
 	 *
-	 * @return $this
+	 * @return bool
 	 */
-	public function fillBaseItems($my_items) {
-		$locations = $this->locations->filter(function($location) {
-			return $this->boss_location_in_base || $location->getName() != "Heart Container - Vitreous";
-		});
-
-		// this order matters
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("Key"), $my_items));
-
-		if ($this->world->config('region.CompassesMaps', true)) {
-			if ($this->world->config('region.mapsInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			}
-
-			if ($this->world->config('region.compassesInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
-			}
+	public function canFill(Item $item) : bool {
+		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD6')])) {
+			return false;
 		}
 
-		return $this;
+		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD6')])) {
+			return false;
+		}
+
+		if ($item instanceof Item\Map
+			&& (!$this->world->config('region.mapsInDungeons', true)
+				|| !in_array($item, [Item::get('Map'), Item::get('MapD6')]))) {
+			return false;
+		}
+
+		if ($item instanceof Item\Compass
+			&& (!$this->world->config('region.compassesInDungeons', true)
+				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD6')]))) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -100,146 +100,41 @@ class MiseryMire extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-D6-B1] Misery Mire - big chest"]->setRequirements(function($locations, $items) {
-			return ($items->canLightTorches() &&
-				$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-				], 2))
-			|| (!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && ($locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-				], 3)
-				|| ($items->has('CaneOfSomaria') && $items->has('Lamp') && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-					"Heart Container - Vitreous",
-				], 3))
-			));
+			return $items->has('BigKeyD6');
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyD6');
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setRequirements(function($locations, $items) {
-			return true;
-		});
-
-		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches() && ((
-				$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-				], 2))
-			|| (!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && ($locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-				], 3)
-				|| ($items->has('CaneOfSomaria') && $items->has('Lamp') && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-					"Heart Container - Vitreous",
-				], 3))
-			)));
-		});
-
-		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches() && ((
-				$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-				], 2))
-			|| (!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && ($locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-				], 3)
-				|| ($items->has('CaneOfSomaria') && $items->has('Lamp') && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-					"Heart Container - Vitreous",
-				], 3))
-			)));
-		});
-
-		$this->locations["[dungeon-D6-B1] Misery Mire - end of bridge"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('KeyD6');
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - map room"]->setRequirements(function($locations, $items) {
-			return true;
+			return $items->has('KeyD6');
 		});
 
-		$this->locations["[dungeon-D6-B1] Misery Mire - spike room"]->setRequirements(function($locations, $items) {
-			return true;
+		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setRequirements(function($locations, $items) {
+			return $items->canLightTorches() && $items->has('KeyD6', 2);
+		});
+
+		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setRequirements(function($locations, $items) {
+			return $items->canLightTorches() && $items->has('KeyD6', 2);
 		});
 
 		$this->locations["Heart Container - Vitreous"]->setRequirements(function($locations, $items) {
 			return $items->has('CaneOfSomaria') && $items->has('Lamp')
-				&& (($locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-				], 2))
-			|| (!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) && $locations->itemInLocations(Item::get('Key'), [
-					"[dungeon-D6-B1] Misery Mire - big hub room",
-					"[dungeon-D6-B1] Misery Mire - end of bridge",
-					"[dungeon-D6-B1] Misery Mire - map room",
-					"[dungeon-D6-B1] Misery Mire - spike room",
-					"[dungeon-D6-B1] Misery Mire - big chest",
-					"Heart Container - Vitreous",
-				], 3)));
+				&& $items->has('BigKeyD6') && $items->has('KeyD6', 2);
 		})->setFillRules(function($item, $locations, $items) {
+				if (!$this->world->config('region.bossNormalLocation', true)
+					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+					return false;
+				}
+
 			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('BigKey');
+				return $item != Item::get('BigKeyD6');
 			}
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			return !in_array($item, [Item::get('KeyD6'), Item::get('BigKeyD6')]);
 		});
 
 		$this->can_complete = function($locations, $items) {
@@ -269,39 +164,11 @@ class MiseryMire extends Region {
 	public function initGlitched() {
 		$this->initNoMajorGlitches();
 
-		$this->locations["[dungeon-D6-B1] Misery Mire - big chest"]->setRequirements(function($locations, $items) {
-			return !$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				]) || $items->canLightTorches();
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
-		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches();
-		});
-
-		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches();
-		});
-
-		$this->locations["Heart Container - Vitreous"]->setRequirements(function($locations, $items) {
-			return $items->has('CaneOfSomaria')
-				&& (!$locations->itemInLocations(Item::get('BigKey'), [
-					"[dungeon-D6-B1] Misery Mire - big key",
-					"[dungeon-D6-B1] Misery Mire - compass",
-				])
-					|| $items->canLightTorches());
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
-		});
-
 		$this->can_enter = function($locations, $items) {
-			return (($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
-				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
-				|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-			&& $items->hasSword()
+			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+				&& (config('game-mode') == 'swordless' || $items->hasSword()))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
 			&& ($items->has('MoonPearl') || $items->hasABottle());
 		};

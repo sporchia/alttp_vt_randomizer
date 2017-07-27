@@ -186,8 +186,8 @@ class Lz2 {
 					break;
 				case self::REPEAT:
 					$this->outputCommand($nextCommand, $nextCommandByteCount, $output);
-					array_push($output, $repeatAddress % 256);
 					array_push($output, $repeatAddress >> 8);
+					array_push($output, $repeatAddress % 256);
 					break;
 			}
 
@@ -268,7 +268,7 @@ class Lz2 {
 					}
 					break;
 				case self::REPEAT:
-					$origin = ($compressedData[$position++] | ($compressedData[$position++] << 8));
+					$origin = (($compressedData[$position++] << 8) | $compressedData[$position++]);
 					for ($i = 0; $i < $length; $i++) {
 						array_push($output, $output[$origin++]);
 					}

@@ -47,6 +47,7 @@ class West extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
+				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 
@@ -65,7 +66,8 @@ class West extends Region {
 		};
 
 		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) && $items->has('Hammer') && $items->canLiftRocks();
+			return $access_dark_world($items) && $items->has('Hammer') && $items->canLiftRocks()
+				&& ($items->has('Cape') || $items->has('CaneOfByrna'));
 		});
 
 		return $this;

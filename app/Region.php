@@ -9,7 +9,6 @@ class Region {
 	protected $can_enter;
 	protected $can_complete;
 	protected $name = 'Unknown';
-	protected $boss_location_in_base = true;
 	protected $prize_location;
 	protected $world;
 
@@ -22,8 +21,6 @@ class Region {
 	 */
 	public function __construct(World $world) {
 		$this->world = $world;
-
-		$this->boss_location_in_base = $this->world->config('region.bossNormalLocation', true);
 	}
 
 	/**
@@ -97,17 +94,6 @@ class Region {
 		}
 
 		return $this->prize_location->hasItem($item);
-	}
-
-	/**
-	 * Fill the normal required Items for a Region, this usually includes Keys/Maps/Compasses
-	 *
-	 * @param Support\ItemColletion $my_items set of Items available when filling base Items in the Region
-	 *
-	 * @return $this
-	 */
-	public function fillBaseItems($my_items) {
-		return $this;
 	}
 
 	/**
@@ -185,6 +171,30 @@ class Region {
 		if ($this->can_enter) {
 			return call_user_func($this->can_enter, $locations, $items);
 		}
+		return true;
+	}
+
+	/**
+	 * Determine if the item being placed in this region can be placed here.
+	 *
+	 * @param Item $item item to test
+	 *
+	 * @return bool
+	 */
+	public function canFill(Item $item) : bool {
+		if ($item instanceof Item\Key && $item != Item::get('Key')) {
+			return false;
+		}
+		if ($item instanceof Item\BigKey && $item != Item::get('BigKey')) {
+			return false;
+		}
+		if ($item instanceof Item\Map && $item != Item::get('Map')) {
+			return false;
+		}
+		if ($item instanceof Item\Compass && $item != Item::get('Compass')) {
+			return false;
+		}
+
 		return true;
 	}
 

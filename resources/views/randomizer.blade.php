@@ -265,10 +265,6 @@
 					<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
 				</div>
 				<div class="col-md-6">
-					<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for="cust-region-bonkItems">Bonk Keys in Pool</label>
-				</div>
-				<div class="col-md-6">
 					<input id="cust-sprite-shufflePrizePack" type="checkbox" name="data[alttp.custom.sprite.shufflePrizePack]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-sprite-shufflePrizePack">Shuffle Prize Packs</label>
 				</div>
@@ -531,10 +527,17 @@
 					<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-MagicUpgrade" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.MagicUpgrade]" class="custom-items">
+					<input id="item-count-HalfMagicUpgrade" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.HalfMagicUpgrade]" class="custom-items">
+					<label for="item-count-HalfMagicUpgrade">Half Magic Upgrade</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-QuarterMagicUpgrade" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.QuarterMagicUpgrade]" class="custom-items">
+					<label for="item-count-QuarterMagicUpgrade">Quarter Magic Upgrade</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-MagicUpgrade" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.MagicUpgrade]" class="custom-items">
 					<label for="item-count-MagicUpgrade">Magic Upgrade (1/2 or 1/4)</label>
 				</div>
-
 			</div>
 		</div>
 	</div>

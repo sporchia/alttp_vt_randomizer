@@ -285,11 +285,6 @@ class Randomizer {
 			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
 		}
 
-		// for filling base (Maps/Compasses/Keys) items assume you have everything
-		foreach ($regions as $region) {
-			$region->fillBaseItems(Item::all());
-		}
-
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
 		$advancement_items = $this->getAdvancementItems();
 
@@ -350,7 +345,9 @@ class Randomizer {
 			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
 			: $this->getItemPool();
 
-		Filler::factory('RandomAssumed', $this->world)->fill($advancement_items, $nice_items, $trash_items);
+		$dungeon_items = $this->getDungeonPool();
+
+		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
 		return $this;
 	}
@@ -458,7 +455,7 @@ class Randomizer {
 				$spoiler[$name] = [];
 			}
 			$region->getLocations()->each(function($location) use (&$spoiler, $name) {
-				if (is_a($location, Location\Prize\Event::class)) {
+				if ($location instanceof Location\Prize\Event) {
 					return;
 				}
 				if ($this->config('region.swordsInPool', true)
@@ -1047,6 +1044,22 @@ class Randomizer {
 			array_push($advancement_items, Item::get('PowerStar'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.BugCatchingNet', 1); $i++) {
+			array_push($advancement_items, Item::get('BugCatchingNet'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.MirrorShield', 1); $i++) {
+			array_push($advancement_items, Item::get('MirrorShield'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 0); $i++) {
+			array_push($advancement_items, Item::get('ProgressiveShield'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.CaneOfByrna', 1); $i++) {
+			array_push($advancement_items, Item::get('CaneOfByrna'));
+		}
+
 		return $advancement_items;
 	}
 
@@ -1065,9 +1078,6 @@ class Randomizer {
 			array_push($items_to_find, Item::get('L4Sword'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.BugCatchingNet', 1); $i++) {
-			array_push($items_to_find, Item::get('BugCatchingNet'));
-		}
 		for ($i = 0; $i < $this->config('item.count.HeartContainer', 1); $i++) {
 			array_push($items_to_find, Item::get('HeartContainer'));
 		}
@@ -1089,7 +1099,7 @@ class Randomizer {
 			array_push($items_to_find, Item::get('GreenClock'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
 			array_push($items_to_find, Item::get('HalfMagic'));
 		}
 
@@ -1097,7 +1107,7 @@ class Randomizer {
 			array_push($items_to_find, Item::get('QuarterMagic'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 0); $i++) {
 			array_push($items_to_find, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 		}
 
@@ -1116,10 +1126,6 @@ class Randomizer {
 			array_push($items_to_find, Item::get('BlueShield'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 0); $i++) {
-			array_push($items_to_find, Item::get('ProgressiveShield'));
-		}
-
 		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
 			array_push($items_to_find, Item::get('ProgressiveArmor'));
 		}
@@ -1131,10 +1137,6 @@ class Randomizer {
 			array_push($items_to_find, Item::get('Boomerang'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.MirrorShield', 1); $i++) {
-			array_push($items_to_find, Item::get('MirrorShield'));
-		}
-
 		for ($i = 0; $i < $this->config('item.count.PieceOfHeart', 24); $i++) {
 			array_push($items_to_find, Item::get('PieceOfHeart'));
 		}
@@ -1144,9 +1146,6 @@ class Randomizer {
 		}
 		for ($i = 0; $i < $this->config('item.count.RedShield', 1); $i++) {
 			array_push($items_to_find, Item::get('RedShield'));
-		}
-		for ($i = 0; $i < $this->config('item.count.CaneOfByrna', 1); $i++) {
-			array_push($items_to_find, Item::get('CaneOfByrna'));
 		}
 		for ($i = 0; $i < $this->config('item.count.RedMail', 1); $i++) {
 			array_push($items_to_find, Item::get('RedMail'));
@@ -1240,6 +1239,75 @@ class Randomizer {
 			array_push($items_to_find, Item::get('CompassP2'));
 			array_push($items_to_find, Item::get('CompassP3'));
 		}
+
+		return $items_to_find;
+	}
+
+	public function getDungeonPool() {
+		$items_to_find = [];
+
+		array_push($items_to_find, Item::get('BigKeyA2'));
+		array_push($items_to_find, Item::get('BigKeyD1'));
+		array_push($items_to_find, Item::get('BigKeyD2'));
+		array_push($items_to_find, Item::get('BigKeyD3'));
+		array_push($items_to_find, Item::get('BigKeyD4'));
+		array_push($items_to_find, Item::get('BigKeyD5'));
+		array_push($items_to_find, Item::get('BigKeyD6'));
+		array_push($items_to_find, Item::get('BigKeyD7'));
+		array_push($items_to_find, Item::get('BigKeyP1'));
+		array_push($items_to_find, Item::get('BigKeyP2'));
+		array_push($items_to_find, Item::get('BigKeyP3'));
+
+		array_push($items_to_find, Item::get('KeyA2'));
+		array_push($items_to_find, Item::get('KeyA2'));
+		array_push($items_to_find, Item::get('KeyA2'));
+		array_push($items_to_find, Item::get('KeyA2'));
+		array_push($items_to_find, Item::get('KeyD1'));
+		array_push($items_to_find, Item::get('KeyD1'));
+		array_push($items_to_find, Item::get('KeyD1'));
+		array_push($items_to_find, Item::get('KeyD1'));
+		array_push($items_to_find, Item::get('KeyD1'));
+		array_push($items_to_find, Item::get('KeyD1'));
+		array_push($items_to_find, Item::get('KeyD2'));
+		array_push($items_to_find, Item::get('KeyD3'));
+		array_push($items_to_find, Item::get('KeyD3'));
+		array_push($items_to_find, Item::get('KeyD4'));
+		array_push($items_to_find, Item::get('KeyD5'));
+		array_push($items_to_find, Item::get('KeyD5'));
+		array_push($items_to_find, Item::get('KeyD6'));
+		array_push($items_to_find, Item::get('KeyD6'));
+		array_push($items_to_find, Item::get('KeyD6'));
+		array_push($items_to_find, Item::get('KeyD7'));
+		array_push($items_to_find, Item::get('KeyD7'));
+		array_push($items_to_find, Item::get('KeyD7'));
+		array_push($items_to_find, Item::get('KeyD7'));
+		array_push($items_to_find, Item::get('KeyH1'));
+		array_push($items_to_find, Item::get('KeyP2'));
+		array_push($items_to_find, Item::get('KeyP3'));
+
+		array_push($items_to_find, Item::get('MapA2'));
+		array_push($items_to_find, Item::get('MapD1'));
+		array_push($items_to_find, Item::get('MapD2'));
+		array_push($items_to_find, Item::get('MapD3'));
+		array_push($items_to_find, Item::get('MapD4'));
+		array_push($items_to_find, Item::get('MapD5'));
+		array_push($items_to_find, Item::get('MapD6'));
+		array_push($items_to_find, Item::get('MapD7'));
+		array_push($items_to_find, Item::get('MapH1'));
+		array_push($items_to_find, Item::get('MapP1'));
+		array_push($items_to_find, Item::get('MapP2'));
+		array_push($items_to_find, Item::get('MapP3'));
+		array_push($items_to_find, Item::get('CompassA2'));
+		array_push($items_to_find, Item::get('CompassD1'));
+		array_push($items_to_find, Item::get('CompassD2'));
+		array_push($items_to_find, Item::get('CompassD3'));
+		array_push($items_to_find, Item::get('CompassD4'));
+		array_push($items_to_find, Item::get('CompassD5'));
+		array_push($items_to_find, Item::get('CompassD6'));
+		array_push($items_to_find, Item::get('CompassD7'));
+		array_push($items_to_find, Item::get('CompassP1'));
+		array_push($items_to_find, Item::get('CompassP2'));
+		array_push($items_to_find, Item::get('CompassP3'));
 
 		return $items_to_find;
 	}

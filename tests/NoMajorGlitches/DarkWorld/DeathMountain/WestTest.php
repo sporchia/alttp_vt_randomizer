@@ -30,7 +30,7 @@ class WestTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -43,12 +43,19 @@ class WestTest extends TestCase {
 			["[cave-055] Spike cave", false, [], ['Gloves']],
 			["[cave-055] Spike cave", false, [], ['MoonPearl']],
 			["[cave-055] Spike cave", false, [], ['Hammer']],
-			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'Lamp']],
-			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'PowerGlove', 'Lamp']],
-			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'TitansMitt', 'Lamp']],
-			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'Flute']],
-			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'PowerGlove', 'Flute']],
-			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'TitansMitt', 'Flute']],
+			["[cave-055] Spike cave", false, [], ['Cape', 'CaneOfByrna']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'Lamp', 'Cape']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'PowerGlove', 'Lamp', 'Cape']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'TitansMitt', 'Lamp', 'Cape']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'Flute', 'Cape']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'PowerGlove', 'Flute', 'Cape']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'TitansMitt', 'Flute', 'Cape']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'Lamp', 'CaneOfByrna']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'PowerGlove', 'Lamp', 'CaneOfByrna']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'TitansMitt', 'Lamp', 'CaneOfByrna']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'Flute', 'CaneOfByrna']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'PowerGlove', 'Flute', 'CaneOfByrna']],
+			["[cave-055] Spike cave", true, ['MoonPearl', 'Hammer', 'TitansMitt', 'Flute', 'CaneOfByrna']],
 		];
 	}
 }

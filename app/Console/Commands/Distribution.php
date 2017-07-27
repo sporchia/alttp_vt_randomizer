@@ -31,6 +31,7 @@ class Distribution extends Command {
 	 * @return mixed
 	 */
 	public function handle() {
+		$start = microtime(true);
 		$locations = [];
 		switch ($this->argument('type')) {
 			case 'item':
@@ -44,13 +45,6 @@ class Distribution extends Command {
 				$function = [$this, 'location'];
 				if (!$this->argument('thing')) {
 					return $this->error("Need an Location Name");
-				}
-				$thing = $this->argument('thing');
-				break;
-			case 'region_fill':
-				$function = [$this, 'region_fill'];
-				if (!$this->argument('thing')) {
-					return $this->error("Need an Region Name");
 				}
 				$thing = $this->argument('thing');
 				break;
@@ -90,6 +84,7 @@ class Distribution extends Command {
 			ksortr($locations);
 			$this->info(json_encode($locations, JSON_PRETTY_PRINT));
 		}
+		\Log::debug(sprintf("A1: %.2f", 1000 * (microtime(true) - $start)));
 	}
 
 	public static function _assureColumnsExist($array) : array {
@@ -130,26 +125,6 @@ class Distribution extends Command {
 			$locations[$location_name][$item_name] = 0;
 		}
 		$locations[$location_name][$item_name]++;
-	}
-
-	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
-		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
-		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-		$region = $world->getRegion($region_name);
-		$region->fillBaseItems(Item::all());
-		foreach ($region->getLocations() as $location) {
-			if (!$location->getItem()) {
-				continue;
-			}
-			if (!isset($locations[$location->getName()])) {
-				$locations[$location->getName()] = [];
-			}
-			if (!isset($locations[$location->getName()][$location->getItem()->getNiceName()])) {
-				$locations[$location->getName()][$location->getItem()->getNiceName()] = 0;
-			}
-			$locations[$location->getName()][$location->getItem()->getNiceName()]++;
-		}
 	}
 
 	private function required($unused, &$locations) {

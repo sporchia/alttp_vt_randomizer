@@ -39,7 +39,7 @@ abstract class Filler {
 		$this->world = $world;
 	}
 
-	abstract public function fill(array $required, array $nice, array $extra);
+	abstract public function fill(array $dungeon, array $required, array $nice, array $extra);
 
 	protected function shuffleLocations(Locations $locations) {
 		return $locations->randomCollection($locations->count());
@@ -50,6 +50,8 @@ abstract class Filler {
 	}
 
 	protected function fastFillItemsInLocations($fill_items, $locations) {
+		Log::debug(sprintf("Fast Filling %s items in %s locations", count($fill_items), $locations->count()));
+
 		foreach($locations as $location) {
 			if ($location->hasItem()) {
 				continue;

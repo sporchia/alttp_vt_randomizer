@@ -138,7 +138,7 @@ class World {
 					}
 
 					return $collected_items->has('DefeatGanon')
-						&& 	$collected_items->has('Crystal1')
+						&& $collected_items->has('Crystal1')
 						&& $collected_items->has('Crystal2')
 						&& $collected_items->has('Crystal3')
 						&& $collected_items->has('Crystal4')
@@ -244,24 +244,69 @@ class World {
 	 * @return array
 	 */
 	public function getPlayThrough($walkthrough = true) {
+		$start = microtime(true);
 		$shadow_world = $this->copy();
+		$junk_items = [
+			Item::get('BlueShield'),
+			Item::get('ProgressiveShield'),
+			Item::get('ProgressiveArmor'),
+			Item::get('BlueMail'),
+			Item::get('Boomerang'),
+			Item::get('MirrorShield'),
+			Item::get('PieceOfHeart'),
+			Item::get('RedBoomerang'),
+			Item::get('RedShield'),
+			Item::get('CaneOfByrna'),
+			Item::get('RedMail'),
+			Item::get('BombUpgrade5'),
+			Item::get('BombUpgrade10'),
+			Item::get('BombUpgrade50'),
+			Item::get('ArrowUpgrade5'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade70'),
+			Item::get('Arrow'),
+			Item::get('TenArrows'),
+			Item::get('Bomb'),
+			Item::get('ThreeBombs'),
+			Item::get('OneRupee'),
+			Item::get('FiveRupees'),
+			Item::get('TwentyRupees'),
+			Item::get('FiftyRupees'),
+			Item::get('OneHundredRupees'),
+			Item::get('ThreeHundredRupees'),
+			Item::get('Heart'),
+			Item::get('Rupoor'),
+		];
 
 		$location_sphere = $shadow_world->getLocationSpheres();
-
+		$collectable_locations = new LocationCollection(array_flatten(array_map(function($collection) {
+			return $collection->values();
+		}, $location_sphere)));
 		$required_locations = new LocationCollection;
 		$required_locations_sphere = [];
 		$reverse_location_sphere = array_reverse($location_sphere, true);
 		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
+			$start2 = microtime(true);
 			Log::debug("playthrough SPHERE: $sphere_level");
 			foreach ($sphere as $location) {
 				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(),
 					$location->getItem() ? $location->getItem()->getNiceName() : 'Nothing'));
-				// pull item out
+				// pull item out (we have to pull keys as well :( as they are used in calcs for big keys see DP)
+				// OKAY figure out how to speed this up again, as we need to check bloddy keys!
 				$pulled_item = $location->getItem();
+				if ($pulled_item === null ||
+					($pulled_item instanceof Item\Key
+					&& !in_array($pulled_item, [Item::get('KeyP2'), Item::get('KeyP3'), Item::get('KeyD6'), Item::get('KeyA2')]))) {
+					continue;
+				}
 				$location->setItem();
+				if ($pulled_item instanceof Item\Map
+					|| $pulled_item instanceof Item\Compass
+					|| in_array($pulled_item, $junk_items)) {
+					continue;
+				}
 
-				if (!$shadow_world->getWinCondition()($shadow_world->getCollectableLocations()->getItems())) {
-				//if (!$shadow_world->getWinCondition()($shadow_world->collectItems())) { // this is more correct
+				if (!$shadow_world->getWinCondition()($collectable_locations->getItems())) {
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);
@@ -276,7 +321,7 @@ class World {
 					if ($check_sphere == $sphere_level || $required_locations->has($location->getName())) {
 						continue;
 					}
-					Log::debug("CHECKING: $check_sphere");
+
 					// remove all higher sphere items from their locations
 					foreach ($required_locations_sphere as $higher_sphere => $higher_locations) {
 						if ($higher_sphere < $check_sphere) {
@@ -296,8 +341,7 @@ class World {
 							// remove the item we are trying to get
 							$temp_pull = $higher_location->getItem();
 							$higher_location->setItem();
-							$current_items = $shadow_world->getCollectableLocations()->getItems();
-							//$current_items = $shadow_world->collectItems(); // this is more correct
+							$current_items = $collectable_locations->getItems();
 
 							if (!$higher_location->canAccess($current_items)) {
 								// put item back
@@ -319,7 +363,9 @@ class World {
 					}
 				}
 			}
+			\Log::debug(sprintf("S1: %.2f", 1000 * (microtime(true) - $start2)));
 		}
+		\Log::debug(sprintf("SH: %.2f", 1000 * (microtime(true) - $start)));
 
 		foreach ($required_locations as $higher_location) {
 			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(),
@@ -343,12 +389,14 @@ class World {
 
 			$found_items = $available_locations->getItems();
 
-			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain) {
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain, $junk_items) {
+				$item = $location->getItem();
 				if (in_array($location, $location_order)
 						|| !$location->hasItem()
-						|| in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])) {
+						|| $item instanceof Item\Key) {
 					return;
 				}
+				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
 				array_push($location_round[$longest_item_chain], $location);
 			});
@@ -499,12 +547,11 @@ class World {
 				return $location->canAccess($my_items);
 			});
 
-			$found_items = $search_locations->getItems();
+			$available_locations = $available_locations->diff($search_locations);
 
-			$pre_collected = $my_items->diff($found_items);
-			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items->merge($pre_collected);
-		} while ($new_items->count() > 0);
+			$found_items = $search_locations->getItems();
+			$my_items = $found_items->merge($my_items);
+		} while ($found_items->count() > 0);
 
 		return $my_items;
 	}
@@ -524,7 +571,6 @@ class World {
 			$available_locations = $this->locations->filter(function($location) use ($my_items) {
 				return !is_a($location, Location\Medallion::class)
 					&& !is_a($location, Location\Fountain::class)
-					&& !in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])
 					&& $location->canAccess($my_items);
 			});
 			$location_sphere[$sphere] = $available_locations->diff($found_locations);

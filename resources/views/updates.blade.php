@@ -4,6 +4,11 @@
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
+		<li>¼ magic is no longer in normal/hard/expert</li>
+		<li>Turtle Rock laser bridge requires Cape or Cane of Byrna or Mirror Shield</li>
+		<li>Byrna Cave now requires Cape or Cane of Byrna</li>
+		<li>Logic update for keys</li>
+		<li>Tuning to fill alg.</li>
 		<li>Entrance Randomizer integration (thanks LLCoolDave)</li>
 		<li>Two new chests have been added to Waterfall fairy</li>
 	</ul>
