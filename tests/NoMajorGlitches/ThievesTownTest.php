@@ -18,110 +18,194 @@ class ThievesTownTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Thieves Town')
-			->canEnter($this->world->getLocations(), $this->allItems()));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Thieves Town')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
-	}
+		$this->addCollected($items);
 
-	public function testNorthWestDarkWorldAccessRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Thieves Town')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves', 'Hookshot'])));
-	}
-
-	// Item Locations
-	public function testBLHugeRoomChestBROnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]")
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testBLHugeRoomChestTLOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 * @param array $keys
+	 * @param string $big_key
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]")
-			->canAccess($this->collected));
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
-	public function testBRHugeRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D4-B1] Thieves' Town - Bottom right of huge room")
-			->canAccess($this->collected));
+
+	public function fillPool() {
+		return [
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", false, 'BigKeyD4', [], ['BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", false, 'KeyD4', [], ['KeyD4']],
+
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, 'BigKeyD4', [], ['BigKeyD4']],
+
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, 'BigKeyD4', [], ['BigKeyD4']],
+
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, 'BigKeyD4', [], ['BigKeyD4']],
+
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, 'BigKeyD4', [], ['BigKeyD4']],
+
+			["[dungeon-D4-B2] Thieves' Town - big chest", false, 'BigKeyD4', [], ['BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", false, 'KeyD4', [], ['KeyD4']],
+
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", false, 'BigKeyD4', [], ['BigKeyD4']],
+
+			["Heart Container - Blind", false, 'BigKeyD4', [], ['BigKeyD4']],
+			["Heart Container - Blind", false, 'KeyD4', [], ['KeyD4']],
+		];
 	}
 
-	public function testTLHugeRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
+	public function accessPool() {
+		return [
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", false, []],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", false, [], ['MoonPearl']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", false, [], ['BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'TitansMitt', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'PowerGlove', 'Hammer', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-1F] Thieves' Town - Room above boss", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'KeyD4', 'BigKeyD4']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D4-B1] Thieves' Town - Top left of huge room")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", false, []],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", false, [], ['MoonPearl']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'TitansMitt']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'PowerGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-	public function testAboveBlindOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", false, []],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", false, [], ['MoonPearl']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'TitansMitt']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'PowerGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", false, []],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", false, [], ['MoonPearl']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'TitansMitt']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'PowerGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-	public function testBigChestRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - big chest")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", false, []],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", false, [], ['MoonPearl']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'TitansMitt']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'PowerGlove', 'Hammer']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
+			["[dungeon-D4-B1] Thieves' Town - Top left of huge room", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-	public function testNextToBlindOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl']);
+			["[dungeon-D4-B2] Thieves' Town - big chest", false, []],
+			["[dungeon-D4-B2] Thieves' Town - big chest", false, [], ['MoonPearl']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", false, [], ['BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", true, ['MoonPearl', 'TitansMitt', 'Hammer', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", true, ['MoonPearl', 'PowerGlove', 'Hammer', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'KeyD4', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - big chest", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hammer', 'Hookshot', 'KeyD4', 'BigKeyD4']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - next to Blind")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", false, []],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", false, [], ['MoonPearl']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", false, [], ['BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'PowerGlove', 'Hammer', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4']],
+			["[dungeon-D4-B2] Thieves' Town - next to Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4']],
 
-	public function testBlindOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'L1Sword']);
-
-		$this->assertTrue($this->world->getLocation("Heart Container - Blind")
-			->canAccess($this->collected));
-	}
-
-	// Key filling
-	public function testAboveBlindCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testAboveBlindCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-1F] Thieves' Town - Room above boss")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testNextToBlindCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - next to Blind")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBlindCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Blind")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testBlindCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Blind")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigChestCannotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - big chest")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D4-B2] Thieves' Town - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			["Heart Container - Blind", false, []],
+			["Heart Container - Blind", false, [], ['MoonPearl']],
+			["Heart Container - Blind", false, [], ['BigKeyD4']],
+			["Heart Container - Blind", true, ['MoonPearl', 'PowerGlove', 'Hammer', 'BigKeyD4']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'BigKeyD4']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer', 'BigKeyD4']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'ProgressiveSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'L1Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'MasterSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'L3Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'L4Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'CaneOfByrna']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'CaneOfSomaria']],
+			["Heart Container - Blind", true, ['MoonPearl', 'TitansMitt', 'BigKeyD4', 'Hammer']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'ProgressiveSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'L1Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'MasterSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'L3Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'L4Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'CaneOfByrna']],
+			["Heart Container - Blind", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyD4', 'CaneOfSomaria']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'ProgressiveSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'L1Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'MasterSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'L3Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'L4Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'CaneOfByrna']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'BigKeyD4', 'CaneOfSomaria']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'ProgressiveSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'L1Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'MasterSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'L3Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'L4Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'CaneOfByrna']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD4', 'CaneOfSomaria']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'ProgressiveSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'L1Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'MasterSword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'L3Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'L4Sword']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'CaneOfByrna']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'CaneOfSomaria']],
+			["Heart Container - Blind", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD4', 'Hammer']],
+		];
 	}
 }

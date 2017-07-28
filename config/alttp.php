@@ -1,7 +1,125 @@
 <?php
 
 return [
+	'easy' => [
+		'item' => [
+			'count' => [
+				'MasterSword' => 2,
+				'L3Sword' => 3,
+				'L4Sword' => 2,
+				'BlueShield' => 2,
+				'RedShield' => 2,
+				'MirrorShield' => 2,
+				'BlueMail' => 2,
+				'RedMail' => 2,
+				'ExtraBottles' => 7,
+				'TwentyRupees' => 15,
+			],
+		],
+		'variations' => [
+			'ohko' => [
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 0,
+				],
+			],
+			'timed-ohko' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 5, // 4 + 300
+						'GreenClock' => 25,
+					],
+					'value' => [
+						'GreenClock' => 300,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 10 * 60,
+				],
+			],
+			'timed-race' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneRupee' => 0, // 2 : 2
+						'FiveRupees' => 0, // 4 : 20
+						'ThreeBombs' => 0, // 10
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 6, // 4 + 600
+						'GreenClock' => 20,
+						'BlueClock' => 10,
+						'RedClock' => 10,
+					],
+					'value' => [
+						'GreenClock' => 240, // reversed for stopwatch
+						'BlueClock' => 120,
+						'RedClock' => -120,
+						'BombUpgrade5' => 2,
+						'BombUpgrade10' => 3,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'stopwatch',
+					'timerStart' => 0,
+				],
+			],
+		],
+	],
 	'normal' => [
+		'variations' => [
+			'ohko' => [
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 0,
+				],
+			],
+			'timed-ohko' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 5, // 4 + 300
+						'GreenClock' => 25,
+					],
+					'value' => [
+						'GreenClock' => 300,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 10 * 60,
+				],
+			],
+			'timed-race' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneRupee' => 0, // 2 : 2
+						'FiveRupees' => 0, // 4 : 20
+						'ThreeBombs' => 0, // 10
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 6, // 4 + 600
+						'GreenClock' => 20,
+						'BlueClock' => 10,
+						'RedClock' => 10,
+					],
+					'value' => [
+						'GreenClock' => 240, // reversed for stopwatch
+						'BlueClock' => 120,
+						'RedClock' => -120,
+						'BombUpgrade5' => 2,
+						'BombUpgrade10' => 3,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'stopwatch',
+					'timerStart' => 0,
+				],
+			],
+		],
 	],
 	'stars' => [
 		'item' => [
@@ -14,89 +132,6 @@ return [
 				'Required' => 20,
 				'Icon' => 'star',
 			],
-		],
-	],
-	'freerange' => [
-		'rom' => [
-			'mapOnPickup' => true,
-			'compassOnPickup' => true,
-		],
-		'region' => [
-			'mapsInDungeons' => false,
-			'compassesInDungeons' => false,
-		],
-	],
-	'timed' => [
-		'item' => [
-			'count' => [
-				'TwentyRupees' => 0, // 28 : 560
-				'OneRupee' => 0, // 2 : 2
-				'FiveRupees' => 0, // 4 : 20
-				'ThreeBombs' => 0, // 10
-				'OneHundredRupees' => 3, // 1 : + 200
-				'ThreeHundredRupees' => 6, // 4 + 600
-				'GreenClock' => 25,
-				'RedClock' => 15,
-			],
-			'value' => [
-				'GreenClock' => 300,
-				'RedClock' => -150,
-				'BombUpgrade5' => 2,
-				'BombUpgrade10' => 3,
-			],
-		],
-		'rom' => [
-			'timerMode' => 'countdown-stop',
-			'timerStart' => 45 * 60,
-		],
-	],
-	'ohko' => [
-		'rom' => [
-			'timerMode' => 'countdown-ohko',
-			'timerStart' => 0,
-		],
-	],
-	'timed-ohko' => [
-		'item' => [
-			'count' => [
-				'TwentyRupees' => 0, // 28 : 560
-				'OneHundredRupees' => 3, // 1 : + 200
-				'ThreeHundredRupees' => 5, // 4 + 300
-				'GreenClock' => 25,
-			],
-			'value' => [
-				'GreenClock' => 300,
-			],
-		],
-		'rom' => [
-			'timerMode' => 'countdown-ohko',
-			'timerStart' => 10 * 60,
-		],
-	],
-	'timed-race' => [
-		'item' => [
-			'count' => [
-				'TwentyRupees' => 0, // 28 : 560
-				'OneRupee' => 0, // 2 : 2
-				'FiveRupees' => 0, // 4 : 20
-				'ThreeBombs' => 0, // 10
-				'OneHundredRupees' => 3, // 1 : + 200
-				'ThreeHundredRupees' => 6, // 4 + 600
-				'GreenClock' => 20,
-				'BlueClock' => 10,
-				'RedClock' => 10,
-			],
-			'value' => [
-				'GreenClock' => 240, // reversed for stopwatch
-				'BlueClock' => 120,
-				'RedClock' => -120,
-				'BombUpgrade5' => 2,
-				'BombUpgrade10' => 3,
-			],
-		],
-		'rom' => [
-			'timerMode' => 'stopwatch',
-			'timerStart' => 0,
 		],
 	],
 	'hard' => [
@@ -134,6 +169,57 @@ return [
 		],
 		'rom' => [
 			'HardMode' => 1,
+		],
+		'variations' => [
+			'ohko' => [
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 0,
+				],
+			],
+			'timed-ohko' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 5, // 4 + 300
+						'GreenClock' => 25,
+					],
+					'value' => [
+						'GreenClock' => 300,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 10 * 60,
+				],
+			],
+			'timed-race' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneRupee' => 0, // 2 : 2
+						'FiveRupees' => 0, // 4 : 20
+						'ThreeBombs' => 0, // 10
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 6, // 4 + 600
+						'GreenClock' => 20,
+						'BlueClock' => 10,
+						'RedClock' => 10,
+					],
+					'value' => [
+						'GreenClock' => 240, // reversed for stopwatch
+						'BlueClock' => 120,
+						'RedClock' => -120,
+						'BombUpgrade5' => 2,
+						'BombUpgrade10' => 3,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'stopwatch',
+					'timerStart' => 0,
+				],
+			],
 		],
 	],
 	'expert' => [
@@ -176,6 +262,57 @@ return [
 		],
 		'rom' => [
 			'HardMode' => 2,
+		],
+		'variations' => [
+			'ohko' => [
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 0,
+				],
+			],
+			'timed-ohko' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 5, // 4 + 300
+						'GreenClock' => 25,
+					],
+					'value' => [
+						'GreenClock' => 300,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 10 * 60,
+				],
+			],
+			'timed-race' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneRupee' => 0, // 2 : 2
+						'FiveRupees' => 0, // 4 : 20
+						'ThreeBombs' => 0, // 10
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 6, // 4 + 600
+						'GreenClock' => 20,
+						'BlueClock' => 10,
+						'RedClock' => 10,
+					],
+					'value' => [
+						'GreenClock' => 240, // reversed for stopwatch
+						'BlueClock' => 120,
+						'RedClock' => -120,
+						'BombUpgrade5' => 2,
+						'BombUpgrade10' => 3,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'stopwatch',
+					'timerStart' => 0,
+				],
+			],
 		],
 	],
 	'custom' => [

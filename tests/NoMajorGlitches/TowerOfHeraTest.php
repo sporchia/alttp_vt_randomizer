@@ -23,190 +23,145 @@ class TowerOfHeraTest extends TestCase {
 		$this->assertTrue($this->world->getRegion('Tower of Hera')->canEnter($this->world->getLocations(), $this->allItems()));
 	}
 
-	public function testHookshotAndHammerOrMirrorRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Hookshot', 'Hammer', 'MagicMirror'])));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testNotOnlyMirrorRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MagicMirror'])));
-	}
+		$this->addCollected($items);
 
-	public function testNotOnlyHookshotAndHammerRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Hookshot', 'Hammer'])));
-	}
-
-	public function testHookshotRequiresHammerWithoutMirrorRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MagicMirror', 'Hammer'])));
-	}
-
-	public function testHammerRequiresHookshotWithoutMirrorRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MagicMirror', 'Hookshot'])));
-	}
-
-	public function testLiftingRocksOrFluteRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves', 'OcarinaActive', 'OcarinaInactive'])));
-	}
-
-	public function testNotOnlyLiftingRocksRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Gloves'])));
-	}
-
-	public function testNotOnlyFluteRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Tower of Hera')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['OcarinaActive', 'OcarinaInactive'])));
-	}
-
-	// Item Locations
-	public function testFreestandingKeyOnlyRequiresEntry() {
-		$this->addCollected(['PowerGlove', 'MagicMirror', 'Lamp']);
-
-		$this->assertTrue($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - freestanding key")
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testEntranceOnlyRequiresEntry() {
-		$this->addCollected(['Hookshot', 'Hammer', 'OcarinaInactive']);
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 * @param array $keys
+	 * @param string $big_key
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-		$this->assertTrue($this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")
-			->canAccess($this->collected));
-	}
+		$this->addCollected($items);
 
-	public function testFisrtFloorChestRequiresFire() {
-		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - freestanding key")->setItem(Item::get('KeyP3'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
-
-	public function testFisrtFloorChestRequiresAccessToKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->canAccess($this->allItemsExcept(['KeyP3'])));
-	}
-
-	public function testFisrtFloorChestRequiresAccessToBigKeyIfKeyIsUpstairs() {
-		$this->world->getLocation("[dungeon-L3-4F] Tower of Hera - 4F [small chest]")->setItem(Item::get('KeyP3'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->canAccess($this->allItems()));
-	}
-
-	public function testFisrtFloorChestRequiresHammerOrSwordIfMoldormHasKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKeyP3'));
-		$this->world->getLocation("Heart Container - Moldorm")->setItem(Item::get('KeyP3'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->canAccess($this->allItemsExcept(['Hammer', 'AnySword'])));
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
 
-	public function test4FRequiresFireIfFirstFloorChestHasBigKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('KeyP3'));
-		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKeyP3'));
+	public function fillPool() {
+		return [
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, 'BigKeyP3', [], ['BigKeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", false, 'KeyP3', [], ['KeyP3']],
 
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - 4F [small chest]")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, 'BigKeyP3', [], ['BigKeyP3']],
+
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, 'BigKeyP3', [], ['BigKeyP3']],
+
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", false, 'BigKeyP3', [], ['BigKeyP3']],
+
+			["[dungeon-L3-4F] Tower of Hera - big chest", false, 'BigKeyP3', [], ['BigKeyP3']],
+
+			["Heart Container - Moldorm", false, 'BigKeyP3', [], ['BigKeyP3']],
+		];
 	}
 
-	public function test4FDoesntRequireFireIfEntranceHasBigKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKeyP3'));
+	public function accessPool() {
+		return [
+			["[dungeon-L3-1F] Tower of Hera - first floor", false, []],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'Flute', 'MagicMirror', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'ProgressiveGlove', 'MagicMirror', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'PowerGlove', 'MagicMirror', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'TitansMitt', 'MagicMirror', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'Flute', 'Hookshot', 'Hammer', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'ProgressiveGlove', 'Hookshot', 'Hammer', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'PowerGlove', 'Hookshot', 'Hammer', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['Lamp', 'TitansMitt', 'Hookshot', 'Hammer', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['FireRod', 'Flute', 'MagicMirror', 'KeyP3']],
+			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['FireRod', 'Flute', 'Hookshot', 'Hammer', 'KeyP3']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - 4F [small chest]")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", false, []],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['Flute', 'MagicMirror']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['PowerGlove', 'Lamp', 'MagicMirror']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['TitansMitt', 'Lamp', 'MagicMirror']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['Flute', 'Hookshot', 'Hammer']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer']],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer']],
 
-	public function testBigChestRequiresFireIfFirstFloorChestHasBigKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('KeyP3'));
-		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKeyP3'));
+			["[dungeon-L3-2F] Tower of Hera - Entrance", false, []],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['Flute', 'MagicMirror']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['PowerGlove', 'Lamp', 'MagicMirror']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['TitansMitt', 'Lamp', 'MagicMirror']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['Flute', 'Hookshot', 'Hammer']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer']],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer']],
 
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", false, []],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['Flute', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['Flute', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - 4F [small chest]", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
 
-	public function testBigChestDoesntRequireFireIfEntranceHasBigKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKeyP3'));
+			["[dungeon-L3-4F] Tower of Hera - big chest", false, []],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['Flute', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['Flute', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["[dungeon-L3-4F] Tower of Hera - big chest", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
-
-	public function testMoldormRequiresFireIfFirstFloorChestHasBigKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('KeyP3'));
-		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKeyP3'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Moldorm")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
-
-	public function testMoldormDoesntRequireFireIfEntranceHasBigKey() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKeyP3'));
-
-		$this->assertTrue($this->world->getLocation("Heart Container - Moldorm")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
-
-	public function testMoldormRequiresHammerOrSword() {
-		$this->world->getLocation("[dungeon-L3-2F] Tower of Hera - Entrance")->setItem(Item::get('BigKeyP3'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Moldorm")
-			->canAccess($this->allItemsExcept(['Hammer', 'AnySword'])));
-	}
-
-	// Key filling
-	public function testFirstFloorChestCannotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->fill(Item::get('KeyP3'), $this->allItems()));
-	}
-
-	public function testFirstFloorChestCannotBeBigKeyIfMoldormHasKey() {
-		$this->world->getLocation("Heart Container - Moldorm")->setItem(Item::get('KeyP3'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->fill(Item::get('BigKeyP3'), $this->allItems()));
-	}
-
-	public function testFirstFloorChestCannotBeBigKeyIfBigChestHasKey() {
-		$this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")->setItem(Item::get('KeyP3'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->fill(Item::get('BigKeyP3'), $this->allItems()));
-	}
-
-	public function testFirstFloorChestCannotBeBigKeyIf4FHasKey() {
-		$this->world->getLocation("[dungeon-L3-4F] Tower of Hera - 4F [small chest]")->setItem(Item::get('KeyP3'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")
-			->fill(Item::get('BigKeyP3'), $this->allItems()));
-	}
-
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - big chest")
-			->fill(Item::get('BigKeyP3'), $this->allItems()));
-	}
-
-	public function test4FCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L3-4F] Tower of Hera - 4F [small chest]")
-			->fill(Item::get('BigKeyP3'), $this->allItems()));
-	}
-
-	public function testMoldormCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Moldorm")
-			->fill(Item::get('BigKeyP3'), $this->allItems()));
-	}
-
-	// found issues
-	public function testMoldormCantHaveFireRodIfLampUnobtainableWithoutIt() {
-		$no_lighting = $this->allItemsExcept(['Lamp', 'FireRod']);
-
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Lamp'));
-		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKeyP3'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Moldorm")->fill(Item::get('FireRod'), $no_lighting));
+			["Heart Container - Moldorm", false, []],
+			["Heart Container - Moldorm", false, [], ['AnySword', 'Hammer']],
+			["Heart Container - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Heart Container - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Heart Container - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Heart Container - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Heart Container - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Heart Container - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Heart Container - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Heart Container - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Heart Container - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Heart Container - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Heart Container - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Heart Container - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Heart Container - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Heart Container - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Heart Container - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Heart Container - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Heart Container - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Heart Container - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Heart Container - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Heart Container - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Heart Container - Moldorm", true, ['Flute', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Heart Container - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Heart Container - Moldorm", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Heart Container - Moldorm", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+		];
 	}
 }

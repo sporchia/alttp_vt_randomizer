@@ -18,6 +18,7 @@ class Randomizer {
 	protected $seed;
 	protected $world;
 	protected $rules;
+	protected $variation;
 	protected $type;
 	static protected $logic_array = [
 		0xB0, 0x47, 0x7A, 0xB6, 0xC5, 0x8E, 0x33, 0xE8,0x1F, 0xE5, 0xCE, 0x39, 0xB9, 0xBF, 0x7F, 0x2C,
@@ -43,11 +44,14 @@ class Randomizer {
 	 *
 	 * @param string $rules rules from config to apply to randomization
 	 * @param string $type Ruleset to use when deciding if Locations can be reached
+	 * @param string $goal Goal of the game
+	 * @param string $variation modifications to rules
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon') {
+	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
 		$this->rules = $rules;
+		$this->variation = $variation;
 		$this->type = $type;
 		$this->goal = $goal;
  		$this->world = new World($rules, $type, $goal);
@@ -496,7 +500,7 @@ class Randomizer {
 	 * @return mixed
 	 */
 	public function config($key, $default = null) {
-		return config("alttp.{$this->rules}.$key", $default);
+		return config("alttp.{$this->rules}.variations.{$this->variation}.$key", config("alttp.{$this->rules}.$key", $default));
 	}
 
 	/**

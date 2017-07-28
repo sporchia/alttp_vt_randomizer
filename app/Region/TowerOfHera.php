@@ -47,10 +47,10 @@ class TowerOfHera extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->setItem(Item::get('Map'));
-		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setItem(Item::get('BigKeyP3'));
+		$this->locations["[dungeon-L3-1F] Tower of Hera - freestanding key"]->setItem(Item::get('KeyP3'));
+		$this->locations["[dungeon-L3-2F] Tower of Hera - Entrance"]->setItem(Item::get('MapP3'));
+		$this->locations["[dungeon-L3-4F] Tower of Hera - 4F [small chest]"]->setItem(Item::get('CompassP3'));
 		$this->locations["[dungeon-L3-4F] Tower of Hera - big chest"]->setItem(Item::get('MoonPearl'));
 		$this->locations["Heart Container - Moldorm"]->setItem(Item::get('BossHeartContainer'));
 

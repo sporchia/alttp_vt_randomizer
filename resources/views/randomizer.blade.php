@@ -75,12 +75,10 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
+						<option value="easy">Easy</option>
 						<option value="normal">Normal</option>
 						<option value="hard">Hard</option>
 						<option value="expert">Expert</option>
-						<option value="timed-race">Timed Race</option>
-						<option value="timed-ohko">Timed OHKO</option>
-						<option value="ohko">OHKO</option>
 						<option value="custom">Custom</option>
 					</select>
 				</div>
@@ -97,6 +95,15 @@
 				</div>
 			</div>
 			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Variation</span>
+					<select id="variation" class="form-control selectpicker">
+						<option value="none">None</option>
+						<option value="timed-race">Timed Race</option>
+						<option value="timed-ohko">Timed OHKO</option>
+						<option value="ohko">OHKO</option>
+					</select>
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-info panel-collapse collapse" id="rom-settings">
@@ -209,6 +216,7 @@
 <form id="config" style="display:none">
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
+	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
@@ -931,14 +939,32 @@ $(function() {
 			if ($('.spoiler-tabed').is(':visible')) {
 				$('.spoiler-toggle').trigger('click');
 			}
+			$('#variation').val('none');
+			$('#variation').trigger('change');
+			$('#variation').prop('disabled', true);
+			$('#variation').selectpicker('refresh');
 		} else {
 			$('.custom-difficulty').hide();
+			$('#variation').prop('disabled', false);
+			$('#variation').selectpicker('refresh');
 		}
 	});
 	localforage.getItem('rom.difficulty').then(function(value) {
 		if (!value) return;
 		$('#difficulty').val(value);
 		$('#difficulty').trigger('change');
+	});
+
+	$('#variation').on('change', function() {
+		$('.info').hide();
+		$('input[name=variation]').val($(this).val());
+		localforage.setItem('rom.variation', $(this).val());
+	});
+	localforage.getItem('rom.variation').then(function(value) {
+		if (!value) return;
+		if ($('#difficulty').val() == 'custom') return;
+		$('#variation').val(value);
+		$('#variation').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {

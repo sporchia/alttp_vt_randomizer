@@ -54,14 +54,14 @@ class TurtleRock extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D7-1F] Turtle Rock - compass room"]->setItem(Item::get('Compass'));
-		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setItem(Item::get('Map'));
-		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->setItem(Item::get('KeyD7'));
+		$this->locations["[dungeon-D7-1F] Turtle Rock - compass room"]->setItem(Item::get('CompassD7'));
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setItem(Item::get('MapD7'));
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->setItem(Item::get('KeyD7'));
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big chest"]->setItem(Item::get('MirrorShield'));
-		$this->locations["[dungeon-D7-B1] Turtle Rock - big key room"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D7-B1] Turtle Rock - big key room"]->setItem(Item::get('BigKeyD7'));
+		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setItem(Item::get('KeyD7'));
+		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setItem(Item::get('KeyD7'));
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setItem(Item::get('FiveRupees'));
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setItem(Item::get('OneRupee'));
@@ -115,11 +115,15 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod');
+			return $items->has('FireRod') && $items->has('CaneOfSomaria');
 		});
 
 		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod');
+			return $items->has('FireRod') && $items->has('CaneOfSomaria');
+		});
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - compass room"]->setRequirements(function($locations, $items) {
+			return $items->has('CaneOfSomaria');
 		});
 
 		$this->locations["[dungeon-D7-B1] Turtle Rock - big chest"]->setRequirements(function($locations, $items) {

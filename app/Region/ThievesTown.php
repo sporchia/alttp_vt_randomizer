@@ -48,12 +48,12 @@ class ThievesTown extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]"]->setItem(Item::get('Map'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]"]->setItem(Item::get('BigKeyD4'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]"]->setItem(Item::get('MapD4'));
+		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room"]->setItem(Item::get('CompassD4'));
 		$this->locations["[dungeon-D4-B1] Thieves' Town - Top left of huge room"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setItem(Item::get('TitansMitt'));
-		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setItem(Item::get('KeyD4'));
 		$this->locations["Heart Container - Blind"]->setItem(Item::get('BossHeartContainer'));
 
 		$this->locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
@@ -119,6 +119,7 @@ class ThievesTown extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
+				&& $items->has('BigKeyD4')
 				&& ($items->hasSword() || $items->has('Hammer')
 				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna'));
 		};
