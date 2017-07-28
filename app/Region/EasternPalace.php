@@ -45,11 +45,11 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setItem(Item::get('CompassP1'));
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setItem(Item::get('Bow'));
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big ball room"]->setItem(Item::get('OneHundredRupees'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKeyP1'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('MapP1'));
 		$this->locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
 
 		$this->locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));

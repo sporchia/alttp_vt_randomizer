@@ -30,41 +30,41 @@ class TurtleRockTest extends TestCase {
 	// Key filling
 	public function testCanHaveBigKeyPastBigKeyDoorRollerSwitch() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 
 	public function testCanHaveBigKeyPastBigKeyDoorBridge1() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 
 	public function testCanHaveBigKeyPastBigKeyDoorBridge2() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 
 	public function testCanHaveBigKeyPastBigKeyDoorBridge3() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 
 	public function testCanHaveBigKeyPastBigKeyDoorBridge4() {
 		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 
 	public function testTrinexCantHaveKey() {
 		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->fill(Item::get('Key'), $this->allItems()));
+			->fill(Item::get('KeyD7'), $this->allItems()));
 	}
 
 	public function testTrinexCantHaveBigKey() {
 		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 
 	public function testBigChestCannotBeBigKey() {
 		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			->fill(Item::get('BigKeyD7'), $this->allItems()));
 	}
 }

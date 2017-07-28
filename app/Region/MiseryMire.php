@@ -48,12 +48,12 @@ class MiseryMire extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["[dungeon-D6-B1] Misery Mire - big chest"]->setItem(Item::get('CaneOfSomaria'));
-		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setItem(Item::get('Compass'));
-		$this->locations["[dungeon-D6-B1] Misery Mire - end of bridge"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D6-B1] Misery Mire - map room"]->setItem(Item::get('Map'));
-		$this->locations["[dungeon-D6-B1] Misery Mire - spike room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setItem(Item::get('KeyD6'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setItem(Item::get('BigKeyD6'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setItem(Item::get('CompassD6'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - end of bridge"]->setItem(Item::get('KeyD6'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - map room"]->setItem(Item::get('MapD6'));
+		$this->locations["[dungeon-D6-B1] Misery Mire - spike room"]->setItem(Item::get('KeyD6'));
 		$this->locations["Heart Container - Vitreous"]->setItem(Item::get('BossHeartContainer'));
 
 		$this->locations["Misery Mire Crystal"]->setItem(Item::get('Crystal6'));
@@ -103,6 +103,10 @@ class MiseryMire extends Region {
 			return $items->has('BigKeyD6');
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD6');
+		});
+
+		$this->locations["[dungeon-D6-B1] Misery Mire - spike room"]->setRequirements(function($locations, $items) {
+			return $items->has('Cape') || $items->has('CaneOfByrna');
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setRequirements(function($locations, $items) {

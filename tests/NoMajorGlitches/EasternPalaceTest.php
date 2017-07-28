@@ -49,8 +49,6 @@ class EasternPalaceTest extends TestCase {
 	 * @param string $item
 	 * @param array $items
 	 * @param array $except
-	 * @param array $keys
-	 * @param string $big_key
 	 *
 	 * @dataProvider fillPool
 	 */

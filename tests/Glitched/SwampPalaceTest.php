@@ -176,11 +176,6 @@ class SwampPalaceTest extends TestCase {
 			->fill(Item::get('Arrow'), $this->allItems()));
 	}
 
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D2-B1] Swamp Palace - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
 	// found issues
 	public function testHookshotCantBeInBigChestWithBigKeyInLateDungeonIfMireInaccessible() {
 		$this->world->getLocation("[dungeon-D2-1F] Swamp Palace - first room")->setItem(Item::get('Key'));

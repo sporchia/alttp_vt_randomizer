@@ -47,12 +47,12 @@ class IcePalace extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-D5-B1] Ice Palace - compass room"]->setItem(Item::get('Compass'));
-		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setItem(Item::get('Map'));
-		$this->locations["[dungeon-D5-B3] Ice Palace - spike room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setItem(Item::get('BigKeyD5'));
+		$this->locations["[dungeon-D5-B1] Ice Palace - compass room"]->setItem(Item::get('CompassD5'));
+		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setItem(Item::get('MapD5'));
+		$this->locations["[dungeon-D5-B3] Ice Palace - spike room"]->setItem(Item::get('KeyD5'));
 		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-D5-B5] Ice Palace - b5 up staircase"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D5-B5] Ice Palace - b5 up staircase"]->setItem(Item::get('KeyD5'));
 		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setItem(Item::get('BlueMail'));
 		$this->locations["Heart Container - Kholdstare"]->setItem(Item::get('BossHeartContainer'));
 
@@ -181,12 +181,7 @@ class IcePalace extends Region {
 		});
 
 		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setRequirements(function($locations, $items) {
-			return ($items->has('Hammer') && $items->canLiftRocks())
-				|| !$locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-D5-B1] Ice Palace - Big Key room",
-						"[dungeon-D5-B2] Ice Palace - map room",
-						"Heart Container - Kholdstare",
-				]);
+			return $items->has('BigKeyD5');
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD5');
 		});
@@ -200,7 +195,7 @@ class IcePalace extends Region {
 				return false;
 			}
 
-			return true;
+			return $item != Item::get('BigKeyD5');
 		});
 
 		$this->can_complete = function($locations, $items) {

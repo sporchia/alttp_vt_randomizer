@@ -53,19 +53,19 @@ class PalaceOfDarkness extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [left chest]"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setItem(Item::get('BigKeyD1'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [right chest]"]->setItem(Item::get('KeyD1'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [left chest]"]->setItem(Item::get('KeyD1'));
 		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setItem(Item::get('Hammer'));
-		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setItem(Item::get('CompassD1'));
 		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setItem(Item::get('FiveRupees'));
-		$this->locations["[dungeon-D1-B1] Dark Palace - turtle stalfos room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - turtle stalfos room"]->setItem(Item::get('KeyD1'));
 		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]"]->setItem(Item::get('Arrow'));
-		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setItem(Item::get('KeyD1'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setItem(Item::get('MapD1'));
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-D1-B1] Dark Palace - shooter room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setItem(Item::get('KeyD1'));
+		$this->locations["[dungeon-D1-B1] Dark Palace - shooter room"]->setItem(Item::get('KeyD1'));
 		$this->locations["Heart Container - Helmasaur King"]->setItem(Item::get('BossHeartContainer'));
 
 		$this->locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
@@ -125,7 +125,7 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('BigKeyD1') && $items->has('KeyD1', 6);
+			return $items->has('Lamp') && $items->has('BigKeyD1') && $items->has('KeyD1', 5);
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
 		});
@@ -156,13 +156,13 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyD1', 6);
+			return $items->has('Lamp') && $items->has('KeyD1', 5);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyD1', 6);
+			return $items->has('Lamp') && $items->has('KeyD1', 5);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});

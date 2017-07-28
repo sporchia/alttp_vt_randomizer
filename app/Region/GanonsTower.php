@@ -66,7 +66,7 @@ class GanonsTower extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setItem(Item::get('KeyA2'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]"]->setItem(Item::get('TenArrows'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
@@ -75,23 +75,23 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]"]->setItem(Item::get('TenArrows'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of teleport room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of teleport room"]->setItem(Item::get('KeyA2'));
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - map room"]->setItem(Item::get('MapA2'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - big chest"]->setItem(Item::get('RedMail'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]"]->setItem(Item::get('TenArrows'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - above Armos"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance"]->setItem(Item::get('KeyA2'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]"]->setItem(Item::get('Compass'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]"]->setItem(Item::get('OneRupee'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]"]->setItem(Item::get('BigKey'));
+		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]"]->setItem(Item::get('BigKeyA2'));
 		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]"]->setItem(Item::get('TenArrows'));
 		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setItem(Item::get('KeyA2'));
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setItem(Item::get('TwentyRupees'));
 
 		return $this;
@@ -186,7 +186,7 @@ class GanonsTower extends Region {
 		});
 
 		$this->locations["[dungeon-A2-1F] Ganon's Tower - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('BigKeyA2')
+			return $items->has('BigKeyA2') && $items->has('KeyA2', 3)
 				&& (($items->has('Hammer') && $items->has('Hookshot')) || ($items->has('FireRod') && $items->has('CaneOfSomaria')));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');

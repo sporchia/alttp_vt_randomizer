@@ -143,28 +143,28 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
 				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
 				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
 				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
+			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
 				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD7');
@@ -280,7 +280,7 @@ class TurtleRock extends Region {
 				&& ($items->hasUpgradedSword() || $items->has('Hammer'))
 				&& $items->has('CaneOfSomaria') && $items->has('FireRod') && $items->has('IceRod');
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('Key'), Item::get('BigKey')]);
+			return !in_array($item, [Item::get('KeyD7'), Item::get('BigKeyD7')]);
 		});
 
 		$this->can_complete = function($locations, $items) {

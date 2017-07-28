@@ -18,35 +18,6 @@ class DesertPalaceTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Key filling
-	public function testBigKeyCantBeRightSideTopIfTorchHasKeyAndNoBoots() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->fill(Item::get('BigKey'), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyCantBeRightSideTopIfKeyInBigChest() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeRightSideBottomIfTorchHasKeyAndNoBoots() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->fill(Item::get('BigKey'), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyCantBeRightSideBottomIfKeyInBigChest() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
 	/**
 	 * @param bool $access
 	 * @param array $items
@@ -68,51 +39,9 @@ class DesertPalaceTest extends TestCase {
 	public function entryPool() {
 		return [
 			[false, []],
-			[true, ['PegasusBoots']],
 			[true, ['BookOfMudora']],
 			[true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			[true, ['Flute', 'MagicMirror', 'TitansMitt']],
-		];
-	}
-
-	/**
-	 * @param bool $access
-	 * @param array $items
-	 * @param array $except
-	 * @param array $keys
-	 * @param string $big_key
-	 *
-	 * @dataProvider completionPool
-	 */
-	public function testCompletion(bool $access, array $items = [], array $except = [], array $keys = [], string $big_key = "[dungeon-L2-B1] Desert Palace - Big key room") {
-		if (count($except)) {
-			$this->collected = $this->allItemsExcept($except);
-		}
-
-		foreach ($keys as $key_location) {
-			$this->world->getLocation($key_location)->setItem(Item::get('Key'));
-		}
-
-		$this->world->getLocation($big_key)->setItem(Item::get('BigKey'));
-
-		$this->addCollected($items);
-
-		$this->assertEquals($access, $this->world->getRegion('Desert Palace')
-			->canComplete($this->world->getLocations(), $this->collected));
-	}
-
-	public function completionPool() {
-		return [
-			// Test Boots requirements based on key placement
-			[false, [], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			[true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			[false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			[true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - compass room"],
-			[false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			[false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - Map room"],
-			[false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - compass room"],
-			[true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Map room"],
-			[false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Small key room"],
 		];
 	}
 
@@ -122,21 +51,13 @@ class DesertPalaceTest extends TestCase {
 	 * @param string $item
 	 * @param array $items
 	 * @param array $except
-	 * @param array $keys
-	 * @param string $big_key
 	 *
 	 * @dataProvider fillPool
 	 */
-	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = [], array $keys = [], string $big_key = "[dungeon-L2-B1] Desert Palace - Big key room") {
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
-		foreach ($keys as $key_location) {
-			$this->world->getLocation($key_location)->setItem(Item::get('Key'));
-		}
-
-		$this->world->getLocation($big_key)->setItem(Item::get('BigKey'));
 
 		$this->addCollected($items);
 
@@ -146,13 +67,13 @@ class DesertPalaceTest extends TestCase {
 
 	public function fillPool() {
 		return [
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, 'Key', [], ['Key'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, 'Key', [], ['Key'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
+			["[dungeon-L2-B1] Desert Palace - Big key room", false, 'KeyP2', [], ['KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", false, 'KeyP2', [], ['KeyP2']],
 
-			["[dungeon-L2-B1] Desert Palace - big chest", false, 'BigKey', [], ['BigKey'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
+			["[dungeon-L2-B1] Desert Palace - big chest", false, 'BigKeyP2', [], ['BigKeyP2']],
 
-			["Heart Container - Lanmolas", false, 'BigKey', [], ['BigKey'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", false, 'Key', [], ['Key'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
+			["Heart Container - Lanmolas", false, 'BigKeyP2', [], ['BigKeyP2']],
+			["Heart Container - Lanmolas", false, 'KeyP2', [], ['KeyP2']],
 		];
 	}
 
@@ -161,21 +82,13 @@ class DesertPalaceTest extends TestCase {
 	 * @param bool $access
 	 * @param array $items
 	 * @param array $except
-	 * @param array $keys
-	 * @param string $big_key
 	 *
 	 * @dataProvider accessPool
 	 */
-	public function testLocation(string $location, bool $access, array $items, array $except = [], array $keys = [], string $big_key = "[dungeon-L2-B1] Desert Palace - Big key room") {
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
-		foreach ($keys as $key_location) {
-			$this->world->getLocation($key_location)->setItem(Item::get('Key'));
-		}
-
-		$this->world->getLocation($big_key)->setItem(Item::get('BigKey'));
 
 		$this->addCollected($items);
 
@@ -185,70 +98,48 @@ class DesertPalaceTest extends TestCase {
 
 	public function accessPool() {
 		return [
-			["[dungeon-L2-B1] Desert Palace - Map room", false, [], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - Map room", true, ['BookOfMudora'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'TitansMitt'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
+			["[dungeon-L2-B1] Desert Palace - Map room", false, []],
+			["[dungeon-L2-B1] Desert Palace - Map room", true, ['BookOfMudora']],
+			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
-			["[dungeon-L2-B1] Desert Palace - big chest", false, [], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - big chest", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - big chest", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['BookOfMudora'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['BookOfMudora', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'TitansMitt'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
+			["[dungeon-L2-B1] Desert Palace - big chest", false, []],
+			["[dungeon-L2-B1] Desert Palace - big chest", true, ['BookOfMudora', 'BigKeyP2']],
+			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'BigKeyP2']],
 
-			["[dungeon-L2-B1] Desert Palace - Small key room", false, [], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - Small key room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['BookOfMudora', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
+			["[dungeon-L2-B1] Desert Palace - Small key room", false, []],
+			["[dungeon-L2-B1] Desert Palace - Small key room", false, [], ['PegasusBoots']],
+			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['BookOfMudora', 'PegasusBoots']],
+			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots']],
+			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'PegasusBoots']],
 
-			["[dungeon-L2-B1] Desert Palace - compass room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - compass room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - Map room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - compass room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Map room"],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Small key room"],
+			["[dungeon-L2-B1] Desert Palace - compass room", false, []],
+			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", true, ['BookOfMudora', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
 
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Map room"], "[dungeon-L2-B1] Desert Palace - compass room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - Big key room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - Map room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"], "[dungeon-L2-B1] Desert Palace - compass room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Map room"],
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Small key room"],
+			["[dungeon-L2-B1] Desert Palace - Big key room", false, []],
+			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['BookOfMudora', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
 
-			["Heart Container - Lanmolas", false, [], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", false, [], ['Gloves'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", false, [], ['Lamp', 'FireRod'], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", false, [], ['PegasusBoots'], ["[dungeon-L2-B1] Desert Palace - big chest"], "[dungeon-L2-B1] Desert Palace - Small key room"],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'ProgressiveGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'PowerGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'TitansMitt'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'ProgressiveGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'PowerGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'TitansMitt'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'ProgressiveGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'PowerGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'TitansMitt', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'ProgressiveGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'PowerGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'TitansMitt', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'TitansMitt'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'TitansMitt'], [], ["[dungeon-L2-B1] Desert Palace - Map room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'PegasusBoots'], [], ["[dungeon-L2-B1] Desert Palace - Small key room"]],
+			["Heart Container - Lanmolas", false, []],
+			["Heart Container - Lanmolas", false, [], ['BigKeyP2']],
+			["Heart Container - Lanmolas", false, [], ['Gloves']],
+			["Heart Container - Lanmolas", false, [], ['Lamp', 'FireRod']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
 		];
 	}
 }

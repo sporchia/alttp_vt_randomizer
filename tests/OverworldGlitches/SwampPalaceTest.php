@@ -1,16 +1,16 @@
-<?php namespace NoMajorGlitches;
+<?php namespace OverworldGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group NMG
+ * @group OverworldGlitches
  */
 class SwampPalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = new World('test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {

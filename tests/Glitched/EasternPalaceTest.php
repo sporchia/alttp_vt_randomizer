@@ -24,40 +24,83 @@ class EasternPalaceTest extends TestCase {
 			->canEnter($this->world->getLocations(), $this->collected));
 	}
 
-	// Item locations
-	public function testCompassRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - compass room")
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testBigBallRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - big ball room")
-			->canAccess($this->collected));
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
-	public function testBigChestRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - big chest")
-			->canAccess($this->collected));
+	public function fillPool() {
+		return [
+			["[dungeon-L1-1F] Eastern Palace - compass room", true, 'BigKeyP1', [], ['BigKeyP1']],
+
+			["[dungeon-L1-1F] Eastern Palace - big ball room", true, 'BigKeyP1', [], ['BigKeyP1']],
+
+			["[dungeon-L1-1F] Eastern Palace - big chest", false, 'BigKeyP1', [], ['BigKeyP1']],
+
+			["[dungeon-L1-1F] Eastern Palace - map room", true, 'BigKeyP1', [], ['BigKeyP1']],
+
+			["[dungeon-L1-1F] Eastern Palace - Big key", true, 'BigKeyP1', [], ['BigKeyP1']],
+
+			["Heart Container - Armos Knights", false, 'BigKeyP1', [], ['BigKeyP1']],
+		];
 	}
 
-	public function testMapRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - map room")
-			->canAccess($this->collected));
-	}
+	public function accessPool() {
+		return [
+			["[dungeon-L1-1F] Eastern Palace - compass room", true, []],
 
-	public function testArmosRequiresBow() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Armos Knights")
-			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
-	}
+			["[dungeon-L1-1F] Eastern Palace - big ball room", true, []],
 
-	// Key filling
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L1-1F] Eastern Palace - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
+			["[dungeon-L1-1F] Eastern Palace - big chest", false, []],
+			["[dungeon-L1-1F] Eastern Palace - big chest", false, [], ['BigKeyP1']],
+			["[dungeon-L1-1F] Eastern Palace - big chest", true, ['BigKeyP1']],
 
-	public function testArmosCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Armos Knights")
-			->fill(Item::get('BigKey'), $this->allItems()));
+			["[dungeon-L1-1F] Eastern Palace - map room", true, []],
+
+			["[dungeon-L1-1F] Eastern Palace - Big key", false, []],
+			["[dungeon-L1-1F] Eastern Palace - Big key", false, [], ['Lamp']],
+			["[dungeon-L1-1F] Eastern Palace - Big key", true, ['Lamp']],
+
+
+			["Heart Container - Armos Knights", false, []],
+			["Heart Container - Armos Knights", false, [], ['Lamp']],
+			["Heart Container - Armos Knights", false, [], ['AnyBow']],
+			["Heart Container - Armos Knights", false, [], ['BigKeyP1']],
+			["Heart Container - Armos Knights", true, ['Lamp', 'Bow', 'BigKeyP1']],
+		];
 	}
 }

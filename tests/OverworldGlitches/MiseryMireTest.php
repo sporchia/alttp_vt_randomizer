@@ -20,209 +20,208 @@ class MiseryMireTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItems()));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testEtherRequiredIfEtherIsEntryMedallion() {
-		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Ether'));
+		$this->addCollected($items);
 
-		$this->assertFalse($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Ether'])));
-	}
-
-	public function testBombosRequiredIfBombosIsEntryMedallion() {
-		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Bombos'));
-
-		$this->assertFalse($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Bombos'])));
-	}
-
-	public function testQuakeRequiredIfQuakeIsEntryMedallion() {
-		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
-
-		$this->assertFalse($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Quake'])));
-	}
-
-	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testBootsOrHookshotRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots', 'Hookshot'])));
-	}
-
-	public function testNotOnlyBootsRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNotOnlyHookshotRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Misery Mire')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Hookshot'])));
-	}
-
-	// Item Locations
-	public function testBigChestRequiresFireIfBigKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testBigChestRequiresFireIfBigKeyInCompassRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testBigChestDoesNotRequireFireIfBigKeyInBigHubRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - map room")->setItem(Item::get('Key'));
-
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testBigHubRoomOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testEndOfBridgeOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")
-			->canAccess($this->collected));
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
-	public function testMapRoomOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
+	public function fillPool() {
+		return [
+			["[dungeon-D6-B1] Misery Mire - big chest", false, 'BigKeyD6', [], ['BigKeyD6']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - map room")
-			->canAccess($this->collected));
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, 'BigKeyD6', [], ['BigKeyD6']],
+
+			["[dungeon-D6-B1] Misery Mire - big key", true, 'BigKeyD6', [], ['BigKeyD6']],
+
+			["[dungeon-D6-B1] Misery Mire - compass", true, 'BigKeyD6', [], ['BigKeyD6']],
+
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, 'BigKeyD6', [], ['BigKeyD6']],
+
+			["[dungeon-D6-B1] Misery Mire - map room", true, 'BigKeyD6', [], ['BigKeyD6']],
+
+			["[dungeon-D6-B1] Misery Mire - spike room", true, 'BigKeyD6', [], ['BigKeyD6']],
+
+			["Heart Container - Vitreous", false, 'BigKeyD6', [], ['BigKeyD6']],
+		];
 	}
 
-	public function testSpikeRoomOnlyRequiresEntry() {
-		$this->addCollected(['Ether', 'OcarinaInactive', 'TitansMitt', 'Hookshot', 'MoonPearl', 'L1Sword']);
+	public function accessPool() {
+		return [
+			["[dungeon-D6-B1] Misery Mire - big chest", false, []],
+			["[dungeon-D6-B1] Misery Mire - big chest", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - big chest", false, [], ['BigKeyD6']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big chest", true, ['BigKeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D6-B1] Misery Mire - big hub room", false, []],
+			["[dungeon-D6-B1] Misery Mire - big hub room", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big hub room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-	public function testBigKeyRoomRequiresFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
+			["[dungeon-D6-B1] Misery Mire - big key", false, []],
+			["[dungeon-D6-B1] Misery Mire - big key", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - big key", false, [], ['FireRod', 'Lamp']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - big key", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-	public function testCompassRoomRequiresFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
+			["[dungeon-D6-B1] Misery Mire - compass", false, []],
+			["[dungeon-D6-B1] Misery Mire - compass", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - compass", false, [], ['FireRod', 'Lamp']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'Lamp', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - compass", true, ['KeyD6', 'KeyD6', 'FireRod', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-	public function testVitreousCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Vitreous")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
+			["[dungeon-D6-B1] Misery Mire - end of bridge", false, []],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - end of bridge", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-	public function testVitreousRequiresLamp() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
+			["[dungeon-D6-B1] Misery Mire - map room", false, []],
+			["[dungeon-D6-B1] Misery Mire - map room", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["[dungeon-D6-B1] Misery Mire - map room", true, ['KeyD6', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-		$this->assertFalse($this->world->getLocation("Heart Container - Vitreous")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
+			["[dungeon-D6-B1] Misery Mire - spike room", false, []],
+			["[dungeon-D6-B1] Misery Mire - spike room", false, [], ['MoonPearl']],
+			["[dungeon-D6-B1] Misery Mire - spike room", false, [], ['Cape', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot', 'CaneOfByrna']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots', 'Cape']],
+			["[dungeon-D6-B1] Misery Mire - spike room", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot', 'Cape']],
 
-	public function testVitreousRequiresCane() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
+			["Heart Container - Vitreous", false, []],
+			["Heart Container - Vitreous", false, [], ['MoonPearl']],
+			["Heart Container - Vitreous", false, [], ['Lamp']],
+			["Heart Container - Vitreous", false, [], ['CaneOfSomaria']],
+			["Heart Container - Vitreous", false, [], ['BigKeyD6']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'Hookshot']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'PegasusBoots']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'MasterSword', 'Hookshot']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'PegasusBoots']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L3Sword', 'Hookshot']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'PegasusBoots']],
+			["Heart Container - Vitreous", true, ['KeyD6', 'KeyD6', 'BigKeyD6', 'Lamp', 'CaneOfSomaria', 'MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L4Sword', 'Hookshot']],
 
-		$this->assertFalse($this->world->getLocation("Heart Container - Vitreous")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	// Key filling
-	public function testBigKeyCantBeInCompassRoomIfKeyInBigChestAndKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeInBigKeyRoomIfKeyInBigChestAndKeyInCompassRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testKeyCantBeInBigChestIfBigKeyInCompassRoomAndKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testItemCanBeInBigChestIfBigKeyInCompassRoomAndKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Arrow'), $this->allItems()));
-	}
-
-	public function testKeyCantBeInBigChestIfKeyInCompassRoomAndBigKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testItemCanBeInBigChestIfKeyInCompassRoomAndBigKeyInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - spike room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")->fill(Item::get('Arrow'), $this->allItems()));
-	}
-
-	public function testBigKeyCanBeInCompassRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigKeyCanBeInBigKeyRoom() {
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - big hub room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D6-B1] Misery Mire - end of bridge")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big key")->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	// Soft Locks
-	public function testCompassRoomCantHaveLampIfFirerodUnobtainableWithoutIt() {
-		$no_lighting = $this->allItemsExcept(['Lamp', 'FireRod']);
-
-		$this->world->getLocation("Heart Container - Moldorm")->setItem(Item::get('FireRod'));
-		$this->world->getLocation("[dungeon-L3-1F] Tower of Hera - first floor")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D6-B1] Misery Mire - compass")->fill(Item::get('Lamp'), $no_lighting));
+		];
 	}
 }

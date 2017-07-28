@@ -18,599 +18,395 @@ class GanonsTowerTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->allItems()));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testCanEnterWithNothing() {
-		$this->assertTrue($this->world->getRegion('Ganons Tower')->canEnter($this->world->getLocations(), $this->collected));
-	}
+		$this->addCollected($items);
 
-	// Left side
-	public function testDownLeftStaircaseRequiresBoots() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNorthOfGapRoomChestTLRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfGapRoomChestTRRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfGapRoomChestBLRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfGapRoomChestBRRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfTeleportRoomRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - north of teleport room")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testWestOfTeleportRoomChestTLRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testWestOfTeleportRoomChestTRRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testWestOfTeleportRoomChestBLRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testWestOfTeleportRoomChestBRRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	// Right side
-	public function testRightStaircaseRoomChestLRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testRightStaircaseRoomChestRRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]")
-			->canAccess($this->collected));
-	}
-
-	public function testFlyingTilesRoomRequiresCane() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testCompassRoomChestTLRequiresFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testCompassRoomChestTLRequiresCane() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testCompassRoomChestTRRequiresFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testCompassRoomChestTRRequiresCane() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testCompassRoomChestBLRequiresFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testCompassRoomChestBLRequiresCane() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testCompassRoomChestBRRequiresFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testCompassRoomChestBRRequiresCane() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	// Convergence
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigChestRequiresHammerOrCaneAndFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['Hammer', 'CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testBigChestAccessableWithoutCaneAndFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testBigChestDoesntRequiresOnlyHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testBigChestDoesntRequiresOnlyCane() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testBigChestDoesntRequiresOnlyFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testBigChestRequiresCaneIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testBigChestRequiresFireIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - big chest")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp', 'Hammer'])));
-	}
-
-	public function testAboveArmosRequiresHammerOrCaneAndFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['Hammer', 'CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testAboveArmosAccessableWithoutCaneAndFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testAboveArmosDoesntRequiresOnlyHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testAboveArmosDoesntRequiresOnlyCane() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testAboveArmosDoesntRequiresOnlyFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testAboveArmosRequiresCaneIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testAboveArmosRequiresFireIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp', 'Hammer'])));
-	}
-
-	public function testNorthOfArmosChestBRequiresHammerOrCaneAndFireRod() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['Hammer', 'CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestBAccessableWithoutCaneAndFireRod() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod'])));
-	}
-
-	public function testNorthOfArmosChestBDoesntRequiresOnlyHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfArmosChestBDoesntRequiresOnlyCane() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testNorthOfArmosChestBDoesntRequiresOnlyFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestBRequiresCaneIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testNorthOfArmosChestBRequiresFireIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp', 'Hammer'])));
-	}
-
-	public function testNorthOfArmosChestLRequiresHammerOrCaneAndFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['Hammer', 'CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestLAccessableWithoutCaneAndFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestLDoesntRequiresOnlyHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfArmosChestLDoesntRequiresOnlyCane() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testNorthOfArmosChestLDoesntRequiresOnlyFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestLRequiresCaneIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testNorthOfArmosChestLRequiresFireIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp', 'Hammer'])));
-	}
-
-	public function testNorthOfArmosChestRRequiresHammerOrCaneAndFire() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['Hammer', 'CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestRAccessableWithoutCaneAndFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestRDoesntRequiresOnlyHammer() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testNorthOfArmosChestRDoesntRequiresOnlyCane() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testNorthOfArmosChestRDoesntRequiresOnlyFire() {
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testNorthOfArmosChestRRequiresCaneIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testNorthOfArmosChestRRequiresFireIfNoHammer() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp', 'Hammer'])));
-	}
-
-	// Climb
-	public function testNothOfFallingFloorRoomChestLCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testNothOfFallingFloorRoomChestLDoesNotRequireCaneOrHammerIfBigKeyIsFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")->setItem(Item::get('BigKey'));
+		$this->addCollected($items);
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
-	public function testNothOfFallingFloorRoomChestLRequiresCaneOrHammerIfBigKeyIsNotFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
 
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestLDoesNotRequireOnlyFireRod() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestLDoesNotRequireOnlyLamp() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestLRequiresFire() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestLRequiresBow() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestLRequiresBootsIfBigKeyOnTorch() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testNothOfFallingFloorRoomChestRDoesNotRequireCaneOrHammerIfBigKeyIsFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRRequiresCaneOrHammerIfBigKeyIsNotFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRDoesNotRequireOnlyFireRod() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRDoesNotRequireOnlyLamp() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRRequiresFire() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRRequiresBow() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
-	}
-
-	public function testNothOfFallingFloorRoomChestRRequiresBootsIfBigKeyOnTorch() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBeforeMoldormCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBeforeMoldormDoesNotRequireCaneOrHammerIfBigKeyIsFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testBeforeMoldormRequiresCaneOrHammerIfBigKeyIsNotFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testBeforeMoldormDoesNotRequireOnlyFireRod() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+	public function fillPool() {
+		return [
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBeforeMoldormDoesNotRequireOnlyLamp() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testBeforeMoldormRequiresFire() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testBeforeMoldormRequiresBow() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
-	}
-
-	public function testBeforeMoldormRoomRequiresBootsIfBigKeyOnTorch() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - before Moldorm")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testMoldormRoomCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testMoldormRoomDoesNotRequireCaneOrHammerIfBigKeyIsFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testMoldormRoomRequiresCaneOrHammerIfBigKeyIsNotFree() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['CaneOfSomaria', 'Hammer'])));
-	}
-
-	public function testMoldormRoomDoesNotRequireOnlyFireRod() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testMoldormRoomDoesNotRequireOnlyLamp() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testMoldormRoomRequiresFire() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - above Armos")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['FireRod', 'Lamp'])));
-	}
-
-	public function testMoldormRoomRequiresBow() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['Bow', 'BowAndArrows', 'BowAndSilverArrows'])));
-	}
-
-	public function testMoldormRoomRequiresHookshot() {
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['Hookshot'])));
-	}
-
-	public function testMoldormRoomRequiresBootsIfBigKeyOnTorch() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	// Key fill
-	public function testCompassRoomChestBRCanBeKeyIfChestTRHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestBRCanBeKeyIfChestTLHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestBRCanBeKeyIfChestBLHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestTRCanBeKeyIfChestBRHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestTRCanBeKeyIfChestTLHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - big chest", false, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestTRCanBeKeyIfChestBLHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestBLCanBeKeyIfChestTRHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestBLCanBeKeyIfChestTLHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestBLCanBeKeyIfChestBRHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestTLCanBeKeyIfChestBRHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestTLCanBeKeyIfChestBLHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", false, 'BigKeyA2', [], ['BigKeyA2']],
 
-	public function testCompassRoomChestTLCanBeKeyIfChestTRHasKey() {
-		$this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]")->setItem(Item::get('Key'));
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", false, 'BigKeyA2', [], ['BigKeyA2']],
 
-		$this->assertTrue($this->world->getLocation("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", false, 'BigKeyA2', [], ['BigKeyA2']],
+
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", false, 'BigKeyA2', [], ['BigKeyA2']],
+		];
+	}
+
+	public function accessPool() {
+		return [
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", false, [], ['PegasusBoots']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", false, [], ['Hookshot']],
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", true, ['KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", true, ['KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", true, ['KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - north of teleport room", true, ['KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - map room", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - map room", false, [], ['Hammer']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", false, [], ['Hookshot', 'PegasusBoots']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - map room", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'PegasusBoots', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - big chest", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", false, [], ['BigKeyA2']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, []],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, []],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - above Armos", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", false, [], ['CaneOfSomaria']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", false, [], ['FireRod']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", false, [], ['FireRod']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", false, [], ['FireRod']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", false, []],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", false, [], ['FireRod']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'FireRod', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", false, []],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", false, []],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", false, []],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", true, ['KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", false, []],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", false, [], ['AnyBow']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", false, [], ['BigKeyA2']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", false, []],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", false, [], ['AnyBow']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", false, [], ['BigKeyA2']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", false, []],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", false, [], ['AnyBow']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", false, [], ['BigKeyA2']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'MagicMirror', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - before Moldorm", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", false, []],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", false, [], ['Hookshot']],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", false, [], ['AnyBow']],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", false, [], ['BigKeyA2']],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+			["[dungeon-A2-6F] Ganon's Tower - Moldorm room", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
+		];
 	}
 }

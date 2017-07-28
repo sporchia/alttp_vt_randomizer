@@ -44,9 +44,9 @@ class HyruleCastleEscape extends Region {
 		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setItem(Item::get('ThreeHundredRupees'));
 		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setItem(Item::get('KeyH1'));
 		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setItem(Item::get('Boomerang'));
-		$this->locations["[dungeon-C-B1] Hyrule Castle - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-C-B1] Hyrule Castle - map room"]->setItem(Item::get('MapH1'));
 		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setItem(Item::get('Lamp'));
 
 		return $this;

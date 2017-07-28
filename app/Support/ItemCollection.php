@@ -213,10 +213,19 @@ class ItemCollection extends Collection {
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
 	}
 
-	public function cantHave($key, LocationCollection $locations, $at_least = 0) {
-		if ($this->offsetExists($key)) {
-			return false;
+	/**
+	 * For testing, we up the key count to 10 for every dungeon.
+	 *
+	 * @return $this
+	 */
+	public function manyKeys() : self {
+		foreach ($this->item_counts as $key => $count) {
+			if (strpos($key, 'Key') === 0) {
+				$this->item_counts[$key] = 10;
+			}
 		}
+
+		return $this;
 	}
 
 	/**

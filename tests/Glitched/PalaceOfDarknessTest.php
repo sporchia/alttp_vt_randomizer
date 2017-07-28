@@ -18,120 +18,233 @@ class PalaceOfDarknessTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Palace of Darkness')
-			->canEnter($this->world->getLocations(), $this->allItems()));
-	}
+	/**
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider entryPool
+	 */
+	public function testEntry(bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testCanEnterWithNothing() {
-		$this->assertTrue($this->world->getRegion('Palace of Darkness')
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getRegion('Palace of Darkness')
 			->canEnter($this->world->getLocations(), $this->collected));
 	}
 
-	// Item Locations
-	public function testShooterRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")
+	public function entryPool() {
+		return [
+			[true, []],
+		];
+	}
+
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
+	}
+
+	public function fillPool() {
+		return [
+			["[dungeon-D1-1F] Dark Palace - big key room", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - big chest", false, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - compass room", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, 'BigKeyD1', [], ['BigKeyD1']],
+
+			["Heart Container - Helmasaur King", false, 'BigKeyD1', [], ['BigKeyD1']],
+		];
+	}
+
+
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testStatuePushRoomRequiresBow() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")
-			->canAccess($this->allItemsExcept(['AnyBow'])));
-	}
+	public function accessPool() {
+		return [
+			["[dungeon-D1-1F] Dark Palace - big key room", false, []],
+			["[dungeon-D1-1F] Dark Palace - big key room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - big key room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - big key room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - big key room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - big key room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - big key room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testJumpRoomChestRRequiresBow() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")
-			->canAccess($this->allItemsExcept(['AnyBow'])));
-	}
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", false, []],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", false, [], ['AnyBow']],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, ['Bow', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, ['Bow', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, ['Bow', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, ['Bow', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, ['Bow', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - jump room [right chest]", true, ['Bow', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testJumpRoomChestLRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", false, []],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['KeyD1', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['KeyD1', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['KeyD1', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['KeyD1', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['KeyD1', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['KeyD1', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['Bow', 'Hammer', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['Bow', 'Hammer', 'MoonPearl', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['Bow', 'Hammer', 'MoonPearl', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - jump room [left chest]", true, ['Bow', 'Hammer', 'MoonPearl', 'ProgressiveGlove']],
 
-	public function testRoomLeadingToHelmasaurChestLRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-1F] Dark Palace - big chest", false, []],
+			["[dungeon-D1-1F] Dark Palace - big chest", false, [], ['Lamp']],
+			["[dungeon-D1-1F] Dark Palace - big chest", false, [], ['BigKeyD1']],
+			["[dungeon-D1-1F] Dark Palace - big chest", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - big chest", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - big chest", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - big chest", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - big chest", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - big chest", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testRoomLeadingToHelmasaurChestRRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-1F] Dark Palace - compass room", false, []],
+			["[dungeon-D1-1F] Dark Palace - compass room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - compass room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - compass room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - compass room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - compass room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - compass room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testDarkMazeChestTRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - maze room [top chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-1F] Dark Palace - spike statue room", false, []],
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - spike statue room", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testDarkMazeChestBRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - maze room [bottom chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", false, []],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['KeyD1', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['KeyD1', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['KeyD1', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['KeyD1', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['KeyD1', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['KeyD1', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['Bow', 'Hammer', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['Bow', 'Hammer', 'MoonPearl', 'PowerGlove']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['Bow', 'Hammer', 'MoonPearl', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - turtle stalfos room", true, ['Bow', 'Hammer', 'MoonPearl', 'ProgressiveGlove']],
 
-	public function testBigChestRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", false, []],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", false, [], ['Lamp']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testCompassRoomRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - compass room")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", false, []],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", false, [], ['Lamp']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testSpikeStatueRoomRequresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-1F] Dark Palace - spike statue room")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-1F] Dark Palace - statue push room", false, []],
+			["[dungeon-D1-1F] Dark Palace - statue push room", false, [], ['AnyBow']],
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, ['Bow', 'MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, ['Bow', 'MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, ['Bow', 'MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, ['Bow', 'MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, ['Bow', 'MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - statue push room", true, ['Bow', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testHelmasaurRequiresHammer() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Helmasaur King")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", false, []],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", false, [], ['Lamp']],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - maze room [top chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testHelmasaurRequiresBow() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Helmasaur King")
-			->canAccess($this->allItemsExcept(['AnyBow'])));
-	}
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", false, []],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", false, [], ['Lamp']],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'DefeatAgahnim']],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	public function testTurtleStalfosRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")
-			->canAccess($this->collected));
-	}
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, []],
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'DefeatAgahnim']],
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Hammer', 'PowerGlove']],
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Hammer', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove']],
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Flippers', 'TitansMitt']],
+			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-	// Key filling
-	public function testBigKeyCantBeInBigChest() {
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D1-1F] Dark Palace - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeAtHelmasaur() {
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - shooter room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - turtle stalfos room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Helmasaur King")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testKeyCanBeAtHelmasaur() {
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - big key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - jump room [left chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - spike statue room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-D1-1F] Dark Palace - statue push room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("Heart Container - Helmasaur King")
-			->fill(Item::get('Key'), $this->allItems()));
+			["Heart Container - Helmasaur King", false, []],
+			["Heart Container - Helmasaur King", false, [], ['Lamp']],
+			["Heart Container - Helmasaur King", false, [], ['Hammer']],
+			["Heart Container - Helmasaur King", false, [], ['AnyBow']],
+			["Heart Container - Helmasaur King", false, [], ['BigKeyD1']],
+			["Heart Container - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'DefeatAgahnim']],
+			["Heart Container - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'PowerGlove']],
+			["Heart Container - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'TitansMitt']],
+			["Heart Container - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'ProgressiveGlove']],
+		];
 	}
 }

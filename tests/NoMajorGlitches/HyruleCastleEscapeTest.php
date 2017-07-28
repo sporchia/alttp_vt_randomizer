@@ -18,93 +18,83 @@ class HyruleCastleEscapeTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testNothingRequiredToEnter() {
-		$this->assertTrue($this->world->getRegion('Escape')
-			->canEnter($this->world->getLocations(), $this->collected));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	// Item locations
-	public function testSancturaryRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-1F] Sanctuary")
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testBoomerangRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Hyrule Castle - boomerang room")
-			->canAccess($this->collected));
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
-	public function testMapRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Hyrule Castle - map room")
-			->canAccess($this->collected));
+	public function fillPool() {
+		return [
+
+			["[dungeon-C-1F] Sanctuary", false, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B1] Escape - final basement room [left chest]", false, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B1] Escape - final basement room [middle chest]", false, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B1] Escape - final basement room [right chest]", false, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B1] Escape - first B1 room", true, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B1] Hyrule Castle - boomerang room", true, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B1] Hyrule Castle - map room", true, 'KeyH1', [], ['KeyH1']],
+
+			["[dungeon-C-B3] Hyrule Castle - next to Zelda", true, 'KeyH1', [], ['KeyH1']],
+		];
 	}
 
-	public function testZeldaRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B3] Hyrule Castle - next to Zelda")
-			->canAccess($this->collected));
-	}
+	public function accessPool() {
+		return [
+			["[dungeon-C-1F] Sanctuary", true, []],
 
-	public function testSewersFirstRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
-			->canAccess($this->collected));
-	}
+			["[dungeon-C-B1] Escape - final basement room [left chest]", true, []],
 
-	public function testSewersFinalRoomChestLRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [left chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-C-B1] Escape - final basement room [middle chest]", true, []],
 
-	public function testSewersFinalRoomChestMRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [middle chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-C-B1] Escape - final basement room [right chest]", true, []],
 
-	public function testSewersFinalRoomChestRRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [right chest]")
-			->canAccess($this->collected));
-	}
+			["[dungeon-C-B1] Escape - first B1 room", true, []],
 
-	// Key filling
-	public function testSancturaryCannotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-1F] Sanctuary")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-C-B1] Hyrule Castle - boomerang room", true, []],
 
-	public function testSewersFinalRoomChestLCannotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [left chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
+			["[dungeon-C-B1] Hyrule Castle - map room", true, []],
 
-	public function testSewersFinalRoomChestMCannotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [middle chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testSewersFinalRoomChestRCannotBeKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [right chest]")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	// Open Mode
-	public function testWhenInOpenModeDarkRoomChestRequiresLamp() {
-		config(['game-mode' => 'open']);
-
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testWhenInOpenModeZeldaCantHaveKey() {
-		config(['game-mode' => 'open']);
-
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B3] Hyrule Castle - next to Zelda")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testWhenInOpenModeBoomerangRoomCantHaveKey() {
-		config(['game-mode' => 'open']);
-
-		$this->assertFalse($this->world->getLocation("[dungeon-C-B1] Hyrule Castle - boomerang room")
-			->fill(Item::get('Key'), $this->allItems()));
+			["[dungeon-C-B3] Hyrule Castle - next to Zelda", true, []],
+		];
 	}
 }

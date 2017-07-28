@@ -18,261 +18,127 @@ class DesertPalaceTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Desert Palace')->canEnter($this->world->getLocations(), $this->allItems()));
-	}
+	/**
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider entryPool
+	 */
+	public function testEntry(bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testNothingRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Desert Palace')
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getRegion('Desert Palace')
 			->canEnter($this->world->getLocations(), $this->collected));
 	}
 
-	// Item locations
-	public function testMapRoomOnlyRequiresEntry() {
-		$this->addCollected(['BookOfMudora']);
+	public function entryPool() {
+		return [
+			[true, []],
+			[true, ['BookOfMudora']],
+			[true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			[true, ['Flute', 'MagicMirror', 'TitansMitt']],
+		];
+	}
 
-		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
+	}
+
+	public function fillPool() {
+		return [
+			["[dungeon-L2-B1] Desert Palace - Big key room", false, 'KeyP2', [], ['KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", false, 'KeyP2', [], ['KeyP2']],
+
+			["[dungeon-L2-B1] Desert Palace - big chest", false, 'BigKeyP2', [], ['BigKeyP2']],
+
+			["Heart Container - Lanmolas", false, 'BigKeyP2', [], ['BigKeyP2']],
+			["Heart Container - Lanmolas", false, 'KeyP2', [], ['KeyP2']],
+		];
+	}
+
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testBigChestRequiresBootsIfBigKeyOnTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
+	public function accessPool() {
+		return [
+			["[dungeon-L2-B1] Desert Palace - Map room", true, []],
+			["[dungeon-L2-B1] Desert Palace - Map room", true, ['BookOfMudora']],
+			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
+			["[dungeon-L2-B1] Desert Palace - big chest", false, []],
+			["[dungeon-L2-B1] Desert Palace - big chest", true, ['BookOfMudora', 'BigKeyP2']],
+			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'BigKeyP2']],
+
+			["[dungeon-L2-B1] Desert Palace - Small key room", false, []],
+			["[dungeon-L2-B1] Desert Palace - Small key room", false, [], ['PegasusBoots']],
+			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['BookOfMudora', 'PegasusBoots']],
+			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots']],
+			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'PegasusBoots']],
+
+			["[dungeon-L2-B1] Desert Palace - compass room", false, []],
+			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", true, ['BookOfMudora', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - compass room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
+
+			["[dungeon-L2-B1] Desert Palace - Big key room", false, []],
+			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['BookOfMudora', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
+			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
+
+			["Heart Container - Lanmolas", false, []],
+			["Heart Container - Lanmolas", false, [], ['BigKeyP2']],
+			["Heart Container - Lanmolas", false, [], ['Lamp', 'FireRod']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+		];
 	}
-
-	public function testBigChestRequiresBootsIfBigKeyAtBigKeyAndKeyOnTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigChestRequiresBootsIfBigKeyAtCompassAndKeyOnTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigChestDoesNotRequireBootsIfBigKeyInMapRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigChestDoesNotRequireBootsIfBigKeyInCompassRoomAndKeyInMapRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigChestDoesNotRequireBootsIfBigKeyInBigKeyRoomAndKeyInMapRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testSmallKeyRoomRequiresBoots() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyRoomDoesNotRequiresBootsIfMapRoomHasKey() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyRoomRequiresBootsIfSmallKeyRoomHasKey() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyRoomRequiresBootsIfSmallKeyRoomHasBigKeyAndBigChestHasKey() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testCompassRoomDoesNotRequireBootsIfMapRoomHasKey() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testCompassRoomRequiresBootsIfSmallKeyRoomHasKey() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testCompassRoomRequiresBootsIfSmallKeyRoomHasBigKeyAndBigChestHasKey() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testLanmolasRequiresBootsIfBigKeyOnTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testLanmolasRequiresBootsIfKeyOnTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testLanmolasDoesNotRequireBootsIfBigKeyInCompassRoomAndKeyInMapRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testLanmolasDoesNotRequireBootsIfBigKeyInBigKeyRoomAndKeyInMapRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testLanmolasDoesNotRequireBootsIfKeyInBigChestAndBigKeyInMapRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testLanmolasRequiresFire() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->canAccess($this->allItemsExcept(['Lamp', 'FireRod'])));
-	}
-
-	// Key filling
-	public function testBigKeyRoomCannotHaveKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeRightSideTopIfTorchHasKeyAndNoBoots() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->fill(Item::get('BigKey'), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyCantBeRightSideTopIfKeyInBigChest() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testCompassRoomCannotHaveKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeRightSideBottomIfTorchHasKeyAndNoBoots() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->fill(Item::get('BigKey'), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testBigKeyCantBeRightSideBottomIfKeyInBigChest() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigKeyCantBeAtLanmolas() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testKeyCantBeAtLanmolas() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("Heart Container - Lanmolas")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-
-	// Completion
-	public function testDoesntRequireBootsIfSmallKeyIsInMapChest() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getRegion('Desert Palace')
-			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testDoesntRequireBootsIfSmallKeyIsInMapChestBigKeyInCompassRoom() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - compass room")->setItem(Item::get('BigKey'));
-
-		$this->assertTrue($this->world->getRegion('Desert Palace')
-			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testDoesntRequireBootsIfBigKeyIsInMapChestAndSmallKeyInBigChest() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - big chest")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getRegion('Desert Palace')
-			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testRequiresBootsIfKeyAtTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Big key room")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getRegion('Desert Palace')
-			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
-	public function testRequiresBootsIfBigKeyAtTorch() {
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Small key room")->setItem(Item::get('BigKey'));
-		$this->world->getLocation("[dungeon-L2-B1] Desert Palace - Map room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getRegion('Desert Palace')
-			->canComplete($this->world->getLocations(), $this->allItemsExcept(['PegasusBoots'])));
-	}
-
 }

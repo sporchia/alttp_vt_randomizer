@@ -49,10 +49,10 @@ class DesertPalace extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["[dungeon-L2-B1] Desert Palace - big chest"]->setItem(Item::get('PowerGlove'));
-		$this->locations["[dungeon-L2-B1] Desert Palace - Map room"]->setItem(Item::get('Map'));
-		$this->locations["[dungeon-L2-B1] Desert Palace - Small key room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-L2-B1] Desert Palace - Big key room"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-L2-B1] Desert Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - Map room"]->setItem(Item::get('MapP2'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - Small key room"]->setItem(Item::get('KeyP2'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - Big key room"]->setItem(Item::get('BigKeyP2'));
+		$this->locations["[dungeon-L2-B1] Desert Palace - compass room"]->setItem(Item::get('CompassP2'));
 		$this->locations["Heart Container - Lanmolas"]->setItem(Item::get('BossHeartContainer'));
 
 		$this->locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfWisdom'));

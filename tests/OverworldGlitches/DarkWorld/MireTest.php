@@ -30,7 +30,7 @@ class MireTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
