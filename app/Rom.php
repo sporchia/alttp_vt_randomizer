@@ -1335,6 +1335,8 @@ class Rom {
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
 				$this->setShopRedShieldCost(500);
+				$this->setCatchableFairies(true);
+				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(0);
 				$this->setByrnaCaveSpikeDamage(0x08);
@@ -1347,6 +1349,8 @@ class Rom {
 				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
 				$this->setShopRedShieldCost(999);
+				$this->setCatchableFairies(false);
+				$this->setCatchableBees(false);
 
 				$this->setRupoorValue(10);
 				$this->setByrnaCaveSpikeDamage(0x02);
@@ -1359,6 +1363,8 @@ class Rom {
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
 				$this->setShopRedShieldCost(9990);
+				$this->setCatchableFairies(false);
+				$this->setCatchableBees(false);
 
 				$this->setRupoorValue(20);
 				$this->setByrnaCaveSpikeDamage(0x02);
@@ -1470,6 +1476,32 @@ class Rom {
 		$this->write(0x1FC16, $enable
 			? pack('C*', 0xB1, 0xC6, 0xF9, 0xC9, 0xC6, 0xF9)
 			: pack('C*', 0xA8, 0xB8, 0x3D, 0xD0, 0xB8, 0x3D));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable ability to bug net catch Fairy
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCatchableFairies(bool $enable = true) : self {
+		$this->write(0x34FD6, pack('C*', $enable ? 0xF0 : 0x80));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable ability to bug net catch Bee (also makes them attack you?)
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCatchableBees(bool $enable = true) : self {
+		$this->write(0xF5D73, pack('C*', $enable ? 0xF0 : 0x80));
 
 		return $this;
 	}

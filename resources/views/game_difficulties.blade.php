@@ -95,7 +95,6 @@
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
-				<li>Bug Catching Net</li>
 				<li>Cane Of Byrna</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
@@ -114,6 +113,7 @@
 				<li>Magic Cape uses 2x Magic</li>
 				<li>Cane of Byrna uses 2x Magic</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
+				<li>Bug Net doesn't catch things</li>
 				<li>There are only 2 Bottles (4 in Major Glitches)</li>
 				<li>Potions heal 5 hearts and restore 1/2 magic</li>
 				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
@@ -131,7 +131,6 @@
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
-				<li>Bug Catching Net</li>
 				<li>Cane Of Byrna</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
@@ -153,6 +152,7 @@
 				<li>Magic Cape uses 4x Magic</li>
 				<li>Cane of Byrna uses 4x Magic</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
+				<li>Bug Net doesn't catch things</li>
 				<li>There is only 1 Bottle (4 in Major Glitches)</li>
 				<li>Potions heal 1 heart and restore 1/4 magic</li>
 				<li>Shields in Shops are unpurchasable</li>
