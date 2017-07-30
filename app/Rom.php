@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-07-15';
-	const HASH = '585426fd248286b2fa51b0e5990ffbca';
+	const BUILD = '2017-07-26';
+	const HASH = '51ee45487e9bb5f13505fc4be5cd0530';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -378,7 +378,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLimitProgressiveSword(int $limit, int $item) : self {
+	public function setLimitProgressiveSword(int $limit = 4, int $item = 0x36) : self {
 		$this->write(0x180090, pack('C*', $limit, $item));
 
 		return $this;
@@ -392,7 +392,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLimitProgressiveShield(int $limit, int $item) : self {
+	public function setLimitProgressiveShield(int $limit = 3, int $item = 0x36) : self {
 		$this->write(0x180092, pack('C*', $limit, $item));
 
 		return $this;
@@ -406,8 +406,22 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLimitProgressiveArmor(int $limit, int $item) : self {
+	public function setLimitProgressiveArmor(int $limit = 2, int $item = 0x36) : self {
 		$this->write(0x180094, pack('C*', $limit, $item));
+
+		return $this;
+	}
+
+	/**
+	 * Set Bottle limit and item after limit is reached
+	 *
+	 * @param int $limit max number to receive
+	 * @param int $item item byte to collect once limit is collected
+	 *
+	 * @return $this
+	 */
+	public function setLimitBottle(int $limit = 4, int $item = 0x36) : self {
+		$this->write(0x180096, pack('C*', $limit, $item));
 
 		return $this;
 	}

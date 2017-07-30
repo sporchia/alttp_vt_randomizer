@@ -15,12 +15,39 @@ return [
 				'ExtraBottles' => 7,
 				'TwentyRupees' => 15,
 			],
+			'overflow' => [
+				'Armor' => 'TwentyRupees',
+				'Bottle' => 'TwentyRupees',
+				'Shield' => 'TwentyRupees',
+				'Sword' => 'TwentyRupees',
+			],
 		],
 		'variations' => [
 			'ohko' => [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
+				],
+			],
+			'star-hunt' => [
+				'item' => [
+					'count' => [
+						'PowerStar' => 30,
+						'TwentyRupees' => 2,
+						'FiveRupees' => 0,
+					],
+					'overflow' => [
+						'replacement' => [
+							'Armor' => 'PowerStar',
+							'Bottle' => 'PowerStar',
+							'Shield' => 'PowerStar',
+							'Sword' => 'PowerStar',
+						],
+					],
+					'Goal' => [
+						'Required' => 10,
+						'Icon' => 'star',
+					],
 				],
 			],
 			'timed-ohko' => [
@@ -76,6 +103,19 @@ return [
 					'timerStart' => 0,
 				],
 			],
+			'star-hunt' => [
+				'item' => [
+					'count' => [
+						'PowerStar' => 30,
+						'TwentyRupees' => 2,
+						'FiveRupees' => 0,
+					],
+					'Goal' => [
+						'Required' => 20,
+						'Icon' => 'star',
+					],
+				],
+			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
@@ -121,19 +161,6 @@ return [
 			],
 		],
 	],
-	'stars' => [
-		'item' => [
-			'count' => [
-				'PowerStar' => 30,
-				'TwentyRupees' => 2,
-				'FiveRupees' => 0,
-			],
-			'Goal' => [
-				'Required' => 20,
-				'Icon' => 'star',
-			],
-		],
-	],
 	'hard' => [
 		'item' => [
 			'count' => [
@@ -148,23 +175,29 @@ return [
 				'Boomerang' => 0,
 				'BossHeartContainer' => 0,
 				'BugCatchingNet' => 0,
-				'ExtraBottles' => 1,
 				'OneRupee' => 5,
 				'FiveRupees' => 25,
 				'FiftyRupees' => 5,
 				'HeartContainer' => 0,
 				'MagicUpgrade' => 0,
-				'MirrorShield' => 0,
+				'HalfMagicUpgrade' => 0,
+				'QuarterMagicUpgrade' => 0,
 				'OneHundredRupees' => 3,
 				'RedBoomerang' => 0,
-				'RedMail' => 0,
 				'CaneOfByrna' => 0,
 				'TenArrows' => 5,
 				'ThreeBombs' => 5,
 				'ThreeHundredRupees' => 1,
-				'TwentyRupees' => 10,
-				'L4Sword' => 0,
+				'TwentyRupees' => 5,
 				'SilverArrowUpgrade' => 1,
+			],
+			'overflow' => [
+				'count' => [
+					'Armor' => 1,
+					'Bottle' => 2,
+					'Shield' => 2,
+					'Sword' => 3,
+				],
 			],
 		],
 		'rom' => [
@@ -175,6 +208,19 @@ return [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
+				],
+			],
+			'star-hunt' => [
+				'item' => [
+					'count' => [
+						'PowerStar' => 40,
+						'FiveRupees' => 5,
+						'Arrow' => 5,
+					],
+					'Goal' => [
+						'Required' => 30,
+						'Icon' => 'star',
+					],
 				],
 			],
 			'timed-ohko' => [
@@ -229,8 +275,6 @@ return [
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade70' => 0,
-				'BlueMail' => 0,
-				'BlueShield' => 0,
 				'Bomb' => 10,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
@@ -238,26 +282,30 @@ return [
 				'Boomerang' => 0,
 				'BossHeartContainer' => 0,
 				'BugCatchingNet' => 0,
-				'ExtraBottles' => 0,
 				'OneRupee' => 5,
 				'FiveRupees' => 25,
 				'FiftyRupees' => 3,
 				'HeartContainer' => 0,
+				'HalfMagicUpgrade' => 0,
+				'QuarterMagicUpgrade' => 0,
 				'MagicUpgrade' => 0,
-				'MirrorShield' => 0,
 				'OneHundredRupees' => 1,
 				'PieceOfHeart' => 12,
 				'RedBoomerang' => 0,
-				'RedMail' => 0,
-				'RedShield' => 0,
 				'CaneOfByrna' => 0,
 				'TenArrows' => 1,
 				'ThreeBombs' => 1,
 				'ThreeHundredRupees' => 1,
 				'TwentyRupees' => 5,
-				'L3Sword' => 0,
-				'L4Sword' => 0,
 				'SilverArrowUpgrade' => 0,
+			],
+			'overflow' => [
+				'count' => [
+					'Armor' => 0,
+					'Bottle' => 1,
+					'Shield' => 0,
+					'Sword' => 2,
+				],
 			],
 		],
 		'rom' => [
@@ -270,13 +318,27 @@ return [
 					'timerStart' => 0,
 				],
 			],
+			'star-hunt' => [
+				'item' => [
+					'count' => [
+						'Arrow' => 5,
+						'Bomb' => 5,
+						'FiveRupees' => 5,
+						'PowerStar' => 40,
+					],
+					'Goal' => [
+						'Required' => 40,
+						'Icon' => 'star',
+					],
+				],
+			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
+						'TwentyRupees' => 10, // 28 : 560
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
-						'GreenClock' => 25,
+						'GreenClock' => 15,
 					],
 					'value' => [
 						'GreenClock' => 300,

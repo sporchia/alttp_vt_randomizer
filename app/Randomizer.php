@@ -54,7 +54,7 @@ class Randomizer {
 		$this->variation = $variation;
 		$this->type = $type;
 		$this->goal = $goal;
- 		$this->world = new World($rules, $type, $goal);
+ 		$this->world = new World($rules, $type, $goal, $variation);
 		$this->seed = new Seed;
 	}
 
@@ -180,9 +180,9 @@ class Randomizer {
 				$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
 				$locations["Altar"]->setItem(Item::get('MasterSword'));
 			}
-			config(["alttp.{$this->rules}.item.count.MasterSword" => 0]);
-			config(["alttp.{$this->rules}.item.count.L3Sword" => 0]);
-			config(["alttp.{$this->rules}.item.count.L4Sword" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.MasterSword" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L3Sword" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L4Sword" => 0]);
 		} else {
 			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
@@ -192,15 +192,15 @@ class Randomizer {
 					$l3 = $this->config('item.count.L3Sword', 1);
 					$l4 = $this->config('item.count.L4Sword', 1);
 
-					config(["alttp.{$this->rules}.item.count.L1Sword" => 0]);
-					config(["alttp.{$this->rules}.item.count.MasterSword" => 0]);
-					config(["alttp.{$this->rules}.item.count.L3Sword" => 0]);
-					config(["alttp.{$this->rules}.item.count.L4Sword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L1Sword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.MasterSword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L3Sword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L4Sword" => 0]);
 
-					config(["alttp.{$this->rules}.item.count.ProgressiveSword"
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.ProgressiveSword"
 						=> $this->config('item.count.ProgressiveSword', 0) + $l1 + $l2 + $l3 + $l4]);
 				} else {
-					config(["alttp.{$this->rules}.item.count.L1Sword" => 1]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L1Sword" => 1]);
 				}
 			} else {
 				if ($this->config('item.progressiveSwords', true)) {
@@ -208,11 +208,11 @@ class Randomizer {
 					$l3 = $this->config('item.count.L3Sword', 1);
 					$l4 = $this->config('item.count.L4Sword', 1);
 
-					config(["alttp.{$this->rules}.item.count.MasterSword" => 0]);
-					config(["alttp.{$this->rules}.item.count.L3Sword" => 0]);
-					config(["alttp.{$this->rules}.item.count.L4Sword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.MasterSword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L3Sword" => 0]);
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.L4Sword" => 0]);
 
-					config(["alttp.{$this->rules}.item.count.ProgressiveSword"
+					config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.ProgressiveSword"
 						=> $this->config('item.count.ProgressiveSword', 0) + $l2 + $l3 + $l4]);
 
 					$locations["Uncle"]->setItem(Item::get('ProgressiveSword'));
@@ -228,10 +228,10 @@ class Randomizer {
 			$blue = $this->config('item.count.BlueMail', 1);
 			$red = $this->config('item.count.RedMail', 1);
 
-			config(["alttp.{$this->rules}.item.count.BlueMail" => 0]);
-			config(["alttp.{$this->rules}.item.count.RedMail" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.BlueMail" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.RedMail" => 0]);
 
-			config(["alttp.{$this->rules}.item.count.ProgressiveArmor"
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.ProgressiveArmor"
 				=> $this->config('item.count.ProgressiveArmor', 0) + $blue + $red]);
 		}
 
@@ -240,11 +240,11 @@ class Randomizer {
 			$red = $this->config('item.count.RedShield', 1);
 			$mirror = $this->config('item.count.MirrorShield', 1);
 
-			config(["alttp.{$this->rules}.item.count.BlueShield" => 0]);
-			config(["alttp.{$this->rules}.item.count.RedShield" => 0]);
-			config(["alttp.{$this->rules}.item.count.MirrorShield" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.BlueShield" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.RedShield" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.MirrorShield" => 0]);
 
-			config(["alttp.{$this->rules}.item.count.ProgressiveShield"
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.ProgressiveShield"
 				=> $this->config('item.count.ProgressiveShield', 0) + $blue + $red + $mirror]);
 		}
 
@@ -252,10 +252,10 @@ class Randomizer {
 			$glove = $this->config('item.count.PowerGlove', 1);
 			$mitt = $this->config('item.count.TitansMitt', 1);
 
-			config(["alttp.{$this->rules}.item.count.PowerGlove" => 0]);
-			config(["alttp.{$this->rules}.item.count.TitansMitt" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.PowerGlove" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.TitansMitt" => 0]);
 
-			config(["alttp.{$this->rules}.item.count.ProgressiveGlove"
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.ProgressiveGlove"
 				=> $this->config('item.count.ProgressiveGlove', 0) + $glove + $mitt]);
 		}
 
@@ -279,14 +279,14 @@ class Randomizer {
 		// Pedestal is the goal
 		if ($this->goal == 'pedestal') {
 			$locations["Altar"]->setItem(Item::get('Triforce'));
-			config(["alttp.{$this->rules}.item.count.Arrow" => 0]);
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.count.Arrow" => 0]);
 		}
 
 		if ($this->type == 'Glitched') {
 			$this->world->getLocation("[dungeon-C-1F] Sanctuary")->setItem(Item::get('PegasusBoots'));
 
-			// Glitched always has 3 extra bottles, no matter what
-			config(["alttp.{$this->rules}.item.count.ExtraBottles" => 3]);
+			// Glitched always has 4 bottles, no matter what
+			config(["alttp.{$this->rules}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
 		}
 
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
@@ -540,6 +540,14 @@ class Randomizer {
 		// testing features
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
+		$rom->setLimitProgressiveSword($this->config('item.overflow.count.Sword', 4),
+			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees'))->getBytes()[0]);
+		$rom->setLimitProgressiveShield($this->config('item.overflow.count.Shield', 3),
+			Item::get($this->config('item.overflow.replacement.Shield', 'TwentyRupees'))->getBytes()[0]);
+		$rom->setLimitProgressiveArmor($this->config('item.overflow.count.Armor', 2),
+			Item::get($this->config('item.overflow.replacement.Armor', 'TwentyRupees'))->getBytes()[0]);
+		$rom->setLimitBottle($this->config('item.overflow.count.Bottle', 4),
+			Item::get($this->config('item.overflow.replacement.Bottle', 'TwentyRupees'))->getBytes()[0]);
 
 		switch ($this->goal) {
 			case 'pedestal':

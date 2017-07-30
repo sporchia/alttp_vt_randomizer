@@ -10,6 +10,7 @@ use Log;
  */
 class World {
 	protected $rules;
+	protected $variation;
 	protected $type;
 	protected $goal;
 	protected $regions = [];
@@ -22,11 +23,14 @@ class World {
 	 *
 	 * @param string $rules rules from config to apply to randomization
 	 * @param string $type Ruleset to use when deciding if Locations can be reached
+	 * @param string $goal Goal of the game
+	 * @param string $variation modifications to rules
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon') {
+	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
 		$this->rules = $rules;
+		$this->variation = $variation;
 		$this->type = $type;
 		$this->goal = $goal;
 
@@ -175,7 +179,7 @@ class World {
 			};
 		}
 
-		if ($this->rules == 'stars') {
+		if ($this->goal == 'star-hunt') {
 			$this->win_condition = function($collected_items) {
 				return $collected_items->has('PowerStar', $this->config('item.Goal.Required'));
 			};
@@ -201,7 +205,7 @@ class World {
 	 * @return static
 	 */
 	public function copy() {
-		$copy = new static($this->rules, $this->type, $this->goal);
+		$copy = new static($this->rules, $this->type, $this->goal, $this->variation);
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
@@ -480,7 +484,7 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->rules}.$key", $default);
+		return config("alttp.{$this->rules}.variations.{$this->variation}.$key", config("alttp.{$this->rules}.$key", $default));
 	}
 
 	/**
