@@ -138,20 +138,20 @@
 				</div>
 				<div class="col-md-6">
 					<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"generate-sram-trace">SRAM Trace</label>
+					<label for="generate-sram-trace">SRAM Trace</label>
 				</div>
 				<div class="col-md-6">
 					<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"generate-music-on">Background Music</label>
+					<label for="generate-music-on">Background Music</label>
 				</div>
 				<div class="secrets" style="display:none">
 					<div class="col-md-6">
 						<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-						<label for"generate-debug">Debug Mode</label>
+						<label for="generate-debug">Debug Mode</label>
 					</div>
 					<div class="col-md-6">
 						<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-						<label for"generate-tournament">Tournament Mode</label>
+						<label for="generate-tournament">Tournament Mode</label>
 					</div>
 				</div>
 			</div>
@@ -236,15 +236,15 @@
 			<div class="tab-pane active" id="custom-settings">
 				<div class="col-md-6">
 					<input id="cust-prize-crossworld" type="checkbox" name="data[alttp.custom.prize.crossWorld]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
+					<label for="cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-prize-shufflePendants" type="checkbox" name="data[alttp.custom.prize.shufflePendants]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"cust-prize-shufflePendants">Shuffle Pendants</label>
+					<label for="cust-prize-shufflePendants">Shuffle Pendants</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-prize-shuffleCrystals" type="checkbox" name="data[alttp.custom.prize.shuffleCrystals]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"cust-prize-shuffleCrystals">Shuffle Crystals</label>
+					<label for="cust-prize-shuffleCrystals">Shuffle Crystals</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-region-bossHeartsInPool" type="checkbox" name="data[alttp.custom.region.bossHeartsInPool]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -657,7 +657,7 @@ var ROM = ROM || (function(blob, loaded_callback) {
 
 	this.save = function(filename) {
 		this.updateChecksum().then(function() {
-			saveAs(new Blob([u_array]), filename);
+			FileSaver.saveAs(new Blob([u_array]), filename);
 		});
 	};
 
@@ -983,7 +983,7 @@ $(function() {
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
@@ -1238,7 +1238,7 @@ $(function() {
 		genToZip(zip, itters).then(function(zip) {
 			zip.generateAsync({type: "blob", compression: "DEFLATE"})
 			.then(function(content) {
-				saveAs(content, "VT-alttp-roms.zip");
+				FileSaver.saveAs(content, "VT-alttp-roms.zip");
 				$('button[name=generate]').html('Generate').prop('disabled', false);
 				$('button[name=generate-save]').prop('disabled', false);
 			});

@@ -9,8 +9,10 @@ window._ = require('lodash');
 
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
-require('bootstrap-toggle');
+require('./bootstrap-toggle');
 require('bootstrap-select');
+window.SparkMD5 = require('./spark-md5');
 window.localforage = require('localforage');
 window.secrets = require('konami-js');
 window.jszip = require('jszip');
+window.FileSaver = require('file-saver');

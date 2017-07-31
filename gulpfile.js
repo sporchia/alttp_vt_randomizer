@@ -16,10 +16,9 @@ require('laravel-elixir-vue-2');
 elixir((mix) => {
 	mix.sass('app.scss')
 		.webpack('app.js')
-		.scripts(['FileSaver.js', 'spark-md5.js'])
 		.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/build/fonts/bootstrap');
 });
 
 elixir(function(mix) {
-	mix.version(['css/app.css', 'js/app.js', 'js/all.js', 'js/base2current.json']);
+	mix.version(['css/app.css', 'js/app.js', 'js/base2current.json']);
 });

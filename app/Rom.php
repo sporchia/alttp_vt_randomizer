@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-07-26';
-	const HASH = '51ee45487e9bb5f13505fc4be5cd0530';
+	const BUILD = '2017-07-31';
+	const HASH = '93bce27f586092a97a04eec4719ff026';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1922,6 +1922,47 @@ class Rom {
 				$this->write($address, pack('C*', ...array_values($data)));
 			}
 		}
+
+		return $this;
+	}
+
+	/**
+	 * rummage table
+	 *
+	 * @return $this
+	 */
+	public function rummageTable() : self {
+		$swip = [];
+		$swap = [];
+
+		$idat = array_values(unpack('C*', base64_decode(
+			"MgAAVQAAcQAAqAAAEwEAqYAAFgAAFgAANwAANoAACwEAc4AAZwAAfgAAWIAAWAAAVwAAVwAAHwAAfgAAnoAAdwAABQAAuQAAdAA" .
+			"AuAAABAEA/gAAdQAADAEAaAAAhQAAAwEAPQEALgAALQEAswAAPwAAXwAArgAAhwAACAEABgEAHAEACgEAqgAAJ4AAJwAAWQAA2w" .
+			"AA2wAA3AAAywAAZQAARIAARQAAtgAAJIAAtwAAtwAA1gAAFAAA1QAA1QAA1QAA1QAABAAAOgAAKgAAKgAAGoAAGgAAGgAACgAAa" .
+			"gAAagAAKwAAGQAAGQAACQAAwgAAogAAwQAAw4AAwwAA0QAAswAADQEADQEAEgAA+AAA+AAABQEABQEABQEAFwEALwAALwAALwAA" .
+			"LwAALwAAKAAARgAANAAANQAAdgAAdgAAZgAA0AAA4AAAewAAewAAewAAewAAfAAAfAAAfAAAfAAAfQAAiwAAjIAAjAAAjAAAjAA" .
+			"AjQAAnQAAnQAAnQAAnQAAHAAAHAAAHAAAWwAAPQAAPQAAPQAATQAAgAAAcgAAHQEAHQEAHQEAHQEAHQEAHgEAHgEAHgEAHgEA7w" .
+			"AA7wAA7wAA7wAA7wAA/wAA/wAAJAEAIwEAIwEAIwEAIwEAIAEAPAAAPAAAPAAAPAAAEQAAEQAAEQAA"
+		)));
+
+		$data = $this->read(0xE96C, 504);
+		foreach ($data as $i => $v) {
+			$data[$i] = ($v == 0) ? $idat[$i] : $v;
+		}
+		$data = array_chunk($data, 3);
+		foreach ($data as $chunk) {
+			$swip[($chunk[0] << 8) + $chunk[1]][] = $chunk;
+		}
+
+		for ($i = 0; $i < count($data); ++$i) {
+			$swip = mt_shuffle($swip);
+			$swap[] = array_shift($swip[0]);
+			if (!count($swip[0])) {
+				unset($swip[0]);
+			}
+		}
+
+		$this->write(0xE96C, pack('C*', ...array_flatten($swap)));
 
 		return $this;
 	}

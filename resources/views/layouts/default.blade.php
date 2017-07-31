@@ -62,7 +62,6 @@
 	<div class="container">
 	@yield('content')
 	</div>
-	<script src="{{ elixir('js/all.js') }}"></script>
 	<script>
 @if (App::environment() == 'production')
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
