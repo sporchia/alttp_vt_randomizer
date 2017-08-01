@@ -186,7 +186,7 @@ var ROM = ROM || (function(blob, loaded_callback) {
 
 	this.save = function(filename) {
 		this.updateChecksum().then(function() {
-			saveAs(new Blob([u_array]), filename);
+			FileSaver.saveAs(new Blob([u_array]), filename);
 		});
 	};
 

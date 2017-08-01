@@ -137,6 +137,10 @@
 				</div>
 				<div class="secrets" style="display:none">
 					<div class="col-md-6">
+						<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+						<label for="generate-debug">Debug Mode</label>
+					</div>
+					<div class="col-md-6">
 						<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 						<label for"generate-tournament">Tournament Mode</label>
 					</div>
@@ -209,6 +213,7 @@
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="shuffle" value="full" />
 	<input type="hidden" name="heart_speed" value="half" />
+	<input type="hidden" name="debug" value="false" />
 	<input type="hidden" name="tournament" value="false" />
 </form>
 
@@ -316,7 +321,7 @@ var ROM = ROM || (function(blob, loaded_callback) {
 
 	this.save = function(filename) {
 		this.updateChecksum().then(function() {
-			saveAs(new Blob([u_array]), filename);
+			FileSaver.saveAs(new Blob([u_array]), filename);
 		});
 	};
 
@@ -616,7 +621,7 @@ $(function() {
 		return rom.save('ER_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
-		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ER_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ER_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
@@ -725,6 +730,9 @@ $(function() {
 		$('#goal').trigger('change');
 	});
 
+	$('#generate-debug').on('change', function() {
+		$('input[name=debug]').val($(this).prop('checked'));
+	});
 	$('#generate-tournament').on('change', function() {
 		$('input[name=tournament]').val($(this).prop('checked'));
 	});
@@ -742,7 +750,7 @@ $(function() {
 		genToZip(zip, itters).then(function(zip) {
 			zip.generateAsync({type: "blob", compression: "DEFLATE"})
 			.then(function(content) {
-				saveAs(content, "VT-alttp-roms.zip");
+				FileSaver.saveAs(content, "VT-alttp-roms.zip");
 				$('button[name=generate]').html('Generate').prop('disabled', false);
 				$('button[name=generate-save]').prop('disabled', false);
 			});

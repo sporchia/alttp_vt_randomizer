@@ -17,9 +17,5 @@
 	<p>The VT Randomizer is an entirely web based randomizer, There is no download client for it. That being said
 		the ROM is patched entirely in your browser. Being a web version we can get the newest features availble
 		to users as quickly as possible. Click on <em>Generate Randomized Game</em> above to get started.</p>
-	<p>There is a downloadable client version of the Randomizer (currently on v7) maintained by Dessyreqt which can be found here:
-		<a href="https://dessyreqt.github.io/alttprandomizer/" target="_blank">https://dessyreqt.github.io/alttprandomizer/</a>
-	</p>
-	<p>Many features being tested in VT will land in the client version in the future.</p>
 </div>
 @overwrite

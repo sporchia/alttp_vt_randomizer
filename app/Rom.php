@@ -355,7 +355,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGoalIcon(string $goal_icon = 'star') : self {
+	public function setGoalIcon(string $goal_icon = 'triforce') : self {
 		switch ($goal_icon) {
 			case 'triforce':
 				$byte = pack('S*', 0x280E);

@@ -29,24 +29,24 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'star-hunt' => [
+			'triforce-hunt' => [
 				'item' => [
 					'count' => [
-						'PowerStar' => 30,
+						'TriforcePiece' => 30,
 						'TwentyRupees' => 2,
 						'FiveRupees' => 0,
 					],
 					'overflow' => [
 						'replacement' => [
-							'Armor' => 'PowerStar',
-							'Bottle' => 'PowerStar',
-							'Shield' => 'PowerStar',
-							'Sword' => 'PowerStar',
+							'Armor' => 'TriforcePiece',
+							'Bottle' => 'TriforcePiece',
+							'Shield' => 'TriforcePiece',
+							'Sword' => 'TriforcePiece',
 						],
 					],
 					'Goal' => [
 						'Required' => 10,
-						'Icon' => 'star',
+						'Icon' => 'triforce',
 					],
 				],
 			],
@@ -103,16 +103,16 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'star-hunt' => [
+			'triforce-hunt' => [
 				'item' => [
 					'count' => [
-						'PowerStar' => 30,
+						'TriforcePiece' => 30,
 						'TwentyRupees' => 2,
 						'FiveRupees' => 0,
 					],
 					'Goal' => [
 						'Required' => 20,
-						'Icon' => 'star',
+						'Icon' => 'triforce',
 					],
 				],
 			],
@@ -209,16 +209,16 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'star-hunt' => [
+			'triforce-hunt' => [
 				'item' => [
 					'count' => [
-						'PowerStar' => 40,
+						'TriforcePiece' => 40,
 						'FiveRupees' => 5,
 						'Arrow' => 5,
 					],
 					'Goal' => [
 						'Required' => 30,
-						'Icon' => 'star',
+						'Icon' => 'triforce',
 					],
 				],
 			],
@@ -316,17 +316,17 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'star-hunt' => [
+			'triforce-hunt' => [
 				'item' => [
 					'count' => [
 						'Arrow' => 5,
 						'Bomb' => 5,
 						'FiveRupees' => 5,
-						'PowerStar' => 40,
+						'TriforcePiece' => 40,
 					],
 					'Goal' => [
 						'Required' => 40,
-						'Icon' => 'star',
+						'Icon' => 'triforce',
 					],
 				],
 			],

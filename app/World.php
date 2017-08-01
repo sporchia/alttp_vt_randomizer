@@ -179,9 +179,9 @@ class World {
 			};
 		}
 
-		if ($this->goal == 'star-hunt') {
+		if ($this->goal == 'triforce-hunt') {
 			$this->win_condition = function($collected_items) {
-				return $collected_items->has('PowerStar', $this->config('item.Goal.Required'));
+				return $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'));
 			};
 		}
 	}

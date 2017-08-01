@@ -68,7 +68,7 @@
 						<option value="ganon">Defeat Ganon</option>
 						<option value="dungeons">All Dungeons</option>
 						<option value="pedestal">Master Sword Pedestal</option>
-						<option value="star-hunt">Stars</option>
+						<option value="triforce-hunt">Triforce Pieces</option>
 					</select>
 				</div>
 			</div>
@@ -103,7 +103,7 @@
 						<option value="timed-race">Timed Race</option>
 						<option value="timed-ohko">Timed OHKO</option>
 						<option value="ohko">OHKO</option>
-						<option value="star-hunt">Star Hunt</option>
+						<option value="triforce-hunt">Triforce Piece Hunt</option>
 					</select>
 				</div>
 			</div>
@@ -963,10 +963,10 @@ $(function() {
 		var goal = $('#goal').val();
 		$('input[name=variation]').val(variation);
 		localforage.setItem('rom.variation', variation);
-		if (variation === 'star-hunt' && goal !== 'star-hunt') {
-			$('#goal').val('star-hunt');
+		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
+			$('#goal').val('triforce-hunt');
 			$('#goal').trigger('change');
-		} else if (variation !== 'star-hunt' && goal === 'star-hunt') {
+		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
 			$('#goal').val('ganon');
 			$('#goal').trigger('change');
 		}
@@ -1111,10 +1111,10 @@ $(function() {
 		var variation = $('#variation').val();
 		localforage.setItem('rom.goal', goal);
 		$('input[name=goal]').val(goal);
-		if (goal === 'star-hunt' && variation !== 'star-hunt') {
-			$('#variation').val('star-hunt');
+		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
+			$('#variation').val('triforce-hunt');
 			$('#variation').trigger('change');
-		} else if (goal !== 'star-hunt' && variation === 'star-hunt') {
+		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
 			$('#variation').val('none');
 			$('#variation').trigger('change');
 		}

@@ -54,7 +54,7 @@ class Randomizer {
 		$this->variation = $variation;
 		$this->type = $type;
 		$this->goal = $goal;
- 		$this->world = new World($rules, $type, $goal, $variation);
+		$this->world = new World($rules, $type, $goal, $variation);
 		$this->seed = new Seed;
 	}
 
@@ -529,7 +529,7 @@ class Randomizer {
 		}
 
 		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0));
-		$rom->setGoalIcon($this->config('item.Goal.Icon', 'star'));
+		$rom->setGoalIcon($this->config('item.Goal.Icon', 'triforce'));
 
 		$rom->setClockMode($this->config('rom.timerMode', 'off'));
 
@@ -763,7 +763,7 @@ class Randomizer {
 	}
 
 	/**
-	 * Set all texts for this randimization
+	 * Set all texts for this randomization
 	 *
 	 * @param Rom $rom ROM to write to
 	 *
