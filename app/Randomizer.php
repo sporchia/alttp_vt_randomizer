@@ -1293,7 +1293,7 @@ class Randomizer {
 		array_push($items_to_find, Item::get('KeyD7'));
 		array_push($items_to_find, Item::get('KeyD7'));
 		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyH1'));
+		array_push($items_to_find, Item::get('KeyH2'));
 		array_push($items_to_find, Item::get('KeyP2'));
 		array_push($items_to_find, Item::get('KeyP3'));
 
@@ -1305,7 +1305,7 @@ class Randomizer {
 		array_push($items_to_find, Item::get('MapD5'));
 		array_push($items_to_find, Item::get('MapD6'));
 		array_push($items_to_find, Item::get('MapD7'));
-		array_push($items_to_find, Item::get('MapH1'));
+		array_push($items_to_find, Item::get('MapH2'));
 		array_push($items_to_find, Item::get('MapP1'));
 		array_push($items_to_find, Item::get('MapP2'));
 		array_push($items_to_find, Item::get('MapP3'));

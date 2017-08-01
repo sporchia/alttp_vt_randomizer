@@ -60,21 +60,21 @@ class HyruleCastleEscapeTest extends TestCase {
 	public function fillPool() {
 		return [
 
-			["[dungeon-C-1F] Sanctuary", false, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-1F] Sanctuary", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - final basement room [left chest]", false, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B1] Escape - final basement room [left chest]", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - final basement room [middle chest]", false, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B1] Escape - final basement room [middle chest]", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - final basement room [right chest]", false, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B1] Escape - final basement room [right chest]", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - first B1 room", true, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B1] Escape - first B1 room", true, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Hyrule Castle - boomerang room", true, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B1] Hyrule Castle - boomerang room", true, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Hyrule Castle - map room", true, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B1] Hyrule Castle - map room", true, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B3] Hyrule Castle - next to Zelda", true, 'KeyH1', [], ['KeyH1']],
+			["[dungeon-C-B3] Hyrule Castle - next to Zelda", true, 'KeyH2', [], ['KeyH2']],
 		];
 	}
 
