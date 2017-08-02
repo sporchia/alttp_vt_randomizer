@@ -524,8 +524,6 @@ class Randomizer {
 			'mode' => config('game-mode', 'standard'),
 		];
 
-		$this->seed->spheres = json_encode($spheres);
-
 		return $spheres;
 	}
 
