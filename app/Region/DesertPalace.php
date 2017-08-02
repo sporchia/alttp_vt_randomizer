@@ -129,7 +129,7 @@ class DesertPalace extends Region {
 
 			return $this->canEnter($locations, $items)
 				&& $items->canLiftRocks() && $items->canLightTorches()
-				&& $items->has('BigKeyP2');
+				&& $items->has('BigKeyP2') && $items->has('KeyP2');
 		};
 
 		$this->locations["Heart Container - Lanmolas"]->setRequirements($this->can_complete)

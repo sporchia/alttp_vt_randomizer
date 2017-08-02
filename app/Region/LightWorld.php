@@ -45,7 +45,6 @@ class LightWorld extends Region {
 			new Location\Chest("[cave-022-B1] Thief's hut [top right chest]", 0xEB15, null, $this),
 			new Location\Chest("[cave-022-B1] Thief's hut [bottom left chest]", 0xEB18, null, $this),
 			new Location\Chest("[cave-022-B1] Thief's hut [bottom right chest]", 0xEB1B, null, $this),
-			new Location\Npc("Blacksmiths", $world->config('region.swordsInPool', true) ? 0x18002A : 0x3355C, null, $this),
 			new Location\Chest("[cave-016] cave under rocks west of Santuary", 0xEB3F, null, $this),
 			new Location\Chest("[cave-050] cave southwest of Lake Hylia [bottom left chest]", 0xEB42, null, $this),
 			new Location\Chest("[cave-050] cave southwest of Lake Hylia [top left chest]", 0xEB45, null, $this),
@@ -56,7 +55,6 @@ class LightWorld extends Region {
 			new Location\Npc("Sahasrahla", 0x2F1FC, null, $this),
 			new Location\Npc("Magic Bat", 0x180015, null, $this),
 			new Location\Npc\BugCatchingKid("Sick Kid", 0x339CF, null, $this),
-			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 			new Location\Npc("Hobo", 0x33E7D, null, $this),
 			new Location\Drop\Bombos("Bombos Tablet", 0x180017, null, $this),
 			new Location\Npc\Zora("King Zora", 0xEE1C3, null, $this),
@@ -108,7 +106,6 @@ class LightWorld extends Region {
 		$this->locations["[cave-022-B1] Thief's hut [top right chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[cave-022-B1] Thief's hut [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["[cave-022-B1] Thief's hut [bottom right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
 		$this->locations["[cave-016] cave under rocks west of Santuary"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom left chest]"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["[cave-050] cave southwest of Lake Hylia [top left chest]"]->setItem(Item::get('TwentyRupees'));
@@ -119,7 +116,6 @@ class LightWorld extends Region {
 		$this->locations["Sahasrahla"]->setItem(Item::get('PegasusBoots'));
 		$this->locations["Magic Bat"]->setItem(Item::get('HalfMagic')); // @TODO: perhaps use 0xFF here
 		$this->locations["Sick Kid"]->setItem(Item::get('BugCatchingNet'));
-		$this->locations["Purple Chest"]->setItem(Item::get('Bottle'));
 		$this->locations["Hobo"]->setItem(Item::get('Bottle'));
 		$this->locations["Bombos Tablet"]->setItem(Item::get('Bombos'));
 		$this->locations["King Zora"]->setItem(Item::get('Flippers'));
@@ -160,12 +156,8 @@ class LightWorld extends Region {
 
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
-				|| ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
-		});
-
-		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
-			return $items->canLiftDarkRocks()
-				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+				|| ($items->has('MagicMirror') && $items->has('MoonPearl')
+					&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
 		});
 
 		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {
@@ -184,11 +176,6 @@ class LightWorld extends Region {
 
 		$this->locations["Sick Kid"]->setRequirements(function($locations, $items) {
 			return $items->hasABottle();
-		});
-
-		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $items->canLiftDarkRocks() && $items->has("MoonPearl")
-				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
 		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
@@ -271,11 +258,6 @@ class LightWorld extends Region {
 				&& $items->has('PendantOfCourage');
 		});
 
-		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror')
-				&& ($items->hasABottle() || $items->has("MoonPearl"));
-		});
-
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
 				|| ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle())));
@@ -291,15 +273,6 @@ class LightWorld extends Region {
 
 		$this->locations["Sick Kid"]->setRequirements(function($locations, $items) {
 			return $items->hasABottle();
-		});
-
-		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('MagicMirror')
-				&& ($items->hasABottle() || $items->has("MoonPearl"))
-				&& ($items->canLiftDarkRocks()
-					|| $items->has('Flippers')
-					|| $items->has('Hammer')
-					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
@@ -361,25 +334,12 @@ class LightWorld extends Region {
 				|| ($items->has('MagicMirror') && $items->has('MoonPearl')));
 		});
 
-		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl')
-				&& ($items->canLiftDarkRocks()
-					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
-		});
-
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
 			return $items->has('Powder')
 				&& ($items->has('Hammer')
 					|| $items->has('PegasusBoots')
 					|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->canLiftDarkRocks()
 						&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
-		});
-
-		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $locations["Blacksmiths"]->canAccess($items)
-				&& ($items->has("MoonPearl")
-					&& (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
-						|| ($items->has('PegasusBoots') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
 		});
 
 		$this->locations["Hobo"]->setRequirements(function($locations, $items) {

@@ -28,6 +28,8 @@ class NorthWest extends Region {
 			new Location\Chest("Piece of Heart (Treasure Chest Game)", 0xEDA8, null, $this),
 			new Location\Standing("Piece of Heart (Dark World blacksmith pegs)", 0x180006, null, $this),
 			new Location\Standing("Piece of Heart (Dark World - bumper cave)", 0x180146, null, $this),
+			new Location\Npc("Blacksmiths", $world->config('region.swordsInPool', true) ? 0x18002A : 0x3355C, null, $this),
+			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 		]);
 	}
 
@@ -42,6 +44,8 @@ class NorthWest extends Region {
 		$this->locations["Piece of Heart (Treasure Chest Game)"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+		$this->locations["Purple Chest"]->setItem(Item::get('Bottle'));
 
 		return $this;
 	}
@@ -60,6 +64,14 @@ class NorthWest extends Region {
 
 		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() && $items->has('Cape');
+		});
+
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->canLiftDarkRocks() && $items->has('MoonPearl');
+		});
+
+		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
+			return $items->canLiftDarkRocks() && $items->has("MoonPearl");
 		});
 
 		$this->can_enter = function($locations, $items) {
@@ -105,6 +117,20 @@ class NorthWest extends Region {
 			return $items->has('MoonPearl') || $items->hasABottle();
 		});
 
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& ($items->hasABottle() || $items->has("MoonPearl"));
+		});
+
+		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
+			return $items->has('MagicMirror')
+				&& ($items->hasABottle() || $items->has("MoonPearl"))
+				&& ($items->canLiftDarkRocks()
+					|| $items->has('Flippers')
+					|| $items->has('Hammer')
+					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
+		});
+
 		return $this;
 	}
 
@@ -138,6 +164,19 @@ class NorthWest extends Region {
 			return $items->has('MoonPearl')
 				&& ($items->has('PegasusBoots')
 						|| ($items->canLiftRocks() && $items->has('Cape')));
+		});
+
+		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& ($items->canLiftDarkRocks()
+					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
+		});
+
+		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
+			return $locations["Blacksmiths"]->canAccess($items)
+				&& ($items->has("MoonPearl")
+					&& (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
+						|| ($items->has('PegasusBoots') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
 		});
 
 		$this->can_enter = function($locations, $items) {

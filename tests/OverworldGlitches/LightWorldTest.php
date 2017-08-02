@@ -45,11 +45,6 @@ class LightWorldTest extends TestCase {
 			["Altar", false, [], ['PendantOfPower']],
 			["Altar", true, ['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']],
 
-			["Blacksmiths", false, []],
-			["Blacksmiths", false, [], ['MoonPearl']],
-			["Blacksmiths", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Blacksmiths", true, ['MoonPearl', 'TitansMitt']],
-
 			["Uncle", true, []],
 
 			["[cave-034] Hyrule Castle secret entrance", true, []],
@@ -136,11 +131,6 @@ class LightWorldTest extends TestCase {
 			["Sick Kid", true, ['BottleWithBluePotion']],
 			["Sick Kid", true, ['Bottle']],
 			["Sick Kid", true, ['BottleWithGoldBee']],
-
-			["Purple Chest", false, []],
-			["Purple Chest", false, [], ['MoonPearl']],
-			["Purple Chest", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Purple Chest", true, ['MoonPearl', 'TitansMitt']],
 
 			["Hobo", true, []],
 

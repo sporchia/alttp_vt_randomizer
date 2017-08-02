@@ -106,7 +106,7 @@ class EasternPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canShootArrows()
+			return $items->canShootArrows()
 				&& $items->has('Lamp') && $items->has('BigKeyP1');
 		};
 
