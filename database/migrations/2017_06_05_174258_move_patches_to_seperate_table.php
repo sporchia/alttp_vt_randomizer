@@ -24,7 +24,7 @@ class MovePatchesToSeperateTable extends Migration {
 		}
 
 		Schema::table('seeds', function (Blueprint $table) {
-			$table->integer('patch_id')->default(0)->after('game_mode');
+			$table->integer('patch_id')->default(0);
 			$table->dropColumn(['vt_complexity', 'complexity']);
 		});
 
@@ -46,8 +46,8 @@ class MovePatchesToSeperateTable extends Migration {
 
 		Schema::table('seeds', function (Blueprint $table) {
 			$table->dropColumn('patch_id');
-			$table->integer('complexity')->default(0)->after('logic');
-			$table->integer('vt_complexity')->default(0)->after('logic');
+			$table->integer('complexity')->default(0);
+			$table->integer('vt_complexity')->default(0);
 		});
 
 		Schema::dropIfExists('patches');

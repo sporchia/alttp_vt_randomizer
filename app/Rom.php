@@ -1502,6 +1502,7 @@ class Rom {
 	 */
 	public function setCatchableBees(bool $enable = true) : self {
 		$this->write(0xF5D73, pack('C*', $enable ? 0xF0 : 0x80));
+		$this->write(0xF5F10, pack('C*', $enable ? 0xF0 : 0x80));
 
 		return $this;
 	}

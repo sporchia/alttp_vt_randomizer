@@ -617,8 +617,10 @@ class Randomizer {
 				break;
 			case 'OverworldGlitches':
 				$type_flag = 'S';
+				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
 				$rom->setSaveAndQuitFromBossRoom(false);
 				$rom->setWorldOnAgahnimDeath(true);
+				$rom->setRandomizerSeedType('OverworldGlitches');
 				$rom->setWarningFlags(bindec('01000000'));
 				break;
 			case 'NoMajorGlitches':
