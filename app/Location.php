@@ -166,6 +166,11 @@ class Location {
 			throw new \Exception('No Item set to be written');
 		}
 
+		// @TODO: temp hotfix, fix this when it makes sense
+		if ($this->item == Item::get('KeyH2')) {
+			$this->setItem(Item::get('Key'));
+		}
+
 		$item_bytes = $this->item->getBytes();
 
 		foreach ($this->address as $key => $address) {
