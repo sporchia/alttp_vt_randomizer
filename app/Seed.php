@@ -12,15 +12,17 @@ class Seed extends Model {
 		$hasher = new Hashids('vt', 10);
 
 		static::saved(function($seed) {
-			if ($this->stored_patch) {
-				$sha1 = sha1($this->stored_patch);
+			if ($seed->stored_patch) {
+				$sha1 = sha1($seed->stored_patch);
 				$patch = Patch::firstOrCreate([
 					'sha1' => $sha1
 				]);
-				$patch->patch = $this->stored_patch;
+				$patch->patch = $seed->stored_patch;
 				$patch->save();
 
-				$this->patch()->associate($patch);
+				$seed->stored_patch = null;
+				$seed->patch()->associate($patch);
+				$seed->save();
 			}
 		});
 
