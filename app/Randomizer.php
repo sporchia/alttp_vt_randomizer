@@ -505,29 +505,6 @@ class Randomizer {
 	}
 
 	/**
-	 * Get the current spoiler for this seed
-	 *
-	 * @return array
-	 */
-	public function getSpheres() {
-		$spheres = [];
-
-		$spheres['locationspheres'] = $this->world->getSpheres();
-		$spheres['meta'] = [
-			'difficulty' => $this->rules,
-			'logic' => $this->getLogic(),
-			'type' => $this->getTypeNiceName(),
-			'version' => static::LOGIC,
-			'seed' => $this->rng_seed,
-			'goal' => $this->goal,
-			'build' => Rom::BUILD,
-			'mode' => config('game-mode', 'standard'),
-		];
-
-		return $spheres;
-	}
-
-	/**
 	 * Get config value based on the currently set rules
 	 *
 	 * @param string $key dot notation key of config

@@ -369,38 +369,6 @@ class World {
 	}
 
 	/**
-	 * Get location spheres formatted for parsing into SQL Server
-	 *
-	 * @return array
-	 */
-	public function getSpheres() {
-		$location_sphere = $this->getLocationSpheres();
-
-		$ret = [];
-
-		foreach($location_sphere as $sphere_level => $sphere) {
-			array_push($ret, (object)['sphereLevel' => $sphere_level, 'regions' => []]);
-			$sphereKey = array_search($sphere_level, array_column($ret, 'sphereLevel'));
-
-			foreach($sphere as $location) {
-				$regionName = $location->getRegion()->getName();
-
-				$regionKey = array_search($regionName, array_column($ret[$sphereKey]->regions, 'regionName'));
-				if($regionKey === false) {
-					array_push($ret[$sphereKey]->regions, (object)['regionName' => $regionName, 'locations' => []]);
-					$regionKey = array_search($regionName, array_column($ret[$sphereKey]->regions, 'regionName'));
-				}
-
-				$locationName = $location->getName();
-				$itemName = $location->getItem() ? $location->getItem()->getNiceName() : 'Nothing';
-				array_push($ret[$sphereKey]->regions[$regionKey]->locations, (object)['location' => $locationName, 'item' => $itemName]);
-			}
-		}
-
-		return $ret;
-	}
-
-	/**
 	 * Set the rules to use for this world
 	 *
 	 * @param string $rules rules set to use from config('alttp.{$rules}')
