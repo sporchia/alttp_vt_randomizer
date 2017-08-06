@@ -82,12 +82,12 @@ class Randomizer {
 	}
 
 	/**
-	 * Get the current Type identifier's nice name
+	 * Get the current Logic identifier's nice name
 	 *
 	 * @return string
 	 */
-	public function getTypeNiceName() {
-		switch ($this->type) {
+	public function getLogicNiceName() {
+		switch ($this->logic) {
 			case 'NoMajorGlitches': return 'No Glitches';
 			case 'OverworldGlitches': return 'Overworld Glitches';
 			case 'Glitched': return 'Major Glitches';

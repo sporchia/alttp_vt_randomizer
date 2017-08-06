@@ -99,7 +99,7 @@ class GenerateStats extends Command {
 		$stats['meta'] = [
 			'difficulty' => $this->option('difficulty'),
 			'logic' => $rand->getLogic(),
-			'type' => $rand->getTypeNiceName(),
+			'logicNice' => $rand->getLogicNiceName(),
 			'version' => Randomizer::LOGIC,
 			'seed' => $rand->getSeed(),
 			'goal' => $this->option('goal'),
