@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel {
 		Commands\SpoilerFromRom::class,
 		Commands\UpdateBaseJson::class,
 		Commands\UpdateBuildRecord::class,
+		Commands\GenerateStats::class,
 	];
 
 	protected function commands() {
