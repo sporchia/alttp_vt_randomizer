@@ -1,16 +1,16 @@
-<?php namespace Glitched;
+<?php namespace MajorGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group Glitched
+ * @group MajorGlitches
  */
 class MiseryMireTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'Glitched');
+		$this->world = new World('test_rules', 'MajorGlitches');
 
 		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Ether'));
 	}

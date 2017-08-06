@@ -338,8 +338,8 @@ class RomTest extends TestCase {
 			[$this->rom->read(0x182080, 3), $this->rom->read(0x1820FF)]);
 	}
 
-	public function testSetRandomizerSeedTypeGlitched() {
-		$this->rom->setRandomizerSeedType('Glitched');
+	public function testSetRandomizerSeedTypeMajorGlitches() {
+		$this->rom->setRandomizerSeedType('MajorGlitches');
 
 		$this->assertEquals(0x01, $this->rom->read(0x180210));
 	}

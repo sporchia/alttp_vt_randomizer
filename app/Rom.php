@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-07-31';
-	const HASH = '93bce27f586092a97a04eec4719ff026';
+	const BUILD = '2017-08-06';
+	const HASH = '7f9a974833b3c40bdfb171010b6676d8';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1105,7 +1105,7 @@ class Rom {
 			case 'OverworldGlitches':
 				$byte = 0x02;
 				break;
-			case 'Glitched':
+			case 'MajorGlitches':
 				$byte = 0x01;
 				break;
 			case 'off':
@@ -1350,7 +1350,7 @@ class Rom {
 				$this->setShopBlueShieldCost(100);
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
-				$this->setCatchableBees(false);
+				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(10);
 				$this->setByrnaCaveSpikeDamage(0x02);
@@ -1364,7 +1364,7 @@ class Rom {
 				$this->setShopBlueShieldCost(9990);
 				$this->setShopRedShieldCost(9990);
 				$this->setCatchableFairies(false);
-				$this->setCatchableBees(false);
+				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(20);
 				$this->setByrnaCaveSpikeDamage(0x02);
@@ -1943,8 +1943,8 @@ class Rom {
 		$swap = [];
 
 		$idat = array_values(unpack('C*', base64_decode(
-			"MgAAVQAAcQAAqAAAEwEAqYAAFgAAFgAANwAANoAACwEAc4AAZwAAfgAAWIAAWAAAVwAAVwAAHwAAfgAAnoAAdwAABQAAuQAAdAA" .
-			"AuAAABAEA/gAAdQAADAEAaAAAhQAAAwEAPQEALgAALQEAswAAPwAAXwAArgAAhwAACAEABgEAHAEACgEAqgAAJ4AAJwAAWQAA2w" .
+			"MgAAVQAAcQAAqAAAEwEAqYAAFgEAFgEANwAANoAACwEAc4AAZwAAfgAAWIAAWAAAVwAAVwAAHwAAfgAAnoAAdwAAFAEAuQAAdAA" .
+			"AuAAABAEA/gAAdQAADAEAaAAAhQAAAwEAFAEALgAALQEAswAAPwAAXwAArgAAhwAACAEABgEAHAEACgEAqgAAJ4AAJwAAWQAA2w" .
 			"AA2wAA3AAAywAAZQAARIAARQAAtgAAJIAAtwAAtwAA1gAAFAAA1QAA1QAA1QAA1QAABAAAOgAAKgAAKgAAGoAAGgAAGgAACgAAa" .
 			"gAAagAAKwAAGQAAGQAACQAAwgAAogAAwQAAw4AAwwAA0QAAswAADQEADQEAEgAA+AAA+AAABQEABQEABQEAFwEALwAALwAALwAA" .
 			"LwAALwAAKAAARgAANAAANQAAdgAAdgAAZgAA0AAA4AAAewAAewAAewAAewAAfAAAfAAAfAAAfAAAfQAAiwAAjIAAjAAAjAAAjAA" .
@@ -1958,7 +1958,7 @@ class Rom {
 		}
 		$data = array_chunk($data, 3);
 		foreach ($data as $chunk) {
-			$swip[($chunk[0] << 8) + $chunk[1]][] = $chunk;
+			$swip[($chunk[0] << 8) + ($chunk[1] | 0x80)][] = $chunk;
 		}
 
 		for ($i = 0; $i < count($data); ++$i) {

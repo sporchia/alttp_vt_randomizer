@@ -15,12 +15,6 @@ class WorldTest extends TestCase {
 		unset($this->world);
 	}
 
-	public function testSetRules() {
-		$this->world->setRules('testing_rules');
-
-		$this->assertEquals('testing_rules', $this->world->getRules());
-	}
-
 	public function testGetRegionDoesntExist() {
 		$this->assertNull($this->world->getRegion("This Region Doesn't Exist"));
 	}

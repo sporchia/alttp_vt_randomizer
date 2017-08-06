@@ -30,6 +30,10 @@ Route::get('game_difficulties', function () {
 	return view('game_difficulties');
 });
 
+Route::get('game_variations', function () {
+	return view('game_variations');
+});
+
 Route::get('info', function () {
 	return redirect('help');
 });
@@ -151,6 +155,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+		$rom->rummageTable();
 		$patch = patch_merge_minify($rom->getWriteLog());
 		$rand->updateSeedRecordPatch($patch);
 		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);

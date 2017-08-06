@@ -56,11 +56,11 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
+	 * within for MajorGlitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
+	public function initMajorGlitches() {
 		$access_dark_world = function($items) {
 			return $items->has('MoonPearl') || $items->hasABottle();
 		};

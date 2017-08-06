@@ -30,9 +30,9 @@
 </div>
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Generate Item Randomizer Game</h3>
+		<h3 class="panel-title pull-left">Generate Item Randomizer Game (v8.{!! ALttP\Randomizer::LOGIC !!})</h3>
 		<div class="btn-toolbar pull-right">
-
+			<a class="btn btn-default" href="/entrance/randomizer">Switch to Entrance Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
 		</div>
 		<div class="clearfix"></div>
@@ -55,7 +55,7 @@
 					<select id="logic" class="form-control selectpicker">
 						<option value="NoMajorGlitches">No Glitches</option>
 						<option value="OverworldGlitches">Overworld Glitches</option>
-						<option value="Glitched">Major Glitches</option>
+						<option value="MajorGlitches">Major Glitches</option>
 					</select>
 				</div>
 			</div>
@@ -1188,14 +1188,14 @@ $(function() {
 	$('#cust-region-swordsInPool').on('change', function() {
 		if ($(this).prop('checked')) {
 			if (!$('#cust-region-swordShuffle').prop('checked')) {
-				$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
 				$('#cust-region-swordShuffle').prop('checked', true).bootstrapToggle('on');
 			}
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
 		} else {
 			if ($('#cust-item-progressiveSwords').prop('checked')) {
 				$('#cust-item-progressiveSwords').prop('checked', false).bootstrapToggle('off');
-				$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
 			}
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
 		}
 		$('.custom-items').first().trigger('change');
 	});

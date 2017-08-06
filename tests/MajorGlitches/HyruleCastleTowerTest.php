@@ -1,16 +1,16 @@
-<?php namespace Glitched;
+<?php namespace MajorGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group Glitched
+ * @group MajorGlitches
  */
 class HyruleCastleTowerTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'Glitched');
+		$this->world = new World('test_rules', 'MajorGlitches');
 	}
 
 	public function tearDown() {

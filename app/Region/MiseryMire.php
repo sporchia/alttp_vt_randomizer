@@ -161,11 +161,11 @@ class MiseryMire extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode.
+	 * within for MajorGlitches Mode.
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
+	public function initMajorGlitches() {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {

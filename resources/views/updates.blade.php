@@ -4,13 +4,16 @@
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
+		<li>Added Triforce Hunt goal/variation</li>
+		<li>Bug Net added back to all difficulties (hard/expert cannot catch fairies)</li>
+		<li>Cape and Byrna use normal magic in all difficulties in Spike cave and spike room in Misery Mire</li>
 		<li>Added easy difficulty</li>
 		<li>Split difficulties into difficulty and variation</li>
 		<li>¼ magic is no longer in normal/hard/expert</li>
 		<li>Turtle Rock laser bridge requires Cape or Cane of Byrna or Mirror Shield</li>
-		<li>Byrna Cave now requires Cape or Cane of Byrna</li>
+		<li>Byrna (Spike) Cave and Misery Mire spike room now requires Cape or Cane of Byrna</li>
 		<li>Logic update for keys</li>
-		<li>Tuning to fill alg.</li>
+		<li>Tuning to fill algorithm</li>
 		<li>Entrance Randomizer integration (thanks LLCoolDave)</li>
 		<li>Two new chests have been added to Waterfall fairy</li>
 	</ul>

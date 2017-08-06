@@ -1,16 +1,16 @@
-<?php namespace Glitched\DeathMountain;
+<?php namespace MajorGlitches\DeathMountain;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group Glitched
+ * @group MajorGlitches
  */
 class EastTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'Glitched');
+		$this->world = new World('test_rules', 'MajorGlitches');
 	}
 
 	public function tearDown() {

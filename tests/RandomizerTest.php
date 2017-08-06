@@ -648,8 +648,8 @@ class RandomizerTest extends TestCase {
 	 *
 	 * @group logic
 	 */
-	public function testLogicHasntChangedGlitched() {
-		$this->randomizer = new Randomizer('test_rules', 'Glitched');
+	public function testLogicHasntChangedMajorGlitches() {
+		$this->randomizer = new Randomizer('test_rules', 'MajorGlitches');
 		$this->randomizer->makeSeed(1337);
 		$loc_item_array = $this->randomizer->getWorld()->getLocations()->map(function($loc){
 			return $loc->getItem()->getName();

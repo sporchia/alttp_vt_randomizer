@@ -145,11 +145,11 @@ class TowerOfHera extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode.
+	 * within for MajorGlitches Mode.
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
+	public function initMajorGlitches() {
 		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setRequirements(function($locations, $items) {
 			return $items->canLightTorches()
 				&& ($items->has('KeyP3') || $this->world->getRegion('Misery Mire')->canEnter($locations, $items));

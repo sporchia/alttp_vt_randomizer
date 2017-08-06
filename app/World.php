@@ -9,9 +9,9 @@ use Log;
  * This is the container for all the regions and locations one can find items in the game.
  */
 class World {
-	protected $rules;
+	protected $difficulty;
 	protected $variation;
-	protected $type;
+	protected $logic;
 	protected $goal;
 	protected $regions = [];
 	protected $locations;
@@ -21,17 +21,17 @@ class World {
 	/**
 	 * Create a new world and initialize all of the Regions within it
 	 *
-	 * @param string $rules rules from config to apply to randomization
-	 * @param string $type Ruleset to use when deciding if Locations can be reached
+	 * @param string $difficulty difficulty from config to apply to randomization
+	 * @param string $logic Ruleset to use when deciding if Locations can be reached
 	 * @param string $goal Goal of the game
-	 * @param string $variation modifications to rules
+	 * @param string $variation modifications to difficulty
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
-		$this->rules = $rules;
+	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
+		$this->difficulty = $difficulty;
 		$this->variation = $variation;
-		$this->type = $type;
+		$this->logic = $logic;
 		$this->goal = $goal;
 
 		$this->regions = [
@@ -65,12 +65,12 @@ class World {
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
-			$region->init($type);
+			$region->init($logic);
 			$this->locations = $this->locations->merge($region->getLocations());
 		}
 
-		switch ($this->type) {
-			case 'Glitched':
+		switch ($this->logic) {
+			case 'MajorGlitches':
 				$this->win_condition = function($collected_items) {
 					if ($this->goal == 'dungeons') {
 						if (!$collected_items->has('PendantOfCourage')
@@ -153,7 +153,7 @@ class World {
 				break;
 		}
 
-		if ($this->rules == 'custom') {
+		if ($this->difficulty == 'custom') {
 			$this->win_condition = function($collected_items) {
 				if ($this->goal == 'dungeons') {
 					if (!$collected_items->has('PendantOfCourage')
@@ -205,7 +205,7 @@ class World {
 	 * @return static
 	 */
 	public function copy() {
-		$copy = new static($this->rules, $this->type, $this->goal, $this->variation);
+		$copy = new static($this->difficulty, $this->logic, $this->goal, $this->variation);
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
@@ -427,28 +427,6 @@ class World {
 	}
 
 	/**
-	 * Set the rules to use for this world
-	 *
-	 * @param string $rules rules set to use from config('alttp.{$rules}')
-	 *
-	 * @return $this
-	 */
-	public function setRules(string $rules) {
-		$this->rules = $rules;
-
-		return $this;
-	}
-
-	/**
-	 * Get the rules currently used for this world
-	 *
-	 * @return string
-	 */
-	public function getRules() {
-		return $this->rules;
-	}
-
-	/**
 	 * Get the function that determines the win condition for this world.
 	 *
 	 * @return Closure
@@ -484,7 +462,7 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->rules}.variations.{$this->variation}.$key", config("alttp.{$this->rules}.$key", $default));
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
 	}
 
 	/**

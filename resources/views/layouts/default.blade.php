@@ -24,13 +24,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generate Randomized Game <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li{!! (request()->path() == 'randomizer') ? ' class="active"' : '' !!}><a href="/randomizer">Item Randomizer</a></li>
-							<li{!! (request()->path() == 'entrance/randomizer') ? ' class="active"' : '' !!}><a href="/entrance/randomizer">Entrance Randomizer</a></li>
-						</ul>
-					</li>
+					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -39,6 +33,7 @@
 							<li{!! (request()->path() == 'game_difficulties') ? ' class="active"' : '' !!}><a href="/game_difficulties">Difficulties</a></li>
 							<li{!! (request()->path() == 'game_logics') ? ' class="active"' : '' !!}><a href="/game_logics">Logics</a></li>
 							<li{!! (request()->path() == 'game_modes') ? ' class="active"' : '' !!}><a href="/game_modes">Modes</a></li>
+							<li{!! (request()->path() == 'game_variations') ? ' class="active"' : '' !!}><a href="/game_variations">Variations</a></li>
 							<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help</a></li>
 						</ul>
 					</li>

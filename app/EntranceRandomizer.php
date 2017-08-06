@@ -11,30 +11,30 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.4.3';
+	const VERSION = '0.4.7';
 	private $spoiler;
 	private $patch;
 
 	/**
 	 * Create a new EntranceRandomizer
 	 *
-	 * @param string $rules rules from config to apply to randomization
-	 * @param string $type Ruleset to use when deciding if Locations can be reached
+	 * @param string $difficulty difficulty from config to apply to randomization
+	 * @param string $logic Ruleset to use when deciding if Locations can be reached
 	 * @param string $goal Goal of the game
-	 * @param string $variation modifications to rules
+	 * @param string $variation modifications to difficulty
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'noglitches', $goal = 'ganon', $variation = 'none') {
-		$this->rules = $rules;
+	public function __construct($difficulty = 'normal', $logic = 'noglitches', $goal = 'ganon', $variation = 'none') {
+		$this->difficulty = $difficulty;
 		$this->variation = $variation;
-		$this->type = $type;
+		$this->logic = $logic;
 		$this->goal = $goal;
 		$this->seed = new Seed;
 	}
 
 	public function makeSeed(int $rng_seed = null) {
-		$rng_seed = $rng_seed ?: mt_rand(1, 999999999);
+		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
 		mt_srand($rng_seed);
 		$this->seed->seed = $rng_seed;
@@ -43,7 +43,7 @@ class EntranceRandomizer extends Randomizer {
 			. base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py')
 			. ' --mode ' . config('game-mode')
 			. ' --goal ' . $this->goal
-			. ' --difficulty ' . $this->rules
+			. ' --difficulty ' . $this->difficulty
 			. ' --shuffle ' .  $this->variation
 			. ' --seed ' . $rng_seed
 			. ' --jsonout --loglevel error');
@@ -75,7 +75,7 @@ class EntranceRandomizer extends Randomizer {
 	 * @return string
 	 */
 	public function getLogic() {
-		switch ($this->type) {
+		switch ($this->logic) {
 			case 'noglitches': return 'er-no-glitches-' . static::VERSION;
 		}
 		return 'unknown-' . static::LOGIC;
@@ -119,7 +119,7 @@ class EntranceRandomizer extends Randomizer {
 		$this->seed->patch = json_encode(array_values((array) $this->patch));
 		$this->seed->build = Rom::BUILD;
 		$this->seed->logic = -1;
-		$this->seed->rules = $this->rules;
+		$this->seed->rules = $this->difficulty;
 		$this->seed->game_mode = $this->getLogic();
 		$this->seed->save();
 

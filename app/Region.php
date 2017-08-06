@@ -126,11 +126,11 @@ class Region {
 	}
 
 	/**
-	 * Initalize the Glitched logic for the Region
+	 * Initalize the MajorGlitches logic for the Region
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
+	public function initMajorGlitches() {
 		return $this->initNoMajorGlitches();
 	}
 
