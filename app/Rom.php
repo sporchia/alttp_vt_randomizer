@@ -1528,8 +1528,6 @@ class Rom {
 	/**
 	 * Place 2 chests in Waterfall of Wishing Fairy.
 	 *
-	 * @experimental do not use this feature yet, it places the chests in front of fairy
-	 *
 	 * @param bool $enable switch on or off
 	 *
 	 * @return $this
@@ -1549,6 +1547,20 @@ class Rom {
 				"4QAQrA0pmgFYmA8RsGH8TQEg0gL8vQUs4WH8voFhsGJU0gL9jQP9HQdE4WL9HoMxpckxpGkxwCJNpGkouD1QuD0QmaBcmaILmGAN4" .
 				"cBV4cALkgBzmGD+aQCYo2H+a4H+q4WpyGH+roH/aQLYo2L/a4P/K4fJyGL/LoP+oQCqIWH+poH/IQLKIWL/JoO7I/rDI/q7K/rDK/" .
 				"q7U/rDU/qwoD2YE8CYUsCIAGCQAGDoAGDwAGCYysDYysDYE8DYUsD/////8P+ALmEOgQ7//w=="));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable Waterfall of Wishing Fairy's ability to upgrade items.
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setWishingWellUpgrade(bool $enable = false) : self {
+		$this->write(0x348DE, pack('C*', $enable ? 0x2A : 0x0C));
+		$this->write(0x348FE, pack('C*', $enable ? 0x05 : 0x04));
 
 		return $this;
 	}

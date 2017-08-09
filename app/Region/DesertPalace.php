@@ -18,6 +18,17 @@ class DesertPalace extends Region {
 		0x1559E,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyP2',
+		'Compass',
+		'CompassP2',
+		'Key',
+		'KeyP2',
+		'Map',
+		'MapP2',
+	];
+
 	/**
 	 * Create a new Desert Palace Region and initalize it's locations
 	 *
@@ -58,37 +69,6 @@ class DesertPalace extends Region {
 		$this->locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfWisdom'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyP2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyP2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapP2')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassP2')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

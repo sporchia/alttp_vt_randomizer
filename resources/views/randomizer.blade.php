@@ -188,6 +188,7 @@
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
 			<div>Difficulty: <span class="difficulty"></span></div>
+			<div>Variation: <span class="variation"></span></div>
 			<div>Mode: <span class="mode"></span></div>
 			<div>Goal: <span class="goal"></span></div>
 			<div>Seed: <span class="seed"></span></div>
@@ -817,6 +818,7 @@ function seedApplied(data) {
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .goal').html(data.patch.spoiler.meta.goal);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
+		$('.info .variation').html(data.patch.spoiler.meta.variation);
 		$('.info .difficulty').html(data.patch.difficulty);
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
@@ -826,6 +828,7 @@ function seedApplied(data) {
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.difficulty = data.patch.difficulty;
+		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
@@ -979,18 +982,33 @@ $(function() {
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic
+			+ '_' + rom.difficulty
+			+ '-' + rom.mode
+			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+			+ '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic
+			+ '_' + rom.difficulty
+			+ '-' + rom.mode
+			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+			+ '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
+				return rom.save('ALttP - VT_' + rom.logic
+					+ '_' + rom.difficulty
+					+ '-' + rom.mode
+					+ '-' + rom.goal
+					+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+					+ '_' + rom.seed + '.sfc');
 			});
 	});
 
@@ -1250,8 +1268,14 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.difficulty + '-' + data.patch.spoiler.meta.mode + '-' + data.patch.spoiler.meta.goal + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.difficulty + '-' + data.patch.spoiler.meta.mode + '-' + data.patch.spoiler.meta.goal + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				var fname = 'ALttP - VT_' + data.patch.logic
+					+ '_' + data.patch.difficulty
+					+ '-' + data.patch.spoiler.meta.mode
+					+ '-' + data.patch.spoiler.meta.goal
+					+ (data.patch.spoiler.meta.variation == 'none' ? '' : '_' + data.patch.spoiler.meta.variation)
+					+ '_' + data.patch.seed;
+				zip.file(fname + '.sfc', buffer);
+				zip.file('spoilers/' + fname + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);

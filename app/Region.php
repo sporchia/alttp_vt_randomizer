@@ -11,6 +11,7 @@ class Region {
 	protected $name = 'Unknown';
 	protected $prize_location;
 	protected $world;
+	protected $region_items = [];
 
 	/**
 	 * Create a new Region.
@@ -21,6 +22,11 @@ class Region {
 	 */
 	public function __construct(World $world) {
 		$this->world = $world;
+
+		// hydrate region items.
+		foreach ($this->region_items as $key => $item) {
+			$this->region_items[$key] = Item::get($item);
+		}
 	}
 
 	/**
@@ -182,16 +188,11 @@ class Region {
 	 * @return bool
 	 */
 	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && $item != Item::get('Key')) {
-			return false;
-		}
-		if ($item instanceof Item\BigKey && $item != Item::get('BigKey')) {
-			return false;
-		}
-		if ($item instanceof Item\Map && $item != Item::get('Map')) {
-			return false;
-		}
-		if ($item instanceof Item\Compass && $item != Item::get('Compass')) {
+		if (($item instanceof Item\Key
+			|| $item instanceof Item\BigKey
+			|| ($this->world->config('region.mapsInDungeons', true) && $item instanceof Item\Map)
+			|| ($this->world->config('region.compassesInDungeons', true) && $item instanceof Item\Compass))
+			&& !in_array($item, $this->region_items)) {
 			return false;
 		}
 

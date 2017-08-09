@@ -17,6 +17,17 @@ class TowerOfHera extends Region {
 		0x10B8C,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyP3',
+		'Compass',
+		'CompassP3',
+		'Key',
+		'KeyP3',
+		'Map',
+		'MapP3',
+	];
+
 	/**
 	 * Create a new Tower of Hera Region and initalize it's locations
 	 *
@@ -57,37 +68,6 @@ class TowerOfHera extends Region {
 		$this->locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfPower'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyP3')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyP3')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapP3')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassP3')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

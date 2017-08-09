@@ -12,6 +12,17 @@ use ALttP\World;
 class HyruleCastleTower extends Region {
 	protected $name = 'Castle Tower';
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyH1',
+		'Compass',
+		'CompassH1',
+		'Key',
+		'KeyH1',
+		'Map',
+		'MapH1',
+	];
+
 	/**
 	 * Create a new Hyrule Castle Tower Region and initalize it's locations
 	 *

@@ -14,6 +14,7 @@ class EntranceRandomizer extends Randomizer {
 	const VERSION = '0.4.7';
 	private $spoiler;
 	private $patch;
+	protected $shuffle;
 
 	/**
 	 * Create a new EntranceRandomizer
@@ -22,15 +23,30 @@ class EntranceRandomizer extends Randomizer {
 	 * @param string $logic Ruleset to use when deciding if Locations can be reached
 	 * @param string $goal Goal of the game
 	 * @param string $variation modifications to difficulty
+	 * @param string $variation how the entrances are shuffled
 	 *
 	 * @return void
 	 */
-	public function __construct($difficulty = 'normal', $logic = 'noglitches', $goal = 'ganon', $variation = 'none') {
+	public function __construct($difficulty = 'normal', $logic = 'noglitches', $goal = 'ganon', $variation = 'none', $shuffle = 'none') {
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
+		$this->shuffle = $shuffle;
 		$this->logic = $logic;
 		$this->goal = $goal;
 		$this->seed = new Seed;
+
+		switch ($this->variation) {
+			case 'timed-race':
+				$this->difficulty = 'timed';
+				break;
+			case 'timed-ohko':
+				$this->difficulty = 'timed-ohko';
+				break;
+			case 'triforce-hunt':
+				$this->difficulty = 'normal';
+				$this->goal = 'triforcehunt';
+				break;
+		}
 	}
 
 	public function makeSeed(int $rng_seed = null) {
@@ -44,7 +60,7 @@ class EntranceRandomizer extends Randomizer {
 			. ' --mode ' . config('game-mode')
 			. ' --goal ' . $this->goal
 			. ' --difficulty ' . $this->difficulty
-			. ' --shuffle ' .  $this->variation
+			. ' --shuffle ' .  $this->shuffle
 			. ' --seed ' . $rng_seed
 			. ' --jsonout --loglevel error');
 

@@ -66,6 +66,7 @@
 						<option value="ganon">Defeat Ganon</option>
 						<option value="dungeons">All Dungeons</option>
 						<option value="pedestal">Master Sword Pedestal</option>
+						<option value="triforce-hunt">Triforce Pieces</option>
 					</select>
 				</div>
 			</div>
@@ -74,8 +75,6 @@
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
 						<option value="normal">Normal</option>
-						<option value="timed-race">Timed Race</option>
-						<option value="timed-ohko">Timed OHKO</option>
 					</select>
 				</div>
 			</div>
@@ -90,6 +89,19 @@
 					</span>
 				</div>
 			</div>
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Variation</span>
+					<select id="variation" class="form-control selectpicker">
+						<option value="none">None</option>
+						<option value="timed-race">Timed Race</option>
+						<option value="timed-ohko">Timed OHKO</option>
+						<option value="triforce-hunt">Triforce Piece Hunt</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Shuffle</span>
@@ -179,6 +191,7 @@
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
 			<div>Difficulty: <span class="difficulty"></span></div>
+			<div>Variation: <span class="variation"></span></div>
 			<div>Mode: <span class="mode"></span></div>
 			<div>Goal: <span class="goal"></span></div>
 			<div>Seed: <span class="seed"></span></div>
@@ -209,6 +222,7 @@
 <form id="config" style="display:none">
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
+	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="shuffle" value="full" />
@@ -481,6 +495,7 @@ function seedApplied(data) {
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .goal').html(data.patch.spoiler.meta.goal);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
+		$('.info .variation').html(data.patch.spoiler.meta.variation);
 		$('.info .difficulty').html(data.patch.difficulty);
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
@@ -489,6 +504,7 @@ function seedApplied(data) {
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
+		rom.variation = data.patch.spoiler.meta.variation;
 		rom.difficulty = data.patch.difficulty;
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
@@ -606,6 +622,26 @@ $(function() {
 		$('#difficulty').trigger('change');
 	});
 
+	$('#variation').on('change', function() {
+		$('.info').hide();
+		var variation = $(this).val();
+		var goal = $('#goal').val();
+		$('input[name=variation]').val(variation);
+		localforage.setItem('rom.er.variation', variation);
+		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
+			$('#goal').val('triforce-hunt');
+			$('#goal').trigger('change');
+		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
+			$('#goal').val('ganon');
+			$('#goal').trigger('change');
+		}
+	});
+	localforage.getItem('rom.er.variation').then(function(value) {
+		if (!value) return;
+		$('#variation').val(value);
+		$('#variation').trigger('change');
+	});
+
 	$('#shuffle').on('change', function() {
 		$('.info').hide();
 		$('input[name=shuffle]').val($(this).val());
@@ -721,8 +757,17 @@ $(function() {
 
 	$('#goal').on('change', function() {
 		$('.info').hide();
-		localforage.setItem('rom.er.goal', $(this).val());
-		$('input[name=goal]').val($(this).val());
+		var goal = $(this).val();
+		var variation = $('#variation').val();
+		localforage.setItem('rom.er.goal', goal);
+		$('input[name=goal]').val(goal);
+		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
+			$('#variation').val('triforce-hunt');
+			$('#variation').trigger('change');
+		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
+			$('#variation').val('none');
+			$('#variation').trigger('change');
+		}
 	});
 	localforage.getItem('rom.er.goal').then(function(value) {
 		if (value === null) return;

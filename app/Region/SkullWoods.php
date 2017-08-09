@@ -22,6 +22,17 @@ class SkullWoods extends Region {
 		0x1560B,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyD3',
+		'Compass',
+		'CompassD3',
+		'Key',
+		'KeyD3',
+		'Map',
+		'MapD3',
+	];
+
 	/**
 	 * Create a new Skull Woods Region and initalize it's locations
 	 *
@@ -69,37 +80,6 @@ class SkullWoods extends Region {
 		$this->locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD3')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD3')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapD3')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD3')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

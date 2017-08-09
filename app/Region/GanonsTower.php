@@ -15,6 +15,17 @@ class GanonsTower extends Region {
 		0x155C9,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyA2',
+		'Compass',
+		'CompassA2',
+		'Key',
+		'KeyA2',
+		'Map',
+		'MapA2',
+	];
+
 	/**
 	 * Create a new Ganons Tower Region and initalize it's locations
 	 *
@@ -95,37 +106,6 @@ class GanonsTower extends Region {
 		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setItem(Item::get('TwentyRupees'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyA2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyA2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapA2')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassA2')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

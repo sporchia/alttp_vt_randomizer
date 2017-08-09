@@ -479,6 +479,7 @@ class Randomizer {
 		$spoiler['playthrough'] = $this->world->getPlayThrough();
 		$spoiler['meta'] = [
 			'difficulty' => $this->difficulty,
+			'variation' => $this->variation,
 			'logic' => $this->getLogic(),
 			'seed' => $this->rng_seed,
 			'goal' => $this->goal,
@@ -540,6 +541,7 @@ class Randomizer {
 		// testing features
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
+		$rom->setWishingWellUpgrade(false);
 		$rom->setLimitProgressiveSword($this->config('item.overflow.count.Sword', 4),
 			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitProgressiveShield($this->config('item.overflow.count.Shield', 3),

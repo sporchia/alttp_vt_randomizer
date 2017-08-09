@@ -15,6 +15,17 @@ class EasternPalace extends Region {
 		0x1559A,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyP1',
+		'Compass',
+		'CompassP1',
+		'Key',
+		'KeyP1',
+		'Map',
+		'MapP1',
+	];
+
 	/**
 	 * Create a new Eastern Palace Region and initalize it's locations
 	 *
@@ -55,37 +66,6 @@ class EasternPalace extends Region {
 		$this->locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyP1')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyP1')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapP1')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassP1')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

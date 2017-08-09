@@ -12,6 +12,17 @@ use ALttP\World;
 class HyruleCastleEscape extends Region {
 	protected $name = 'Hyrule Castle';
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyH2',
+		'Compass',
+		'CompassH2',
+		'Key',
+		'KeyH2',
+		'Map',
+		'MapH2',
+	];
+
 	/**
 	 * Create a new Hyrule Castle Escape Region and initalize it's locations
 	 *
@@ -50,37 +61,6 @@ class HyruleCastleEscape extends Region {
 		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setItem(Item::get('Lamp'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyH2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyH2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapH2')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassH2')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

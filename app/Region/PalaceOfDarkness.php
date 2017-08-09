@@ -15,6 +15,17 @@ class PalaceOfDarkness extends Region {
 		0x155B8,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyD1',
+		'Compass',
+		'CompassD1',
+		'Key',
+		'KeyD1',
+		'Map',
+		'MapD1',
+	];
+
 	/**
 	 * Create a new Palace of Darkness Region and initalize it's locations
 	 *
@@ -71,37 +82,6 @@ class PalaceOfDarkness extends Region {
 		$this->locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD1')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD1')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapD1')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD1')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

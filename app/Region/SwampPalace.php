@@ -15,6 +15,17 @@ class SwampPalace extends Region {
 		0x155B7,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyD2',
+		'Compass',
+		'CompassD2',
+		'Key',
+		'KeyD2',
+		'Map',
+		'MapD2',
+	];
+
 	/**
 	 * Create a new Swamp Palace Region and initalize it's locations
 	 *
@@ -63,37 +74,6 @@ class SwampPalace extends Region {
 		$this->locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD2')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapD2')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD2')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

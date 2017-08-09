@@ -15,6 +15,17 @@ class ThievesTown extends Region {
 		0x155C6,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyD4',
+		'Compass',
+		'CompassD4',
+		'Key',
+		'KeyD4',
+		'Map',
+		'MapD4',
+	];
+
 	/**
 	 * Create a new Thieves Town Region and initalize it's locations
 	 *
@@ -59,37 +70,6 @@ class ThievesTown extends Region {
 		$this->locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if ($item instanceof Item\Key && !in_array($item, [Item::get('Key'), Item::get('KeyD4')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\BigKey && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD4')])) {
-			return false;
-		}
-
-		if ($item instanceof Item\Map
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapD4')]))) {
-			return false;
-		}
-
-		if ($item instanceof Item\Compass
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD4')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

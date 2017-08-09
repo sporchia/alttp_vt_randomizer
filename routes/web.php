@@ -70,6 +70,7 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 
 Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
+	$variation = $request->input('variation', 'none') ?: 'none';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -85,7 +86,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	}
 
 	try {
-		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $request->input('goal', 'ganon'), $request->input('shuffle', 'full'));
+		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $request->input('goal', 'ganon'), $variation, $request->input('shuffle', 'full'));
 		$rand->makeSeed($seed_id);
 		$rand->writeToRom($rom);
 		$seed = $rand->getSeed();

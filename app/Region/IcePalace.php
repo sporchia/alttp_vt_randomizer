@@ -15,6 +15,17 @@ class IcePalace extends Region {
 		0x155BF,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyD5',
+		'Compass',
+		'CompassD5',
+		'Key',
+		'KeyD5',
+		'Map',
+		'MapD5',
+	];
+
 	/**
 	 * Create a new Ice Palace Region and initalize it's locations
 	 *
@@ -59,37 +70,6 @@ class IcePalace extends Region {
 		$this->locations["Ice Palace Crystal"]->setItem(Item::get('Crystal5'));
 
 		return $this;
-	}
-
-	/**
-	 * Determine if the item being placed in this region can be placed here.
-	 *
-	 * @param Item $item item to test
-	 *
-	 * @return bool
-	 */
-	public function canFill(Item $item) : bool {
-		if (is_a($item, Item\Key::class) && !in_array($item, [Item::get('Key'), Item::get('KeyD5')])) {
-			return false;
-		}
-
-		if (is_a($item, Item\BigKey::class) && !in_array($item, [Item::get('BigKey'), Item::get('BigKeyD5')])) {
-			return false;
-		}
-
-		if (is_a($item, Item\Map::class)
-			&& (!$this->world->config('region.mapsInDungeons', true)
-				|| !in_array($item, [Item::get('Map'), Item::get('MapD5')]))) {
-			return false;
-		}
-
-		if (is_a($item, Item\Compass::class)
-			&& (!$this->world->config('region.compassesInDungeons', true)
-				|| !in_array($item, [Item::get('Compass'), Item::get('CompassD5')]))) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
