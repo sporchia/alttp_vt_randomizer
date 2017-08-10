@@ -248,7 +248,6 @@ class World {
 	 * @return array
 	 */
 	public function getPlayThrough($walkthrough = true) {
-		$start = microtime(true);
 		$shadow_world = $this->copy();
 		$junk_items = [
 			Item::get('BlueShield'),
@@ -290,7 +289,6 @@ class World {
 		$required_locations_sphere = [];
 		$reverse_location_sphere = array_reverse($location_sphere, true);
 		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
-			$start2 = microtime(true);
 			Log::debug("playthrough SPHERE: $sphere_level");
 			foreach ($sphere as $location) {
 				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(),
@@ -367,9 +365,7 @@ class World {
 					}
 				}
 			}
-			\Log::debug(sprintf("S1: %.2f", 1000 * (microtime(true) - $start2)));
 		}
-		\Log::debug(sprintf("SH: %.2f", 1000 * (microtime(true) - $start)));
 
 		foreach ($required_locations as $higher_location) {
 			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(),

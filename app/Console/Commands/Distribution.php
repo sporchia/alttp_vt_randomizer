@@ -31,7 +31,6 @@ class Distribution extends Command {
 	 * @return mixed
 	 */
 	public function handle() {
-		$start = microtime(true);
 		$locations = [];
 		switch ($this->argument('type')) {
 			case 'item':
@@ -84,7 +83,6 @@ class Distribution extends Command {
 			ksortr($locations);
 			$this->info(json_encode($locations, JSON_PRETTY_PRINT));
 		}
-		\Log::debug(sprintf("A1: %.2f", 1000 * (microtime(true) - $start)));
 	}
 
 	public static function _assureColumnsExist($array) : array {

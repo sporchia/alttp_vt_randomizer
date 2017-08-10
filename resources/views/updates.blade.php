@@ -4,6 +4,8 @@
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
+		<li>Added some descriptions to the ER shuffle modes from docs</li>
+		<li>Waterfall fairy no longer upgrades shield/boomerang</li>
 		<li>Added Triforce Hunt goal/variation</li>
 		<li>Bug Net added back to all difficulties (hard/expert cannot catch fairies)</li>
 		<li>Cape and Byrna use normal magic in all difficulties in Spike cave and spike room in Misery Mire</li>

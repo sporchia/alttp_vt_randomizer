@@ -6,6 +6,25 @@
 <p>Difficulty will affect what items one has avilable to them to complete the game as well as modify some of the
 	usages of items.</p>
 
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Easy</h3>
+		</div>
+		<div class="panel-body">
+			<p>Easy is exactly like Normal but makes it a much easier time travelling through hyrule. While you
+				will never find more than 4 swords, there are twice as many chances to get an upgrade.</p>
+			<p>Items that have 2x chance of finding:</p>
+			<ul>
+				<li>Swords</li>
+				<li>Armors</li>
+				<li>Shields</li>
+				<li>Bottles</li>
+				<li>½ Magic</li>
+			</ul>
+			<p>finding the second ½ Magic tucked away in easy will get you ¼ Magic</p>
+		</div>
+	</div>
+
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h3 class="panel-title">Normal</h3>

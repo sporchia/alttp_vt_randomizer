@@ -34,6 +34,7 @@
 							<li{!! (request()->path() == 'game_logics') ? ' class="active"' : '' !!}><a href="/game_logics">Logics</a></li>
 							<li{!! (request()->path() == 'game_modes') ? ' class="active"' : '' !!}><a href="/game_modes">Modes</a></li>
 							<li{!! (request()->path() == 'game_variations') ? ' class="active"' : '' !!}><a href="/game_variations">Variations</a></li>
+							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
 							<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help</a></li>
 						</ul>
 					</li>

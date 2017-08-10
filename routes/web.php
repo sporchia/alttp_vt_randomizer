@@ -34,6 +34,10 @@ Route::get('game_variations', function () {
 	return view('game_variations');
 });
 
+Route::get('game_entrance', function () {
+	return view('game_entrance');
+});
+
 Route::get('info', function () {
 	return redirect('help');
 });
