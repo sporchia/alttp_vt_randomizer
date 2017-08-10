@@ -20,7 +20,7 @@ class HeraBasement extends Location {
 		parent::writeItem($rom, $item);
 
 		// for quick key pick up or fanfare
-		$rom->write(0x4E3BB, pack('C', $this->hasItem(Item::get('Key')) ? 0xE4 : 0xEB));
+		$rom->write(0x4E3BB, pack('C', ($this->hasItem(Item::get('Key')) || $this->hasItem(Item::get('KeyP3'))) ? 0xE4 : 0xEB));
 
 		return $this;
 	}

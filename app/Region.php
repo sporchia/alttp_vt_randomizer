@@ -200,6 +200,17 @@ class Region {
 	}
 
 	/**
+	 * Determine if the item belongs to this region.
+	 *
+	 * @param Item $item item to test
+	 *
+	 * @return bool
+	 */
+	public function isRegionItem(Item $item) : bool {
+		return in_array($item, $this->region_items);
+	}
+
+	/**
 	 * Get all the Locations in this Region
 	 *
 	 * @return Support\LocationCollection
