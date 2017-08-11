@@ -67,23 +67,19 @@ class NorthWest extends Region {
 		});
 
 		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
-			return $items->canLiftDarkRocks() && $items->has('MoonPearl');
+			return $items->canLiftDarkRocks();
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $items->canLiftDarkRocks() && $items->has("MoonPearl");
+			return $items->canLiftDarkRocks();
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
-				&& ($items->has('Hookshot')
-					&& ($items->has('Hammer')
-						|| $items->canLiftRocks()
-						|| $items->has('Flippers')))
-				|| ($items->has('Hammer')
-					&& $items->canLiftRocks())
-				|| $items->canLiftDarkRocks())
-			&& $items->has('MoonPearl');
+			return $items->has('MoonPearl')
+				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+					&& ($items->has('Hookshot') && ($items->has('Flippers') || $items->canLiftRocks() || $items->has('Hammer'))))
+					|| ($items->has('Hammer') && $items->canLiftRocks())
+					|| $items->canLiftDarkRocks());
 		};
 
 		return $this;

@@ -90,40 +90,48 @@ class MiseryMire extends Region {
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big hub room"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyD6');
+			return $items->has('KeyD6') || $items->has('BigKeyD6');
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - map room"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyD6');
+			return $items->has('KeyD6') || $items->has('BigKeyD6');
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - big key"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches() && $items->has('KeyD6', 2);
+			return $items->canLightTorches()
+				&& (($locations["[dungeon-D6-B1] Misery Mire - compass"]->hasItem(Item::get('BigKeyD6')) && $items->has('KeyD6', 2))
+				|| $items->has('KeyD6', 3));
 		});
 
 		$this->locations["[dungeon-D6-B1] Misery Mire - compass"]->setRequirements(function($locations, $items) {
-			return $items->canLightTorches() && $items->has('KeyD6', 2);
-		});
-
-		$this->locations["Heart Container - Vitreous"]->setRequirements(function($locations, $items) {
-			return $items->has('CaneOfSomaria') && $items->has('Lamp')
-				&& $items->has('BigKeyD6') && $items->has('KeyD6', 2);
-		})->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
-
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('BigKeyD6');
-			}
-			return !in_array($item, [Item::get('KeyD6'), Item::get('BigKeyD6')]);
+			return $items->canLightTorches()
+				&& (($locations["[dungeon-D6-B1] Misery Mire - big key"]->hasItem(Item::get('BigKeyD6')) && $items->has('KeyD6', 2))
+				|| $items->has('KeyD6', 3));
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('CaneOfSomaria') && $items->has('Lamp');
+			return $this->canEnter($locations, $items)
+				&& $items->has('CaneOfSomaria') && $items->has('Lamp')
+				&& $items->has('BigKeyD6') && (
+					$items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
+				);
 		};
+
+		$this->locations["Heart Container - Vitreous"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+					if (!$this->world->config('region.bossNormalLocation', true)
+						&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+							|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+						return false;
+					}
+
+				if ($this->world->config('region.bossHaveKey', true)) {
+					return $item != Item::get('BigKeyD6');
+				}
+				return !in_array($item, [Item::get('KeyD6'), Item::get('BigKeyD6')]);
+			});
+
+
 
 		$this->can_enter = function($locations, $items) {
 			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))

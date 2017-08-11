@@ -48,6 +48,7 @@ class West extends Region {
 		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
 				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
+				&& $items->canExtendMagic()
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 

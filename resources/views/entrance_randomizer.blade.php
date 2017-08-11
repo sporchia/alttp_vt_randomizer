@@ -106,9 +106,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Shuffle</span>
 					<select id="shuffle" class="form-control selectpicker">
-						<option value="full">Full</option>
 						<option value="simple">Simple</option>
 						<option value="restricted">Restricted</option>
+						<option value="full">Full</option>
 						<option value="madness">Madness</option>
 						<option value="insanity">Insanity</option>
 					</select>

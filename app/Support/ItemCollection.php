@@ -353,6 +353,17 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Requirements for blocking lasers
+	 *
+	 * @return bool
+	 */
+	public function canExtendMagic() {
+		return $this->has('HalfMagic')
+			|| $this->has('QuarterMagic')
+			|| $this->hasABottle();
+	}
+
+	/**
 	 * Requirements for having a sword
 	 *
 	 * @return bool

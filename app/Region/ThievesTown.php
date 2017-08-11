@@ -99,7 +99,7 @@ class ThievesTown extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
-				&& $items->has('BigKeyD4')
+				&& $items->has('KeyD4') && $items->has('BigKeyD4')
 				&& ($items->hasSword() || $items->has('Hammer')
 				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna'));
 		};

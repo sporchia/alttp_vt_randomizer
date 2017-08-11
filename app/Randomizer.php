@@ -1082,6 +1082,18 @@ class Randomizer {
 			array_push($advancement_items, Item::get('CaneOfByrna'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
+			array_push($advancement_items, Item::get('HalfMagic'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.QuarterMagicUpgrade', 0); $i++) {
+			array_push($advancement_items, Item::get('QuarterMagic'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 0); $i++) {
+			array_push($advancement_items, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
+		}
+
 		return $advancement_items;
 	}
 
@@ -1119,18 +1131,6 @@ class Randomizer {
 		}
 		for ($i = 0; $i < $this->config('item.count.GreenClock', 0); $i++) {
 			array_push($items_to_find, Item::get('GreenClock'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
-			array_push($items_to_find, Item::get('HalfMagic'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.QuarterMagicUpgrade', 0); $i++) {
-			array_push($items_to_find, Item::get('QuarterMagic'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 0); $i++) {
-			array_push($items_to_find, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 		}
 
 		return $items_to_find;

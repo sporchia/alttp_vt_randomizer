@@ -64,12 +64,8 @@ class East extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer')
-				&& $this->world->getRegion('Turtle Rock')->canEnter($locations, $items)
-				&& $items->has('MagicMirror')
-				&& (($locations["[dungeon-D7-1F] Turtle Rock - compass room"]->hasItem(Item::get('Key'))
-				&& $locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->hasItem(Item::get('Key')))
-					|| $items->has('FireRod'));
+			return $items->has('MagicMirror') && $items->has('KeyD7', 2)
+				&& $this->world->getRegion('Turtle Rock')->canEnter($locations, $items);
 		});
 
 		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
