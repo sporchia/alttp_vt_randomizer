@@ -167,19 +167,20 @@ class Location {
 			throw new \Exception('No Item set to be written');
 		}
 
-		// @TODO: temp hotfix, fix this when it makes sense
-		if ($this->item == Item::get('KeyH2')) {
-			$this->setItem(Item::get('Key'));
+		$item = $this->item;
+
+		if ($item instanceof Item\Key && $this->region->isRegionItem($item)) {
+			$item = Item::get('Key');
 		}
 
-		$item_bytes = $this->item->getBytes();
+		$item_bytes = $item->getBytes();
 
 		foreach ($this->address as $key => $address) {
 			if (!isset($item_bytes[$key]) || !isset($address)) continue;
 			$rom->write($address, pack('C', $item_bytes[$key]));
 		}
 
-		foreach ($this->item->getAddress() as $key => $address) {
+		foreach ($item->getAddress() as $key => $address) {
 			if (!isset($this->bytes[$key]) || !isset($address)) continue;
 			$rom->write($address, pack('C', $this->bytes[$key]));
 		}

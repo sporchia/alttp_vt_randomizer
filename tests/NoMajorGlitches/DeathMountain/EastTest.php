@@ -30,7 +30,7 @@ class EastTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -50,45 +50,13 @@ class EastTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get($medallion));
 
 		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
-	}
-
-	public function testMimicCaveRequiresFireRodIfKeysNotInTurtleRockCompassAndChainChompRooms() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-
-		$this->assertFalse($this->world->getLocation("[cave-013] Mimic cave (from Turtle Rock)")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testMimicCaveRequiresFireRodIfKeyNotInTurtleRockChainChompRoom() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[cave-013] Mimic cave (from Turtle Rock)")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testMimicCaveRequiresFireRodIfKeyNotInTurtleRockCompassRoom() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[cave-013] Mimic cave (from Turtle Rock)")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testMimicCaveDoesNotRequireFireRodIfKeysInTurtleRockCompassAndChainChompRooms() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[cave-013] Mimic cave (from Turtle Rock)")
-			->canAccess($this->allItemsExcept(['FireRod'])));
 	}
 
 	public function accessPoolWithMedallion() {

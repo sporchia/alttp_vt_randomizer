@@ -251,15 +251,15 @@ class World {
 		$shadow_world = $this->copy();
 		$junk_items = [
 			Item::get('BlueShield'),
-			Item::get('ProgressiveShield'),
 			Item::get('ProgressiveArmor'),
 			Item::get('BlueMail'),
 			Item::get('Boomerang'),
 			Item::get('MirrorShield'),
 			Item::get('PieceOfHeart'),
+			Item::get('HeartContainer'),
+			Item::get('BossHeartContainer'),
 			Item::get('RedBoomerang'),
 			Item::get('RedShield'),
-			Item::get('CaneOfByrna'),
 			Item::get('RedMail'),
 			Item::get('BombUpgrade5'),
 			Item::get('BombUpgrade10'),
@@ -298,7 +298,7 @@ class World {
 				$pulled_item = $location->getItem();
 				if ($pulled_item === null ||
 					($pulled_item instanceof Item\Key
-					&& !in_array($pulled_item, [Item::get('KeyP2'), Item::get('KeyP3'), Item::get('KeyD6'), Item::get('KeyA2')]))) {
+					&& !in_array($pulled_item, [Item::get('KeyP2'), Item::get('KeyP3'), Item::get('KeyD5'), Item::get('KeyD6'), Item::get('KeyD7'), Item::get('KeyA2')]))) {
 					continue;
 				}
 				$location->setItem();
