@@ -8,15 +8,6 @@
 
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title">Full</h3>
-		</div>
-		<div class="panel-body">
-			<p>Mix cave and dungeon entrances freely.</p>
-		</div>
-	</div>
-
-	<div class="panel panel-info">
-		<div class="panel-heading">
 			<h3 class="panel-title">Simple</h3>
 		</div>
 		<div class="panel-body">
@@ -31,6 +22,15 @@
 		</div>
 		<div class="panel-body">
 			<p>Use Dungeons shuffling from Simple but freely connect remaining entrances.</p>
+		</div>
+	</div>
+
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h3 class="panel-title">Full</h3>
+		</div>
+		<div class="panel-body">
+			<p>Mix cave and dungeon entrances freely.</p>
 		</div>
 	</div>
 
