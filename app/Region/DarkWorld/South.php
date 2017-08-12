@@ -89,8 +89,6 @@ class South extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
-
 		// I don't know why, but I guess everything in the region requires Moon Pearl, except for entry
 		foreach ($this->locations as $location) {
 			$location->setRequirements(function($locations, $items) {
@@ -103,8 +101,7 @@ class South extends Region {
 					&& ($items->canLiftDarkRocks()
 						|| $items->canSpinSpeed()
 						|| ($items->has('Hammer') && $items->canLiftRocks())
-						|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')
-							|| $items->has('PegasusBoots')
+						|| ($items->has('DefeatAgahnim') && ($items->has('Hammer') || $items->has('PegasusBoots')
 							|| ($items->has('Hookshot') && ($items->canLiftRocks() || $items->has('Flippers')))))))
 				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};

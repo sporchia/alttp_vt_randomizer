@@ -30,7 +30,7 @@ class NorthEastTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -40,7 +40,6 @@ class NorthEastTest extends TestCase {
 	public function accessPool() {
 		return [
 			["Catfish", false, []],
-			["Catfish", false, [], ['Gloves']],
 			["Catfish", false, [], ['MoonPearl']],
 			["Catfish", true, ['MoonPearl', 'DefeatAgahnim', 'ProgressiveGlove']],
 			["Catfish", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove']],
@@ -56,9 +55,6 @@ class NorthEastTest extends TestCase {
 			["Piece of Heart (Pyramid)", true, ['MoonPearl', 'TitansMitt', 'Flippers']],
 
 			["Pyramid - Sword", false, []],
-			["Pyramid - Sword", false, [], ['MoonPearl']],
-			["Pyramid - Sword", false, [], ['Crystal5']],
-			["Pyramid - Sword", false, [], ['Crystal6']],
 			["Pyramid - Sword", false, [], ['AnySword']],
 			["Pyramid - Sword", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'L1Sword', 'DefeatAgahnim', 'Hammer']],
 			["Pyramid - Sword", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'L1Sword', 'TitansMitt', 'Hammer']],
@@ -80,9 +76,6 @@ class NorthEastTest extends TestCase {
 			["Pyramid - Sword", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'ProgressiveSword', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'MagicMirror']],
 
 			["Pyramid - Bow", false, []],
-			["Pyramid - Bow", false, [], ['MoonPearl']],
-			["Pyramid - Bow", false, [], ['Crystal5']],
-			["Pyramid - Bow", false, [], ['Crystal6']],
 			["Pyramid - Bow", false, [], ['AnyBow']],
 			["Pyramid - Bow", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'Bow', 'DefeatAgahnim', 'Hammer']],
 			["Pyramid - Bow", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'Bow', 'TitansMitt', 'Hammer']],
@@ -95,9 +88,6 @@ class NorthEastTest extends TestCase {
 			["Pyramid - Bow", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'Bow', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'MagicMirror']],
 
 			["Pyramid Fairy - Left", false, []],
-			["Pyramid Fairy - Left", false, [], ['MoonPearl']],
-			["Pyramid Fairy - Left", false, [], ['Crystal5']],
-			["Pyramid Fairy - Left", false, [], ['Crystal6']],
 			["Pyramid Fairy - Left", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'DefeatAgahnim', 'Hammer']],
 			["Pyramid Fairy - Left", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'TitansMitt', 'Hammer']],
 			["Pyramid Fairy - Left", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'ProgressiveGlove', 'Hammer']],
@@ -109,9 +99,6 @@ class NorthEastTest extends TestCase {
 			["Pyramid Fairy - Left", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'MagicMirror']],
 
 			["Pyramid Fairy - Right", false, []],
-			["Pyramid Fairy - Right", false, [], ['MoonPearl']],
-			["Pyramid Fairy - Right", false, [], ['Crystal5']],
-			["Pyramid Fairy - Right", false, [], ['Crystal6']],
 			["Pyramid Fairy - Right", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'DefeatAgahnim', 'Hammer']],
 			["Pyramid Fairy - Right", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'TitansMitt', 'Hammer']],
 			["Pyramid Fairy - Right", true, ['MoonPearl', 'Crystal5', 'Crystal6', 'ProgressiveGlove', 'Hammer']],

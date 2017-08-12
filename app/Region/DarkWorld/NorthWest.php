@@ -57,7 +57,6 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
 			return $items->canLiftDarkRocks() && $items->has('Hammer');
 		});
@@ -137,23 +136,15 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
-
 		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});
 
-		$this->locations["[cave-062] C-shaped house"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') || $items->has('MagicMirror');
-		});
-
-		$this->locations["Piece of Heart (Treasure Chest Game)"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') || $items->has('MagicMirror');
-		});
-
 		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer')
-				&& ($items->has('MoonPearl') && $items->canLiftRocks());
+			return $items->has('Hammer') && $items->has('MoonPearl')
+				&& ($items->canLiftDarkRocks()
+					|| ($items->has('PegasusBoots')
+						&& $this->world->getRegion('North East Dark World')->canEnter($locations, $items)));
 		});
 
 		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
@@ -171,8 +162,9 @@ class NorthWest extends Region {
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
 			return $locations["Blacksmiths"]->canAccess($items)
 				&& ($items->has("MoonPearl")
-					&& (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
-						|| ($items->has('PegasusBoots') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
+					&& ($items->canLiftDarkRocks()
+						|| ($items->has('PegasusBoots')
+							&& $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
 		});
 
 		$this->can_enter = function($locations, $items) {

@@ -173,6 +173,10 @@ class Location {
 			$item = Item::get('Key');
 		}
 
+		if ($item instanceof Item\BigKey && $this->region->isRegionItem($item)) {
+			$item = Item::get('BigKey');
+		}
+
 		$item_bytes = $item->getBytes();
 
 		foreach ($this->address as $key => $address) {

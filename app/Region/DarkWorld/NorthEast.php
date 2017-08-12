@@ -173,12 +173,47 @@ class NorthEast extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
-		// 2x check this one
 		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftRocks();
+			return $items->has('MoonPearl')
+				&& ($items->canLiftRocks() || $items->has('PegasusBoots'));
 		});
 
-		// Do any of the things in this region actually use the can_enter function? I wonder what we are thinking here
+		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
+			return $items->hasSword()
+				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
+		});
+
+		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows()
+				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
+		});
+
+
+		if ($this->world->config('region.swordsInPool', true)) {
+			$this->locations["Pyramid Fairy - Left"]->setRequirements(function($locations, $items) {
+				return ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))));
+			});
+
+			$this->locations["Pyramid Fairy - Right"]->setRequirements(function($locations, $items) {
+				return ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))));
+			});
+		}
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('DefeatAgahnim')

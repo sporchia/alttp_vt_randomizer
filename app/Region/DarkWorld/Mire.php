@@ -94,7 +94,7 @@ class Mire extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->canLiftDarkRocks() && ($items->canFly() || $items->has('PegasusBoots')))
-				|| (($items->has('MagicMirror') || ($items->has('MoonPearl') && $items->has('PegasusBoots')))
+				|| ($items->has('MoonPearl') && $items->has('PegasusBoots')
 					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
 		};
 

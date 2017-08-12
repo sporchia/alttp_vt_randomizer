@@ -103,11 +103,8 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
-
 		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer')
-				&& $items->has('MagicMirror')
+			return $items->has('Hammer') && $items->has('MagicMirror')
 				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		});
 

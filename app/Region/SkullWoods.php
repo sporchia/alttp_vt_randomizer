@@ -100,11 +100,11 @@ class SkullWoods extends Region {
 		});
 
 		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod');
+			return $items->has('MoonPearl') && $items->has('FireRod');
 		});
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
+			return $items->has('MoonPearl') && $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -158,7 +158,6 @@ class SkullWoods extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
-		// P2: CanAccessNWDW && Moon Pearl && Fire Rod
 		$this->can_enter = function($locations, $items) {
 			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};

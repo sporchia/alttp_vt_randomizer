@@ -83,9 +83,9 @@ class IcePalace extends Region {
 			return $items->has('Hammer') && $items->canLiftRocks()
 				&& ($items->has('Hookshot')
 					|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-D5-B2] Ice Palace - map room",
-						"[dungeon-D5-B3] Ice Palace - spike room",
-					]) && $items->has('KeyD5'))
+							"[dungeon-D5-B2] Ice Palace - map room",
+							"[dungeon-D5-B3] Ice Palace - spike room",
+						]) && $items->has('KeyD5'))
 					|| $items->has('KeyD5', 2));
 		});
 
@@ -93,9 +93,9 @@ class IcePalace extends Region {
 			return $items->has('Hammer') && $items->canLiftRocks()
 				&& ($items->has('Hookshot')
 					|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-D5-B3] Ice Palace - spike room",
-						"[dungeon-D5-B1] Ice Palace - Big Key room",
-					]) && $items->has('KeyD5'))
+							"[dungeon-D5-B3] Ice Palace - spike room",
+							"[dungeon-D5-B1] Ice Palace - Big Key room",
+						]) && $items->has('KeyD5'))
 					|| $items->has('KeyD5', 2));
 		});
 

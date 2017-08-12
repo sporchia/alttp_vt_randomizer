@@ -350,15 +350,7 @@ class GanonsTower extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return ($items->has('MoonPearl') && $items->has('PegasusBoots'))
-				|| ($items->has('Crystal1')
-					&& $items->has('Crystal2')
-					&& $items->has('Crystal3')
-					&& $items->has('Crystal4')
-					&& $items->has('Crystal5')
-					&& $items->has('Crystal6')
-					&& $items->has('Crystal7')
-					&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items));
+			return $items->has('PegasusBoots') && $items->has('MoonPearl');
 		};
 
 		return $this;

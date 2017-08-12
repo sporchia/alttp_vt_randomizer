@@ -70,7 +70,6 @@ class NorthWestTest extends TestCase {
 			["Piece of Heart (Dark World blacksmith pegs)", false, []],
 			["Piece of Heart (Dark World blacksmith pegs)", false, [], ['MoonPearl']],
 			["Piece of Heart (Dark World blacksmith pegs)", false, [], ['Hammer']],
-			["Piece of Heart (Dark World blacksmith pegs)", false, [], ['Gloves']],
 			["Piece of Heart (Dark World blacksmith pegs)", true, ['MoonPearl', 'Hammer', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["Piece of Heart (Dark World blacksmith pegs)", true, ['MoonPearl', 'Hammer', 'TitansMitt']],
 

@@ -56,10 +56,8 @@ class West extends Region {
 		});
 
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora')
-				&& $items->hasUpgradedSword()
-				&& ($items->has('MagicMirror')
-					|| ($items->has('Hammer') && $items->has('Hookshot')));
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
+				&& ($items->has('MagicMirror') || ($items->has('Hammer') && $items->has('Hookshot')));
 		});
 
 		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
@@ -100,6 +98,10 @@ class West extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
+		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
+				&& $this->world->getRegion('Tower of Hera')->canEnter($locations, $items);
+		});
 
 		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')

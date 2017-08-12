@@ -153,7 +153,8 @@ class TurtleRock extends Region {
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp')
-				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria');
+				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
+				&& ($items->has('Hammer') || $items->hasUpgradedSword());
 		};
 
 		$this->locations["Heart Container - Trinexx"]->setRequirements($this->can_complete)
@@ -253,7 +254,8 @@ class TurtleRock extends Region {
 
 		$this->locations["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return $lower($locations, $items)
-				|| ($middle($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'));		});
+				|| ($middle($locations, $items) && $items->has('CaneOfSomaria') && $items->has('BigKeyD7'));
+		});
 
 		$this->locations["Heart Container - Trinexx"]->setRequirements(function($locations, $items) use ($lower, $middle) {
 			return $items->has('BigKeyD7')
@@ -289,6 +291,7 @@ class TurtleRock extends Region {
 
 		$middle = function($locations, $items) {
 			return ($items->has('MagicMirror') || ($items->has('MoonPearl') && $items->canSpinSpeed()))
+				&& ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot'))
 				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		};
 
@@ -301,6 +304,55 @@ class TurtleRock extends Region {
 			&& $items->has('Hammer') && ($items->canLiftDarkRocks() || $items->has('PegasusBoots'))
 			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
 		};
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Chain chomp room"]->setRequirements(function($locations, $items) use ($upper, $middle) {
+			return ($upper($locations, $items) && $items->has('KeyD7'))
+				|| $middle($locations, $items);
+		});
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [left chest]"]->setRequirements(function($locations, $items) use ($upper, $middle) {
+			return $items->has('FireRod') && $items->has('CaneOfSomaria')
+				&& ($upper($locations, $items)
+					|| ($middle($locations, $items) && (($locations->itemInLocations(Item::get('BigKeyD7'), [
+								"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
+								"[dungeon-D7-1F] Turtle Rock - compass room",
+							]) && $items->has('KeyD7', 2))
+						|| $items->has('KeyD7', 4))));
+		});
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - Map room [right chest]"]->setRequirements(function($locations, $items) use ($upper, $middle) {
+			return $items->has('FireRod') && $items->has('CaneOfSomaria')
+				&& ($upper($locations, $items)
+					|| ($middle($locations, $items) && (($locations->itemInLocations(Item::get('BigKeyD7'), [
+								"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
+								"[dungeon-D7-1F] Turtle Rock - compass room",
+							]) && $items->has('KeyD7', 2))
+						|| $items->has('KeyD7', 4))));
+		});
+
+		$this->locations["[dungeon-D7-1F] Turtle Rock - compass room"]->setRequirements(function($locations, $items) use ($upper, $middle) {
+			return $items->has('CaneOfSomaria')
+				&& ($upper($locations, $items)
+					|| ($middle($locations, $items) && (($locations->itemInLocations(Item::get('BigKeyD7'), [
+								"[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
+								"[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
+							]) && $items->has('KeyD7', 2))
+						|| $items->has('KeyD7', 4))));
+		});
+
+		$this->locations["[dungeon-D7-B1] Turtle Rock - big chest"]->setRequirements(function($locations, $items) use ($upper, $middle) {
+			return $items->has('BigKeyD7') && (($upper($locations, $items) && $items->has('KeyD7', 2))
+				|| $middle($locations, $items));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKeyD7');
+		});
+
+		$this->locations["[dungeon-D7-B1] Turtle Rock - Roller switch room"]->setRequirements(function($locations, $items) use ($upper, $middle) {
+			return $items->has('BigKeyD7') && (($upper($locations, $items) && $items->has('KeyD7', 2))
+				|| $middle($locations, $items));
+		})->setFillRules(function($item, $locations, $items) {
+			return $item != Item::get('BigKeyD7');
+		});
 
 		$this->can_enter = function($locations, $items) use ($upper, $middle) {
 			return $upper($locations, $items) || $middle($locations, $items);
