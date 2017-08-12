@@ -297,11 +297,6 @@ class Randomizer {
 			unset($advancement_items[$key]);
 		}
 
-		if (config('game-mode') == 'swordless') {
-			$this->world->getLocation("Ether Tablet")->setItem(Item::get('TwentyRupees2'));
-			$this->world->getLocation("Bombos Tablet")->setItem(Item::get('TwentyRupees2'));
-		}
-
 		// take out all the swords and silver arrows
 		$nice_items = $this->getNiceItems();
 		$nice_items_swords = [];
@@ -1123,6 +1118,31 @@ class Randomizer {
 			array_push($items_to_find, $this->getBottle());
 		}
 
+		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
+			array_push($items_to_find, Item::get('BlueShield'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
+			array_push($items_to_find, Item::get('ProgressiveArmor'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
+			array_push($items_to_find, Item::get('BlueMail'));
+		}
+		for ($i = 0; $i < $this->config('item.count.Boomerang', 1); $i++) {
+			array_push($items_to_find, Item::get('Boomerang'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.RedBoomerang', 1); $i++) {
+			array_push($items_to_find, Item::get('RedBoomerang'));
+		}
+		for ($i = 0; $i < $this->config('item.count.RedShield', 1); $i++) {
+			array_push($items_to_find, Item::get('RedShield'));
+		}
+		for ($i = 0; $i < $this->config('item.count.RedMail', 1); $i++) {
+			array_push($items_to_find, Item::get('RedMail'));
+		}
+
 		for ($i = 0; $i < $this->config('item.count.BlueClock', 0); $i++) {
 			array_push($items_to_find, Item::get('BlueClock'));
 		}
@@ -1144,33 +1164,8 @@ class Randomizer {
 	public function getItemPool() {
 		$items_to_find = [];
 
-		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
-			array_push($items_to_find, Item::get('BlueShield'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
-			array_push($items_to_find, Item::get('ProgressiveArmor'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
-			array_push($items_to_find, Item::get('BlueMail'));
-		}
-		for ($i = 0; $i < $this->config('item.count.Boomerang', 1); $i++) {
-			array_push($items_to_find, Item::get('Boomerang'));
-		}
-
 		for ($i = 0; $i < $this->config('item.count.PieceOfHeart', 24); $i++) {
 			array_push($items_to_find, Item::get('PieceOfHeart'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.RedBoomerang', 1); $i++) {
-			array_push($items_to_find, Item::get('RedBoomerang'));
-		}
-		for ($i = 0; $i < $this->config('item.count.RedShield', 1); $i++) {
-			array_push($items_to_find, Item::get('RedShield'));
-		}
-		for ($i = 0; $i < $this->config('item.count.RedMail', 1); $i++) {
-			array_push($items_to_find, Item::get('RedMail'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.BombUpgrade5', 6); $i++) {
@@ -1231,35 +1226,6 @@ class Randomizer {
 
 		for ($i = 0; $i < $this->config('item.count.Rupoor', 0); $i++) {
 			array_push($items_to_find, Item::get('Rupoor'));
-		}
-
-		if ($this->world->config('region.CompassesMaps', true) && !$this->world->config('region.mapsInDungeons', true)) {
-			array_push($items_to_find, Item::get('MapA2'));
-			array_push($items_to_find, Item::get('MapD1'));
-			array_push($items_to_find, Item::get('MapD2'));
-			array_push($items_to_find, Item::get('MapD3'));
-			array_push($items_to_find, Item::get('MapD4'));
-			array_push($items_to_find, Item::get('MapD5'));
-			array_push($items_to_find, Item::get('MapD6'));
-			array_push($items_to_find, Item::get('MapD7'));
-			array_push($items_to_find, Item::get('MapH1'));
-			array_push($items_to_find, Item::get('MapP1'));
-			array_push($items_to_find, Item::get('MapP2'));
-			array_push($items_to_find, Item::get('MapP3'));
-		}
-
-		if ($this->world->config('region.CompassesMaps', true) && !$this->world->config('region.compassesInDungeons', true)) {
-			array_push($items_to_find, Item::get('CompassA2'));
-			array_push($items_to_find, Item::get('CompassD1'));
-			array_push($items_to_find, Item::get('CompassD2'));
-			array_push($items_to_find, Item::get('CompassD3'));
-			array_push($items_to_find, Item::get('CompassD4'));
-			array_push($items_to_find, Item::get('CompassD5'));
-			array_push($items_to_find, Item::get('CompassD6'));
-			array_push($items_to_find, Item::get('CompassD7'));
-			array_push($items_to_find, Item::get('CompassP1'));
-			array_push($items_to_find, Item::get('CompassP2'));
-			array_push($items_to_find, Item::get('CompassP3'));
 		}
 
 		return $items_to_find;

@@ -21,8 +21,13 @@ class RandomAssumed extends Filler {
 
 		$this->fillItemsInLocations($dungeon, $randomized_order_locations, $required);
 
-		//$randomized_order_locations = $randomized_order_locations->getEmptyLocations()->reverse();
-		$randomized_order_locations = $this->shuffleLocations($randomized_order_locations->getEmptyLocations());
+		// random junk fill
+		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()->randomCollection(mt_rand(0, 15));
+		$extra = $this->shuffleItems($extra);
+		$trash = array_splice($extra, 0, $gt_locations->count());
+		$this->fastFillItemsInLocations($trash, $gt_locations);
+
+		$randomized_order_locations = $randomized_order_locations->getEmptyLocations()->reverse();
 
 		$this->fillItemsInLocations($this->shuffleItems($required), $randomized_order_locations);
 

@@ -345,7 +345,7 @@ class World {
 							$higher_location->setItem();
 							$current_items = $collectable_locations->getItems();
 
-							if (!$higher_location->canAccess($current_items)) {
+							if (!$higher_location->canAccess($current_items, $this->getLocations())) {
 								// put item back
 								$location->setItem($this->locations[$location->getName()]->getItem());
 								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(),
@@ -384,7 +384,7 @@ class World {
 			$longest_item_chain++;
 			$location_round[$longest_item_chain] = [];
 			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items) {
-				return $location->canAccess($my_items);
+				return $location->canAccess($my_items, $this->getLocations());
 			});
 
 			$found_items = $available_locations->getItems();

@@ -183,7 +183,8 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
+			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+					|| (config('game-mode') == 'swordless' && $items->has('Hammer')))
 				&& $items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		});
 
@@ -297,7 +298,8 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
+			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+					|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
 		});
 
 		$this->locations["Haunted Grove item"]->setRequirements(function($locations, $items) {
@@ -347,7 +349,8 @@ class LightWorld extends Region {
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && $items->hasUpgradedSword()
+			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+					|| (config('game-mode') == 'swordless' && $items->has('Hammer')))
 				&& ($items->has('PegasusBoots')
 					|| ($items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
 		});

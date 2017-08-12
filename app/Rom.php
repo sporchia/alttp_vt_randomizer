@@ -180,6 +180,36 @@ class Rom {
 	}
 
 	/**
+	 * Set Cane of Byrna Cave and Misery Mire spike room Byrna usage
+	 *
+	 * @param int $normal normal magic usage
+	 * @param int $half half magic usage
+	 * @param int $quarter quarter magic usage
+	 *
+	 * @return $this
+	 */
+	public function setCaneOfByrnaSpikeCaveUsage(int $normal = 0x04, int $half = 0x02, int $quarter = 0x01) : self {
+		$this->write(0x18016B, pack('C*', $normal, $half, $quarter));
+
+		return $this;
+	}
+
+	/**
+	 * Set Cane of Byrna Cave and Misery Mire spike room Cape usage
+	 *
+	 * @param int $normal normal magic usage
+	 * @param int $half half magic usage
+	 * @param int $quarter quarter magic usage
+	 *
+	 * @return $this
+	 */
+	public function setCapeSpikeCaveUsage(int $normal = 0x04, int $half = 0x08, int $quarter = 0x10) : self {
+		$this->write(0x18016E, pack('C*', $normal, $half, $quarter));
+
+		return $this;
+	}
+
+	/**
 	 * Set mode for HUD clock
 	 *
 	 * @param string $mode off|stopwatch|countdown-stop|countdown-continue
@@ -1324,6 +1354,8 @@ class Rom {
 	 */
 	public function setHardMode(int $level = 0) : self {
 		$this->setBelowGanonChest(false);
+		$this->setCaneOfByrnaSpikeCaveUsage();
+		$this->setCapeSpikeCaveUsage();
 
 		switch ($level) {
 			case 0:
@@ -1481,6 +1513,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable Hammer activates tablets
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setHammerTablet(bool $enable = false) : self {
+		$this->write(0x180044, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Enable/Disable ability to bug net catch Fairy
 	 *
 	 * @param bool $enable switch on or off
@@ -1632,6 +1677,8 @@ class Rom {
 		$this->write(0x180040, pack('C*', $enable ? 0x01 : 0x00)); // Open Curtains
 		$this->write(0x180041, pack('C*', $enable ? 0x01 : 0x00)); // Swordless Medallions
 		$this->write(0x180043, pack('C*', $enable ? 0xFF : 0x00)); // set Link's starting sword 0xFF is taken sword
+
+		$this->setHammerTablet($enable);
 
 		return $this;
 	}
