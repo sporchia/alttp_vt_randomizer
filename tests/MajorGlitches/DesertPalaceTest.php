@@ -38,7 +38,6 @@ class DesertPalaceTest extends TestCase {
 
 	public function entryPool() {
 		return [
-			[true, []],
 			[true, ['BookOfMudora']],
 			[true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			[true, ['Flute', 'MagicMirror', 'TitansMitt']],
@@ -98,7 +97,7 @@ class DesertPalaceTest extends TestCase {
 
 	public function accessPool() {
 		return [
-			["[dungeon-L2-B1] Desert Palace - Map room", true, []],
+			["[dungeon-L2-B1] Desert Palace - Map room", false, []],
 			["[dungeon-L2-B1] Desert Palace - Map room", true, ['BookOfMudora']],
 			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'TitansMitt']],
@@ -129,16 +128,16 @@ class DesertPalaceTest extends TestCase {
 			["Heart Container - Lanmolas", false, []],
 			["Heart Container - Lanmolas", false, [], ['BigKeyP2']],
 			["Heart Container - Lanmolas", false, [], ['Lamp', 'FireRod']],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
 		];
 	}
 }

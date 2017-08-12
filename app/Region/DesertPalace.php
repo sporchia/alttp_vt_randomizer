@@ -135,48 +135,6 @@ class DesertPalace extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for MajorGlitches Mode.
-	 *
-	 * @return $this
-	 */
-	public function initMajorGlitches() {
-		$this->initNoMajorGlitches();
-
-		$this->can_complete = function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
-					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
-					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
-				return false;
-			}
-
-			return $this->canEnter($locations, $items)
-				&& $items->canLightTorches()
-				&& $items->has('BigKeyP2');
-		};
-
-		$this->locations["Heart Container - Lanmolas"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
-
-				return !in_array($item, [Item::get('KeyP2'), Item::get('BigKeyP2')]);
-			});
-
-
-		$this->can_enter = function($locations, $items) {
-			return true;
-		};
-
-		$this->prize_location->setRequirements($this->can_complete);
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for Overworld Glitches Mode
 	 *
 	 * @return $this

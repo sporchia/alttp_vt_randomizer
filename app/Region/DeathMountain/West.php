@@ -79,14 +79,12 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function initMajorGlitches() {
-		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
-		});
+		$this->initOverworldGlitches();
 
-		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
-					|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
-		});
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots') || $items->hasABottle()
+				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+		};
 
 		return $this;
 	}

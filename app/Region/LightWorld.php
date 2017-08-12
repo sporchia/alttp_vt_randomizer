@@ -253,70 +253,30 @@ class LightWorld extends Region {
 	 * @return $this
 	 */
 	public function initMajorGlitches() {
-		$this->locations["Altar"]->setRequirements(function($locations, $items) {
-			return $items->has('PendantOfPower')
-				&& $items->has('PendantOfWisdom')
-				&& $items->has('PendantOfCourage');
-		});
+		$this->initOverworldGlitches();
 
 		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
-				|| ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle())));
-		});
-
-		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots');
-		});
-
-		$this->locations["Sahasrahla"]->setRequirements(function($locations, $items) {
-			return $items->has('PendantOfCourage');
-		});
-
-		$this->locations["Sick Kid"]->setRequirements(function($locations, $items) {
-			return $items->hasABottle();
-		});
-
-		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots') && $items->hasSword();
-		});
-
-		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
-			return $items->canLiftRocks();
-		});
-
-		$this->locations["Library"]->setRequirements(function($locations, $items) {
-			return $items->has('PegasusBoots');
-		});
-
-		$this->locations["Witch"]->setRequirements(function($locations, $items) {
-			return $items->has('Mushroom');
+				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld()));
 		});
 
 		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
 			return $items->has('Powder')
-				&& ($items->has('Hammer') || $items->has('MagicMirror'));
+				&& ($items->has('Hammer')
+					|| $items->has('PegasusBoots')
+					|| $items->has('MagicMirror'));
 		});
 
-		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
-					|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
+		$this->locations["Piece of Heart (Graveyard)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld());
 		});
 
-		$this->locations["Haunted Grove item"]->setRequirements(function($locations, $items) {
-			return $items->has('Shovel');
-		});
-
-		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
-			return $items->has('Flippers')
-				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
-		});
-
-		$this->locations["Waterfall Fairy - Left"]->setRequirements(function($locations, $items) {
-			return $items->has('Flippers') || $items->has('MoonPearl');
-		});
-
-		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
-			return $items->has('Flippers') || $items->has('MoonPearl');
+		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->has('Flippers') && $items->has('MagicMirror')
+					&& ($items->glitchedLinkInDarkWorld()
+						|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items)));
 		});
 
 		return $this;

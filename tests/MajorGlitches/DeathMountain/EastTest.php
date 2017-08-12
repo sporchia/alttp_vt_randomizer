@@ -18,62 +18,97 @@ class EastTest extends TestCase {
 		unset($this->world);
 	}
 
-	public function testSpiralCaveRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-012-1F] Death Mountain - wall of caves - left cave")
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testMimicCaveRequresHammer() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
+	public function accessPool() {
+		return [
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", false, []],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['PegasusBoots']],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['Flute', 'Hookshot']],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", false, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", false, ['ProgressiveGlove', 'Hookshot']],
 
-		$this->assertFalse($this->world->getLocation("[cave-013] Mimic cave (from Turtle Rock)")
-			->canAccess($this->allItemsExcept(['Hammer'])));
-	}
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", false, []],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
 
-	public function testMimicCaveRequiresMagicMirror() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", false, []],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
 
-		$this->assertFalse($this->world->getLocation("[cave-013] Mimic cave (from Turtle Rock)")
-			->canAccess($this->allItemsExcept(['MagicMirror'])));
-	}
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", false, []],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
 
-	public function testRightCaveTopChest1RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]")
-			->canAccess($this->collected));
-	}
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", false, []],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
 
-	public function testRightCaveTopChest2RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]")
-			->canAccess($this->collected));
-	}
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", false, []],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
 
-	public function testRightCaveTopChest3RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]")
-			->canAccess($this->collected));
-	}
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", false, []],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
 
-	public function testRightCaveTopChest4RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]")
-			->canAccess($this->collected));
-	}
-
-	public function testRightCaveTopChest5RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]")
-			->canAccess($this->collected));
-	}
-
-	public function testRightCaveBottomChest1RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]")
-			->canAccess($this->collected));
-	}
-
-	public function testRightCaveBottomChest2RequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]")
-			->canAccess($this->collected));
-	}
-
-	public function testFloatingIslandRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("Piece of Heart (Death Mountain - floating island)")
-			->canAccess($this->collected));
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", false, []],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['Flute', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['PowerGlove', 'Lamp', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['TitansMitt', 'Lamp', 'Hookshot']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'Hammer']],
+			["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'Hammer']],
+		];
 	}
 }

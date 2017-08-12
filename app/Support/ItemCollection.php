@@ -364,6 +364,16 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Requirements for being link in Dark World using Major Glitches
+	 *
+	 * @return bool
+	 */
+	public function glitchedLinkInDarkWorld() {
+		return $this->has('MoonPearl')
+			|| $this->hasABottle();
+	}
+
+	/**
 	 * Requirements for having a sword
 	 *
 	 * @return bool

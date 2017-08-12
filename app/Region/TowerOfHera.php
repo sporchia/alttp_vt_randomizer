@@ -130,6 +130,8 @@ class TowerOfHera extends Region {
 	 * @return $this
 	 */
 	public function initMajorGlitches() {
+		$this->initOverworldGlitches();
+
 		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setRequirements(function($locations, $items) {
 			return $items->canLightTorches()
 				&& ($items->has('KeyP3') || $this->world->getRegion('Misery Mire')->canEnter($locations, $items));

@@ -84,29 +84,4 @@ class HyruleCastleTower extends Region {
 
 		return $this;
 	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for MajorGlitches Mode.
-	 *
-	 * @return $this
-	 */
-	public function initMajorGlitches() {
-		$this->can_enter = function($locations, $items) {
-			return $items->has('Lamp');
-		};
-
-		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'swordless') {
-				return $this->canEnter($locations, $items)
-					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
-			}
-
-			return $this->canEnter($locations, $items) && $items->hasSword();
-		};
-
-		$this->prize_location->setRequirements($this->can_complete);
-
-		return $this;
-	}
 }
