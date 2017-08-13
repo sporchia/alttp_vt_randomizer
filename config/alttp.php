@@ -431,6 +431,7 @@ return [
 		'decidueye.1.spr' => 'Decidueye',
 		'demonlink.1.spr' => 'Demon Link',
 		'froglink.2.spr' => 'Frog',
+		'garfield.1.spr' => 'Garfield',
 		'girl.2.spr' => 'Girl',
 		'invisibleman.1.spr' => 'Invisible Man',
 		'kirby-meta.1.spr' => 'Kirby',
