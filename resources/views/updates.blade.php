@@ -4,6 +4,7 @@
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
+		<li>updated timed-OHKO for different difficulties</li>
 		<li>Boots are no longer guaranteed in Sanctuary for Major Glitches</li>
 		<li>Hammer can now activate tablets in swordless</li>
 		<li>Numerous rom related bugs fixed</li>
@@ -12,6 +13,7 @@
 		<li>Added Triforce Hunt goal/variation</li>
 		<li>Bug Net added back to all difficulties (hard/expert cannot catch fairies)</li>
 		<li>Cape and Byrna use normal magic in all difficulties in Spike cave and spike room in Misery Mire</li>
+		<li>Spike cave does normal damage in all difficulties</li>
 		<li>Added easy difficulty</li>
 		<li>Split difficulties into difficulty and variation</li>
 		<li>¼ magic is no longer in normal/hard/expert</li>

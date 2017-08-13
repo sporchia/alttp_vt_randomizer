@@ -1356,6 +1356,7 @@ class Rom {
 		$this->setBelowGanonChest(false);
 		$this->setCaneOfByrnaSpikeCaveUsage();
 		$this->setCapeSpikeCaveUsage();
+		$this->setByrnaCaveSpikeDamage(0x08);
 
 		switch ($level) {
 			case 0:
@@ -1371,7 +1372,6 @@ class Rom {
 				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(0);
-				$this->setByrnaCaveSpikeDamage(0x08);
 
 				break;
 			case 1:
@@ -1385,7 +1385,6 @@ class Rom {
 				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(10);
-				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 			case 2:
@@ -1399,7 +1398,6 @@ class Rom {
 				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(20);
-				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 		}

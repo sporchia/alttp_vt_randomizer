@@ -44,7 +44,7 @@ class EastTest extends TestCase {
 			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['Flute', 'Hookshot']],
 			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
 			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
-			["[cave-012-1F] Death Mountain - wall of caves - left cave", false, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
+			["[cave-012-1F] Death Mountain - wall of caves - left cave", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
 			["[cave-012-1F] Death Mountain - wall of caves - left cave", false, ['ProgressiveGlove', 'Hookshot']],
 
 			["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", false, []],

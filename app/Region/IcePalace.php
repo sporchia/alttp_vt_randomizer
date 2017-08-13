@@ -86,7 +86,8 @@ class IcePalace extends Region {
 							"[dungeon-D5-B2] Ice Palace - map room",
 							"[dungeon-D5-B3] Ice Palace - spike room",
 						]) && $items->has('KeyD5'))
-					|| $items->has('KeyD5', 2));
+					|| $items->has('KeyD5', 2))
+				&& ($items->has('Hookshot') || $items->has('CaneOfByrna') || $items->has('Cape'));
 		});
 
 		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setRequirements(function($locations, $items) {
@@ -96,16 +97,18 @@ class IcePalace extends Region {
 							"[dungeon-D5-B3] Ice Palace - spike room",
 							"[dungeon-D5-B1] Ice Palace - Big Key room",
 						]) && $items->has('KeyD5'))
-					|| $items->has('KeyD5', 2));
+					|| $items->has('KeyD5', 2))
+				&& ($items->has('Hookshot') || $items->has('CaneOfByrna') || $items->has('Cape'));
 		});
 
 		$this->locations["[dungeon-D5-B3] Ice Palace - spike room"]->setRequirements(function($locations, $items) {
-			return $items->has('Hookshot')
-				|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-D5-B2] Ice Palace - map room",
-						"[dungeon-D5-B1] Ice Palace - Big Key room",
-					]) && $items->has('KeyD5'))
-				|| $items->has('KeyD5', 2);
+			return ($items->has('Hookshot')
+					|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
+							"[dungeon-D5-B2] Ice Palace - map room",
+							"[dungeon-D5-B1] Ice Palace - Big Key room",
+						]) && $items->has('KeyD5'))
+					|| $items->has('KeyD5', 2))
+				&& ($items->has('Hookshot') || $items->has('CaneOfByrna') || $items->has('Cape'));
 		});
 
 		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setRequirements(function($locations, $items) {

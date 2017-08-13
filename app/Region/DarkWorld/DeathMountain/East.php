@@ -101,7 +101,8 @@ class East extends Region {
 			// @TODO: This should account for 2x YBA
 			return ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 				|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
-					&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items));
+					&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
+				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 
 		return $this;

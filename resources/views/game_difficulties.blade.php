@@ -11,7 +11,7 @@
 			<h3 class="panel-title">Easy</h3>
 		</div>
 		<div class="panel-body">
-			<p>Easy is exactly like Normal but makes it a much easier time travelling through hyrule. While you
+			<p>Easy is like Normal, but makes it easier travelling through hyrule. While you
 				will never find more than 4 swords, there are twice as many chances to get an upgrade.</p>
 			<p>Items that have 2x chance of finding:</p>
 			<ul>
@@ -93,9 +93,9 @@
 						<li>1x Shovel</li>
 						<li>1x Silver Arrows Upgrade</li>
 						<li>1x Tempered Sword</li>
-						<li>4x Ten Arrows</li>
+						<li>5x Ten Arrows</li>
 						<li>10x Three Bombs</li>
-						<li>4x Three Hundred Rupees</li>
+						<li>5x Three Hundred Rupees</li>
 						<li>1x Titans Mitt</li>
 						<li>28x Twenty Rupees</li>
 					</ul>
@@ -114,7 +114,6 @@
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
-				<li>Cane Of Byrna</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
@@ -125,17 +124,17 @@
 			<ul>
 				<li>Arrows</li>
 				<li>Bombs</li>
+				<li>Heart Containers (only 5 available)</li>
 				<li>Rupees</li>
 			</ul>
 			<p>The following items have been adjusted:</p>
 			<ul>
-				<li>Magic Cape uses 2x Magic</li>
-				<li>Cane of Byrna uses 2x Magic</li>
+				<li>Magic Cape uses 2x Magic (except in spike cave)</li>
+				<li>Cane of Byrna uses 2x Magic (except in spike cave)</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
 				<li>Bug Net doesn't catch fairies</li>
 				<li>There are only 2 Bottles (4 in Major Glitches)</li>
 				<li>Potions heal 5 hearts and restore 1/2 magic</li>
-				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 			</ul>
 		</div>
 	</div>
@@ -150,7 +149,6 @@
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
-				<li>Cane Of Byrna</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
@@ -168,14 +166,13 @@
 			</ul>
 			<p>The following items have been adjusted:</p>
 			<ul>
-				<li>Magic Cape uses 4x Magic</li>
-				<li>Cane of Byrna uses 4x Magic</li>
+				<li>Magic Cape uses 4x Magic (except in spike cave)</li>
+				<li>Cane of Byrna uses 4x Magic (except in spike cave)</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
 				<li>Bug Net doesn't catch fairies</li>
 				<li>There is only 1 Bottle (4 in Major Glitches)</li>
 				<li>Potions heal 1 heart and restore 1/4 magic</li>
 				<li>Shields in Shops are unpurchasable</li>
-				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 			</ul>
 		</div>
 	</div>

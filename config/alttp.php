@@ -54,17 +54,26 @@ return [
 				'item' => [
 					'count' => [
 						'TwentyRupees' => 0, // 28 : 560
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 5, // 4 + 300
-						'GreenClock' => 25,
+						'OneRupee' => 0,
+						'FiftyRupees' => 5,
+						'ThreeHundredRupees' => 7,
+						'GreenClock' => 17,
+					],
+					'overflow' => [ // 13 things
+						'replacement' => [
+							'Armor' => 'GreenClock',
+							'Bottle' => 'GreenClock',
+							'Shield' => 'GreenClock',
+							'Sword' => 'GreenClock',
+						],
 					],
 					'value' => [
-						'GreenClock' => 300,
+						'GreenClock' => 240,
 					],
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
-					'timerStart' => 10 * 60,
+					'timerStart' => 20 * 60,
 				],
 			],
 			'timed-race' => [
@@ -125,7 +134,7 @@ return [
 						'GreenClock' => 25,
 					],
 					'value' => [
-						'GreenClock' => 300,
+						'GreenClock' => 240,
 					],
 				],
 				'rom' => [
@@ -173,7 +182,7 @@ return [
 				'BombUpgrade10' => 0,
 				'BombUpgrade50' => 0,
 				'Boomerang' => 0,
-				'BossHeartContainer' => 0,
+				'BossHeartContainer' => 5,
 				'OneRupee' => 5,
 				'FiveRupees' => 25,
 				'FiftyRupees' => 5,
@@ -183,7 +192,6 @@ return [
 				'QuarterMagicUpgrade' => 0,
 				'OneHundredRupees' => 3,
 				'RedBoomerang' => 0,
-				'CaneOfByrna' => 0,
 				'TenArrows' => 5,
 				'ThreeBombs' => 5,
 				'ThreeHundredRupees' => 1,
@@ -228,15 +236,15 @@ return [
 						'TwentyRupees' => 0, // 28 : 560
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
-						'GreenClock' => 25,
+						'GreenClock' => 20,
 					],
 					'value' => [
-						'GreenClock' => 300,
+						'GreenClock' => 240,
 					],
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
-					'timerStart' => 10 * 60,
+					'timerStart' => 5 * 60,
 				],
 			],
 			'timed-race' => [
@@ -290,7 +298,6 @@ return [
 				'OneHundredRupees' => 1,
 				'PieceOfHeart' => 12,
 				'RedBoomerang' => 0,
-				'CaneOfByrna' => 0,
 				'TenArrows' => 1,
 				'ThreeBombs' => 1,
 				'ThreeHundredRupees' => 1,
@@ -336,15 +343,17 @@ return [
 						'TwentyRupees' => 10, // 28 : 560
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
-						'GreenClock' => 15,
+						'GreenClock' => 20,
+						'RedClock' => 5,
 					],
 					'value' => [
-						'GreenClock' => 300,
+						'GreenClock' => 240,
+						'RedClock' => - 32400,
 					],
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
-					'timerStart' => 10 * 60,
+					'timerStart' => 5 * 60,
 				],
 			],
 			'timed-race' => [

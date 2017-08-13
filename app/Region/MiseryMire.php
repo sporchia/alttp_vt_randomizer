@@ -154,6 +154,22 @@ class MiseryMire extends Region {
 	public function initMajorGlitches() {
 		$this->initNoMajorGlitches();
 
+		$this->can_complete = function($locations, $items) {
+			return ($this->canEnter($locations, $items)
+				&& $items->has('CaneOfSomaria') && $items->has('Lamp')
+				&& $items->has('BigKeyD6') && (
+					$items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
+				))
+				|| ((($locations->itemInLocations(Item::get('BigKeyD6'), [
+						"[dungeon-D6-B1] Misery Mire - compass",
+						"[dungeon-D6-B1] Misery Mire - big key",
+					]) && $items->has('KeyD6', 2))
+				|| $items->has('KeyD6', 3))
+				&& ($locations["Heart Container - Moldorm"]->canAccess($items)
+					|| $locations["Heart Container - Arrghus"]->canAccess($items))
+				);
+		};
+
 		// @TODO: doesn't account for 2x YBA
 		$this->can_enter = function($locations, $items) {
 			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
