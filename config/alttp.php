@@ -184,7 +184,7 @@ return [
 				'Boomerang' => 0,
 				'BossHeartContainer' => 5,
 				'OneRupee' => 5,
-				'FiveRupees' => 25,
+				'FiveRupees' => 20,
 				'FiftyRupees' => 5,
 				'HeartContainer' => 0,
 				'MagicUpgrade' => 0,
@@ -222,7 +222,7 @@ return [
 					'count' => [
 						'TriforcePiece' => 40,
 						'FiveRupees' => 5,
-						'Arrow' => 5,
+						'Arrow' => 1,
 					],
 					'Goal' => [
 						'Required' => 30,
@@ -236,6 +236,7 @@ return [
 						'TwentyRupees' => 0, // 28 : 560
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
+						'Arrow' => 1,
 						'GreenClock' => 20,
 					],
 					'value' => [
@@ -289,19 +290,18 @@ return [
 				'Boomerang' => 0,
 				'BossHeartContainer' => 0,
 				'OneRupee' => 5,
-				'FiveRupees' => 25,
-				'FiftyRupees' => 3,
+				'FiveRupees' => 10,
+				'FiftyRupees' => 4,
 				'HeartContainer' => 0,
 				'HalfMagicUpgrade' => 0,
 				'QuarterMagicUpgrade' => 0,
 				'MagicUpgrade' => 0,
 				'OneHundredRupees' => 1,
-				'PieceOfHeart' => 12,
 				'RedBoomerang' => 0,
 				'TenArrows' => 1,
 				'ThreeBombs' => 1,
 				'ThreeHundredRupees' => 1,
-				'TwentyRupees' => 5,
+				'TwentyRupees' => 6,
 				'SilverArrowUpgrade' => 0,
 			],
 			'overflow' => [

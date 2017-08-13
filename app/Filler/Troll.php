@@ -7,7 +7,7 @@ use ALttP\Support\ItemCollection as Items;
 use ALttP\World;
 use Log;
 
-class Troll extends Filler {
+class Troll extends Random {
 	/**
 	 * Fill algorithm application. So, place things, then swap them around until the world is fully open?
 	 *
@@ -17,7 +17,11 @@ class Troll extends Filler {
 	 *
 	 * @return null
 	 */
-	public function fill(array $required, array $nice, array $extra) {
+	public function fill(array $dungeon, array $required, array $nice, array $extra) {
+		// back hack from RandomAssumed
+		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
+		$this->fillDungeonItemsInLocations($dungeon, $randomized_order_locations, $required);
+
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 		$requiredCollection = new Items($required);
 		$my_items = $this->world->collectItems();

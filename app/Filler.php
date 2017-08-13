@@ -21,17 +21,13 @@ abstract class Filler {
 		}
 
 		switch ($type) {
-			case 'Troll':
-				return new Filler\Troll($world);
 			case 'Distributed':
 				return new Filler\Distributed($world);
-			case 'Beatable':
-				return new Filler\RandomBeatable($world);
+			case 'Random':
+				return new Filler\Random($world);
+			default:
 			case 'RandomAssumed':
 				return new Filler\RandomAssumed($world);
-			case 'Random':
-			default:
-				return new Filler\RandomSwap($world);
 		}
 	}
 

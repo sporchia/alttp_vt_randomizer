@@ -15,7 +15,11 @@ class RandomBeatable extends Random {
 	 *
 	 * @return null
 	 */
-	public function fill(array $required, array $nice, array $extra) {
+	public function fill(array $dungeon, array $required, array $nice, array $extra) {
+		// back hack from RandomAssumed
+		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
+		$this->fillDungeonItemsInLocations($dungeon, $randomized_order_locations, $required);
+
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
 		$my_items = $this->world->collectItems();
