@@ -135,22 +135,6 @@ class SkullWoods extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for MajorGlitches Mode.
-	 *
-	 * @return $this
-	 */
-	public function initMajorGlitches() {
-		$this->initNoMajorGlitches();
-
-		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
-		};
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for Overworld Glitches Mode
 	 *
 	 * @return $this

@@ -4,6 +4,7 @@
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
+		<li>Boots are no longer guaranteed in Sanctuary for Major Glitches</li>
 		<li>Hammer can now activate tablets in swordless</li>
 		<li>Numerous rom related bugs fixed</li>
 		<li>Added some descriptions to the ER shuffle modes from docs</li>

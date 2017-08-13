@@ -91,7 +91,7 @@ class TowerOfHeraTest extends TestCase {
 			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['FireRod', 'Flute', 'MagicMirror', 'KeyP3']],
 			["[dungeon-L3-1F] Tower of Hera - first floor", true, ['FireRod', 'Flute', 'Hookshot', 'Hammer', 'KeyP3']],
 
-			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, []],
+			["[dungeon-L3-1F] Tower of Hera - freestanding key", false, []],
 			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['Flute', 'MagicMirror']],
 			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
 			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['PowerGlove', 'Lamp', 'MagicMirror']],
@@ -101,7 +101,7 @@ class TowerOfHeraTest extends TestCase {
 			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer']],
 			["[dungeon-L3-1F] Tower of Hera - freestanding key", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer']],
 
-			["[dungeon-L3-2F] Tower of Hera - Entrance", true, []],
+			["[dungeon-L3-2F] Tower of Hera - Entrance", false, []],
 			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['Flute', 'MagicMirror']],
 			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
 			["[dungeon-L3-2F] Tower of Hera - Entrance", true, ['PowerGlove', 'Lamp', 'MagicMirror']],

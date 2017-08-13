@@ -19,30 +19,6 @@ class PalaceOfDarknessTest extends TestCase {
 	}
 
 	/**
-	 * @param bool $access
-	 * @param array $items
-	 * @param array $except
-	 *
-	 * @dataProvider entryPool
-	 */
-	public function testEntry(bool $access, array $items, array $except = []) {
-		if (count($except)) {
-			$this->collected = $this->allItemsExcept($except);
-		}
-
-		$this->addCollected($items);
-
-		$this->assertEquals($access, $this->world->getRegion('Palace of Darkness')
-			->canEnter($this->world->getLocations(), $this->collected));
-	}
-
-	public function entryPool() {
-		return [
-			[true, []],
-		];
-	}
-
-	/**
 	 * @param string $location
 	 * @param bool $access
 	 * @param string $item
@@ -228,7 +204,7 @@ class PalaceOfDarknessTest extends TestCase {
 			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'TitansMitt']],
 			["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'MoonPearl', 'Lamp', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-			["[dungeon-D1-B1] Dark Palace - shooter room", true, []],
+			["[dungeon-D1-B1] Dark Palace - shooter room", false, []],
 			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'DefeatAgahnim']],
 			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Hammer', 'PowerGlove']],
 			["[dungeon-D1-B1] Dark Palace - shooter room", true, ['MoonPearl', 'Hammer', 'TitansMitt']],

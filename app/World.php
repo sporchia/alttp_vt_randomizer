@@ -95,7 +95,7 @@ class World {
 						&& $collected_items->has('Crystal5')
 						&& $collected_items->has('Crystal6')
 						&& $collected_items->has('Crystal7')
-						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+						&& $collected_items->has('DefeatGanon');
 				};
 				break;
 			case 'OverworldGlitches':

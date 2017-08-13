@@ -283,19 +283,12 @@ class Randomizer {
 		}
 
 		if ($this->logic == 'MajorGlitches') {
-			$this->world->getLocation("[dungeon-C-1F] Sanctuary")->setItem(Item::get('PegasusBoots'));
-
 			// MajorGlitches always has 4 bottles, no matter what
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
 		}
 
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
 		$advancement_items = $this->getAdvancementItems();
-
-		if ($this->logic == 'MajorGlitches') {
-			$key = array_search(Item::get('PegasusBoots'), $advancement_items);
-			unset($advancement_items[$key]);
-		}
 
 		// take out all the swords and silver arrows
 		$nice_items = $this->getNiceItems();

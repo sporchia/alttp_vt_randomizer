@@ -94,7 +94,7 @@ class SkullWoodsTest extends TestCase {
 			["[dungeon-D3-B1] Skull Woods - big chest", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'BigKeyD3']],
 			["[dungeon-D3-B1] Skull Woods - big chest", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'BigKeyD3']],
 
-			["[dungeon-D3-B1] Skull Woods - Big Key room", true, []],
+			["[dungeon-D3-B1] Skull Woods - Big Key room", false, []],
 			["[dungeon-D3-B1] Skull Woods - Big Key room", true, ['MoonPearl', 'TitansMitt']],
 			["[dungeon-D3-B1] Skull Woods - Big Key room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[dungeon-D3-B1] Skull Woods - Big Key room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
@@ -104,7 +104,7 @@ class SkullWoodsTest extends TestCase {
 			["[dungeon-D3-B1] Skull Woods - Big Key room", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
 			["[dungeon-D3-B1] Skull Woods - Big Key room", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-			["[dungeon-D3-B1] Skull Woods - Compass room", true, []],
+			["[dungeon-D3-B1] Skull Woods - Compass room", false, []],
 			["[dungeon-D3-B1] Skull Woods - Compass room", true, ['MoonPearl', 'TitansMitt']],
 			["[dungeon-D3-B1] Skull Woods - Compass room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[dungeon-D3-B1] Skull Woods - Compass room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
@@ -114,7 +114,7 @@ class SkullWoodsTest extends TestCase {
 			["[dungeon-D3-B1] Skull Woods - Compass room", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
 			["[dungeon-D3-B1] Skull Woods - Compass room", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-			["[dungeon-D3-B1] Skull Woods - east of Fire Rod room", true, []],
+			["[dungeon-D3-B1] Skull Woods - east of Fire Rod room", false, []],
 			["[dungeon-D3-B1] Skull Woods - east of Fire Rod room", true, ['MoonPearl', 'TitansMitt']],
 			["[dungeon-D3-B1] Skull Woods - east of Fire Rod room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[dungeon-D3-B1] Skull Woods - east of Fire Rod room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
@@ -135,7 +135,7 @@ class SkullWoodsTest extends TestCase {
 			["[dungeon-D3-B1] Skull Woods - Entrance to part 2", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'FireRod']],
 			["[dungeon-D3-B1] Skull Woods - Entrance to part 2", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'FireRod']],
 
-			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", true, []],
+			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", false, []],
 			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", true, ['MoonPearl', 'TitansMitt']],
 			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
@@ -145,7 +145,7 @@ class SkullWoodsTest extends TestCase {
 			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", true, ['MoonPearl', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
 			["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-			["[dungeon-D3-B1] Skull Woods - south of Fire Rod room", true, []],
+			["[dungeon-D3-B1] Skull Woods - south of Fire Rod room", false, []],
 			["[dungeon-D3-B1] Skull Woods - south of Fire Rod room", true, ['MoonPearl', 'TitansMitt']],
 			["[dungeon-D3-B1] Skull Woods - south of Fire Rod room", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
 			["[dungeon-D3-B1] Skull Woods - south of Fire Rod room", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],

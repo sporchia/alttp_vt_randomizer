@@ -134,7 +134,7 @@ class TowerOfHera extends Region {
 
 		$this->locations["[dungeon-L3-1F] Tower of Hera - first floor"]->setRequirements(function($locations, $items) {
 			return $items->canLightTorches()
-				&& ($items->has('KeyP3') || $this->world->getRegion('Misery Mire')->canEnter($locations, $items));
+				&& ($items->has('KeyP3') || ($items->has('KeyD6', 3) && $this->world->getRegion('Misery Mire')->canEnter($locations, $items)));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyP3');
 		});
@@ -179,7 +179,12 @@ class TowerOfHera extends Region {
 			);
 		};
 
-		$this->prize_location->setRequirements($this->can_complete);
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+				|| ($items->has('KeyD6', 3) && $this->world->getRegion('Misery Mire')->canEnter($locations, $items));
+		};
 
 		return $this;
 	}

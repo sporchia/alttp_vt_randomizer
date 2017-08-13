@@ -154,26 +154,16 @@ class MiseryMire extends Region {
 	public function initMajorGlitches() {
 		$this->initNoMajorGlitches();
 
+		// @TODO: doesn't account for 2x YBA
 		$this->can_enter = function($locations, $items) {
 			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+			&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
-			&& ($items->has('MoonPearl') || $items->hasABottle());
+			&& $this->world->getRegion('Mire')->canEnter($locations, $items);
 		};
-
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& ($items->has('CaneOfSomaria')
-					|| $items->hasSword() || $items->has('Hammer')
-					|| ($items->has('Hookshot') && $items->has('Flippers') && (
-						$items->has('FireRod') || $items->has('IceRod') || $items->canShootArrows()
-					))
-				);
-		};
-
-		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

@@ -228,7 +228,7 @@ class LightWorldTest extends TestCase {
 
 			["Piece of Heart (Zora's River)", false, []],
 			["Piece of Heart (Zora's River)", true, ['Flippers']],
-			//["Piece of Heart (Zora's River)", true, ['MoonPearl']],
+			["Piece of Heart (Zora's River)", true, ['MoonPearl', 'PegasusBoots']],
 
 			["Haunted Grove item", false, []],
 			["Haunted Grove item", false, [], ['Shovel']],

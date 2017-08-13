@@ -228,7 +228,7 @@ class GanonsTowerTest extends TestCase {
 			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 			["[dungeon-A2-1F] Ganon's Tower - big chest", true, ['BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'CaneOfSomaria', 'FireRod', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 
-			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, []],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", false, []],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
@@ -238,7 +238,7 @@ class GanonsTowerTest extends TestCase {
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 
-			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, []],
+			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", false, []],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Lamp', 'MagicMirror', 'Hammer', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],
 			["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", true, ['MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Crystal1', 'Crystal2', 'Crystal3', 'Crystal4', 'Crystal5', 'Crystal6', 'Crystal7']],

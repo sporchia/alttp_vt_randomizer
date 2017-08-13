@@ -182,6 +182,10 @@ class PalaceOfDarkness extends Region {
 	public function initMajorGlitches() {
 		$this->initNoMajorGlitches();
 
-		$this->can_enter = null;
+		$this->can_enter = function($locations, $items) {
+			return $items->glitchedLinkInDarkWorld()
+				&& $this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+				|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+		};
 	}
 }

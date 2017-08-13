@@ -160,42 +160,12 @@ class IcePalace extends Region {
 	 * @return $this
 	 */
 	public function initMajorGlitches() {
-		$this->locations["[dungeon-D5-B1] Ice Palace - Big Key room"]->setRequirements(function($locations, $items) {
-			return  $items->has('Hammer') && $items->canLiftRocks();
-		});
-
-		$this->locations["[dungeon-D5-B2] Ice Palace - map room"]->setRequirements(function($locations, $items) {
-			return  $items->has('Hammer') && $items->canLiftRocks();
-		});
-
-		$this->locations["[dungeon-D5-B4] Ice Palace - above Blue Mail room"]->setRequirements(function($locations, $items) {
-			return $items->canMeltThings();
-		});
-
-		$this->locations["[dungeon-D5-B5] Ice Palace - big chest"]->setRequirements(function($locations, $items) {
-			return $items->has('BigKeyD5');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD5');
-		});
-
-		$this->locations["Heart Container - Kholdstare"]->setRequirements(function($locations, $items) {
-			return $items->has('Hammer') && $items->canMeltThings() && $items->canLiftRocks();
-		})->setFillRules(function($item, $locations, $items) {
-			if (!$this->world->config('region.bossNormalLocation', true)
-				&& (is_a($item, Item\Key::class) || is_a($item, Item\BigKey::class)
-					|| is_a($item, Item\Map::class) || is_a($item, Item\Compass::class))) {
-				return false;
-			}
-
-			return $item != Item::get('BigKeyD5');
-		});
-
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canMeltThings() && $items->canLiftRocks() && $items->has('Hammer');
-		};
+		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canLiftDarkRocks() || ($items->has('MagicMirror') && ($items->has('MoonPearl') || $items->hasABottle()));
+			return $items->canLiftDarkRocks()
+				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld()
+					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);

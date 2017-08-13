@@ -327,15 +327,9 @@ class GanonsTower extends Region {
 	public function initMajorGlitches() {
 		$this->initNoMajorGlitches();
 
-		$this->can_enter = null;
-
-		$this->can_complete = function($locations, $items) {
-			return $this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->canAccess($items)
-				&& $items->has('Hookshot')
-				&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
-
-		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}
