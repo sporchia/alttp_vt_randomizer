@@ -6,10 +6,20 @@
 ### Without their work none of this would even be remotely possible.
 
 ### Install
-You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following:
+You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following
 
 ```
 $ composer install
+```
+
+Next create a new mysql database for the randomizer (see mysql documentation for how to do this)
+
+Modify the config/database.php with appropriate username, password, and database name in the mysql section.
+
+Then run the following
+
+```
+$ php artisan migrate
 ```
 
 ### Running

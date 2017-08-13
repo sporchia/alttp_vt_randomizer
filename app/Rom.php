@@ -2092,6 +2092,9 @@ class Rom {
 	 * @return void
 	 */
 	public function __destruct() {
+		if ($this->rom) {
+			fclose($this->rom);
+		}
 		unlink($this->tmp_file);
 	}
 
