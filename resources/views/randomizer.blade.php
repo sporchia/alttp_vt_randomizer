@@ -231,7 +231,7 @@
 			<li role="presentation" class="active"><a data-toggle="tab" href="#custom-settings">Custom Settings</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-advancement">Advancement Items</a></li>
 			<li role="presentation"><a data-toggle="tab" href="#custom-items-extra">Other Items</a></li>
-			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">150</span> / <span id="custom-count-total">150</span></span></li>
+			<li role="presentation"><span class="col-md-12 total-items bg-success">Total Items: <span id="custom-count">152</span> / <span id="custom-count-total">152</span></span></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="custom-settings">
@@ -522,7 +522,7 @@
 					<label for="item-count-FiveRupees">Rupees (5)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TwentyRupees" type="number" value="28" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+					<input id="item-count-TwentyRupees" type="number" value="29" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
 					<label for="item-count-TwentyRupees">Rupees (20)</label>
 				</div>
 				<div class="col-md-4">
@@ -534,7 +534,7 @@
 					<label for="item-count-OneHundredRupees">Rupees (100)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-ThreeHundredRupees" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeHundredRupees]" class="custom-items">
+					<input id="item-count-ThreeHundredRupees" type="number" value="5" min="0" max="200" step="1" name="data[alttp.custom.item.count.ThreeHundredRupees]" class="custom-items">
 					<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 				</div>
 				<div class="col-md-4">
