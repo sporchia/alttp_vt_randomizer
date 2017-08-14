@@ -15,7 +15,7 @@
 <div class="well">
 	<ul>
 		<li>Link’s Uncle still gives you the Fighter’s Sword (except in Open mode).</li>
-		<li>The Great Faerie fountains in Zora’s Domain and Lake Hylia.</li>
+		<li>The Great Faerie fountain in Lake Hylia.</li>
 		<li>All shops throughout Hyrule.</li>
 		<li>The archery game and various rupee chest games.</li>
 		<li>Small keys underneath pots or held by enemies.</li>
