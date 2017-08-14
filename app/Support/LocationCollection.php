@@ -64,7 +64,7 @@ class LocationCollection extends Collection {
 	 * @return bool
 	 */
 	public function itemInLocations(Item $item, $locations, $count = 1) {
-		foreach ($locations  as $location) {
+		foreach ($locations as $location) {
 			if ($this->items[$location]->hasItem($item)) {
 				$count--;
 			}

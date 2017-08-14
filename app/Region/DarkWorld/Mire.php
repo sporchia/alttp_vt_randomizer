@@ -65,13 +65,16 @@ class Mire extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
+	 * within for MajorGlitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
+	public function initMajorGlitches() {
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') || $items->hasABottle() || $items->has('MagicMirror');
+			return ($items->hasABottle() && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+				|| ($items->canLiftDarkRocks() && ($items->canFly() || $items->hasABottle() || $items->has('PegasusBoots')))
+				|| ($items->glitchedLinkInDarkWorld() && $items->has('PegasusBoots')
+					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
 		};
 
 		return $this;
@@ -94,7 +97,7 @@ class Mire extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->canLiftDarkRocks() && ($items->canFly() || $items->has('PegasusBoots')))
-				|| (($items->has('MagicMirror') || ($items->has('MoonPearl') && $items->has('PegasusBoots')))
+				|| ($items->has('MoonPearl') && $items->has('PegasusBoots')
 					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
 		};
 

@@ -161,8 +161,12 @@ class ItemCollection extends Collection {
 			return $this->copy();
 		}
 
+		if (is_array($items)) {
+			return $this->merge(new static($items));
+		}
+
 		if (!is_a($items, static::class)) {
-			return parent::diff($items);
+			return parent::merge($items);
 		}
 
 		$merged = $this->copy();
@@ -209,10 +213,19 @@ class ItemCollection extends Collection {
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
 	}
 
-	public function cantHave($key, LocationCollection $locations, $at_least = 0) {
-		if ($this->offsetExists($key)) {
-			return false;
+	/**
+	 * For testing, we up the key count to 10 for every dungeon.
+	 *
+	 * @return $this
+	 */
+	public function manyKeys() : self {
+		foreach ($this->item_counts as $key => $count) {
+			if (strpos($key, 'Key') === 0) {
+				$this->item_counts[$key] = 10;
+			}
 		}
+
+		return $this;
 	}
 
 	/**
@@ -327,6 +340,37 @@ class ItemCollection extends Collection {
 		return $this->has('Bow')
 			|| $this->has('BowAndArrows')
 			|| $this->has('BowAndSilverArrows');
+	}
+
+	/**
+	 * Requirements for blocking lasers
+	 *
+	 * @return bool
+	 */
+	public function canBlockLasers() {
+		return $this->has('MirrorShield')
+			|| $this->has('ProgressiveShield', 3);
+	}
+
+	/**
+	 * Requirements for blocking lasers
+	 *
+	 * @return bool
+	 */
+	public function canExtendMagic() {
+		return $this->has('HalfMagic')
+			|| $this->has('QuarterMagic')
+			|| $this->hasABottle();
+	}
+
+	/**
+	 * Requirements for being link in Dark World using Major Glitches
+	 *
+	 * @return bool
+	 */
+	public function glitchedLinkInDarkWorld() {
+		return $this->has('MoonPearl')
+			|| $this->hasABottle();
 	}
 
 	/**

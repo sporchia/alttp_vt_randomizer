@@ -47,6 +47,8 @@ class West extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
+				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
+				&& $items->canExtendMagic()
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 
@@ -55,17 +57,18 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
+	 * within for MajorGlitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
-		$access_dark_world = function($items) {
-			return $items->has('MoonPearl') || $items->hasABottle();
-		};
-
-		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) && $items->has('Hammer') && $items->canLiftRocks();
+	public function initMajorGlitches() {
+		// @TODO: This should account for 2x YBA
+		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer') && $items->canLiftRocks()
+				&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
+				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
+				&& $items->canExtendMagic()
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 
 		return $this;

@@ -63,7 +63,8 @@ class Location {
 	 * @return bool
 	 */
 	public function canFill(Item $item, $items, $check_access = true) {
-		return (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+		return $this->region->canFill($item)
+			&& (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
 		 	&& (!$check_access || $this->canAccess($items));
 	}
 
@@ -75,12 +76,12 @@ class Location {
 	 *
 	 * @return bool
 	 */
-	public function canAccess($items) {
-		if (!$this->region->canEnter($this->region->getWorld()->getLocations(), $items)) {
+	public function canAccess($items, $locations = null) {
+		if (!$this->region->canEnter($locations ?? $this->region->getWorld()->getLocations(), $items)) {
 			return false;
 		}
 
-		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $this->region->getWorld()->getLocations(), $items)) {
+		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $locations ?? $this->region->getWorld()->getLocations(), $items)) {
 			return true;
 		}
 
@@ -148,6 +149,7 @@ class Location {
 
 	/**
 	 * Write the Item to this Location in ROM. Will set Item if passed in, and only write if there is an Item set.
+	 * @TODO: this is side-affecty
 	 *
 	 * @param Rom $rom ROM we are writing to
 	 * @param Item|null $item item we are going to write
@@ -165,14 +167,24 @@ class Location {
 			throw new \Exception('No Item set to be written');
 		}
 
-		$item_bytes = $this->item->getBytes();
+		$item = $this->item;
+
+		if ($item instanceof Item\Key && $this->region->isRegionItem($item)) {
+			$item = Item::get('Key');
+		}
+
+		if ($item instanceof Item\BigKey && $this->region->isRegionItem($item)) {
+			$item = Item::get('BigKey');
+		}
+
+		$item_bytes = $item->getBytes();
 
 		foreach ($this->address as $key => $address) {
 			if (!isset($item_bytes[$key]) || !isset($address)) continue;
 			$rom->write($address, pack('C', $item_bytes[$key]));
 		}
 
-		foreach ($this->item->getAddress() as $key => $address) {
+		foreach ($item->getAddress() as $key => $address) {
 			if (!isset($this->bytes[$key]) || !isset($address)) continue;
 			$rom->write($address, pack('C', $this->bytes[$key]));
 		}

@@ -6,6 +6,25 @@
 <p>Difficulty will affect what items one has avilable to them to complete the game as well as modify some of the
 	usages of items.</p>
 
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Easy</h3>
+		</div>
+		<div class="panel-body">
+			<p>Easy is like Normal, but makes it easier travelling through hyrule. While you
+				will never find more than 4 swords, there are twice as many chances to get an upgrade.</p>
+			<p>Items that have 2x chance of finding:</p>
+			<ul>
+				<li>Swords</li>
+				<li>Armors</li>
+				<li>Shields</li>
+				<li>Bottles</li>
+				<li>½ Magic</li>
+			</ul>
+			<p>finding the second ½ Magic tucked away in easy will get you ¼ Magic</p>
+		</div>
+	</div>
+
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h3 class="panel-title">Normal</h3>
@@ -44,7 +63,7 @@
 						<li>1x Flippers</li>
 						<li>1x Flute</li>
 						<li>1x Golden Sword</li>
-						<li>1x ½ Magic or ¼ Magic</li>
+						<li>1x ½ Magic</li>
 						<li>1x Hammer</li>
 					</ul>
 				</div>
@@ -74,9 +93,9 @@
 						<li>1x Shovel</li>
 						<li>1x Silver Arrows Upgrade</li>
 						<li>1x Tempered Sword</li>
-						<li>4x Ten Arrows</li>
+						<li>5x Ten Arrows</li>
 						<li>10x Three Bombs</li>
-						<li>4x Three Hundred Rupees</li>
+						<li>5x Three Hundred Rupees</li>
 						<li>1x Titans Mitt</li>
 						<li>28x Twenty Rupees</li>
 					</ul>
@@ -95,8 +114,6 @@
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
-				<li>Bug Catching Net</li>
-				<li>Cane Of Byrna</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
@@ -107,15 +124,17 @@
 			<ul>
 				<li>Arrows</li>
 				<li>Bombs</li>
+				<li>Heart Containers (only 5 available)</li>
 				<li>Rupees</li>
 			</ul>
 			<p>The following items have been adjusted:</p>
 			<ul>
-				<li>Magic Cape uses 2x Magic</li>
+				<li>Magic Cape uses 2x Magic (except in spike cave)</li>
+				<li>Cane of Byrna uses 2x Magic (except in spike cave)</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
+				<li>Bug Net doesn't catch fairies</li>
 				<li>There are only 2 Bottles (4 in Major Glitches)</li>
 				<li>Potions heal 5 hearts and restore 1/2 magic</li>
-				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 			</ul>
 		</div>
 	</div>
@@ -130,8 +149,6 @@
 				<li>Arrow Capacity Upgrades</li>
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
-				<li>Bug Catching Net</li>
-				<li>Cane Of Byrna</li>
 				<li>Golden Sword</li>
 				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
@@ -149,71 +166,14 @@
 			</ul>
 			<p>The following items have been adjusted:</p>
 			<ul>
-				<li>Magic Cape uses 4x Magic</li>
+				<li>Magic Cape uses 4x Magic (except in spike cave)</li>
+				<li>Cane of Byrna uses 4x Magic (except in spike cave)</li>
 				<li>Magic Powder does not turn Bubbles into Fairies</li>
+				<li>Bug Net doesn't catch fairies</li>
 				<li>There is only 1 Bottle (4 in Major Glitches)</li>
 				<li>Potions heal 1 heart and restore 1/4 magic</li>
 				<li>Shields in Shops are unpurchasable</li>
-				<li>Cane of Byrna Cave spike floor damage has been reduced</li>
 			</ul>
-		</div>
-	</div>
-
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">Timed</h3>
-		</div>
-		<div class="panel-body">
-			<p>Timed mode is a new way of playing Randomizer. When digging through the graphics packed into the rom
-				we found a clock. Much like the clocks in The Legend of Zelda. With those available we decided to
-				make a few different Timed modes with a timer at the top.</p>
-			<p>In all these modes you will find an assortment of Red, Blue, and Green clocks. They mean different
-				things in different modes. Generally small rupee drops were removed to make space for the new
-				clocks. But don't worry we added more large rupee drops to make up for it.</p>
-			<div class="panel panel-warning">
-				<div class="panel-heading">
-					<h3 class="panel-title">Timed Race</h3>
-				</div>
-				<div class="panel-body">
-					<p>In this mode the timer is counting up, and the person with the best time wins the game
-						irrelevent of who beats Ganon first.</p>
-					<p>Do you spend some time looking for a clock to adjust your timer down? Or just race
-						to the end?</p>
-					<p>This mode has:</p>
-					<ul>
-						<li>Start with 0 minutes on the timer</li>
-						<li>20 Green clocks that subtract 4 minutes from your timer</li>
-						<li>10 Blue clocks that subtract 2 minutes to your timer</li>
-						<li>10 Red clocks that add 2 minutes to your timer</li>
-					</ul>
-
-				</div>
-			</div>
-			<div class="panel panel-danger">
-				<div class="panel-heading">
-					<h3 class="panel-title">Timed OHKO (one hit knock out)</h3>
-				</div>
-				<div class="panel-body">
-					<p>In this mode you start with 10 minutes on the timer, every clock you find will add time to
-						your total time. But if you let the timer reach 0, then you'll be in OHKO mode.</p>
-					<p>Don't dispair though, if you are in OHKO mode and find another clock (no matter how
-						long you have been in OHKO), you get the time of the clock added to your timer.</p>
-					<p>This mode has:</p>
-					<ul>
-						<li>Start with 10 minutes on the timer</li>
-						<li>25 Green clocks that add 5 minutes to your timer</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h3 class="panel-title">OHKO (one hit knock out)</h3>
-		</div>
-		<div class="panel-body">
-			<p>Same game as normal, but take any damage and Link is a goner.</p>
 		</div>
 	</div>
 </div>

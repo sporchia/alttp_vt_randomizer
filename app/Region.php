@@ -9,9 +9,9 @@ class Region {
 	protected $can_enter;
 	protected $can_complete;
 	protected $name = 'Unknown';
-	protected $boss_location_in_base = true;
 	protected $prize_location;
 	protected $world;
+	protected $region_items = [];
 
 	/**
 	 * Create a new Region.
@@ -23,7 +23,10 @@ class Region {
 	public function __construct(World $world) {
 		$this->world = $world;
 
-		$this->boss_location_in_base = $this->world->config('region.bossNormalLocation', true);
+		// hydrate region items.
+		foreach ($this->region_items as $key => $item) {
+			$this->region_items[$key] = Item::get($item);
+		}
 	}
 
 	/**
@@ -100,17 +103,6 @@ class Region {
 	}
 
 	/**
-	 * Fill the normal required Items for a Region, this usually includes Keys/Maps/Compasses
-	 *
-	 * @param Support\ItemColletion $my_items set of Items available when filling base Items in the Region
-	 *
-	 * @return $this
-	 */
-	public function fillBaseItems($my_items) {
-		return $this;
-	}
-
-	/**
 	 * Set Locations to have Items like the vanilla game.
 	 *
 	 * @return $this
@@ -140,12 +132,12 @@ class Region {
 	}
 
 	/**
-	 * Initalize the Glitched logic for the Region
+	 * Initalize the MajorGlitches logic for the Region
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
-		return $this->initNoMajorGlitches();
+	public function initMajorGlitches() {
+		return $this->initOverworldGlitches();
 	}
 
 	/**
@@ -186,6 +178,36 @@ class Region {
 			return call_user_func($this->can_enter, $locations, $items);
 		}
 		return true;
+	}
+
+	/**
+	 * Determine if the item being placed in this region can be placed here.
+	 *
+	 * @param Item $item item to test
+	 *
+	 * @return bool
+	 */
+	public function canFill(Item $item) : bool {
+		if (($item instanceof Item\Key
+			|| $item instanceof Item\BigKey
+			|| ($this->world->config('region.mapsInDungeons', true) && $item instanceof Item\Map)
+			|| ($this->world->config('region.compassesInDungeons', true) && $item instanceof Item\Compass))
+			&& !in_array($item, $this->region_items)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Determine if the item belongs to this region.
+	 *
+	 * @param Item $item item to test
+	 *
+	 * @return bool
+	 */
+	public function isRegionItem(Item $item) : bool {
+		return in_array($item, $this->region_items);
 	}
 
 	/**

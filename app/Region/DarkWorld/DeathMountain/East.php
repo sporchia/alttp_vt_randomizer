@@ -90,46 +90,20 @@ class East extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
+	 * within for MajorGlitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
-		$access_dark_world = function($items) {
-			return $items->has('MoonPearl') || $items->hasABottle();
+	public function initMajorGlitches() {
+		$this->initOverworldGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			// @TODO: This should account for 2x YBA
+			return ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
+				|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
+					&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
+				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
-
-		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) || $items->canLiftDarkRocks() || $items->has('Hammer') || $items->has('MagicMirror');
-		});
-
-		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
-			return $access_dark_world($items) || $items->canLiftDarkRocks() || $items->has('Hammer') || $items->has('MagicMirror');
-		});
-
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
- 			return (($items->has('MagicMirror')
-					&& ($items->has('MoonPearl') || $items->hasABottle() || $items->canLiftDarkRocks()))
-					|| ($access_dark_world($items) && $items->canLiftRocks())) && $items->has('Hookshot');
-		});
-
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
- 			return (($items->has('MagicMirror')
-					&& ($items->has('MoonPearl') || $items->hasABottle() || $items->canLiftDarkRocks()))
-					|| ($access_dark_world($items) && $items->canLiftRocks())) && $items->has('Hookshot');
-		});
-
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
- 			return (($items->has('MagicMirror')
-					&& ($items->has('MoonPearl') || $items->hasABottle() || $items->canLiftDarkRocks()))
-					|| ($access_dark_world($items) && $items->canLiftRocks())) && $items->has('Hookshot');
-		});
-
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) use ($access_dark_world) {
- 			return (($items->has('MagicMirror')
-					&& ($items->has('MoonPearl') || $items->hasABottle() || $items->canLiftDarkRocks()))
-					|| ($access_dark_world($items) && $items->canLiftRocks())) && ($items->has('Hookshot') || $items->has('PegasusBoots'));
-		});
 
 		return $this;
 	}

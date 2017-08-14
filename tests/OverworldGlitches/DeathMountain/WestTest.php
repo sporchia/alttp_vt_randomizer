@@ -30,7 +30,7 @@ class WestTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -40,8 +40,6 @@ class WestTest extends TestCase {
 	public function accessPool() {
 		return [
 			["Ether Tablet", false, []],
-			["Ether Tablet", false, [], ['MagicMirror', 'Hookshot']],
-			["Ether Tablet", false, [], ['MagicMirror', 'Hammer']],
 			["Ether Tablet", false, [], ['UpgradedSword']],
 			["Ether Tablet", false, [], ['BookOfMudora']],
 			["Ether Tablet", true, ['Flute', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword']],

@@ -19,6 +19,7 @@ class Randomize extends Command {
 		. ' {--debug : enable BAGE mode}'
 		. ' {--spoiler : generate a spoiler file}'
 		. ' {--difficulty=normal : set difficulty}'
+		. ' {--variation=none : set variation}'
 		. ' {--logic=NoMajorGlitches : set logic}'
 		. ' {--heartbeep=half : set heart beep speed}'
 		. ' {--skip-md5 : do not validate md5 of base rom}'
@@ -90,13 +91,14 @@ class Randomize extends Command {
 
 			config(['game-mode' => $this->option('mode')]);
 
-			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);
 			$rom->muteMusic($this->option('no-music', false));
-			
-			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.sfc', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
+
+			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.sfc',
+				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
 					if (filesize($this->option('sprite')) == 28792) {
@@ -118,7 +120,8 @@ class Randomize extends Command {
 				$this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 			if ($this->option('spoiler')) {
-				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s.txt', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $rand->getSeed());
+				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.txt',
+					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}
@@ -137,6 +140,7 @@ class Randomize extends Command {
 		$rom->setHardMode(0);
 
 		$rom->setPyramidFairyChests(false);
+		$rom->setWishingWellChests(false);
 		$rom->setSmithyQuickItemGive(false);
 
 		$rom->setOpenMode(false);

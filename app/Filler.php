@@ -21,17 +21,13 @@ abstract class Filler {
 		}
 
 		switch ($type) {
-			case 'Troll':
-				return new Filler\Troll($world);
 			case 'Distributed':
 				return new Filler\Distributed($world);
-			case 'Beatable':
-				return new Filler\RandomBeatable($world);
+			case 'Random':
+				return new Filler\Random($world);
+			default:
 			case 'RandomAssumed':
 				return new Filler\RandomAssumed($world);
-			case 'Random':
-			default:
-				return new Filler\RandomSwap($world);
 		}
 	}
 
@@ -39,7 +35,7 @@ abstract class Filler {
 		$this->world = $world;
 	}
 
-	abstract public function fill(array $required, array $nice, array $extra);
+	abstract public function fill(array $dungeon, array $required, array $nice, array $extra);
 
 	protected function shuffleLocations(Locations $locations) {
 		return $locations->randomCollection($locations->count());
@@ -50,6 +46,8 @@ abstract class Filler {
 	}
 
 	protected function fastFillItemsInLocations($fill_items, $locations) {
+		Log::debug(sprintf("Fast Filling %s items in %s locations", count($fill_items), $locations->count()));
+
 		foreach($locations as $location) {
 			if ($location->hasItem()) {
 				continue;

@@ -12,6 +12,17 @@ use ALttP\World;
 class HyruleCastleTower extends Region {
 	protected $name = 'Castle Tower';
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyH1',
+		'Compass',
+		'CompassH1',
+		'Key',
+		'KeyH1',
+		'Map',
+		'MapH1',
+	];
+
 	/**
 	 * Create a new Hyrule Castle Tower Region and initalize it's locations
 	 *
@@ -28,6 +39,9 @@ class HyruleCastleTower extends Region {
 			new Location\Prize\Event("Agahnim", null, null, $this),
 		]);
 
+		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
+		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
+
 		$this->prize_location = $this->locations["Agahnim"];
 		$this->prize_location->setItem(Item::get('DefeatAgahnim'));
 	}
@@ -38,20 +52,6 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
-
-		return $this;
-	}
-
-	/**
-	 * Place Keys, Map, and Compass in Region. Hyrule Castle Tower has: 2 Keys
-	 *
-	 * @param ItemCollection $my_items full list of items for placement
-	 *
-	 * @return $this
-	 */
-	public function fillBaseItems($my_items) {
 		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
 		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
 
@@ -81,31 +81,6 @@ class HyruleCastleTower extends Region {
 				|| $items->hasUpgradedSword()
 				|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
 		};
-
-		return $this;
-	}
-
-	/**
-	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode.
-	 *
-	 * @return $this
-	 */
-	public function initGlitched() {
-		$this->can_enter = function($locations, $items) {
-			return $items->has('Lamp');
-		};
-
-		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'swordless') {
-				return $this->canEnter($locations, $items)
-					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
-			}
-
-			return $this->canEnter($locations, $items) && $items->hasSword();
-		};
-
-		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

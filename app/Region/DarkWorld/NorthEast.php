@@ -106,7 +106,7 @@ class NorthEast extends Region {
 				|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl'));
 		};
 
-		// canbeataga2 && (MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows))) || (TS && (lamp || fire rod))
+		// canbeataga2 && ((MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows)))) || (TS && (lamp || fire rod)))
 		$this->prize_location->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl')
 				&& $items->has('DefeatAgahnim2') && $items->canLightTorches()
@@ -126,39 +126,65 @@ class NorthEast extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
+	 * within for MajorGlitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
+	public function initMajorGlitches() {
+		$this->initOverworldGlitches();
+
+		// @TODO: This should account for 2x YBA/1x YBA and S&Q from DM
+		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
+			return $items->glitchedLinkInDarkWorld()
+				&& ($items->canLiftRocks() || $items->has('PegasusBoots'));
+		});
+
 		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
-			return $items->hasSword() && $items->has('MagicMirror')
-				|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
-					&& ($items->hasABottle() || $items->has("MoonPearl")));
+			return $items->hasSword()
+				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->glitchedLinkInDarkWorld())
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
 		});
 
 		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
-			return $items->canShootArrows() && ($items->has('MagicMirror')
-				|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
-					&& ($items->hasABottle() || $items->has("MoonPearl"))));
+			return $items->canShootArrows()
+				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->glitchedLinkInDarkWorld())
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
 		});
+
 
 		if ($this->world->config('region.swordsInPool', true)) {
 			$this->locations["Pyramid Fairy - Left"]->setRequirements(function($locations, $items) {
-				return $items->has('MagicMirror')
-					|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
-						&& ($items->hasABottle() || $items->has("MoonPearl")));
+				return ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->glitchedLinkInDarkWorld())
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))));
 			});
 
 			$this->locations["Pyramid Fairy - Right"]->setRequirements(function($locations, $items) {
-				return $items->has('MagicMirror')
-					|| ($items->has('Crystal5') && $items->has('Crystal6') && $items->has('Hammer')
-						&& ($items->hasABottle() || $items->has("MoonPearl")));
+				return ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->glitchedLinkInDarkWorld())
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))));
 			});
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') || $items->hasABottle();
+			return $items->has('DefeatAgahnim')
+				|| ($items->has('MoonPearl')
+					&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+						|| ($items->has('Hammer') && $items->canLiftRocks())))
+				|| (($items->hasABottle()
+					|| ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
+						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 
 		return $this;
@@ -173,23 +199,56 @@ class NorthEast extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
-		// 2x check this one
 		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->canLiftRocks();
+			return $items->has('MoonPearl')
+				&& ($items->canLiftRocks() || $items->has('PegasusBoots'));
 		});
 
-		// Do any of the things in this region actually use the can_enter function? I wonder what we are thinking here
+		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
+			return $items->hasSword()
+				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
+		});
+
+		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows()
+				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
+		});
+
+
+		if ($this->world->config('region.swordsInPool', true)) {
+			$this->locations["Pyramid Fairy - Left"]->setRequirements(function($locations, $items) {
+				return ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))));
+			});
+
+			$this->locations["Pyramid Fairy - Right"]->setRequirements(function($locations, $items) {
+				return ($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('Crystal5') && $items->has('Crystal6')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
+							&& (($items->has('Hammer') && $items->has('MoonPearl'))
+								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))));
+			});
+		}
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('DefeatAgahnim')
-				|| ($items->has('MagicMirror') && $items->canSpinSpeed())
 				|| ($items->has('MoonPearl')
-					&& ($items->canSpinSpeed()
-						|| ($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
-						|| ($items->has('Hammer') && $items->canLiftRocks())
-						|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
-						)
-					);
+					&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+						|| ($items->has('Hammer') && $items->canLiftRocks())))
+				|| ((($items->has('MagicMirror') && $items->canSpinSpeed())
+					|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
+						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 
 		return $this;

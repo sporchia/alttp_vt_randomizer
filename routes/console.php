@@ -3,6 +3,44 @@
 use ALttP\Console\Commands\Distribution;
 use ALttP\Sprite;
 
+
+Artisan::command('alttp:test', function () {
+	$data = array_values(unpack('C*', base64_decode(
+		"IhEDEhEDEyMRgwADIxHkLAAAMSMRCyMzFwEzMxERARAAMSMRAiMzFyIRABKDAEwiEQUSEQERMTEjEQMTMxMxIxECIzMnIhGDAAM" .
+		"AMiQRCwERMUEREhAhATMXMSIRACGDAEUGERETIyADJywAABApACQRAyIiJwGDAAECIxM3RBESAgETIycAJCICAiIyPwAAMSIRAw" .
+		"EjMxcnAAAxIxEBIzOFAL8CAyMjhwEYJwAHARERAzEAAxMkAAIgAAc0AAAQ5JkAJBEEISInACEiEQUBEREAEREkAAAxIxEDAxMXM" .
+		"SMRBCMzFzFDIhEDAwMXMSMRgwIdAEMiEYMCHSMRAwMzFzEjEQQDEycxQyIRhAIlIhEEAwMnMUMiEYMCNSMRAiMzFyIRBCERARMz" .
+		"JBEDAyMjMYQAwYQAjoQCcycAADGEAmEBMzMnAAMTMzMwgwBMAwEzMxCDAEwkEQMDEyExIxECAxMhJwAHMRERExEhMxc1AAEDAyU" .
+		"AAQMD5DcAJBECARMz5CcAAVExIhGDAh0jEQIBEREnAI8CcCIRBBIRAzMTJwCEAsACAzMT5DcAIhEAEiIRADEvAAcBEREQIQMzMz" .
+		"8AhQEYATIyJwAEARIhIBIlAAEQASIAJBEAAYQBHgQQAQEzFycAAQERIgAABDEAADGDAf4DAzMjAIQEMQAQgwC2AACDAEwjEQIhA" .
+		"TKEAm8DIQMzEiIRBBARARMyIhElAIMEgSoAIhGDAAMAIz8AIhEEEiEBAxIiEQMSEQIygwH8BBABARIyhgEYACKHBOA5AAQRAAAC" .
+		"AoQEZwEABSYAAQEChAPfBBEDATExIhEEIQMzEzEiEYMFLCQRASEjhgEXADODAfyDA3slEQIDExMkEQEBEOQwACIRhABj5FAAAxE" .
+		"RMBEjAIMF6eQiAAABgwXpMAABATElAAEBMYMD4AMSAxMTJwAIURERMCEDMTFQJwABERElAAERESIAAECFBQ8ABIQBLiQAIhGDAG" .
+		"MAIYMEPwACJwACEAIiJAACIAAHJBECIREnMAABAzMoAAACIgD///////////////////////////8="
+	)));
+
+	$lz2 = new \ALttP\Support\Lz2();
+	$uncompressed = $lz2->decompress($data);
+
+	$mem = [];
+	foreach ($uncompressed as $i => $val) {
+		$mem[] = $val >> 4;
+		$mem[] = $val & 0xF;
+	}
+	$mem[0xD66] = 0x04; // allow Ganon arrow dmg, need to understand what this value actually is
+
+	for ($i = 0; $i < count($uncompressed); ++$i) {
+		$uncompressed[$i] = ($mem[$i * 2] << 4) | $mem[$i * 2 + 1];
+	}
+	//dd(implode(' ', array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed)));
+	$compressed = $lz2->compress($uncompressed);
+	dd(implode(array_map(function($b){return sprintf('%02X', $b);}, $lz2->compress($uncompressed))));
+	$uncompressed2 = $lz2->decompress($compressed);
+	dd(array_diff($uncompressed2, $uncompressed));
+	dd(array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed2));
+
+});
+
 Artisan::command('alttp:romtospr {rom} {output}', function ($rom, $output) {
 	if (filesize($rom) == 1048576 || filesize($rom) == 2097152) {
 		file_put_contents($output, file_get_contents($rom, false, null, 0x80000, 0x7000)

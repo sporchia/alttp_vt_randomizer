@@ -8,8 +8,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-07-15';
-	const HASH = '585426fd248286b2fa51b0e5990ffbca';
+	const BUILD = '2017-08-11';
+	const HASH = '7f112e52921bf72c67296848f3f4ad97';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -175,6 +175,36 @@ class Rom {
 	 */
 	public function setByrnaCaveSpikeDamage(int $dmg_value = 0x08) : self {
 		$this->write(0x180168, pack('C*', $dmg_value));
+
+		return $this;
+	}
+
+	/**
+	 * Set Cane of Byrna Cave and Misery Mire spike room Byrna usage
+	 *
+	 * @param int $normal normal magic usage
+	 * @param int $half half magic usage
+	 * @param int $quarter quarter magic usage
+	 *
+	 * @return $this
+	 */
+	public function setCaneOfByrnaSpikeCaveUsage(int $normal = 0x04, int $half = 0x02, int $quarter = 0x01) : self {
+		$this->write(0x18016B, pack('C*', $normal, $half, $quarter));
+
+		return $this;
+	}
+
+	/**
+	 * Set Cane of Byrna Cave and Misery Mire spike room Cape usage
+	 *
+	 * @param int $normal normal magic usage
+	 * @param int $half half magic usage
+	 * @param int $quarter quarter magic usage
+	 *
+	 * @return $this
+	 */
+	public function setCapeSpikeCaveUsage(int $normal = 0x04, int $half = 0x08, int $quarter = 0x10) : self {
+		$this->write(0x18016E, pack('C*', $normal, $half, $quarter));
 
 		return $this;
 	}
@@ -355,7 +385,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setGoalIcon(string $goal_icon = 'star') : self {
+	public function setGoalIcon(string $goal_icon = 'triforce') : self {
 		switch ($goal_icon) {
 			case 'triforce':
 				$byte = pack('S*', 0x280E);
@@ -378,7 +408,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLimitProgressiveSword(int $limit, int $item) : self {
+	public function setLimitProgressiveSword(int $limit = 4, int $item = 0x36) : self {
 		$this->write(0x180090, pack('C*', $limit, $item));
 
 		return $this;
@@ -392,7 +422,7 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLimitProgressiveShield(int $limit, int $item) : self {
+	public function setLimitProgressiveShield(int $limit = 3, int $item = 0x36) : self {
 		$this->write(0x180092, pack('C*', $limit, $item));
 
 		return $this;
@@ -406,8 +436,22 @@ class Rom {
 	 *
 	 * @return $this
 	 */
-	public function setLimitProgressiveArmor(int $limit, int $item) : self {
+	public function setLimitProgressiveArmor(int $limit = 2, int $item = 0x36) : self {
 		$this->write(0x180094, pack('C*', $limit, $item));
+
+		return $this;
+	}
+
+	/**
+	 * Set Bottle limit and item after limit is reached
+	 *
+	 * @param int $limit max number to receive
+	 * @param int $item item byte to collect once limit is collected
+	 *
+	 * @return $this
+	 */
+	public function setLimitBottle(int $limit = 4, int $item = 0x36) : self {
+		$this->write(0x180096, pack('C*', $limit, $item));
 
 		return $this;
 	}
@@ -1091,7 +1135,7 @@ class Rom {
 			case 'OverworldGlitches':
 				$byte = 0x02;
 				break;
-			case 'Glitched':
+			case 'MajorGlitches':
 				$byte = 0x01;
 				break;
 			case 'off':
@@ -1310,40 +1354,50 @@ class Rom {
 	 */
 	public function setHardMode(int $level = 0) : self {
 		$this->setBelowGanonChest(false);
+		$this->setCaneOfByrnaSpikeCaveUsage();
+		$this->setCapeSpikeCaveUsage();
+		$this->setByrnaCaveSpikeDamage(0x08);
 
 		switch ($level) {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
+				// Bryna magic amount used per "cycle"
+				$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
 				$this->setShopRedShieldCost(500);
+				$this->setCatchableFairies(true);
+				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(0);
-				$this->setByrnaCaveSpikeDamage(0x08);
 
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
+				$this->write(0x45C42, pack('C*', 0x08, 0x08, 0x08));
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
 				$this->setShopRedShieldCost(999);
+				$this->setCatchableFairies(false);
+				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(10);
-				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
+				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
 				$this->setShopRedShieldCost(9990);
+				$this->setCatchableFairies(false);
+				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(20);
-				$this->setByrnaCaveSpikeDamage(0x02);
 
 				break;
 		}
@@ -1457,6 +1511,46 @@ class Rom {
 	}
 
 	/**
+	 * Enable Hammer activates tablets
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setHammerTablet(bool $enable = false) : self {
+		$this->write(0x180044, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable ability to bug net catch Fairy
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCatchableFairies(bool $enable = true) : self {
+		$this->write(0x34FD6, pack('C*', $enable ? 0xF0 : 0x80));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable ability to bug net catch Bee (also makes them attack you?)
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCatchableBees(bool $enable = true) : self {
+		$this->write(0xF5D73, pack('C*', $enable ? 0xF0 : 0x80));
+		$this->write(0xF5F10, pack('C*', $enable ? 0xF0 : 0x80));
+
+		return $this;
+	}
+
+	/**
 	 * Set space directly below Ganon to have a chest
 	 *
 	 * @param bool $enable switch on or off
@@ -1477,23 +1571,39 @@ class Rom {
 	/**
 	 * Place 2 chests in Waterfall of Wishing Fairy.
 	 *
-	 * @experimental do not use this feature yet, it places the chests in front of fairy
-	 *
 	 * @param bool $enable switch on or off
 	 *
 	 * @return $this
 	 */
 	public function setWishingWellChests(bool $enable = false) : self {
-		$this->write(0xE9AE, $enable
-			? pack('C*', 0x14, 0x01, 0x36) // default to 20 rupees
-			: pack('C*', 0x05, 0x00, 0x28));
-		$this->write(0xE9CF, $enable
-			? pack('C*', 0x14, 0x01, 0x36) // default to 20 rupees
-			: pack('C*', 0x3D, 0x01, 0x06));
+		// set item table to proper room
+		$this->write(0xE9AE, $enable ? pack('C*', 0x14, 0x01) : pack('C*', 0x05, 0x00));
+		$this->write(0xE9CF, $enable ? pack('C*', 0x14, 0x01) : pack('C*', 0x3D, 0x01));
 
-		$this->write(0x1F74F, $enable
-			? pack('C*', 0x29, 0xBE, 0xF9, 0x51, 0xBE, 0xF9)
-			: pack('C*', 0x28, 0xB8, 0x3D, 0x50, 0xB8, 0x3D));
+		// room 276 remodel
+		$this->write(0x1F714, $enable
+			? base64_decode(
+				"4QAQrA0pmgFYmA8RsWH8TYEg2gIs4WH8voFhsWJU2gL9jYNE4WL9HoMxpckxpGkxwCJNpGkxxvlJxvkQmaBcmaILmGAN6MBV6MALk" .
+				"gBzmGD+aQCYo2H+a4H+q4WpyGH+roH/aQLYo2L/a4P/K4fJyGL/LoP+oQCqIWH+poH/IQLKIWL/JoO7I/rDI/q7K/rDK/q7U/rDU/" .
+				"qwoD2YE8CYUsCIAGCQAGDoAGDwAGCYysDYysDYE8DYUsD8vYX9HYf/////8P+ALmEOgQ7//w==")
+			: base64_decode(
+				"4QAQrA0pmgFYmA8RsGH8TQEg0gL8vQUs4WH8voFhsGJU0gL9jQP9HQdE4WL9HoMxpckxpGkxwCJNpGkouD1QuD0QmaBcmaILmGAN4" .
+				"cBV4cALkgBzmGD+aQCYo2H+a4H+q4WpyGH+roH/aQLYo2L/a4P/K4fJyGL/LoP+oQCqIWH+poH/IQLKIWL/JoO7I/rDI/q7K/rDK/" .
+				"q7U/rDU/qwoD2YE8CYUsCIAGCQAGDoAGDwAGCYysDYysDYE8DYUsD/////8P+ALmEOgQ7//w=="));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable Waterfall of Wishing Fairy's ability to upgrade items.
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setWishingWellUpgrade(bool $enable = false) : self {
+		$this->write(0x348DE, pack('C*', $enable ? 0x2A : 0x0C));
+		$this->write(0x348FE, pack('C*', $enable ? 0x05 : 0x04));
 
 		return $this;
 	}
@@ -1565,6 +1675,8 @@ class Rom {
 		$this->write(0x180040, pack('C*', $enable ? 0x01 : 0x00)); // Open Curtains
 		$this->write(0x180041, pack('C*', $enable ? 0x01 : 0x00)); // Swordless Medallions
 		$this->write(0x180043, pack('C*', $enable ? 0xFF : 0x00)); // set Link's starting sword 0xFF is taken sword
+
+		$this->setHammerTablet($enable);
 
 		return $this;
 	}
@@ -1879,6 +1991,47 @@ class Rom {
 	}
 
 	/**
+	 * rummage table
+	 *
+	 * @return $this
+	 */
+	public function rummageTable() : self {
+		$swip = [];
+		$swap = [];
+
+		$idat = array_values(unpack('C*', base64_decode(
+			"MgAAVQAAcQAAqAAAEwEAqYAAFgEAFgEANwAANoAACwEAc4AAZwAAfgAAWIAAWAAAVwAAVwAAHwAAfgAAnoAAdwAAFAEAuQAAdAA" .
+			"AuAAABAEA/gAAdQAADAEAaAAAhQAAAwEAFAEALgAALQEAswAAPwAAXwAArgAAhwAACAEABgEAHAEACgEAqgAAJ4AAJwAAWQAA2w" .
+			"AA2wAA3AAAywAAZQAARIAARQAAtgAAJIAAtwAAtwAA1gAAFAAA1QAA1QAA1QAA1QAABAAAOgAAKgAAKgAAGoAAGgAAGgAACgAAa" .
+			"gAAagAAKwAAGQAAGQAACQAAwgAAogAAwQAAw4AAwwAA0QAAswAADQEADQEAEgAA+AAA+AAABQEABQEABQEAFwEALwAALwAALwAA" .
+			"LwAALwAAKAAARgAANAAANQAAdgAAdgAAZgAA0AAA4AAAewAAewAAewAAewAAfAAAfAAAfAAAfAAAfQAAiwAAjIAAjAAAjAAAjAA" .
+			"AjQAAnQAAnQAAnQAAnQAAHAAAHAAAHAAAWwAAPQAAPQAAPQAATQAAgAAAcgAAHQEAHQEAHQEAHQEAHQEAHgEAHgEAHgEAHgEA7w" .
+			"AA7wAA7wAA7wAA7wAA/wAA/wAAJAEAIwEAIwEAIwEAIwEAIAEAPAAAPAAAPAAAPAAAEQAAEQAAEQAA"
+		)));
+
+		$data = $this->read(0xE96C, 504);
+		foreach ($data as $i => $v) {
+			$data[$i] = ($v == 0) ? $idat[$i] : $v;
+		}
+		$data = array_chunk($data, 3);
+		foreach ($data as $chunk) {
+			$swip[($chunk[0] << 8) + ($chunk[1] | 0x80)][] = $chunk;
+		}
+
+		for ($i = 0; $i < count($data); ++$i) {
+			$swip = mt_shuffle($swip);
+			$swap[] = array_shift($swip[0]);
+			if (!count($swip[0])) {
+				unset($swip[0]);
+			}
+		}
+
+		$this->write(0xE96C, pack('C*', ...array_flatten($swap)));
+
+		return $this;
+	}
+
+	/**
 	 * Save the changes to this output file
 	 *
 	 * @param string $output_location location on the filesystem to write the new ROM.
@@ -1900,7 +2053,6 @@ class Rom {
 	 */
 	public function write(int $offset, string $data, bool $log = true) : self {
 		if ($log) {
-			Log::debug(sprintf("write: 0x%s: 0x%2s", strtoupper(dechex($offset)), strtoupper(unpack('H*', $data)[1])));
 			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		}
 		fseek($this->rom, $offset);

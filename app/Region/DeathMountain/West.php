@@ -56,10 +56,9 @@ class West extends Region {
 		});
 
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora')
-				&& $items->hasUpgradedSword()
-				&& ($items->has('MagicMirror')
-					|| ($items->has('Hammer') && $items->has('Hookshot')));
+			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+					|| (config('game-mode') == 'swordless' && $items->has('Hammer')))
+				&& ($items->has('MagicMirror') || ($items->has('Hammer') && $items->has('Hookshot')));
 		});
 
 		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
@@ -75,18 +74,17 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Glitched Mode
+	 * within for MajorGlitches Mode
 	 *
 	 * @return $this
 	 */
-	public function initGlitched() {
-		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
-		});
+	public function initMajorGlitches() {
+		$this->initOverworldGlitches();
 
-		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && $items->hasUpgradedSword();
-		});
+		$this->can_enter = function($locations, $items) {
+			return $items->has('PegasusBoots') || $items->hasABottle()
+				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+		};
 
 		return $this;
 	}
@@ -100,6 +98,11 @@ class West extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
+		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+					|| (config('game-mode') == 'swordless' && $items->has('Hammer')))
+				&& $this->world->getRegion('Tower of Hera')->canEnter($locations, $items);
+		});
 
 		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')

@@ -54,44 +54,44 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	}
 
 	protected function allItemsExcept(array $remove_items) {
-		$items = Item::all()->copy();
+		$items = Item::all()->copy()->manyKeys();
 		foreach (array_merge($remove_items, ['BigKey', 'Key']) as $item) {
 			switch ($item) {
 				case 'AnySword':
-					$items->removeItem('L1Sword');
-					$items->removeItem('L1SwordAndShield');
-					$items->removeItem('ProgressiveSword');
+					$items->offsetUnset('L1Sword');
+					$items->offsetUnset('L1SwordAndShield');
+					$items->offsetUnset('ProgressiveSword');
 				case 'UpgradedSword':
-					$items->removeItem('L2Sword');
-					$items->removeItem('MasterSword');
-					$items->removeItem('L3Sword');
-					$items->removeItem('L4Sword');
+					$items->offsetUnset('L2Sword');
+					$items->offsetUnset('MasterSword');
+					$items->offsetUnset('L3Sword');
+					$items->offsetUnset('L4Sword');
 					break;
 				case 'AnyBottle':
-					$items->removeItem('BottleWithBee');
-					$items->removeItem('BottleWithFairy');
-					$items->removeItem('BottleWithRedPotion');
-					$items->removeItem('BottleWithGreenPotion');
-					$items->removeItem('BottleWithBluePotion');
-					$items->removeItem('Bottle');
-					$items->removeItem('BottleWithGoldBee');
+					$items->offsetUnset('BottleWithBee');
+					$items->offsetUnset('BottleWithFairy');
+					$items->offsetUnset('BottleWithRedPotion');
+					$items->offsetUnset('BottleWithGreenPotion');
+					$items->offsetUnset('BottleWithBluePotion');
+					$items->offsetUnset('Bottle');
+					$items->offsetUnset('BottleWithGoldBee');
 					break;
 				case 'AnyBow':
-					$items->removeItem('Bow');
-					$items->removeItem('BowAndArrows');
-					$items->removeItem('BowAndSilverArrows');
+					$items->offsetUnset('Bow');
+					$items->offsetUnset('BowAndArrows');
+					$items->offsetUnset('BowAndSilverArrows');
 					break;
 				case 'Flute':
-					$items->removeItem('OcarinaActive');
-					$items->removeItem('OcarinaInactive');
+					$items->offsetUnset('OcarinaActive');
+					$items->offsetUnset('OcarinaInactive');
 					break;
 				case 'Gloves':
-					$items->removeItem('ProgressiveGlove');
-					$items->removeItem('PowerGlove');
-					$items->removeItem('TitansMitt');
+					$items->offsetUnset('ProgressiveGlove');
+					$items->offsetUnset('PowerGlove');
+					$items->offsetUnset('TitansMitt');
 					break;
 				default:
-					$items->removeItem($item);
+					$items->offsetUnset($item);
 					break;
 			}
 		}

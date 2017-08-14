@@ -6,6 +6,10 @@ Route::get('randomize{r?}', function () {
 	return view('randomizer');
 });
 
+Route::get('entrance/randomize{r?}', function () {
+	return view('entrance_randomizer');
+});
+
 Route::get('/', function () {
 	return view('about');
 });
@@ -24,6 +28,14 @@ Route::get('game_logics', function () {
 
 Route::get('game_difficulties', function () {
 	return view('game_difficulties');
+});
+
+Route::get('game_variations', function () {
+	return view('game_variations');
+});
+
+Route::get('game_entrance', function () {
+	return view('game_entrance');
 });
 
 Route::get('info', function () {
@@ -60,11 +72,59 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 	abort(404);
 });
 
+Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = null) {
+	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
+	$variation = $request->input('variation', 'none') ?: 'none';
+
+	config(['game-mode' => $request->input('mode', 'standard')]);
+
+	$rom = new ALttP\Rom();
+	if ($request->has('heart_speed')) {
+		$rom->setHeartBeepSpeed($request->input('heart_speed'));
+	}
+	if ($request->has('sram_trace')) {
+		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
+	}
+	if ($request->has('debug')) {
+		$rom->setDebugMode($request->input('debug') == 'true');
+	}
+
+	try {
+		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $request->input('goal', 'ganon'), $variation, $request->input('shuffle', 'full'));
+		$rand->makeSeed($seed_id);
+		$rand->writeToRom($rom);
+		$seed = $rand->getSeed();
+		$patch = $rom->getWriteLog();
+		$spoiler = $rand->getSpoiler();
+		$hash = $rand->saveSeedRecord();
+	} catch (Exception $e) {
+		return response('Failed', 409);
+	}
+
+	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+		$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $hash), 21, ' '));
+		$patch = patch_merge_minify($rom->getWriteLog());
+		$rand->updateSeedRecordPatch($patch);
+		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+		$seed = $hash;
+	}
+
+	return json_encode([
+		'seed' => $seed,
+		'logic' => $rand->getLogic(),
+		'difficulty' => $difficulty,
+		'patch' => $patch,
+		'spoiler' => $spoiler,
+		'hash' => $hash,
+	]);
+});
+
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
+	$variation = $request->input('variation', 'none') ?: 'none';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -90,7 +150,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'));
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
@@ -100,6 +160,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+		$rom->rummageTable();
 		$patch = patch_merge_minify($rom->getWriteLog());
 		$rand->updateSeedRecordPatch($patch);
 		$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
@@ -121,6 +182,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
+	$variation = $request->input('variation', 'none') ?: 'none';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -132,7 +194,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'));
+	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });

@@ -45,7 +45,7 @@
 				<li>Medallions can only be used directly outside Misery Mire and Turtle Rock (they usually required a sword to use).</li>
 				<li>Ganon can be damaged by the Hammer.</li>
 				<li>Silver Arrows are available in all difficulties (normal/hard/expert).</li>
-				<li>Ether/Bombos tablets are currently not accessible and never required to progress.</li>
+				<li>Ether/Bombos tablets can be activated with Hammer and Book Of Mudora.</li>
 			</ul>
 		</div>
 	</div>

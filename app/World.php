@@ -9,8 +9,9 @@ use Log;
  * This is the container for all the regions and locations one can find items in the game.
  */
 class World {
-	protected $rules;
-	protected $type;
+	protected $difficulty;
+	protected $variation;
+	protected $logic;
 	protected $goal;
 	protected $regions = [];
 	protected $locations;
@@ -20,14 +21,17 @@ class World {
 	/**
 	 * Create a new world and initialize all of the Regions within it
 	 *
-	 * @param string $rules rules from config to apply to randomization
-	 * @param string $type Ruleset to use when deciding if Locations can be reached
+	 * @param string $difficulty difficulty from config to apply to randomization
+	 * @param string $logic Ruleset to use when deciding if Locations can be reached
+	 * @param string $goal Goal of the game
+	 * @param string $variation modifications to difficulty
 	 *
 	 * @return void
 	 */
-	public function __construct($rules = 'normal', $type = 'NoMajorGlitches', $goal = 'ganon') {
-		$this->rules = $rules;
-		$this->type = $type;
+	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
+		$this->difficulty = $difficulty;
+		$this->variation = $variation;
+		$this->logic = $logic;
 		$this->goal = $goal;
 
 		$this->regions = [
@@ -61,12 +65,12 @@ class World {
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
-			$region->init($type);
+			$region->init($logic);
 			$this->locations = $this->locations->merge($region->getLocations());
 		}
 
-		switch ($this->type) {
-			case 'Glitched':
+		switch ($this->logic) {
+			case 'MajorGlitches':
 				$this->win_condition = function($collected_items) {
 					if ($this->goal == 'dungeons') {
 						if (!$collected_items->has('PendantOfCourage')
@@ -91,7 +95,7 @@ class World {
 						&& $collected_items->has('Crystal5')
 						&& $collected_items->has('Crystal6')
 						&& $collected_items->has('Crystal7')
-						&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+						&& $collected_items->has('DefeatGanon');
 				};
 				break;
 			case 'OverworldGlitches':
@@ -138,7 +142,7 @@ class World {
 					}
 
 					return $collected_items->has('DefeatGanon')
-						&& 	$collected_items->has('Crystal1')
+						&& $collected_items->has('Crystal1')
 						&& $collected_items->has('Crystal2')
 						&& $collected_items->has('Crystal3')
 						&& $collected_items->has('Crystal4')
@@ -149,7 +153,7 @@ class World {
 				break;
 		}
 
-		if ($this->rules == 'custom') {
+		if ($this->difficulty == 'custom') {
 			$this->win_condition = function($collected_items) {
 				if ($this->goal == 'dungeons') {
 					if (!$collected_items->has('PendantOfCourage')
@@ -174,6 +178,12 @@ class World {
 				return $this->getLocation("Altar")->canAccess($collected_items);
 			};
 		}
+
+		if ($this->goal == 'triforce-hunt') {
+			$this->win_condition = function($collected_items) {
+				return $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'));
+			};
+		}
 	}
 
 	/**
@@ -195,7 +205,7 @@ class World {
 	 * @return static
 	 */
 	public function copy() {
-		$copy = new static($this->rules, $this->type, $this->goal);
+		$copy = new static($this->difficulty, $this->logic, $this->goal, $this->variation);
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
@@ -239,9 +249,42 @@ class World {
 	 */
 	public function getPlayThrough($walkthrough = true) {
 		$shadow_world = $this->copy();
+		$junk_items = [
+			Item::get('BlueShield'),
+			Item::get('ProgressiveArmor'),
+			Item::get('BlueMail'),
+			Item::get('Boomerang'),
+			Item::get('MirrorShield'),
+			Item::get('PieceOfHeart'),
+			Item::get('HeartContainer'),
+			Item::get('BossHeartContainer'),
+			Item::get('RedBoomerang'),
+			Item::get('RedShield'),
+			Item::get('RedMail'),
+			Item::get('BombUpgrade5'),
+			Item::get('BombUpgrade10'),
+			Item::get('BombUpgrade50'),
+			Item::get('ArrowUpgrade5'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade70'),
+			Item::get('Arrow'),
+			Item::get('TenArrows'),
+			Item::get('Bomb'),
+			Item::get('ThreeBombs'),
+			Item::get('OneRupee'),
+			Item::get('FiveRupees'),
+			Item::get('TwentyRupees'),
+			Item::get('FiftyRupees'),
+			Item::get('OneHundredRupees'),
+			Item::get('ThreeHundredRupees'),
+			Item::get('Heart'),
+			Item::get('Rupoor'),
+		];
 
 		$location_sphere = $shadow_world->getLocationSpheres();
-
+		$collectable_locations = new LocationCollection(array_flatten(array_map(function($collection) {
+			return $collection->values();
+		}, $location_sphere)));
 		$required_locations = new LocationCollection;
 		$required_locations_sphere = [];
 		$reverse_location_sphere = array_reverse($location_sphere, true);
@@ -250,12 +293,22 @@ class World {
 			foreach ($sphere as $location) {
 				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(),
 					$location->getItem() ? $location->getItem()->getNiceName() : 'Nothing'));
-				// pull item out
+				// pull item out (we have to pull keys as well :( as they are used in calcs for big keys see DP)
+				// OKAY figure out how to speed this up again, as we need to check bloddy keys!
 				$pulled_item = $location->getItem();
+				if ($pulled_item === null ||
+					($pulled_item instanceof Item\Key
+					&& !in_array($pulled_item, [Item::get('KeyP2'), Item::get('KeyP3'), Item::get('KeyD5'), Item::get('KeyD6'), Item::get('KeyD7'), Item::get('KeyA2')]))) {
+					continue;
+				}
 				$location->setItem();
+				if ($pulled_item instanceof Item\Map
+					|| $pulled_item instanceof Item\Compass
+					|| in_array($pulled_item, $junk_items)) {
+					continue;
+				}
 
-				if (!$shadow_world->getWinCondition()($shadow_world->getCollectableLocations()->getItems())) {
-				//if (!$shadow_world->getWinCondition()($shadow_world->collectItems())) { // this is more correct
+				if (!$shadow_world->getWinCondition()($collectable_locations->getItems())) {
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);
@@ -270,7 +323,7 @@ class World {
 					if ($check_sphere == $sphere_level || $required_locations->has($location->getName())) {
 						continue;
 					}
-					Log::debug("CHECKING: $check_sphere");
+
 					// remove all higher sphere items from their locations
 					foreach ($required_locations_sphere as $higher_sphere => $higher_locations) {
 						if ($higher_sphere < $check_sphere) {
@@ -290,10 +343,9 @@ class World {
 							// remove the item we are trying to get
 							$temp_pull = $higher_location->getItem();
 							$higher_location->setItem();
-							$current_items = $shadow_world->getCollectableLocations()->getItems();
-							//$current_items = $shadow_world->collectItems(); // this is more correct
+							$current_items = $collectable_locations->getItems();
 
-							if (!$higher_location->canAccess($current_items)) {
+							if (!$higher_location->canAccess($current_items, $this->getLocations())) {
 								// put item back
 								$location->setItem($this->locations[$location->getName()]->getItem());
 								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(),
@@ -332,17 +384,19 @@ class World {
 			$longest_item_chain++;
 			$location_round[$longest_item_chain] = [];
 			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items) {
-				return $location->canAccess($my_items);
+				return $location->canAccess($my_items, $this->getLocations());
 			});
 
 			$found_items = $available_locations->getItems();
 
-			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain) {
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain, $junk_items) {
+				$item = $location->getItem();
 				if (in_array($location, $location_order)
 						|| !$location->hasItem()
-						|| in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])) {
+						|| $item instanceof Item\Key) {
 					return;
 				}
+				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
 				array_push($location_round[$longest_item_chain], $location);
 			});
@@ -366,28 +420,6 @@ class World {
 		});
 
 		return $ret;
-	}
-
-	/**
-	 * Set the rules to use for this world
-	 *
-	 * @param string $rules rules set to use from config('alttp.{$rules}')
-	 *
-	 * @return $this
-	 */
-	public function setRules(string $rules) {
-		$this->rules = $rules;
-
-		return $this;
-	}
-
-	/**
-	 * Get the rules currently used for this world
-	 *
-	 * @return string
-	 */
-	public function getRules() {
-		return $this->rules;
 	}
 
 	/**
@@ -426,7 +458,7 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->rules}.$key", $default);
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
 	}
 
 	/**
@@ -493,12 +525,11 @@ class World {
 				return $location->canAccess($my_items);
 			});
 
-			$found_items = $search_locations->getItems();
+			$available_locations = $available_locations->diff($search_locations);
 
-			$pre_collected = $my_items->diff($found_items);
-			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items->merge($pre_collected);
-		} while ($new_items->count() > 0);
+			$found_items = $search_locations->getItems();
+			$my_items = $found_items->merge($my_items);
+		} while ($found_items->count() > 0);
 
 		return $my_items;
 	}
@@ -518,7 +549,6 @@ class World {
 			$available_locations = $this->locations->filter(function($location) use ($my_items) {
 				return !is_a($location, Location\Medallion::class)
 					&& !is_a($location, Location\Fountain::class)
-					&& !in_array($location->getItem(), [Item::get('BigKey'), Item::get('Key')])
 					&& $location->canAccess($my_items);
 			});
 			$location_sphere[$sphere] = $available_locations->diff($found_locations);

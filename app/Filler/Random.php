@@ -2,6 +2,7 @@
 
 use ALttP\Filler;
 use ALttP\Item;
+use ALttP\Support\ItemCollection as Items;
 use ALttP\Support\LocationCollection as Locations;
 use ALttP\World;
 use Log;
@@ -10,13 +11,18 @@ class Random extends Filler {
 	/**
 	 * Fill algorithm application.
 	 *
+	 * @param array $dungeon items that must be placed
 	 * @param array $required items that must be placed
 	 * @param array $nice items that would be nice to have placed
 	 * @param array $extra items that don't matter if they get placed
 	 *
 	 * @return null
 	 */
-	public function fill(array $required, array $nice, array $extra) {
+	public function fill(array $dungeon, array $required, array $nice, array $extra) {
+		// back hack from RandomAssumed
+		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
+		$this->fillDungeonItemsInLocations($dungeon, $randomized_order_locations, $required);
+
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
 		$my_items = $this->world->collectItems();
@@ -96,4 +102,23 @@ class Random extends Filler {
 
 		Log::debug(sprintf("Extra Items: %s", count($fill_items)));
 	}
+
+	protected function fillDungeonItemsInLocations($fill_items, $locations, $base_assumed_items = []) {
+		$remaining_fill_items = new Items($fill_items);
+
+		foreach ($fill_items as $key => $item) {
+			$assumed_items = $this->world->collectItems($remaining_fill_items->removeItem($item->getName())->merge($base_assumed_items));
+
+			$fillable_locations = $locations->filter(function($location) use ($item, $assumed_items) {
+				return !$location->hasItem() && $location->canFill($item, $assumed_items);
+			});
+
+			$fill_location = $fillable_locations->first();
+
+			Log::debug(sprintf("Placing Item: %s in %s", $item->getNiceName(), $fill_location->getName()));
+
+			$fill_location->setItem($item);
+		}
+	}
+
 }

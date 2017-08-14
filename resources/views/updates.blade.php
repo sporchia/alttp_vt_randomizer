@@ -1,6 +1,42 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.26</h2>
+<div class="well">
+	<ul>
+		<li>updated timed-OHKO for different difficulties</li>
+		<li>Boots are no longer guaranteed in Sanctuary for Major Glitches</li>
+		<li>Hammer can now activate tablets in swordless</li>
+		<li>Numerous rom related bugs fixed</li>
+		<li>Added some descriptions to the ER shuffle modes from docs</li>
+		<li>Waterfall fairy no longer upgrades shield/boomerang</li>
+		<li>Added Triforce Hunt goal/variation</li>
+		<li>Bug Net added back to all difficulties (hard/expert cannot catch fairies)</li>
+		<li>Cape and Byrna use normal magic in all difficulties in Spike cave and spike room in Misery Mire</li>
+		<li>Spike cave does normal damage in all difficulties</li>
+		<li>Added easy difficulty</li>
+		<li>Split difficulties into difficulty and variation</li>
+		<li>¼ magic is no longer in normal/hard/expert</li>
+		<li>Turtle Rock laser bridge requires Cape or Cane of Byrna or Mirror Shield</li>
+		<li>Byrna (Spike) Cave and Misery Mire spike room now requires Cape or Cane of Byrna</li>
+		<li>Logic update for keys</li>
+		<li>Tuning to fill algorithm</li>
+		<li>Entrance Randomizer integration (thanks LLCoolDave)</li>
+		<li>Two new chests have been added to Waterfall fairy</li>
+		<li>Added many new player options (and updated a few)<br />
+			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.3.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
+	</ul>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/L3FdC-f7f38?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+
 <h2>VT8.25</h2>
 <div class="well">
 	<ul>

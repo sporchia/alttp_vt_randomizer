@@ -17,7 +17,8 @@
         "hashids/hashids": "^2.0",
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "z3/entrancerandomizer":"0.4.7"
     },
     "require-dev": {
         "sami/sami": "*",
@@ -27,6 +28,20 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "z3/entrancerandomizer",
+                "version": "0.4.7",
+                "source": {
+                    "url": "https://github.com/LLCoolDave/ALttPEntranceRandomizer",
+                    "type": "git",
+                    "reference": "tags/0.4.7-dev"
+                }
+            }
+        }
+    ],
     "autoload": {
         "classmap": [
             "database"

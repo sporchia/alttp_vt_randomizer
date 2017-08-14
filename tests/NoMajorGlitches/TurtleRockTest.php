@@ -20,419 +20,287 @@ class TurtleRockTest extends TestCase {
 		unset($this->world);
 	}
 
-	// Entry
-	public function testCanEnterWithEverything() {
-		$this->assertTrue($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItems()));
-	}
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider accessPool
+	 */
+	public function testLocation(string $location, bool $access, array $items, array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
 
-	public function testEtherRequiredIfEtherIsEntryMedallion() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Ether'));
+		$this->addCollected($items);
 
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Ether'])));
-	}
-
-	public function testBombosRequiredIfBombosIsEntryMedallion() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Bombos'));
-
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Bombos'])));
-	}
-
-	public function testQuakeRequiredIfQuakeIsEntryMedallion() {
-		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Quake'])));
-	}
-
-	public function testCaneRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['CaneOfSomaria'])));
-	}
-
-	public function testHammerRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Hammer'])));
-	}
-
-	public function testMoonPearlRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MoonPearl'])));
-	}
-
-	public function testMittRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['TitansMitt'])));
-	}
-
-	public function testMirrorOrHookshotRequiredForEntry() {
-		$this->assertFalse($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MagicMirror', 'Hookshot'])));
-	}
-
-	public function testNotOnlyMirrorRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['MagicMirror'])));
-	}
-
-	public function testNotOnlyHookshotRequiredForEntry() {
-		$this->assertTrue($this->world->getRegion('Turtle Rock')
-			->canEnter($this->world->getLocations(), $this->allItemsExcept(['Hookshot'])));
-	}
-
-	// Item Locations
-	public function testChainChompRoomRequiresFireRodIfKeyNotAtCompassRoom() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testCompassRoomOnlyRequiresEntry() {
-		$this->addCollected(['TitansMitt', 'MoonPearl', 'Hammer', 'Quake', 'CaneOfSomaria', 'Hookshot', 'L1Sword', 'Lamp']);
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")
+		$this->assertEquals($access, $this->world->getLocation($location)
 			->canAccess($this->collected));
 	}
 
-	public function testMapRoomChestRRequiresFireRod() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
+	/**
+	 * @param string $location
+	 * @param bool $access
+	 * @param string $item
+	 * @param array $items
+	 * @param array $except
+	 *
+	 * @dataProvider fillPool
+	 */
+	public function testFillLocation(string $location, bool $access, string $item, array $items = [], array $except = []) {
+		if (count($except)) {
+			$this->collected = $this->allItemsExcept($except);
+		}
+
+		$this->addCollected($items);
+
+		$this->assertEquals($access, $this->world->getLocation($location)
+			->fill(Item::get($item), $this->collected));
 	}
 
-	public function testMapRoomChestLRequiresFireRod() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
+	public function fillPool() {
+		return [
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, 'BigKeyD7', ['KeyD7', 'KeyD7'], ['BigKeyD7']],
+
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, 'BigKeyD7', [], ['BigKeyD7']],
+
+			["Heart Container - Trinexx", false, 'BigKeyD7', [], ['BigKeyD7']],
+			["Heart Container - Trinexx", false, 'KeyD7', [], ['KeyD7']],
+		];
 	}
 
-	public function testBigChestRequiresFireRodIfKeysNotInCompassAndChainChompRooms() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->canAccess($this->allItemsExcept(['FireRod'])));
+	public function accessPool() {
+		return [
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", false, []],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", false, [], ['MoonPearl']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", false, [], ['TitansMitt']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", false, [], ['Hammer']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7']],
+			["[dungeon-D7-1F] Turtle Rock - Chain chomp room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7']],
+
+			["[dungeon-D7-1F] Turtle Rock - compass room", false, []],
+			["[dungeon-D7-1F] Turtle Rock - compass room", false, [], ['MoonPearl']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", false, [], ['TitansMitt']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", false, [], ['Hammer']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - compass room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria']],
+
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", false, []],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", false, [], ['MoonPearl']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", false, [], ['TitansMitt']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", false, [], ['Hammer']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", false, [], ['FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [left chest]", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", false, []],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", false, [], ['MoonPearl']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", false, [], ['TitansMitt']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", false, [], ['Hammer']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", false, [], ['FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+			["[dungeon-D7-1F] Turtle Rock - Map room [right chest]", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'FireRod']],
+
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, []],
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, [], ['MoonPearl']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, [], ['TitansMitt']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, [], ['Hammer']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", false, [], ['BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big chest", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+
+			["[dungeon-D7-B1] Turtle Rock - big key room", false, []],
+			["[dungeon-D7-B1] Turtle Rock - big key room", false, [], ['MoonPearl']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", false, [], ['TitansMitt']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", false, [], ['Hammer']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - big key room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7']],
+
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, []],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, [], ['MoonPearl']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, [], ['TitansMitt']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, [], ['Hammer']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", false, [], ['BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Flute', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Flute', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B1] Turtle Rock - Roller switch room", true, ['Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, []],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, [], ['MoonPearl']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, [], ['TitansMitt']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, [], ['Hammer']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, [], ['Lamp']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", false, [], ['BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, []],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, [], ['MoonPearl']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, [], ['TitansMitt']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, [], ['Hammer']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, [], ['Lamp']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", false, [], ['BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, []],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, [], ['MoonPearl']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, [], ['TitansMitt']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, [], ['Hammer']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, [], ['Lamp']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", false, [], ['BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, []],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, [], ['MoonPearl']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, [], ['TitansMitt']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, [], ['Hammer']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, [], ['CaneOfSomaria']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, [], ['Lamp']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", false, [], ['BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'Cape', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'Cape', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'CaneOfByrna', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'CaneOfByrna', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'MirrorShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'MirrorShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+
+			["Heart Container - Trinexx", false, []],
+			["Heart Container - Trinexx", false, [], ['MoonPearl']],
+			["Heart Container - Trinexx", false, [], ['TitansMitt']],
+			["Heart Container - Trinexx", false, [], ['Hammer']],
+			["Heart Container - Trinexx", false, [], ['CaneOfSomaria']],
+			["Heart Container - Trinexx", false, [], ['IceRod']],
+			["Heart Container - Trinexx", false, [], ['FireRod']],
+			["Heart Container - Trinexx", false, [], ['Lamp']],
+			["Heart Container - Trinexx", false, [], ['BigKeyD7']],
+			["Heart Container - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Heart Container - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Heart Container - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Heart Container - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+		];
 	}
-
-	public function testBigChestRequiresFireRodIfKeyNotInChainChompRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigChestRequiresFireRodIfKeyNotInCompassRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigChestDoesNotRequireFireRodIfKeysInCompassAndChainChompRooms() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigChestRequiresFireRodIfBigKeyInMapRoomChestR() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigChestRequiresFireRodIfBigKeyInMapRoomChestL() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigKeyRoomRequiresFireRodIfKeysNotInCompassAndChainChompRooms() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big key room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigKeyRoomRequiresFireRodIfKeyNotInChainChompRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big key room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigKeyRoomRequiresFireRodIfKeyNotInCompassRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big key room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testBigKeyRoomDoesNotRequireFireRodIfKeysInCompassAndChainChompRooms() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big key room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testRollerSwitchRoomRequiresFireRodIfBigKeyInMapRoomChestR() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testRollerSwitchRoomRequiresFireRodIfBigKeyInMapRoomChestL() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTRRequiresLamp() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testEyeBridgehRoomChestTRRequiresFireRodIfTwoKeysInMapRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTRRequiresFireRodIfThirdKeyNotAccessable() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTRDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTRRequiresFireRodIfBigKeyInMapRoomChestR() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgeRoomTRChestRequiresFireRodIfBigKeyInMapRoomChestL() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTLRequiresLamp() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testEyeBridgehRoomChestTLRequiresFireRodIfTwoKeysInMapRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTLRequiresFireRodIfThirdKeyNotAccessable() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTLDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestTLRequiresFireRodIfBigKeyInMapRoomChestR() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testREyeBridgeRoomRChestTLequiresFireRodIfBigKeyInMapRoomChestL() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBRRequiresLamp() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testEyeBridgehRoomChestBRRequiresFireRodIfTwoKeysInMapRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBRRequiresFireRodIfThirdKeyNotAccessable() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBRDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBRRequiresFireRodIfBigKeyInMapRoomChestR() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testREyeBridgeRoomRChestBRequiresFireRodIfBigKeyInMapRoomChestL() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBLRequiresLamp() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testEyeBridgehRoomChestBLRequiresFireRodIfTwoKeysInMapRoom() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBLRequiresFireRodIfThirdKeyNotAccessable() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")->setItem(Item::get('Key'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBLDoesNotRequiresFireRodIfKeysInCompassAndChainChompRooms() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - compass room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Chain chomp room")->setItem(Item::get('Key'));
-		$this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")->setItem(Item::get('Key'));
-
-		$this->assertTrue($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testEyeBridgehRoomChestBLRequiresFireRodIfBigKeyInMapRoomChestR() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [right chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testREyeBridgeRoomRChestBLequiresFireRodIfBigKeyInMapRoomChestL() {
-		$this->world->getLocation("[dungeon-D7-1F] Turtle Rock - Map room [left chest]")->setItem(Item::get('BigKey'));
-
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testTrinexxRequiresLamp() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->canAccess($this->allItemsExcept(['Lamp'])));
-	}
-
-	public function testTrinexxRequiresFireRod() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->canAccess($this->allItemsExcept(['FireRod'])));
-	}
-
-	public function testTrinexxRequiresIceRod() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->canAccess($this->allItemsExcept(['IceRod'])));
-	}
-
-	// Key filling
-	public function testCantHaveBigKeyPastBigKeyDoorRollerSwitch() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - Roller switch room")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testCantHaveBigKeyPastBigKeyDoorBridge1() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testCantHaveBigKeyPastBigKeyDoorBridge2() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testCantHaveBigKeyPastBigKeyDoorBridge3() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testCantHaveBigKeyPastBigKeyDoorBridge4() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testTrinexCantHaveKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->fill(Item::get('Key'), $this->allItems()));
-	}
-
-	public function testTrinexCantHaveBigKey() {
-		$this->assertFalse($this->world->getLocation("Heart Container - Trinexx")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
-	public function testBigChestCannotBeBigKey() {
-		$this->assertFalse($this->world->getLocation("[dungeon-D7-B1] Turtle Rock - big chest")
-			->fill(Item::get('BigKey'), $this->allItems()));
-	}
-
 }

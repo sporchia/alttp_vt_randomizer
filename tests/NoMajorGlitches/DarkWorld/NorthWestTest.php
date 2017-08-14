@@ -30,7 +30,7 @@ class NorthWestTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -86,6 +86,18 @@ class NorthWestTest extends TestCase {
 			["Piece of Heart (Dark World - bumper cave)", true, ['MoonPearl', 'Cape', 'PowerGlove', 'Hammer']],
 			["Piece of Heart (Dark World - bumper cave)", true, ['MoonPearl', 'Cape', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
 			["Piece of Heart (Dark World - bumper cave)", true, ['MoonPearl', 'Cape', 'DefeatAgahnim', 'PowerGlove', 'Hookshot']],
+
+			["Blacksmiths", false, []],
+			["Blacksmiths", false, [], ['Gloves']],
+			["Blacksmiths", false, [], ['MoonPearl']],
+			["Blacksmiths", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Blacksmiths", true, ['MoonPearl', 'TitansMitt']],
+
+			["Purple Chest", false, []],
+			["Purple Chest", false, [], ['Gloves']],
+			["Purple Chest", false, [], ['MoonPearl']],
+			["Purple Chest", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Purple Chest", true, ['MoonPearl', 'TitansMitt']],
 		];
 	}
 }

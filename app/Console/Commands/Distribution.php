@@ -47,13 +47,6 @@ class Distribution extends Command {
 				}
 				$thing = $this->argument('thing');
 				break;
-			case 'region_fill':
-				$function = [$this, 'region_fill'];
-				if (!$this->argument('thing')) {
-					return $this->error("Need an Region Name");
-				}
-				$thing = $this->argument('thing');
-				break;
 			case 'required':
 				$function = [$this, 'required'];
 				$thing = $this->argument('thing');
@@ -130,26 +123,6 @@ class Distribution extends Command {
 			$locations[$location_name][$item_name] = 0;
 		}
 		$locations[$location_name][$item_name]++;
-	}
-
-	private function region_fill(string $region_name, &$locations) {
-		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
-		$world->getLocation("Misery Mire Medallion")->setItem(Item::get('Quake'));
-		$world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
-		$region = $world->getRegion($region_name);
-		$region->fillBaseItems(Item::all());
-		foreach ($region->getLocations() as $location) {
-			if (!$location->getItem()) {
-				continue;
-			}
-			if (!isset($locations[$location->getName()])) {
-				$locations[$location->getName()] = [];
-			}
-			if (!isset($locations[$location->getName()][$location->getItem()->getNiceName()])) {
-				$locations[$location->getName()][$location->getItem()->getNiceName()] = 0;
-			}
-			$locations[$location->getName()][$location->getItem()->getNiceName()]++;
-		}
 	}
 
 	private function required($unused, &$locations) {

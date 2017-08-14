@@ -15,6 +15,17 @@ class EasternPalace extends Region {
 		0x1559A,
 	];
 
+	protected $region_items = [
+		'BigKey',
+		'BigKeyP1',
+		'Compass',
+		'CompassP1',
+		'Key',
+		'KeyP1',
+		'Map',
+		'MapP1',
+	];
+
 	/**
 	 * Create a new Eastern Palace Region and initalize it's locations
 	 *
@@ -45,41 +56,14 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setItem(Item::get('Compass'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setItem(Item::get('CompassP1'));
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setItem(Item::get('Bow'));
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big ball room"]->setItem(Item::get('OneHundredRupees'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKey'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('Map'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKeyP1'));
+		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('MapP1'));
 		$this->locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
 
 		$this->locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
-
-		return $this;
-	}
-
-	/**
-	 * Place Keys, Map, and Compass in Region. Eastern Palace has: Big Key, Map, Compass
-	 *
-	 * @param ItemCollection $my_items full list of items for placement
-	 *
-	 * @return $this
-	 */
-	public function fillBaseItems($my_items) {
-		$locations = $this->locations->filter(function($location) {
-			return $this->boss_location_in_base || $location->getName() != "Heart Container - Armos Knights";
-		});
-
-		while(!$locations->getEmptyLocations()->random()->fill(Item::get("BigKey"), $my_items));
-
-		if ($this->world->config('region.CompassesMaps', true)) {
-			if ($this->world->config('region.mapsInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Map"), $my_items));
-			}
-
-			if ($this->world->config('region.compassesInDungeons', true)) {
-				while(!$locations->getEmptyLocations()->random()->fill(Item::get("Compass"), $my_items));
-			}
-		}
 
 		return $this;
 	}
@@ -92,13 +76,9 @@ class EasternPalace extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
-			if ($locations["[dungeon-L1-1F] Eastern Palace - Big key"]->hasItem(Item::get('BigKey'))) {
-				return $items->has('Lamp');
-			}
-
-			return true;
+			return $items->has('BigKeyP1');
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKey');
+			return $item != Item::get('BigKeyP1');
 		});
 
 		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setRequirements(function($locations, $items) {
@@ -106,12 +86,19 @@ class EasternPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canShootArrows() && $items->has('Lamp');
+			return $items->canShootArrows()
+				&& $items->has('Lamp') && $items->has('BigKeyP1');
 		};
 
 		$this->locations["Heart Container - Armos Knights"]->setRequirements($this->can_complete)
 			->setFillRules(function($item, $locations, $items) {
-				return $item != Item::get('BigKey');
+				if (!$this->world->config('region.bossNormalLocation', true)
+					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+					return false;
+				}
+
+				return $item != Item::get('BigKeyP1');
 			});
 
 		$this->prize_location->setRequirements($this->can_complete);

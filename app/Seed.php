@@ -4,10 +4,27 @@ use Illuminate\Database\Eloquent\Model;
 use Hashids\Hashids;
 
 class Seed extends Model {
+	protected $stored_patch;
+
 	public static function boot() {
 		parent::boot();
 
 		$hasher = new Hashids('vt', 10);
+
+		static::saved(function($seed) {
+			if ($seed->stored_patch) {
+				$sha1 = sha1($seed->stored_patch);
+				$patch = Patch::firstOrCreate([
+					'sha1' => $sha1
+				]);
+				$patch->patch = $seed->stored_patch;
+				$patch->save();
+
+				$seed->stored_patch = null;
+				$seed->patch()->associate($patch);
+				$seed->save();
+			}
+		});
 
 		static::created(function($seed) use ($hasher) {
 			$seed->hash = $hasher->encode($seed->id);
@@ -16,16 +33,9 @@ class Seed extends Model {
 	}
 
 	public function setPatchAttribute($value) {
-		$sha1 = sha1($value);
-		$patch = Patch::firstOrCreate([
-			'sha1' => $sha1
-		]);
-		$patch->patch = $value;
-		$patch->save();
+		$this->stored_patch = $value;
 
 		$this->attributes['patch'] = "[]";
-
-		$this->patch()->associate($patch);
 	}
 
 	public function getPatchAttribute() {

@@ -30,9 +30,9 @@
 </div>
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Generate</h3>
+		<h3 class="panel-title pull-left">Generate Item Randomizer Game (v8.{!! ALttP\Randomizer::LOGIC !!})</h3>
 		<div class="btn-toolbar pull-right">
-
+			<a class="btn btn-default" href="/entrance/randomizer">Switch to Entrance Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
 		</div>
 		<div class="clearfix"></div>
@@ -55,7 +55,7 @@
 					<select id="logic" class="form-control selectpicker">
 						<option value="NoMajorGlitches">No Glitches</option>
 						<option value="OverworldGlitches">Overworld Glitches</option>
-						<option value="Glitched">Major Glitches</option>
+						<option value="MajorGlitches">Major Glitches</option>
 					</select>
 				</div>
 			</div>
@@ -68,6 +68,7 @@
 						<option value="ganon">Defeat Ganon</option>
 						<option value="dungeons">All Dungeons</option>
 						<option value="pedestal">Master Sword Pedestal</option>
+						<option value="triforce-hunt">Triforce Pieces</option>
 					</select>
 				</div>
 			</div>
@@ -75,12 +76,10 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
+						<option value="easy">Easy</option>
 						<option value="normal">Normal</option>
 						<option value="hard">Hard</option>
 						<option value="expert">Expert</option>
-						<option value="timed-race">Timed Race</option>
-						<option value="timed-ohko">Timed OHKO</option>
-						<option value="ohko">OHKO</option>
 						<option value="custom">Custom</option>
 					</select>
 				</div>
@@ -97,6 +96,16 @@
 				</div>
 			</div>
 			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Variation</span>
+					<select id="variation" class="form-control selectpicker">
+						<option value="none">None</option>
+						<option value="timed-race">Timed Race</option>
+						<option value="timed-ohko">Timed OHKO</option>
+						<option value="ohko">OHKO</option>
+						<option value="triforce-hunt">Triforce Piece Hunt</option>
+					</select>
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-info panel-collapse collapse" id="rom-settings">
@@ -129,20 +138,20 @@
 				</div>
 				<div class="col-md-6">
 					<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"generate-sram-trace">SRAM Trace</label>
+					<label for="generate-sram-trace">SRAM Trace</label>
 				</div>
 				<div class="col-md-6">
 					<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"generate-music-on">Background Music</label>
+					<label for="generate-music-on">Background Music</label>
 				</div>
 				<div class="secrets" style="display:none">
 					<div class="col-md-6">
 						<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-						<label for"generate-debug">Debug Mode</label>
+						<label for="generate-debug">Debug Mode</label>
 					</div>
 					<div class="col-md-6">
 						<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-						<label for"generate-tournament">Tournament Mode</label>
+						<label for="generate-tournament">Tournament Mode</label>
 					</div>
 				</div>
 			</div>
@@ -179,6 +188,7 @@
 			<div>Logic: <span class="logic"></span></div>
 			<div>ROM build: <span class="build"></span></div>
 			<div>Difficulty: <span class="difficulty"></span></div>
+			<div>Variation: <span class="variation"></span></div>
 			<div>Mode: <span class="mode"></span></div>
 			<div>Goal: <span class="goal"></span></div>
 			<div>Seed: <span class="seed"></span></div>
@@ -209,6 +219,7 @@
 <form id="config" style="display:none">
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
+	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
@@ -226,15 +237,15 @@
 			<div class="tab-pane active" id="custom-settings">
 				<div class="col-md-6">
 					<input id="cust-prize-crossworld" type="checkbox" name="data[alttp.custom.prize.crossWorld]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
+					<label for="cust-prize-crossworld">Swap Pendants and Crystals Cross World</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-prize-shufflePendants" type="checkbox" name="data[alttp.custom.prize.shufflePendants]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"cust-prize-shufflePendants">Shuffle Pendants</label>
+					<label for="cust-prize-shufflePendants">Shuffle Pendants</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-prize-shuffleCrystals" type="checkbox" name="data[alttp.custom.prize.shuffleCrystals]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for"cust-prize-shuffleCrystals">Shuffle Crystals</label>
+					<label for="cust-prize-shuffleCrystals">Shuffle Crystals</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-region-bossHeartsInPool" type="checkbox" name="data[alttp.custom.region.bossHeartsInPool]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -263,10 +274,6 @@
 				<div class="col-md-6">
 					<input id="cust-region-CompassesMaps" type="checkbox" name="data[alttp.custom.region.CompassesMaps]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
-				</div>
-				<div class="col-md-6">
-					<input id="cust-region-bonkItems" type="checkbox" name="data[alttp.custom.region.bonkItems]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-					<label for="cust-region-bonkItems">Bonk Keys in Pool</label>
 				</div>
 				<div class="col-md-6">
 					<input id="cust-sprite-shufflePrizePack" type="checkbox" name="data[alttp.custom.sprite.shufflePrizePack]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -531,10 +538,17 @@
 					<label for="item-count-ThreeHundredRupees">Rupees (300)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-MagicUpgrade" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.MagicUpgrade]" class="custom-items">
+					<input id="item-count-HalfMagicUpgrade" type="number" value="1" min="0" max="200" step="1" name="data[alttp.custom.item.count.HalfMagicUpgrade]" class="custom-items">
+					<label for="item-count-HalfMagicUpgrade">Half Magic Upgrade</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-QuarterMagicUpgrade" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.QuarterMagicUpgrade]" class="custom-items">
+					<label for="item-count-QuarterMagicUpgrade">Quarter Magic Upgrade</label>
+				</div>
+				<div class="col-md-4">
+					<input id="item-count-MagicUpgrade" type="number" value="0" min="0" max="200" step="1" name="data[alttp.custom.item.count.MagicUpgrade]" class="custom-items">
 					<label for="item-count-MagicUpgrade">Magic Upgrade (1/2 or 1/4)</label>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -644,7 +658,7 @@ var ROM = ROM || (function(blob, loaded_callback) {
 
 	this.save = function(filename) {
 		this.updateChecksum().then(function() {
-			saveAs(new Blob([u_array]), filename);
+			FileSaver.saveAs(new Blob([u_array]), filename);
 		});
 	};
 
@@ -804,6 +818,7 @@ function seedApplied(data) {
 		$('.info .build').html(data.patch.spoiler.meta.build);
 		$('.info .goal').html(data.patch.spoiler.meta.goal);
 		$('.info .mode').html(data.patch.spoiler.meta.mode);
+		$('.info .variation').html(data.patch.spoiler.meta.variation);
 		$('.info .difficulty').html(data.patch.difficulty);
 		$('.spoiler').show();
 		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
@@ -813,6 +828,7 @@ function seedApplied(data) {
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.difficulty = data.patch.difficulty;
+		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
@@ -928,8 +944,14 @@ $(function() {
 			if ($('.spoiler-tabed').is(':visible')) {
 				$('.spoiler-toggle').trigger('click');
 			}
+			$('#variation').val('none');
+			$('#variation').trigger('change');
+			$('#variation').prop('disabled', true);
+			$('#variation').selectpicker('refresh');
 		} else {
 			$('.custom-difficulty').hide();
+			$('#variation').prop('disabled', false);
+			$('#variation').selectpicker('refresh');
 		}
 	});
 	localforage.getItem('rom.difficulty').then(function(value) {
@@ -938,19 +960,55 @@ $(function() {
 		$('#difficulty').trigger('change');
 	});
 
+	$('#variation').on('change', function() {
+		$('.info').hide();
+		var variation = $(this).val();
+		var goal = $('#goal').val();
+		$('input[name=variation]').val(variation);
+		localforage.setItem('rom.variation', variation);
+		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
+			$('#goal').val('triforce-hunt');
+			$('#goal').trigger('change');
+		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
+			$('#goal').val('ganon');
+			$('#goal').trigger('change');
+		}
+	});
+	localforage.getItem('rom.variation').then(function(value) {
+		if (!value) return;
+		if ($('#difficulty').val() == 'custom') return;
+		$('#variation').val(value);
+		$('#variation').trigger('change');
+	});
+
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
+		return rom.save('ALttP - VT_' + rom.logic
+			+ '_' + rom.difficulty
+			+ '-' + rom.mode
+			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+			+ '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic
+			+ '_' + rom.difficulty
+			+ '-' + rom.mode
+			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+			+ '_' + rom.seed + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic + '_' + rom.difficulty + '-' + rom.mode + '-' + rom.goal + '_' + rom.seed + '.sfc');
+				return rom.save('ALttP - VT_' + rom.logic
+					+ '_' + rom.difficulty
+					+ '-' + rom.mode
+					+ '-' + rom.goal
+					+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+					+ '_' + rom.seed + '.sfc');
 			});
 	});
 
@@ -1067,8 +1125,17 @@ $(function() {
 
 	$('#goal').on('change', function() {
 		$('.info').hide();
-		localforage.setItem('rom.goal', $(this).val());
-		$('input[name=goal]').val($(this).val());
+		var goal = $(this).val();
+		var variation = $('#variation').val();
+		localforage.setItem('rom.goal', goal);
+		$('input[name=goal]').val(goal);
+		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
+			$('#variation').val('triforce-hunt');
+			$('#variation').trigger('change');
+		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
+			$('#variation').val('none');
+			$('#variation').trigger('change');
+		}
 	});
 	localforage.getItem('rom.goal').then(function(value) {
 		if (value === null) return;
@@ -1139,14 +1206,14 @@ $(function() {
 	$('#cust-region-swordsInPool').on('change', function() {
 		if ($(this).prop('checked')) {
 			if (!$('#cust-region-swordShuffle').prop('checked')) {
-				$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
 				$('#cust-region-swordShuffle').prop('checked', true).bootstrapToggle('on');
 			}
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) + 1);
 		} else {
 			if ($('#cust-item-progressiveSwords').prop('checked')) {
 				$('#cust-item-progressiveSwords').prop('checked', false).bootstrapToggle('off');
-				$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
 			}
+			$('#custom-count-total').html(Number($('#custom-count-total').html()) - 1);
 		}
 		$('.custom-items').first().trigger('change');
 	});
@@ -1189,7 +1256,7 @@ $(function() {
 		genToZip(zip, itters).then(function(zip) {
 			zip.generateAsync({type: "blob", compression: "DEFLATE"})
 			.then(function(content) {
-				saveAs(content, "VT-alttp-roms.zip");
+				FileSaver.saveAs(content, "VT-alttp-roms.zip");
 				$('button[name=generate]').html('Generate').prop('disabled', false);
 				$('button[name=generate-save]').prop('disabled', false);
 			});
@@ -1201,8 +1268,14 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ALttP - VT_' + data.patch.logic + '_' + data.patch.difficulty + '-' + data.patch.spoiler.meta.mode + '-' + data.patch.spoiler.meta.goal + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ALttP - VT_' + data.patch.logic + '_' + data.patch.difficulty + '-' + data.patch.spoiler.meta.mode + '-' + data.patch.spoiler.meta.goal + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				var fname = 'ALttP - VT_' + data.patch.logic
+					+ '_' + data.patch.difficulty
+					+ '-' + data.patch.spoiler.meta.mode
+					+ '-' + data.patch.spoiler.meta.goal
+					+ (data.patch.spoiler.meta.variation == 'none' ? '' : '_' + data.patch.spoiler.meta.variation)
+					+ '_' + data.patch.seed;
+				zip.file(fname + '.sfc', buffer);
+				zip.file('spoilers/' + fname + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);
