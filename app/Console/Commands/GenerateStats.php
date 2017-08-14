@@ -96,10 +96,11 @@ class GenerateStats extends Command {
 	public function getStats($rand) {
 		$stats = [];
 		$stats['locationspheres'] = $this->getSpheres($rand);
+		$stats['playthrough'] = $rand->getWorld()->getPlayThrough();
 		$stats['meta'] = [
 			'difficulty' => $this->option('difficulty'),
 			'logic' => $rand->getLogic(),
-			'type' => $rand->getTypeNiceName(),
+			'logicNice' => $rand->getLogicNiceName(),
 			'version' => Randomizer::LOGIC,
 			'seed' => $rand->getSeed(),
 			'goal' => $this->option('goal'),
