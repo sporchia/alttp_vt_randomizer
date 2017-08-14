@@ -13,7 +13,8 @@ return [
 				'BlueMail' => 2,
 				'RedMail' => 2,
 				'ExtraBottles' => 7,
-				'TwentyRupees' => 15,
+				'TwentyRupees' => 14,
+				'HalfMagicUpgrade' => 2,
 			],
 			'overflow' => [
 				'Armor' => 'TwentyRupees',
