@@ -27,6 +27,14 @@
 			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.3.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/L3FdC-f7f38?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
 </div>
 
 <h2>VT8.25</h2>
