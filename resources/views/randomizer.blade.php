@@ -426,7 +426,7 @@
 					<label for="item-count-Arrow">Single Arrow</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TenArrows" type="number" value="4" min="0" max="200" step="1" name="data[alttp.custom.item.count.TenArrows]" class="custom-items">
+					<input id="item-count-TenArrows" type="number" value="5" min="0" max="200" step="1" name="data[alttp.custom.item.count.TenArrows]" class="custom-items">
 					<label for="item-count-TenArrows">Arrows (10)</label>
 				</div>
 				<div class="col-md-4">
@@ -522,7 +522,7 @@
 					<label for="item-count-FiveRupees">Rupees (5)</label>
 				</div>
 				<div class="col-md-4">
-					<input id="item-count-TwentyRupees" type="number" value="29" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
+					<input id="item-count-TwentyRupees" type="number" value="28" min="0" max="200" step="1" name="data[alttp.custom.item.count.TwentyRupees]" class="custom-items">
 					<label for="item-count-TwentyRupees">Rupees (20)</label>
 				</div>
 				<div class="col-md-4">
