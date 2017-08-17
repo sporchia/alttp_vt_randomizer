@@ -294,11 +294,8 @@ class World {
 				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(),
 					$location->getItem() ? $location->getItem()->getNiceName() : 'Nothing'));
 				// pull item out (we have to pull keys as well :( as they are used in calcs for big keys see DP)
-				// OKAY figure out how to speed this up again, as we need to check bloddy keys!
 				$pulled_item = $location->getItem();
-				if ($pulled_item === null ||
-					($pulled_item instanceof Item\Key
-					&& !in_array($pulled_item, [Item::get('KeyP2'), Item::get('KeyP3'), Item::get('KeyD5'), Item::get('KeyD6'), Item::get('KeyD7'), Item::get('KeyA2')]))) {
+				if ($pulled_item === null) {
 					continue;
 				}
 				$location->setItem();
@@ -379,9 +376,12 @@ class World {
 		$my_items = new ItemCollection;
 		$location_order = [];
 		$location_round = [];
-		$longest_item_chain = 0;
+		$longest_item_chain = 1;
 		do {
-			$longest_item_chain++;
+			// make sure we had something before going to the next round
+			if (!empty($location_round[$longest_item_chain])) {
+				$longest_item_chain++;				
+			}
 			$location_round[$longest_item_chain] = [];
 			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items) {
 				return $location->canAccess($my_items, $this->getLocations());
