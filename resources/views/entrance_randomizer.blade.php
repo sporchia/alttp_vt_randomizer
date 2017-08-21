@@ -43,7 +43,6 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Mode</span>
 					<select id="mode" class="form-control selectpicker">
-						<option value="standard">Standard</option>
 						<option value="open">Open</option>
 						<option value="swordless">Swordless</option>
 					</select>
