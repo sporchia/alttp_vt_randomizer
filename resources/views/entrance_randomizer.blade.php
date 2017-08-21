@@ -222,7 +222,6 @@
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
 	<input type="hidden" name="variation" value="none" />
-	<input type="hidden" name="mode" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="shuffle" value="full" />
 	<input type="hidden" name="heart_speed" value="half" />
