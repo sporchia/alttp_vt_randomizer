@@ -377,6 +377,19 @@ var ROM = ROM || (function(blob, loaded_callback) {
 			resolve(this);
 		}.bind(this));
 	};
+	
+	this.setHeartSpeed = function(speed) {
+		return new Promise(function(resolve, reject) {
+			var sbyte = 0x20;
+			switch (speed) {
+				case 'off': sbyte = 0x00; break;
+				case 'half': sbyte = 0x40; break;
+				case 'quarter': sbyte = 0x80; break;
+			}
+			this.write(0x180033, sbyte);
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
 });
 
 function resizeUint8(baseArrayBuffer, newByteSize) {
@@ -410,6 +423,7 @@ function applySeed(rom, seed, second_attempt) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -690,13 +704,7 @@ $(function() {
 
 	$('#heart-speed').on('change', function() {
 		if (rom) {
-			var sbyte = 0x20;
-			switch ($(this).val()) {
-				case 'off': sbyte = 0x00; break;
-				case 'half': sbyte = 0x40; break;
-				case 'quarter': sbyte = 0x80; break;
-			}
-			rom.write(0x180033, sbyte);
+			rom.setHeartSpeed($(this).val());
 		}
 		localforage.setItem('rom.heart-speed', $(this).val());
 		$('input[name=heart_speed]').val($(this).val());
