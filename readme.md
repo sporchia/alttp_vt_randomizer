@@ -44,6 +44,11 @@ You will need to build assets the first time (you will need [Yarn](https://yarnp
 $ yarn
 $ ./node_modules/gulp/bin/gulp.js --production
 ```
+Now setup a 32 character application key that will be used by the app (following only works on unix):
+
+```
+export APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+```
 
 Once you have the dependencies installed. Run the following command then navigate to http://localhost:8000/.
 
