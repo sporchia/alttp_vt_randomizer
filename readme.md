@@ -12,11 +12,33 @@ You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. O
 $ composer install
 ```
 
-Next create a new mysql database for the randomizer (see mysql documentation for how to do this)
+Next create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
 
-Modify the config/database.php with appropriate username, password, and database name in the mysql section.
+Run the following command to create a new config for the app
+```
+$ cp .env.example .env
+```
 
-Then run the following
+Then modify .env with appropriate username, password, and database name. Change the db connection to mysql
+Example:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=randomizer
+DB_USERNAME=foo
+DB_PASSWORD=bar
+```
+
+Then run the following commands to setup the app configuration
+
+```
+$ php artisan key:generate
+$ php artisan config:cache
+```
+p.s. If you update the .env file then you'll need to run the config:cache command to pick up the new changes.
+
+Now run the db migration command:
 
 ```
 $ php artisan migrate
@@ -43,11 +65,6 @@ You will need to build assets the first time (you will need [Yarn](https://yarnp
 ```
 $ yarn
 $ ./node_modules/gulp/bin/gulp.js --production
-```
-Now setup a 32 character application key that will be used by the app (following only works on unix):
-
-```
-export APP_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 ```
 
 Once you have the dependencies installed. Run the following command then navigate to http://localhost:8000/.
