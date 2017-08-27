@@ -136,13 +136,17 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 pb-5">
 					<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="generate-sram-trace">SRAM Trace</label>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 pb-5">
 					<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 					<label for="generate-music-on">Background Music</label>
+				</div>
+				<div class="col-md-6">
+					<input id="quickswap-on" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+					<label for"quickswap-on">Item Quick Swap</label>
 				</div>
 				<div class="secrets" style="display:none">
 					<div class="col-md-6">
@@ -601,9 +605,25 @@ var music = {
 	250:[860231,861378,861420,861604,867754,872872,872934,873038,873118,876613,885214,885278,890026,891550,891620,893577],
 	255:[860293,860613,876328]
 };
+var quickswap_patch = {
+	0x107fb: [0x22, 0x50, 0xFF, 0x1F],
+	0x12451: [0x22, 0x50, 0xFF, 0x1F],
+	0xfff50: [0x20, 0x58, 0xFF, 0xA5, 0xF6, 0x29, 0x40, 0x6B, 0xA5, 0xF6, 0x89, 0x10, 0xF0, 0x03, 0x4C, 0x69,
+			  0xFF, 0x89, 0x20, 0xF0, 0x03, 0x4C, 0xAA, 0xFF, 0x60, 0xAD, 0x02, 0x02, 0xF0, 0x3B, 0xDA, 0xAA,
+			  0xE0, 0x0F, 0xF0, 0x14, 0xE0, 0x10, 0xF0, 0x14, 0xE0, 0x14, 0xD0, 0x02, 0xA2, 0x00, 0xE8, 0xBF,
+			  0x3F, 0xF3, 0x7E, 0xF0, 0xEB, 0x4C, 0xEB, 0xFF, 0xA2, 0x01, 0x80, 0x0A, 0xAF, 0x4F, 0xF3, 0x7E,
+			  0xAA, 0xE0, 0x04, 0xF0, 0x10, 0xE8, 0xBF, 0x5B, 0xF3, 0x7E, 0xF0, 0xF5, 0x8A, 0x8F, 0x4F, 0xF3,
+			  0x7E, 0xA2, 0x10, 0x80, 0xE0, 0xA2, 0x11, 0x80, 0xD6, 0x60, 0xAD, 0x02, 0x02, 0xF0, 0x3B, 0xDA,
+			  0xAA, 0xE0, 0x11, 0xF0, 0x14, 0xE0, 0x10, 0xF0, 0x14, 0xE0, 0x01, 0xD0, 0x02, 0xA2, 0x15, 0xCA,
+			  0xBF, 0x3F, 0xF3, 0x7E, 0xF0, 0xEB, 0x4C, 0xEB, 0xFF, 0xA2, 0x04, 0x80, 0x0A, 0xAF, 0x4F, 0xF3,
+			  0x7E, 0xAA, 0xE0, 0x01, 0xF0, 0x10, 0xCA, 0xBF, 0x5B, 0xF3, 0x7E, 0xF0, 0xF5, 0x8A, 0x8F, 0x4F,
+			  0xF3, 0x7E, 0xA2, 0x10, 0x80, 0xE0, 0xA2, 0x0F, 0x80, 0xD6, 0x60, 0xA9, 0x20, 0x8D, 0x2F, 0x01,
+			  0x8E, 0x02, 0x02, 0x22, 0x7F, 0xDB, 0x0D, 0xFA, 0x60, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+}
 var ROM = ROM || (function(blob, loaded_callback) {
 	var u_array;
 	var arrayBuffer;
+	var quickswap_reverse;
 
 	var fileReader = new FileReader();
 
@@ -617,6 +637,16 @@ var ROM = ROM || (function(blob, loaded_callback) {
 		}
 
 		u_array = new Uint8Array(arrayBuffer);
+		
+		// Create a reversal patch for quickswap
+		quickswap_reverse = {};
+		for (var offset in quickswap_patch) {
+			var data = [];
+			for (var i = 0; i < quickswap_patch[offset].length; i++) {
+				data.push(u_array[Number(offset) + i] || 0);
+			}
+			quickswap_reverse[offset] = data;
+		}
 
 		if (loaded_callback) loaded_callback(this);
 	}.bind(this);
@@ -701,6 +731,17 @@ var ROM = ROM || (function(blob, loaded_callback) {
 			resolve(this);
 		}.bind(this));
 	};
+	
+	this.setQuickSwap = function(enable) {
+		return new Promise(function(resolve, reject) {
+			var patch = enable ? quickswap_patch : quickswap_reverse;
+			
+			for (var offset in patch) {
+				this.write(Number(offset), patch[offset]);
+			}
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
 });
 
 function resizeUint8(baseArrayBuffer, newByteSize) {
@@ -734,6 +775,7 @@ function applySeed(rom, seed, second_attempt) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+			.then(rom.setQuickSwap($('#quickswap-on').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -1099,6 +1141,18 @@ $(function() {
 		if (value === null) return;
 		$('#generate-music-on').prop('checked', value);
 		$('#generate-music-on').trigger('change');
+	});
+	
+	$('#quickswap-on').on('change', function() {
+		if (rom) {
+			rom.setQuickSwap($(this).prop('checked'));
+		}
+		localforage.setItem('rom.quickswap-on', $(this).prop('checked'));
+	});
+	localforage.getItem('rom.quickswap-on').then(function(value) {
+		if (value === null) return;
+		$('#quickswap-on').prop('checked', value);
+		$('#quickswap-on').trigger('change');
 	});
 
 	$('#logic').on('change', function() {
