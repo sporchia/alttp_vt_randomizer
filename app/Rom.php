@@ -1602,8 +1602,8 @@ class Rom {
 	 * @return $this
 	 */
 	public function setWishingWellUpgrade(bool $enable = false) : self {
-		$this->write(0x348DE, pack('C*', $enable ? 0x2A : 0x0C));
-		$this->write(0x348FE, pack('C*', $enable ? 0x05 : 0x04));
+		$this->write(0x348DB, pack('C*', $enable ? 0x0C : 0x2A));
+		$this->write(0x348EB, pack('C*', $enable ? 0x04 : 0x05));
 
 		return $this;
 	}
