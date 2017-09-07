@@ -18,4 +18,11 @@
 		the ROM is patched entirely in your browser. Being a web version we can get the newest features availble
 		to users as quickly as possible. Click on <em>Generate Randomized Game</em> above to get started.</p>
 </div>
+<h1>Is there a community for this?</h1>
+<div class="well">
+	<p>Heck yeahs there is!</p>
+	<p>If you're not already a member, feel free to join our discord at
+		<a href="https://discord.gg/yEvqSRk" target="_blank">https://discord.gg/yEvqSRk</a>! You'll find lots
+		of helpful people there for when you get stuck :) Or just cool people to talk to, like the Developers</p>
+</div>
 @overwrite
