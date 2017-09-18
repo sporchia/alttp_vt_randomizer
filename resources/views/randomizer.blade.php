@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @include('_rom_loader')
 @include('_rom_settings')
+@include('_rom_spoiler')
 
 @section('content')
 @yield('loader')
@@ -127,21 +128,7 @@
 				<button name="save" class="btn btn-success" disabled>Save Rom</button>
 			</div>
 		</div>
-		<div class="spoiler col-md-12">
-			<div class="spoiler-toggle"><span class="glyphicon glyphicon-plus"></span> Spoiler!</div>
-			<div class="spoiler-tabed">
-				<div class="col-md-6"></div>
-				<div class="col-md-6">
-					<select id="spoiler-search" class="form-control selectpicker" data-live-search="true" data-dropup-auto="false" title="Search for Item">
-					</select>
-				</div>
-				<ul class="nav nav-pills" role="tablist">
-				</ul>
-				<div class="tab-content">
-				</div>
-			</div>
-			<div id="spoiler" class="spoiler-text" style="display:none"></div>
-		</div>
+		@yield('rom-spoiler')
 	</div>
 </div>
 <form id="config" style="display:none">
@@ -236,49 +223,6 @@ function seedApplied(data) {
 		resolve(rom);
 	});
 }
-
-var tabsContent = new Map();
-function pasrseSpoilerToTabs(spoiler) {
-	var spoilertabs = $('.spoiler-tabed');
-	var nav = spoilertabs.find('.nav-pills');
-	var active_nav = nav.find('.active a').data('section');
-	nav.html('');
-	var content = spoilertabs.find('.tab-content').html('');
-	var items = {};
-	for (section in spoiler) {
-		nav.append($('<li id="n-spoiler-' + section.replace(/ /g, '_') + '" '
-			+ ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" data-section="' + section
-			+ '" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section
-			+ '<span class="badge badge-pill"></span></a></li>'));
-		content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
-			+ ((section == active_nav) ? ' active' : '') + '"><pre>' + JSON.stringify(spoiler[section], null, 4)
-			+ '</pre></div>'));
-		if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) === -1) {
-			tabsContent.set('spoiler-' + section.replace(/ /g, '_'), Object.keys(spoiler[section]).map(function (key) {
-				return spoiler[section][key];
-			}));
-		}
-		for (loc in spoiler[section]) {
-			if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) > -1) continue;
-			items[spoiler[section][loc]] = true;
-		}
-		var sopts = '';
-		Object.keys(items).sort().forEach(function(item) {
-			sopts += '<option value="' + item + '">' + item + '</option>';
-		});
-		$('#spoiler-search').html(sopts).selectpicker('refresh');
-	}
-}
-
-$('#spoiler-search').on('changed.bs.select', function() {
-	var string = $(this).val();
-	tabsContent.forEach(function(val, nav) {
-		var numItems = val.reduce(function(n, item) {
-			return n + (item == string);
-		}, 0);
-		$('#n-' + nav + ' .badge').html(numItems || null);
-	});
-});
 
 $(function() {
 	$('button[name=save], button[name=save-spoiler]').hide();

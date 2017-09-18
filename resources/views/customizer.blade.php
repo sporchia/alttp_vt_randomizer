@@ -1,12 +1,13 @@
 @extends('layouts.building')
 @include('_rom_loader')
 @include('_rom_settings')
+@include('_rom_spoiler')
 @include('custom/_items')
 @include('custom/_switches')
 
 @section('content')
 @yield('loader')
-<form id="plando">
+<form id="customizer">
 	<input type="hidden" id="seed" name="seed" value="0" />
 	<input type="hidden" name="logic" value="None" />
 	<input type="hidden" name="difficulty" value="custom" />
@@ -72,21 +73,7 @@
 				<button name="save" class="btn btn-success" disabled>Save Rom</button>
 			</div>
 		</div>
-		<div class="spoiler col-md-12">
-			<div class="spoiler-toggle"><span class="glyphicon glyphicon-plus"></span> Spoiler!</div>
-			<div class="spoiler-tabed">
-				<div class="col-md-6"></div>
-				<div class="col-md-6">
-					<select id="spoiler-search" class="form-control selectpicker" data-live-search="true" data-dropup-auto="false" title="Search for Item">
-					</select>
-				</div>
-				<ul class="nav nav-pills" role="tablist">
-				</ul>
-				<div class="tab-content">
-				</div>
-			</div>
-			<div id="spoiler" class="spoiler-text" style="display:none"></div>
-		</div>
+		@yield('rom-spoiler')
 	</div>
 </div>
 <div class="tab-content">
@@ -124,7 +111,6 @@ function getFormData($form){
 
 	$.map(unindexed_array, function(n, i){
 		if (n['value'] == 'auto_fill') return;
-		console.log(n['name']);
 		indexed_array[n['name']] = n['value'];
 	});
 
@@ -134,8 +120,8 @@ function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 		$('.spoiler').show();
-		$('#spoiler').html('<pre>' + JSON.stringify(data.spoiler, null, 4) + '</pre>');
-		pasrseSpoilerToTabs(data.spoiler);
+		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
+		pasrseSpoilerToTabs(data.patch.spoiler);
 		return resolve('yes');
 	});
 }
@@ -148,7 +134,6 @@ function seedFailed(data) {
 }
 function applySeed(rom, seed) {
 	return new Promise(function(resolve, reject) {
-		console.log('called');
 		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form')), function(patch) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
@@ -164,49 +149,6 @@ function applySeed(rom, seed) {
 	});
 }
 
-$('#spoiler-search').on('changed.bs.select', function() {
-	var string = $(this).val();
-	tabsContent.forEach(function(val, nav) {
-		var numItems = val.reduce(function(n, item) {
-			return n + (item == string);
-		}, 0);
-		$('#n-' + nav + ' .badge').html(numItems || null);
-	});
-});
-
-var tabsContent = new Map();
-function pasrseSpoilerToTabs(spoiler) {
-	var spoilertabs = $('.spoiler-tabed');
-	var nav = spoilertabs.find('.nav-pills');
-	var active_nav = nav.find('.active a').data('section');
-	nav.html('');
-	var content = spoilertabs.find('.tab-content').html('');
-	var items = {};
-	for (section in spoiler) {
-		nav.append($('<li id="n-spoiler-' + section.replace(/ /g, '_') + '" '
-			+ ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" data-section="' + section
-			+ '" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section
-			+ '<span class="badge badge-pill"></span></a></li>'));
-		content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
-			+ ((section == active_nav) ? ' active' : '') + '"><pre>' + JSON.stringify(spoiler[section], null, 4)
-			+ '</pre></div>'));
-		if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) === -1) {
-			tabsContent.set('spoiler-' + section.replace(/ /g, '_'), Object.keys(spoiler[section]).map(function (key) {
-				return spoiler[section][key];
-			}));
-		}
-		for (loc in spoiler[section]) {
-			if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) > -1) continue;
-			items[spoiler[section][loc]] = true;
-		}
-		var sopts = '';
-		Object.keys(items).sort().forEach(function(item) {
-			sopts += '<option value="' + item + '">' + item + '</option>';
-		});
-		$('#spoiler-search').html(sopts).selectpicker('refresh');
-	}
-}
-
 $(function() {
 	var config = {};
 	$('.items').append($('#items').html());
@@ -218,8 +160,8 @@ $(function() {
 		return false;
 	});
 
-	localforage.getItem('plandomizer').then(function(plando) {
-		config = plando || {};
+	localforage.getItem('vt.customizer').then(function(customizer) {
+		config = customizer || {};
 		for (var name in config) {
 			if (!config.hasOwnProperty(name)) continue;
 			$('select[name="' + name + '"]').val(config[name]);
@@ -228,14 +170,14 @@ $(function() {
 
 	$('select').change(function() {
 		config[this.name] = $(this).val();
-		localforage.setItem('plandomizer', config);
+		localforage.setItem('vt.customizer', config);
 	});
 
 	// dirty cleanup function for now
 	$('button[name=reset]').on('click', function(e) {
 		e.preventDefault();
 		config = {};
-		localforage.setItem('plandomizer', config);
+		localforage.setItem('vt.customizer', config);
 		localforage.setItem('vt.custom.items', config);
 		window.location = window.location;
 	});
