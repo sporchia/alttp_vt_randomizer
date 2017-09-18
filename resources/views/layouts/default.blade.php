@@ -36,6 +36,7 @@
 							<li{!! (request()->path() == 'game_variations') ? ' class="active"' : '' !!}><a href="/game_variations">Variations</a></li>
 							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
 							<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help</a></li>
+							<li><a href="https://discord.gg/yEvqSRk" target="_blank">Join us on Discord</a></li>
 						</ul>
 					</li>
 					<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
