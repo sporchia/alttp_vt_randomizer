@@ -136,4 +136,31 @@ class ItemCollectionTest extends TestCase {
 			Item::get('L2Sword'),
 		], $this->collection->values());
 	}
+
+	/**
+	 * @dataProvider bottlesPool
+	 */
+	public function testBottleCounting($items) {
+		$this->addCollected($items);
+
+		$this->assertTrue($this->collected->hasBottle(count($items)));
+		$this->assertFalse($this->collected->hasBottle(count($items) + 1));
+	}
+
+	public function bottlesPool() {
+		return [
+			[['Bottle']],
+			[['BottleWithBee']],
+			[['BottleWithFairy']],
+			[['BottleWithRedPotion']],
+			[['BottleWithGreenPotion']],
+			[['BottleWithBluePotion']],
+			[['BottleWithGoldBee']],
+			[['Bottle', 'Bottle']],
+			[['Bottle', 'Bottle', 'Bottle']],
+			[['Bottle', 'Bottle', 'Bottle', 'Bottle']],
+			[['Bottle', 'Bottle', 'Bottle', 'BottleWithBee']],
+			[['Bottle', 'Bottle', 'BottleWithBee', 'BottleWithBee']],
+		];
+	}
 }

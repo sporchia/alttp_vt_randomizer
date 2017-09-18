@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 26;
+	const LOGIC = 27;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
@@ -21,22 +21,22 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	static protected $logic_array = [
-		0xB0, 0x47, 0x7A, 0xB6, 0xC5, 0x8E, 0x33, 0xE8,0x1F, 0xE5, 0xCE, 0x39, 0xB9, 0xBF, 0x7F, 0x2C,
-		0xBC, 0x9A, 0x30, 0x61, 0xD2, 0x5B, 0x88, 0x35,0x48, 0x01, 0x3D, 0x6D, 0xBD, 0x19, 0xB4, 0x57,
-		0xF7, 0x2B, 0xEB, 0xF8, 0x90, 0x23, 0x7B, 0x4B,0x5A, 0x6A, 0x78, 0x58, 0x00, 0x81, 0xDC, 0x49,
-		0x07, 0x80, 0x63, 0x8B, 0x45, 0xDD, 0x4D, 0x27,0x6B, 0x13, 0xC4, 0x67, 0xA7, 0x37, 0xEF, 0x46,
-		0x1A, 0xD1, 0x5F, 0xC8, 0xB7, 0x99, 0x52, 0xB8,0xBB, 0x06, 0xE2, 0xDF, 0x73, 0xB5, 0x6C, 0x0F,
-		0x94, 0xA2, 0xDE, 0x2F, 0x16, 0x62, 0xA5, 0x5E,0x09, 0x11, 0xF1, 0x10, 0xFA, 0x43, 0x0D, 0x3A,
-		0xE6, 0x38, 0x3F, 0x14, 0xCA, 0x79, 0xE9, 0x18,0xD5, 0xCF, 0xC2, 0xE0, 0x0C, 0x59, 0x3B, 0x15,
-		0x32, 0xC1, 0x87, 0xAD, 0xF0, 0x85, 0x84, 0xB1,0xE1, 0xA8, 0xCD, 0xEA, 0x20, 0x60, 0xA0, 0x40,
-		0xF6, 0xAF, 0x7D, 0xE7, 0x56, 0x82, 0x83, 0x36,0xFE, 0xD9, 0x64, 0x54, 0xA1, 0x92, 0xFC, 0x9C,
-		0xC7, 0x51, 0x08, 0x71, 0xFD, 0xAE, 0x9F, 0x31,0x44, 0xC9, 0x50, 0xC6, 0x9E, 0x55, 0x7C, 0x29,
-		0xBA, 0xD7, 0xF3, 0xAB, 0x93, 0xA4, 0x3E, 0xA9,0xDA, 0xD6, 0x7E, 0xAA, 0x42, 0x4E, 0x89, 0x2A,
-		0x2E, 0x12, 0xF4, 0xAC, 0xF2, 0x8D, 0xA6, 0x9D,0x91, 0x05, 0xFF, 0x76, 0x95, 0xBE, 0x4A, 0x72,
-		0xEC, 0x41, 0x26, 0x98, 0xE3, 0x34, 0x1D, 0xA3,0x77, 0x28, 0xFB, 0x1E, 0x5C, 0x53, 0xCB, 0xC0,
-		0xB2, 0x0B, 0x3C, 0x65, 0xED, 0x8F, 0xD0, 0x22,0x25, 0x02, 0x66, 0xCC, 0xC3, 0x69, 0x70, 0x8A,
-		0x2D, 0x96, 0x0E, 0x75, 0xD8, 0x68, 0xEE, 0x03,0xDB, 0x4F, 0x6E, 0x6F, 0x8C, 0xD4, 0x1B, 0x24,
-		0x74, 0x1C, 0x5D, 0x17, 0x9B, 0x0A, 0xE4, 0x4C,0x04, 0x21, 0xF9, 0x86, 0xF5, 0x97, 0xB3, 0xD3,
+		0x92, 0x84, 0xD0, 0xEA, 0x41, 0x88, 0x1F, 0x61,0x9D, 0xB6, 0xFA, 0xD7, 0xE3, 0x1C, 0x34, 0x60,
+		0xBD, 0x98, 0xA8, 0x5C, 0xE2, 0xA5, 0x23, 0x2E,0x40, 0x01, 0x20, 0xA6, 0x30, 0xFE, 0xAE, 0xEF,
+		0x5E, 0x35, 0x37, 0x15, 0x27, 0x2C, 0x2D, 0xF4,0x12, 0x44, 0xB2, 0x00, 0xC9, 0x90, 0xD6, 0x9F,
+		0x10, 0xC2, 0x52, 0x04, 0x33, 0xD1, 0x97, 0x9A,0x93, 0x81, 0x7C, 0x8E, 0x3E, 0x3A, 0x4D, 0x6F,
+		0xDC, 0x26, 0xEE, 0xF0, 0x4A, 0xF1, 0x83, 0x62,0x7F, 0xF9, 0x69, 0x1D, 0xEB, 0xBC, 0x1A, 0xC8,
+		0x09, 0xDF, 0x95, 0x7A, 0xE6, 0x50, 0x05, 0xBE,0xD3, 0x5B, 0xE7, 0x8A, 0x4E, 0xE5, 0x66, 0x47,
+		0x4F, 0x6C, 0x11, 0xAC, 0xB7, 0x2B, 0x57, 0x6B,0x7D, 0xC7, 0x1B, 0xFB, 0xE9, 0x45, 0x86, 0x13,
+		0x6D, 0x7E, 0x48, 0x22, 0xFD, 0x9C, 0xCA, 0xA3,0x71, 0x0F, 0xAA, 0x25, 0xE4, 0xDD, 0xDA, 0x03,
+		0xAF, 0x94, 0x43, 0xD4, 0x17, 0x9E, 0xC1, 0xCF,0x08, 0xD5, 0xB1, 0x68, 0xE1, 0xF2, 0x19, 0xEC,
+		0xA7, 0x89, 0x24, 0x54, 0x72, 0x3F, 0x76, 0x0D,0xFC, 0x75, 0x99, 0x36, 0x3C, 0xA0, 0xC4, 0xC6,
+		0x64, 0xC3, 0x07, 0xA4, 0xCB, 0xA1, 0x2A, 0x63,0x74, 0xB5, 0x38, 0xB8, 0xCE, 0x82, 0x70, 0x3B,
+		0x3D, 0x06, 0x85, 0x02, 0x51, 0x96, 0xF6, 0xF3,0x0C, 0xF7, 0x0B, 0x4B, 0xBA, 0x42, 0x39, 0x59,
+		0x31, 0xD2, 0x87, 0x29, 0xB4, 0xB9, 0x56, 0x2F,0xED, 0x5D, 0x9B, 0xC0, 0x16, 0x78, 0x8B, 0xB3,
+		0xE0, 0x53, 0xC5, 0xF8, 0x8F, 0xA9, 0x18, 0x32,0x6E, 0xE8, 0x8C, 0x5A, 0x73, 0x28, 0xCD, 0x77,
+		0xF5, 0xBF, 0x91, 0xAB, 0xAD, 0xDE, 0x4C, 0x5F,0x0E, 0x67, 0xB0, 0x79, 0x1E, 0xCC, 0x49, 0x65,
+		0xA2, 0xD9, 0x8D, 0x21, 0xFF, 0x0A, 0xD8, 0xBB,0x46, 0x80, 0xDB, 0x7B, 0x55, 0x6A, 0x58, 0x14,
 	];
 
 	/**
@@ -74,6 +74,7 @@ class Randomizer {
 	 */
 	public function getLogic() {
 		switch ($this->logic) {
+			case 'None': return 'none-' . static::LOGIC;
 			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC;
 			case 'OverworldGlitches': return 'overworld-glitches-' . static::LOGIC;
 			case 'MajorGlitches': return 'major-glitches-' . static::LOGIC;
@@ -82,12 +83,13 @@ class Randomizer {
 	}
 
 	/**
-	 * Get the current Type identifier's nice name
+	 * Get the current Logic identifier's nice name
 	 *
 	 * @return string
 	 */
-	public function getTypeNiceName() {
-		switch ($this->type) {
+	public function getLogicNiceName() {
+		switch ($this->logic) {
+			case 'None': return 'None';
 			case 'NoMajorGlitches': return 'No Glitches';
 			case 'OverworldGlitches': return 'Overworld Glitches';
 			case 'Glitched': return 'Major Glitches';
@@ -120,8 +122,8 @@ class Randomizer {
 		$regions = $this->world->getRegions();
 
 		// Set up World before we fill dungeons
-		$this->fillPrizes($this->world);
 		$this->setMedallions($regions);
+		$this->fillPrizes($this->world);
 
 		$regions['Fountains']->getLocations()->each(function($fountain) {
 			$fountain->setItem($this->getBottle(true));
@@ -416,6 +418,14 @@ class Randomizer {
 			});
 
 		foreach ($crystal_locations->getEmptyLocations() as $location) {
+			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+				$this->getDungeonPool(),
+				$this->getAdvancementItems(),
+				$place_prizes)));
+			if (!$location->canAccess($assumed_items)) {
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+
 			$location->setItem(array_pop($place_prizes));
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
 		}
@@ -427,6 +437,14 @@ class Randomizer {
 			});
 
 		foreach ($pendant_locations->getEmptyLocations() as $location) {
+			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+				$this->getDungeonPool(),
+				$this->getAdvancementItems(),
+				$place_prizes)));
+			if (!$location->canAccess($assumed_items)) {
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+
 			$location->setItem(array_pop($place_prizes));
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
 		}
@@ -979,58 +997,58 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Bottles', 1); $i++) {
 			array_push($advancement_items, $this->getBottle());
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Bombos', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Bombos', 1); $i++) {
 			array_push($advancement_items, Item::get('Bombos'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.BookOfMudora', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BookOfMudora', 1); $i++) {
 			array_push($advancement_items, Item::get('BookOfMudora'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Bow', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Bow', 1); $i++) {
 			array_push($advancement_items, Item::get('Bow'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.CaneOfSomaria', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.CaneOfSomaria', 1); $i++) {
 			array_push($advancement_items, Item::get('CaneOfSomaria'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Cape', 1); $i++) {
 			array_push($advancement_items, Item::get('Cape'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Ether', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Ether', 1); $i++) {
 			array_push($advancement_items, Item::get('Ether'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.FireRod', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.FireRod', 1); $i++) {
 			array_push($advancement_items, Item::get('FireRod'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Flippers', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Flippers', 1); $i++) {
 			array_push($advancement_items, Item::get('Flippers'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Hammer', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Hammer', 1); $i++) {
 			array_push($advancement_items, Item::get('Hammer'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Hookshot', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Hookshot', 1); $i++) {
 			array_push($advancement_items, Item::get('Hookshot'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.IceRod', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.IceRod', 1); $i++) {
 			array_push($advancement_items, Item::get('IceRod'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Lamp', 1); $i++) {
 			array_push($advancement_items, Item::get('Lamp'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.MagicMirror', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MagicMirror', 1); $i++) {
 			array_push($advancement_items, Item::get('MagicMirror'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.MoonPearl', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MoonPearl', 1); $i++) {
 			array_push($advancement_items, Item::get('MoonPearl'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Mushroom', 1); $i++) {
 			array_push($advancement_items, Item::get('Mushroom'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.OcarinaInactive', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.OcarinaInactive', 1); $i++) {
 			array_push($advancement_items, Item::get('OcarinaInactive'));
 		}
 		for ($i = 0; $i < $this->config('item.count.OcarinaActive', 0); $i++) {
 			array_push($advancement_items, Item::get('OcarinaActive'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.PegasusBoots', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.PegasusBoots', 1); $i++) {
 			array_push($advancement_items, Item::get('PegasusBoots'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Powder', 1); $i++) {
@@ -1039,7 +1057,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.PowerGlove', 1); $i++) {
 			array_push($advancement_items, Item::get('PowerGlove'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Quake', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Quake', 1); $i++) {
 			array_push($advancement_items, Item::get('Quake'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Shovel', 1); $i++) {
@@ -1241,68 +1259,147 @@ class Randomizer {
 	public function getDungeonPool() {
 		$items_to_find = [];
 
-		array_push($items_to_find, Item::get('BigKeyA2'));
-		array_push($items_to_find, Item::get('BigKeyD1'));
-		array_push($items_to_find, Item::get('BigKeyD2'));
-		array_push($items_to_find, Item::get('BigKeyD3'));
-		array_push($items_to_find, Item::get('BigKeyD4'));
-		array_push($items_to_find, Item::get('BigKeyD5'));
-		array_push($items_to_find, Item::get('BigKeyD6'));
-		array_push($items_to_find, Item::get('BigKeyD7'));
-		array_push($items_to_find, Item::get('BigKeyP1'));
-		array_push($items_to_find, Item::get('BigKeyP2'));
-		array_push($items_to_find, Item::get('BigKeyP3'));
+		for ($i = 0; $i < $this->config('item.count.BigKeyA2', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyAD1', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD2', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD3', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD4', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD5', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD6', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD7', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyP1', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyP1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyP2', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyP3', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyP3'));
+		}
 
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD2'));
-		array_push($items_to_find, Item::get('KeyD3'));
-		array_push($items_to_find, Item::get('KeyD3'));
-		array_push($items_to_find, Item::get('KeyD4'));
-		array_push($items_to_find, Item::get('KeyD5'));
-		array_push($items_to_find, Item::get('KeyD5'));
-		array_push($items_to_find, Item::get('KeyD6'));
-		array_push($items_to_find, Item::get('KeyD6'));
-		array_push($items_to_find, Item::get('KeyD6'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyH2'));
-		array_push($items_to_find, Item::get('KeyP2'));
-		array_push($items_to_find, Item::get('KeyP3'));
+		for ($i = 0; $i < $this->config('item.count.KeyA2', 4); $i++) {
+			array_push($items_to_find, Item::get('KeyA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD1', 6); $i++) {
+			array_push($items_to_find, Item::get('KeyD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD2', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD3', 2); $i++) {
+			array_push($items_to_find, Item::get('KeyD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD4', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD5', 2); $i++) {
+			array_push($items_to_find, Item::get('KeyD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD6', 3); $i++) {
+			array_push($items_to_find, Item::get('KeyD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD7', 4); $i++) {
+			array_push($items_to_find, Item::get('KeyD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyA1', 2); $i++) {
+			array_push($items_to_find, Item::get('KeyA1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyH2', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyH2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyP2', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyP3', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyP3'));
+		}
 
-		array_push($items_to_find, Item::get('MapA2'));
-		array_push($items_to_find, Item::get('MapD1'));
-		array_push($items_to_find, Item::get('MapD2'));
-		array_push($items_to_find, Item::get('MapD3'));
-		array_push($items_to_find, Item::get('MapD4'));
-		array_push($items_to_find, Item::get('MapD5'));
-		array_push($items_to_find, Item::get('MapD6'));
-		array_push($items_to_find, Item::get('MapD7'));
-		array_push($items_to_find, Item::get('MapH2'));
-		array_push($items_to_find, Item::get('MapP1'));
-		array_push($items_to_find, Item::get('MapP2'));
-		array_push($items_to_find, Item::get('MapP3'));
-		array_push($items_to_find, Item::get('CompassA2'));
-		array_push($items_to_find, Item::get('CompassD1'));
-		array_push($items_to_find, Item::get('CompassD2'));
-		array_push($items_to_find, Item::get('CompassD3'));
-		array_push($items_to_find, Item::get('CompassD4'));
-		array_push($items_to_find, Item::get('CompassD5'));
-		array_push($items_to_find, Item::get('CompassD6'));
-		array_push($items_to_find, Item::get('CompassD7'));
-		array_push($items_to_find, Item::get('CompassP1'));
-		array_push($items_to_find, Item::get('CompassP2'));
-		array_push($items_to_find, Item::get('CompassP3'));
+		for ($i = 0; $i < $this->config('item.count.MapA2', 1); $i++) {
+			array_push($items_to_find, Item::get('MapA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD1', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD2', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD3', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD4', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD5', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD6', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD7', 1); $i++) {
+			array_push($items_to_find, Item::get('MapD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapH2', 1); $i++) {
+			array_push($items_to_find, Item::get('MapH2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapP1', 1); $i++) {
+			array_push($items_to_find, Item::get('MapP1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapP2', 1); $i++) {
+			array_push($items_to_find, Item::get('MapP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapP3', 1); $i++) {
+			array_push($items_to_find, Item::get('MapP3'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.CompassA2', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassAD1', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD2', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD3', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD4', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD5', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD6', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD7', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassP1', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassP1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassP2', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassP3', 1); $i++) {
+			array_push($items_to_find, Item::get('CompassP3'));
+		}
 
 		return $items_to_find;
 	}
@@ -1431,7 +1528,8 @@ class Randomizer {
 	}
 
 	/**
-	 * Set the World associated with the Randomizer
+	 * Set the World associated with the Randomizer. Of note the world can be different rules that the Randomizer.
+	 * Use this "feature" with caution.
 	 *
 	 * @param World $world World to assocate to Randomizer
 	 *

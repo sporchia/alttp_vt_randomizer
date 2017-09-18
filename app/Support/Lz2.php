@@ -45,6 +45,20 @@ class Lz2 {
 			3,  // Increasing Fill
 			4,  // Repeat
 		];
+	protected $reverse_bytes = false;
+
+	/**
+	 * In Lz2 for ALttP, they use 2 different Lz2 algs, where the Repeat command can either have the address
+	 * reversed or not. False is what you would want generally for GFX (de)compression. Other areas such as
+	 * the sprite dmg table would be true.
+	 *
+	 * @param bool $reverse_bytes Reverse bytes in repeat command.
+	 *
+	 * @return void
+	 */
+	public function __construct(bool $reverse_bytes = false) {
+		$this->reverse_bytes = $reverse_bytes;
+	}
 
 	/**
 	 * compress array of bytes;
@@ -186,8 +200,11 @@ class Lz2 {
 					break;
 				case self::REPEAT:
 					$this->outputCommand($nextCommand, $nextCommandByteCount, $output);
-					array_push($output, $repeatAddress >> 8);
-					array_push($output, $repeatAddress % 256);
+					if ($this->reverse_bytes) {
+						array_push($output, $repeatAddress >> 8, $repeatAddress % 256);
+					} else {
+						array_push($output, $repeatAddress % 256, $repeatAddress >> 8);
+					}
 					break;
 			}
 
@@ -268,7 +285,11 @@ class Lz2 {
 					}
 					break;
 				case self::REPEAT:
-					$origin = (($compressedData[$position++] << 8) | $compressedData[$position++]);
+					if ($this->reverse_bytes) {
+						$origin = (($compressedData[$position++] << 8) | $compressedData[$position++]);
+					} else {
+						$origin = ($compressedData[$position++] | ($compressedData[$position++] << 8));
+					}
 					for ($i = 0; $i < $length; $i++) {
 						array_push($output, $output[$origin++]);
 					}

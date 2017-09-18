@@ -1,5 +1,8 @@
 <?php
 
+use ALttP\Item;
+use ALttP\Location;
+use ALttP\World;
 use Illuminate\Http\Request;
 
 Route::get('randomize{r?}', function () {
@@ -8,6 +11,37 @@ Route::get('randomize{r?}', function () {
 
 Route::get('entrance/randomize{r?}', function () {
 	return view('entrance_randomizer');
+});
+
+Route::get('customize{r?}', function () {
+	$world = new World;
+	$items = Item::all();
+	return view('customizer', [
+		'world' => $world,
+		'location_class' => [
+			Location\Prize\Pendant::class => 'prizes',
+			Location\Prize\Crystal::class => 'prizes',
+			Location\Medallion::class => 'medallions',
+			Location\Fountain::class => 'bottles',
+		],
+		'items' => $items->filter(function($item) {
+			return !$item instanceof Item\Pendant
+				&& !$item instanceof Item\Crystal
+				&& !$item instanceof Item\Event
+				&& !$item instanceof Item\Programmable
+				&& !in_array($item->getName(), ['L2Sword', 'singleRNG', 'multiRNG']);
+		}),
+		'prizes' => $items->filter(function($item) {
+			return $item instanceof Item\Pendant
+				|| $item instanceof Item\Crystal;
+		}),
+		'medallions' => $items->filter(function($item) {
+			return $item instanceof Item\Medallion;
+		}),
+		'bottles' => $items->filter(function($item) {
+			return $item instanceof Item\Bottle;
+		}),
+	]);
 });
 
 Route::get('/', function () {
@@ -121,10 +155,18 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
+	$variation = $request->input('variation', 'none') ?: 'none';
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
+		$world = new World($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+		$locations = $world->getLocations();
+		foreach ($request->input('l', []) as $location => $item) {
+			$decoded_location = base64_decode($location);
+			if (isset($locations[$decoded_location])) {
+				$locations[$decoded_location]->setItem(Item::get($item));
+			}
+		}
 	}
-	$variation = $request->input('variation', 'none') ?: 'none';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -151,6 +193,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+	if (isset($world)) {
+		$rand->setWorld($world);
+	}
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();

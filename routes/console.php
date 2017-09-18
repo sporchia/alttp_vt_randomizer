@@ -19,7 +19,7 @@ Artisan::command('alttp:test', function () {
 		"MAIYMEPwACJwACEAIiJAACIAAHJBECIREnMAABAzMoAAACIgD///////////////////////////8="
 	)));
 
-	$lz2 = new \ALttP\Support\Lz2();
+	$lz2 = new \ALttP\Support\Lz2(true);
 	$uncompressed = $lz2->decompress($data);
 
 	$mem = [];

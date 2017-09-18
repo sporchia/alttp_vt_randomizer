@@ -399,6 +399,19 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Requirements for having X bottles
+	 *
+	 * @param int $at_least mininum number of item in collection
+	 *
+	 * @return bool
+	 */
+	public function hasBottle(int $at_least = 1) : bool {
+		return $this->filter(function($item) {
+			return $item instanceof Item\Bottle;
+		})->count() >= $at_least;
+	}
+
+	/**
 	 * Requirements for having a bottle
 	 *
 	 * @return bool

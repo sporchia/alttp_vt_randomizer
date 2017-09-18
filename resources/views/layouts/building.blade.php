@@ -11,7 +11,10 @@
 	<script src="{{ elixir('js/app.js') }}"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-lg-2">
+	<nav class="navbar navbar-default navbar-fixed-side">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -27,37 +30,27 @@
 					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a data-toggle="tab" href="#custom-settings">Settings</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Regions <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li{!! (request()->path() == 'game_difficulties') ? ' class="active"' : '' !!}><a href="/game_difficulties">Difficulties</a></li>
-							<li{!! (request()->path() == 'game_logics') ? ' class="active"' : '' !!}><a href="/game_logics">Logics</a></li>
-							<li{!! (request()->path() == 'game_modes') ? ' class="active"' : '' !!}><a href="/game_modes">Modes</a></li>
-							<li{!! (request()->path() == 'game_variations') ? ' class="active"' : '' !!}><a href="/game_variations">Variations</a></li>
-							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
-							<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help</a></li>
+						@foreach($world->getRegions() as $name => $region)
+							<li><a data-toggle="tab" href="#custom-region-{{ str_replace(' ', '_', $name) }}">{{ $name }}</a></li>
+						@endforeach
 						</ul>
 					</li>
-					<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
-			  		<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
-					@if (Auth::check())
-					<li class="dropdown">
-					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-					  <ul class="dropdown-menu">
-						<li><a href="/auth/logout">Logout</a></li>
-					  </ul>
-					</li>
-					@else
-					<!-- <li{!! (request()->path() == 'about') ? ' class="active"' : '' !!}><a href="/auth/login">Login</a></li> -->
-					@endif
+					<li><a data-toggle="tab" href="#custom-item-select">Item Pool</a></li>
+					<li><a>VT 2017</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<div class="clearfix" style="padding-top:70px"></div>
-	<div class="container">
+    </div>
+    <div class="col-md-9 col-lg-10">
 	@yield('content')
-	</div>
+    </div>
+  </div>
+</div>
 	<script>
 @if (App::environment() == 'production')
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

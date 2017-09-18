@@ -104,7 +104,9 @@ class SkullWoods extends Region {
 		});
 
 		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
+			return $items->has('MoonPearl') && $items->has('FireRod')
+				&& (config('game-mode') == 'swordless' || $items->hasSword())
+				&& $items->has('KeyD3', 3);
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -121,7 +123,8 @@ class SkullWoods extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
-				&& $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword());
+				&& $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword())
+				&& $items->has('KeyD3', 3);
 		};
 
 		$this->can_enter = function($locations, $items) {

@@ -11,10 +11,10 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootstrap-toggle/css/bootstrap-toggle";
 @import "node_modules/bootstrap-select/sass/bootstrap-select";
+@import 'navbar-fixed-side';
 
 body {
 	background-color: #EEEEEE;
-	padding-top: 70px;
 }
 
 .btn-flex {
