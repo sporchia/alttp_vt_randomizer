@@ -156,6 +156,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	$variation = $request->input('variation', 'none') ?: 'none';
+
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 		$world = new World($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);

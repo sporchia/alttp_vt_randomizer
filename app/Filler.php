@@ -25,6 +25,8 @@ abstract class Filler {
 				return new Filler\Distributed($world);
 			case 'Random':
 				return new Filler\Random($world);
+			case 'Troll':
+				return new Filler\Troll($world);
 			default:
 			case 'RandomAssumed':
 				return new Filler\RandomAssumed($world);

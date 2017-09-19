@@ -1,6 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.27</h2>
+<div class="well">
+	<ul>
+		<li>Cleaned up the spoiler section of the site to assist in finding things</li>
+		<li>Complete overhaul of the custom section, see the new customizer</li>
+	</ul>
+</div>
+
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>
