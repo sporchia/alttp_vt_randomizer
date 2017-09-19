@@ -43,11 +43,23 @@ function pasrseSpoilerToTabs(spoiler) {
 			+ ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" data-section="' + section
 			+ '" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section
 			+ '<span class="badge badge-pill"></span></a></li>'));
-		if (['playthrough'].indexOf(section) === -1) {
+		if (['entrances'].indexOf(section) !== -1) {
+			var table = $('<table class="table table-striped"><thead><tr><th>Entrance</th><th>Direction</th><th>Exit</th></tr></thead><tbody></tbody></table>');
+			var tbody = table.find('tbody');
+			for (loc in spoiler[section]) {
+				tbody.append($('<tr class="spoil-item-location"><td class="col-md-5">' + spoiler[section][loc].entrance
+					+ '</td><td class="col-md-2">' + (spoiler[section][loc].direction == 'both' ? '↔' : '→') + '</td><td class="col-md-5">'
+					+ spoiler[section][loc].exit + '</td></tr>'));
+			};
+			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
+				+ ((section == active_nav) ? ' active' : '') + '">'
+				+ '</div>').append(table));
+		} else if (['playthrough'].indexOf(section) === -1) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
 			for (loc in spoiler[section]) {
-				tbody.append($('<tr class="spoil-item-location"><td class="col-md-6">'+loc+'</td><td class="item">'+spoiler[section][loc]+'</td></tr>'));
+				tbody.append($('<tr class="spoil-item-location"><td class="col-md-6">'
+					+ loc + '</td><td class="item">' + spoiler[section][loc] + '</td></tr>'));
 			};
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'
