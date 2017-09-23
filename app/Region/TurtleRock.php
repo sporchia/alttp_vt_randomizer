@@ -152,6 +152,7 @@ class TurtleRock extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
+				&& $items->has('KeyD7', 4)
 				&& $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp')
 				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
 				&& ($items->has('Hammer') || $items->hasUpgradedSword());
