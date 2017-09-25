@@ -1,6 +1,17 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.26.2</h2>
+<div class="well">
+	<ul>
+		<li>Turtle Rock small key fix</li>
+		<li>Skull Woods small key fix</li>
+		<li>Added a few new player options<br />
+			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.4.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
+	</ul>
+</div>
+
 <h2>VT8.26</h2>
 <div class="well">
 	<ul>

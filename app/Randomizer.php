@@ -1280,29 +1280,31 @@ class Randomizer {
 		array_push($items_to_find, Item::get('KeyP2'));
 		array_push($items_to_find, Item::get('KeyP3'));
 
-		array_push($items_to_find, Item::get('MapA2'));
-		array_push($items_to_find, Item::get('MapD1'));
-		array_push($items_to_find, Item::get('MapD2'));
-		array_push($items_to_find, Item::get('MapD3'));
-		array_push($items_to_find, Item::get('MapD4'));
-		array_push($items_to_find, Item::get('MapD5'));
-		array_push($items_to_find, Item::get('MapD6'));
-		array_push($items_to_find, Item::get('MapD7'));
-		array_push($items_to_find, Item::get('MapH2'));
-		array_push($items_to_find, Item::get('MapP1'));
-		array_push($items_to_find, Item::get('MapP2'));
-		array_push($items_to_find, Item::get('MapP3'));
-		array_push($items_to_find, Item::get('CompassA2'));
-		array_push($items_to_find, Item::get('CompassD1'));
-		array_push($items_to_find, Item::get('CompassD2'));
-		array_push($items_to_find, Item::get('CompassD3'));
-		array_push($items_to_find, Item::get('CompassD4'));
-		array_push($items_to_find, Item::get('CompassD5'));
-		array_push($items_to_find, Item::get('CompassD6'));
-		array_push($items_to_find, Item::get('CompassD7'));
-		array_push($items_to_find, Item::get('CompassP1'));
-		array_push($items_to_find, Item::get('CompassP2'));
-		array_push($items_to_find, Item::get('CompassP3'));
+		if ($this->config('region.CompassesMaps', true)) {
+			array_push($items_to_find, Item::get('MapA2'));
+			array_push($items_to_find, Item::get('MapD1'));
+			array_push($items_to_find, Item::get('MapD2'));
+			array_push($items_to_find, Item::get('MapD3'));
+			array_push($items_to_find, Item::get('MapD4'));
+			array_push($items_to_find, Item::get('MapD5'));
+			array_push($items_to_find, Item::get('MapD6'));
+			array_push($items_to_find, Item::get('MapD7'));
+			array_push($items_to_find, Item::get('MapH2'));
+			array_push($items_to_find, Item::get('MapP1'));
+			array_push($items_to_find, Item::get('MapP2'));
+			array_push($items_to_find, Item::get('MapP3'));
+			array_push($items_to_find, Item::get('CompassA2'));
+			array_push($items_to_find, Item::get('CompassD1'));
+			array_push($items_to_find, Item::get('CompassD2'));
+			array_push($items_to_find, Item::get('CompassD3'));
+			array_push($items_to_find, Item::get('CompassD4'));
+			array_push($items_to_find, Item::get('CompassD5'));
+			array_push($items_to_find, Item::get('CompassD6'));
+			array_push($items_to_find, Item::get('CompassD7'));
+			array_push($items_to_find, Item::get('CompassP1'));
+			array_push($items_to_find, Item::get('CompassP2'));
+			array_push($items_to_find, Item::get('CompassP3'));
+		}
 
 		return $items_to_find;
 	}
