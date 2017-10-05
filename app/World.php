@@ -536,7 +536,21 @@ class World {
 	}
 
 	/**
-	 * Determine the spheres that locations are in based on the items in the world
+	 * Determine if an item is collectable.
+	 *
+	 * @param mixed $key
+	 * @param int $at_least mininum number of item in collection
+	 *
+	 * @return bool
+	 */
+	public function canCollect($key, $at_least = 1) {
+		switch ($key) {
+			case 'anyBow': return $this->collectItems()->canShootArrows();
+			default: return $this->collectItems()->has($key, $at_least);
+		}
+	}
+
+	/**	 * Determine the spheres that locations are in based on the items in the world
 	 *
 	 * @return array
 	 */
