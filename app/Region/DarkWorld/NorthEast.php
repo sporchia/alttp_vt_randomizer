@@ -67,9 +67,6 @@ class NorthEast extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->canLiftRocks();
-		})->setFillRules(function($item, $locations, $items) {
-			return !$item instanceof Item\Key
-				&& !$item instanceof Item\BigKey;
 		});
 
 		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {

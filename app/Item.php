@@ -119,7 +119,7 @@ class Item {
 			new Item('IceRod', 'Ice Rod', [0x08]),
 			new Item('Hammer', 'Hammer', [0x09]),
 			new Item('Hookshot', 'Hookshot', [0x0A]),
-			new Item('Bow', 'Bow', [0x0B]),
+			new Item\Bow('Bow', 'Bow', [0x0B]),
 			new Item('Boomerang', 'Boomerang', [0x0C]), // alternate: 10 arrows
 			new Item('Powder', 'Magic Powder', [0x0D]),
 			new Item('Bee', 'Bee', [0x0E]), // bottle required
@@ -165,8 +165,8 @@ class Item {
 			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x38, 0x62, 0x00, 0x69, 0x01]),
 			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', [0x38, 0x01, 0x32, 0x60, 0x00, 0x69, 0x03]),
 			new Item\Pendant('PendantOfPower', 'Pendant Of Power', [0x39, 0x02, 0x34, 0x60, 0x00, 0x69, 0x02]),
-			new Item('BowAndArrows', 'Bow And Arrows', [0x3A]),
-			new Item('BowAndSilverArrows', 'Bow And Silver Arrows', [0x3B]),
+			new Item\Bow('BowAndArrows', 'Bow And Arrows', [0x3A]),
+			new Item\Bow('BowAndSilverArrows', 'Bow And Silver Arrows', [0x3B]),
 			new Item\Bottle('BottleWithBee', 'Bottle (Bee)', [0x3C]),
 			new Item\Bottle('BottleWithFairy', 'Bottle (Fairy)', [0x3D]),
 			new Item('BossHeartContainer', 'Heart Container', [0x3E]),

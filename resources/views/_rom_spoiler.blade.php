@@ -30,8 +30,28 @@ $('#spoiler-search').on('changed.bs.select', function() {
 	});
 });
 
+function parseSpoilerMetaFromPatch(patch) {
+	$('.info').show();
+	$('.info .seed').html(patch.seed + " [<a href='/h/" + patch.hash + "'>permalink</a>]");
+	if ($('input[name=tournament]').val() == 'true') {
+		$('.info .seed').html("<a href='/h/" + patch.seed + "'>" + patch.seed + "</a>");
+	}
+	$('.info .logic').html(patch.logic);
+	$('.info .build').html(patch.spoiler.meta.build);
+	$('.info .goal').html(patch.spoiler.meta.goal);
+	$('.info .mode').html(patch.spoiler.meta.mode);
+	$('.info .variation').html(patch.spoiler.meta.variation);
+	$('.info .difficulty').html(patch.difficulty);
+	$('.spoiler').show();
+	$('#spoiler').html('<pre>' + JSON.stringify(patch.spoiler, null, 4) + '</pre>');
+	pasrseSpoilerToTabs(patch.spoiler);
+}
+
 var tabsContent = new Map();
 function pasrseSpoilerToTabs(spoiler) {
+	$('.spoiler').show();
+	$('#spoiler').html('<pre>' + JSON.stringify(spoiler, null, 4) + '</pre>');
+
 	var spoilertabs = $('.spoiler-tabed');
 	var nav = spoilertabs.find('.nav-pills');
 	var active_nav = nav.find('.active a').data('section');

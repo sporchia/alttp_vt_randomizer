@@ -1,4 +1,5 @@
 @extends('layouts.building')
+@include('_rom_info')
 @include('_rom_loader')
 @include('_rom_settings')
 @include('_rom_spoiler')
@@ -18,6 +19,16 @@
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="debug" value="false" />
 	<div class="tab-content">
+		<div class="tab-pane active">
+			<h1>Welcome to Customizer</h1>
+			<p>Here is where you can create the game you always wanted (or never wanted). If you are just looking to
+				make a randomized game and get playing, I suggest the "Item Randomizer" on the left.</p>
+			<p>To use this, you'll set the Item Pool, place items anywhere you like, and adjust the core settings of
+				Randomizer.</p>
+			<p>Be aware! You can generate incompletable games using this. If that is your choice please don't report
+				item locks generated using this tool.</p>
+			<p>Here are the keys to the kingdom, enjoy!</p>
+		</div>
 		<div class="tab-pane" id="custom-generate">
 			<div id="seed-generate" class="panel panel-success">
 				<div class="panel-heading panel-heading-btn">
@@ -28,14 +39,37 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="panel-body">
-					<div class="row" style="padding-bottom:5px;">
-						<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Mode</span>
+								<select id="mode" class="form-control selectpicker">
+									<option value="standard">Standard</option>
+									<option value="open">Open</option>
+									<option value="swordless">Swordless</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Goal</span>
+								<select id="goal" class="form-control selectpicker">
+									<option value="ganon">Defeat Ganon</option>
+									<option value="dungeons">All Dungeons</option>
+									<option value="pedestal">Master Sword Pedestal</option>
+									<option value="triforce-hunt">Triforce Pieces</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Name</span>
 								<input type="text" id="name" class="name form-control" placeholder="name this">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Logic</span>
 								<select id="logic" class="form-control selectpicker">
@@ -46,6 +80,12 @@
 								</select>
 							</div>
 						</div>
+
+					</div>
+					@yield('rom-settings')
+				</div>
+				<div class="panel-footer">
+					<div class="row">
 						<div class="col-md-6">
 							<div class="btn-group btn-flex" role="group">
 								<button name="reset" class="btn btn-danger">Reset Everything</button>
@@ -57,21 +97,12 @@
 							</div>
 						</div>
 					</div>
-					@yield('rom-settings')
 				</div>
 			</div>
 			<div id="seed-details" class="info panel panel-info">
 				<div class="panel-heading"><h3 class="panel-title">Game Details</h3></div>
 				<div class="panel-body">
-					<div class="col-md-6">
-						<div>Logic: <span class="logic"></span></div>
-						<div>ROM build: <span class="build"></span></div>
-						<div>Difficulty: <span class="difficulty"></span></div>
-						<div>Variation: <span class="variation"></span></div>
-						<div>Mode: <span class="mode"></span></div>
-						<div>Goal: <span class="goal"></span></div>
-						<div>Seed: <span class="seed"></span></div>
-					</div>
+					@yield('rom-info')
 					<div class="col-md-6">
 						<div class="row">
 							<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
@@ -82,7 +113,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="tab-pane" id="custom-item-select">
 			<div class="total-items"><span id="custom-count">0</span> / <span id="custom-count-total">0</span></div>
 			@yield('itemselect')
@@ -92,14 +122,16 @@
 		</div>
 	@foreach($world->getRegions() as $name => $region)
 		<div class="tab-pane" id="custom-region-{{ str_replace(' ', '_', $name) }}">
-			<div class="panel panel-default">
-				<div class="panel-heading">{{ $name }}</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">{{ $name }}</h4>
+				</div>
 				<table class="table table-striped">
 				@foreach($region->getLocations() as $location)
 					<?php if ($location instanceof ALttP\Location\Prize\Event) continue; ?>
 					<tr>
-						<td>{{ $location->getName() }}</td>
-						<td>
+						<td class="col-md-7">{{ $location->getName() }}</td>
+						<td class="col-md-5">
 							<select class="{{ $location_class[get_class($location)] ?? 'items' }}" name="l[{{ base64_encode($location->getName()) }}]"></select>
 						</td>
 					</tr>
@@ -107,7 +139,7 @@
 				</table>
 			</div>
 		</div>
-@endforeach
+	@endforeach
 	</div>
 </form>
 
@@ -126,10 +158,18 @@ function getFormData($form){
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
-		$('.spoiler').show();
-		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
+		parseInfoFromPatch(data.patch);
 		pasrseSpoilerToTabs(data.patch.spoiler);
-		return resolve('yes');
+		rom.logic = data.patch.logic;
+		rom.goal = data.patch.spoiler.meta.goal;
+		rom.build = data.patch.spoiler.meta.build;
+		rom.mode = data.patch.spoiler.meta.mode;
+		rom.difficulty = data.patch.difficulty;
+		rom.variation = data.patch.spoiler.meta.variation;
+		rom.seed = data.patch.seed;
+		rom.spoiler = data.patch.spoiler;
+		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
+		resolve(rom);
 	});
 }
 function seedFailed(data) {
@@ -239,6 +279,29 @@ $(function() {
 		if (value === null) return;
 		$('#logic').val(value);
 		$('#logic').trigger('change');
+	});
+
+	$('#mode').on('change', function() {
+		$('.info').hide();
+		localforage.setItem('vt.custom.mode', $(this).val());
+		$('input[name=mode]').val($(this).val());
+	});
+	localforage.getItem('vt.custom.mode').then(function(value) {
+		if (value === null) return;
+		$('#mode').val(value);
+		$('#mode').trigger('change');
+	});
+
+	$('#goal').on('change', function() {
+		$('.info').hide();
+		var goal = $(this).val();
+		localforage.setItem('vt.custom.goal', goal);
+		$('input[name=goal]').val(goal);
+	});
+	localforage.getItem('vt.custom.goal').then(function(value) {
+		if (value === null) return;
+		$('#goal').val(value);
+		$('#goal').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {

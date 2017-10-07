@@ -190,9 +190,6 @@ class LightWorld extends Region {
 
 		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() || $items->has('Flippers');
-		})->setFillRules(function($item, $locations, $items) {
-			return !$item instanceof Item\Key
-				&& !$item instanceof Item\BigKey;
 		});
 
 		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {

@@ -1,6 +1,7 @@
 <?php namespace ALttP\Filler;
 
 use ALttP\Filler;
+use ALttP\Item;
 use ALttP\Support\ItemCollection as Items;
 use Log;
 
@@ -20,6 +21,16 @@ class RandomAssumed extends Filler {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
 		$this->fillItemsInLocations($dungeon, $randomized_order_locations, $required);
+
+		$required_no_bow = new Items(array_filter($required, function($item) {
+			return !$item instanceof Item\Bow;
+		}));
+
+		$required_no_hammer = new Items(array_filter($required, function($item) {
+			return $item != Item::get('Hammer');
+		}));
+
+		$this->world->getRegion('Palace of Darkness')->setItemLock($this->world->collectItems($required_no_bow)->countItem('KeyD1') < 3);
 
 		// random junk fill
 		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()->randomCollection(mt_rand(0, 15));

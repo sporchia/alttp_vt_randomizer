@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@include('_rom_info')
 @include('_rom_loader')
 @include('_rom_settings')
 @include('_rom_spoiler')
@@ -120,15 +121,7 @@
 <div id="seed-details" class="info panel panel-info" style="display:none">
 	<div class="panel-heading"><h3 class="panel-title">Game Details</h3></div>
 	<div class="panel-body">
-		<div class="col-md-6">
-			<div>Logic: <span class="logic"></span></div>
-			<div>ROM build: <span class="build"></span></div>
-			<div>Difficulty: <span class="difficulty"></span></div>
-			<div>Variation: <span class="variation"></span></div>
-			<div>Mode: <span class="mode"></span></div>
-			<div>Goal: <span class="goal"></span></div>
-			<div>Seed: <span class="seed"></span></div>
-		</div>
+		@yield('rom-info')
 		<div class="col-md-6">
 			<div class="row">
 				<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
@@ -203,19 +196,7 @@ function seedApplied(data) {
 		$('button[name=generate-tournament-rom]').html('Generate Race ROM (no spoilers)').prop('disabled', false);
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('button[name=generate-save]').prop('disabled', false);
-		$('.info').show();
-		$('.info .seed').html(data.patch.seed + " [<a href='/h/" + data.patch.hash + "'>permalink</a>]");
-		if ($('input[name=tournament]').val() == 'true') {
-			$('.info .seed').html("<a href='/h/" + data.patch.seed + "'>" + data.patch.seed + "</a>");
-		}
-		$('.info .logic').html(data.patch.logic);
-		$('.info .build').html(data.patch.spoiler.meta.build);
-		$('.info .goal').html(data.patch.spoiler.meta.goal);
-		$('.info .mode').html(data.patch.spoiler.meta.mode);
-		$('.info .variation').html(data.patch.spoiler.meta.variation);
-		$('.info .difficulty').html(data.patch.difficulty);
-		$('.spoiler').show();
-		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
+		parseInfoFromPatch(data.patch);
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
 		rom.goal = data.patch.spoiler.meta.goal;
@@ -245,9 +226,9 @@ $(function() {
 	$('#difficulty').on('change', function() {
 		$('.info').hide();
 		$('input[name=difficulty]').val($(this).val());
-		localforage.setItem('rom.er.difficulty', $(this).val());
+		localforage.setItem('vt.er.difficulty', $(this).val());
 	});
-	localforage.getItem('rom.er.difficulty').then(function(value) {
+	localforage.getItem('vt.er.difficulty').then(function(value) {
 		if (!value) return;
 		$('#difficulty').val(value);
 		$('#difficulty').trigger('change');
@@ -258,7 +239,7 @@ $(function() {
 		var variation = $(this).val();
 		var goal = $('#goal').val();
 		$('input[name=variation]').val(variation);
-		localforage.setItem('rom.er.variation', variation);
+		localforage.setItem('vt.er.variation', variation);
 		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
 			$('#goal').val('triforce-hunt');
 			$('#goal').trigger('change');
@@ -267,7 +248,7 @@ $(function() {
 			$('#goal').trigger('change');
 		}
 	});
-	localforage.getItem('rom.er.variation').then(function(value) {
+	localforage.getItem('vt.er.variation').then(function(value) {
 		if (!value) return;
 		$('#variation').val(value);
 		$('#variation').trigger('change');
@@ -276,9 +257,9 @@ $(function() {
 	$('#shuffle').on('change', function() {
 		$('.info').hide();
 		$('input[name=shuffle]').val($(this).val());
-		localforage.setItem('rom.er.shuffle', $(this).val());
+		localforage.setItem('vt.er.shuffle', $(this).val());
 	});
-	localforage.getItem('rom.er.shuffle').then(function(value) {
+	localforage.getItem('vt.er.shuffle').then(function(value) {
 		if (!value) return;
 		$('#shuffle').val(value);
 		$('#shuffle').trigger('change');
@@ -289,6 +270,7 @@ $(function() {
 			+ '_' + rom.difficulty
 			+ '-' + rom.mode
 			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
 			+ '_' + rom.seed + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
@@ -296,6 +278,7 @@ $(function() {
 			+ '_' + rom.difficulty
 			+ '-' + rom.mode
 			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
 			+ '_' + rom.seed + '.txt');
 	});
 
@@ -307,6 +290,7 @@ $(function() {
 					+ '_' + rom.difficulty
 					+ '-' + rom.mode
 					+ '-' + rom.goal
+					+ (rom.variation == 'none' ? '' : '_' + rom.variation)
 					+ '_' + rom.seed + '.sfc');
 			});
 	});
@@ -328,10 +312,10 @@ $(function() {
 
 	$('#logic').on('change', function() {
 		$('.info').hide();
-		localforage.setItem('rom.er.logic', $(this).val());
+		localforage.setItem('vt.er.logic', $(this).val());
 		$('input[name=logic]').val($(this).val());
 	});
-	localforage.getItem('rom.er.logic').then(function(value) {
+	localforage.getItem('vt.er.logic').then(function(value) {
 		if (value === null) return;
 		$('#logic').val(value);
 		$('#logic').trigger('change');
@@ -339,10 +323,10 @@ $(function() {
 
 	$('#mode').on('change', function() {
 		$('.info').hide();
-		localforage.setItem('rom.er.mode', $(this).val());
+		localforage.setItem('vt.er.mode', $(this).val());
 		$('input[name=mode]').val($(this).val());
 	});
-	localforage.getItem('rom.er.mode').then(function(value) {
+	localforage.getItem('vt.er.mode').then(function(value) {
 		if (value === null) return;
 		$('#mode').val(value);
 		$('#mode').trigger('change');
@@ -352,7 +336,7 @@ $(function() {
 		$('.info').hide();
 		var goal = $(this).val();
 		var variation = $('#variation').val();
-		localforage.setItem('rom.er.goal', goal);
+		localforage.setItem('vt.er.goal', goal);
 		$('input[name=goal]').val(goal);
 		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
 			$('#variation').val('triforce-hunt');
@@ -362,7 +346,7 @@ $(function() {
 			$('#variation').trigger('change');
 		}
 	});
-	localforage.getItem('rom.er.goal').then(function(value) {
+	localforage.getItem('vt.er.goal').then(function(value) {
 		if (value === null) return;
 		$('#goal').val(value);
 		$('#goal').trigger('change');
@@ -393,8 +377,14 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				zip.file('ER_' + data.patch.logic + '_' + data.patch.difficulty + '-' + data.patch.spoiler.meta.mode + '-' + data.patch.spoiler.meta.goal + '_' + data.patch.seed + '.sfc', buffer);
-				zip.file('spoilers/ER_' + data.patch.logic + '_' + data.patch.difficulty + '-' + data.patch.spoiler.meta.mode + '-' + data.patch.spoiler.meta.goal + '_' + data.patch.seed + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
+				var fname = 'ER_' + data.patch.logic
+					+ '_' + data.patch.difficulty
+					+ '-' + data.patch.spoiler.meta.mode
+					+ '-' + data.patch.spoiler.meta.goal
+					+ (data.patch.spoiler.meta.variation == 'none' ? '' : '_' + data.patch.spoiler.meta.variation)
+					+ '_' + data.patch.seed;
+				zip.file(fname + '.sfc', buffer);
+				zip.file('spoilers/' + fname + '.txt', new Blob([JSON.stringify(data.patch.spoiler, null, 4)]));
 				if (left - 1 > 0) {
 					genToZip(zip, left - 1).then(function() {
 						resolve(zip);

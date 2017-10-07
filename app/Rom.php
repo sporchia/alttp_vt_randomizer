@@ -1664,6 +1664,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable free items to show up in menu
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setFreeItemMenu(bool $enable = true) : self {
+		$this->write(0x180045, pack('C*', $enable ? 0xFF : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Enable swordless mode
 	 *
 	 * @param bool $enable switch on or off

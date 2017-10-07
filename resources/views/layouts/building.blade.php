@@ -30,8 +30,14 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
+					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}>
+						<a href="/randomizer">Item Randomizer <span class="glyphicon glyphicon-expand"></span></a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
 					<li><a data-toggle="tab" href="#custom-generate">Generate Custom Game</a></li>
 					<li><a data-toggle="tab" href="#custom-settings">Settings</a></li>
+					<li><a data-toggle="tab" href="#custom-item-select">Item Pool</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Regions <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -40,7 +46,6 @@
 						@endforeach
 						</ul>
 					</li>
-					<li><a data-toggle="tab" href="#custom-item-select">Item Pool</a></li>
 					<li><a>VT 2017</a></li>
 				</ul>
 			</div>
