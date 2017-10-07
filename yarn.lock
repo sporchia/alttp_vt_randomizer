@@ -329,9 +329,9 @@ bootstrap-sass@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.3.7.tgz#6596c7ab40f6637393323ab0bc80d064fc630498"
 
-bootstrap-select@^1.12.1:
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.12.3.tgz#b170d23cb0be083ed3c496f8d66813e1b3bbc9ce"
+bootstrap-select@^1.12.4:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.12.4.tgz#7f15d3c0ce978868d9c09c70f96624f55fa02ee1"
   dependencies:
     jquery ">=1.8"
 
@@ -1686,7 +1686,7 @@ gulp-uglify@^1.5.3:
     uglify-save-license "^0.4.1"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-util@*, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.6, gulp-util@^3.0.7:
+gulp-util@*, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -2196,7 +2196,7 @@ kind-of@^4.0.0:
   dependencies:
     is-buffer "^1.1.5"
 
-konami-js@^0.0.2:
+konami-js@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/konami-js/-/konami-js-0.0.2.tgz#35ab27483f27e23e91e470da851954e4468fc6d9"
   dependencies:

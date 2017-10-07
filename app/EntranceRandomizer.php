@@ -35,6 +35,14 @@ class EntranceRandomizer extends Randomizer {
 		$this->goal = $goal;
 		$this->seed = new Seed;
 
+		// Add shuffle Ganon
+		switch ($this->shuffle) {
+			case 'madness':
+			case 'insanity':
+				$this->shuffle .= ' --shuffleganon';
+				break;
+		}
+
 		switch ($this->variation) {
 			case 'timed-race':
 				$this->difficulty = 'timed';

@@ -249,6 +249,17 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Count the number of an item in the collection.
+	 *
+	 * @param mixed $key
+	 *
+	 * @return int
+	 */
+	public function countItem($key) {
+		return $this->item_counts[$key] ?? 0;
+	}
+
+	/**
 	 * Unset the item at a given offset.
 	 *
 	 * @param mixed $offset

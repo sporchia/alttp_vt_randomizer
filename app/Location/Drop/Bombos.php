@@ -17,6 +17,36 @@ class Bombos extends Location {
 	}
 
 	private function getItemText() {
+		switch ($this->item) {
+			case Item::get('BigKeyA2'):
+				return "The Big Key\nof evils bane";
+			case Item::get('BigKeyD7'):
+				return "The big key\nof terrorpins";
+			case Item::get('BigKeyD4'):
+				return "The Big Key\nof rouges";
+			case Item::get('BigKeyP3'):
+				return "The big key\nto moldorms\nheart";
+			case Item::get('BigKeyD5'):
+				return "A frozen big key rests here";
+			case Item::get('BigKeyD3'):
+				return "The big key\nnear here";
+			case Item::get('BigKeyD6'):
+				return "The big key\nto Vitreous";
+			case Item::get('BigKeyD1'):
+				return "Hammeryump\nwith this\nbig key";
+			case Item::get('BigKeyD2'):
+				return "The Big key\nto the swamp";
+			case Item::get('BigKeyA1'):
+				return "Okay, this big\nkey doesn't\nreally exist";
+			case Item::get('BigKeyP2'):
+				return "Sand spills\nout of this\nbig key";
+			case Item::get('BigKeyP1'):
+				return "The big key\nof the east";
+			case Item::get('BigKeyH1'):
+			case Item::get('BigKeyH2'):
+				return "You should\nhave got this\nfrom a guard";
+		}
+
 		switch (get_class($this->item)) {
 			case Item\Key::class:
 				return "The small key\nto the Kingdom";

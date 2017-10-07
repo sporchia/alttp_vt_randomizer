@@ -149,7 +149,8 @@ class SwampPalace extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->has('Hammer')
-				&& $items->has('Hookshot');
+				&& $items->has('Hookshot')
+				&& $items->has('KeyD2');
 		};
 
 		$this->can_enter = function($locations, $items) {

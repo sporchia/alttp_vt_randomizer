@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@include('_rom_info')
 @include('_rom_loader')
 @include('_rom_settings')
 @include('_rom_spoiler')
@@ -80,6 +81,7 @@
 						<option value="timed-ohko">Timed OHKO</option>
 						<option value="ohko">OHKO</option>
 						<option value="triforce-hunt">Triforce Piece Hunt</option>
+						<option value="key-sanity">Key-sanity</option>
 					</select>
 				</div>
 			</div>
@@ -113,15 +115,7 @@
 <div id="seed-details" class="info panel panel-info" style="display:none">
 	<div class="panel-heading"><h3 class="panel-title">Game Details</h3></div>
 	<div class="panel-body">
-		<div class="col-md-6">
-			<div>Logic: <span class="logic"></span></div>
-			<div>ROM build: <span class="build"></span></div>
-			<div>Difficulty: <span class="difficulty"></span></div>
-			<div>Variation: <span class="variation"></span></div>
-			<div>Mode: <span class="mode"></span></div>
-			<div>Goal: <span class="goal"></span></div>
-			<div>Seed: <span class="seed"></span></div>
-		</div>
+		@yield('rom-info')
 		<div class="col-md-6">
 			<div class="row">
 				<button name="save-spoiler" class="btn btn-default" disabled>Save Spoiler</button>
@@ -197,19 +191,7 @@ function seedApplied(data) {
 		$('button[name=generate-tournament-rom]').html('Generate Race ROM (no spoilers)').prop('disabled', false);
 		$('button[name=generate]').html('Generate').prop('disabled', false);
 		$('button[name=generate-save]').prop('disabled', false);
-		$('.info').show();
-		$('.info .seed').html(data.patch.seed + " [<a href='/h/" + data.patch.hash + "'>permalink</a>]");
-		if ($('input[name=tournament]').val() == 'true') {
-			$('.info .seed').html("<a href='/h/" + data.patch.seed + "'>" + data.patch.seed + "</a>");
-		}
-		$('.info .logic').html(data.patch.logic);
-		$('.info .build').html(data.patch.spoiler.meta.build);
-		$('.info .goal').html(data.patch.spoiler.meta.goal);
-		$('.info .mode').html(data.patch.spoiler.meta.mode);
-		$('.info .variation').html(data.patch.spoiler.meta.variation);
-		$('.info .difficulty').html(data.patch.difficulty);
-		$('.spoiler').show();
-		$('#spoiler').html('<pre>' + JSON.stringify(data.patch.spoiler, null, 4) + '</pre>');
+		parseInfoFromPatch(data.patch);
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
 		rom.goal = data.patch.spoiler.meta.goal;

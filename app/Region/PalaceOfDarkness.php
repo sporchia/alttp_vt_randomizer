@@ -26,6 +26,8 @@ class PalaceOfDarkness extends Region {
 		'MapD1',
 	];
 
+	protected $item_locked = false;
+
 	/**
 	 * Create a new Palace of Darkness Region and initalize it's locations
 	 *
@@ -85,6 +87,19 @@ class PalaceOfDarkness extends Region {
 	}
 
 	/**
+	 * Enable/Disable Item locking key logic
+	 *
+	 * @param bool $enable
+	 *
+	 * @return $this
+	 */
+	public function setItemLock(bool $enable = true) {
+		$this->item_locked = $enable;
+
+		return $this;
+	}
+
+	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *
@@ -96,7 +111,10 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - big key room"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyD1', 5);
+			if ($this->item_locked) {
+				return $items->has('KeyD1', 5);
+			}
+			return $items->has('KeyD1', 4);
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - jump room [left chest]"]->setRequirements(function($locations, $items) {
@@ -105,17 +123,26 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - big chest"]->setRequirements(function($locations, $items) {
+			if ($this->item_locked) {
+				return $items->has('Lamp') && $items->has('BigKeyD1') && $items->has('KeyD1', 4);
+			}
 			return $items->has('Lamp') && $items->has('BigKeyD1') && $items->has('KeyD1', 5);
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - compass room"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyD1', 4);
+			if ($this->item_locked) {
+				return $items->has('KeyD1', 4);
+			}
+			return $items->has('KeyD1', 3);
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - spike statue room"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyD1', 5);
+			if ($this->item_locked) {
+				return $items->has('KeyD1', 5);
+			}
+			return $items->has('KeyD1', 4);
 		});
 
 		$this->locations["[dungeon-D1-B1] Dark Palace - turtle stalfos room"]->setRequirements(function($locations, $items) {
@@ -124,11 +151,17 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyD1', 4);
+			if ($this->item_locked) {
+				return $items->has('Lamp') && $items->has('KeyD1', 4);
+			}
+			return $items->has('Lamp') && $items->has('KeyD1', 3);
 		});
 
 		$this->locations["[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyD1', 4);
+			if ($this->item_locked) {
+				return $items->has('Lamp') && $items->has('KeyD1', 4);
+			}
+			return $items->has('Lamp') && $items->has('KeyD1', 3);
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - statue push room"]->setRequirements(function($locations, $items) {
@@ -136,13 +169,19 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [top chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyD1', 5);
+			if ($this->item_locked) {
+				return $items->has('Lamp') && $items->has('KeyD1', 5);
+			}
+			return $items->has('Lamp') && $items->has('KeyD1', 4);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});
 
 		$this->locations["[dungeon-D1-1F] Dark Palace - maze room [bottom chest]"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyD1', 5);
+			if ($this->item_locked) {
+				return $items->has('Lamp') && $items->has('KeyD1', 5);
+			}
+			return $items->has('Lamp') && $items->has('KeyD1', 4);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});

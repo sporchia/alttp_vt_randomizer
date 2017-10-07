@@ -12,10 +12,6 @@
 	<label for="cust-prize-shuffleCrystals">Shuffle Crystals</label>
 </div>
 <div class="col-md-6">
-	<input id="cust-region-bossHeartsInPool" type="checkbox" name="data[alttp.custom.region.bossHeartsInPool]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-	<label for="cust-region-bossHeartsInPool">Boss Hearts in Pool</label>
-</div>
-<div class="col-md-6">
 	<input id="cust-region-bossNormalLocation" type="checkbox" name="data[alttp.custom.region.bossNormalLocation]" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 	<label for="cust-region-bossNormalLocation">Boss Hearts can contain Dungeon Items</label>
 </div>

@@ -585,7 +585,8 @@ class Randomizer {
 
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
 		$rom->setCompassMode($this->config('rom.compassOnPickup', false));
-		$rom->setFreeItemTextMode($this->config('rom.itemText', false));
+		$rom->setFreeItemTextMode($this->config('rom.freeItemText', false));
+		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', false));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 
 		$rom->writeRNGBlock(function() {
@@ -879,6 +880,12 @@ class Randomizer {
 			"when you're a\nbaker, don't\nloaf around",
 			"mire requires\nether quake,\nor bombos",
 			"Broken pencils\nare pointless.",
+			"The food they\nserve guards\nlasts sentries",
+			"being crushed\nby big objects\nis depressing.",
+			"A tap dancer's\nroutine runs\nhot and cold.",
+			"A weeknight is\na tiny\nnobleman",
+			"The chimney\nsweep wore a\nsoot and tye.",
+			"Gardeners like\nto spring into\naction.",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
@@ -928,6 +935,11 @@ class Randomizer {
 			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
+			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
+			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\nde'ja vu\nall over again",
+			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds,\nand was 32\nfeet long.",
+			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
+			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 		])));
 
 		switch ($this->goal) {
@@ -960,7 +972,6 @@ class Randomizer {
 
 		$rom->setTriforceTextString(array_first(mt_shuffle([
 			"\n     G G",
-			"\n     G G",
 			"All your base\nare belong\nto us.",
 			"You have ended\nthe domination\nof dr. wily",
 			"  thanks for\n  playing!!!",
@@ -970,6 +981,10 @@ class Randomizer {
 			"\n   WINNER!!",
 			"\n  I'm  sorry\n\nbut your\nprincess is in\nanother castle",
 			"\n   success!",
+			"    Whelp…\n  that  just\n   happened",
+			"   Oh  hey…\n   it's you",
+			"\n  Wheeeeee!!",
+			"   Time for\n another one?",
 		])));
 
 		return $this;
@@ -1262,7 +1277,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.BigKeyA2', 1); $i++) {
 			array_push($items_to_find, Item::get('BigKeyA2'));
 		}
-		for ($i = 0; $i < $this->config('item.count.BigKeyAD1', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BigKeyD1', 1); $i++) {
 			array_push($items_to_find, Item::get('BigKeyD1'));
 		}
 		for ($i = 0; $i < $this->config('item.count.BigKeyD2', 1); $i++) {

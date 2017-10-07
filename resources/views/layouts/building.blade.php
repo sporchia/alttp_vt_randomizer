@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 
 	<script src="{{ elixir('js/app.js') }}"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -27,10 +30,14 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
+					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}>
+						<a href="/randomizer">Item Randomizer <span class="glyphicon glyphicon-expand"></span></a>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a data-toggle="tab" href="#custom-generate">Generate Custom Game</a></li>
 					<li><a data-toggle="tab" href="#custom-settings">Settings</a></li>
+					<li><a data-toggle="tab" href="#custom-item-select">Item Pool</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Regions <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -39,7 +46,6 @@
 						@endforeach
 						</ul>
 					</li>
-					<li><a data-toggle="tab" href="#custom-item-select">Item Pool</a></li>
 					<li><a>VT 2017</a></li>
 				</ul>
 			</div>

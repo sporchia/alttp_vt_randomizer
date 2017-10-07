@@ -30,8 +30,28 @@ $('#spoiler-search').on('changed.bs.select', function() {
 	});
 });
 
+function parseSpoilerMetaFromPatch(patch) {
+	$('.info').show();
+	$('.info .seed').html(patch.seed + " [<a href='/h/" + patch.hash + "'>permalink</a>]");
+	if ($('input[name=tournament]').val() == 'true') {
+		$('.info .seed').html("<a href='/h/" + patch.seed + "'>" + patch.seed + "</a>");
+	}
+	$('.info .logic').html(patch.logic);
+	$('.info .build').html(patch.spoiler.meta.build);
+	$('.info .goal').html(patch.spoiler.meta.goal);
+	$('.info .mode').html(patch.spoiler.meta.mode);
+	$('.info .variation').html(patch.spoiler.meta.variation);
+	$('.info .difficulty').html(patch.difficulty);
+	$('.spoiler').show();
+	$('#spoiler').html('<pre>' + JSON.stringify(patch.spoiler, null, 4) + '</pre>');
+	pasrseSpoilerToTabs(patch.spoiler);
+}
+
 var tabsContent = new Map();
 function pasrseSpoilerToTabs(spoiler) {
+	$('.spoiler').show();
+	$('#spoiler').html('<pre>' + JSON.stringify(spoiler, null, 4) + '</pre>');
+
 	var spoilertabs = $('.spoiler-tabed');
 	var nav = spoilertabs.find('.nav-pills');
 	var active_nav = nav.find('.active a').data('section');
@@ -43,11 +63,23 @@ function pasrseSpoilerToTabs(spoiler) {
 			+ ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" data-section="' + section
 			+ '" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section
 			+ '<span class="badge badge-pill"></span></a></li>'));
-		if (['playthrough'].indexOf(section) === -1) {
+		if (['entrances'].indexOf(section) !== -1) {
+			var table = $('<table class="table table-striped"><thead><tr><th>Entrance</th><th>Direction</th><th>Exit</th></tr></thead><tbody></tbody></table>');
+			var tbody = table.find('tbody');
+			for (loc in spoiler[section]) {
+				tbody.append($('<tr class="spoil-item-location"><td class="col-md-5">' + spoiler[section][loc].entrance
+					+ '</td><td class="col-md-2">' + (spoiler[section][loc].direction == 'both' ? '↔' : '→') + '</td><td class="col-md-5">'
+					+ spoiler[section][loc].exit + '</td></tr>'));
+			};
+			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
+				+ ((section == active_nav) ? ' active' : '') + '">'
+				+ '</div>').append(table));
+		} else if (['playthrough'].indexOf(section) === -1) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
 			for (loc in spoiler[section]) {
-				tbody.append($('<tr class="spoil-item-location"><td class="col-md-6">'+loc+'</td><td class="item">'+spoiler[section][loc]+'</td></tr>'));
+				tbody.append($('<tr class="spoil-item-location"><td class="col-md-6">'
+					+ loc + '</td><td class="item">' + spoiler[section][loc] + '</td></tr>'));
 			};
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'

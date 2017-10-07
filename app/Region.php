@@ -199,7 +199,7 @@ class Region {
 	public function canFill(Item $item) : bool {
 		if (((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
 			|| (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
-			|| $item == Item::get('KeyH2') // Sewers Key cannot leave
+			|| ($item == Item::get('KeyH2') && !in_array(config('game-mode'), ['open', 'swordless'])) // Sewers Key cannot leave
 			|| ($this->world->config('region.mapsInDungeons', true) && $item instanceof Item\Map)
 			|| ($this->world->config('region.compassesInDungeons', true) && $item instanceof Item\Compass))
 			&& !in_array($item, $this->region_items)) {
