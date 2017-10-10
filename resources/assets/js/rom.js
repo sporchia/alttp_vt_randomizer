@@ -142,6 +142,13 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
+	this.setFastMenu = function(enable) {
+		return new Promise(function(resolve, reject) {
+			this.write(0x180048, enable ? 0x01 : 0x00);
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
 	this.setHeartSpeed = function(speed) {
 		return new Promise(function(resolve, reject) {
 			var sbyte = 0x20;

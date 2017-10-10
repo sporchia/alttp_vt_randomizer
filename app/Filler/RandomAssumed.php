@@ -20,14 +20,12 @@ class RandomAssumed extends Filler {
 	public function fill(array $dungeon, array $required, array $nice, array $extra) {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
+		$this->world->getRegion('Palace of Darkness')->setItemLock(false);
+
 		$this->fillItemsInLocations($dungeon, $randomized_order_locations, $required);
 
 		$required_no_bow = new Items(array_filter($required, function($item) {
 			return !$item instanceof Item\Bow;
-		}));
-
-		$required_no_hammer = new Items(array_filter($required, function($item) {
-			return $item != Item::get('Hammer');
 		}));
 
 		$this->world->getRegion('Palace of Darkness')->setItemLock($this->world->collectItems($required_no_bow)->countItem('KeyD1') < 3);

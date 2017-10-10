@@ -465,7 +465,6 @@
 </div>
 <script>
 $(function() {
-
 	localforage.getItem('vt.custom.items').then(function(value) {
 		if (value === null) return;
 

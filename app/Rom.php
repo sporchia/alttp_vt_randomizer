@@ -1088,6 +1088,19 @@ class Rom {
 	}
 
 	/**
+	 * Enable/Disable the Quick Menu function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setQuickMenu($enable = false) : self {
+		$this->write(0x180048, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Set the single RNG Item table. These items will only get collected by player once per game.
 	 *
 	 * @param ItemCollection $items
@@ -1341,6 +1354,19 @@ class Rom {
 			$item = array_pop($prize);
 			$this->write($address, pack('C*', $item ?? 0x03));
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Set Overworld dig prizes
+	 *
+	 * @param array $prizes ids of sprites to dig up
+	 *
+	 * @return $this
+	 */
+	public function setOverworldDigPrizes(array $prizes = []) : self {
+		$this->write(0x180100, pack('C*', ...$prizes));
 
 		return $this;
 	}

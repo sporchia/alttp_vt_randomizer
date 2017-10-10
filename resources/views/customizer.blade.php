@@ -17,6 +17,7 @@
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
+	<input type="hidden" name="menu_fast" value="false" />
 	<input type="hidden" name="debug" value="false" />
 	<div class="tab-content">
 		<div class="tab-pane active">
@@ -73,14 +74,13 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Logic</span>
 								<select id="logic" class="form-control selectpicker">
-									<option value="None">None (I know what I'm doing)</option>
 									<option value="NoMajorGlitches">No Glitches</option>
 									<option value="OverworldGlitches">Overworld Glitches</option>
 									<option value="MajorGlitches">Major Glitches</option>
+									<option value="None">None (I know what I'm doing)</option>
 								</select>
 							</div>
 						</div>
-
 					</div>
 					@yield('rom-settings')
 				</div>
@@ -223,9 +223,12 @@ $(function() {
 	// dirty cleanup function for now
 	$('button[name=reset]').on('click', function(e) {
 		e.preventDefault();
-		config = {};
-		localforage.setItem('vt.customizer', config);
-		localforage.setItem('vt.custom.items', config);
+		localforage.removeItem('vt.customizer');
+		localforage.removeItem('vt.custom.items');
+		localforage.removeItem('vt.custom.name');
+		localforage.removeItem('vt.custom.logic');
+		localforage.removeItem('vt.custom.mode');
+		localforage.removeItem('vt.custom.goal');
 		window.location = window.location;
 	});
 

@@ -119,6 +119,9 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	if ($request->has('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
+	if ($request->has('menu_fast')) {
+		$rom->setQuickMenu($request->input('menu_fast') == 'true');
+	}
 	if ($request->has('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
@@ -177,6 +180,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 	if ($request->has('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
+	}
+	if ($request->has('menu_fast')) {
+		$rom->setQuickMenu($request->input('menu_fast') == 'true');
 	}
 	if ($request->has('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');

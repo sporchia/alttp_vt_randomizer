@@ -33,7 +33,11 @@
 		</div>
 		<div class="col-md-6">
 			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-sram-trace">SRAM Trace</label>
+			<label for="generate-sram-trace">SRAM Trace<sup><strong>*</strong></sup></label>
+		</div>
+		<div class="col-md-6">
+			<input id="fast-menu" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="fast-menu">Fast Menu<sup><strong>*</strong></sup></label>
 		</div>
 		<div class="col-md-6">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -49,6 +53,9 @@
 				<label for="generate-tournament">Tournament Mode</label>
 			</div>
 		</div>
+	</div>
+	<div class="panel-footer">
+		<div><strong>*</strong> Does not work in Race Roms</div>
 	</div>
 </div>
 
@@ -118,6 +125,19 @@ $(function() {
 		if (value === null) return;
 		$('#generate-sram-trace').prop('checked', value);
 		$('#generate-sram-trace').trigger('change');
+	});
+
+	$('#fast-menu').on('change', function() {
+		if (rom) {
+			rom.setFastMenu($(this).prop('checked'));
+		}
+		localforage.setItem('rom.fast-menu', $(this).prop('checked'));
+		$('input[name=menu_fast]').val($(this).prop('checked'));
+	});
+	localforage.getItem('rom.fast-menu').then(function(value) {
+		if (value === null) return;
+		$('#fast-menu').prop('checked', value);
+		$('#fast-menu').trigger('change');
 	});
 
 	$('#generate-music-on').on('change', function() {
