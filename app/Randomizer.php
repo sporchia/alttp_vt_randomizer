@@ -1450,6 +1450,26 @@ class Randomizer {
 		// write to prize crab
 		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
 
+		if ($this->config('bees', false)) {
+			// you asked for it
+			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 20, 0x79)));
+			$rom->setOverworldDigPrizes([
+				0xB2, 0xD8, 0xD8, 0xD8,
+				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
+				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
+				0xDA, 0xDA, 0xDA, 0xB2, 0xB2,
+				0xDB, 0xDB, 0xDB, 0xB2, 0xB2,
+				0xDC, 0xDC, 0xDC, 0xB2, 0xB2,
+				0xDD, 0xDD, 0xDD, 0xB2, 0xB2,
+				0xDE, 0xDE, 0xDE, 0xB2, 0xB2,
+				0xDF, 0xDF, 0xDF, 0xB2, 0xB2,
+				0xE0, 0xE0, 0xE0, 0xB2, 0xB2,
+				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
+				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
+				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
+			]);
+		}
+
 		// write to stunned
 		$rom->setStunnedSpritePrize(array_pop($shuffled));
 
@@ -1457,7 +1477,7 @@ class Randomizer {
 		$rom->setFishSavePrize(array_pop($shuffled));
 
 		// write to prize packs
-		$rom->write(0x37A78, pack('C*', ...$shuffled));
+		$rom->write(0x37A78, array_slice(pack('C*', ...$shuffled), 0, 56));
 
 		// Sprite prize pack
 		$offset = 0x6B632;
@@ -1496,7 +1516,7 @@ class Randomizer {
 	 * @TODO: move remaining writes to Rom class
 	 */
 	public function writeOverworldBonkPrizeToRom(Rom $rom) {
-		// over world bonk things (no bees/apples)
+		// over world bonk things
 		$prizes = [
 			0x79, 0xE3, 0x79, 0xAC, 0xAC, 0xE0, 0xDC, 0xAC,
 			0xE3, 0xE3, 0xDA, 0xE3, 0xDA, 0xD8, 0xAC, 0xAC,
@@ -1529,6 +1549,10 @@ class Randomizer {
 			Item::get('BottleWithGoldBee'),
 			Item::get('BottleWithFairy'),
 		];
+
+		if ($this->config('bees', false)) {
+			return $bottles[mt_rand(4, 5)];
+		}
 
 		return $bottles[mt_rand($filled ? 1 : 0, count($bottles) - (($this->config('rom.HardMode', 0) > 0) ? 2 : 1))];
 	}

@@ -26,7 +26,7 @@ class PalaceOfDarkness extends Region {
 		'MapD1',
 	];
 
-	protected $item_locked = false;
+	protected $item_locked = true;
 
 	/**
 	 * Create a new Palace of Darkness Region and initalize it's locations

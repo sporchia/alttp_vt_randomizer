@@ -133,6 +133,7 @@
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
+	<input type="hidden" name="menu_fast" value="false" />
 	<input type="hidden" name="debug" value="false" />
 	<input type="hidden" name="tournament" value="false" />
 </form>
