@@ -1477,7 +1477,7 @@ class Randomizer {
 		$rom->setFishSavePrize(array_pop($shuffled));
 
 		// write to prize packs
-		$rom->write(0x37A78, array_slice(pack('C*', ...$shuffled), 0, 56));
+		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56));
 
 		// Sprite prize pack
 		$offset = 0x6B632;
