@@ -67,13 +67,13 @@ class DesertPalaceTest extends TestCase {
 
 	public function fillPool() {
 		return [
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, 'KeyP2', [], ['KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, 'KeyP2', [], ['KeyP2']],
+			["Desert Palace - Big Key Chest", false, 'KeyP2', [], ['KeyP2']],
+			["Desert Palace - Compass Chest", false, 'KeyP2', [], ['KeyP2']],
 
-			["[dungeon-L2-B1] Desert Palace - big chest", false, 'BigKeyP2', [], ['BigKeyP2']],
+			["Desert Palace - Big Chest", false, 'BigKeyP2', [], ['BigKeyP2']],
 
-			["Heart Container - Lanmolas", false, 'BigKeyP2', [], ['BigKeyP2']],
-			["Heart Container - Lanmolas", false, 'KeyP2', [], ['KeyP2']],
+			["Desert Palace - Lanmolas'", false, 'BigKeyP2', [], ['BigKeyP2']],
+			["Desert Palace - Lanmolas'", false, 'KeyP2', [], ['KeyP2']],
 		];
 	}
 
@@ -98,49 +98,49 @@ class DesertPalaceTest extends TestCase {
 
 	public function accessPool() {
 		return [
-			["[dungeon-L2-B1] Desert Palace - Map room", false, []],
-			["[dungeon-L2-B1] Desert Palace - Map room", true, ['BookOfMudora']],
-			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["[dungeon-L2-B1] Desert Palace - Map room", true, ['Flute', 'MagicMirror', 'TitansMitt']],
+			["Desert Palace - Map Chest", false, []],
+			["Desert Palace - Map Chest", true, ['BookOfMudora']],
+			["Desert Palace - Map Chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Desert Palace - Map Chest", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
-			["[dungeon-L2-B1] Desert Palace - big chest", false, []],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['BookOfMudora', 'BigKeyP2']],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["[dungeon-L2-B1] Desert Palace - big chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Big Chest", false, []],
+			["Desert Palace - Big Chest", true, ['BookOfMudora', 'BigKeyP2']],
+			["Desert Palace - Big Chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Big Chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'BigKeyP2']],
 
-			["[dungeon-L2-B1] Desert Palace - Small key room", false, []],
-			["[dungeon-L2-B1] Desert Palace - Small key room", false, [], ['PegasusBoots']],
-			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['BookOfMudora', 'PegasusBoots']],
-			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots']],
-			["[dungeon-L2-B1] Desert Palace - Small key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'PegasusBoots']],
+			["Desert Palace - Torch", false, []],
+			["Desert Palace - Torch", false, [], ['PegasusBoots']],
+			["Desert Palace - Torch", true, ['BookOfMudora', 'PegasusBoots']],
+			["Desert Palace - Torch", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'PegasusBoots']],
+			["Desert Palace - Torch", true, ['Flute', 'MagicMirror', 'TitansMitt', 'PegasusBoots']],
 
-			["[dungeon-L2-B1] Desert Palace - compass room", false, []],
-			["[dungeon-L2-B1] Desert Palace - compass room", false, [], ['KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - compass room", true, ['BookOfMudora', 'KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - compass room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - compass room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
+			["Desert Palace - Compass Chest", false, []],
+			["Desert Palace - Compass Chest", false, [], ['KeyP2']],
+			["Desert Palace - Compass Chest", true, ['BookOfMudora', 'KeyP2']],
+			["Desert Palace - Compass Chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
+			["Desert Palace - Compass Chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
 
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, []],
-			["[dungeon-L2-B1] Desert Palace - Big key room", false, [], ['KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['BookOfMudora', 'KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
-			["[dungeon-L2-B1] Desert Palace - Big key room", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
+			["Desert Palace - Big Key Chest", false, []],
+			["Desert Palace - Big Key Chest", false, [], ['KeyP2']],
+			["Desert Palace - Big Key Chest", true, ['BookOfMudora', 'KeyP2']],
+			["Desert Palace - Big Key Chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
+			["Desert Palace - Big Key Chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
 
-			["Heart Container - Lanmolas", false, []],
-			["Heart Container - Lanmolas", false, [], ['KeyP2']],
-			["Heart Container - Lanmolas", false, [], ['BigKeyP2']],
-			["Heart Container - Lanmolas", false, [], ['Gloves']],
-			["Heart Container - Lanmolas", false, [], ['Lamp', 'FireRod']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["Heart Container - Lanmolas", true, ['KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", false, []],
+			["Desert Palace - Lanmolas'", false, [], ['KeyP2']],
+			["Desert Palace - Lanmolas'", false, [], ['BigKeyP2']],
+			["Desert Palace - Lanmolas'", false, [], ['Gloves']],
+			["Desert Palace - Lanmolas'", false, [], ['Lamp', 'FireRod']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Lanmolas'", true, ['KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
 		];
 	}
 

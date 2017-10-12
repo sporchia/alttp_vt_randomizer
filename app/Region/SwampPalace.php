@@ -37,21 +37,21 @@ class SwampPalace extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[dungeon-D2-1F] Swamp Palace - first room", 0xEA9D, null, $this),
-			new Location\BigChest("[dungeon-D2-B1] Swamp Palace - big chest", 0xE989, null, $this),
-			new Location\Chest("[dungeon-D2-B1] Swamp Palace - big key room", 0xEAA6, null, $this),
-			new Location\Chest("[dungeon-D2-B1] Swamp Palace - map room", 0xE986, null, $this),
-			new Location\Chest("[dungeon-D2-B1] Swamp Palace - push 4 blocks room", 0xEAA3, null, $this),
-			new Location\Chest("[dungeon-D2-B1] Swamp Palace - south of hookshot room", 0xEAA0, null, $this),
-			new Location\Chest("[dungeon-D2-B2] Swamp Palace - flooded room [left chest]", 0xEAA9, null, $this),
-			new Location\Chest("[dungeon-D2-B2] Swamp Palace - flooded room [right chest]", 0xEAAC, null, $this),
-			new Location\Chest("[dungeon-D2-B2] Swamp Palace - hidden waterfall door room", 0xEAAF, null, $this),
-			new Location\Drop("Heart Container - Arrghus", 0x180154, null, $this),
+			new Location\Chest("Swamp Palace - Entrance", 0xEA9D, null, $this),
+			new Location\BigChest("Swamp Palace - Big Chest", 0xE989, null, $this),
+			new Location\Chest("Swamp Palace - Big Key Chest", 0xEAA6, null, $this),
+			new Location\Chest("Swamp Palace - Map Chest", 0xE986, null, $this),
+			new Location\Chest("Swamp Palace - West Chest", 0xEAA3, null, $this),
+			new Location\Chest("Swamp Palace - Compass Chest", 0xEAA0, null, $this),
+			new Location\Chest("Swamp Palace - Flooded Room - Left", 0xEAA9, null, $this),
+			new Location\Chest("Swamp Palace - Flooded Room - Right", 0xEAAC, null, $this),
+			new Location\Chest("Swamp Palace - Waterfall Room", 0xEAAF, null, $this),
+			new Location\Drop("Swamp Palace - Arrghus", 0x180154, null, $this),
 
-			new Location\Prize\Crystal("Swamp Palace Crystal", [null, 0x120A0, 0x53F6C, 0x53F6D, 0x180055, 0x180071, 0xC701], null, $this),
+			new Location\Prize\Crystal("Swamp Palace - Prize", [null, 0x120A0, 0x53F6C, 0x53F6D, 0x180055, 0x180071, 0xC701], null, $this),
 		]);
 
-		$this->prize_location = $this->locations["Swamp Palace Crystal"];
+		$this->prize_location = $this->locations["Swamp Palace - Prize"];
 	}
 
 	/**
@@ -60,18 +60,18 @@ class SwampPalace extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setItem(Item::get('KeyD2'));
-		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setItem(Item::get('Hookshot'));
-		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setItem(Item::get('BigKeyD2'));
-		$this->locations["[dungeon-D2-B1] Swamp Palace - map room"]->setItem(Item::get('MapD2'));
-		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setItem(Item::get('CompassD2'));
-		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["Heart Container - Arrghus"]->setItem(Item::get('BossHeartContainer'));
+		$this->locations["Swamp Palace - Entrance"]->setItem(Item::get('KeyD2'));
+		$this->locations["Swamp Palace - Big Chest"]->setItem(Item::get('Hookshot'));
+		$this->locations["Swamp Palace - Big Key Chest"]->setItem(Item::get('BigKeyD2'));
+		$this->locations["Swamp Palace - Map Chest"]->setItem(Item::get('MapD2'));
+		$this->locations["Swamp Palace - West Chest"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Swamp Palace - Compass Chest"]->setItem(Item::get('CompassD2'));
+		$this->locations["Swamp Palace - Flooded Room - Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Swamp Palace - Flooded Room - Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Swamp Palace - Waterfall Room"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Swamp Palace - Arrghus"]->setItem(Item::get('BossHeartContainer'));
 
-		$this->locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
+		$this->locations["Swamp Palace - Prize"]->setItem(Item::get('Crystal2'));
 
 		return $this;
 	}
@@ -83,11 +83,11 @@ class SwampPalace extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-D2-1F] Swamp Palace - first room"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Swamp Palace - Entrance"]->setFillRules(function($item, $locations, $items) {
 			return $item == Item::get('KeyD2');
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('BigKeyD2');
@@ -95,44 +95,44 @@ class SwampPalace extends Region {
 			return $item != Item::get('BigKeyD2');
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer');
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - map room"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Map Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2');
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - West Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer');
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Compass Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer');
 		});
 
-		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Flooded Room - Left"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		});
 
-		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Flooded Room - Right"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		});
 
-		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Waterfall Room"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
 		});
 
-		$this->locations["Heart Container - Arrghus"]->setRequirements(function($locations, $items) {
+		$this->locations["Swamp Palace - Arrghus"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot');
@@ -178,32 +178,32 @@ class SwampPalace extends Region {
 		};
 
 		$hera = function($locations, $items) {
-			return $locations["[dungeon-L3-4F] Tower of Hera - big chest"]->canAccess($items);
+			return $locations["Tower of Hera - Big Chest"]->canAccess($items);
 		};
 
 		$mire = function($locations, $items) {
 			return $items->has('KeyD6', 3) && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
 		};
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - south of hookshot room"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Compass Chest"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - big key room"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - push 4 blocks room"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - West Chest"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
-		$this->locations["[dungeon-D2-B1] Swamp Palace - big chest"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Big Chest"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Flippers')
 				&& ($mire($locations, $items) && ($items->has('BigKeyD6') || $items->has('BigKeyD2') || $items->has('BigKeyP3'))
 					|| ($main($locations, $items) && $items->has('Hammer') && $items->has('BigKeyD2')));
@@ -211,25 +211,25 @@ class SwampPalace extends Region {
 			return $item != Item::get('BigKeyD2');
 		});
 
-		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [left chest]"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Flooded Room - Left"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Hookshot') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
-		$this->locations["[dungeon-D2-B2] Swamp Palace - flooded room [right chest]"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Flooded Room - Right"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Hookshot') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
-		$this->locations["[dungeon-D2-B2] Swamp Palace - hidden waterfall door room"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Waterfall Room"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Hookshot') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
-		$this->locations["Heart Container - Arrghus"]->setRequirements(function($locations, $items) use ($main, $mire) {
+		$this->locations["Swamp Palace - Arrghus"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Hookshot') && $items->has('Flippers')
 				&& ($mire($locations, $items)
 					|| ($main($locations, $items) && $items->has('Hammer')))
@@ -250,7 +250,7 @@ class SwampPalace extends Region {
 		$this->can_complete = function($locations, $items) use ($main, $mire) {
 			return $main($locations, $items) && $items->has('KeyD2') && $items->has('Hookshot')
 				&& ($items->has('Hammer') || $mire($locations, $items))
-				&& $locations["Heart Container - Arrghus"]->canAccess($items);
+				&& $locations["Swamp Palace - Arrghus"]->canAccess($items);
 		};
 
 		$this->can_enter = function($locations, $items) use ($main, $mire) {

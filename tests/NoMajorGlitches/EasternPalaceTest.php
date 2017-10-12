@@ -65,42 +65,42 @@ class EasternPalaceTest extends TestCase {
 
 	public function fillPool() {
 		return [
-			["[dungeon-L1-1F] Eastern Palace - compass room", true, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Compass Chest", true, 'BigKeyP1', [], ['BigKeyP1']],
 
-			["[dungeon-L1-1F] Eastern Palace - big ball room", true, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Cannonball Chest", true, 'BigKeyP1', [], ['BigKeyP1']],
 
-			["[dungeon-L1-1F] Eastern Palace - big chest", false, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Big Chest", false, 'BigKeyP1', [], ['BigKeyP1']],
 
-			["[dungeon-L1-1F] Eastern Palace - map room", true, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Map Chest", true, 'BigKeyP1', [], ['BigKeyP1']],
 
-			["[dungeon-L1-1F] Eastern Palace - Big key", true, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Big Key Chest", true, 'BigKeyP1', [], ['BigKeyP1']],
 
-			["Heart Container - Armos Knights", false, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Armos Knights", false, 'BigKeyP1', [], ['BigKeyP1']],
 		];
 	}
 
 	public function accessPool() {
 		return [
-			["[dungeon-L1-1F] Eastern Palace - compass room", true, []],
+			["Eastern Palace - Compass Chest", true, []],
 
-			["[dungeon-L1-1F] Eastern Palace - big ball room", true, []],
+			["Eastern Palace - Cannonball Chest", true, []],
 
-			["[dungeon-L1-1F] Eastern Palace - big chest", false, []],
-			["[dungeon-L1-1F] Eastern Palace - big chest", false, [], ['BigKeyP1']],
-			["[dungeon-L1-1F] Eastern Palace - big chest", true, ['BigKeyP1']],
+			["Eastern Palace - Big Chest", false, []],
+			["Eastern Palace - Big Chest", false, [], ['BigKeyP1']],
+			["Eastern Palace - Big Chest", true, ['BigKeyP1']],
 
-			["[dungeon-L1-1F] Eastern Palace - map room", true, []],
+			["Eastern Palace - Map Chest", true, []],
 
-			["[dungeon-L1-1F] Eastern Palace - Big key", false, []],
-			["[dungeon-L1-1F] Eastern Palace - Big key", false, [], ['Lamp']],
-			["[dungeon-L1-1F] Eastern Palace - Big key", true, ['Lamp']],
+			["Eastern Palace - Big Key Chest", false, []],
+			["Eastern Palace - Big Key Chest", false, [], ['Lamp']],
+			["Eastern Palace - Big Key Chest", true, ['Lamp']],
 
 
-			["Heart Container - Armos Knights", false, []],
-			["Heart Container - Armos Knights", false, [], ['Lamp']],
-			["Heart Container - Armos Knights", false, [], ['AnyBow']],
-			["Heart Container - Armos Knights", false, [], ['BigKeyP1']],
-			["Heart Container - Armos Knights", true, ['Lamp', 'Bow', 'BigKeyP1']],
+			["Eastern Palace - Armos Knights", false, []],
+			["Eastern Palace - Armos Knights", false, [], ['Lamp']],
+			["Eastern Palace - Armos Knights", false, [], ['AnyBow']],
+			["Eastern Palace - Armos Knights", false, [], ['BigKeyP1']],
+			["Eastern Palace - Armos Knights", true, ['Lamp', 'Bow', 'BigKeyP1']],
 		];
 	}
 

@@ -39,19 +39,19 @@ class MireTest extends TestCase {
 
 	public function accessPool() {
 		return [
-			["[cave-071] Misery Mire west area [left chest]", false, []],
-			["[cave-071] Misery Mire west area [left chest]", false, [], ['Gloves']],
-			["[cave-071] Misery Mire west area [left chest]", false, [], ['MoonPearl']],
-			["[cave-071] Misery Mire west area [left chest]", false, [], ['Flute']],
-			["[cave-071] Misery Mire west area [left chest]", true, ['MoonPearl', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["[cave-071] Misery Mire west area [left chest]", true, ['MoonPearl', 'Flute', 'TitansMitt']],
+			["Mire Shed - Left", false, []],
+			["Mire Shed - Left", false, [], ['Gloves']],
+			["Mire Shed - Left", false, [], ['MoonPearl']],
+			["Mire Shed - Left", false, [], ['Flute']],
+			["Mire Shed - Left", true, ['MoonPearl', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Mire Shed - Left", true, ['MoonPearl', 'Flute', 'TitansMitt']],
 
-			["[cave-071] Misery Mire west area [right chest]", false, []],
-			["[cave-071] Misery Mire west area [right chest]", false, [], ['Gloves']],
-			["[cave-071] Misery Mire west area [right chest]", false, [], ['MoonPearl']],
-			["[cave-071] Misery Mire west area [right chest]", false, [], ['Flute']],
-			["[cave-071] Misery Mire west area [right chest]", true, ['MoonPearl', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["[cave-071] Misery Mire west area [right chest]", true, ['MoonPearl', 'Flute', 'TitansMitt']],
+			["Mire Shed - Right", false, []],
+			["Mire Shed - Right", false, [], ['Gloves']],
+			["Mire Shed - Right", false, [], ['MoonPearl']],
+			["Mire Shed - Right", false, [], ['Flute']],
+			["Mire Shed - Right", true, ['MoonPearl', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Mire Shed - Right", true, ['MoonPearl', 'Flute', 'TitansMitt']],
 		];
 	}
 }

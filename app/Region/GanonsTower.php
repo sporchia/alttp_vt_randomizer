@@ -37,33 +37,33 @@ class GanonsTower extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Dash("[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance", 0x180161, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]", 0xEAB8, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]", 0xEABB, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]", 0xEABE, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]", 0xEAC1, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]", 0xEAC4, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]", 0xEAC7, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]", 0xEACA, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]", 0xEACD, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - north of teleport room", 0xEAD0, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - map room", 0xEAD3, null, $this),
-			new Location\BigChest("[dungeon-A2-1F] Ganon's Tower - big chest", 0xEAD6, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]", 0xEAD9, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]", 0xEADC, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - above Armos", 0xEADF, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance", 0xEAE2, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]", 0xEAE5, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]", 0xEAE8, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]", 0xEAEB, null, $this),
-			new Location\Chest("[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]", 0xEAEE, null, $this),
-			new Location\Chest("[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]", 0xEAF1, null, $this),
-			new Location\Chest("[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]", 0xEAF4, null, $this),
-			new Location\Chest("[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]", 0xEAF7, null, $this),
-			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]", 0xEAFD, null, $this),
-			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]", 0xEB00, null, $this),
-			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - before Moldorm", 0xEB03, null, $this),
-			new Location\Chest("[dungeon-A2-6F] Ganon's Tower - Moldorm room", 0xEB06, null, $this),
+			new Location\Dash("Ganon's Tower - Bob's Torch", 0x180161, null, $this),
+			new Location\Chest("Ganon's Tower - DMs Room - Top Left", 0xEAB8, null, $this),
+			new Location\Chest("Ganon's Tower - DMs Room - Top Right", 0xEABB, null, $this),
+			new Location\Chest("Ganon's Tower - DMs Room - Bottom Left", 0xEABE, null, $this),
+			new Location\Chest("Ganon's Tower - DMs Room - Bottom Right", 0xEAC1, null, $this),
+			new Location\Chest("Ganon's Tower - Randomizer Room - Top Left", 0xEAC4, null, $this),
+			new Location\Chest("Ganon's Tower - Randomizer Room - Top Right", 0xEAC7, null, $this),
+			new Location\Chest("Ganon's Tower - Randomizer Room - Bottom Left", 0xEACA, null, $this),
+			new Location\Chest("Ganon's Tower - Randomizer Room - Bottom Right", 0xEACD, null, $this),
+			new Location\Chest("Ganon's Tower - Firesnake Room", 0xEAD0, null, $this),
+			new Location\Chest("Ganon's Tower - Map Chest", 0xEAD3, null, $this),
+			new Location\BigChest("Ganon's Tower - Big Chest", 0xEAD6, null, $this),
+			new Location\Chest("Ganon's Tower - Hope Room - Left", 0xEAD9, null, $this),
+			new Location\Chest("Ganon's Tower - Hope Room - Right", 0xEADC, null, $this),
+			new Location\Chest("Ganon's Tower - Bob's Chest", 0xEADF, null, $this),
+			new Location\Chest("Ganon's Tower - Tile Room", 0xEAE2, null, $this),
+			new Location\Chest("Ganon's Tower - Compass Room - Top Left", 0xEAE5, null, $this),
+			new Location\Chest("Ganon's Tower - Compass Room - Top Right", 0xEAE8, null, $this),
+			new Location\Chest("Ganon's Tower - Compass Room - Bottom Left", 0xEAEB, null, $this),
+			new Location\Chest("Ganon's Tower - Compass Room - Bottom Right", 0xEAEE, null, $this),
+			new Location\Chest("Ganon's Tower - Big Key Chest", 0xEAF1, null, $this),
+			new Location\Chest("Ganon's Tower - Big Key Room - Left", 0xEAF4, null, $this),
+			new Location\Chest("Ganon's Tower - Big Key Room - Right", 0xEAF7, null, $this),
+			new Location\Chest("Ganon's Tower - Mini Helmasaur Room - Left", 0xEAFD, null, $this),
+			new Location\Chest("Ganon's Tower - Mini Helmasaur Room - Right", 0xEB00, null, $this),
+			new Location\Chest("Ganon's Tower - Pre-Moldorm Chest", 0xEB03, null, $this),
+			new Location\Chest("Ganon's Tower - Moldorm Chest", 0xEB06, null, $this),
 			new Location\Prize\Event("Agahnim 2", null, null, $this),
 		]);
 
@@ -77,33 +77,33 @@ class GanonsTower extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setItem(Item::get('KeyA2'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of teleport room"]->setItem(Item::get('KeyA2'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - map room"]->setItem(Item::get('MapA2'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - big chest"]->setItem(Item::get('RedMail'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - above Armos"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance"]->setItem(Item::get('KeyA2'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]"]->setItem(Item::get('Compass'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]"]->setItem(Item::get('OneRupee'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]"]->setItem(Item::get('BigKeyA2'));
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setItem(Item::get('KeyA2'));
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Ganon's Tower - Bob's Torch"]->setItem(Item::get('KeyA2'));
+		$this->locations["Ganon's Tower - DMs Room - Top Left"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - DMs Room - Top Right"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - DMs Room - Bottom Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Ganon's Tower - DMs Room - Bottom Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Ganon's Tower - Randomizer Room - Top Left"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - Randomizer Room - Top Right"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - Randomizer Room - Bottom Left"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - Randomizer Room - Bottom Right"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - Firesnake Room"]->setItem(Item::get('KeyA2'));
+		$this->locations["Ganon's Tower - Map Chest"]->setItem(Item::get('MapA2'));
+		$this->locations["Ganon's Tower - Big Chest"]->setItem(Item::get('RedMail'));
+		$this->locations["Ganon's Tower - Hope Room - Left"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - Hope Room - Right"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - Bob's Chest"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - Tile Room"]->setItem(Item::get('KeyA2'));
+		$this->locations["Ganon's Tower - Compass Room - Top Left"]->setItem(Item::get('Compass'));
+		$this->locations["Ganon's Tower - Compass Room - Top Right"]->setItem(Item::get('OneRupee'));
+		$this->locations["Ganon's Tower - Compass Room - Bottom Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Ganon's Tower - Compass Room - Bottom Right"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - Big Key Chest"]->setItem(Item::get('BigKeyA2'));
+		$this->locations["Ganon's Tower - Big Key Room - Left"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ganon's Tower - Big Key Room - Right"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - Mini Helmasaur Room - Left"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - Mini Helmasaur Room - Right"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Ganon's Tower - Pre-Moldorm Chest"]->setItem(Item::get('KeyA2'));
+		$this->locations["Ganon's Tower - Moldorm Chest"]->setItem(Item::get('TwentyRupees'));
 
 		return $this;
 	}
@@ -115,179 +115,179 @@ class GanonsTower extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - down left staircase from entrance"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Bob's Torch"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - DMs Room - Top Left"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - DMs Room - Top Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - DMs Room - Bottom Left"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - DMs Room - Bottom Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Randomizer Room - Top Left"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]",
+						"Ganon's Tower - Randomizer Room - Top Right",
+						"Ganon's Tower - Randomizer Room - Bottom Left",
+						"Ganon's Tower - Randomizer Room - Bottom Right",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Randomizer Room - Top Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]",
+						"Ganon's Tower - Randomizer Room - Top Left",
+						"Ganon's Tower - Randomizer Room - Bottom Left",
+						"Ganon's Tower - Randomizer Room - Bottom Right",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Randomizer Room - Bottom Left"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]",
+						"Ganon's Tower - Randomizer Room - Top Right",
+						"Ganon's Tower - Randomizer Room - Top Left",
+						"Ganon's Tower - Randomizer Room - Bottom Right",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Randomizer Room - Bottom Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]",
+						"Ganon's Tower - Randomizer Room - Top Right",
+						"Ganon's Tower - Randomizer Room - Top Left",
+						"Ganon's Tower - Randomizer Room - Bottom Left",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - north of teleport room"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Firesnake Room"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]",
+						"Ganon's Tower - Randomizer Room - Top Right",
+						"Ganon's Tower - Randomizer Room - Top Left",
+						"Ganon's Tower - Randomizer Room - Bottom Left",
+						"Ganon's Tower - Randomizer Room - Bottom Right",
 					]) && $items->has('KeyA2', 2))
 				|| $items->has('KeyA2', 3));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - map room"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Map Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
 				&& $items->has('KeyA2', 3);
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - big chest"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyA2') && $items->has('KeyA2', 3)
 				&& (($items->has('Hammer') && $items->has('Hookshot')) || ($items->has('FireRod') && $items->has('CaneOfSomaria')));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - above Armos"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Bob's Chest"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				|| ($items->has('FireRod') && $items->has('CaneOfSomaria')))
 				&& $items->has('KeyA2', 3);
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrance"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Tile Room"]->setRequirements(function($locations, $items) {
 			return $items->has('CaneOfSomaria');
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Compass Room - Top Left"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+						"Ganon's Tower - Compass Room - Top Right",
+						"Ganon's Tower - Compass Room - Bottom Left",
+						"Ganon's Tower - Compass Room - Bottom Right",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Compass Room - Top Right"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+						"Ganon's Tower - Compass Room - Top Left",
+						"Ganon's Tower - Compass Room - Bottom Left",
+						"Ganon's Tower - Compass Room - Bottom Right",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Compass Room - Bottom Left"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
+						"Ganon's Tower - Compass Room - Top Right",
+						"Ganon's Tower - Compass Room - Top Left",
+						"Ganon's Tower - Compass Room - Bottom Right",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Compass Room - Bottom Right"]->setRequirements(function($locations, $items) {
 			return $items->has('FireRod') && $items->has('CaneOfSomaria')
 				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
-						"[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
-						"[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
+						"Ganon's Tower - Compass Room - Top Right",
+						"Ganon's Tower - Compass Room - Top Left",
+						"Ganon's Tower - Compass Room - Bottom Left",
 					]) && $items->has('KeyA2', 3))
 				|| $items->has('KeyA2', 4));
 		});
 
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Big Key Chest"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				|| ($items->has('FireRod') && $items->has('CaneOfSomaria')))
 				&& $items->has('KeyA2', 3);
 		});
 
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Big Key Room - Left"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				||($items->has('FireRod') && $items->has('CaneOfSomaria')))
 				&& $items->has('KeyA2', 3);
 		});
 
-		$this->locations["[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Big Key Room - Right"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				|| ($items->has('FireRod') && $items->has('CaneOfSomaria')))
 				&& $items->has('KeyA2', 3);
 		});
 
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Mini Helmasaur Room - Left"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
 
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Mini Helmasaur Room - Right"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
 
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - before Moldorm"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Pre-Moldorm Chest"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
 				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
 
-		$this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->setRequirements(function($locations, $items) {
+		$this->locations["Ganon's Tower - Moldorm Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hookshot')
 				&& $items->canShootArrows() && $items->canLightTorches()
 				&& $items->has('BigKeyA2') && $items->has('KeyA2', 4);
@@ -297,7 +297,7 @@ class GanonsTower extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
-				&& $this->locations["[dungeon-A2-6F] Ganon's Tower - Moldorm room"]->canAccess($items)
+				&& $this->locations["Ganon's Tower - Moldorm Chest"]->canAccess($items)
 				&& ($items->hasSword() || $items->has('BugCatchingNet') || $items->has('Hammer'));
 		};
 

@@ -34,8 +34,8 @@ class HyruleCastleTower extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room", 0xEAB5, null, $this),
-			new Location\Chest("[dungeon-A1-3F] Hyrule Castle Tower - maze room", 0xEAB2, null, $this),
+			new Location\Chest("Castle Tower - Room 03", 0xEAB5, null, $this),
+			new Location\Chest("Castle Tower - Dark Maze", 0xEAB2, null, $this),
 			new Location\Prize\Event("Agahnim", null, null, $this),
 		]);
 
@@ -49,8 +49,8 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('KeyA1'));
-		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('KeyA1'));
+		$this->locations["Castle Tower - Room 03"]->setItem(Item::get('KeyA1'));
+		$this->locations["Castle Tower - Dark Maze"]->setItem(Item::get('KeyA1'));
 
 		return $this;
 	}
@@ -62,7 +62,7 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setRequirements(function($locations, $items) {
+		$this->locations["Castle Tower - Dark Maze"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp') && $items->has('KeyA1');
 		});
 

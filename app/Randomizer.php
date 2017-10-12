@@ -136,19 +136,19 @@ class Randomizer {
 
 		$my_items = new ItemCollection();
 
-		$locations["Pyramid - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
+		$locations["Pyramid Fairy - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
 			? Item::get('BowAndSilverArrows')
 			: Item::get('BowAndArrows'));
 
 		// @TODO: this swords stuff is getting silly, break it out into a managable function or something.
 		$sword_locations = new LocationCollection([
-			$locations["Pyramid - Sword"],
-			$locations["Blacksmiths"],
-			$locations["Altar"],
+			$locations["Pyramid Fairy - Sword"],
+			$locations["Blacksmith"],
+			$locations["Master Sword Pedestal"],
 		]);
 
 		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
-			$locations["Uncle"]->setItem(Item::get('L1Sword'));
+			$locations["Link's Uncle"]->setItem(Item::get('L1Sword'));
 			$my_items->addItem(Item::get('L1Sword'));
 
 			$swords = [Item::get('MasterSword')];
@@ -192,15 +192,15 @@ class Randomizer {
 			}
 
 			if (!$this->config('region.swordShuffle', true)) {
-				$locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
-				$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
-				$locations["Altar"]->setItem(Item::get('MasterSword'));
+				$locations["Pyramid Fairy - Sword"]->setItem(Item::get('L4Sword'));
+				$locations["Blacksmith"]->setItem(Item::get('L3Sword'));
+				$locations["Master Sword Pedestal"]->setItem(Item::get('MasterSword'));
 			}
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
 		} else {
-			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
+			$locations["Pyramid Fairy - Sword"]->setItem(Item::get('L1Sword'));
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				if ($this->config('item.progressiveSwords', true)) {
 					$l1 = $this->config('item.count.L1Sword', 1);
@@ -231,10 +231,10 @@ class Randomizer {
 					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveSword"
 						=> $this->config('item.count.ProgressiveSword', 0) + $l2 + $l3 + $l4]);
 
-					$locations["Uncle"]->setItem(Item::get('ProgressiveSword'));
+					$locations["Link's Uncle"]->setItem(Item::get('ProgressiveSword'));
 					$my_items->addItem(Item::get('ProgressiveSword'));
 				}  else {
-					$locations["Uncle"]->setItem(Item::get('L1Sword'));
+					$locations["Link's Uncle"]->setItem(Item::get('L1Sword'));
 					$my_items->addItem(Item::get('L1Sword'));
 				}
 			}
@@ -280,21 +280,21 @@ class Randomizer {
 			$boss_item = !$this->config('region.bossHeartsInPool', true)
 				 ? Item::get('BossHeartContainer')
 				 : Item::get($this->config('region.bossesHaveItem'));
-			$locations["Heart Container - Lanmolas"]->setItem($boss_item);
-			$locations["Heart Container - Armos Knights"]->setItem($boss_item);
-			$locations["Heart Container - Kholdstare"]->setItem($boss_item);
-			$locations["Heart Container - Vitreous"]->setItem($boss_item);
-			$locations["Heart Container - Helmasaur King"]->setItem($boss_item);
-			$locations["Heart Container - Mothula"]->setItem($boss_item);
-			$locations["Heart Container - Arrghus"]->setItem($boss_item);
-			$locations["Heart Container - Blind"]->setItem($boss_item);
-			$locations["Heart Container - Trinexx"]->setItem($boss_item);
-			$locations["Heart Container - Moldorm"]->setItem($boss_item);
+			$locations["Desert Palace - Lanmolas'"]->setItem($boss_item);
+			$locations["Eastern Palace - Armos Knights"]->setItem($boss_item);
+			$locations["Ice Palace - Kholdstare"]->setItem($boss_item);
+			$locations["Misery Mire - Vitreous"]->setItem($boss_item);
+			$locations["Palace of Darkness - Helmasaur King"]->setItem($boss_item);
+			$locations["Skull Woods - Mothula"]->setItem($boss_item);
+			$locations["Swamp Palace - Arrghus"]->setItem($boss_item);
+			$locations["Thieves' Town - Blind"]->setItem($boss_item);
+			$locations["Turtle Rock - Trinexx"]->setItem($boss_item);
+			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
 
 		// Pedestal is the goal
 		if ($this->goal == 'pedestal') {
-			$locations["Altar"]->setItem(Item::get('Triforce'));
+			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.Arrow" => 0]);
 		}
 
@@ -381,19 +381,19 @@ class Randomizer {
 		});
 
 		if (!$this->config('prize.shuffleCrystals', true)) {
-			$crystal_locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
-			$crystal_locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
-			$crystal_locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
-			$crystal_locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
-			$crystal_locations["Ice Palace Crystal"]->setItem(Item::get('Crystal5'));
-			$crystal_locations["Misery Mire Crystal"]->setItem(Item::get('Crystal6'));
-			$crystal_locations["Turtle Rock Crystal"]->setItem(Item::get('Crystal7'));
+			$crystal_locations["Palace of Darkness - Prize"]->setItem(Item::get('Crystal1'));
+			$crystal_locations["Swamp Palace - Prize"]->setItem(Item::get('Crystal2'));
+			$crystal_locations["Skull Woods - Prize"]->setItem(Item::get('Crystal3'));
+			$crystal_locations["Thieves' Town - Prize"]->setItem(Item::get('Crystal4'));
+			$crystal_locations["Ice Palace - Prize"]->setItem(Item::get('Crystal5'));
+			$crystal_locations["Misery Mire - Prize"]->setItem(Item::get('Crystal6'));
+			$crystal_locations["Turtle Rock - Prize"]->setItem(Item::get('Crystal7'));
 		}
 
 		if (!$this->config('prize.shufflePendants', true)) {
-			$pendant_locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
-			$pendant_locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfPower'));
-			$pendant_locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfWisdom'));
+			$pendant_locations["Eastern Palace - Prize"]->setItem(Item::get('PendantOfCourage'));
+			$pendant_locations["Desert Palace - Prize"]->setItem(Item::get('PendantOfPower'));
+			$pendant_locations["Tower of Hera - Prize"]->setItem(Item::get('PendantOfWisdom'));
 		}
 
 		$placed_prizes = $prize_locations->getItems();
@@ -484,8 +484,8 @@ class Randomizer {
 				}
 				if ($this->config('region.swordsInPool', true)
 					&& in_array($location->getName(), [
-						"Pyramid - Sword",
-						"Pyramid - Bow",
+						"Pyramid Fairy - Sword",
+						"Pyramid Fairy - Bow",
 					])) {
 					return;
 				}
@@ -801,10 +801,10 @@ class Randomizer {
 		if ($this->config('spoil.BootsLocation', false) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
 			switch ($boots_location->getName()) {
-				case "[cave-040] Link's House":
+				case "Link's House":
 					$rom->setUncleTextString("Lonk!\nYou'll never\nfind the boots");
 					break;
-				case "Piece of Heart (Maze Race)":
+				case "Maze Race":
 					$rom->setUncleTextString("Boots at race?\nSeed confirmed\nimpossible.");
 					break;
 				default:

@@ -23,12 +23,12 @@ class East extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]", 0xEA7C, null, $this),
-			new Location\Chest("[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]", 0xEA7F, null, $this),
-			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [top right chest]", 0xEB51, null, $this),
-			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [top left chest]", 0xEB54, null, $this),
-			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]", 0xEB57, null, $this),
-			new Location\Chest("[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]", 0xEB5A, null, $this),
+			new Location\Chest("Superbunny Cave - Top", 0xEA7C, null, $this),
+			new Location\Chest("Superbunny Cave - Bottom", 0xEA7F, null, $this),
+			new Location\Chest("Hookshot Cave - Top Right", 0xEB51, null, $this),
+			new Location\Chest("Hookshot Cave - Top Left", 0xEB54, null, $this),
+			new Location\Chest("Hookshot Cave - Bottom Left", 0xEB57, null, $this),
+			new Location\Chest("Hookshot Cave - Bottom Right", 0xEB5A, null, $this),
 		]);
 	}
 
@@ -38,12 +38,12 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setItem(Item::get('FiftyRupees'));
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setItem(Item::get('FiftyRupees'));
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setItem(Item::get('FiftyRupees'));
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Superbunny Cave - Top"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Superbunny Cave - Bottom"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Hookshot Cave - Top Right"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Hookshot Cave - Top Left"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Hookshot Cave - Bottom Left"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Hookshot Cave - Bottom Right"]->setItem(Item::get('FiftyRupees'));
 
 		return $this;
 	}
@@ -55,27 +55,27 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Superbunny Cave - Top"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});
 
-		$this->locations["[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Superbunny Cave - Bottom"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Top Right"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hookshot');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Top Left"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hookshot');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Bottom Left"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl')  && $items->has('Hookshot');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Bottom Right"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && ($items->has('Hookshot') || $items->has('PegasusBoots'));
 		});
 
@@ -115,19 +115,19 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Top Right"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() && $items->has('MoonPearl') && $items->has('Hookshot');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [top left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Top Left"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() && $items->has('MoonPearl') && $items->has('Hookshot');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Bottom Left"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() && $items->has('MoonPearl')  && $items->has('Hookshot');
 		});
 
-		$this->locations["[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Hookshot Cave - Bottom Right"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() && $items->has('MoonPearl') && ($items->has('Hookshot') || $items->has('PegasusBoots'));
 		});
 

@@ -23,7 +23,7 @@ class West extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-055] Spike cave", 0xEA8B, null, $this),
+			new Location\Chest("Spike Cave", 0xEA8B, null, $this),
 		]);
 	}
 
@@ -33,7 +33,7 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-055] Spike cave"]->setItem(Item::get('CaneOfByrna'));
+		$this->locations["Spike Cave"]->setItem(Item::get('CaneOfByrna'));
 
 		return $this;
 	}
@@ -45,7 +45,7 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
+		$this->locations["Spike Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
 				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
 				&& $items->canExtendMagic()
@@ -63,7 +63,7 @@ class West extends Region {
 	 */
 	public function initMajorGlitches() {
 		// @TODO: This should account for 2x YBA
-		$this->locations["[cave-055] Spike cave"]->setRequirements(function($locations, $items) {
+		$this->locations["Spike Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canLiftRocks()
 				&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 				&& ($items->has('Cape') || $items->has('CaneOfByrna'))

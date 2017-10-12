@@ -37,17 +37,17 @@ class EasternPalace extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[dungeon-L1-1F] Eastern Palace - compass room", 0xE977, null, $this),
-			new Location\BigChest("[dungeon-L1-1F] Eastern Palace - big chest", 0xE97D, null, $this),
-			new Location\Chest("[dungeon-L1-1F] Eastern Palace - big ball room", 0xE9B3, null, $this),
-			new Location\Chest("[dungeon-L1-1F] Eastern Palace - Big key", 0xE9B9, null, $this),
-			new Location\Chest("[dungeon-L1-1F] Eastern Palace - map room", 0xE9F5, null, $this),
-			new Location\Drop("Heart Container - Armos Knights", 0x180150, null, $this),
+			new Location\Chest("Eastern Palace - Compass Chest", 0xE977, null, $this),
+			new Location\BigChest("Eastern Palace - Big Chest", 0xE97D, null, $this),
+			new Location\Chest("Eastern Palace - Cannonball Chest", 0xE9B3, null, $this),
+			new Location\Chest("Eastern Palace - Big Key Chest", 0xE9B9, null, $this),
+			new Location\Chest("Eastern Palace - Map Chest", 0xE9F5, null, $this),
+			new Location\Drop("Eastern Palace - Armos Knights", 0x180150, null, $this),
 
-			new Location\Prize\Pendant("Eastern Palace Pendant", [null, 0x1209D, 0x53EF8, 0x53EF9, 0x180052, 0x18007C, 0xC6FE], null, $this),
+			new Location\Prize\Pendant("Eastern Palace - Prize", [null, 0x1209D, 0x53EF8, 0x53EF9, 0x180052, 0x18007C, 0xC6FE], null, $this),
 		]);
 
-		$this->prize_location = $this->locations["Eastern Palace Pendant"];
+		$this->prize_location = $this->locations["Eastern Palace - Prize"];
 	}
 
 	/**
@@ -56,14 +56,14 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - compass room"]->setItem(Item::get('CompassP1'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setItem(Item::get('Bow'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - big ball room"]->setItem(Item::get('OneHundredRupees'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setItem(Item::get('BigKeyP1'));
-		$this->locations["[dungeon-L1-1F] Eastern Palace - map room"]->setItem(Item::get('MapP1'));
-		$this->locations["Heart Container - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
+		$this->locations["Eastern Palace - Compass Chest"]->setItem(Item::get('CompassP1'));
+		$this->locations["Eastern Palace - Big Chest"]->setItem(Item::get('Bow'));
+		$this->locations["Eastern Palace - Cannonball Chest"]->setItem(Item::get('OneHundredRupees'));
+		$this->locations["Eastern Palace - Big Key Chest"]->setItem(Item::get('BigKeyP1'));
+		$this->locations["Eastern Palace - Map Chest"]->setItem(Item::get('MapP1'));
+		$this->locations["Eastern Palace - Armos Knights"]->setItem(Item::get('BossHeartContainer'));
 
-		$this->locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
+		$this->locations["Eastern Palace - Prize"]->setItem(Item::get('PendantOfCourage'));
 
 		return $this;
 	}
@@ -75,13 +75,13 @@ class EasternPalace extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-L1-1F] Eastern Palace - big chest"]->setRequirements(function($locations, $items) {
+		$this->locations["Eastern Palace - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyP1');
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyP1');
 		});
 
-		$this->locations["[dungeon-L1-1F] Eastern Palace - Big key"]->setRequirements(function($locations, $items) {
+		$this->locations["Eastern Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
 		});
 
@@ -90,7 +90,7 @@ class EasternPalace extends Region {
 				&& $items->has('Lamp') && $items->has('BigKeyP1');
 		};
 
-		$this->locations["Heart Container - Armos Knights"]->setRequirements($this->can_complete)
+		$this->locations["Eastern Palace - Armos Knights"]->setRequirements($this->can_complete)
 			->setFillRules(function($item, $locations, $items) {
 				if (!$this->world->config('region.bossNormalLocation', true)
 					&& ($item instanceof Item\Key || $item instanceof Item\BigKey

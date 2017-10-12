@@ -117,7 +117,7 @@ class World {
 									|| ($collected_items->has('SilverArrowUpgrade')
 										&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 							&& $collected_items->canLightTorches()
-							&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items);
+							&& $this->getLocation("Ganon's Tower - Moldorm Chest")->canAccess($collected_items);
 					};
 					break;
 				}
@@ -169,14 +169,14 @@ class World {
 							|| ($collected_items->has('SilverArrowUpgrade')
 								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 					&& $collected_items->canLightTorches()
-					&& $this->getLocation("[dungeon-A2-6F] Ganon's Tower - Moldorm room")->canAccess($collected_items)
+					&& $this->getLocation("Ganon's Tower - Moldorm Chest")->canAccess($collected_items)
 					&& $collected_items->has('DefeatGanon');
 			};
 		}
 
 		if ($this->goal == 'pedestal') {
 			$this->win_condition = function($collected_items) {
-				return $this->getLocation("Altar")->canAccess($collected_items);
+				return $this->getLocation("Master Sword Pedestal")->canAccess($collected_items);
 			};
 		}
 

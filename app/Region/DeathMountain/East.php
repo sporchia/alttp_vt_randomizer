@@ -23,16 +23,16 @@ class East extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-012-1F] Death Mountain - wall of caves - left cave", 0xE9BF, null, $this),
-			new Location\Chest("[cave-013] Mimic cave (from Turtle Rock)", 0xE9C5, null, $this),
-			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]", 0xEB2A, null, $this),
-			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]", 0xEB2D, null, $this),
-			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]", 0xEB30, null, $this),
-			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]", 0xEB33, null, $this),
-			new Location\Chest("[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]", 0xEB36, null, $this),
-			new Location\Chest("[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]", 0xEB39, null, $this),
-			new Location\Chest("[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]", 0xEB3C, null, $this),
-			new Location\Standing("Piece of Heart (Death Mountain - floating island)", 0x180141, null, $this),
+			new Location\Chest("Spiral Cave", 0xE9BF, null, $this),
+			new Location\Chest("Mimic Cave", 0xE9C5, null, $this),
+			new Location\Chest("Paradox Cave Lower - Far Left", 0xEB2A, null, $this),
+			new Location\Chest("Paradox Cave Lower - Left", 0xEB2D, null, $this),
+			new Location\Chest("Paradox Cave Lower - Right", 0xEB30, null, $this),
+			new Location\Chest("Paradox Cave Lower - Far Right", 0xEB33, null, $this),
+			new Location\Chest("Paradox Cave Lower - Middle", 0xEB36, null, $this),
+			new Location\Chest("Paradox Cave Upper - Left", 0xEB39, null, $this),
+			new Location\Chest("Paradox Cave Upper - Right", 0xEB3C, null, $this),
+			new Location\Standing("Floating Island", 0x180141, null, $this),
 		]);
 	}
 
@@ -42,16 +42,16 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-012-1F] Death Mountain - wall of caves - left cave"]->setItem(Item::get('FiftyRupees'));
-		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Spiral Cave"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Mimic Cave"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Paradox Cave Lower - Far Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Paradox Cave Lower - Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Paradox Cave Lower - Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Paradox Cave Lower - Far Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Paradox Cave Lower - Middle"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Paradox Cave Upper - Left"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Paradox Cave Upper - Right"]->setItem(Item::get('TenArrows'));
+		$this->locations["Floating Island"]->setItem(Item::get('PieceOfHeart'));
 
 		return $this;
 	}
@@ -63,12 +63,12 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
+		$this->locations["Mimic Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $items->has('KeyD7', 2)
 				&& $this->world->getRegion('Turtle Rock')->canEnter($locations, $items);
 		});
 
-		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
+		$this->locations["Floating Island"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $items->has('MoonPearl')
 				&& $items->canLiftDarkRocks();
 		});
@@ -91,7 +91,7 @@ class East extends Region {
 	public function initMajorGlitches() {
 		$this->initOverworldGlitches();
 
-		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
+		$this->locations["Floating Island"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld()
 					&& $items->canLiftRocks() && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items));
@@ -113,12 +113,12 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->locations["[cave-013] Mimic cave (from Turtle Rock)"]->setRequirements(function($locations, $items) {
+		$this->locations["Mimic Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('MagicMirror')
 				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		});
 
-		$this->locations["Piece of Heart (Death Mountain - floating island)"]->setRequirements(function($locations, $items) {
+		$this->locations["Floating Island"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('MagicMirror') && $items->has('MoonPearl')
 					&& $items->canLiftRocks() && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items));

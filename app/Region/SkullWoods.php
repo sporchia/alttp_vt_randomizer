@@ -44,22 +44,22 @@ class SkullWoods extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\BigChest("[dungeon-D3-B1] Skull Woods - big chest", 0xE998, null, $this),
-			new Location\Chest("[dungeon-D3-B1] Skull Woods - Big Key room", 0xE99E, null, $this),
-			new Location\Chest("[dungeon-D3-B1] Skull Woods - Compass room", 0xE992, null, $this),
-			new Location\Chest("[dungeon-D3-B1] Skull Woods - east of Fire Rod room", 0xE99B, null, $this),
-			new Location\Chest("[dungeon-D3-B1] Skull Woods - Entrance to part 2", 0xE9FE, null, $this),
-			new Location\Chest("[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room", 0xE9A1, null, $this),
-			new Location\Chest("[dungeon-D3-B1] Skull Woods - south of Fire Rod room", 0xE9C8, null, $this),
-			new Location\Drop("Heart Container - Mothula", 0x180155, null, $this),
+			new Location\BigChest("Skull Woods - Big Chest", 0xE998, null, $this),
+			new Location\Chest("Skull Woods - Big Key Chest", 0xE99E, null, $this),
+			new Location\Chest("Skull Woods - Compass Chest", 0xE992, null, $this),
+			new Location\Chest("Skull Woods - Map Chest", 0xE99B, null, $this),
+			new Location\Chest("Skull Woods - Bridge Room", 0xE9FE, null, $this),
+			new Location\Chest("Skull Woods - Pot Prison", 0xE9A1, null, $this),
+			new Location\Chest("Skull Woods - Pinball Room", 0xE9C8, null, $this),
+			new Location\Drop("Skull Woods - Mothula", 0x180155, null, $this),
 
-			new Location\Prize\Crystal("Skull Woods Crystal", [null, 0x120A3, 0x53F12, 0x53F13, 0x180058, 0x18007B, 0xC704], null, $this),
+			new Location\Prize\Crystal("Skull Woods - Prize", [null, 0x120A3, 0x53F12, 0x53F13, 0x180058, 0x18007B, 0xC704], null, $this),
 		]);
 
 		// F this key
-		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('KeyD3'));
+		$this->locations["Skull Woods - Pinball Room"]->setItem(Item::get('KeyD3'));
 
-		$this->prize_location = $this->locations["Skull Woods Crystal"];
+		$this->prize_location = $this->locations["Skull Woods - Prize"];
 	}
 
 	/**
@@ -68,16 +68,16 @@ class SkullWoods extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setItem(Item::get('FireRod'));
-		$this->locations["[dungeon-D3-B1] Skull Woods - Big Key room"]->setItem(Item::get('BigKeyD3'));
-		$this->locations["[dungeon-D3-B1] Skull Woods - Compass room"]->setItem(Item::get('CompassD3'));
-		$this->locations["[dungeon-D3-B1] Skull Woods - east of Fire Rod room"]->setItem(Item::get('MapD3'));
-		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setItem(Item::get('KeyD3'));
-		$this->locations["[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room"]->setItem(Item::get('KeyD3'));
-		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setItem(Item::get('KeyD3'));
-		$this->locations["Heart Container - Mothula"]->setItem(Item::get('BossHeartContainer'));
+		$this->locations["Skull Woods - Big Chest"]->setItem(Item::get('FireRod'));
+		$this->locations["Skull Woods - Big Key Chest"]->setItem(Item::get('BigKeyD3'));
+		$this->locations["Skull Woods - Compass Chest"]->setItem(Item::get('CompassD3'));
+		$this->locations["Skull Woods - Map Chest"]->setItem(Item::get('MapD3'));
+		$this->locations["Skull Woods - Bridge Room"]->setItem(Item::get('KeyD3'));
+		$this->locations["Skull Woods - Pot Prison"]->setItem(Item::get('KeyD3'));
+		$this->locations["Skull Woods - Pinball Room"]->setItem(Item::get('KeyD3'));
+		$this->locations["Skull Woods - Mothula"]->setItem(Item::get('BossHeartContainer'));
 
-		$this->locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
+		$this->locations["Skull Woods - Prize"]->setItem(Item::get('Crystal3'));
 
 		return $this;
 	}
@@ -89,21 +89,21 @@ class SkullWoods extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-D3-B1] Skull Woods - south of Fire Rod room"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Skull Woods - Pinball Room"]->setFillRules(function($item, $locations, $items) {
 			return $item == Item::get('KeyD3');
 		});
 
-		$this->locations["[dungeon-D3-B1] Skull Woods - big chest"]->setRequirements(function($locations, $items) {
+		$this->locations["Skull Woods - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD3');
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD3');
 		});
 
-		$this->locations["[dungeon-D3-B1] Skull Woods - Entrance to part 2"]->setRequirements(function($locations, $items) {
+		$this->locations["Skull Woods - Bridge Room"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('FireRod');
 		});
 
-		$this->locations["Heart Container - Mothula"]->setRequirements(function($locations, $items) {
+		$this->locations["Skull Woods - Mothula"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('FireRod')
 				&& (config('game-mode') == 'swordless' || $items->hasSword())
 				&& $items->has('KeyD3', 3);

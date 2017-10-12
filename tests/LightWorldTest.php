@@ -11,7 +11,7 @@ class LightWorldTest extends TestCase {
 
 		$world = new World('test_rules');
 
-		$this->assertEquals([0x18002A], $world->getLocation("Blacksmiths")->getAddress());
+		$this->assertEquals([0x18002A], $world->getLocation("Blacksmith")->getAddress());
 	}
 
 	public function testBlacksmithAddressSwordShuffleOff() {
@@ -19,6 +19,6 @@ class LightWorldTest extends TestCase {
 
 		$world = new World('test_rules');
 
-		$this->assertEquals([0x3355C], $world->getLocation("Blacksmiths")->getAddress());
+		$this->assertEquals([0x3355C], $world->getLocation("Blacksmith")->getAddress());
 	}
 }
