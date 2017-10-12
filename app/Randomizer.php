@@ -923,12 +923,16 @@ class Randomizer {
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
 			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
 			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
+			"I was sharing\na drink with\nPoe.\nFor no reason,\nhe left in a\nheartbeat!",
+			"Don’t trust\nhorsemen on\nDeath Mountain\nThey’re Lynel\nthe time!",
+			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
+			"Don’t walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
 			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
 			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
-			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurect me.",
+			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurrect me.",
 			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nback off buddy",
 			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
 			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
@@ -985,6 +989,15 @@ class Randomizer {
 			"   Oh  hey…\n   it's you",
 			"\n  Wheeeeee!!",
 			"   Time for\n another one?",
+			"and\n\n         scene",
+			"\n   GOT EM!!",
+			"\nTHE VALUUUE!!!",
+			"Cool seed,\n\nright?",
+			"\n  We did it!",
+			"  Spam those\n  emotes in\n  wilds chat",
+			"\n   O  M  G",
+			" Hello.  Will\n  you be my\n   friend?",
+			"   Beetorp\n     was\n    here!",
 		])));
 
 		return $this;
@@ -1385,7 +1398,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.CompassA2', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassA2'));
 		}
-		for ($i = 0; $i < $this->config('item.count.CompassAD1', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.CompassD1', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD1'));
 		}
 		for ($i = 0; $i < $this->config('item.count.CompassD2', 1); $i++) {

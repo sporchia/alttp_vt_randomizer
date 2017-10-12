@@ -128,7 +128,7 @@
 				</div>
 				<table class="table table-striped">
 				@foreach($region->getLocations() as $location)
-					<?php if ($location instanceof ALttP\Location\Prize\Event) continue; ?>
+					<?php if ($location instanceof ALttP\Location\Prize\Event || $location instanceof ALttP\Location\Trade) continue; ?>
 					<tr>
 						<td class="col-md-7">{{ $location->getName() }}</td>
 						<td class="col-md-5">

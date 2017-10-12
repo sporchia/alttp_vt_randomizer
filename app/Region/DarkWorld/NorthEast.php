@@ -25,8 +25,8 @@ class NorthEast extends Region {
 		$this->locations = new LocationCollection([
 			new Location\Standing("Catfish", 0xEE185, null, $this),
 			new Location\Standing("Piece of Heart (Pyramid)", 0x180147, null, $this),
-			new Location\Standing("Pyramid - Sword", 0x180028, null, $this),
-			new Location\Standing("Pyramid - Bow", 0x34914, null, $this),
+			new Location\Trade("Pyramid - Sword", 0x180028, null, $this),
+			new Location\Trade("Pyramid - Bow", 0x34914, null, $this),
 			new Location\Prize\Event("Ganon", null, null, $this),
 		]);
 
