@@ -244,6 +244,10 @@ $(function() {
 		}
 		if (target == '#custom-item-select') {
 			$('#custom-count-total').html($('.items option[value="auto_fill"]:selected').length);
+			$('.custom-placed').val(0);
+			$('.items option[value!="auto_fill"]:selected').each(function() {
+				$('#item-placed-' + this.value).val(Number($('#item-placed-' + this.value).val()) + 1);
+			});
 			$('.custom-items').first().trigger('change');
 		}
 	});

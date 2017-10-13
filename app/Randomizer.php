@@ -549,7 +549,7 @@ class Randomizer {
 			$rom->setSingleRNGTable(new ItemCollection($this->getItemPool()));
 		}
 
-		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0));
+		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0) ?: 0);
 		$rom->setGoalIcon($this->config('item.Goal.Icon', 'triforce'));
 
 		$rom->setClockMode($this->config('rom.timerMode', 'off'));
@@ -622,10 +622,10 @@ class Randomizer {
 			$this->config('item.value.ArrowUpgrade10', 0),
 		]);
 
-		$rom->setBlueClock($this->config('item.value.BlueClock', 0));
-		$rom->setRedClock($this->config('item.value.RedClock', 0));
-		$rom->setGreenClock($this->config('item.value.GreenClock', 0));
-		$rom->setStartingTime($this->config('rom.timerStart', 0));
+		$rom->setBlueClock($this->config('item.value.BlueClock', 0) ?: 0);
+		$rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);
+		$rom->setGreenClock($this->config('item.value.GreenClock', 0) ?: 0);
+		$rom->setStartingTime($this->config('rom.timerStart', 0) ?: 0);
 
 		$rom->removeUnclesShield();
 
@@ -927,6 +927,19 @@ class Randomizer {
 			"Don’t trust\nhorsemen on\nDeath Mountain\nThey’re Lynel\nthe time!",
 			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
 			"Don’t walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
+			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
+			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
+			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
+			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
+			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
+			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
+			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
+			"I like my\nwhiskey neat.\n\nSome prefer it\nOctoroks!",
+			"I consoled\nFreezor over a\ncup of coffee.\nHis problems\njust seemed to\nmelt away!",
+			"Magic droplets\nof water don’t\nshut up.\nThey just\nKyameron!",
+			"I bought hot\nwings for\nSluggula.\nThey gave him\nexplosive\ndiarrhea!",
+			"Hardhat Beetle\nwon’t\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([

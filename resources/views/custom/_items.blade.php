@@ -470,16 +470,45 @@ $items = [
 		'name' => 'Ganons Tower Key',
 	],
 ];
+//$items = sabsi($items, 'name', 'asc', true);
 ?>
+<input id="items-filter" placeholder="search" type="text" />
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th>Randomly Place</th>
+			<th>Currently Placed</th>
+			<th>Item Name</th>
+		</tr>
+	</thead>
+	<tbody class="searchable">
 @foreach ($items as $key => $item)
-<div class="col-md-4">
-	<input id="item-count-{{ $key }}" type="number" value="{{ $item['count'] }}" min="0" max="218" step="1" name="data[alttp.custom.item.count.{{ $key }}]" class="custom-items">
-	<input id="item-placed-{{ $key }}" type="number" min="0" max="218" step="1" value="0" readonly>
-	<label for="item-count-{{ $key }}">{{ $item['name'] }}</label>
-</div>
+		<tr>
+			<td>
+				<input id="item-count-{{ $key }}" type="number" value="{{ $item['count'] }}"
+					min="0" max="218" step="1" name="data[alttp.custom.item.count.{{ $key }}]" class="input-sm custom-items">
+			</td>
+			<td>
+				<input id="item-placed-{{ $key }}" type="number" min="0" max="218" step="1" value="0" readonly
+					class="custom-placed input-sm">
+			</td>
+			<td>
+				<label for="item-count-{{ $key }}">{{ $item['name'] }}</label>
+			</td>
+		</tr>
 @endforeach
+	</tbody>
+</table>
 <script>
 $(function() {
+	$('#items-filter').keyup(function () {
+		var rex = new RegExp($(this).val(), 'i');
+		$('.searchable tr').hide();
+		$('.searchable tr').filter(function () {
+			return rex.test($(this).text());
+		}).show();
+	});
+
 	localforage.getItem('vt.custom.items').then(function(value) {
 		if (value === null) return;
 
