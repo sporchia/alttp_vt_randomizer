@@ -234,8 +234,16 @@ $items = [
 		'name' => 'Rupees (300)',
 	],
 	'MagicUpgrade' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Magic Upgrade (1/2 or 1/4)',
+	],
+	'HalfMagicUpgrade' => [
+		'count' => 1,
+		'name' => 'Magic Upgrade (1/2)',
+	],
+	'QuarterMagicUpgrade' => [
+		'count' => 0,
+		'name' => 'Magic Upgrade (1/4)',
 	],
 	'MapLW' => [
 		'count' => 0,
@@ -469,36 +477,90 @@ $items = [
 		'count' => 4,
 		'name' => 'Ganons Tower Key',
 	],
+	'TriforcePiece' => [
+		'count' => 0,
+		'name' => 'Triforce Piece'
+	],
+	'ProgressiveShield' => [
+		'count' => 0,
+		'name' => 'Progressive Shield',
+	],
+	'ProgressiveGlove' => [
+		'count' => 0,
+		'name' => 'Progressive Glove',
+	],
+	'ProgressiveSword' => [
+		'count' => 0,
+		'name' => 'Progressive Sword',
+	],
+	'ProgressiveArmor' => [
+		'count' => 0,
+		'name' => 'Progressive Armor',
+	],
+	'GreenClock' => [
+		'count' => 0,
+		'name' => 'Green Clock',
+	],
+	'BlueClock' => [
+		'count' => 0,
+		'name' => 'Blue Clock',
+	],
+	'RedClock' => [
+		'count' => 0,
+		'name' => 'Red Clock',
+	],
+	'Heart' => [
+		'count' => 0,
+		'name' => 'Small Heart',
+	],
+	'Rupoor' => [
+		'count' => 0,
+		'name' => 'Rupoor',
+	],
+	'Triforce' => [
+		'count' => 0,
+		'name' => 'The Triforce (Win Game)',
+	],
 ];
 //$items = sabsi($items, 'name', 'asc', true);
 ?>
-<input id="items-filter" placeholder="search" type="text" />
-<table class="table table-sm">
-	<thead>
-		<tr>
-			<th>Randomly Place</th>
-			<th>Currently Placed</th>
-			<th>Item Name</th>
-		</tr>
-	</thead>
-	<tbody class="searchable">
-@foreach ($items as $key => $item)
-		<tr>
-			<td>
-				<input id="item-count-{{ $key }}" type="number" value="{{ $item['count'] }}"
-					min="0" max="218" step="1" name="data[alttp.custom.item.count.{{ $key }}]" class="input-sm custom-items">
-			</td>
-			<td>
-				<input id="item-placed-{{ $key }}" type="number" min="0" max="218" step="1" value="0" readonly
-					class="custom-placed input-sm">
-			</td>
-			<td>
-				<label for="item-count-{{ $key }}">{{ $item['name'] }}</label>
-			</td>
-		</tr>
-@endforeach
-	</tbody>
-</table>
+<div class="panel panel-success custom-item-pool">
+	<div class="panel-heading panel-heading-btn">
+		<h3 class="panel-title pull-left">Item Pool <span id="custom-count">0</span> / <span id="custom-count-total">0</span></h3>
+		<div class="btn-toolbar pull-right">
+			<input id="items-filter" placeholder="search" type="text" />
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th>Randomly Place</th>
+					<th>Currently Placed</th>
+					<th>Item Name</th>
+				</tr>
+			</thead>
+			<tbody class="searchable">
+				@foreach ($items as $key => $item)
+				<tr>
+					<td class="col-md-3">
+						<input id="item-count-{{ $key }}" type="number" value="{{ $item['count'] }}"
+							min="0" max="218" step="1" name="data[alttp.custom.item.count.{{ $key }}]" class="input-sm custom-items">
+					</td>
+					<td class="col-md-3">
+						<input id="item-placed-{{ $key }}" type="number" min="0" max="218" step="1" value="0" readonly
+							class="custom-placed input-sm">
+					</td>
+					<td class="col-md-6">
+						<label for="item-count-{{ $key }}">{{ $item['name'] }}</label>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+</div>
 <script>
 $(function() {
 	$('#items-filter').keyup(function () {

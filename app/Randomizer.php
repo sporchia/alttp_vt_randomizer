@@ -460,6 +460,10 @@ class Randomizer {
 		];
 
 		foreach ($regions['Medallions']->getLocations() as $medallion_location) {
+			if ($medallion_location->hasItem()) {
+				continue;
+			}
+
 			$medallion = $medallions[mt_rand(0, 2)];
 			$medallion_location->setItem($medallion);
 		}
@@ -555,6 +559,8 @@ class Randomizer {
 		$rom->setClockMode($this->config('rom.timerMode', 'off'));
 
 		$rom->setHardMode($this->config('rom.HardMode', 0));
+
+		$rom->setRupoorValue($this->config('item.value.Rupoor', 0) ?: 0);
 
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 

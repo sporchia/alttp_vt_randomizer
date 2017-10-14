@@ -114,7 +114,6 @@
 			</div>
 		</div>
 		<div class="tab-pane" id="custom-item-select">
-			<div class="total-items"><span id="custom-count">0</span> / <span id="custom-count-total">0</span></div>
 			@yield('itemselect')
 		</div>
 		<div class="tab-pane" id="custom-settings">
@@ -243,6 +242,7 @@ $(function() {
 		e.preventDefault();
 		localforage.removeItem('vt.customizer');
 		localforage.removeItem('vt.custom.items');
+		localforage.removeItem('vt.custom.settings');
 		localforage.removeItem('vt.custom.name');
 		localforage.removeItem('vt.custom.logic');
 		localforage.removeItem('vt.custom.mode');
@@ -254,7 +254,7 @@ $(function() {
 		var target = $(e.target).attr("href") // activated tab
 		if (!$(target).data('init')) {
 			// this is 3x faster than bs-select, consider switching everything to it if it looks right
-			$(target + " select").select2({
+			$(target + " select.item-location").select2({
 			    theme: "bootstrap",
 			    width: "100%"
 			});
@@ -274,9 +274,9 @@ $(function() {
 		e.stopPropagation();
 		$('#custom-count').html($('.custom-items').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
 		if ($('#custom-count').html() != $('#custom-count-total').html()) {
-			$('.total-items').removeClass('bg-success').addClass('bg-danger');
+			$('.custom-item-pool').removeClass('panel-success').addClass('panel-danger');
 		} else {
-			$('.total-items').removeClass('bg-danger').addClass('bg-success');
+			$('.custom-item-pool').removeClass('panel-danger').addClass('panel-success');
 		}
 	});
 	$('.custom-items').first().trigger('change');

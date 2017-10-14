@@ -62,13 +62,13 @@
 <div class="col-md-6 pb-5">
 	<div class="input-group" role="group">
 		<span class="input-group-addon">Goal Items</span>
-		<input type="number" class="form-control" placeholder="pieces" name="data[alttp.custom.item.Goal.Required]" />
+		<input id="custom-goal-items" type="number" class="form-control custom-value" placeholder="pieces" name="data[alttp.custom.item.Goal.Required]" />
 	</div>
 </div>
 <div class="col-md-6 pb-5">
 	<div class="input-group" role="group">
 		<span class="input-group-addon">Timer</span>
-		<select id="timer" class="form-control selectpicker" name="data[alttp.custom.rom.timerMode]">
+		<select id="custom-timer" class="form-control custom-value selectpicker" name="data[alttp.custom.rom.timerMode]">
 			<option value="off">Off</option>
 			<option value="stopwatch">Stopwatch</option>
 			<option value="countdown-ohko">Countdown OHKO</option>
@@ -80,25 +80,31 @@
 <div class="col-md-6 pb-5">
 	<div class="input-group" role="group">
 		<span class="input-group-addon">Timer Start</span>
-		<input type="number" class="form-control" placeholder="seconds" name="data[alttp.custom.rom.timerStart]" />
+		<input id="custom-timer-start" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.rom.timerStart]" />
 	</div>
 </div>
 <div class="col-md-6 pb-5">
 	<div class="input-group" role="group">
 		<span class="input-group-addon">Green Clock</span>
-		<input type="number" class="form-control" placeholder="seconds" name="data[alttp.custom.item.value.GreenClock]" />
+		<input id="custom-green-clock" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.item.value.GreenClock]" />
 	</div>
 </div>
 <div class="col-md-6 pb-5">
 	<div class="input-group" role="group">
 		<span class="input-group-addon">Blue Clock</span>
-		<input type="number" class="form-control" placeholder="seconds" name="data[alttp.custom.item.value.BlueClock]" />
+		<input id="custom-blue-clock" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.item.value.BlueClock]" />
 	</div>
 </div>
 <div class="col-md-6 pb-5">
 	<div class="input-group" role="group">
 		<span class="input-group-addon">Red Clock</span>
-		<input type="number" class="form-control" placeholder="seconds" name="data[alttp.custom.item.value.RedClock]" />
+		<input id="custom-red-clock" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.item.value.RedClock]" />
+	</div>
+</div>
+<div class="col-md-6 pb-5">
+	<div class="input-group" role="group">
+		<span class="input-group-addon">Rupoor Value</span>
+		<input id="custom-rupoor-deduct" type="number" class="form-control custom-value" placeholder="rupees" name="data[alttp.custom.item.value.Rupoor]" />
 	</div>
 </div>
 <script>
@@ -172,6 +178,28 @@ $(function() {
 			localforage.setItem('vt.custom.switches', items);
 		});
 	});
+
+	localforage.getItem('vt.custom.settings').then(function(value) {
+		if (value !== null) {
+			for (id in value) {
+				var setting = $('#' + id)
+				setting.val(value[id]);
+				setting.trigger('change');
+			}
+		}
+
+		$('.custom-value').on('change', function() {
+			var values = {};
+			$('.custom-value').each(function() {
+				var $this = $(this);
+				if (!$this.attr('id')) return;
+				values[$this.attr('id')] = $this.val();
+			});
+
+			localforage.setItem('vt.custom.settings', values);
+		});
+	});
+
 });
 </script>
 @overwrite
