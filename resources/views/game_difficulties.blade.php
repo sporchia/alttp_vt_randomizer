@@ -115,7 +115,6 @@
 				<li>Bomb Capacity Upgrades</li>
 				<li>Boomerangs</li>
 				<li>Golden Sword</li>
-				<li>Heart Containers</li>
 				<li>Magic Upgrade</li>
 				<li>Red Mail</li>
 				<li>Mirror Shield</li>

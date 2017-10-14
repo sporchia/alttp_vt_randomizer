@@ -132,7 +132,7 @@
 					<tr>
 						<td class="col-md-7">{{ $location->getName() }}</td>
 						<td class="col-md-5">
-							<select class="{{ $location_class[get_class($location)] ?? 'items' }}" name="l[{{ base64_encode($location->getName()) }}]"></select>
+							<select class="item-location {{ $location_class[get_class($location)] ?? 'items' }}" name="l[{{ base64_encode($location->getName()) }}]"></select>
 						</td>
 					</tr>
 				@endforeach
@@ -211,13 +211,31 @@ $(function() {
 		config = customizer || {};
 		for (var name in config) {
 			if (!config.hasOwnProperty(name)) continue;
+			$('select[name="' + name + '"]').data('previous-item', config[name]);
 			$('select[name="' + name + '"]').val(config[name]);
 		}
+		// don't show the menu until we have finished loading things
+		$('.regions').removeClass('hidden');
 	});
 
 	$('select').change(function() {
 		config[this.name] = $(this).val();
 		localforage.setItem('vt.customizer', config);
+	});
+
+	$('.item-location').change(function() {
+		var $this = $(this);
+		var value = $this.val();
+		var previous = $this.data('previous-item');
+		if (previous) {
+			$('#item-count-' + previous).val(Number($('#item-count-' + previous).val()) + 1);
+			$('#item-count-' + previous).trigger('change');
+		}
+		$this.data('previous-item', value);
+		if (Number($('#item-count-' + value).val()) > 0) {
+			$('#item-count-' + value).val(Number($('#item-count-' + value).val()) - 1);
+			$('#item-count-' + value).trigger('change');
+		}
 	});
 
 	// dirty cleanup function for now

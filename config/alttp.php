@@ -403,7 +403,6 @@ return [
 			'swordsInPool' => false,
 			'pyramidBowUpgrade' => false,
 			'CompassesMaps' => false,
-			'bossHeartsInPool' => false,
 			'bossHaveKey' => false,
 		],
 		'rom' => [

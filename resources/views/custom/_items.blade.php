@@ -510,10 +510,10 @@ $(function() {
 	});
 
 	localforage.getItem('vt.custom.items').then(function(value) {
-		if (value === null) return;
-
-		for (id in value) {
-			document.getElementById(id).value = value[id];
+		if (value !== null) {
+			for (id in value) {
+				document.getElementById(id).value = value[id];
+			}
 		}
 
 		$('.custom-items').on('change', function() {
