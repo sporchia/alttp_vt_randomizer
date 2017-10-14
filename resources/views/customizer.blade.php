@@ -10,7 +10,7 @@
 @yield('loader')
 <form id="customizer">
 	<input type="hidden" id="seed" name="seed" value="0" />
-	<input type="hidden" name="logic" value="None" />
+	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="custom" />
 	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
@@ -185,6 +185,8 @@ function applySeed(rom, seed) {
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
+			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				$('.info').show();
 				$('button[name=save], button[name=save-spoiler]').prop('disabled', false);

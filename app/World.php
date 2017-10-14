@@ -249,7 +249,9 @@ class World {
 	 * @return array
 	 */
 	public function getPlayThrough($walkthrough = true) {
+		$this->getRegion('Palace of Darkness')->setItemLock(false);
 		$shadow_world = $this->copy();
+		$shadow_world->getRegion('Palace of Darkness')->setItemLock(false);
 		$junk_items = [
 			Item::get('BlueShield'),
 			Item::get('ProgressiveArmor'),

@@ -167,6 +167,9 @@ function applySeed(rom, seed, second_attempt) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+			.then(rom.setHeartSpeed($('#heart-speed').val()))
+			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));

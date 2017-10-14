@@ -36,8 +36,8 @@
 			<label for="generate-sram-trace">SRAM Trace<sup><strong>*</strong></sup></label>
 		</div>
 		<div class="col-md-6">
-			<input id="fast-menu" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="fast-menu">Fast Menu<sup><strong>*</strong></sup></label>
+			<input id="generate-fast-menu" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="generate-fast-menu">Fast Menu<sup><strong>*</strong></sup></label>
 		</div>
 		<div class="col-md-6">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -127,7 +127,7 @@ $(function() {
 		$('#generate-sram-trace').trigger('change');
 	});
 
-	$('#fast-menu').on('change', function() {
+	$('#generate-fast-menu').on('change', function() {
 		if (rom) {
 			rom.setFastMenu($(this).prop('checked'));
 		}
@@ -136,8 +136,8 @@ $(function() {
 	});
 	localforage.getItem('rom.fast-menu').then(function(value) {
 		if (value === null) return;
-		$('#fast-menu').prop('checked', value);
-		$('#fast-menu').trigger('change');
+		$('#generate-fast-menu').prop('checked', value);
+		$('#generate-fast-menu').trigger('change');
 	});
 
 	$('#generate-music-on').on('change', function() {
