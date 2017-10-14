@@ -89,7 +89,7 @@ $items = [
 		'count' => 1,
 		'name' => 'Quake',
 	],
-	'Bottle' => [
+	'Bottles' => [
 		'count' => 1,
 		'name' => 'Bottle',
 	],
@@ -574,6 +574,9 @@ $(function() {
 	localforage.getItem('vt.custom.items').then(function(value) {
 		if (value !== null) {
 			for (id in value) {
+				if (!document.getElementById(id)) {
+					continue;
+				}
 				document.getElementById(id).value = value[id];
 			}
 		}
