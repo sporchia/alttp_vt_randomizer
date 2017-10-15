@@ -130,7 +130,7 @@ return [
 				'item' => [
 					'count' => [
 						'TwentyRupees' => 0, // 28 : 560
-						'OneHundredRupees' => 3, // 1 : + 200
+						'OneHundredRupees' => 4, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
 						'GreenClock' => 25,
 					],
@@ -234,6 +234,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
+						'OneRupee' => 12,
 						'TwentyRupees' => 0, // 28 : 560
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
@@ -341,6 +342,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
+						'OneRupee' => 13,
 						'TwentyRupees' => 10, // 28 : 560
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300

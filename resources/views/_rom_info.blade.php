@@ -4,6 +4,7 @@
 	<div>ROM build: <span class="build"></span></div>
 	<div>Difficulty: <span class="difficulty"></span></div>
 	<div>Variation: <span class="variation"></span></div>
+	<div style="display:none">Shuffle: <span class="shuffle"></span></div>
 	<div>Mode: <span class="mode"></span></div>
 	<div>Goal: <span class="goal"></span></div>
 	<div>Seed: <span class="seed"></span></div>
@@ -22,6 +23,12 @@ function parseInfoFromPatch(patch) {
 	$('.info .mode').html(patch.spoiler.meta.mode);
 	$('.info .variation').html(patch.spoiler.meta.variation);
 	$('.info .difficulty').html(patch.difficulty);
+	$('.info .shuffle').html(patch.spoiler.meta.shuffle);
+	if (patch.spoiler.meta.shuffle) {
+		$('.info .shuffle').parent().show();
+	} else {
+		$('.info .shuffle').parent().hide();
+	}
 }
 </script>
 @overwrite

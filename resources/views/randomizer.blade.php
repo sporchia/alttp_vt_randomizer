@@ -228,7 +228,9 @@ $(function() {
 		localforage.setItem('rom.difficulty', $(this).val());
 	});
 	localforage.getItem('rom.difficulty').then(function(value) {
-		if (!value) return;
+		if (!value) {
+			value = 'normal';
+		}
 		$('#difficulty').val(value);
 		$('#difficulty').trigger('change');
 	});

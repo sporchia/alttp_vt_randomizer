@@ -210,6 +210,7 @@ function seedApplied(data) {
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.difficulty = data.patch.difficulty;
 		rom.seed = data.patch.seed;
+		rom.shuffle = data.patch.spoiler.meta.shuffle;
 		rom.spoiler = data.patch.spoiler;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 		resolve(rom);
@@ -265,7 +266,9 @@ $(function() {
 		localforage.setItem('vt.er.shuffle', $(this).val());
 	});
 	localforage.getItem('vt.er.shuffle').then(function(value) {
-		if (!value) return;
+		if (!value) {
+			value = 'full';
+		}
 		$('#shuffle').val(value);
 		$('#shuffle').trigger('change');
 	});

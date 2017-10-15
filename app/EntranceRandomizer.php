@@ -89,6 +89,7 @@ class EntranceRandomizer extends Randomizer {
 		$this->spoiler = json_decode($er->spoiler);
 		$this->spoiler->meta->build = Rom::BUILD;
 		$this->spoiler->meta->logic = $this->getLogic();
+		$this->spoiler->meta->variation = $this->variation;
 
 		return $this;
 	}
