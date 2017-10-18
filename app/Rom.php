@@ -1096,9 +1096,9 @@ class Rom {
 	 */
 	public function setQuickMenu($enable = false) : self {
 		$this->write(0x180048, pack('C*', $enable ? 0x01 : 0x00));
-		$this->write(0x6DD9A, pack('C*', $enable ? 0x20, 0x11));
-		$this->write(0x6DF2A, pack('C*', $enable ? 0x20, 0x12));
-		$this->write(0x6E0E9, pack('C*', $enable ? 0x20, 0x12));
+		$this->write(0x6DD9A, pack('C*', $enable ? 0x20 : 0x11));
+		$this->write(0x6DF2A, pack('C*', $enable ? 0x20 : 0x12));
+		$this->write(0x6E0E9, pack('C*', $enable ? 0x20 : 0x12));
 
 		return $this;
 	}
