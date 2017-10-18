@@ -249,9 +249,7 @@ class World {
 	 * @return array
 	 */
 	public function getPlayThrough($walkthrough = true) {
-		$this->getRegion('Palace of Darkness')->setItemLock(false);
 		$shadow_world = $this->copy();
-		$shadow_world->getRegion('Palace of Darkness')->setItemLock(false);
 		$junk_items = [
 			Item::get('BlueShield'),
 			Item::get('ProgressiveArmor'),
@@ -308,7 +306,7 @@ class World {
 					continue;
 				}
 
-				if (!$shadow_world->getWinCondition()($collectable_locations->getItems())) {
+				if ($pulled_item instanceof Item\Key || !$shadow_world->getWinCondition()($collectable_locations->getItems())) {
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);
@@ -386,27 +384,28 @@ class World {
 				$longest_item_chain++;
 			}
 			$location_round[$longest_item_chain] = [];
-			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items) {
-				return $location->canAccess($my_items, $this->getLocations());
+			$available_locations = $shadow_world->getCollectableLocations()->filter(function($location) use ($my_items, $location_order) {
+				return !in_array($location, $location_order)
+					&& $location->canAccess($my_items, $this->getLocations());
 			});
 
 			$found_items = $available_locations->getItems();
 
-			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain, $junk_items) {
+			$available_locations->each(function($location) use (&$location_order, &$location_round, $longest_item_chain) {
 				$item = $location->getItem();
 				if (in_array($location, $location_order)
-						|| !$location->hasItem()
-						|| $item instanceof Item\Key) {
+						|| !$location->hasItem()) {
 					return;
 				}
 				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
+				if ($item instanceof Item\Key) {
+					return;
+				}
 				array_push($location_round[$longest_item_chain], $location);
 			});
-
-			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items;
-		} while ($new_items->count() > 0);
+			$my_items = $my_items->merge($found_items);
+		} while ($found_items->count() > 0);
 
 		$ret = ['longest_item_chain' => count($location_round)];
 		foreach ($location_round as $round => $locations) {
@@ -563,19 +562,19 @@ class World {
 		$found_locations = new LocationCollection;
 		do {
 			$sphere++;
-			$available_locations = $this->locations->filter(function($location) use ($my_items) {
+			$available_locations = $this->locations->filter(function($location) use ($my_items, $found_locations) {
 				return !is_a($location, Location\Medallion::class)
 					&& !is_a($location, Location\Fountain::class)
+					&& !$found_locations->contains($location)
 					&& $location->canAccess($my_items);
 			});
-			$location_sphere[$sphere] = $available_locations->diff($found_locations);
+			$location_sphere[$sphere] = $available_locations;
 
 			$found_items = $available_locations->getItems();
-			$found_locations = $available_locations;
+			$found_locations = $found_locations->merge($available_locations);
 
-			$new_items = $found_items->diff($my_items);
-			$my_items = $found_items;
-		} while ($new_items->count() > 0);
+			$my_items = $my_items->merge($found_items);
+		} while ($found_items->count() > 0);
 
 		return $location_sphere;
 	}

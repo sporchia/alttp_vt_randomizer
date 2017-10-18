@@ -134,146 +134,9 @@ class Randomizer {
 				&& !is_a($location, Location\Medallion::class);
 		});
 
-		$my_items = new ItemCollection();
-
 		$locations["Pyramid Fairy - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
 			? Item::get('BowAndSilverArrows')
 			: Item::get('BowAndArrows'));
-
-		// @TODO: this swords stuff is getting silly, break it out into a managable function or something.
-		$sword_locations = new LocationCollection([
-			$locations["Pyramid Fairy - Sword"],
-			$locations["Blacksmith"],
-			$locations["Master Sword Pedestal"],
-		]);
-
-		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
-			$locations["Link's Uncle"]->setItem(Item::get('L1Sword'));
-			$my_items->addItem(Item::get('L1Sword'));
-
-			$swords = [Item::get('MasterSword')];
-
-			switch ($this->config('rom.HardMode', 0)) {
-				case 2:
-					array_push($swords, Item::get('L1Sword'));
-					array_push($swords, Item::get('L1Sword'));
-					break;
-				case 1:
-					array_push($swords, Item::get('L1Sword'));
-					array_push($swords, Item::get('L3Sword'));
-					break;
-				default:
-					array_push($swords, Item::get('L3Sword'));
-					array_push($swords, Item::get('L4Sword'));
-					break;
-			}
-
-			if ($this->config('item.progressiveSwords', true)) {
-				$swords = [Item::get('ProgressiveSword')];
-				switch ($this->config('rom.HardMode', 0)) {
-					case 2:
-						array_push($swords, Item::get('L1Sword'));
-						array_push($swords, Item::get('L1Sword'));
-						break;
-					case 1:
-						array_push($swords, Item::get('L1Sword'));
-						array_push($swords, Item::get('ProgressiveSword'));
-						break;
-					default:
-						array_push($swords, Item::get('ProgressiveSword'));
-						array_push($swords, Item::get('ProgressiveSword'));
-						break;
-				}
-			}
-
-			while (count($swords) > 0) {
-				$item = array_shift($swords);
-				$sword_locations->getEmptyLocations()->random()->setItem($item);
-			}
-
-			if (!$this->config('region.swordShuffle', true)) {
-				$locations["Pyramid Fairy - Sword"]->setItem(Item::get('L4Sword'));
-				$locations["Blacksmith"]->setItem(Item::get('L3Sword'));
-				$locations["Master Sword Pedestal"]->setItem(Item::get('MasterSword'));
-			}
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
-		} else {
-			$locations["Pyramid Fairy - Sword"]->setItem(Item::get('L1Sword'));
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				if ($this->config('item.progressiveSwords', true)) {
-					$l1 = $this->config('item.count.L1Sword', 1);
-					$l2 = $this->config('item.count.MasterSword', 1);
-					$l3 = $this->config('item.count.L3Sword', 1);
-					$l4 = $this->config('item.count.L4Sword', 1);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L1Sword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveSword"
-						=> $this->config('item.count.ProgressiveSword', 0) + $l1 + $l2 + $l3 + $l4]);
-				} else {
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L1Sword" => 1]);
-				}
-			} else {
-				if ($this->config('item.progressiveSwords', true)) {
-					$l2 = $this->config('item.count.MasterSword', 1);
-					$l3 = $this->config('item.count.L3Sword', 1);
-					$l4 = $this->config('item.count.L4Sword', 1);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveSword"
-						=> $this->config('item.count.ProgressiveSword', 0) + $l2 + $l3 + $l4]);
-
-					$locations["Link's Uncle"]->setItem(Item::get('ProgressiveSword'));
-					$my_items->addItem(Item::get('ProgressiveSword'));
-				}  else {
-					$locations["Link's Uncle"]->setItem(Item::get('L1Sword'));
-					$my_items->addItem(Item::get('L1Sword'));
-				}
-			}
-		}
-
-		if ($this->config('item.progressiveArmor', true)) {
-			$blue = $this->config('item.count.BlueMail', 1);
-			$red = $this->config('item.count.RedMail', 1);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.BlueMail" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.RedMail" => 0]);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveArmor"
-				=> $this->config('item.count.ProgressiveArmor', 0) + $blue + $red]);
-		}
-
-		if ($this->config('item.progressiveShields', true)) {
-			$blue = $this->config('item.count.BlueShield', 1);
-			$red = $this->config('item.count.RedShield', 1);
-			$mirror = $this->config('item.count.MirrorShield', 1);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.BlueShield" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.RedShield" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MirrorShield" => 0]);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveShield"
-				=> $this->config('item.count.ProgressiveShield', 0) + $blue + $red + $mirror]);
-		}
-
-		if ($this->config('item.progressiveGloves', true)) {
-			$glove = $this->config('item.count.PowerGlove', 1);
-			$mitt = $this->config('item.count.TitansMitt', 1);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.PowerGlove" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.TitansMitt" => 0]);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveGlove"
-				=> $this->config('item.count.ProgressiveGlove', 0) + $glove + $mitt]);
-		}
 
 		// fill boss hearts before anything else if we need to
 		if ($this->config('region.bossesHaveItem', false) || !$this->config('region.bossHeartsInPool', true)) {
@@ -328,6 +191,8 @@ class Randomizer {
 			// 2 in open mode
 			if (config('game-mode') == 'open' && count($nice_items_swords)) {
 				array_push($advancement_items, array_pop($nice_items_swords));
+			} elseif ($this->config('region.forceUncleSword', true)) {
+				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -483,14 +348,8 @@ class Randomizer {
 				$spoiler[$name] = [];
 			}
 			$region->getLocations()->each(function($location) use (&$spoiler, $name) {
-				if ($location instanceof Location\Prize\Event) {
-					return;
-				}
-				if ($this->config('region.swordsInPool', true)
-					&& in_array($location->getName(), [
-						"Pyramid Fairy - Sword",
-						"Pyramid Fairy - Bow",
-					])) {
+				if ($location instanceof Location\Prize\Event
+					|| $location instanceof Location\Trade) {
 					return;
 				}
 				if ($location->hasItem()) {
@@ -1033,11 +892,11 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.L1Sword', 0); $i++) {
 			array_push($advancement_items, Item::get('L1Sword'));
 		}
-		for ($i = 0; $i < $this->config('item.count.MasterSword', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MasterSword', 0); $i++) {
 			array_push($advancement_items, Item::get('MasterSword'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveSword', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveSword', 4); $i++) {
 			array_push($advancement_items, Item::get('ProgressiveSword'));
 		}
 
@@ -1101,7 +960,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Powder', 1); $i++) {
 			array_push($advancement_items, Item::get('Powder'));
 		}
-		for ($i = 0; $i < $this->config('item.count.PowerGlove', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.PowerGlove', 0); $i++) {
 			array_push($advancement_items, Item::get('PowerGlove'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Quake', 1); $i++) {
@@ -1110,7 +969,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Shovel', 1); $i++) {
 			array_push($advancement_items, Item::get('Shovel'));
 		}
-		for ($i = 0; $i < $this->config('item.count.TitansMitt', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TitansMitt', 0); $i++) {
 			array_push($advancement_items, Item::get('TitansMitt'));
 		}
 
@@ -1121,7 +980,7 @@ class Randomizer {
 			array_push($advancement_items, Item::get('SilverArrowUpgrade'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveGlove', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveGlove', 2); $i++) {
 			array_push($advancement_items, Item::get('ProgressiveGlove'));
 		}
 
@@ -1137,11 +996,11 @@ class Randomizer {
 			array_push($advancement_items, Item::get('BugCatchingNet'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.MirrorShield', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MirrorShield', 0); $i++) {
 			array_push($advancement_items, Item::get('MirrorShield'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 3); $i++) {
 			array_push($advancement_items, Item::get('ProgressiveShield'));
 		}
 
@@ -1172,10 +1031,10 @@ class Randomizer {
 	public function getNiceItems() {
 		$items_to_find = [];
 
-		for ($i = 0; $i < $this->config('item.count.L3Sword', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.L3Sword', 0); $i++) {
 			array_push($items_to_find, Item::get('L3Sword'));
 		}
-		for ($i = 0; $i < $this->config('item.count.L4Sword', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.L4Sword', 0); $i++) {
 			array_push($items_to_find, Item::get('L4Sword'));
 		}
 
@@ -1190,15 +1049,15 @@ class Randomizer {
 			array_push($items_to_find, $this->getBottle());
 		}
 
-		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BlueShield', 0); $i++) {
 			array_push($items_to_find, Item::get('BlueShield'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 2); $i++) {
 			array_push($items_to_find, Item::get('ProgressiveArmor'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BlueMail', 0); $i++) {
 			array_push($items_to_find, Item::get('BlueMail'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Boomerang', 1); $i++) {
@@ -1208,10 +1067,10 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.RedBoomerang', 1); $i++) {
 			array_push($items_to_find, Item::get('RedBoomerang'));
 		}
-		for ($i = 0; $i < $this->config('item.count.RedShield', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.RedShield', 0); $i++) {
 			array_push($items_to_find, Item::get('RedShield'));
 		}
-		for ($i = 0; $i < $this->config('item.count.RedMail', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.RedMail', 0); $i++) {
 			array_push($items_to_find, Item::get('RedMail'));
 		}
 

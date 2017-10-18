@@ -58,6 +58,7 @@
 						<option value="normal">Normal</option>
 						<option value="hard">Hard</option>
 						<option value="expert">Expert</option>
+						<option value="insane">Insane</option>
 					</select>
 				</div>
 			</div>

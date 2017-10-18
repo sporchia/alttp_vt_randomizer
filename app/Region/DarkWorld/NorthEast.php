@@ -35,6 +35,10 @@ class NorthEast extends Region {
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Right", 0xE983, null, $this));
 		}
 
+		// set these to not upgrade
+		$this->locations["Pyramid Fairy - Sword"]->setItem(Item::get('L1Sword'));
+		$this->locations["Pyramid Fairy - Bow"]->setItem(Item::get('Bow'));
+
 		$this->prize_location = $this->locations["Ganon"];
 		$this->prize_location->setItem(Item::get('DefeatGanon'));
 	}

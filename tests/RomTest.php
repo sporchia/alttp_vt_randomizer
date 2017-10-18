@@ -280,8 +280,8 @@ class RomTest extends TestCase {
 			$this->rom->read(0x76C51, 16));
 	}
 
-	public function testSetAltarCredits() {
-		$this->rom->setAltarCredits("this is a test");
+	public function testSetPedestalCredits() {
+		$this->rom->setPedestalCredits("this is a test");
 
 		$this->assertEquals([159, 159, 159, 45, 33, 34, 44, 159, 34, 44, 159, 26, 159, 45, 30, 44, 45,
 			159, 159, 159], $this->rom->read(0x76C81, 20));

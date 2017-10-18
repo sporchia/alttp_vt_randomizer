@@ -23,7 +23,7 @@ class LightWorld extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Altar("Master Sword Pedestal", 0x289B0, null, $this),
+			new Location\Pedestal("Master Sword Pedestal", 0x289B0, null, $this),
 			new Location\Npc("Link's Uncle", 0x2DF45, null, $this),
 			new Location\Chest("Secret Passage", 0xE971, null, $this),
 			new Location\Chest("King's Tomb", 0xE97A, null, $this),

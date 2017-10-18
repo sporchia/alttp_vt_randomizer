@@ -387,13 +387,117 @@ return [
 			],
 		],
 	],
-	'custom' => [
+	'insane' => [
 		'item' => [
-			'progressiveArmor' => false,
-			'progressiveGloves' => false,
-			'progressiveShields' => false,
-			'progressiveSwords' => false,
+			'count' => [
+				'Arrow' => 10,
+				'ArrowUpgrade5' => 0,
+				'ArrowUpgrade10' => 0,
+				'ArrowUpgrade70' => 0,
+				'Bomb' => 10,
+				'BombUpgrade5' => 0,
+				'BombUpgrade10' => 0,
+				'BombUpgrade50' => 0,
+				'Boomerang' => 0,
+				'BossHeartContainer' => 0,
+				'OneRupee' => 30,
+				'FiveRupees' => 10,
+				'FiftyRupees' => 4,
+				'HeartContainer' => 0,
+				'HalfMagicUpgrade' => 0,
+				'QuarterMagicUpgrade' => 0,
+				'MagicUpgrade' => 0,
+				'OneHundredRupees' => 1,
+				'RedBoomerang' => 0,
+				'TenArrows' => 1,
+				'ThreeBombs' => 1,
+				'ThreeHundredRupees' => 1,
+				'TwentyRupees' => 6,
+				'SilverArrowUpgrade' => 0,
+				'PieceOfHeart' => 0,
+			],
+			'overflow' => [
+				'count' => [
+					'Armor' => 0,
+					'Bottle' => 1,
+					'Shield' => 0,
+					'Sword' => 2,
+				],
+			],
 		],
+		'rom' => [
+			'HardMode' => 3,
+		],
+		'variations' => [
+			'ohko' => [
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 0,
+				],
+			],
+			'triforce-hunt' => [
+				'item' => [
+					'count' => [
+						'Arrow' => 1,
+						'Bomb' => 4,
+						'FiveRupees' => 0,
+						'TriforcePiece' => 50,
+					],
+					'Goal' => [
+						'Required' => 50,
+						'Icon' => 'triforce',
+					],
+				],
+			],
+			'timed-ohko' => [
+				'item' => [
+					'count' => [
+						'OneRupee' => 13,
+						'TwentyRupees' => 10, // 28 : 560
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 5, // 4 + 300
+						'GreenClock' => 20,
+						'RedClock' => 5,
+					],
+					'value' => [
+						'GreenClock' => 240,
+						'RedClock' => - 32400,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'countdown-ohko',
+					'timerStart' => 5 * 60,
+				],
+			],
+			'timed-race' => [
+				'item' => [
+					'count' => [
+						'TwentyRupees' => 0, // 28 : 560
+						'OneRupee' => 0, // 2 : 2
+						'FiveRupees' => 0, // 4 : 20
+						'ThreeBombs' => 0, // 10
+						'OneHundredRupees' => 3, // 1 : + 200
+						'ThreeHundredRupees' => 6, // 4 + 600
+						'GreenClock' => 20,
+						'BlueClock' => 10,
+						'RedClock' => 10,
+					],
+					'value' => [
+						'GreenClock' => 240, // reversed for stopwatch
+						'BlueClock' => 120,
+						'RedClock' => -120,
+						'BombUpgrade5' => 2,
+						'BombUpgrade10' => 3,
+					],
+				],
+				'rom' => [
+					'timerMode' => 'stopwatch',
+					'timerStart' => 0,
+				],
+			],
+		],
+	],
+	'custom' => [
 		'prize' => [
 			'crossWorld' => false,
 			'shufflePendants' => false,
@@ -406,6 +510,7 @@ return [
 			'pyramidBowUpgrade' => false,
 			'CompassesMaps' => false,
 			'bossHaveKey' => false,
+			'forceUncleSword' => false,
 		],
 		'rom' => [
 			'HardMode' => 0,

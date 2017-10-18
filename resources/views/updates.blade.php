@@ -4,6 +4,8 @@
 <h2>VT8.27</h2>
 <div class="well">
 	<ul>
+		<li>Corrected Bow placement issue in Palace of Darkness</li>
+		<li>Added insane difficulty</li>
 		<li>Added Ganon shuffle to ER Maddness and Insanity modes</li>
 		<li>Cleaned up the spoiler section of the site to assist in finding things</li>
 		<li>Complete overhaul of the custom section, see the new customizer</li>

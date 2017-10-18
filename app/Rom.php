@@ -721,9 +721,9 @@ class Rom {
 	}
 
 	/**
-	 * Set the Altar text to a custom value
+	 * Set the Pedestal text to a custom value
 	 *
-	 * @param string $string Altar text can be 3 lines of 14 characters each
+	 * @param string $string Pedestal text can be 3 lines of 14 characters each
 	 *
 	 * @return $this
 	 */
@@ -1045,14 +1045,14 @@ class Rom {
 	}
 
 	/**
-	 * Set the Altar credits to a custom value
+	 * Set the Pedestal credits to a custom value
 	 * Original: and the master sword
 	 *
 	 * @param string $string
 	 *
 	 * @return $this
 	 */
-	public function setAltarCredits(string $string) : self {
+	public function setPedestalCredits(string $string) : self {
 		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
 		$offset = 0x76C81;
 		foreach ($this->convertCredits($write_string) as $byte) {
@@ -1424,6 +1424,19 @@ class Rom {
 				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(20);
+
+				break;
+			case 3:
+				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
+				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setPowderedSpriteFairyPrize(0x79); // Bees
+				$this->setBottleFills([0x00, 0x00]); // 1 heart, 1/4 magic refills
+				$this->setShopBlueShieldCost(10000);
+				$this->setShopRedShieldCost(10000);
+				$this->setCatchableFairies(false);
+				$this->setCatchableBees(true);
+
+				$this->setRupoorValue(9999);
 
 				break;
 		}

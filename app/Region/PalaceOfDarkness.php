@@ -26,8 +26,6 @@ class PalaceOfDarkness extends Region {
 		'MapD1',
 	];
 
-	protected $item_locked = true;
-
 	/**
 	 * Create a new Palace of Darkness Region and initalize it's locations
 	 *
@@ -87,19 +85,6 @@ class PalaceOfDarkness extends Region {
 	}
 
 	/**
-	 * Enable/Disable Item locking key logic
-	 *
-	 * @param bool $enable
-	 *
-	 * @return $this
-	 */
-	public function setItemLock(bool $enable = true) {
-		$this->item_locked = $enable;
-
-		return $this;
-	}
-
-	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *
@@ -111,10 +96,7 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Big Key Chest"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('KeyD1', 5);
-			}
-			return $items->has('KeyD1', 4);
+			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		});
 
 		$this->locations["Palace of Darkness - The Arena - Bridge"]->setRequirements(function($locations, $items) {
@@ -123,26 +105,17 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Big Chest"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('Lamp') && $items->has('BigKeyD1') && $items->has('KeyD1', 4);
-			}
-			return $items->has('Lamp') && $items->has('BigKeyD1') && $items->has('KeyD1', 5);
+			return $items->has('Lamp') && $items->has('BigKeyD1') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
 		});
 
 		$this->locations["Palace of Darkness - Compass Chest"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('KeyD1', 4);
-			}
-			return $items->has('KeyD1', 3);
+			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
 		});
 
 		$this->locations["Palace of Darkness - Harmless Hellway"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('KeyD1', 5);
-			}
-			return $items->has('KeyD1', 4);
+			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		});
 
 		$this->locations["Palace of Darkness - Stalfos Basement"]->setRequirements(function($locations, $items) {
@@ -151,17 +124,11 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Dark Basement - Left"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('Lamp') && $items->has('KeyD1', 4);
-			}
-			return $items->has('Lamp') && $items->has('KeyD1', 3);
+			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
 		});
 
 		$this->locations["Palace of Darkness - Dark Basement - Right"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('Lamp') && $items->has('KeyD1', 4);
-			}
-			return $items->has('Lamp') && $items->has('KeyD1', 3);
+			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
 		});
 
 		$this->locations["Palace of Darkness - Map Chest"]->setRequirements(function($locations, $items) {
@@ -169,19 +136,13 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Dark Maze - Top"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('Lamp') && $items->has('KeyD1', 5);
-			}
-			return $items->has('Lamp') && $items->has('KeyD1', 4);
+			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});
 
 		$this->locations["Palace of Darkness - Dark Maze - Bottom"]->setRequirements(function($locations, $items) {
-			if ($this->item_locked) {
-				return $items->has('Lamp') && $items->has('KeyD1', 5);
-			}
-			return $items->has('Lamp') && $items->has('KeyD1', 4);
+			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});

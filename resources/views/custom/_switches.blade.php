@@ -25,16 +25,6 @@
 	<label for="cust-region-bossHaveKey">Boss Hearts can contain Keys</label>
 </div>
 <div class="col-md-6 pb-5">
-	<input id="cust-region-swordShuffle" type="checkbox" name="data[alttp.custom.region.swordShuffle]"
-		class="custom-switch" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-	<label for="cust-region-swordShuffle">Shuffle the Swords (within themselves)</label>
-</div>
-<div class="col-md-6 pb-5">
-	<input id="cust-region-swordsInPool" type="checkbox" name="data[alttp.custom.region.swordsInPool]"
-		class="custom-switch" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-	<label for="cust-region-swordsInPool">Shuffle the Swords (into item pool)</label>
-</div>
-<div class="col-md-6 pb-5">
 	<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]"
 		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 	<label for="cust-spoil-boots">Chance (5%) for boots region to be spoiled by Uncle</label>

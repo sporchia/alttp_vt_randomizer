@@ -20,15 +20,7 @@ class RandomAssumed extends Filler {
 	public function fill(array $dungeon, array $required, array $nice, array $extra) {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
-		$this->world->getRegion('Palace of Darkness')->setItemLock(false);
-
 		$this->fillItemsInLocations($dungeon, $randomized_order_locations, $required);
-
-		$required_no_bow = new Items(array_filter($required, function($item) {
-			return !$item instanceof Item\Bow;
-		}));
-
-		$this->world->getRegion('Palace of Darkness')->setItemLock($this->world->collectItems($required_no_bow)->countItem('KeyD1') < 3);
 
 		// random junk fill
 		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()->randomCollection(mt_rand(0, 15));

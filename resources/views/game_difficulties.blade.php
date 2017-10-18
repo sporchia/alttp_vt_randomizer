@@ -153,7 +153,7 @@
 				<li>Magic Upgrade</li>
 				<li>Mails</li>
 				<li>Shields</li>
-				<li>Silver Arrow Upgrade</li>
+				<li>Silver Arrow Upgrade (except swordless)</li>
 				<li>Tempered Sword</li>
 			</ul>
 			<p>The following items have had their count reduced:</p>
@@ -172,6 +172,44 @@
 				<li>There is only 1 Bottle (4 in Major Glitches)</li>
 				<li>Potions heal 1 heart and restore 1/4 magic</li>
 				<li>Shields in Shops are unpurchasable</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">Insane</h3>
+		</div>
+		<div class="panel-body">
+			<p>Expert not cutting it for you? The following items have been removed:</p>
+			<ul>
+				<li>Arrow Capacity Upgrades</li>
+				<li>Bomb Capacity Upgrades</li>
+				<li>Boomerangs</li>
+				<li>Golden Sword</li>
+				<li>Heart Containers</li>
+				<li>Pieces of Heart</li>
+				<li>Magic Upgrade</li>
+				<li>Mails</li>
+				<li>Shields</li>
+				<li>Silver Arrow Upgrade (except swordless)</li>
+				<li>Tempered Sword</li>
+			</ul>
+			<p>The following items have had their count reduced:</p>
+			<ul>
+				<li>Arrows</li>
+				<li>Bombs</li>
+				<li>Rupees</li>
+			</ul>
+			<p>The following items have been adjusted:</p>
+			<ul>
+				<li>Magic Cape uses 4x Magic (except in spike cave)</li>
+				<li>Cane of Byrna uses 4x Magic (except in spike cave)</li>
+				<li>Magic Powder does not turn Bubbles into Fairies</li>
+				<li>Bug Net doesn't catch fairies</li>
+				<li>There is only 1 Bottle (4 in Major Glitches)</li>
+				<li>Potions don't heal or restore magic</li>
+				<li>Shields in Shops are really unpurchasable</li>
 			</ul>
 		</div>
 	</div>
