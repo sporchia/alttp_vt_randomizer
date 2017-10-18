@@ -31,7 +31,7 @@
 		<div class="panel-body">
 			<p>In this mode you start with an amount of time on the timer, every clock you find will add time to
 				your total time. But if you let the timer reach 0, then you'll be in OHKO mode.</p>
-			<p>Don't dispair though, if you are in OHKO mode and find another clock (no matter how
+			<p>Don't despair though, if you are in OHKO mode and find another clock (no matter how
 				long you have been in OHKO), you get the time of the clock added to your timer.</p>
 			<table class="table table-responsive">
 				<thead>

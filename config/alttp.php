@@ -505,8 +505,6 @@ return [
 		],
 		'region' => [
 			'bossNormalLocation' => false,
-			'swordShuffle' => false,
-			'swordsInPool' => false,
 			'pyramidBowUpgrade' => false,
 			'CompassesMaps' => false,
 			'bossHaveKey' => false,

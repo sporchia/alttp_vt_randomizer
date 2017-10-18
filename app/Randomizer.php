@@ -565,23 +565,17 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function randomizeCredits(Rom $rom) {
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setKingsReturnCredits("fellowship of the ring");
-				break;
-			case 2:
-				$rom->setKingsReturnCredits("the two towers");
-				break;
-		}
+		$rom->setKingsReturnCredits(array_first(mt_shuffle([
+			"the return of the king",
+			"fellowship of the ring",
+			"the two towers",
+		])));
 
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setSanctuaryCredits("read a book");
-				break;
-			case 2:
-				$rom->setSanctuaryCredits("sits in own pew");
-				break;
-		}
+		$rom->setSanctuaryCredits(array_first(mt_shuffle([
+			"the loyal priest",
+			"read a book",
+			"sits in own pew",
+		])));
 
 		$name = array_first(mt_shuffle([
 			"sahasralah", "sabotaging", "sacahuista", "sacahuiste", "saccharase", "saccharide", "saccharify",
@@ -593,20 +587,13 @@ class Randomizer {
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
-		switch (mt_rand(0, 4)) {
-			case 1:
-				$rom->setWoodsmansHutCredits("fresh flapjacks");
-				break;
-			case 2:
-				$rom->setWoodsmansHutCredits("two woodchoppers");
-				break;
-			case 3:
-				$rom->setWoodsmansHutCredits("double lumberman");
-				break;
-			case 4:
-				$rom->setWoodsmansHutCredits("lumberclones");
-				break;
-		}
+		$rom->setWoodsmansHutCredits(array_first(mt_shuffle([
+			"twin lumberjacks",
+			"fresh flapjacks",
+			"two woodchoppers",
+			"double lumberman",
+			"lumberclones",
+		])));
 
 		switch (mt_rand(0, 1)) {
 			case 1:
@@ -614,41 +601,26 @@ class Randomizer {
 				break;
 		}
 
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setDeathMountainCredits("gary the old man");
-				break;
-			case 2:
-				$rom->setDeathMountainCredits("Your ad here");
-				break;
-		}
+		$rom->setDeathMountainCredits(array_first(mt_shuffle([
+			"the lost old man",
+			"gary the old man",
+			"Your ad here",
+		])));
 
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setLostWoodsCredits("dancing pickles");
-				break;
-			case 2:
-				$rom->setLostWoodsCredits("flying vultures");
-				break;
-		}
+		$rom->setLostWoodsCredits(array_first(mt_shuffle([
+			"the forest thief",
+			"dancing pickles",
+			"flying vultures",
+		])));
 
-		switch (mt_rand(0, 5)) {
-			case 1:
-				$rom->setWishingWellCredits("Venus was her name");
-				break;
-			case 2:
-				$rom->setWishingWellCredits("I'm your Venus");
-				break;
-			case 3:
-				$rom->setWishingWellCredits("Yeah, baby, shes got it");
-				break;
-			case 4:
-				$rom->setWishingWellCredits("Venus, I'm your fire");
-				break;
-			case 5:
-				$rom->setWishingWellCredits("Venus, At your desire");
-				break;
-		}
+		$rom->setWishingWellCredits(array_first(mt_shuffle([
+			"venus. queen of faeries",
+			"Venus was her name",
+			"I'm your Venus",
+			"Yeah, baby, shes got it",
+			"Venus, I'm your fire",
+			"Venus, At your desire",
+		])));
 
 		return $this;
 	}

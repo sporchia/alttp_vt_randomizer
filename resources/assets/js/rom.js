@@ -145,6 +145,9 @@ var ROM = (function(blob, loaded_callback) {
 	this.setFastMenu = function(enable) {
 		return new Promise(function(resolve, reject) {
 			this.write(0x180048, enable ? 0x01 : 0x00);
+			this.write(0x6DD9A, enable ? 0x20 : 0x11);
+			this.write(0x6DF2A, enable ? 0x20 : 0x12);
+			this.write(0x6E0E9, enable ? 0x20 : 0x12);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);

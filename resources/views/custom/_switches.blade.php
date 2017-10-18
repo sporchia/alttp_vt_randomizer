@@ -45,6 +45,26 @@
 	<label for="cust-sprite-shuffleOverworldBonkPrizes">Shuffle Overworld Bonk Prizes</label>
 </div>
 <div class="col-md-6 pb-5">
+	<input id="cust-rom-mapOnPickup" type="checkbox" name="data[alttp.custom.rom.mapOnPickup]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-rom-mapOnPickup">Only display Crystals/Pendants on Map Pickup</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-rom-compassOnPickup" type="checkbox" name="data[alttp.custom.rom.compassOnPickup]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-rom-compassOnPickup">Display dungeon counts on Compass Pickup</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-rom-freeItemText" type="checkbox" name="data[alttp.custom.rom.freeItemText]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-rom-freeItemText">Show text box on dungeon item pickup (outside of dungeon)</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-rom-freeItemMenu" type="checkbox" name="data[alttp.custom.rom.freeItemMenu]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-rom-freeItemMenu">Show dungeon item table in menu</label>
+</div>
+<div class="col-md-6 pb-5">
 	<input id="cust-bees" type="checkbox" name="data[alttp.custom.bees]"
 		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="Not" data-size="small">
 	<label id="bees-label" for="cust-bees">the Bees</label>
@@ -131,20 +151,6 @@ $(function() {
 		}
 	});
 
-	$('#cust-region-swordsInPool').on('change', function() {
-		if ($(this).prop('checked')) {
-			if (!$('#cust-region-swordShuffle').prop('checked')) {
-				$('#cust-region-swordShuffle').prop('checked', true).bootstrapToggle('on');
-			}
-		}
-	});
-	$('#cust-region-swordShuffle').on('change', function() {
-		if (!$(this).prop('checked')) {
-			if ($('#cust-region-swordsInPool').prop('checked')) {
-				$('#cust-region-swordsInPool').prop('checked', false).bootstrapToggle('off');
-			}
-		}
-	});
 	$('#cust-bees').on('change', function() {
 		$('#bees-label').html(($(this).prop('checked')) ? 'More Bees!' : 'The Bees!');
 	});
