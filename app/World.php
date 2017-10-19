@@ -434,21 +434,12 @@ class World {
 	}
 
 	/**
-	 * perhaps allow winconditions to be added.
-	 *
-	 * @param ItemCollection $items
+	 * Determine if this World is beatable
 	 *
 	 * @return bool
 	 */
-	public function checkWinCondition(ItemCollection $items) {
-		if (is_array($this->win_condition)) {
-			foreach ($this->win_condition as $condition) {
-				if (!call_user_func($condition, $items)) {
-					return false;
-				}
-			}
-		}
-		return true;
+	public function checkWinCondition() {
+		return $this->getWinCondition()($this->collectItems());
 	}
 
 	/**

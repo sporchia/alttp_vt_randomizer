@@ -206,6 +206,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
+	if (!$rand->getWorld()->checkWinCondition()) {
+		return response('Failed', 409);
+	}
 	$patch = $rom->getWriteLog();
 	$spoiler = $rand->getSpoiler();
 	$hash = $rand->saveSeedRecord();

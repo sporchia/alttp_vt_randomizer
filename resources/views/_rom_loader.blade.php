@@ -1,8 +1,11 @@
 @section('loader')
-<div class="alert alert-danger" role="alert" style="display:none">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>
-  <span class="message">Cannot Read ROM file.</span>
+<div class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	<span class="message">Cannot Read ROM file.</span>
 </div>
 <div id="rom-select" class="panel panel-info" style="display:none">
 	<div class="panel-heading">

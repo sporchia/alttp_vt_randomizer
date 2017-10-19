@@ -67,7 +67,8 @@
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Name</span>
-								<input type="text" id="name" class="name form-control" placeholder="name this">
+								<select id="name" class="name form-control" placeholder="name this">
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6 pb-5">
@@ -173,7 +174,8 @@ function seedApplied(data) {
 }
 function seedFailed(data) {
 	return new Promise(function(resolve, reject) {
-		alert('Seed failed to Gen YO!');
+		$('.alert .message').html('Unable to generate, please check your options.');
+		$('.alert').show();
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 		return resolve('no');
 	});
@@ -219,7 +221,31 @@ $(function() {
 		$('.regions').removeClass('hidden');
 	});
 
-	$('select').change(function() {
+	localforage.getItem('vt.customizer.profiles').then(function(profiles) {
+		var $name = $('#name');
+		profiles = profiles || [];
+		profiles.forEach(function(profile) {
+			var newOption = new Option(profile.name, profile.name, false, false);
+			$name.append(newOption);
+		});
+		$("#name").select2({
+			theme: "bootstrap",
+			width: "100%",
+			tags: true,
+			createTag: function (params) {
+				return {
+					id: params.term,
+					text: params.term,
+					newOption: true
+				}
+			}
+		});
+	});
+	$("#name").change(function() {
+		localforage.setItem('vt.customizer.profiles', $('#name option').map(function(){return {name: this.value};}).get());
+	});
+
+	$('select.item-location').change(function() {
 		config[this.name] = $(this).val();
 		localforage.setItem('vt.customizer', config);
 	});
@@ -243,6 +269,7 @@ $(function() {
 	$('button[name=reset]').on('click', function(e) {
 		e.preventDefault();
 		localforage.removeItem('vt.customizer');
+		localforage.removeItem('vt.customizer.profiles');
 		localforage.removeItem('vt.custom.items');
 		localforage.removeItem('vt.custom.settings');
 		localforage.removeItem('vt.custom.name');
@@ -257,8 +284,8 @@ $(function() {
 		if (!$(target).data('init')) {
 			// this is 3x faster than bs-select, consider switching everything to it if it looks right
 			$(target + " select.item-location").select2({
-			    theme: "bootstrap",
-			    width: "100%"
+				theme: "bootstrap",
+				width: "100%"
 			});
 			$(target).data('init', true);
 		}
@@ -353,25 +380,25 @@ $(function() {
 <script id="medallions" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($medallions as $item)
-	<option value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-medallion" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 <script id="bottles" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($bottles as $item)
-	<option value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-bottle" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 <script id="prizes" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($prizes as $item)
-	<option value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-prize" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 <script id="items" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($items as $item)
-	<option value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-item" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 @overwrite
