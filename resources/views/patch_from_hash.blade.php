@@ -288,6 +288,7 @@ function seedApplied(data) {
 		$('button[name=save]').show().prop('disabled', false);
 		$('#heart-speed').trigger('change');
 		$('#sprite-gfx').trigger('change');
+		$('#generate-music-on').trigger('change');
 		resolve(rom);
 	});
 }
