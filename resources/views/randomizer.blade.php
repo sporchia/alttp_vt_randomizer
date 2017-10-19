@@ -77,7 +77,7 @@
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
 						<option value="easy">Easy</option>
-						<option value="normal">Normal</option>
+						<option value="normal" selected>Normal</option>
 						<option value="hard">Hard</option>
 						<option value="expert">Expert</option>
 						<option value="custom">Custom</option>
