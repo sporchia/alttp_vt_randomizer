@@ -56,8 +56,10 @@ class SkullWoods extends Region {
 			new Location\Prize\Crystal("Skull Woods - Prize", [null, 0x120A3, 0x53F12, 0x53F13, 0x180058, 0x18007B, 0xC704], null, $this),
 		]);
 
-		// F this key
-		$this->locations["Skull Woods - Pinball Room"]->setItem(Item::get('KeyD3'));
+		if ($this->world->config('region.forceSkullWoodsKey', true)) {
+			// F this key
+			$this->locations["Skull Woods - Pinball Room"]->setItem(Item::get('KeyD3'));
+		}
 
 		$this->prize_location = $this->locations["Skull Woods - Prize"];
 	}

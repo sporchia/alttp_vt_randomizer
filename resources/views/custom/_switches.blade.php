@@ -159,7 +159,8 @@ $(function() {
 	localforage.getItem('vt.custom.switches').then(function(value) {
 		if (value !== null) {
 			for (id in value) {
-				var setting = document.getElementById(id)
+				var setting = document.getElementById(id);
+				if (!setting) continue;
 				setting.checked = value[id];
 				$(setting).change();
 			}
@@ -167,7 +168,7 @@ $(function() {
 
 		$('.custom-switch').on('change', function() {
 			var items = {};
-			$('.custom-switch').each(function(){
+			$('.custom-switch').each(function() {
 				items[this.id] = this.checked;
 			});
 

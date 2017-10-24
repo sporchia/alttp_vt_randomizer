@@ -24,6 +24,20 @@ return [
 			],
 		],
 		'variations' => [
+			'key-sanity' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+					'mapsInDungeons' => false,
+					'compassesInDungeons' => false,
+				],
+				'rom' => [
+					'mapOnPickup' => true,
+					'compassOnPickup' => true,
+					'freeItemText' => true,
+					'freeItemMenu' => true,
+				],
+			],
 			'ohko' => [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -107,6 +121,20 @@ return [
 	],
 	'normal' => [
 		'variations' => [
+			'key-sanity' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+					'mapsInDungeons' => false,
+					'compassesInDungeons' => false,
+				],
+				'rom' => [
+					'mapOnPickup' => true,
+					'compassOnPickup' => true,
+					'freeItemText' => true,
+					'freeItemMenu' => true,
+				],
+			],
 			'ohko' => [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -212,6 +240,20 @@ return [
 			'HardMode' => 1,
 		],
 		'variations' => [
+			'key-sanity' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+					'mapsInDungeons' => false,
+					'compassesInDungeons' => false,
+				],
+				'rom' => [
+					'mapOnPickup' => true,
+					'compassOnPickup' => true,
+					'freeItemText' => true,
+					'freeItemMenu' => true,
+				],
+			],
 			'ohko' => [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -319,6 +361,20 @@ return [
 			'HardMode' => 2,
 		],
 		'variations' => [
+			'key-sanity' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+					'mapsInDungeons' => false,
+					'compassesInDungeons' => false,
+				],
+				'rom' => [
+					'mapOnPickup' => true,
+					'compassOnPickup' => true,
+					'freeItemText' => true,
+					'freeItemMenu' => true,
+				],
+			],
 			'ohko' => [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -390,11 +446,11 @@ return [
 	'insane' => [
 		'item' => [
 			'count' => [
-				'Arrow' => 10,
+				'Arrow' => 30,
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade70' => 0,
-				'Bomb' => 10,
+				'Bomb' => 25,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
 				'BombUpgrade50' => 0,
@@ -407,11 +463,11 @@ return [
 				'HalfMagicUpgrade' => 0,
 				'QuarterMagicUpgrade' => 0,
 				'MagicUpgrade' => 0,
-				'OneHundredRupees' => 1,
+				'OneHundredRupees' => 4,
 				'RedBoomerang' => 0,
 				'TenArrows' => 1,
 				'ThreeBombs' => 1,
-				'ThreeHundredRupees' => 1,
+				'ThreeHundredRupees' => 5,
 				'TwentyRupees' => 6,
 				'SilverArrowUpgrade' => 0,
 				'PieceOfHeart' => 0,
@@ -509,6 +565,7 @@ return [
 			'CompassesMaps' => false,
 			'bossHaveKey' => false,
 			'forceUncleSword' => false,
+			'forceSkullWoodsKey' => false,
 		],
 		'rom' => [
 			'HardMode' => 0,
