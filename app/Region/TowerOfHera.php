@@ -160,7 +160,7 @@ class TowerOfHera extends Region {
 
 		$this->locations["Tower of Hera - Big Chest"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return ($main($locations, $items) && $items->has('BigKeyP3'))
-				|| ($mire($locations, $items) && ($items->has('BigKeyP3') || $items->has('BigKeyP6')));
+				|| ($mire($locations, $items) && ($items->has('BigKeyP3') || $items->has('BigKeyD6')));
 		});
 
 		$this->locations["Tower of Hera - Moldorm"]->setRequirements(function($locations, $items) use ($main, $mire) {
@@ -171,7 +171,7 @@ class TowerOfHera extends Region {
 
 		$this->can_complete = function($locations, $items) use ($main, $mire) {
 			return ((($main($locations, $items) && $items->has('BigKeyP3'))
-					|| ($mire($locations, $items) && ($items->has('BigKeyP3') || $items->has('BigKeyP6'))))
+					|| ($mire($locations, $items) && ($items->has('BigKeyP3') || $items->has('BigKeyD6'))))
 				&& ($items->hasSword() || $items->has('Hammer')))
 			|| ($locations["Tower of Hera - Big Chest"]->canAccess($items)
 				&& $locations["Swamp Palace - Arrghus"]->canAccess($items));
