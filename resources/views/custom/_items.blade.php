@@ -30,7 +30,7 @@ $items = [
 		'name' => 'Pegasus Boots',
 	],
 	'PowerGlove' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Power Glove',
 	],
 	'Cape' => [
@@ -74,7 +74,7 @@ $items = [
 		'name' => 'Ice Rod',
 	],
 	'TitansMitt' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Titans Mitt',
 	],
 	'Ether' => [
@@ -94,19 +94,19 @@ $items = [
 		'name' => 'Bottle',
 	],
 	'L1Sword' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Fighters Sword',
 	],
 	'MasterSword' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Master Sword',
 	],
 	'L3Sword' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Tempered Sword',
 	],
 	'L4Sword' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Golden Sword',
 	],
 	'BowAndSilverArrows' => [
@@ -138,7 +138,7 @@ $items = [
 		'name' => 'Arrow Upgrade (+70)',
 	],
 	'BlueMail' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Blue Mail',
 	],
 	'Bomb' => [
@@ -170,15 +170,15 @@ $items = [
 		'name' => 'Red Boomerang',
 	],
 	'BlueShield' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Blue Shield',
 	],
 	'RedShield' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Red Shield',
 	],
 	'MirrorShield' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Mirror Shield',
 	],
 	'BossHeartContainer' => [
@@ -202,7 +202,7 @@ $items = [
 		'name' => 'Piece Of Heart Container',
 	],
 	'RedMail' => [
-		'count' => 1,
+		'count' => 0,
 		'name' => 'Red Mail',
 	],
 	'CaneOfByrna' => [
@@ -482,19 +482,19 @@ $items = [
 		'name' => 'Triforce Piece'
 	],
 	'ProgressiveShield' => [
-		'count' => 0,
+		'count' => 3,
 		'name' => 'Progressive Shield',
 	],
 	'ProgressiveGlove' => [
-		'count' => 0,
+		'count' => 2,
 		'name' => 'Progressive Glove',
 	],
 	'ProgressiveSword' => [
-		'count' => 0,
+		'count' => 4,
 		'name' => 'Progressive Sword',
 	],
 	'ProgressiveArmor' => [
-		'count' => 0,
+		'count' => 2,
 		'name' => 'Progressive Armor',
 	],
 	'GreenClock' => [

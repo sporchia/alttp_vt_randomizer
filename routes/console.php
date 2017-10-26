@@ -122,6 +122,9 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 		imagedestroy($im);
 		imagepng($dst, "$spr.lg.png");
 		imagedestroy($dst);
+
+		//montage *.spr.lg.png -tile 6x1 -background none -geometry +4+4 sprites.X.lg.png
+		//montage *.spr.png -tile x1 -background none -geometry +0+0 sprites.X.png
 	}
 });
 

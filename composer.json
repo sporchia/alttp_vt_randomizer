@@ -18,7 +18,8 @@
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0",
-        "z3/entrancerandomizer":"0.4.7"
+        "league/flysystem-rackspace": "^1.0",
+        "z3/entrancerandomizer": "0.4.7"
     },
     "require-dev": {
         "sami/sami": "*",

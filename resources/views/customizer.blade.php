@@ -9,7 +9,6 @@
 @section('content')
 @yield('loader')
 <form id="customizer">
-	<input type="hidden" id="seed" name="seed" value="0" />
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="custom" />
 	<input type="hidden" name="variation" value="none" />
@@ -67,8 +66,7 @@
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Name</span>
-								<select id="name" class="name form-control" placeholder="name this">
-								</select>
+								<input type="text" id="name" class="name form-control" placeholder="name this">
 							</div>
 						</div>
 						<div class="col-md-6 pb-5">
@@ -80,6 +78,17 @@
 									<option value="MajorGlitches">Major Glitches</option>
 									<option value="None">None (I know what I'm doing)</option>
 								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">RNG Seed</span>
+								<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
+								<span class="input-group-btn">
+									<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -221,30 +230,6 @@ $(function() {
 		$('.regions').removeClass('hidden');
 	});
 
-	localforage.getItem('vt.customizer.profiles').then(function(profiles) {
-		var $name = $('#name');
-		profiles = profiles || [];
-		profiles.forEach(function(profile) {
-			var newOption = new Option(profile.name, profile.name, false, false);
-			$name.append(newOption);
-		});
-		$("#name").select2({
-			theme: "bootstrap",
-			width: "100%",
-			tags: true,
-			createTag: function (params) {
-				return {
-					id: params.term,
-					text: params.term,
-					newOption: true
-				}
-			}
-		});
-	});
-	$("#name").change(function() {
-		localforage.setItem('vt.customizer.profiles', $('#name option').map(function(){return {name: this.value};}).get());
-	});
-
 	$('select.item-location').change(function() {
 		config[this.name] = $(this).val();
 		localforage.setItem('vt.customizer', config);
@@ -271,11 +256,13 @@ $(function() {
 		localforage.removeItem('vt.customizer');
 		localforage.removeItem('vt.customizer.profiles');
 		localforage.removeItem('vt.custom.items');
+		localforage.removeItem('vt.custom.switches');
 		localforage.removeItem('vt.custom.settings');
 		localforage.removeItem('vt.custom.name');
 		localforage.removeItem('vt.custom.logic');
 		localforage.removeItem('vt.custom.mode');
 		localforage.removeItem('vt.custom.goal');
+		localforage.removeItem('vt.custom.seed');
 		window.location = window.location;
 	});
 
@@ -317,7 +304,6 @@ $(function() {
 
 	$('#name').on('change', function() {
 		localforage.setItem('vt.custom.name', $(this).val());
-		$('input[name=name]').val($(this).val());
 	});
 	localforage.getItem('vt.custom.name').then(function(value) {
 		if (value === null) return;
@@ -356,6 +342,15 @@ $(function() {
 		if (value === null) return;
 		$('#goal').val(value);
 		$('#goal').trigger('change');
+	});
+
+	$('#seed').on('change', function() {
+		localforage.setItem('vt.custom.seed', $(this).val());
+	});
+	localforage.getItem('vt.custom.seed').then(function(value) {
+		if (value === null) return;
+		$('#seed').val(value);
+		$('#seed').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {

@@ -41,6 +41,21 @@ return [
 			'visibility' => 'public',
 		],
 
+        'sprites' => [
+            'driver' => 'local',
+            'root'   => resource_path('sprites'),
+        ],
+
+		'rackspace' => [
+			'driver'    => 'rackspace',
+			'username'  => env('RACKSPACE_USER', ''),
+			'key'       => env('RACKSPACE_KEY', ''),
+			'container' => 'sprites',
+			'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
+			'region'    => 'ORD',
+			'url_type'  => 'publicURL',
+		],
+
 		's3' => [
 			'driver' => 's3',
 			'key' => 'your-key',
