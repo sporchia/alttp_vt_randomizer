@@ -81,6 +81,10 @@ class EntranceRandomizer extends Randomizer {
 		$er = json_decode($proc->getOutput());
 		$patch = $er->patch;
 		array_walk($patch, function(&$write, $address) {
+			if ($address >= 0x76928 && $address <= 0x76C95) {
+				// we moved this table, so lets be nice neighbors and move the writes
+				$address = $address + 0x10ABDC;
+			}
 			$write = [$address => $write];
 		});
 		$this->patch = array_values((array) $patch);

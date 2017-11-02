@@ -122,5 +122,24 @@
 		</div>
 	</div>
 
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Key-sanity</h3>
+		</div>
+		<div class="panel-body">
+			<p>Game not random enough for you? Looking for the real challenge?</p>
+			<p>FINE!</p>
+			<p>All Maps, Compasses, and Keys found in chests are no longer tied to their dungeons!</p>
+			<p>You will have to search high and low to find the keys you need to progress in dungeons. Keys found on
+				enemies or under pots will remain the same.</p>
+			<p>Also we wanted to make Maps and Compasses worth more, so here it is: Your overworld map wont show any
+				dungeon information until you collect the map for that dungeon (and if you thought the music would
+				get you by, think again, that's been randomized). Compasses, well those will show you how many chests
+				you have checked in a dungeon after you collect it.</p>
+			<p>You're probably wondering how you know which Key/Map/Compass you found? We got you covered, there will
+				be a text box that lets you know which dungeon it belongs to, but also the menu will have a table to
+				help you if you don't like paying attention to those text boxes.</p>
+		</div>
+	</div>
 </div>
 @overwrite

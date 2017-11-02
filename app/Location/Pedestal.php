@@ -230,7 +230,7 @@ class Pedestal extends Location {
 			case Item::get('BigKeyD5'):
 				return "A frozen\nbig key\nrests here";
 			case Item::get('BigKeyD3'):
-				return "The big key\nnear here";
+				return "The big key\nof the dark\nforest";
 			case Item::get('BigKeyD6'):
 				return "The big key\nto Vitreous";
 			case Item::get('BigKeyD1'):

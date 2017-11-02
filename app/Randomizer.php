@@ -523,6 +523,10 @@ class Randomizer {
 		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
 
+		if (static::class == self::class) {
+			$rom->writeCredits();
+		}
+
 		$this->seed->patch = json_encode($rom->getWriteLog());
 		$this->seed->build = Rom::BUILD;
 
@@ -848,6 +852,7 @@ class Randomizer {
 			"\n   O  M  G",
 			" Hello.  Will\n  you be my\n   friend?",
 			"   Beetorp\n     was\n    here!",
+			"The Wind Fish\nwill wake\nsoon.    Hoot!",
 		])));
 
 		return $this;
