@@ -83,7 +83,7 @@ class HauntedGrove extends Dig {
 			case Item::get('PowerGlove'):
 				return "body-building boy lifts again";
 			case Item::get('TitansMitt'):
-				return "body-building boy has bling again";
+				return "body-building boy has gold again";
 			case Item::get('BookOfMudora'):
 				return "book-worm boy can read again";
 			case Item::get('Flippers'):
@@ -97,7 +97,7 @@ class HauntedGrove extends Dig {
 			case Item::get('RedMail'):
 				return "tailor boy fears nothing again";
 			case Item::get('PieceOfHeart'):
-				return "life boy feels a some love again";
+				return "life boy feels some love again";
 			case Item::get('BossHeartContainer'):
 			case Item::get('HeartContainer'):
 			case Item::get('HeartContainerNoAnimation'):

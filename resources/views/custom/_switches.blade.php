@@ -30,11 +30,6 @@
 	<label for="cust-spoil-boots">Chance (5%) for boots region to be spoiled by Uncle</label>
 </div>
 <div class="col-md-6 pb-5">
-	<input id="cust-region-CompassesMaps" type="checkbox" name="data[alttp.custom.region.CompassesMaps]"
-		class="custom-switch" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-	<label for="cust-region-CompassesMaps">Dungeons Contain Compasses and Maps</label>
-</div>
-<div class="col-md-6 pb-5">
 	<input id="cust-sprite-shufflePrizePack" type="checkbox" name="data[alttp.custom.sprite.shufflePrizePack]"
 		class="custom-switch" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 	<label for="cust-sprite-shufflePrizePack">Shuffle Prize Packs</label>
@@ -63,6 +58,26 @@
 	<input id="cust-rom-freeItemMenu" type="checkbox" name="data[alttp.custom.rom.freeItemMenu]"
 		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 	<label for="cust-rom-freeItemMenu">Show dungeon item table in menu</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-region-wildCompasses" type="checkbox" name="data[alttp.custom.region.wildCompasses]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-region-wildCompasses">Compasses shuffled outside dungeon</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-region-wildMaps" type="checkbox" name="data[alttp.custom.region.wildMaps]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-region-wildMaps">Maps shuffled outside dungeon</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-region-wildKeys" type="checkbox" name="data[alttp.custom.region.wildKeys]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-region-wildKeys">Small Keys shuffled outside dungeon</label>
+</div>
+<div class="col-md-6 pb-5">
+	<input id="cust-region-wildBigKeys" type="checkbox" name="data[alttp.custom.region.wildBigKeys]"
+		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+	<label for="cust-region-wildBigKeys">Big Keys shuffled outside dungeon</label>
 </div>
 <div class="col-md-6 pb-5">
 	<input id="cust-bees" type="checkbox" name="data[alttp.custom.bees]"

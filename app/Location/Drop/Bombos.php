@@ -56,7 +56,7 @@ class Bombos extends Location {
 			case Item::get('KeyD5'):
 				return "A frozen\nsmall key\nrests here";
 			case Item::get('KeyD3'):
-				return "The small key\nnear here";
+				return "The small key\nof the dark\nforest";
 			case Item::get('KeyD6'):
 				return "The small key\nto Vitreous";
 			case Item::get('KeyD1'):

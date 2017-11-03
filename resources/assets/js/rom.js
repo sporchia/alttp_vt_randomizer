@@ -133,9 +133,9 @@ var ROM = (function(blob, loaded_callback) {
 
 	this.setMusicVolume = function(enable) {
 		return new Promise(function(resolve, reject) {
-			for (volume in this.music) {
-				for (var i = 0; i < this.music[volume].length; i++) {
-					u_array[this.music[volume][i]] = enable ? volume : 0;
+			for (volume in music) {
+				for (var i = 0; i < music[volume].length; i++) {
+					u_array[music[volume][i]] = enable ? volume : 0;
 				}
 			}
 			resolve(this);

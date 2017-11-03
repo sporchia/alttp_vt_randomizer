@@ -128,6 +128,28 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 	}
 });
 
+Artisan::command('alttp:sprpub', function() {
+	foreach (Storage::disk('sprites')->allFiles('') as $file) {
+		if (preg_match('/\.DS_Store$/', $file)) {
+			continue;
+		}
+		if (preg_match('/\.gitignore$/', $file)) {
+			continue;
+		}
+		if (Storage::disk('rackspace')->has($file)) {
+			continue;
+		}
+
+		$this->info($file);
+		Storage::disk('rackspace')->put($file, Storage::disk('sprites')->get($file), [
+			'headers' => [
+				'Access-Control-Expose-Headers' => 'Access-Control-Allow-Origin',
+				'Access-Control-Allow-Origin' => '*',
+			]
+		]);
+	}
+});
+
 // this is a dirty hack to get some stats fast
 // @TODO: make this a proper command, and clean it up
 Artisan::command('alttp:ss {dir} {outdir}', function($dir, $outdir) {
