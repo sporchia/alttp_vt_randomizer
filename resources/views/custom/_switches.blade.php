@@ -46,7 +46,7 @@
 </div>
 <div class="col-md-6 pb-5">
 	<input id="cust-rom-compassOnPickup" type="checkbox" name="data[alttp.custom.rom.compassOnPickup]"
-		class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+		class="custom-switch" value="pickup" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 	<label for="cust-rom-compassOnPickup">Display dungeon counts on Compass Pickup</label>
 </div>
 <div class="col-md-6 pb-5">

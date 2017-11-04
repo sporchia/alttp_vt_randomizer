@@ -23,6 +23,9 @@ return [
 				'Sword' => 'TwentyRupees',
 			],
 		],
+		'rom' => [
+			'compassOnPickup' => 'on',
+		],
 		'variations' => [
 			'key-sanity' => [
 				'region' => [
@@ -33,7 +36,6 @@ return [
 				],
 				'rom' => [
 					'mapOnPickup' => true,
-					'compassOnPickup' => true,
 					'freeItemText' => true,
 					'freeItemMenu' => true,
 				],
@@ -130,7 +132,7 @@ return [
 				],
 				'rom' => [
 					'mapOnPickup' => true,
-					'compassOnPickup' => true,
+					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
 				],
@@ -249,7 +251,7 @@ return [
 				],
 				'rom' => [
 					'mapOnPickup' => true,
-					'compassOnPickup' => true,
+					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
 				],
@@ -370,7 +372,7 @@ return [
 				],
 				'rom' => [
 					'mapOnPickup' => true,
-					'compassOnPickup' => true,
+					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
 				],
@@ -494,7 +496,7 @@ return [
 				],
 				'rom' => [
 					'mapOnPickup' => true,
-					'compassOnPickup' => true,
+					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
 				],
@@ -658,7 +660,7 @@ return [
 		'wizzrobe.4.spr' => 'Wizzrobe',
 		'yunica.1.spr' => 'Yunica',
 		'zelda.2.spr' => 'Zelda',
-		'zersuitsamus.1.spr' => 'Zero Suit Samus',
+		'zerosuitsamus.1.spr' => 'Zero Suit Samus',
 		'zora.1.spr' => 'Zora',
 	],
 ];

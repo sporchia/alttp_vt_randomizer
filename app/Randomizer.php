@@ -415,8 +415,6 @@ class Randomizer {
 		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0) ?: 0);
 		$rom->setGoalIcon($this->config('item.Goal.Icon', 'triforce'));
 
-		$rom->setClockMode($this->config('rom.timerMode', 'off'));
-
 		$rom->setHardMode($this->config('rom.HardMode', 0));
 
 		$rom->setRupoorValue($this->config('item.value.Rupoor', 0) ?: 0);
@@ -449,7 +447,7 @@ class Randomizer {
 		}
 
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
-		$rom->setCompassMode($this->config('rom.compassOnPickup', false));
+		$rom->setCompassMode($this->config('rom.compassOnPickup', 'off'));
 		$rom->setFreeItemTextMode($this->config('rom.freeItemText', false));
 		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', false));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
@@ -486,6 +484,9 @@ class Randomizer {
 			$this->config('item.value.ArrowUpgrade5', 0),
 			$this->config('item.value.ArrowUpgrade10', 0),
 		]);
+
+		// currently has to be after compass mode, as this will override compass mode.
+		$rom->setClockMode($this->config('rom.timerMode', 'off'));
 
 		$rom->setBlueClock($this->config('item.value.BlueClock', 0) ?: 0);
 		$rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);

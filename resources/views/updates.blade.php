@@ -4,15 +4,16 @@
 <h2>VT8.27</h2>
 <div class="well">
 	<ul>
+		<li>Easy difficulty will always have dungeon counts in HUD enabled</li>
 		<li>Added + to golden bee bottle in menu</li>
 		<li>Added letter to signify bottle contents for potions in menu</li>
 		<li>Added "fast menu" under Rom options, not available in Race Roms</li>
-		<li>Hard/Expert/Insane has defualt magic usage for Blind/Ice Palace spike room/Turtle Rock laser bridge</li>
+		<li>Hard/Expert/Insane has default magic usage for Blind/Ice Palace spike room/Turtle Rock laser bridge</li>
 		<li>Added key-sanity</li>
 		<li>Updated ending sequence to allow better tag lines</li>
 		<li>Corrected Bow placement issue in Palace of Darkness</li>
 		<li>Added insane difficulty</li>
-		<li>Added Ganon shuffle to ER Maddness and Insanity modes</li>
+		<li>Added Ganon shuffle to ER Madness and Insanity modes</li>
 		<li>Removed standard mode from ER</li>
 		<li>Cleaned up the spoiler section of the site to assist in finding things</li>
 		<li>Complete overhaul of the custom section, see the new <a href="/customizer">customizer</a></li>

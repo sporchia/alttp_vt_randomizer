@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-10-30';
-	const HASH = '3891933e7ae7aa21bc9315e256d04173';
+	const BUILD = '2017-11-04';
+	const HASH = '1deebb05eccefd2ab68297c6e9c0d25f';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -221,6 +221,7 @@ class Rom {
 	 * @return $this;
 	 */
 	public function setClockMode(string $mode = 'off', bool $restart = false) : self {
+		$compass_override = true;
 		switch ($mode) {
 			case 'stopwatch':
 				$bytes = [0x02, 0x01];
@@ -238,7 +239,13 @@ class Rom {
 			case 'off':
 			default:
 				$bytes = [0x00, 0x00];
+				$compass_override = false;
 				break;
+		}
+
+		// @TODO: temporarly disable compass mode while this is enabled since they occupy the same region of the hud.
+		if ($compass_override) {
+			$this->setCompassMode('off');
 		}
 
 		$bytes = array_merge($bytes, [$restart ? 0x01 : 0x00]);
@@ -1635,12 +1642,24 @@ class Rom {
 	/**
 	 * Enable compass to show dungeon count
 	 *
-	 * @param bool $show_count switch on or off
+	 * @param string $setting switch on or off
 	 *
 	 * @return $this
 	 */
-	public function setCompassMode(bool $show_count = false) : self {
-		$this->write(0x18003C, pack('C*', $show_count ? 0x01 : 0x00));
+	public function setCompassMode(string $setting = 'off') : self {
+		switch ($setting) {
+			case 'on':
+				$byte = 0x02;
+				break;
+			case 'pickup':
+				$byte = 0x01;
+				break;
+			case 'off':
+			default:
+				$byte = 0x00;
+		}
+
+		$this->write(0x18003C, pack('C', $byte));
 
 		return $this;
 	}
