@@ -123,6 +123,7 @@ class Witch extends Npc {
 			case Item::get('Heart'):
 				return "trading for transplant";
 			case Item::get('Arrow'):
+				return "fungus for arrow";
 			case Item::get('TenArrows'):
 				return "fungus for arrows";
 			case Item::get('SmallMagic'):
