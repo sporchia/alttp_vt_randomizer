@@ -1361,6 +1361,7 @@ class Randomizer {
 
 		// Pack drop chance
 		switch ($this->config('rom.HardMode', 0)) {
+			case 3:
 			case 2:
 				list($low, $high) = [3, 4]; // 12.5%, 6.25%
 				break;

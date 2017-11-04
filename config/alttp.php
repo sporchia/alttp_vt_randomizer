@@ -208,7 +208,7 @@ return [
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade70' => 0,
-				'Bomb' => 10,
+				'Bomb' => 17,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
 				'BombUpgrade50' => 0,
@@ -268,6 +268,7 @@ return [
 						'TriforcePiece' => 40,
 						'FiveRupees' => 5,
 						'Arrow' => 1,
+						'Bomb' => 11,
 					],
 					'Goal' => [
 						'Required' => 30,
@@ -283,6 +284,7 @@ return [
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 5, // 4 + 300
 						'Arrow' => 1,
+						'Bomb' => 10,
 						'GreenClock' => 20,
 					],
 					'value' => [
@@ -306,6 +308,7 @@ return [
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
+						'Bomb' => 10,
 					],
 					'value' => [
 						'GreenClock' => 240, // reversed for stopwatch
@@ -325,11 +328,11 @@ return [
 	'expert' => [
 		'item' => [
 			'count' => [
-				'Arrow' => 10,
+				'Arrow' => 33,
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
 				'ArrowUpgrade70' => 0,
-				'Bomb' => 10,
+				'Bomb' => 30,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
 				'BombUpgrade50' => 0,
@@ -387,7 +390,7 @@ return [
 				'item' => [
 					'count' => [
 						'Arrow' => 5,
-						'Bomb' => 5,
+						'Bomb' => 23,
 						'FiveRupees' => 5,
 						'TriforcePiece' => 40,
 					],
