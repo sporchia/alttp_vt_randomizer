@@ -34,14 +34,14 @@ class HyruleCastleEscape extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[dungeon-C-1F] Sanctuary", 0xEA79, null, $this),
-			new Location\Chest("[dungeon-C-B1] Escape - final basement room [left chest]", 0xEB5D, null, $this),
-			new Location\Chest("[dungeon-C-B1] Escape - final basement room [middle chest]", 0xEB60, null, $this),
-			new Location\Chest("[dungeon-C-B1] Escape - final basement room [right chest]", 0xEB63, null, $this),
-			new Location\Chest("[dungeon-C-B1] Escape - first B1 room", 0xE96E, null, $this),
-			new Location\Chest("[dungeon-C-B1] Hyrule Castle - boomerang room", 0xE974, null, $this),
-			new Location\Chest("[dungeon-C-B1] Hyrule Castle - map room", 0xEB0C, null, $this),
-			new Location\Chest("[dungeon-C-B3] Hyrule Castle - next to Zelda", 0xEB09, null, $this),
+			new Location\Chest("Sanctuary", 0xEA79, null, $this),
+			new Location\Chest("Sewers - Secret Room - Left", 0xEB5D, null, $this),
+			new Location\Chest("Sewers - Secret Room - Middle", 0xEB60, null, $this),
+			new Location\Chest("Sewers - Secret Room - Right", 0xEB63, null, $this),
+			new Location\Chest("Sewers - Dark Cross", 0xE96E, null, $this),
+			new Location\Chest("Hyrule Castle - Boomerang Chest", 0xE974, null, $this),
+			new Location\Chest("Hyrule Castle - Map Chest", 0xEB0C, null, $this),
+			new Location\Chest("Hyrule Castle - Zelda's Cell", 0xEB09, null, $this),
 		]);
 	}
 
@@ -51,14 +51,14 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-C-1F] Sanctuary"]->setItem(Item::get('HeartContainer'));
-		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setItem(Item::get('ThreeHundredRupees'));
-		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setItem(Item::get('KeyH2'));
-		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setItem(Item::get('Boomerang'));
-		$this->locations["[dungeon-C-B1] Hyrule Castle - map room"]->setItem(Item::get('MapH2'));
-		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setItem(Item::get('Lamp'));
+		$this->locations["Sanctuary"]->setItem(Item::get('HeartContainer'));
+		$this->locations["Sewers - Secret Room - Left"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Sewers - Secret Room - Middle"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Sewers - Secret Room - Right"]->setItem(Item::get('TenArrows'));
+		$this->locations["Sewers - Dark Cross"]->setItem(Item::get('KeyH2'));
+		$this->locations["Hyrule Castle - Boomerang Chest"]->setItem(Item::get('Boomerang'));
+		$this->locations["Hyrule Castle - Map Chest"]->setItem(Item::get('MapH2'));
+		$this->locations["Hyrule Castle - Zelda's Cell"]->setItem(Item::get('Lamp'));
 
 		return $this;
 	}
@@ -70,7 +70,7 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-C-1F] Sanctuary"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Sanctuary"]->setFillRules(function($item, $locations, $items) {
 			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('KeyH2');
 			}
@@ -78,7 +78,7 @@ class HyruleCastleEscape extends Region {
 			return true;
 		});
 
-		$this->locations["[dungeon-C-B1] Escape - final basement room [left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Sewers - Secret Room - Left"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
@@ -92,7 +92,7 @@ class HyruleCastleEscape extends Region {
 			return true;
 		});
 
-		$this->locations["[dungeon-C-B1] Escape - final basement room [middle chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Sewers - Secret Room - Middle"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
@@ -106,7 +106,7 @@ class HyruleCastleEscape extends Region {
 			return true;
 		});
 
-		$this->locations["[dungeon-C-B1] Escape - final basement room [right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Sewers - Secret Room - Right"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
@@ -120,7 +120,7 @@ class HyruleCastleEscape extends Region {
 			return true;
 		});
 
-		$this->locations["[dungeon-C-B1] Escape - first B1 room"]->setRequirements(function($locations, $items) {
+		$this->locations["Sewers - Dark Cross"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->has('Lamp');
 			}
@@ -128,7 +128,7 @@ class HyruleCastleEscape extends Region {
 			return true;
 		});
 
-		$this->locations["[dungeon-C-B1] Hyrule Castle - boomerang room"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Hyrule Castle - Boomerang Chest"]->setFillRules(function($item, $locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('KeyH2');
 			}
@@ -136,7 +136,7 @@ class HyruleCastleEscape extends Region {
 			return true;
 		});
 
-		$this->locations["[dungeon-C-B3] Hyrule Castle - next to Zelda"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Hyrule Castle - Zelda's Cell"]->setFillRules(function($item, $locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('KeyH2');
 			}

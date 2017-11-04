@@ -1,6 +1,36 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.27</h2>
+<div class="well">
+	<ul>
+		<li>Easy difficulty will always have dungeon counts in HUD enabled</li>
+		<li>Added + to golden bee bottle in menu</li>
+		<li>Added letter to signify bottle contents for potions in menu</li>
+		<li>Added "fast menu" under Rom options, not available in Race Roms</li>
+		<li>Hard/Expert/Insane has default magic usage for Blind/Ice Palace spike room/Turtle Rock laser bridge</li>
+		<li>Added key-sanity</li>
+		<li>Updated ending sequence to allow better tag lines</li>
+		<li>Corrected Bow placement issue in Palace of Darkness</li>
+		<li>Added insane difficulty</li>
+		<li>Added Ganon shuffle to ER Madness and Insanity modes</li>
+		<li>Removed standard mode from ER</li>
+		<li>Cleaned up the spoiler section of the site to assist in finding things</li>
+		<li>Complete overhaul of the custom section, see the new <a href="/customizer">customizer</a></li>
+		<li>Added many new player options<br />
+			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.27.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
+	</ul>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/u8QMJsqMGJw?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+
 <h2>VT8.26.2</h2>
 <div class="well">
 	<ul>

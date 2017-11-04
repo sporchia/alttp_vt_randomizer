@@ -40,6 +40,55 @@ function ksortr(array &$array, int $sort_flags = SORT_REGULAR) {
 }
 
 /**
+ * Second order sort of array
+ *
+ * @param array $array array to sort
+ * @param mixed $index second order index to sort on
+ * @param string $order diretion of sort
+ * @param bool $natsort flag for natural sort
+ * @param bool $case_sensitive flag for case sensitivity
+ *
+ * @return array
+ */
+function sabsi(array $array, $index, string $order = 'asc', bool $natsort = false, bool $case_sensitive = false) {
+	if (!count($array)) {
+		return $array;
+	}
+
+	$temp = [];
+	$sorted = [];
+
+	foreach(array_keys($array) as $key) {
+		$temp[$key] = $array[$key][$index];
+	}
+
+	if ($natsort) {
+		if ($case_sensitive) {
+			natsort($temp);
+		} else {
+			natcasesort($temp);
+		}
+		if ($order != 'asc') {
+			$temp = array_reverse($temp, true);
+		}
+	} else {
+		if ($order == 'asc') {
+			asort($temp);
+		} else {
+			arsort($temp);
+		}
+	}
+	foreach(array_keys($temp) as $key) {
+		if (is_numeric($key)) {
+			$sorted[] = $array[$key];
+		} else {
+			$sorted[$key] = $array[$key];
+		}
+	}
+	return $sorted;
+}
+
+/**
  * Take our patch format and merge it down to a more compact version
  *
  * @param array $patch_left Left side of patch

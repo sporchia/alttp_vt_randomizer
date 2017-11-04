@@ -35,6 +35,14 @@ class EntranceRandomizer extends Randomizer {
 		$this->goal = $goal;
 		$this->seed = new Seed;
 
+		// Add shuffle Ganon
+		switch ($this->shuffle) {
+			case 'madness':
+			case 'insanity':
+				$this->shuffle .= ' --shuffleganon';
+				break;
+		}
+
 		switch ($this->variation) {
 			case 'timed-race':
 				$this->difficulty = 'timed';
@@ -73,6 +81,10 @@ class EntranceRandomizer extends Randomizer {
 		$er = json_decode($proc->getOutput());
 		$patch = $er->patch;
 		array_walk($patch, function(&$write, $address) {
+			if ($address >= 0x76928 && $address <= 0x76C95) {
+				// we moved this table, so lets be nice neighbors and move the writes
+				$address = $address + 0x10ABDC;
+			}
 			$write = [$address => $write];
 		});
 		$this->patch = array_values((array) $patch);
@@ -81,6 +93,7 @@ class EntranceRandomizer extends Randomizer {
 		$this->spoiler = json_decode($er->spoiler);
 		$this->spoiler->meta->build = Rom::BUILD;
 		$this->spoiler->meta->logic = $this->getLogic();
+		$this->spoiler->meta->variation = $this->variation;
 
 		return $this;
 	}

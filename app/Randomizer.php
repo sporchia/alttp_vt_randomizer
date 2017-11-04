@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 26;
+	const LOGIC = 27;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
@@ -21,22 +21,22 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	static protected $logic_array = [
-		0xB0, 0x47, 0x7A, 0xB6, 0xC5, 0x8E, 0x33, 0xE8,0x1F, 0xE5, 0xCE, 0x39, 0xB9, 0xBF, 0x7F, 0x2C,
-		0xBC, 0x9A, 0x30, 0x61, 0xD2, 0x5B, 0x88, 0x35,0x48, 0x01, 0x3D, 0x6D, 0xBD, 0x19, 0xB4, 0x57,
-		0xF7, 0x2B, 0xEB, 0xF8, 0x90, 0x23, 0x7B, 0x4B,0x5A, 0x6A, 0x78, 0x58, 0x00, 0x81, 0xDC, 0x49,
-		0x07, 0x80, 0x63, 0x8B, 0x45, 0xDD, 0x4D, 0x27,0x6B, 0x13, 0xC4, 0x67, 0xA7, 0x37, 0xEF, 0x46,
-		0x1A, 0xD1, 0x5F, 0xC8, 0xB7, 0x99, 0x52, 0xB8,0xBB, 0x06, 0xE2, 0xDF, 0x73, 0xB5, 0x6C, 0x0F,
-		0x94, 0xA2, 0xDE, 0x2F, 0x16, 0x62, 0xA5, 0x5E,0x09, 0x11, 0xF1, 0x10, 0xFA, 0x43, 0x0D, 0x3A,
-		0xE6, 0x38, 0x3F, 0x14, 0xCA, 0x79, 0xE9, 0x18,0xD5, 0xCF, 0xC2, 0xE0, 0x0C, 0x59, 0x3B, 0x15,
-		0x32, 0xC1, 0x87, 0xAD, 0xF0, 0x85, 0x84, 0xB1,0xE1, 0xA8, 0xCD, 0xEA, 0x20, 0x60, 0xA0, 0x40,
-		0xF6, 0xAF, 0x7D, 0xE7, 0x56, 0x82, 0x83, 0x36,0xFE, 0xD9, 0x64, 0x54, 0xA1, 0x92, 0xFC, 0x9C,
-		0xC7, 0x51, 0x08, 0x71, 0xFD, 0xAE, 0x9F, 0x31,0x44, 0xC9, 0x50, 0xC6, 0x9E, 0x55, 0x7C, 0x29,
-		0xBA, 0xD7, 0xF3, 0xAB, 0x93, 0xA4, 0x3E, 0xA9,0xDA, 0xD6, 0x7E, 0xAA, 0x42, 0x4E, 0x89, 0x2A,
-		0x2E, 0x12, 0xF4, 0xAC, 0xF2, 0x8D, 0xA6, 0x9D,0x91, 0x05, 0xFF, 0x76, 0x95, 0xBE, 0x4A, 0x72,
-		0xEC, 0x41, 0x26, 0x98, 0xE3, 0x34, 0x1D, 0xA3,0x77, 0x28, 0xFB, 0x1E, 0x5C, 0x53, 0xCB, 0xC0,
-		0xB2, 0x0B, 0x3C, 0x65, 0xED, 0x8F, 0xD0, 0x22,0x25, 0x02, 0x66, 0xCC, 0xC3, 0x69, 0x70, 0x8A,
-		0x2D, 0x96, 0x0E, 0x75, 0xD8, 0x68, 0xEE, 0x03,0xDB, 0x4F, 0x6E, 0x6F, 0x8C, 0xD4, 0x1B, 0x24,
-		0x74, 0x1C, 0x5D, 0x17, 0x9B, 0x0A, 0xE4, 0x4C,0x04, 0x21, 0xF9, 0x86, 0xF5, 0x97, 0xB3, 0xD3,
+		0x92, 0x84, 0xD0, 0xEA, 0x41, 0x88, 0x1F, 0x61,0x9D, 0xB6, 0xFA, 0xD7, 0xE3, 0x1C, 0x34, 0x60,
+		0xBD, 0x98, 0xA8, 0x5C, 0xE2, 0xA5, 0x23, 0x2E,0x40, 0x01, 0x20, 0xA6, 0x30, 0xFE, 0xAE, 0xEF,
+		0x5E, 0x35, 0x37, 0x15, 0x27, 0x2C, 0x2D, 0xF4,0x12, 0x44, 0xB2, 0x00, 0xC9, 0x90, 0xD6, 0x9F,
+		0x10, 0xC2, 0x52, 0x04, 0x33, 0xD1, 0x97, 0x9A,0x93, 0x81, 0x7C, 0x8E, 0x3E, 0x3A, 0x4D, 0x6F,
+		0xDC, 0x26, 0xEE, 0xF0, 0x4A, 0xF1, 0x83, 0x62,0x7F, 0xF9, 0x69, 0x1D, 0xEB, 0xBC, 0x1A, 0xC8,
+		0x09, 0xDF, 0x95, 0x7A, 0xE6, 0x50, 0x05, 0xBE,0xD3, 0x5B, 0xE7, 0x8A, 0x4E, 0xE5, 0x66, 0x47,
+		0x4F, 0x6C, 0x11, 0xAC, 0xB7, 0x2B, 0x57, 0x6B,0x7D, 0xC7, 0x1B, 0xFB, 0xE9, 0x45, 0x86, 0x13,
+		0x6D, 0x7E, 0x48, 0x22, 0xFD, 0x9C, 0xCA, 0xA3,0x71, 0x0F, 0xAA, 0x25, 0xE4, 0xDD, 0xDA, 0x03,
+		0xAF, 0x94, 0x43, 0xD4, 0x17, 0x9E, 0xC1, 0xCF,0x08, 0xD5, 0xB1, 0x68, 0xE1, 0xF2, 0x19, 0xEC,
+		0xA7, 0x89, 0x24, 0x54, 0x72, 0x3F, 0x76, 0x0D,0xFC, 0x75, 0x99, 0x36, 0x3C, 0xA0, 0xC4, 0xC6,
+		0x64, 0xC3, 0x07, 0xA4, 0xCB, 0xA1, 0x2A, 0x63,0x74, 0xB5, 0x38, 0xB8, 0xCE, 0x82, 0x70, 0x3B,
+		0x3D, 0x06, 0x85, 0x02, 0x51, 0x96, 0xF6, 0xF3,0x0C, 0xF7, 0x0B, 0x4B, 0xBA, 0x42, 0x39, 0x59,
+		0x31, 0xD2, 0x87, 0x29, 0xB4, 0xB9, 0x56, 0x2F,0xED, 0x5D, 0x9B, 0xC0, 0x16, 0x78, 0x8B, 0xB3,
+		0xE0, 0x53, 0xC5, 0xF8, 0x8F, 0xA9, 0x18, 0x32,0x6E, 0xE8, 0x8C, 0x5A, 0x73, 0x28, 0xCD, 0x77,
+		0xF5, 0xBF, 0x91, 0xAB, 0xAD, 0xDE, 0x4C, 0x5F,0x0E, 0x67, 0xB0, 0x79, 0x1E, 0xCC, 0x49, 0x65,
+		0xA2, 0xD9, 0x8D, 0x21, 0xFF, 0x0A, 0xD8, 0xBB,0x46, 0x80, 0xDB, 0x7B, 0x55, 0x6A, 0x58, 0x14,
 	];
 
 	/**
@@ -74,6 +74,7 @@ class Randomizer {
 	 */
 	public function getLogic() {
 		switch ($this->logic) {
+			case 'None': return 'none-' . static::LOGIC;
 			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC;
 			case 'OverworldGlitches': return 'overworld-glitches-' . static::LOGIC;
 			case 'MajorGlitches': return 'major-glitches-' . static::LOGIC;
@@ -88,6 +89,7 @@ class Randomizer {
 	 */
 	public function getLogicNiceName() {
 		switch ($this->logic) {
+			case 'None': return 'None';
 			case 'NoMajorGlitches': return 'No Glitches';
 			case 'OverworldGlitches': return 'Overworld Glitches';
 			case 'Glitched': return 'Major Glitches';
@@ -120,8 +122,8 @@ class Randomizer {
 		$regions = $this->world->getRegions();
 
 		// Set up World before we fill dungeons
-		$this->fillPrizes($this->world);
 		$this->setMedallions($regions);
+		$this->fillPrizes($this->world);
 
 		$regions['Fountains']->getLocations()->each(function($fountain) {
 			$fountain->setItem($this->getBottle(true));
@@ -132,167 +134,30 @@ class Randomizer {
 				&& !is_a($location, Location\Medallion::class);
 		});
 
-		$my_items = new ItemCollection();
-
-		$locations["Pyramid - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
+		$locations["Pyramid Fairy - Bow"]->setItem($this->config('region.pyramidBowUpgrade', false)
 			? Item::get('BowAndSilverArrows')
 			: Item::get('BowAndArrows'));
-
-		// @TODO: this swords stuff is getting silly, break it out into a managable function or something.
-		$sword_locations = new LocationCollection([
-			$locations["Pyramid - Sword"],
-			$locations["Blacksmiths"],
-			$locations["Altar"],
-		]);
-
-		if (!$this->config('region.swordsInPool', true) || !$this->config('region.swordShuffle', true)) {
-			$locations["Uncle"]->setItem(Item::get('L1Sword'));
-			$my_items->addItem(Item::get('L1Sword'));
-
-			$swords = [Item::get('MasterSword')];
-
-			switch ($this->config('rom.HardMode', 0)) {
-				case 2:
-					array_push($swords, Item::get('L1Sword'));
-					array_push($swords, Item::get('L1Sword'));
-					break;
-				case 1:
-					array_push($swords, Item::get('L1Sword'));
-					array_push($swords, Item::get('L3Sword'));
-					break;
-				default:
-					array_push($swords, Item::get('L3Sword'));
-					array_push($swords, Item::get('L4Sword'));
-					break;
-			}
-
-			if ($this->config('item.progressiveSwords', true)) {
-				$swords = [Item::get('ProgressiveSword')];
-				switch ($this->config('rom.HardMode', 0)) {
-					case 2:
-						array_push($swords, Item::get('L1Sword'));
-						array_push($swords, Item::get('L1Sword'));
-						break;
-					case 1:
-						array_push($swords, Item::get('L1Sword'));
-						array_push($swords, Item::get('ProgressiveSword'));
-						break;
-					default:
-						array_push($swords, Item::get('ProgressiveSword'));
-						array_push($swords, Item::get('ProgressiveSword'));
-						break;
-				}
-			}
-
-			while (count($swords) > 0) {
-				$item = array_shift($swords);
-				$sword_locations->getEmptyLocations()->random()->setItem($item);
-			}
-
-			if (!$this->config('region.swordShuffle', true)) {
-				$locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
-				$locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
-				$locations["Altar"]->setItem(Item::get('MasterSword'));
-			}
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
-		} else {
-			$locations["Pyramid - Sword"]->setItem(Item::get('L1Sword'));
-			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				if ($this->config('item.progressiveSwords', true)) {
-					$l1 = $this->config('item.count.L1Sword', 1);
-					$l2 = $this->config('item.count.MasterSword', 1);
-					$l3 = $this->config('item.count.L3Sword', 1);
-					$l4 = $this->config('item.count.L4Sword', 1);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L1Sword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveSword"
-						=> $this->config('item.count.ProgressiveSword', 0) + $l1 + $l2 + $l3 + $l4]);
-				} else {
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L1Sword" => 1]);
-				}
-			} else {
-				if ($this->config('item.progressiveSwords', true)) {
-					$l2 = $this->config('item.count.MasterSword', 1);
-					$l3 = $this->config('item.count.L3Sword', 1);
-					$l4 = $this->config('item.count.L4Sword', 1);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MasterSword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L3Sword" => 0]);
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.L4Sword" => 0]);
-
-					config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveSword"
-						=> $this->config('item.count.ProgressiveSword', 0) + $l2 + $l3 + $l4]);
-
-					$locations["Uncle"]->setItem(Item::get('ProgressiveSword'));
-					$my_items->addItem(Item::get('ProgressiveSword'));
-				}  else {
-					$locations["Uncle"]->setItem(Item::get('L1Sword'));
-					$my_items->addItem(Item::get('L1Sword'));
-				}
-			}
-		}
-
-		if ($this->config('item.progressiveArmor', true)) {
-			$blue = $this->config('item.count.BlueMail', 1);
-			$red = $this->config('item.count.RedMail', 1);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.BlueMail" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.RedMail" => 0]);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveArmor"
-				=> $this->config('item.count.ProgressiveArmor', 0) + $blue + $red]);
-		}
-
-		if ($this->config('item.progressiveShields', true)) {
-			$blue = $this->config('item.count.BlueShield', 1);
-			$red = $this->config('item.count.RedShield', 1);
-			$mirror = $this->config('item.count.MirrorShield', 1);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.BlueShield" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.RedShield" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.MirrorShield" => 0]);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveShield"
-				=> $this->config('item.count.ProgressiveShield', 0) + $blue + $red + $mirror]);
-		}
-
-		if ($this->config('item.progressiveGloves', true)) {
-			$glove = $this->config('item.count.PowerGlove', 1);
-			$mitt = $this->config('item.count.TitansMitt', 1);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.PowerGlove" => 0]);
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.TitansMitt" => 0]);
-
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.ProgressiveGlove"
-				=> $this->config('item.count.ProgressiveGlove', 0) + $glove + $mitt]);
-		}
 
 		// fill boss hearts before anything else if we need to
 		if ($this->config('region.bossesHaveItem', false) || !$this->config('region.bossHeartsInPool', true)) {
 			$boss_item = !$this->config('region.bossHeartsInPool', true)
 				 ? Item::get('BossHeartContainer')
 				 : Item::get($this->config('region.bossesHaveItem'));
-			$locations["Heart Container - Lanmolas"]->setItem($boss_item);
-			$locations["Heart Container - Armos Knights"]->setItem($boss_item);
-			$locations["Heart Container - Kholdstare"]->setItem($boss_item);
-			$locations["Heart Container - Vitreous"]->setItem($boss_item);
-			$locations["Heart Container - Helmasaur King"]->setItem($boss_item);
-			$locations["Heart Container - Mothula"]->setItem($boss_item);
-			$locations["Heart Container - Arrghus"]->setItem($boss_item);
-			$locations["Heart Container - Blind"]->setItem($boss_item);
-			$locations["Heart Container - Trinexx"]->setItem($boss_item);
-			$locations["Heart Container - Moldorm"]->setItem($boss_item);
+			$locations["Desert Palace - Lanmolas'"]->setItem($boss_item);
+			$locations["Eastern Palace - Armos Knights"]->setItem($boss_item);
+			$locations["Ice Palace - Kholdstare"]->setItem($boss_item);
+			$locations["Misery Mire - Vitreous"]->setItem($boss_item);
+			$locations["Palace of Darkness - Helmasaur King"]->setItem($boss_item);
+			$locations["Skull Woods - Mothula"]->setItem($boss_item);
+			$locations["Swamp Palace - Arrghus"]->setItem($boss_item);
+			$locations["Thieves' Town - Blind"]->setItem($boss_item);
+			$locations["Turtle Rock - Trinexx"]->setItem($boss_item);
+			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
 
 		// Pedestal is the goal
 		if ($this->goal == 'pedestal') {
-			$locations["Altar"]->setItem(Item::get('Triforce'));
+			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.Arrow" => 0]);
 		}
 
@@ -326,6 +191,8 @@ class Randomizer {
 			// 2 in open mode
 			if (config('game-mode') == 'open' && count($nice_items_swords)) {
 				array_push($advancement_items, array_pop($nice_items_swords));
+			} elseif ($this->config('region.forceUncleSword', true)) {
+				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -379,19 +246,19 @@ class Randomizer {
 		});
 
 		if (!$this->config('prize.shuffleCrystals', true)) {
-			$crystal_locations["Palace of Darkness Crystal"]->setItem(Item::get('Crystal1'));
-			$crystal_locations["Swamp Palace Crystal"]->setItem(Item::get('Crystal2'));
-			$crystal_locations["Skull Woods Crystal"]->setItem(Item::get('Crystal3'));
-			$crystal_locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
-			$crystal_locations["Ice Palace Crystal"]->setItem(Item::get('Crystal5'));
-			$crystal_locations["Misery Mire Crystal"]->setItem(Item::get('Crystal6'));
-			$crystal_locations["Turtle Rock Crystal"]->setItem(Item::get('Crystal7'));
+			$crystal_locations["Palace of Darkness - Prize"]->setItem(Item::get('Crystal1'));
+			$crystal_locations["Swamp Palace - Prize"]->setItem(Item::get('Crystal2'));
+			$crystal_locations["Skull Woods - Prize"]->setItem(Item::get('Crystal3'));
+			$crystal_locations["Thieves' Town - Prize"]->setItem(Item::get('Crystal4'));
+			$crystal_locations["Ice Palace - Prize"]->setItem(Item::get('Crystal5'));
+			$crystal_locations["Misery Mire - Prize"]->setItem(Item::get('Crystal6'));
+			$crystal_locations["Turtle Rock - Prize"]->setItem(Item::get('Crystal7'));
 		}
 
 		if (!$this->config('prize.shufflePendants', true)) {
-			$pendant_locations["Eastern Palace Pendant"]->setItem(Item::get('PendantOfCourage'));
-			$pendant_locations["Desert Palace Pendant"]->setItem(Item::get('PendantOfPower'));
-			$pendant_locations["Tower of Hera Pendant"]->setItem(Item::get('PendantOfWisdom'));
+			$pendant_locations["Eastern Palace - Prize"]->setItem(Item::get('PendantOfCourage'));
+			$pendant_locations["Desert Palace - Prize"]->setItem(Item::get('PendantOfPower'));
+			$pendant_locations["Tower of Hera - Prize"]->setItem(Item::get('PendantOfWisdom'));
 		}
 
 		$placed_prizes = $prize_locations->getItems();
@@ -416,6 +283,14 @@ class Randomizer {
 			});
 
 		foreach ($crystal_locations->getEmptyLocations() as $location) {
+			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+				$this->getDungeonPool(),
+				$this->getAdvancementItems(),
+				$place_prizes)));
+			if (!$location->canAccess($assumed_items)) {
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+
 			$location->setItem(array_pop($place_prizes));
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
 		}
@@ -427,6 +302,14 @@ class Randomizer {
 			});
 
 		foreach ($pendant_locations->getEmptyLocations() as $location) {
+			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+				$this->getDungeonPool(),
+				$this->getAdvancementItems(),
+				$place_prizes)));
+			if (!$location->canAccess($assumed_items)) {
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+
 			$location->setItem(array_pop($place_prizes));
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
 		}
@@ -442,6 +325,10 @@ class Randomizer {
 		];
 
 		foreach ($regions['Medallions']->getLocations() as $medallion_location) {
+			if ($medallion_location->hasItem()) {
+				continue;
+			}
+
 			$medallion = $medallions[mt_rand(0, 2)];
 			$medallion_location->setItem($medallion);
 		}
@@ -461,14 +348,8 @@ class Randomizer {
 				$spoiler[$name] = [];
 			}
 			$region->getLocations()->each(function($location) use (&$spoiler, $name) {
-				if ($location instanceof Location\Prize\Event) {
-					return;
-				}
-				if ($this->config('region.swordsInPool', true)
-					&& in_array($location->getName(), [
-						"Pyramid - Sword",
-						"Pyramid - Bow",
-					])) {
+				if ($location instanceof Location\Prize\Event
+					|| $location instanceof Location\Trade) {
 					return;
 				}
 				if ($location->hasItem()) {
@@ -531,12 +412,12 @@ class Randomizer {
 			$rom->setSingleRNGTable(new ItemCollection($this->getItemPool()));
 		}
 
-		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0));
+		$rom->setGoalRequiredCount($this->config('item.Goal.Required', 0) ?: 0);
 		$rom->setGoalIcon($this->config('item.Goal.Icon', 'triforce'));
 
-		$rom->setClockMode($this->config('rom.timerMode', 'off'));
-
 		$rom->setHardMode($this->config('rom.HardMode', 0));
+
+		$rom->setRupoorValue($this->config('item.value.Rupoor', 0) ?: 0);
 
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 
@@ -566,8 +447,9 @@ class Randomizer {
 		}
 
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
-		$rom->setCompassMode($this->config('rom.compassOnPickup', false));
-		$rom->setFreeItemTextMode($this->config('rom.itemText', false));
+		$rom->setCompassMode($this->config('rom.compassOnPickup', 'off'));
+		$rom->setFreeItemTextMode($this->config('rom.freeItemText', false));
+		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', false));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 
 		$rom->writeRNGBlock(function() {
@@ -603,10 +485,13 @@ class Randomizer {
 			$this->config('item.value.ArrowUpgrade10', 0),
 		]);
 
-		$rom->setBlueClock($this->config('item.value.BlueClock', 0));
-		$rom->setRedClock($this->config('item.value.RedClock', 0));
-		$rom->setGreenClock($this->config('item.value.GreenClock', 0));
-		$rom->setStartingTime($this->config('rom.timerStart', 0));
+		// currently has to be after compass mode, as this will override compass mode.
+		$rom->setClockMode($this->config('rom.timerMode', 'off'));
+
+		$rom->setBlueClock($this->config('item.value.BlueClock', 0) ?: 0);
+		$rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);
+		$rom->setGreenClock($this->config('item.value.GreenClock', 0) ?: 0);
+		$rom->setStartingTime($this->config('rom.timerStart', 0) ?: 0);
 
 		$rom->removeUnclesShield();
 
@@ -638,6 +523,10 @@ class Randomizer {
 
 		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
+
+		if (static::class == self::class) {
+			$rom->writeCredits();
+		}
 
 		$this->seed->patch = json_encode($rom->getWriteLog());
 		$this->seed->build = Rom::BUILD;
@@ -681,23 +570,17 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function randomizeCredits(Rom $rom) {
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setKingsReturnCredits("fellowship of the ring");
-				break;
-			case 2:
-				$rom->setKingsReturnCredits("the two towers");
-				break;
-		}
+		$rom->setKingsReturnCredits(array_first(mt_shuffle([
+			"the return of the king",
+			"fellowship of the ring",
+			"the two towers",
+		])));
 
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setSanctuaryCredits("read a book");
-				break;
-			case 2:
-				$rom->setSanctuaryCredits("sits in own pew");
-				break;
-		}
+		$rom->setSanctuaryCredits(array_first(mt_shuffle([
+			"the loyal priest",
+			"read a book",
+			"sits in own pew",
+		])));
 
 		$name = array_first(mt_shuffle([
 			"sahasralah", "sabotaging", "sacahuista", "sacahuiste", "saccharase", "saccharide", "saccharify",
@@ -709,20 +592,13 @@ class Randomizer {
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
-		switch (mt_rand(0, 4)) {
-			case 1:
-				$rom->setWoodsmansHutCredits("fresh flapjacks");
-				break;
-			case 2:
-				$rom->setWoodsmansHutCredits("two woodchoppers");
-				break;
-			case 3:
-				$rom->setWoodsmansHutCredits("double lumberman");
-				break;
-			case 4:
-				$rom->setWoodsmansHutCredits("lumberclones");
-				break;
-		}
+		$rom->setWoodsmansHutCredits(array_first(mt_shuffle([
+			"twin lumberjacks",
+			"fresh flapjacks",
+			"two woodchoppers",
+			"double lumberman",
+			"lumberclones",
+		])));
 
 		switch (mt_rand(0, 1)) {
 			case 1:
@@ -730,41 +606,26 @@ class Randomizer {
 				break;
 		}
 
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setDeathMountainCredits("gary the old man");
-				break;
-			case 2:
-				$rom->setDeathMountainCredits("Your ad here");
-				break;
-		}
+		$rom->setDeathMountainCredits(array_first(mt_shuffle([
+			"the lost old man",
+			"gary the old man",
+			"Your ad here",
+		])));
 
-		switch (mt_rand(0, 2)) {
-			case 1:
-				$rom->setLostWoodsCredits("dancing pickles");
-				break;
-			case 2:
-				$rom->setLostWoodsCredits("flying vultures");
-				break;
-		}
+		$rom->setLostWoodsCredits(array_first(mt_shuffle([
+			"the forest thief",
+			"dancing pickles",
+			"flying vultures",
+		])));
 
-		switch (mt_rand(0, 5)) {
-			case 1:
-				$rom->setWishingWellCredits("Venus was her name");
-				break;
-			case 2:
-				$rom->setWishingWellCredits("I'm your Venus");
-				break;
-			case 3:
-				$rom->setWishingWellCredits("Yeah, baby, shes got it");
-				break;
-			case 4:
-				$rom->setWishingWellCredits("Venus, I'm your fire");
-				break;
-			case 5:
-				$rom->setWishingWellCredits("Venus, At your desire");
-				break;
-		}
+		$rom->setWishingWellCredits(array_first(mt_shuffle([
+			"venus. queen of faeries",
+			"Venus was her name",
+			"I'm your Venus",
+			"Yeah, baby, shes got it",
+			"Venus, I'm your fire",
+			"Venus, At your desire",
+		])));
 
 		return $this;
 	}
@@ -782,10 +643,10 @@ class Randomizer {
 		if ($this->config('spoil.BootsLocation', false) && mt_rand() % 20 == 0 && $boots_location) {
 			Log::info('Boots revealed');
 			switch ($boots_location->getName()) {
-				case "[cave-040] Link's House":
+				case "Link's House":
 					$rom->setUncleTextString("Lonk!\nYou'll never\nfind the boots");
 					break;
-				case "Piece of Heart (Maze Race)":
+				case "Maze Race":
 					$rom->setUncleTextString("Boots at race?\nSeed confirmed\nimpossible.");
 					break;
 				default:
@@ -861,6 +722,12 @@ class Randomizer {
 			"when you're a\nbaker, don't\nloaf around",
 			"mire requires\nether quake,\nor bombos",
 			"Broken pencils\nare pointless.",
+			"The food they\nserve guards\nlasts sentries",
+			"being crushed\nby big objects\nis depressing.",
+			"A tap dancer's\nroutine runs\nhot and cold.",
+			"A weeknight is\na tiny\nnobleman",
+			"The chimney\nsweep wore a\nsoot and tye.",
+			"Gardeners like\nto spring into\naction.",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
@@ -898,18 +765,40 @@ class Randomizer {
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
 			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
 			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
+			"I was sharing\na drink with\nPoe.\nFor no reason,\nhe left in a\nheartbeat!",
+			"Don’t trust\nhorsemen on\nDeath Mountain\nThey’re Lynel\nthe time!",
+			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
+			"Don’t walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
+			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
+			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
+			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
+			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
+			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
+			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
+			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
+			"I like my\nwhiskey neat.\n\nSome prefer it\nOctoroks!",
+			"I consoled\nFreezor over a\ncup of coffee.\nHis problems\njust seemed to\nmelt away!",
+			"Magic droplets\nof water don’t\nshut up.\nThey just\nKyameron!",
+			"I bought hot\nwings for\nSluggula.\nThey gave him\nexplosive\ndiarrhea!",
+			"Hardhat Beetle\nwon’t\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
 			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
 			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
-			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurect me.",
+			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurrect me.",
 			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nback off buddy",
 			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
 			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
 			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
+			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
+			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\nde'ja vu\nall over again",
+			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds,\nand was 32\nfeet long.",
+			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
+			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 		])));
 
 		switch ($this->goal) {
@@ -942,7 +831,6 @@ class Randomizer {
 
 		$rom->setTriforceTextString(array_first(mt_shuffle([
 			"\n     G G",
-			"\n     G G",
 			"All your base\nare belong\nto us.",
 			"You have ended\nthe domination\nof dr. wily",
 			"  thanks for\n  playing!!!",
@@ -952,6 +840,20 @@ class Randomizer {
 			"\n   WINNER!!",
 			"\n  I'm  sorry\n\nbut your\nprincess is in\nanother castle",
 			"\n   success!",
+			"    Whelp…\n  that  just\n   happened",
+			"   Oh  hey…\n   it's you",
+			"\n  Wheeeeee!!",
+			"   Time for\n another one?",
+			"and\n\n         scene",
+			"\n   GOT EM!!",
+			"\nTHE VALUUUE!!!",
+			"Cool seed,\n\nright?",
+			"\n  We did it!",
+			"  Spam those\n  emotes in\n  wilds chat",
+			"\n   O  M  G",
+			" Hello.  Will\n  you be my\n   friend?",
+			"   Beetorp\n     was\n    here!",
+			"The Wind Fish\nwill wake\nsoon.    Hoot!",
 		])));
 
 		return $this;
@@ -968,84 +870,84 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.L1Sword', 0); $i++) {
 			array_push($advancement_items, Item::get('L1Sword'));
 		}
-		for ($i = 0; $i < $this->config('item.count.MasterSword', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MasterSword', 0); $i++) {
 			array_push($advancement_items, Item::get('MasterSword'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveSword', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveSword', 4); $i++) {
 			array_push($advancement_items, Item::get('ProgressiveSword'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Bottles', 1); $i++) {
 			array_push($advancement_items, $this->getBottle());
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Bombos', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Bombos', 1); $i++) {
 			array_push($advancement_items, Item::get('Bombos'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.BookOfMudora', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BookOfMudora', 1); $i++) {
 			array_push($advancement_items, Item::get('BookOfMudora'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Bow', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Bow', 1); $i++) {
 			array_push($advancement_items, Item::get('Bow'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.CaneOfSomaria', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.CaneOfSomaria', 1); $i++) {
 			array_push($advancement_items, Item::get('CaneOfSomaria'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Cape', 1); $i++) {
 			array_push($advancement_items, Item::get('Cape'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Ether', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Ether', 1); $i++) {
 			array_push($advancement_items, Item::get('Ether'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.FireRod', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.FireRod', 1); $i++) {
 			array_push($advancement_items, Item::get('FireRod'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Flippers', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Flippers', 1); $i++) {
 			array_push($advancement_items, Item::get('Flippers'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Hammer', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Hammer', 1); $i++) {
 			array_push($advancement_items, Item::get('Hammer'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Hookshot', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Hookshot', 1); $i++) {
 			array_push($advancement_items, Item::get('Hookshot'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.IceRod', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.IceRod', 1); $i++) {
 			array_push($advancement_items, Item::get('IceRod'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Lamp', 1); $i++) {
 			array_push($advancement_items, Item::get('Lamp'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.MagicMirror', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MagicMirror', 1); $i++) {
 			array_push($advancement_items, Item::get('MagicMirror'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.MoonPearl', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MoonPearl', 1); $i++) {
 			array_push($advancement_items, Item::get('MoonPearl'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Mushroom', 1); $i++) {
 			array_push($advancement_items, Item::get('Mushroom'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.OcarinaInactive', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.OcarinaInactive', 1); $i++) {
 			array_push($advancement_items, Item::get('OcarinaInactive'));
 		}
 		for ($i = 0; $i < $this->config('item.count.OcarinaActive', 0); $i++) {
 			array_push($advancement_items, Item::get('OcarinaActive'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.PegasusBoots', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.PegasusBoots', 1); $i++) {
 			array_push($advancement_items, Item::get('PegasusBoots'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Powder', 1); $i++) {
 			array_push($advancement_items, Item::get('Powder'));
 		}
-		for ($i = 0; $i < $this->config('item.count.PowerGlove', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.PowerGlove', 0); $i++) {
 			array_push($advancement_items, Item::get('PowerGlove'));
 		}
-		for ($i = 0; $i < max(1, $this->config('item.count.Quake', 1)); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Quake', 1); $i++) {
 			array_push($advancement_items, Item::get('Quake'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Shovel', 1); $i++) {
 			array_push($advancement_items, Item::get('Shovel'));
 		}
-		for ($i = 0; $i < $this->config('item.count.TitansMitt', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TitansMitt', 0); $i++) {
 			array_push($advancement_items, Item::get('TitansMitt'));
 		}
 
@@ -1056,7 +958,7 @@ class Randomizer {
 			array_push($advancement_items, Item::get('SilverArrowUpgrade'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveGlove', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveGlove', 2); $i++) {
 			array_push($advancement_items, Item::get('ProgressiveGlove'));
 		}
 
@@ -1072,11 +974,11 @@ class Randomizer {
 			array_push($advancement_items, Item::get('BugCatchingNet'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.MirrorShield', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.MirrorShield', 0); $i++) {
 			array_push($advancement_items, Item::get('MirrorShield'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveShield', 3); $i++) {
 			array_push($advancement_items, Item::get('ProgressiveShield'));
 		}
 
@@ -1107,10 +1009,10 @@ class Randomizer {
 	public function getNiceItems() {
 		$items_to_find = [];
 
-		for ($i = 0; $i < $this->config('item.count.L3Sword', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.L3Sword', 0); $i++) {
 			array_push($items_to_find, Item::get('L3Sword'));
 		}
-		for ($i = 0; $i < $this->config('item.count.L4Sword', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.L4Sword', 0); $i++) {
 			array_push($items_to_find, Item::get('L4Sword'));
 		}
 
@@ -1125,15 +1027,15 @@ class Randomizer {
 			array_push($items_to_find, $this->getBottle());
 		}
 
-		for ($i = 0; $i < $this->config('item.count.BlueShield', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BlueShield', 0); $i++) {
 			array_push($items_to_find, Item::get('BlueShield'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ProgressiveArmor', 2); $i++) {
 			array_push($items_to_find, Item::get('ProgressiveArmor'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.BlueMail', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BlueMail', 0); $i++) {
 			array_push($items_to_find, Item::get('BlueMail'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Boomerang', 1); $i++) {
@@ -1143,10 +1045,10 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.RedBoomerang', 1); $i++) {
 			array_push($items_to_find, Item::get('RedBoomerang'));
 		}
-		for ($i = 0; $i < $this->config('item.count.RedShield', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.RedShield', 0); $i++) {
 			array_push($items_to_find, Item::get('RedShield'));
 		}
-		for ($i = 0; $i < $this->config('item.count.RedMail', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.RedMail', 0); $i++) {
 			array_push($items_to_find, Item::get('RedMail'));
 		}
 
@@ -1241,68 +1143,145 @@ class Randomizer {
 	public function getDungeonPool() {
 		$items_to_find = [];
 
-		array_push($items_to_find, Item::get('BigKeyA2'));
-		array_push($items_to_find, Item::get('BigKeyD1'));
-		array_push($items_to_find, Item::get('BigKeyD2'));
-		array_push($items_to_find, Item::get('BigKeyD3'));
-		array_push($items_to_find, Item::get('BigKeyD4'));
-		array_push($items_to_find, Item::get('BigKeyD5'));
-		array_push($items_to_find, Item::get('BigKeyD6'));
-		array_push($items_to_find, Item::get('BigKeyD7'));
-		array_push($items_to_find, Item::get('BigKeyP1'));
-		array_push($items_to_find, Item::get('BigKeyP2'));
-		array_push($items_to_find, Item::get('BigKeyP3'));
+		for ($i = 0; $i < $this->config('item.count.BigKeyA2', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD1', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD2', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD3', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD4', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD5', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD6', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyD7', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyP1', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyP1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyP2', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BigKeyP3', 1); $i++) {
+			array_push($items_to_find, Item::get('BigKeyP3'));
+		}
 
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyA2'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD1'));
-		array_push($items_to_find, Item::get('KeyD2'));
-		array_push($items_to_find, Item::get('KeyD3'));
-		array_push($items_to_find, Item::get('KeyD3'));
-		array_push($items_to_find, Item::get('KeyD4'));
-		array_push($items_to_find, Item::get('KeyD5'));
-		array_push($items_to_find, Item::get('KeyD5'));
-		array_push($items_to_find, Item::get('KeyD6'));
-		array_push($items_to_find, Item::get('KeyD6'));
-		array_push($items_to_find, Item::get('KeyD6'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyD7'));
-		array_push($items_to_find, Item::get('KeyH2'));
-		array_push($items_to_find, Item::get('KeyP2'));
-		array_push($items_to_find, Item::get('KeyP3'));
+		for ($i = 0; $i < $this->config('item.count.KeyA2', 4); $i++) {
+			array_push($items_to_find, Item::get('KeyA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD1', 6); $i++) {
+			array_push($items_to_find, Item::get('KeyD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD2', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD3', 2); $i++) {
+			array_push($items_to_find, Item::get('KeyD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD4', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD5', 2); $i++) {
+			array_push($items_to_find, Item::get('KeyD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD6', 3); $i++) {
+			array_push($items_to_find, Item::get('KeyD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyD7', 4); $i++) {
+			array_push($items_to_find, Item::get('KeyD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyA1', 2); $i++) {
+			array_push($items_to_find, Item::get('KeyA1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyH2', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyH2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyP2', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.KeyP3', 1); $i++) {
+			array_push($items_to_find, Item::get('KeyP3'));
+		}
 
-		if ($this->config('region.CompassesMaps', true)) {
+		for ($i = 0; $i < $this->config('item.count.MapA2', 1); $i++) {
 			array_push($items_to_find, Item::get('MapA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD1', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD2', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD3', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD4', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD5', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD6', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapD7', 1); $i++) {
 			array_push($items_to_find, Item::get('MapD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapH2', 1); $i++) {
 			array_push($items_to_find, Item::get('MapH2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapP1', 1); $i++) {
 			array_push($items_to_find, Item::get('MapP1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapP2', 1); $i++) {
 			array_push($items_to_find, Item::get('MapP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.MapP3', 1); $i++) {
 			array_push($items_to_find, Item::get('MapP3'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.CompassA2', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassA2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD1', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD2', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD3', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD3'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD4', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD4'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD5', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD5'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD6', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD6'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassD7', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassD7'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassP1', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassP1'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassP2', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassP2'));
+		}
+		for ($i = 0; $i < $this->config('item.count.CompassP3', 1); $i++) {
 			array_push($items_to_find, Item::get('CompassP3'));
 		}
 
@@ -1340,6 +1319,26 @@ class Randomizer {
 		// write to prize crab
 		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
 
+		if ($this->config('bees', false)) {
+			// you asked for it
+			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 20, 0x79)));
+			$rom->setOverworldDigPrizes([
+				0xB2, 0xD8, 0xD8, 0xD8,
+				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
+				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
+				0xDA, 0xDA, 0xDA, 0xB2, 0xB2,
+				0xDB, 0xDB, 0xDB, 0xB2, 0xB2,
+				0xDC, 0xDC, 0xDC, 0xB2, 0xB2,
+				0xDD, 0xDD, 0xDD, 0xB2, 0xB2,
+				0xDE, 0xDE, 0xDE, 0xB2, 0xB2,
+				0xDF, 0xDF, 0xDF, 0xB2, 0xB2,
+				0xE0, 0xE0, 0xE0, 0xB2, 0xB2,
+				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
+				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
+				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
+			]);
+		}
+
 		// write to stunned
 		$rom->setStunnedSpritePrize(array_pop($shuffled));
 
@@ -1347,7 +1346,7 @@ class Randomizer {
 		$rom->setFishSavePrize(array_pop($shuffled));
 
 		// write to prize packs
-		$rom->write(0x37A78, pack('C*', ...$shuffled));
+		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
 
 		// Sprite prize pack
 		$offset = 0x6B632;
@@ -1362,6 +1361,7 @@ class Randomizer {
 
 		// Pack drop chance
 		switch ($this->config('rom.HardMode', 0)) {
+			case 3:
 			case 2:
 				list($low, $high) = [3, 4]; // 12.5%, 6.25%
 				break;
@@ -1386,7 +1386,7 @@ class Randomizer {
 	 * @TODO: move remaining writes to Rom class
 	 */
 	public function writeOverworldBonkPrizeToRom(Rom $rom) {
-		// over world bonk things (no bees/apples)
+		// over world bonk things
 		$prizes = [
 			0x79, 0xE3, 0x79, 0xAC, 0xAC, 0xE0, 0xDC, 0xAC,
 			0xE3, 0xE3, 0xDA, 0xE3, 0xDA, 0xD8, 0xAC, 0xAC,
@@ -1420,6 +1420,10 @@ class Randomizer {
 			Item::get('BottleWithFairy'),
 		];
 
+		if ($this->config('bees', false)) {
+			return $bottles[mt_rand(4, 5)];
+		}
+
 		return $bottles[mt_rand($filled ? 1 : 0, count($bottles) - (($this->config('rom.HardMode', 0) > 0) ? 2 : 1))];
 	}
 
@@ -1433,7 +1437,8 @@ class Randomizer {
 	}
 
 	/**
-	 * Set the World associated with the Randomizer
+	 * Set the World associated with the Randomizer. Of note the world can be different rules that the Randomizer.
+	 * Use this "feature" with caution.
 	 *
 	 * @param World $world World to assocate to Randomizer
 	 *

@@ -249,6 +249,17 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Count the number of an item in the collection.
+	 *
+	 * @param mixed $key
+	 *
+	 * @return int
+	 */
+	public function countItem($key) {
+		return $this->item_counts[$key] ?? 0;
+	}
+
+	/**
 	 * Unset the item at a given offset.
 	 *
 	 * @param mixed $offset
@@ -396,6 +407,19 @@ class ItemCollection extends Collection {
 			|| $this->has('L3Sword')
 			|| $this->has('L4Sword')
 			|| $this->has('ProgressiveSword', 2);
+	}
+
+	/**
+	 * Requirements for having X bottles
+	 *
+	 * @param int $at_least mininum number of item in collection
+	 *
+	 * @return bool
+	 */
+	public function hasBottle(int $at_least = 1) : bool {
+		return $this->filter(function($item) {
+			return $item instanceof Item\Bottle;
+		})->count() >= $at_least;
 	}
 
 	/**

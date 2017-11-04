@@ -19,7 +19,7 @@ Artisan::command('alttp:test', function () {
 		"MAIYMEPwACJwACEAIiJAACIAAHJBECIREnMAABAzMoAAACIgD///////////////////////////8="
 	)));
 
-	$lz2 = new \ALttP\Support\Lz2();
+	$lz2 = new \ALttP\Support\Lz2(true);
 	$uncompressed = $lz2->decompress($data);
 
 	$mem = [];
@@ -122,6 +122,31 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 		imagedestroy($im);
 		imagepng($dst, "$spr.lg.png");
 		imagedestroy($dst);
+
+		//montage *.spr.lg.png -tile 6x1 -background none -geometry +4+4 sprites.X.lg.png
+		//montage *.spr.png -tile x1 -background none -geometry +0+0 sprites.X.png
+	}
+});
+
+Artisan::command('alttp:sprpub', function() {
+	foreach (Storage::disk('sprites')->allFiles('') as $file) {
+		if (preg_match('/\.DS_Store$/', $file)) {
+			continue;
+		}
+		if (preg_match('/\.gitignore$/', $file)) {
+			continue;
+		}
+		if (Storage::disk('rackspace')->has($file)) {
+			continue;
+		}
+
+		$this->info($file);
+		Storage::disk('rackspace')->put($file, Storage::disk('sprites')->get($file), [
+			'headers' => [
+				'Access-Control-Expose-Headers' => 'Access-Control-Allow-Origin',
+				'Access-Control-Allow-Origin' => '*',
+			]
+		]);
 	}
 });
 

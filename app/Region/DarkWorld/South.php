@@ -23,13 +23,13 @@ class South extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-073] cave northeast of swamp palace [top chest]", 0xEB1E, null, $this),
-			new Location\Chest("[cave-073] cave northeast of swamp palace [top middle chest]", 0xEB21, null, $this),
-			new Location\Chest("[cave-073] cave northeast of swamp palace [bottom middle chest]", 0xEB24, null, $this),
-			new Location\Chest("[cave-073] cave northeast of swamp palace [bottom chest]", 0xEB27, null, $this),
-			new Location\Npc("Flute Boy", 0x330C7, null, $this),
-			new Location\Npc("[cave-073] cave northeast of swamp palace - generous guy", 0x180011, null, $this),
-			new Location\Dig("Piece of Heart (Digging Game)", 0x180148, null, $this),
+			new Location\Chest("Hype Cave - Top", 0xEB1E, null, $this),
+			new Location\Chest("Hype Cave - Middle Right", 0xEB21, null, $this),
+			new Location\Chest("Hype Cave - Middle Left", 0xEB24, null, $this),
+			new Location\Chest("Hype Cave - Bottom", 0xEB27, null, $this),
+			new Location\Npc("Stumpy", 0x330C7, null, $this),
+			new Location\Npc("Hype Cave - NPC", 0x180011, null, $this),
+			new Location\Dig("Digging Game", 0x180148, null, $this),
 		]);
 	}
 
@@ -39,13 +39,13 @@ class South extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-073] cave northeast of swamp palace [top chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-073] cave northeast of swamp palace [top middle chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-073] cave northeast of swamp palace [bottom middle chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-073] cave northeast of swamp palace [bottom chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["Flute Boy"]->setItem(Item::get('Shovel'));
-		$this->locations["[cave-073] cave northeast of swamp palace - generous guy"]->setItem(Item::get('ThreeHundredRupees'));
-		$this->locations["Piece of Heart (Digging Game)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Hype Cave - Top"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Hype Cave - Middle Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Hype Cave - Middle Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Hype Cave - Bottom"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Stumpy"]->setItem(Item::get('Shovel'));
+		$this->locations["Hype Cave - NPC"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Digging Game"]->setItem(Item::get('PieceOfHeart'));
 
 		return $this;
 	}

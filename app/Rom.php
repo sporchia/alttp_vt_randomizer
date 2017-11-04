@@ -1,5 +1,6 @@
 <?php namespace ALttP;
 
+use ALttP\Support\Credits;
 use ALttP\Support\Dialog;
 use ALttP\Support\ItemCollection;
 use Log;
@@ -8,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-08-11';
-	const HASH = '7f112e52921bf72c67296848f3f4ad97';
+	const BUILD = '2017-11-04';
+	const HASH = '1deebb05eccefd2ab68297c6e9c0d25f';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -25,6 +26,7 @@ class Rom {
 	];
 
 	private $tmp_file;
+	private $credits;
 	protected $rom;
 	protected $write_log = [];
 
@@ -64,6 +66,7 @@ class Rom {
 		}
 
 		$this->rom = fopen($this->tmp_file, "r+");
+		$this->credits = new Credits;
 	}
 
  	/**
@@ -218,6 +221,7 @@ class Rom {
 	 * @return $this;
 	 */
 	public function setClockMode(string $mode = 'off', bool $restart = false) : self {
+		$compass_override = true;
 		switch ($mode) {
 			case 'stopwatch':
 				$bytes = [0x02, 0x01];
@@ -235,7 +239,13 @@ class Rom {
 			case 'off':
 			default:
 				$bytes = [0x00, 0x00];
+				$compass_override = false;
 				break;
+		}
+
+		// @TODO: temporarly disable compass mode while this is enabled since they occupy the same region of the hud.
+		if ($compass_override) {
+			$this->setCompassMode('off');
 		}
 
 		$bytes = array_merge($bytes, [$restart ? 0x01 : 0x00]);
@@ -721,9 +731,9 @@ class Rom {
 	}
 
 	/**
-	 * Set the Altar text to a custom value
+	 * Set the Pedestal text to a custom value
 	 *
-	 * @param string $string Altar text can be 3 lines of 14 characters each
+	 * @param string $string Pedestal text can be 3 lines of 14 characters each
 	 *
 	 * @return $this
 	 */
@@ -783,11 +793,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setKingsReturnCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 22), 22, ' ', STR_PAD_BOTH);
-		$offset = 0x76928;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('castle', 0, $string);
 
 		return $this;
 	}
@@ -801,11 +807,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSanctuaryCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
-		$offset = 0x76964;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('sancturary', 0, $string);
 
 		return $this;
 	}
@@ -819,11 +821,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setKakarikoTownCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
-		$offset = 0x76997;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('kakariko', 0, $string);
 
 		return $this;
 	}
@@ -837,11 +835,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setDesertPalaceCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 24), 24, ' ', STR_PAD_BOTH);
-		$offset = 0x769D4;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('desert', 0, $string);
 
 		return $this;
 	}
@@ -855,11 +849,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setMountainTowerCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 24), 24, ' ', STR_PAD_BOTH);
-		$offset = 0x76A12;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('hera', 0, $string);
 
 		return $this;
 	}
@@ -873,11 +863,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setLinksHouseCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 19), 19, ' ', STR_PAD_BOTH);
-		$offset = 0x76A52;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('house', 0, $string);
 
 		return $this;
 	}
@@ -891,11 +877,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setZoraCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
-		$offset = 0x76A85;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('zora', 0, $string);
 
 		return $this;
 	}
@@ -909,11 +891,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setMagicShopCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
-		$offset = 0x76AC5;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('witch', 0, $string);
 
 		return $this;
 	}
@@ -927,11 +905,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setWoodsmansHutCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
-		$offset = 0x76AFC;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('lumberjacks', 0, $string);
 
 		return $this;
 	}
@@ -945,11 +919,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setFluteBoyCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
-		$offset = 0x76B34;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('grove', 0, $string);
 
 		return $this;
 	}
@@ -963,11 +933,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setWishingWellCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
-		$offset = 0x76B71;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('well', 0, $string);
 
 		return $this;
 	}
@@ -981,11 +947,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSwordsmithsCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 23), 23, ' ', STR_PAD_BOTH);
-		$offset = 0x76BAC;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('smithy', 0, $string);
 
 		return $this;
 	}
@@ -999,11 +961,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBugCatchingKidCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
-		$offset = 0x76BDF;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('kakariko2', 0, $string);
 
 		return $this;
 	}
@@ -1017,11 +975,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setDeathMountainCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
-		$offset = 0x76C19;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('bridge', 0, $string);
 
 		return $this;
 	}
@@ -1035,29 +989,35 @@ class Rom {
 	 * @return $this
 	 */
 	public function setLostWoodsCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 16), 16, ' ', STR_PAD_BOTH);
-		$offset = 0x76C51;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+		$this->credits->updateCreditLine('woods', 0, $string);
 
 		return $this;
 	}
 
 	/**
-	 * Set the Altar credits to a custom value
+	 * Set the Pedestal credits to a custom value
 	 * Original: and the master sword
 	 *
 	 * @param string $string
 	 *
 	 * @return $this
 	 */
-	public function setAltarCredits(string $string) : self {
-		$write_string = str_pad(substr($string, 0, 20), 20, ' ', STR_PAD_BOTH);
-		$offset = 0x76C81;
-		foreach ($this->convertCredits($write_string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
+	public function setPedestalCredits(string $string) : self {
+		$this->credits->updateCreditLine('pedestal', 0, $string);
+
+		return $this;
+	}
+
+	/**
+	 * Write the credits sequnce
+	 *
+	 * @return $this
+	 */
+	public function writeCredits() : self {
+		$data = $this->credits->getBinaryData();
+
+		$this->write(0x181500, pack('C*', ...$data['data']));
+		$this->write(0x76CC0, pack('S*', ...$data['pointers']));
 
 		return $this;
 	}
@@ -1083,6 +1043,22 @@ class Rom {
 	 */
 	public function setSRAMTrace($enable = true) : self {
 		$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the Quick Menu function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setQuickMenu($enable = false) : self {
+		$this->write(0x180048, pack('C*', $enable ? 0x01 : 0x00));
+		$this->write(0x6DD9A, pack('C*', $enable ? 0x20 : 0x11));
+		$this->write(0x6DF2A, pack('C*', $enable ? 0x20 : 0x12));
+		$this->write(0x6E0E9, pack('C*', $enable ? 0x20 : 0x12));
 
 		return $this;
 	}
@@ -1346,6 +1322,19 @@ class Rom {
 	}
 
 	/**
+	 * Set Overworld dig prizes
+	 *
+	 * @param array $prizes ids of sprites to dig up
+	 *
+	 * @return $this
+	 */
+	public function setOverworldDigPrizes(array $prizes = []) : self {
+		$this->write(0x180100, pack('C*', ...$prizes));
+
+		return $this;
+	}
+
+	/**
 	 * Adjust some settings for hard mode
 	 *
 	 * @param int $level how hard to make it, higher should be harder
@@ -1398,6 +1387,19 @@ class Rom {
 				$this->setCatchableBees(true);
 
 				$this->setRupoorValue(20);
+
+				break;
+			case 3:
+				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
+				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setPowderedSpriteFairyPrize(0x79); // Bees
+				$this->setBottleFills([0x00, 0x00]); // 1 heart, 1/4 magic refills
+				$this->setShopBlueShieldCost(10000);
+				$this->setShopRedShieldCost(10000);
+				$this->setCatchableFairies(false);
+				$this->setCatchableBees(true);
+
+				$this->setRupoorValue(9999);
 
 				break;
 		}
@@ -1640,12 +1642,24 @@ class Rom {
 	/**
 	 * Enable compass to show dungeon count
 	 *
-	 * @param bool $show_count switch on or off
+	 * @param string $setting switch on or off
 	 *
 	 * @return $this
 	 */
-	public function setCompassMode(bool $show_count = false) : self {
-		$this->write(0x18003C, pack('C*', $show_count ? 0x01 : 0x00));
+	public function setCompassMode(string $setting = 'off') : self {
+		switch ($setting) {
+			case 'on':
+				$byte = 0x02;
+				break;
+			case 'pickup':
+				$byte = 0x01;
+				break;
+			case 'off':
+			default:
+				$byte = 0x00;
+		}
+
+		$this->write(0x18003C, pack('C', $byte));
 
 		return $this;
 	}
@@ -1659,6 +1673,19 @@ class Rom {
 	 */
 	public function setFreeItemTextMode(bool $enable = true) : self {
 		$this->write(0x18016A, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable free items to show up in menu
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setFreeItemMenu(bool $enable = true) : self {
+		$this->write(0x180045, pack('C*', $enable ? 0xFF : 0x00));
 
 		return $this;
 	}
@@ -2094,42 +2121,5 @@ class Rom {
 			fclose($this->rom);
 		}
 		unlink($this->tmp_file);
-	}
-
-	/**
-	 * Convert string to byte array for Credits that can be written to ROM
-	 *
-	 * @param string $string string to convert
-	 *
-	 * @return array
-	 */
-	public function convertCredits(string $string) : array {
-		$byte_array = [];
-		foreach (str_split(strtolower($string)) as $char) {
-			$byte_array[] = $this->charToCreditsHex($char);
-		}
-
-		return $byte_array;
-	}
-
-	/**
-	 * Convert character to byte for ROM in Credits Sequence
-	 *
-	 * @param string $string character to convert
-	 *
-	 * @return int
-	 */
-	private function charToCreditsHex(string $char) : int {
-		if (preg_match('/[a-z]/', $char)) {
-			return ord($char) - 0x47;
-		}
-		switch ($char) {
-			case ' ': return 0x9F;
-			case ',': return 0x37;
-			case '.': return 0x37;
-			case '-': return 0x36;
-			case "'": return 0x35;
-			default: return 0x9F;
-		}
 	}
 }

@@ -20,11 +20,12 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">ALttP VT Randomizer</a>
+				<a class="navbar-brand" href="/"><img src="/i/logo.png" title="ALttP VT Randomizer" /></a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
 					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
+					<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Generate Customized Game</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -55,7 +56,7 @@
 			</div>
 		</div>
 	</nav>
-
+	<div class="clearfix" style="padding-top:70px"></div>
 	<div class="container">
 	@yield('content')
 	</div>

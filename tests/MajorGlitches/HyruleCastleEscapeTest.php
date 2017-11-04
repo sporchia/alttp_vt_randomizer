@@ -26,42 +26,42 @@ class HyruleCastleEscapeTest extends TestCase {
 
 	// Item locations
 	public function testSancturaryRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-1F] Sanctuary")
+		$this->assertTrue($this->world->getLocation("Sanctuary")
 			->canAccess($this->collected));
 	}
 
 	public function testBoomerangRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Hyrule Castle - boomerang room")
+		$this->assertTrue($this->world->getLocation("Hyrule Castle - Boomerang Chest")
 			->canAccess($this->collected));
 	}
 
 	public function testMapRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Hyrule Castle - map room")
+		$this->assertTrue($this->world->getLocation("Hyrule Castle - Map Chest")
 			->canAccess($this->collected));
 	}
 
 	public function testZeldaRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B3] Hyrule Castle - next to Zelda")
+		$this->assertTrue($this->world->getLocation("Hyrule Castle - Zelda's Cell")
 			->canAccess($this->collected));
 	}
 
 	public function testSewersFirstRoomRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - first B1 room")
+		$this->assertTrue($this->world->getLocation("Sewers - Dark Cross")
 			->canAccess($this->collected));
 	}
 
 	public function testSewersFinalRoomChestLRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [left chest]")
+		$this->assertTrue($this->world->getLocation("Sewers - Secret Room - Left")
 			->canAccess($this->collected));
 	}
 
 	public function testSewersFinalRoomChestMRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [middle chest]")
+		$this->assertTrue($this->world->getLocation("Sewers - Secret Room - Middle")
 			->canAccess($this->collected));
 	}
 
 	public function testSewersFinalRoomChestRRequiresNothing() {
-		$this->assertTrue($this->world->getLocation("[dungeon-C-B1] Escape - final basement room [right chest]")
+		$this->assertTrue($this->world->getLocation("Sewers - Secret Room - Right")
 			->canAccess($this->collected));
 	}
 

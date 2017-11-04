@@ -23,8 +23,8 @@ class Mire extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-071] Misery Mire west area [left chest]", 0xEA73, null, $this),
-			new Location\Chest("[cave-071] Misery Mire west area [right chest]", 0xEA76, null, $this),
+			new Location\Chest("Mire Shed - Left", 0xEA73, null, $this),
+			new Location\Chest("Mire Shed - Right", 0xEA76, null, $this),
 		]);
 	}
 
@@ -34,8 +34,8 @@ class Mire extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Mire Shed - Left"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Mire Shed - Right"]->setItem(Item::get('TwentyRupees'));
 
 		return $this;
 	}
@@ -47,11 +47,11 @@ class Mire extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Mire Shed - Left"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});
 
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Mire Shed - Right"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});
 
@@ -87,11 +87,11 @@ class Mire extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->locations["[cave-071] Misery Mire west area [left chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Mire Shed - Left"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') || $items->has('MagicMirror');
 		});
 
-		$this->locations["[cave-071] Misery Mire west area [right chest]"]->setRequirements(function($locations, $items) {
+		$this->locations["Mire Shed - Right"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') || $items->has('MagicMirror');
 		});
 

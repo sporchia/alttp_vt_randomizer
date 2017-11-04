@@ -23,10 +23,10 @@ class West extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Npc("Old Mountain Man", 0xF69FA, null, $this),
-			new Location\Standing("Piece of Heart (Spectacle Rock Cave)", 0x180002, null, $this),
+			new Location\Npc("Old Man", 0xF69FA, null, $this),
+			new Location\Standing("Spectacle Rock Cave", 0x180002, null, $this),
 			new Location\Drop\Ether("Ether Tablet", 0x180016, null, $this),
-			new Location\Standing("Piece of Heart (Spectacle Rock)", 0x180140, null, $this),
+			new Location\Standing("Spectacle Rock", 0x180140, null, $this),
 		]);
 	}
 
@@ -36,10 +36,10 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["Old Mountain Man"]->setItem(Item::get('MagicMirror'));
-		$this->locations["Piece of Heart (Spectacle Rock Cave)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Old Man"]->setItem(Item::get('MagicMirror'));
+		$this->locations["Spectacle Rock Cave"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Ether Tablet"]->setItem(Item::get('Ether'));
-		$this->locations["Piece of Heart (Spectacle Rock)"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Spectacle Rock"]->setItem(Item::get('PieceOfHeart'));
 
 		return $this;
 	}
@@ -51,7 +51,7 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["Old Mountain Man"]->setRequirements(function($locations, $items) {
+		$this->locations["Old Man"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp');
 		});
 
@@ -61,7 +61,7 @@ class West extends Region {
 				&& ($items->has('MagicMirror') || ($items->has('Hammer') && $items->has('Hookshot')));
 		});
 
-		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
+		$this->locations["Spectacle Rock"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror');
 		});
 
@@ -104,7 +104,7 @@ class West extends Region {
 				&& $this->world->getRegion('Tower of Hera')->canEnter($locations, $items);
 		});
 
-		$this->locations["Piece of Heart (Spectacle Rock)"]->setRequirements(function($locations, $items) {
+		$this->locations["Spectacle Rock"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| $items->has('MagicMirror');
 		});

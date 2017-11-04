@@ -37,19 +37,19 @@ class ThievesTown extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[dungeon-D4-1F] Thieves' Town - Room above boss", 0xEA0D, null, $this),
-			new Location\Chest("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]", 0xEA04, null, $this),
-			new Location\Chest("[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]", 0xEA01, null, $this),
-			new Location\Chest("[dungeon-D4-B1] Thieves' Town - Bottom right of huge room", 0xEA07, null, $this),
-			new Location\Chest("[dungeon-D4-B1] Thieves' Town - Top left of huge room", 0xEA0A, null, $this),
-			new Location\BigChest("[dungeon-D4-B2] Thieves' Town - big chest", 0xEA10, null, $this),
-			new Location\Chest("[dungeon-D4-B2] Thieves' Town - next to Blind", 0xEA13, null, $this),
-			new Location\Drop("Heart Container - Blind", 0x180156, null, $this),
+			new Location\Chest("Thieves' Town - Attic", 0xEA0D, null, $this),
+			new Location\Chest("Thieves' Town - Big Key Chest", 0xEA04, null, $this),
+			new Location\Chest("Thieves' Town - Map Chest", 0xEA01, null, $this),
+			new Location\Chest("Thieves' Town - Compass Chest", 0xEA07, null, $this),
+			new Location\Chest("Thieves' Town - Ambush Chest", 0xEA0A, null, $this),
+			new Location\BigChest("Thieves' Town - Big Chest", 0xEA10, null, $this),
+			new Location\Chest("Thieves' Town - Blind's Cell", 0xEA13, null, $this),
+			new Location\Drop("Thieves' Town - Blind", 0x180156, null, $this),
 
-			new Location\Prize\Crystal("Thieves Town Crystal", [null, 0x120A6, 0x53F36, 0x53F37, 0x18005B, 0x180077, 0xC707], null, $this),
+			new Location\Prize\Crystal("Thieves' Town - Prize", [null, 0x120A6, 0x53F36, 0x53F37, 0x18005B, 0x180077, 0xC707], null, $this),
 		]);
 
-		$this->prize_location = $this->locations["Thieves Town Crystal"];
+		$this->prize_location = $this->locations["Thieves' Town - Prize"];
 	}
 
 	/**
@@ -58,16 +58,16 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]"]->setItem(Item::get('BigKeyD4'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]"]->setItem(Item::get('MapD4'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Bottom right of huge room"]->setItem(Item::get('CompassD4'));
-		$this->locations["[dungeon-D4-B1] Thieves' Town - Top left of huge room"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setItem(Item::get('TitansMitt'));
-		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setItem(Item::get('KeyD4'));
-		$this->locations["Heart Container - Blind"]->setItem(Item::get('BossHeartContainer'));
+		$this->locations["Thieves' Town - Attic"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Thieves' Town - Big Key Chest"]->setItem(Item::get('BigKeyD4'));
+		$this->locations["Thieves' Town - Map Chest"]->setItem(Item::get('MapD4'));
+		$this->locations["Thieves' Town - Compass Chest"]->setItem(Item::get('CompassD4'));
+		$this->locations["Thieves' Town - Ambush Chest"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Thieves' Town - Big Chest"]->setItem(Item::get('TitansMitt'));
+		$this->locations["Thieves' Town - Blind's Cell"]->setItem(Item::get('KeyD4'));
+		$this->locations["Thieves' Town - Blind"]->setItem(Item::get('BossHeartContainer'));
 
-		$this->locations["Thieves Town Crystal"]->setItem(Item::get('Crystal4'));
+		$this->locations["Thieves' Town - Prize"]->setItem(Item::get('Crystal4'));
 
 		return $this;
 	}
@@ -79,19 +79,19 @@ class ThievesTown extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["[dungeon-D4-1F] Thieves' Town - Room above boss"]->setRequirements(function($locations, $items) {
+		$this->locations["Thieves' Town - Attic"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD4') && $items->has('BigKeyD4');
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
 		});
 
-		$this->locations["[dungeon-D4-B2] Thieves' Town - big chest"]->setRequirements(function($locations, $items) {
+		$this->locations["Thieves' Town - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
 		});
 
-		$this->locations["[dungeon-D4-B2] Thieves' Town - next to Blind"]->setRequirements(function($locations, $items) {
+		$this->locations["Thieves' Town - Blind's Cell"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD4');
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD4');
@@ -104,7 +104,7 @@ class ThievesTown extends Region {
 				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna'));
 		};
 
-		$this->locations["Heart Container - Blind"]->setRequirements($this->can_complete)
+		$this->locations["Thieves' Town - Blind"]->setRequirements($this->can_complete)
 			->setFillRules(function($item, $locations, $items) {
 				if (!$this->world->config('region.bossNormalLocation', true)
 					&& ($item instanceof Item\Key || $item instanceof Item\BigKey

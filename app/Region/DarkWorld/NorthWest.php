@@ -23,12 +23,12 @@ class NorthWest extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[cave-063] doorless hut", 0xE9EC, null, $this),
-			new Location\Chest("[cave-062] C-shaped house", 0xE9EF, null, $this),
-			new Location\Chest("Piece of Heart (Treasure Chest Game)", 0xEDA8, null, $this),
-			new Location\Standing("Piece of Heart (Dark World blacksmith pegs)", 0x180006, null, $this),
-			new Location\Standing("Piece of Heart (Dark World - bumper cave)", 0x180146, null, $this),
-			new Location\Npc("Blacksmiths", $world->config('region.swordsInPool', true) ? 0x18002A : 0x3355C, null, $this),
+			new Location\Chest("Brewery", 0xE9EC, null, $this),
+			new Location\Chest("C-Shaped House", 0xE9EF, null, $this),
+			new Location\Chest("Chest Game", 0xEDA8, null, $this),
+			new Location\Standing("Hammer Pegs", 0x180006, null, $this),
+			new Location\Standing("Bumper Cave", 0x180146, null, $this),
+			new Location\Npc("Blacksmith", $world->config('region.swordsInPool', true) ? 0x18002A : 0x3355C, null, $this),
 			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 		]);
 	}
@@ -39,12 +39,12 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[cave-063] doorless hut"]->setItem(Item::get('RedBoomerang'));
-		$this->locations["[cave-062] C-shaped house"]->setItem(Item::get('ThreeHundredRupees'));
-		$this->locations["Piece of Heart (Treasure Chest Game)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Blacksmiths"]->setItem(Item::get('L3Sword'));
+		$this->locations["Brewery"]->setItem(Item::get('RedBoomerang'));
+		$this->locations["C-Shaped House"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Chest Game"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Hammer Pegs"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Bumper Cave"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Blacksmith"]->setItem(Item::get('L3Sword'));
 		$this->locations["Purple Chest"]->setItem(Item::get('Bottle'));
 
 		return $this;
@@ -57,15 +57,15 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
+		$this->locations["Hammer Pegs"]->setRequirements(function($locations, $items) {
 			return $items->canLiftDarkRocks() && $items->has('Hammer');
 		});
 
-		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
+		$this->locations["Bumper Cave"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks() && $items->has('Cape');
 		});
 
-		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+		$this->locations["Blacksmith"]->setRequirements(function($locations, $items) {
 			return $items->canLiftDarkRocks();
 		});
 
@@ -93,28 +93,28 @@ class NorthWest extends Region {
 	public function initMajorGlitches() {
 		$this->initOverworldGlitches();
 
-		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
+		$this->locations["Brewery"]->setRequirements(function($locations, $items) {
 			return $items->glitchedLinkInDarkWorld();
 		});
 
-		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
+		$this->locations["Hammer Pegs"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->glitchedLinkInDarkWorld();
 		});
 
-		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
+		$this->locations["Bumper Cave"]->setRequirements(function($locations, $items) {
 			return $items->glitchedLinkInDarkWorld()
 				&& ($items->has('PegasusBoots')
 						|| ($items->canLiftRocks() && $items->has('Cape')));
 		});
 
-		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+		$this->locations["Blacksmith"]->setRequirements(function($locations, $items) {
 			return $items->glitchedLinkInDarkWorld()
 				&& ($items->canLiftDarkRocks()
 					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $locations["Blacksmiths"]->canAccess($items)
+			return $locations["Blacksmith"]->canAccess($items)
 				&& ($items->has('MagicMirror')
 					|| ($items->glitchedLinkInDarkWorld() && $items->canLiftDarkRocks())
 					|| ($items->has('PegasusBoots') && $items->glitchedLinkInDarkWorld()
@@ -140,31 +140,31 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		$this->locations["[cave-063] doorless hut"]->setRequirements(function($locations, $items) {
+		$this->locations["Brewery"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});
 
-		$this->locations["Piece of Heart (Dark World blacksmith pegs)"]->setRequirements(function($locations, $items) {
+		$this->locations["Hammer Pegs"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('MoonPearl')
 				&& ($items->canLiftDarkRocks()
 					|| ($items->has('PegasusBoots')
 						&& $this->world->getRegion('North East Dark World')->canEnter($locations, $items)));
 		});
 
-		$this->locations["Piece of Heart (Dark World - bumper cave)"]->setRequirements(function($locations, $items) {
+		$this->locations["Bumper Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl')
 				&& ($items->has('PegasusBoots')
 						|| ($items->canLiftRocks() && $items->has('Cape')));
 		});
 
-		$this->locations["Blacksmiths"]->setRequirements(function($locations, $items) {
+		$this->locations["Blacksmith"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl')
 				&& ($items->canLiftDarkRocks()
 					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
-			return $locations["Blacksmiths"]->canAccess($items)
+			return $locations["Blacksmith"]->canAccess($items)
 				&& ($items->has("MoonPearl")
 					&& ($items->canLiftDarkRocks()
 						|| ($items->has('PegasusBoots')

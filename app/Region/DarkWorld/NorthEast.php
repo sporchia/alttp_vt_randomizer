@@ -24,9 +24,9 @@ class NorthEast extends Region {
 
 		$this->locations = new LocationCollection([
 			new Location\Standing("Catfish", 0xEE185, null, $this),
-			new Location\Standing("Piece of Heart (Pyramid)", 0x180147, null, $this),
-			new Location\Standing("Pyramid - Sword", 0x180028, null, $this),
-			new Location\Standing("Pyramid - Bow", 0x34914, null, $this),
+			new Location\Standing("Pyramid", 0x180147, null, $this),
+			new Location\Trade("Pyramid Fairy - Sword", 0x180028, null, $this),
+			new Location\Trade("Pyramid Fairy - Bow", 0x34914, null, $this),
 			new Location\Prize\Event("Ganon", null, null, $this),
 		]);
 
@@ -34,6 +34,10 @@ class NorthEast extends Region {
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Left", 0xE980, null, $this));
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Right", 0xE983, null, $this));
 		}
+
+		// set these to not upgrade
+		$this->locations["Pyramid Fairy - Sword"]->setItem(Item::get('L1Sword'));
+		$this->locations["Pyramid Fairy - Bow"]->setItem(Item::get('Bow'));
 
 		$this->prize_location = $this->locations["Ganon"];
 		$this->prize_location->setItem(Item::get('DefeatGanon'));
@@ -46,9 +50,9 @@ class NorthEast extends Region {
 	 */
 	public function setVanilla() {
 		$this->locations["Catfish"]->setItem(Item::get('Quake'));
-		$this->locations["Piece of Heart (Pyramid)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Pyramid - Sword"]->setItem(Item::get('L4Sword'));
-		$this->locations["Pyramid - Bow"]->setItem(Item::get('BowAndSilverArrows'));
+		$this->locations["Pyramid"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Pyramid Fairy - Sword"]->setItem(Item::get('L4Sword'));
+		$this->locations["Pyramid Fairy - Bow"]->setItem(Item::get('BowAndSilverArrows'));
 
 		if ($this->world->config('region.swordsInPool', true)) {
 			$this->locations["Pyramid Fairy - Left"]->setItem(Item::get('L4Sword'));
@@ -69,14 +73,14 @@ class NorthEast extends Region {
 			return $items->has('MoonPearl') && $items->canLiftRocks();
 		});
 
-		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
+		$this->locations["Pyramid Fairy - Sword"]->setRequirements(function($locations, $items) {
 			return $items->hasSword() && $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hammer')
 						|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')));
 		});
 
-		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
+		$this->locations["Pyramid Fairy - Bow"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->has('Crystal5') && $items->has('Crystal6') && $items->has('MoonPearl')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hammer')
@@ -139,7 +143,7 @@ class NorthEast extends Region {
 				&& ($items->canLiftRocks() || $items->has('PegasusBoots'));
 		});
 
-		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
+		$this->locations["Pyramid Fairy - Sword"]->setRequirements(function($locations, $items) {
 			return $items->hasSword()
 				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
 					|| ($items->has('Crystal5') && $items->has('Crystal6')
@@ -148,7 +152,7 @@ class NorthEast extends Region {
 								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
 		});
 
-		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
+		$this->locations["Pyramid Fairy - Bow"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows()
 				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
 					|| ($items->has('Crystal5') && $items->has('Crystal6')
@@ -204,7 +208,7 @@ class NorthEast extends Region {
 				&& ($items->canLiftRocks() || $items->has('PegasusBoots'));
 		});
 
-		$this->locations["Pyramid - Sword"]->setRequirements(function($locations, $items) {
+		$this->locations["Pyramid Fairy - Sword"]->setRequirements(function($locations, $items) {
 			return $items->hasSword()
 				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
 					|| ($items->has('Crystal5') && $items->has('Crystal6')
@@ -213,7 +217,7 @@ class NorthEast extends Region {
 								|| ($items->has('MagicMirror') && $items->has('DefeatAgahnim')))));
 		});
 
-		$this->locations["Pyramid - Bow"]->setRequirements(function($locations, $items) {
+		$this->locations["Pyramid Fairy - Bow"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows()
 				&& (($items->has('MagicMirror') && $items->canSpinSpeed())
 					|| ($items->has('Crystal5') && $items->has('Crystal6')

@@ -14,13 +14,13 @@ class HyruleCastleTower extends Region {
 
 	protected $region_items = [
 		'BigKey',
-		'BigKeyH1',
+		'BigKeyA1',
 		'Compass',
-		'CompassH1',
+		'CompassA1',
 		'Key',
-		'KeyH1',
+		'KeyA1',
 		'Map',
-		'MapH1',
+		'MapA1',
 	];
 
 	/**
@@ -34,13 +34,10 @@ class HyruleCastleTower extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Chest("[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room", 0xEAB5, null, $this),
-			new Location\Chest("[dungeon-A1-3F] Hyrule Castle Tower - maze room", 0xEAB2, null, $this),
+			new Location\Chest("Castle Tower - Room 03", 0xEAB5, null, $this),
+			new Location\Chest("Castle Tower - Dark Maze", 0xEAB2, null, $this),
 			new Location\Prize\Event("Agahnim", null, null, $this),
 		]);
-
-		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
 
 		$this->prize_location = $this->locations["Agahnim"];
 		$this->prize_location->setItem(Item::get('DefeatAgahnim'));
@@ -52,8 +49,8 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room"]->setItem(Item::get('Key'));
-		$this->locations["[dungeon-A1-3F] Hyrule Castle Tower - maze room"]->setItem(Item::get('Key'));
+		$this->locations["Castle Tower - Room 03"]->setItem(Item::get('KeyA1'));
+		$this->locations["Castle Tower - Dark Maze"]->setItem(Item::get('KeyA1'));
 
 		return $this;
 	}
@@ -65,21 +62,22 @@ class HyruleCastleTower extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->can_complete = function($locations, $items) {
-			if (config('game-mode') == 'swordless') {
-				return $this->canEnter($locations, $items)
-					&& ($items->has('Hammer') || $items->hasSword() || $items->has('BugCatchingNet'));
-			}
+		$this->locations["Castle Tower - Dark Maze"]->setRequirements(function($locations, $items) {
+			return $items->has('Lamp') && $items->has('KeyA1');
+		});
 
-			return $this->canEnter($locations, $items) && $items->hasSword();
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->has('KeyA1', 2)
+				&& $items->has('Lamp') && ($items->hasSword()
+					|| (config('game-mode') == 'swordless' && ($items->has('Hammer') || $items->has('BugCatchingNet'))));
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('Lamp') && ($items->has('Cape')
+			return $items->has('Cape')
 				|| $items->hasUpgradedSword()
-				|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
+				|| (config('game-mode') == 'swordless' && $items->has('Hammer'));
 		};
 
 		return $this;

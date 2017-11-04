@@ -5,9 +5,9 @@ use ALttP\Item;
 use ALttP\Rom;
 
 /**
- * Master Sword Altar Location
+ * Master Sword Pedestal Location
  */
-class Altar extends Location {
+class Pedestal extends Location {
 	/**
 	 * Sets the item for this location. The L2Sword normally sits here, so if we get MasterSword as our Item we need to
 	 * change it to the L2Sword, it will make the pulling of the sword look better.
@@ -27,7 +27,7 @@ class Altar extends Location {
 	public function writeItem(Rom $rom, Item $item = null) {
 		parent::writeItem($rom, $item);
 
-		$rom->setAltarCredits($this->getItemCreditsText());
+		$rom->setPedestalCredits($this->getItemCreditsText());
 		$rom->setPedestalTextbox($this->getItemPedestalText());
 
 		return $this;
@@ -35,6 +35,11 @@ class Altar extends Location {
 
 
 	private function getItemCreditsText() {
+		switch ($this->item) {
+			case Item::get('BigKeyA2'):
+				return "la key of evils bane";
+		}
+
 		switch (get_class($this->item)) {
 			case Item\Key::class:
 			case Item\BigKey::class:
@@ -213,6 +218,63 @@ class Altar extends Location {
 	}
 
 	private function getItemPedestalText() {
+		switch ($this->item) {
+			case Item::get('BigKeyA2'):
+				return "The Big Key\nof evils bane";
+			case Item::get('BigKeyD7'):
+				return "The big key\nof terrorpins";
+			case Item::get('BigKeyD4'):
+				return "The Big Key\nof rouges";
+			case Item::get('BigKeyP3'):
+				return "The big key\nto moldorms\nheart";
+			case Item::get('BigKeyD5'):
+				return "A frozen\nbig key\nrests here";
+			case Item::get('BigKeyD3'):
+				return "The big key\nof the dark\nforest";
+			case Item::get('BigKeyD6'):
+				return "The big key\nto Vitreous";
+			case Item::get('BigKeyD1'):
+				return "Hammeryump\nwith this\nbig key";
+			case Item::get('BigKeyD2'):
+				return "The Big key\nto the swamp";
+			case Item::get('BigKeyA1'):
+				return "Okay, this big\nkey doesn't\nreally exist";
+			case Item::get('BigKeyP2'):
+				return "Sand spills\nout of this\nbig key";
+			case Item::get('BigKeyP1'):
+				return "The big key\nof the east";
+			case Item::get('BigKeyH1'):
+			case Item::get('BigKeyH2'):
+				return "You should\nhave got this\nfrom a guard";
+			case Item::get('KeyA2'):
+				return "The small key\nof evils bane";
+			case Item::get('KeyD7'):
+				return "The small key\nof terrorpins";
+			case Item::get('KeyD4'):
+				return "The small key\nof rouges";
+			case Item::get('KeyP3'):
+				return "The key\nto moldorms\nbasement";
+			case Item::get('KeyD5'):
+				return "A frozen\nsmall key\nrests here";
+			case Item::get('KeyD3'):
+				return "The small key\nof the dark\nforest";
+			case Item::get('KeyD6'):
+				return "The small key\nto Vitreous";
+			case Item::get('KeyD1'):
+				return "A small key\nthat steals\nlight";
+			case Item::get('KeyD2'):
+				return "Access to\nthe swamp\nis granted";
+			case Item::get('KeyA1'):
+				return "Agahanim\nhalfway\nunlocked";
+			case Item::get('KeyP2'):
+				return "Sand spills\nout of this\nsmall key";
+			case Item::get('KeyP1'):
+				return "Okay, this\nkey doesn't\nreally exist";
+			case Item::get('KeyH1'):
+			case Item::get('KeyH2'):
+				return "The key to\nthe castle";
+		}
+
 		switch (get_class($this->item)) {
 			case Item\Key::class:
 				return "The small key\nto the Kingdom";

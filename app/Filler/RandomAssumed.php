@@ -1,6 +1,7 @@
 <?php namespace ALttP\Filler;
 
 use ALttP\Filler;
+use ALttP\Item;
 use ALttP\Support\ItemCollection as Items;
 use Log;
 

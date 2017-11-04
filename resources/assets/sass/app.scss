@@ -6,15 +6,20 @@
 @import "variables";
 
 @import "sprites";
+@import "loader";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootstrap-toggle/css/bootstrap-toggle";
 @import "node_modules/bootstrap-select/sass/bootstrap-select";
+@import 'navbar-fixed-side';
 
 body {
 	background-color: #EEEEEE;
-	padding-top: 70px;
+}
+
+.navbar-brand {
+	padding: 0;
 }
 
 .btn-flex {
@@ -107,4 +112,10 @@ body {
 		-moz-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
 		box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
 	}
+}
+
+input[readonly].custom-placed {
+	background-color:transparent;
+	border: 0;
+	font-size: 1em;
 }

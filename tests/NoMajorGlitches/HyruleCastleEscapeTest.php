@@ -60,41 +60,41 @@ class HyruleCastleEscapeTest extends TestCase {
 	public function fillPool() {
 		return [
 
-			["[dungeon-C-1F] Sanctuary", false, 'KeyH2', [], ['KeyH2']],
+			["Sanctuary", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - final basement room [left chest]", false, 'KeyH2', [], ['KeyH2']],
+			["Sewers - Secret Room - Left", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - final basement room [middle chest]", false, 'KeyH2', [], ['KeyH2']],
+			["Sewers - Secret Room - Middle", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - final basement room [right chest]", false, 'KeyH2', [], ['KeyH2']],
+			["Sewers - Secret Room - Right", false, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Escape - first B1 room", true, 'KeyH2', [], ['KeyH2']],
+			["Sewers - Dark Cross", true, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Hyrule Castle - boomerang room", true, 'KeyH2', [], ['KeyH2']],
+			["Hyrule Castle - Boomerang Chest", true, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B1] Hyrule Castle - map room", true, 'KeyH2', [], ['KeyH2']],
+			["Hyrule Castle - Map Chest", true, 'KeyH2', [], ['KeyH2']],
 
-			["[dungeon-C-B3] Hyrule Castle - next to Zelda", true, 'KeyH2', [], ['KeyH2']],
+			["Hyrule Castle - Zelda's Cell", true, 'KeyH2', [], ['KeyH2']],
 		];
 	}
 
 	public function accessPool() {
 		return [
-			["[dungeon-C-1F] Sanctuary", true, []],
+			["Sanctuary", true, []],
 
-			["[dungeon-C-B1] Escape - final basement room [left chest]", true, []],
+			["Sewers - Secret Room - Left", true, []],
 
-			["[dungeon-C-B1] Escape - final basement room [middle chest]", true, []],
+			["Sewers - Secret Room - Middle", true, []],
 
-			["[dungeon-C-B1] Escape - final basement room [right chest]", true, []],
+			["Sewers - Secret Room - Right", true, []],
 
-			["[dungeon-C-B1] Escape - first B1 room", true, []],
+			["Sewers - Dark Cross", true, []],
 
-			["[dungeon-C-B1] Hyrule Castle - boomerang room", true, []],
+			["Hyrule Castle - Boomerang Chest", true, []],
 
-			["[dungeon-C-B1] Hyrule Castle - map room", true, []],
+			["Hyrule Castle - Map Chest", true, []],
 
-			["[dungeon-C-B3] Hyrule Castle - next to Zelda", true, []],
+			["Hyrule Castle - Zelda's Cell", true, []],
 		];
 	}
 }

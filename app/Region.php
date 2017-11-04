@@ -123,6 +123,15 @@ class Region {
 	}
 
 	/**
+	 * Initalize No logic for the Region
+	 *
+	 * @return $this
+	 */
+	public function initNone() {
+		return $this;
+	}
+
+	/**
 	 * Initalize the No Major Glitches logic for the Region
 	 *
 	 * @return $this
@@ -188,10 +197,11 @@ class Region {
 	 * @return bool
 	 */
 	public function canFill(Item $item) : bool {
-		if (($item instanceof Item\Key
-			|| $item instanceof Item\BigKey
-			|| ($this->world->config('region.mapsInDungeons', true) && $item instanceof Item\Map)
-			|| ($this->world->config('region.compassesInDungeons', true) && $item instanceof Item\Compass))
+		if (((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
+			|| (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
+			|| ($item == Item::get('KeyH2') && !in_array(config('game-mode'), ['open', 'swordless'])) // Sewers Key cannot leave
+			|| (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
+			|| (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass))
 			&& !in_array($item, $this->region_items)) {
 			return false;
 		}

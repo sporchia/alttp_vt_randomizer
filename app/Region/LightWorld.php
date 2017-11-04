@@ -23,56 +23,56 @@ class LightWorld extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Altar("Altar", 0x289B0, null, $this),
-			new Location\Npc("Uncle", 0x2DF45, null, $this),
-			new Location\Chest("[cave-034] Hyrule Castle secret entrance", 0xE971, null, $this),
-			new Location\Chest("[cave-018] Graveyard - top right grave", 0xE97A, null, $this),
-			new Location\Chest("[cave-047] Dam", 0xE98C, null, $this),
-			new Location\Chest("[cave-040] Link's House", 0xE9BC, null, $this),
-			new Location\Chest("[cave-031] Tavern", 0xE9CE, null, $this),
-			new Location\Chest("[cave-026] chicken house", 0xE9E9, null, $this),
-			new Location\Chest("[cave-044] Aginah's cave", 0xE9F2, null, $this),
-			new Location\Chest("[cave-035] Sahasrahla's Hut [left chest]", 0xEA82, null, $this),
-			new Location\Chest("[cave-035] Sahasrahla's Hut [center chest]", 0xEA85, null, $this),
-			new Location\Chest("[cave-035] Sahasrahla's Hut [right chest]", 0xEA88, null, $this),
-			new Location\Chest("[cave-021] Kakariko well [top chest]", 0xEA8E, null, $this),
-			new Location\Chest("[cave-021] Kakariko well [left chest row of 3]", 0xEA91, null, $this),
-			new Location\Chest("[cave-021] Kakariko well [center chest row of 3]", 0xEA94, null, $this),
-			new Location\Chest("[cave-021] Kakariko well [right chest row of 3]", 0xEA97, null, $this),
-			new Location\Chest("[cave-021] Kakariko well [bottom chest]", 0xEA9A, null, $this),
-			new Location\Chest("[cave-022-B1] Thief's hut [top chest]", 0xEB0F, null, $this),
-			new Location\Chest("[cave-022-B1] Thief's hut [top left chest]", 0xEB12, null, $this),
-			new Location\Chest("[cave-022-B1] Thief's hut [top right chest]", 0xEB15, null, $this),
-			new Location\Chest("[cave-022-B1] Thief's hut [bottom left chest]", 0xEB18, null, $this),
-			new Location\Chest("[cave-022-B1] Thief's hut [bottom right chest]", 0xEB1B, null, $this),
-			new Location\Chest("[cave-016] cave under rocks west of Santuary", 0xEB3F, null, $this),
-			new Location\Chest("[cave-050] cave southwest of Lake Hylia [bottom left chest]", 0xEB42, null, $this),
-			new Location\Chest("[cave-050] cave southwest of Lake Hylia [top left chest]", 0xEB45, null, $this),
-			new Location\Chest("[cave-050] cave southwest of Lake Hylia [top right chest]", 0xEB48, null, $this),
-			new Location\Chest("[cave-050] cave southwest of Lake Hylia [bottom right chest]", 0xEB4B, null, $this),
-			new Location\Chest("[cave-051] Ice Cave", 0xEB4E, null, $this),
-			new Location\Npc("Bottle Vendor", 0x2EB18, null, $this),
+			new Location\Pedestal("Master Sword Pedestal", 0x289B0, null, $this),
+			new Location\Npc("Link's Uncle", 0x2DF45, null, $this),
+			new Location\Chest("Secret Passage", 0xE971, null, $this),
+			new Location\Chest("King's Tomb", 0xE97A, null, $this),
+			new Location\Chest("Floodgate Chest", 0xE98C, null, $this),
+			new Location\Chest("Link's House", 0xE9BC, null, $this),
+			new Location\Chest("Kakariko Tavern", 0xE9CE, null, $this),
+			new Location\Chest("Chicken House", 0xE9E9, null, $this),
+			new Location\Chest("Aginah's Cave", 0xE9F2, null, $this),
+			new Location\Chest("Sahasrahla's Hut - Left", 0xEA82, null, $this),
+			new Location\Chest("Sahasrahla's Hut - Middle", 0xEA85, null, $this),
+			new Location\Chest("Sahasrahla's Hut - Right", 0xEA88, null, $this),
+			new Location\Chest("Kakriko Well - Top", 0xEA8E, null, $this),
+			new Location\Chest("Kakriko Well - Left", 0xEA91, null, $this),
+			new Location\Chest("Kakriko Well - Middle", 0xEA94, null, $this),
+			new Location\Chest("Kakriko Well - Right", 0xEA97, null, $this),
+			new Location\Chest("Kakriko Well - Bottom", 0xEA9A, null, $this),
+			new Location\Chest("Blind's Hideout - Top", 0xEB0F, null, $this),
+			new Location\Chest("Blind's Hideout - Left", 0xEB12, null, $this),
+			new Location\Chest("Blind's Hideout - Right", 0xEB15, null, $this),
+			new Location\Chest("Blind's Hideout - Far Left", 0xEB18, null, $this),
+			new Location\Chest("Blind's Hideout - Far Right", 0xEB1B, null, $this),
+			new Location\Chest("Pegasus Rocks", 0xEB3F, null, $this),
+			new Location\Chest("Mini Moldorm Cave - Far Left", 0xEB42, null, $this),
+			new Location\Chest("Mini Moldorm Cave - Left", 0xEB45, null, $this),
+			new Location\Chest("Mini Moldorm Cave - Right", 0xEB48, null, $this),
+			new Location\Chest("Mini Moldorm Cave - Far Right", 0xEB4B, null, $this),
+			new Location\Chest("Ice Rod Cave", 0xEB4E, null, $this),
+			new Location\Npc("Bottle Merchant", 0x2EB18, null, $this),
 			new Location\Npc("Sahasrahla", 0x2F1FC, null, $this),
 			new Location\Npc("Magic Bat", 0x180015, null, $this),
 			new Location\Npc\BugCatchingKid("Sick Kid", 0x339CF, null, $this),
 			new Location\Npc("Hobo", 0x33E7D, null, $this),
 			new Location\Drop\Bombos("Bombos Tablet", 0x180017, null, $this),
 			new Location\Npc\Zora("King Zora", 0xEE1C3, null, $this),
-			new Location\Standing("Piece of Heart (Thieves' Forest Hideout)", 0x180000, null, $this),
-			new Location\Standing("Piece of Heart (Lumberjack Tree)", 0x180001, null, $this),
-			new Location\Standing("Piece of Heart (south of Haunted Grove)", 0x180003, null, $this),
-			new Location\Standing("Piece of Heart (Graveyard)", 0x180004, null, $this),
-			new Location\Standing("Piece of Heart (Desert - northeast corner)", 0x180005, null, $this),
-			new Location\Npc("[cave-050] cave southwest of Lake Hylia - generous guy", 0x180010, null, $this),
+			new Location\Standing("Lost Woods Hideout", 0x180000, null, $this),
+			new Location\Standing("Lumberjack Tree", 0x180001, null, $this),
+			new Location\Standing("Cave 45", 0x180003, null, $this),
+			new Location\Standing("Graveyard Ledge", 0x180004, null, $this),
+			new Location\Standing("Checkerboard Cave", 0x180005, null, $this),
+			new Location\Npc("Mini Moldorm Cave - NPC", 0x180010, null, $this),
 			new Location\Dash("Library", 0x180012, null, $this),
 			new Location\Standing("Mushroom", 0x180013, null, $this),
-			new Location\Npc\Witch("Witch", 0x180014, null, $this),
-			new Location\Standing("Piece of Heart (Maze Race)", 0x180142, null, $this),
-			new Location\Standing("Piece of Heart (Desert - west side)", 0x180143, null, $this),
-			new Location\Standing("Piece of Heart (Lake Hylia)", 0x180144, null, $this),
-			new Location\Standing("Piece of Heart (Dam)", 0x180145, null, $this),
-			new Location\Standing("Piece of Heart (Zora's River)", 0x180149, null, $this),
-			new Location\Dig\HauntedGrove("Haunted Grove item", 0x18014A, null, $this),
+			new Location\Npc\Witch("Potion Shop", 0x180014, null, $this),
+			new Location\Standing("Maze Race", 0x180142, null, $this),
+			new Location\Standing("Desert Ledge", 0x180143, null, $this),
+			new Location\Standing("Lake Hylia Island", 0x180144, null, $this),
+			new Location\Standing("Sunken Treasure", 0x180145, null, $this),
+			new Location\Standing("Zora's Ledge", 0x180149, null, $this),
+			new Location\Dig\HauntedGrove("Flute Spot", 0x18014A, null, $this),
 			new Location\Chest("Waterfall Fairy - Left", 0xE9B0, null, $this),
 			new Location\Chest("Waterfall Fairy - Right", 0xE9D1, null, $this),
 		]);
@@ -84,56 +84,56 @@ class LightWorld extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["Altar"]->setItem(Item::get('MasterSword'));
-		$this->locations["Uncle"]->setItem(Item::get('L1SwordAndShield'));
-		$this->locations["[cave-034] Hyrule Castle secret entrance"]->setItem(Item::get('Lamp'));
-		$this->locations["[cave-018] Graveyard - top right grave"]->setItem(Item::get('Cape'));
-		$this->locations["[cave-047] Dam"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[cave-040] Link's House"]->setItem(Item::get('Lamp'));
-		$this->locations["[cave-031] Tavern"]->setItem(Item::get('Bottle'));
-		$this->locations["[cave-026] chicken house"]->setItem(Item::get('TenArrows'));
-		$this->locations["[cave-044] Aginah's cave"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-035] Sahasrahla's Hut [left chest]"]->setItem(Item::get('FiftyRupees'));
-		$this->locations["[cave-035] Sahasrahla's Hut [center chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[cave-035] Sahasrahla's Hut [right chest]"]->setItem(Item::get('FiftyRupees'));
-		$this->locations["[cave-021] Kakariko well [top chest]"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-021] Kakariko well [left chest row of 3]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-021] Kakariko well [center chest row of 3]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-021] Kakariko well [right chest row of 3]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-021] Kakariko well [bottom chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[cave-022-B1] Thief's hut [top chest]"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-022-B1] Thief's hut [top left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-022-B1] Thief's hut [top right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-022-B1] Thief's hut [bottom left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-022-B1] Thief's hut [bottom right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-016] cave under rocks west of Santuary"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom left chest]"]->setItem(Item::get('ThreeBombs'));
-		$this->locations["[cave-050] cave southwest of Lake Hylia [top left chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-050] cave southwest of Lake Hylia [top right chest]"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["[cave-050] cave southwest of Lake Hylia [bottom right chest]"]->setItem(Item::get('TenArrows'));
-		$this->locations["[cave-051] Ice Cave"]->setItem(Item::get('IceRod'));
-		$this->locations["Bottle Vendor"]->setItem(Item::get('Bottle'));
+		$this->locations["Master Sword Pedestal"]->setItem(Item::get('MasterSword'));
+		$this->locations["Link's Uncle"]->setItem(Item::get('L1SwordAndShield'));
+		$this->locations["Secret Passage"]->setItem(Item::get('Lamp'));
+		$this->locations["King's Tomb"]->setItem(Item::get('Cape'));
+		$this->locations["Floodgate Chest"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Link's House"]->setItem(Item::get('Lamp'));
+		$this->locations["Kakariko Tavern"]->setItem(Item::get('Bottle'));
+		$this->locations["Chicken House"]->setItem(Item::get('TenArrows'));
+		$this->locations["Aginah's Cave"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Sahasrahla's Hut - Left"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Sahasrahla's Hut - Middle"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Sahasrahla's Hut - Right"]->setItem(Item::get('FiftyRupees'));
+		$this->locations["Kakriko Well - Top"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Kakriko Well - Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Kakriko Well - Middle"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Kakriko Well - Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Kakriko Well - Bottom"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Blind's Hideout - Top"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Blind's Hideout - Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Blind's Hideout - Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Blind's Hideout - Far Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Blind's Hideout - Far Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Pegasus Rocks"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Mini Moldorm Cave - Far Left"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Mini Moldorm Cave - Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Mini Moldorm Cave - Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Mini Moldorm Cave - Far Right"]->setItem(Item::get('TenArrows'));
+		$this->locations["Ice Rod Cave"]->setItem(Item::get('IceRod'));
+		$this->locations["Bottle Merchant"]->setItem(Item::get('Bottle'));
 		$this->locations["Sahasrahla"]->setItem(Item::get('PegasusBoots'));
 		$this->locations["Magic Bat"]->setItem(Item::get('HalfMagic')); // @TODO: perhaps use 0xFF here
 		$this->locations["Sick Kid"]->setItem(Item::get('BugCatchingNet'));
 		$this->locations["Hobo"]->setItem(Item::get('Bottle'));
 		$this->locations["Bombos Tablet"]->setItem(Item::get('Bombos'));
 		$this->locations["King Zora"]->setItem(Item::get('Flippers'));
-		$this->locations["Piece of Heart (Thieves' Forest Hideout)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Lumberjack Tree)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (south of Haunted Grove)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Graveyard)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Desert - northeast corner)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["[cave-050] cave southwest of Lake Hylia - generous guy"]->setItem(Item::get('ThreeHundredRupees'));
+		$this->locations["Lost Woods Hideout"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Lumberjack Tree"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Cave 45"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Graveyard Ledge"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Checkerboard Cave"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Mini Moldorm Cave - NPC"]->setItem(Item::get('ThreeHundredRupees'));
 		$this->locations["Library"]->setItem(Item::get('BookOfMudora'));
 		$this->locations["Mushroom"]->setItem(Item::get('Mushroom'));
-		$this->locations["Witch"]->setItem(Item::get('Powder'));
-		$this->locations["Piece of Heart (Maze Race)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Desert - west side)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Lake Hylia)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Dam)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Piece of Heart (Zora's River)"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Haunted Grove item"]->setItem(Item::get('OcarinaInactive'));
+		$this->locations["Potion Shop"]->setItem(Item::get('Powder'));
+		$this->locations["Maze Race"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Desert Ledge"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Lake Hylia Island"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Sunken Treasure"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Zora's Ledge"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Flute Spot"]->setItem(Item::get('OcarinaInactive'));
 		$this->locations["Waterfall Fairy - Left"]->setItem(Item::get('RedShield'));
 		$this->locations["Waterfall Fairy - Right"]->setItem(Item::get('RedBoomerang'));
 
@@ -148,19 +148,19 @@ class LightWorld extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["Altar"]->setRequirements(function($locations, $items) {
+		$this->locations["Master Sword Pedestal"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')
 				&& $items->has('PendantOfCourage');
 		});
 
-		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
+		$this->locations["King's Tomb"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
 				|| ($items->has('MagicMirror') && $items->has('MoonPearl')
 					&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
 		});
 
-		$this->locations["[cave-016] cave under rocks west of Santuary"]->setRequirements(function($locations, $items) {
+		$this->locations["Pegasus Rocks"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots');
 		});
 
@@ -192,20 +192,20 @@ class LightWorld extends Region {
 			return $items->canLiftRocks() || $items->has('Flippers');
 		});
 
-		$this->locations["Piece of Heart (Lumberjack Tree)"]->setRequirements(function($locations, $items) {
+		$this->locations["Lumberjack Tree"]->setRequirements(function($locations, $items) {
 			return $items->has('DefeatAgahnim') && $items->has('PegasusBoots');
 		});
 
-		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {
+		$this->locations["Cave 45"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		});
 
-		$this->locations["Piece of Heart (Graveyard)"]->setRequirements(function($locations, $items) {
+		$this->locations["Graveyard Ledge"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $items->has('MoonPearl')
 				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
-		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
+		$this->locations["Checkerboard Cave"]->setRequirements(function($locations, $items) {
 			return $items->canFly() && $items->canLiftDarkRocks() && $items->has('MagicMirror');
 		});
 
@@ -213,25 +213,25 @@ class LightWorld extends Region {
 			return $items->has('PegasusBoots');
 		});
 
-		$this->locations["Witch"]->setRequirements(function($locations, $items) {
+		$this->locations["Potion Shop"]->setRequirements(function($locations, $items) {
 			return $items->has('Mushroom');
 		});
 
-		$this->locations["Piece of Heart (Desert - west side)"]->setRequirements(function($locations, $items) {
+		$this->locations["Desert Ledge"]->setRequirements(function($locations, $items) {
 			return $this->world->getRegion('Desert Palace')->canEnter($locations, $items);
 		});
 
-		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+		$this->locations["Lake Hylia Island"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers') && $items->has('MoonPearl') && $items->has('MagicMirror')
 				&& ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
 					|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
 		});
 
-		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
+		$this->locations["Zora's Ledge"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers');
 		});
 
-		$this->locations["Haunted Grove item"]->setRequirements(function($locations, $items) {
+		$this->locations["Flute Spot"]->setRequirements(function($locations, $items) {
 			return $items->has('Shovel');
 		});
 
@@ -255,7 +255,7 @@ class LightWorld extends Region {
 	public function initMajorGlitches() {
 		$this->initOverworldGlitches();
 
-		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
+		$this->locations["King's Tomb"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
 				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld()));
 		});
@@ -267,12 +267,12 @@ class LightWorld extends Region {
 					|| $items->has('MagicMirror'));
 		});
 
-		$this->locations["Piece of Heart (Graveyard)"]->setRequirements(function($locations, $items) {
+		$this->locations["Graveyard Ledge"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld());
 		});
 
-		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+		$this->locations["Lake Hylia Island"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('Flippers') && $items->has('MagicMirror')
 					&& ($items->glitchedLinkInDarkWorld()
@@ -291,7 +291,7 @@ class LightWorld extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
-		$this->locations["[cave-018] Graveyard - top right grave"]->setRequirements(function($locations, $items) {
+		$this->locations["King's Tomb"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots') && ($items->canLiftDarkRocks()
 				|| ($items->has('MagicMirror') && $items->has('MoonPearl')));
 		});
@@ -319,31 +319,31 @@ class LightWorld extends Region {
 			return true;
 		});
 
-		$this->locations["Piece of Heart (south of Haunted Grove)"]->setRequirements(function($locations, $items) {
+		$this->locations["Cave 45"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items));
 		});
 
-		$this->locations["Piece of Heart (Graveyard)"]->setRequirements(function($locations, $items) {
+		$this->locations["Graveyard Ledge"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('MagicMirror') && $items->has('MoonPearl')
 					&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items));
 		});
 
-		$this->locations["Piece of Heart (Desert - northeast corner)"]->setRequirements(function($locations, $items) {
+		$this->locations["Checkerboard Cave"]->setRequirements(function($locations, $items) {
 			return $items->canLiftRocks()
 				&& ($items->has('PegasusBoots')
 					|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
 		});
 
-		$this->locations["Piece of Heart (Lake Hylia)"]->setRequirements(function($locations, $items) {
+		$this->locations["Lake Hylia Island"]->setRequirements(function($locations, $items) {
 			return $items->has('PegasusBoots')
 				|| ($items->has('Flippers') && $items->has('MagicMirror')
 					&& (($items->has('MoonPearl') && $this->world->getRegion('South Dark World')->canEnter($locations, $items))
 						|| $this->world->getRegion('North East Dark World')->canEnter($locations, $items)));
 		});
 
-		$this->locations["Piece of Heart (Zora's River)"]->setRequirements(function($locations, $items) {
+		$this->locations["Zora's Ledge"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers')
 				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
 		});

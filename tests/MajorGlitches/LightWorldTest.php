@@ -39,78 +39,78 @@ class LightWorldTest extends TestCase {
 
 	public function accessPool() {
 		return [
-			["Altar", false, []],
-			["Altar", false, [], ['PendantOfCourage']],
-			["Altar", false, [], ['PendantOfWisdom']],
-			["Altar", false, [], ['PendantOfPower']],
-			["Altar", true, ['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']],
+			["Master Sword Pedestal", false, []],
+			["Master Sword Pedestal", false, [], ['PendantOfCourage']],
+			["Master Sword Pedestal", false, [], ['PendantOfWisdom']],
+			["Master Sword Pedestal", false, [], ['PendantOfPower']],
+			["Master Sword Pedestal", true, ['PendantOfCourage', 'PendantOfWisdom', 'PendantOfPower']],
 
-			["Uncle", true, []],
+			["Link's Uncle", true, []],
 
-			["[cave-034] Hyrule Castle secret entrance", true, []],
+			["Secret Passage", true, []],
 
-			["[cave-018] Graveyard - top right grave", false, []],
-			["[cave-018] Graveyard - top right grave", false, [], ['PegasusBoots']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'TitansMitt']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'ProgressiveGlove', 'Hammer', 'MoonPearl', 'MagicMirror']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'PowerGlove', 'Hammer', 'MoonPearl', 'MagicMirror']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'MoonPearl', 'MagicMirror']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'MoonPearl', 'MagicMirror']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'MoonPearl', 'MagicMirror']],
-			["[cave-018] Graveyard - top right grave", true, ['PegasusBoots', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'MoonPearl', 'MagicMirror']],
+			["King's Tomb", false, []],
+			["King's Tomb", false, [], ['PegasusBoots']],
+			["King's Tomb", true, ['PegasusBoots', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["King's Tomb", true, ['PegasusBoots', 'TitansMitt']],
+			["King's Tomb", true, ['PegasusBoots', 'ProgressiveGlove', 'Hammer', 'MoonPearl', 'MagicMirror']],
+			["King's Tomb", true, ['PegasusBoots', 'PowerGlove', 'Hammer', 'MoonPearl', 'MagicMirror']],
+			["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'MoonPearl', 'MagicMirror']],
+			["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'MoonPearl', 'MagicMirror']],
+			["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'MoonPearl', 'MagicMirror']],
+			["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'MoonPearl', 'MagicMirror']],
 
-			["[cave-047] Dam", true, []],
+			["Floodgate Chest", true, []],
 
-			["[cave-040] Link's House", true, []],
+			["Link's House", true, []],
 
-			["[cave-031] Tavern", true, []],
+			["Kakariko Tavern", true, []],
 
-			["[cave-026] chicken house", true, []],
+			["Chicken House", true, []],
 
-			["[cave-044] Aginah's cave", true, []],
+			["Aginah's Cave", true, []],
 
-			["[cave-035] Sahasrahla's Hut [left chest]", true, []],
+			["Sahasrahla's Hut - Left", true, []],
 
-			["[cave-035] Sahasrahla's Hut [center chest]", true, []],
+			["Sahasrahla's Hut - Middle", true, []],
 
-			["[cave-035] Sahasrahla's Hut [right chest]", true, []],
+			["Sahasrahla's Hut - Right", true, []],
 
-			["[cave-021] Kakariko well [top chest]", true, []],
+			["Kakriko Well - Top", true, []],
 
-			["[cave-021] Kakariko well [left chest row of 3]", true, []],
+			["Kakriko Well - Left", true, []],
 
-			["[cave-021] Kakariko well [center chest row of 3]", true, []],
+			["Kakriko Well - Middle", true, []],
 
-			["[cave-021] Kakariko well [right chest row of 3]", true, []],
+			["Kakriko Well - Right", true, []],
 
-			["[cave-021] Kakariko well [bottom chest]", true, []],
+			["Kakriko Well - Bottom", true, []],
 
-			["[cave-022-B1] Thief's hut [top chest]", true, []],
+			["Blind's Hideout - Top", true, []],
 
-			["[cave-022-B1] Thief's hut [top left chest]", true, []],
+			["Blind's Hideout - Left", true, []],
 
-			["[cave-022-B1] Thief's hut [top right chest]", true, []],
+			["Blind's Hideout - Right", true, []],
 
-			["[cave-022-B1] Thief's hut [bottom left chest]", true, []],
+			["Blind's Hideout - Far Left", true, []],
 
-			["[cave-022-B1] Thief's hut [bottom right chest]", true, []],
+			["Blind's Hideout - Far Right", true, []],
 
-			["[cave-016] cave under rocks west of Santuary", false, []],
-			["[cave-016] cave under rocks west of Santuary", false, [], ['PegasusBoots']],
-			["[cave-016] cave under rocks west of Santuary", true, ['PegasusBoots']],
+			["Pegasus Rocks", false, []],
+			["Pegasus Rocks", false, [], ['PegasusBoots']],
+			["Pegasus Rocks", true, ['PegasusBoots']],
 
-			["[cave-050] cave southwest of Lake Hylia [bottom left chest]", true, []],
+			["Mini Moldorm Cave - Far Left", true, []],
 
-			["[cave-050] cave southwest of Lake Hylia [top left chest]", true, []],
+			["Mini Moldorm Cave - Left", true, []],
 
-			["[cave-050] cave southwest of Lake Hylia [top right chest]", true, []],
+			["Mini Moldorm Cave - Right", true, []],
 
-			["[cave-050] cave southwest of Lake Hylia [bottom right chest]", true, []],
+			["Mini Moldorm Cave - Far Right", true, []],
 
-			["[cave-051] Ice Cave", true, []],
+			["Ice Rod Cave", true, []],
 
-			["Bottle Vendor", true, []],
+			["Bottle Merchant", true, []],
 
 			["Sahasrahla", false, []],
 			["Sahasrahla", false, [], ['PendantOfCourage']],
@@ -168,37 +168,37 @@ class LightWorldTest extends TestCase {
 
 			["King Zora", true, []],
 
-			["Piece of Heart (Thieves' Forest Hideout)", true, []],
+			["Lost Woods Hideout", true, []],
 
-			["Piece of Heart (Lumberjack Tree)", false, []],
-			["Piece of Heart (Lumberjack Tree)", false, [], ['PegasusBoots']],
-			["Piece of Heart (Lumberjack Tree)", false, [], ['DefeatAgahnim']],
-			["Piece of Heart (Lumberjack Tree)", true, ['PegasusBoots', 'DefeatAgahnim']],
+			["Lumberjack Tree", false, []],
+			["Lumberjack Tree", false, [], ['PegasusBoots']],
+			["Lumberjack Tree", false, [], ['DefeatAgahnim']],
+			["Lumberjack Tree", true, ['PegasusBoots', 'DefeatAgahnim']],
 
-			["Piece of Heart (south of Haunted Grove)", false, []],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Hammer']],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-			["Piece of Heart (south of Haunted Grove)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
+			["Cave 45", false, []],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Hammer']],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
+			["Cave 45", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-			["Piece of Heart (Graveyard)", false, []],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-			["Piece of Heart (Graveyard)", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
+			["Graveyard Ledge", false, []],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
+			["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
-			["Piece of Heart (Desert - northeast corner)", false, []],
-			["Piece of Heart (Desert - northeast corner)", false, [], ['Gloves']],
-			["Piece of Heart (Desert - northeast corner)", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Piece of Heart (Desert - northeast corner)", true, ['Flute', 'MagicMirror', 'TitansMitt']],
+			["Checkerboard Cave", false, []],
+			["Checkerboard Cave", false, [], ['Gloves']],
+			["Checkerboard Cave", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Checkerboard Cave", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
-			["[cave-050] cave southwest of Lake Hylia - generous guy", true, []],
+			["Mini Moldorm Cave - NPC", true, []],
 
 			["Library", false, []],
 			["Library", false, [], ['PegasusBoots']],
@@ -206,33 +206,33 @@ class LightWorldTest extends TestCase {
 
 			["Mushroom", true, []],
 
-			["Witch", false, []],
-			["Witch", false, [], ['Mushroom']],
-			["Witch", true, ['Mushroom']],
+			["Potion Shop", false, []],
+			["Potion Shop", false, [], ['Mushroom']],
+			["Potion Shop", true, ['Mushroom']],
 
-			["Piece of Heart (Maze Race)", true, []],
+			["Maze Race", true, []],
 
-			["Piece of Heart (Desert - west side)", false, []],
-			["Piece of Heart (Desert - west side)", true, ['BookOfMudora']],
-			["Piece of Heart (Desert - west side)", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Piece of Heart (Desert - west side)", true, ['Flute', 'MagicMirror', 'TitansMitt']],
+			["Desert Ledge", false, []],
+			["Desert Ledge", true, ['BookOfMudora']],
+			["Desert Ledge", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Desert Ledge", true, ['Flute', 'MagicMirror', 'TitansMitt']],
 
-			["Piece of Heart (Lake Hylia)", false, []],
-			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'TitansMitt']],
-			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
-			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
-			["Piece of Heart (Lake Hylia)", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'DefeatAgahnim']],
+			["Lake Hylia Island", false, []],
+			["Lake Hylia Island", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
+			["Lake Hylia Island", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'TitansMitt']],
+			["Lake Hylia Island", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
+			["Lake Hylia Island", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
+			["Lake Hylia Island", true, ['Flippers', 'MoonPearl', 'MagicMirror', 'DefeatAgahnim']],
 
-			["Piece of Heart (Dam)", true, []],
+			["Sunken Treasure", true, []],
 
-			["Piece of Heart (Zora's River)", false, []],
-			["Piece of Heart (Zora's River)", true, ['Flippers']],
-			["Piece of Heart (Zora's River)", true, ['MoonPearl', 'PegasusBoots']],
+			["Zora's Ledge", false, []],
+			["Zora's Ledge", true, ['Flippers']],
+			["Zora's Ledge", true, ['MoonPearl', 'PegasusBoots']],
 
-			["Haunted Grove item", false, []],
-			["Haunted Grove item", false, [], ['Shovel']],
-			["Haunted Grove item", true, ['Shovel']],
+			["Flute Spot", false, []],
+			["Flute Spot", false, [], ['Shovel']],
+			["Flute Spot", true, ['Shovel']],
 
 			["Waterfall Fairy - Left", false, []],
 			["Waterfall Fairy - Left", false, [], ['Flippers', 'MoonPearl']],
