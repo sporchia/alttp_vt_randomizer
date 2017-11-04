@@ -4,14 +4,9 @@ return [
 	'easy' => [
 		'item' => [
 			'count' => [
-				'MasterSword' => 2,
-				'L3Sword' => 3,
-				'L4Sword' => 2,
-				'BlueShield' => 2,
-				'RedShield' => 2,
-				'MirrorShield' => 2,
-				'BlueMail' => 2,
-				'RedMail' => 2,
+				'ProgressiveSword' => 8,
+				'ProgressiveShield' => 6,
+				'ProgressiveArmor' => 4,
 				'ExtraBottles' => 7,
 				'TwentyRupees' => 14,
 				'HalfMagicUpgrade' => 2,
