@@ -23,7 +23,7 @@ class Ether extends Location {
 			case Item::get('BigKeyD7'):
 				return "The big key\nof terrorpins";
 			case Item::get('BigKeyD4'):
-				return "The Big Key\nof rouges";
+				return "The Big Key\nof rogues";
 			case Item::get('BigKeyP3'):
 				return "The big key\nto moldorms\nheart";
 			case Item::get('BigKeyD5'):
@@ -50,7 +50,7 @@ class Ether extends Location {
 			case Item::get('KeyD7'):
 				return "The small key\nof terrorpins";
 			case Item::get('KeyD4'):
-				return "The small key\nof rouges";
+				return "The small key\nof rogues";
 			case Item::get('KeyP3'):
 				return "The key\nto moldorms\nbasement";
 			case Item::get('KeyD5'):
