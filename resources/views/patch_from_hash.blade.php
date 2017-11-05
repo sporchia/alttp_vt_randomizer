@@ -81,8 +81,8 @@ function seedApplied(data) {
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.difficulty = data.patch.difficulty;
 		rom.variation = data.patch.spoiler.meta.variation;
-		rom.hash = data.hash;
-		rom.seed = data.hash;
+		rom.hash = data.patch.hash;
+		rom.seed = data.patch.hash;
 		$('button[name=save]').show().prop('disabled', false);
 		resolve(rom);
 	});
