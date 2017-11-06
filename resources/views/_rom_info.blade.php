@@ -20,7 +20,7 @@ function parseInfoFromPatch(patch) {
 	if (!patch.seed && patch.hash) {
 		$('.info .seed').html(patch.hash);
 	}
-	$('.info .logic').html(patch.logic);
+	$('.info .logic').html(patch.spoiler.meta.logic);
 	$('.info .build').html(patch.spoiler.meta.build);
 	$('.info .goal').html(patch.spoiler.meta.goal);
 	$('.info .mode').html(patch.spoiler.meta.mode);
