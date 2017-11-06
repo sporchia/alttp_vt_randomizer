@@ -96,6 +96,9 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Big Key Chest"]->setRequirements(function($locations, $items) {
+			if ($this->world->config('region.wildKeys', false)) {
+				return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+			}
 			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		});
 
@@ -105,7 +108,12 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Big Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('BigKeyD1') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
+			if ($this->world->config('region.wildKeys', false)) {
+				return $items->has('Lamp') && $items->has('BigKeyD1')
+					&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+			}
+			return $items->has('Lamp') && $items->has('BigKeyD1')
+				&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
 		});
@@ -115,6 +123,9 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Harmless Hellway"]->setRequirements(function($locations, $items) {
+			if ($this->world->config('region.wildKeys', false)) {
+				return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+			}
 			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		});
 
@@ -136,12 +147,20 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Dark Maze - Top"]->setRequirements(function($locations, $items) {
+			if ($this->world->config('region.wildKeys', false)) {
+				return $items->has('Lamp')
+					&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+			}
 			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
 		});
 
 		$this->locations["Palace of Darkness - Dark Maze - Bottom"]->setRequirements(function($locations, $items) {
+			if ($this->world->config('region.wildKeys', false)) {
+				return $items->has('Lamp')
+					&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+			}
 			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyD1');
