@@ -9,6 +9,25 @@ Route::get('randomize{r?}', function () {
 	return view('randomizer');
 });
 
+Route::get('randomizer/settings', function () {
+	return config('alttp.randomizer.item');
+});
+
+Route::get('entrance/randomizer/settings', function () {
+	return config('alttp.randomizer.entrance');
+});
+
+Route::get('sprites', function () {
+	$sprites =  [];
+	foreach (config('alttp.sprites') as $file => $name) {
+		$sprites[] = [
+			'name' => $name,
+			'file' => 'http://spr.beegunslingers.com/' . $file,
+		];
+	}
+	return $sprites;
+});
+
 Route::get('entrance/randomize{r?}', function () {
 	return view('entrance_randomizer');
 });
@@ -109,6 +128,8 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	$variation = $request->input('variation', 'none') ?: 'none';
+	$goal = $request->input('goal', 'ganon') ?: 'ganon';
+	$shuffle = $request->input('shuffle', 'full') ?: 'full';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -127,7 +148,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	}
 
 	try {
-		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $request->input('goal', 'ganon'), $variation, $request->input('shuffle', 'full'));
+		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle);
 		$rand->makeSeed($seed_id);
 		$rand->writeToRom($rom);
 		$seed = $rand->getSeed();
@@ -159,10 +180,12 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	$variation = $request->input('variation', 'none') ?: 'none';
+	$goal = $request->input('goal', 'ganon') ?: 'ganon';
+	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
-		$world = new World($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+		$world = new World($difficulty, $logic, $goal, $variation);
 		$locations = $world->getLocations();
 		foreach ($request->input('l', []) as $location => $item) {
 			$decoded_location = base64_decode($location);
@@ -213,7 +236,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 	if (isset($world)) {
 		$rand->setWorld($world);
 	}
@@ -251,10 +274,13 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$difficulty = $request->input('difficulty', 'normal');
+	$variation = $request->input('variation', 'none') ?: 'none';
+	$goal = $request->input('goal', 'ganon') ?: 'ganon';
+	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
-	$variation = $request->input('variation', 'none') ?: 'none';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -266,7 +292,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });
