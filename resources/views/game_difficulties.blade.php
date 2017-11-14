@@ -22,6 +22,7 @@
 				<li>½ Magic</li>
 			</ul>
 			<p>finding the second ½ Magic tucked away in easy will get you ¼ Magic</p>
+			<p>Also just like vanilla you will have 3x the opportunities to get Lamp!</p>
 		</div>
 	</div>
 

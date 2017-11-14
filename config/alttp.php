@@ -10,6 +10,8 @@ return [
 				'ExtraBottles' => 7,
 				'TwentyRupees' => 14,
 				'HalfMagicUpgrade' => 2,
+				'Lamp' => 3,
+				'FiveRupees' => 2,
 			],
 			'overflow' => [
 				'Armor' => 'TwentyRupees',
@@ -45,7 +47,7 @@ return [
 				'item' => [
 					'count' => [
 						'TriforcePiece' => 30,
-						'TwentyRupees' => 2,
+						'TwentyRupees' => 0,
 						'FiveRupees' => 0,
 					],
 					'overflow' => [
@@ -95,6 +97,7 @@ return [
 						'OneRupee' => 0, // 2 : 2
 						'FiveRupees' => 0, // 4 : 20
 						'ThreeBombs' => 0, // 10
+						'FiftyRupees' => 5,
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 6, // 4 + 600
 						'GreenClock' => 20,
