@@ -2,6 +2,7 @@
 
 use ALttP\Item;
 use ALttP\Location;
+use ALttP\Rom;
 use ALttP\World;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,10 @@ Route::get('randomizer/settings', function () {
 
 Route::get('entrance/randomizer/settings', function () {
 	return config('alttp.randomizer.entrance');
+});
+
+Route::get('base_rom/settings', function () {
+	return config('alttp.base_rom');
 });
 
 Route::get('sprites', function () {
