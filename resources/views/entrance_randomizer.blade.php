@@ -21,8 +21,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Mode</span>
 					<select id="mode" class="form-control selectpicker">
-						<option value="open">Open</option>
-						<option value="swordless">Swordless</option>
+						@foreach (config('alttp.randomizer.entrance.modes') as $mode => $name)
+							<option value="{{ $mode }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -30,7 +31,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Logic</span>
 					<select id="logic" class="form-control selectpicker">
-						<option value="NoMajorGlitches">No Glitches</option>
+						@foreach (config('alttp.randomizer.entrance.logics') as $logic => $name)
+							<option value="{{ $logic }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -40,10 +43,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Goal</span>
 					<select id="goal" class="form-control selectpicker">
-						<option value="ganon">Defeat Ganon</option>
-						<option value="dungeons">All Dungeons</option>
-						<option value="pedestal">Master Sword Pedestal</option>
-						<option value="triforce-hunt">Triforce Pieces</option>
+						@foreach (config('alttp.randomizer.entrance.goals') as $goal => $name)
+							<option value="{{ $goal }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -51,7 +53,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
-						<option value="normal">Normal</option>
+						@foreach (config('alttp.randomizer.entrance.difficulties') as $difficulty => $name)
+							<option value="{{ $difficulty }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -70,10 +74,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Variation</span>
 					<select id="variation" class="form-control selectpicker">
-						<option value="none">None</option>
-						<option value="timed-race">Timed Race</option>
-						<option value="timed-ohko">Timed OHKO</option>
-						<option value="triforce-hunt">Triforce Piece Hunt</option>
+						@foreach (config('alttp.randomizer.entrance.variations') as $variation => $name)
+							<option value="{{ $variation }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -83,11 +86,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Shuffle</span>
 					<select id="shuffle" class="form-control selectpicker">
-						<option value="simple">Simple</option>
-						<option value="restricted">Restricted</option>
-						<option value="full">Full</option>
-						<option value="madness">Madness</option>
-						<option value="insanity">Insanity</option>
+						@foreach (config('alttp.randomizer.entrance.shuffles') as $shuffle => $name)
+							<option value="{{ $shuffle }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>

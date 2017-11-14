@@ -7,7 +7,7 @@ return [
 				'ProgressiveSword' => 8,
 				'ProgressiveShield' => 6,
 				'ProgressiveArmor' => 4,
-				'ExtraBottles' => 7,
+				'Bottles' => 8,
 				'TwentyRupees' => 14,
 				'HalfMagicUpgrade' => 2,
 				'Lamp' => 3,
@@ -687,5 +687,71 @@ return [
 		'zelda.2.spr' => 'Zelda',
 		'zerosuitsamus.1.spr' => 'Zero Suit Samus',
 		'zora.1.spr' => 'Zora',
+	],
+	'randomizer' => [
+		'entrance' => [
+			'difficulties' => [
+				'normal' => 'Normal',
+			],
+			'goals' => [
+				'ganon' => 'Defeat Ganon',
+				'dungeons' => 'All Dungeons',
+				'pedestal' => 'Master Sword Pedestal',
+				'triforce-hunt' => 'Triforce Pieces',
+			],
+			'logics' => [
+				'NoMajorGlitches' => 'No Glitches',
+			],
+			'modes' => [
+				'open' => 'Open',
+				'swordless' => 'Swordless',
+			],
+			'shuffles' => [
+				'simple' => 'Simple',
+				'restricted' => 'Restricted',
+				'full' => 'Full',
+				'madness' => 'Madness',
+				'insanity' => 'Insanity',
+			],
+			'variations' => [
+				'none' => 'None',
+				'timed-race' => 'Timed Race',
+				'timed-ohko' => 'Timed OHKO',
+				'triforce-hunt' => 'Triforce Piece Hunt',
+			],
+		],
+		'item' => [
+			'difficulties' => [
+				'easy' => 'Easy',
+				'normal' => 'Normal',
+				'hard' => 'Hard',
+				'expert' => 'Expert',
+				'insane' => 'Insane',
+			],
+			'goals' => [
+				'ganon' => 'Defeat Ganon',
+				'dungeons' => 'All Dungeons',
+				'pedestal' => 'Master Sword Pedestal',
+				'triforce-hunt' => 'Triforce Pieces',
+			],
+			'logics' => [
+				'NoMajorGlitches' => 'No Glitches',
+				'OverworldGlitches' => 'Overworld Glitches',
+				'MajorGlitches' => 'Major Glitches',
+			],
+			'modes' => [
+				'standard' => 'Standard',
+				'open' => 'Open',
+				'swordless' => 'Swordless',
+			],
+			'variations' => [
+				'none' => 'None',
+				'timed-race' => 'Timed Race',
+				'timed-ohko' => 'Timed OHKO',
+				'ohko' => 'OHKO',
+				'triforce-hunt' => 'Triforce Piece Hunt',
+				'key-sanity' => 'Key-sanity',
+			],
+		],
 	],
 ];

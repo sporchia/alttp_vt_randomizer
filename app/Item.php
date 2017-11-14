@@ -130,7 +130,7 @@ class Item {
 			new Item('Shovel', 'Shovel', [0x13]),
 			new Item('OcarinaInactive', 'Flute', [0x14]),
 			new Item('CaneOfSomaria', 'Cane Of Somaria', [0x15]),
-			new Item\Bottle('Bottle', 'Bottle', [0x16]),
+			new Item\Bottle('Bottle', 'Bottle (Empty)', [0x16]),
 			new Item('PieceOfHeart', 'Piece Of Heart', [0x17]),
 			new Item('CaneOfByrna', 'Cane Of Byrna', [0x18]),
 			new Item('Cape', 'Magic Cape', [0x19]),
