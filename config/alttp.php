@@ -598,6 +598,30 @@ return [
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
+	'vanilla' => [
+		'prize' => [
+			'crossWorld' => false,
+			'shufflePendants' => false,
+			'shuffleCrystals' => false,
+		],
+		'region' => [
+			'swordsInPool' => false,
+			'pyramidBowUpgrade' => true,
+			'forceUncleSword' => true,
+			'forceSkullWoodsKey' => true,
+			'wildKeys' => false,
+			'wildBigKeys' => false,
+			'wildMaps' => false,
+			'wildCompasses' => false,
+		],
+		'rom' => [
+			'HardMode' => 0,
+		],
+		'sprite' => [
+			'shufflePrizePack' => false,
+			'shuffleOverworldBonkPrizes' => false,
+		],
+	],
 	'sprites' => [
 		'link.1.spr' => 'Link',
 		'4slink-armors.1.spr' => 'Four Swords Link',
