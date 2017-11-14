@@ -129,6 +129,45 @@ class Rom {
 	}
 
 	/**
+	 * Write a vanilla World to the Rom.
+	 *
+	 * @return World
+	 */
+	public function writeVanilla() {
+		$world = new World('vanilla', 'NoMajorGlitches', 'ganon');
+		$world->setVanilla();
+
+		foreach ($world->getLocations() as $location) {
+			$location->writeItem($this);
+		}
+
+		$this->setClockMode('off');
+		$this->setHardMode(0);
+
+		$this->setPyramidFairyChests(false);
+		$this->setWishingWellChests(false);
+		$this->setSmithyQuickItemGive(false);
+
+		$this->setOpenMode(false);
+		$this->setSwordlessMode(false);
+		$this->setGanonAgahnimRng('vanilla');
+
+		$this->setMaxArrows();
+		$this->setMaxBombs();
+		$this->setStartingTime(0);
+
+		$this->setBlindTextString("Ouch!\nMy Eyes!");
+		$this->setUncleTextString("I feel we've\ndone this all\nbefore...");
+		$this->setGanon1TextString("You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!");
+		$this->setGanon2TextString("can you beat\nmy darkness\ntechnique?");
+		$this->setTriforceTextString("\n     G G");
+
+		$this->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
+
+		return $world;
+	}
+
+	/**
 	 * Set the Low Health Beep Speed
 	 *
 	 * @param string $setting name (0x00: off, 0x20: normal, 0x40: half, 0x80: quarter)

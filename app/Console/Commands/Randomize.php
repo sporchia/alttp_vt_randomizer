@@ -79,7 +79,7 @@ class Randomize extends Command {
 
 			// break out for unrandomized/vanilla base game
 			if ($this->option('vanilla')) {
-				$rom = $this->setVanilla($rom);
+				$rom->writeVanilla();
 				$output_file = sprintf('%s/alttp-%s-vanilla.sfc', $this->argument('output_directory'), Rom::BUILD);
 				$rom->save($output_file);
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
@@ -128,34 +128,6 @@ class Randomize extends Command {
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}
 		}
-	}
-
-	protected function setVanilla(Rom $rom) {
-		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
-		$world->setVanilla();
-
-		foreach ($world->getLocations() as $location) {
-			$location->writeItem($rom);
-		}
-
-		$rom->setClockMode('off');
-		$rom->setHardMode(0);
-
-		$rom->setPyramidFairyChests(false);
-		$rom->setWishingWellChests(false);
-		$rom->setSmithyQuickItemGive(false);
-
-		$rom->setOpenMode(false);
-		$rom->setSwordlessMode(false);
-		$rom->setGanonAgahnimRng('vanilla');
-
-		$rom->setMaxArrows();
-		$rom->setMaxBombs();
-		$rom->setStartingTime(0);
-
-		$rom->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
-
-		return $rom;
 	}
 
 	protected function resetPatch() {
