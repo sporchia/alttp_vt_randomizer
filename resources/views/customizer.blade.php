@@ -44,9 +44,9 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Mode</span>
 								<select id="mode" class="form-control selectpicker">
-									<option value="standard">Standard</option>
-									<option value="open">Open</option>
-									<option value="swordless">Swordless</option>
+									@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
+										<option value="{{ $mode }}">{{ $name }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -54,10 +54,9 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Goal</span>
 								<select id="goal" class="form-control selectpicker">
-									<option value="ganon">Defeat Ganon</option>
-									<option value="dungeons">All Dungeons</option>
-									<option value="pedestal">Master Sword Pedestal</option>
-									<option value="triforce-hunt">Triforce Pieces</option>
+									@foreach (config('alttp.randomizer.item.goals') as $goal => $name)
+										<option value="{{ $goal }}">{{ $name }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -73,9 +72,9 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Logic</span>
 								<select id="logic" class="form-control selectpicker">
-									<option value="NoMajorGlitches">No Glitches</option>
-									<option value="OverworldGlitches">Overworld Glitches</option>
-									<option value="MajorGlitches">Major Glitches</option>
+									@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
+										<option value="{{ $logic }}">{{ $name }}</option>
+									@endforeach
 									<option value="None">None (I know what I'm doing)</option>
 								</select>
 							</div>
@@ -87,7 +86,9 @@
 								<span class="input-group-addon">RNG Seed</span>
 								<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
 								<span class="input-group-btn">
-									<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+									<button id="seed-clear" class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
 								</span>
 							</div>
 						</div>
@@ -141,7 +142,8 @@
 					<tr>
 						<td class="col-md-7">{{ $location->getName() }}</td>
 						<td class="col-md-5">
-							<select class="item-location {{ $location_class[get_class($location)] ?? 'items' }}" name="l[{{ base64_encode($location->getName()) }}]"></select>
+							<select class="item-location {{ $location_class[get_class($location)] ?? 'items' }}"
+								name="l[{{ base64_encode($location->getName()) }}]"></select>
 						</td>
 					</tr>
 				@endforeach
@@ -235,9 +237,9 @@ $(function() {
 		localforage.setItem('vt.customizer', config);
 	});
 
-	$('.item-location').change(function() {
+	$('.item-location.items').change(function() {
 		var $this = $(this);
-		var value = $this.val();
+		var value = $this.find('option:selected').hasClass('item-bottle') ? 'Bottles' : $this.val();
 		var previous = $this.data('previous-item');
 		if (previous) {
 			$('#item-count-' + previous).val(Number($('#item-count-' + previous).val()) + 1);
@@ -282,6 +284,8 @@ $(function() {
 			$('.items option[value!="auto_fill"]:selected').each(function() {
 				$('#item-placed-' + this.value).val(Number($('#item-placed-' + this.value).val()) + 1);
 			});
+			// bottles
+			$('#item-placed-Bottles').val($('option.item-bottle:selected').length)
 			$('.custom-items').first().trigger('change');
 		}
 	});
@@ -393,7 +397,8 @@ $(function() {
 <script id="items" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($items as $item)
-	<option class="placable placable-item" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-item{{ $item instanceof ALttP\Item\Bottle ? ' item-bottle' : '' }}"
+		value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 @overwrite

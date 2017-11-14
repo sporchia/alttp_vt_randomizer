@@ -72,7 +72,7 @@ function getSprite(sprite_name) {
 				return;
 			}
 			var oReq = new XMLHttpRequest();
-			oReq.open("GET", "http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/" + sprite_name, true);
+			oReq.open("GET", "http://spr.beegunslingers.com/" + sprite_name, true);
 			oReq.responseType = "arraybuffer";
 
 			oReq.onload = function(oEvent) {
