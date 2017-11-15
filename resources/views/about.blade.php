@@ -12,7 +12,7 @@
 </div>
 <h1>Where do I download this?</h1>
 <div class="well">
-    <p>The VT Randomizer is a web based ROM patcher. Simply upload your ROM of the base game and the website does the all the work,
+    <p>The VT Randomizer is a web based ROM patcher. Simply provide your ROM of the base game and the website does the all the work,
         giving you back a fully shuffled and guaranteed beatable ROM. With the web based ROM patcher, you can always be sure you
         have the latest features as soon as they're released.</p>
 </div>
