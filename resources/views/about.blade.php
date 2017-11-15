@@ -20,6 +20,6 @@
 <div class="well">
     <p>Heck yeahs there is!</p>
     <p>Stuck on a seed? Looking for other heros to race with? Want to shower the developers with praise? Join our discord at
-        <a href="https://discord.gg/yEvqSRk" target="_blank">https://discord.gg/yEvqSRk</a>!</p>
+        <a href="https://discord.gg/yEvqSRk" target="_blank">https://discord.gg/TCC6Y42</a>!</p>
 </div>
 @overwrite
