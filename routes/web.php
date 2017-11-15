@@ -2,6 +2,7 @@
 
 use ALttP\Item;
 use ALttP\Location;
+use ALttP\Rom;
 use ALttP\World;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ Route::get('entrance/randomizer/settings', function () {
 });
 
 Route::get('base_rom/settings', function () {
-	return config('rom.base_rom');
+	return ['rom_hash' => Rom::HASH, 'base_file' => elixir('js/base2current.json')];
 });
 
 Route::get('sprites', function () {
