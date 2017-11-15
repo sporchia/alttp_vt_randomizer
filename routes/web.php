@@ -224,18 +224,35 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$rom->setTournamentType('none');
 	}
 
+	if (strtoupper($seed_id) == 'VANILLA') {
+		config(['game-mode' => 'vanilla']);
+		$world = $rom->writeVanilla();
+		$rand = new ALttP\Randomizer('vanilla', 'NoMajorGlitches', 'ganon', 'none');
+		$rand->setWorld($world);
+		return json_encode([
+			'seed' => 'vanilla',
+			'logic' => $rand->getLogic(),
+			'difficulty' => 'normal',
+			'patch' => $rom->getWriteLog(),
+			'spoiler' => $rand->getSpoiler(),
+		]);
+	}
+
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
 	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 	if (isset($world)) {
 		$rand->setWorld($world);
 	}
+
 	$rand->makeSeed($seed_id);
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
+
 	if (!$rand->getWorld()->checkWinCondition()) {
 		return response('Failed', 409);
 	}
+
 	$patch = $rom->getWriteLog();
 	$spoiler = $rand->getSpoiler();
 	$hash = $rand->saveSeedRecord();

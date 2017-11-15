@@ -177,12 +177,12 @@ class GanonsTower extends Region {
 
 		$this->locations["Ganon's Tower - Firesnake Room"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->has('Hookshot')
-				&& (($locations->itemInLocations(Item::get('BigKeyD5'), [
+				&& ((($locations->itemInLocations(Item::get('BigKeyD5'), [
 						"Ganon's Tower - Randomizer Room - Top Right",
 						"Ganon's Tower - Randomizer Room - Top Left",
 						"Ganon's Tower - Randomizer Room - Bottom Left",
 						"Ganon's Tower - Randomizer Room - Bottom Right",
-					]) && $items->has('KeyA2', 2))
+					]) || $locations["Ganon's Tower - Firesnake Room"]->hasItem(Item::get('KeyA2'))) && $items->has('KeyA2', 2))
 				|| $items->has('KeyA2', 3));
 		});
 

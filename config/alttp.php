@@ -10,6 +10,8 @@ return [
 				'Bottles' => 8,
 				'TwentyRupees' => 14,
 				'HalfMagicUpgrade' => 2,
+				'Lamp' => 3,
+				'FiveRupees' => 2,
 			],
 			'overflow' => [
 				'Armor' => 'TwentyRupees',
@@ -45,7 +47,7 @@ return [
 				'item' => [
 					'count' => [
 						'TriforcePiece' => 30,
-						'TwentyRupees' => 2,
+						'TwentyRupees' => 0,
 						'FiveRupees' => 0,
 					],
 					'overflow' => [
@@ -95,6 +97,7 @@ return [
 						'OneRupee' => 0, // 2 : 2
 						'FiveRupees' => 0, // 4 : 20
 						'ThreeBombs' => 0, // 10
+						'FiftyRupees' => 5,
 						'OneHundredRupees' => 3, // 1 : + 200
 						'ThreeHundredRupees' => 6, // 4 + 600
 						'GreenClock' => 20,
@@ -589,6 +592,30 @@ return [
 		],
 		'spoil' => [
 			'BootsLocation' => false,
+		],
+		'sprite' => [
+			'shufflePrizePack' => false,
+			'shuffleOverworldBonkPrizes' => false,
+		],
+	],
+	'vanilla' => [
+		'prize' => [
+			'crossWorld' => false,
+			'shufflePendants' => false,
+			'shuffleCrystals' => false,
+		],
+		'region' => [
+			'swordsInPool' => false,
+			'pyramidBowUpgrade' => true,
+			'forceUncleSword' => true,
+			'forceSkullWoodsKey' => true,
+			'wildKeys' => false,
+			'wildBigKeys' => false,
+			'wildMaps' => false,
+			'wildCompasses' => false,
+		],
+		'rom' => [
+			'HardMode' => 0,
 		],
 		'sprite' => [
 			'shufflePrizePack' => false,

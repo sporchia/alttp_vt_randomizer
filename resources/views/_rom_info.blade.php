@@ -17,6 +17,9 @@ function parseInfoFromPatch(patch) {
 	if ($('input[name=tournament]').val() == 'true') {
 		$('.info .seed').html("<a href='/h/" + patch.seed + "'>" + patch.seed + "</a>");
 	}
+	if (patch.seed == 'vanilla') {
+		$('.info .seed').html('Vanilla');
+	}
 	if (!patch.seed && patch.hash) {
 		$('.info .seed').html(patch.hash);
 	}
