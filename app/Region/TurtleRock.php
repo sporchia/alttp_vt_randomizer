@@ -113,6 +113,9 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["Turtle Rock - Big Key Chest"]->setRequirements(function($locations, $items) {
+			if ($this->world->config('region.wildKeys', false)) {
+				return $items->has('KeyD7', 4);
+			}
 			return $items->has('KeyD7', 2);
 		});
 
