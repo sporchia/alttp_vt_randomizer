@@ -691,7 +691,11 @@ return [
 	'randomizer' => [
 		'entrance' => [
 			'difficulties' => [
+				'easy' => 'Easy',
 				'normal' => 'Normal',
+				'hard' => 'Hard',
+				'expert' => 'Expert',
+				'insane' => 'Insane',
 			],
 			'goals' => [
 				'ganon' => 'Defeat Ganon',
@@ -718,6 +722,7 @@ return [
 				'timed-race' => 'Timed Race',
 				'timed-ohko' => 'Timed OHKO',
 				'triforce-hunt' => 'Triforce Piece Hunt',
+				'key-sanity' => 'Key-sanity',
 			],
 		],
 		'item' => [

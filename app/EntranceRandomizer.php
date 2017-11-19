@@ -11,10 +11,12 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.4.7';
+	const VERSION = '0.5.0';
 	private $spoiler;
 	private $patch;
 	protected $shuffle;
+	protected $timer_mode;
+	protected $keysanity;
 
 	/**
 	 * Create a new EntranceRandomizer
@@ -33,7 +35,9 @@ class EntranceRandomizer extends Randomizer {
 		$this->shuffle = $shuffle;
 		$this->logic = $logic;
 		$this->goal = $goal;
+		$this->timer_mode = 'none';
 		$this->seed = new Seed;
+		$this->keysanity = false;
 
 		// Add shuffle Ganon
 		switch ($this->shuffle) {
@@ -45,14 +49,20 @@ class EntranceRandomizer extends Randomizer {
 
 		switch ($this->variation) {
 			case 'timed-race':
-				$this->difficulty = 'timed';
+				$this->timer_mode = 'timed';
 				break;
 			case 'timed-ohko':
-				$this->difficulty = 'timed-ohko';
+				$this->timer_mode = 'timed-ohko';
 				break;
+			//// Plain OHKO is not available in ER 0.5.0 but will be in 0.5.1. Uncomment this to add support.
+			//case 'ohko':
+			//	$this->timer_mode = 'ohko';
+			//	break;
 			case 'triforce-hunt':
-				$this->difficulty = 'normal';
 				$this->goal = 'triforcehunt';
+				break;
+			case 'key-sanity':
+				$this->keysanity = true;
 				break;
 		}
 	}
@@ -63,12 +73,19 @@ class EntranceRandomizer extends Randomizer {
 		mt_srand($rng_seed);
 		$this->seed->seed = $rng_seed;
 
+		$keysanity_flag = '';
+		if ($this->keysanity) {
+			$keysanity_flag = ' --keysanity';
+		}
+
 		$proc = new Process('python3 '
 			. base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py')
 			. ' --mode ' . config('game-mode')
 			. ' --goal ' . $this->goal
 			. ' --difficulty ' . $this->difficulty
 			. ' --shuffle ' .  $this->shuffle
+			. ' --timer ' . $this->timer_mode
+			. $keysanity_flag
 			. ' --seed ' . $rng_seed
 			. ' --jsonout --loglevel error');
 
@@ -81,10 +98,6 @@ class EntranceRandomizer extends Randomizer {
 		$er = json_decode($proc->getOutput());
 		$patch = $er->patch;
 		array_walk($patch, function(&$write, $address) {
-			if ($address >= 0x76928 && $address <= 0x76C95) {
-				// we moved this table, so lets be nice neighbors and move the writes
-				$address = $address + 0x10ABDC;
-			}
 			$write = [$address => $write];
 		});
 		$this->patch = array_values((array) $patch);
@@ -216,6 +229,12 @@ class EntranceRandomizer extends Randomizer {
 			"when you're a\nbaker, don't\nloaf around",
 			"mire requires\nether quake,\nor bombos",
 			"Broken pencils\nare pointless.",
+			"The food they\nserve guards\nlasts sentries",
+			"being crushed\nby big objects\nis depressing.",
+			"A tap dancer's\nroutine runs\nhot and cold.",
+			"A weeknight is\na tiny\nnobleman",
+			"The chimney\nsweep wore a\nsoot and tye.",
+			"Gardeners like\nto spring into\naction.",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
@@ -253,26 +272,56 @@ class EntranceRandomizer extends Randomizer {
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
 			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
 			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
+			"I was sharing\na drink with\nPoe.\nFor no reason,\nhe left in a\nheartbeat!",
+			"Don’t trust\nhorsemen on\nDeath Mountain\nThey’re Lynel\nthe time!",
+			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
+			"Don’t walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
+			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
+			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
+			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
+			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
+			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
+			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
+			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
+			"I like my\nwhiskey neat.\n\nSome prefer it\nOctoroks!",
+			"I consoled\nFreezor over a\ncup of coffee.\nHis problems\njust seemed to\nmelt away!",
+			"Magic droplets\nof water don’t\nshut up.\nThey just\nKyameron!",
+			"I bought hot\nwings for\nSluggula.\nThey gave him\nexplosive\ndiarrhea!",
+			"Hardhat Beetle\nwon’t\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
 			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
 			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
-			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurect me.",
+			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurrect me.",
 			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nback off buddy",
 			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
 			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
 			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
+			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
+			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\nde'ja vu\nall over again",
+			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds,\nand was 32\nfeet long.",
+			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
+			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 		])));
 
-		$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
+		switch ($this->goal) {
+			case 'pedestal':
+				$rom->setGanon1InvincibleTextString("You cannot\nkill me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nYou dingus\n");
+				break;
+			case 'triforce-hunt':
+				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\ntriforce\npieces well.\nWithout them\nyou can't win!");
+				break;
+			default:
+				$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
+		}
 
 		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI can not die!");
 
 		$rom->setTriforceTextString(array_first(mt_shuffle([
-			"\n     G G",
 			"\n     G G",
 			"All your base\nare belong\nto us.",
 			"You have ended\nthe domination\nof dr. wily",
@@ -283,6 +332,20 @@ class EntranceRandomizer extends Randomizer {
 			"\n   WINNER!!",
 			"\n  I'm  sorry\n\nbut your\nprincess is in\nanother castle",
 			"\n   success!",
+			"    Whelp…\n  that  just\n   happened",
+			"   Oh  hey…\n   it's you",
+			"\n  Wheeeeee!!",
+			"   Time for\n another one?",
+			"and\n\n         scene",
+			"\n   GOT EM!!",
+			"\nTHE VALUUUE!!!",
+			"Cool seed,\n\nright?",
+			"\n  We did it!",
+			"  Spam those\n  emotes in\n  wilds chat",
+			"\n   O  M  G",
+			" Hello.  Will\n  you be my\n   friend?",
+			"   Beetorp\n     was\n    here!",
+			"The Wind Fish\nwill wake\nsoon.    Hoot!",
 		])));
 
 		return $this;
