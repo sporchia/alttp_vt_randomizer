@@ -73,6 +73,19 @@ function pasrseSpoilerToTabs(spoiler) {
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'
 				+ '</div>').append(table));
+		} else if (['playthrough'].indexOf(section) !== -1 && spoiler['entrances']) {
+			var table = $('<table class="table table-striped"><thead><tr><th>Sphere</th><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
+			var tbody = table.find('tbody');
+			for (sphere in spoiler[section]) {
+				for (loc in spoiler[section][sphere]) {
+					tbody.append($('<tr class="spoil-item-location"><td class="col-md-1">' + sphere + '</td>'
+						+ '<td class="col-md-5">' + loc + '</td>'
+						+ '<td class="item">' + spoiler[section][sphere][loc] + '</td></tr>'));
+				}
+			};
+			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
+				+ ((section == active_nav) ? ' active' : '') + '">'
+				+ '</div>').append(table));
 		} else if (['playthrough'].indexOf(section) === -1) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
