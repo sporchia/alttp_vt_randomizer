@@ -1,6 +1,7 @@
 <?php namespace ALttP\Support;
 
 use ALttP\Item;
+use ArrayIterator;
 
 /**
  * Collection of Items, maintains counts of items collected as well.
@@ -246,6 +247,15 @@ class ItemCollection extends Collection {
 	 */
 	public function count() {
 		return array_sum($this->item_counts);
+	}
+
+	/**
+	 * Get an iterator for the items.
+	 *
+	 * @return ArrayIterator
+	 */
+	public function getIterator() {
+		return new ArrayIterator($this->toArray());
 	}
 
 	/**

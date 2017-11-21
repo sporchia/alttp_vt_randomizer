@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-11-04';
-	const HASH = '1deebb05eccefd2ab68297c6e9c0d25f';
+	const BUILD = '2017-11-18';
+	const HASH = 'a971b86371079e58742c36d676be1bc9';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -165,6 +165,491 @@ class Rom {
 		$this->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
 
 		return $world;
+	}
+
+	/**
+	 * set the items passed in as Link's starting equipment
+	 *
+	 * @param ItemCollection $items items to equip Link with
+	 *
+	 * @return $this
+	 */
+	public function setStartingEquipment(ItemCollection $items) {
+		$equipment = array_fill(0x340, 0x4B, 0);
+		$starting_rupees = 0;
+		// starting heart containers
+		$equipment[0x36C] = 0x18;
+		$equipment[0x36D] = 0x18;
+
+		foreach ($items as $item) {
+			switch ($item->getName()) {
+				case 'L1Sword':
+					$equipment[0x359] = 0x01;
+					break;
+				case 'L1SwordAndShield':
+					$equipment[0x359] = 0x01;
+					$equipment[0x35A] = 0x01;
+					break;
+				case 'L2Sword':
+				case 'MasterSword':
+					$equipment[0x359] = 0x02;
+					break;
+				case 'L3Sword':
+					$equipment[0x359] = 0x03;
+					break;
+				case 'L4Sword':
+					$equipment[0x359] = 0x04;
+					break;
+				case 'BlueShield':
+					$equipment[0x35A] = 0x01;
+					break;
+				case 'RedShield':
+					$equipment[0x35A] = 0x02;
+					break;
+				case 'MirrorShield':
+					$equipment[0x35A] = 0x03;
+					break;
+				case 'FireRod':
+					$equipment[0x345] = 0x01;
+					break;
+				case 'IceRod':
+					$equipment[0x346] = 0x01;
+					break;
+				case 'Hammer':
+					$equipment[0x34B] = 0x01;
+					break;
+				case 'Hookshot':
+					$equipment[0x342] = 0x01;
+					break;
+				case 'Bow':
+					$equipment[0x340] = 0x01;
+					break;
+				case 'BowAndArrows':
+					$equipment[0x340] = 0x02;
+					break;
+				case 'SilverArrowUpgrade':
+					$equipment[0x340] = 0x03;
+					break;
+				case 'BowAndSilverArrows':
+					$equipment[0x340] = 0x04;
+					break;
+				case 'Boomerang':
+					$equipment[0x341] = 0x01;
+					break;
+				case 'RedBoomerang':
+					$equipment[0x341] = 0x02;
+					break;
+				case 'Mushroom':
+					$equipment[0x344] = 0x01;
+					break;
+				case 'Powder':
+					$equipment[0x344] = 0x02;
+					break;
+				case 'Bombos':
+					$equipment[0x347] = 0x01;
+					break;
+				case 'Ether':
+					$equipment[0x348] = 0x01;
+					break;
+				case 'Quake':
+					$equipment[0x349] = 0x01;
+					break;
+				case 'Lamp':
+					$equipment[0x34A] = 0x01;
+					break;
+				case 'Shovel':
+					$equipment[0x34C] = 0x01;
+					break;
+				case 'OcarinaInactive':
+					$equipment[0x34C] = 0x02;
+					break;
+				case 'OcarinaActive':
+					$equipment[0x34C] = 0x03;
+					break;
+				case 'CaneOfSomaria':
+					$equipment[0x350] = 0x01;
+					break;
+				case 'Bottle':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x02;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'BottleWithRedPotion':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x03;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'BottleWithGreenPotion':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x04;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'BottleWithBluePotion':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x05;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'BottleWithBee':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x07;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'BottleWithFairy':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x06;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'BottleWithGoldBee':
+					if ($equipment[0x34F] < 4) {
+						$equipment[0x35C + $equipment[0x34F]] = 0x08;
+						$equipment[0x34F] += 1;
+					}
+					break;
+				case 'CaneOfByrna':
+					$equipment[0x351] = 0x01;
+					break;
+				case 'Cape':
+					$equipment[0x352] = 0x01;
+					break;
+				case 'MagicMirror':
+					$equipment[0x353] = 0x02;
+					break;
+				case 'PowerGlove':
+					$equipment[0x354] = 0x01;
+					break;
+				case 'TitansMitt':
+					$equipment[0x354] = 0x02;
+					break;
+				case 'BookOfMudora':
+					$equipment[0x34E] = 0x01;
+					break;
+				case 'Flippers':
+					$equipment[0x356] = 0x01;
+					$equipment[0x379] |= 0b00000010;
+					break;
+				case 'MoonPearl':
+					$equipment[0x357] = 0x01;
+					break;
+				case 'BugCatchingNet':
+					$equipment[0x34D] = 0x01;
+					break;
+				case 'BlueMail':
+					$equipment[0x35B] = 0x01;
+					break;
+				case 'RedMail':
+					$equipment[0x35B] = 0x02;
+					break;
+				case 'Bomb':
+					$equipment[0x343] = min($equipment[0x343] + 1, 99);
+					break;
+				case 'ThreeBombs':
+					$equipment[0x343] = min($equipment[0x343] + 3, 99);
+					break;
+				case 'TenBombs':
+					$equipment[0x343] = min($equipment[0x343] + 10, 99);
+					break;
+				case 'OneRupee':
+					$starting_rupees += 1;
+					break;
+				case 'FiveRupees':
+					$starting_rupees += 5;
+					break;
+				case 'TwentyRupees':
+				case 'TwentyRupees2':
+					$starting_rupees += 20;
+					break;
+				case 'FiftyRupees':
+					$starting_rupees += 50;
+					break;
+				case 'OneHundredRupees':
+					$starting_rupees += 100;
+					break;
+				case 'PendantOfCourage':
+					$equipment[0x374] |= 0b00000100;
+					break;
+				case 'PendantOfWisdom':
+					$equipment[0x374] |= 0b00000001;
+					break;
+				case 'PendantOfPower':
+					$equipment[0x374] |= 0b00000010;
+					break;
+				case 'HeartContainerNoAnimation':
+				case 'BossHeartContainer':
+				case 'HeartContainer':
+					$equipment[0x36C] = min($equipment[0x36C] + 0x08, 0xA0);
+					break;
+				case 'PieceOfHeart':
+					$equipment[0x36B] += 1;
+					if ($equipment[0x36B] >= 4) {
+						$equipment[0x36C] = min($equipment[0x36C] + (0x08 * floor($equipment[0x36B] / 4)), 0xA0);
+						$equipment[0x36B] %= 4;
+					}
+					break;
+				case 'Heart':
+					$equipment[0x36D] = min($equipment[0x36D] + 0x08, 0xA0);
+					break;
+				case 'Arrow':
+					$equipment[0x377] = min($equipment[0x377] + 1, 99);
+					break;
+				case 'TenArrows':
+					$equipment[0x377] = min($equipment[0x377] + 10, 99);
+					break;
+				case 'SmallMagic':
+					$equipment[0x36E] = min($equipment[0x36E] + 0x10, 0x80);
+					break;
+				case 'ThreeHundredRupees':
+					$starting_rupees += 300;
+					break;
+				case 'PegasusBoots':
+					$equipment[0x355] = 0x01;
+					$equipment[0x379] |= 0b00000100;
+					break;
+				case 'BombUpgrade5':
+					$equipment[0x370] = min($equipment[0x370] + 5, 99);
+					break;
+				case 'BombUpgrade10':
+					$equipment[0x370] = min($equipment[0x370] + 10, 99);
+					break;
+				case 'BombUpgrade50':
+					$equipment[0x370] = min($equipment[0x370] + 50, 99);
+					break;
+				case 'ArrowUpgrade5':
+					$equipment[0x371] = min($equipment[0x371] + 5, 99);
+					break;
+				case 'ArrowUpgrade10':
+					$equipment[0x371] = min($equipment[0x371] + 10, 99);
+					break;
+				case 'ArrowUpgrade70':
+					$equipment[0x371] = min($equipment[0x371] + 50, 99);
+					break;
+				case 'HalfMagic':
+					$equipment[0x37B] = 0x01;
+					break;
+				case 'QuarterMagic':
+					$equipment[0x37B] = 0x02;
+					break;
+				case 'ProgressiveSword':
+					$equipment[0x359] = min($equipment[0x359] + 1, 4);
+					break;
+				case 'ProgressiveShield':
+					$equipment[0x35A] = min($equipment[0x35A] + 1, 3);
+					break;
+				case 'ProgressiveArmor':
+					$equipment[0x35B] = min($equipment[0x35B] + 1, 2);
+					break;
+				case 'ProgressiveGlove':
+					$equipment[0x354] = min($equipment[0x354] + 1, 2);
+					break;
+				case 'MapLW':
+					$equipment[0x368] |= 0b00000001;
+					break;
+				case 'MapDW':
+					$equipment[0x368] |= 0b00000010;
+					break;
+				case 'MapA2':
+					$equipment[0x368] |= 0b00000100;
+					break;
+				case 'MapD7':
+					$equipment[0x368] |= 0b00001000;
+					break;
+				case 'MapD4':
+					$equipment[0x368] |= 0b00010000;
+					break;
+				case 'MapP3':
+					$equipment[0x368] |= 0b00100000;
+					break;
+				case 'MapD5':
+					$equipment[0x368] |= 0b01000000;
+					break;
+				case 'MapD3':
+					$equipment[0x368] |= 0b10000000;
+					break;
+				case 'MapD6':
+					$equipment[0x369] |= 0b00000001;
+					break;
+				case 'MapD1':
+					$equipment[0x369] |= 0b00000010;
+					break;
+				case 'MapD2':
+					$equipment[0x369] |= 0b00000100;
+					break;
+				case 'MapA1':
+					$equipment[0x369] |= 0b00001000;
+					break;
+				case 'MapP2':
+					$equipment[0x369] |= 0b00010000;
+					break;
+				case 'MapP1':
+					$equipment[0x369] |= 0b00100000;
+					break;
+				case 'MapH1':
+					$equipment[0x369] |= 0b01000000;
+					break;
+				case 'MapH2':
+					$equipment[0x369] |= 0b10000000;
+					break;
+				case 'CompassA2':
+					$equipment[0x364] |= 0b00000100;
+					break;
+				case 'CompassD7':
+					$equipment[0x364] |= 0b00001000;
+					break;
+				case 'CompassD4':
+					$equipment[0x364] |= 0b00010000;
+					break;
+				case 'CompassP3':
+					$equipment[0x364] |= 0b00100000;
+					break;
+				case 'CompassD5':
+					$equipment[0x364] |= 0b01000000;
+					break;
+				case 'CompassD3':
+					$equipment[0x364] |= 0b10000000;
+					break;
+				case 'CompassD6':
+					$equipment[0x365] |= 0b00000001;
+					break;
+				case 'CompassD1':
+					$equipment[0x365] |= 0b00000010;
+					break;
+				case 'CompassD2':
+					$equipment[0x365] |= 0b00000100;
+					break;
+				case 'CompassA1':
+					$equipment[0x365] |= 0b00001000;
+					break;
+				case 'CompassP2':
+					$equipment[0x365] |= 0b00010000;
+					break;
+				case 'CompassP1':
+					$equipment[0x365] |= 0b00100000;
+					break;
+				case 'CompassH1':
+					$equipment[0x365] |= 0b01000000;
+					break;
+				case 'CompassH2':
+					$equipment[0x365] |= 0b10000000;
+					break;
+				case 'BigKeyA2':
+					$equipment[0x366] |= 0b00000100;
+					break;
+				case 'BigKeyD7':
+					$equipment[0x366] |= 0b00001000;
+					break;
+				case 'BigKeyD4':
+					$equipment[0x366] |= 0b00010000;
+					break;
+				case 'BigKeyP3':
+					$equipment[0x366] |= 0b00100000;
+					break;
+				case 'BigKeyD5':
+					$equipment[0x366] |= 0b01000000;
+					break;
+				case 'BigKeyD3':
+					$equipment[0x366] |= 0b10000000;
+					break;
+				case 'BigKeyD6':
+					$equipment[0x367] |= 0b00000001;
+					break;
+				case 'BigKeyD1':
+					$equipment[0x367] |= 0b00000010;
+					break;
+				case 'BigKeyD2':
+					$equipment[0x367] |= 0b00000100;
+					break;
+				case 'BigKeyA1':
+					$equipment[0x367] |= 0b00001000;
+					break;
+				case 'BigKeyP2':
+					$equipment[0x367] |= 0b00010000;
+					break;
+				case 'BigKeyP1':
+					$equipment[0x367] |= 0b00100000;
+					break;
+				case 'BigKeyH1':
+					$equipment[0x367] |= 0b01000000;
+					break;
+				case 'BigKeyH2':
+					$equipment[0x367] |= 0b10000000;
+					break;
+				case 'KeyH2':
+					$equipment[0x37C] += 1;
+					break;
+				case 'KeyH1':
+					$equipment[0x37D] += 1;
+					break;
+				case 'KeyP1':
+					$equipment[0x37E] += 1;
+					break;
+				case 'KeyP2':
+					$equipment[0x37F] += 1;
+					break;
+				case 'KeyA1':
+					$equipment[0x380] += 1;
+					break;
+				case 'KeyD2':
+					$equipment[0x381] += 1;
+					break;
+				case 'KeyD1':
+					$equipment[0x382] += 1;
+					break;
+				case 'KeyD6':
+					$equipment[0x383] += 1;
+					break;
+				case 'KeyD3':
+					$equipment[0x384] += 1;
+					break;
+				case 'KeyD5':
+					$equipment[0x385] += 1;
+					break;
+				case 'KeyP3':
+					$equipment[0x386] += 1;
+					break;
+				case 'KeyD4':
+					$equipment[0x387] += 1;
+					break;
+				case 'KeyD7':
+					$equipment[0x388] += 1;
+					break;
+				case 'KeyA2':
+					$equipment[0x389] += 1;
+					break;
+				case 'Crystal1':
+					$equipment[0x37A] |= 0b00000010;
+					break;
+				case 'Crystal2':
+					$equipment[0x37A] |= 0b00010000;
+					break;
+				case 'Crystal3':
+					$equipment[0x37A] |= 0b01000000;
+					break;
+				case 'Crystal4':
+					$equipment[0x37A] |= 0b00100000;
+					break;
+				case 'Crystal5':
+					$equipment[0x37A] |= 0b00000100;
+					break;
+				case 'Crystal6':
+					$equipment[0x37A] |= 0b00000001;
+					break;
+				case 'Crystal7':
+					$equipment[0x37A] |= 0b00001000;
+					break;
+			}
+		}
+
+		$equipment[0x362] = $equipment[0x360] = $starting_rupees & 0xFF;
+		$equipment[0x363] = $equipment[0x361] = $starting_rupees >> 8;
+
+		$this->write(0x183000, pack('C*', ...$equipment));
+
+		return $this;
 	}
 
 	/**

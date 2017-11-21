@@ -20,7 +20,7 @@ Route::get('entrance/randomizer/settings', function () {
 
 Route::get('base_rom/settings', function () {
 	return [
-		'rom_hash' => Rom::HASH, 
+		'rom_hash' => Rom::HASH,
 		'base_file' => elixir('js/base2current.json'),
 	];
 });
@@ -316,6 +316,28 @@ Route::get('h/{hash}', function(Request $request, $hash) {
 			'hash' => $hash,
 			'md5' => $build->hash,
 			'patch' => $build->patch,
+		]);
+	}
+	abort(404);
+});
+
+Route::get('daily', function(Request $request) {
+	$featured = ALttP\FeaturedGame::today();
+	if (!$featured) {
+		$exitCode = Artisan::call('alttp:dailies', ['days' => 1]);
+		$featured = ALttP\FeaturedGame::today();
+	}
+	$seed = $featured->seed;
+	if ($seed) {
+		$build = ALttP\Build::where('build', $seed->build)->first();
+		if (!$build) {
+			abort(404);
+		}
+		return view('daily', [
+			'hash' => $seed->hash,
+			'md5' => $build->hash,
+			'patch' => $build->patch,
+			'daily' => $featured->day,
 		]);
 	}
 	abort(404);
