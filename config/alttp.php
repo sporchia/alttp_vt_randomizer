@@ -758,5 +758,40 @@ return [
 				'key-sanity' => 'Key-sanity',
 			],
 		],
+		'daily_weights' => [
+			'item' => [
+				'difficulties' => [
+					'easy' => 20,
+					'normal' => 70,
+					'hard' => 5,
+					'expert' => 3,
+					'insane' => 2,
+				],
+				'goals' => [
+					'ganon' => 70,
+					'dungeons' => 15,
+					'pedestal' => 15,
+					'triforce-hunt' => 0,
+				],
+				'logics' => [
+					'NoMajorGlitches' => 90,
+					'OverworldGlitches' => 9,
+					'MajorGlitches' => 1,
+				],
+				'modes' => [
+					'standard' => 45,
+					'open' => 45,
+					'swordless' => 10,
+				],
+				'variations' => [
+					'none' => 79,
+					'timed-race' => 0,
+					'timed-ohko' => 5,
+					'ohko' => 1,
+					'triforce-hunt' => 5,
+					'key-sanity' => 10,
+				],
+			],
+		],
 	],
 ];

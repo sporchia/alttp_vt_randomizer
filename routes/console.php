@@ -2,7 +2,7 @@
 
 use ALttP\Console\Commands\Distribution;
 use ALttP\Sprite;
-
+use Carbon\Carbon;
 
 Artisan::command('alttp:test', function () {
 	$data = array_values(unpack('C*', base64_decode(
@@ -39,6 +39,48 @@ Artisan::command('alttp:test', function () {
 	dd(array_diff($uncompressed2, $uncompressed));
 	dd(array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed2));
 
+});
+
+Artisan::command('alttp:dailies {days=7}', function ($days) {
+	for ($i = 0; $i < $days; ++$i) {
+		$feature = ALttP\FeaturedGame::firstOrNew([
+			'day' => Carbon::now()->addDays($i)->toDateString(),
+		]);
+		if (!$feature->exists) {
+			$difficulty = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.difficulties')), array_keys(config('alttp.randomizer.item.difficulties'))),
+				config('alttp.randomizer.daily_weights.item.difficulties')));
+			$logic = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.logics')), array_keys(config('alttp.randomizer.item.logics'))),
+				config('alttp.randomizer.daily_weights.item.logics')));
+			$goal = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.goals')), array_keys(config('alttp.randomizer.item.goals'))),
+				config('alttp.randomizer.daily_weights.item.goals')));
+			$variation = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.variations')), array_keys(config('alttp.randomizer.item.variations'))),
+				config('alttp.randomizer.daily_weights.item.variations')));
+
+			$rom = new ALttP\Rom();
+			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
+
+			$rand->makeSeed();
+			$rand->writeToRom($rom);
+			$seed = $rand->getSeed();
+
+			$patch = $rom->getWriteLog();
+			$spoiler = $rand->getSpoiler();
+			$hash = $rand->saveSeedRecord();
+
+			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+			$rom->rummageTable();
+			$patch = patch_merge_minify($rom->getWriteLog());
+			$rand->updateSeedRecordPatch($patch);
+			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+			$seed = $hash;
+
+			$seed_record = ALttP\Seed::where('hash', $hash)->first();
+
+			$feature->seed_id = $seed_record->id;
+			$feature->description = sprintf("%s %s %s %s", $difficulty, $logic, $goal, $variation);
+			$feature->save();
+		}
+	}
 });
 
 Artisan::command('alttp:romtospr {rom} {output}', function ($rom, $output) {
