@@ -142,12 +142,28 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
-	this.setFastMenu = function(enable) {
+	this.setMenuSpeed = function(speed) {
 		return new Promise(function(resolve, reject) {
-			this.write(0x180048, enable ? 0x01 : 0x00);
-			this.write(0x6DD9A, enable ? 0x20 : 0x11);
-			this.write(0x6DF2A, enable ? 0x20 : 0x12);
-			this.write(0x6E0E9, enable ? 0x20 : 0x12);
+			var fast = false;
+			switch (speed) {
+				case 'instant':
+				this.write(0x180048, 0xE8);
+					fast = true;
+					break;
+				case 'fast':
+				this.write(0x180048, 0x10);
+					break;
+				case 'normal':
+				default:
+				this.write(0x180048, 0x08);
+					break;
+				case 'slow':
+				this.write(0x180048, 0x04);
+					break;
+			}
+			this.write(0x6DD9A, fast ? 0x20 : 0x11);
+			this.write(0x6DF2A, fast ? 0x20 : 0x12);
+			this.write(0x6E0E9, fast ? 0x20 : 0x12);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);

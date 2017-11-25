@@ -1,6 +1,15 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.28</h2>
+<div class="well">
+	<ul>
+		<li>Daily Games</li>
+		<li>Fast Menu is now a select for what speed you want</li>
+		<li>Updated Entrance Randomizer to v0.5 (has many more options)</li>
+		<li>Customizer fixes based on feedback (Bottles baby)</li>
+	</ul>
+</div>
 <h2>VT8.27</h2>
 <div class="well">
 	<ul>

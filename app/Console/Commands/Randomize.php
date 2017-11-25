@@ -31,7 +31,7 @@ class Randomize extends Command {
 		. ' {--sprite= : sprite/rom file to change links graphics}'
 		. ' {--no-rom : no not generate output rom}'
 		. ' {--no-music : mute all music}'
-		. ' {--fast-menu : enable fast menu}';
+		. ' {--menu-speed=normal : menu speed}';
 
 	/**
 	 * The console command description.
@@ -97,7 +97,7 @@ class Randomize extends Command {
 
 			$rand->writeToRom($rom);
 			$rom->muteMusic($this->option('no-music', false));
-			$rom->setQuickMenu($this->option('fast-menu', false));
+			$rom->setMenuSpeed($this->option('menu-speed', 'normal'));
 
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.sfc',
 				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());

@@ -5,6 +5,15 @@
 
 @section('content')
 @yield('loader')
+<h3>Randomizer Seed of the Day</h3>
+<div class="well">
+	<p>Can’t wait until the weekend for the next randomizer challenge? Want to see how you stack up
+		against your favorite streamer? Introducing the Randomizer Seed of the Day!</p>
+	<p>The game type will be random every day! (Would you expect anything else?)  Branch out and
+		experience something new! Do you have the patience to persevere through a one-hit knockout
+		seed, the cunning to solve the complexities of key-sanity, or the speed to pull the
+		triforce from the pedestal? Find out today!</p>
+</div>
 <div id="seed-details" class="info panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Daily: {{ $daily->toFormattedDateString() }}</h3>
@@ -52,7 +61,7 @@ function applyHash(rom, hash, second_attempt) {
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
