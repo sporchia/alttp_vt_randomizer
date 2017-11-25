@@ -16,7 +16,7 @@
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
-	<input type="hidden" name="menu_fast" value="false" />
+	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
 	<div class="tab-content">
 		<div class="tab-pane active">
@@ -198,7 +198,7 @@ function applySeed(rom, seed) {
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				$('.info').show();

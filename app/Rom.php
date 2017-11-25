@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-11-18';
-	const HASH = 'a971b86371079e58742c36d676be1bc9';
+	const BUILD = '2017-11-19';
+	const HASH = '8db63a55e2e960d1c0f9ebb5dfc1df02';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1572,17 +1572,34 @@ class Rom {
 	}
 
 	/**
-	 * Enable/Disable the Quick Menu function
+	 * Set Menu Speed
 	 *
-	 * @param bool $enable switch on or off
+	 * @param string $menu_speed speed at which the menu enters the screen
 	 *
 	 * @return $this
 	 */
-	public function setQuickMenu($enable = false) : self {
-		$this->write(0x180048, pack('C*', $enable ? 0x01 : 0x00));
-		$this->write(0x6DD9A, pack('C*', $enable ? 0x20 : 0x11));
-		$this->write(0x6DF2A, pack('C*', $enable ? 0x20 : 0x12));
-		$this->write(0x6E0E9, pack('C*', $enable ? 0x20 : 0x12));
+	public function setMenuSpeed($menu_speed = 'normal') : self {
+		$fast = false;
+		switch ($menu_speed) {
+			case 'instant':
+				$speed = pack('C*', 0xE8);
+				$fast = true;
+				break;
+			case 'fast':
+				$speed = pack('C*', 0x10);
+				break;
+			case 'normal':
+			default:
+				$speed = pack('C*', 0x08);
+				break;
+			case 'slow':
+				$speed = pack('C*', 0x04);
+				break;
+		}
+		$this->write(0x180048, $speed);
+		$this->write(0x6DD9A, pack('C*', $fast ? 0x20 : 0x11));
+		$this->write(0x6DF2A, pack('C*', $fast ? 0x20 : 0x12));
+		$this->write(0x6E0E9, pack('C*', $fast ? 0x20 : 0x12));
 
 		return $this;
 	}
