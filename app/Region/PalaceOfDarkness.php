@@ -261,14 +261,14 @@ class PalaceOfDarkness extends Region {
 			if ($this->world->config('region.wildKeys', false)) {
 				if ($items->has('Lamp') && $items->has('BigKeyD1') && $items->has('Hammer') && $items->canShootArrows()) {
 					if (($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Bottom",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
 								"Palace of Darkness - Harmless Hellway",
 							])) 
 						|| ($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Bottom",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
@@ -286,14 +286,14 @@ class PalaceOfDarkness extends Region {
 					}
 				} else {
 					if (($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Bottom",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
 								"Palace of Darkness - Harmless Hellway",
 							])) 
 						|| ($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Bottom",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
@@ -314,7 +314,7 @@ class PalaceOfDarkness extends Region {
 			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			if($locations->itemInLocations(Item::get('KeyD1'), [
-					"Palace of Darkness - Dark Maze - Big Chest",
+					"Palace of Darkness - Big Chest",
 					"Palace of Darkness - Dark Maze - Bottom",
 				])) {
 				return true;
@@ -327,14 +327,14 @@ class PalaceOfDarkness extends Region {
 			if ($this->world->config('region.wildKeys', false)) {
 				if ($items->has('Lamp') && $items->has('BigKeyD1') && $items->has('Hammer') && $items->canShootArrows()) {
 					if (($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Top",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
 								"Palace of Darkness - Harmless Hellway",
 							])) 
 						|| ($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Top",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
@@ -352,14 +352,14 @@ class PalaceOfDarkness extends Region {
 					}
 				} else {
 					if (($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Top",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
 								"Palace of Darkness - Harmless Hellway",
 							])) 
 						|| ($locations->itemInLocations(Item::get('KeyD1'), [
-								"Palace of Darkness - Dark Maze - Big Chest",
+								"Palace of Darkness - Big Chest",
 								"Palace of Darkness - Dark Maze - Top",
 							]) 
 						&& $locations->itemInLocations(Item::get('KeyD1'), [
@@ -380,7 +380,7 @@ class PalaceOfDarkness extends Region {
 			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
 			if($locations->itemInLocations(Item::get('KeyD1'), [
-					"Palace of Darkness - Dark Maze - Big Chest",
+					"Palace of Darkness - Big Chest",
 					"Palace of Darkness - Dark Maze - Top",
 				])) {
 				return true;
