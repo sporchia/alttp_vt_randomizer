@@ -97,7 +97,34 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["Palace of Darkness - Big Key Chest"]->setRequirements(function($locations, $items) {
 			if ($this->world->config('region.wildKeys', false)) {
-				return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+				if( $items->has('Hammer') && $items->canShootArrows()) {
+					if ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 6);
+					}
+					
+				} else {
+					if ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 5);
+					}
+				}
 			}
 			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		});
@@ -109,13 +136,71 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["Palace of Darkness - Big Chest"]->setRequirements(function($locations, $items) {
 			if ($this->world->config('region.wildKeys', false)) {
-				return $items->has('Lamp') && $items->has('BigKeyD1')
-					&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+				if ($items->has('Lamp') && $items->has('BigKeyD1') && $items->has('Hammer') && $items->canShootArrows()) {
+					if (($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) 
+						|| ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) 	
+						||($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							]))) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 6);
+					}
+				} else {
+					if (($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) 
+						|| ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) 	
+						||($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							]))) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 5);
+					}
+				}
 			}
 			return $items->has('Lamp') && $items->has('BigKeyD1')
 				&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
+			if($locations->itemInLocations(Item::get('KeyD1'), [
+					"Palace of Darkness - Dark Maze - Top",
+					"Palace of Darkness - Dark Maze - Bottom",
+				])) {
+				return $item != Item::get('BigKeyD1');
+			} else {
+				return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
+			}
+			
+			
 		});
 
 		$this->locations["Palace of Darkness - Compass Chest"]->setRequirements(function($locations, $items) {
@@ -124,7 +209,33 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["Palace of Darkness - Harmless Hellway"]->setRequirements(function($locations, $items) {
 			if ($this->world->config('region.wildKeys', false)) {
-				return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+				if( $items->has('Hammer') && $items->canShootArrows()) {
+					if ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 6);
+					}	
+				} else {
+					if ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 5);
+					}
+				}
 			}
 			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		});
@@ -148,22 +259,134 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["Palace of Darkness - Dark Maze - Top"]->setRequirements(function($locations, $items) {
 			if ($this->world->config('region.wildKeys', false)) {
-				return $items->has('Lamp')
-					&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+				if ($items->has('Lamp') && $items->has('BigKeyD1') && $items->has('Hammer') && $items->canShootArrows()) {
+					if (($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) 
+						|| ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) 	
+						||($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							]))) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 6);
+					}
+				} else {
+					if (($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) 
+						|| ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Bottom",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) 	
+						||($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							]))) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 5);
+					}
+				}
 			}
 			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('KeyD1');
+			if($locations->itemInLocations(Item::get('KeyD1'), [
+					"Palace of Darkness - Big Chest",
+					"Palace of Darkness - Dark Maze - Bottom",
+				])) {
+				return true;
+			} else {
+				return $item != Item::get('KeyD1');
+			}
 		});
 
 		$this->locations["Palace of Darkness - Dark Maze - Bottom"]->setRequirements(function($locations, $items) {
 			if ($this->world->config('region.wildKeys', false)) {
-				return $items->has('Lamp')
-					&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+				if ($items->has('Lamp') && $items->has('BigKeyD1') && $items->has('Hammer') && $items->canShootArrows()) {
+					if (($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) 
+						|| ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) 	
+						||($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							]))) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 6);
+					}
+				} else {
+					if (($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							])) 
+						|| ($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Chest",
+								"Palace of Darkness - Dark Maze - Top",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							])) 	
+						||($locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Big Key Chest",
+							]) 
+						&& $locations->itemInLocations(Item::get('KeyD1'), [
+								"Palace of Darkness - Harmless Hellway",
+							]))) {
+						return $items->has('KeyD1', 4);
+					} else {
+						return $items->has('KeyD1', 5);
+					}
+				}
 			}
 			return $items->has('Lamp') && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
 		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('KeyD1');
+			if($locations->itemInLocations(Item::get('KeyD1'), [
+					"Palace of Darkness - Big Chest",
+					"Palace of Darkness - Dark Maze - Top",
+				])) {
+				return true;
+			} else {
+				return $item != Item::get('KeyD1');
+			}
 		});
 
 		$this->can_complete = function($locations, $items) {
