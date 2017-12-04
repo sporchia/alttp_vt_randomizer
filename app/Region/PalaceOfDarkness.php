@@ -93,21 +93,13 @@ class PalaceOfDarkness extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Palace of Darkness - The Arena - Ledge"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows();
-		})->setFillRules(function($item, $locations, $items) {
-			return !($locations["Palace of Darkness - Map Chest"]->hasItem(Item::get('KeyD1'))
-				&& $item == Item::get('KeyD1'));
 		});
 
 		$this->locations["Palace of Darkness - Big Key Chest"]->setRequirements(function($locations, $items) {
-			if ($locations["Palace of Darkness - Big Key Chest"]->hasItem(Item::get('KeyD1'))) {
-				return true;
-			}
 			if ($this->world->config('region.wildKeys', false)) {
 				return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
 			}
 			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
-		})->setAlwaysAllow(function($item) {
-			return $item == Item::get('KeyD1');
 		});
 
 		$this->locations["Palace of Darkness - The Arena - Bridge"]->setRequirements(function($locations, $items) {
@@ -131,15 +123,10 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->locations["Palace of Darkness - Harmless Hellway"]->setRequirements(function($locations, $items) {
-			if ($locations["Palace of Darkness - Harmless Hellway"]->hasItem(Item::get('KeyD1'))) {
-				return true;
-			}
 			if ($this->world->config('region.wildKeys', false)) {
 				return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
 			}
 			return (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 5) : $items->has('KeyD1', 4));
-		})->setAlwaysAllow(function($item) {
-			return $item == Item::get('KeyD1');
 		});
 
 		$this->locations["Palace of Darkness - Stalfos Basement"]->setRequirements(function($locations, $items) {
@@ -157,9 +144,6 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["Palace of Darkness - Map Chest"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows();
-		})->setFillRules(function($item, $locations, $items) {
-			return !($locations["Palace of Darkness - The Arena - Ledge"]->hasItem(Item::get('KeyD1'))
-				&& $item == Item::get('KeyD1'));
 		});
 
 		$this->locations["Palace of Darkness - Dark Maze - Top"]->setRequirements(function($locations, $items) {
