@@ -1,6 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.27.2</h2>
+<div class="well">
+	<ul>
+		<li>Hot-fix for Palace of Darkness Bow lock</li>
+	</ul>
+</div>
+
 <h2>VT8.27</h2>
 <div class="well">
 	<ul>
