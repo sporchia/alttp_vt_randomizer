@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.5.0';
+	const VERSION = '0.5.1';
 	private $spoiler;
 	private $patch;
 	protected $shuffle;
@@ -54,10 +54,9 @@ class EntranceRandomizer extends Randomizer {
 			case 'timed-ohko':
 				$this->timer_mode = 'timed-ohko';
 				break;
-			//// Plain OHKO is not available in ER 0.5.0 but will be in 0.5.1. Uncomment this to add support.
-			//case 'ohko':
-			//	$this->timer_mode = 'ohko';
-			//	break;
+			case 'ohko':
+				$this->timer_mode = 'ohko';
+				break;
 			case 'triforce-hunt':
 				$this->goal = 'triforcehunt';
 				break;
