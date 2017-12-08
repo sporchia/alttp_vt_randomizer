@@ -124,8 +124,8 @@ class Item {
 			new Item('Powder', 'Magic Powder', [0x0D]),
 			new Item('Bee', 'Bee', [0x0E]), // bottle required
 			new Item\Medallion('Bombos', 'Bombos', [0x0f, 0x00, 't0' => 0x31, 't1' => 0x90, 't2' => 0x00, 'm0' => 0x31, 'm1' => 0x80, 'm2' => 0x00]),
-			new Item\Medallion('Ether', 'Ether', [0x10, 0x01, 't0' => 0x31, 't1' => 0x98, 't2' => 0x00]),
-			new Item\Medallion('Quake', 'Quake', [0x11, 0x02, 'm0' => 0x31, 'm1' => 0x88, 'm2' => 0x00]),
+			new Item\Medallion('Ether', 'Ether', [0x10, 0x01, 't0' => 0x31, 't1' => 0x98, 't2' => 0x00, 'm0' => 0x13, 'm1' => 0x9F, 'm2' => 0xF1]),
+			new Item\Medallion('Quake', 'Quake', [0x11, 0x02, 't0' => 0x14, 't1' => 0xEF, 't2' => 0xC4, 'm0' => 0x31, 'm1' => 0x88, 'm2' => 0x00]),
 			new Item('Lamp', 'Lamp', [0x12]), // alternate: 5 rupees
 			new Item('Shovel', 'Shovel', [0x13]),
 			new Item('OcarinaInactive', 'Flute', [0x14]),

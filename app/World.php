@@ -306,7 +306,7 @@ class World {
 					continue;
 				}
 
-				if ($pulled_item instanceof Item\Key || !$shadow_world->getWinCondition()($collectable_locations->getItems())) {
+				if (!$shadow_world->getWinCondition()($collectable_locations->getItems())) {
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);

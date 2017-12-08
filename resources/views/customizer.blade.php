@@ -92,6 +92,16 @@
 								</span>
 							</div>
 						</div>
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Rom "Fixes"</span>
+								<select id="rom-logic" class="form-control selectpicker" name="data[alttp.custom.rom.logicMode]">
+									@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
+										<option value="{{ $logic }}">{{ $name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
 					</div>
 					@yield('rom-settings')
 				</div>
@@ -185,7 +195,7 @@ function seedApplied(data) {
 }
 function seedFailed(data) {
 	return new Promise(function(resolve, reject) {
-		$('.alert .message').html('Unable to generate, please check your options.');
+		$('.alert .message').html('Unable to generate, please check your options.<br />' + data.responseText);
 		$('.alert').show();
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 		return resolve('no');
@@ -303,6 +313,7 @@ $(function() {
 
 	$('button[name=generate]').on('click', function() {
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('.alert').hide();
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
 
@@ -316,13 +327,27 @@ $(function() {
 	});
 
 	$('#logic').on('change', function() {
-		localforage.setItem('vt.custom.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
+		var $this = $(this);
+		localforage.setItem('vt.custom.logic', $this.val());
+		if ($this.val() != 'None') {
+			$('#rom-logic').val($this.val());
+			$('#rom-logic').trigger('change');
+		}
+		$('input[name=logic]').val($this.val());
 	});
 	localforage.getItem('vt.custom.logic').then(function(value) {
 		if (value === null) return;
 		$('#logic').val(value);
 		$('#logic').trigger('change');
+	});
+
+	$('#rom-logic').on('change', function() {
+		localforage.setItem('vt.custom.rom-logic', $(this).val());
+	});
+	localforage.getItem('vt.custom.rom-logic').then(function(value) {
+		if (value === null) return;
+		$('#rom-logic').val(value);
+		$('#rom-logic').trigger('change');
 	});
 
 	$('#mode').on('change', function() {

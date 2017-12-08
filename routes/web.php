@@ -56,7 +56,16 @@ Route::get('customize{r?}', function () {
 				&& !$item instanceof Item\Crystal
 				&& !$item instanceof Item\Event
 				&& !$item instanceof Item\Programmable
-				&& !in_array($item->getName(), ['L2Sword', 'singleRNG', 'multiRNG']);
+				&& !in_array($item->getName(), [
+					'BigKey',
+					'Compass',
+					'Key',
+					'L2Sword',
+					'Map',
+					'multiRNG',
+					'singleRNG',
+					'TwentyRupees2',
+				]);
 		}),
 		'prizes' => $items->filter(function($item) {
 			return $item instanceof Item\Pendant
@@ -249,12 +258,17 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$rand->setWorld($world);
 	}
 
-	$rand->makeSeed($seed_id);
+	try {
+		$rand->makeSeed($seed_id);
+	} catch (Exception $e) {
+		return response($e->getMessage(), 409);
+	}
+
 	$rand->writeToRom($rom);
 	$seed = $rand->getSeed();
 
 	if (!$rand->getWorld()->checkWinCondition()) {
-		return response('Failed', 409);
+		return response('Game Unwinnable', 409);
 	}
 
 	$patch = $rom->getWriteLog();

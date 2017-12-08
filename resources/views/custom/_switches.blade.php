@@ -89,6 +89,7 @@
 				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="Not" data-size="small">
 			<label id="bees-label" for="cust-bees">the Bees</label>
 		</div>
+		<div class="clearfix"></div>
 		<div class="col-md-6 pb-5">
 			<div class="input-group" role="group">
 				<span class="input-group-addon">Goal Items</span>

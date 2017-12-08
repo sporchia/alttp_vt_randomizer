@@ -158,7 +158,6 @@ class Randomizer {
 		// Pedestal is the goal
 		if ($this->goal == 'pedestal') {
 			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.Arrow" => 0]);
 		}
 
 		if ($this->logic == 'MajorGlitches') {
@@ -215,8 +214,11 @@ class Randomizer {
 			foreach ($nice_items_swords as $unneeded) {
 				array_push($nice_items, Item::get('TwentyRupees2'));
 			}
-			if (array_search(Item::get('SilverArrowUpgrade'), $nice_items) === false) {
-				$nice_items[] = Item::get('SilverArrowUpgrade');
+			$world_items = $this->world->collectItems()->values();
+			if (!in_array(Item::get('SilverArrowUpgrade'), $world_items) && !in_array(Item::get('BowAndSilverArrows'), $world_items)) {
+				if (array_search(Item::get('SilverArrowUpgrade'), $nice_items) === false && $this->difficulty !== 'custom') {
+					$nice_items[] = Item::get('SilverArrowUpgrade');
+				}
 			}
 		}
 		// put 1 bottle back
@@ -231,6 +233,41 @@ class Randomizer {
 			: $this->getItemPool();
 
 		$dungeon_items = $this->getDungeonPool();
+
+		if ($this->world->config('region.wildBigKeys', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\BigKey) {
+					unset($dungeon_items[$key]);
+					$advancement_items[] = $item;
+				}
+			}
+		}
+		if ($this->world->config('region.wildKeys', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open', 'swordless']) || $item != Item::get('KeyH2'))) {
+					unset($dungeon_items[$key]);
+					$advancement_items[] = $item;
+				}
+			}
+		}
+		if ($this->world->config('region.wildMaps', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\Map) {
+					unset($dungeon_items[$key]);
+					$nice_items[] = $item;
+				}
+			}
+		}
+		if ($this->world->config('region.wildCompasses', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\Compass) {
+					unset($dungeon_items[$key]);
+					$nice_items[] = $item;
+				}
+			}
+		}
+
+		$advancement_items = mt_shuffle($advancement_items);
 
 		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
@@ -294,6 +331,7 @@ class Randomizer {
 				return is_a($item, Item\Crystal::class);
 			});
 
+		// This needs to try to place better than 1st or fail.
 		foreach ($crystal_locations->getEmptyLocations() as $location) {
 			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 				$this->getDungeonPool(),
@@ -507,7 +545,7 @@ class Randomizer {
 
 		$rom->removeUnclesShield();
 
-		switch ($this->logic) {
+		switch ($this->config('rom.logicMode', $this->logic)) {
 			case 'MajorGlitches':
 				$type_flag = 'G';
 				$rom->setSwampWaterLevel(false);
@@ -520,7 +558,7 @@ class Randomizer {
 			case 'OverworldGlitches':
 				$type_flag = 'S';
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
-				$rom->setSaveAndQuitFromBossRoom(false);
+				$rom->setSaveAndQuitFromBossRoom(true);
 				$rom->setWorldOnAgahnimDeath(true);
 				$rom->setRandomizerSeedType('OverworldGlitches');
 				$rom->setWarningFlags(bindec('01000000'));
@@ -528,7 +566,7 @@ class Randomizer {
 			case 'NoMajorGlitches':
 			default:
 				$type_flag = 'C';
-				$rom->setSaveAndQuitFromBossRoom(false);
+				$rom->setSaveAndQuitFromBossRoom(true);
 				$rom->setWorldOnAgahnimDeath(true);
 				break;
 		}
@@ -827,6 +865,9 @@ class Randomizer {
 		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI can not die!");
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
+		if (!$silver_arrows_location) {
+			$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('BowAndSilverArrows'))->first();
+		}
 
 		if (!$silver_arrows_location) {
 			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes");
