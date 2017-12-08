@@ -721,6 +721,7 @@ return [
 				'none' => 'None',
 				'timed-race' => 'Timed Race',
 				'timed-ohko' => 'Timed OHKO',
+				'ohko' => 'OHKO',
 				'triforce-hunt' => 'Triforce Piece Hunt',
 				'key-sanity' => 'Key-sanity',
 			],
