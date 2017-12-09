@@ -23,11 +23,12 @@ class EntranceRandomizer extends Randomizer {
 	 * @param string $logic Ruleset to use when deciding if Locations can be reached
 	 * @param string $goal Goal of the game
 	 * @param string $variation modifications to difficulty
-	 * @param string $variation how the entrances are shuffled
+	 * @param string $shuffle how the entrances are shuffled
+	 * @param bool $ganon_shuffle Whether or not to shuffle GT and Pyramid.
 	 *
 	 * @return void
 	 */
-	public function __construct($difficulty = 'normal', $logic = 'noglitches', $goal = 'ganon', $variation = 'none', $shuffle = 'none') {
+	public function __construct($difficulty = 'normal', $logic = 'noglitches', $goal = 'ganon', $variation = 'none', $shuffle = 'none', $ganon_shuffle = false) {
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
 		$this->shuffle = $shuffle;
@@ -36,11 +37,8 @@ class EntranceRandomizer extends Randomizer {
 		$this->seed = new Seed;
 
 		// Add shuffle Ganon
-		switch ($this->shuffle) {
-			case 'madness':
-			case 'insanity':
-				$this->shuffle .= ' --shuffleganon';
-				break;
+		if ($ganon_shuffle) {
+			$this->shuffle .= ' --shuffleganon';
 		}
 
 		switch ($this->variation) {

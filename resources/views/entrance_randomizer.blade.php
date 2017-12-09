@@ -91,6 +91,12 @@
 					</select>
 				</div>
 			</div>
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Ganon Shuffle</span>
+					<input id="ganon_shuffle" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small"/>
+				</div>
+			</div>
 		</div>
 		@yield('rom-settings')
 	</div>
@@ -138,6 +144,7 @@
 	<input type="hidden" name="mode" value="open" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="shuffle" value="full" />
+	<input type="hidden" name="ganon_shuffle" value="false" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_fast" value="false" />
@@ -271,6 +278,19 @@ $(function() {
 		}
 		$('#shuffle').val(value);
 		$('#shuffle').trigger('change');
+	});
+
+	$('#ganon_shuffle').on('change', function() {
+		$('.info').hide();
+		$('input[name=ganon_shuffle]').val($(this).prop('checked'));
+		localforage.setItem('vt.er.ganon_shuffle', $(this).prop('checked'));
+	});
+	localforage.getItem('vt.er.ganon_shuffle').then(function(value) {
+		if (value === null) {
+			return;
+		}
+		$('#ganon_shuffle').prop('checked', value);
+		$('#ganon_shuffle').trigger('change');
 	});
 
 	$('button[name=save]').on('click', function() {
