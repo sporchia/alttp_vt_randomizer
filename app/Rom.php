@@ -177,9 +177,13 @@ class Rom {
 	public function setStartingEquipment(ItemCollection $items) {
 		$equipment = array_fill(0x340, 0x4B, 0);
 		$starting_rupees = 0;
+		$starting_arrow_capacity = 0;
+		$starting_bomb_capacity = 0;
 		// starting heart containers
 		$equipment[0x36C] = 0x18;
 		$equipment[0x36D] = 0x18;
+		// default abilities
+		$equipment[0x379] |= 0b01101000;
 
 		foreach ($items as $item) {
 			switch ($item->getName()) {
@@ -411,22 +415,22 @@ class Rom {
 					$equipment[0x379] |= 0b00000100;
 					break;
 				case 'BombUpgrade5':
-					$equipment[0x370] = min($equipment[0x370] + 5, 99);
+					$starting_bomb_capacity += 5;
 					break;
 				case 'BombUpgrade10':
-					$equipment[0x370] = min($equipment[0x370] + 10, 99);
+					$starting_bomb_capacity += 10;
 					break;
 				case 'BombUpgrade50':
-					$equipment[0x370] = min($equipment[0x370] + 50, 99);
+					$starting_bomb_capacity += 50;
 					break;
 				case 'ArrowUpgrade5':
-					$equipment[0x371] = min($equipment[0x371] + 5, 99);
+					$starting_arrow_capacity += 5;
 					break;
 				case 'ArrowUpgrade10':
-					$equipment[0x371] = min($equipment[0x371] + 10, 99);
+					$starting_arrow_capacity += 10;
 					break;
 				case 'ArrowUpgrade70':
-					$equipment[0x371] = min($equipment[0x371] + 50, 99);
+					$starting_arrow_capacity += 70;
 					break;
 				case 'HalfMagic':
 					$equipment[0x37B] = 0x01;
@@ -648,6 +652,8 @@ class Rom {
 		$equipment[0x363] = $equipment[0x361] = $starting_rupees >> 8;
 
 		$this->write(0x183000, pack('C*', ...$equipment));
+		$this->setMaxArrows($starting_arrow_capacity);
+		$this->setMaxBombs($starting_bomb_capacity);
 
 		return $this;
 	}

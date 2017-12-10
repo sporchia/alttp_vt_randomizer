@@ -20,6 +20,7 @@ class Randomizer {
 	protected $difficulty;
 	protected $variation;
 	protected $logic;
+	protected $starting_equipment;
 	static protected $logic_array = [
 		0x44, 0xD5, 0x8F, 0xB7, 0xE1, 0x29, 0x65, 0x9A,0x35, 0xAE, 0x7B, 0x05, 0x2E, 0x7D, 0x23, 0x11,
 		0xF5, 0x2F, 0xFC, 0x6E, 0x33, 0xE4, 0x06, 0xDB,0x3F, 0x20, 0xF7, 0xAB, 0xF0, 0x37, 0x15, 0x7C,
@@ -56,6 +57,13 @@ class Randomizer {
 		$this->goal = $goal;
 		$this->world = new World($difficulty, $logic, $goal, $variation);
 		$this->seed = new Seed;
+		$this->starting_equipment = new ItemCollection([
+			Item::get('BombUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+		]);
+		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
 	/**
@@ -163,6 +171,7 @@ class Randomizer {
 		if ($this->logic == 'MajorGlitches') {
 			// MajorGlitches always has 4 bottles, no matter what
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
 		}
 
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
@@ -392,6 +401,19 @@ class Randomizer {
 	public function getSpoiler() {
 		$spoiler = [];
 
+		if (count($this->starting_equipment)) {
+			$i = 0;
+			foreach ($this->starting_equipment as $item) {
+				if ($item instanceof Item\Upgrade\Arrow
+					|| $item instanceof Item\Upgrade\Bomb) {
+					continue;
+				}
+
+				$location = sprintf("Equipment Slot %s", ++$i);
+				$spoiler['Equiped'][$location] = $item->getNiceName();
+			}
+		}
+
 		foreach ($this->world->getRegions() as $region) {
 			$name = $region->getName();
 			if (!isset($spoiler[$name])) {
@@ -526,8 +548,7 @@ class Randomizer {
 
 		$this->randomizeCredits($rom);
 
-		$rom->setMaxArrows();
-		$rom->setMaxBombs();
+		$rom->setStartingEquipment($this->starting_equipment);
 		$rom->setCapacityUpgradeFills([
 			$this->config('item.value.BombUpgrade5', 0),
 			$this->config('item.value.BombUpgrade10', 0),
@@ -907,6 +928,8 @@ class Randomizer {
 			" Hello.  Will\n  you be my\n   friend?",
 			"   Beetorp\n     was\n    here!",
 			"The Wind Fish\nwill wake\nsoon.    Hoot!",
+			"meow meow meow\nmeow meow meow\n  oh my god!",
+			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
 		])));
 
 		return $this;

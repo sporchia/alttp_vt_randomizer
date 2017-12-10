@@ -17,6 +17,7 @@ class World {
 	protected $locations;
 	protected $win_condition;
 	protected $collectable_locations;
+	protected $pre_collected_items;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -33,6 +34,7 @@ class World {
 		$this->variation = $variation;
 		$this->logic = $logic;
 		$this->goal = $goal;
+		$this->pre_collected_items = new ItemCollection;
 
 		$this->regions = [
 			'Light World' => new Region\LightWorld($this),
@@ -200,6 +202,10 @@ class World {
 		return $this;
 	}
 
+	public function setPreCollectedItems(ItemCollection $items) {
+		$this->pre_collected_items = $items;
+	}
+
 	/**
 	 * Get a copy of this world with items in locations.
 	 *
@@ -210,6 +216,8 @@ class World {
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
+
+		$copy->setPreCollectedItems($this->pre_collected_items->copy());
 
 		return $copy;
 	}
@@ -290,6 +298,9 @@ class World {
 		$required_locations_sphere = [];
 		$reverse_location_sphere = array_reverse($location_sphere, true);
 		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
+			if ($sphere_level == 0) {
+				continue;
+			}
 			Log::debug("playthrough SPHERE: $sphere_level");
 			foreach ($sphere as $location) {
 				Log::debug(sprintf("playthrough Check: %s :: %s", $location->getName(),
@@ -374,7 +385,7 @@ class World {
 		}
 
 		// RUN PLAYTHROUGH of locations found above
-		$my_items = new ItemCollection;
+		$my_items = $shadow_world->pre_collected_items;
 		$location_order = [];
 		$location_round = [];
 		$longest_item_chain = 1;
@@ -408,6 +419,18 @@ class World {
 		} while ($found_items->count() > 0);
 
 		$ret = ['longest_item_chain' => count($location_round)];
+		if (count($shadow_world->pre_collected_items)) {
+			$i = 0;
+			foreach ($shadow_world->pre_collected_items as $item) {
+				if ($item instanceof Item\Upgrade\Arrow
+					|| $item instanceof Item\Upgrade\Bomb) {
+					continue;
+				}
+
+				$location = sprintf("Equipment Slot %s", ++$i);
+				$ret[0]['Equiped'][$location] = $item->getNiceName();
+			}
+		}
 		foreach ($location_round as $round => $locations) {
 			if (!count($locations)) {
 				$ret['longest_item_chain']--;
@@ -509,6 +532,7 @@ class World {
 	 */
 	public function collectItems(ItemCollection $collected = null) {
 		$my_items = $collected ?? new ItemCollection;
+		$my_items = $my_items->merge($this->pre_collected_items);
 		$available_locations = $this->getCollectableLocations()->filter(function($location) {
 			return $location->hasItem();
 		});
@@ -548,8 +572,14 @@ class World {
 	 */
 	public function getLocationSpheres() {
 		$sphere = 0;
-		$location_sphere = [];
-		$my_items = new ItemCollection;
+		$location_sphere = [0 => new LocationCollection];
+		$my_items = $this->pre_collected_items;
+		$i = 0;
+		foreach ($my_items as $item) {
+			$location = new Location(sprintf("Equipment Slot %s", ++$i), null, null);
+			$location->setItem($item);
+			$location_sphere[0]->addItem($location);
+		}
 		$found_locations = new LocationCollection;
 		do {
 			$sphere++;
