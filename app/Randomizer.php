@@ -1385,15 +1385,9 @@ class Randomizer {
 		];
 		$shuffled = mt_shuffle($prizes);
 
-		// write to trees
-		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
-
-		// write to prize crab
-		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
-
 		if ($this->config('bees', false)) {
 			// you asked for it
-			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 20, 0x79)));
+			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
 			$rom->setOverworldDigPrizes([
 				0xB2, 0xD8, 0xD8, 0xD8,
 				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
@@ -1410,6 +1404,12 @@ class Randomizer {
 				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
 			]);
 		}
+
+		// write to trees
+		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
+
+		// write to prize crab
+		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
 
 		// write to stunned
 		$rom->setStunnedSpritePrize(array_pop($shuffled));

@@ -84,7 +84,7 @@ class SwampPalace extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Swamp Palace - Entrance"]->setFillRules(function($item, $locations, $items) {
-			return $item == Item::get('KeyD2');
+			return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2');
 		});
 
 		$this->locations["Swamp Palace - Big Chest"]->setRequirements(function($locations, $items) {
