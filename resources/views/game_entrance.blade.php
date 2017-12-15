@@ -41,8 +41,6 @@
 		<div class="panel-body">
 			<p>Decouple entrances and exits from each other and shuffle them freely, only ensuring that no fake
 				Light/Dark World happens and all locations are reachable.</p>
-			<p>Note: Ganon's Tower is included in the dungeon shuffle pool and the Pyramid Hole/Exit pair is included
-				in the Holes shuffle pool.</p>
 		</div>
 	</div>
 
@@ -53,8 +51,6 @@
 		<div class="panel-body">
 			<p>Madness without the world restrictions. Mirror and Pearl are provided early to ensure Filling algorithm
 				works properly. Deal with Fake LW/DW at your discretion.</p>
-			<p>Note: Ganon's Tower is included in the dungeon shuffle pool and the Pyramid Hole/Exit pair is included
-				in the Holes shuffle pool.</p>
 		</div>
 	</div>
 
