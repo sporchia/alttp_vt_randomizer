@@ -12,6 +12,7 @@ class Location {
 	protected $region;
 	protected $requirement_callback;
 	protected $fill_callback;
+	protected $always_callback;
 	protected $item = null;
 
 	/**
@@ -63,9 +64,10 @@ class Location {
 	 * @return bool
 	 */
 	public function canFill(Item $item, $items, $check_access = true) {
-		return $this->region->canFill($item)
-			&& (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
-		 	&& (!$check_access || $this->canAccess($items));
+		return ($this->always_callback && call_user_func($this->always_callback, $item, $items))
+			|| ($this->region->canFill($item)
+				&& (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+				&& (!$check_access || $this->canAccess($items)));
 	}
 
 	/**
@@ -110,6 +112,19 @@ class Location {
 	 */
 	public function setFillRules(Callable $callback) {
 		$this->fill_callback = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the rules for freely allowing items at this location
+	 *
+	 * @param Callable $callback
+	 *
+	 * @return $this
+	 */
+	public function setAlwaysAllow(Callable $callback) {
+		$this->always_callback = $callback;
 
 		return $this;
 	}
