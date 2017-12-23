@@ -32,8 +32,8 @@
 
 <script>
 var rom;
-var current_rom_hash = '{{ ALttP\Rom::HASH }}';
-var current_base_file = "{{ elixir('js/base2current.json') }}";
+var current_rom_hash = '{{ $rom_hash or ALttP\Rom::HASH }}';
+var current_base_file = "{{ $rom_patch or elixir('js/base2current.json') }}";
 
 function resetRom() {
 	return new Promise(function(resolve, reject) {
@@ -49,6 +49,12 @@ function resetRom() {
 
 function patchRomFromJSON(rom) {
 	return new Promise(function(resolve, reject) {
+		if (typeof vt_base_patch !== 'undefined') {
+			rom.parsePatch(vt_base_patch).then(function(rom) {
+				resolve(rom);
+			});
+			return;
+		}
 		localforage.getItem('vt_stored_base').then(function(stored_base_file) {
 			if (current_base_file == stored_base_file) {
 				localforage.getItem('vt_base_json').then(function(patch) {

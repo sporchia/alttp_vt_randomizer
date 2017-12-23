@@ -26,6 +26,13 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
 					<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Generate Customized Game</a></li>
+					<li{!! (in_array(request()->path(), ['special'])) ? ' class="active"' : '' !!}>
+						<a href="/special" class="alternate-color handwritten">
+							<span>P</span><span>l</span><span>a</span><span>y</span>
+							<span>F</span><span>e</span><span>s</span><span>t</span><span>i</span><span>v</span><span>e</span>
+							<span>R</span><span>a</span><span>n</span><span>d</span><span>o</span><span>m</span><span>i</span><span>z</span><span>e</span><span>r</span>
+						</a>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -38,10 +45,10 @@
 							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
 							<li{!! (request()->path() == 'help') ? ' class="active"' : '' !!}><a href="/help">Help</a></li>
 							<li><a href="https://discord.gg/yEvqSRk" target="_blank">Join us on Discord</a></li>
+							<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
+					  		<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 						</ul>
 					</li>
-					<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
-			  		<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 					@if (Auth::check())
 					<li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
