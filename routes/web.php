@@ -9,6 +9,13 @@ Route::get('randomize{r?}', function () {
 	return view('randomizer');
 });
 
+Route::get('special', function () {
+	return view('special', [
+		'rom_hash' => '39e4e1fb134cb82aa34df7399d4125db',
+		'rom_patch' => 'js/base-39e4e1fb134cb82aa34df7399d4125db.json',
+	]);
+});
+
 Route::get('entrance/randomize{r?}', function () {
 	return view('entrance_randomizer');
 });
@@ -214,6 +221,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
 	$rand = new ALttP\Randomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+	if ($request->input('special') == 'true') {
+		$rand = new ALttP\SpecialRandomizer($difficulty, $request->input('logic', 'NoMajorGlitches'), $request->input('goal', 'ganon'), $variation);
+	}
+
 	if (isset($world)) {
 		$rand->setWorld($world);
 	}
@@ -243,7 +254,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'seed' => $seed,
 		'logic' => $rand->getLogic(),
 		'difficulty' => $difficulty,
-		'patch' => $patch,
+		'patch' => patch_merge_minify($patch),
 		'spoiler' => $spoiler,
 		'hash' => $hash,
 	]);
