@@ -28,7 +28,7 @@
 
 <script>
 var current_rom_hash = '{{ $md5 }}';
-var patch = {!! $patch !!};
+var vt_base_patch = {!! $patch !!};
 var get_hash = "{{ $hash }}";
 
 function applyHash(rom, hash, second_attempt) {
@@ -50,7 +50,15 @@ function applyHash(rom, hash, second_attempt) {
 		$.get('/hash/' + hash, function(patch) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
-			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+			.then(function(rom) {
+				// the special music get's messed up by this function, so we just disable it
+				if (patch.spoiler.meta.special) {
+					$('.music-disable-toggle').hide();
+					return rom;
+				}
+				$('.music-disable-toggle').show();
+				return rom.setMusicVolume($('#generate-music-on').prop('checked'))
+			})
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
@@ -83,6 +91,7 @@ function seedApplied(data) {
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.hash = data.patch.hash;
 		rom.seed = data.patch.hash;
+		rom.special = data.patch.spoiler.meta.special;
 		$('button[name=save]').show().prop('disabled', false);
 		resolve(rom);
 	});
@@ -98,7 +107,8 @@ $(function() {
 				+ '-' + rom.mode
 				+ '-' + rom.goal
 				+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-				+ '_' + rom.seed + '.sfc');
+				+ '_' + rom.seed
+				+ (rom.special ? '_special' : '') + '.sfc');
 	});
 });
 </script>

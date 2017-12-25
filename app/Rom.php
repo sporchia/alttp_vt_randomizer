@@ -37,10 +37,10 @@ class Rom {
 	 *
 	 * @return Build
 	 */
-	public static function saveBuild(array $patch) : Build {
+	public static function saveBuild(array $patch, $build = null, $hash = null) : Build {
 		$build = Build::firstOrCreate([
-			'build' => static::BUILD,
-			'hash' => static::HASH,
+			'build' => $build ?? static::BUILD,
+			'hash' => $hash ?? static::HASH,
 		]);
 		$build->patch = json_encode($patch);
 		$build->save();

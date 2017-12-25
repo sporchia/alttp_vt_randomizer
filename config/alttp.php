@@ -673,7 +673,7 @@ return [
 		'samus.4.spr' => 'Samus',
 		'sodacan.1.spr' => 'Soda Can',
 		'staticlink.1.spr' => 'Static Link',
-		'santalink.1.spr' => 'Santa Link',
+		'santalink.2.spr' => 'Santa Link',
 		'superbunny.1.spr' => 'Super Bunny',
 		'swatchy.1.spr' => 'Swatchy',
 		'tingle.1.spr' => 'Tingle',

@@ -288,7 +288,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'seed' => $seed,
 		'logic' => $rand->getLogic(),
 		'difficulty' => $difficulty,
-		'patch' => $patch,
+		'patch' => patch_merge_minify($patch),
 		'spoiler' => $spoiler,
 		'hash' => $hash,
 	]);
