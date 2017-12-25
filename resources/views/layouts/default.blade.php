@@ -26,13 +26,6 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
 					<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Generate Customized Game</a></li>
-					<li{!! (in_array(request()->path(), ['special'])) ? ' class="active"' : '' !!}>
-						<a href="/special" class="alternate-color handwritten">
-							<span>P</span><span>l</span><span>a</span><span>y</span>
-							<span>F</span><span>e</span><span>s</span><span>t</span><span>i</span><span>v</span><span>e</span>
-							<span>R</span><span>a</span><span>n</span><span>d</span><span>o</span><span>m</span><span>i</span><span>z</span><span>e</span><span>r</span>
-						</a>
-					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
