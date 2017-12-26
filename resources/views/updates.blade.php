@@ -4,7 +4,7 @@
 <h2>VT8.28</h2>
 <div class="well">
 	<ul>
-		<li>Daily Games</li>
+		<li>Daily Challenges</li>
 		<li>Fast Menu is now a select for what speed you want</li>
 		<li>Updated Entrance Randomizer to v0.5 (has many more options)</li>
 		<li>Customizer fixes based on feedback (Bottles baby)</li>
