@@ -37,10 +37,10 @@ class Rom {
 	 *
 	 * @return Build
 	 */
-	public static function saveBuild(array $patch) : Build {
+	public static function saveBuild(array $patch, $build = null, $hash = null) : Build {
 		$build = Build::firstOrCreate([
-			'build' => static::BUILD,
-			'hash' => static::HASH,
+			'build' => $build ?? static::BUILD,
+			'hash' => $hash ?? static::HASH,
 		]);
 		$build->patch = json_encode($patch);
 		$build->save();
@@ -177,9 +177,13 @@ class Rom {
 	public function setStartingEquipment(ItemCollection $items) {
 		$equipment = array_fill(0x340, 0x4B, 0);
 		$starting_rupees = 0;
+		$starting_arrow_capacity = 0;
+		$starting_bomb_capacity = 0;
 		// starting heart containers
 		$equipment[0x36C] = 0x18;
 		$equipment[0x36D] = 0x18;
+		// default abilities
+		$equipment[0x379] |= 0b01101000;
 
 		foreach ($items as $item) {
 			switch ($item->getName()) {
@@ -411,22 +415,22 @@ class Rom {
 					$equipment[0x379] |= 0b00000100;
 					break;
 				case 'BombUpgrade5':
-					$equipment[0x370] = min($equipment[0x370] + 5, 99);
+					$starting_bomb_capacity += 5;
 					break;
 				case 'BombUpgrade10':
-					$equipment[0x370] = min($equipment[0x370] + 10, 99);
+					$starting_bomb_capacity += 10;
 					break;
 				case 'BombUpgrade50':
-					$equipment[0x370] = min($equipment[0x370] + 50, 99);
+					$starting_bomb_capacity += 50;
 					break;
 				case 'ArrowUpgrade5':
-					$equipment[0x371] = min($equipment[0x371] + 5, 99);
+					$starting_arrow_capacity += 5;
 					break;
 				case 'ArrowUpgrade10':
-					$equipment[0x371] = min($equipment[0x371] + 10, 99);
+					$starting_arrow_capacity += 10;
 					break;
 				case 'ArrowUpgrade70':
-					$equipment[0x371] = min($equipment[0x371] + 50, 99);
+					$starting_arrow_capacity += 70;
 					break;
 				case 'HalfMagic':
 					$equipment[0x37B] = 0x01;
@@ -648,6 +652,8 @@ class Rom {
 		$equipment[0x363] = $equipment[0x361] = $starting_rupees >> 8;
 
 		$this->write(0x183000, pack('C*', ...$equipment));
+		$this->setMaxArrows($starting_arrow_capacity);
+		$this->setMaxBombs($starting_bomb_capacity);
 
 		return $this;
 	}
@@ -1027,13 +1033,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextString(string $string) : self {
-		$offset = 0x180500;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180500);
 		return $this;
 	}
 
@@ -1045,13 +1045,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon1TextString(string $string) : self {
-		$offset = 0x180600;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180600);
 		return $this;
 	}
 
@@ -1063,13 +1057,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon2TextString(string $string) : self {
-		$offset = 0x180700;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180700);
 		return $this;
 	}
 
@@ -1081,13 +1069,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon1InvincibleTextString(string $string) : self {
-		$offset = 0x181100;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x181100);
 		return $this;
 	}
 
@@ -1099,13 +1081,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon2InvincibleTextString(string $string) : self {
-		$offset = 0x181200;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x181200);
 		return $this;
 	}
 
@@ -1118,13 +1094,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTriforceTextString(string $string) : self {
-		$offset = 0x180400;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180400);
 		return $this;
 	}
 
@@ -1136,13 +1106,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBlindTextString(string $string) : self {
-		$offset = 0x180800;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180800);
 		return $this;
 	}
 
@@ -1154,13 +1118,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTavernManTextString(string $string) : self {
-		$offset = 0x180C00;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180C00);
 		return $this;
 	}
 
@@ -1172,13 +1130,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSahasrahla1TextString(string $string) : self {
-		$offset = 0x180A00;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180A00);
 		return $this;
 	}
 
@@ -1190,13 +1142,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSahasrahla2TextString(string $string) : self {
-		$offset = 0x180B00;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180B00);
 		return $this;
 	}
 
@@ -1208,13 +1154,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombShop1TextString(string $string) : self {
-		$offset = 0x180E00;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180E00);
 		return $this;
 	}
 
@@ -1226,13 +1166,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombShop2TextString(string $string) : self {
-		$offset = 0x180D00;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180D00);
 		return $this;
 	}
 
@@ -1244,13 +1178,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setPyramidFairyTextString(string $string) : self {
-		$offset = 0x180900;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180900);
 		return $this;
 	}
 
@@ -1262,13 +1190,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setPedestalTextbox(string $string) : self {
-		$offset = 0x180300;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180300);
 		return $this;
 	}
 
@@ -1280,13 +1202,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombosTextbox(string $string) : self {
-		$offset = 0x181000;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x181000);
 		return $this;
 	}
 
@@ -1298,13 +1214,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setEtherTextbox(string $string) : self {
-		$offset = 0x180F00;
-
-		$converter = new Dialog;
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
+		$this->writeDialog($string, 0x180F00);
 		return $this;
 	}
 
@@ -1638,6 +1548,12 @@ class Rom {
 		$this->write(0x1820FF, pack('C*', count($bytes)));
 
 		return $this;
+	}
+
+	public function beeChest() {
+		$this->write(0x1D8000, pack('C*', 0xA9, 0x79, 0x22, 0x5D, 0xF6, 0x1D, 0x30, 0x14, 0xA5, 0x22, 0x99, 0x10, 0x0D, 0xA5, 0x23,
+			0x99, 0x30, 0x0D, 0xA5, 0x20, 0x99, 0x00, 0x0D, 0xA5, 0x21, 0x99, 0x20, 0x0D, 0x6B));
+		$this->write(0x180061, pack('C*', 0x00, 0x80, 0x3B));
 	}
 
 	/**
@@ -2662,5 +2578,23 @@ class Rom {
 			fclose($this->rom);
 		}
 		unlink($this->tmp_file);
+	}
+
+	/**
+	 * Set the text for a dialog
+	 *
+	 * @param string $string Text for the dialog
+	 * @param int $offset The offset of the text box
+	 *
+	 * @return $this
+	 */
+	private function writeDialog(string $string, int $offset) : self {
+		$converter = new Dialog;
+
+		foreach ($converter->convertDialog($string) as $byte) {
+			$this->write($offset++, pack('C', $byte));
+		}
+
+		return $this;
 	}
 }

@@ -56,6 +56,10 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$variation = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.variations')), array_keys(config('alttp.randomizer.item.variations'))),
 				config('alttp.randomizer.daily_weights.item.variations')));
 
+			if ($variation == 'triforce-hunt') {
+				$goal = 'triforce-hunt';
+			}
+
 			$rom = new ALttP\Rom();
 			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 
@@ -81,6 +85,34 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$feature->save();
 		}
 	}
+});
+
+Artisan::command('alttp:compressgfx {input} {output}', function ($input, $output) {
+	if (!is_readable($input)) {
+		return $this->error("Can't read file");
+	}
+	if (file_exists($output) && !is_writable($output) || !is_writable(dirname($output))) {
+		return $this->error("Can't write file");
+	}
+
+	$lz2 = new ALttP\Support\Lz2();
+	file_put_contents($output, pack('C*', ...$lz2->compress(array_values(unpack("C*", file_get_contents($input))))));
+
+	$this->info(sprintf('Compressed: `%s` to `%s`', $input, $output));
+});
+
+Artisan::command('alttp:decompressgfx {input} {output}', function ($input, $output) {
+	if (!is_readable($input)) {
+		return $this->error("Can't read file");
+	}
+	if (file_exists($output) && !is_writable($output) || !is_writable(dirname($output))) {
+		return $this->error("Can't write file");
+	}
+
+	$lz2 = new ALttP\Support\Lz2();
+	file_put_contents($output, pack('C*', ...$lz2->decompress(array_values(unpack("C*", file_get_contents($input))))));
+
+	$this->info(sprintf('Decompressed: `%s` to `%s`', $input, $output));
 });
 
 Artisan::command('alttp:romtospr {rom} {output}', function ($rom, $output) {

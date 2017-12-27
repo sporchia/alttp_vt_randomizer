@@ -175,6 +175,189 @@ class Dialog {
 		return $new_string;
 	}
 
+	private static $characters = [
+		' ' => [0xFF],
+		'?' => [0xC6],
+		'!' => [0xC7],
+		',' => [0xC8],
+		'-' => [0xC9],
+		"…" => [0xCC],
+		'.' => [0xCD],
+		'~' => [0xCE],
+		'～' => [0xCE],
+		"'" => [0xD8],
+		"’" => [0xD8],
+		"@" => [0xFE, 0x6A], // link's name compressed
+		">" => [0xD2, 0xD3], // link face
+		"%" => [0xDD], // Hylian Bird
+		"^" => [0xDE], // Hylian Ankh
+		"=" => [0xDF], // Hylian Wavy lines
+		"↑" => [0xE0],
+		"↓" => [0xE1],
+		"→" => [0xE2],
+		"←" => [0xE3],
+		"≥" => [0xE4], // cursor
+		"あ" => [0x00],
+		"い" => [0x01],
+		"う" => [0x02],
+		"え" => [0x03],
+		"お" => [0x04],
+		"や" => [0x05],
+		"ゆ" => [0x06],
+		"よ" => [0x07],
+		"か" => [0x08],
+		"き" => [0x09],
+		"く" => [0x0A],
+		"け" => [0x0B],
+		"こ" => [0x0C],
+		"わ" => [0x0D],
+		"を" => [0x0E],
+		"ん" => [0x0F],
+		"さ" => [0x10],
+		"し" => [0x11],
+		"す" => [0x12],
+		"せ" => [0x13],
+		"そ" => [0x14],
+		"が" => [0x15],
+		"ぎ" => [0x16],
+		"ぐ" => [0x17],
+		"た" => [0x18],
+		"ち" => [0x19],
+		"つ" => [0x1A],
+		"て" => [0x1B],
+		"と" => [0x1C],
+		"げ" => [0x1D],
+		"ご" => [0x1E],
+		"ざ" => [0x1F],
+		"な" => [0x20],
+		"に" => [0x21],
+		"ぬ" => [0x22],
+		"ね" => [0x23],
+		"の" => [0x24],
+		"じ" => [0x25],
+		"ず" => [0x26],
+		"ぜ" => [0x27],
+		"は" => [0x28],
+		"ひ" => [0x29],
+		"ふ" => [0x2A],
+		"へ" => [0x2B],
+		"ほ" => [0x2C],
+		"ぞ" => [0x2D],
+		"だ" => [0x2E],
+		"ぢ" => [0x2F],
+		"ま" => [0x30],
+		"み" => [0x31],
+		"む" => [0x32],
+		"め" => [0x33],
+		"も" => [0x34],
+		"づ" => [0x35],
+		"で" => [0x36],
+		"ど" => [0x37],
+		"ら" => [0x38],
+		"り" => [0x39],
+		"る" => [0x3A],
+		"れ" => [0x3B],
+		"ろ" => [0x3C],
+		"ば" => [0x3D],
+		"び" => [0x3E],
+		"ぶ" => [0x3F],
+		"べ" => [0x40],
+		"ぼ" => [0x41],
+		"ぱ" => [0x42],
+		"ぴ" => [0x43],
+		"ぷ" => [0x44],
+		"ぺ" => [0x45],
+		"ぽ" => [0x46],
+		"ゃ" => [0x47],
+		"ゅ" => [0x48],
+		"ょ" => [0x49],
+		"っ" => [0x4A],
+		"ぁ" => [0x4B],
+		"ぃ" => [0x4C],
+		"ぅ" => [0x4D],
+		"ぇ" => [0x4E],
+		"ぉ" => [0x4F],
+		"ア" => [0x50],
+		"イ" => [0x51],
+		"ウ" => [0x52],
+		"エ" => [0x53],
+		"オ" => [0x54],
+		"ヤ" => [0x55],
+		"ユ" => [0x56],
+		"ヨ" => [0x57],
+		"カ" => [0x58],
+		"キ" => [0x59],
+		"ク" => [0x5A],
+		"ケ" => [0x5B],
+		"コ" => [0x5C],
+		"ワ" => [0x5D],
+		"ヲ" => [0x5E],
+		"ン" => [0x5F],
+		"サ" => [0x60],
+		"シ" => [0x61],
+		"ス" => [0x62],
+		"セ" => [0x63],
+		"ソ" => [0x64],
+		"ガ" => [0x65],
+		"ギ" => [0x66],
+		"グ" => [0x67],
+		"タ" => [0x68],
+		"チ" => [0x69],
+		"ツ" => [0x6A],
+		"テ" => [0x6B],
+		"ト" => [0x6C],
+		"ゲ" => [0x6D],
+		"ゴ" => [0x6E],
+		"ザ" => [0x6F],
+		"ナ" => [0x70],
+		"ニ" => [0x71],
+		"ヌ" => [0x72],
+		"ネ" => [0x73],
+		"ノ" => [0x74],
+		"ジ" => [0x75],
+		"ズ" => [0x76],
+		"ゼ" => [0x77],
+		"ハ" => [0x78],
+		"ヒ" => [0x79],
+		"フ" => [0x7A],
+		"ヘ" => [0x7B],
+		"ホ" => [0x7C],
+		"ゾ" => [0x7D],
+		"ダ" => [0x7E],
+		"マ" => [0x80],
+		"ミ" => [0x81],
+		"ム" => [0x82],
+		"メ" => [0x83],
+		"モ" => [0x84],
+		"ヅ" => [0x85],
+		"デ" => [0x86],
+		"ド" => [0x87],
+		"ラ" => [0x88],
+		"リ" => [0x89],
+		"ル" => [0x8A],
+		"レ" => [0x8B],
+		"ロ" => [0x8C],
+		"バ" => [0x8D],
+		"ビ" => [0x8E],
+		"ブ" => [0x8F],
+		"ベ" => [0x90],
+		"ボ" => [0x91],
+		"パ" => [0x92],
+		"ピ" => [0x93],
+		"プ" => [0x94],
+		"ペ" => [0x95],
+		"ポ" => [0x96],
+		"ャ" => [0x97],
+		"ュ" => [0x98],
+		"ョ" => [0x99],
+		"ッ" => [0x9A],
+		"ァ" => [0x9B],
+		"ィ" => [0x9C],
+		"ゥ" => [0x9D],
+		"ェ" => [0x9E],
+		"ォ" => [0x9F]
+	];
+
 	/**
 	 * Convert character to byte for ROM
 	 *
@@ -190,192 +373,11 @@ class Dialog {
 		if (preg_match('/\d/', $char)) {
 			return [$char + 0xA0];
 		}
+
 		if (preg_match('/[A-Z]/', $char)) {
 			return [ord($char) - 65 + 0xAA];
 		}
-		switch ($char) {
-			case ' ': return [0xFF];
-			case '?': return [0xC6];
-			case '!': return [0xC7];
-			case ',': return [0xC8];
-			case '-': return [0xC9];
-			case "…": return [0xCC];
-			case '.': return [0xCD];
-			case '~': return [0xCE];
-			case '～': return [0xCE];
-			case "'": return [0xD8];
-			case "’": return [0xD8];
-			case "@": return [0xFE, 0x6A]; // link's name compressed
-			case ">": return [0xD2, 0xD3]; // link face
-			case "%": return [0xDD]; // Hylian Bird
-			case "^": return [0xDE]; // Hylian Ankh
-			case "=": return [0xDF]; // Hylian Wavy lines
-			case "↑": return [0xE0];
-			case "↓": return [0xE1];
-			case "→": return [0xE2];
-			case "←": return [0xE3];
-			case "≥": return [0xE4]; // cursor
-			case "あ": return [0x00];
-			case "い": return [0x01];
-			case "う": return [0x02];
-			case "え": return [0x03];
-			case "お": return [0x04];
-			case "や": return [0x05];
-			case "ゆ": return [0x06];
-			case "よ": return [0x07];
-			case "か": return [0x08];
-			case "き": return [0x09];
-			case "く": return [0x0A];
-			case "け": return [0x0B];
-			case "こ": return [0x0C];
-			case "わ": return [0x0D];
-			case "を": return [0x0E];
-			case "ん": return [0x0F];
-			case "さ": return [0x10];
-			case "し": return [0x11];
-			case "す": return [0x12];
-			case "せ": return [0x13];
-			case "そ": return [0x14];
-			case "が": return [0x15];
-			case "ぎ": return [0x16];
-			case "ぐ": return [0x17];
-			case "た": return [0x18];
-			case "ち": return [0x19];
-			case "つ": return [0x1A];
-			case "て": return [0x1B];
-			case "と": return [0x1C];
-			case "げ": return [0x1D];
-			case "ご": return [0x1E];
-			case "ざ": return [0x1F];
-			case "な": return [0x20];
-			case "に": return [0x21];
-			case "ぬ": return [0x22];
-			case "ね": return [0x23];
-			case "の": return [0x24];
-			case "じ": return [0x25];
-			case "ず": return [0x26];
-			case "ぜ": return [0x27];
-			case "は": return [0x28];
-			case "ひ": return [0x29];
-			case "ふ": return [0x2A];
-			case "へ": return [0x2B];
-			case "ほ": return [0x2C];
-			case "ぞ": return [0x2D];
-			case "だ": return [0x2E];
-			case "ぢ": return [0x2F];
-			case "ま": return [0x30];
-			case "み": return [0x31];
-			case "む": return [0x32];
-			case "め": return [0x33];
-			case "も": return [0x34];
-			case "づ": return [0x35];
-			case "で": return [0x36];
-			case "ど": return [0x37];
-			case "ら": return [0x38];
-			case "り": return [0x39];
-			case "る": return [0x3A];
-			case "れ": return [0x3B];
-			case "ろ": return [0x3C];
-			case "ば": return [0x3D];
-			case "び": return [0x3E];
-			case "ぶ": return [0x3F];
-			case "べ": return [0x40];
-			case "ぼ": return [0x41];
-			case "ぱ": return [0x42];
-			case "ぴ": return [0x43];
-			case "ぷ": return [0x44];
-			case "ぺ": return [0x45];
-			case "ぽ": return [0x46];
-			case "ゃ": return [0x47];
-			case "ゅ": return [0x48];
-			case "ょ": return [0x49];
-			case "っ": return [0x4A];
-			case "ぁ": return [0x4B];
-			case "ぃ": return [0x4C];
-			case "ぅ": return [0x4D];
-			case "ぇ": return [0x4E];
-			case "ぉ": return [0x4F];
-			case "ア": return [0x50];
-			case "イ": return [0x51];
-			case "ウ": return [0x52];
-			case "エ": return [0x53];
-			case "オ": return [0x54];
-			case "ヤ": return [0x55];
-			case "ユ": return [0x56];
-			case "ヨ": return [0x57];
-			case "カ": return [0x58];
-			case "キ": return [0x59];
-			case "ク": return [0x5A];
-			case "ケ": return [0x5B];
-			case "コ": return [0x5C];
-			case "ワ": return [0x5D];
-			case "ヲ": return [0x5E];
-			case "ン": return [0x5F];
-			case "サ": return [0x60];
-			case "シ": return [0x61];
-			case "ス": return [0x62];
-			case "セ": return [0x63];
-			case "ソ": return [0x64];
-			case "ガ": return [0x65];
-			case "ギ": return [0x66];
-			case "グ": return [0x67];
-			case "タ": return [0x68];
-			case "チ": return [0x69];
-			case "ツ": return [0x6A];
-			case "テ": return [0x6B];
-			case "ト": return [0x6C];
-			case "ゲ": return [0x6D];
-			case "ゴ": return [0x6E];
-			case "ザ": return [0x6F];
-			case "ナ": return [0x70];
-			case "ニ": return [0x71];
-			case "ヌ": return [0x72];
-			case "ネ": return [0x73];
-			case "ノ": return [0x74];
-			case "ジ": return [0x75];
-			case "ズ": return [0x76];
-			case "ゼ": return [0x77];
-			case "ハ": return [0x78];
-			case "ヒ": return [0x79];
-			case "フ": return [0x7A];
-			case "ヘ": return [0x7B];
-			case "ホ": return [0x7C];
-			case "ゾ": return [0x7D];
-			case "ダ": return [0x7E];
-			case "マ": return [0x80];
-			case "ミ": return [0x81];
-			case "ム": return [0x82];
-			case "メ": return [0x83];
-			case "モ": return [0x84];
-			case "ヅ": return [0x85];
-			case "デ": return [0x86];
-			case "ド": return [0x87];
-			case "ラ": return [0x88];
-			case "リ": return [0x89];
-			case "ル": return [0x8A];
-			case "レ": return [0x8B];
-			case "ロ": return [0x8C];
-			case "バ": return [0x8D];
-			case "ビ": return [0x8E];
-			case "ブ": return [0x8F];
-			case "ベ": return [0x90];
-			case "ボ": return [0x91];
-			case "パ": return [0x92];
-			case "ピ": return [0x93];
-			case "プ": return [0x94];
-			case "ペ": return [0x95];
-			case "ポ": return [0x96];
-			case "ャ": return [0x97];
-			case "ュ": return [0x98];
-			case "ョ": return [0x99];
-			case "ッ": return [0x9A];
-			case "ァ": return [0x9B];
-			case "ィ": return [0x9C];
-			case "ゥ": return [0x9D];
-			case "ェ": return [0x9E];
-			case "ォ": return [0x9F];
-		}
 
-		return [0xFF];
+		return self::$characters[$char] ?? [0xFF];
 	}
 }

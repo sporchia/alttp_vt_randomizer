@@ -9,7 +9,7 @@ class UpdateBuildRecord extends Command {
 	 *
 	 * @var string
 	 */
-	protected $signature = 'alttp:updatebuildrecord';
+	protected $signature = 'alttp:updatebuildrecord {file=js/base2current.json} {build?} {hash?}';
 
 	/**
 	 * The console command description.
@@ -27,10 +27,10 @@ class UpdateBuildRecord extends Command {
 		$patch_left = $patch_right = [];
 
 		if (is_readable(public_path('js/base2current.json'))) {
-			$patch_left = json_decode(file_get_contents(public_path('js/base2current.json')), true);
+			$patch_left = json_decode(file_get_contents(public_path($this->argument('file'))), true);
 		}
 
-		Rom::saveBuild(patch_merge_minify($patch_left, $patch_right));
+		Rom::saveBuild(patch_merge_minify($patch_left, $patch_right), $this->argument('build', null), $this->argument('hash', null));
 
 		$this->info(sprintf('record updated'));
 	}
