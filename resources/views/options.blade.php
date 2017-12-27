@@ -3,7 +3,7 @@
 @section('content')
 <h1>Options</h1>
 <div class="well">
-<h2>There are many ways to play LTTP Randomizer!</h2>
+<h2>There are many ways to play ALttP:Randomizer!</h2>
 
 <div class="panel panel-info">
 	<div class="panel-heading">
@@ -137,9 +137,13 @@
 			<td>30</td>
 			<td>40</td>
 		</tr><tr class="bg-danger">
-			<td>Expert / [[Insane?]]</td>
+			<td>Expert</td>
 			<td>40</td>
 			<td>40</td>
+		</tr><tr class="bg-danger">
+			<td>Insane</td>
+			<td>50</td>
+			<td>50</td>
 		</tr></tbody>
 		</table>
 	</div>
@@ -254,8 +258,8 @@
 		</ul>
 		<p>The following items have had their functionality adjusted:</p>
 		<ul>
-		<li>Magic Cape uses 2x Magic (except in Spike Cave and Misery Mire Spike Room [[IS THIS TRUE?]])
-		<li>Cane of Byrna uses 2x Magic (except in Spike Cave and Misery Mire Spike Room)
+		<li>Magic Cape uses 2x Magic (except in Spike Cave)
+		<li>Cane of Byrna uses 2x Magic (except in Spike Cave)
 		<li>Magic Powder does not turn Bubbles into Fairies
 		<li>Bug Net doesn't catch Fairies
 		<li>There are only 2 Bottles (4 in Major Glitches)
@@ -385,7 +389,7 @@
 			<td>20</td>
 			<td>0</td>
 		</tr><tr class="bg-danger">
-			<td>Expert / [[Insane?]]</td>
+			<td>Expert / Insane</td>
 			<td>5 minutes</td>
 			<td>20</td>
 			<td>5</td>
@@ -394,7 +398,8 @@
 		<h4>OHKO (One Hit Knockout)</h4>
 		<p>Take any damage and Link is a goner. Not for the faint of heart.</p>
 		<h4>Triforce Piece Hunt</h4>
-		<p>This option changes your goal to Triforce Pieces. [[wat]]</p>
+		<p>Unfortunately, variations are incompatible with Triforce Pieces goal. This option changes
+			your goal to Triforce Pieces.</p>
 		<h4>Key-sanity</h4>
 		<p>Game not random enough for you? Looking for the real challenge?</p>
 		<p>FINE!</p>

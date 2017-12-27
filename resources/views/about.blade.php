@@ -12,8 +12,8 @@
 	role="button"
 	target="_blank">Join our Discord</a>
 <div class="well">
-	<p>ALTTP: Randomizer is a new take on the classic game The Legend of Zelda: A Link to the Past.
-		Each playthrough of ALTTP: Randomizer shuffles the location of all the important items in
+	<p>ALttP: Randomizer is a new take on the classic game The Legend of Zelda: A Link to the Past.
+		Each playthrough of ALttP: Randomizer shuffles the location of all the important items in
 		the game. Will you find the Bow atop Death Mountain, the Fire Rod resting silently in the
 		library, or even the Master Sword itself waiting in a chicken coup?</p>
 	<p>Challenge your friends to get the fastest time on a particular shuffle or take part in the
@@ -26,6 +26,6 @@
 		features as soon as they're released.</p>
 </div>
 <div class="well">
-Insert sweet clips video here! Woooo!
+[[Insert sweet clips video here! Woooo!]]
 </div>
 @overwrite

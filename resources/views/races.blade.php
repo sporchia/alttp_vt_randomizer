@@ -33,10 +33,10 @@
 			never miss a match!</p>
 		<ul>
 		<li><a href="http://speedgaming.org/" target="_blank">Speedgaming</a>
-		<li><a href="https://twitch.tv/alttprandomizer" target="_blank">twitch.tv/aLTTPRandomizer</a>
-		<li><a href="https://twitch.tv/alttprandomizer2" target="_blank">twitch.tv/aLTTPRandomizer2</a>
-		<li><a href="https://twitch.tv/alttprandomizer3" target="_blank">twitch.tv/aLTTPRandomizer3</a>
-		<li><a href="https://twitch.tv/alttprandomizer4" target="_blank">twitch.tv/aLTTPRandomizer4</a>
+		<li><a href="https://twitch.tv/alttprandomizer" target="_blank">twitch.tv/ALttPRandomizer</a>
+		<li><a href="https://twitch.tv/alttprandomizer2" target="_blank">twitch.tv/ALttPRandomizer2</a>
+		<li><a href="https://twitch.tv/alttprandomizer3" target="_blank">twitch.tv/ALttPRandomizer3</a>
+		<li><a href="https://twitch.tv/alttprandomizer4" target="_blank">twitch.tv/ALttPRandomizer4</a>
 	</div>
 </div>
 
