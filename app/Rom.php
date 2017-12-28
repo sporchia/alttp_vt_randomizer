@@ -112,6 +112,10 @@ class Rom {
 		for ($i = 0; $i < static::SIZE; $i += 1024) {
 			$bytes = array_values(unpack('C*', fread($this->rom, 1024)));
 			for ($j = 0; $j < 1024; ++$j) {
+				if ($j + $i >= 0x7FDC && $j + $i < 0x7FE0) {
+					// this skip is true for LoROM, HiROM skips: 0xFFDC - 0xFFDF
+					continue;
+				}
 				$sum += $bytes[$j];
 			}
 		}
