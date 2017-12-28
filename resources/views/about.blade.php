@@ -25,7 +25,14 @@
 		beatable ROM. With the web based ROM patcher, you can always be sure you have the latest
 		features as soon as they're released.</p>
 </div>
-<div class="well">
-[[Insert sweet clips video here! Woooo!]]
+<div class="well" style="text-align:center;">'
+<iframe
+    allow="encrypted-media"
+    allowfullscreen
+    frameborder="0"
+    gesture="media"
+    height="315"
+    src="https://www.youtube.com/embed/YaEypVa3kx4?rel=0"
+    width="560"></iframe>
 </div>
 @overwrite

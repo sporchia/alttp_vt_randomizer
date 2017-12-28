@@ -25,7 +25,7 @@
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
 		<p>Join our Discord community! We've got friendly and helpful people, community event news,
-			aLTTP: Randomizer updates, helpful guides, tips, and tricks, and more! Come say
+			aLttP: Randomizer updates, helpful guides, tips, and tricks, and more! Come say
 			hello!</p>
 	</div>
 </div>
