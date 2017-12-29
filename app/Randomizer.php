@@ -933,7 +933,7 @@ class Randomizer {
 			"The Wind Fish\nwill wake\nsoon.    Hoot!",
 			"meow meow meow\nmeow meow meow\n  oh my god!",
 			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
-			".done\n.comment lol",
+			".done\n\n.comment lol",
 		])));
 
 		return $this;

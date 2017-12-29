@@ -91,7 +91,7 @@ class Ether extends Location {
 				return "A pathetic\nsword rests\nhere!";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "Today, I am the\n pedestal!";
+				return "Look at me!\nI am the\npedestal!";
 			case Item::get('L3Sword'):
 				return "I stole the\nblacksmith's\njob!";
 			case Item::get('L4Sword'):
