@@ -97,37 +97,32 @@ class SkullWoods extends Region {
 
 		$this->locations["Skull Woods - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD3');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD3');
 		});
 
 		$this->locations["Skull Woods - Bridge Room"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('FireRod');
 		});
 
-		$this->locations["Skull Woods - Mothula"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('FireRod')
-				&& (config('game-mode') == 'swordless' || $items->hasSword())
-				&& $items->has('KeyD3', 3);
-		})->setFillRules(function($item, $locations, $items) {
-			if (!$this->world->config('region.bossNormalLocation', true)
-				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-				return false;
-			}
-
-			if ($this->world->config('region.bossHaveKey', true)) {
-				return $item != Item::get('KeyD3');
-			}
-
-			return !in_array($item, [Item::get('KeyD3'), Item::get('BigKeyD3')]);
-		});
-
+		// Moth will require Somaria and Byrna when bosses are randomized
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
-				&& $items->has('FireRod') && (config('game-mode') == 'swordless' || $items->hasSword())
+				&& $items->has('FireRod')
+				&& ((config('game-mode') == 'swordless' && ($items->canExtendMagic() || $items->has('Hammer'))) || $items->hasSword())
 				&& $items->has('KeyD3', 3);
 		};
+
+		$this->locations["Skull Woods - Mothula"]->setRequirements($this->can_complete)
+			->setFillRules(function($item, $locations, $items) {
+				if (!$this->world->config('region.bossNormalLocation', true)
+					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+					return false;
+				}
+
+				return true;
+			});
+
+
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);

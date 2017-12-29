@@ -72,7 +72,7 @@ class HyruleCastleEscape extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Sanctuary"]->setFillRules(function($item, $locations, $items) {
 			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $item != Item::get('KeyH2');
+				return $items->canKillMostThings() && $item != Item::get('KeyH2');
 			}
 
 			return true;
@@ -83,7 +83,7 @@ class HyruleCastleEscape extends Region {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
 
-			return true;
+			return $items->canKillMostThings();
 		})->setFillRules(function($item, $locations, $items) {
 			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('KeyH2');
@@ -97,7 +97,7 @@ class HyruleCastleEscape extends Region {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
 
-			return true;
+			return $items->canKillMostThings();
 		})->setFillRules(function($item, $locations, $items) {
 			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('KeyH2');
@@ -111,7 +111,7 @@ class HyruleCastleEscape extends Region {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
 
-			return true;
+			return $items->canKillMostThings();
 		})->setFillRules(function($item, $locations, $items) {
 			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $item != Item::get('KeyH2');
@@ -125,7 +125,7 @@ class HyruleCastleEscape extends Region {
 				return $items->has('Lamp');
 			}
 
-			return true;
+			return $items->canKillMostThings();
 		});
 
 		$this->locations["Hyrule Castle - Boomerang Chest"]->setFillRules(function($item, $locations, $items) {
@@ -133,7 +133,7 @@ class HyruleCastleEscape extends Region {
 				return $item != Item::get('KeyH2');
 			}
 
-			return true;
+			return $items->canKillMostThings();
 		});
 
 		$this->locations["Hyrule Castle - Zelda's Cell"]->setFillRules(function($item, $locations, $items) {
@@ -141,7 +141,7 @@ class HyruleCastleEscape extends Region {
 				return $item != Item::get('KeyH2');
 			}
 
-			return true;
+			return $items->canKillMostThings();
 		});
 
 		return $this;

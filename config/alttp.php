@@ -20,6 +20,9 @@ return [
 				'Sword' => 'TwentyRupees',
 			],
 		],
+		'region' => [
+			'requireBetterEquipment' => true,
+		],
 		'rom' => [
 			'compassOnPickup' => 'on',
 		],
@@ -38,6 +41,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -84,6 +90,9 @@ return [
 					'value' => [
 						'GreenClock' => 240,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -136,6 +145,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -165,6 +177,9 @@ return [
 					'value' => [
 						'GreenClock' => 240,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -255,6 +270,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -288,6 +306,9 @@ return [
 					'value' => [
 						'GreenClock' => 240,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -379,6 +400,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -412,6 +436,9 @@ return [
 						'GreenClock' => 240,
 						'RedClock' => - 32400,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -503,6 +530,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -536,6 +566,9 @@ return [
 						'GreenClock' => 240,
 						'RedClock' => - 32400,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',

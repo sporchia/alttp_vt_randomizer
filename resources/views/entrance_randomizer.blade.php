@@ -8,7 +8,7 @@
 @yield('loader')
 <div id="seed-generate" class="panel panel-info" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Generate Entrance Randomizer Game ({!! ALttP\EntranceRandomizer::VERSION !!})</h3>
+		<h3 class="panel-title pull-left">Entrance Randomizer ({!! ALttP\EntranceRandomizer::VERSION !!})</h3>
 		<div class="btn-toolbar pull-right">
 			<a class="btn btn-default" href="/randomizer">Switch to Item Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			@yield('rom-settings-button')

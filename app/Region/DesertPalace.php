@@ -80,20 +80,14 @@ class DesertPalace extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Desert Palace - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyP2');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyP2');
 		});
 
 		$this->locations["Desert Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyP2');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('KeyP2');
 		});
 
 		$this->locations["Desert Palace - Compass Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyP2');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('KeyP2');
 		});
 
 		$this->locations["Desert Palace - Torch"]->setRequirements(function($locations, $items) {
@@ -141,6 +135,17 @@ class DesertPalace extends Region {
 	 */
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
+
+		$this->can_complete = function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
+					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
+					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
+				return false;
+			}
+
+			return $this->canEnter($locations, $items) && $items->canLightTorches()
+				&& $items->has('BigKeyP2') && $items->has('KeyP2');
+		};
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('BookOfMudora')
