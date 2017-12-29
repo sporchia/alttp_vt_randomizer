@@ -619,6 +619,10 @@ class Randomizer {
 		return $this->seed->hash;
 	}
 
+	public function getSeedRecord() {
+		return $this->seed;
+	}
+
 	/**
 	 * Update patch of seed record to DB
 	 *
@@ -1425,8 +1429,17 @@ class Randomizer {
 		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
 
 		// Sprite prize pack
+		$idat = array_values(unpack('C*', base64_decode(
+			"g5aEgICAgIACAAKAoIOXgICUkQcAgACAkpaAoAAAAIAEgIIGBgAAgICAgICAgICAgICAgICAgICAgIAAAICAkICRkZGXkZWVk5c" .
+			"UkZKBgoKAhYCAgAQEgJGAgICAgICAgACAgIKKgICAgJKRgIKBgYCBgICAgICAgICAgJeAgICAwoAVFRcGAIAAwBNAAAIGEBQAAE" .
+			"AAAAAAE0YRgIAAAAAQAAAAFhYWgYeCAICAAAAAAICAAAAAAAAAAAAAAAAAAAAAgAAAABcAEgAAAAAAEBcAQAEAAAAAAAAAAAAAA" .
+			"AAAAABAAAAAAAAAAACAAAAAAAAA"
+		)));
 		$offset = 0x6B632;
 		$bytes = $rom->read($offset, 243);
+		foreach ($bytes as $i => $v) {
+			$bytes[$i] = ($v == 0) ? $idat[$i] : $v;
+		}
 		for ($i = 0; $i < 243; $i++) {
 			// skip sprites that were not in prize packs before
 			if (!isset($bytes[$i]) || ($bytes[$i] & 0xF) == 0) {
