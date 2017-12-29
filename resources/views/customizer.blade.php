@@ -201,7 +201,22 @@ function seedFailed(data) {
 		return resolve('no');
 	});
 }
-function applySeed(rom, seed) {
+function applySeed(rom, seed, second_attempt) {
+	if (rom.checkMD5() != current_rom_hash) {
+		if (second_attempt) {
+			$('#seed-generate, #seed-details, #config').hide();
+			$('.alert .message').html('Could not reset ROM.');
+			$('.alert').show();
+			$('#rom-select').show();
+			return new Promise(function(resolve, reject) {
+				reject(rom);
+			});
+		}
+		return resetRom()
+			.then(function(rom) {
+				return applySeed(rom, seed, true);
+			});
+	}
 	return new Promise(function(resolve, reject) {
 		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form')), function(patch) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())

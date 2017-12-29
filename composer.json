@@ -19,6 +19,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-rackspace": "^1.0",
+        "z3/enemizer": "6.0.22",
         "z3/entrancerandomizer": "0.5.1"
     },
     "require-dev": {
@@ -30,6 +31,18 @@
         "symfony/dom-crawler": "3.1.*"
     },
     "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "z3/enemizer",
+                "version": "6.0.22",
+                "source": {
+                    "url": "https://github.com/Zarby89/Enemizer",
+                    "type": "git",
+                    "reference": "tags/6.0.22"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {
