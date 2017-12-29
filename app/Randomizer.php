@@ -850,7 +850,7 @@ class Randomizer {
 			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
 			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
 			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
-			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass!",
+			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
 			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
 			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
 			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
