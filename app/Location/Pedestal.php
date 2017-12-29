@@ -80,7 +80,7 @@ class Pedestal extends Location {
 			case Item::get('BowAndArrows'):
 				return "the stick and twine";
 			case Item::get('BowAndSilverArrows'):
-				return "the stick and twine";
+				return "the stick and shine";
 			case Item::get('Boomerang'):
 				return "the backlash stick";
 			case Item::get('RedBoomerang'):
@@ -128,7 +128,7 @@ class Pedestal extends Location {
 			case Item::get('HeartContainerNoAnimation'):
 				return "and the full heart";
 			case Item::get('Bomb'):
-				return "and the explosions";
+				return "and the explosion";
 			case Item::get('ThreeBombs'):
 				return "the explosions";
 			case Item::get('TenBombs'):
@@ -220,13 +220,13 @@ class Pedestal extends Location {
 	private function getItemPedestalText() {
 		switch ($this->item) {
 			case Item::get('BigKeyA2'):
-				return "The Big Key\nof evils bane";
+				return "The Big Key\nof evil's bane";
 			case Item::get('BigKeyD7'):
 				return "The big key\nof terrorpins";
 			case Item::get('BigKeyD4'):
 				return "The Big Key\nof rogues";
 			case Item::get('BigKeyP3'):
-				return "The big key\nto moldorms\nheart";
+				return "The big key\nto moldorm's\nheart";
 			case Item::get('BigKeyD5'):
 				return "A frozen\nbig key\nrests here";
 			case Item::get('BigKeyD3'):
@@ -247,13 +247,13 @@ class Pedestal extends Location {
 			case Item::get('BigKeyH2'):
 				return "You should\nhave got this\nfrom a guard";
 			case Item::get('KeyA2'):
-				return "The small key\nof evils bane";
+				return "The small key\nof evil's bane";
 			case Item::get('KeyD7'):
 				return "The small key\nof terrorpins";
 			case Item::get('KeyD4'):
 				return "The small key\nof rogues";
 			case Item::get('KeyP3'):
-				return "The key\nto moldorms\nbasement";
+				return "The key\nto moldorm's\nbasement";
 			case Item::get('KeyD5'):
 				return "A frozen\nsmall key\nrests here";
 			case Item::get('KeyD3'):
@@ -322,7 +322,7 @@ class Pedestal extends Location {
 			case Item::get('RedBoomerang'):
 				return "No matter what\nyou do, red\nreturns to you";
 			case Item::get('Powder'):
-				return "you can turn\nanti-faeries\ninto fairies";
+				return "you can turn\nanti-faeries\ninto faeries";
 			case Item::get('Bombos'):
 				return "Burn, baby,\nburn! Fear my\nring of fire!";
 			case Item::get('Ether'):
