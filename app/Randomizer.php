@@ -619,6 +619,10 @@ class Randomizer {
 		return $this->seed->hash;
 	}
 
+	public function getSeedRecord() {
+		return $this->seed;
+	}
+
 	/**
 	 * Update patch of seed record to DB
 	 *
@@ -827,10 +831,10 @@ class Randomizer {
 			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
 			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
 			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
-			"I offered to a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
+			"I offered a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
 			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
 			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
-			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nbar exam!",
+			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBAR exam!",
 			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
 			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
@@ -844,7 +848,7 @@ class Randomizer {
 			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
 			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
 			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
-			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
 			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
 			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
 			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
@@ -1421,8 +1425,17 @@ class Randomizer {
 		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
 
 		// Sprite prize pack
+		$idat = array_values(unpack('C*', base64_decode(
+			"g5aEgICAgIACAAKAoIOXgICUkQcAgACAkpaAoAAAAIAEgIIGBgAAgICAgICAgICAgICAgICAgICAgIAAAICAkICRkZGXkZWVk5c" .
+			"UkZKBgoKAhYCAgAQEgJGAgICAgICAgACAgIKKgICAgJKRgIKBgYCBgICAgICAgICAgJeAgICAwoAVFRcGAIAAwBNAAAIGEBQAAE" .
+			"AAAAAAE0YRgIAAAAAQAAAAFhYWgYeCAICAAAAAAICAAAAAAAAAAAAAAAAAAAAAgAAAABcAEgAAAAAAEBcAQAEAAAAAAAAAAAAAA" .
+			"AAAAABAAAAAAAAAAACAAAAAAAAA"
+		)));
 		$offset = 0x6B632;
 		$bytes = $rom->read($offset, 243);
+		foreach ($bytes as $i => $v) {
+			$bytes[$i] = ($v == 0) ? $idat[$i] : $v;
+		}
 		for ($i = 0; $i < 243; $i++) {
 			// skip sprites that were not in prize packs before
 			if (!isset($bytes[$i]) || ($bytes[$i] & 0xF) == 0) {

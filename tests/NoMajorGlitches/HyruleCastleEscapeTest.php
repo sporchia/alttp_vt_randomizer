@@ -80,21 +80,21 @@ class HyruleCastleEscapeTest extends TestCase {
 
 	public function accessPool() {
 		return [
-			["Sanctuary", true, []],
+			["Sanctuary", true, ['L1Sword']],
 
-			["Sewers - Secret Room - Left", true, []],
+			["Sewers - Secret Room - Left", true, ['L1Sword']],
 
-			["Sewers - Secret Room - Middle", true, []],
+			["Sewers - Secret Room - Middle", true, ['L1Sword']],
 
-			["Sewers - Secret Room - Right", true, []],
+			["Sewers - Secret Room - Right", true, ['L1Sword']],
 
-			["Sewers - Dark Cross", true, []],
+			["Sewers - Dark Cross", true, ['L1Sword']],
 
-			["Hyrule Castle - Boomerang Chest", true, []],
+			["Hyrule Castle - Boomerang Chest", true, ['L1Sword']],
 
-			["Hyrule Castle - Map Chest", true, []],
+			["Hyrule Castle - Map Chest", true, ['L1Sword']],
 
-			["Hyrule Castle - Zelda's Cell", true, []],
+			["Hyrule Castle - Zelda's Cell", true, ['L1Sword']],
 		];
 	}
 }

@@ -395,6 +395,34 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Requirements for killing most things
+	 *
+	 * @TODO: account for 10 bombs in escape
+	 *
+	 * @return bool
+	 */
+	public function canKillMostThings($enemies = 5) {
+		return $this->hasSword()
+			|| $this->has('CaneOfSomaria')
+			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
+			|| $this->canShootArrows() // @TODO: fill arrows in standard escape
+			|| $this->has('Hammer')
+			|| $this->has('FireRod');
+	}
+
+	/**
+	 * Can Get Golden Bee
+	 *
+	 * @return bool
+	 */
+	public function canGetGoodBee() {
+		return $this->has('BugCatchingNet')
+			&& $this->hasABottle()
+			&& ($this->has('PegasusBoots')
+				|| ($this->hasSword() && $this->has('Quake')));
+	}
+
+	/**
 	 * Requirements for having a sword
 	 *
 	 * @return bool
