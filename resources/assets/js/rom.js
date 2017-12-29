@@ -89,7 +89,7 @@ var ROM = (function(blob, loaded_callback) {
 	this.updateChecksum = function() {
 		return new Promise(function(resolve, reject) {
 			var sum = u_array.reduce(function(sum, mbyte, i) {
-				if (i >= 0x7FB0 && i <= 0x7FE0) {
+				if (i >= 0x7FDC && i < 0x7FE0) {
 					return sum;
 				}
 				return sum + mbyte;
