@@ -19,13 +19,13 @@ class Bombos extends Location {
 	private function getItemText() {
 		switch ($this->item) {
 			case Item::get('BigKeyA2'):
-				return "The Big Key\nof evils bane";
+				return "The big key\nof evil's bane";
 			case Item::get('BigKeyD7'):
 				return "The big key\nof terrorpins";
 			case Item::get('BigKeyD4'):
-				return "The Big Key\nof rogues";
+				return "The big key\nof rogues";
 			case Item::get('BigKeyP3'):
-				return "The big key\nto moldorms\nheart";
+				return "The big key\nto moldorm's\nheart";
 			case Item::get('BigKeyD5'):
 				return "A frozen\nbig key\nrests here";
 			case Item::get('BigKeyD3'):
@@ -35,7 +35,7 @@ class Bombos extends Location {
 			case Item::get('BigKeyD1'):
 				return "Hammeryump\nwith this\nbig key";
 			case Item::get('BigKeyD2'):
-				return "The Big key\nto the swamp";
+				return "The big key\nto the swamp";
 			case Item::get('BigKeyA1'):
 				return "Okay, this big\nkey doesn't\nreally exist";
 			case Item::get('BigKeyP2'):
@@ -46,13 +46,13 @@ class Bombos extends Location {
 			case Item::get('BigKeyH2'):
 				return "You should\nhave got this\nfrom a guard";
 			case Item::get('KeyA2'):
-				return "The small key\nof evils bane";
+				return "The small key\nof evil's bane";
 			case Item::get('KeyD7'):
 				return "The small key\nof terrorpins";
 			case Item::get('KeyD4'):
 				return "The small key\nof rogues";
 			case Item::get('KeyP3'):
-				return "The key\nto moldorms\nbasement";
+				return "The key\nto moldorm's\nbasement";
 			case Item::get('KeyD5'):
 				return "A frozen\nsmall key\nrests here";
 			case Item::get('KeyD3'):
@@ -91,7 +91,7 @@ class Bombos extends Location {
 				return "A pathetic\nsword rests\nhere!";
 			case Item::get('L2Sword'):
 			case Item::get('MasterSword'):
-				return "I thought this\nwas meant to\nbe randomized?";
+				return "Today, I am the\n pedestal!";
 			case Item::get('L3Sword'):
 				return "I stole the\nblacksmith's\njob!";
 			case Item::get('L4Sword'):
@@ -121,7 +121,7 @@ class Bombos extends Location {
 			case Item::get('RedBoomerang'):
 				return "No matter what\nyou do, red\nreturns to you";
 			case Item::get('Powder'):
-				return "you can turn\nanti-faeries\ninto fairies";
+				return "you can turn\nanti-faeries\ninto faeries";
 			case Item::get('Bombos'):
 				return "Burn, baby,\nburn! Fear my\nring of fire!";
 			case Item::get('Ether'):

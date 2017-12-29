@@ -79,7 +79,7 @@ class Witch extends Npc {
 			case Item::get('CaneOfByrna'):
 				return "spark-stick for trade";
 			case Item::get('Cape'):
-				return "hood from a hood";
+				return "what's a tog?";
 			case Item::get('MagicMirror'):
 				return "trades looking-glass";
 			case Item::get('PowerGlove'):
@@ -181,7 +181,7 @@ class Witch extends Npc {
 			case Item::get('PowerStar'):
 				return "the powder or the stars";
 			case Item::get('TriforcePiece'):
-				return "witches hold the key";
+				return "hoarding for ganon";
 			case Item::get('Nothing'):
 			default:
 				return "mushrooms go poof";

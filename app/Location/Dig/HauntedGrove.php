@@ -58,15 +58,15 @@ class HauntedGrove extends Dig {
 			case Item::get('Boomerang'):
 				return "throwing boy plays fetch again";
 			case Item::get('RedBoomerang'):
-				return "throwing boy plays fetch again";
+				return "magical boy plays fetch again";
 			case Item::get('Powder'):
 				return "magic boy plays marbles again";
 			case Item::get('Bombos'):
-				return "medallion boy hides coin again";
+				return "medallion boy melts room again";
 			case Item::get('Ether'):
-				return "medallion boy hides coin again";
+				return "medallion boy sees floor again";
 			case Item::get('Quake'):
-				return "medallion boy hides coin again";
+				return "medallion boy shakes dirt again";
 			case Item::get('Lamp'):
 				return "illuminated boy can see again";
 			case Item::get('Shovel'):
@@ -156,7 +156,7 @@ class HauntedGrove extends Dig {
 			case Item::get('ArrowUpgrade70'):
 				return "upgrade boy sews more again";
 			case Item::get('SilverArrowUpgrade'):
-				return "archer boy sharpens again";
+				return "archer boy shines again";
 			case Item::get('HalfMagic'):
 			case Item::get('QuarterMagic'):
 				return "magic boy saves magic again";
@@ -172,7 +172,7 @@ class HauntedGrove extends Dig {
 				return "tailor boy has threads again";
 			case Item::get('singleRNG'):
 			case Item::get('multiRNG'):
-				return "unkown boy something's again";
+				return "unknown boy somethings again";
 			case Item::get('Triforce'):
 				return "greedy boy wins game again";
 			case Item::get('PowerStar'):

@@ -669,6 +669,7 @@ class Randomizer {
 			"two woodchoppers",
 			"double lumberman",
 			"lumberclones",
+			"woodfellas",
 		])));
 
 		switch (mt_rand(0, 1)) {
@@ -759,6 +760,7 @@ class Randomizer {
 				"Welcome to\nStoops Lonk's\nHoose",
 				"Erreur de\ntraduction.\nsvp reessayer",
 				"I could beat\nit in an hour\nand one life",
+				"I thought this\nwas open mode?",
 			])));
 		}
 
@@ -799,6 +801,7 @@ class Randomizer {
 			"A weeknight is\na tiny\nnobleman",
 			"The chimney\nsweep wore a\nsoot and tye.",
 			"Gardeners like\nto spring into\naction.",
+			"bad at nuclear\nphysics. I\nGot no fission",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
@@ -827,10 +830,10 @@ class Randomizer {
 			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
 			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
 			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
-			"I offered to a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
+			"I offered a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
 			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
 			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
-			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nbar exam!",
+			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBar exam!",
 			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
 			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
@@ -843,8 +846,8 @@ class Randomizer {
 			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
 			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
 			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
-			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
-			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass!",
+			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
 			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
 			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
 			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
@@ -866,15 +869,15 @@ class Randomizer {
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
 			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
-			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\nde'ja vu\nall over again",
-			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds,\nand was 32\nfeet long.",
+			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\ndeja vu\nall over again",
+			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
 			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
 			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 		])));
 
 		switch ($this->goal) {
 			case 'pedestal':
-				$rom->setGanon1InvincibleTextString("You cannot\nkill me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nYou dingus\n");
+				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nit's on the\npedestal.\n\nYou dingus\n");
 				break;
 			case 'triforce-hunt':
 				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\ntriforce\npieces well.\nWithout them\nyou can't win!");
@@ -883,7 +886,7 @@ class Randomizer {
 				$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 		}
 
-		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI can not die!");
+		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI cannot die!");
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
 		if (!$silver_arrows_location) {
@@ -930,6 +933,7 @@ class Randomizer {
 			"The Wind Fish\nwill wake\nsoon.    Hoot!",
 			"meow meow meow\nmeow meow meow\n  oh my god!",
 			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
+			".done\n.comment lol",
 		])));
 
 		return $this;
