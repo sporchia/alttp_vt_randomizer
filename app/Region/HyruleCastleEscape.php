@@ -70,12 +70,12 @@ class HyruleCastleEscape extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
-		$this->locations["Sanctuary"]->setFillRules(function($item, $locations, $items) {
-			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canKillMostThings() && $item != Item::get('KeyH2');
+		$this->locations["Sanctuary"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return true;
 			}
 
-			return true;
+			return $items->canKillMostThings() && $items->has('KeyH2');
 		});
 
 		$this->locations["Sewers - Secret Room - Left"]->setRequirements(function($locations, $items) {
@@ -83,13 +83,7 @@ class HyruleCastleEscape extends Region {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
 
-			return $items->canKillMostThings();
-		})->setFillRules(function($item, $locations, $items) {
-			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $item != Item::get('KeyH2');
-			}
-
-			return true;
+			return $items->canKillMostThings() && $items->has('KeyH2');
 		});
 
 		$this->locations["Sewers - Secret Room - Middle"]->setRequirements(function($locations, $items) {
@@ -97,13 +91,7 @@ class HyruleCastleEscape extends Region {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
 
-			return $items->canKillMostThings();
-		})->setFillRules(function($item, $locations, $items) {
-			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $item != Item::get('KeyH2');
-			}
-
-			return true;
+			return $items->canKillMostThings() && $items->has('KeyH2');
 		});
 
 		$this->locations["Sewers - Secret Room - Right"]->setRequirements(function($locations, $items) {
@@ -111,13 +99,7 @@ class HyruleCastleEscape extends Region {
 				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
 			}
 
-			return $items->canKillMostThings();
-		})->setFillRules(function($item, $locations, $items) {
-			if (!in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $item != Item::get('KeyH2');
-			}
-
-			return true;
+			return $items->canKillMostThings() && $items->has('KeyH2');
 		});
 
 		$this->locations["Sewers - Dark Cross"]->setRequirements(function($locations, $items) {
@@ -128,17 +110,17 @@ class HyruleCastleEscape extends Region {
 			return $items->canKillMostThings();
 		});
 
-		$this->locations["Hyrule Castle - Boomerang Chest"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Hyrule Castle - Boomerang Chest"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $item != Item::get('KeyH2');
+				return $items->has('KeyH2');
 			}
 
 			return $items->canKillMostThings();
 		});
 
-		$this->locations["Hyrule Castle - Zelda's Cell"]->setFillRules(function($item, $locations, $items) {
+		$this->locations["Hyrule Castle - Zelda's Cell"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $item != Item::get('KeyH2');
+				return $items->has('KeyH2');
 			}
 
 			return $items->canKillMostThings();

@@ -44,12 +44,15 @@ class Boss {
 
 		static::$items = new BossCollection([
 			new static("Armos Knights", function($locations, $items) {
-				return true;
+				return $items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
+					|| $items->has('Boomerang') || $items->has('RedBoomerang')
+					|| ($items->canExtendMagic(4) && ($items->has('FireRod') || $items->has('IceRod')))
+					|| ($items->canExtendMagic(2) && ($items->has('CaneOfByrna') || $items->has('CaneOfSomaria')));
 			}),
 			new static("Lanmolas", function($locations, $items) {
-				return in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
+				return $items->hasSword() || $items->has('Hammer')
 					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
-					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'));
+					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria');
 			}),
 			new static("Moldorm", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer');
@@ -58,25 +61,31 @@ class Boss {
 				return $items->hasSword() || $items->has('Hammer') || $items->canShootArrows();
 			}),
 			new static("Arrghus", function($locations, $items) {
-				return $items->has('Hookshot') && ($items->has('Hammer') || $items->hasSword());// || $items->canShootArrows());
+				return $items->has('Hookshot') && ($items->has('Hammer') || $items->hasSword()
+					|| (($items->canExtendMagic(2) || $items->canShootArrows()) && ($items->has('FireRod') || $items->has('IceRod'))));
 			}),
 			new static("Mothula", function($locations, $items) {
-				return $items->has('FireRod')
-					&& ((config('game-mode') == 'swordless' && ($items->canExtendMagic() || $items->has('Hammer'))) || $items->hasSword());
+				return $items->hasSword() || $items->has('Hammer')
+					|| ($items->canExtendMagic(2) && ($items->has('FireRod') || $items->has('CaneOfSomaria')
+						|| $items->has('CaneOfByrna')))
+					|| $items->canGetGoodBee();
 			}),
 			new static("Blind", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer')
 					|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna');
 			}),
 			new static("Kholdstare", function($locations, $items) {
-				return $items->canMeltThings() && ($items->has('Hammer') || $items->hasUpgradedSword());
+				return $items->canMeltThings() && ($items->has('Hammer') || $items->hasSword()
+					|| ($items->canExtendMagic(3) && $items->has('FireRod'))
+					|| ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos'));
 			}),
 			new static("Vitreous", function($locations, $items) {
-				return $items->has('Hammer') || $items->hasUpgradedSword();
+				return $items->has('Hammer') || $items->hasSword() || $this->canShootArrows();
 			}),
 			new static("Trinexx", function($locations, $items) {
 				return $items->has('FireRod') && $items->has('IceRod')
-					&& ($items->has('Hammer') || $items->hasUpgradedSword());
+					&& ($items->has('Hammer') || ($items->canExtendMagic(2) && $items->hasUpgradedSword())
+						|| ($items->canExtendMagic(4) && $items->hasSword()));
 			}),
 		]);
 

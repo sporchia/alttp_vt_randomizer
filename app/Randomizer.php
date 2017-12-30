@@ -174,6 +174,10 @@ class Randomizer {
 			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
 		}
 
+		if ($this->logic == 'OverworldGlitches') {
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
+		}
+
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
 		$advancement_items = $this->getAdvancementItems();
 

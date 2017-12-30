@@ -188,7 +188,10 @@ class GanonsTower extends Region {
 
 		$this->locations["Ganon's Tower - Map Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
-				&& $items->has('KeyA2', 3);
+				&& (in_array($locations["Ganon's Tower - Map Chest"]->getItem(), [Item::get('BigKeyA2'), Item::get('KeyA2')])
+					? $items->has('KeyA2', 3) : $items->has('KeyA2', 4));
+		})->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('KeyA2') && $items->has('KeyA2', 3);
 		});
 
 		$this->locations["Ganon's Tower - Big Chest"]->setRequirements(function($locations, $items) {
