@@ -16,13 +16,13 @@
 			target="_blank">Join our Discord</a></div><br/>
 		<p>Join our Discord community! We've got friendly and helpful people, community event news,
 			ALttP: Randomizer updates, helpful guides, tips, and tricks, and more! Come say
-			hello!</p>
+			hello, and checkout the #resources channel!</p>
 	</div>
 </div>
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Learn to Play</h3>
+		<h3 class="panel-title">Learn to Play Videos</h3>
 	</div>
 	<div class="panel-body">
 		<div style="text-align:center;"><a
@@ -32,6 +32,22 @@
 		<p>Check out our routing guides, glitch tutorials, update announcements, tournament
 			highlights, and more! Great for both new players looking to learn the ropes and
 			experienced runners looking to hone their skills!</p>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">External Resources</h3>
+	</div>
+	<div class="panel-body">
+		<ul>
+		<li><a href="https://goo.gl/tfohG1" target="_blank">Common things that stump newcomers</a>
+			(this is a good first read)
+		<li><a href="https://goo.gl/gvoyHB" target="_blank">General help glossary</a>
+		<li><a href="https://goo.gl/yus4Rq" target="_blank">Glitch Resources</a>
+		<li><a href="https://goo.gl/fCsKXQ" target="_blank">Trackers / HUDs</a>
+		<li><a href="http://alttp.mymm1.com/srl/" target="_blank">Getting started on SRL</a>
+		</ul>
 	</div>
 </div>
 

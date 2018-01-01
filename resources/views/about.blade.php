@@ -25,7 +25,7 @@
 		beatable ROM. With the web based ROM patcher, you can always be sure you have the latest
 		features as soon as they're released.</p>
 </div>
-<div class="well" style="text-align:center;">'
+<div class="well" style="text-align:center;">
 <iframe
     allow="encrypted-media"
     allowfullscreen
