@@ -56,17 +56,17 @@
 	</div>
 	<div class="panel-body">
 		<p>Join us for exciting tournament action with expert commentary alongside elite play!</p>
-		<h4>Twice-Yearly Invitational Tournament <span class="running-now">Live Now!</span></h4>
-		<p>Live now! Check out the schedule
-			<a href="http://alttp.challonge.com/fallrando2017finals" target="_blank">here!</a></p>
+		<h4>Twice-Yearly Invitational Tournament</h4>
 		<p>Witness the 100 best racers compete for the trophy! Think you have what it takes to go
 			toe-to-toe with the best? Join Discord and keep an eye out for qualifying races!</p>
 		<p>The Spring Invitational is Standard Mode and runs from March to June, and The Fall Invitational is Open Mode and runs from September to December.</p>
-		<h4>Open Tournaments <span class="running-now">Live Now!</span></h4>
-		<p>Live now! Check out the schedule
-			<a href="http://alttp.challonge.com/fallrando2017secondary" target="_blank">here!</a></p>
+		<h4>Open Tournaments</h4>
 		<p>Alongside the invitational tournaments are tournaments that are open to all! New players
 			are encouraged to join, with most of the races being restreamed with commentary.</p>
+		<h4>Keysanity Tournament <span class="running-now">Registration Open!</span></h4>
+		<p>Registration is now open for the Keysanity Tournament! Open to all!</p>
+		<p>This tournament will run from January 29th to March 25th.</p>
+		<p>Find more info and register <a href="http://alttpr.challonge.com/keysanity2018" target="_blank">here!</a></p>
 	</div>
 </div>
 
