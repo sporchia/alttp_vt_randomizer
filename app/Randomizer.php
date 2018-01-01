@@ -174,6 +174,10 @@ class Randomizer {
 			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
 		}
 
+		if ($this->logic == 'OverworldGlitches') {
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
+		}
+
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
 		$advancement_items = $this->getAdvancementItems();
 
@@ -619,6 +623,10 @@ class Randomizer {
 		return $this->seed->hash;
 	}
 
+	public function getSeedRecord() {
+		return $this->seed;
+	}
+
 	/**
 	 * Update patch of seed record to DB
 	 *
@@ -669,6 +677,7 @@ class Randomizer {
 			"two woodchoppers",
 			"double lumberman",
 			"lumberclones",
+			"woodfellas",
 		])));
 
 		switch (mt_rand(0, 1)) {
@@ -759,6 +768,7 @@ class Randomizer {
 				"Welcome to\nStoops Lonk's\nHoose",
 				"Erreur de\ntraduction.\nsvp reessayer",
 				"I could beat\nit in an hour\nand one life",
+				"I thought this\nwas open mode?",
 			])));
 		}
 
@@ -799,6 +809,7 @@ class Randomizer {
 			"A weeknight is\na tiny\nnobleman",
 			"The chimney\nsweep wore a\nsoot and tye.",
 			"Gardeners like\nto spring into\naction.",
+			"bad at nuclear\nphysics. I\nGot no fission",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
@@ -827,10 +838,10 @@ class Randomizer {
 			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
 			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
 			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
-			"I offered to a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
+			"I offered a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
 			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
 			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
-			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nbar exam!",
+			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBar exam!",
 			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
 			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
@@ -844,7 +855,7 @@ class Randomizer {
 			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
 			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
 			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
-			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
 			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
 			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
 			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
@@ -866,15 +877,15 @@ class Randomizer {
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
 			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
-			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\nde'ja vu\nall over again",
-			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds,\nand was 32\nfeet long.",
+			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\ndeja vu\nall over again",
+			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
 			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
 			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 		])));
 
 		switch ($this->goal) {
 			case 'pedestal':
-				$rom->setGanon1InvincibleTextString("You cannot\nkill me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nYou dingus\n");
+				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nit's on the\npedestal.\n\nYou dingus\n");
 				break;
 			case 'triforce-hunt':
 				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\ntriforce\npieces well.\nWithout them\nyou can't win!");
@@ -883,7 +894,7 @@ class Randomizer {
 				$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 		}
 
-		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI can not die!");
+		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI cannot die!");
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
 		if (!$silver_arrows_location) {
@@ -930,6 +941,7 @@ class Randomizer {
 			"The Wind Fish\nwill wake\nsoon.    Hoot!",
 			"meow meow meow\nmeow meow meow\n  oh my god!",
 			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
+			".done\n\n.comment lol",
 		])));
 
 		return $this;
@@ -1421,8 +1433,17 @@ class Randomizer {
 		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
 
 		// Sprite prize pack
+		$idat = array_values(unpack('C*', base64_decode(
+			"g5aEgICAgIACAAKAoIOXgICUkQcAgACAkpaAoAAAAIAEgIIGBgAAgICAgICAgICAgICAgICAgICAgIAAAICAkICRkZGXkZWVk5c" .
+			"UkZKBgoKAhYCAgAQEgJGAgICAgICAgACAgIKKgICAgJKRgIKBgYCBgICAgICAgICAgJeAgICAwoAVFRcGAIAAwBNAAAIGEBQAAE" .
+			"AAAAAAE0YRgIAAAAAQAAAAFhYWgYeCAICAAAAAAICAAAAAAAAAAAAAAAAAAAAAgAAAABcAEgAAAAAAEBcAQAEAAAAAAAAAAAAAA" .
+			"AAAAABAAAAAAAAAAACAAAAAAAAA"
+		)));
 		$offset = 0x6B632;
 		$bytes = $rom->read($offset, 243);
+		foreach ($bytes as $i => $v) {
+			$bytes[$i] = ($v == 0) ? $idat[$i] : $v;
+		}
 		for ($i = 0; $i < 243; $i++) {
 			// skip sprites that were not in prize packs before
 			if (!isset($bytes[$i]) || ($bytes[$i] & 0xF) == 0) {

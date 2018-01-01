@@ -47,8 +47,8 @@ class West extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Spike Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
-				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
-				&& $items->canExtendMagic()
+				&& (($items->canExtendMagic() && $items->has('Cape'))
+					|| ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic()) && $items->has('CaneOfByrna')))
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 
@@ -66,8 +66,8 @@ class West extends Region {
 		$this->locations["Spike Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canLiftRocks()
 				&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
-				&& ($items->has('Cape') || $items->has('CaneOfByrna'))
-				&& $items->canExtendMagic()
+				&& (($items->canExtendMagic() && $items->has('Cape'))
+					|| ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic()) && $items->has('CaneOfByrna')))
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 

@@ -47,6 +47,13 @@ class Distribution extends Command {
 				}
 				$thing = $this->argument('thing');
 				break;
+			case 'region':
+				$function = [$this, 'region'];
+				if (!$this->argument('thing')) {
+					return $this->error("Need an Region Name");
+				}
+				$thing = $this->argument('thing');
+				break;
 			case 'required':
 				$function = [$this, 'required'];
 				$thing = $this->argument('thing');
@@ -123,6 +130,20 @@ class Distribution extends Command {
 			$locations[$location_name][$item_name] = 0;
 		}
 		$locations[$location_name][$item_name]++;
+	}
+
+	private function region($region_name, &$locations) {
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand->makeSeed();
+
+		foreach ($rand->getWorld()->getRegion($region_name)->getLocations() as $location) {
+			$location_name = $location->getName();
+			$item_name = $location->getItem()->getNiceName();
+			if (!isset($locations[$location_name][$item_name])) {
+				$locations[$location_name][$item_name] = 0;
+			}
+			$locations[$location_name][$item_name]++;
+		}
 	}
 
 	private function required($unused, &$locations) {

@@ -75,7 +75,7 @@ class ThievesTownTest extends TestCase {
 			["Thieves' Town - Ambush Chest", true, 'BigKeyD4', [], ['BigKeyD4']],
 
 			["Thieves' Town - Big Chest", false, 'BigKeyD4', [], ['BigKeyD4']],
-			["Thieves' Town - Big Chest", false, 'KeyD4', [], ['KeyD4']],
+			["Thieves' Town - Big Chest", true, 'KeyD4', [], ['KeyD4']],
 
 			["Thieves' Town - Blind's Cell", false, 'BigKeyD4', [], ['BigKeyD4']],
 

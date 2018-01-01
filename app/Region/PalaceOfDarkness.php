@@ -113,8 +113,6 @@ class PalaceOfDarkness extends Region {
 		$this->locations["Palace of Darkness - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp') && $items->has('BigKeyD1')
 				&& (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD1');
 		});
 
 		$this->locations["Palace of Darkness - Compass Chest"]->setRequirements(function($locations, $items) {
@@ -170,7 +168,7 @@ class PalaceOfDarkness extends Region {
 					return false;
 				}
 
-				return !in_array($item, [Item::get('KeyD1'), Item::get('BigKeyD1')]);
+				return true;
 			});
 
 		$this->can_enter = function($locations, $items) {

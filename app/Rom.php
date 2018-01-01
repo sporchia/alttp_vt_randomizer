@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-11-19';
-	const HASH = '8db63a55e2e960d1c0f9ebb5dfc1df02';
+	const BUILD = '2017-12-22';
+	const HASH = '3e41ed4fbf938a7d2f706d3b32fd25eb';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -112,8 +112,8 @@ class Rom {
 		for ($i = 0; $i < static::SIZE; $i += 1024) {
 			$bytes = array_values(unpack('C*', fread($this->rom, 1024)));
 			for ($j = 0; $j < 1024; ++$j) {
-				if ($j + $i >= 0x7FB0 && $j + $i <= 0x7FE0) {
-					// this skip is true for LoROM, HiROM skips: 0xFFB0 - 0xFFB0
+				if ($j + $i >= 0x7FDC && $j + $i < 0x7FE0) {
+					// this skip is true for LoROM, HiROM skips: 0xFFDC - 0xFFDF
 					continue;
 				}
 				$sum += $bytes[$j];
