@@ -91,6 +91,8 @@ class SwampPalace extends Region {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('BigKeyD2');
+		})->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('BigKeyD2');
 		});
 
 		$this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function($locations, $items) {

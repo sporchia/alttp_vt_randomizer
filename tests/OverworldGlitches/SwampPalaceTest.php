@@ -62,7 +62,7 @@ class SwampPalaceTest extends TestCase {
 			["Swamp Palace - Entrance", false, 'BigKeyD2', [], ['BigKeyD2']],
 			["Swamp Palace - Entrance", true, 'KeyD2', [], ['KeyD2']],
 
-			["Swamp Palace - Big Chest", false, 'BigKeyD2', [], ['BigKeyD2']],
+			["Swamp Palace - Big Chest", true, 'BigKeyD2', [], ['BigKeyD2']],
 
 			["Swamp Palace - Big Key Chest", true, 'BigKeyD2', [], ['BigKeyD2']],
 

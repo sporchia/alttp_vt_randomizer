@@ -78,10 +78,6 @@ class TowerOfHera extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Tower of Hera - Big Key Chest"]->setRequirements(function($locations, $items) {
-			if ($locations["Tower of Hera - Big Key Chest"]->hasItem(Item::get('KeyP3'))) {
-				return $items->canLightTorches();
-			}
-
 			return $items->canLightTorches() && $items->has('KeyP3');
 		})->setAlwaysAllow(function($item, $items) {
 			return $item == Item::get('KeyP3');
