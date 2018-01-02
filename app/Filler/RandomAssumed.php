@@ -20,7 +20,13 @@ class RandomAssumed extends Filler {
 	public function fill(array $dungeon, array $required, array $nice, array $extra) {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
-		$this->fillItemsInLocations($dungeon, $randomized_order_locations, $required);
+		$dungeon_required = $required;
+		if ($this->world->config("rom.allowUnreachable", false)) {
+			// if allow unreachable we need may need some items considered only "nice" like L3 swords
+			// or silver arrows available in the list, so the game completion check will work
+			$dungeon_required = array_merge($required,$nice);
+		}
+		$this->fillItemsInLocations($dungeon, $randomized_order_locations, $dungeon_required);
 
 		// random junk fill
 		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()->randomCollection(mt_rand(0, 15));
@@ -51,8 +57,13 @@ class RandomAssumed extends Filler {
 		foreach ($fill_items as $key => $item) {
 			$assumed_items = $this->world->collectItems($remaining_fill_items->removeItem($item->getName())->merge($base_assumed_items));
 
-			$fillable_locations = $locations->filter(function($location) use ($item, $assumed_items) {
-				return !$location->hasItem() && $location->canFill($item, $assumed_items);
+			$perform_access_check = true;
+			if($this->world->config("rom.allowUnreachable", false)){
+				$perform_access_check = !$this->world->getWinCondition()($assumed_items);
+			}
+
+			$fillable_locations = $locations->filter(function($location) use ($item, $assumed_items, $perform_access_check) {
+				return !$location->hasItem() && $location->canFill($item, $assumed_items, $perform_access_check);
 			});
 
 			if ($fillable_locations->count() == 0) {
