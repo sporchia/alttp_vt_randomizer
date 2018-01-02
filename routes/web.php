@@ -275,7 +275,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$spoiler = $rand->getSpoiler();
 	$hash = $rand->saveSeedRecord();
 
-	// @TODO: hook Enemizer here
+	if (config('enemizer.enabled', false)) {
+		$en = new ALttP\Enemizer($rand);
+		$en->makeSeed();
+	}
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
