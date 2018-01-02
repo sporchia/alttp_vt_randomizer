@@ -293,6 +293,7 @@ class GanonsTower extends Region {
 		$this->locations["Ganon's Tower - Moldorm Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hookshot')
 				&& $items->canShootArrows() && $items->canLightTorches()
+				&& ($items->has('Hammer') || $items->hasSword())
 				&& $items->has('BigKeyA2') && $items->has('KeyA2', 4);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyA2') && $item != Item::get('BigKeyA2');

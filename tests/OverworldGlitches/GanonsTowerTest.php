@@ -403,10 +403,10 @@ class GanonsTowerTest extends TestCase {
 			["Ganon's Tower - Moldorm Chest", false, [], ['Hookshot']],
 			["Ganon's Tower - Moldorm Chest", false, [], ['AnyBow']],
 			["Ganon's Tower - Moldorm Chest", false, [], ['BigKeyA2']],
-			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'PegasusBoots']],
-			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'PegasusBoots']],
-			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'PegasusBoots']],
-			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'PegasusBoots']],
+			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'L1Sword', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Lamp', 'Hookshot', 'PegasusBoots']],
+			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'L1Sword', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'TitansMitt', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'PegasusBoots']],
+			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'L1Sword', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Lamp', 'Hookshot', 'PegasusBoots']],
+			["Ganon's Tower - Moldorm Chest", true, ['Bow', 'L1Sword', 'BigKeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'KeyA2', 'MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Flute', 'Hookshot', 'Hammer', 'FireRod', 'PegasusBoots']],
 		];
 	}
 }
