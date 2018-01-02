@@ -1540,6 +1540,9 @@ class Randomizer {
 	public function setWorld(World $world) : self {
 		$this->world = $world;
 
+		$this->starting_equipment = $this->starting_equipment->merge($world->getPreCollectedItems());
+		$this->world->setPreCollectedItems($this->starting_equipment);
+
 		return $this;
 	}
 }

@@ -210,6 +210,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 				$locations[$decoded_location]->setItem(Item::get($item));
 			}
 		}
+		foreach ($request->input('eq', []) as $item) {
+			try {
+				$world->addPreCollectedItem(Item::get($item));
+			} catch (Exception $e) {}
+		}
 	}
 
 	config(['game-mode' => $request->input('mode', 'standard')]);

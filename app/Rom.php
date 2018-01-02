@@ -655,6 +655,10 @@ class Rom {
 		$this->setMaxArrows($starting_arrow_capacity);
 		$this->setMaxBombs($starting_bomb_capacity);
 
+		if (config('game-mode') != 'swordless' && $equipment[0x359]) {
+			$this->write(0x180043, pack('C*', $equipment[0x359]));
+		}
+
 		return $this;
 	}
 
