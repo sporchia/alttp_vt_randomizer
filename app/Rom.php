@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2017-12-22';
-	const HASH = '3e41ed4fbf938a7d2f706d3b32fd25eb';
+	const BUILD = '2018-01-02';
+	const HASH = '1a65b20c186c2df24d9c777f26f4fd93';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -175,7 +175,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setStartingEquipment(ItemCollection $items) {
-		$equipment = array_fill(0x340, 0x4B, 0);
+		$equipment = array_fill(0x340, 0x4F, 0);
 		$starting_rupees = 0;
 		$starting_arrow_capacity = 0;
 		$starting_bomb_capacity = 0;
@@ -227,27 +227,34 @@ class Rom {
 					break;
 				case 'Bow':
 					$equipment[0x340] = 0x01;
+					$equipment[0x38E] |= 0b10000000;
 					break;
 				case 'BowAndArrows':
 					$equipment[0x340] = 0x02;
+					$equipment[0x38E] |= 0b10000000;
 					break;
 				case 'SilverArrowUpgrade':
-					$equipment[0x340] = 0x03;
+					$equipment[0x38E] |= 0b01000000;
 					break;
 				case 'BowAndSilverArrows':
 					$equipment[0x340] = 0x04;
+					$equipment[0x38E] |= 0b01000000;
 					break;
 				case 'Boomerang':
 					$equipment[0x341] = 0x01;
+					$equipment[0x38C] |= 0b10000000;
 					break;
 				case 'RedBoomerang':
 					$equipment[0x341] = 0x02;
+					$equipment[0x38C] |= 0b01000000;
 					break;
 				case 'Mushroom':
 					$equipment[0x344] = 0x01;
+					$equipment[0x38C] |= 0b00100000;
 					break;
 				case 'Powder':
 					$equipment[0x344] = 0x02;
+					$equipment[0x38C] |= 0b00010000;
 					break;
 				case 'Bombos':
 					$equipment[0x347] = 0x01;
@@ -263,12 +270,15 @@ class Rom {
 					break;
 				case 'Shovel':
 					$equipment[0x34C] = 0x01;
+					$equipment[0x38C] |= 0b00000100;
 					break;
 				case 'OcarinaInactive':
 					$equipment[0x34C] = 0x02;
+					$equipment[0x38C] |= 0b00000010;
 					break;
 				case 'OcarinaActive':
 					$equipment[0x34C] = 0x03;
+					$equipment[0x38C] |= 0b00000001;
 					break;
 				case 'CaneOfSomaria':
 					$equipment[0x350] = 0x01;

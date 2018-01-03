@@ -134,7 +134,7 @@ $(function() {
 			ProgressiveShield: { max: 3 },
 			bottle: { max: 4 },
 			ProgressiveBow: { max: 3 },
-			Boomerang: { max: 2 },
+			Boomerang: { max: 3 },
 			ProgressiveGlove: { max: 2 }
 		});
 

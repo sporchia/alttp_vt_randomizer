@@ -235,11 +235,16 @@ function applySeed(rom, seed, second_attempt) {
 					starting_equipment.push([
 						'nothing',
 						'SilverArrowUpgrade',
-						'BowAndArrows',
+						'Bow',
 						'BowAndSilverArrows',
 					][equipment[eq]]);
+				} else if (eq == 'Boomerang') {
+					switch (equipment[eq]) {
+						case 3: starting_equipment.push('RedBoomerang');
+						case 1: starting_equipment.push('Boomerang'); break;
+						case 2: starting_equipment.push('RedBoomerang'); break;
+					}
 				} else {
-
 					for (var i = 0; i < equipment[eq]; ++i) {
 						starting_equipment.push(eq);
 					}
