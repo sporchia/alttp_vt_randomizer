@@ -5,14 +5,14 @@
 <div class="well">
 <h2>Want to test your skills in a shuffled Hyrule? You've come to the right place!</h2>
 
-<!--<div class="panel panel-info">
+{{--<div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">Walkthrough Video</h3>
 	</div>
 	<div class="panel-body">
 		<p>[[Insert sweet video here that says all the things in this page but in sweet video form (and also flashes the ?rom image from discord on screen because I don't really want to put that here.).]]</p>
 	</div>
-</div>-->
+</div>--}}
 
 <div class="panel panel-info">
 	<div class="panel-heading">
