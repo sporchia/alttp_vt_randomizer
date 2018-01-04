@@ -70,7 +70,7 @@
 		<p>While you can play using only your keyboard, a controller makes for a better experience.
 			While most USB controllers will work, we recommend an
 			<a href="https://www.amazon.com/dp/B002B9XB0E" target="_blank" rel="noopener noreferrer">iBuffalo Classic USB
-			Gamepad.</a></p>
+			Gamepad.</a> or <a href="https://www.amazon.com/dp/B0748S1VDC" target="_blank" rel="noopener noreferrer">8Bitdo SN30 Pro Controller</a></p>
 		<p>There are other supported ways to play, including on original SNES hardware. There are
 			also certain emulators, such as zsnes, that won't work correctly with the randomizer.
 			Join us on Discord to learn more!</p>
