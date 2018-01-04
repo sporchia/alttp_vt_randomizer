@@ -26,7 +26,7 @@
 				<ul class="nav navbar-nav navbar-left">
                     <li{!! (request()->path() == 'start') ? ' class="active"' : '' !!}><a href="/start">Start Playing</a></li>
                     <li{!! (request()->path() == 'watch') ? ' class="active"' : '' !!}><a href="/watch">Start Watching</a></li>
-                    <li class="dropdown">
+                    <li class="dropdown{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer', 'daily', 'customizer'])) ? ' active' : '' !!}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generate Game <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
