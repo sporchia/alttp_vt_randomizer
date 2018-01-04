@@ -24,12 +24,18 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
-					<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Generate Customized Game</a></li>
-					<li{!! (in_array(request()->path(), ['daily'])) ? ' class="active"' : '' !!}><a href="/daily">Daily Challenge</a></li>
+                    <li{!! (request()->path() == 'start') ? ' class="active"' : '' !!}><a href="/start">Start Playing</a></li>
+                    <li{!! (request()->path() == 'watch') ? ' class="active"' : '' !!}><a href="/watch">Start Watching</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generate Game <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
+        					<li{!! (in_array(request()->path(), ['daily'])) ? ' class="active"' : '' !!}><a href="/daily">Daily Challenge</a></li>
+		        			<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Create Customized Game</a></li>
+                        </ul>
+                    </li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li{!! (request()->path() == 'start') ? ' class="active"' : '' !!}><a href="/start">Getting Started</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -39,7 +45,6 @@
 							<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
 							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
 							<li><a href="https://discord.gg/yEvqSRk" target="_blank">Join us on Discord</a></li>
-							<li><a href="https://www.youtube.com/channel/UCBMMk0WJAeldNv4fI9juovA" target="_blank">Youtube Channel</a></li>
 							<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
 						</ul>
 					</li>

@@ -9,13 +9,16 @@
 		<h3 class="panel-title">Races</h3>
 	</div>
 	<div class="panel-body">
-		<p>At this time, most races are done through
+		<p>Most races are done through
 			<a href="http://speedrunslive.com">SpeedRunsLive.com</a>. Be sure to check them out for more
 			info on how to get in on the action!</p>
 		<h4>Weekly Standard Mode Race, Saturdays at 3pm US Eastern Time</h4>
 		<p>The premier community event, the weekly race consistently reaches over 100 competitors!</p>
 		<h4>Daily Races</h4>
 		<p>Running 3 times every day with a variety of game types are our daily races. Checkout the daily race schedule <a href="http://tiny.cc/alttprdaily" target="_blank">here!</a></p>
+		<div style="text-align:center;"><iframe
+			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5jViW67OL2AriPRUOpBZeyrQd08OdilAhX6HUB4cLTZufJOIAmihpp6xSgT6v-0IXy7FL80Mg8E4K/pubhtml?gid=0&single=true&widget=true&headers=false&range=A3:D999&chrome=false"
+			style="width:80%;height:400px;"></iframe></div>
 		<h4>Pickup Races</h4>
 		<p>Scheduled races not fitting in with your schedule? Looking to race with some more uncommon
 			options? Join a pickup race! You'll find willing players at all hours of the day. Join
@@ -29,8 +32,13 @@
 		<h3 class="panel-title">Watch</h3>
 	</div>
 	<div class="panel-body">
-		<p>With so much going on, there's almost always a race to watch! Follow these networks and
-			never miss a match!</p>
+		<p>With so much going on, there's always a race to watch! Follow these networks and never
+			miss a match!</p>
+        <div style="text-align:center;"><a
+			class="btn btn-primary btn-lg btn-xl"
+			href="https://www.twitch.tv/communities/lttprandomizer/"
+			role="button"
+            target="_blank">ALttP:R Twitch Community</a></div>
 		<ul>
 		<li><a href="http://speedgaming.org/" target="_blank">Speedgaming</a>
 		<li><a href="https://twitch.tv/alttprandomizer" target="_blank">twitch.tv/ALttPRandomizer</a>

@@ -10,7 +10,7 @@
 	</div>
 	<div class="panel-body">
 		<div style="text-align:center;"><a
-			class="btn btn-primary btn-lg btn-cta"
+			class="btn btn-primary btn-lg btn-xl"
 			href="https://discord.gg/TCC6Y42"
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
@@ -26,9 +26,9 @@
 	</div>
 	<div class="panel-body">
 		<div style="text-align:center;"><a
-			class="btn btn-outline-secondary btn-lg btn-cta"
+			class="btn btn-outline-secondary btn-lg btn-xl"
 			href="https://www.youtube.com/channel/UCBMMk0WJAeldNv4fI9juovA"
-			role="button">Check Out Our Youtube Channel!</a></div><br/>
+			role="button">ALttP:R Youtube Channel</a></div><br/>
 		<p>Check out our routing guides, glitch tutorials, update announcements, tournament
 			highlights, and more! Great for both new players looking to learn the ropes and
 			experienced runners looking to hone their skills!</p>

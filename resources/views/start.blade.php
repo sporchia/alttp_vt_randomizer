@@ -1,26 +1,26 @@
 @extends('layouts.default')
 
 @section('content')
-<h1>Getting Started</h1>
+<h1>Start Your Adventure!</h1>
 <div class="well">
 <h2>Want to test your skills in a shuffled Hyrule? You've come to the right place!</h2>
 
-<div class="panel panel-info">
+<!--<div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">[[Getting Started Video with ???]]</h3>
+		<h3 class="panel-title">Walkthrough Video</h3>
 	</div>
 	<div class="panel-body">
 		<p>[[Insert sweet video here that says all the things in this page but in sweet video form (and also flashes the ?rom image from discord on screen because I don't really want to put that here.).]]</p>
 	</div>
-</div>
+</div>-->
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Join our Discord Community</h3>
+		<h3 class="panel-title">1. Join our Discord Community</h3>
 	</div>
 	<div class="panel-body">
 		<div style="text-align:center;"><a
-			class="btn btn-primary btn-lg btn-cta"
+			class="btn btn-primary btn-lg btn-xl"
 			href="https://discord.gg/TCC6Y42"
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
@@ -32,23 +32,24 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Get the ROM</h3>
+		<h3 class="panel-title">2. Get the ROM</h3>
 	</div>
 	<div class="panel-body">
 		<p>You'll need the base ROM. This should be a <span style="font-weight:bold;">Zelda no
 			Densetsu: Kamigami no Triforce v1.0</span> ROM. Don't worry if you can't read Japanese;
 			the patching process provides English text while keeping the glitches unique to the
 			original version intact.</p>
+		<p>If you run into trouble, ask in
+			<a href="https://discord.gg/TCC6Y42 target="_blank">Discord!</a></p>
 	</div>
 </div>
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Choose Your Game Options</h3>
+		<h3 class="panel-title">3. Choose Your Game Options</h3>
 	</div>
 	<div class="panel-body">
-		<p>Head on over to <a href="/randomizer" target="_blank">Generate Randomize Game</a>. Once
-			you've provided your ROM, you'll be presented with the game options. For your first
+				<p>Head on over to <a href="/randomizer" target="_blank">Generate Randomize Game</a> and provide your ROM. The next screen will show a variety of game options. For your first
 			few runs, we recommend changing "Difficulty" to "Easy" and leaving the rest of the
 			settings as is. Then click "Generate ROM" and you'll be given a newly minted
 			randomized game!</p>
@@ -58,7 +59,7 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Get a Way to Play</h3>
+		<h3 class="panel-title">4. Get a Way to Play</h3>
 	</div>
 	<div class="panel-body">
 		<p>First, you'll need something to run your newly minted game on. We recommend using an
@@ -77,11 +78,11 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Get Playing!</h3>
+		<h3 class="panel-title">5. Get Playing!</h3>
 	</div>
 	<div class="panel-body">
 		<p>You're finally ready to go! The best way to learn is to load up your new ROM and start
-		    playing. If you feel like you're stuck, check out this list of common pitfalls, or ask
+			playing. If you feel like you're stuck, check out this list of common pitfalls, or ask
 			on Discord.</p>
 		<ul>
 			<li>You can use the Y button to swap between Silver Arrows and Normal Arrows, the Red

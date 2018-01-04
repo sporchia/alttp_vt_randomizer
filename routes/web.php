@@ -136,6 +136,10 @@ Route::get('races', function(Request $request) {
 	return view('races');
 });
 
+Route::get('watch', function(Request $request) {
+	return view('watch');
+});
+
 Route::get('spoiler_click/{seed_id?}', function() {
 	return "Ok";
 });

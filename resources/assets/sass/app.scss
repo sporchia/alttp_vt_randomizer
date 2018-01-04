@@ -35,8 +35,22 @@ body {
 	color: #FFFFFF;
 }
 
+.btn-wrapper {
+	display: flex;
+	justify-content: stretch;
+	padding: 0 140px;
+}
+
 .btn-cta {
-	width: 49%;
+	flex: 1 0 0px;
+}
+
+.btn-cta .btn {
+	width: 100%;
+}
+
+.btn-xl {
+	width: 33%;
 }
 
 .btn-flex {
