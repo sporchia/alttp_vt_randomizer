@@ -12,6 +12,7 @@
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
 			href="https://discord.gg/TCC6Y42"
+			rel="noopener noreferrer"
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
 		<p>Join our Discord community! We've got friendly and helpful people, community event news,
@@ -41,12 +42,12 @@
 	</div>
 	<div class="panel-body">
 		<ul>
-		<li><a href="https://goo.gl/tfohG1" target="_blank">Common things that stump newcomers</a>
+		<li><a href="https://goo.gl/tfohG1" target="_blank" rel="noopener noreferrer">Common things that stump newcomers</a>
 			(this is a good first read)
-		<li><a href="https://goo.gl/gvoyHB" target="_blank">General help glossary</a>
-		<li><a href="https://goo.gl/yus4Rq" target="_blank">Glitch Resources</a>
-		<li><a href="https://goo.gl/fCsKXQ" target="_blank">Trackers / HUDs</a>
-		<li><a href="http://alttp.mymm1.com/srl/" target="_blank">Getting started on SRL</a>
+		<li><a href="https://goo.gl/gvoyHB" target="_blank" rel="noopener noreferrer">General help glossary</a>
+		<li><a href="https://goo.gl/yus4Rq" target="_blank" rel="noopener noreferrer">Glitch Resources</a>
+		<li><a href="https://goo.gl/fCsKXQ" target="_blank" rel="noopener noreferrer">Trackers / HUDs</a>
+		<li><a href="http://alttp.mymm1.com/srl/" target="_blank" rel="noopener noreferrer">Getting started on SRL</a>
 		</ul>
 	</div>
 </div>

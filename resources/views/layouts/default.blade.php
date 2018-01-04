@@ -44,8 +44,8 @@
 							<li{!! (request()->path() == 'races') ? ' class="active"' : '' !!}><a href="/races">Organized Play</a></li>
 							<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
 							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
-							<li><a href="https://discord.gg/yEvqSRk" target="_blank">Join us on Discord</a></li>
-							<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank">Report Issue</a></li>
+							<li><a href="https://discord.gg/yEvqSRk" target="_blank" rel="noopener noreferrer">Join us on Discord</a></li>
+							<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
 						</ul>
 					</li>
 					@if (Auth::check())

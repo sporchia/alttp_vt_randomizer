@@ -22,6 +22,7 @@
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
 			href="https://discord.gg/TCC6Y42"
+			rel="noopener noreferrer"
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
 		<p>Join our Discord community! We've got friendly and helpful people, community event news,
@@ -40,7 +41,7 @@
 			the patching process provides English text while keeping the glitches unique to the
 			original version intact.</p>
 		<p>If you run into trouble, ask in
-			<a href="https://discord.gg/TCC6Y42 target="_blank">Discord!</a></p>
+			<a href="https://discord.gg/TCC6Y42 target="_blank" rel="noopener noreferrer">Discord!</a></p>
 	</div>
 </div>
 
@@ -49,7 +50,7 @@
 		<h3 class="panel-title">3. Choose Your Game Options</h3>
 	</div>
 	<div class="panel-body">
-				<p>Head on over to <a href="/randomizer" target="_blank">Generate Randomize Game</a> and provide your ROM. The next screen will show a variety of game options. For your first
+				<p>Head on over to <a href="/randomizer" target="_blank" rel="noopener noreferrer">Generate Randomize Game</a> and provide your ROM. The next screen will show a variety of game options. For your first
 			few runs, we recommend changing "Difficulty" to "Easy" and leaving the rest of the
 			settings as is. Then click "Generate ROM" and you'll be given a newly minted
 			randomized game!</p>
@@ -65,10 +66,10 @@
 		<p>First, you'll need something to run your newly minted game on. We recommend using an
 			emulator. An emulator is a program that closely replicates SNES hardware, allowing you to
 			run SNES games on your computer. You can get the recommended emulator, SNES9x, at their
-			website <a href="http://www.snes9x.com/" target="_blank">here.</a></p>
+			website <a href="http://www.snes9x.com/" target="_blank" rel="noopener noreferrer">here.</a></p>
 		<p>While you can play using only your keyboard, a controller makes for a better experience.
 			While most USB controllers will work, we recommend an
-			<a href="https://www.amazon.com/dp/B002B9XB0E" target="_blank">iBuffalo Classic USB
+			<a href="https://www.amazon.com/dp/B002B9XB0E" target="_blank" rel="noopener noreferrer">iBuffalo Classic USB
 			Gamepad.</a></p>
 		<p>There are other supported ways to play, including on original SNES hardware. There are
 			also certain emulators, such as zsnes, that won't work correctly with the randomizer.
