@@ -34,7 +34,7 @@
 		<li>You are never required to navigate through dark rooms so if you find yourself in total
 			darkness then it’s guaranteed that you can find the Lamp elsewhere.</li>
 		<li>You can toggle between items which share the same slot in the menu by pressing Y. For
-			exampke, you can now hold both the Shovel and Flute and switch between them.</li>
+			example, you can now hold both the Shovel and Flute and switch between them.</li>
 		<li>The sub-menu for the Bottles no longer automatically opens and you can open it with X
 			or toggle between them with Y.</li>
 		<li>The water levels within Swamp Palace will revert to being drained when you exit the
