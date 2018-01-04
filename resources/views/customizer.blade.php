@@ -31,7 +31,7 @@
 			<p>Here are the keys to the kingdom, enjoy!</p>
 		</div>
 		<div class="tab-pane" id="custom-generate">
-			<div id="seed-generate" class="panel panel-success">
+			<div id="seed-generate" class="panel panel-success" style="display:none">
 				<div class="panel-heading panel-heading-btn">
 					<h3 class="panel-title pull-left">Customizer: Just because you can, doesn't mean you should</h3>
 					<div class="btn-toolbar pull-right">
