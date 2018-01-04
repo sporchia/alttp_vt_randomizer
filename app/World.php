@@ -202,8 +202,39 @@ class World {
 		return $this;
 	}
 
-	public function setPreCollectedItems(ItemCollection $items) {
+	/**
+	 * Get the collection for pre-collected items
+	 *
+	 * @return ItemCollection
+	 */
+	public function getPreCollectedItems() : ItemCollection {
+		return $this->pre_collected_items;
+	}
+
+	/**
+	 * Set the collection for pre-collected items
+	 *
+	 * @param ItemCollection $items collection of items that have been pre-collected
+	 *
+	 * @return $this
+	 */
+	public function setPreCollectedItems(ItemCollection $items) : self {
 		$this->pre_collected_items = $items;
+
+		return $this;
+	}
+
+	/**
+	 * Add a pre-collected Item
+	 *
+	 * @param Item $item collection of items that have been pre-collected
+	 *
+	 * @return $this
+	 */
+	public function addPreCollectedItem(Item $item) : self {
+		$this->pre_collected_items->addItem($item);
+
+		return $this;
 	}
 
 	/**

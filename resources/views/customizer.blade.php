@@ -3,6 +3,7 @@
 @include('_rom_loader')
 @include('_rom_settings')
 @include('_rom_spoiler')
+@include('custom/_equipment')
 @include('custom/_items')
 @include('custom/_switches')
 
@@ -30,7 +31,7 @@
 			<p>Here are the keys to the kingdom, enjoy!</p>
 		</div>
 		<div class="tab-pane" id="custom-generate">
-			<div id="seed-generate" class="panel panel-success">
+			<div id="seed-generate" class="panel panel-success" style="display:none">
 				<div class="panel-heading panel-heading-btn">
 					<h3 class="panel-title pull-left">Customizer: Just because you can, doesn't mean you should</h3>
 					<div class="btn-toolbar pull-right">
@@ -134,6 +135,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="tab-pane" id="custom-equipment">
+			@yield('equipment')
+		</div>
 		<div class="tab-pane" id="custom-item-select">
 			@yield('itemselect')
 		</div>
@@ -218,20 +222,50 @@ function applySeed(rom, seed, second_attempt) {
 			});
 	}
 	return new Promise(function(resolve, reject) {
-		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form')), function(patch) {
-			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-			.then(rom.parseSprGfx)
-			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
-			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setMenuSpeed($('#menu-speed').val()))
-			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
-			.then(function(rom) {
-				$('.info').show();
-				$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
-				resolve({rom: rom, patch: patch});
-			}));
-		}, 'json')
-		.fail(reject);
+		var formData = getFormData($('form'));
+		var starting_equipment = [];
+		localforage.getItem('vt.custom.equipment').then(function(equipment) {
+			for (eq in equipment) {
+				if (typeof equipment[eq] === 'boolean' && equipment[eq]) {
+					starting_equipment.push(eq);
+				} else if (eq == 'ProgressiveBow') {
+					if (equipment[eq] == 0) {
+						continue;
+					}
+					starting_equipment.push([
+						'nothing',
+						'SilverArrowUpgrade',
+						'Bow',
+						'BowAndSilverArrows',
+					][equipment[eq]]);
+				} else if (eq == 'Boomerang') {
+					switch (equipment[eq]) {
+						case 3: starting_equipment.push('RedBoomerang');
+						case 1: starting_equipment.push('Boomerang'); break;
+						case 2: starting_equipment.push('RedBoomerang'); break;
+					}
+				} else {
+					for (var i = 0; i < equipment[eq]; ++i) {
+						starting_equipment.push(eq);
+					}
+				}
+			}
+			formData.eq = starting_equipment;
+			$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
+				rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+				.then(rom.parseSprGfx)
+				.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+				.then(rom.setHeartSpeed($('#heart-speed').val()))
+				.then(rom.setMenuSpeed($('#menu-speed').val()))
+				.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+				.then(function(rom) {
+					$('.info').show();
+					$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+					resolve({rom: rom, patch: patch});
+				}));
+			}, 'json')
+			.fail(reject);
+		});
 	});
 }
 
@@ -283,6 +317,7 @@ $(function() {
 		localforage.removeItem('vt.customizer');
 		localforage.removeItem('vt.customizer.profiles');
 		localforage.removeItem('vt.custom.items');
+		localforage.removeItem('vt.custom.equipment');
 		localforage.removeItem('vt.custom.switches');
 		localforage.removeItem('vt.custom.settings');
 		localforage.removeItem('vt.custom.name');

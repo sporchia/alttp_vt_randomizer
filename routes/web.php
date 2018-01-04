@@ -226,6 +226,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 				$locations[$decoded_location]->setItem(Item::get($item));
 			}
 		}
+		foreach ($request->input('eq', []) as $item) {
+			try {
+				$world->addPreCollectedItem(Item::get($item));
+			} catch (Exception $e) {}
+		}
 	}
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
@@ -291,7 +296,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$spoiler = $rand->getSpoiler();
 	$hash = $rand->saveSeedRecord();
 
-	// @TODO: hook Enemizer here
+	if (config('enemizer.enabled', false)) {
+		$en = new ALttP\Enemizer($rand);
+		$en->makeSeed();
+	}
 
 	if ($request->has('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));

@@ -97,6 +97,8 @@ class SkullWoods extends Region {
 
 		$this->locations["Skull Woods - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD3');
+		})->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('BigKeyD3');
 		});
 
 		$this->locations["Skull Woods - Bridge Room"]->setRequirements(function($locations, $items) {
