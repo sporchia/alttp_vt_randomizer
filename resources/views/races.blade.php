@@ -10,7 +10,7 @@
 	</div>
 	<div class="panel-body">
 		<p>Most races are done through
-			<a href="http://speedrunslive.com">SpeedRunsLive.com</a>. Be sure to check them out for more
+			<a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a>. Be sure to check them out for more
 			info on how to get in on the action!</p>
 		<h4>Weekly Standard Mode Race, Saturdays at 3pm US Eastern Time</h4>
 		<p>The premier community event, the weekly race consistently reaches over 100 competitors!</p>
