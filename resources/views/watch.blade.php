@@ -73,7 +73,9 @@
 		<div style="text-align:center;"><a
 			class="btn btn-outline-secondary btn-lg btn-xl"
 			href="https://www.youtube.com/channel/UCBMMk0WJAeldNv4fI9juovA"
-			role="button">ALttP:R Youtube Channel</a></div><br/>
+			rel="noopener noreferrer"
+			role="button"
+			target="_blank">ALttP:R Youtube Channel</a></div><br/>
 		<p>Subscribe to our Youtube channel for updates, tournament highlights, and more!</p>
 	</div>
 </div>
