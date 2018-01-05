@@ -656,7 +656,7 @@ return [
 		],
 	],
 	'sprites' => [
-		'link.1.spr' => 'Link',
+		'link.1.zspr' => 'Link',
 		'4slink-armors.1.spr' => 'Four Swords Link',
 		'boo.2.spr' => 'Boo',
 		'boy.2.spr' => 'Boy',

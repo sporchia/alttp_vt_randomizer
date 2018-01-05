@@ -108,6 +108,9 @@ var ROM = (function(blob, loaded_callback) {
 	};
 
 	this.parseSprGfx = function(spr) {
+		if ('ZSPR' == String.fromCharCode(spr[0]) + String.fromCharCode(spr[1]) + String.fromCharCode(spr[2]) + String.fromCharCode(spr[3])) {
+			return this.parseZsprGfx(spr);
+		}
 		return new Promise(function(resolve, reject) {
 			for (var i = 0; i < 0x7000; i++) {
 				u_array[0x80000 + i] = spr[i];
@@ -120,6 +123,27 @@ var ROM = (function(blob, loaded_callback) {
 			u_array[0xDEDF6] = spr[0x7037];
 			u_array[0xDEDF7] = spr[0x7054];
 			u_array[0xDEDF8] = spr[0x7055];
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
+	this.parseZsprGfx = function(zspr) {
+		// we are going to just hoe that it's in the proper format O.o
+		return new Promise(function(resolve, reject) {
+			var gfx_offset =  zspr[12] << 24 | zspr[11] << 16 | zspr[10] << 8 | zspr[9];
+			var palette_offset = zspr[18] << 24 | zspr[17] << 16 | zspr[16] << 8 | zspr[15];
+			// GFX
+			for (var i = 0; i < 0x7000; i++) {
+				u_array[0x80000 + i] = zspr[gfx_offset + i];
+			}
+			// Palettes
+			for (var i = 0; i < 120; i++) {
+				u_array[0xDD308 + i] = zspr[palette_offset + i];
+			}
+			// Gloves
+			for (var i = 0; i < 4; ++i) {
+				u_array[0xDEDF5 + i] = zspr[palette_offset + 0x7000 + i];
+			}
 			resolve(this);
 		}.bind(this));
 	}.bind(this);
