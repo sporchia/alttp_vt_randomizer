@@ -17,16 +17,13 @@
 				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
 			</label>
 		</p>
-		<p>Getting started couldn't be easier. VT Randomizer allows you to patch a rom file entirely in your browser.</p>
 		<ol>
 			<li>Select your rom file and load it into the browser
 				(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM)</li>
-			<li>Select the options for how you would like your game randomized</li>
+			<li>Select the <a href="/options">options</a> for how you would like your game randomized</li>
 			<li>Click Generate</li>
 			<li>Then Save your rom and get to playing</li>
 		</ol>
-		<p>You may want to check out the other sections of this site for more information on all the different ways
-			one can Randomize their game.</p>
 	</div>
 </div>
 

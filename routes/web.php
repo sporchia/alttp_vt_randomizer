@@ -89,19 +89,19 @@ Route::get('about', function () {
 });
 
 Route::get('game_modes', function () {
-	return view('game_modes');
+	return view('options');
 });
 
 Route::get('game_logics', function () {
-	return view('game_logics');
+	return view('options');
 });
 
 Route::get('game_difficulties', function () {
-	return view('game_difficulties');
+	return view('options');
 });
 
 Route::get('game_variations', function () {
-	return view('game_variations');
+	return view('options');
 });
 
 Route::get('game_entrance', function () {
@@ -112,16 +112,32 @@ Route::get('info', function () {
 	return redirect('help');
 });
 
-Route::get('stuck', function () {
-	return view('stuck');
-});
-
 Route::get('help', function () {
-	return view('help');
+	return view('start');
 });
 
 Route::get('updates', function () {
 	return view('updates');
+});
+
+Route::get('start', function(Request $request) {
+	return view('start');
+});
+
+Route::get('options', function(Request $request) {
+	return view('options');
+});
+
+Route::get('resources', function(Request $request) {
+	return view('resources');
+});
+
+Route::get('races', function(Request $request) {
+	return view('races');
+});
+
+Route::get('watch', function(Request $request) {
+	return view('watch');
 });
 
 Route::get('spoiler_click/{seed_id?}', function() {

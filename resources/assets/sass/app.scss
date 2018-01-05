@@ -3,17 +3,17 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin|Schoolbell:300,400,600');
 
 // Variables
-@import "variables";
+@import 'variables';
 
-@import "sprites";
-@import "loader";
+@import 'sprites';
+@import 'loader';
 
 @import "equipment";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "node_modules/bootstrap-toggle/css/bootstrap-toggle";
-@import "node_modules/bootstrap-select/sass/bootstrap-select";
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'node_modules/bootstrap-toggle/css/bootstrap-toggle';
+@import 'node_modules/bootstrap-select/sass/bootstrap-select';
 @import 'navbar-fixed-side';
 
 body {
@@ -24,10 +24,41 @@ body {
 	padding: 0;
 }
 
-.btn-flex {
+.btn-outline-secondary {
+	background-color: transparent;
+	border-color: #868E96;
+	border-image: none;
+	color: #868E96;
+}
+
+.btn-outline-secondary:hover {
+	background-color: #868E96;
+	border-color: #868E96;
+	color: #FFFFFF;
+}
+
+.btn-wrapper {
 	display: flex;
-	align-items: stretch;
+	justify-content: stretch;
+	padding: 0 140px;
+}
+
+.btn-cta {
+	flex: 1 0 0px;
+}
+
+.btn-cta .btn {
+	width: 100%;
+}
+
+.btn-xl {
+	width: 33%;
+}
+
+.btn-flex {
 	align-content: stretch;
+	align-items: stretch;
+	display: flex;
 }
 
 .btn-flex .btn:first-child {
@@ -36,52 +67,52 @@ body {
 }
 
 .btn-file {
-	position: relative;
 	overflow: hidden;
+	position: relative;
 }
 .btn-file input[type=file] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	min-width: 100%;
-	min-height: 100%;
-	font-size: 100px;
-	text-align: right;
-	filter: alpha(opacity=0);
-	opacity: 0;
-	outline: none;
 	background: white;
 	cursor: inherit;
 	display: block;
+	filter: alpha(opacity=0);
+	font-size: 100px;
+	min-height: 100%;
+	min-width: 100%;
+	opacity: 0;
+	outline: none;
+	position: absolute;
+	right: 0;
+	text-align: right;
+	top: 0;
 }
 
 .panel-heading-btn h3 {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	line-height: normal;
+	overflow: hidden;
 	padding-top: 8px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .spoiler {
 	border: 1px solid #808080;
 	border-radius: 5px;
-	margin-top: 5px;
 	margin-bottom: 5px;
+	margin-top: 5px;
 }
 .spoiler-toggle {
-	font-weight: bold;
-	cursor: default;
-	padding: 5px;
-	font-size: 10px;
 	color: #808080;
+	cursor: default;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 5px;
 }
 .spoiler-text {
 	padding: 5px;
 }
 .pulse {
-	border-radius: 50%;
 	animation: pulse 4s infinite;
+	border-radius: 50%;
 }
 .pulse:hover {
 	animation: none;
@@ -142,4 +173,9 @@ input[readonly].custom-placed {
 	background-color:transparent;
 	border: 0;
 	font-size: 1em;
+}
+
+.running-now {
+	color: red;
+	font-weight: bold;
 }

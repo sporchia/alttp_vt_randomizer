@@ -4,7 +4,7 @@
 <h2>VT8.28</h2>
 <div class="well">
 	<ul>
-		<li>Daily Games</li>
+		<li>Daily Challenges</li>
 		<li>Fast Menu is now a select for what speed you want</li>
 		<li>Updated Entrance Randomizer to v0.5.1 (has many more options)</li>
 		<li>Customizer fixes based on feedback (Bottles baby, loosened some unnessary restrictions)</li>
@@ -127,7 +127,7 @@
 <div class="well">
 	<ul>
 		<li>Sword Upgrades are dealt with differently by the fill algorithm to be distributed more evenly over the game world.</li>
-		<li>New Full Distribution <a href="https://docs.google.com/spreadsheets/d/17-_wlQBC6Fnt6qSoAkao1NAEoBXeDUmrGCNX5y7auNA" target="_blank">here</a></li>
+		<li>New Full Distribution <a href="https://docs.google.com/spreadsheets/d/17-_wlQBC6Fnt6qSoAkao1NAEoBXeDUmrGCNX5y7auNA" target="_blank" rel="noopener noreferrer">here</a></li>
 		<li>Crystals 5 and 6 are now colored red in the menu (once collected) to avoid confusion over which crystal is which.</li>
 		<li>Fixed the bug where Purple Chest was removed when you s+q to Sanctuary</li>
 		<li>Fixed the bug where swords weren’t really removed in Swordless</li>
@@ -214,7 +214,7 @@
 		</ul></li>
 		<li>Beating Agahnim 1 is now tracked in the spoiler playthrough and referred to in the logic</li>
 		<li>Statistics of item placements using the new algorithm (100k seeds) can be seen
-			<a href="https://docs.google.com/spreadsheets/d/1mAcoPHQM2XRLhrBM2BPeccvhHfoCQNigwlAYASe2Jjs/pubhtml" target="_blank">here</a></li>
+			<a href="https://docs.google.com/spreadsheets/d/1mAcoPHQM2XRLhrBM2BPeccvhHfoCQNigwlAYASe2Jjs/pubhtml" target="_blank" rel="noopener noreferrer">here</a></li>
 		<li>Masochist has been renamed to Expert</li>
 		<li>Powdering anti-faeries turns them into single hearts [hard]</li>
 		<li>Bottles can be found prefilled with everything except faeries (including from Great Faeries) [hard/expert]</li>
