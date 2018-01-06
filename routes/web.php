@@ -215,6 +215,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$variation = $request->input('variation', 'none') ?: 'none';
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+	$game_mode = $request->input('mode', 'standard');
 
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
@@ -223,7 +224,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		foreach ($request->input('l', []) as $location => $item) {
 			$decoded_location = base64_decode($location);
 			if (isset($locations[$decoded_location])) {
-				$locations[$decoded_location]->setItem(Item::get($item));
+				$place_item = Item::get($item);
+				if ($game_mode == 'swordless' && $place_item instanceof Item\Sword) {
+					$place_item = Item::get('TwentyRupees2');
+				}
+				$locations[$decoded_location]->setItem($place_item);
 			}
 		}
 		foreach ($request->input('eq', []) as $item) {
@@ -233,7 +238,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		}
 	}
 
-	config(['game-mode' => $request->input('mode', 'standard')]);
+	config(['game-mode' => $game_mode]);
 
 	$rom = new ALttP\Rom();
 	if ($request->has('heart_speed')) {

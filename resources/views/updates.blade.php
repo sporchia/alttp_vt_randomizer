@@ -5,9 +5,25 @@
 <div class="well">
 	<ul>
 		<li>Daily Challenges</li>
+		<li>Tweaked the Bees a little</li>
+		<li>Glitched modes start Link with Boots</li>
+		<li>You can always S&amp;Q from Boss room after collecting the boss item</li>
+		<li>Swordless mode now allows the use of Bombos to get through Ice Palace</li>
+		<li>Single chests locked behind key doors can contain the keys needed to get to them (1-1 logic)</li>
 		<li>Fast Menu is now a select for what speed you want</li>
-		<li>Updated Entrance Randomizer to v0.5.1 (has many more options)</li>
-		<li>Customizer fixes based on feedback (Bottles baby, loosened some unnessary restrictions)</li>
+		<li>Update to use new zspr format for Sprites</li>
+		<li>Updated Entrance Randomizer to v0.5.1 (has many more options, thanks KevinCathcart)</li>
+		<li>Some Grammar fixes (thanks fatmanspanda)</li>
+		<li>Ganon's Tower Big Key logic fix (thanks pancelor)</li>
+		<li>Rom checksum fix (thanks qwertymodo)</li>
+		<li>Added API endpoints to allow integrations with sprites/settings (thanks roxas232)</li>
+		<li>Redesign of the site to be easier to locate information and look nicer (thanks walking_eye)</li>
+		<li>Customizer fixes based on feedback<ul>
+			<li>Bottles work much better</li>
+			<li>Set starting equipment for Link</li>
+			<li>Loosened some unnessary logic restrictions</li>
+			<li>Better error messages when generation fails</li>
+		</ul></li>
 	</ul>
 </div>
 <h2>VT8.27</h2>

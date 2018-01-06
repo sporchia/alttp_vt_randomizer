@@ -325,12 +325,13 @@ class ItemCollection extends Collection {
 
 	/**
 	 * Requirements for melting things, like ice statues
+	 * should only be used in places where we have put Bombos pads in swordless
 	 *
 	 * @return bool
 	 */
 	public function canMeltThings() {
 		return $this->has('FireRod')
-			|| ($this->has('Bombos') && $this->hasSword());
+			|| ($this->has('Bombos') && (config('game-mode') == 'swordless' || $this->hasSword()));
 	}
 
 	/**

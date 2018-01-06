@@ -26,6 +26,11 @@ class Zspr {
 		}
 
 		$this->data = file_get_contents($source_location);
+
+		if (substr($this->data, 0, 4) !== 'ZSPR') {
+			throw new \Exception('Source not valid Zspr file');
+		}
+
 		$this->bytes = array_values(unpack('C*', $this->data));
 
 		$this->sprite_data_offset = $this->bytes[12] << 24 | $this->bytes[11] << 16 | $this->bytes[10] << 8 | $this->bytes[9];
@@ -48,16 +53,13 @@ class Zspr {
 			$this->author .= $this->unichr($char);
 		}
 
+		$variable_data = array_values(unpack('c*', pack('v*', ...$variable_data)));
 		while (count($variable_data)) {
 			$char = array_shift($variable_data);
 			if (!$char) {
 				break;
 			}
-			$this->author_rom .= $this->unichr($char);
-		}
-
-		if (substr($this->data, 0, 4) !== 'ZSPR') {
-			throw new \Exception('Source not valid Zspr file');
+			$this->author_rom .= chr($char);
 		}
 	}
 
@@ -95,11 +97,11 @@ class Zspr {
 	}
 
 	public function getAuthor() {
-		return $this->display_text;
+		return $this->author;
 	}
 
 	public function getAuthorRomDisplay() {
-		return $this->display_text;
+		return $this->author_rom;
 	}
 	protected function unichr($u) {
 		return mb_convert_encoding('&#' . intval($u) . ';', 'UTF-8', 'HTML-ENTITIES');

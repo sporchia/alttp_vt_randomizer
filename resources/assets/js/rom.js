@@ -128,7 +128,7 @@ var ROM = (function(blob, loaded_callback) {
 	}.bind(this);
 
 	this.parseZsprGfx = function(zspr) {
-		// we are going to just hoe that it's in the proper format O.o
+		// we are going to just hope that it's in the proper format O.o
 		return new Promise(function(resolve, reject) {
 			var gfx_offset =  zspr[12] << 24 | zspr[11] << 16 | zspr[10] << 8 | zspr[9];
 			var palette_offset = zspr[18] << 24 | zspr[17] << 16 | zspr[16] << 8 | zspr[15];
@@ -142,7 +142,7 @@ var ROM = (function(blob, loaded_callback) {
 			}
 			// Gloves
 			for (var i = 0; i < 4; ++i) {
-				u_array[0xDEDF5 + i] = zspr[palette_offset + 0x7000 + i];
+				u_array[0xDEDF5 + i] = zspr[palette_offset + 120 + i];
 			}
 			resolve(this);
 		}.bind(this));
