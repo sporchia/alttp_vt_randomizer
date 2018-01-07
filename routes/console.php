@@ -2,6 +2,7 @@
 
 use ALttP\Console\Commands\Distribution;
 use ALttP\Sprite;
+use ALttP\Support\Zspr;
 use Carbon\Carbon;
 
 Artisan::command('alttp:test', function () {
@@ -128,21 +129,25 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 			return "$sprites/$filename";
 		}, scandir($sprites));
 		$sprites = array_filter($sprites, function($file) {
-			return is_readable($file) && filesize($file) == 28792;
+			return is_readable($file) && !in_array($file, ['.', '..']);
 		});
 	} else {
-		if (!is_readable($filename) || filesize($filename) != 28792) {
+		if (!is_readable($filename)) {
 			return;
 		}
 		$sprites = [$sprites];
 	}
-	foreach ($sprites as $spr) {
-		$data = array_values(unpack("C*", file_get_contents($spr)));
+	foreach ($sprites as $spr_file) {
+		try {
+			$spr = new Zspr($spr_file);
+		} catch (Exception $e) {
+			continue;
+		}
 
-		$sprite = array_slice($data, 0, 0x7000);
+		$sprite = $spr->getPixelBytes();
 		$palette = array_map(function($bytes) {
 			return $bytes[0] + ($bytes[1] << 8);
-		}, array_chunk(array_slice($data, 0x7000, 30), 2));
+		}, array_chunk(array_slice($spr->getPaletteBytes(), 0, 30), 2));
 
 		$im = imagecreatetruecolor(16, 24);
 		imagesavealpha($im, true);
@@ -192,14 +197,42 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 		imagesavealpha($dst, true);
 		imagecopyresized($dst, $im, 0, 0, 0, 0, 16 * 8, 24 * 8, 16, 24);
 
-		imagepng($im, "$spr.png");
+		imagepng($im, "$spr_file.png");
 		imagedestroy($im);
-		imagepng($dst, "$spr.lg.png");
+		imagepng($dst, "$spr_file.lg.png");
 		imagedestroy($dst);
 
-		//montage *.spr.lg.png -tile 6x1 -background none -geometry +4+4 sprites.X.lg.png
-		//montage *.spr.png -tile x1 -background none -geometry +0+0 sprites.X.png
+		//montage *.zspr.lg.png -tile 6x -background none -geometry +4+4 sprites.X.lg.png
+		//montage *.zspr.png -tile x1 -background none -geometry +0+0 sprites.X.png
 	}
+});
+
+Artisan::command('alttp:sprconf {sprites}', function($sprites) {
+	if (!is_dir($sprites)) {
+		return $this->error('Must be a directory of zsprs');
+	}
+
+	$sprites = array_map(function($filename) use ($sprites) {
+		return "$sprites/$filename";
+	}, scandir($sprites));
+
+	$output = [];
+	$i = 0;
+	foreach ($sprites as $spr_file) {
+		try {
+			$spr = new Zspr($spr_file);
+		} catch (Exception $e) {
+			continue;
+		}
+		$output[basename($spr_file)] = [
+			'name' => $spr->getDisplayText(),
+			'author' => $spr->getAuthor(),
+		];
+		$this->info(sprintf(".icon-custom-%s {background-position: %d * -16px 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
+	}
+	file_put_contents(config_path('sprites.php'), preg_replace('/  /', "\t",
+		preg_replace(["/^array \(/", "/\)$/", "/=>\s*array\s*\(/", "/\),/"], ["<?php\n\nreturn [", "];\n", '=> [', '],'], var_export($output, true))
+	));
 });
 
 Artisan::command('alttp:sprpub', function() {

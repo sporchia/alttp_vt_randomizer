@@ -24,8 +24,8 @@
 				<span class="input-group-addon">Play as</span>
 				<select id="sprite-gfx" class="form-control selectpicker" data-live-search="true"
 					data-style="sprite-icons" data-dropup-auto="false">
-				@foreach(config('alttp.sprites') as $sprite => $sprite_name)
-					<option data-icon="icon-custom-{{ str_replace(' ', '', $sprite_name) }}" value="{{ $sprite }}">{{ $sprite_name }}</option>
+				@foreach(config('sprites') as $sprite_file => $sprite_info)
+					<option data-icon="icon-custom-{{ str_replace([' ', ')', '(', '.'], '', $sprite_info['name']) }}" value="{{ $sprite_file }}">{{ $sprite_info['name'] }}</option>
 				@endforeach
 					<option data-icon="icon-custom-Random" value="random">Random</option>
 				</select>

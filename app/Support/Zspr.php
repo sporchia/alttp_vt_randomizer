@@ -77,10 +77,20 @@ class Zspr {
 		return substr($this->data, $this->sprite_data_offset, $length);
 	}
 
+	// we have faster access through the internal bytes array, but dirty quick for release here
+	public function getPixelBytes() {
+		return array_values(unpack('C*', $this->getPixelData()));
+	}
+
 	public function getPaletteData() {
 		$length = $this->bytes[20] << 8 | $this->bytes[19];
 
 		return substr($this->data, $this->palette_data_offset, $length);
+	}
+
+	// @TODO: use internal bytes array instead *derp*
+	public function getPaletteBytes() {
+		return array_values(unpack('C*', $this->getPaletteData()));
 	}
 
 	public function getType() {

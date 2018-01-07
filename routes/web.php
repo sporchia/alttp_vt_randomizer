@@ -27,9 +27,10 @@ Route::get('base_rom/settings', function () {
 
 Route::get('sprites', function () {
 	$sprites =  [];
-	foreach (config('alttp.sprites') as $file => $name) {
+	foreach (config('sprites') as $file => $info) {
 		$sprites[] = [
-			'name' => $name,
+			'name' => $info['name'],
+			'author' => $info['author'],
 			'file' => 'http://spr.beegunslingers.com/' . $file,
 		];
 	}

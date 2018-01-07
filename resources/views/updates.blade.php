@@ -12,6 +12,7 @@
 		<li>Single chests locked behind key doors can contain the keys needed to get to them (1-1 logic)</li>
 		<li>Fast Menu is now a select for what speed you want</li>
 		<li>Update to use new zspr format for Sprites</li>
+		<li>Credits updated</li>
 		<li>Updated Entrance Randomizer to v0.5.1 (has many more options, thanks KevinCathcart)</li>
 		<li>Some Grammar fixes (thanks fatmanspanda)</li>
 		<li>Ganon's Tower Big Key logic fix (thanks pancelor)</li>
@@ -24,6 +25,9 @@
 			<li>Loosened some unnessary logic restrictions</li>
 			<li>Better error messages when generation fails</li>
 		</ul></li>
+		<li>Added new player options<br />
+			<img src="http://spr.beegunslingers.com/sprites.28.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 </div>
 <h2>VT8.27</h2>
@@ -43,7 +47,7 @@
 		<li>Cleaned up the spoiler section of the site to assist in finding things</li>
 		<li>Complete overhaul of the custom section, see the new <a href="/customizer">customizer</a></li>
 		<li>Added many new player options<br />
-			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.27.lg.png"
+			<img src="http://spr.beegunslingers.com/sprites.27.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 	<div class="panel panel-info">
@@ -62,7 +66,7 @@
 		<li>Turtle Rock small key fix</li>
 		<li>Skull Woods small key fix</li>
 		<li>Added a few new player options<br />
-			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.4.lg.png"
+			<img src="http://spr.beegunslingers.com/sprites.4.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 </div>
@@ -90,7 +94,7 @@
 		<li>Entrance Randomizer integration (thanks LLCoolDave)</li>
 		<li>Two new chests have been added to Waterfall fairy</li>
 		<li>Added many new player options (and updated a few)<br />
-			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.3.lg.png"
+			<img src="http://spr.beegunslingers.com/sprites.3.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 	<div class="panel panel-info">
@@ -126,7 +130,7 @@
 		<li>Skull Woods spike trap room chest set back to Key all the time</li>
 		<li>New Fill algorithm that maximizes item randimization</li>
 		<li>Added many new player options<br />
-			<img src="http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/sprites.2.lg.png"
+			<img src="http://spr.beegunslingers.com/sprites.2.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 	<div class="panel panel-info">
