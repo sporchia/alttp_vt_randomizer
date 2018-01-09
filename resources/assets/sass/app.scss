@@ -179,3 +179,22 @@ input[readonly].custom-placed {
 	color: red;
 	font-weight: bold;
 }
+
+.tbody-striped {
+  > tbody {
+ 	> tr {
+    	background-color: $table-bg-accent;
+  	}
+    > tr:nth-of-type(odd) {
+    	background-color: inherit;
+  	}
+  }
+  > tbody:nth-of-type(odd){
+ 	> tr {
+    	background-color: inherit;
+  	}
+    > tr:nth-of-type(odd) {
+    	background-color: $table-bg-accent;
+  	}
+  }
+}

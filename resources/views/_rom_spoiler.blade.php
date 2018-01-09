@@ -86,6 +86,38 @@ function pasrseSpoilerToTabs(spoiler) {
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'
 				+ '</div>').append(table));
+		} else if (['paths'].indexOf(section) !== -1) {
+			var table = $('<table class="table tbody-striped"><thead><tr><th>Location</th><th>Region</th><th>Entrance/Exit</th></tr></thead></table>');
+			var keys = Object.keys(spoiler[section]).sort()
+			for (key in keys) {
+				var loc = keys[key];
+				var path = spoiler[section][loc];
+				path.reverse();
+				var span = path.length;
+				var html = '<tbody><tr class="spoil-item-location"><td class="col-md-4" rowspan="' + span + '">' + loc + '</td>';
+				while (path.length)  {
+					var segment = path.pop();
+					var region = segment[0];
+					var entrance = segment[1];
+
+					html += '<td class="col-md-4">' + region + "</td>";
+
+					if(entrance){
+						html += '<td class="col-md-4">' + entrance + "</td>";
+					} else {
+						html += '<td class="col-md-4"></td>';
+					}
+					html += '</tr>';
+					if (path.length) {
+						html += '<tr class="spoil-item-location">';
+					}
+				}
+				html += '</tbody>'
+				table.append($(html));
+			}
+			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
+				+ ((section == active_nav) ? ' active' : '') + '">'
+				+ '</div>').append(table));
 		} else if (['playthrough'].indexOf(section) === -1) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
@@ -101,13 +133,13 @@ function pasrseSpoilerToTabs(spoiler) {
 				+ ((section == active_nav) ? ' active' : '') + '"><pre>' + JSON.stringify(spoiler[section], null, 4)
 				+ '</pre></div>'));
 		}
-		if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) === -1) {
+		if (['meta', 'playthrough', 'Fountains', 'Medallions', 'paths'].indexOf(section) === -1) {
 			tabsContent.set('spoiler-' + section.replace(/ /g, '_'), Object.keys(spoiler[section]).map(function (key) {
 				return spoiler[section][key];
 			}));
 		}
 		for (loc in spoiler[section]) {
-			if (['meta', 'playthrough', 'Fountains', 'Medallions'].indexOf(section) > -1) continue;
+			if (['meta', 'playthrough', 'Fountains', 'Medallions', 'paths'].indexOf(section) > -1) continue;
 			items[spoiler[section][loc]] = true;
 		}
 		var sopts = '';
