@@ -16,6 +16,32 @@ function mt_shuffle(array $array) {
 }
 
 /**
+ * Random weighted select from array using mt_rand and weights
+ *
+ * @param array $array array to pick from
+ * @param array $weights weights of array to pick from
+ * @param int $pick number of items to pick
+ *
+ * @return array
+ */
+function weighted_random_pick(array $array, array $weights, int $pick = 1) {
+	$picked = [];
+	$total_weight = array_sum($weights);
+	while(--$pick >= 0) {
+		$random_pick = mt_rand(1, $total_weight);
+		$current = 0;
+		foreach ($array as $key => $item) {
+			$current += $weights[$key];
+			if ($random_pick <= $current) {
+				$picked[] = $item;
+				break;
+			}
+		}
+	}
+	return $picked;
+}
+
+/**
  * Sort array by key recursively (this is basically an extension of ksort)
  * @see http://php.net/manual/en/function.ksort.php
  *

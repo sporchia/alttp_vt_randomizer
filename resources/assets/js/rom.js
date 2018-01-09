@@ -89,7 +89,7 @@ var ROM = (function(blob, loaded_callback) {
 	this.updateChecksum = function() {
 		return new Promise(function(resolve, reject) {
 			var sum = u_array.reduce(function(sum, mbyte, i) {
-				if (i >= 0x7FB0 && i <= 0x7FE0) {
+				if (i >= 0x7FDC && i < 0x7FE0) {
 					return sum;
 				}
 				return sum + mbyte;
@@ -108,6 +108,9 @@ var ROM = (function(blob, loaded_callback) {
 	};
 
 	this.parseSprGfx = function(spr) {
+		if ('ZSPR' == String.fromCharCode(spr[0]) + String.fromCharCode(spr[1]) + String.fromCharCode(spr[2]) + String.fromCharCode(spr[3])) {
+			return this.parseZsprGfx(spr);
+		}
 		return new Promise(function(resolve, reject) {
 			for (var i = 0; i < 0x7000; i++) {
 				u_array[0x80000 + i] = spr[i];
@@ -120,6 +123,27 @@ var ROM = (function(blob, loaded_callback) {
 			u_array[0xDEDF6] = spr[0x7037];
 			u_array[0xDEDF7] = spr[0x7054];
 			u_array[0xDEDF8] = spr[0x7055];
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
+	this.parseZsprGfx = function(zspr) {
+		// we are going to just hope that it's in the proper format O.o
+		return new Promise(function(resolve, reject) {
+			var gfx_offset =  zspr[12] << 24 | zspr[11] << 16 | zspr[10] << 8 | zspr[9];
+			var palette_offset = zspr[18] << 24 | zspr[17] << 16 | zspr[16] << 8 | zspr[15];
+			// GFX
+			for (var i = 0; i < 0x7000; i++) {
+				u_array[0x80000 + i] = zspr[gfx_offset + i];
+			}
+			// Palettes
+			for (var i = 0; i < 120; i++) {
+				u_array[0xDD308 + i] = zspr[palette_offset + i];
+			}
+			// Gloves
+			for (var i = 0; i < 4; ++i) {
+				u_array[0xDEDF5 + i] = zspr[palette_offset + 120 + i];
+			}
 			resolve(this);
 		}.bind(this));
 	}.bind(this);
@@ -142,12 +166,28 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
-	this.setFastMenu = function(enable) {
+	this.setMenuSpeed = function(speed) {
 		return new Promise(function(resolve, reject) {
-			this.write(0x180048, enable ? 0x01 : 0x00);
-			this.write(0x6DD9A, enable ? 0x20 : 0x11);
-			this.write(0x6DF2A, enable ? 0x20 : 0x12);
-			this.write(0x6E0E9, enable ? 0x20 : 0x12);
+			var fast = false;
+			switch (speed) {
+				case 'instant':
+				this.write(0x180048, 0xE8);
+					fast = true;
+					break;
+				case 'fast':
+				this.write(0x180048, 0x10);
+					break;
+				case 'normal':
+				default:
+				this.write(0x180048, 0x08);
+					break;
+				case 'slow':
+				this.write(0x180048, 0x04);
+					break;
+			}
+			this.write(0x6DD9A, fast ? 0x20 : 0x11);
+			this.write(0x6DF2A, fast ? 0x20 : 0x12);
+			this.write(0x6E0E9, fast ? 0x20 : 0x12);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);

@@ -61,7 +61,7 @@ class SkullWoodsTest extends TestCase {
 
 	public function fillPool() {
 		return [
-			["Skull Woods - Big Chest", false, 'BigKeyD3', [], ['BigKeyD3']],
+			["Skull Woods - Big Chest", true, 'BigKeyD3', [], ['BigKeyD3']],
 
 			["Skull Woods - Big Key Chest", true, 'BigKeyD3', [], ['BigKeyD3']],
 

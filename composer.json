@@ -19,7 +19,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-rackspace": "^1.0",
-        "z3/entrancerandomizer": "0.4.7"
+        "z3/enemizer": "6.0.22",
+        "z3/entrancerandomizer": "0.5.2"
     },
     "require-dev": {
         "sami/sami": "*",
@@ -33,12 +34,24 @@
         {
             "type": "package",
             "package": {
-                "name": "z3/entrancerandomizer",
-                "version": "0.4.7",
+                "name": "z3/enemizer",
+                "version": "6.0.22",
                 "source": {
-                    "url": "https://github.com/LLCoolDave/ALttPEntranceRandomizer",
+                    "url": "https://github.com/Zarby89/Enemizer",
                     "type": "git",
-                    "reference": "tags/0.4.7-dev"
+                    "reference": "tags/6.0.22"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "z3/entrancerandomizer",
+                "version": "0.5.2",
+                "source": {
+                    "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
+                    "type": "git",
+                    "reference": "tags/0.5.2-dev"
                 }
             }
         }
