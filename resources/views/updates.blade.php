@@ -13,7 +13,7 @@
 		<li>Fast Menu is now a select for what speed you want</li>
 		<li>Update to use new zspr format for Sprites</li>
 		<li>Credits updated</li>
-		<li>Updated Entrance Randomizer to v0.5.1 (has many more options, thanks KevinCathcart)</li>
+		<li>Updated Entrance Randomizer to v0.5.2 (has many more options, thanks KevinCathcart)</li>
 		<li>Some Grammar fixes (thanks fatmanspanda)</li>
 		<li>Ganon's Tower Big Key logic fix (thanks pancelor)</li>
 		<li>Rom checksum fix (thanks qwertymodo)</li>
