@@ -7,7 +7,7 @@ return [
 				'ProgressiveSword' => 8,
 				'ProgressiveShield' => 6,
 				'ProgressiveArmor' => 4,
-				'ExtraBottles' => 7,
+				'Bottles' => 8,
 				'TwentyRupees' => 14,
 				'HalfMagicUpgrade' => 2,
 				'Lamp' => 3,
@@ -19,6 +19,9 @@ return [
 				'Shield' => 'TwentyRupees',
 				'Sword' => 'TwentyRupees',
 			],
+		],
+		'region' => [
+			'requireBetterEquipment' => true,
 		],
 		'rom' => [
 			'compassOnPickup' => 'on',
@@ -38,6 +41,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -84,6 +90,9 @@ return [
 					'value' => [
 						'GreenClock' => 240,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -136,6 +145,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -165,6 +177,9 @@ return [
 					'value' => [
 						'GreenClock' => 240,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -255,6 +270,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -288,6 +306,9 @@ return [
 					'value' => [
 						'GreenClock' => 240,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -379,6 +400,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -412,6 +436,9 @@ return [
 						'GreenClock' => 240,
 						'RedClock' => - 32400,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -503,6 +530,9 @@ return [
 				],
 			],
 			'ohko' => [
+				'region' => [
+					'cantTakeDamage' => true,
+				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
@@ -536,6 +566,9 @@ return [
 						'GreenClock' => 240,
 						'RedClock' => - 32400,
 					],
+				],
+				'region' => [
+					'cantTakeDamage' => true,
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
@@ -622,70 +655,111 @@ return [
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
-	'sprites' => [
-		'link.1.spr' => 'Link',
-		'4slink-armors.1.spr' => 'Four Swords Link',
-		'boo.2.spr' => 'Boo',
-		'boy.2.spr' => 'Boy',
-		'cactuar.1.spr' => 'Cactuar',
-		'cat.1.spr' => 'Cat',
-		'catboo.1.spr' => 'Cat Boo',
-		'cirno.1.spr' => 'Cirno',
-		'darkboy.2.spr' => 'Dark Boy',
-		'darkgirl.1.spr' => 'Dark Girl',
-		'darklink.1.spr' => 'Dark Link',
-		'shadowsaku.1.spr' => 'Dark Maple Queen',
-		'darkswatchy.1.spr' => 'Dark Swatchy',
-		'darkzelda.1.spr' => 'Dark Zelda',
-		'darkzora.2.spr' => 'Dark Zora',
-		'decidueye.1.spr' => 'Decidueye',
-		'demonlink.1.spr' => 'Demon Link',
-		'froglink.2.spr' => 'Frog',
-		'ganondorf.1.spr' => 'Ganondorf',
-		'garfield.1.spr' => 'Garfield',
-		'girl.2.spr' => 'Girl',
-		'headlesslink.1.spr' => 'Headless Link',
-		'invisibleman.1.spr' => 'Invisible Man',
-		'inkling.1.spr' => 'Inkling',
-		'kirby-meta.2.spr' => 'Kirby',
-		'kore8.1.spr' => 'Kore8',
-		'littlepony.1.spr' => 'Pony',
-		'luigi.1.spr' => 'Luigi',
-		'maiden.2.spr' => 'Maiden',
-		'maplequeen.1.spr' => 'Maple Queen',
-		'mario-classic.1.spr' => 'Mario',
-		'marisa.1.spr' => 'Marisa',
-		'mikejones.2.spr' => 'Mike Jones',
-		'minishcaplink.3.spr' => 'Minish Cap Link',
-		'modernlink.1.spr' => 'Modern Link',
-		'mog.1.spr' => 'Mog',
-		'mouse.1.spr' => 'Mouse',
-		'naturelink.1.spr' => 'Nature Link',
-		'negativelink.1.spr' => 'Negative Link',
-		'neonlink.1.spr' => 'Neon Link',
-		'oldman.1.spr' => 'Old Man',
-		'pinkribbonlink.1.spr' => 'Pink Ribbon Link',
-		'popoi.1.spr' => 'Popoi',
-		'pug.2.spr' => 'Pug',
-		'purplechest-bottle.2.spr' => 'Purple Chest',
-		'roykoopa.1.spr' => 'Roy Koopa',
-		'rumia.1.spr' => 'Rumia',
-		'samus.4.spr' => 'Samus',
-		'sodacan.1.spr' => 'Soda Can',
-		'staticlink.1.spr' => 'Static Link',
-		'santalink.2.spr' => 'Santa Link',
-		'superbunny.1.spr' => 'Super Bunny',
-		'swatchy.1.spr' => 'Swatchy',
-		'tingle.1.spr' => 'Tingle',
-		'toad.1.spr' => 'Toad',
-		'valeera.1.spr' => 'Valeera',
-		'vitreous.1.spr' => 'Vitreous',
-		'vivi.1.spr' => 'Vivi',
-		'will.1.spr' => 'Will',
-		'wizzrobe.4.spr' => 'Wizzrobe',
-		'yunica.1.spr' => 'Yunica',
-		'zelda.2.spr' => 'Zelda',
-		'zerosuitsamus.1.spr' => 'Zero Suit Samus',
-		'zora.1.spr' => 'Zora',
+	'randomizer' => [
+		'entrance' => [
+			'difficulties' => [
+				'easy' => 'Easy',
+				'normal' => 'Normal',
+				'hard' => 'Hard',
+				'expert' => 'Expert',
+				'insane' => 'Insane',
+			],
+			'goals' => [
+				'ganon' => 'Defeat Ganon',
+				'dungeons' => 'All Dungeons',
+				'pedestal' => 'Master Sword Pedestal',
+				'triforce-hunt' => 'Triforce Pieces',
+			],
+			'logics' => [
+				'NoMajorGlitches' => 'No Glitches',
+			],
+			'modes' => [
+				'open' => 'Open',
+				'swordless' => 'Swordless',
+			],
+			'shuffles' => [
+				'simple' => 'Simple',
+				'restricted' => 'Restricted',
+				'full' => 'Full',
+				'madness' => 'Madness',
+				'insanity' => 'Insanity',
+			],
+			'variations' => [
+				'none' => 'None',
+				'timed-race' => 'Timed Race',
+				'timed-ohko' => 'Timed OHKO',
+				'ohko' => 'OHKO',
+				'triforce-hunt' => 'Triforce Piece Hunt',
+				'key-sanity' => 'Key-sanity',
+			],
+		],
+		'item' => [
+			'difficulties' => [
+				'easy' => 'Easy',
+				'normal' => 'Normal',
+				'hard' => 'Hard',
+				'expert' => 'Expert',
+				'insane' => 'Insane',
+			],
+			'goals' => [
+				'ganon' => 'Defeat Ganon',
+				'dungeons' => 'All Dungeons',
+				'pedestal' => 'Master Sword Pedestal',
+				'triforce-hunt' => 'Triforce Pieces',
+			],
+			'logics' => [
+				'NoMajorGlitches' => 'No Glitches',
+				'OverworldGlitches' => 'Overworld Glitches',
+				'MajorGlitches' => 'Major Glitches',
+			],
+			'modes' => [
+				'standard' => 'Standard',
+				'open' => 'Open',
+				'swordless' => 'Swordless',
+			],
+			'variations' => [
+				'none' => 'None',
+				'timed-race' => 'Timed Race',
+				'timed-ohko' => 'Timed OHKO',
+				'ohko' => 'OHKO',
+				'triforce-hunt' => 'Triforce Piece Hunt',
+				'key-sanity' => 'Key-sanity',
+			],
+		],
+		'daily_weights' => [
+			'item' => [
+				'difficulties' => [
+					'easy' => 20,
+					'normal' => 60,
+					'hard' => 10,
+					'expert' => 7,
+					'insane' => 3,
+				],
+				'goals' => [
+					'ganon' => 65,
+					'dungeons' => 15,
+					'pedestal' => 20,
+					'triforce-hunt' => 0,
+				],
+				'logics' => [
+					'NoMajorGlitches' => 85,
+					'OverworldGlitches' => 13,
+					'MajorGlitches' => 2,
+				],
+				'modes' => [
+					'standard' => 40,
+					'open' => 40,
+					'swordless' => 20,
+				],
+				'variations' => [
+					'none' => 69,
+					'timed-race' => 0,
+					'timed-ohko' => 5,
+					'ohko' => 1,
+					'triforce-hunt' => 10,
+					'key-sanity' => 15,
+				],
+			],
+		],
 	],
 ];

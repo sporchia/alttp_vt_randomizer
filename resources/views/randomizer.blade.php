@@ -8,7 +8,7 @@
 @yield('loader')
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Generate Item Randomizer Game (v8.{!! ALttP\Randomizer::LOGIC !!})</h3>
+		<h3 class="panel-title pull-left">Item Randomizer (v8.{!! ALttP\Randomizer::LOGIC !!})</h3>
 		<div class="btn-toolbar pull-right">
 			<a class="btn btn-default" href="/entrance/randomizer">Switch to Entrance Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			@yield('rom-settings-button')
@@ -21,9 +21,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Mode</span>
 					<select id="mode" class="form-control selectpicker">
-						<option value="standard">Standard</option>
-						<option value="open">Open</option>
-						<option value="swordless">Swordless</option>
+						@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
+							<option value="{{ $mode }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -31,9 +31,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Logic</span>
 					<select id="logic" class="form-control selectpicker">
-						<option value="NoMajorGlitches">No Glitches</option>
-						<option value="OverworldGlitches">Overworld Glitches</option>
-						<option value="MajorGlitches">Major Glitches</option>
+						@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
+							<option value="{{ $logic }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -43,10 +43,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Goal</span>
 					<select id="goal" class="form-control selectpicker">
-						<option value="ganon">Defeat Ganon</option>
-						<option value="dungeons">All Dungeons</option>
-						<option value="pedestal">Master Sword Pedestal</option>
-						<option value="triforce-hunt">Triforce Pieces</option>
+						@foreach (config('alttp.randomizer.item.goals') as $goal => $name)
+							<option value="{{ $goal }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -54,11 +53,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
-						<option value="easy">Easy</option>
-						<option value="normal">Normal</option>
-						<option value="hard">Hard</option>
-						<option value="expert">Expert</option>
-						<option value="insane">Insane</option>
+						@foreach (config('alttp.randomizer.item.difficulties') as $difficulty => $name)
+							<option value="{{ $difficulty }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -77,12 +74,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Variation</span>
 					<select id="variation" class="form-control selectpicker">
-						<option value="none">None</option>
-						<option value="timed-race">Timed Race</option>
-						<option value="timed-ohko">Timed OHKO</option>
-						<option value="ohko">OHKO</option>
-						<option value="triforce-hunt">Triforce Piece Hunt</option>
-						<option value="key-sanity">Key-sanity</option>
+						@foreach (config('alttp.randomizer.item.variations') as $variation => $name)
+							<option value="{{ $variation }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -134,7 +128,7 @@
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
-	<input type="hidden" name="menu_fast" value="false" />
+	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
 	<input type="hidden" name="tournament" value="false" />
 </form>
@@ -162,7 +156,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});

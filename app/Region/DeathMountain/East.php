@@ -97,12 +97,6 @@ class East extends Region {
 					&& $items->canLiftRocks() && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items));
 		});
 
-		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots')
-				|| (($items->has('Hookshot') || $items->has('MagicMirror'))
-					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
-		};
-
 		return $this;
 	}
 
@@ -126,7 +120,7 @@ class East extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('PegasusBoots')
-				|| (($items->has('Hookshot') || ($items->has('MagicMirror') && $items->has('Hammer')))
+				|| (($items->has('Hookshot') || $items->has('MagicMirror'))
 					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 

@@ -60,7 +60,7 @@ function applyHash(rom, hash, second_attempt) {
 				return rom.setMusicVolume($('#generate-music-on').prop('checked'))
 			})
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});

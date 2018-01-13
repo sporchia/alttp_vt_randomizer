@@ -8,7 +8,7 @@
 @yield('loader')
 <div id="seed-generate" class="panel panel-info" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Generate Entrance Randomizer Game ({!! ALttP\EntranceRandomizer::VERSION !!})</h3>
+		<h3 class="panel-title pull-left">Entrance Randomizer ({!! ALttP\EntranceRandomizer::VERSION !!})</h3>
 		<div class="btn-toolbar pull-right">
 			<a class="btn btn-default" href="/randomizer">Switch to Item Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			@yield('rom-settings-button')
@@ -21,8 +21,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Mode</span>
 					<select id="mode" class="form-control selectpicker">
-						<option value="open">Open</option>
-						<option value="swordless">Swordless</option>
+						@foreach (config('alttp.randomizer.entrance.modes') as $mode => $name)
+							<option value="{{ $mode }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -30,7 +31,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Logic</span>
 					<select id="logic" class="form-control selectpicker">
-						<option value="NoMajorGlitches">No Glitches</option>
+						@foreach (config('alttp.randomizer.entrance.logics') as $logic => $name)
+							<option value="{{ $logic }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -40,10 +43,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Goal</span>
 					<select id="goal" class="form-control selectpicker">
-						<option value="ganon">Defeat Ganon</option>
-						<option value="dungeons">All Dungeons</option>
-						<option value="pedestal">Master Sword Pedestal</option>
-						<option value="triforce-hunt">Triforce Pieces</option>
+						@foreach (config('alttp.randomizer.entrance.goals') as $goal => $name)
+							<option value="{{ $goal }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -51,7 +53,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
-						<option value="normal">Normal</option>
+						@foreach (config('alttp.randomizer.entrance.difficulties') as $difficulty => $name)
+							<option value="{{ $difficulty }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -70,10 +74,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Variation</span>
 					<select id="variation" class="form-control selectpicker">
-						<option value="none">None</option>
-						<option value="timed-race">Timed Race</option>
-						<option value="timed-ohko">Timed OHKO</option>
-						<option value="triforce-hunt">Triforce Piece Hunt</option>
+						@foreach (config('alttp.randomizer.entrance.variations') as $variation => $name)
+							<option value="{{ $variation }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -83,11 +86,9 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Shuffle</span>
 					<select id="shuffle" class="form-control selectpicker">
-						<option value="simple">Simple</option>
-						<option value="restricted">Restricted</option>
-						<option value="full">Full</option>
-						<option value="madness">Madness</option>
-						<option value="insanity">Insanity</option>
+						@foreach (config('alttp.randomizer.entrance.shuffles') as $shuffle => $name)
+							<option value="{{ $shuffle }}">{{ $name }}</option>
+						@endforeach
 					</select>
 				</div>
 			</div>
@@ -140,7 +141,7 @@
 	<input type="hidden" name="shuffle" value="full" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
-	<input type="hidden" name="menu_fast" value="false" />
+	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
 	<input type="hidden" name="tournament" value="false" />
 </form>
@@ -168,7 +169,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
+			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
