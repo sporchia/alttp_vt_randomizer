@@ -14,6 +14,7 @@
     "require": {
         "php": ">=7.0.0",
         "doctrine/dbal": "^2.5",
+        "facebook/webdriver": "^1.5",
         "hashids/hashids": "^2.0",
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",

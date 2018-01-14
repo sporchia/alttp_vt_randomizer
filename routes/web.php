@@ -164,6 +164,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	$variation = $request->input('variation', 'none') ?: 'none';
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$shuffle = $request->input('shuffle', 'full') ?: 'full';
+	$ganon_shuffle = $request->input('ganon_shuffle') == 'true';
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
@@ -182,7 +183,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	}
 
 	try {
-		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle);
+		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle, $ganon_shuffle);
 		$rand->makeSeed($seed_id);
 		$rand->writeToRom($rom);
 		$seed = $rand->getSeed();
