@@ -1,6 +1,7 @@
 <?php namespace ALttP\Support;
 
 use ALttP\Item;
+use ArrayIterator;
 
 /**
  * Collection of Items, maintains counts of items collected as well.
@@ -249,6 +250,15 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Get an iterator for the items.
+	 *
+	 * @return ArrayIterator
+	 */
+	public function getIterator() {
+		return new ArrayIterator($this->toArray());
+	}
+
+	/**
 	 * Count the number of an item in the collection.
 	 *
 	 * @param mixed $key
@@ -315,12 +325,13 @@ class ItemCollection extends Collection {
 
 	/**
 	 * Requirements for melting things, like ice statues
+	 * should only be used in places where we have put Bombos pads in swordless
 	 *
 	 * @return bool
 	 */
 	public function canMeltThings() {
 		return $this->has('FireRod')
-			|| ($this->has('Bombos') && $this->hasSword());
+			|| ($this->has('Bombos') && (config('game-mode') == 'swordless' || $this->hasSword()));
 	}
 
 	/**
@@ -368,10 +379,10 @@ class ItemCollection extends Collection {
 	 *
 	 * @return bool
 	 */
-	public function canExtendMagic() {
-		return $this->has('HalfMagic')
-			|| $this->has('QuarterMagic')
-			|| $this->hasABottle();
+	public function canExtendMagic($bars = 2) {
+		return ($this->has('HalfMagic') ? 2 : 1)
+			* ($this->has('QuarterMagic') ? 4 : 1)
+			* ($this->bottleCount() + 1) >= $bars;
 	}
 
 	/**
@@ -382,6 +393,34 @@ class ItemCollection extends Collection {
 	public function glitchedLinkInDarkWorld() {
 		return $this->has('MoonPearl')
 			|| $this->hasABottle();
+	}
+
+	/**
+	 * Requirements for killing most things
+	 *
+	 * @TODO: account for 10 bombs in escape
+	 *
+	 * @return bool
+	 */
+	public function canKillMostThings($enemies = 5) {
+		return $this->hasSword()
+			|| $this->has('CaneOfSomaria')
+			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
+			|| $this->canShootArrows() // @TODO: fill arrows in standard escape
+			|| $this->has('Hammer')
+			|| $this->has('FireRod');
+	}
+
+	/**
+	 * Can Get Golden Bee
+	 *
+	 * @return bool
+	 */
+	public function canGetGoodBee() {
+		return $this->has('BugCatchingNet')
+			&& $this->hasABottle()
+			&& ($this->has('PegasusBoots')
+				|| ($this->hasSword() && $this->has('Quake')));
 	}
 
 	/**
@@ -417,9 +456,20 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function hasBottle(int $at_least = 1) : bool {
+		return $this->bottleCount() >= $at_least;
+	}
+
+	/**
+	 * Requirements for having X bottles
+	 *
+	 * @param int $at_least mininum number of item in collection
+	 *
+	 * @return bool
+	 */
+	public function bottleCount() : int {
 		return $this->filter(function($item) {
 			return $item instanceof Item\Bottle;
-		})->count() >= $at_least;
+		})->count();
 	}
 
 	/**

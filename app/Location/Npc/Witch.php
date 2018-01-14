@@ -181,7 +181,7 @@ class Witch extends Npc {
 			case Item::get('PowerStar'):
 				return "the powder or the stars";
 			case Item::get('TriforcePiece'):
-				return "witches hold the key";
+				return "hoarding for ganon";
 			case Item::get('Nothing'):
 			default:
 				return "mushrooms go poof";

@@ -13,30 +13,31 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 27;
+	const LOGIC = 28;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
 	protected $difficulty;
 	protected $variation;
 	protected $logic;
+	protected $starting_equipment;
 	static protected $logic_array = [
-		0x92, 0x84, 0xD0, 0xEA, 0x41, 0x88, 0x1F, 0x61,0x9D, 0xB6, 0xFA, 0xD7, 0xE3, 0x1C, 0x34, 0x60,
-		0xBD, 0x98, 0xA8, 0x5C, 0xE2, 0xA5, 0x23, 0x2E,0x40, 0x01, 0x20, 0xA6, 0x30, 0xFE, 0xAE, 0xEF,
-		0x5E, 0x35, 0x37, 0x15, 0x27, 0x2C, 0x2D, 0xF4,0x12, 0x44, 0xB2, 0x00, 0xC9, 0x90, 0xD6, 0x9F,
-		0x10, 0xC2, 0x52, 0x04, 0x33, 0xD1, 0x97, 0x9A,0x93, 0x81, 0x7C, 0x8E, 0x3E, 0x3A, 0x4D, 0x6F,
-		0xDC, 0x26, 0xEE, 0xF0, 0x4A, 0xF1, 0x83, 0x62,0x7F, 0xF9, 0x69, 0x1D, 0xEB, 0xBC, 0x1A, 0xC8,
-		0x09, 0xDF, 0x95, 0x7A, 0xE6, 0x50, 0x05, 0xBE,0xD3, 0x5B, 0xE7, 0x8A, 0x4E, 0xE5, 0x66, 0x47,
-		0x4F, 0x6C, 0x11, 0xAC, 0xB7, 0x2B, 0x57, 0x6B,0x7D, 0xC7, 0x1B, 0xFB, 0xE9, 0x45, 0x86, 0x13,
-		0x6D, 0x7E, 0x48, 0x22, 0xFD, 0x9C, 0xCA, 0xA3,0x71, 0x0F, 0xAA, 0x25, 0xE4, 0xDD, 0xDA, 0x03,
-		0xAF, 0x94, 0x43, 0xD4, 0x17, 0x9E, 0xC1, 0xCF,0x08, 0xD5, 0xB1, 0x68, 0xE1, 0xF2, 0x19, 0xEC,
-		0xA7, 0x89, 0x24, 0x54, 0x72, 0x3F, 0x76, 0x0D,0xFC, 0x75, 0x99, 0x36, 0x3C, 0xA0, 0xC4, 0xC6,
-		0x64, 0xC3, 0x07, 0xA4, 0xCB, 0xA1, 0x2A, 0x63,0x74, 0xB5, 0x38, 0xB8, 0xCE, 0x82, 0x70, 0x3B,
-		0x3D, 0x06, 0x85, 0x02, 0x51, 0x96, 0xF6, 0xF3,0x0C, 0xF7, 0x0B, 0x4B, 0xBA, 0x42, 0x39, 0x59,
-		0x31, 0xD2, 0x87, 0x29, 0xB4, 0xB9, 0x56, 0x2F,0xED, 0x5D, 0x9B, 0xC0, 0x16, 0x78, 0x8B, 0xB3,
-		0xE0, 0x53, 0xC5, 0xF8, 0x8F, 0xA9, 0x18, 0x32,0x6E, 0xE8, 0x8C, 0x5A, 0x73, 0x28, 0xCD, 0x77,
-		0xF5, 0xBF, 0x91, 0xAB, 0xAD, 0xDE, 0x4C, 0x5F,0x0E, 0x67, 0xB0, 0x79, 0x1E, 0xCC, 0x49, 0x65,
-		0xA2, 0xD9, 0x8D, 0x21, 0xFF, 0x0A, 0xD8, 0xBB,0x46, 0x80, 0xDB, 0x7B, 0x55, 0x6A, 0x58, 0x14,
+		0x44, 0xD5, 0x8F, 0xB7, 0xE1, 0x29, 0x65, 0x9A,0x35, 0xAE, 0x7B, 0x05, 0x2E, 0x7D, 0x23, 0x11,
+		0xF5, 0x2F, 0xFC, 0x6E, 0x33, 0xE4, 0x06, 0xDB,0x3F, 0x20, 0xF7, 0xAB, 0xF0, 0x37, 0x15, 0x7C,
+		0x4F, 0xA5, 0xD1, 0x8A, 0x9C, 0xD6, 0x7A, 0x8E,0x51, 0x0C, 0x6D, 0x24, 0xD2, 0xB6, 0x92, 0x67,
+		0x2B, 0x3C, 0xFF, 0x96, 0xAD, 0x9F, 0x17, 0xF2,0xC5, 0xA7, 0x26, 0xE7, 0xBB, 0xE6, 0xF3, 0xAA,
+		0xEA, 0x30, 0x6F, 0x75, 0xD3, 0x08, 0x25, 0x84,0xC1, 0x21, 0xC6, 0x78, 0x53, 0x8D, 0x1E, 0x32,
+		0xF4, 0x34, 0x5A, 0x14, 0x47, 0xBF, 0x02, 0xCE,0x74, 0x98, 0x0E, 0xBD, 0xB2, 0x55, 0xA0, 0xC9,
+		0x1B, 0xBC, 0xD9, 0x6A, 0x61, 0x56, 0x52, 0xA1,0x42, 0xED, 0xD7, 0x12, 0x0F, 0xA2, 0x82, 0x0A,
+		0x36, 0xB4, 0x43, 0xF6, 0xE3, 0x09, 0xA9, 0x86,0x69, 0x5C, 0x22, 0xF9, 0xFE, 0x81, 0x4B, 0x54,
+		0x48, 0xE0, 0x4D, 0xC2, 0x4C, 0x87, 0x85, 0xF1,0xDC, 0x3A, 0xD0, 0x2C, 0x03, 0x04, 0x10, 0xB9,
+		0xB1, 0x6C, 0x60, 0x76, 0x13, 0x8C, 0x3D, 0xA6,0xAF, 0x3B, 0x49, 0xC4, 0xA4, 0x2A, 0x7F, 0x95,
+		0xA8, 0x41, 0x89, 0xDA, 0xC3, 0xE2, 0x27, 0x99,0x64, 0x01, 0x5B, 0x2D, 0x46, 0xE9, 0x1C, 0x80,
+		0xC7, 0xAC, 0xDE, 0x45, 0xD4, 0xF8, 0x28, 0x93,0x9D, 0xD8, 0x97, 0x70, 0x91, 0xEC, 0x4A, 0xEF,
+		0x0D, 0xB3, 0xCC, 0x73, 0x63, 0xB5, 0x00, 0x8B,0x9B, 0x59, 0xA3, 0xE8, 0x83, 0xCD, 0x0B, 0x5F,
+		0xC8, 0x94, 0xCA, 0x3E, 0x31, 0xEB, 0x66, 0x4E,0x68, 0xFA, 0x19, 0x5E, 0x79, 0xCF, 0x7E, 0xBE,
+		0xFB, 0xE5, 0xBA, 0x40, 0x1F, 0x9E, 0xB8, 0x62,0x1D, 0xDF, 0x6B, 0x88, 0x57, 0x16, 0x71, 0x18,
+		0x90, 0x5D, 0x72, 0xB0, 0x07, 0x50, 0xC0, 0x58,0xFD, 0x38, 0xCB, 0xDD, 0xEE, 0x39, 0x77, 0x1A,
 	];
 
 	/**
@@ -56,6 +57,13 @@ class Randomizer {
 		$this->goal = $goal;
 		$this->world = new World($difficulty, $logic, $goal, $variation);
 		$this->seed = new Seed;
+		$this->starting_equipment = new ItemCollection([
+			Item::get('BombUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+		]);
+		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
 	/**
@@ -158,12 +166,16 @@ class Randomizer {
 		// Pedestal is the goal
 		if ($this->goal == 'pedestal') {
 			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.count.Arrow" => 0]);
 		}
 
 		if ($this->logic == 'MajorGlitches') {
 			// MajorGlitches always has 4 bottles, no matter what
 			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
+		}
+
+		if ($this->logic == 'OverworldGlitches') {
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
 		}
 
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
@@ -172,15 +184,22 @@ class Randomizer {
 		// take out all the swords and silver arrows
 		$nice_items = $this->getNiceItems();
 		$nice_items_swords = [];
+		$nice_items_bottles = [];
 		foreach ($advancement_items as $key => $item) {
 			if ($item == Item::get('SilverArrowUpgrade')) {
 				$nice_items[] = $item;
 				unset($advancement_items[$key]);
 				continue;
 			}
-			if (is_a($item, Item\Sword::class)) {
+			if ($item instanceof Item\Sword) {
 				$nice_items_swords[] = $item;
 				unset($advancement_items[$key]);
+				continue;
+			}
+			if ($item instanceof Item\Bottle) {
+				$nice_items_bottles[] = $item;
+				unset($advancement_items[$key]);
+				continue;
 			}
 		}
 		if (config('game-mode') != 'swordless') {
@@ -208,10 +227,18 @@ class Randomizer {
 			foreach ($nice_items_swords as $unneeded) {
 				array_push($nice_items, Item::get('TwentyRupees2'));
 			}
-			if (array_search(Item::get('SilverArrowUpgrade'), $nice_items) === false) {
-				$nice_items[] = Item::get('SilverArrowUpgrade');
+			$world_items = $this->world->collectItems()->values();
+			if (!in_array(Item::get('SilverArrowUpgrade'), $world_items) && !in_array(Item::get('BowAndSilverArrows'), $world_items)) {
+				if (array_search(Item::get('SilverArrowUpgrade'), $nice_items) === false && $this->difficulty !== 'custom') {
+					$nice_items[] = Item::get('SilverArrowUpgrade');
+				}
 			}
 		}
+		// put 1 bottle back
+		if (count($nice_items_bottles)) {
+			array_push($advancement_items, array_pop($nice_items_bottles));
+		}
+		$nice_items = array_merge($nice_items, $nice_items_bottles);
 
 		// Remaining Items
 		$trash_items = ($this->config('rng_items'))
@@ -219,6 +246,41 @@ class Randomizer {
 			: $this->getItemPool();
 
 		$dungeon_items = $this->getDungeonPool();
+
+		if ($this->world->config('region.wildBigKeys', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\BigKey) {
+					unset($dungeon_items[$key]);
+					$advancement_items[] = $item;
+				}
+			}
+		}
+		if ($this->world->config('region.wildKeys', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open', 'swordless']) || $item != Item::get('KeyH2'))) {
+					unset($dungeon_items[$key]);
+					$advancement_items[] = $item;
+				}
+			}
+		}
+		if ($this->world->config('region.wildMaps', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\Map) {
+					unset($dungeon_items[$key]);
+					$nice_items[] = $item;
+				}
+			}
+		}
+		if ($this->world->config('region.wildCompasses', false)) {
+			foreach ($dungeon_items as $key => $item) {
+				if ($item instanceof Item\Compass) {
+					unset($dungeon_items[$key]);
+					$nice_items[] = $item;
+				}
+			}
+		}
+
+		$advancement_items = mt_shuffle($advancement_items);
 
 		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
@@ -282,6 +344,7 @@ class Randomizer {
 				return is_a($item, Item\Crystal::class);
 			});
 
+		// This needs to try to place better than 1st or fail.
 		foreach ($crystal_locations->getEmptyLocations() as $location) {
 			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 				$this->getDungeonPool(),
@@ -341,6 +404,19 @@ class Randomizer {
 	 */
 	public function getSpoiler() {
 		$spoiler = [];
+
+		if (count($this->starting_equipment)) {
+			$i = 0;
+			foreach ($this->starting_equipment as $item) {
+				if ($item instanceof Item\Upgrade\Arrow
+					|| $item instanceof Item\Upgrade\Bomb) {
+					continue;
+				}
+
+				$location = sprintf("Equipment Slot %s", ++$i);
+				$spoiler['Equiped'][$location] = $item->getNiceName();
+			}
+		}
 
 		foreach ($this->world->getRegions() as $region) {
 			$name = $region->getName();
@@ -476,8 +552,7 @@ class Randomizer {
 
 		$this->randomizeCredits($rom);
 
-		$rom->setMaxArrows();
-		$rom->setMaxBombs();
+		$rom->setStartingEquipment($this->starting_equipment);
 		$rom->setCapacityUpgradeFills([
 			$this->config('item.value.BombUpgrade5', 0),
 			$this->config('item.value.BombUpgrade10', 0),
@@ -495,7 +570,7 @@ class Randomizer {
 
 		$rom->removeUnclesShield();
 
-		switch ($this->logic) {
+		switch ($this->config('rom.logicMode', $this->logic)) {
 			case 'MajorGlitches':
 				$type_flag = 'G';
 				$rom->setSwampWaterLevel(false);
@@ -508,7 +583,7 @@ class Randomizer {
 			case 'OverworldGlitches':
 				$type_flag = 'S';
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);
-				$rom->setSaveAndQuitFromBossRoom(false);
+				$rom->setSaveAndQuitFromBossRoom(true);
 				$rom->setWorldOnAgahnimDeath(true);
 				$rom->setRandomizerSeedType('OverworldGlitches');
 				$rom->setWarningFlags(bindec('01000000'));
@@ -516,7 +591,7 @@ class Randomizer {
 			case 'NoMajorGlitches':
 			default:
 				$type_flag = 'C';
-				$rom->setSaveAndQuitFromBossRoom(false);
+				$rom->setSaveAndQuitFromBossRoom(true);
 				$rom->setWorldOnAgahnimDeath(true);
 				break;
 		}
@@ -546,6 +621,10 @@ class Randomizer {
 		$this->seed->save();
 
 		return $this->seed->hash;
+	}
+
+	public function getSeedRecord() {
+		return $this->seed;
 	}
 
 	/**
@@ -598,6 +677,7 @@ class Randomizer {
 			"two woodchoppers",
 			"double lumberman",
 			"lumberclones",
+			"woodfellas",
 		])));
 
 		switch (mt_rand(0, 1)) {
@@ -688,6 +768,7 @@ class Randomizer {
 				"Welcome to\nStoops Lonk's\nHoose",
 				"Erreur de\ntraduction.\nsvp reessayer",
 				"I could beat\nit in an hour\nand one life",
+				"I thought this\nwas open mode?",
 			])));
 		}
 
@@ -728,6 +809,7 @@ class Randomizer {
 			"A weeknight is\na tiny\nnobleman",
 			"The chimney\nsweep wore a\nsoot and tye.",
 			"Gardeners like\nto spring into\naction.",
+			"bad at nuclear\nphysics. I\nGot no fission",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
@@ -756,10 +838,10 @@ class Randomizer {
 			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
 			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
 			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
-			"I offered to a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
+			"I offered a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
 			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
 			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
-			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nbar exam!",
+			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBar exam!",
 			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
 			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
@@ -773,7 +855,7 @@ class Randomizer {
 			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
 			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
 			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
-			"I lost my\nshield by a\nthat house.\nWhy did they\nput up a\nPikit fence?!",
+			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
 			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
 			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
 			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
@@ -795,15 +877,15 @@ class Randomizer {
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
 			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
-			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\nde'ja vu\nall over again",
-			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds,\nand was 32\nfeet long.",
+			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\ndeja vu\nall over again",
+			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
 			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
 			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 		])));
 
 		switch ($this->goal) {
 			case 'pedestal':
-				$rom->setGanon1InvincibleTextString("You cannot\nkill me, you\nshould go for\nyour real goal\nit's in the\npedestal.\n\nYou dingus\n");
+				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nit's on the\npedestal.\n\nYou dingus\n");
 				break;
 			case 'triforce-hunt':
 				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\ntriforce\npieces well.\nWithout them\nyou can't win!");
@@ -812,9 +894,12 @@ class Randomizer {
 				$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 		}
 
-		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI can not die!");
+		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI cannot die!");
 
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
+		if (!$silver_arrows_location) {
+			$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('BowAndSilverArrows'))->first();
+		}
 
 		if (!$silver_arrows_location) {
 			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes");
@@ -854,6 +939,9 @@ class Randomizer {
 			" Hello.  Will\n  you be my\n   friend?",
 			"   Beetorp\n     was\n    here!",
 			"The Wind Fish\nwill wake\nsoon.    Hoot!",
+			"meow meow meow\nmeow meow meow\n  oh my god!",
+			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
+			".done\n\n.comment lol",
 		])));
 
 		return $this;
@@ -878,7 +966,7 @@ class Randomizer {
 			array_push($advancement_items, Item::get('ProgressiveSword'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Bottles', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Bottles', 4); $i++) {
 			array_push($advancement_items, $this->getBottle());
 		}
 		for ($i = 0; $i < $this->config('item.count.Bombos', 1); $i++) {
@@ -1021,10 +1109,6 @@ class Randomizer {
 		}
 		for ($i = 0; $i < $this->config('item.count.BossHeartContainer', 10); $i++) {
 			array_push($items_to_find, Item::get('BossHeartContainer'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.ExtraBottles', 3); $i++) {
-			array_push($items_to_find, $this->getBottle());
 		}
 
 		for ($i = 0; $i < $this->config('item.count.BlueShield', 0); $i++) {
@@ -1313,15 +1397,9 @@ class Randomizer {
 		];
 		$shuffled = mt_shuffle($prizes);
 
-		// write to trees
-		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
-
-		// write to prize crab
-		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
-
 		if ($this->config('bees', false)) {
 			// you asked for it
-			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 20, 0x79)));
+			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
 			$rom->setOverworldDigPrizes([
 				0xB2, 0xD8, 0xD8, 0xD8,
 				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
@@ -1339,6 +1417,12 @@ class Randomizer {
 			]);
 		}
 
+		// write to trees
+		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
+
+		// write to prize crab
+		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
+
 		// write to stunned
 		$rom->setStunnedSpritePrize(array_pop($shuffled));
 
@@ -1349,8 +1433,17 @@ class Randomizer {
 		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
 
 		// Sprite prize pack
+		$idat = array_values(unpack('C*', base64_decode(
+			"g5aEgICAgIACAAKAoIOXgICUkQcAgACAkpaAoAAAAIAEgIIGBgAAgICAgICAgICAgICAgICAgICAgIAAAICAkICRkZGXkZWVk5c" .
+			"UkZKBgoKAhYCAgAQEgJGAgICAgICAgACAgIKKgICAgJKRgIKBgYCBgICAgICAgICAgJeAgICAwoAVFRcGAIAAwBNAAAIGEBQAAE" .
+			"AAAAAAE0YRgIAAAAAQAAAAFhYWgYeCAICAAAAAAICAAAAAAAAAAAAAAAAAAAAAgAAAABcAEgAAAAAAEBcAQAEAAAAAAAAAAAAAA" .
+			"AAAAABAAAAAAAAAAACAAAAAAAAA"
+		)));
 		$offset = 0x6B632;
 		$bytes = $rom->read($offset, 243);
+		foreach ($bytes as $i => $v) {
+			$bytes[$i] = ($v == 0) ? $idat[$i] : $v;
+		}
 		for ($i = 0; $i < 243; $i++) {
 			// skip sprites that were not in prize packs before
 			if (!isset($bytes[$i]) || ($bytes[$i] & 0xF) == 0) {
@@ -1446,6 +1539,9 @@ class Randomizer {
 	 */
 	public function setWorld(World $world) : self {
 		$this->world = $world;
+
+		$this->starting_equipment = $this->starting_equipment->merge($world->getPreCollectedItems());
+		$this->world->setPreCollectedItems($this->starting_equipment);
 
 		return $this;
 	}

@@ -81,12 +81,11 @@ class MiseryMire extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Misery Mire - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD6');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD6');
 		});
 
 		$this->locations["Misery Mire - Spike Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Cape') || $items->has('CaneOfByrna');
+			return !$this->world->config('region.cantTakeDamage', false)
+					|| $items->has('CaneOfByrna') || $items->has('Cape');
 		});
 
 		$this->locations["Misery Mire - Main Lobby"]->setRequirements(function($locations, $items) {
@@ -125,10 +124,7 @@ class MiseryMire extends Region {
 						return false;
 					}
 
-				if ($this->world->config('region.bossHaveKey', true)) {
-					return $item != Item::get('BigKeyD6');
-				}
-				return !in_array($item, [Item::get('KeyD6'), Item::get('BigKeyD6')]);
+				return true;
 			});
 
 		$this->can_enter = function($locations, $items) {
@@ -137,6 +133,7 @@ class MiseryMire extends Region {
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 				&& (config('game-mode') == 'swordless' || $items->hasSword()))
 			&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
+			&& $items->canKillMostThings(8)
 			&& $this->world->getRegion('Mire')->canEnter($locations, $items);
 		};
 

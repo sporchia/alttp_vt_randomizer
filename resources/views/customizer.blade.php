@@ -3,6 +3,7 @@
 @include('_rom_loader')
 @include('_rom_settings')
 @include('_rom_spoiler')
+@include('custom/_equipment')
 @include('custom/_items')
 @include('custom/_switches')
 
@@ -16,7 +17,7 @@
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
-	<input type="hidden" name="menu_fast" value="false" />
+	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
 	<div class="tab-content">
 		<div class="tab-pane active">
@@ -30,7 +31,7 @@
 			<p>Here are the keys to the kingdom, enjoy!</p>
 		</div>
 		<div class="tab-pane" id="custom-generate">
-			<div id="seed-generate" class="panel panel-success">
+			<div id="seed-generate" class="panel panel-success" style="display:none">
 				<div class="panel-heading panel-heading-btn">
 					<h3 class="panel-title pull-left">Customizer: Just because you can, doesn't mean you should</h3>
 					<div class="btn-toolbar pull-right">
@@ -44,9 +45,9 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Mode</span>
 								<select id="mode" class="form-control selectpicker">
-									<option value="standard">Standard</option>
-									<option value="open">Open</option>
-									<option value="swordless">Swordless</option>
+									@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
+										<option value="{{ $mode }}">{{ $name }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -54,10 +55,9 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Goal</span>
 								<select id="goal" class="form-control selectpicker">
-									<option value="ganon">Defeat Ganon</option>
-									<option value="dungeons">All Dungeons</option>
-									<option value="pedestal">Master Sword Pedestal</option>
-									<option value="triforce-hunt">Triforce Pieces</option>
+									@foreach (config('alttp.randomizer.item.goals') as $goal => $name)
+										<option value="{{ $goal }}">{{ $name }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -73,9 +73,9 @@
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Logic</span>
 								<select id="logic" class="form-control selectpicker">
-									<option value="NoMajorGlitches">No Glitches</option>
-									<option value="OverworldGlitches">Overworld Glitches</option>
-									<option value="MajorGlitches">Major Glitches</option>
+									@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
+										<option value="{{ $logic }}">{{ $name }}</option>
+									@endforeach
 									<option value="None">None (I know what I'm doing)</option>
 								</select>
 							</div>
@@ -87,8 +87,20 @@
 								<span class="input-group-addon">RNG Seed</span>
 								<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
 								<span class="input-group-btn">
-									<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+									<button id="seed-clear" class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
 								</span>
+							</div>
+						</div>
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Rom "Fixes"</span>
+								<select id="rom-logic" class="form-control selectpicker" name="data[alttp.custom.rom.logicMode]">
+									@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
+										<option value="{{ $logic }}">{{ $name }}</option>
+									@endforeach
+								</select>
 							</div>
 						</div>
 					</div>
@@ -123,6 +135,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="tab-pane" id="custom-equipment">
+			@yield('equipment')
+		</div>
 		<div class="tab-pane" id="custom-item-select">
 			@yield('itemselect')
 		</div>
@@ -141,7 +156,8 @@
 					<tr>
 						<td class="col-md-7">{{ $location->getName() }}</td>
 						<td class="col-md-5">
-							<select class="item-location {{ $location_class[get_class($location)] ?? 'items' }}" name="l[{{ base64_encode($location->getName()) }}]"></select>
+							<select class="item-location {{ $location_class[get_class($location)] ?? 'items' }}"
+								name="l[{{ base64_encode($location->getName()) }}]"></select>
 						</td>
 					</tr>
 				@endforeach
@@ -183,28 +199,73 @@ function seedApplied(data) {
 }
 function seedFailed(data) {
 	return new Promise(function(resolve, reject) {
-		$('.alert .message').html('Unable to generate, please check your options.');
+		$('.alert .message').html('Unable to generate, please check your options.<br />' + data.responseText);
 		$('.alert').show();
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 		return resolve('no');
 	});
 }
-function applySeed(rom, seed) {
-	return new Promise(function(resolve, reject) {
-		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form')), function(patch) {
-			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-			.then(rom.parseSprGfx)
-			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
-			.then(rom.setHeartSpeed($('#heart-speed').val()))
-			.then(rom.setFastMenu($('#generate-fast-menu').prop('checked')))
-			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+function applySeed(rom, seed, second_attempt) {
+	if (rom.checkMD5() != current_rom_hash) {
+		if (second_attempt) {
+			$('#seed-generate, #seed-details, #config').hide();
+			$('.alert .message').html('Could not reset ROM.');
+			$('.alert').show();
+			$('#rom-select').show();
+			return new Promise(function(resolve, reject) {
+				reject(rom);
+			});
+		}
+		return resetRom()
 			.then(function(rom) {
-				$('.info').show();
-				$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
-				resolve({rom: rom, patch: patch});
-			}));
-		}, 'json')
-		.fail(reject);
+				return applySeed(rom, seed, true);
+			});
+	}
+	return new Promise(function(resolve, reject) {
+		var formData = getFormData($('form'));
+		var starting_equipment = [];
+		localforage.getItem('vt.custom.equipment').then(function(equipment) {
+			for (eq in equipment) {
+				if (typeof equipment[eq] === 'boolean' && equipment[eq]) {
+					starting_equipment.push(eq);
+				} else if (eq == 'ProgressiveBow') {
+					if (equipment[eq] == 0) {
+						continue;
+					}
+					starting_equipment.push([
+						'nothing',
+						'SilverArrowUpgrade',
+						'Bow',
+						'BowAndSilverArrows',
+					][equipment[eq]]);
+				} else if (eq == 'Boomerang') {
+					switch (equipment[eq]) {
+						case 3: starting_equipment.push('RedBoomerang');
+						case 1: starting_equipment.push('Boomerang'); break;
+						case 2: starting_equipment.push('RedBoomerang'); break;
+					}
+				} else {
+					for (var i = 0; i < equipment[eq]; ++i) {
+						starting_equipment.push(eq);
+					}
+				}
+			}
+			formData.eq = starting_equipment;
+			$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
+				rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+				.then(rom.parseSprGfx)
+				.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+				.then(rom.setHeartSpeed($('#heart-speed').val()))
+				.then(rom.setMenuSpeed($('#menu-speed').val()))
+				.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+				.then(function(rom) {
+					$('.info').show();
+					$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+					resolve({rom: rom, patch: patch});
+				}));
+			}, 'json')
+			.fail(reject);
+		});
 	});
 }
 
@@ -235,9 +296,9 @@ $(function() {
 		localforage.setItem('vt.customizer', config);
 	});
 
-	$('.item-location').change(function() {
+	$('.item-location.items').change(function() {
 		var $this = $(this);
-		var value = $this.val();
+		var value = $this.find('option:selected').hasClass('item-bottle') ? 'Bottles' : $this.val();
 		var previous = $this.data('previous-item');
 		if (previous) {
 			$('#item-count-' + previous).val(Number($('#item-count-' + previous).val()) + 1);
@@ -256,6 +317,7 @@ $(function() {
 		localforage.removeItem('vt.customizer');
 		localforage.removeItem('vt.customizer.profiles');
 		localforage.removeItem('vt.custom.items');
+		localforage.removeItem('vt.custom.equipment');
 		localforage.removeItem('vt.custom.switches');
 		localforage.removeItem('vt.custom.settings');
 		localforage.removeItem('vt.custom.name');
@@ -282,6 +344,8 @@ $(function() {
 			$('.items option[value!="auto_fill"]:selected').each(function() {
 				$('#item-placed-' + this.value).val(Number($('#item-placed-' + this.value).val()) + 1);
 			});
+			// bottles
+			$('#item-placed-Bottles').val($('option.item-bottle:selected').length)
 			$('.custom-items').first().trigger('change');
 		}
 	});
@@ -299,6 +363,7 @@ $(function() {
 
 	$('button[name=generate]').on('click', function() {
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('.alert').hide();
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
 
@@ -312,13 +377,27 @@ $(function() {
 	});
 
 	$('#logic').on('change', function() {
-		localforage.setItem('vt.custom.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
+		var $this = $(this);
+		localforage.setItem('vt.custom.logic', $this.val());
+		if ($this.val() != 'None') {
+			$('#rom-logic').val($this.val());
+			$('#rom-logic').trigger('change');
+		}
+		$('input[name=logic]').val($this.val());
 	});
 	localforage.getItem('vt.custom.logic').then(function(value) {
 		if (value === null) return;
 		$('#logic').val(value);
 		$('#logic').trigger('change');
+	});
+
+	$('#rom-logic').on('change', function() {
+		localforage.setItem('vt.custom.rom-logic', $(this).val());
+	});
+	localforage.getItem('vt.custom.rom-logic').then(function(value) {
+		if (value === null) return;
+		$('#rom-logic').val(value);
+		$('#rom-logic').trigger('change');
 	});
 
 	$('#mode').on('change', function() {
@@ -393,7 +472,8 @@ $(function() {
 <script id="items" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($items as $item)
-	<option class="placable placable-item" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-item{{ $item instanceof ALttP\Item\Bottle ? ' item-bottle' : '' }}"
+		value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 @overwrite

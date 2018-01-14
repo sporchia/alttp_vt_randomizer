@@ -77,8 +77,6 @@ class EasternPalace extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Eastern Palace - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyP1');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyP1');
 		});
 
 		$this->locations["Eastern Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
@@ -98,7 +96,7 @@ class EasternPalace extends Region {
 					return false;
 				}
 
-				return $item != Item::get('BigKeyP1');
+				return true;
 			});
 
 		$this->prize_location->setRequirements($this->can_complete);

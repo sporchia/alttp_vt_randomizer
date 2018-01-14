@@ -84,15 +84,15 @@ class SwampPalace extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Swamp Palace - Entrance"]->setFillRules(function($item, $locations, $items) {
-			return $item == Item::get('KeyD2');
+			return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2');
 		});
 
 		$this->locations["Swamp Palace - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('BigKeyD2');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD2');
+		})->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('BigKeyD2');
 		});
 
 		$this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
@@ -143,8 +143,7 @@ class SwampPalace extends Region {
 				return false;
 			}
 
-			return $this->world->config('region.bossHaveKey', true)
-				|| !in_array($item, [Item::get('KeyD2'), Item::get('BigKeyD2')]);
+			return true;
 		});
 
 		$this->can_complete = function($locations, $items) {

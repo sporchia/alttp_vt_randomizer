@@ -25,11 +25,6 @@
 			<label for="cust-region-bossNormalLocation">Boss Hearts can contain Dungeon Items</label>
 		</div>
 		<div class="col-md-6 pb-5">
-			<input id="cust-region-bossHaveKey" type="checkbox" name="data[alttp.custom.region.bossHaveKey]"
-				class="custom-switch" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-region-bossHaveKey">Boss Hearts can contain Keys</label>
-		</div>
-		<div class="col-md-6 pb-5">
 			<input id="cust-spoil-boots" type="checkbox" name="data[alttp.custom.spoil.BootsLocation]"
 				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-spoil-boots">Chance (5%) for boots region to be spoiled by Uncle</label>
@@ -89,6 +84,7 @@
 				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="Not" data-size="small">
 			<label id="bees-label" for="cust-bees">the Bees</label>
 		</div>
+		<div class="clearfix"></div>
 		<div class="col-md-6 pb-5">
 			<div class="input-group" role="group">
 				<span class="input-group-addon">Goal Items</span>
