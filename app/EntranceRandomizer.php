@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.5.2';
+	const VERSION = '0.5.2.1';
 	private $spoiler;
 	private $patch;
 	protected $shuffle;
