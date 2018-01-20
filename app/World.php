@@ -461,7 +461,7 @@ class World {
 				}
 
 				$location = sprintf("Equipment Slot %s", ++$i);
-				$ret[0]['Equiped'][$location] = $item->getNiceName();
+				$ret[0]['Equipped'][$location] = $item->getNiceName();
 			}
 		}
 		foreach ($location_round as $round => $locations) {

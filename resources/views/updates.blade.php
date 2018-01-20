@@ -4,21 +4,23 @@
 <h2>VT8.29</h2>
 <div class="well">
 	<ul>
-		<li>Warning message on genration page when you select anything other than No Glitches logic</li>
+		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
 		<li>Small keys in spoiler for key-sanity</li>
 		<li>Mirror warp sound is back in background music disable</li>
 		<li>Customizer:<ul>
 			<li>Added "Test Generation" button, so you don't bloat the DB when just testing ideas</li>
 			<li>Removed some unuseful items</li>
-			<li>Fxes for better crystal/pendant placement (less broken generations)</li>
+			<li>Fixes for better crystal/pendant placement (less broken generations)</li>
 			<li>Fairy bottle fix</li>
 			<li>Item listing cleanup and normalizing</li>
+			<li>Bottles can be set in starting equipment</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>
 		<li>Triforce Hunt is now always 20/30 for all difficulties</li>
 		<li>All Lamps in Easy are before dark rooms</li>
 		<li>Extra Lamps in Easy are really rupees now</li>
+		<li>Flute time in credits fixed</li>
 	</ul>
 </div>
 <h2>VT8.28</h2>

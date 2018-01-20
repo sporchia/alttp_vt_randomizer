@@ -297,10 +297,10 @@ class Randomizer {
 	 *
 	 * @return $this
 	 */
-	public function fillPrizes(World $world) : self {
+	public function fillPrizes(World $world, $attempts = 5) : self {
 		$prize_locations = $world->getLocations()->filter(function($location) {
 			return is_a($location, Location\Prize::class);
-		});
+		})->randomCollection(15);
 
 		$crystal_locations = $prize_locations->filter(function($location) {
 			return is_a($location, Location\Prize\Crystal::class);
@@ -347,18 +347,47 @@ class Randomizer {
 				return is_a($item, Item\Crystal::class);
 			});
 
-		// This needs to try to place better than 1st or fail.
-		foreach ($crystal_locations->getEmptyLocations() as $location) {
-			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
-				$this->getDungeonPool(),
-				$this->getAdvancementItems(),
-				$place_prizes)));
-			if (!$location->canAccess($assumed_items)) {
-				throw new \Exception("Cannot Place Prize: " . $location->getName());
+		$empty_crystal_locations = $crystal_locations->getEmptyLocations();
+		foreach ($empty_crystal_locations as $location) {
+			$total_prizes = count($place_prizes);
+			for ($i = 0; $i < $total_prizes; ++$i) {
+				$place_prize = array_pop($place_prizes);
+				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+					$this->getDungeonPool(),
+					$this->getAdvancementItems(),
+					$place_prizes)));
+				if ($location->canAccess($assumed_items)) {
+					break;
+				}
+				array_unshift($place_prizes, $place_prize);
+			}
+			if ($total_prizes == count($place_prizes)) {
+				continue;
 			}
 
-			$location->setItem(array_pop($place_prizes));
+			$location->setItem($place_prize);
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
+
+			if (!$world->checkWinCondition($assumed_items)) {
+				if ($attempts > 0) {
+					$empty_crystal_locations->each(function($location) {
+						$location->setItem();
+					});
+					Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+					return $this->fillPrizes($world, $attempts - 1);
+				}
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+		}
+		if ($crystal_locations->getEmptyLocations()->count()) {
+			if ($attempts > 0) {
+				$empty_crystal_locations->each(function($location) {
+					$location->setItem();
+				});
+				Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+				return $this->fillPrizes($world, $attempts - 1);
+			}
+			throw new \Exception("Cannot Place Prize: " . $crystal_locations->getEmptyLocations()->first()->getName());
 		}
 
 		$place_prizes = ($this->config('prize.crossWorld', true))
@@ -367,17 +396,47 @@ class Randomizer {
 				return is_a($item, Item\Pendant::class);
 			});
 
-		foreach ($pendant_locations->getEmptyLocations() as $location) {
-			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
-				$this->getDungeonPool(),
-				$this->getAdvancementItems(),
-				$place_prizes)));
-			if (!$location->canAccess($assumed_items)) {
-				throw new \Exception("Cannot Place Prize: " . $location->getName());
+		$empty_pendant_locations = $pendant_locations->getEmptyLocations();
+		foreach ($empty_pendant_locations as $location) {
+			$total_prizes = count($place_prizes);
+			for ($i = 0; $i < $total_prizes; ++$i) {
+				$place_prize = array_pop($place_prizes);
+				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+					$this->getDungeonPool(),
+					$this->getAdvancementItems(),
+					$place_prizes)));
+				if ($location->canAccess($assumed_items)) {
+					break;
+				}
+				array_unshift($place_prizes, $place_prize);
+			}
+			if ($total_prizes == count($place_prizes)) {
+				continue;
 			}
 
-			$location->setItem(array_pop($place_prizes));
+			$location->setItem($place_prize);
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
+
+			if (!$world->checkWinCondition($assumed_items)) {
+				if ($attempts > 0) {
+					$empty_pendant_locations->each(function($location) {
+						$location->setItem();
+					});
+					Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+					return $this->fillPrizes($world, $attempts - 1);
+				}
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+		}
+		if ($pendant_locations->getEmptyLocations()->count()) {
+			if ($attempts > 0) {
+				$empty_pendant_locations->each(function($location) {
+					$location->setItem();
+				});
+				Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+				return $this->fillPrizes($world, $attempts - 1);
+			}
+			throw new \Exception("Cannot Place Prize: " . $pendant_locations->getEmptyLocations()->first()->getName());
 		}
 
 		return $this;
@@ -417,7 +476,7 @@ class Randomizer {
 				}
 
 				$location = sprintf("Equipment Slot %s", ++$i);
-				$spoiler['Equiped'][$location] = $item->getNiceName();
+				$spoiler['Equipped'][$location] = $item->getNiceName();
 			}
 		}
 

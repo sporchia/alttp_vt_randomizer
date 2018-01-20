@@ -19,6 +19,15 @@
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
+	<div class="panel panel-warning">
+		<div class="panel-heading panel-heading-btn">
+			<div class="btn-toolbar pull-right" role="group">
+				<button name="reset" class="btn btn-danger">Reset Everything</button>
+			</div>
+			<h3 class="panel-title pull-right pd-4">I've done messed up! &nbsp; </h3>
+			<div class="clearfix"></div>
+		</div>
+	</div>
 	<div class="tab-content">
 		<div class="tab-pane active">
 			<h1>Welcome to Customizer</h1>
@@ -108,19 +117,14 @@
 				</div>
 				<div class="panel-footer">
 					<div class="row">
-						<div class="col-md-4">
-							<div class="btn-group btn-flex" role="group">
-								<button name="reset" class="btn btn-danger">Reset Everything</button>
-							</div>
-						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="btn-group btn-flex" role="group">
 								<button name="generate" class="btn btn-success">Generate ROM</button>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="btn-group btn-flex" role="group">
-								<button name="test" class="btn btn-success">Test Generate</button>
+								<button name="test" class="btn btn-info">Test Generate</button>
 							</div>
 						</div>
 					</div>
@@ -256,6 +260,16 @@ function applySeed(rom, seed, second_attempt) {
 						case 3: starting_equipment.push('RedBoomerang');
 						case 1: starting_equipment.push('Boomerang'); break;
 						case 2: starting_equipment.push('RedBoomerang'); break;
+					}
+				} else if (eq.match(/^Bottle/)) {
+					switch (equipment[eq]) {
+						case 1: starting_equipment.push('Bottle'); break;
+						case 2: starting_equipment.push('BottleWithRedPotion'); break;
+						case 3: starting_equipment.push('BottleWithBluePotion'); break;
+						case 4: starting_equipment.push('BottleWithGreenPotion'); break;
+						case 5: starting_equipment.push('BottleWithBee'); break;
+						case 6: starting_equipment.push('BottleWithGoldBee'); break;
+						case 7: starting_equipment.push('BottleWithFairy'); break;
 					}
 				} else {
 					for (var i = 0; i < equipment[eq]; ++i) {
