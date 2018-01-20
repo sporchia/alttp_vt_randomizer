@@ -36,6 +36,7 @@
 						@endforeach
 					</select>
 				</div>
+				<div class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 			</div>
 		</div>
 		<div class="row">
@@ -297,9 +298,15 @@ $(function() {
 	});
 
 	$('#logic').on('change', function() {
+		var value = $(this).val();
 		$('.info').hide();
-		localforage.setItem('rom.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
+		if (value == 'NoMajorGlitches') {
+			$('.logic-warning').hide();
+		} else {
+			$('.logic-warning').show();
+		}
+		localforage.setItem('rom.logic', value);
+		$('input[name=logic]').val(value);
 	});
 	localforage.getItem('rom.logic').then(function(value) {
 		if (value === null) return;

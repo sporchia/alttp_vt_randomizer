@@ -80,12 +80,12 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["Eastern Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
+			return $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
 		});
 
 		$this->can_complete = function($locations, $items) {
 			return $items->canShootArrows()
-				&& $items->has('Lamp') && $items->has('BigKeyP1');
+				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('BigKeyP1');
 		};
 
 		$this->locations["Eastern Palace - Armos Knights"]->setRequirements($this->can_complete)

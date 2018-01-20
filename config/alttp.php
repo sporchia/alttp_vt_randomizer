@@ -19,6 +19,9 @@ return [
 				'Shield' => 'TwentyRupees',
 				'Sword' => 'TwentyRupees',
 			],
+			'require' => [
+				'Lamp' => 3,
+			],
 		],
 		'region' => [
 			'requireBetterEquipment' => true,
@@ -65,7 +68,7 @@ return [
 						],
 					],
 					'Goal' => [
-						'Required' => 10,
+						'Required' => 20,
 						'Icon' => 'triforce',
 					],
 				],
@@ -281,13 +284,13 @@ return [
 			'triforce-hunt' => [
 				'item' => [
 					'count' => [
-						'TriforcePiece' => 40,
+						'TriforcePiece' => 30,
 						'FiveRupees' => 5,
-						'Arrow' => 1,
+						'Arrow' => 11,
 						'Bomb' => 11,
 					],
 					'Goal' => [
-						'Required' => 30,
+						'Required' => 20,
 						'Icon' => 'triforce',
 					],
 				],
@@ -411,13 +414,13 @@ return [
 			'triforce-hunt' => [
 				'item' => [
 					'count' => [
-						'Arrow' => 5,
+						'Arrow' => 15,
 						'Bomb' => 23,
 						'FiveRupees' => 5,
-						'TriforcePiece' => 40,
+						'TriforcePiece' => 30,
 					],
 					'Goal' => [
-						'Required' => 40,
+						'Required' => 20,
 						'Icon' => 'triforce',
 					],
 				],
@@ -541,13 +544,13 @@ return [
 			'triforce-hunt' => [
 				'item' => [
 					'count' => [
-						'Arrow' => 1,
-						'Bomb' => 4,
+						'Arrow' => 11,
+						'Bomb' => 14,
 						'FiveRupees' => 0,
-						'TriforcePiece' => 50,
+						'TriforcePiece' => 30,
 					],
 					'Goal' => [
-						'Required' => 50,
+						'Required' => 20,
 						'Icon' => 'triforce',
 					],
 				],

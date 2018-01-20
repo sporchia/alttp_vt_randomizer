@@ -23,7 +23,11 @@ $items = [
 	],
 	'OcarinaInactive' => [
 		'count' => 1,
-		'name' => 'Ocarina',
+		'name' => 'Flute',
+	],
+	'OcarinaActive' => [
+		'count' => 0,
+		'name' => 'Flute (active)',
 	],
 	'PegasusBoots' => [
 		'count' => 1,
@@ -35,7 +39,7 @@ $items = [
 	],
 	'Cape' => [
 		'count' => 1,
-		'name' => 'Cape',
+		'name' => 'Magic Cape',
 	],
 	'Mushroom' => [
 		'count' => 1,
@@ -51,7 +55,7 @@ $items = [
 	],
 	'Powder' => [
 		'count' => 1,
-		'name' => 'Powder',
+		'name' => 'Magic Powder',
 	],
 	'MoonPearl' => [
 		'count' => 1,
@@ -97,6 +101,10 @@ $items = [
 		'count' => 0,
 		'name' => 'Fighters Sword',
 	],
+	'L1SwordAndShield' => [
+		'count' => 0,
+		'name' => 'Fighters Sword and Shield',
+	],
 	'MasterSword' => [
 		'count' => 0,
 		'name' => 'Master Sword',
@@ -116,6 +124,10 @@ $items = [
 	'SilverArrowUpgrade' => [
 		'count' => 1,
 		'name' => 'Silver Arrows Upgrade',
+	],
+	'SmallMagic' => [
+		'count' => 0,
+		'name' => 'Small Magic',
 	],
 	'Arrow' => [
 		'count' => 1,
@@ -143,11 +155,15 @@ $items = [
 	],
 	'Bomb' => [
 		'count' => 0,
-		'name' => 'Single Bomb',
+		'name' => 'Bomb (1)',
 	],
 	'ThreeBombs' => [
 		'count' => 10,
 		'name' => 'Bombs (3)',
+	],
+	'TenBombs' => [
+		'count' => 0,
+		'name' => 'Bombs (10)',
 	],
 	'BombUpgrade10' => [
 		'count' => 1,
@@ -167,15 +183,15 @@ $items = [
 	],
 	'RedBoomerang' => [
 		'count' => 1,
-		'name' => 'Red Boomerang',
+		'name' => 'Magical Boomerang',
 	],
 	'BlueShield' => [
 		'count' => 0,
-		'name' => 'Blue Shield',
+		'name' => 'Fighters Shield',
 	],
 	'RedShield' => [
 		'count' => 0,
-		'name' => 'Red Shield',
+		'name' => 'Fire Shield',
 	],
 	'MirrorShield' => [
 		'count' => 0,
@@ -183,7 +199,7 @@ $items = [
 	],
 	'BossHeartContainer' => [
 		'count' => 10,
-		'name' => 'Boss Heart Container',
+		'name' => 'Heart Container',
 	],
 	'BugCatchingNet' => [
 		'count' => 1,
@@ -195,7 +211,7 @@ $items = [
 	],
 	'PieceOfHeart' => [
 		'count' => 24,
-		'name' => 'Piece Of Heart Container',
+		'name' => 'Piece Of Heart',
 	],
 	'RedMail' => [
 		'count' => 0,
@@ -229,25 +245,13 @@ $items = [
 		'count' => 5,
 		'name' => 'Rupees (300)',
 	],
-	'MagicUpgrade' => [
-		'count' => 0,
-		'name' => 'Magic Upgrade (1/2 or 1/4)',
-	],
-	'HalfMagicUpgrade' => [
+	'HalfMagic' => [
 		'count' => 1,
-		'name' => 'Magic Upgrade (1/2)',
+		'name' => 'Half Magic',
 	],
-	'QuarterMagicUpgrade' => [
+	'QuarterMagic' => [
 		'count' => 0,
-		'name' => 'Magic Upgrade (1/4)',
-	],
-	'MapLW' => [
-		'count' => 0,
-		'name' => 'Light World Map',
-	],
-	'MapDW' => [
-		'count' => 0,
-		'name' => 'Dark World Map',
+		'name' => 'Quarter Magic',
 	],
 	'MapA2' => [
 		'count' => 1,
@@ -546,7 +550,7 @@ $items = [
 					</td>
 					<td class="col-md-3">
 						<input id="item-placed-{{ $key }}" type="number" min="0" max="218" step="1" value="0" readonly
-							class="custom-placed input-sm">
+							tabindex="-1" class="custom-placed input-sm">
 					</td>
 					<td class="col-md-6">
 						<label for="item-count-{{ $key }}">{{ $item['name'] }}</label>

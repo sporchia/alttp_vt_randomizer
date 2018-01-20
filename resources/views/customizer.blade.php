@@ -108,14 +108,19 @@
 				</div>
 				<div class="panel-footer">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="btn-group btn-flex" role="group">
 								<button name="reset" class="btn btn-danger">Reset Everything</button>
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="btn-group btn-flex" role="group">
 								<button name="generate" class="btn btn-success">Generate ROM</button>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="btn-group btn-flex" role="group">
+								<button name="test" class="btn btn-success">Test Generate</button>
 							</div>
 						</div>
 					</div>
@@ -169,6 +174,7 @@
 </form>
 
 <script>
+var test = false;
 function getFormData($form){
 	var unindexed_array = $form.serializeArray();
 	var indexed_array = {};
@@ -183,6 +189,7 @@ function getFormData($form){
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
+		$('button[name=test]').html('Test Generate').prop('disabled', false);
 		parseInfoFromPatch(data.patch);
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
@@ -193,7 +200,12 @@ function seedApplied(data) {
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
-		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
+		$('button[name=save-spoiler]').show().prop('disabled', false);
+		if (!test) {
+			$('button[name=save]').show().prop('disabled', false);
+		} else {
+			$('button[name=save]').hide();
+		}
 		resolve(rom);
 	});
 }
@@ -202,6 +214,7 @@ function seedFailed(data) {
 		$('.alert .message').html('Unable to generate, please check your options.<br />' + data.responseText);
 		$('.alert').show();
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
+		$('button[name=test]').html('Test Generate').prop('disabled', false);
 		return resolve('no');
 	});
 }
@@ -251,20 +264,28 @@ function applySeed(rom, seed, second_attempt) {
 				}
 			}
 			formData.eq = starting_equipment;
-			$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
-				rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-				.then(rom.parseSprGfx)
-				.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
-				.then(rom.setHeartSpeed($('#heart-speed').val()))
-				.then(rom.setMenuSpeed($('#menu-speed').val()))
-				.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
-				.then(function(rom) {
+			if (test) {
+				$.post('/test' + (seed ? '/' + seed : ''), formData, function(patch) {
 					$('.info').show();
-					$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+					$('button[name=save-spoiler]').prop('disabled', false);
 					resolve({rom: rom, patch: patch});
-				}));
-			}, 'json')
-			.fail(reject);
+				}).fail(reject);
+			} else {
+				$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
+					rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+					.then(rom.parseSprGfx)
+					.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+					.then(rom.setHeartSpeed($('#heart-speed').val()))
+					.then(rom.setMenuSpeed($('#menu-speed').val()))
+					.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+					.then(function(rom) {
+						$('.info').show();
+						$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+						resolve({rom: rom, patch: patch});
+					}));
+				}, 'json')
+				.fail(reject);
+			}
 		});
 	});
 }
@@ -362,7 +383,15 @@ $(function() {
 	$('.custom-items').first().trigger('change');
 
 	$('button[name=generate]').on('click', function() {
+		test = false;
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('.alert').hide();
+		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
+	});
+
+	$('button[name=test]').on('click', function() {
+		test = true;
+		$('button[name=test]').html('Testing...').prop('disabled', true);
 		$('.alert').hide();
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
@@ -421,6 +450,10 @@ $(function() {
 		if (value === null) return;
 		$('#goal').val(value);
 		$('#goal').trigger('change');
+	});
+
+	$('#seed-clear').on('click', function() {
+		$('#seed').val('');
 	});
 
 	$('#seed').on('change', function() {

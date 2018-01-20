@@ -57,6 +57,7 @@ Route::get('customize{r?}', function () {
 				&& !$item instanceof Item\Crystal
 				&& !$item instanceof Item\Event
 				&& !$item instanceof Item\Programmable
+				&& !$item instanceof Item\BottleContents
 				&& !in_array($item->getName(), [
 					'BigKey',
 					'Compass',
@@ -64,8 +65,10 @@ Route::get('customize{r?}', function () {
 					'L2Sword',
 					'Map',
 					'multiRNG',
+					'PowerStar',
 					'singleRNG',
 					'TwentyRupees2',
+					'HeartContainerNoAnimation',
 				]);
 		}),
 		'prizes' => $items->filter(function($item) {
@@ -349,6 +352,63 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
+});
+
+Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
+	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
+	$variation = $request->input('variation', 'none') ?: 'none';
+	$goal = $request->input('goal', 'ganon') ?: 'ganon';
+	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+	$game_mode = $request->input('mode', 'standard');
+
+	if ($difficulty == 'custom') {
+		config($request->input('data'));
+		$world = new World($difficulty, $logic, $goal, $variation);
+		$locations = $world->getLocations();
+		foreach ($request->input('l', []) as $location => $item) {
+			$decoded_location = base64_decode($location);
+			if (isset($locations[$decoded_location])) {
+				$place_item = Item::get($item);
+				if ($game_mode == 'swordless' && $place_item instanceof Item\Sword) {
+					$place_item = Item::get('TwentyRupees2');
+				}
+				$locations[$decoded_location]->setItem($place_item);
+			}
+		}
+		foreach ($request->input('eq', []) as $item) {
+			try {
+				$world->addPreCollectedItem(Item::get($item));
+			} catch (Exception $e) {}
+		}
+	}
+
+	config(['game-mode' => $game_mode]);
+
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
+	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
+	if (isset($world)) {
+		$rand->setWorld($world);
+	}
+
+	try {
+		$rand->makeSeed($seed_id);
+	} catch (Exception $e) {
+		return response($e->getMessage(), 409);
+	}
+
+	$seed = $rand->getSeed();
+
+	if (!$rand->getWorld()->checkWinCondition()) {
+		return response('Game Unwinnable', 409);
+	}
+
+	return response()->json([
+		'seed' => $seed,
+		'logic' => $rand->getLogic(),
+		'difficulty' => $difficulty,
+		'spoiler' => $rand->getSpoiler(),
+	]);
 });
 
 Route::get('h/{hash}', function(Request $request, $hash) {

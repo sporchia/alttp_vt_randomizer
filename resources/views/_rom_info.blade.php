@@ -14,7 +14,7 @@
 <script>
 function parseInfoFromPatch(patch) {
 	$('.info').show();
-	$('.info .seed').html(patch.seed + " [<a href='/h/" + patch.hash + "'>permalink</a>]");
+	$('.info .seed').html(patch.seed + (patch.hash !== undefined ? " [<a href='/h/" + patch.hash + "'>permalink</a>]" : ''));
 	if ($('input[name=tournament]').val() == 'true') {
 		$('.info .seed').html("<a href='/h/" + patch.seed + "'>" + patch.seed + "</a>");
 	}

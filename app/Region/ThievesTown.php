@@ -90,7 +90,7 @@ class ThievesTown extends Region {
 
 			return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
 		})->setAlwaysAllow(function($item, $items) {
-			return $item == Item::get('KeyD4');
+			return $item == Item::get('KeyD4') && $items->has('Hammer');
 		});
 
 		$this->locations["Thieves' Town - Blind's Cell"]->setRequirements(function($locations, $items) {

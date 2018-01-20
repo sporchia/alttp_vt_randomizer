@@ -9,6 +9,8 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected $except = [
         'seed',
 		'seed/*',
+		'test',
+		'test/*',
 		'entrance/seed',
 		'entrance/seed/*',
 	];

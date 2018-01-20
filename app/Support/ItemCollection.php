@@ -412,7 +412,7 @@ class ItemCollection extends Collection {
 	}
 
 	/**
-	 * Can Get Golden Bee
+	 * Requirements for catching a Golden Bee
 	 *
 	 * @return bool
 	 */
