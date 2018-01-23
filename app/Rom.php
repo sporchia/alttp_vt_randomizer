@@ -108,7 +108,7 @@ class Rom {
 	 */
 	public function updateChecksum() : self {
 		fseek($this->rom, 0x0);
-		$sum = 0;
+		$sum = 0x1FE;
 		for ($i = 0; $i < static::SIZE; $i += 1024) {
 			$bytes = array_values(unpack('C*', fread($this->rom, 1024)));
 			for ($j = 0; $j < 1024; ++$j) {

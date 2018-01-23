@@ -94,7 +94,7 @@ var ROM = (function(blob, loaded_callback) {
 				}
 				return sum + mbyte;
 			});
-			var checksum = sum & 0xFFFF;
+			var checksum = (sum + 0x1FE) & 0xFFFF;
 			var inverse = checksum ^ 0xFFFF;
 			this.write(0x7FDC, [inverse & 0xFF, inverse >> 8, checksum & 0xFF, checksum >> 8]);
 			resolve(this);
