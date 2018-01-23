@@ -199,7 +199,14 @@ function seedApplied(data) {
 }
 function seedFailed(data) {
 	return new Promise(function(resolve, reject) {
-		$('.alert .message').html('Unable to generate, please check your options.<br />' + data.responseText);
+		switch (data.status) {
+			case 429:
+				$('.alert .message').html('While we apprecate your want to generate a lot of games, Other people would like'
+					+ ' to as well. Please come back later if you would like to generate more.');
+				break;
+			default:
+				$('.alert .message').html('Unable to generate, please check your options.<br />' + data.responseText);
+		}
 		$('.alert').show();
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 		return resolve('no');
