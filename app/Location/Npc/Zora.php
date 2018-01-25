@@ -121,7 +121,7 @@ class Zora extends Npc {
 			case Item::get('BottleWithBluePotion'):
 				return "blue goo for sale";
 			case Item::get('BottleWithGoldBee'):
-				return "beetor for sale";
+				return "beetorp for sale";
 			case Item::get('BottleWithBee'):
 				return "mad friend for sale";
 			case Item::get('BottleWithFairy'):
