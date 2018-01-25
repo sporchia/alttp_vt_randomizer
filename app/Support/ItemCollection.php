@@ -294,6 +294,27 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Get total collectable Health
+	 *
+	 * @param float $initial starting health
+	 *
+	 * @return float
+	 */
+	public function heartCount($initial = 3) {
+		$count = $initial;
+
+		$hearts = $this->filter(function($item) {
+			return $item instanceof Item\Upgrade\Health;
+		});
+
+		foreach ($hearts as $heart) {
+			$count += ($heart->getName() == 'PieceOfHeart') ? .25 : 1;
+		}
+
+		return $count;
+	}
+
+	/**
 	 * Requirements for lifting rocks
 	 *
 	 * @return bool

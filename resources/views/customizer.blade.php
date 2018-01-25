@@ -25,6 +25,12 @@
 				<button name="reset" class="btn btn-danger">Reset Everything</button>
 			</div>
 			<h3 class="panel-title pull-right pd-4">I've done messed up! &nbsp; </h3>
+			<div class="btn-toolbar pull-left" role="group">
+				<label class="btn btn-primary btn-file">
+					Load saved settings <input type="file" accept=".json" name="customizer-restore" style="display: none;">
+				</label>
+				<button name="save-customizer" class="btn btn-primary">Save settings</button>
+			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -75,7 +81,7 @@
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Name</span>
-								<input type="text" id="name" class="name form-control" placeholder="name this">
+								<input type="text" id="name" name="name" class="name form-control" placeholder="name this">
 							</div>
 						</div>
 						<div class="col-md-6 pb-5">
@@ -124,7 +130,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="btn-group btn-flex" role="group">
-								<button name="test" class="btn btn-info">Test Generate</button>
+								<button name="test" class="btn btn-primary">Test Generate</button>
 							</div>
 						</div>
 					</div>
@@ -346,25 +352,74 @@ $(function() {
 		}
 	});
 
+	var save_restore_settings = [
+		'vt.customizer',
+		'vt.customizer.profiles',
+		'vt.customizer.lastTab',
+		'vt.custom.items',
+		'vt.custom.equipment',
+		'vt.custom.switches',
+		'vt.custom.settings',
+		'vt.custom.name',
+		'vt.custom.logic',
+		'vt.custom.mode',
+		'vt.custom.goal',
+		'vt.custom.seed',
+	];
 	// dirty cleanup function for now
 	$('button[name=reset]').on('click', function(e) {
 		e.preventDefault();
-		localforage.removeItem('vt.customizer');
-		localforage.removeItem('vt.customizer.profiles');
-		localforage.removeItem('vt.custom.items');
-		localforage.removeItem('vt.custom.equipment');
-		localforage.removeItem('vt.custom.switches');
-		localforage.removeItem('vt.custom.settings');
-		localforage.removeItem('vt.custom.name');
-		localforage.removeItem('vt.custom.logic');
-		localforage.removeItem('vt.custom.mode');
-		localforage.removeItem('vt.custom.goal');
-		localforage.removeItem('vt.custom.seed');
-		window.location = window.location;
+		var promises = [];
+		for (var i = 0; i < save_restore_settings.length; ++i) {
+			promises.push(localforage.removeItem(save_restore_settings[i]));
+		}
+		Promise.all(promises).then(function(values) {
+			window.location = window.location;
+		});
+	});
+
+	// Dirty Save to match dirty cleanup
+	$('button[name=save-customizer]').on('click', function(e) {
+		e.preventDefault();
+		var promises = [];
+		for (var i = 0; i < save_restore_settings.length; ++i) {
+			promises.push(localforage.getItem(save_restore_settings[i]));
+		}
+		Promise.all(promises).then(function(values) {
+			var save = {};
+			for (var i = 0; i < save_restore_settings.length; ++i) {
+				save[save_restore_settings[i]] = values[i];
+			}
+			return FileSaver.saveAs(new Blob([JSON.stringify(save)]), (values[7]) ? values[7] + '-settings.json' : 'customizer-settings.json');
+		});
+	});
+
+	// Dirty restore to match dirty save to match dirty cleanup
+	$('input[name=customizer-restore]').on('change', function() {
+		var file = this.files[0];
+		if (file.type !== "application/json") {
+			return;
+		}
+
+		var fileReader = new FileReader();
+
+		fileReader.onload = function(e) {
+			var settings = JSON.parse(fileReader.result);
+			var promises = [];
+			for (var i = 0; i < save_restore_settings.length; ++i) {
+				promises.push(localforage.setItem(save_restore_settings[i], settings[save_restore_settings[i]] || null));
+			}
+			Promise.all(promises).then(function(values) {
+				window.location = window.location;
+			});
+		}
+
+		fileReader.readAsText(file);
 	});
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		var target = $(e.target).attr("href") // activated tab
+		localforage.setItem('vt.customizer.lastTab', target);
 		if (!$(target).data('init')) {
 			// this is 3x faster than bs-select, consider switching everything to it if it looks right
 			$(target + " select.item-location").select2({
@@ -495,6 +550,11 @@ $(function() {
 			+ '-' + rom.goal
 			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
 			+ '_' + rom.seed + '.txt');
+	});
+
+	localforage.getItem('vt.customizer.lastTab').then(function(href) {
+		if (href === null) return;
+		$('a[href="' + href + '"]').tab('show');
 	});
 });
 </script>

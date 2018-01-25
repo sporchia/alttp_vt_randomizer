@@ -66,7 +66,7 @@
 			over the top left of the gap. No hookshot needed!
 		<li>Agahnim's barrier can be bypassed with the Magic Cape or destroyed with an upgraded sword.
 		<li>Desert Palace can be reached from Misery Mire even without the Book of Mudora.
-		<li>Bombos burns things as well as the Fire Rod which is useful in Ice Palace.
+		<li>Bombos melts things as well as the Fire Rod which is useful in Ice Palace.
 		<li>You can cross small gaps by rebounding off of walls or objects.
 		<li>Sahasrahla gives you his item when you speak to him with the Pendant of Courage.
 		<li>The Super Bomb spawns when you have acquired crystals 5 and 6.

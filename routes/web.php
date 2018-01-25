@@ -220,8 +220,12 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
+	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
+		if ($request->has('name')) {
+			$spoiler_meta['name'] = $request->input('name');
+		}
 		config($request->input('data'));
 		$world = new World($difficulty, $logic, $goal, $variation);
 		$locations = $world->getLocations();
@@ -302,7 +306,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	$patch = $rom->getWriteLog();
-	$spoiler = $rand->getSpoiler();
+	$spoiler = $rand->getSpoiler($spoiler_meta);
 	$hash = $rand->saveSeedRecord();
 
 	if (config('enemizer.enabled', false)) {
@@ -360,8 +364,12 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
+	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
+		if ($request->has('name')) {
+			$spoiler_meta['name'] = $request->input('name');
+		}
 		config($request->input('data'));
 		$world = new World($difficulty, $logic, $goal, $variation);
 		$locations = $world->getLocations();
@@ -407,7 +415,7 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 		'seed' => $seed,
 		'logic' => $rand->getLogic(),
 		'difficulty' => $difficulty,
-		'spoiler' => $rand->getSpoiler(),
+		'spoiler' => $rand->getSpoiler($spoiler_meta),
 	]);
 });
 

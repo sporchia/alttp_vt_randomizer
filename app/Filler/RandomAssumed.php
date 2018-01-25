@@ -59,7 +59,11 @@ class RandomAssumed extends Filler {
 				throw new \Exception(sprintf('No Available Locations: "%s"', $item->getNiceName()));
 			}
 
-			$fill_location = $fillable_locations->first();
+			if ($item instanceof Item\Compass || $item instanceof Item\Map) {
+				$fill_location = $fillable_locations->random();
+			} else {
+				$fill_location = $fillable_locations->first();
+			}
 
 			Log::debug(sprintf("Placing Item: %s in %s", $item->getNiceName(), $fill_location->getName()));
 

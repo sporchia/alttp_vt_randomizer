@@ -20,6 +20,11 @@ body {
 	background-color: #EEEEEE;
 }
 
+.panel-heading-sticky {
+	position: sticky;
+	top:0px;
+}
+
 .navbar-brand {
 	padding: 0;
 }

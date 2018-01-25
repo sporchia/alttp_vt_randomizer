@@ -289,10 +289,6 @@ $items = [
 		'count' => 1,
 		'name' => 'Swamp Palace Map',
 	],
-	'MapA1' => [
-		'count' => 0,
-		'name' => 'Agahnims Tower Map',
-	],
 	'MapP2' => [
 		'count' => 1,
 		'name' => 'Desert Palace Map',
@@ -300,10 +296,6 @@ $items = [
 	'MapP1' => [
 		'count' => 1,
 		'name' => 'Eastern Palace Map',
-	],
-	'MapH1' => [
-		'count' => 0,
-		'name' => 'Hyrule Castle Map',
 	],
 	'MapH2' => [
 		'count' => 1,
@@ -345,10 +337,6 @@ $items = [
 		'count' => 1,
 		'name' => 'Swamp Palace Compass',
 	],
-	'CompassA1' => [
-		'count' => 0,
-		'name' => 'Agahnims Tower Compass',
-	],
 	'CompassP2' => [
 		'count' => 1,
 		'name' => 'Desert Palace Compass',
@@ -356,14 +344,6 @@ $items = [
 	'CompassP1' => [
 		'count' => 1,
 		'name' => 'Eastern Palace Compass',
-	],
-	'CompassH1' => [
-		'count' => 0,
-		'name' => 'Hyrule Castle Compass',
-	],
-	'CompassH2' => [
-		'count' => 0,
-		'name' => 'Sewers Compass',
 	],
 	'BigKeyA2' => [
 		'count' => 1,
@@ -401,10 +381,6 @@ $items = [
 		'count' => 1,
 		'name' => 'Swamp Palace Big Key',
 	],
-	'BigKeyA1' => [
-		'count' => 0,
-		'name' => 'Agahnims Tower Big Key',
-	],
 	'BigKeyP2' => [
 		'count' => 1,
 		'name' => 'Desert Palace Big Key',
@@ -413,10 +389,6 @@ $items = [
 		'count' => 1,
 		'name' => 'Eastern Palace Big Key',
 	],
-	'BigKeyH1' => [
-		'count' => 0,
-		'name' => 'Hyrule Castle Big Key',
-	],
 	'BigKeyH2' => [
 		'count' => 0,
 		'name' => 'Sewers Big Key',
@@ -424,10 +396,6 @@ $items = [
 	'KeyH2' => [
 		'count' => 1,
 		'name' => 'Sewers Key',
-	],
-	'KeyH1' => [
-		'count' => 0,
-		'name' => 'Hyrule Castle Key',
 	],
 	'KeyP1' => [
 		'count' => 0,
@@ -525,7 +493,7 @@ $items = [
 //$items = sabsi($items, 'name', 'asc', true);
 ?>
 <div class="panel panel-success custom-item-pool">
-	<div class="panel-heading panel-heading-btn">
+	<div class="panel-heading panel-heading-btn panel-heading-sticky">
 		<h3 class="panel-title pull-left">Item Pool <span id="custom-count">0</span> / <span id="custom-count-total">0</span></h3>
 		<div class="btn-toolbar pull-right">
 			<input id="items-filter" placeholder="search" type="text" />

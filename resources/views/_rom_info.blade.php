@@ -21,6 +21,9 @@ function parseInfoFromPatch(patch) {
 	if (patch.seed == 'vanilla') {
 		$('.info .seed').html('Vanilla');
 	}
+	if (patch.spoiler.meta.name) {
+		$('.info .name').html(patch.spoiler.meta.name);
+	}
 	if (!patch.seed && patch.hash) {
 		$('.info .seed').html(patch.hash);
 	}

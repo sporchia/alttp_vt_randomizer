@@ -180,8 +180,10 @@ class Rom {
 		$starting_arrow_capacity = 0;
 		$starting_bomb_capacity = 0;
 		// starting heart containers
-		$equipment[0x36C] = 0x18;
-		$equipment[0x36D] = 0x18;
+		if ($items->heartCount(0) < 1) {
+			$equipment[0x36C] = 0x18;
+			$equipment[0x36D] = 0x18;
+		}
 		// default abilities
 		$equipment[0x379] |= 0b01101000;
 
@@ -2292,6 +2294,20 @@ class Rom {
 	 */
 	public function setLockAgahnimDoorInEscape(bool $enable = true) : self {
 		$this->write(0x180169, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable fix Fake Light World/Fake Dark World as caused by leaving the underworld.
+	 * Generally should only be used/enabled by Entrance Randomizer
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setFixFakeWorld(bool $enable = false) : self {
+		$this->write(0x180174, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}

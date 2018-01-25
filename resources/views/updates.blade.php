@@ -7,6 +7,7 @@
 		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
 		<li>Small keys in spoiler for key-sanity</li>
 		<li>Mirror warp sound is back in background music disable</li>
+		<li>Better placement of maps/compassess in dungeons</li>
 		<li>Customizer:<ul>
 			<li>Added "Test Generation" button, so you don't bloat the DB when just testing ideas</li>
 			<li>Removed some unuseful items</li>
@@ -14,6 +15,11 @@
 			<li>Fairy bottle fix</li>
 			<li>Item listing cleanup and normalizing</li>
 			<li>Bottles can be set in starting equipment</li>
+			<li>Name listed in meta section</li>
+			<li>Item list header should be sticky</li>
+			<li>Remembers where you were</li>
+			<li>Save/Restore settings!</li>
+			<li>Name's matter (well, more than they used to)</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>

@@ -131,6 +131,7 @@ class Randomizer {
 
 		// Set up World before we fill dungeons
 		$this->setMedallions($regions);
+		$this->placeBosses($this->world);
 		$this->fillPrizes($this->world);
 
 		$regions['Fountains']->getLocations()->each(function($fountain) {
@@ -286,6 +287,20 @@ class Randomizer {
 		$advancement_items = mt_shuffle($advancement_items);
 
 		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+
+		return $this;
+	}
+
+	/**
+	 * Place the bosses for each region.
+	 *
+	 * @param World $world world to place bosses in.
+	 *
+	 * @return $this
+	 */
+	public function placeBosses(World $world) : self {
+
+		// @TODO: implement
 
 		return $this;
 	}
@@ -462,9 +477,11 @@ class Randomizer {
 	/**
 	 * Get the current spoiler for this seed
 	 *
+	 * @param array $meta passthrough data to add to meta
+	 *
 	 * @return array
 	 */
-	public function getSpoiler() {
+	public function getSpoiler(array $meta = []) {
 		$spoiler = [];
 
 		if (count($this->starting_equipment)) {
@@ -498,15 +515,16 @@ class Randomizer {
 			});
 		}
 		$spoiler['playthrough'] = $this->world->getPlayThrough();
-		$spoiler['meta'] = [
+		$spoiler['meta'] = array_merge($meta, [
 			'difficulty' => $this->difficulty,
 			'variation' => $this->variation,
 			'logic' => $this->getLogic(),
+			'rom_mode' => $this->config('rom.logicMode', $this->logic),
 			'seed' => $this->rng_seed,
 			'goal' => $this->goal,
 			'build' => Rom::BUILD,
 			'mode' => config('game-mode', 'standard'),
-		];
+		]);
 
 		$this->seed->spoiler = json_encode($spoiler);
 
@@ -1004,6 +1022,7 @@ class Randomizer {
 			"meow meow meow\nmeow meow meow\n  oh my god!",
 			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
 			".done\n\n.comment lol",
+			"You get to\ndrink from\nthe firehose",
 		])));
 
 		return $this;

@@ -44,8 +44,9 @@ Artisan::command('alttp:test', function () {
 
 Artisan::command('alttp:dailies {days=7}', function ($days) {
 	for ($i = 0; $i < $days; ++$i) {
+		$date = Carbon::now()->addDays($i);
 		$feature = ALttP\FeaturedGame::firstOrNew([
-			'day' => Carbon::now()->addDays($i)->toDateString(),
+			'day' => $date->toDateString(),
 		]);
 		if (!$feature->exists) {
 			$difficulty = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.difficulties')), array_keys(config('alttp.randomizer.item.difficulties'))),
@@ -69,7 +70,9 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$seed = $rand->getSeed();
 
 			$patch = $rom->getWriteLog();
-			$spoiler = $rand->getSpoiler();
+			$spoiler = $rand->getSpoiler([
+				'name' => 'Daily Challenge: ' . $date->toFormattedDateString(),
+			]);
 			$hash = $rand->saveSeedRecord();
 
 			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
