@@ -144,7 +144,7 @@ class Pedestal extends Location {
 			case Item::get('BottleWithBluePotion'):
 				return "and the blue goo";
 			case Item::get('BottleWithGoldBee'):
-				return "and the beetor";
+				return "and the beetorp";
 			case Item::get('BottleWithBee'):
 				return "and the mad friend";
 			case Item::get('BottleWithFairy'):

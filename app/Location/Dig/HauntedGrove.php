@@ -119,7 +119,7 @@ class HauntedGrove extends Dig {
 			case Item::get('BottleWithBluePotion'):
 				return "bottle boy has blue goo again";
 			case Item::get('BottleWithGoldBee'):
-				return "bottle boy has beetor again";
+				return "bottle boy has beetorp again";
 			case Item::get('BottleWithBee'):
 				return "bottle boy has mad bee again";
 			case Item::get('BottleWithFairy'):
