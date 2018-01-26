@@ -24,25 +24,35 @@
 				<span class="input-group-addon">Play as</span>
 				<select id="sprite-gfx" class="form-control selectpicker" data-live-search="true"
 					data-style="sprite-icons" data-dropup-auto="false">
-				@foreach(config('alttp.sprites') as $sprite => $sprite_name)
-					<option data-icon="icon-custom-{{ str_replace(' ', '', $sprite_name) }}" value="{{ $sprite }}">{{ $sprite_name }}</option>
+				@foreach(config('sprites') as $sprite_file => $sprite_info)
+					<option data-icon="icon-custom-{{ str_replace([' ', ')', '(', '.'], '', $sprite_info['name']) }}" value="{{ $sprite_file }}">{{ $sprite_info['name'] }}</option>
 				@endforeach
 					<option data-icon="icon-custom-Random" value="random">Random</option>
 				</select>
 			</div>
 		</div>
+		<div class="col-md-6 pb-5">
+			<div class="input-group" role="group">
+				<span class="input-group-addon">Menu Speed<sup><strong>*</strong></sup></span>
+				<select id="menu-speed" class="form-control selectpicker">
+					<option value="instant">Instant</option>
+					<option value="fast">Fast</option>
+					<option value="normal" selected>Normal</option>
+					<option value="slow">Slow</option>
+				</select>
+			</div>
+		</div>
+		<div class="clearfix"></div>
 		<div class="col-md-6">
 			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="generate-sram-trace">SRAM Trace<sup><strong>*</strong></sup></label>
 		</div>
-		<div class="col-md-6">
-			<input id="generate-fast-menu" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-fast-menu">Fast Menu<sup><strong>*</strong></sup></label>
-		</div>
-		<div class="col-md-6">
+		@if (!isset($disallow_disable_music) || !$disallow_disable_music)
+		<div class="col-md-6 music-disable-toggle">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="generate-music-on">Background Music</label>
 		</div>
+		@endif
 		<div class="secrets" style="display:none">
 			<div class="col-md-6">
 				<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -72,7 +82,7 @@ function getSprite(sprite_name) {
 				return;
 			}
 			var oReq = new XMLHttpRequest();
-			oReq.open("GET", "http://a4482918739889ddcb78-781cc7889ba8761758717cf14b1800b4.r32.cf2.rackcdn.com/" + sprite_name, true);
+			oReq.open("GET", "http://spr.beegunslingers.com/" + sprite_name, true);
 			oReq.responseType = "arraybuffer";
 
 			oReq.onload = function(oEvent) {
@@ -127,17 +137,17 @@ $(function() {
 		$('#generate-sram-trace').trigger('change');
 	});
 
-	$('#generate-fast-menu').on('change', function() {
+	$('#menu-speed').on('change', function() {
 		if (rom) {
-			rom.setFastMenu($(this).prop('checked'));
+			rom.setMenuSpeed($(this).val());
 		}
-		localforage.setItem('rom.fast-menu', $(this).prop('checked'));
-		$('input[name=menu_fast]').val($(this).prop('checked'));
+		localforage.setItem('rom.menu-speed', $(this).val());
+		$('input[name=menu_speed]').val($(this).val());
 	});
-	localforage.getItem('rom.fast-menu').then(function(value) {
+	localforage.getItem('rom.menu-speed').then(function(value) {
 		if (value === null) return;
-		$('#generate-fast-menu').prop('checked', value);
-		$('#generate-fast-menu').trigger('change');
+		$('#menu-speed').val(value);
+		$('#menu-speed').trigger('change');
 	});
 
 	$('#generate-music-on').on('change', function() {

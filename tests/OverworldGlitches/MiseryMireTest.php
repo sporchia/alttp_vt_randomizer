@@ -184,7 +184,6 @@ class MiseryMireTest extends TestCase {
 
 			["Misery Mire - Spike Chest", false, []],
 			["Misery Mire - Spike Chest", false, [], ['MoonPearl']],
-			["Misery Mire - Spike Chest", false, [], ['Cape', 'CaneOfByrna']],
 			["Misery Mire - Spike Chest", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'PegasusBoots', 'CaneOfByrna']],
 			["Misery Mire - Spike Chest", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'L1Sword', 'Hookshot', 'CaneOfByrna']],
 			["Misery Mire - Spike Chest", true, ['MoonPearl', 'Flute', 'TitansMitt', 'Ether', 'ProgressiveSword', 'PegasusBoots', 'CaneOfByrna']],

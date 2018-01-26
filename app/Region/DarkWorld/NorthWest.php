@@ -108,9 +108,7 @@ class NorthWest extends Region {
 		});
 
 		$this->locations["Blacksmith"]->setRequirements(function($locations, $items) {
-			return $items->glitchedLinkInDarkWorld()
-				&& ($items->canLiftDarkRocks()
-					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
+			return $items->glitchedLinkInDarkWorld() && $items->canLiftDarkRocks();
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
@@ -158,9 +156,7 @@ class NorthWest extends Region {
 		});
 
 		$this->locations["Blacksmith"]->setRequirements(function($locations, $items) {
-			return $items->has('MoonPearl')
-				&& ($items->canLiftDarkRocks()
-					|| ($items->has('PegasusBoots') && $items->has('MagicMirror')));
+			return $items->has('MoonPearl') && $items->canLiftDarkRocks();
 		});
 
 		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {

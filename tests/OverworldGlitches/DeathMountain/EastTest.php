@@ -30,7 +30,7 @@ class EastTest extends TestCase {
 		if (count($except)) {
 			$this->collected = $this->allItemsExcept($except);
 		}
-	
+
 		$this->addCollected($items);
 
 		$this->assertEquals($access, $this->world->getLocation($location)
@@ -44,7 +44,7 @@ class EastTest extends TestCase {
 			["Spiral Cave", true, ['Flute', 'Hookshot']],
 			["Spiral Cave", true, ['ProgressiveGlove', 'Lamp', 'Hookshot']],
 			["Spiral Cave", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'Hammer']],
-			["Spiral Cave", false, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
+			["Spiral Cave", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror']],
 			["Spiral Cave", false, ['ProgressiveGlove', 'Hookshot']],
 			["Spiral Cave", false, [], ['Gloves', 'Flute', 'PegasusBoots']],
 

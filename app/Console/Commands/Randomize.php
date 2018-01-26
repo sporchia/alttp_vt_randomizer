@@ -4,6 +4,7 @@ use ALttP\Item;
 use ALttP\Randomizer;
 use ALttP\Rom;
 use ALttP\World;
+use ALttP\Support\Zspr;
 use Illuminate\Console\Command;
 
 class Randomize extends Command {
@@ -28,10 +29,10 @@ class Randomize extends Command {
 		. ' {--bulk=1 : generate multiple roms}'
 		. ' {--goal=ganon : set game goal}'
 		. ' {--mode=standard : set game mode}'
-		. ' {--sprite= : sprite/rom file to change links graphics}'
+		. ' {--sprite= : sprite file to change links graphics [zspr format]}'
 		. ' {--no-rom : no not generate output rom}'
 		. ' {--no-music : mute all music}'
-		. ' {--fast-menu : enable fast menu}';
+		. ' {--menu-speed=normal : menu speed}';
 
 	/**
 	 * The console command description.
@@ -79,7 +80,7 @@ class Randomize extends Command {
 
 			// break out for unrandomized/vanilla base game
 			if ($this->option('vanilla')) {
-				$rom = $this->setVanilla($rom);
+				$rom->writeVanilla();
 				$output_file = sprintf('%s/alttp-%s-vanilla.sfc', $this->argument('output_directory'), Rom::BUILD);
 				$rom->save($output_file);
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
@@ -97,24 +98,21 @@ class Randomize extends Command {
 
 			$rand->writeToRom($rom);
 			$rom->muteMusic($this->option('no-music', false));
-			$rom->setQuickMenu($this->option('fast-menu', false));
+			$rom->setMenuSpeed($this->option('menu-speed', 'normal'));
 
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.sfc',
 				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
-					if (filesize($this->option('sprite')) == 28792) {
-						$sprite_graphics = file_get_contents($this->option('sprite'), false, null, 0, 0x7000);
-						$sprite_palettes = file_get_contents($this->option('sprite'), false, null, 0x7000, 120);
-					} else if (filesize($this->option('sprite')) == 1048576 || filesize($this->option('sprite')) == 2097152) {
-						$sprite_graphics = file_get_contents($this->option('sprite'), false, null, 0x80000, 0x7000);
-						$sprite_palettes = file_get_contents($this->option('sprite'), false, null, 0xDD308, 120);
-					}
-					if (isset($sprite_graphics)) {
-						$rom->write(0x80000, $sprite_graphics, false);
-						$rom->write(0xDD308, $sprite_palettes, false);
-						$rom->write(0xDEDF5, substr($sprite_palettes, 0x36, 2), false);
-						$rom->write(0xDEDF7, substr($sprite_palettes, 0x54, 2), false);
+					$this->info("sprite");
+					try {
+						$zspr = new Zspr($this->option('sprite'));
+
+						$rom->write(0x80000, $zspr->getPixelData(), false);
+						$rom->write(0xDD308, substr($zspr->getPaletteData(), 0, 120), false);
+						$rom->write(0xDEDF5, substr($zspr->getPaletteData(), 120, 4), false);
+					} catch (\Exception $e) {
+						return $this->error("Sprite not in ZSPR format");
 					}
 				}
 				$rom->updateChecksum();
@@ -128,34 +126,6 @@ class Randomize extends Command {
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}
 		}
-	}
-
-	protected function setVanilla(Rom $rom) {
-		$world = new World($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
-		$world->setVanilla();
-
-		foreach ($world->getLocations() as $location) {
-			$location->writeItem($rom);
-		}
-
-		$rom->setClockMode('off');
-		$rom->setHardMode(0);
-
-		$rom->setPyramidFairyChests(false);
-		$rom->setWishingWellChests(false);
-		$rom->setSmithyQuickItemGive(false);
-
-		$rom->setOpenMode(false);
-		$rom->setSwordlessMode(false);
-		$rom->setGanonAgahnimRng('vanilla');
-
-		$rom->setMaxArrows();
-		$rom->setMaxBombs();
-		$rom->setStartingTime(0);
-
-		$rom->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
-
-		return $rom;
 	}
 
 	protected function resetPatch() {

@@ -81,20 +81,20 @@ class ThievesTown extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Thieves' Town - Attic"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD4') && $items->has('BigKeyD4');
-		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
 		});
 
 		$this->locations["Thieves' Town - Big Chest"]->setRequirements(function($locations, $items) {
+			if ($locations["Thieves' Town - Big Chest"]->hasItem(Item::get('KeyD4'))) {
+				return $items->has('Hammer') && $items->has('BigKeyD4');
+			}
+
 			return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
-		})->setFillRules(function($item, $locations, $items) {
-			return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
+		})->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('KeyD4');
 		});
 
 		$this->locations["Thieves' Town - Blind's Cell"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD4');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD4');
 		});
 
 		$this->can_complete = function($locations, $items) {
@@ -112,7 +112,7 @@ class ThievesTown extends Region {
 					return false;
 				}
 
-				return !in_array($item, [Item::get('KeyD4'), Item::get('BigKeyD4')]);
+				return true;
 			});
 
 		$this->can_enter = function($locations, $items) {

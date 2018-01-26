@@ -34,8 +34,6 @@ class Seed extends Model {
 
 	public function setPatchAttribute($value) {
 		$this->stored_patch = $value;
-
-		$this->attributes['patch'] = "[]";
 	}
 
 	public function getPatchAttribute() {

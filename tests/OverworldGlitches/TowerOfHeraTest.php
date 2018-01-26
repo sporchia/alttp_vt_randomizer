@@ -68,7 +68,7 @@ class TowerOfHeraTest extends TestCase {
 	public function fillPool() {
 		return [
 			["Tower of Hera - Big Key Chest", true, 'BigKeyP3', [], ['BigKeyP3']],
-			["Tower of Hera - Big Key Chest", false, 'KeyP3', [], ['KeyP3']],
+			["Tower of Hera - Big Key Chest", true, 'KeyP3', [], ['KeyP3']],
 
 			["Tower of Hera - Basement Cage", true, 'BigKeyP3', [], ['BigKeyP3']],
 

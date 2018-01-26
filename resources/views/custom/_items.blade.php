@@ -90,7 +90,7 @@ $items = [
 		'name' => 'Quake',
 	],
 	'Bottles' => [
-		'count' => 1,
+		'count' => 4,
 		'name' => 'Bottle',
 	],
 	'L1Sword' => [
@@ -188,10 +188,6 @@ $items = [
 	'BugCatchingNet' => [
 		'count' => 1,
 		'name' => 'Bug Catching Net',
-	],
-	'ExtraBottles' => [
-		'count' => 3,
-		'name' => 'Extra Bottles',
 	],
 	'HeartContainer' => [
 		'count' => 1,

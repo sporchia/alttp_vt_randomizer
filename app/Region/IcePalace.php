@@ -81,34 +81,25 @@ class IcePalace extends Region {
 	public function initNoMajorGlitches() {
 		$this->locations["Ice Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canLiftRocks()
+				&& (!$this->world->config('region.cantTakeDamage', false)
+					|| $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
 				&& ($items->has('Hookshot')
-					|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
-							"Ice Palace - Map Chest",
-							"Ice Palace - Spike Room",
-						]) && $items->has('KeyD5'))
-					|| $items->has('KeyD5', 2))
-				&& ($items->has('Hookshot') || $items->has('CaneOfByrna') || $items->has('Cape'));
+					|| $items->has('BigKeyD5') ? $items->has('Hookshot') : $items->has('KeyD5', 1));
 		});
 
 		$this->locations["Ice Palace - Map Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hammer') && $items->canLiftRocks()
+				&& (!$this->world->config('region.cantTakeDamage', false)
+					|| $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
 				&& ($items->has('Hookshot')
-					|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
-							"Ice Palace - Spike Room",
-							"Ice Palace - Big Key Chest",
-						]) && $items->has('KeyD5'))
-					|| $items->has('KeyD5', 2))
-				&& ($items->has('Hookshot') || $items->has('CaneOfByrna') || $items->has('Cape'));
+					|| $items->has('BigKeyD5') ? $items->has('Hookshot') : $items->has('KeyD5', 1));
 		});
 
 		$this->locations["Ice Palace - Spike Room"]->setRequirements(function($locations, $items) {
-			return ($items->has('Hookshot')
-					|| ($locations->itemInLocations(Item::get('BigKeyD5'), [
-							"Ice Palace - Map Chest",
-							"Ice Palace - Big Key Chest",
-						]) && $items->has('KeyD5'))
-					|| $items->has('KeyD5', 2))
-				&& ($items->has('Hookshot') || $items->has('CaneOfByrna') || $items->has('Cape'));
+			return (!$this->world->config('region.cantTakeDamage', false)
+					|| $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
+				&& ($items->has('Hookshot')
+					|| $items->has('BigKeyD5') ? $items->has('Hookshot') : $items->has('KeyD5', 1));
 		});
 
 		$this->locations["Ice Palace - Freezor Chest"]->setRequirements(function($locations, $items) {
@@ -117,8 +108,6 @@ class IcePalace extends Region {
 
 		$this->locations["Ice Palace - Big Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD5');
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD5');
 		});
 
 		$this->can_complete = function($locations, $items) {
@@ -138,11 +127,7 @@ class IcePalace extends Region {
 					return false;
 				}
 
-				if ($this->world->config('region.bossHaveKey', true)) {
-					return $item != Item::get('BigKeyD5');
-				}
-
-				return !in_array($item, [Item::get('KeyD5'), Item::get('BigKeyD5')]);
+				return true;
 			});
 
 

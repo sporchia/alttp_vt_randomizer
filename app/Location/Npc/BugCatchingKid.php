@@ -168,7 +168,7 @@ class BugCatchingKid extends Npc {
 			case Item::get('Triforce'):
 				return "the game-winning kid";
 			case Item::get('PowerStar'):
-				return "the stary-eyed kid";
+				return "the starry-eyed kid";
 			case Item::get('TriforcePiece'):
 				return "triforce-holding kid";
 			case Item::get('Nothing'):

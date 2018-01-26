@@ -107,50 +107,45 @@ class TurtleRock extends Region {
 		});
 
 		$this->locations["Turtle Rock - Big Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('BigKeyD7') && $items->has('KeyD7', 2);
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD7');
+			return ($items->has('CaneOfSomaria') || $items->has('Hookshot'))
+				&& $items->has('BigKeyD7') && $items->has('KeyD7', 2);
 		});
 
 		$this->locations["Turtle Rock - Big Key Chest"]->setRequirements(function($locations, $items) {
-			if ($this->world->config('region.wildKeys', false)) {
-				return $items->has('KeyD7', 4);
+			if (!$locations["Turtle Rock - Big Key Chest"]->hasItem(Item::get('BigKeyD7')) && $this->world->config('region.wildKeys', false)) {
+				return $locations["Turtle Rock - Big Key Chest"]->hasItem(Item::get('KeyD7')) ? $items->has('KeyD7', 3) : $items->has('KeyD7', 4);
 			}
 			return $items->has('KeyD7', 2);
+		})->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('KeyD7') && $items->has('KeyD7', 3);
 		});
 
 		$this->locations["Turtle Rock - Crystaroller Room"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD7') && $items->has('KeyD7', 2);
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD7');
 		});
 
 		$this->locations["Turtle Rock - Eye Bridge - Bottom Left"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD7');
+				&& ($items->has('Cape') || $items->has('CaneOfByrna')
+					|| ($this->world->config('item.overflow.count.Shield', 3) >= 3 && $items->canBlockLasers()));
 		});
 
 		$this->locations["Turtle Rock - Eye Bridge - Bottom Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD7');
+				&& ($items->has('Cape') || $items->has('CaneOfByrna')
+					|| ($this->world->config('item.overflow.count.Shield', 3) >= 3 && $items->canBlockLasers()));
 		});
 
 		$this->locations["Turtle Rock - Eye Bridge - Top Left"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD7');
+				&& ($items->has('Cape') || $items->has('CaneOfByrna')
+					|| ($this->world->config('item.overflow.count.Shield', 3) >= 3 && $items->canBlockLasers()));
 		});
 
 		$this->locations["Turtle Rock - Eye Bridge - Top Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
-		})->setFillRules(function($item, $locations, $items) {
-			return $item != Item::get('BigKeyD7');
+				&& ($items->has('Cape') || $items->has('CaneOfByrna')
+					|| ($this->world->config('item.overflow.count.Shield', 3) >= 3 && $items->canBlockLasers()));
 		});
 
 		$this->can_complete = function($locations, $items) {
@@ -158,7 +153,8 @@ class TurtleRock extends Region {
 				&& $items->has('KeyD7', 4)
 				&& $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp')
 				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
-				&& ($items->has('Hammer') || $items->hasUpgradedSword());
+				&& ($items->has('Hammer') || ($items->canExtendMagic(2) && $items->hasUpgradedSword())
+						|| ($items->canExtendMagic(4) && $items->hasSword()));
 		};
 
 		$this->locations["Turtle Rock - Trinexx"]->setRequirements($this->can_complete)
@@ -169,7 +165,7 @@ class TurtleRock extends Region {
 					return false;
 				}
 
-				return !in_array($item, [Item::get('KeyD7'), Item::get('BigKeyD7')]);
+				return true;
 			});
 
 		$this->can_enter = function($locations, $items) {
@@ -205,7 +201,9 @@ class TurtleRock extends Region {
 
 		$middle = function($locations, $items) {
 			return ($items->has('MagicMirror') || ($items->glitchedLinkInDarkWorld() && $items->canSpinSpeed()))
-				&& ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot'))
+				&& ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot')
+					|| !$this->world->config('region.cantTakeDamage', false)
+						&& ($items->has('Cape') || $items->has('CaneOfByrna')))
 				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		};
 
@@ -262,7 +260,7 @@ class TurtleRock extends Region {
 		$this->locations["Turtle Rock - Big Chest"]->setRequirements(function($locations, $items) use ($upper, $middle, $lower) {
 			return $items->has('BigKeyD7')
 				&& (($upper($locations, $items) && $items->has('KeyD7', 2))
-					|| $middle($locations, $items)
+					|| ($middle($locations, $items) && ($items->has('Hookshot') || $items->has('CaneOfSomaria')))
 					|| ($lower($locations, $items) && $items->has('Lamp') && $items->has('CaneOfSomaria')));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD7');
@@ -290,25 +288,29 @@ class TurtleRock extends Region {
 			return ($lower($locations, $items)
 				|| (($upper($locations, $items) || $middle($locations, $items)) &&
 					$items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)))
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());		});
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
+		});
 
 		$this->locations["Turtle Rock - Eye Bridge - Top Left"]->setRequirements(function($locations, $items) use ($upper, $middle, $lower) {
 			return ($lower($locations, $items)
 				|| (($upper($locations, $items) || $middle($locations, $items)) &&
 					$items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)))
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());		});
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
+		});
 
 		$this->locations["Turtle Rock - Eye Bridge - Top Right"]->setRequirements(function($locations, $items) use ($upper, $middle, $lower) {
 			return ($lower($locations, $items)
 				|| (($upper($locations, $items) || $middle($locations, $items)) &&
 					$items->has('Lamp') && $items->has('CaneOfSomaria') && $items->has('BigKeyD7') && $items->has('KeyD7', 3)))
-				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());		});
+				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
+		});
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->has('FireRod') && $items->has('IceRod')
 				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
-				&& ($items->has('Hammer') || $items->hasUpgradedSword());
+				&& ($items->has('Hammer') || $items->hasUpgradedSword())
+				&& $items->has('KeyD7', 4);
 		};
 
 		$this->locations["Turtle Rock - Trinexx"]->setRequirements($this->can_complete);
@@ -333,7 +335,9 @@ class TurtleRock extends Region {
 
 		$middle = function($locations, $items) {
 			return ($items->has('MagicMirror') || ($items->has('MoonPearl') && $items->canSpinSpeed()))
-				&& ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot'))
+				&& ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot')
+					|| !$this->world->config('region.cantTakeDamage', false)
+						&& ($items->has('Cape') || $items->has('CaneOfByrna')))
 				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		};
 
@@ -384,7 +388,7 @@ class TurtleRock extends Region {
 
 		$this->locations["Turtle Rock - Big Chest"]->setRequirements(function($locations, $items) use ($upper, $middle) {
 			return $items->has('BigKeyD7') && (($upper($locations, $items) && $items->has('KeyD7', 2))
-				|| $middle($locations, $items));
+				|| ($middle($locations, $items) && ($items->has('Hookshot') || $items->has('CaneOfSomaria'))));
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyD7');
 		});
