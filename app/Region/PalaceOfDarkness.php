@@ -101,9 +101,13 @@ class PalaceOfDarkness extends Region {
 			}
 
 			return (($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp')) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
-		})->setAlwaysAllow(function($item, $items) {
-			return $item == Item::get('KeyD1') && $items->has('KeyD1', 5);
 		});
+
+		if ($this->world->config('region.reachability', 'random') != 'full-clear') {
+			$this->locations["Palace of Darkness - Big Key Chest"]->setAlwaysAllow(function($item, $items) {
+				return $item == Item::get('KeyD1') && $items->has('KeyD1', 5);
+			});
+		};
 
 		$this->locations["Palace of Darkness - The Arena - Bridge"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD1')
@@ -125,9 +129,13 @@ class PalaceOfDarkness extends Region {
 			}
 
 			return (($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp')) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
-		})->setAlwaysAllow(function($item, $items) {
-			return $item == Item::get('KeyD1') && $items->has('KeyD1', 5);
 		});
+
+		if ($this->world->config('region.reachability', 'random') != 'full-clear') {
+			$this->locations["Palace of Darkness - Harmless Hellway"]->setAlwaysAllow(function($item, $items) {
+				return $item == Item::get('KeyD1') && $items->has('KeyD1', 5);
+			});
+		};
 
 		$this->locations["Palace of Darkness - Stalfos Basement"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD1')

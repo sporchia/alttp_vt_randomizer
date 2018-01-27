@@ -116,9 +116,13 @@ class TurtleRock extends Region {
 				return $locations["Turtle Rock - Big Key Chest"]->hasItem(Item::get('KeyD7')) ? $items->has('KeyD7', 3) : $items->has('KeyD7', 4);
 			}
 			return $items->has('KeyD7', 2);
-		})->setAlwaysAllow(function($item, $items) {
-			return $item == Item::get('KeyD7') && $items->has('KeyD7', 3);
 		});
+
+		if ($this->world->config('region.reachability', 'random') != 'full-clear') {
+			$this->locations["Turtle Rock - Big Key Chest"]->setAlwaysAllow(function($item, $items) {
+				return $item == Item::get('KeyD7') && $items->has('KeyD7', 3);
+			});
+		}
 
 		$this->locations["Turtle Rock - Crystaroller Room"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD7') && $items->has('KeyD7', 2);

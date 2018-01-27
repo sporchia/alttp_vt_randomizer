@@ -89,9 +89,13 @@ class ThievesTown extends Region {
 			}
 
 			return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
-		})->setAlwaysAllow(function($item, $items) {
-			return $item == Item::get('KeyD4');
 		});
+
+		if ($this->world->config('region.reachability', 'random') != 'full-clear') {
+			$this->locations["Thieves' Town - Big Chest"]->setAlwaysAllow(function($item, $items) {
+			return $item == Item::get('KeyD4');
+			});
+		}
 
 		$this->locations["Thieves' Town - Blind's Cell"]->setRequirements(function($locations, $items) {
 			return $items->has('BigKeyD4');
