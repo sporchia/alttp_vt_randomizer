@@ -181,13 +181,21 @@ class Randomizer {
 		// at this point we have filled all the base locations that will affect the rest of the actual item placements
 		$advancement_items = $this->getAdvancementItems();
 
+		// items potentially required by goal that do not unlock new locations
+		$win_items = [];
+
 		// take out all the swords and silver arrows
 		$nice_items = $this->getNiceItems();
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
 		foreach ($advancement_items as $key => $item) {
 			if ($item == Item::get('SilverArrowUpgrade')) {
-				$nice_items[] = $item;
+				if ($this->goal == 'dungeons' || $this->goal == 'ganon') {
+					$win_items[] = $item;
+				}
+				else {
+					$nice_items[] = $item;
+				}
 				unset($advancement_items[$key]);
 				continue;
 			}
@@ -198,6 +206,11 @@ class Randomizer {
 			}
 			if ($item instanceof Item\Bottle) {
 				$nice_items_bottles[] = $item;
+				unset($advancement_items[$key]);
+				continue;
+			}
+			if ($item == Item::get('TriforcePiece') && $this->goal == 'triforce-hunt') {
+				$win_items[] = $item;
 				unset($advancement_items[$key]);
 				continue;
 			}
@@ -212,6 +225,12 @@ class Randomizer {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			} elseif ($this->config('region.forceUncleSword', true)) {
 				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+			}
+
+			if ($this->goal == 'dungeons' || $this->goal == 'ganon')
+			{
+				// need tempered to beat the game
+				array_push($win_items,  array_pop($nice_items_swords));
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -282,7 +301,7 @@ class Randomizer {
 
 		$advancement_items = mt_shuffle($advancement_items);
 
-		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $win_items, $nice_items, $trash_items);
 
 		return $this;
 	}
