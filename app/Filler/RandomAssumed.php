@@ -3,6 +3,7 @@
 use ALttP\Filler;
 use ALttP\Item;
 use ALttP\Support\ItemCollection as Items;
+use ALttP\Support\LocationCollection as Locations;
 use Log;
 
 class RandomAssumed extends Filler {
@@ -48,10 +49,12 @@ class RandomAssumed extends Filler {
 			throw new \Exception("Trying to fill more items than available locations.");
 		}
 
-		if ($this->world->config('region.reachability', 'random') == 'random') {
+		if ($this->world->config('region.reachability', 'random') != 'full-clear') {
 			$min_reachable_locations = count($win_items);
 			Log::debug(sprintf("Will try for at least %s reachable locations", $min_reachable_locations));
 		}
+
+		$filled_locations = new Locations();
 
 		foreach ($fill_items as $key => $item) {
 			$assumed_items = $this->world->collectItems($remaining_fill_items->removeItem($item->getName())->merge($base_assumed_items));
@@ -59,7 +62,7 @@ class RandomAssumed extends Filler {
 			$perform_access_check = true;
 
 			// Check if the world is winnable with all the $win_items
-			if ($this->world->config('region.reachability', 'random') == 'random') {
+			if ($this->world->config('region.reachability', 'random') != 'full-clear') {
 				$merged_items = $assumed_items->merge($win_items);
 				if ($this->world->getWinCondition()($merged_items))
 				{
@@ -87,6 +90,8 @@ class RandomAssumed extends Filler {
 			Log::debug(sprintf("Placing Item: %s in %s", $item->getNiceName(), $fill_location->getName()));
 
 			$fill_location->setItem($item);
+
+			$filled_locations->addItem($fill_location);
 		}
 
 		// Put items needed to win in reachable locations
@@ -95,5 +100,29 @@ class RandomAssumed extends Filler {
 			return !$location->hasItem() && $location->canAccess($assumed_items);
 		});
 		$this->fastFillItemsInLocations($win_items, $reachable_locations);
+
+		if ($this->world->config('region.reachability', 'random') == 'minimal') {
+			// Take out any reachable advancement items we don't need
+			$junk_items = [];
+
+			foreach ($filled_locations as $location) {
+				$item = $location->getItem();
+
+				$location->setItem();
+
+				if ($this->world->checkWinCondition()) {
+					$junk_items[] = $item;
+				}
+				else {
+					$location->setItem($item);
+				}
+			}
+
+			$assumed_items = $this->world->collectItems(new Items($base_assumed_items));
+			$unreachable_locations = $locations->filter(function($location) use ($assumed_items) {
+				return !$location->hasItem() && !$location->canAccess($assumed_items);
+			});
+			$this->fastFillItemsInLocations($junk_items, $unreachable_locations);
+		}
 	}
 }

@@ -109,6 +109,7 @@
 				<select id="custom-reachability" class="form-control custom-value selectpicker" name="data[alttp.custom.region.reachability]">
 					<option value="random">Random</option>
 					<option value="full-clear">Full Clear</option>
+					<option value="minimal">Minimal</option>
 				</select>
 			</div>
 		</div>
