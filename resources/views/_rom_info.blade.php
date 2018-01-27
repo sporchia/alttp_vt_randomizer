@@ -9,6 +9,7 @@
 	<div>Goal: <span class="goal"></span></div>
 	<div>Seed: <span class="seed"></span></div>
 	<div style="display:none">Special: <span class="special"></span></div>
+	<div style="display:none">Notes: <span class="notes"></span></div>
 </div>
 
 <script>
@@ -35,6 +36,7 @@ function parseInfoFromPatch(patch) {
 	$('.info .difficulty').html(patch.difficulty);
 	$('.info .shuffle').html(patch.spoiler.meta.shuffle);
 	$('.info .special').html(patch.spoiler.meta.special);
+	$('.info .notes').html(patch.spoiler.meta.notes);
 	if (patch.spoiler.meta.shuffle) {
 		$('.info .shuffle').parent().show();
 	} else {
@@ -44,6 +46,11 @@ function parseInfoFromPatch(patch) {
 		$('.info .special').parent().show();
 	} else {
 		$('.info .special').parent().hide();
+	}
+	if (patch.spoiler.meta.notes) {
+		$('.info .notes').parent().show();
+	} else {
+		$('.info .notes').parent().hide();
 	}
 }
 </script>

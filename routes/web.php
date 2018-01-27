@@ -223,8 +223,16 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
+		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
+		$purifier_settings->loadArray(config("purifier.default"));
+		$purifier = new HTMLPurifier($purifier_settings);
 		if ($request->has('name')) {
-			$spoiler_meta['name'] = $request->input('name');
+			$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
+			$spoiler_meta['name'] = $purifier->purify($markdowned);
+		}
+		if ($request->has('notes')) {
+			$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
+			$spoiler_meta['notes'] = $purifier->purify($markdowned);
 		}
 		config($request->input('data'));
 		$world = new World($difficulty, $logic, $goal, $variation);
@@ -367,8 +375,16 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
+		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
+		$purifier_settings->loadArray(config("purifier.default"));
+		$purifier = new HTMLPurifier($purifier_settings);
 		if ($request->has('name')) {
-			$spoiler_meta['name'] = $request->input('name');
+			$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
+			$spoiler_meta['name'] = $purifier->purify($markdowned);
+		}
+		if ($request->has('notes')) {
+			$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
+			$spoiler_meta['notes'] = $purifier->purify($markdowned);
 		}
 		config($request->input('data'));
 		$world = new World($difficulty, $logic, $goal, $variation);

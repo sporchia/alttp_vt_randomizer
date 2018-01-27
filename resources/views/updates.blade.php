@@ -20,6 +20,7 @@
 			<li>Remembers where you were</li>
 			<li>Save/Restore settings!</li>
 			<li>Name's matter (well, more than they used to)</li>
+			<li>Add notes to your custom games</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>

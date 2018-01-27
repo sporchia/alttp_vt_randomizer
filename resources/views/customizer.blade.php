@@ -81,7 +81,7 @@
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Name</span>
-								<input type="text" id="name" name="name" class="name form-control" placeholder="name this">
+								<input type="text" id="name" name="name" class="name form-control" placeholder="name this" maxlength="100">
 							</div>
 						</div>
 						<div class="col-md-6 pb-5">
@@ -117,6 +117,17 @@
 									@endforeach
 								</select>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Notes</span>
+								<textarea class="form-control no-resize" id="notes" name="notes" placeholder="Seed Notes" rows="5" maxlength="300"></textarea>
+							</div>
+							<h6 class="pull-right" id="count_message"></h6>
+						</div>
+						<div class="col-md-6 pb-5">
 						</div>
 					</div>
 					@yield('rom-settings')
@@ -361,6 +372,7 @@ $(function() {
 		'vt.custom.switches',
 		'vt.custom.settings',
 		'vt.custom.name',
+		'vt.custom.notes',
 		'vt.custom.logic',
 		'vt.custom.mode',
 		'vt.custom.goal',
@@ -473,6 +485,23 @@ $(function() {
 		$('#name').val(value);
 		$('#name').trigger('change');
 	});
+
+	var notes_length_max = 300;
+	$('#notes').on('keyup', function() {
+		var text_length = $(this).val().length;
+		var text_remaining = notes_length_max - text_length;
+
+		$('#count_message').html(text_remaining + ' remaining');
+
+		localforage.setItem('vt.custom.notes', $(this).val());
+	});
+	localforage.getItem('vt.custom.notes').then(function(value) {
+		if (value === null) return;
+		$('#notes').val(value);
+		$('#notes').trigger('keyup');
+	});
+	$('#count_message').html(notes_length_max + ' remaining');
+
 
 	$('#logic').on('change', function() {
 		var $this = $(this);

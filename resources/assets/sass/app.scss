@@ -29,6 +29,10 @@ body {
 	padding: 0;
 }
 
+.no-resize {
+	resize: none;
+}
+
 .btn-outline-secondary {
 	background-color: transparent;
 	border-color: #868E96;
