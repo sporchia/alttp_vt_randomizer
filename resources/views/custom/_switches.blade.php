@@ -105,6 +105,16 @@
 		</div>
 		<div class="col-md-6 pb-5">
 			<div class="input-group" role="group">
+				<span class="input-group-addon">Reachability</span>
+				<select id="custom-reachability" class="form-control custom-value selectpicker" name="data[alttp.custom.region.reachability]">
+					<option value="random">Random</option>
+					<option value="full-clear">Full Clear</option>
+					<option value="minimal">Minimal</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-6 pb-5">
+			<div class="input-group" role="group">
 				<span class="input-group-addon">Timer Start</span>
 				<input id="custom-timer-start" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.rom.timerStart]" />
 			</div>

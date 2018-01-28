@@ -37,7 +37,7 @@ abstract class Filler {
 		$this->world = $world;
 	}
 
-	abstract public function fill(array $dungeon, array $required, array $nice, array $extra);
+	abstract public function fill(array $dungeon, array $required, array $win, array $nice, array $extra);
 
 	protected function shuffleLocations(Locations $locations) {
 		return $locations->randomCollection($locations->count());
