@@ -308,9 +308,11 @@ $(function() {
 		localforage.setItem('rom.logic', value);
 		$('input[name=logic]').val(value);
 	});
+
 	localforage.getItem('rom.logic').then(function(value) {
-		if (value === null) return;
-		$('#logic').val(value);
+		if (value !== null) {
+			$('#logic').val(value);
+		}
 		$('#logic').trigger('change');
 	});
 
