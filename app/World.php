@@ -37,7 +37,9 @@ class World {
 		$this->pre_collected_items = new ItemCollection;
 
 		$this->regions = [
-			'Light World' => new Region\LightWorld($this),
+			'North East Light World' => new Region\LightWorld\NorthEast($this),
+			'North West Light World' => new Region\LightWorld\NorthWest($this),
+			'South Light World' => new Region\LightWorld\South($this),
 			'Escape' => new Region\HyruleCastleEscape($this),
 			'Eastern Palace' => new Region\EasternPalace($this),
 			'Desert Palace' => new Region\DesertPalace($this),
@@ -441,7 +443,7 @@ class World {
 				}
 				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
-				if ($item instanceof Item\Key) {
+				if (!$this->config('region.wildKeys', false) && $item instanceof Item\Key) {
 					return;
 				}
 				array_push($location_round[$longest_item_chain], $location);
@@ -459,7 +461,7 @@ class World {
 				}
 
 				$location = sprintf("Equipment Slot %s", ++$i);
-				$ret[0]['Equiped'][$location] = $item->getNiceName();
+				$ret[0]['Equipped'][$location] = $item->getNiceName();
 			}
 		}
 		foreach ($location_round as $round => $locations) {
@@ -490,10 +492,12 @@ class World {
 	/**
 	 * Determine if this World is beatable
 	 *
+	 * @param ItemCollection $collected precollected items for consideration
+	 *
 	 * @return bool
 	 */
-	public function checkWinCondition() {
-		return $this->getWinCondition()($this->collectItems());
+	public function checkWinCondition(ItemCollection $collected = null) {
+		return $this->getWinCondition()($this->collectItems($collected));
 	}
 
 	/**
@@ -505,7 +509,9 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+			config("alttp.goals.{$this->goal}.$key",
+				config("alttp.{$this->difficulty}.$key", $default)));
 	}
 
 	/**

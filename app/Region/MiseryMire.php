@@ -110,7 +110,7 @@ class MiseryMire extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
-				&& $items->has('CaneOfSomaria') && $items->has('Lamp')
+				&& $items->has('CaneOfSomaria') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
 				&& $items->has('BigKeyD6') && (
 					$items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
 				);
@@ -153,7 +153,7 @@ class MiseryMire extends Region {
 
 		$this->can_complete = function($locations, $items) {
 			return ($this->canEnter($locations, $items)
-				&& $items->has('CaneOfSomaria') && $items->has('Lamp')
+				&& $items->has('CaneOfSomaria') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
 				&& $items->has('BigKeyD6') && (
 					$items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
 				))

@@ -20,7 +20,7 @@ class RandomAssumed extends Filler {
 	public function fill(array $dungeon, array $required, array $nice, array $extra) {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
-		$this->fillItemsInLocations($dungeon, $randomized_order_locations, array_merge($required, $nice));
+		$this->fillItemsInLocations($dungeon, $randomized_order_locations, array_merge($required, $nice, $this->world->getLocations()->getItems()->values()));
 
 		// random junk fill
 		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()->randomCollection(mt_rand(0, 15));
@@ -59,7 +59,11 @@ class RandomAssumed extends Filler {
 				throw new \Exception(sprintf('No Available Locations: "%s"', $item->getNiceName()));
 			}
 
-			$fill_location = $fillable_locations->first();
+			if ($item instanceof Item\Compass || $item instanceof Item\Map) {
+				$fill_location = $fillable_locations->random();
+			} else {
+				$fill_location = $fillable_locations->first();
+			}
 
 			Log::debug(sprintf("Placing Item: %s in %s", $item->getNiceName(), $fill_location->getName()));
 

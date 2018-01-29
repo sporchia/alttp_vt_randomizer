@@ -19,6 +19,21 @@
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
+	<div class="panel panel-warning panel-sticky">
+		<div class="panel-heading panel-heading-btn">
+			<div class="btn-toolbar pull-right" role="group">
+				<button name="reset" class="btn btn-danger">Reset Everything</button>
+			</div>
+			<h3 class="panel-title pull-right pd-4">I've done messed up! &nbsp; </h3>
+			<div class="btn-toolbar pull-left" role="group">
+				<label class="btn btn-primary btn-file">
+					Load saved settings <input type="file" accept=".json" name="customizer-restore" style="display: none;">
+				</label>
+				<button name="save-customizer" class="btn btn-primary">Save settings</button>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
 	<div class="tab-content">
 		<div class="tab-pane active">
 			<h1>Welcome to Customizer</h1>
@@ -66,7 +81,7 @@
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
 								<span class="input-group-addon">Name</span>
-								<input type="text" id="name" class="name form-control" placeholder="name this">
+								<input type="text" id="name" name="name" class="name form-control" placeholder="name this" maxlength="100">
 							</div>
 						</div>
 						<div class="col-md-6 pb-5">
@@ -104,18 +119,29 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Notes</span>
+								<textarea class="form-control no-resize" id="notes" name="notes" placeholder="Seed Notes" rows="5" maxlength="300"></textarea>
+							</div>
+							<h6 class="pull-right" id="count_message"></h6>
+						</div>
+						<div class="col-md-6 pb-5">
+						</div>
+					</div>
 					@yield('rom-settings')
 				</div>
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="btn-group btn-flex" role="group">
-								<button name="reset" class="btn btn-danger">Reset Everything</button>
+								<button name="generate" class="btn btn-success">Generate ROM</button>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="btn-group btn-flex" role="group">
-								<button name="generate" class="btn btn-success">Generate ROM</button>
+								<button name="test" class="btn btn-primary">Test Generate</button>
 							</div>
 						</div>
 					</div>
@@ -169,6 +195,7 @@
 </form>
 
 <script>
+var test = false;
 function getFormData($form){
 	var unindexed_array = $form.serializeArray();
 	var indexed_array = {};
@@ -183,6 +210,7 @@ function getFormData($form){
 function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
+		$('button[name=test]').html('Test Generate').prop('disabled', false);
 		parseInfoFromPatch(data.patch);
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
@@ -193,7 +221,12 @@ function seedApplied(data) {
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
 		rom.spoiler = data.patch.spoiler;
-		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
+		$('button[name=save-spoiler]').show().prop('disabled', false);
+		if (!test) {
+			$('button[name=save]').show().prop('disabled', false);
+		} else {
+			$('button[name=save]').hide();
+		}
 		resolve(rom);
 	});
 }
@@ -209,6 +242,7 @@ function seedFailed(data) {
 		}
 		$('.alert').show();
 		$('button[name=generate]').html('Generate ROM').prop('disabled', false);
+		$('button[name=test]').html('Test Generate').prop('disabled', false);
 		return resolve('no');
 	});
 }
@@ -251,6 +285,16 @@ function applySeed(rom, seed, second_attempt) {
 						case 1: starting_equipment.push('Boomerang'); break;
 						case 2: starting_equipment.push('RedBoomerang'); break;
 					}
+				} else if (eq.match(/^Bottle/)) {
+					switch (equipment[eq]) {
+						case 1: starting_equipment.push('Bottle'); break;
+						case 2: starting_equipment.push('BottleWithRedPotion'); break;
+						case 3: starting_equipment.push('BottleWithBluePotion'); break;
+						case 4: starting_equipment.push('BottleWithGreenPotion'); break;
+						case 5: starting_equipment.push('BottleWithBee'); break;
+						case 6: starting_equipment.push('BottleWithGoldBee'); break;
+						case 7: starting_equipment.push('BottleWithFairy'); break;
+					}
 				} else {
 					for (var i = 0; i < equipment[eq]; ++i) {
 						starting_equipment.push(eq);
@@ -258,20 +302,28 @@ function applySeed(rom, seed, second_attempt) {
 				}
 			}
 			formData.eq = starting_equipment;
-			$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
-				rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-				.then(rom.parseSprGfx)
-				.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
-				.then(rom.setHeartSpeed($('#heart-speed').val()))
-				.then(rom.setMenuSpeed($('#menu-speed').val()))
-				.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
-				.then(function(rom) {
+			if (test) {
+				$.post('/test' + (seed ? '/' + seed : ''), formData, function(patch) {
 					$('.info').show();
-					$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+					$('button[name=save-spoiler]').prop('disabled', false);
 					resolve({rom: rom, patch: patch});
-				}));
-			}, 'json')
-			.fail(reject);
+				}).fail(reject);
+			} else {
+				$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
+					rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+					.then(rom.parseSprGfx)
+					.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+					.then(rom.setHeartSpeed($('#heart-speed').val()))
+					.then(rom.setMenuSpeed($('#menu-speed').val()))
+					.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+					.then(function(rom) {
+						$('.info').show();
+						$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+						resolve({rom: rom, patch: patch});
+					}));
+				}, 'json')
+				.fail(reject);
+			}
 		});
 	});
 }
@@ -318,25 +370,75 @@ $(function() {
 		}
 	});
 
+	var save_restore_settings = [
+		'vt.customizer',
+		'vt.customizer.profiles',
+		'vt.customizer.lastTab',
+		'vt.custom.items',
+		'vt.custom.equipment',
+		'vt.custom.switches',
+		'vt.custom.settings',
+		'vt.custom.name',
+		'vt.custom.notes',
+		'vt.custom.logic',
+		'vt.custom.mode',
+		'vt.custom.goal',
+		'vt.custom.seed',
+	];
 	// dirty cleanup function for now
 	$('button[name=reset]').on('click', function(e) {
 		e.preventDefault();
-		localforage.removeItem('vt.customizer');
-		localforage.removeItem('vt.customizer.profiles');
-		localforage.removeItem('vt.custom.items');
-		localforage.removeItem('vt.custom.equipment');
-		localforage.removeItem('vt.custom.switches');
-		localforage.removeItem('vt.custom.settings');
-		localforage.removeItem('vt.custom.name');
-		localforage.removeItem('vt.custom.logic');
-		localforage.removeItem('vt.custom.mode');
-		localforage.removeItem('vt.custom.goal');
-		localforage.removeItem('vt.custom.seed');
-		window.location = window.location;
+		var promises = [];
+		for (var i = 0; i < save_restore_settings.length; ++i) {
+			promises.push(localforage.removeItem(save_restore_settings[i]));
+		}
+		Promise.all(promises).then(function(values) {
+			window.location = window.location;
+		});
+	});
+
+	// Dirty Save to match dirty cleanup
+	$('button[name=save-customizer]').on('click', function(e) {
+		e.preventDefault();
+		var promises = [];
+		for (var i = 0; i < save_restore_settings.length; ++i) {
+			promises.push(localforage.getItem(save_restore_settings[i]));
+		}
+		Promise.all(promises).then(function(values) {
+			var save = {};
+			for (var i = 0; i < save_restore_settings.length; ++i) {
+				save[save_restore_settings[i]] = values[i];
+			}
+			return FileSaver.saveAs(new Blob([JSON.stringify(save)]), (values[7]) ? values[7] + '-settings.json' : 'customizer-settings.json');
+		});
+	});
+
+	// Dirty restore to match dirty save to match dirty cleanup
+	$('input[name=customizer-restore]').on('change', function() {
+		var file = this.files[0];
+		if (file.type !== "application/json") {
+			return;
+		}
+
+		var fileReader = new FileReader();
+
+		fileReader.onload = function(e) {
+			var settings = JSON.parse(fileReader.result);
+			var promises = [];
+			for (var i = 0; i < save_restore_settings.length; ++i) {
+				promises.push(localforage.setItem(save_restore_settings[i], settings[save_restore_settings[i]] || null));
+			}
+			Promise.all(promises).then(function(values) {
+				window.location = window.location;
+			});
+		}
+
+		fileReader.readAsText(file);
 	});
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		var target = $(e.target).attr("href") // activated tab
+		localforage.setItem('vt.customizer.lastTab', target);
 		if (!$(target).data('init')) {
 			// this is 3x faster than bs-select, consider switching everything to it if it looks right
 			$(target + " select.item-location").select2({
@@ -369,7 +471,15 @@ $(function() {
 	$('.custom-items').first().trigger('change');
 
 	$('button[name=generate]').on('click', function() {
+		test = false;
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
+		$('.alert').hide();
+		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
+	});
+
+	$('button[name=test]').on('click', function() {
+		test = true;
+		$('button[name=test]').html('Testing...').prop('disabled', true);
 		$('.alert').hide();
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
@@ -382,6 +492,23 @@ $(function() {
 		$('#name').val(value);
 		$('#name').trigger('change');
 	});
+
+	var notes_length_max = 300;
+	$('#notes').on('keyup', function() {
+		var text_length = $(this).val().length;
+		var text_remaining = notes_length_max - text_length;
+
+		$('#count_message').html(text_remaining + ' remaining');
+
+		localforage.setItem('vt.custom.notes', $(this).val());
+	});
+	localforage.getItem('vt.custom.notes').then(function(value) {
+		if (value === null) return;
+		$('#notes').val(value);
+		$('#notes').trigger('keyup');
+	});
+	$('#count_message').html(notes_length_max + ' remaining');
+
 
 	$('#logic').on('change', function() {
 		var $this = $(this);
@@ -430,6 +557,10 @@ $(function() {
 		$('#goal').trigger('change');
 	});
 
+	$('#seed-clear').on('click', function() {
+		$('#seed').val('');
+	});
+
 	$('#seed').on('change', function() {
 		localforage.setItem('vt.custom.seed', $(this).val());
 	});
@@ -455,6 +586,11 @@ $(function() {
 			+ '-' + rom.goal
 			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
 			+ '_' + rom.seed + '.txt');
+	});
+
+	localforage.getItem('vt.customizer.lastTab').then(function(href) {
+		if (href === null) return;
+		$('a[href="' + href + '"]').tab('show');
 	});
 });
 </script>

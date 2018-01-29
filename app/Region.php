@@ -12,6 +12,7 @@ class Region {
 	protected $prize_location;
 	protected $world;
 	protected $region_items = [];
+	protected $boss = null;
 
 	/**
 	 * Create a new Region.

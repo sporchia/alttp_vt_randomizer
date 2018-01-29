@@ -36,6 +36,7 @@
 						@endforeach
 					</select>
 				</div>
+				<div class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 			</div>
 		</div>
 		<div class="row">
@@ -243,13 +244,6 @@ $(function() {
 		var goal = $('#goal').val();
 		$('input[name=variation]').val(variation);
 		localforage.setItem('rom.variation', variation);
-		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
-			$('#goal').val('triforce-hunt');
-			$('#goal').trigger('change');
-		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
-			$('#goal').val('ganon');
-			$('#goal').trigger('change');
-		}
 	});
 	localforage.getItem('rom.variation').then(function(value) {
 		if (!value) return;
@@ -303,11 +297,21 @@ $(function() {
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
 
-	$('#logic').on('change', function() {
+
+	function handleLogicChange() {
+		var value = $(this).val();
 		$('.info').hide();
-		localforage.setItem('rom.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
-	});
+		if (value == 'NoMajorGlitches') {
+			$('.logic-warning').hide();
+		} else {
+			$('.logic-warning').show();
+		}
+		localforage.setItem('rom.logic', value);
+		$('input[name=logic]').val(value);
+	}
+	$('#logic').on('change', handleLogicChange);
+	handleLogicChange.call($('#logic'));
+    
 	localforage.getItem('rom.logic').then(function(value) {
 		if (value === null) return;
 		$('#logic').val(value);
@@ -331,13 +335,6 @@ $(function() {
 		var variation = $('#variation').val();
 		localforage.setItem('rom.goal', goal);
 		$('input[name=goal]').val(goal);
-		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
-			$('#variation').val('triforce-hunt');
-			$('#variation').trigger('change');
-		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
-			$('#variation').val('none');
-			$('#variation').trigger('change');
-		}
 	});
 	localforage.getItem('rom.goal').then(function(value) {
 		if (value === null) return;

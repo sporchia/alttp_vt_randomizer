@@ -63,12 +63,12 @@ class HyruleCastleTower extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Castle Tower - Dark Maze"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyA1');
+			return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyA1');
 		});
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->has('KeyA1', 2)
-				&& $items->has('Lamp') && ($items->hasSword()
+				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && ($items->hasSword()
 					|| (config('game-mode') == 'swordless' && ($items->has('Hammer') || $items->has('BugCatchingNet'))));
 		};
 

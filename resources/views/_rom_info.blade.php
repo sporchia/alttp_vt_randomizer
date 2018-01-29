@@ -9,17 +9,21 @@
 	<div>Goal: <span class="goal"></span></div>
 	<div>Seed: <span class="seed"></span></div>
 	<div style="display:none">Special: <span class="special"></span></div>
+	<div style="display:none">Notes: <span class="notes"></span></div>
 </div>
 
 <script>
 function parseInfoFromPatch(patch) {
 	$('.info').show();
-	$('.info .seed').html(patch.seed + " [<a href='/h/" + patch.hash + "'>permalink</a>]");
+	$('.info .seed').html(patch.seed + (patch.hash !== undefined ? " [<a href='/h/" + patch.hash + "'>permalink</a>]" : ''));
 	if ($('input[name=tournament]').val() == 'true') {
 		$('.info .seed').html("<a href='/h/" + patch.seed + "'>" + patch.seed + "</a>");
 	}
 	if (patch.seed == 'vanilla') {
 		$('.info .seed').html('Vanilla');
+	}
+	if (patch.spoiler.meta.name) {
+		$('.info .name').html(patch.spoiler.meta.name);
 	}
 	if (!patch.seed && patch.hash) {
 		$('.info .seed').html(patch.hash);
@@ -32,6 +36,7 @@ function parseInfoFromPatch(patch) {
 	$('.info .difficulty').html(patch.difficulty);
 	$('.info .shuffle').html(patch.spoiler.meta.shuffle);
 	$('.info .special').html(patch.spoiler.meta.special);
+	$('.info .notes').html(patch.spoiler.meta.notes);
 	if (patch.spoiler.meta.shuffle) {
 		$('.info .shuffle').parent().show();
 	} else {
@@ -41,6 +46,11 @@ function parseInfoFromPatch(patch) {
 		$('.info .special').parent().show();
 	} else {
 		$('.info .special').parent().hide();
+	}
+	if (patch.spoiler.meta.notes) {
+		$('.info .notes').parent().show();
+	} else {
+		$('.info .notes').parent().hide();
 	}
 }
 </script>

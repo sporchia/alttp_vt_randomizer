@@ -30,16 +30,16 @@ class Shop {
 	// 0x33: '9'
 
 	public function writeShopItemsToRom(Rom $rom) {
-		$rom->write(0x30C34, pack('C*', 0x07)); // Dark World Kakriko Left
-		$rom->write(0x30C3C, pack('C*', 0x08)); // Dark World Kakriko Center
-		$rom->write(0x30C44, pack('C*', 0x0C)); // Dark World Kakriko Right
+		$rom->write(0x30C34, pack('C*', 0x07)); // Dark World Kakariko Left
+		$rom->write(0x30C3C, pack('C*', 0x08)); // Dark World Kakariko Center
+		$rom->write(0x30C44, pack('C*', 0x0C)); // Dark World Kakariko Right
 
-		$rom->write(0x30C4D, pack('C*', 0x09)); // Dark World East of Kakriko Left
-		$rom->write(0x30C55, pack('C*', 0x0D)); // Dark World East of Kakriko Center
-		$rom->write(0x30C5D, pack('C*', 0x0B)); // Dark World East of Kakriko Right
+		$rom->write(0x30C4D, pack('C*', 0x09)); // Dark World East of Kakariko Left
+		$rom->write(0x30C55, pack('C*', 0x0D)); // Dark World East of Kakariko Center
+		$rom->write(0x30C5D, pack('C*', 0x0B)); // Dark World East of Kakariko Right
 
-		$rom->write(0x30C8C, pack('C*', 0x07)); // North Hylia/Kakriko/Death Mountain Shop Left
-		$rom->write(0x30C84, pack('C*', 0x0A)); // North Hylia/Kakriko/Death Mountain Shop Center
-		$rom->write(0x30C9C, pack('C*', 0x0C)); // North Hylia/Kakriko/Death Mountain Shop Right
+		$rom->write(0x30C8C, pack('C*', 0x07)); // North Hylia/Kakariko/Death Mountain Shop Left
+		$rom->write(0x30C84, pack('C*', 0x0A)); // North Hylia/Kakariko/Death Mountain Shop Center
+		$rom->write(0x30C9C, pack('C*', 0x0C)); // North Hylia/Kakariko/Death Mountain Shop Right
 	}
 }
