@@ -27,11 +27,11 @@ class NorthWest extends Region {
 			new Location\Chest("King's Tomb", 0xE97A, null, $this),
 			new Location\Chest("Kakariko Tavern", 0xE9CE, null, $this),
 			new Location\Chest("Chicken House", 0xE9E9, null, $this),
-			new Location\Chest("Kakriko Well - Top", 0xEA8E, null, $this),
-			new Location\Chest("Kakriko Well - Left", 0xEA91, null, $this),
-			new Location\Chest("Kakriko Well - Middle", 0xEA94, null, $this),
-			new Location\Chest("Kakriko Well - Right", 0xEA97, null, $this),
-			new Location\Chest("Kakriko Well - Bottom", 0xEA9A, null, $this),
+			new Location\Chest("Kakariko Well - Top", 0xEA8E, null, $this),
+			new Location\Chest("Kakariko Well - Left", 0xEA91, null, $this),
+			new Location\Chest("Kakariko Well - Middle", 0xEA94, null, $this),
+			new Location\Chest("Kakariko Well - Right", 0xEA97, null, $this),
+			new Location\Chest("Kakariko Well - Bottom", 0xEA9A, null, $this),
 			new Location\Chest("Blind's Hideout - Top", 0xEB0F, null, $this),
 			new Location\Chest("Blind's Hideout - Left", 0xEB12, null, $this),
 			new Location\Chest("Blind's Hideout - Right", 0xEB15, null, $this),
@@ -58,11 +58,11 @@ class NorthWest extends Region {
 		$this->locations["King's Tomb"]->setItem(Item::get('Cape'));
 		$this->locations["Kakariko Tavern"]->setItem(Item::get('Bottle'));
 		$this->locations["Chicken House"]->setItem(Item::get('TenArrows'));
-		$this->locations["Kakriko Well - Top"]->setItem(Item::get('PieceOfHeart'));
-		$this->locations["Kakriko Well - Left"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["Kakriko Well - Middle"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["Kakriko Well - Right"]->setItem(Item::get('TwentyRupees'));
-		$this->locations["Kakriko Well - Bottom"]->setItem(Item::get('ThreeBombs'));
+		$this->locations["Kakariko Well - Top"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Kakariko Well - Left"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Kakariko Well - Middle"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Kakariko Well - Right"]->setItem(Item::get('TwentyRupees'));
+		$this->locations["Kakariko Well - Bottom"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["Blind's Hideout - Top"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Blind's Hideout - Left"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["Blind's Hideout - Right"]->setItem(Item::get('TwentyRupees'));
