@@ -22,7 +22,14 @@ body {
 
 .panel-heading-sticky {
 	position: sticky;
-	top:0px;
+	top: 58px;
+	z-index: 1100;
+}
+
+.panel-sticky {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 
 .navbar-brand {

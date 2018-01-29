@@ -509,7 +509,9 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+			config("alttp.goals.{$this->goal}.$key",
+				config("alttp.{$this->difficulty}.$key", $default)));
 	}
 
 	/**

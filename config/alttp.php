@@ -52,27 +52,6 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'TriforcePiece' => 30,
-						'TwentyRupees' => 0,
-						'FiveRupees' => 0,
-					],
-					'overflow' => [
-						'replacement' => [
-							'Armor' => 'TriforcePiece',
-							'Bottle' => 'TriforcePiece',
-							'Shield' => 'TriforcePiece',
-							'Sword' => 'TriforcePiece',
-						],
-					],
-					'Goal' => [
-						'Required' => 20,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
@@ -154,19 +133,6 @@ return [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
-				],
-			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'TriforcePiece' => 30,
-						'TwentyRupees' => 2,
-						'FiveRupees' => 0,
-					],
-					'Goal' => [
-						'Required' => 20,
-						'Icon' => 'triforce',
-					],
 				],
 			],
 			'timed-ohko' => [
@@ -279,20 +245,6 @@ return [
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
 					'timerStart' => 0,
-				],
-			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'TriforcePiece' => 30,
-						'FiveRupees' => 5,
-						'Arrow' => 11,
-						'Bomb' => 11,
-					],
-					'Goal' => [
-						'Required' => 20,
-						'Icon' => 'triforce',
-					],
 				],
 			],
 			'timed-ohko' => [
@@ -411,20 +363,6 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'Arrow' => 15,
-						'Bomb' => 23,
-						'FiveRupees' => 5,
-						'TriforcePiece' => 30,
-					],
-					'Goal' => [
-						'Required' => 20,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
@@ -541,20 +479,6 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'Arrow' => 11,
-						'Bomb' => 14,
-						'FiveRupees' => 0,
-						'TriforcePiece' => 30,
-					],
-					'Goal' => [
-						'Required' => 20,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
@@ -658,6 +582,19 @@ return [
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
+	'goals' => [
+		'triforce-hunt' => [
+			'item' => [
+				'count' => [
+					'TriforcePiece' => 30,
+				],
+				'Goal' => [
+					'Required' => 20,
+					'Icon' => 'triforce',
+				],
+			],
+		],
+	],
 	'randomizer' => [
 		'entrance' => [
 			'difficulties' => [
@@ -725,7 +662,6 @@ return [
 				'timed-race' => 'Timed Race',
 				'timed-ohko' => 'Timed OHKO',
 				'ohko' => 'OHKO',
-				'triforce-hunt' => 'Triforce Piece Hunt',
 				'key-sanity' => 'Key-sanity',
 			],
 		],
@@ -739,10 +675,10 @@ return [
 					'insane' => 3,
 				],
 				'goals' => [
-					'ganon' => 65,
-					'dungeons' => 15,
+					'ganon' => 60,
+					'dungeons' => 10,
 					'pedestal' => 20,
-					'triforce-hunt' => 0,
+					'triforce-hunt' => 10,
 				],
 				'logics' => [
 					'NoMajorGlitches' => 85,
@@ -759,7 +695,6 @@ return [
 					'timed-race' => 0,
 					'timed-ohko' => 5,
 					'ohko' => 1,
-					'triforce-hunt' => 10,
 					'key-sanity' => 15,
 				],
 			],

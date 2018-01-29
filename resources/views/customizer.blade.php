@@ -19,7 +19,7 @@
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
-	<div class="panel panel-warning">
+	<div class="panel panel-warning panel-sticky">
 		<div class="panel-heading panel-heading-btn">
 			<div class="btn-toolbar pull-right" role="group">
 				<button name="reset" class="btn btn-danger">Reset Everything</button>

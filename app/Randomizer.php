@@ -540,7 +540,9 @@ class Randomizer {
 	 * @return mixed
 	 */
 	public function config($key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+			config("alttp.goals.{$this->goal}.$key",
+				config("alttp.{$this->difficulty}.$key", $default)));
 	}
 
 	/**
@@ -961,6 +963,9 @@ class Randomizer {
 			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
 			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
 			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
+			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
+			"Thanks for\ndropping in,\nthe first\npassengers\nin a hot\nair balloon.\nwere a duck,\na sheep,\nand a rooster.",
+			"You think you\nare so smart?\n\nI bet you\ndidn't know\nYou can't hum\nwhile holding\nyour nose\nclosed.",
 		])));
 
 		switch ($this->goal) {

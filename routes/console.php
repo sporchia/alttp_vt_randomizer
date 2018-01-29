@@ -58,10 +58,6 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$variation = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.variations')), array_keys(config('alttp.randomizer.item.variations'))),
 				config('alttp.randomizer.daily_weights.item.variations')));
 
-			if ($variation == 'triforce-hunt') {
-				$goal = 'triforce-hunt';
-			}
-
 			$rom = new ALttP\Rom();
 			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 
