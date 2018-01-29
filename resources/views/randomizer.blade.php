@@ -297,8 +297,7 @@ $(function() {
 		applySeed(rom, $('#seed').val()).then(seedApplied, seedFailed);
 	});
 
-
-	function handleLogicChange() {
+	$('#logic').on('change', function() {
 		var value = $(this).val();
 		$('.info').hide();
 		if (value == 'NoMajorGlitches') {
@@ -308,13 +307,12 @@ $(function() {
 		}
 		localforage.setItem('rom.logic', value);
 		$('input[name=logic]').val(value);
-	}
-	$('#logic').on('change', handleLogicChange);
-	handleLogicChange.call($('#logic'));
-    
+	});
+
 	localforage.getItem('rom.logic').then(function(value) {
-		if (value === null) return;
-		$('#logic').val(value);
+		if (value !== null) {
+			$('#logic').val(value);
+		}
 		$('#logic').trigger('change');
 	});
 
