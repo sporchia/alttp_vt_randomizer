@@ -181,8 +181,15 @@ function getFormData($form){
 function seedFailed(data) {
 	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
-	$('.alert .message').html('Failed Creating Seed :(');
-	$('.alert').show().delay(2000).fadeOut("slow");
+	switch (data.status) {
+		case 429:
+			$('.alert .message').html('While we apprecate your want to generate a lot of games, Other people would like'
+				+ ' to as well. Please come back later if you would like to generate more.');
+			break;
+		default:
+			$('.alert .message').html('Failed Creating Seed :(');
+	}
+	$('.alert').show().delay(5000).fadeOut("slow");
 }
 
 function seedApplied(data) {

@@ -57,6 +57,10 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 				config('alttp.randomizer.daily_weights.item.goals')));
 			$variation = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.variations')), array_keys(config('alttp.randomizer.item.variations'))),
 				config('alttp.randomizer.daily_weights.item.variations')));
+			$game_mode = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.modes')), array_keys(config('alttp.randomizer.item.modes'))),
+				config('alttp.randomizer.daily_weights.item.modes')));
+
+			config(['game-mode' => $game_mode]);
 
 			$rom = new ALttP\Rom();
 			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
@@ -81,7 +85,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$seed_record = ALttP\Seed::where('hash', $hash)->first();
 
 			$feature->seed_id = $seed_record->id;
-			$feature->description = sprintf("%s %s %s %s", $difficulty, $logic, $goal, $variation);
+			$feature->description = sprintf("%s %s %s %s %s", $difficulty, $game_mode, $logic, $goal, $variation);
 			$feature->save();
 		}
 	}
