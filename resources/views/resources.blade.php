@@ -74,7 +74,8 @@
 		<li>You're guaranteed to get the Village of Outcasts chest game item on the 1st attempt (can
 			be 1st or 2nd chest).
 		<li>The Smith and the Purple chest will stay following you through Save and Quit.
-		<li>You are never required to navigate a dark room; the lamp will be availalbe to light your way, so go out and find it!
+		<li>You are never required to navigate a dark room; the lamp will be available to light your way, so go out and find it!
+		<li>Keys might not be accessible if they are not required to finish the game. For instance, the Skull Woods big key might be in the big chest.
 		</ul>
 	</div>
 </div>
