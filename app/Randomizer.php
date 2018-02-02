@@ -167,7 +167,7 @@ class Randomizer {
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
 		
-		// archery game is only available in custom mode (for now)
+		// shooting gallery item is only available in custom mode (for now)
 		if( $this->difficulty !== 'custom' ) {
 		    $locations["Shooting Gallery"]->setItem(Item::get("Nothing"));
 		}
@@ -560,7 +560,7 @@ class Randomizer {
 	public function writeToRom(Rom $rom) {
 		$this->setTexts($rom);
 		
-		$rom->enableArcheryGameItem();
+		$rom->enableShootingGalleryItem();
 
 		foreach ($this->world->getRegions() as $name => $region) {
 			$region->getLocations()->getNonEmptyLocations()->each(function($location) use ($rom) {

@@ -2070,13 +2070,11 @@ class Rom {
 	}
 	
 	/**
-	 * Enable item location at the archery minigame.
-	 *
-	 * @param bool $enable switch on or off
+	 * Enable item location at the shooting gallery minigame.
 	 *
 	 * @return $this
 	 */
-	public function enableArcheryGameItem() : self {
+	public function enableShootingGalleryItem() : self {
 	    $this->write(0x2843C, hex2bin("2211B507EAEAEAEAEAEAEAEAEA"));
 	    $this->write(0x3B511, hex2bin("5A48DAC940D020AF58F37ED01AA05AC05AF0149CE902229D9907A900EBA9018F58F37EFA688007FA68ACDA02D00CC2206F60F37E8F60F37EE2207A6B"));
 	
