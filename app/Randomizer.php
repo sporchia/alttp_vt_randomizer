@@ -166,6 +166,11 @@ class Randomizer {
 			$locations["Turtle Rock - Trinexx"]->setItem($boss_item);
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
+		
+		// archery game is only available in custom mode (for now)
+		if( $this->difficulty !== 'custom' ) {
+		    $locations["Shooting Gallery"]->setItem(Item::get("Nothing"));
+		}
 
 		// Pedestal is the goal
 		if ($this->goal == 'pedestal') {
@@ -554,6 +559,8 @@ class Randomizer {
 	 */
 	public function writeToRom(Rom $rom) {
 		$this->setTexts($rom);
+		
+		$rom->enableArcheryGameItem();
 
 		foreach ($this->world->getRegions() as $name => $region) {
 			$region->getLocations()->getNonEmptyLocations()->each(function($location) use ($rom) {

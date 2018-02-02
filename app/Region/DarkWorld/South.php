@@ -30,6 +30,7 @@ class South extends Region {
 			new Location\Npc("Stumpy", 0x330C7, null, $this),
 			new Location\Npc("Hype Cave - NPC", 0x180011, null, $this),
 			new Location\Dig("Digging Game", 0x180148, null, $this),
+			new Location\Archery("Shooting Gallery", 0x3B51F, null, $this),
 		]);
 	}
 
@@ -46,6 +47,7 @@ class South extends Region {
 		$this->locations["Stumpy"]->setItem(Item::get('Shovel'));
 		$this->locations["Hype Cave - NPC"]->setItem(Item::get('ThreeHundredRupees'));
 		$this->locations["Digging Game"]->setItem(Item::get('PieceOfHeart'));
+		$this->locations["Shooting Gallery"]->setItem(Item::get('Nothing'));
 
 		return $this;
 	}

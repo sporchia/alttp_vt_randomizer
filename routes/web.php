@@ -51,6 +51,7 @@ Route::get('customize{r?}', function () {
 			Location\Prize\Crystal::class => 'prizes',
 			Location\Medallion::class => 'medallions',
 			Location\Fountain::class => 'bottles',
+			Location\Archery::class => 'optional',
 		],
 		'items' => $items->filter(function($item) {
 			return !$item instanceof Item\Pendant

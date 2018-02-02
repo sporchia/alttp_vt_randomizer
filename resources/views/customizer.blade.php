@@ -334,6 +334,7 @@ $(function() {
 	$('.prizes').append($('#prizes').html());
 	$('.bottles').append($('#bottles').html());
 	$('.medallions').append($('#medallions').html());
+	$('.optional').append($('#optional').html());
 
 	$('form').on('submit', function() {
 		return false;
@@ -615,6 +616,15 @@ $(function() {
 <script id="items" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($items as $item)
+	<option class="placable placable-item{{ $item instanceof ALttP\Item\Bottle ? ' item-bottle' : '' }}"
+		value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	@endforeach
+</script>
+<script id="optional" type="text/template">
+	<option value="Nothing">Nothing</option>
+	<option value="auto_fill">Random</option>
+	@foreach($items as $item)
+	<?php if ($item->getName() == "Nothing") continue; ?>
 	<option class="placable placable-item{{ $item instanceof ALttP\Item\Bottle ? ' item-bottle' : '' }}"
 		value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
