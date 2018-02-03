@@ -1273,7 +1273,7 @@ class Randomizer {
 			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Arrow', 1 + !$this->getWorld()->getLocation("Shooting Gallery")->hasItem()); $i++) {
 			array_push($items_to_find, Item::get('Arrow'));
 		}
 		for ($i = 0; $i < $this->config('item.count.TenArrows', 5); $i++) {
