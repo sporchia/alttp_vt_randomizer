@@ -77,6 +77,11 @@ var ROM = (function(blob, loaded_callback) {
 	};
 
 	fileReader.onloadend = function() {
+		// Check rom for header and cut it out
+		if (arrayBuffer.byteLength % 0x400 == 0x200) {
+			arrayBuffer = arrayBuffer.slice(0x200, arrayBuffer.byteLength);
+		}
+
 		// fill out rom to 2mb
 		if (arrayBuffer.byteLength < 2097152) {
 			arrayBuffer = this.resizeUint8(arrayBuffer, 2097152);

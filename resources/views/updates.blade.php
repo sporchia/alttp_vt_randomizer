@@ -28,6 +28,7 @@
 		<li>All Lamps in Easy are before dark rooms</li>
 		<li>Extra Lamps in Easy are really rupees now</li>
 		<li>Flute time in credits fixed</li>
+		<li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
 	</ul>
 </div>
 <h2>VT8.28</h2>

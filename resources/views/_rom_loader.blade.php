@@ -14,7 +14,7 @@
 	<div class="panel-body">
 		<p>
 			<label class="btn btn-default btn-file">
-				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
+				Select ROM File <input type="file" accept=".sfc,.smc" name="f2u" style="display: none;">
 			</label>
 		</p>
 		<ol>
