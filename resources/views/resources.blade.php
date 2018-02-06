@@ -70,9 +70,6 @@
 		<li>You can cross small gaps by rebounding off of walls or objects using the Pegasus Boots.
 		<li>Sahasrahla gives you his item when you speak to him with the Pendant of Courage.
 		<li>The Super Bomb spawns when you have acquired crystals 5 and 6.
-		<li>You're guaranteed to get the digging game item by the 30th dig.
-		<li>You're guaranteed to get the Village of Outcasts chest game item on the 1st attempt (can
-			be 1st or 2nd chest).
 		<li>The Smith and the Purple chest will stay following you through Save and Quit.
 		<li>You are never required to navigate a dark room; the lamp will be available to light your way, so go out and find it!
 		<li>Keys might not be accessible if they are not required to finish the game. For instance, the Skull Woods big key might be in the big chest.
@@ -119,6 +116,9 @@
 		<li>The Pyramid and Waterfall of Wishing Faeries no longer upgrade your items. Instead their
 			caves contains two chests each which account for the usual upgrades having been shuffled
 			into the mix.
+		<li>You're guaranteed to get the digging game item by the 30th dig.
+		<li>You're guaranteed to get the Village of Outcasts chest game item on the 1st attempt (can
+			be 1st or 2nd chest).
 </div>
 </div>
 
