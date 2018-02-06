@@ -97,6 +97,7 @@
 				in order to cross a gap.</li>
 			<li>If you find yourself at bumper cave with the Cape but without the Hookshot, try
 				walking over the top left of the gap. No hookshot needed!</li>
+			<li>Keys might not be accessible if they are not required to finish the game. For instance, the Skull Woods big key might be in the big chest.</li>
 		</ul>
 		<p>Don't forget to check out the comprehensive <a href="/resources">resources section</a>
 			with tutorials and more tips!</p>
