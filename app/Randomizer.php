@@ -21,6 +21,7 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	protected $starting_equipment;
+	protected $algorithm;
 	static protected $logic_array = [
 		0x23, 0xCD, 0xB6, 0xA5, 0xEC, 0xF8, 0xC1, 0x80,0x8B, 0x53, 0x88, 0xA8, 0xB9, 0x22, 0xD9, 0x29,
 		0xC4, 0x52, 0xBA, 0xD7, 0xC2, 0xE0, 0x43, 0x2B,0x0D, 0x9F, 0x66, 0x7A, 0x98, 0xDA, 0xBC, 0x05,
@@ -50,7 +51,7 @@ class Randomizer {
 	 *
 	 * @return void
 	 */
-	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
+	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none', $algorithm = 'RandomAssumed') {
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
 		$this->logic = $logic;
@@ -64,6 +65,7 @@ class Randomizer {
 			Item::get('ArrowUpgrade10'),
 		]);
 		$this->world->setPreCollectedItems($this->starting_equipment);
+		$this->algorithm = $algorithm;
 	}
 
 	/**
@@ -286,7 +288,7 @@ class Randomizer {
 
 		$advancement_items = mt_shuffle($advancement_items);
 
-		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+		Filler::factory($this->algorithm, $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
 		return $this;
 	}
