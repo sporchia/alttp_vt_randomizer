@@ -20,6 +20,12 @@ abstract class Filler {
 			$world = new World;
 		}
 
+		if ($type == '?') {
+			$algorithms = ['Distributed', 'Random', 'RandomAssumed', 'RandomBeatable', 'RandomSwap', 'Troll'];
+			$type = $algorithms[array_rand($algorithms)];
+			Log::debug(sprintf('Algorithm used: %s', $type));
+		}
+
 		switch ($type) {
 			case 'Distributed':
 				return new Filler\Distributed($world);
