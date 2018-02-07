@@ -10,7 +10,7 @@ use Log;
  */
 class Rom {
 	const BUILD = '2018-01-27';
-	const HASH = '704159aa2882c0fcc328598489daf6b2';
+	const HASH = '843cee371b4371fecfe035968747df95';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -2068,7 +2068,19 @@ class Rom {
 
 		return $this;
 	}
-
+	
+	/**
+	 * Enable item location at the shooting gallery minigame.
+	 *
+	 * @return $this
+	 */
+	public function enableShootingGalleryItem() : self {
+	    $this->write(0x2843C, hex2bin("2211B507EAEAEAEAEAEAEAEAEA"));
+	    $this->write(0x3B511, hex2bin("5A48DAC940D020AF58F37ED01AA05AC05AF0149CE902229D9907A900EBA9018F58F37EFA688007FA68ACDA02D00CC2206F60F37E8F60F37EE2207A6B"));
+	
+	    return $this;
+	}
+	
 	/**
 	 * Enable/Disable Waterfall of Wishing Fairy's ability to upgrade items.
 	 *

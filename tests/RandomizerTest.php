@@ -370,6 +370,7 @@ class RandomizerTest extends TestCase {
 			"Misery Mire Medallion" => "Bombos",
 			"Waterfall Bottle" => "BottleWithGreenPotion",
 			"Pyramid Bottle" => "BottleWithBee",
+			"Shooting Gallery" => "Nothing",
 		], $loc_item_array);
 	}
 
@@ -621,6 +622,7 @@ class RandomizerTest extends TestCase {
 			"Misery Mire Medallion" => "Bombos",
 			"Waterfall Bottle" => "BottleWithGreenPotion",
 			"Pyramid Bottle" => "BottleWithBee",
+			"Shooting Gallery" => "Nothing",
 		], $loc_item_array);
 	}
 
@@ -872,6 +874,7 @@ class RandomizerTest extends TestCase {
 			"Misery Mire Medallion" => "Bombos",
 			"Waterfall Bottle" => "BottleWithGreenPotion",
 			"Pyramid Bottle" => "BottleWithBee",
+			"Shooting Gallery" => "Nothing",
 		], $loc_item_array);
 	}
 }
