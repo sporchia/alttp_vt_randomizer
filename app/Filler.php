@@ -25,6 +25,10 @@ abstract class Filler {
 				return new Filler\Distributed($world);
 			case 'Random':
 				return new Filler\Random($world);
+			case 'RandomBeatable':
+				return new Filler\RandomBeatable($world);
+			case 'RandomSwap':
+				return new Filler\RandomSwap($world);
 			case 'Troll':
 				return new Filler\Troll($world);
 			default:
