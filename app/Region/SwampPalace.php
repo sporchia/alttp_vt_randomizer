@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -35,6 +36,8 @@ class SwampPalace extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		$this->boss = Boss::get("Arrghus");
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("Swamp Palace - Entrance", 0xEA9D, null, $this),
@@ -132,10 +135,17 @@ class SwampPalace extends Region {
 				&& $items->has('Hookshot');
 		});
 
+		$this->can_complete = function($locations, $items) {
+			return $this->locations["Swamp Palace - Arrghus"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD2'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD2'));
+		};
+
 		$this->locations["Swamp Palace - Arrghus"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
-				&& $items->has('Hookshot');
+				&& $items->has('Hookshot')
+				&& $this->boss->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -145,12 +155,6 @@ class SwampPalace extends Region {
 
 			return true;
 		});
-
-		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->has('Hammer')
-				&& $items->has('Hookshot')
-				&& $items->has('KeyD2');
-		};
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('Flippers')
@@ -228,6 +232,7 @@ class SwampPalace extends Region {
 					|| ($main($locations, $items) && $items->has('Hammer')));
 		});
 
+		// @TODO: this function is probably wrong -_-
 		$this->locations["Swamp Palace - Arrghus"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return $items->has('KeyD2') && $items->has('Hookshot') && $items->has('Flippers')
 				&& ($mire($locations, $items)
@@ -246,6 +251,7 @@ class SwampPalace extends Region {
 				|| !in_array($item, [Item::get('KeyD2'), Item::get('BigKeyD2')]);
 		});
 
+		// @TODO: this function is probably wrong -_-
 		$this->can_complete = function($locations, $items) use ($main, $mire) {
 			return $main($locations, $items) && $items->has('KeyD2') && $items->has('Hookshot')
 				&& ($items->has('Hammer') || $mire($locations, $items))

@@ -664,6 +664,12 @@ return [
 				'ohko' => 'OHKO',
 				'key-sanity' => 'Key-sanity',
 			],
+			'difficulty_adjustments' => [
+				0 => 'Normal',
+				1 => 'Hard',
+				2 => 'Expert',
+				3 => 'Insane',
+			],
 		],
 		'daily_weights' => [
 			'item' => [

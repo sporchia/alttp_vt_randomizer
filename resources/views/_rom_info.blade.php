@@ -33,7 +33,11 @@ function parseInfoFromPatch(patch) {
 	$('.info .goal').html(patch.spoiler.meta.goal);
 	$('.info .mode').html(patch.spoiler.meta.mode);
 	$('.info .variation').html(patch.spoiler.meta.variation);
-	$('.info .difficulty').html(patch.difficulty);
+	if (patch.difficulty == 'custom') {
+		$('.info .difficulty').html(patch.difficulty + ' (' + patch.spoiler.meta.difficulty_mode + ')');
+	} else {
+		$('.info .difficulty').html(patch.difficulty);
+	}
 	$('.info .shuffle').html(patch.spoiler.meta.shuffle);
 	$('.info .special').html(patch.spoiler.meta.special);
 	$('.info .notes').html(patch.spoiler.meta.notes);

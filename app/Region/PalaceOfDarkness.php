@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Support\LocationCollection;
 use ALttP\Location;
 use ALttP\Region;
@@ -35,6 +36,8 @@ class PalaceOfDarkness extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		$this->boss = Boss::get("Helmasaur King");
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("Palace of Darkness - Shooter Room", 0xEA5B, null, $this),
@@ -155,21 +158,25 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& $items->has('Hammer') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->canShootArrows()
-				&& $items->has('BigKeyD1') && $items->has('KeyD1', 6);
+			return $this->locations["Palace of Darkness - Helmasaur King"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD1'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD1'));
 		};
 
-		$this->locations["Palace of Darkness - Helmasaur King"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
+		$this->locations["Palace of Darkness - Helmasaur King"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $this->boss->canBeat($items, $locations)
+				&& $items->has('Hammer') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->canShootArrows()
+				&& $items->has('BigKeyD1') && $items->has('KeyD1', 6);
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
 
-				return true;
-			});
+			return true;
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);

@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-01-27';
-	const HASH = '704159aa2882c0fcc328598489daf6b2';
+	const BUILD = '2018-02-06';
+	const HASH = '654d40cc9e47d7e98a96590f39892439';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1956,6 +1956,19 @@ class Rom {
 		return $this;
 	}
 
+	public function setupCustomShops($shop_items) {
+		$items_data = [];
+		foreach ($shop_items as $shop_id => $items) {
+			foreach ($items as $item) {
+				$items_data = array_merge($items_data, [$shop_id, $item['id']],
+					array_values(unpack('C*', pack('S', $item['price'] ?? 0))),
+					[$item['max'] ?? 0, $item['replace_id'] ?? 0xFF],
+					array_values(unpack('C*', pack('S', $item['replace_price'] ?? 0))));
+			}
+		}
+		$items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
+		$this->write(0x184880, pack('C*', ...$items_data));
+	}
 
 	/**
 	 * Set Smithy Quick Item Give mode. I.E. just gives an item if you rescue him with no sword bogarting

@@ -137,6 +137,14 @@
 							<h6 class="pull-right" id="count_message"></h6>
 						</div>
 						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">Difficulty "Fixes"</span>
+								<select id="rom-difficulty" class="form-control selectpicker" name="data[alttp.custom.rom.HardMode]">
+									@foreach (config('alttp.randomizer.item.difficulty_adjustments') as $level => $name)
+										<option value="{{ $level }}">{{ $name }}</option>
+									@endforeach
+								</select>
+							</div>
 						</div>
 					</div>
 					@yield('rom-settings')
@@ -390,6 +398,8 @@ $(function() {
 		'vt.custom.name',
 		'vt.custom.notes',
 		'vt.custom.logic',
+		'vt.custom.rom-logic',
+		'vt.custom.rom-difficulty',
 		'vt.custom.mode',
 		'vt.custom.goal',
 		'vt.custom.seed',
@@ -541,6 +551,15 @@ $(function() {
 		if (value === null) return;
 		$('#rom-logic').val(value);
 		$('#rom-logic').trigger('change');
+	});
+
+	$('#rom-difficulty').on('change', function() {
+		localforage.setItem('vt.custom.rom-difficulty', $(this).val());
+	});
+	localforage.getItem('vt.custom.rom-difficulty').then(function(value) {
+		if (value === null) return;
+		$('#rom-difficulty').val(value);
+		$('#rom-difficulty').trigger('change');
 	});
 
 	$('#mode').on('change', function() {

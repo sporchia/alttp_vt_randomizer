@@ -271,7 +271,7 @@ class Randomizer {
 			foreach ($dungeon_items as $key => $item) {
 				if ($item instanceof Item\Map) {
 					unset($dungeon_items[$key]);
-					$nice_items[] = $item;
+					$advancement_items[] = $item;
 				}
 			}
 		}
@@ -279,7 +279,7 @@ class Randomizer {
 			foreach ($dungeon_items as $key => $item) {
 				if ($item instanceof Item\Compass) {
 					unset($dungeon_items[$key]);
-					$nice_items[] = $item;
+					$advancement_items[] = $item;
 				}
 			}
 		}
@@ -299,8 +299,18 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function placeBosses(World $world) : self {
-
-		// @TODO: implement
+		$this->world->getRegion('Eastern Palace')->setBoss(Boss::get("Armos Knights"));
+		$this->world->getRegion('Desert Palace')->setBoss(Boss::get("Lanmolas"));
+		$this->world->getRegion('Tower of Hera')->setBoss(Boss::get("Moldorm"));
+		$this->world->getRegion('Hyrule Castle Tower')->setBoss(Boss::get("Agahnim"));
+		$this->world->getRegion('Palace of Darkness')->setBoss(Boss::get("Helmasaur King"));
+		$this->world->getRegion('Swamp Palace')->setBoss(Boss::get("Arrghus"));
+		$this->world->getRegion('Skull Woods')->setBoss(Boss::get("Mothula"));
+		$this->world->getRegion('Thieves Town')->setBoss(Boss::get("Blind"));
+		$this->world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare"));
+		$this->world->getRegion('Misery Mire')->setBoss(Boss::get("Vitreous"));
+		$this->world->getRegion('Turtle Rock')->setBoss(Boss::get("Trinexx"));
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Agahnim2"));
 
 		return $this;
 	}
@@ -525,6 +535,10 @@ class Randomizer {
 			'build' => Rom::BUILD,
 			'mode' => config('game-mode', 'standard'),
 		]);
+
+		if ($this->config('rom.HardMode', 0)) {
+			$spoiler['meta']['difficulty_mode'] = config('alttp.randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
+		}
 
 		$this->seed->spoiler = json_encode($spoiler);
 

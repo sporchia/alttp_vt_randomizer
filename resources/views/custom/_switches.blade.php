@@ -102,14 +102,16 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="Only applies to Triforce Hunt. The number of triforce pieces required to complete the game."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Goal Items<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="Only applies to Triforce Hunt. The number of triforce pieces required to complete the game."></span></span>
+				<span class="input-group-addon">Goal Items</span>
 				<input id="custom-goal-items" type="number" class="form-control custom-value" placeholder="pieces" name="data[alttp.custom.item.Goal.Required]" />
 			</div>
 		</div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="Sets the behavior of the in game timer. Stopwatch will count up, while countdown will count down. When the countdown timer hits 0, what happens depends on the option selected. OHKO will send Link into one hit knockout mode, and taking any damage will cause death. Continue will cause the timer to continue counting down past zero. Stop will cause the timer to stop at zero. Outside of OHKO, the value of the timer has no effect on gameplay."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Timer<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="Sets the behavior of the in game timer. Stopwatch will count up, while countdown will count down. When the countdown timer hits 0, what happens depends on the option selected. OHKO will send Link into one hit knockout mode, and taking any damage will cause death. Continue will cause the timer to continue counting down past zero. Stop will cause the timer to stop at zero. Outside of OHKO, the value of the timer has no effect on gameplay."></span></span>
+				<span class="input-group-addon">Timer</span>
 				<select id="custom-timer" class="form-control custom-value selectpicker" name="data[alttp.custom.rom.timerMode]">
 					<option value="off">Off</option>
 					<option value="stopwatch">Stopwatch</option>
@@ -120,32 +122,37 @@
 			</div>
 		</div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The starting value of the timer in seconds."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Timer Start<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The starting value of the timer in seconds."></span></span>
+				<span class="input-group-addon">Timer Start</span>
 				<input id="custom-timer-start" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.rom.timerStart]" />
 			</div>
 		</div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of time in seconds a Green Clock will add to the timer. This value can be negative."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Green Clock<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of time in seconds a Green Clock will add to the timer. This value can be negative."></span></span>
+				<span class="input-group-addon">Green Clock</span>
 				<input id="custom-green-clock" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.item.value.GreenClock]" />
 			</div>
 		</div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of time in seconds a Blue Clock will add to the timer. The value can be negative."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Blue Clock<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of time in seconds a Blue Clock will add to the timer. The value can be negative."></span></span>
+				<span class="input-group-addon">Blue Clock</span>
 				<input id="custom-blue-clock" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.item.value.BlueClock]" />
 			</div>
 		</div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of time in seconds a Red Clock will add to the timer. The value can be negative."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Red Clock<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of time in seconds a Red Clock will add to the timer. The value can be negative."></span></span>
+				<span class="input-group-addon">Red Clock</span>
 				<input id="custom-red-clock" type="number" class="form-control custom-value" placeholder="seconds" name="data[alttp.custom.item.value.RedClock]" />
 			</div>
 		</div>
 		<div class="col-md-6 pb-5">
+			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of rupees a Rupoor will subtract from Link's total when collected."></span>
 			<div class="input-group" role="group">
-				<span class="input-group-addon">Rupoor Value<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="The amount of rupees a Rupoor will subtract from Link's total when collected."></span></span>
+				<span class="input-group-addon">Rupoor Value</span>
 				<input id="custom-rupoor-deduct" type="number" class="form-control custom-value" placeholder="rupees" name="data[alttp.custom.item.value.Rupoor]" />
 			</div>
 		</div>
@@ -230,7 +237,8 @@ $(function() {
 			localforage.setItem('vt.custom.settings', values);
 		});
 	});
-	$('.cust-tooltip').tooltip()
+
+	$('.cust-tooltip').tooltip();
 });
 </script>
 @overwrite

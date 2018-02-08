@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -38,6 +39,8 @@ class TurtleRock extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		$this->boss = Boss::get("Trinexx");
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("Turtle Rock - Chain Chomps", 0xEA16, null, $this),
@@ -149,24 +152,26 @@ class TurtleRock extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& $items->has('KeyD7', 4)
-				&& $items->has('FireRod') && $items->has('IceRod') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
-				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
-				&& ($items->has('Hammer') || ($items->canExtendMagic(2) && $items->hasUpgradedSword())
-						|| ($items->canExtendMagic(4) && $items->hasSword()));
+			return $this->locations["Turtle Rock - Trinexx"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD7'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD7'));
 		};
 
-		$this->locations["Turtle Rock - Trinexx"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
+		$this->locations["Turtle Rock - Trinexx"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $items->has('KeyD7', 4)
+				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
+				&& $this->boss->canBeat($items, $locations);
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
 
-				return true;
-			});
+			return true;
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
@@ -305,6 +310,7 @@ class TurtleRock extends Region {
 				&& ($items->has('Cape') || $items->has('CaneOfByrna') || $items->canBlockLasers());
 		});
 
+		// @TODO: this function is probably wrong -_-
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->has('FireRod') && $items->has('IceRod')
@@ -313,6 +319,7 @@ class TurtleRock extends Region {
 				&& $items->has('KeyD7', 4);
 		};
 
+		// @TODO: this function is probably wrong -_-
 		$this->locations["Turtle Rock - Trinexx"]->setRequirements($this->can_complete);
 
 		$this->can_enter = function($locations, $items) use ($lower, $middle, $upper) {

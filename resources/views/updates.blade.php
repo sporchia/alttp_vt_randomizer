@@ -6,6 +6,7 @@
 	<ul>
 		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
 		<li>Small keys in spoiler for key-sanity</li>
+		<li>Maps/Compasses logically reauired for completion of dungeon in keysanity</li>
 		<li>Mirror warp sound is back in background music disable</li>
 		<li>Better placement of maps/compassess in dungeons</li>
 		<li>Customizer:<ul>
@@ -21,6 +22,7 @@
 			<li>Save/Restore settings!</li>
 			<li>Name's matter (well, more than they used to)</li>
 			<li>Add notes to your custom games</li>
+			<li>Set the hard mode adjustments (e.g. bottle refill)</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>
@@ -28,6 +30,7 @@
 		<li>All Lamps in Easy are before dark rooms</li>
 		<li>Extra Lamps in Easy are really rupees now</li>
 		<li>Flute time in credits fixed</li>
+		<li>Better boss logic for future fun</li>
 		<li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
 	</ul>
 </div>

@@ -49,6 +49,30 @@ class Region {
 	}
 
 	/**
+	 * Get the Boss of this Region.
+	 *
+	 * @return Boss
+	 */
+	public function getBoss() {
+		return $this->boss;
+	}
+
+	/**
+	 * Set the Boss of this Region.
+	 *
+	 * @param Boss $boss boss of the region
+	 *
+	 * @return $this
+	 */
+	public function setBoss(Boss $boss) : self {
+		$this->boss = $boss;
+
+		return $this;
+	}
+
+
+
+	/**
 	 * Set the Prize Location for completeing this Region and set it's rules for access to completing the region.
 	 *
 	 * @param Location\Prize $location location to put item that will be the prize

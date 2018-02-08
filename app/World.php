@@ -344,8 +344,8 @@ class World {
 					continue;
 				}
 				$location->setItem();
-				if ($pulled_item instanceof Item\Map
-					|| $pulled_item instanceof Item\Compass
+				if ((!$this->config('region.wildMaps', false) && $pulled_item instanceof Item\Map)
+					|| (!$this->config('region.wildCompasses', false) && $pulled_item instanceof Item\Compass)
 					|| in_array($pulled_item, $junk_items)) {
 					continue;
 				}
@@ -443,7 +443,9 @@ class World {
 				}
 				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
-				if (!$this->config('region.wildKeys', false) && $item instanceof Item\Key) {
+				if ((!$this->config('region.wildKeys', false) && $item instanceof Item\Key)
+					|| $item instanceof Item\Map
+					|| $item instanceof Item\Compass) {
 					return;
 				}
 				array_push($location_round[$longest_item_chain], $location);
