@@ -64,6 +64,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="panel-body">
+					@yield('rom-settings')
 					<div class="row">
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
@@ -147,7 +148,6 @@
 							</div>
 						</div>
 					</div>
-					@yield('rom-settings')
 				</div>
 				<div class="panel-footer">
 					<div class="row">
