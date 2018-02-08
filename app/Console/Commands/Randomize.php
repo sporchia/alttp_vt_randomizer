@@ -32,7 +32,8 @@ class Randomize extends Command {
 		. ' {--sprite= : sprite file to change links graphics [zspr format]}'
 		. ' {--no-rom : no not generate output rom}'
 		. ' {--no-music : mute all music}'
-		. ' {--menu-speed=normal : menu speed}';
+		. ' {--menu-speed=normal : menu speed}'
+		. ' {--algorithm=RandomAssumed : Filler algorithm to use}';
 
 	/**
 	 * The console command description.
@@ -93,7 +94,7 @@ class Randomize extends Command {
 
 			config(['game-mode' => $this->option('mode')]);
 
-			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
+			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'), $this->option('algorithm'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);

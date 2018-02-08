@@ -20,11 +20,21 @@ abstract class Filler {
 			$world = new World;
 		}
 
+		if ($type == '?') {
+			$algorithms = ['Distributed', 'Random', 'RandomAssumed', 'RandomBeatable', 'RandomSwap', 'Troll'];
+			$type = $algorithms[array_rand($algorithms)];
+			Log::debug(sprintf('Algorithm used: %s', $type));
+		}
+
 		switch ($type) {
 			case 'Distributed':
 				return new Filler\Distributed($world);
 			case 'Random':
 				return new Filler\Random($world);
+			case 'RandomBeatable':
+				return new Filler\RandomBeatable($world);
+			case 'RandomSwap':
+				return new Filler\RandomSwap($world);
 			case 'Troll':
 				return new Filler\Troll($world);
 			default:
