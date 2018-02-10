@@ -43,6 +43,16 @@ return [
 					'freeItemMenu' => true,
 				],
 			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => true,
+					'genericKeys' => true,
+				],
+			],
 			'ohko' => [
 				'region' => [
 					'cantTakeDamage' => true,
@@ -124,6 +134,16 @@ return [
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => true,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -236,6 +256,16 @@ return [
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => true,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -354,6 +384,16 @@ return [
 					'freeItemMenu' => true,
 				],
 			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => true,
+					'genericKeys' => true,
+				],
+			],
 			'ohko' => [
 				'region' => [
 					'cantTakeDamage' => true,
@@ -468,6 +508,16 @@ return [
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
 					'freeItemMenu' => true,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+					'wildBigKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => true,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -663,6 +713,7 @@ return [
 				'timed-ohko' => 'Timed OHKO',
 				'ohko' => 'OHKO',
 				'key-sanity' => 'Key-sanity',
+				'retro' => 'Retro',
 			],
 			'difficulty_adjustments' => [
 				0 => 'Normal',

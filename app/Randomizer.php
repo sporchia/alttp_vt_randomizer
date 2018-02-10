@@ -130,6 +130,7 @@ class Randomizer {
 		$regions = $this->world->getRegions();
 
 		// Set up World before we fill dungeons
+		$this->setShops();
 		$this->setMedallions($regions);
 		$this->placeBosses($this->world);
 		$this->fillPrizes($this->world);
@@ -484,6 +485,19 @@ class Randomizer {
 		}
 	}
 
+	protected function setShops() {
+		Shop::setDefaultShops();
+		$shops = Shop::all();
+		while ($shops->filter(function($shop) {
+			return $shop->getActive();
+		})->count() < 2) {
+			$shops->each(function($shop) {
+				$shop->setActive(mt_rand(0, 1));
+				$shop->addInventory(1, Item::get('Key'), 80);
+			});
+		}
+	}
+
 	/**
 	 * Get the current spoiler for this seed
 	 *
@@ -594,6 +608,10 @@ class Randomizer {
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 
 		// testing features
+		$rom->setGenericKeys($this->config('rom.genericKeys', false));
+		if ($this->config('rom.genericKeys', false)) {
+			$rom->setupCustomShops(Shop::all());
+		}
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);

@@ -179,6 +179,33 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/**
+	 * Take the first or last {$limit} items.
+	 *
+	 * @param int $limit
+	 *
+	 * @return static
+	 */
+	public function take($limit) {
+		if ($limit < 0) {
+			return $this->slice($limit, abs($limit));
+		}
+
+		return $this->slice(0, $limit);
+	}
+
+	/**
+	 * Slice the underlying collection array.
+	 *
+	 * @param int $offset
+	 * @param int $length
+	 *
+	 * @return static
+	 */
+	public function slice($offset, $length = null) {
+		return new static(array_slice($this->items, $offset, $length, true));
+	}
+
+	/**
 	 * Merge the collection with the given items.
 	 *
 	 * @param mixed $items
