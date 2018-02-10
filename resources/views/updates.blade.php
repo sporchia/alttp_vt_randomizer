@@ -4,6 +4,8 @@
 <h2>VT8.29</h2>
 <div class="well">
 	<ul>
+		<li>Triforce hunt lessens the chance of finding triforce pieces in GT</li>
+		<li>Removed the GT Junk pre-fill for all glitched modes</li>
 		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
 		<li>Small keys in spoiler for key-sanity</li>
 		<li>Maps/Compasses logically reauired for completion of dungeon in keysanity</li>

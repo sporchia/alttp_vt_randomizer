@@ -287,7 +287,17 @@ class Randomizer {
 
 		$advancement_items = mt_shuffle($advancement_items);
 
-		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+		$filler = Filler::factory('RandomAssumed', $this->world);
+
+		// mess with the junk fill
+		if ($this->goal == 'triforce-hunt') {
+			$filler->setGanonJunkLimits(15, 50);
+		}
+		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
+			$filler->setGanonJunkLimits(0, 0);
+		}
+
+		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
 		return $this;
 	}
