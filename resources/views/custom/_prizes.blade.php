@@ -20,25 +20,38 @@ $allprizes = ['Heart', 'Green Rupee', 'Blue Rupee', 'Red Rupee', '1x Bomb', '4x 
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
-		@foreach ($prizepacks as $key => $item)
-		<table class="table table-sm">
-			<thead>
-				<tr>
-					<th>{{ $item['name'] }}</th>
-				</tr>
-			</thead>
-			@foreach ($item['items'] as $innerkey => $inneritem)
-			<tr>
-				<td class="col-md-3">
-					<select id="prize-pack-{{ $key }}-{{ $innerkey }}" class="form-control selectpicker">
-						@foreach ($allprizes as $prize)
-						<option value="{{ $prize }}" <?php if ($inneritem == $prize) echo 'selected="selected"'; ?>>{{ $prize }}</option>
-						@endforeach
-					</select>
-				</td>
-			</tr>
+		<ul class="nav nav-pills" role="tablist">
+			@foreach ($prizepacks as $key => $item)
+			<li id="n-prizepack-{{ $key }}"<?php if ($key == '0') echo ' class="active"' ?>>
+				<a data-toggle="tab" data-section="{{ $item['name'] }}" href="#prizepack-{{ $key }}">
+					{{ $item['name'] }}
+				</a>
+			</li>
 			@endforeach
-		</table>
-		@endforeach
+		</ul>
+		<div class="tab-content">
+			@foreach ($prizepacks as $key => $item)
+			<div id="prizepack-{{ $key }}" class="tab-pane<?php if ($key == '0') echo ' active' ?>">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th>{{ $item['name'] }}</th>
+						</tr>
+					</thead>
+					@foreach ($item['items'] as $innerkey => $inneritem)
+					<tr>
+						<td class="col-md-3">
+							<select id="prize-pack-{{ $key }}-{{ $innerkey }}" class="form-control selectpicker">
+								@foreach ($allprizes as $prize)
+								<option value="{{ $prize }}" <?php if ($inneritem == $prize) echo 'selected="selected"'; ?>>{{ $prize }}</option>
+								@endforeach
+							</select>
+						</td>
+					</tr>
+					@endforeach
+				</table>
+			</div>
+			@endforeach
+		</div>
 	</div>
 @overwrite
