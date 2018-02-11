@@ -503,7 +503,7 @@ class Randomizer {
 		})->count() < 2) {
 			$shops->each(function($shop) {
 				$shop->setActive(mt_rand(0, 1));
-				$shop->addInventory(1, Item::get('Key'), 80);
+				$shop->addInventory(1, Item::get('KeyGK'), 80);
 			});
 		}
 	}
@@ -542,7 +542,10 @@ class Randomizer {
 					return;
 				}
 				if ($location->hasItem()) {
-					$spoiler[$name][$location->getName()] = $location->getItem()->getNiceName();
+					$item = $location->getItem();
+					$spoiler[$name][$location->getName()] = $this->config('rom.genericKeys', false) && $item instanceof Item\Key
+						? 'Key'
+						: $item->getNiceName();
 				} else {
 					$spoiler[$name][$location->getName()] = 'Nothing';
 				}
@@ -649,7 +652,7 @@ class Randomizer {
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
 		$rom->setCompassMode($this->config('rom.compassOnPickup', 'off'));
 		$rom->setFreeItemTextMode($this->config('rom.freeItemText', false));
-		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', false));
+		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', 0x00));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 
 		$rom->writeRNGBlock(function() {

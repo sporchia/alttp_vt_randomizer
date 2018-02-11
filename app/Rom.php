@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-08';
-	const HASH = '205a34a40889823ea8e707d89c3e6260';
+	const BUILD = '2018-02-11';
+	const HASH = 'b7703c31cd3dee8d106d97748bfde192';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -2196,12 +2196,12 @@ class Rom {
 	/**
 	 * Enable free items to show up in menu
 	 *
-	 * @param bool $enable switch on or off
+	 * @param int $flags display ----dcba a: Small Keys, b: Big Key, c: Map, d: Compass
 	 *
 	 * @return $this
 	 */
-	public function setFreeItemMenu(bool $enable = true) : self {
-		$this->write(0x180045, pack('C*', $enable ? 0xFF : 0x00));
+	public function setFreeItemMenu(int $flags = 0x00) : self {
+		$this->write(0x180045, pack('C*', $flags));
 
 		return $this;
 	}

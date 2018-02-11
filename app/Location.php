@@ -192,6 +192,10 @@ class Location {
 			$item = Item::get('BigKey');
 		}
 
+		if ($this->region->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
+			$item = Item::get('KeyGK');
+		}
+
 		$item_bytes = $item->getBytes();
 
 		foreach ($this->address as $key => $address) {

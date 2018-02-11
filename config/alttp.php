@@ -40,16 +40,15 @@ return [
 				'rom' => [
 					'mapOnPickup' => true,
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
 				],
 			],
 			'retro' => [
 				'region' => [
 					'wildKeys' => true,
-					'wildBigKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 				],
 			],
@@ -133,16 +132,15 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
 				],
 			],
 			'retro' => [
 				'region' => [
 					'wildKeys' => true,
-					'wildBigKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 				],
 			],
@@ -255,16 +253,15 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
 				],
 			],
 			'retro' => [
 				'region' => [
 					'wildKeys' => true,
-					'wildBigKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 				],
 			],
@@ -381,16 +378,15 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
 				],
 			],
 			'retro' => [
 				'region' => [
 					'wildKeys' => true,
-					'wildBigKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 				],
 			],
@@ -507,16 +503,15 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
 				],
 			],
 			'retro' => [
 				'region' => [
 					'wildKeys' => true,
-					'wildBigKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 				],
 			],

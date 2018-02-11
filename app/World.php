@@ -443,7 +443,7 @@ class World {
 				}
 				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
-				if ((!$this->config('region.wildKeys', false) && $item instanceof Item\Key)
+				if ((($this->config('rom.genericKeys', false) || !$this->config('region.wildKeys', false)) && $item instanceof Item\Key)
 					|| $item instanceof Item\Map
 					|| $item instanceof Item\Compass) {
 					return;

@@ -10,6 +10,7 @@ use ALttP\Support\ShopCollection;
 class Shop {
 	protected $name;
 	protected $config;
+	protected $shopkeeper;
 	protected $room_id;
 	protected $door_id;
 	protected $active = false;
@@ -46,15 +47,15 @@ class Shop {
 		}
 
 		static::$items = new ShopCollection([
-			new static("Dark World Death Mountain Shop", 0x03,  0x0112, 0x6E),
-			new static("Dark World Forest Shop", 0x03,  0x0110, 0x75),
-			new static("Dark World Lake Hylia Shop", 0x03,  0x010F, 0x74),
-			new static("Dark World Lumberjack Hut Shop", 0x03,  0x010F, 0x57),
-			new static("Dark World Outcasts Shop", 0x03,  0x010F, 0x60),
-			new static("Dark World Potion Shop", 0x03,  0x010F, 0x6F),
-			new static("Light World Death Mountain Shop", 0x03,  0x00FF, 0x00),
-			new static("Light World Kakariko Shop", 0x03,  0x011F, 0x46),
-			new static("Light World Lake Hylia Shop", 0x03,  0x0112, 0x58),
+			new static("Dark World Death Mountain Shop",  0x03, 0x51, 0x0112, 0x6E),
+			new static("Dark World Forest Shop",          0x03, 0x51, 0x0110, 0x75),
+			new static("Dark World Lake Hylia Shop",      0x03, 0x51, 0x010F, 0x74),
+			new static("Dark World Lumberjack Hut Shop",  0x03, 0x51, 0x010F, 0x57),
+			new static("Dark World Outcasts Shop",        0x03, 0x51, 0x010F, 0x60),
+			new static("Dark World Potion Shop",          0x03, 0x51, 0x010F, 0x6F),
+			new static("Light World Death Mountain Shop", 0x43, 0x50, 0x00FF, 0x00),
+			new static("Light World Kakariko Shop",       0x03, 0x50, 0x011F, 0x46),
+			new static("Light World Lake Hylia Shop",     0x03, 0x50, 0x0112, 0x58),
 		]);
 
 		return static::all();
@@ -106,9 +107,10 @@ class Shop {
 	 *
 	 * @return void
 	 */
-	public function __construct(string $name, int $config, int $room_id, int $door_id) {
+	public function __construct(string $name, int $config, int $shopkeeper, int $room_id, int $door_id) {
 		$this->name = $name;
 		$this->config = $config;
+		$this->shopkeeper = $shopkeeper;
 		$this->room_id = $room_id;
 		$this->door_id = $door_id;
 	}
@@ -125,7 +127,7 @@ class Shop {
 	public function getBytes() : array {
 		return array_merge(
 			array_values(unpack('C*', pack('S', $this->room_id ?? 0))),
-			[$this->door_id, 0x00, $this->config, 0x00, 0x00]
+			[$this->door_id, 0x00, $this->config, $this->shopkeeper, 0x00]
 		);
 	}
 
