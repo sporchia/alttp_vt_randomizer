@@ -6,6 +6,7 @@
 @include('custom/_equipment')
 @include('custom/_items')
 @include('custom/_switches')
+@include('custom/_prizes')
 
 @section('content')
 @yield('loader')
@@ -143,6 +144,9 @@
 		</div>
 		<div class="tab-pane" id="custom-settings">
 			@yield('switches')
+		</div>
+		<div class="tab-pane" id="custom-prizes">
+			@yield('prizepacks')
 		</div>
 	@foreach($world->getRegions() as $name => $region)
 		<div class="tab-pane" id="custom-region-{{ str_replace(' ', '_', $name) }}">
