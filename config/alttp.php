@@ -630,6 +630,19 @@ return [
 			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
+		'drops' => [
+			'heart' => 'Heart',
+			'greenRupee' => 'Green Rupee',
+			'blueRupee' => 'Blue Rupee',
+			'redRupee' => 'Red Rupee',
+			'bomb1' => '1x Bomb',
+			'bomb4' => '4x Bomb',
+			'bomb8' => '8x Bomb',
+			'smallMagic' => 'Small Magic Container',
+			'largeMagic' => 'Large Magic Container',
+			'arrow5' => '5x Arrow',
+			'arrow10' => '10x Arrow',
+		],
 	],
 	'vanilla' => [
 		'prize' => [
