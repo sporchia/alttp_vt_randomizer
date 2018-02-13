@@ -9,8 +9,8 @@
 		<h3 class="panel-title">Tournaments</h3>
 	</div>
 	<div class="panel-body">
-		<h4>2018 Keysanity tournament</h4>
-		<p>Live now! <a
+		<h4>2018 Keysanity tournament <span class="running-now">Live Now!</a></h4>
+		<p><a
 			href="http://alttpr.challonge.com/keysanity2018"
 			rel="noopener noreferrer"
 			target="_blank">Check out standings here!</a></p>
