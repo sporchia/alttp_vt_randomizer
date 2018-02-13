@@ -9,14 +9,14 @@
 		<h3 class="panel-title">Tournaments</h3>
 	</div>
 	<div class="panel-body">
-        <h4>2018 Keysanity tournament</h4>
-        <p>Live now! <a
-            href="http://alttpr.challonge.com/keysanity2018"
-            rel="noopener noreferrer"
-            target="_blank">Check out standings here!</a></p>
-        <div style="text-align:center;"><iframe
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTCyiHAGp10lzTeZSlyc1lKsUtgV5FuZcxQLQvjgE4FOXmBESiSjzrn4IfHURqX1to6D_Ns8DspD9K/pubhtml?gid=55970383&single=true&widget=true&headers=false&range=A1:E999&chrome=false"
-            style="width:65%;height:400px;"></iframe></div>
+		<h4>2018 Keysanity tournament</h4>
+		<p>Live now! <a
+			href="http://alttpr.challonge.com/keysanity2018"
+			rel="noopener noreferrer"
+			target="_blank">Check out standings here!</a></p>
+		<div style="text-align:center;"><iframe
+			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTCyiHAGp10lzTeZSlyc1lKsUtgV5FuZcxQLQvjgE4FOXmBESiSjzrn4IfHURqX1to6D_Ns8DspD9K/pubhtml?gid=55970383&single=true&widget=true&headers=false&range=A1:E999&chrome=false"
+			style="width:65%;height:400px;"></iframe></div>
 		<h4>Upcoming Tournaments</h4>
 		<p>Join us for a Standard tournament starting this Spring! Join our Discord community to stay up to date!</p>
 		<h4>2017 Fall Invitational</h4>
