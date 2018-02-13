@@ -25,6 +25,7 @@
 			<li>Name's matter (well, more than they used to)</li>
 			<li>Add notes to your custom games</li>
 			<li>Set the hard mode adjustments (e.g. bottle refill)</li>
+			<li>You can allow dark room navigation</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>

@@ -117,12 +117,12 @@ class Randomizer {
 	public function makeSeed(int $rng_seed = null) {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
-		mt_srand($rng_seed);
-		$this->seed->seed = $rng_seed;
+		mt_srand($this->rng_seed);
+		$this->seed->seed = $this->rng_seed;
 
 		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
 		if (defined('MT_RAND_PHP')) {
-			mt_srand($rng_seed, MT_RAND_PHP);
+			mt_srand($this->rng_seed, MT_RAND_PHP);
 		}
 
 		Log::info(sprintf("Seed: %s", $this->rng_seed));
