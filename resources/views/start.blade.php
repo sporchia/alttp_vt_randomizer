@@ -21,7 +21,7 @@
 	<div class="panel-body">
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
-			href="https://discord.gg/TCC6Y42"
+			href="https://discord.gg/alttprandomizer"
 			rel="noopener noreferrer"
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
@@ -41,7 +41,7 @@
 			the patching process provides English text while keeping the glitches unique to the
 			original version intact.</p>
 		<p>If you run into trouble, ask in
-			<a href="https://discord.gg/TCC6Y42 target="_blank" rel="noopener noreferrer">Discord!</a></p>
+			<a href="https://discord.gg/alttprandomizer target="_blank" rel="noopener noreferrer">Discord!</a></p>
 	</div>
 </div>
 

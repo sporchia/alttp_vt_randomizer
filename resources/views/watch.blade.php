@@ -50,7 +50,10 @@
 	</div>
 	<div class="panel-body">
 		<h4>Upcoming Tournaments</h4>
-		<p>Join us for a Keysanity tournament starting January 29th! Join our Discord community to stay up to date!</p>
+		<p>Join us for a Keysanity tournament starting January 29th! Join our <a
+			href="https://discord.gg/alttprandomizer"
+			rel="noopener noreferrer"
+			target="_blank">Discord community</a> to stay up to date!</p>
 		<h4>2017 Fall Invitational</h4>
 		<p>The <span style="font-weight:bold;">2017 Fall Invitational</span> just wrapped up!</p>
 		<p><a href="https://www.youtube.com/playlist?list=PLdoWICJMgPKWZKYiZD1uLn529-fdHHqUK" target="_blank" rel="noopener noreferrer">Watch all the matches here!</a></p>
