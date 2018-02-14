@@ -36,20 +36,22 @@
 	</div>
 	<div class="tab-content">
 		<div class="tab-pane active">
-		        <h1>Welcome to Customizer</h1>
-                        <h2>What is this?</h2>
-			<p>Customizer is an advanced interface where you have total control over item placement. If you're just looking to make a randomized game and get playing, head over to the <a href="/start">Start Playing section.</a></p>
-                        <h2>What can be customized?</h2>
-                        <ul>
-			  <li>Every item location can be set to a specific item, no item, or a random item.
-                          <li>Keys, maps, and compasses can be placed outside of their dungeons.
-                          <li>Every prize can be set to any pendant or crystal.
-                          <li>The overall item pool for random items.
-                          <li>Link's starting equipment.
-                          <li>...and more!
-                        </ul>
-                        <h2>How do I use this?</h2>
-                        <p>Simply click on one of the sections on the left hand panel.</p>
+			<h1>Welcome to Customizer</h1>
+			<h2>What is this?</h2>
+			<p>Customizer is an advanced interface where you have total control over item placement. If you're
+				just looking to make a randomized game and get playing, head over to the <a href="/start">Start
+				Playing section.</a></p>
+			<h2>What can be customized?</h2>
+			<ul>
+				<li>Every item location can be set to a specific item, no item, or a random item.</li>
+				<li>Keys, maps, and compasses can be placed outside of their dungeons.</li>
+				<li>Every prize can be set to any pendant or crystal.</li>
+				<li>The overall item pool for random items.</li>
+				<li>Link's starting equipment.</li>
+				<li>...and more!</li>
+			</ul>
+			<h2>How do I use this?</h2>
+			<p>Simply click on one of the sections on the left hand panel.</p>
 			<p>Beware! You can generate incompletable games using this. If that is your choice please don't report
 				item locks generated using this tool.</p>
 			<p>Here are the keys to Hyrule. Enjoy!</p>

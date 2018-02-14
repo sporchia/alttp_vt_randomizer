@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-06';
-	const HASH = '654d40cc9e47d7e98a96590f39892439';
+	const BUILD = '2018-02-11';
+	const HASH = 'b7703c31cd3dee8d106d97748bfde192';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1866,7 +1866,7 @@ class Rom {
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
 				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
-				$this->setBottleFills([0x00, 0x00]); // 1 heart, 1/4 magic refills
+				$this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills
 				$this->setShopBlueShieldCost(10000);
 				$this->setShopRedShieldCost(10000);
 				$this->setCatchableFairies(false);
@@ -1956,18 +1956,48 @@ class Rom {
 		return $this;
 	}
 
-	public function setupCustomShops($shop_items) {
+	public function setupCustomShops($shops) : self {
+		$shops = $shops->filter(function($shop) {
+			return $shop->getActive();
+		})->take(16);
+
+		$shop_data = [];
 		$items_data = [];
-		foreach ($shop_items as $shop_id => $items) {
-			foreach ($items as $item) {
+		$shop_id = 0x00;
+		foreach ($shops as $shop) {
+			if ($shop_id == $shops->count() - 1) {
+				$shop_id = 0xFF;
+			}
+			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes());
+
+			foreach ($shop->getInventory() as $item) {
 				$items_data = array_merge($items_data, [$shop_id, $item['id']],
 					array_values(unpack('C*', pack('S', $item['price'] ?? 0))),
 					[$item['max'] ?? 0, $item['replace_id'] ?? 0xFF],
 					array_values(unpack('C*', pack('S', $item['replace_price'] ?? 0))));
 			}
+			++$shop_id;
 		}
+		$this->write(0x184800, pack('C*', ...$shop_data));
+
 		$items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
 		$this->write(0x184880, pack('C*', ...$items_data));
+
+		return $this;
+	}
+
+
+	/**
+	 * Set Generic keys mode, if enabled all keys will share 1 pool.
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setGenericKeys(bool $enable = false) : self {
+		$this->write(0x180172, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
 	}
 
 	/**
@@ -2166,12 +2196,12 @@ class Rom {
 	/**
 	 * Enable free items to show up in menu
 	 *
-	 * @param bool $enable switch on or off
+	 * @param int $flags display ----dcba a: Small Keys, b: Big Key, c: Map, d: Compass
 	 *
 	 * @return $this
 	 */
-	public function setFreeItemMenu(bool $enable = true) : self {
-		$this->write(0x180045, pack('C*', $enable ? 0xFF : 0x00));
+	public function setFreeItemMenu(int $flags = 0x00) : self {
+		$this->write(0x180045, pack('C*', $flags));
 
 		return $this;
 	}

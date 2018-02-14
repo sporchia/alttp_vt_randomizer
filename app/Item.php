@@ -265,6 +265,7 @@ class Item {
 			new Item\Key('KeyD4', 'Thieves Town Key', [0xAB]),
 			new Item\Key('KeyD7', 'Turtle Rock Key', [0xAC]),
 			new Item\Key('KeyA2', 'Ganons Tower Key', [0xAD]),
+			new Item\Key('KeyGK', 'Generic Key', [0xAF]),
 			new Item\Crystal('Crystal1', 'Crystal 1', [null, 0x02, 0x34, 0x64, 0x40, 0x7F, 0x06]),
 			new Item\Crystal('Crystal2', 'Crystal 2', [null, 0x10, 0x34, 0x64, 0x40, 0x79, 0x06]),
 			new Item\Crystal('Crystal3', 'Crystal 3', [null, 0x40, 0x34, 0x64, 0x40, 0x6C, 0x06]),

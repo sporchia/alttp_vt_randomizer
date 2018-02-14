@@ -4,6 +4,8 @@
 <h2>VT8.29</h2>
 <div class="well">
 	<ul>
+		<li>Triforce hunt lessens the chance of finding triforce pieces in GT</li>
+		<li>Removed the GT Junk pre-fill for all glitched modes</li>
 		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
 		<li>Small keys in spoiler for key-sanity</li>
 		<li>Maps/Compasses logically reauired for completion of dungeon in keysanity</li>
@@ -23,6 +25,7 @@
 			<li>Name's matter (well, more than they used to)</li>
 			<li>Add notes to your custom games</li>
 			<li>Set the hard mode adjustments (e.g. bottle refill)</li>
+			<li>You can allow dark room navigation</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>

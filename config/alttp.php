@@ -40,7 +40,16 @@ return [
 				'rom' => [
 					'mapOnPickup' => true,
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => 0x02,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -123,7 +132,16 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => 0x02,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -235,7 +253,16 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => 0x02,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -351,7 +378,16 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => 0x02,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -467,7 +503,16 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'freeItemMenu' => 0x02,
+					'genericKeys' => true,
 				],
 			],
 			'ohko' => [
@@ -663,6 +708,7 @@ return [
 				'timed-ohko' => 'Timed OHKO',
 				'ohko' => 'OHKO',
 				'key-sanity' => 'Key-sanity',
+				'retro' => 'Retro',
 			],
 			'difficulty_adjustments' => [
 				0 => 'Normal',

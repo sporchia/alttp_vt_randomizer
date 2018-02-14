@@ -59,6 +59,12 @@
 			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, compasses will behave as they do in the vanilla game. If Yes, they will additionally show how many uncollected items are left in their respective dungeons while Link is in that dungeon."></span>
 		</div>
 		<div class="col-md-6 pb-5">
+			<input id="cust-rom-darkroomNavigation" type="checkbox" name="data[alttp.custom.item.require.Lamp]"
+				class="custom-switch" value="0" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="cust-rom-darkroomNavigation">Allow dark room navigation</label>
+			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If yes, logic will not check to make sure lamps are available before dark rooms."></span>
+		</div>
+		<div class="col-md-6 pb-5">
 			<input id="cust-rom-freeItemText" type="checkbox" name="data[alttp.custom.rom.freeItemText]"
 				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-rom-freeItemText">Show text box on dungeon item pickup (outside of dungeon)</label>

@@ -117,12 +117,12 @@ class Randomizer {
 	public function makeSeed(int $rng_seed = null) {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
-		mt_srand($rng_seed);
-		$this->seed->seed = $rng_seed;
+		mt_srand($this->rng_seed);
+		$this->seed->seed = $this->rng_seed;
 
 		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
 		if (defined('MT_RAND_PHP')) {
-			mt_srand($rng_seed, MT_RAND_PHP);
+			mt_srand($this->rng_seed, MT_RAND_PHP);
 		}
 
 		Log::info(sprintf("Seed: %s", $this->rng_seed));
@@ -130,6 +130,7 @@ class Randomizer {
 		$regions = $this->world->getRegions();
 
 		// Set up World before we fill dungeons
+		$this->setShops();
 		$this->setMedallions($regions);
 		$this->placeBosses($this->world);
 		$this->fillPrizes($this->world);
@@ -286,7 +287,17 @@ class Randomizer {
 
 		$advancement_items = mt_shuffle($advancement_items);
 
-		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+		$filler = Filler::factory('RandomAssumed', $this->world);
+
+		// mess with the junk fill
+		if ($this->goal == 'triforce-hunt') {
+			$filler->setGanonJunkLimits(15, 50);
+		}
+		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
+			$filler->setGanonJunkLimits(0, 0);
+		}
+
+		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
 		return $this;
 	}
@@ -484,6 +495,19 @@ class Randomizer {
 		}
 	}
 
+	protected function setShops() {
+		Shop::setDefaultShops();
+		$shops = Shop::all();
+		while ($shops->filter(function($shop) {
+			return $shop->getActive();
+		})->count() < 2) {
+			$shops->each(function($shop) {
+				$shop->setActive(mt_rand(0, 1));
+				$shop->addInventory(1, Item::get('KeyGK'), 80);
+			});
+		}
+	}
+
 	/**
 	 * Get the current spoiler for this seed
 	 *
@@ -518,7 +542,10 @@ class Randomizer {
 					return;
 				}
 				if ($location->hasItem()) {
-					$spoiler[$name][$location->getName()] = $location->getItem()->getNiceName();
+					$item = $location->getItem();
+					$spoiler[$name][$location->getName()] = $this->config('rom.genericKeys', false) && $item instanceof Item\Key
+						? 'Key'
+						: $item->getNiceName();
 				} else {
 					$spoiler[$name][$location->getName()] = 'Nothing';
 				}
@@ -594,6 +621,10 @@ class Randomizer {
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 
 		// testing features
+		$rom->setGenericKeys($this->config('rom.genericKeys', false));
+		if ($this->config('rom.genericKeys', false)) {
+			$rom->setupCustomShops(Shop::all());
+		}
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
@@ -621,7 +652,7 @@ class Randomizer {
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
 		$rom->setCompassMode($this->config('rom.compassOnPickup', 'off'));
 		$rom->setFreeItemTextMode($this->config('rom.freeItemText', false));
-		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', false));
+		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', 0x00));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 
 		$rom->writeRNGBlock(function() {

@@ -366,6 +366,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	return json_encode($rand->getSpoiler());
 });
 
+// @TODO: this is not DRY, perhaps it's time to move this and /seed to a controller
 Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	$variation = $request->input('variation', 'none') ?: 'none';
