@@ -50,6 +50,7 @@ return [
 				'rom' => [
 					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -142,6 +143,7 @@ return [
 				'rom' => [
 					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -263,6 +265,7 @@ return [
 				'rom' => [
 					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -388,6 +391,7 @@ return [
 				'rom' => [
 					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -513,6 +517,7 @@ return [
 				'rom' => [
 					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [

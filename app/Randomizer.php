@@ -498,14 +498,23 @@ class Randomizer {
 	protected function setShops() {
 		Shop::setDefaultShops();
 		$shops = Shop::all();
-		while ($shops->filter(function($shop) {
-			return $shop->getActive();
-		})->count() < 2) {
-			$shops->each(function($shop) {
-				$shop->setActive(mt_rand(0, 1));
-				$shop->addInventory(1, Item::get('KeyGK'), 80);
-			});
-		}
+
+		$shops->filter(function($shop) {
+			return $shop instanceof Shop\TakeAny;
+		})->randomCollection(4)->each(function($shop) {
+			$shop->setActive(true);
+			$shop->addInventory(0, Item::get('BottleWithBluePotion'), 0);
+			$shop->addInventory(1, Item::get('L1Sword'), 0);
+			$shop->addInventory(2, Item::get('HeartContainer'), 0);
+		});
+
+		$shops->filter(function($shop) {
+			return !$shop instanceof Shop\TakeAny;
+		})->randomCollection(4)->each(function($shop) {
+			$shop->setActive(true);
+			$shop->addInventory(0, Item::get('Arrow'), 80);
+			$shop->addInventory(1, Item::get('KeyGK'), 100);
+		});
 	}
 
 	/**
@@ -625,6 +634,7 @@ class Randomizer {
 		if ($this->config('rom.genericKeys', false)) {
 			$rom->setupCustomShops(Shop::all());
 		}
+		$rom->setRupeeArrow($this->config('rom.rupeeBow', false));
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
@@ -1528,10 +1538,14 @@ class Randomizer {
 		];
 		$shuffled = mt_shuffle($prizes);
 
+		if ($this->config('rom.rupeeBow', false)) {
+			$shuffled = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+		}
+
 		if ($this->config('bees', false)) {
 			// you asked for it
 			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
-			$rom->setOverworldDigPrizes([
+			$dig_prizes = [
 				0xB2, 0xD8, 0xD8, 0xD8,
 				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
 				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
@@ -1545,7 +1559,13 @@ class Randomizer {
 				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
 				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
 				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
-			]);
+			];
+
+			if ($this->config('rom.rupeeBow', false)) {
+				$dig_prizes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $dig_prizes);
+			}
+
+			$rom->setOverworldDigPrizes($dig_prizes);
 		}
 
 		// write to trees

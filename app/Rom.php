@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-11';
-	const HASH = 'b7703c31cd3dee8d106d97748bfde192';
+	const BUILD = '2018-02-15';
+	const HASH = 'ba3b2ce80450b3a6dac18277141dd9e3';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1968,6 +1968,7 @@ class Rom {
 			if ($shop_id == $shops->count() - 1) {
 				$shop_id = 0xFF;
 			}
+			$shop->writeExtraData($this);
 			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes());
 
 			foreach ($shop->getInventory() as $item) {
@@ -1986,6 +1987,22 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * Set Rupee Arrow mode
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setRupeeArrow(bool $enable = false) : self {
+		$this->write(0x301FC, pack('C*', $enable ? 0xDA : 0xE1)); // replace Pot rupees
+		$this->write(0xECB4E, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E));
+		$this->write(0x180175, pack('C*', $enable ? 0x01 : 0x00)); // enable mode
+		$this->write(0x180176, pack('S*', $enable ? 0x05 : 0x00)); // wood cost
+		$this->write(0x180178, pack('S*', $enable ? 0x0A : 0x00)); // silver cost
+
+		return $this;
+	}
 
 	/**
 	 * Set Generic keys mode, if enabled all keys will share 1 pool.
