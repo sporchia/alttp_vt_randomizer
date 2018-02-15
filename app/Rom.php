@@ -10,7 +10,7 @@ use Log;
  */
 class Rom {
 	const BUILD = '2018-02-15';
-	const HASH = 'ba3b2ce80450b3a6dac18277141dd9e3';
+	const HASH = '7dc689ac83f66a40d0b6c2599c9a6c28';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -2000,6 +2000,7 @@ class Rom {
 		$this->write(0x180175, pack('C*', $enable ? 0x01 : 0x00)); // enable mode
 		$this->write(0x180176, pack('S*', $enable ? 0x05 : 0x00)); // wood cost
 		$this->write(0x180178, pack('S*', $enable ? 0x0A : 0x00)); // silver cost
+		$this->write(0x1086C0, $enable ? pack('S*', 0x3C02, 0x3C03, 0x207F) : pack('S*', 0x207F, 0x3C02, 0x3C03));
 
 		return $this;
 	}
