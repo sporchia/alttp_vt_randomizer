@@ -57,7 +57,7 @@ class NorthWest extends Region {
 		$this->locations["Master Sword Pedestal"]->setItem(Item::get('MasterSword'));
 		$this->locations["King's Tomb"]->setItem(Item::get('Cape'));
 		$this->locations["Kakariko Tavern"]->setItem(Item::get('Bottle'));
-		$this->locations["Chicken House"]->setItem(Item::get('TenArrows'));
+		$this->locations["Chicken House"]->setItem(Item::get('Boomerang'));
 		$this->locations["Kakariko Well - Top"]->setItem(Item::get('PieceOfHeart'));
 		$this->locations["Kakariko Well - Left"]->setItem(Item::get('TwentyRupees'));
 		$this->locations["Kakariko Well - Middle"]->setItem(Item::get('TwentyRupees'));

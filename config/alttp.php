@@ -12,6 +12,8 @@ return [
 				'HalfMagicUpgrade' => 2,
 				'Lamp' => 3,
 				'FiveRupees' => 2,
+				'Arrow' => 0,
+				'SilverArrowUpgrade' => 2,
 			],
 			'overflow' => [
 				'Armor' => 'TwentyRupees',

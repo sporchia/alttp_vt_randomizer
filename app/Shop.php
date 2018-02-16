@@ -154,10 +154,10 @@ class Shop {
 		return $this->name;
 	}
 
-	public function getBytes() : array {
+	public function getBytes(int $sram_offset = 0x00) : array {
 		return array_merge(
 			array_values(unpack('C*', pack('S', $this->room_id ?? 0))),
-			[$this->door_id, 0x00, $this->config, $this->shopkeeper, 0x00]
+			[$this->door_id, 0x00, ($this->config & 0xFC) + count($this->inventory), $this->shopkeeper, $sram_offset]
 		);
 	}
 

@@ -504,9 +504,17 @@ class Randomizer {
 		})->randomCollection(4)->each(function($shop) {
 			$shop->setActive(true);
 			$shop->addInventory(0, Item::get('BottleWithBluePotion'), 0);
-			$shop->addInventory(1, Item::get('L1Sword'), 0);
-			$shop->addInventory(2, Item::get('HeartContainer'), 0);
+			$shop->addInventory(1, Item::get('HeartContainer'), 0);
 		});
+
+		$old_man = $shops->filter(function($shop) {
+			return $shop instanceof Shop\TakeAny
+				&& !$shop->getActive();
+		})->random();
+
+		$old_man->setActive(true);
+		$old_man->addInventory(0, Item::get('Lamp'), 0);
+		$old_man->addInventory(1, Item::get('L1Sword'), 0);
 
 		$shops->filter(function($shop) {
 			return !$shop instanceof Shop\TakeAny;
@@ -514,7 +522,15 @@ class Randomizer {
 			$shop->setActive(true);
 			$shop->addInventory(0, Item::get('Arrow'), 80);
 			$shop->addInventory(1, Item::get('KeyGK'), 100);
+			$shop->addInventory(2, Item::get('TenBombs'), 50);
 		});
+
+		// One shop has arrows for sale, we need to set the price correct for
+		$dw_shop = Shop::get("Dark World Forest Shop");
+		if ($this->config('rom.rupeeBow') && !$dw_shop->getActive()) {
+			$dw_shop->setActive(true);
+			$dw_shop->addInventory(2, Item::get('Arrow'), 80);
+		}
 	}
 
 	/**
@@ -646,6 +662,19 @@ class Randomizer {
 			Item::get($this->config('item.overflow.replacement.Armor', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitBottle($this->config('item.overflow.count.Bottle', 4),
 			Item::get($this->config('item.overflow.replacement.Bottle', 'TwentyRupees'))->getBytes()[0]);
+
+		switch ($this->difficulty) {
+			case 'easy':
+				$rom->setSubstitutions([
+					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
+				]);
+				break;
+			default:
+				$rom->setSubstitutions([
+					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+				]);
+		}
 
 		switch ($this->goal) {
 			case 'triforce-hunt':

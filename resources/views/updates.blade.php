@@ -4,6 +4,7 @@
 <h2>VT8.29</h2>
 <div class="well">
 	<ul>
+		<li>Easy mode now get's 2 chances at silver arrow upgrade</li>
 		<li>Triforce hunt lessens the chance of finding triforce pieces in GT</li>
 		<li>Removed the GT Junk pre-fill for all glitched modes</li>
 		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
@@ -26,6 +27,8 @@
 			<li>Add notes to your custom games</li>
 			<li>Set the hard mode adjustments (e.g. bottle refill)</li>
 			<li>You can allow dark room navigation</li>
+			<li>Pendants/Crystals can not be set for more than one dungeon</li>
+			<li>Pendants/Crystals should be more helpful when selecting them</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>

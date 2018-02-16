@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-15';
-	const HASH = '7dc689ac83f66a40d0b6c2599c9a6c28';
+	const BUILD = '2018-02-16';
+	const HASH = 'b869215a35a70ccbeddf6b84b20975c4';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -69,7 +69,7 @@ class Rom {
 		$this->credits = new Credits;
 	}
 
- 	/**
+	/**
 	 * resize ROM to a given size
 	 *
 	 * @param int|null $size number of bytes the ROM should be
@@ -141,6 +141,12 @@ class Rom {
 			$location->writeItem($this);
 		}
 
+		$this->setSubstitutions([
+			0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+			0x0C, 0x01, 0x44, 0xFF, // Blue boom -> 10 arrows
+			0x2A, 0x01, 0x46, 0xFF, // Red boom -> 300 rupees
+		]);
+
 		$this->setClockMode('off');
 		$this->setHardMode(0);
 
@@ -165,6 +171,21 @@ class Rom {
 		$this->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
 
 		return $world;
+	}
+
+	/**
+	 * Write subsitutions
+	 *
+	 * @param array $substitutions [[id, max, replace id, 0xFF], ...]
+	 *
+	 * @return $this
+	 */
+	public function setSubstitutions(array $substitutions = []) {
+		$substitutions = array_merge($substitutions, [0xFF, 0xFF, 0xFF, 0xFF]);
+
+		$this->write(0x184000, pack('C*', ...$substitutions));
+
+		return $this;
 	}
 
 	/**
@@ -1959,17 +1980,19 @@ class Rom {
 	public function setupCustomShops($shops) : self {
 		$shops = $shops->filter(function($shop) {
 			return $shop->getActive();
-		})->take(16);
+		})->take(10); // current sram only alows 10ish shops
 
 		$shop_data = [];
 		$items_data = [];
 		$shop_id = 0x00;
+		$sram_offset = 0x00;
 		foreach ($shops as $shop) {
 			if ($shop_id == $shops->count() - 1) {
 				$shop_id = 0xFF;
 			}
 			$shop->writeExtraData($this);
-			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes());
+			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes($sram_offset));
+			$sram_offset += ($shop instanceof Shop\TakeAny) ? 1 : count($shop->getInventory());
 
 			foreach ($shop->getInventory() as $item) {
 				$items_data = array_merge($items_data, [$shop_id, $item['id']],
@@ -1996,11 +2019,38 @@ class Rom {
 	 */
 	public function setRupeeArrow(bool $enable = false) : self {
 		$this->write(0x301FC, pack('C*', $enable ? 0xDA : 0xE1)); // replace Pot rupees
-		$this->write(0xECB4E, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E));
+		$this->write(0xECB4E, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // thief
+		$this->write(0xF0D96, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // pikit
 		$this->write(0x180175, pack('C*', $enable ? 0x01 : 0x00)); // enable mode
 		$this->write(0x180176, pack('S*', $enable ? 0x05 : 0x00)); // wood cost
 		$this->write(0x180178, pack('S*', $enable ? 0x0A : 0x00)); // silver cost
-		$this->write(0x1086C0, $enable ? pack('S*', 0x3C02, 0x3C03, 0x207F) : pack('S*', 0x207F, 0x3C02, 0x3C03));
+		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
+			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
+		$this->write(0x1086C0, $enable ? pack('S*', 0x3C02, 0x3C03, 0x207F) : pack('S*', 0x207F, 0x3C02, 0x3C03)); // HUD
+
+		return $this;
+	}
+
+	/**
+	 * Set the prizes for the pick 3 chest games.
+	 *
+	 * @param array $prizes item id's of prizes should be length 32
+	 *
+	 * @return $this
+	 */
+	public function setChancePrizes(array $prizes = null) {
+		if (!$prizes) {
+			$prizes = [
+				// high stakes game
+				0x47, 0x34, 0x46, 0x34, 0x46, 0x46, 0x34, 0x47,
+				0x46, 0x47, 0x34, 0x46, 0x47, 0x34, 0x46, 0x47,
+				// low stakes game
+				0x34, 0x47, 0x41, 0x47, 0x41, 0x41, 0x47, 0x34,
+				0x41, 0x34, 0x47, 0x41, 0x34, 0x47, 0x41, 0x34,
+			];
+		}
+
+		$this->write(0xEED5, pack('C*', ...$prizes)); // 32 bytes
 
 		return $this;
 	}
