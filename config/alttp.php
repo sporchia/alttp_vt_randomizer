@@ -50,7 +50,6 @@ return [
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 					'rupeeBow' => true,
 				],
@@ -143,7 +142,6 @@ return [
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 					'rupeeBow' => true,
 				],
@@ -265,7 +263,6 @@ return [
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 					'rupeeBow' => true,
 				],
@@ -391,7 +388,6 @@ return [
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 					'rupeeBow' => true,
 				],
@@ -517,7 +513,6 @@ return [
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
 					'rupeeBow' => true,
 				],
