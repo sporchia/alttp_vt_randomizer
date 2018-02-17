@@ -5,14 +5,30 @@
 ## First and foremost, big thanks to Dessyreqt, Christos, Smallhacker, and Karkat for their work.
 ### Without their work none of this would even be remotely possible.
 
-### Install
+## Installing dependencies
 You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following
 
 ```
 $ composer install
 ```
 
-Next create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
+## Running from the command line
+To generate a seed one simply runs the command:
+
+```
+$ php artisan alttp:randomize {input_file.sfc} {output_directory}
+```
+
+For help (and all the options):
+
+```
+$ php artisan alttp:randomize -h
+```
+
+## Running the Web Interface
+
+### Database setup
+Create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
 
 Run the following command to create a new config for the app
 ```
@@ -44,22 +60,7 @@ Now run the db migration command:
 $ php artisan migrate
 ```
 
-### Running
-
-#### Command line
-To generate a seed one simply runs the command:
-
-```
-$ php artisan alttp:randomize {input_file.sfc} {output_directory}
-```
-
-For help (and all the options):
-
-```
-$ php artisan alttp:randomize -h
-```
-
-#### Web interface
+### Web server setup
 You will need to build assets the first time (you will need [Yarn](https://yarnpkg.com/) to install the javascript dependencies).
 
 ```
@@ -73,14 +74,14 @@ Once you have the dependencies installed. Run the following command then navigat
 $ php artisan serve
 ```
 
-### Running tests
+## Running tests
 You can run the current test suite with the following command (you may need to install [PHPUnit](https://phpunit.de/))
 
 ```
 $ phpunit
 ```
 
-### API Documentation
+## API Documentation
 The API documentation can be generated after you install by running:
 
 ```
