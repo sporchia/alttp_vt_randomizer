@@ -87,3 +87,8 @@ The API documentation can be generated after you install by running:
 ```
 $ composer documentation
 ```
+
+## Bug Reports
+Bug reports for the current release version can be opened in this repository's [issue tracker](https://github.com/sporchia/alttp_vt_randomizer/issues).
+
+Please do not open issues for bugs that you encounter when testing a development branch.
