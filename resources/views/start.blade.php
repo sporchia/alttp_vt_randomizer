@@ -96,7 +96,7 @@
 			<li>You can use the boots to dash into walls, blocks, and pots, knocking you backwards,
 				in order to cross a gap.</li>
 			<li>If you find yourself at bumper cave with the Cape but without the Hookshot, try
-				walking over the top left of the gap—no hookshot needed!</li>
+				walking over the top left of the gap—no Hookshot needed!</li>
 		</ul>
 		<p>Don't forget to check out the comprehensive <a href="/resources">resources section</a>
 			with tutorials and more tips!</p>
