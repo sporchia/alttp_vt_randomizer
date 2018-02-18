@@ -496,40 +496,56 @@ class Randomizer {
 	}
 
 	protected function setShops() {
+		if (!$this->config('rom.genericKeys', false)
+			|| !$this->config('rom.rupeeBow', false)
+			|| !$this->config('region.takeAnys', false)) {
+			return;
+		}
+
 		Shop::setDefaultShops();
 		$shops = Shop::all();
 
-		$shops->filter(function($shop) {
-			return $shop instanceof Shop\TakeAny;
-		})->randomCollection(4)->each(function($shop) {
-			$shop->setActive(true);
-			$shop->addInventory(0, Item::get('BottleWithBluePotion'), 0);
-			$shop->addInventory(1, Item::get('HeartContainer'), 0);
-		});
+		if ($this->config('region.takeAnys', false)) {
+			$shops->filter(function($shop) {
+				return $shop instanceof Shop\TakeAny;
+			})->randomCollection(4)->each(function($shop) {
+				$shop->setActive(true);
+				$shop->setShopkeeper('old_man');
+				$shop->addInventory(0, Item::get('BottleWithBluePotion'), 0);
+				$shop->addInventory(1, Item::get('HeartContainer'), 0);
+			});
 
-		$old_man = $shops->filter(function($shop) {
-			return $shop instanceof Shop\TakeAny
-				&& !$shop->getActive();
-		})->random();
+			$old_man = $shops->filter(function($shop) {
+				return $shop instanceof Shop\TakeAny
+					&& !$shop->getActive();
+			})->random();
 
-		$old_man->setActive(true);
-		$old_man->addInventory(0, Item::get('Lamp'), 0);
-		$old_man->addInventory(1, Item::get('L1Sword'), 0);
+			$old_man->setActive(true);
+			$old_man->setShopkeeper('old_man');
+			$old_man->addInventory(0, Item::get('Lamp'), 0);
+			$old_man->addInventory(1, Item::get('L1Sword'), 0);
+		}
 
 		$shops->filter(function($shop) {
 			return !$shop instanceof Shop\TakeAny;
 		})->randomCollection(4)->each(function($shop) {
 			$shop->setActive(true);
-			$shop->addInventory(0, Item::get('Arrow'), 80);
-			$shop->addInventory(1, Item::get('KeyGK'), 100);
+			if ($this->config('rom.rupeeBow', false)) {
+				$shop->addInventory(0, Item::get('Arrow'), 80);
+			}
+			if ($this->config('rom.genericKeys', false)) {
+				$shop->addInventory(1, Item::get('KeyGK'), 100);
+			}
 			$shop->addInventory(2, Item::get('TenBombs'), 50);
 		});
 
-		// One shop has arrows for sale, we need to set the price correct for
-		$dw_shop = Shop::get("Dark World Forest Shop");
-		if ($this->config('rom.rupeeBow') && !$dw_shop->getActive()) {
-			$dw_shop->setActive(true);
-			$dw_shop->addInventory(2, Item::get('Arrow'), 80);
+		if ($this->config('rom.rupeeBow', false)) {
+			// One shop has arrows for sale, we need to set the price correct for
+			$dw_shop = Shop::get("Dark World Forest Shop");
+			if ($this->config('rom.rupeeBow') && !$dw_shop->getActive()) {
+				$dw_shop->setActive(true);
+				$dw_shop->addInventory(2, Item::get('Arrow'), 80);
+			}
 		}
 	}
 

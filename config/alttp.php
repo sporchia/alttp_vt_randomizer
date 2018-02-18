@@ -47,6 +47,7 @@ return [
 			],
 			'retro' => [
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
@@ -139,6 +140,7 @@ return [
 			],
 			'retro' => [
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
@@ -260,6 +262,7 @@ return [
 			],
 			'retro' => [
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
@@ -385,6 +388,7 @@ return [
 			],
 			'retro' => [
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
@@ -510,6 +514,7 @@ return [
 			],
 			'retro' => [
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
