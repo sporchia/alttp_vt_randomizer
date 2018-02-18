@@ -129,7 +129,7 @@ class Zora extends Npc {
 			case Item::get('Heart'):
 				return "affection for sale";
 			case Item::get('Arrow'):
-				return "sewing kit for sale";
+				return "sewing needle for sale";
 			case Item::get('TenArrows'):
 				return "sewing kit for sale";
 			case Item::get('SmallMagic'):
