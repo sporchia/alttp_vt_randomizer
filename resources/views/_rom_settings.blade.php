@@ -50,7 +50,7 @@
 		@if (!isset($disallow_disable_music) || !$disallow_disable_music)
 		<div class="col-md-6 music-disable-toggle">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-music-on">Background Music</label>
+			<label for="generate-music-on">Background Music (set to "No" for MSU-1 support)</label>
 		</div>
 		@endif
 		<div class="secrets" style="display:none">
