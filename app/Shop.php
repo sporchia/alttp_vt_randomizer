@@ -205,9 +205,11 @@ class Shop {
 	public function addInventory(int $slot, Item $item, int $price, int $max = 0, Item $replacement = null, int $replacement_price = 0) : self {
 		$this->inventory[$slot] = [
 			'id' => head($item->getBytes()),
+			'item' => $item,
 			'price' => $price,
 			'max' => $max,
 			'replace_id' => $replacement === null ? 0xFF : head($replacement->getBytes()),
+			'replacement_item' => $replacement,
 			'replace_price' => $replacement_price,
 		];
 

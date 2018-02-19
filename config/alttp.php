@@ -139,6 +139,13 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'TwentyRupees' => 38,
+					],
+				],
 				'region' => [
 					'takeAnys' => true,
 					'wildKeys' => true,
@@ -261,6 +268,15 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+						'TwentyRupees' => 20,
+					],
+				],
 				'region' => [
 					'takeAnys' => true,
 					'wildKeys' => true,
@@ -387,6 +403,15 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+						'TwentyRupees' => 19,
+					],
+				],
 				'region' => [
 					'takeAnys' => true,
 					'wildKeys' => true,
@@ -513,6 +538,15 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+						'TwentyRupees' => 19,
+					],
+				],
 				'region' => [
 					'takeAnys' => true,
 					'wildKeys' => true,

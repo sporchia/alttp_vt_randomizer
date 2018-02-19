@@ -62,7 +62,7 @@ class Randomizer {
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade10'),
-		]);
+		], $this->world);
 		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
@@ -391,7 +391,7 @@ class Randomizer {
 				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 					$this->getDungeonPool(),
 					$this->getAdvancementItems(),
-					$place_prizes)));
+					$place_prizes), $world));
 				if ($location->canAccess($assumed_items)) {
 					break;
 				}
@@ -440,7 +440,7 @@ class Randomizer {
 				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 					$this->getDungeonPool(),
 					$this->getAdvancementItems(),
-					$place_prizes)));
+					$place_prizes), $world));
 				if ($location->canAccess($assumed_items)) {
 					break;
 				}
@@ -591,6 +591,18 @@ class Randomizer {
 					$spoiler[$name][$location->getName()] = 'Nothing';
 				}
 			});
+		}
+		foreach (Shop::all() as $shop) {
+			if ($shop->getActive()) {
+				$shop_data = [
+					'location' => $shop->getName(),
+					'type' => $shop instanceof Shop\TakeAny ? 'Take Any' : 'Shop',
+				];
+				foreach ($shop->getInventory() as $slot => $item) {
+					$shop_data["item_$slot"] = $item['price'] ? $item['item']->getNiceName() . ' (' . $item['price'] . ')' : $item['item']->getNiceName();
+				}
+				$spoiler['Shops'][] = $shop_data;
+			}
 		}
 		$spoiler['playthrough'] = $this->world->getPlayThrough();
 		$spoiler['meta'] = array_merge($meta, [

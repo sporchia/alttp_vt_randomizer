@@ -60,7 +60,7 @@ class RandomAssumed extends Filler {
 	}
 
 	protected function fillItemsInLocations($fill_items, $locations, $base_assumed_items = []) {
-		$remaining_fill_items = new Items($fill_items);
+		$remaining_fill_items = new Items($fill_items, $this->world);
 		Log::debug(sprintf("Filling %s items in %s locations", $remaining_fill_items->count(),
 			$locations->getEmptyLocations()->count()));
 
