@@ -61,11 +61,11 @@ $ php artisan migrate
 ```
 
 ### Web server setup
-You will need to build assets the first time (you will need [Yarn](https://yarnpkg.com/) to install the javascript dependencies).
+You will need to build assets the first time (you will need [NPM](https://www.npmjs.com/get-npm) to install the javascript dependencies).
 
 ```
-$ yarn
-$ ./node_modules/gulp/bin/gulp.js --production
+$ npm install
+$ npm run production
 ```
 
 Once you have the dependencies installed. Run the following command then navigate to http://localhost:8000/.
