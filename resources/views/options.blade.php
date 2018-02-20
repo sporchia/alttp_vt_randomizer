@@ -165,8 +165,7 @@
 		<li>½ Magic
 		</ul>
 		<p>Finding the second ½ Magic will upgrade you to ¼ Magic!</p>
-		<p>Additionally, you'll have 3x the opportunities to get the
-			Lamp!</p>
+		<p>Additionally, you'll have 3x the opportunities to get the Lamp!</p>
 		<h4>Normal</h4>
 		<p>In this mode you'll find all the items from the original game.</p>
 		<p>Item Pool:</p>
@@ -262,7 +261,7 @@
 		<li>Cane of Byrna uses 2x Magic as Normal (except in Spike Cave)
 		<li>Magic Powder does not turn Bubbles into Fairies
 		<li>Bug Net doesn't catch Fairies
-		<li>There are only 2 Bottles (4 in Major Glitches Logic)
+		<li>There are only 2 Bottles (4 in Glitched Logic)
 		<li>Potions heal 5 hearts and restore 1/2 magic
 		</ul>
 		<h4>Expert</h4>
@@ -284,7 +283,7 @@
 		<ul>
 		<li>Magic Cape uses 4x Magic as Normal (except in Spike Cave)
 		<li>Cane of Byrna uses 4x Magic as Normal (except in Spike Cave)
-		<li>There is only 1 Bottle (4 in Major Glitches)
+		<li>There is only 1 Bottle (4 in Major Glitched Logic)
 		<li>Potions heal 1 heart and restore 1/4 magic
 		<li>Shields in Shops cannot be purchased
 		</ul>
@@ -347,7 +346,7 @@
 			<th>Starting Time</th>
 			<th>Green Clocks (+4 minutes)</th>
 			<th>Red Clocks (instant OHKO)</th>
-		</thead>
+		</tr></thead>
 		<tbody><tr class="bg-info">
 			<td>Easy</td>
 			<td>20 minutes</td>
@@ -381,11 +380,10 @@
 		<p>All Maps, Compasses, and Keys found in chests are no longer tied to their dungeons!</p>
 		<p>You will have to search high and low to find the keys you need to progress in dungeons.
 			Keys found on enemies or under pots will remain the same.</p>
-		<p>Also, we wanted to make Maps and Compasses worth more, so here it is: Your overworld map
-			wont show any dungeon information until you collect the map for that dungeon (and if you
-			thought the music would get you by, think again, that's been randomized). Compasses, well,
-			those will show you how many chests you have checked in a dungeon after you collect
-			it.</p>
+		<p>Also, Maps and Compasses worth more: Your overworld map won't show any dungeon information
+			until you collect the map for that dungeon (and if you thought the music would get you
+			by, think again, that's been randomized). Compasses, well, those will show you how many
+			chests you have checked in a dungeon after you collect it.</p>
 		<p>You're probably wondering how you know which key / map / compass you found. We've got you
 			covered: There will be a text box that lets you know which dungeon it belongs to, but
 			the menu will also have a table to help you if you lose track.</p>
