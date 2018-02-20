@@ -12,6 +12,8 @@ return [
 				'HalfMagicUpgrade' => 2,
 				'Lamp' => 3,
 				'FiveRupees' => 2,
+				'Arrow' => 0,
+				'SilverArrowUpgrade' => 2,
 			],
 			'overflow' => [
 				'Armor' => 'TwentyRupees',
@@ -45,11 +47,12 @@ return [
 			],
 			'retro' => [
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -136,12 +139,20 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'TwentyRupees' => 38,
+					],
+				],
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -257,12 +268,22 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+						'TwentyRupees' => 20,
+					],
+				],
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -382,12 +403,22 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+						'TwentyRupees' => 19,
+					],
+				],
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -507,12 +538,22 @@ return [
 				],
 			],
 			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+						'TwentyRupees' => 19,
+					],
+				],
 				'region' => [
+					'takeAnys' => true,
 					'wildKeys' => true,
 				],
 				'rom' => [
-					'freeItemMenu' => 0x02,
 					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [

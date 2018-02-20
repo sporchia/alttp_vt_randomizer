@@ -62,7 +62,7 @@ class Randomizer {
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade10'),
-		]);
+		], $this->world);
 		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
@@ -391,7 +391,7 @@ class Randomizer {
 				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 					$this->getDungeonPool(),
 					$this->getAdvancementItems(),
-					$place_prizes)));
+					$place_prizes), $world));
 				if ($location->canAccess($assumed_items)) {
 					break;
 				}
@@ -440,7 +440,7 @@ class Randomizer {
 				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 					$this->getDungeonPool(),
 					$this->getAdvancementItems(),
-					$place_prizes)));
+					$place_prizes), $world));
 				if ($location->canAccess($assumed_items)) {
 					break;
 				}
@@ -496,15 +496,56 @@ class Randomizer {
 	}
 
 	protected function setShops() {
+		if (!$this->config('rom.genericKeys', false)
+			|| !$this->config('rom.rupeeBow', false)
+			|| !$this->config('region.takeAnys', false)) {
+			return;
+		}
+
 		Shop::setDefaultShops();
 		$shops = Shop::all();
-		while ($shops->filter(function($shop) {
-			return $shop->getActive();
-		})->count() < 2) {
-			$shops->each(function($shop) {
-				$shop->setActive(mt_rand(0, 1));
-				$shop->addInventory(1, Item::get('KeyGK'), 80);
+
+		if ($this->config('region.takeAnys', false)) {
+			$shops->filter(function($shop) {
+				return $shop instanceof Shop\TakeAny;
+			})->randomCollection(4)->each(function($shop) {
+				$shop->setActive(true);
+				$shop->setShopkeeper('old_man');
+				$shop->addInventory(0, Item::get('BottleWithBluePotion'), 0);
+				$shop->addInventory(1, Item::get('HeartContainer'), 0);
 			});
+
+			$old_man = $shops->filter(function($shop) {
+				return $shop instanceof Shop\TakeAny
+					&& !$shop->getActive();
+			})->random();
+
+			$old_man->setActive(true);
+			$old_man->setShopkeeper('old_man');
+			$old_man->addInventory(0, Item::get('Lamp'), 0);
+			$old_man->addInventory(1, Item::get('L1Sword'), 0);
+		}
+
+		$shops->filter(function($shop) {
+			return !$shop instanceof Shop\TakeAny;
+		})->randomCollection(4)->each(function($shop) {
+			$shop->setActive(true);
+			if ($this->config('rom.rupeeBow', false)) {
+				$shop->addInventory(0, Item::get('Arrow'), 80);
+			}
+			if ($this->config('rom.genericKeys', false)) {
+				$shop->addInventory(1, Item::get('KeyGK'), 100);
+			}
+			$shop->addInventory(2, Item::get('TenBombs'), 50);
+		});
+
+		if ($this->config('rom.rupeeBow', false)) {
+			// One shop has arrows for sale, we need to set the price correct for
+			$dw_shop = Shop::get("Dark World Forest Shop");
+			if ($this->config('rom.rupeeBow') && !$dw_shop->getActive()) {
+				$dw_shop->setActive(true);
+				$dw_shop->addInventory(2, Item::get('Arrow'), 80);
+			}
 		}
 	}
 
@@ -550,6 +591,18 @@ class Randomizer {
 					$spoiler[$name][$location->getName()] = 'Nothing';
 				}
 			});
+		}
+		foreach (Shop::all() as $shop) {
+			if ($shop->getActive()) {
+				$shop_data = [
+					'location' => $shop->getName(),
+					'type' => $shop instanceof Shop\TakeAny ? 'Take Any' : 'Shop',
+				];
+				foreach ($shop->getInventory() as $slot => $item) {
+					$shop_data["item_$slot"] = $item['price'] ? $item['item']->getNiceName() . ' (' . $item['price'] . ')' : $item['item']->getNiceName();
+				}
+				$spoiler['Shops'][] = $shop_data;
+			}
 		}
 		$spoiler['playthrough'] = $this->world->getPlayThrough();
 		$spoiler['meta'] = array_merge($meta, [
@@ -625,6 +678,7 @@ class Randomizer {
 		if ($this->config('rom.genericKeys', false)) {
 			$rom->setupCustomShops(Shop::all());
 		}
+		$rom->setRupeeArrow($this->config('rom.rupeeBow', false));
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
@@ -636,6 +690,19 @@ class Randomizer {
 			Item::get($this->config('item.overflow.replacement.Armor', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitBottle($this->config('item.overflow.count.Bottle', 4),
 			Item::get($this->config('item.overflow.replacement.Bottle', 'TwentyRupees'))->getBytes()[0]);
+
+		switch ($this->difficulty) {
+			case 'easy':
+				$rom->setSubstitutions([
+					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
+				]);
+				break;
+			default:
+				$rom->setSubstitutions([
+					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+				]);
+		}
 
 		switch ($this->goal) {
 			case 'triforce-hunt':
@@ -1528,10 +1595,14 @@ class Randomizer {
 		];
 		$shuffled = mt_shuffle($prizes);
 
+		if ($this->config('rom.rupeeBow', false)) {
+			$shuffled = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+		}
+
 		if ($this->config('bees', false)) {
 			// you asked for it
 			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
-			$rom->setOverworldDigPrizes([
+			$dig_prizes = [
 				0xB2, 0xD8, 0xD8, 0xD8,
 				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
 				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
@@ -1545,7 +1616,13 @@ class Randomizer {
 				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
 				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
 				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
-			]);
+			];
+
+			if ($this->config('rom.rupeeBow', false)) {
+				$dig_prizes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $dig_prizes);
+			}
+
+			$rom->setOverworldDigPrizes($dig_prizes);
 		}
 
 		// write to trees

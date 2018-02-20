@@ -6,9 +6,9 @@
 	<meta name="description" content="ALttP Web VT Randomizer">
 	<meta charset="utf-8" />
 
-	<link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-	<script src="{{ elixir('js/app.js') }}"></script>
+	<script src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">

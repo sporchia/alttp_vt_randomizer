@@ -34,7 +34,7 @@ class World {
 		$this->variation = $variation;
 		$this->logic = $logic;
 		$this->goal = $goal;
-		$this->pre_collected_items = new ItemCollection;
+		$this->pre_collected_items = new ItemCollection([], $this);
 
 		$this->regions = [
 			'North East Light World' => new Region\LightWorld\NorthEast($this),
@@ -350,7 +350,7 @@ class World {
 					continue;
 				}
 
-				if (!$shadow_world->getWinCondition()($collectable_locations->getItems())) {
+				if (!$shadow_world->getWinCondition()(new ItemCollection($collectable_locations->getItems(), $shadow_world))) {
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);
@@ -385,7 +385,7 @@ class World {
 							// remove the item we are trying to get
 							$temp_pull = $higher_location->getItem();
 							$higher_location->setItem();
-							$current_items = $collectable_locations->getItems();
+							$current_items = new ItemCollection($collectable_locations->getItems(), $this);
 
 							if (!$higher_location->canAccess($current_items, $this->getLocations())) {
 								// put item back
@@ -570,7 +570,7 @@ class World {
 	 * @return ItemCollection
 	 */
 	public function collectItems(ItemCollection $collected = null) {
-		$my_items = $collected ?? new ItemCollection;
+		$my_items = $collected ?? new ItemCollection([], $this);
 		$my_items = $my_items->merge($this->pre_collected_items);
 		$available_locations = $this->getCollectableLocations()->filter(function($location) {
 			return $location->hasItem();
@@ -584,7 +584,7 @@ class World {
 			$available_locations = $available_locations->diff($search_locations);
 
 			$found_items = $search_locations->getItems();
-			$my_items = $found_items->merge($my_items);
+			$my_items = $my_items->merge($found_items);
 		} while ($found_items->count() > 0);
 
 		return $my_items;

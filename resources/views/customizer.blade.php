@@ -202,6 +202,7 @@
 						<td class="col-md-7">{{ $location->getName() }}</td>
 						<td class="col-md-5">
 							<select class="item-location {{ $location_class[get_class($location)] ?? 'items' }}"
+								{!! $location instanceof ALttP\Location\Prize ? 'data-name="' . $location->getName() . '"' : '' !!}
 								name="l[{{ base64_encode($location->getName()) }}]"></select>
 						</td>
 					</tr>
@@ -349,6 +350,10 @@ function applySeed(rom, seed, second_attempt) {
 
 $(function() {
 	var config = {};
+	var select2Options = {
+		theme: "bootstrap",
+		width: "100%"
+	};
 	$('.items').append($('#items').html());
 	$('.prizes').append($('#prizes').html());
 	$('.bottles').append($('#bottles').html());
@@ -387,6 +392,33 @@ $(function() {
 			$('#item-count-' + value).val(Number($('#item-count-' + value).val()) - 1);
 			$('#item-count-' + value).trigger('change');
 		}
+	});
+	$('.prizes').change(function() {
+		var $this = $(this);
+		var value = $this.val();
+		if (value == 'auto_fill') {
+			return;
+		}
+		$('.prizes option[value="' + $this.data('previous-item') + '"]').each(function() {
+			$(this).html($(this).data('nice'));
+		});
+		$this.data('previous-item', value);
+		$('.prizes option[value="' + value + '"]').each(function() {
+			$(this).html($(this).data('nice') + ' (' + $this.data('name') + ')');
+		});
+		$('.prizes option[value="' + value + '"]:selected').each(function() {
+			if ($this.data('name') != $(this).parent().data('name')) {
+				$(this).parent().val('auto_fill');
+			}
+		});
+		// select2 sucks for many reasons, this is one of them
+		setTimeout(function () {
+			$('.prizes').each(function() {
+				if ($(this).hasClass("select2-hidden-accessible")) {
+						$(this).select2('destroy').select2(select2Options);
+				}
+			});
+		});
 	});
 
 	var save_restore_settings = [
@@ -462,11 +494,9 @@ $(function() {
 		localforage.setItem('vt.customizer.lastTab', target);
 		if (!$(target).data('init')) {
 			// this is 3x faster than bs-select, consider switching everything to it if it looks right
-			$(target + " select.item-location").select2({
-				theme: "bootstrap",
-				width: "100%"
-			});
+			$(target + " select.item-location").select2(select2Options);
 			$(target).data('init', true);
+			$('.prizes').trigger('change');
 		}
 		if (target == '#custom-item-select') {
 			$('#custom-count-total').html($('.items option[value="auto_fill"]:selected').length);
@@ -639,7 +669,7 @@ $(function() {
 <script id="prizes" type="text/template">
 	<option value="auto_fill">Random</option>
 	@foreach($prizes as $item)
-	<option class="placable placable-prize" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	<option class="placable placable-prize" value="{{ $item->getName() }}" data-nice="{{ $item->getNiceName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 <script id="items" type="text/template">

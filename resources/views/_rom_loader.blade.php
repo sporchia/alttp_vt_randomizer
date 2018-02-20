@@ -30,7 +30,7 @@
 <script>
 var rom;
 var current_rom_hash = '{{ $rom_hash or ALttP\Rom::HASH }}';
-var current_base_file = "{{ $rom_patch or elixir('js/base2current.json') }}";
+var current_base_file = "{{ $rom_patch or mix('js/base2current.json') }}";
 
 function resetRom() {
 	return new Promise(function(resolve, reject) {
