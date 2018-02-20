@@ -262,20 +262,31 @@ function applySeed(rom, seed, second_attempt) {
 				}
 			}
 			formData.eq = starting_equipment;
-			$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
-				rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-				.then(rom.parseSprGfx)
-				.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
-				.then(rom.setHeartSpeed($('#heart-speed').val()))
-				.then(rom.setMenuSpeed($('#menu-speed').val()))
-				.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
-				.then(function(rom) {
-					$('.info').show();
-					$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
-					resolve({rom: rom, patch: patch});
-				}));
-			}, 'json')
-			.fail(reject);
+			var prize_packs = [];
+			localforage.getItem('vt.custom.prizepacks').then(function(prizepacks) {
+				console.log(prizepacks);
+				for (pack in prizepacks) {
+					for (item in prizepacks[pack].items) {
+						prize_packs.push(prizepacks[pack].items[item]);
+					}
+				}
+				formData.prizes = prize_packs;
+				console.log(formData);
+				$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
+					rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+					.then(rom.parseSprGfx)
+					.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+					.then(rom.setHeartSpeed($('#heart-speed').val()))
+					.then(rom.setMenuSpeed($('#menu-speed').val()))
+					.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+					.then(function(rom) {
+						$('.info').show();
+						$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+						resolve({rom: rom, patch: patch});
+					}));
+				}, 'json')
+				.fail(reject);
+			});
 		});
 	});
 }

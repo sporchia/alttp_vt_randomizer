@@ -532,9 +532,7 @@ class Randomizer {
 			return mt_rand(0, 0x100);
 		});
 
-		if ($this->config('sprite.shufflePrizePack', true)) {
-			$this->writePrizeShuffleToRom($rom);
-		}
+		$this->writePrizesToRom($rom, $this->world->getPrizes());
 
 		if ($this->config('sprite.shuffleOverworldBonkPrizes', false)) {
 			$this->writeOverworldBonkPrizeToRom($rom);
@@ -1380,26 +1378,32 @@ class Randomizer {
 	 * @TODO: create prize pack classes
 	 * @TODO: move remaining writes to Rom class
 	 */
-	public function writePrizeShuffleToRom(Rom $rom) {
+	public function writePrizesToRom(Rom $rom, $prizes) {
 		// Pack shuffle
-		$prizes = [
-			0xD8, 0xD8, 0xD8, 0xD8, 0xD9, 0xD8, 0xD8, 0xD9, // pack 1
-			0xDA, 0xD9, 0xDA, 0xDB, 0xDA, 0xD9, 0xDA, 0xDA, // pack 2
-			0xE0, 0xDF, 0xDF, 0xDA, 0xE0, 0xDF, 0xD8, 0xDF, // pack 3
-			0xDC, 0xDC, 0xDC, 0xDD, 0xDC, 0xDC, 0xDE, 0xDC, // pack 4
-			0xE1, 0xD8, 0xE1, 0xE2, 0xE1, 0xD8, 0xE1, 0xE2, // pack 5
-			0xDF, 0xD9, 0xD8, 0xE1, 0xDF, 0xDC, 0xD9, 0xD8, // pack 6
-			0xD8, 0xE3, 0xE0, 0xDB, 0xDE, 0xD8, 0xDB, 0xE2, // pack 7
-			0xD9, 0xDA, 0xDB, // from pull trees
-			0xD9, 0xDB, // from prize crab
-			0xD9, // stunned prize
-			0xDB, // saved fish prize
+		$replace_map = [
+			'heart' => 0xD8,
+			'greenRupee' => 0xD9,
+			'blueRupee' => 0xDA,
+			'redRupee' => 0xDB,
+			'bomb1' => 0xDC,
+			'bomb4' => 0xDD,
+			'bomb8' => 0xDE,
+			'smallMagic' => 0xDF,
+			'largeMagic' => 0xE0,
+			'arrow5' => 0xE1,
+			'arrow10' => 0xE2,
+			'faerie' => 0xE3,
 		];
-		$shuffled = mt_shuffle($prizes);
 
-		if ($this->config('bees', false)) {
+		$prizes_to_write = str_replace(array_keys($replace_map), array_values($replace_map), $prizes);
+
+		if ($this->config('sprite.shufflePrizePack', true)) {
+			$prizes_to_write = mt_shuffle($prizes_to_write);
+		}
+
+		/* if ($this->config('bees', false)) {
 			// you asked for it
-			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
+			$shuffled = mt_shuffle(array_merge($prizes, array_fill(0, 25, 0x79)));
 			$rom->setOverworldDigPrizes([
 				0xB2, 0xD8, 0xD8, 0xD8,
 				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
@@ -1415,22 +1419,23 @@ class Randomizer {
 				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
 				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
 			]);
-		}
-
-		// write to trees
-		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
-
-		// write to prize crab
-		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
-
-		// write to stunned
-		$rom->setStunnedSpritePrize(array_pop($shuffled));
+		} */
 
 		// write to saved fish
-		$rom->setFishSavePrize(array_pop($shuffled));
+		$rom->setFishSavePrize(array_pop($prizes_to_write));
+
+		// write to stunned
+		$rom->setStunnedSpritePrize(array_pop($prizes_to_write));
+
+		// write to prize crab
+		$rom->setRupeeCrabPrizes(array_pop($prizes_to_write), array_pop($prizes_to_write));
+
+		// write to trees
+		$rom->setPullTreePrizes(array_pop($prizes_to_write), array_pop($prizes_to_write), array_pop($prizes_to_write));
 
 		// write to prize packs
-		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
+		$rom->write(0x37A78, pack('C*', ...array_slice($prizes_to_write, 0, 56)));
+
 
 		// Sprite prize pack
 		$idat = array_values(unpack('C*', base64_decode(

@@ -18,6 +18,7 @@ class World {
 	protected $win_condition;
 	protected $collectable_locations;
 	protected $pre_collected_items;
+	protected $prizes;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -64,6 +65,20 @@ class World {
 		];
 
 		$this->locations = new LocationCollection;
+
+		$this->prizes = [
+			'heart', 'heart', 'heart', 'heart', 'greenRupee', 'heart', 'heart', 'greenRupee',
+			'blueRupee', 'greenRupee', 'blueRupee', 'redRupee', 'blueRupee', 'greenRupee', 'blueRupee', 'blueRupee',
+			'largeMagic', 'smallMagic', 'smallMagic', 'blueRupee', 'largeMagic', 'smallMagic', 'heart', 'smallMagic',
+			'bomb1', 'bomb1', 'bomb1', 'bomb4', 'bomb1', 'bomb1', 'bomb8', 'bomb1',
+			'arrow5', 'heart', 'arrow5', 'arrow10', 'arrow5', 'heart', 'arrow5', 'arrow10',
+			'smallMagic', 'greenRupee', 'heart', 'arrow5', 'smallMagic', 'bomb1', 'greenRupee', 'heart',
+			'heart', 'faerie', 'largeMagic', 'redRupee', 'bomb8', 'heart', 'redRupee', 'arrow10',
+			'greenRupee', 'blueRupee', 'redRupee',
+			'greenRupee', 'redRupee',
+			'greenRupee',
+			'redRupee',
+		];
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
@@ -535,6 +550,33 @@ class World {
 	 */
 	public function getLocations() {
 		return $this->locations;
+	}
+
+	/**
+	 * Get all the prizes for the prize packs in this world
+	 *
+	 * @return array
+	 */
+	public function getPrizes() {
+		return $this->prizes;
+	}
+
+	/**
+	 * Get all the Locations in all Regions in this world
+	 *
+	 * @return LocationCollection
+	 */
+	public function setPrizes($prizes) {
+		if ($prizes == null) {
+			return;
+		}
+		if (count($prizes) != 63) {
+			return;
+		}
+		if (array_diff($prizes, ['heart', 'greenRupee', 'blueRupee', 'redRupee', 'bomb1', 'bomb4', 'bomb8', 'smallMagic', 'largeMagic', 'arrow5', 'arrow10', 'faerie'])) {
+			return;
+		}
+		$this->prizes = $prizes;
 	}
 
 	/**

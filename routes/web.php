@@ -237,6 +237,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 				$world->addPreCollectedItem(Item::get($item));
 			} catch (Exception $e) {}
 		}
+		$world->setPrizes($request->input('prizes'));
 	}
 
 	config(['game-mode' => $game_mode]);
