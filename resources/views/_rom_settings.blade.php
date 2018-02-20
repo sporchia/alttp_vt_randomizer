@@ -1,11 +1,11 @@
 @section('rom-settings-button')
-<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
+<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM Options <span class="glyphicon glyphicon-cog pulse"></span></button>
 @overwrite
 
 @section('rom-settings')
 <div class="panel panel-info panel-collapse collapse" id="rom-settings">
 	<div class="panel-heading">
-		<h4 class="panel-title">ROM Settings</h4>
+		<h4 class="panel-title">Additional ROM Options</h4>
 	</div>
 	<div class="panel-body">
 		<div class="col-md-6 pb-5">
@@ -50,7 +50,7 @@
 		@if (!isset($disallow_disable_music) || !$disallow_disable_music)
 		<div class="col-md-6 music-disable-toggle">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-music-on">Background Music</label>
+			<label for="generate-music-on">Background Music (set to "No" for MSU-1 support)</label>
 		</div>
 		@endif
 		<div class="secrets" style="display:none">

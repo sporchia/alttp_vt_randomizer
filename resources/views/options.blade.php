@@ -126,7 +126,7 @@
 		</tr></thead>
 		<tbody><tr class="bg-info">
 			<td>Easy</td>
-			<td>10</td>
+			<td>20</td>
 			<td>30</td>
 		</tr><tr class="bg-success">
 			<td>Normal</td>
@@ -134,16 +134,16 @@
 			<td>30</td>
 		</tr><tr class="bg-warning">
 			<td>Hard</td>
+			<td>20</td>
 			<td>30</td>
-			<td>40</td>
 		</tr><tr class="bg-danger">
 			<td>Expert</td>
-			<td>40</td>
-			<td>40</td>
+			<td>20</td>
+			<td>30</td>
 		</tr><tr class="bg-danger">
 			<td>Insane</td>
-			<td>50</td>
-			<td>50</td>
+			<td>20</td>
+			<td>30</td>
 		</tr></tbody>
 		</table>
 	</div>

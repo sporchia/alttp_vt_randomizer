@@ -57,6 +57,9 @@ class Boss {
 			new static("Moldorm", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer');
 			}),
+			new static("Agahnim", function($locations, $items) {
+				return $items->hasSword() || $items->has('Hammer') || $items->has('BugCatchingNet');
+			}),
 			new static("Helmasaur King", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer') || $items->canShootArrows();
 			}),
@@ -77,7 +80,7 @@ class Boss {
 			new static("Kholdstare", function($locations, $items) {
 				return $items->canMeltThings() && ($items->has('Hammer') || $items->hasSword()
 					|| ($items->canExtendMagic(3) && $items->has('FireRod'))
-					|| ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos'));
+					|| ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos')));
 			}),
 			new static("Vitreous", function($locations, $items) {
 				return $items->has('Hammer') || $items->hasSword() || $this->canShootArrows();
@@ -87,6 +90,10 @@ class Boss {
 					&& ($items->has('Hammer') || ($items->canExtendMagic(2) && $items->hasUpgradedSword())
 						|| ($items->canExtendMagic(4) && $items->hasSword()));
 			}),
+			new static("Agahnim2", function($locations, $items) {
+				return $items->hasSword() || $items->has('Hammer') || $items->has('BugCatchingNet');
+			}),
+
 		]);
 
 		return static::all();

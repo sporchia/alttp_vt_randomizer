@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -37,6 +38,9 @@ class TowerOfHera extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		// set a default boss
+		$this->boss = Boss::get("Moldorm");
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("Tower of Hera - Big Key Chest", 0xE9E6, null, $this),
@@ -92,21 +96,24 @@ class TowerOfHera extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& ($items->hasSword() || $items->has('Hammer'))
-				&& $items->has('BigKeyP3');
+			return $this->locations["Tower of Hera - Moldorm"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP3'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP3'));
 		};
 
-		$this->locations["Tower of Hera - Moldorm"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
+		$this->locations["Tower of Hera - Moldorm"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $this->boss->canBeat($items, $locations)
+				&& $items->has('BigKeyP3');
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
 
-				return true;
-			});
+			return true;
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
@@ -161,9 +168,10 @@ class TowerOfHera extends Region {
 		$this->locations["Tower of Hera - Moldorm"]->setRequirements(function($locations, $items) use ($main, $mire) {
 			return (($main($locations, $items) && $items->has('BigKeyP3'))
 					|| $mire($locations, $items))
-				&& ($items->hasSword() || $items->has('Hammer'));
+				&& $this->boss->canBeat($items, $locations);
 		});
 
+		// @TODO: this function is probably wrong -_-
 		$this->can_complete = function($locations, $items) use ($main, $mire) {
 			return ((($main($locations, $items) && $items->has('BigKeyP3'))
 					|| ($mire($locations, $items) && ($items->has('BigKeyP3') || $items->has('BigKeyD6'))))
