@@ -14,7 +14,7 @@
 	<div class="panel-body">
 		<p>
 			<label class="btn btn-default btn-file">
-				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
+				Select ROM File <input type="file" accept=".sfc,.smc" name="f2u" style="display: none;">
 			</label>
 		</p>
 		<ol>
@@ -30,7 +30,7 @@
 <script>
 var rom;
 var current_rom_hash = '{{ $rom_hash or ALttP\Rom::HASH }}';
-var current_base_file = "{{ $rom_patch or elixir('js/base2current.json') }}";
+var current_base_file = "{{ $rom_patch or mix('js/base2current.json') }}";
 
 function resetRom() {
 	return new Promise(function(resolve, reject) {

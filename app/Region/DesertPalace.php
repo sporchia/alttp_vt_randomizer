@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -38,6 +39,9 @@ class DesertPalace extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		// set a default boss
+		$this->boss = Boss::get("Lanmolas");
 
 		$this->locations = new LocationCollection([
 			new Location\BigChest("Desert Palace - Big Chest", 0xE98F, null, $this),
@@ -95,27 +99,25 @@ class DesertPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
-					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
-					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
+			return $this->locations["Desert Palace - Lanmolas'"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP2'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP2'));
+		};
+
+		$this->locations["Desert Palace - Lanmolas'"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $items->canLiftRocks() && $items->canLightTorches()
+				&& $items->has('BigKeyP2') && $items->has('KeyP2')
+				&& $this->boss->canBeat($items, $locations);
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
 				return false;
 			}
 
-			return $this->canEnter($locations, $items)
-				&& $items->canLiftRocks() && $items->canLightTorches()
-				&& $items->has('BigKeyP2') && $items->has('KeyP2');
-		};
-
-		$this->locations["Desert Palace - Lanmolas'"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
-
-				return !in_array($item, [Item::get('KeyP2'), Item::get('BigKeyP2')]);
-			});
+			return !in_array($item, [Item::get('KeyP2'), Item::get('BigKeyP2')]);
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('BookOfMudora')
@@ -136,16 +138,11 @@ class DesertPalace extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
-		$this->can_complete = function($locations, $items) {
-			if (in_array(config('game-mode'), ['open', 'swordless']) && !($items->hasSword() || $items->has('Hammer')
-					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
-					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria'))) {
-				return false;
-			}
-
+		$this->locations["Desert Palace - Lanmolas'"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->canLightTorches()
-				&& $items->has('BigKeyP2') && $items->has('KeyP2');
-		};
+				&& $items->has('BigKeyP2') && $items->has('KeyP2')
+				&& $this->boss->canBeat($items, $locations);
+		});
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('BookOfMudora')

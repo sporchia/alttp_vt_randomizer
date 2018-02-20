@@ -21,7 +21,7 @@ class Bombos extends Location {
 			case Item::get('BigKeyA2'):
 				return "The big key\nof evil's bane";
 			case Item::get('BigKeyD7'):
-				return "The big key\nof terrorpins";
+				return "The big key\nof terrapins";
 			case Item::get('BigKeyD4'):
 				return "The big key\nof rogues";
 			case Item::get('BigKeyP3'):
@@ -48,7 +48,7 @@ class Bombos extends Location {
 			case Item::get('KeyA2'):
 				return "The small key\nof evil's bane";
 			case Item::get('KeyD7'):
-				return "The small key\nof terrorpins";
+				return "The small key\nof terrapins";
 			case Item::get('KeyD4'):
 				return "The small key\nof rogues";
 			case Item::get('KeyP3'):

@@ -192,6 +192,17 @@ class Location {
 			$item = Item::get('BigKey');
 		}
 
+		if ($this->region->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
+			$item = Item::get('KeyGK');
+		}
+
+		// might be better at a higher level to affect spoiler better
+		if ($this->region->getWorld()->config('rom.rupeeBow', false)
+			&& ($item instanceof Item\Arrow
+				|| $item instanceof Item\Upgrade\Arrow)) {
+			$item = Item::get('FiveRupees');
+		}
+
 		$item_bytes = $item->getBytes();
 
 		foreach ($this->address as $key => $address) {
