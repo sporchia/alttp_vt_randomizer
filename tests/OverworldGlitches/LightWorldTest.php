@@ -76,15 +76,15 @@ class LightWorldTest extends TestCase {
 
 			["Sahasrahla's Hut - Right", true, []],
 
-			["Kakriko Well - Top", true, []],
+			["Kakariko Well - Top", true, []],
 
-			["Kakriko Well - Left", true, []],
+			["Kakariko Well - Left", true, []],
 
-			["Kakriko Well - Middle", true, []],
+			["Kakariko Well - Middle", true, []],
 
-			["Kakriko Well - Right", true, []],
+			["Kakariko Well - Right", true, []],
 
-			["Kakriko Well - Bottom", true, []],
+			["Kakariko Well - Bottom", true, []],
 
 			["Blind's Hideout - Top", true, []],
 

@@ -11,6 +11,9 @@ use ALttP\World;
  */
 class GanonsTower extends Region {
 	protected $name = 'Ganons Tower';
+	protected $boss_bottom = null;
+	protected $boss_middle = null;
+	protected $boss_top = null;
 	public $music_addresses = [
 		0x155C9,
 	];

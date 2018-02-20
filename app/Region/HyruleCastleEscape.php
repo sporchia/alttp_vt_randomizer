@@ -80,7 +80,7 @@ class HyruleCastleEscape extends Region {
 
 		$this->locations["Sewers - Secret Room - Left"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
+				return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
 			}
 
 			return $items->canKillMostThings() && $items->has('KeyH2');
@@ -88,7 +88,7 @@ class HyruleCastleEscape extends Region {
 
 		$this->locations["Sewers - Secret Room - Middle"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
+				return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
 			}
 
 			return $items->canKillMostThings() && $items->has('KeyH2');
@@ -96,7 +96,7 @@ class HyruleCastleEscape extends Region {
 
 		$this->locations["Sewers - Secret Room - Right"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->canLiftRocks() || ($items->has('Lamp') && $items->has('KeyH2'));
+				return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
 			}
 
 			return $items->canKillMostThings() && $items->has('KeyH2');
@@ -104,7 +104,7 @@ class HyruleCastleEscape extends Region {
 
 		$this->locations["Sewers - Dark Cross"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
-				return $items->has('Lamp');
+				return $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
 			}
 
 			return $items->canKillMostThings();

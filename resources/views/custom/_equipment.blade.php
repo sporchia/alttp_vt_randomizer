@@ -16,16 +16,14 @@
 								<div class="equipment item MoonPearl" data-item="MoonPearl"></div>
 							</div>
 						</div>
-						{{--
 						<div class="row">
-							<div class="cell"><div class="equipment item bottle" data-item="bottle"></div></div>
-							<div class="cell"><div class="equipment item bottle red-potion" data-item="bottle"></div></div>
+							<div class="cell"><div class="equipment item Bottle1 Bottle" data-item="Bottle1"></div></div>
+							<div class="cell"><div class="equipment item Bottle2 Bottle" data-item="Bottle2"></div></div>
 						</div>
 						<div class="row">
-							<div class="cell"><div class="equipment item bottle green-potion" data-item="bottle"></div></div>
-							<div class="cell"><div class="equipment item bottle blue-potion" data-item="bottle"></div></div>
+							<div class="cell"><div class="equipment item Bottle3 Bottle" data-item="Bottle3"></div></div>
+							<div class="cell"><div class="equipment item Bottle4 Bottle" data-item="Bottle4"></div></div>
 						</div>
-						--}}
 					</div>
 					<div class="cell">
 						<div class="row">
@@ -95,7 +93,10 @@ $(function() {
 		BugCatchingNet: false,
 		BookOfMudora: false,
 
-		bottle: 0,
+		Bottle1: 0,
+		Bottle2: 0,
+		Bottle3: 0,
+		Bottle4: 0,
 		CaneOfSomaria: false,
 		CaneOfByrna: false,
 		Cape: false,
@@ -132,7 +133,10 @@ $(function() {
 			ProgressiveArmor: { max: 2 },
 			ProgressiveSword: { max: 4 },
 			ProgressiveShield: { max: 3 },
-			bottle: { max: 4 },
+			Bottle1: { max: 7 },
+			Bottle2: { max: 7 },
+			Bottle3: { max: 7 },
+			Bottle4: { max: 7 },
 			ProgressiveBow: { max: 3 },
 			Boomerang: { max: 3 },
 			ProgressiveGlove: { max: 2 }

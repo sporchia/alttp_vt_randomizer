@@ -144,7 +144,7 @@ class EntranceRandomizer extends Randomizer {
 	 *
 	 * @return array
 	 */
-	public function getSpoiler() {
+	public function getSpoiler(array $meta = []) {
 		return json_decode(json_encode($this->spoiler), true);
 	}
 

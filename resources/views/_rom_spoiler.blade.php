@@ -118,6 +118,23 @@ function pasrseSpoilerToTabs(spoiler) {
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'
 				+ '</div>').append(table));
+		} else if (['Shops'].indexOf(section) !== -1) {
+			var table = $('<table class="table table-striped"><thead><tr><th>Location</th><th>Type</th>'
+				+ '<th>Item 1</th><th>Item 2</th><th>Item 3</th>'
+				+ '</tr></thead><tbody></tbody></table>');
+			var tbody = table.find('tbody');
+			for (loc in spoiler[section]) {
+				tbody.append($('<tr class="spoil-item-location"><td class="col-md-4">'
+					+ spoiler[section][loc]['location'] + '</td>'
+					+ '<td class="type">' + spoiler[section][loc]['type'] + '</td>'
+					+ '<td class="item">' + (spoiler[section][loc]['item_0'] || '') + '</td>'
+					+ '<td class="item">' + (spoiler[section][loc]['item_1'] || '') + '</td>'
+					+ '<td class="item">' + (spoiler[section][loc]['item_2'] || '') + '</td>'
+					+ '</tr>'));
+			};
+			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
+				+ ((section == active_nav) ? ' active' : '') + '">'
+				+ '</div>').append(table));
 		} else if (['playthrough'].indexOf(section) === -1) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
