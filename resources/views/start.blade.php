@@ -26,8 +26,7 @@
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
 		<p>Join our Discord community! We've got friendly and helpful people, community event news,
-			aLttP: Randomizer updates, helpful guides, tips, and tricks, and more! Come say
-			hello!</p>
+			ALttP: Randomizer updates, helpful guides, tips and tricks, and more! Come say hello!</p>
 	</div>
 </div>
 
@@ -41,7 +40,7 @@
 			the patching process provides English text while keeping the glitches unique to the
 			original version intact.</p>
 		<p>If you run into trouble, ask in
-			<a href="https://discord.gg/TCC6Y42 target="_blank" rel="noopener noreferrer">Discord!</a></p>
+			<a href="https://discord.gg/TCC6Y42 target="_blank" rel="noopener noreferrer">Discord</a>!</p>
 	</div>
 </div>
 
@@ -66,14 +65,14 @@
 		<p>First, you'll need something to run your newly minted game on. We recommend using an
 			emulator. An emulator is a program that closely replicates SNES hardware, allowing you to
 			run SNES games on your computer. You can get the recommended emulator, SNES9x, at their
-			website <a href="http://www.snes9x.com/" target="_blank" rel="noopener noreferrer">here.</a></p>
+			website <a href="http://www.snes9x.com/" target="_blank" rel="noopener noreferrer">here</a>.</p>
 		<p>While you can play using only your keyboard, a controller makes for a better experience.
 			While most USB controllers will work, we recommend an
 			<a href="https://www.amazon.com/dp/B002B9XB0E" target="_blank" rel="noopener noreferrer">iBuffalo Classic USB
-			Gamepad.</a> or <a href="https://www.amazon.com/dp/B00Y0LUQFE" target="_blank" rel="noopener noreferrer">8Bitdo SFC30 Wireless Bluetooth Controller</a></p>
+			Gamepad</a> or an <a href="https://www.amazon.com/dp/B00Y0LUQFE" target="_blank" rel="noopener noreferrer">8Bitdo SFC30 Wireless Bluetooth Controller</a>.</p>
 		<p>There are other supported ways to play, including on original SNES hardware. There are
 			also certain emulators, such as zsnes, that won't work correctly with the randomizer.
-			Join us on Discord to learn more!</p>
+			Join us on <a href="https://discord.gg/TCC6Y42 target="_blank" rel="noopener noreferrer">Discord</a> to learn more!</p>
 	</div>
 </div>
 
@@ -84,7 +83,7 @@
 	<div class="panel-body">
 		<p>You're finally ready to go! The best way to learn is to load up your new ROM and start
 			playing. If you feel like you're stuck, check out this list of common pitfalls, or ask
-			on Discord.</p>
+			on <a href="https://discord.gg/TCC6Y42 target="_blank" rel="noopener noreferrer">Discord</a>.</p>
 		<ul>
 			<li>You can use the Y button to swap between Silver Arrows and Normal Arrows, the Red
 				and Blue Boomerangs, the Mushroom and the Magic Powder, and the Shovel and the
@@ -96,7 +95,7 @@
 			<li>You can use the boots to dash into walls, blocks, and pots, knocking you backwards,
 				in order to cross a gap.</li>
 			<li>If you find yourself at bumper cave with the Cape but without the Hookshot, try
-				walking over the top left of the gap. No hookshot needed!</li>
+				walking over the top left of the gap—no Hookshot needed!</li>
 			<li>Keys might not be accessible if they are not required to finish the game. For instance, the Skull Woods big key might be in the big chest.</li>
 		</ul>
 		<p>Don't forget to check out the comprehensive <a href="/resources">resources section</a>
