@@ -39,7 +39,13 @@
 					<li><a data-toggle="tab" href="#custom-settings">Settings</a></li>
 					<li><a data-toggle="tab" href="#custom-equipment">Starting Equipment</a></li>
 					<li><a data-toggle="tab" href="#custom-item-select">Item Pool</a></li>
-					<li><a data-toggle="tab" href="#custom-prizes">Prize Packs</a></li>
+					<li class="dropdown hidden drops">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Drops <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a data-toggle="tab" href="#custom-drops-pool">Pool</a></li>
+							<li><a data-toggle="tab" href="#custom-drops-prizepacks">Prize Packs</a></li>
+						</ul>
+					</li>
 					<li class="dropdown hidden regions">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Regions <span class="caret"></span></a>
 						<ul class="dropdown-menu">

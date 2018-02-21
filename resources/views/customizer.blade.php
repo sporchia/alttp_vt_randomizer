@@ -4,9 +4,10 @@
 @include('_rom_settings')
 @include('_rom_spoiler')
 @include('custom/_equipment')
+@include('custom/_drops_pool')
+@include('custom/_drops_prizepacks')
 @include('custom/_items')
 @include('custom/_switches')
-@include('custom/_prizes')
 
 @section('content')
 @yield('loader')
@@ -145,8 +146,11 @@
 		<div class="tab-pane" id="custom-settings">
 			@yield('switches')
 		</div>
-		<div class="tab-pane" id="custom-prizes">
-			@yield('prizepacks')
+		<div class="tab-pane" id="custom-drops-pool">
+			@yield('drops-pool')
+		</div>
+		<div class="tab-pane" id="custom-drops-prizepacks">
+			@yield('drops-prizepacks')
 		</div>
 	@foreach($world->getRegions() as $name => $region)
 		<div class="tab-pane" id="custom-region-{{ str_replace(' ', '_', $name) }}">
@@ -262,15 +266,9 @@ function applySeed(rom, seed, second_attempt) {
 				}
 			}
 			formData.eq = starting_equipment;
-			var prize_packs = [];
-			localforage.getItem('vt.custom.prizepacks').then(function(prizepacks) {
-				console.log(prizepacks);
-				for (pack in prizepacks) {
-					for (item in prizepacks[pack].items) {
-						prize_packs.push(prizepacks[pack].items[item]);
-					}
-				}
-				formData.prizes = prize_packs;
+			localforage.getItem('vt.custom.drops.packs').then(function(drops) {
+				console.log(drops);
+				formData.drops = drops;
 				console.log(formData);
 				$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
 					rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
@@ -297,6 +295,7 @@ $(function() {
 	$('.prizes').append($('#prizes').html());
 	$('.bottles').append($('#bottles').html());
 	$('.medallions').append($('#medallions').html());
+	$('.droppables').append($('#droppables').html());
 
 	$('form').on('submit', function() {
 		return false;
@@ -311,6 +310,16 @@ $(function() {
 		}
 		// don't show the menu until we have finished loading things
 		$('.regions').removeClass('hidden');
+	});
+
+	localforage.getItem('vt.custom.drops.packs').then(function(packs) {
+		config = packs || {};
+		for (var name in config) {
+			$('select[name="' + name + '"]').data('previous-item', config[name]);
+			$('select[name="' + name + '"]').val(config[name]);
+		}
+		// don't show the menu until we have finished loading things
+		$('.drops').removeClass('hidden');
 	});
 
 	$('select.item-location').change(function() {
@@ -333,6 +342,26 @@ $(function() {
 		}
 	});
 
+	$('select.custom-drop').change(function() {
+		config[this.name] = $(this).val();
+		localforage.setItem('vt.custom.drops.packs', config);
+	});
+
+	$('.custom-drop.droppables').change(function() {
+		var $this = $(this);
+		var value = $this.val();
+		var previous = $this.data('previous-item');
+		if (previous) {
+			$('#item-drops-count-' + previous).val(Number($('#item-drops-count-' + previous).val()) + 1);
+			$('#item-drops-count-' + previous).trigger('change');
+		}
+		$this.data('previous-item', value);
+		if (Number($('#item-count-' + value).val()) > 0) {
+			$('#item-drops-count-' + value).val(Number($('#item-drops-count-' + value).val()) - 1);
+			$('#item-drops-count-' + value).trigger('change');
+		}
+	});
+
 	// dirty cleanup function for now
 	$('button[name=reset]').on('click', function(e) {
 		e.preventDefault();
@@ -347,6 +376,9 @@ $(function() {
 		localforage.removeItem('vt.custom.mode');
 		localforage.removeItem('vt.custom.goal');
 		localforage.removeItem('vt.custom.seed');
+		localforage.removeItem('vt.custom.prizepacks');
+		localforage.removeItem('vt.custom.drops.pool');
+		localforage.removeItem('vt.custom.drops.packs');
 		window.location = window.location;
 	});
 
@@ -370,6 +402,15 @@ $(function() {
 			$('#item-placed-Bottles').val($('option.item-bottle:selected').length)
 			$('.custom-items').first().trigger('change');
 		}
+
+		if (target == '#custom-drops-prizepacks' || target == '#custom-drops-pool') {
+			$('#custom-drops-count-total').html($('.droppables option[value="auto_fill"]:selected').length);
+			$('.custom-drops-placed').val(0);
+			$('.droppables option[value!="auto_fill"]:selected').each(function() {
+				$('#item-drops-placed-' + this.value).val(Number($('#item-drops-placed-' + this.value).val()) + 1);
+			});
+			$('.custom-drops').first().trigger('change');
+		}
 	});
 
 	$('.custom-items').on('change click blur', function(e) {
@@ -382,6 +423,17 @@ $(function() {
 		}
 	});
 	$('.custom-items').first().trigger('change');
+
+	$('.custom-drops').on('change click blur', function(e) {
+		e.stopPropagation();
+		$('#custom-drops-count').html($('.custom-drops').map(function(){return Number(this.value)}).toArray().reduce(function(a,b){return a+b}));
+		if ($('#custom-drops-count').html() != $('#custom-drops-count-total').html()) {
+			$('.custom-drops-pool').removeClass('panel-success').addClass('panel-danger');
+		} else {
+			$('.custom-drops-pool').removeClass('panel-danger').addClass('panel-success');
+		}
+	});
+	$('.custom-drops').first().trigger('change');
 
 	$('button[name=generate]').on('click', function() {
 		$('button[name=generate]').html('Generating...').prop('disabled', true);
@@ -496,6 +548,12 @@ $(function() {
 	@foreach($items as $item)
 	<option class="placable placable-item{{ $item instanceof ALttP\Item\Bottle ? ' item-bottle' : '' }}"
 		value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
+	@endforeach
+</script>
+<script id="droppables" type="text/template">
+	<option value="auto_fill">Random</option>
+	@foreach($droppables as $item)
+	<option class="droppable" value="{{ $item->getName() }}">{{ $item->getNiceName() }}</option>
 	@endforeach
 </script>
 @overwrite

@@ -18,7 +18,7 @@ class World {
 	protected $win_condition;
 	protected $collectable_locations;
 	protected $pre_collected_items;
-	protected $prizes;
+	protected $prizepacks;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -66,7 +66,7 @@ class World {
 
 		$this->locations = new LocationCollection;
 
-		$this->prizes = [
+		$this->prizepacks = [
 			'heart', 'heart', 'heart', 'heart', 'greenRupee', 'heart', 'heart', 'greenRupee',
 			'blueRupee', 'greenRupee', 'blueRupee', 'redRupee', 'blueRupee', 'greenRupee', 'blueRupee', 'blueRupee',
 			'largeMagic', 'smallMagic', 'smallMagic', 'blueRupee', 'largeMagic', 'smallMagic', 'heart', 'smallMagic',
@@ -557,8 +557,8 @@ class World {
 	 *
 	 * @return array
 	 */
-	public function getPrizes() {
-		return $this->prizes;
+	public function getPrizePacks() {
+		return $this->prizepacks;
 	}
 
 	/**
@@ -566,7 +566,7 @@ class World {
 	 *
 	 * @return LocationCollection
 	 */
-	public function setPrizes($prizes) {
+	public function setPrizePacks($prizes) {
 		if ($prizes == null) {
 			return;
 		}
@@ -576,7 +576,7 @@ class World {
 		if (array_diff($prizes, ['heart', 'greenRupee', 'blueRupee', 'redRupee', 'bomb1', 'bomb4', 'bomb8', 'smallMagic', 'largeMagic', 'arrow5', 'arrow10', 'faerie'])) {
 			return;
 		}
-		$this->prizes = $prizes;
+		$this->prizepacks = $prizepacks;
 	}
 
 	/**

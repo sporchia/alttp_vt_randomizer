@@ -169,7 +169,7 @@ body {
 	}
 }
 
-input[readonly].custom-placed {
+input[readonly].custom-placed, input[readonly].custom-drops-placed {
 	background-color:transparent;
 	border: 0;
 	font-size: 1em;

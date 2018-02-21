@@ -1,4 +1,4 @@
-@section('prizepacks')
+@section('drops-prizepacks')
 <?php
 $prizepacks = [
 	['items' => ['heart', 'heart', 'heart', 'heart', 'greenRupee', 'heart', 'heart', 'greenRupee'], 'name' => 'Prize Pack 1'],
@@ -14,20 +14,22 @@ $prizepacks = [
 	'fish' => ['items' => ['redRupee'], 'name' => 'Fish Prize']
 ];
 $alldrops = [
-	'heart' => 'Heart',
-	'greenRupee' => 'Green Rupee',
-	'blueRupee' => 'Blue Rupee',
-	'redRupee' => 'Red Rupee',
-	'bomb1' => '1x Bomb',
-	'bomb4' => '4x Bomb',
-	'bomb8' => '8x Bomb',
-	'smallMagic' => 'Small Magic Container',
-	'largeMagic' => 'Large Magic Container',
-	'arrow5' => '5x Arrow',
-	'arrow10' => '10x Arrow',
-	'faerie' => 'Faerie',
+	'Random' => 'Random',
+	'Heart' => 'Heart',
+	'GreenRupee' => 'Green Rupee',
+	'BlueRupee' => 'Blue Rupee',
+	'RedRupee' => 'Red Rupee',
+	'Bomb1' => '1x Bomb',
+	'Bomb4' => '4x Bomb',
+	'Bomb8' => '8x Bomb',
+	'SmallMagic' => 'Small Magic Container',
+	'LargeMagic' => 'Large Magic Container',
+	'Arrow5' => '5x Arrow',
+	'Arrow10' => '10x Arrow',
+	'Faerie' => 'Faerie',
+	'Bees' => 'Bees',
 ]; ?>
-<div class="panel panel-success custom-prizes">
+<div class="panel panel-success custom-drops-prizepacks">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left">Prize Packs</h3>
 		<div class="clearfix"></div>
@@ -54,11 +56,7 @@ $alldrops = [
 					@foreach ($item['items'] as $innerkey => $inneritem)
 					<tr>
 						<td class="col-md-3">
-							<select id="prize-pack-{{ $key }}-{{ $innerkey }}" class="form-control custom-drop selectpicker">
-								@foreach ($alldrops as $drop => $name)
-								<option value="{{ $drop }}" <?php if ($inneritem == $drop) echo 'selected="selected"'; ?>>{{ $name }}</option>
-								@endforeach
-							</select>
+							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables"></select>
 						</td>
 					</tr>
 					@endforeach
@@ -67,11 +65,12 @@ $alldrops = [
 			@endforeach
 		</div>
 	</div>
+</div>
 <script>
 $(function() {
 	var prize_packs = <?php echo json_encode($prizepacks); ?>;
 
-	localforage.getItem('vt.custom.prizepacks').then(function(value) {
+	/*localforage.getItem('vt.custom.prizepacks').then(function(value) {
 		if (value !== null) {
 			for (pack in value) {
 				for (item in value[pack].items) {
@@ -91,7 +90,7 @@ $(function() {
 			prize_packs[pack].items[item] = $this.val();
 			localforage.setItem('vt.custom.prizepacks', prize_packs);
 		});
-	});
+	});*/
 
 });
 </script>
