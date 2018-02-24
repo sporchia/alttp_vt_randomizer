@@ -359,6 +359,7 @@ function applySeed(rom, seed, second_attempt) {
 
 $(function() {
 	var config = {};
+	var drops_config = {};
 	var select2Options = {
 		theme: "bootstrap",
 		width: "100%"
@@ -385,10 +386,10 @@ $(function() {
 	});
 
 	localforage.getItem('vt.custom.drops.packs').then(function(packs) {
-		config = packs || {};
-		for (var name in config) {
-			$('select[name="' + name + '"]').data('previous-item', config[name]);
-			$('select[name="' + name + '"]').val(config[name]);
+		drops_config = packs || {};
+		for (var name in drops_config) {
+			$('select[name="' + name + '"]').data('previous-item', drops_config[name]);
+			$('select[name="' + name + '"]').val(drops_config[name]);
 		}
 		// don't show the menu until we have finished loading things
 		$('.drops').removeClass('hidden');
@@ -441,6 +442,26 @@ $(function() {
 		});
 	});
 
+	$('select.custom-drop').change(function() {
+		drops_config[this.name] = $(this).val();
+		localforage.setItem('vt.custom.drops.packs', drops_config);
+	});
+
+	$('.custom-drop.droppables').change(function() {
+		var $this = $(this);
+		var value = $this.val();
+		var previous = $this.data('previous-item');
+		if (previous) {
+			$('#item-drops-count-' + previous).val(Number($('#item-drops-count-' + previous).val()) + 1);
+			$('#item-drops-count-' + previous).trigger('change');
+		}
+		$this.data('previous-item', value);
+		if (Number($('#item-drops-count-' + value).val()) > 0) {
+			$('#item-drops-count-' + value).val(Number($('#item-drops-count-' + value).val()) - 1);
+			$('#item-drops-count-' + value).trigger('change');
+		}
+	});
+
 	var save_restore_settings = [
 		'vt.customizer',
 		'vt.customizer.profiles',
@@ -457,6 +478,8 @@ $(function() {
 		'vt.custom.mode',
 		'vt.custom.goal',
 		'vt.custom.seed',
+		'vt.custom.drops.pool',
+		'vt.custom.drops.packs',
 	];
 	// dirty cleanup function for now
 	$('button[name=reset]').on('click', function(e) {
