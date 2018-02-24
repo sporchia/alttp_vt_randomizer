@@ -4,6 +4,7 @@ use ALttP\Item;
 use ALttP\Location;
 use ALttP\Rom;
 use ALttP\World;
+use ALttP\Sprite;
 use Illuminate\Http\Request;
 
 Route::get('randomize{r?}', function () {
@@ -44,6 +45,7 @@ Route::get('entrance/randomize{r?}', function () {
 Route::get('customize{r?}', function () {
 	$world = new World;
 	$items = Item::all();
+	$sprites = Sprite::all();
 	return view('customizer', [
 		'world' => $world,
 		'location_class' => [
@@ -80,6 +82,9 @@ Route::get('customize{r?}', function () {
 		}),
 		'bottles' => $items->filter(function($item) {
 			return $item instanceof Item\Bottle;
+		}),
+		'droppables' => $sprites->filter(function($sprite) {
+			return $sprite instanceof Sprite\Droppable;
 		}),
 	]);
 });
@@ -251,6 +256,9 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 			try {
 				$world->addPreCollectedItem(Item::get($item));
 			} catch (Exception $e) {}
+		}
+		foreach ($request->input('drops') as $pack => $item) {
+
 		}
 	}
 
