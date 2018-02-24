@@ -120,11 +120,6 @@ class Randomizer {
 		mt_srand($this->rng_seed);
 		$this->seed->seed = $this->rng_seed;
 
-		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
-		if (defined('MT_RAND_PHP')) {
-			mt_srand($this->rng_seed, MT_RAND_PHP);
-		}
-
 		Log::info(sprintf("Seed: %s", $this->rng_seed));
 
 		$regions = $this->world->getRegions();
