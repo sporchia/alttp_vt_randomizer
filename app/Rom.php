@@ -1061,6 +1061,36 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * Set hearts color for low vision people
+	 *
+	 * @param string $color color to have HUD hearts
+	 *
+	 * @return $this
+	 */
+	public function setHeartColors(string $color) : self {
+		switch ($color_on) {
+			case 'blue':
+				$byte = 0x2C;
+				break;
+			case 'green':
+				$byte = 0x3C;
+				break;
+			case 'yellow':
+				$byte = 0x28;
+				break;
+			case 'red':
+			default:
+				$byte = 0x24;
+		}
+
+		$this->write(0x6FA22, pack('C*', $byte)); // empty
+		$this->write(0x6FA26, pack('C*', $byte)); // half
+		$this->write(0x6FA28, pack('C*', $byte)); // full
+		$this->write(0x6FA2A, pack('C*', $byte)); // new
+
+		return $this;
+	}
 
 	/**
 	 * Set the opening Uncle text to a custom value
@@ -2026,7 +2056,6 @@ class Rom {
 		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
 		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
 			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
-		$this->write(0x1086C0, $enable ? pack('S*', 0x3C02, 0x3C03, 0x207F) : pack('S*', 0x207F, 0x3C02, 0x3C03)); // HUD
 
 		return $this;
 	}
