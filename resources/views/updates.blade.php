@@ -168,7 +168,7 @@
 		<li>Special chest under Ganon removed in all modes</li>
 		<li>Added search of spoilers to quickly find items</li>
 		<li>Skull Woods spike trap room chest set back to Key all the time</li>
-		<li>New Fill algorithm that maximizes item randimization</li>
+		<li>New Fill algorithm that maximizes item randomization</li>
 		<li>Added many new player options<br />
 			<img src="http://spr.beegunslingers.com/sprites.2.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
