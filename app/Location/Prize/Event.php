@@ -11,7 +11,7 @@ class Event extends Prize {
 	/**
 	 * sets the item for this location.
 	 *
-	 * @param Item|null $item can only be items [Pendant|Crystal] that "complete" a dungeon.
+	 * @param Item|null $item can only be items that are Logical Events.
 	 *
 	 * @return $this
 	 */

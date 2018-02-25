@@ -1267,6 +1267,10 @@ class Randomizer {
 			array_push($advancement_items, Item::get('CaneOfByrna'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.TenBombs', 1); $i++) {
+			array_push($advancement_items, Item::get('TenBombs'));
+		}
+
 		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
 			array_push($advancement_items, Item::get('HalfMagic'));
 		}
@@ -1383,7 +1387,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Bomb', 0); $i++) {
 			array_push($items_to_find, Item::get('Bomb'));
 		}
-		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 10); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 9); $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
 

@@ -42,7 +42,13 @@ class HyruleCastleEscape extends Region {
 			new Location\Chest("Hyrule Castle - Boomerang Chest", 0xE974, null, $this),
 			new Location\Chest("Hyrule Castle - Map Chest", 0xEB0C, null, $this),
 			new Location\Chest("Hyrule Castle - Zelda's Cell", 0xEB09, null, $this),
+			new Location\Npc("Link's Uncle", 0x2DF45, null, $this),
+			new Location\Chest("Secret Passage", 0xE971, null, $this),
+			new Location\Prize\Event("Zelda", null, null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Zelda"];
+		$this->prize_location->setItem(Item::get('RescueZelda'));
 	}
 
 	/**
@@ -59,6 +65,8 @@ class HyruleCastleEscape extends Region {
 		$this->locations["Hyrule Castle - Boomerang Chest"]->setItem(Item::get('Boomerang'));
 		$this->locations["Hyrule Castle - Map Chest"]->setItem(Item::get('MapH2'));
 		$this->locations["Hyrule Castle - Zelda's Cell"]->setItem(Item::get('Lamp'));
+		$this->locations["Link's Uncle"]->setItem(Item::get('L1SwordAndShield'));
+		$this->locations["Secret Passage"]->setItem(Item::get('Lamp'));
 
 		return $this;
 	}
@@ -118,6 +126,14 @@ class HyruleCastleEscape extends Region {
 			return $items->canKillMostThings();
 		});
 
+		$this->locations["Hyrule Castle - Map Chest"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return true;
+			}
+
+			return $items->canKillMostThings();
+		});
+
 		$this->locations["Hyrule Castle - Zelda's Cell"]->setRequirements(function($locations, $items) {
 			if (in_array(config('game-mode'), ['open', 'swordless'])) {
 				return $items->has('KeyH2');
@@ -125,6 +141,36 @@ class HyruleCastleEscape extends Region {
 
 			return $items->canKillMostThings();
 		});
+
+		$this->locations["Secret Passage"]->setRequirements(function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return true;
+			}
+
+			return $items->canKillMostThings();
+		})->setFillRules(function($item, $locations, $items) {
+			return !((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
+				|| (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
+				|| (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
+				|| (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass));
+		});
+
+		$this->locations["Link's Uncle"]->setFillRules(function($item, $locations, $items) {
+			return !((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
+				|| (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
+				|| (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
+				|| (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass));
+		});
+
+		$this->can_complete = function($locations, $items) {
+			if (in_array(config('game-mode'), ['open', 'swordless'])) {
+				return true;
+			}
+
+			return $this->locations["Sanctuary"]->canAccess($items);
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

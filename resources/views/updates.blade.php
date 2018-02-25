@@ -29,6 +29,7 @@
 			<li>You can allow dark room navigation</li>
 			<li>Pendants/Crystals can not be set for more than one dungeon</li>
 			<li>Pendants/Crystals should be more helpful when selecting them</li>
+			<li>You can set Link's starting health</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
 		<li>Stored water walking glitch is back</li>

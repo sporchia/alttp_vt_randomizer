@@ -234,10 +234,16 @@ var ROM = (function(blob, loaded_callback) {
 				default:
 					byte = 0x24;
 			}
-			this.write(0x6FA22, byte); // empty
-			this.write(0x6FA26, byte); // half
-			this.write(0x6FA28, byte); // full
-			this.write(0x6FA2A, byte); // new
+			this.write(0x6FA1E, byte);
+			this.write(0x6FA20, byte);
+			this.write(0x6FA22, byte);
+			this.write(0x6FA24, byte);
+			this.write(0x6FA26, byte);
+			this.write(0x6FA28, byte);
+			this.write(0x6FA2A, byte);
+			this.write(0x6FA2C, byte);
+			this.write(0x6FA2E, byte);
+			this.write(0x6FA30, byte);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);

@@ -420,6 +420,7 @@ class Rom {
 				case 'BossHeartContainer':
 				case 'HeartContainer':
 					$equipment[0x36C] = min($equipment[0x36C] + 0x08, 0xA0);
+					$equipment[0x36D] = min($equipment[0x36D] + 0x08, 0xA0);
 					break;
 				case 'PieceOfHeart':
 					$equipment[0x36B] += 1;
@@ -1083,11 +1084,16 @@ class Rom {
 			default:
 				$byte = 0x24;
 		}
-
-		$this->write(0x6FA22, pack('C*', $byte)); // empty
-		$this->write(0x6FA26, pack('C*', $byte)); // half
-		$this->write(0x6FA28, pack('C*', $byte)); // full
-		$this->write(0x6FA2A, pack('C*', $byte)); // new
+		$this->write(0x6FA1E, pack('C*', $byte));
+		$this->write(0x6FA20, pack('C*', $byte));
+		$this->write(0x6FA22, pack('C*', $byte));
+		$this->write(0x6FA24, pack('C*', $byte));
+		$this->write(0x6FA26, pack('C*', $byte));
+		$this->write(0x6FA28, pack('C*', $byte));
+		$this->write(0x6FA2A, pack('C*', $byte));
+		$this->write(0x6FA2C, pack('C*', $byte));
+		$this->write(0x6FA2E, pack('C*', $byte));
+		$this->write(0x6FA30, pack('C*', $byte));
 
 		return $this;
 	}

@@ -445,7 +445,8 @@ class World {
 				array_push($location_order, $location);
 				if ((($this->config('rom.genericKeys', false) || !$this->config('region.wildKeys', false)) && $item instanceof Item\Key)
 					|| $item instanceof Item\Map
-					|| $item instanceof Item\Compass) {
+					|| $item instanceof Item\Compass
+					|| $item == Item::get('RescueZelda')) {
 					return;
 				}
 				array_push($location_round[$longest_item_chain], $location);
@@ -467,6 +468,9 @@ class World {
 			}
 		}
 		foreach ($location_round as $round => $locations) {
+			$locations = array_filter($locations, function($location) {
+				return !$location instanceof Location\Trade;
+			});
 			if (!count($locations)) {
 				$ret['longest_item_chain']--;
 			}
@@ -623,8 +627,8 @@ class World {
 		do {
 			$sphere++;
 			$available_locations = $this->locations->filter(function($location) use ($my_items, $found_locations) {
-				return !is_a($location, Location\Medallion::class)
-					&& !is_a($location, Location\Fountain::class)
+				return !$location instanceof Location\Medallion
+					&& !$location instanceof Location\Fountain
 					&& !$found_locations->contains($location)
 					&& $location->canAccess($my_items);
 			});

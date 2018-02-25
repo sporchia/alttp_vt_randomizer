@@ -105,9 +105,10 @@ class NorthEast extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('DefeatAgahnim')
-				|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
-				|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl'));
+			return $items->has('RescueZelda')
+				&& ($items->has('DefeatAgahnim')
+					|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
+					|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl')));
 		};
 
 		// canbeataga2 && ((MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows)))) || (TS && (lamp || fire rod)))

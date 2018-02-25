@@ -47,7 +47,7 @@ class LightWorldTest extends TestCase {
 
 			["Link's Uncle", true, []],
 
-			["Secret Passage", true, []],
+			["Secret Passage", true, ['L1Sword']],
 
 			["King's Tomb", false, []],
 			["King's Tomb", false, [], ['PegasusBoots']],
