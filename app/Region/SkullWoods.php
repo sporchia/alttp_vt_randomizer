@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -42,6 +43,8 @@ class SkullWoods extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		$this->boss = Boss::get("Mothula");
 
 		$this->locations = new LocationCollection([
 			new Location\BigChest("Skull Woods - Big Chest", 0xE998, null, $this),
@@ -105,24 +108,27 @@ class SkullWoods extends Region {
 			return $items->has('MoonPearl') && $items->has('FireRod');
 		});
 
-		// Moth will require Somaria and Byrna when bosses are randomized
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& $items->has('FireRod')
-				&& ((config('game-mode') == 'swordless' && ($items->canExtendMagic() || $items->has('Hammer'))) || $items->hasSword())
-				&& $items->has('KeyD3', 3);
+			return $this->locations["Skull Woods - Mothula"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD3'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD3'));
 		};
 
-		$this->locations["Skull Woods - Mothula"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
+		$this->locations["Skull Woods - Mothula"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $items->has('FireRod')
+				&& (config('game-mode') == 'swordless' || $items->hasSword())
+				&& $items->has('KeyD3', 3)
+				&& $this->boss->canBeat($items, $locations);
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
 
-				return true;
-			});
+			return true;
+		});
 
 
 

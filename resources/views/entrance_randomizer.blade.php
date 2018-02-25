@@ -16,6 +16,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
+		@yield('rom-settings')
 		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
@@ -93,7 +94,6 @@
 				</div>
 			</div>
 		</div>
-		@yield('rom-settings')
 	</div>
 	<div class="panel-footer">
 		<div class="row">
@@ -171,6 +171,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+			.then(rom.setHeartColor($('#heart-color').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -193,8 +194,15 @@ function getFormData($form){
 function seedFailed(data) {
 	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
-	$('.alert .message').html('Failed Creating Seed :(');
-	$('.alert').show().delay(2000).fadeOut("slow");
+	switch (data.status) {
+		case 429:
+			$('.alert .message').html('While we apprecate your want to generate a lot of games, Other people would like'
+				+ ' to as well. Please come back later if you would like to generate more.');
+			break;
+		default:
+			$('.alert .message').html('Failed Creating Seed :(');
+	}
+	$('.alert').show().delay(5000).fadeOut("slow");
 }
 
 function seedApplied(data) {

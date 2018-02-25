@@ -16,6 +16,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
+		@yield('rom-settings')
 		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
@@ -36,6 +37,7 @@
 						@endforeach
 					</select>
 				</div>
+				<div class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 			</div>
 		</div>
 		<div class="row">
@@ -81,7 +83,6 @@
 				</div>
 			</div>
 		</div>
-		@yield('rom-settings')
 	</div>
 	<div class="panel-footer">
 		<div class="row">
@@ -158,6 +159,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+			.then(rom.setHeartColor($('#heart-color').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -180,8 +182,15 @@ function getFormData($form){
 function seedFailed(data) {
 	$('button[name=generate]').html('Generate ROM').prop('disabled', false);
 	$('button[name=generate-save]').prop('disabled', false);
-	$('.alert .message').html('Failed Creating Seed :(');
-	$('.alert').show().delay(2000).fadeOut("slow");
+	switch (data.status) {
+		case 429:
+			$('.alert .message').html('While we apprecate your want to generate a lot of games, Other people would like'
+				+ ' to as well. Please come back later if you would like to generate more.');
+			break;
+		default:
+			$('.alert .message').html('Failed Creating Seed :(');
+	}
+	$('.alert').show().delay(5000).fadeOut("slow");
 }
 
 function seedApplied(data) {
@@ -236,13 +245,6 @@ $(function() {
 		var goal = $('#goal').val();
 		$('input[name=variation]').val(variation);
 		localforage.setItem('rom.variation', variation);
-		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
-			$('#goal').val('triforce-hunt');
-			$('#goal').trigger('change');
-		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
-			$('#goal').val('ganon');
-			$('#goal').trigger('change');
-		}
 	});
 	localforage.getItem('rom.variation').then(function(value) {
 		if (!value) return;
@@ -297,13 +299,21 @@ $(function() {
 	});
 
 	$('#logic').on('change', function() {
+		var value = $(this).val();
 		$('.info').hide();
-		localforage.setItem('rom.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
+		if (value == 'NoMajorGlitches') {
+			$('.logic-warning').hide();
+		} else {
+			$('.logic-warning').show();
+		}
+		localforage.setItem('rom.logic', value);
+		$('input[name=logic]').val(value);
 	});
+
 	localforage.getItem('rom.logic').then(function(value) {
-		if (value === null) return;
-		$('#logic').val(value);
+		if (value !== null) {
+			$('#logic').val(value);
+		}
 		$('#logic').trigger('change');
 	});
 
@@ -324,13 +334,6 @@ $(function() {
 		var variation = $('#variation').val();
 		localforage.setItem('rom.goal', goal);
 		$('input[name=goal]').val(goal);
-		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
-			$('#variation').val('triforce-hunt');
-			$('#variation').trigger('change');
-		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
-			$('#variation').val('none');
-			$('#variation').trigger('change');
-		}
 	});
 	localforage.getItem('rom.goal').then(function(value) {
 		if (value === null) return;

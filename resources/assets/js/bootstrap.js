@@ -11,6 +11,8 @@ window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 require('./bootstrap-toggle');
 require('bootstrap-select');
+require('bootstrap-slider');
+require('select2');
 window.SparkMD5 = require('./spark-md5');
 window.localforage = require('localforage');
 window.secrets = require('konami-js');

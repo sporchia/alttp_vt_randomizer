@@ -75,6 +75,7 @@ class NorthWest extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl')
+				&& $items->has('RescueZelda')
 				&& (($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
 					&& ($items->has('Hookshot') && ($items->has('Flippers') || $items->canLiftRocks() || $items->has('Hammer'))))
 					|| ($items->has('Hammer') && $items->canLiftRocks())

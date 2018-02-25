@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.5.2';
+	const VERSION = '0.5.2.1';
 	private $spoiler;
 	private $patch;
 	protected $shuffle;
@@ -144,7 +144,7 @@ class EntranceRandomizer extends Randomizer {
 	 *
 	 * @return array
 	 */
-	public function getSpoiler() {
+	public function getSpoiler(array $meta = []) {
 		return json_decode(json_encode($this->spoiler), true);
 	}
 

@@ -12,6 +12,7 @@ class Region {
 	protected $prize_location;
 	protected $world;
 	protected $region_items = [];
+	protected $boss = null;
 
 	/**
 	 * Create a new Region.
@@ -46,6 +47,30 @@ class Region {
 	public function getName() {
 		return $this->name;
 	}
+
+	/**
+	 * Get the Boss of this Region.
+	 *
+	 * @return Boss
+	 */
+	public function getBoss() {
+		return $this->boss;
+	}
+
+	/**
+	 * Set the Boss of this Region.
+	 *
+	 * @param Boss $boss boss of the region
+	 *
+	 * @return $this
+	 */
+	public function setBoss(Boss $boss) : self {
+		$this->boss = $boss;
+
+		return $this;
+	}
+
+
 
 	/**
 	 * Set the Prize Location for completeing this Region and set it's rules for access to completing the region.

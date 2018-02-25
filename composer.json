@@ -12,21 +12,24 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.1.0",
         "doctrine/dbal": "^2.5",
+        "ezyang/htmlpurifier": "^4.9",
+        "graham-campbell/markdown": "^9.0",
         "hashids/hashids": "^2.0",
-        "laravel/dusk": "^1.0",
-        "laravel/framework": "5.4.*",
+        "laravel/dusk": "^2.0",
+        "laravel/framework": "5.5.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-rackspace": "^1.0",
         "z3/enemizer": "6.0.22",
-        "z3/entrancerandomizer": "0.5.2"
+        "z3/entrancerandomizer": "0.5.2.1"
     },
     "require-dev": {
         "sami/sami": "*",
+        "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7",
+        "phpunit/phpunit": "~6.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*"
     },
@@ -47,11 +50,11 @@
             "type": "package",
             "package": {
                 "name": "z3/entrancerandomizer",
-                "version": "0.5.2",
+                "version": "0.5.2.1",
                 "source": {
                     "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
                     "type": "git",
-                    "reference": "tags/0.5.2-dev"
+                    "reference": "tags/0.5.2.1-dev"
                 }
             }
         }
@@ -79,20 +82,24 @@
         "post-create-project-cmd": [
             "php artisan key:generate"
         ],
-        "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
-        ],
-        "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
         ],
         "documentation": [
             "./vendor/sami/sami/sami.php update sami.php"
         ]
     },
     "config": {
+        "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "laravel/dusk"
+            ]
+        }
     }
 }

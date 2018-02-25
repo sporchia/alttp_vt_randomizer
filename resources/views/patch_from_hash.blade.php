@@ -7,7 +7,7 @@
 @yield('loader')
 <div id="seed-details" class="info panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Game Details: <span class="seed"></span></h3>
+		<h3 class="panel-title pull-left"><span class="name">Game Details: <span class="seed"></span></span></h3>
 		<div class="btn-toolbar pull-right">
 			@yield('rom-settings-button')
 		</div>
@@ -62,6 +62,7 @@ function applyHash(rom, hash, second_attempt) {
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+			.then(rom.setHeartColor($('#heart-color').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -91,6 +92,7 @@ function seedApplied(data) {
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.hash = data.patch.hash;
 		rom.seed = data.patch.hash;
+		rom.name = data.patch.spoiler.meta.name;
 		rom.special = data.patch.spoiler.meta.special;
 		$('button[name=save]').show().prop('disabled', false);
 		resolve(rom);
@@ -102,13 +104,16 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-				+ '_' + rom.difficulty
-				+ '-' + rom.mode
-				+ '-' + rom.goal
-				+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-				+ '_' + rom.seed
-				+ (rom.special ? '_special' : '') + '.sfc');
+		var rom_name = rom.name
+			|| 'VT_' + rom.logic
+			+ '_' + rom.difficulty
+			+ '-' + rom.mode
+			+ '-' + rom.goal
+			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
+			+ '_' + rom.seed
+			+ (rom.special ? '_special' : '');
+
+		return rom.save('ALttP - ' + rom_name + '.sfc');
 	});
 });
 </script>

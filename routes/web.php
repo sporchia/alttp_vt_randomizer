@@ -21,7 +21,7 @@ Route::get('entrance/randomizer/settings', function () {
 Route::get('base_rom/settings', function () {
 	return [
 		'rom_hash' => Rom::HASH,
-		'base_file' => elixir('js/base2current.json'),
+		'base_file' => mix('js/base2current.json')->toHtml(),
 	];
 });
 
@@ -57,6 +57,7 @@ Route::get('customize{r?}', function () {
 				&& !$item instanceof Item\Crystal
 				&& !$item instanceof Item\Event
 				&& !$item instanceof Item\Programmable
+				&& !$item instanceof Item\BottleContents
 				&& !in_array($item->getName(), [
 					'BigKey',
 					'Compass',
@@ -64,8 +65,10 @@ Route::get('customize{r?}', function () {
 					'L2Sword',
 					'Map',
 					'multiRNG',
+					'PowerStar',
 					'singleRNG',
 					'TwentyRupees2',
+					'HeartContainerNoAnimation',
 				]);
 		}),
 		'prizes' => $items->filter(function($item) {
@@ -168,16 +171,16 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
 	$rom = new ALttP\Rom();
-	if ($request->has('heart_speed')) {
+	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
-	if ($request->has('sram_trace')) {
+	if ($request->filled('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
-	if ($request->has('menu_speed')) {
+	if ($request->filled('menu_speed')) {
 		$rom->setMenuSpeed($request->input('menu_speed', 'normal'));
 	}
-	if ($request->has('debug')) {
+	if ($request->filled('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
@@ -193,7 +196,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		return response('Failed', 409);
 	}
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $hash), 21, ' '));
 		$patch = patch_merge_minify($rom->getWriteLog());
 		$rand->updateSeedRecordPatch($patch);
@@ -209,7 +212,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		'spoiler' => $spoiler,
 		'hash' => $hash,
 	]);
-});
+})->middleware('throttle:150,360');
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
@@ -217,8 +220,20 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
+	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
+		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
+		$purifier_settings->loadArray(config("purifier.default"));
+		$purifier = new HTMLPurifier($purifier_settings);
+		if ($request->filled('name')) {
+			$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
+			$spoiler_meta['name'] = $purifier->purify($markdowned);
+		}
+		if ($request->filled('notes')) {
+			$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
+			$spoiler_meta['notes'] = $purifier->purify($markdowned);
+		}
 		config($request->input('data'));
 		$world = new World($difficulty, $logic, $goal, $variation);
 		$locations = $world->getLocations();
@@ -242,20 +257,20 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	config(['game-mode' => $game_mode]);
 
 	$rom = new ALttP\Rom();
-	if ($request->has('heart_speed')) {
+	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
-	if ($request->has('sram_trace')) {
+	if ($request->filled('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
-	if ($request->has('menu_fast')) {
+	if ($request->filled('menu_fast')) {
 		$rom->setQuickMenu($request->input('menu_fast') == 'true');
 	}
-	if ($request->has('debug')) {
+	if ($request->filled('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		config([
 			"tournament-mode" => true,
 		]);
@@ -299,7 +314,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	$patch = $rom->getWriteLog();
-	$spoiler = $rand->getSpoiler();
+	$spoiler = $rand->getSpoiler($spoiler_meta);
 	$hash = $rand->saveSeedRecord();
 
 	if (config('enemizer.enabled', false)) {
@@ -307,7 +322,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$en->makeSeed();
 	}
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
 		$rom->rummageTable();
 		$patch = patch_merge_minify($rom->getWriteLog());
@@ -324,7 +339,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'spoiler' => $spoiler,
 		'hash' => $hash,
 	]);
-});
+})->middleware('throttle:150,360');
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$difficulty = $request->input('difficulty', 'normal');
@@ -338,7 +353,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		config([
 			"tournament-mode" => true,
 		]);
@@ -349,6 +364,76 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
+});
+
+// @TODO: this is not DRY, perhaps it's time to move this and /seed to a controller
+Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
+	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
+	$variation = $request->input('variation', 'none') ?: 'none';
+	$goal = $request->input('goal', 'ganon') ?: 'ganon';
+	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+	$game_mode = $request->input('mode', 'standard');
+	$spoiler_meta = [];
+
+	if ($difficulty == 'custom') {
+		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
+		$purifier_settings->loadArray(config("purifier.default"));
+		$purifier = new HTMLPurifier($purifier_settings);
+		if ($request->filled('name')) {
+			$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
+			$spoiler_meta['name'] = $purifier->purify($markdowned);
+		}
+		if ($request->filled('notes')) {
+			$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
+			$spoiler_meta['notes'] = $purifier->purify($markdowned);
+		}
+		config($request->input('data'));
+		$world = new World($difficulty, $logic, $goal, $variation);
+		$locations = $world->getLocations();
+		foreach ($request->input('l', []) as $location => $item) {
+			$decoded_location = base64_decode($location);
+			if (isset($locations[$decoded_location])) {
+				$place_item = Item::get($item);
+				if ($game_mode == 'swordless' && $place_item instanceof Item\Sword) {
+					$place_item = Item::get('TwentyRupees2');
+				}
+				$locations[$decoded_location]->setItem($place_item);
+			}
+		}
+		foreach ($request->input('eq', []) as $item) {
+			try {
+				$world->addPreCollectedItem(Item::get($item));
+			} catch (Exception $e) {}
+		}
+	}
+
+	config(['game-mode' => $game_mode]);
+
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
+	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
+	if (isset($world)) {
+		$rand->setWorld($world);
+	}
+
+	try {
+		$rand->makeSeed($seed_id);
+	} catch (Exception $e) {
+		return response($e->getMessage(), 409);
+	}
+
+	$seed = $rand->getSeed();
+
+	if (!$rand->getWorld()->checkWinCondition()) {
+		return response('Game Unwinnable', 409);
+	}
+
+	return response()->json([
+		'seed' => $seed,
+		'logic' => $rand->getLogic(),
+		'difficulty' => $difficulty,
+		'spoiler' => $rand->getSpoiler($spoiler_meta),
+	]);
 });
 
 Route::get('h/{hash}', function(Request $request, $hash) {

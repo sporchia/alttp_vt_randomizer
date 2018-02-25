@@ -26,7 +26,9 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->collected = new ItemCollection;
+		// Assume Zelda is rescued for all tests
+		// @TODO: rewrite all tests to actually account for this
+		$this->collected = new ItemCollection([Item::get('RescueZelda')]);
 	}
 
 	public function tearDown() {

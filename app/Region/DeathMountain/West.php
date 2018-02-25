@@ -52,7 +52,7 @@ class West extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Old Man"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
+			return $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
 		});
 
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
@@ -66,7 +66,9 @@ class West extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+			return $items->has('RescueZelda')
+				&& ($items->canFly()
+					|| ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))));
 		};
 
 		return $this;
@@ -83,7 +85,7 @@ class West extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('PegasusBoots') || $items->hasABottle()
-				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)));
 		};
 
 		return $this;
@@ -111,7 +113,7 @@ class West extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('PegasusBoots')
-				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp'));
+				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)));
 		};
 
 		return $this;

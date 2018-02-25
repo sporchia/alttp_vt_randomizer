@@ -1,11 +1,11 @@
 @section('rom-settings-button')
-<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM <span class="glyphicon glyphicon-cog pulse"></span></button>
+<button class="btn btn-default" data-toggle="collapse" href="#rom-settings">ROM Options <span class="glyphicon glyphicon-cog pulse"></span></button>
 @overwrite
 
 @section('rom-settings')
 <div class="panel panel-info panel-collapse collapse" id="rom-settings">
 	<div class="panel-heading">
-		<h4 class="panel-title">ROM Settings</h4>
+		<h4 class="panel-title">Additional ROM Options</h4>
 	</div>
 	<div class="panel-body">
 		<div class="col-md-6 pb-5">
@@ -42,6 +42,17 @@
 				</select>
 			</div>
 		</div>
+		<div class="col-md-6 pb-5">
+			<div class="input-group" role="group">
+				<span class="input-group-addon">Heart Color</span>
+				<select id="heart-color" class="form-control selectpicker">
+					<option value="blue">Blue</option>
+					<option value="green">Green</option>
+					<option value="red" selected>Red</option>
+					<option value="yellow">Yellow</option>
+				</select>
+			</div>
+		</div>
 		<div class="clearfix"></div>
 		<div class="col-md-6">
 			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -50,7 +61,7 @@
 		@if (!isset($disallow_disable_music) || !$disallow_disable_music)
 		<div class="col-md-6 music-disable-toggle">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-music-on">Background Music</label>
+			<label for="generate-music-on">Background Music (set to "No" for MSU-1 support)</label>
 		</div>
 		@endif
 		<div class="secrets" style="display:none">
@@ -160,6 +171,18 @@ $(function() {
 		if (value === null) return;
 		$('#generate-music-on').prop('checked', value);
 		$('#generate-music-on').trigger('change');
+	});
+
+	$('#heart-color').on('change', function() {
+		if (rom) {
+			rom.setHeartColor($(this).val());
+		}
+		localforage.setItem('rom.heart-color', $(this).val());
+	});
+	localforage.getItem('rom.heart-color').then(function(value) {
+		if (value === null) return;
+		$('#heart-color').val(value);
+		$('#heart-color').trigger('change');
 	});
 
 	$('#generate-debug').on('change', function() {

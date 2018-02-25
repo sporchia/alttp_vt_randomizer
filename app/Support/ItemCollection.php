@@ -1,6 +1,7 @@
 <?php namespace ALttP\Support;
 
 use ALttP\Item;
+use ALttP\World;
 use ArrayIterator;
 
 /**
@@ -8,18 +9,21 @@ use ArrayIterator;
  */
 class ItemCollection extends Collection {
 	protected $item_counts = [];
+	protected $world;
 
 	/**
 	 * Create a new collection.
 	 *
 	 * @param mixed $items
+	 * @param World $world if this is related to a world for config
 	 *
 	 * @return void
 	 */
-	public function __construct($items = []) {
+	public function __construct($items = [], World $world = null) {
 		foreach ($this->getArrayableItems($items) as $item) {
 			$this->addItem($item);
 		}
+		$this->world = $world;
 	}
 
 	/**
@@ -66,10 +70,10 @@ class ItemCollection extends Collection {
 	 */
 	public function filter(callable $callback = null) {
 		if ($callback) {
-			return new static(array_filter($this->values(), $callback));
+			return new static(array_filter($this->values(), $callback), $this->world);
 		}
 
-		return new static(array_filter($this->values()));
+		return new static(array_filter($this->values()), $this->world);
 	}
 
 	/**
@@ -126,7 +130,7 @@ class ItemCollection extends Collection {
 	 * @return static
 	 */
 	public function intersect($items) {
-		return new static(array_intersect($this->items, $this->getArrayableItems($items)));
+		return new static(array_intersect($this->items, $this->getArrayableItems($items)), $this->world);
 	}
 
 	/**
@@ -163,7 +167,7 @@ class ItemCollection extends Collection {
 		}
 
 		if (is_array($items)) {
-			return $this->merge(new static($items));
+			return $this->merge(new static($items, $this->world));
 		}
 
 		if (!is_a($items, static::class)) {
@@ -185,7 +189,7 @@ class ItemCollection extends Collection {
 	 * @return static
 	 */
 	public function copy() {
-		$new = new static($this->items);
+		$new = new static($this->items, $this->world);
 		$new->item_counts = $this->item_counts;
 
 		return $new;
@@ -211,6 +215,9 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function has($key, $at_least = 1) {
+		if (strpos($key, 'Key') === 0 && $this->world && $this->world->config('rom.genericKeys')) {
+			return true;
+		}
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
 	}
 
@@ -291,6 +298,27 @@ class ItemCollection extends Collection {
 	public function tempAdd(Item $item) {
 		$temp = $this->copy();
 		return $temp->addItem($item);
+	}
+
+	/**
+	 * Get total collectable Health
+	 *
+	 * @param float $initial starting health
+	 *
+	 * @return float
+	 */
+	public function heartCount($initial = 3) {
+		$count = $initial;
+
+		$hearts = $this->filter(function($item) {
+			return $item instanceof Item\Upgrade\Health;
+		});
+
+		foreach ($hearts as $heart) {
+			$count += ($heart->getName() == 'PieceOfHeart') ? .25 : 1;
+		}
+
+		return $count;
 	}
 
 	/**
@@ -398,13 +426,12 @@ class ItemCollection extends Collection {
 	/**
 	 * Requirements for killing most things
 	 *
-	 * @TODO: account for 10 bombs in escape
-	 *
 	 * @return bool
 	 */
 	public function canKillMostThings($enemies = 5) {
 		return $this->hasSword()
 			|| $this->has('CaneOfSomaria')
+			|| ($this->has('TenBombs') && $enemies < 6)
 			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
 			|| $this->canShootArrows() // @TODO: fill arrows in standard escape
 			|| $this->has('Hammer')
@@ -412,7 +439,7 @@ class ItemCollection extends Collection {
 	}
 
 	/**
-	 * Can Get Golden Bee
+	 * Requirements for catching a Golden Bee
 	 *
 	 * @return bool
 	 */
