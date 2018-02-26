@@ -139,7 +139,8 @@ class IcePalace extends Region {
 
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('Flippers')
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl') && $items->has('Flippers')
 				&& $items->canLiftDarkRocks() && $items->canMeltThings();
 		};
 
@@ -158,9 +159,10 @@ class IcePalace extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canLiftDarkRocks()
-				|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld()
-					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->canLiftDarkRocks()
+					|| ($items->has('MagicMirror') && $items->glitchedLinkInDarkWorld()
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
 		};
 
 		return $this;
@@ -176,7 +178,8 @@ class IcePalace extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canLiftDarkRocks() && $items->canMeltThings();
+			return $items->has('RescueZelda')
+				&& $items->canLiftDarkRocks() && $items->canMeltThings();
 		};
 
 		return $this;

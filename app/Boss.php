@@ -83,7 +83,7 @@ class Boss {
 					|| ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos')));
 			}),
 			new static("Vitreous", function($locations, $items) {
-				return $items->has('Hammer') || $items->hasSword() || $this->canShootArrows();
+				return $items->has('Hammer') || $items->hasSword() || $items->canShootArrows();
 			}),
 			new static("Trinexx", function($locations, $items) {
 				return $items->has('FireRod') && $items->has('IceRod')

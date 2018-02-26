@@ -130,6 +130,16 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/**
+	 * Get the next item from the collection based on internal pointer.
+	 *
+	 * @return mixed
+	 */
+	public function next() {
+		return next($this->items) === false ? $this->first() : current($this->items);
+	}
+
+
+	/**
 	 * Get the last item from the collection.
 	 *
 	 * @return mixed

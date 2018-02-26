@@ -223,16 +223,20 @@ var ROM = (function(blob, loaded_callback) {
 			switch (color_on) {
 				case 'blue':
 					byte = 0x2C;
+					file_byte = 0x0D;
 					break;
 				case 'green':
 					byte = 0x3C;
+					file_byte = 0x19;
 					break;
 				case 'yellow':
 					byte = 0x28;
+					file_byte = 0x09;
 					break;
 				case 'red':
 				default:
 					byte = 0x24;
+					file_byte = 0x05;
 			}
 			this.write(0x6FA1E, byte);
 			this.write(0x6FA20, byte);
@@ -244,6 +248,7 @@ var ROM = (function(blob, loaded_callback) {
 			this.write(0x6FA2C, byte);
 			this.write(0x6FA2E, byte);
 			this.write(0x6FA30, byte);
+			this.write(0x65561, file_byte);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);

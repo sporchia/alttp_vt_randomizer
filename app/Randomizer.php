@@ -207,11 +207,11 @@ class Randomizer {
 			if (count($nice_items_swords)) {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			}
-			// 2 in open mode
-			if (config('game-mode') == 'open' && count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
-			} elseif ($this->config('region.forceUncleSword', true)) {
+
+			if ($this->config('region.forceUncleSword', true)) {
 				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+			} else {
+				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);

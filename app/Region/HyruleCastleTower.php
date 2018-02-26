@@ -76,6 +76,7 @@ class HyruleCastleTower extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return $items->canKillMostThings(8)
+				&& $items->has('RescueZelda')
 				&& ($items->has('Cape')
 					|| $items->hasUpgradedSword()
 					|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
