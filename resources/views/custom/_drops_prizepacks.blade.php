@@ -1,17 +1,17 @@
 @section('drops-prizepacks')
 <?php
 $prizepacks = [
-	['items' => ['heart', 'heart', 'heart', 'heart', 'greenRupee', 'heart', 'heart', 'greenRupee'], 'name' => 'Prize Pack 1'],
-	['items' => ['blueRupee', 'greenRupee', 'blueRupee', 'redRupee', 'blueRupee', 'greenRupee', 'blueRupee', 'blueRupee'], 'name' => 'Prize Pack 2'],
-	['items' => ['largeMagic', 'smallMagic', 'smallMagic', 'blueRupee', 'largeMagic', 'smallMagic', 'heart', 'smallMagic'], 'name' => 'Prize Pack 3'],
-	['items' => ['bomb1', 'bomb1', 'bomb1', 'bomb4', 'bomb1', 'bomb1', 'bomb8', 'bomb1'], 'name' => 'Prize Pack 4'],
-	['items' => ['arrow5', 'heart', 'arrow5', 'arrow10', 'arrow5', 'heart', 'arrow5', 'arrow10'], 'name' => 'Prize Pack 5'],
-	['items' => ['smallMagic', 'greenRupee', 'heart', 'arrow5', 'smallMagic', 'bomb1', 'greenRupee', 'heart'], 'name' => 'Prize Pack 6'],
-	['items' => ['heart', 'faerie', 'largeMagic', 'redRupee', 'bomb8', 'heart', 'redRupee', 'arrow10'], 'name' => 'Prize Pack 7'],
-	'pull' => ['items' => ['greenRupee', 'blueRupee', 'redRupee'], 'name' => 'Pull Prizes'],
-	'crab' => ['items' => ['greenRupee', 'redRupee'], 'name' => 'Bush Crab Prizes'],
-	'stun' => ['items' => ['greenRupee'], 'name' => 'Stun Prize'],
-	'fish' => ['items' => ['redRupee'], 'name' => 'Fish Prize']
+	['items' => ['Heart', 'Heart', 'Heart', 'Heart', 'RupeeGreen', 'Heart', 'Heart', 'RupeeGreen'], 'name' => 'Prize Pack 1'],
+	['items' => ['RupeeBlue', 'RupeeGreen', 'RupeeBlue', 'RupeeRed', 'RupeeBlue', 'RupeeGreen', 'RupeeBlue', 'RupeeBlue'], 'name' => 'Prize Pack 2'],
+	['items' => ['MagicRefillFull', 'MagicRefillSmall', 'MagicRefillSmall', 'RupeeBlue', 'MagicRefillFull', 'MagicRefillSmall', 'Heart', 'MagicRefillSmall'], 'name' => 'Prize Pack 3'],
+	['items' => ['BombRefill1', 'BombRefill1', 'BombRefill1', 'BombRefill4', 'BombRefill1', 'BombRefill1', 'BombRefill8', 'BombRefill1'], 'name' => 'Prize Pack 4'],
+	['items' => ['ArrowRefill5', 'Heart', 'ArrowRefill5', 'ArrowRefill10', 'ArrowRefill5', 'Heart', 'ArrowRefill5', 'ArrowRefill10'], 'name' => 'Prize Pack 5'],
+	['items' => ['MagicRefillSmall', 'RupeeGreen', 'Heart', 'ArrowRefill5', 'MagicRefillSmall', 'BombRefill1', 'RupeeGreen', 'Heart'], 'name' => 'Prize Pack 6'],
+	['items' => ['Heart', 'Fairy', 'MagicRefillFull', 'RupeeRed', 'BombRefill8', 'Heart', 'RupeeRed', 'ArrowRefill10'], 'name' => 'Prize Pack 7'],
+	'pull' => ['items' => ['RupeeGreen', 'RupeeBlue', 'RupeeRed'], 'name' => 'Pull Prizes'],
+	'crab' => ['items' => ['RupeeGreen', 'RupeeRed'], 'name' => 'Bush Crab Prizes'],
+	'stun' => ['items' => ['RupeeGreen'], 'name' => 'Stun Prize'],
+	'fish' => ['items' => ['RupeeRed'], 'name' => 'Fish Prize']
 ];
 $alldrops = [
 	'Random' => 'Random',
@@ -35,6 +35,10 @@ $alldrops = [
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
+		<div class="pb-5">
+			<button id="set-vanilla" class="btn">Set Vanilla Drops</button>
+			<button id="set-random" class="btn">Set Random Drops</button>
+		</div>
 		<ul class="nav nav-pills" role="tablist">
 			@foreach ($prizepacks as $key => $item)
 			<li id="n-prizepack-{{ $key }}"<?php if ($key == '0') echo ' class="active"' ?>>
@@ -69,6 +73,22 @@ $alldrops = [
 <script>
 $(function() {
 	var prize_packs = <?php echo json_encode($prizepacks); ?>;
+
+	$('#set-vanilla').on('click', function() {
+		for (pack in prize_packs) {
+			for (item in prize_packs[pack].items) {
+				$('select[name=prize-pack-' + pack + '-' + item).val(prize_packs[pack].items[item]).trigger('change');
+			}
+		}
+	});
+
+	$('#set-random').on('click', function() {
+		for (pack in prize_packs) {
+			for (item in prize_packs[pack].items) {
+				$('select[name=prize-pack-' + pack + '-' + item).val('auto_fill').trigger('change');
+			}
+		}
+	});
 
 	/*localforage.getItem('vt.custom.prizepacks').then(function(value) {
 		if (value !== null) {
