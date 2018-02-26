@@ -121,7 +121,8 @@ class ThievesTown extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -139,7 +140,8 @@ class ThievesTown extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->glitchedLinkInDarkWorld()
+			return $items->has('RescueZelda')
+				&& $items->glitchedLinkInDarkWorld()
 				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 

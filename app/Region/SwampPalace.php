@@ -157,7 +157,8 @@ class SwampPalace extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('Flippers')
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('Flippers')
 				&& $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		};
 
@@ -259,8 +260,9 @@ class SwampPalace extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) use ($main, $mire) {
-			return $main($locations, $items)
-				|| $mire($locations, $items);
+			return $items->has('RescueZelda')
+				&& ($main($locations, $items)
+					|| $mire($locations, $items));
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);

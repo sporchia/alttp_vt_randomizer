@@ -120,11 +120,6 @@ class Randomizer {
 		mt_srand($this->rng_seed);
 		$this->seed->seed = $this->rng_seed;
 
-		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
-		if (defined('MT_RAND_PHP')) {
-			mt_srand($this->rng_seed, MT_RAND_PHP);
-		}
-
 		Log::info(sprintf("Seed: %s", $this->rng_seed));
 
 		$regions = $this->world->getRegions();
@@ -212,11 +207,11 @@ class Randomizer {
 			if (count($nice_items_swords)) {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			}
-			// 2 in open mode
-			if (config('game-mode') == 'open' && count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
-			} elseif ($this->config('region.forceUncleSword', true)) {
+
+			if ($this->config('region.forceUncleSword', true)) {
 				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+			} else {
+				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -1272,6 +1267,10 @@ class Randomizer {
 			array_push($advancement_items, Item::get('CaneOfByrna'));
 		}
 
+		for ($i = 0; $i < $this->config('item.count.TenBombs', 1); $i++) {
+			array_push($advancement_items, Item::get('TenBombs'));
+		}
+
 		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
 			array_push($advancement_items, Item::get('HalfMagic'));
 		}
@@ -1388,7 +1387,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Bomb', 0); $i++) {
 			array_push($items_to_find, Item::get('Bomb'));
 		}
-		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 10); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 9); $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
 

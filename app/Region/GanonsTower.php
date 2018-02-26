@@ -311,7 +311,8 @@ class GanonsTower extends Region {
 		$this->prize_location->setRequirements($this->can_complete);
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl')
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl')
 				&& $items->has('Crystal1')
 				&& $items->has('Crystal2')
 				&& $items->has('Crystal3')

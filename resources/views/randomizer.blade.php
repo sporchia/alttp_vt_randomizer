@@ -159,6 +159,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+			.then(rom.setHeartColor($('#heart-color').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));

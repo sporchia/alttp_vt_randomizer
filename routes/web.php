@@ -171,16 +171,16 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
 	$rom = new ALttP\Rom();
-	if ($request->has('heart_speed')) {
+	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
-	if ($request->has('sram_trace')) {
+	if ($request->filled('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
-	if ($request->has('menu_speed')) {
+	if ($request->filled('menu_speed')) {
 		$rom->setMenuSpeed($request->input('menu_speed', 'normal'));
 	}
-	if ($request->has('debug')) {
+	if ($request->filled('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
@@ -196,7 +196,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		return response('Failed', 409);
 	}
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $hash), 21, ' '));
 		$patch = patch_merge_minify($rom->getWriteLog());
 		$rand->updateSeedRecordPatch($patch);
@@ -226,11 +226,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
 		$purifier_settings->loadArray(config("purifier.default"));
 		$purifier = new HTMLPurifier($purifier_settings);
-		if ($request->has('name')) {
+		if ($request->filled('name')) {
 			$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
 			$spoiler_meta['name'] = $purifier->purify($markdowned);
 		}
-		if ($request->has('notes')) {
+		if ($request->filled('notes')) {
 			$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
 			$spoiler_meta['notes'] = $purifier->purify($markdowned);
 		}
@@ -257,20 +257,20 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	config(['game-mode' => $game_mode]);
 
 	$rom = new ALttP\Rom();
-	if ($request->has('heart_speed')) {
+	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
-	if ($request->has('sram_trace')) {
+	if ($request->filled('sram_trace')) {
 		$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 	}
-	if ($request->has('menu_fast')) {
+	if ($request->filled('menu_fast')) {
 		$rom->setQuickMenu($request->input('menu_fast') == 'true');
 	}
-	if ($request->has('debug')) {
+	if ($request->filled('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		config([
 			"tournament-mode" => true,
 		]);
@@ -322,7 +322,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$en->makeSeed();
 	}
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
 		$rom->rummageTable();
 		$patch = patch_merge_minify($rom->getWriteLog());
@@ -353,7 +353,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
-	if ($request->has('tournament') && $request->input('tournament') == 'true') {
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		config([
 			"tournament-mode" => true,
 		]);
@@ -379,11 +379,11 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
 		$purifier_settings->loadArray(config("purifier.default"));
 		$purifier = new HTMLPurifier($purifier_settings);
-		if ($request->has('name')) {
+		if ($request->filled('name')) {
 			$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
 			$spoiler_meta['name'] = $purifier->purify($markdowned);
 		}
-		if ($request->has('notes')) {
+		if ($request->filled('notes')) {
 			$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
 			$spoiler_meta['notes'] = $purifier->purify($markdowned);
 		}

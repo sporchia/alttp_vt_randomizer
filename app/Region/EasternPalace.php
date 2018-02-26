@@ -107,6 +107,10 @@ class EasternPalace extends Region {
 			return true;
 		});
 
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
+
 		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;

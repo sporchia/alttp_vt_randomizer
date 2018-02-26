@@ -218,6 +218,41 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
+	this.setHeartColor = function(color_on) {
+		return new Promise(function(resolve, reject) {
+			switch (color_on) {
+				case 'blue':
+					byte = 0x2C;
+					file_byte = 0x0D;
+					break;
+				case 'green':
+					byte = 0x3C;
+					file_byte = 0x19;
+					break;
+				case 'yellow':
+					byte = 0x28;
+					file_byte = 0x09;
+					break;
+				case 'red':
+				default:
+					byte = 0x24;
+					file_byte = 0x05;
+			}
+			this.write(0x6FA1E, byte);
+			this.write(0x6FA20, byte);
+			this.write(0x6FA22, byte);
+			this.write(0x6FA24, byte);
+			this.write(0x6FA26, byte);
+			this.write(0x6FA28, byte);
+			this.write(0x6FA2A, byte);
+			this.write(0x6FA2C, byte);
+			this.write(0x6FA2E, byte);
+			this.write(0x6FA30, byte);
+			this.write(0x65561, file_byte);
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
 	this.setHeartSpeed = function(speed) {
 		return new Promise(function(resolve, reject) {
 			var sbyte = 0x20;

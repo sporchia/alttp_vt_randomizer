@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-17';
-	const HASH = 'b1e410fd90e59abb98eb8d6e3cb20661';
+	const BUILD = '2018-02-23';
+	const HASH = '14cc227469f9ecf4974f918b6e2a3943';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -420,6 +420,7 @@ class Rom {
 				case 'BossHeartContainer':
 				case 'HeartContainer':
 					$equipment[0x36C] = min($equipment[0x36C] + 0x08, 0xA0);
+					$equipment[0x36D] = min($equipment[0x36D] + 0x08, 0xA0);
 					break;
 				case 'PieceOfHeart':
 					$equipment[0x36B] += 1;
@@ -1061,6 +1062,47 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * Set hearts color for low vision people
+	 *
+	 * @param string $color color to have HUD hearts
+	 *
+	 * @return $this
+	 */
+	public function setHeartColors(string $color) : self {
+		switch ($color_on) {
+			case 'blue':
+				$byte = 0x2C;
+				$file_byte = 0x0D;
+				break;
+			case 'green':
+				$byte = 0x3C;
+				$file_byte = 0x19;
+				break;
+			case 'yellow':
+				$byte = 0x28;
+				$file_byte = 0x09;
+				break;
+			case 'red':
+			default:
+				$byte = 0x24;
+				$file_byte = 0x05;
+		}
+		$this->write(0x6FA1E, pack('C*', $byte));
+		$this->write(0x6FA20, pack('C*', $byte));
+		$this->write(0x6FA22, pack('C*', $byte));
+		$this->write(0x6FA24, pack('C*', $byte));
+		$this->write(0x6FA26, pack('C*', $byte));
+		$this->write(0x6FA28, pack('C*', $byte));
+		$this->write(0x6FA2A, pack('C*', $byte));
+		$this->write(0x6FA2C, pack('C*', $byte));
+		$this->write(0x6FA2E, pack('C*', $byte));
+		$this->write(0x6FA30, pack('C*', $byte));
+
+		$this->write(0x65561, pack('C*', $file_byte));
+
+		return $this;
+	}
 
 	/**
 	 * Set the opening Uncle text to a custom value
@@ -1552,6 +1594,32 @@ class Rom {
 	}
 
 	/**
+	 * Enable/Disable the Quickswap function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setQuickSwap($enable = false) : self {
+		$this->write(0x18004B, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the Smithy Full Travel function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSmithyFreeTravel($enable = false) : self {
+		$this->write(0x18004C, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Set the single RNG Item table. These items will only get collected by player once per game.
 	 *
 	 * @param ItemCollection $items
@@ -2026,7 +2094,19 @@ class Rom {
 		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
 		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
 			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
-		$this->write(0x1086C0, $enable ? pack('S*', 0x3C02, 0x3C03, 0x207F) : pack('S*', 0x207F, 0x3C02, 0x3C03)); // HUD
+
+		return $this;
+	}
+
+	/**
+	 * Enable Escape Assist
+	 *
+	 * @param int $flags assist -----mba m: Infinite Magic, b: Infinite Bombs, a: Infinite Arrows
+	 *
+	 * @return $this
+	 */
+	public function setEscapeAssist(int $flags = 0x00) : self {
+		$this->write(0x18004D, pack('C*', $flags));
 
 		return $this;
 	}

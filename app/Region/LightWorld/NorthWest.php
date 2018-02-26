@@ -123,6 +123,10 @@ class NorthWest extends Region {
 				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		});
 
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
+
 		return $this;
 	}
 

@@ -19,19 +19,19 @@
 			<ul>
 			<li>Uncle is already in the sewers and has a randomized item (not necessarily a sword!)
 			<li>Dark rooms don't get a free light cone, not even the sewers.
-			<li>You won't start with a sword, and it might be awhile before you find one. Bombs are a
-				great early weapon, as well as bushes and signs! Use whatever items you find to
+			<li>You won't start with a sword, and it might be a while before you find one. Bombs are a
+				great early weapon, as are bushes and signs! Use whatever items you find to
 				defend yourself.
 			</ul>
 		<h4>Swordless</h4>
-		<p>Not for the faint of heart, you'll need to use unconventional methods along every step of
+		<p>Not for the faint of heart. You'll need to use unconventional methods along every step of
 			your adventure. Some changes have been made to account for the lack of a sword:
 			<ul>
 			<li>Swords have been replaced with four copies of 20 rupees (the green rupee sprite with
 				"20" on it).
 			<li>The curtains blocking progress in Agahnim's Tower are pre-opened, as are the vines in
 				Skull Woods.
-			<li>Medallions can only be used to open Misery Mire or Turtle Rock. Normally they require a sword to use at all.
+			<li>Medallions can only be used to open Misery Mire or Turtle Rock. Normally, they require a sword to use.
 			<li>Ganon now takes damage from the hammer.
 			<li>Silver arrows are available in all difficulties.
 			<li>Ether and Bombos tablets require the Hammer and Book of Mudora.
@@ -47,12 +47,12 @@
 		<h4>No Glitches</h4>
 		<p>This mode requires no advanced knowledge of the game. It's designed as if you were playing
 			the original game for the first time.</p>
-		<p>Under this mode, you're prevented from getting stuck anywhere regardless of how you use
+		<p>Under this mode, you're prevented from getting stuck anywhere, regardless of how you use
 			small keys within dungeons.</p>
 		<p>You may be required to save and quit in certain situations, like getting back to the light
 			world when you're in the dark world without the mirror.</p>
 		<h4>Overworld Glitches</h4>
-		<p>This mode accounts for some of the easier to execute overworld gitches. Two types of major
+		<p>This mode accounts for some of the easier-to-execute overworld glitches. Two types of major
 			glitches are required:</p>
 		<ul>
 		<li>Overworld boots clipping
@@ -87,10 +87,10 @@
 		<li>Clipping out of bounds
 		<li>Screenwraps
 		</ul>
-		<p>Some additional changes have been made in order to ensure the game functions correctly
+		<p>Some additional changes have been made in order to ensure that the game functions correctly
 			under this logic:</p>
 		<ul>
-		<li>The fake dark world is no longer patched out. Crystals always drop irrespective of
+		<li>The fake dark world is no longer patched out. Crystals always drop, irrespective of
 			pendant conflicts.
 		<li>Swamp Palace water levels do not drain when you exit the overworld screen, except for the
 			first room.
@@ -113,7 +113,7 @@
 			Agahnim. Only once they're defeated will you be able to face Ganon.</p>
 		<h4>Master Sword Pedestal</h4>
         <p>Collect the Pendants of Courage, Wisdom, and Power, and pull the Triforce from the
-			Pedestal! Beware, you may have to venture all over Hyrule, including into Ganon's Tower,
+			Pedestal! Beware, you may have to venture all over Hyrule, including Ganon's Tower,
 			in order to complete your quest.</p>
 		<h4>Triforce Pieces</h4>
 		<p>The Triforce has been shattered and scattered throughout the world. Collect enough pieces
@@ -165,8 +165,7 @@
 		<li>½ Magic
 		</ul>
 		<p>Finding the second ½ Magic will upgrade you to ¼ Magic!</p>
-		<p>Additionally, just like in the base game, you'll have 3x the opportunities to get the
-			Lamp!</p>
+		<p>Additionally, you'll have 3x the opportunities to get the Lamp!</p>
 		<h4>Normal</h4>
 		<p>In this mode you'll find all the items from the original game.</p>
 		<p>Item Pool:</p>
@@ -175,7 +174,6 @@
 				<ul>
 				<li>6x Arrow Upgrade (+5)
 				<li>1x Arrow Upgrade (+10)
-				<li>1x Single Arrow
 				<li>10x Big Key
 				<li>1x Blue Mail
 				<li>6x Bomb Upgrade (+5)
@@ -191,25 +189,22 @@
 				<li>11x Compass
 				<li>12x Dungeon Map
 				<li>1x Ether
-				<li>7x Fifty Rupees
 				<li>1x Fighters Shield
 				<li>1x Fighters Sword
 				<li>1x Fire Rod
 				<li>1x Fire Shield
-				<li>4x Five Rupees
 				<li>1x Flippers
 				<li>1x Flute
 				<li>1x Golden Sword
 				<li>1x ½ Magic
 				<li>1x Hammer
+				<li>11x Heart Container
+				<li>1x Hookshot
+				<li>1x Ice Rod
 				</ul>
 			</div>
 			<div class="col-md-6">
 				<ul>
-				<li>1x Sanctuary Heart Container
-				<li>10x Heart Container
-				<li>1x Hookshot
-				<li>1x Ice Rod
 				<li>28x Small Key
 				<li>1x Lamp
 				<li>1x Magic Cape
@@ -220,8 +215,6 @@
 				<li>1x Mirror Shield
 				<li>1x Moon Pearl
 				<li>1x Mushroom
-				<li>1x One Hundred Rupees
-				<li>2x One Rupee
 				<li>1x Pegasus Boots
 				<li>24x Piece Of Heart
 				<li>1x Power Glove
@@ -230,16 +223,23 @@
 				<li>1x Shovel
 				<li>1x Silver Arrows Upgrade
 				<li>1x Tempered Sword
+				<li>1x Titans Mitt
+				</ul>
+				<ul>
 				<li>5x Ten Arrows
+				<li>1x Single Arrow
 				<li>10x Three Bombs
 				<li>5x Three Hundred Rupees
-				<li>1x Titans Mitt
+				<li>1x One Hundred Rupees
+				<li>7x Fifty Rupees
 				<li>28x Twenty Rupees
+				<li>4x Five Rupees
+				<li>2x One Rupee
 				</ul>
 			</div>
 		</div>
 		<h4>Hard</h4>
-		<p>Looking for a challenge? The following items have been removed on hard:</p>
+		<p>Looking for a challenge? The following items have been removed:</p>
 		<ul>
 		<li>Arrow Capacity Upgrades
 		<li>Bomb Capacity Upgrades
@@ -249,84 +249,58 @@
 		<li>Red Mail
 		<li>Mirror Shield
 		</ul>
-		<p>The following items have had their count reduced:</p>
+		<p>The following items have had their total count reduced:</p>
 		<ul>
-		<li>Arrows
 		<li>Bombs
-		<li>Heart Containers
+		<li>Heart Containers (only 5x)
 		<li>Rupees
 		</ul>
 		<p>The following items have had their functionality adjusted:</p>
 		<ul>
-		<li>Magic Cape uses 2x Magic (except in Spike Cave)
-		<li>Cane of Byrna uses 2x Magic (except in Spike Cave)
+		<li>Magic Cape uses 2x Magic as Normal (except in Spike Cave)
+		<li>Cane of Byrna uses 2x Magic as Normal (except in Spike Cave)
 		<li>Magic Powder does not turn Bubbles into Fairies
 		<li>Bug Net doesn't catch Fairies
-		<li>There are only 2 Bottles (4 in Major Glitches)
+		<li>There are only 2 Bottles (4 in Glitched Logic)
 		<li>Potions heal 5 hearts and restore 1/2 magic
 		</ul>
 		<h4>Expert</h4>
-		<p>Looking for even more of a challenge? The following items have been removed:</p>
+		<p>Looking for even more of a challenge? The following items have been removed, in addition to Hard:</p>
 		<ul>
-		<li>Arrow Capacity Upgrades
-		<li>Bomb Capacity Upgrades
-		<li>Boomerangs
-		<li>Golden Sword
 		<li>Heart Containers
-		<li>Magic Upgrade
-		<li>Mails
-		<li>Shields
-		<li>Silver Arrow Upgrade (except swordless)
+		<li>Blue Mail
+		<li>Fire Shield
+		<li>Fighter's Shield
+		<li>Silver Arrow Upgrade (except in Swordless Mode)
 		<li>Tempered Sword
 		</ul>
-		<p>The following items have had their count reduced:</p>
+		<p>The following items have had their total count reduced from Hard:</p>
 		<ul>
 		<li>Arrows
-		<li>Bombs
-		<li>Pieces of Heart (only 12 available)
 		<li>Rupees
 		</ul>
-		<p>The following items have had their functionality adjusted:</p>
+		<p>The following items have had their functionality further adjusted from Hard:</p>
 		<ul>
-		<li>Magic Cape uses 4x Magic (except in Spike Cave)
-		<li>Cane of Byrna uses 4x Magic (except in Spike Cave)
-		<li>Magic Powder does not turn Bubbles into Fairies
-		<li>Bug Net doesn't catch Fairies
-		<li>There is only 1 Bottle (4 in Major Glitches)
+		<li>Magic Cape uses 4x Magic as Normal (except in Spike Cave)
+		<li>Cane of Byrna uses 4x Magic as Normal (except in Spike Cave)
+		<li>There is only 1 Bottle (4 in Major Glitched Logic)
 		<li>Potions heal 1 heart and restore 1/4 magic
-		<li>Shields in Shops are unpurchasable
+		<li>Shields in Shops cannot be purchased
 		</ul>
 		<h4>Insane</h4>
 		<p>Expert not cutting it for you? Have you truly lost your mind? The following items have
-			been removed:</p>
+			been removed, in addition to Expert:</p>
 		<ul>
-		<li>Arrow Capacity Upgrades</li>
-		<li>Bomb Capacity Upgrades</li>
-		<li>Boomerangs</li>
-		<li>Golden Sword</li>
-		<li>Heart Containers</li>
 		<li>Pieces of Heart</li>
-		<li>Magic Upgrade</li>
-		<li>Mails</li>
-		<li>Shields</li>
-		<li>Silver Arrow Upgrade (except swordless)</li>
-		<li>Tempered Sword</li>
 		</ul>
-		<p>The following items have had their count reduced:</p>
+		<p>The following items have had their total count reduced from Expert:</p>
 		<ul>
 		<li>Arrows</li>
 		<li>Bombs</li>
-		<li>Rupees</li>
 		</ul>
-		<p>The following items have had their functionality adjusted:</p>
+		<p>The following items have had their functionality further adjusted from Expert:</p>
 		<ul>
-		<li>Magic Cape uses 4x Magic (except in Spike Cave)</li>
-		<li>Cane of Byrna uses 4x Magic (except in Spike Cave)</li>
-		<li>Magic Powder does not turn Bubbles into Fairies</li>
-		<li>Bug Net doesn't catch Fairies</li>
-		<li>There is only 1 Bottle (4 in Major Glitches)</li>
 		<li>Potions don't heal or restore magic</li>
-		<li>Shields in shops are really unpurchasable</li>
 		</ul>
 
 	</div>
@@ -353,7 +327,7 @@
 		<p>The timer counts up from 0, with the goal being to finish the game with the best time on
 			the timer. There are items throughout the world that will affect your timer, so finishing
 			first doesn't necessarily mean you're the winner.</p>
-		<p>Do you spend time looking for a clock to get your timer down? Or do you race to the
+		<p>Do you spend time looking for a clock to get your timer down, or do you race to the
 			end?</p>
 		<p>The following items have been added to the item pool:</p>
 		<ul>
@@ -362,9 +336,9 @@
 		<li>10 Red Clocks that add 2 minutes to the timer
 		</ul>
 		<h4>Timed OHKO (One Hit Knockout)</h4>
-		<p>In this mode you start with time on the timer, and green clocks found add time to the timer.</p>
+		<p>In this mode you start with time on the timer, and found green clocks add time to the timer.</p>
 		<p>If your timer reaches zero, you'll enter One Hit Knockout mode, where anything will kill you.</p>
-		<p>Don't despair though, if you are in OHKO mode and find another clock, you'll exit OHKO
+		<p>Don't despair, though. If you are in OHKO mode and find another clock, you'll exit OHKO
 			mode and get time on your clock, no matter how long you've been in OHKO mode.</p>
 		<table class="table table-responsive">
 		<thead><tr>
@@ -372,7 +346,7 @@
 			<th>Starting Time</th>
 			<th>Green Clocks (+4 minutes)</th>
 			<th>Red Clocks (instant OHKO)</th>
-		</th></thead>
+		</tr></thead>
 		<tbody><tr class="bg-info">
 			<td>Easy</td>
 			<td>20 minutes</td>
@@ -396,7 +370,7 @@
 		</tr></tbody>
 		</table>
 		<h4>OHKO (One Hit Knockout)</h4>
-		<p>Take any damage and Link is a goner. Not for the faint of heart.</p>
+		<p>Take any damage, and Link is a goner. Not for the faint of heart.</p>
 		<h4>Triforce Piece Hunt</h4>
 		<p>Unfortunately, variations are incompatible with Triforce Pieces goal. This option changes
 			your goal to Triforce Pieces.</p>
@@ -406,14 +380,13 @@
 		<p>All Maps, Compasses, and Keys found in chests are no longer tied to their dungeons!</p>
 		<p>You will have to search high and low to find the keys you need to progress in dungeons.
 			Keys found on enemies or under pots will remain the same.</p>
-		<p>Also we wanted to make Maps and Compasses worth more, so here it is: Your overworld map
-			wont show any dungeon information until you collect the map for that dungeon (and if you
-			thought the music would get you by, think again, that's been randomized). Compasses, well
-			those will show you how many chests you have checked in a dungeon after you collect
-			it.</p>
+		<p>Also, Maps and Compasses worth more: Your overworld map won't show any dungeon information
+			until you collect the map for that dungeon (and if you thought the music would get you
+			by, think again, that's been randomized). Compasses, well, those will show you how many
+			chests you have checked in a dungeon after you collect it.</p>
 		<p>You're probably wondering how you know which key / map / compass you found. We've got you
-			covered: there will be a text box that lets you know which dungeon it belongs to, but
-			also the menu will have a table to help you if you lose track.</p>
+			covered: There will be a text box that lets you know which dungeon it belongs to, but
+			the menu will also have a table to help you if you lose track.</p>
 	</div>
 </div>
 

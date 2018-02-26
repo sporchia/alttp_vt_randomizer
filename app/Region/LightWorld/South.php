@@ -118,6 +118,10 @@ class South extends Region {
 			return $items->has('Shovel');
 		});
 
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
+
 		return $this;
 	}
 
