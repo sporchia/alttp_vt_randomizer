@@ -22,11 +22,11 @@ $drops = [
 		'name' => 'Bomb Refill (1)',
 	],
 	'BombRefill4' => [
-		'count' => 2,
+		'count' => 1,
 		'name' => 'Bomb Refill (4)',
 	],
 	'BombRefill8' => [
-		'count' => 1,
+		'count' => 2,
 		'name' => 'Bomb Refill (8)',
 	],
 	'MagicRefillSmall' => [
