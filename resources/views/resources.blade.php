@@ -119,6 +119,7 @@
 		<li>You're guaranteed to get the digging game item by the 30th dig.
 		<li>You're guaranteed to get the Village of Outcasts chest game item on the 1st attempt (can
 			be 1st or 2nd chest).
+		</ul>
 </div>
 </div>
 
