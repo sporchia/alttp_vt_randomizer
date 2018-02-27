@@ -72,7 +72,7 @@
 			Gamepad</a> or an <a href="https://www.amazon.com/dp/B00Y0LUQFE" target="_blank" rel="noopener noreferrer">8Bitdo SFC30 Wireless Bluetooth Controller</a>.</p>
 		<p>There are other supported ways to play, including on original SNES hardware. There are
 			also certain emulators, such as zsnes, that won't work correctly with the randomizer.
-			Join us on <a href="https://discord.gg/TCC6Y42" target="_blank" rel="noopener noreferrer">Discord</a> to learn more!</p>
+			Join us on <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> to learn more!</p>
 	</div>
 </div>
 
@@ -83,7 +83,7 @@
 	<div class="panel-body">
 		<p>You're finally ready to go! The best way to learn is to load up your new ROM and start
 			playing. If you feel like you're stuck, check out this list of common pitfalls, or ask
-			on <a href="https://discord.gg/TCC6Y42" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+			on <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
 		<ul>
 			<li>You can use the Y button to swap between Silver Arrows and Normal Arrows, the Red
 				and Blue Boomerangs, the Mushroom and the Magic Powder, and the Shovel and the

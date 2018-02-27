@@ -18,7 +18,7 @@
 			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTCyiHAGp10lzTeZSlyc1lKsUtgV5FuZcxQLQvjgE4FOXmBESiSjzrn4IfHURqX1to6D_Ns8DspD9K/pubhtml?gid=55970383&single=true&widget=true&headers=false&range=A1:E999&chrome=false"
 			style="width:65%;height:400px;"></iframe></div>
 		<h4>Upcoming Tournaments</h4>
-		<p>Join us for a Standard tournament starting this Spring! Join our <a href="https://discord.gg/TCC6Y42" target="_blank" rel="noopener noreferrer">Discord</a> community to stay up to date!</p>
+		<p>Join us for a Standard tournament starting this Spring! Join our <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> community to stay up to date!</p>
 		<h4>2017 Fall Invitational</h4>
 		<p>The <span style="font-weight:bold;">2017 Fall Invitational</span> has wrapped up!</p>
 		<p><a href="https://www.youtube.com/playlist?list=PLdoWICJMgPKWZKYiZD1uLn529-fdHHqUK" target="_blank" rel="noopener noreferrer">Watch all the matches here!</a></p>
