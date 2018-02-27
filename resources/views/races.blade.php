@@ -25,8 +25,8 @@
 		<p>Scheduled races not fitting in with your schedule? Looking to race with some more uncommon
 			options? Join a pickup race! You'll find willing players at all hours of the day. Join
 			the #race-planning channel in our
-			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord!
-			</a></p>
+			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord!</a>
+		</p>
 	</div>
 </div>
 
@@ -49,6 +49,7 @@
 		<li><a href="https://twitch.tv/alttprandomizer2" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer2</a>
 		<li><a href="https://twitch.tv/alttprandomizer3" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer3</a>
 		<li><a href="https://twitch.tv/alttprandomizer4" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer4</a>
+		</ul>
 	</div>
 </div>
 
@@ -70,9 +71,9 @@
 		<p>Join us for exciting tournament action with expert commentary alongside elite play!</p>
 		<h4>Twice-Yearly Invitational Tournament</h4>
 		<p>Witness the 100 best racers compete for the trophy! Think you have what it takes to go
-			toe-to-toe with the best? Join <a href="https://discord.gg/alttprandomizer"
-			target="_blank" rel="noopener noreferrer">Discord</a> and keep an eye out for qualifying
-			races!</p>
+			toe-to-toe with the best? Join
+			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>
+			and keep an eye out for qualifying races!</p>
 		<p>The Spring Invitational is Standard Mode and runs from March to June, and The Fall
 			Invitational is Open Mode and runs from September to December.</p>
 		<h4>Open Tournaments</h4>

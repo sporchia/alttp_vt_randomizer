@@ -119,7 +119,7 @@ class NorthEast extends Region {
 					|| ($items->has('SilverArrowUpgrade')
 						&& ($items->has('Bow') || $items->has('BowAndArrows'))))
 				&& (
-					(config('game-mode') == 'swordless' && $items->has('Hammer'))
+					($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
 					|| $items->has('L3Sword')
 					|| $items->has('L4Sword')
 					|| $items->has('ProgressiveSword', 3)

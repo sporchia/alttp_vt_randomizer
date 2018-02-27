@@ -626,7 +626,6 @@ return [
 			'bossNormalLocation' => false,
 			'pyramidBowUpgrade' => false,
 			'bossHaveKey' => false,
-			'forceUncleSword' => false,
 			'forceSkullWoodsKey' => false,
 			'wildKeys' => false,
 			'wildBigKeys' => false,
@@ -653,7 +652,6 @@ return [
 		'region' => [
 			'swordsInPool' => false,
 			'pyramidBowUpgrade' => true,
-			'forceUncleSword' => true,
 			'forceSkullWoodsKey' => true,
 			'wildKeys' => false,
 			'wildBigKeys' => false,
@@ -741,6 +739,10 @@ return [
 			'modes' => [
 				'standard' => 'Standard',
 				'open' => 'Open',
+			],
+			'weapons' => [
+				'standard' => 'Randomized',
+				'uncle' => 'Uncle Assured',
 				'swordless' => 'Swordless',
 			],
 			'variations' => [
@@ -781,6 +783,10 @@ return [
 				'modes' => [
 					'standard' => 40,
 					'open' => 40,
+				],
+				'weapons' => [
+					'standard' => 30,
+					'uncle' => 50,
 					'swordless' => 20,
 				],
 				'variations' => [

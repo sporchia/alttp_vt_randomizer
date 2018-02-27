@@ -18,6 +18,7 @@ class World {
 	protected $win_condition;
 	protected $collectable_locations;
 	protected $pre_collected_items;
+	protected $currently_filling_items;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -75,33 +76,6 @@ class World {
 
 		switch ($this->logic) {
 			case 'MajorGlitches':
-				$this->win_condition = function($collected_items) {
-					if ($this->goal == 'dungeons') {
-						if (!$collected_items->has('PendantOfCourage')
-							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')
-							|| !$collected_items->has('DefeatAgahnim')) {
-							return false;
-						}
-					}
-
-					return ($collected_items->has('MoonPearl') || $collected_items->hasABottle())
-						&& $collected_items->canLightTorches()
-						&& (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-						&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
-								|| ($collected_items->has('SilverArrowUpgrade')
-									&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
-						&& $collected_items->has('PegasusBoots')
-						&& $collected_items->has('Crystal1')
-						&& $collected_items->has('Crystal2')
-						&& $collected_items->has('Crystal3')
-						&& $collected_items->has('Crystal4')
-						&& $collected_items->has('Crystal5')
-						&& $collected_items->has('Crystal6')
-						&& $collected_items->has('Crystal7')
-						&& $collected_items->has('DefeatGanon');
-				};
-				break;
 			case 'OverworldGlitches':
 			case 'NoMajorGlitches':
 			default:
@@ -116,8 +90,8 @@ class World {
 							}
 						}
 
-						return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-							&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
+						return ($this->config('mode.weapons') == 'swordless' || $collected_items->hasUpgradedSword())
+							&& ($this->config('mode.weapons') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
 									|| ($collected_items->has('SilverArrowUpgrade')
 										&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 							&& $collected_items->canLightTorches()
@@ -167,9 +141,8 @@ class World {
 						return false;
 					}
 				}
-
-				return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-					&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
+				return ($this->config('mode.weapons') == 'swordless' || $collected_items->hasUpgradedSword())
+					&& ($this->config('mode.weapons') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
 							|| ($collected_items->has('SilverArrowUpgrade')
 								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
 					&& $collected_items->canLightTorches()
@@ -200,6 +173,28 @@ class World {
 		foreach ($this->regions as $name => $region) {
 			$region->setVanilla();
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Get the collection of items left to be filled in this world
+	 *
+	 * @return ItemCollection
+	 */
+	public function getCurrentlyFillingItems() : ItemCollection {
+		return $this->currently_filling_items ?? new ItemCollection([], $this);
+	}
+
+	/**
+	 * Set the collection of items left to be filled in this world
+	 *
+	 * @param ItemCollection $items collection of items that are being filled
+	 *
+	 * @return $this
+	 */
+	public function setCurrentlyFillingItems(ItemCollection $items = null) : self {
+		$this->currently_filling_items = $items;
 
 		return $this;
 	}
@@ -517,7 +512,8 @@ class World {
 	public function config(string $key, $default = null) {
 		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
 			config("alttp.goals.{$this->goal}.$key",
-				config("alttp.{$this->difficulty}.$key", $default)));
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.$key", $default))));
 	}
 
 	/**
