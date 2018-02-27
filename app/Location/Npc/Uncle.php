@@ -106,7 +106,7 @@ class Uncle extends Location {
 			case Item::get('Shovel'):
 				return "your uncle digs it";
 			case Item::get('CaneOfSomaria'):
-				return "your uncle makes blacks";
+				return "your uncle makes blocks";
 			case Item::get('CaneOfByrna'):
 				return "your uncle sparks";
 			case Item::get('Cape'):
