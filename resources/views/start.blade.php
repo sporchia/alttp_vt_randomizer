@@ -40,7 +40,7 @@
 			the patching process provides English text while keeping the glitches unique to the
 			original version intact.</p>
 		<p>If you run into trouble, ask in
-			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord!</a></p>
+			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!</p>
 	</div>
 </div>
 
