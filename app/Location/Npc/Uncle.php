@@ -206,4 +206,5 @@ class Uncle extends Location {
 			default:
 				return "your uncle does nothing";
 		}
+	}
 }
