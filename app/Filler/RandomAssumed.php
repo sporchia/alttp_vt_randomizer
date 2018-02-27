@@ -64,6 +64,8 @@ class RandomAssumed extends Filler {
 		Log::debug(sprintf("Filling %s items in %s locations", $remaining_fill_items->count(),
 			$locations->getEmptyLocations()->count()));
 
+		$this->world->setCurrentlyFillingItems($remaining_fill_items);
+
 		if ($remaining_fill_items->count() > $locations->getEmptyLocations()->count()) {
 			throw new \Exception("Trying to fill more items than available locations.");
 		}

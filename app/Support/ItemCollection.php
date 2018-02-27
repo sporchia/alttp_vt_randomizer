@@ -23,7 +23,10 @@ class ItemCollection extends Collection {
 		foreach ($this->getArrayableItems($items) as $item) {
 			$this->addItem($item);
 		}
-		$this->world = $world;
+		$this->world = $world ?? new class extends World {
+			public function __construct() {}
+			public function config(string $key, $default = NULL) { return null; }
+		};
 	}
 
 	/**
@@ -215,7 +218,7 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function has($key, $at_least = 1) {
-		if (strpos($key, 'Key') === 0 && $this->world && $this->world->config('rom.genericKeys')) {
+		if (strpos($key, 'Key') === 0 && $this->world->config('rom.genericKeys', false)) {
 			return true;
 		}
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
@@ -359,7 +362,7 @@ class ItemCollection extends Collection {
 	 */
 	public function canMeltThings() {
 		return $this->has('FireRod')
-			|| ($this->has('Bombos') && (config('game-mode') == 'swordless' || $this->hasSword()));
+			|| ($this->has('Bombos') && ($this->world->config('mode.weapons') == 'swordless' || $this->hasSword()));
 	}
 
 	/**
@@ -429,7 +432,9 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canKillMostThings($enemies = 5) {
-		return $this->hasSword()
+		return ($this->hasSword()
+				&& (in_array($this->world->config('mode.weapons'), ['uncle', 'swordless'])
+					|| !($this->world->getCurrentlyFillingItems()->count() && $this->world->getCurrentlyFillingItems()->hasSword())))
 			|| $this->has('CaneOfSomaria')
 			|| ($this->has('TenBombs') && $enemies < 6)
 			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))

@@ -202,20 +202,7 @@ class Randomizer {
 				continue;
 			}
 		}
-		if (config('game-mode') != 'swordless') {
-			// put 1 sword back
-			if (count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
-			}
-
-			if ($this->config('region.forceUncleSword', true)) {
-				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
-			} else {
-				array_push($advancement_items, array_pop($nice_items_swords));
-			}
-
-			$nice_items = array_merge($nice_items, $nice_items_swords);
-		} else {
+		if ($this->config('mode.weapons') == 'swordless') {
 			// In swordless we need to catch all swords
 			foreach ($nice_items as $key => $item) {
 				if (is_a($item, Item\Sword::class)) {
@@ -230,9 +217,22 @@ class Randomizer {
 			$world_items = $this->world->collectItems()->values();
 			if (!in_array(Item::get('SilverArrowUpgrade'), $world_items) && !in_array(Item::get('BowAndSilverArrows'), $world_items)) {
 				if (array_search(Item::get('SilverArrowUpgrade'), $nice_items) === false && $this->difficulty !== 'custom') {
-					$nice_items[] = Item::get('SilverArrowUpgrade');
+					$advancement_items[] = Item::get('SilverArrowUpgrade');
 				}
 			}
+		} else {
+			// put 1 sword back
+			if (count($nice_items_swords)) {
+				array_push($advancement_items, array_pop($nice_items_swords));
+			}
+
+			if ($this->config('mode.weapons') == 'uncle') {
+				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+			} else {
+				array_push($advancement_items, array_pop($nice_items_swords));
+			}
+
+			$nice_items = array_merge($nice_items, $nice_items_swords);
 		}
 		// put 1 bottle back
 		if (count($nice_items_bottles)) {
@@ -257,7 +257,7 @@ class Randomizer {
 		}
 		if ($this->world->config('region.wildKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
-				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open', 'swordless']) || $item != Item::get('KeyH2'))) {
+				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open']) || $item != Item::get('KeyH2'))) {
 					unset($dungeon_items[$key]);
 					$advancement_items[] = $item;
 				}
@@ -631,7 +631,8 @@ class Randomizer {
 	public function config($key, $default = null) {
 		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
 			config("alttp.goals.{$this->goal}.$key",
-				config("alttp.{$this->difficulty}.$key", $default)));
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.$key", $default))));
 	}
 
 	/**
@@ -732,10 +733,10 @@ class Randomizer {
 		$rom->setPyramidFairyChests($this->config('region.swordsInPool', true));
 		$rom->setSmithyQuickItemGive($this->config('region.swordsInPool', true));
 
-		$rom->setOpenMode(in_array(config('game-mode'), ['open', 'swordless']));
-		$rom->setSwordlessMode(config('game-mode') == 'swordless');
+		$rom->setOpenMode(in_array(config('game-mode'), ['open']));
+		$rom->setSwordlessMode($this->config('mode.weapons') == 'swordless');
 
-		if (in_array(config('game-mode'), ['open', 'swordless'])) {
+		if (in_array(config('game-mode'), ['open'])) {
 			$rom->removeUnclesSword();
 		}
 

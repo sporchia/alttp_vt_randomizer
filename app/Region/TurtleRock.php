@@ -178,7 +178,7 @@ class TurtleRock extends Region {
 				&& ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 						|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 						|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-					&& (config('game-mode') == 'swordless' || $items->hasSword()))
+					&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 				&& $items->has('MoonPearl') && $items->has('CaneOfSomaria')
 				&& $items->canLiftDarkRocks() && $items->has('Hammer')
 				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
@@ -217,7 +217,7 @@ class TurtleRock extends Region {
 			return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 			&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 			&& $items->has('CaneOfSomaria') && $items->has('Hammer')
 			&& ($items->canLiftDarkRocks() || $items->has('PegasusBoots'))
@@ -354,7 +354,7 @@ class TurtleRock extends Region {
 			return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 			&& $items->has('MoonPearl') && $items->has('CaneOfSomaria')
 			&& $items->has('Hammer') && ($items->canLiftDarkRocks() || $items->has('PegasusBoots'))
 			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);

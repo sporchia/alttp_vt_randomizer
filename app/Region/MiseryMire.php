@@ -137,7 +137,7 @@ class MiseryMire extends Region {
 				&& ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 						|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 						|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-					&& (config('game-mode') == 'swordless' || $items->hasSword()))
+					&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 				&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
 				&& $items->canKillMostThings(8)
 				&& $this->world->getRegion('Mire')->canEnter($locations, $items);
@@ -180,7 +180,7 @@ class MiseryMire extends Region {
 				&& ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 			&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
 			&& $this->world->getRegion('Mire')->canEnter($locations, $items);

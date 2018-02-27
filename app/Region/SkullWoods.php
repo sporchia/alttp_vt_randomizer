@@ -117,7 +117,7 @@ class SkullWoods extends Region {
 		$this->locations["Skull Woods - Mothula"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->has('FireRod')
-				&& (config('game-mode') == 'swordless' || $items->hasSword())
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
 				&& $items->has('KeyD3', 3)
 				&& $this->boss->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
