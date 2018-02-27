@@ -11,33 +11,47 @@
 	</div>
 	<div class="panel-body">
 		<h4>Standard</h4>
-		<p>This mode is closest to the original game. You will start in Link's bed, get a sword from
-			Uncle, and rescue Zelda before continuing with the rest of the game.</p>
+		<p>This mode is closest to the original game. You will start in Link's bed, get a weapon from
+			Uncle (depending on your Swords option, see below), and rescue Zelda before continuing
+			with the rest of the game.</p>
 		<h4>Open</h4>
 		<p>This mode starts with the option to start in your house or the sanctuary, you are free to
 			explore. There are a few point to note in this mode:</p>
 			<ul>
-			<li>Uncle is already in the sewers and has a randomized item (not necessarily a sword!)
+			<li>Uncle is already in the sewers and has an item.
 			<li>Dark rooms don't get a free light cone, not even the sewers.
-			<li>You won't start with a sword, and it might be a while before you find one. Bombs are a
-				great early weapon, as are bushes and signs! Use whatever items you find to
-				defend yourself.
 			</ul>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Swords</h3>
+	</div>
+	<div class="panel-body">
+		<h4>Standard</h4>
+		<p>Uncle always has a sword. The remaining upgrades are randomized.</p>
+		<h4>Randomized</h4>
+		<p>All sword upgrades are randomized. You won't start with a sword, and it might be a while
+			before you find one. Bombs are a great early weapon, as are bushes and signs! Use
+			whatever items you find to defend yourself.
 		<h4>Swordless</h4>
-		<p>Not for the faint of heart. You'll need to use unconventional methods along every step of
-			your adventure. Some changes have been made to account for the lack of a sword:
+		<p>All swords are removed from the game. Because the game expects you to have a sword, the
+			following changes are present only in swordless mode:</p>
 			<ul>
-			<li>Swords have been replaced with four copies of 20 rupees (the green rupee sprite with
+			<li>Swords have been replaced with four copies of 20 rupees (a green rupee sprite with
 				"20" on it).
 			<li>The curtains blocking progress in Agahnim's Tower are pre-opened, as are the vines in
 				Skull Woods.
-			<li>Medallions can only be used to open Misery Mire or Turtle Rock. Normally, they require a sword to use.
+			<li>Medallions can only be used to open Misery Mire or Turtle Rock. Normally, they
+				require a sword to use.
 			<li>Ganon now takes damage from the hammer.
 			<li>Silver arrows are available in all difficulties.
 			<li>Ether and Bombos tablets require the Hammer and Book of Mudora.
 			</ul>
 	</div>
 </div>
+
 
 <div class="panel panel-info">
 	<div class="panel-heading">
