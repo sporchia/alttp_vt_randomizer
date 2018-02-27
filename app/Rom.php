@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-23';
-	const HASH = '14cc227469f9ecf4974f918b6e2a3943';
+	const BUILD = '2018-02-26';
+	const HASH = '0e0eb15748d49e36225b9bfbe4cfdce4';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -757,6 +757,19 @@ class Rom {
 	 */
 	public function setCaneOfByrnaSpikeCaveUsage(int $normal = 0x04, int $half = 0x02, int $quarter = 0x01) : self {
 		$this->write(0x18016B, pack('C*', $normal, $half, $quarter));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Byrna's ability to make you Invulnerable
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCaneOfByrnaInvulnerability(bool $enable = true) : self {
+		$this->write(0x18004F, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -1904,6 +1917,7 @@ class Rom {
 		$this->setCaneOfByrnaSpikeCaveUsage();
 		$this->setCapeSpikeCaveUsage();
 		$this->setByrnaCaveSpikeDamage(0x08);
+		$this->setCaneOfByrnaInvulnerability(true);
 
 		switch ($level) {
 			case 0:
@@ -1924,6 +1938,7 @@ class Rom {
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
 				$this->write(0x45C42, pack('C*', 0x08, 0x08, 0x08));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
@@ -1937,6 +1952,7 @@ class Rom {
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
 				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
@@ -1950,6 +1966,7 @@ class Rom {
 			case 3:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
 				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills
 				$this->setShopBlueShieldCost(10000);
@@ -2103,6 +2120,19 @@ class Rom {
 	 */
 	public function setEscapeAssist(int $flags = 0x00) : self {
 		$this->write(0x18004D, pack('C*', $flags));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Escape Fills
+	 *
+	 * @param int $flags assist -----mba m: Magic refill, b: Bomb refill, a: Arrow refill
+	 *
+	 * @return $this
+	 */
+	public function setEscapeFills(int $flags = 0x00) : self {
+		$this->write(0x18004E, pack('C*', $flags));
 
 		return $this;
 	}

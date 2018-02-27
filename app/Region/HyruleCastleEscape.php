@@ -42,7 +42,7 @@ class HyruleCastleEscape extends Region {
 			new Location\Chest("Hyrule Castle - Boomerang Chest", 0xE974, null, $this),
 			new Location\Chest("Hyrule Castle - Map Chest", 0xEB0C, null, $this),
 			new Location\Chest("Hyrule Castle - Zelda's Cell", 0xEB09, null, $this),
-			new Location\Npc("Link's Uncle", 0x2DF45, null, $this),
+			new Location\Npc\Uncle("Link's Uncle", 0x2DF45, null, $this),
 			new Location\Chest("Secret Passage", 0xE971, null, $this),
 			new Location\Prize\Event("Zelda", null, null, $this),
 		]);

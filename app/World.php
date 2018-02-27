@@ -640,6 +640,15 @@ class World {
 	}
 
 	/**
+	 * Get Difficulty in this world
+	 *
+	 * @return string
+	 */
+	public function getDifficulty() : string {
+		return $this->difficulty;
+	}
+
+	/**
 	 * Get Location in this world by name
 	 *
 	 * @param string $name name of the Location
