@@ -29,12 +29,23 @@
 		<h3 class="panel-title">Swords</h3>
 	</div>
 	<div class="panel-body">
-		<h4>Standard</h4>
-		<p>Uncle always has a sword. The remaining upgrades are randomized.</p>
 		<h4>Randomized</h4>
 		<p>All sword upgrades are randomized. You won't start with a sword, and it might be a while
 			before you find one. Bombs are a great early weapon, as are bushes and signs! Use
 			whatever items you find to defend yourself.
+		<p>If this option is combined with Standard Mode (see above), your uncle will graciously
+			give you one of the following items to ensure you can complete the escape sequence:</p>
+			<ul>
+			<li>Sword Upgrade (yes, it's still possible)
+			<li>Hammer
+			<li>Bow + Full Arrow Refill
+			<li>Full Bomb Refill
+			<li>Fire Rod + Full Magic Refill
+			<li>Cane of Somaria + Full Magic Refill
+			<li>Cane of Byrna + Full Magic Refill
+			</ul>
+		<h4>Uncle Assured</h4>
+		<p>Uncle always has a sword. The remaining upgrades are randomized.</p>
 		<h4>Swordless</h4>
 		<p>All swords are removed from the game. Because the game expects you to have a sword, the
 			following changes are present only in swordless mode:</p>
