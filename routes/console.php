@@ -59,8 +59,13 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 				config('alttp.randomizer.daily_weights.item.variations')));
 			$game_mode = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.modes')), array_keys(config('alttp.randomizer.item.modes'))),
 				config('alttp.randomizer.daily_weights.item.modes')));
+			$weapons_mode = head(weighted_random_pick(array_combine(array_keys(config('alttp.randomizer.item.weapons')), array_keys(config('alttp.randomizer.item.weapons'))),
+				config('alttp.randomizer.daily_weights.item.weapons')));
 
-			config(['game-mode' => $game_mode]);
+			config([
+				'game-mode' => $game_mode,
+				'alttp.mode.weapons' => $weapons_mode,
+			]);
 
 			$rom = new ALttP\Rom();
 			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);

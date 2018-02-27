@@ -258,7 +258,7 @@
 		<p>The following items have had their functionality adjusted:</p>
 		<ul>
 		<li>Magic Cape uses 2x Magic as Normal (except in Spike Cave)
-		<li>Cane of Byrna uses 2x Magic as Normal (except in Spike Cave)
+		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
 		<li>Magic Powder does not turn Bubbles into Fairies
 		<li>Bug Net doesn't catch Fairies
 		<li>There are only 2 Bottles (4 in Glitched Logic)
@@ -282,7 +282,7 @@
 		<p>The following items have had their functionality further adjusted from Hard:</p>
 		<ul>
 		<li>Magic Cape uses 4x Magic as Normal (except in Spike Cave)
-		<li>Cane of Byrna uses 4x Magic as Normal (except in Spike Cave)
+		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
 		<li>There is only 1 Bottle (4 in Major Glitched Logic)
 		<li>Potions heal 1 heart and restore 1/4 magic
 		<li>Shields in Shops cannot be purchased

@@ -112,13 +112,7 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-				+ '_' + rom.difficulty
-				+ '-' + rom.mode
-				+ '-' + rom.goal
-				+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-				+ '_' + rom.seed
-				+ (rom.special ? '_special' : '') + '.sfc')
+		return rom.save(rom.downloadFilename() + '.sfc')
 	});
 });
 </script>

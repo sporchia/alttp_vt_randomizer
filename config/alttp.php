@@ -741,7 +741,7 @@ return [
 				'open' => 'Open',
 			],
 			'weapons' => [
-				'standard' => 'Randomized',
+				'randomized' => 'Randomized',
 				'uncle' => 'Uncle Assured',
 				'swordless' => 'Swordless',
 			],
@@ -785,7 +785,7 @@ return [
 					'open' => 40,
 				],
 				'weapons' => [
-					'standard' => 30,
+					'randomized' => 30,
 					'uncle' => 50,
 					'swordless' => 20,
 				],

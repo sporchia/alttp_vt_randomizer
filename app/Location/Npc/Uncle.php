@@ -20,7 +20,7 @@ class Uncle extends Location {
 		$item = $this->getItem();
 
 		$world = $this->region->getWorld();
-		if ($world->config('mode.weapons') == 'standard') {
+		if ($world->config('mode.weapons') == 'randomized') {
 			if ($item instanceof Item\Bow) {
 				$rom->setEscapeFills(0b00000001);
 			} elseif ($item instanceof Item\Upgrade\Bomb) {
@@ -35,7 +35,7 @@ class Uncle extends Location {
 		}
 
 		if ($world->getDifficulty() == 'easy') {
-			if ($world->config('mode.weapons') == 'standard') {
+			if ($world->config('mode.weapons') == 'randomized') {
 				if ($item instanceof Item\Bow) {
 					$rom->setEscapeAssist(0b00000001);
 				} elseif ($item instanceof Item\Upgrade\Bomb) {

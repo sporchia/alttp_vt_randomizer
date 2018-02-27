@@ -609,6 +609,7 @@ class Randomizer {
 			'goal' => $this->goal,
 			'build' => Rom::BUILD,
 			'mode' => config('game-mode', 'standard'),
+			'weapons' => $this->config('mode.weapons', 'randomized')
 		]);
 
 		if ($this->config('rom.HardMode', 0)) {

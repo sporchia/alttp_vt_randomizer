@@ -1918,13 +1918,13 @@ class Rom {
 		$this->setCapeSpikeCaveUsage();
 		$this->setByrnaCaveSpikeDamage(0x08);
 		$this->setCaneOfByrnaInvulnerability(true);
+		// Bryna magic amount used per "cycle"
+		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
 		switch ($level) {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-				// Bryna magic amount used per "cycle"
-				$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
@@ -1937,7 +1937,6 @@ class Rom {
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
-				$this->write(0x45C42, pack('C*', 0x08, 0x08, 0x08));
 				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
@@ -1951,7 +1950,6 @@ class Rom {
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
 				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
@@ -1965,7 +1963,6 @@ class Rom {
 				break;
 			case 3:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
 				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills

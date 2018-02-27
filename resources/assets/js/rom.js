@@ -286,7 +286,19 @@ var ROM = (function(blob, loaded_callback) {
 		(new Uint8Array(resizedArrayBuffer, 0, resizeLen)).set(new Uint8Array(baseArrayBuffer, 0, resizeLen));
 
 		return resizedArrayBuffer;
-	}
+	};
+
+	this.downloadFilename = function() {
+		return this.name
+			|| 'ALttP - VT_' + this.logic
+			+ '_' + this.difficulty
+			+ '-' + this.mode
+			+ (this.weapons ? '_' + this.weapons : '')
+			+ '-' + this.goal
+			+ (this.variation == 'none' ? '' : '_' + this.variation)
+			+ '_' + this.seed
+			+ (this.special ? '_special' : '');
+	};
 });
 
 module.exports = ROM;

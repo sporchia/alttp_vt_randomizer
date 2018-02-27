@@ -104,16 +104,7 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		var rom_name = rom.name
-			|| 'VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed
-			+ (rom.special ? '_special' : '');
-
-		return rom.save('ALttP - ' + rom_name + '.sfc');
+		return rom.save(rom.downloadFilename() + '.sfc');
 	});
 });
 </script>
