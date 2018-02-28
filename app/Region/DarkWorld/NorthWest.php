@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -31,6 +33,28 @@ class NorthWest extends Region {
 			new Location\Npc("Blacksmith", $world->config('region.swordsInPool', true) ? 0x18002A : 0x3355C, null, $this),
 			new Location\Npc("Purple Chest", 0x33D68, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop("Dark World Forest Shop",                   0x03, 0xC1, 0x0110, 0x75, $this),
+			new Shop("Dark World Lumberjack Hut Shop",           0x03, 0xC1, 0x010F, 0x57, $this),
+			new Shop("Dark World Outcasts Shop",                 0x03, 0xC1, 0x010F, 0x60, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("Dark Sanctuary Hint",              0x83, 0xC1, 0x0112, 0x5A, $this, [0xDBBCC => [0x58]]),
+			new Shop\TakeAny("Fortune Teller (Dark)",            0x83, 0xC1, 0x010F, 0x66, $this, [0xDBBD8 => [0x60]]),
+		]);
+
+		$this->shops["Dark World Forest Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedShield'), 500)
+			->addInventory(1, Item::get('Bee'), 10)
+			->addInventory(2, Item::get('TenArrows'), 30);
+		$this->shops["Dark World Lumberjack Hut Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('BlueShield'), 50)
+			->addInventory(2, Item::get('TenBombs'), 50);
+		$this->shops["Dark World Outcasts Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('BlueShield'), 50)
+			->addInventory(2, Item::get('TenBombs'), 50);
 	}
 
 	/**

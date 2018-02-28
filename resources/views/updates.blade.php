@@ -12,6 +12,7 @@
 		<li>Maps/Compasses logically reauired for completion of dungeon in keysanity</li>
 		<li>Mirror warp sound is back in background music disable</li>
 		<li>Better placement of maps/compassess in dungeons</li>
+		<li>Byrna no longer protects you in hard/expert/insanity, but also uses normal amounts of magic</li>
 		<li>Customizer:<ul>
 			<li>Added "Test Generation" button, so you don't bloat the DB when just testing ideas</li>
 			<li>Removed some unuseful items</li>

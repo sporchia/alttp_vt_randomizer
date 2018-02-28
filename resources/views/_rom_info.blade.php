@@ -6,6 +6,7 @@
 	<div>Variation: <span class="variation"></span></div>
 	<div style="display:none">Shuffle: <span class="shuffle"></span></div>
 	<div>Mode: <span class="mode"></span></div>
+	<div style="display:none">Swords: <span class="weapons"></span></div>
 	<div>Goal: <span class="goal"></span></div>
 	<div>Seed: <span class="seed"></span></div>
 	<div style="display:none">Special: <span class="special"></span></div>
@@ -32,6 +33,12 @@ function parseInfoFromPatch(patch) {
 	$('.info .build').html(patch.spoiler.meta.build);
 	$('.info .goal').html(patch.spoiler.meta.goal);
 	$('.info .mode').html(patch.spoiler.meta.mode);
+	if (patch.spoiler.meta.weapons) {
+		$('.info .weapons').parent().show();
+		$('.info .weapons').html(patch.spoiler.meta.weapons);
+	} else {
+		$('.info .weapons').parent().hide();
+	}
 	$('.info .variation').html(patch.spoiler.meta.variation);
 	if (patch.difficulty == 'custom') {
 		$('.info .difficulty').html(patch.difficulty + ' (' + patch.spoiler.meta.difficulty_mode + ')');

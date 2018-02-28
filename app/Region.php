@@ -1,11 +1,14 @@
 <?php namespace ALttP;
 
+use ALttP\Support\ShopCollection;
+
 /**
  * A logical collection of Locations. Can have special can_enter function that will apply to all locaitons contained,
  * and can_complete function set to validate that the region prize (if set) can be obtained.
  */
 class Region {
 	protected $locations;
+	protected $shops;
 	protected $can_enter;
 	protected $can_complete;
 	protected $name = 'Unknown';
@@ -23,6 +26,7 @@ class Region {
 	 */
 	public function __construct(World $world) {
 		$this->world = $world;
+		$this->shops = new ShopCollection;
 
 		// hydrate region items.
 		foreach ($this->region_items as $key => $item) {
@@ -285,5 +289,25 @@ class Region {
 	 */
 	public function locationsWithItem(Item $item = null) {
 		return $this->locations->locationsWithItem($item);
+	}
+
+	/**
+	 * Get all the Shops in this Region
+	 *
+	 * @return Support\ShopCollection
+	 */
+	public function getShops() {
+		return $this->shops;
+	}
+
+	/**
+	 * Get Shop in this Region by name
+	 *
+	 * @param string $name name of the Shop
+	 *
+	 * @return Shop
+	 */
+	public function getShop(string $name) {
+		return $this->shops[$name];
 	}
 }

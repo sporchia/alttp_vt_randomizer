@@ -656,21 +656,11 @@ $(function() {
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.sfc');
+		return rom.save(rom.downloadFilename() + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), rom.downloadFilename() + '.txt');
 	});
 
 	localforage.getItem('vt.customizer.lastTab').then(function(href) {

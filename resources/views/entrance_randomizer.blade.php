@@ -244,7 +244,9 @@ $(function() {
 		localforage.setItem('vt.er.difficulty', $(this).val());
 	});
 	localforage.getItem('vt.er.difficulty').then(function(value) {
-		if (!value) return;
+		if (!value) {
+			value = 'normal';
+		}
 		$('#difficulty').val(value);
 		$('#difficulty').trigger('change');
 	});

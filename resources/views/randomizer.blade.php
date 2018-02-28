@@ -267,33 +267,18 @@ $(function() {
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.sfc');
+		return rom.save(rom.downloadFilename()+ '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), rom.downloadFilename() + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic
-					+ '_' + rom.difficulty
-					+ '-' + rom.mode
-					+ '-' + rom.goal
-					+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-					+ '_' + rom.seed + '.sfc');
+				return rom.save(rom.downloadFilename()+ '.sfc');
 			});
 	});
 
@@ -394,6 +379,7 @@ $(function() {
 				var fname = 'ALttP - VT_' + data.patch.logic
 					+ '_' + data.patch.difficulty
 					+ '-' + data.patch.spoiler.meta.mode
+					+ (data.patch.spoiler.meta.weapons ? '-' + data.patch.spoiler.meta.weapons : '')
 					+ '-' + data.patch.spoiler.meta.goal
 					+ (data.patch.spoiler.meta.variation == 'none' ? '' : '_' + data.patch.spoiler.meta.variation)
 					+ '_' + data.patch.seed;
