@@ -232,6 +232,10 @@ class Randomizer {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
+			if ($this->config('region.takeAnys', false)) {
+				array_pop($nice_items_swords);
+			}
+
 			$nice_items = array_merge($nice_items, $nice_items_swords);
 		}
 		// put 1 bottle back
