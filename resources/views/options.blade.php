@@ -54,8 +54,8 @@
 				"20" on it).
 			<li>The curtains blocking progress in Agahnim's Tower are pre-opened, as are the vines in
 				Skull Woods.
-			<li>Medallions can only be used to open Misery Mire or Turtle Rock. Normally, they
-				require a sword to use.
+			<li>Medallions can only be used to open Misery Mire or Turtle Rock, or to progress
+				through Ice Palace. Normally, they require a sword to use.
 			<li>Ganon now takes damage from the hammer.
 			<li>Silver arrows are available in all difficulties.
 			<li>Ether and Bombos tablets require the Hammer and Book of Mudora.
@@ -77,8 +77,9 @@
 		<p>You may be required to save and quit in certain situations, like getting back to the light
 			world when you're in the dark world without the mirror.</p>
 		<h4>Overworld Glitches</h4>
-		<p>This mode accounts for some of the easier-to-execute overworld glitches. Two types of major
-			glitches are required:</p>
+		<p>This mode <span class="running-now">requires</span> some of the easier-to-execute
+			overworld glitches. It's more difficult than simply using fake flippers to visit the
+			hobo! The two types of major glitches are required:</p>
 		<ul>
 		<li>Overworld boots clipping
 		<li>Mirror clipping (DMD, TR Middle Clip, and Fluteless Mire)
@@ -141,36 +142,8 @@
 			Pedestal! Beware, you may have to venture all over Hyrule, including Ganon's Tower,
 			in order to complete your quest.</p>
 		<h4>Triforce Pieces</h4>
-		<p>The Triforce has been shattered and scattered throughout the world. Collect enough pieces
-			to win!</p>
-		<table class="table table-responsive">
-		<thead><tr>
-			<th>Difficulty</th>
-			<th>Required</th>
-			<th>Total</th>
-		</tr></thead>
-		<tbody><tr class="bg-info">
-			<td>Easy</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-success">
-			<td>Normal</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-warning">
-			<td>Hard</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-danger">
-			<td>Expert</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-danger">
-			<td>Insane</td>
-			<td>20</td>
-			<td>30</td>
-		</tr></tbody>
-		</table>
+		<p>The Triforce has been shattered and scattered into 30 pieces throughout Hyrule! Collect
+			20 pieces to win!</p>
 	</div>
 </div>
 
@@ -253,7 +226,8 @@
 				<ul>
 				<li>5x Ten Arrows
 				<li>1x Single Arrow
-				<li>10x Three Bombs
+				<li>1x Ten Bombs
+				<li>9x Three Bombs
 				<li>5x Three Hundred Rupees
 				<li>1x One Hundred Rupees
 				<li>7x Fifty Rupees
