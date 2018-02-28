@@ -497,8 +497,7 @@ class Randomizer {
 			return;
 		}
 
-		Shop::setDefaultShops();
-		$shops = Shop::all();
+		$shops = $this->world->getShops();
 
 		if ($this->config('region.takeAnys', false)) {
 			$shops->filter(function($shop) {
@@ -506,8 +505,8 @@ class Randomizer {
 			})->randomCollection(4)->each(function($shop) {
 				$shop->setActive(true);
 				$shop->setShopkeeper('old_man');
-				$shop->addInventory(0, Item::get('BottleWithBluePotion'), 0);
-				$shop->addInventory(1, Item::get('HeartContainer'), 0);
+				$shop->addInventory(0, Item::get('BluePotion'), 0);
+				$shop->addInventory(1, Item::get('BossHeartContainer'), 0);
 			});
 
 			$old_man = $shops->filter(function($shop) {
@@ -517,8 +516,7 @@ class Randomizer {
 
 			$old_man->setActive(true);
 			$old_man->setShopkeeper('old_man');
-			$old_man->addInventory(0, Item::get('Lamp'), 0);
-			$old_man->addInventory(1, Item::get('L1Sword'), 0);
+			$old_man->addInventory(0, Item::get('ProgressiveSword'), 0);
 		}
 
 		$shops->filter(function($shop) {
@@ -536,7 +534,7 @@ class Randomizer {
 
 		if ($this->config('rom.rupeeBow', false)) {
 			// One shop has arrows for sale, we need to set the price correct for
-			$dw_shop = Shop::get("Dark World Forest Shop");
+			$dw_shop = $this->world->getShop("Dark World Forest Shop");
 			if ($this->config('rom.rupeeBow') && !$dw_shop->getActive()) {
 				$dw_shop->setActive(true);
 				$dw_shop->addInventory(2, Item::get('Arrow'), 80);
@@ -587,7 +585,7 @@ class Randomizer {
 				}
 			});
 		}
-		foreach (Shop::all() as $shop) {
+		foreach ($this->world->getShops() as $shop) {
 			if ($shop->getActive()) {
 				$shop_data = [
 					'location' => $shop->getName(),
@@ -673,7 +671,7 @@ class Randomizer {
 		// testing features
 		$rom->setGenericKeys($this->config('rom.genericKeys', false));
 		if ($this->config('rom.genericKeys', false)) {
-			$rom->setupCustomShops(Shop::all());
+			$rom->setupCustomShops($this->world->getShops());
 		}
 		$rom->setRupeeArrow($this->config('rom.rupeeBow', false));
 		$rom->setLockAgahnimDoorInEscape(false);

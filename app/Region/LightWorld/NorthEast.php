@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -32,6 +34,10 @@ class NorthEast extends Region {
 			new Location\Standing("Zora's Ledge", 0x180149, null, $this),
 			new Location\Chest("Waterfall Fairy - Left", 0xE9B0, null, $this),
 			new Location\Chest("Waterfall Fairy - Right", 0xE9D1, null, $this),
+		]);
+
+		$this->shops = new ShopCollection([
+			new Shop\TakeAny("Long Fairy Cave", 0x83, 0xA0, 0x0112, 0x55, $this, [0xDBBC7 => [0x58]]),
 		]);
 	}
 

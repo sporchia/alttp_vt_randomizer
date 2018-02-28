@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -46,6 +48,20 @@ class NorthWest extends Region {
 			new Location\Standing("Graveyard Ledge", 0x180004, null, $this),
 			new Location\Standing("Mushroom", 0x180013, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop("Light World Kakariko Shop",                0x03, 0xA0, 0x011F, 0x46, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("Fortune Teller (Light)",           0x83, 0xA0, 0x011F, 0x65, $this, [0xDBBD7 => [0x46]]),
+			new Shop\TakeAny("Bush Covered House",               0x83, 0xA0, 0x011F, 0x44, $this, [0xDBBB6 => [0x46]]),
+			new Shop\TakeAny("Lost Woods Gamble",                0x83, 0xA0, 0x0112, 0x3C, $this, [0xDBBAE => [0x58]]),
+			new Shop\TakeAny("Lumberjack House",                 0x83, 0xA0, 0x011F, 0x76, $this, [0xDBBE8 => [0x46]]),
+		]);
+
+		$this->shops["Light World Kakariko Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('Heart'), 10)
+			->addInventory(2, Item::get('TenBombs'), 50);
 	}
 
 	/**

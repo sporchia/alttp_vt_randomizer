@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -34,6 +36,15 @@ class East extends Region {
 			new Location\Chest("Paradox Cave Upper - Right", 0xEB3C, null, $this),
 			new Location\Standing("Floating Island", 0x180141, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop("Light World Death Mountain Shop",          0x43, 0xA0, 0x00FF, 0x00, $this),
+		]);
+
+		$this->shops["Light World Death Mountain Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('Heart'), 10)
+			->addInventory(2, Item::get('TenBombs'), 50);
 	}
 
 	/**

@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -31,6 +33,23 @@ class South extends Region {
 			new Location\Npc("Hype Cave - NPC", 0x180011, null, $this),
 			new Location\Dig("Digging Game", 0x180148, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop("Dark World Lake Hylia Shop",               0x03, 0xC1, 0x010F, 0x74, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("Archery Game",                     0x83, 0xC1, 0x010F, 0x59, $this, [0xDBBCB => [0x60]]),
+			new Shop\TakeAny("Bonk Fairy (Dark)",                0x83, 0xC1, 0x0112, 0x78, $this, [0xDBBEA => [0x58]]),
+			new Shop\TakeAny("Dark Lake Hylia Fairy",            0x83, 0xC1, 0x0112, 0x6D, $this, [0xDBBDF => [0x58]]),
+			new Shop\TakeAny("Dark Lake Hylia Ledge Fairy",      0x83, 0xC1, 0x0112, 0x81, $this, [0xDBBF3 => [0x58]]),
+			new Shop\TakeAny("Dark Lake Hylia Ledge Hint",       0x83, 0xC1, 0x0112, 0x6A, $this, [0xDBBDC => [0x58]]),
+			new Shop\TakeAny("Dark Lake Hylia Ledge Spike Cave", 0x83, 0xC1, 0x0112, 0x7C, $this, [0xDBBEE => [0x58]]),
+			new Shop\TakeAny("Swamp Fairy",                      0x83, 0xC1, 0x0112, 0x6C, $this, [0xDBBDE => [0x58]]),
+		]);
+
+		$this->shops["Dark World Lake Hylia Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('BlueShield'), 50)
+			->addInventory(2, Item::get('TenBombs'), 50);
 	}
 
 	/**

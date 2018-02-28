@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -34,6 +36,18 @@ class NorthEast extends Region {
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Left", 0xE980, null, $this));
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Right", 0xE983, null, $this));
 		}
+
+		$this->shops = new ShopCollection([
+			new Shop("Dark World Potion Shop",                   0x03, 0xC1, 0x010F, 0x6F, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("East Dark World Hint",             0x83, 0xC1, 0x0112, 0x69, $this, [0xDBBDB => [0x58]]),
+			new Shop\TakeAny("Palace of Darkness Hint",          0x83, 0xC1, 0x010F, 0x68, $this, [0xDBBDA => [0x60]]),
+		]);
+
+		$this->shops["Dark World Potion Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('BlueShield'), 50)
+			->addInventory(2, Item::get('TenBombs'), 50);
 
 		// set these to not upgrade
 		$this->locations["Pyramid Fairy - Sword"]->setItem(Item::get('L1Sword'));

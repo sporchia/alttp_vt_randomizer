@@ -2,6 +2,7 @@
 
 use ALttP\Support\ItemCollection;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use Closure;
 use Log;
 
@@ -15,6 +16,7 @@ class World {
 	protected $goal;
 	protected $regions = [];
 	protected $locations;
+	protected $shops;
 	protected $win_condition;
 	protected $collectable_locations;
 	protected $pre_collected_items;
@@ -67,11 +69,13 @@ class World {
 		];
 
 		$this->locations = new LocationCollection;
+		$this->shops = new ShopCollection;
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
 			$region->init($logic);
 			$this->locations = $this->locations->merge($region->getLocations());
+			$this->shops = $this->shops->merge($region->getShops());
 		}
 
 		switch ($this->logic) {
@@ -690,5 +694,25 @@ class World {
 	 */
 	public function getRegionsWithItem(Item $item = null) {
 		return $this->getLocationsWithItem($item)->getRegions();
+	}
+
+	/**
+	 * Get all the Shops in all Regions in this world
+	 *
+	 * @return ShopCollection
+	 */
+	public function getShops() {
+		return $this->shops;
+	}
+
+	/**
+	 * Get Shop in this world by name
+	 *
+	 * @param string $name name of the Shop
+	 *
+	 * @return Shop
+	 */
+	public function getShop(string $name) {
+		return $this->shops[$name];
 	}
 }
