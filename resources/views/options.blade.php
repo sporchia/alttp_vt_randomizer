@@ -161,6 +161,7 @@
 		<li>Shields
 		<li>Bottles
 		<li>½ Magic
+		<li>Silver Arrows
 		</ul>
 		<p>Finding the second ½ Magic will upgrade you to ¼ Magic!</p>
 		<p>While in Standard Mode, if Uncle has the Bow, Bombs, Fire Rod, Cane of Somaria, or Cane of
@@ -264,7 +265,8 @@
 		<li>Magic Powder does not turn Bubbles into Fairies
 		<li>Bug Net doesn't catch Fairies
 		<li>There are only 2 Bottles (4 in Glitched Logic)
-		<li>Potions heal 5 hearts and restore 1/2 magic
+        <li>Potions heal 5 hearts and restore 1/2 magic (except in Spike Cave where they behave
+			normally)
 		</ul>
 		<h4>Expert</h4>
 		<p>Looking for even more of a challenge? The following items have been removed, in addition to Hard:</p>
@@ -286,23 +288,24 @@
 		<li>Magic Cape uses 4x Magic as Normal (except in Spike Cave)
 		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
 		<li>There is only 1 Bottle (4 in Major Glitched Logic)
-		<li>Potions heal 1 heart and restore 1/4 magic
+		<li>Potions heal 1 heart and restore 1/4 magic (except in Spike Cave where they behave
+			normally)
 		<li>Shields in Shops cannot be purchased
 		</ul>
 		<h4>Insane</h4>
 		<p>Expert not cutting it for you? Have you truly lost your mind? The following items have
 			been removed, in addition to Expert:</p>
 		<ul>
-		<li>Pieces of Heart</li>
+		<li>Pieces of Heart
 		</ul>
 		<p>The following items have had their total count reduced from Expert:</p>
 		<ul>
-		<li>Arrows</li>
-		<li>Bombs</li>
+		<li>Arrows
+		<li>Bombs
 		</ul>
 		<p>The following items have had their functionality further adjusted from Expert:</p>
 		<ul>
-		<li>Potions don't heal or restore magic</li>
+		<li>Potions don't heal or restore magic (except in Spike Cave where they behave normally)
 		</ul>
 
 	</div>
