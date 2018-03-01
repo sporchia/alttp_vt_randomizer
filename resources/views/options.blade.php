@@ -163,6 +163,9 @@
 		<li>½ Magic
 		</ul>
 		<p>Finding the second ½ Magic will upgrade you to ¼ Magic!</p>
+		<p>While in Standard Mode, if Uncle has the Bow, Bombs, Fire Rod, Cane of Somaria, or Cane of
+			Byrna, Link will be granted unlimited ammo for that item for the duration of the escape
+			sequence.</p>
 		<p>Additionally, you'll have 3x the opportunities to get the Lamp!</p>
 		<h4>Normal</h4>
 		<p>In this mode you'll find all the items from the original game.</p>
