@@ -392,6 +392,13 @@
 		<p>You're probably wondering how you know which key / map / compass you found. We've got you
 			covered: There will be a text box that lets you know which dungeon it belongs to, but
 			the menu will also have a table to help you if you lose track.</p>
+		<h4>Retro</h4>
+		<p>A callback to the first entry in the Legend of Zelda series, Retro Mode uncouples small
+			keys from dungeons. Any small key you find can be used on any locked door.</p>
+		<p>Keys may be found outside of dungeons. Keys that drop from enemies or from under pots
+			remain unchanged.</p>
+		<p>Small keys are also available in certain shops. These keys are not part of the logic and
+			are there to help players progress more freely.</p>
 	</div>
 </div>
 
