@@ -789,6 +789,8 @@ class Randomizer {
 				break;
 		}
 
+		$rom->setGameType('item');
+
 		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
 

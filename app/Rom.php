@@ -1707,15 +1707,15 @@ class Rom {
 	 */
 	public function setGameType(string $setting) : self {
 		switch ($setting) {
-			case 'Plandomizer':
-				$byte = 0x01;
-				break;
-			case 'other':
-				$byte = 0xFF;
-				break;
-			case 'Randomizer':
+			case 'enemizer':
+				$byte = 0b00000101;
+			case 'entrance':
+				$byte = 0b00000110;
+			case 'room':
+				$byte = 0b00001000;
+			case 'item':
 			default:
-				$byte = 0x00;
+				$byte = 0b00000100;
 		}
 
 		$this->write(0x180211, pack('C', $byte));

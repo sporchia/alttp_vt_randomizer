@@ -38,7 +38,9 @@ Route::get('sprites', function () {
 });
 
 Route::get('entrance/randomize{r?}', function () {
-	return view('entrance_randomizer');
+	return view('entrance_randomizer', [
+		'allow_quickswap' => true,
+	]);
 });
 
 Route::get('customize{r?}', function () {

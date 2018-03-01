@@ -58,6 +58,10 @@
 			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="generate-sram-trace">SRAM Trace<sup><strong>*</strong></sup></label>
 		</div>
+		<div class="col-md-6">
+			<input id="generate-quickswap" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+			<label for="generate-quickswap">Item Quickswap{!! (isset($allow_quickswap) && $allow_quickswap) ? '' : '<sup><strong>*</strong></sup>' !!}</label>
+		</div>
 		@if (!isset($disallow_disable_music) || !$disallow_disable_music)
 		<div class="col-md-6 music-disable-toggle">
 			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
@@ -146,6 +150,19 @@ $(function() {
 		if (value === null) return;
 		$('#generate-sram-trace').prop('checked', value);
 		$('#generate-sram-trace').trigger('change');
+	});
+
+	$('#generate-quickswap').on('change', function() {
+		if (rom) {
+			rom.setQuickswap($(this).prop('checked'));
+		}
+		localforage.setItem('rom.quickswap', $(this).prop('checked'));
+		$('input[name=quickswap]').val($(this).prop('checked'));
+	});
+	localforage.getItem('rom.quickswap').then(function(value) {
+		if (value === null) return;
+		$('#generate-quickswap').prop('checked', value);
+		$('#generate-quickswap').trigger('change');
 	});
 
 	$('#menu-speed').on('change', function() {
