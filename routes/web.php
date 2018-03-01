@@ -144,6 +144,10 @@ Route::get('watch', function(Request $request) {
 	return view('watch');
 });
 
+Route::get('contribute', function(Request $request) {
+	return view('contribute');
+});
+
 Route::get('spoiler_click/{seed_id?}', function() {
 	return "Ok";
 });
