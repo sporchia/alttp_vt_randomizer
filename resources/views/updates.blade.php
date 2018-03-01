@@ -4,12 +4,12 @@
 <h2>VT8.29</h2>
 <div class="well">
 	<ul>
-		<li>Easy mode now get's 2 chances at silver arrow upgrade</li>
+		<li>Easy mode now gets 2 chances at silver arrow upgrade</li>
 		<li>Triforce hunt lessens the chance of finding triforce pieces in GT</li>
 		<li>Removed the GT Junk pre-fill for all glitched modes</li>
 		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
 		<li>Small keys in spoiler for key-sanity</li>
-		<li>Maps/Compasses logically reauired for completion of dungeon in keysanity</li>
+		<li>Maps/Compasses logically required for completion of dungeon in keysanity</li>
 		<li>Mirror warp sound is back in background music disable</li>
 		<li>Better placement of maps/compassess in dungeons</li>
 		<li>Byrna no longer protects you in hard/expert/insanity, but also uses normal amounts of magic</li>
@@ -24,7 +24,7 @@
 			<li>Item list header should be sticky</li>
 			<li>Remembers where you were</li>
 			<li>Save/Restore settings!</li>
-			<li>Name's matter (well, more than they used to)</li>
+			<li>Names matter (well, more than they used to)</li>
 			<li>Add notes to your custom games</li>
 			<li>Set the hard mode adjustments (e.g. bottle refill)</li>
 			<li>You can allow dark room navigation</li>
