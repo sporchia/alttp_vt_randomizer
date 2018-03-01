@@ -11,7 +11,7 @@
 	<div class="panel-body">
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
-			href="https://discord.gg/TCC6Y42"
+			href="https://discord.gg/alttprandomizer"
 			rel="noopener noreferrer"
 			role="button"
 			target="_blank">Join our Discord</a></div><br/>
