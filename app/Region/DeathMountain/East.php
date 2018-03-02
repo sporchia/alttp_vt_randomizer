@@ -39,6 +39,8 @@ class East extends Region {
 
 		$this->shops = new ShopCollection([
 			new Shop("Light World Death Mountain Shop",          0x43, 0xA0, 0x00FF, 0x00, $this),
+
+			new Shop\TakeAny("Hookshot Fairy",                   0x83, 0xA0, 0x0112, 0x50, $this, [0xDBBC2 => [0x58]]),
 		]);
 
 		$this->shops["Light World Death Mountain Shop"]->clearInventory()

@@ -287,7 +287,7 @@ Artisan::command('alttp:ss {dir} {outdir}', function($dir, $outdir) {
 			continue;
 		}
 		foreach ($data as $section => $sdata) {
-			if (in_array($section, ['playthrough', 'meta', 'Special'])) {
+			if (in_array($section, ['playthrough', 'meta', 'Special', 'Shops'])) {
 				continue;
 			}
 			foreach ($sdata as $location => $item) {

@@ -125,15 +125,25 @@ class NorthEast extends Region {
 					|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl')));
 		};
 
-		// canbeataga2 && ((MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows)))) || (TS && (lamp || fire rod)))
 		$this->prize_location->setRequirements(function($locations, $items) {
+			if ($this->world->getGoal() == 'dungeons'
+				&& (!$items->has('PendantOfCourage')
+					|| !$items->has('PendantOfWisdom')
+					|| !$items->has('PendantOfPower')
+					|| !$items->has('DefeatAgahnim'))) {
+				return false;
+			}
+
 			return $items->has('MoonPearl')
-				&& $items->has('DefeatAgahnim2') && $items->canLightTorches()
-				&& ($items->has('BowAndSilverArrows')
+				&& $items->has('DefeatAgahnim2')
+				&& ($items->canLightTorches() || ($items->has('FireRod') && $items->canExtendMagic(2)))
+				&& (!$this->world->config('region.requireBetterEquipment', false)
+					|| ($items->has('BowAndSilverArrows')
 					|| ($items->has('SilverArrowUpgrade')
-						&& ($items->has('Bow') || $items->has('BowAndArrows'))))
+						&& ($items->has('Bow') || $items->has('BowAndArrows')))))
 				&& (
 					($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
+					|| (!$this->world->config('region.requireBetterEquipment', false) && $items->hasUpgradedSword())
 					|| $items->has('L3Sword')
 					|| $items->has('L4Sword')
 					|| $items->has('ProgressiveSword', 3)

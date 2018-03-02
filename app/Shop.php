@@ -57,10 +57,21 @@ class Shop {
 		);
 	}
 
-	public function writeExtraData(Rom $rom) {
+	/**
+	 * Write extra data into the rom for this location. Generally, this is used for take-anys that will essentually
+	 * hijack another cave/house and place themselves in there. Usually it's done by wiriting the type ID into
+	 * the table starting at 0xDBB73 offset by the entrance ID.
+	 *
+	 * @param Rom $rom Rom to write data to
+	 *
+	 * @return $this
+	 */
+	public function writeExtraData(Rom $rom) : self {
 		foreach ($this->writes as $address => $bytes) {
 			$rom->write($address, pack('C*', ...$bytes));
 		}
+
+		return $this;
 	}
 
 	public function setActive(bool $active) : self {

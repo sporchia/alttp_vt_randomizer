@@ -71,7 +71,7 @@
 					<div class="row">
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
-								<span class="input-group-addon">Mode</span>
+								<span class="input-group-addon">State</span>
 								<select id="mode" class="form-control selectpicker">
 									@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
 										<option value="{{ $mode }}">{{ $name }}</option>

@@ -43,7 +43,6 @@ class South extends Region {
 			new Shop\TakeAny("Dark Lake Hylia Ledge Fairy",      0x83, 0xC1, 0x0112, 0x81, $this, [0xDBBF3 => [0x58]]),
 			new Shop\TakeAny("Dark Lake Hylia Ledge Hint",       0x83, 0xC1, 0x0112, 0x6A, $this, [0xDBBDC => [0x58]]),
 			new Shop\TakeAny("Dark Lake Hylia Ledge Spike Cave", 0x83, 0xC1, 0x0112, 0x7C, $this, [0xDBBEE => [0x58]]),
-			new Shop\TakeAny("Swamp Fairy",                      0x83, 0xC1, 0x0112, 0x6C, $this, [0xDBBDE => [0x58]]),
 		]);
 
 		$this->shops["Dark World Lake Hylia Shop"]->clearInventory()

@@ -124,6 +124,16 @@ class Randomizer {
 
 		$regions = $this->world->getRegions();
 
+		switch ($this->goal) {
+			case 'pedestal':
+				$this->world->getLocation("Master Sword Pedestal")->setItem(Item::get('Triforce'));
+				break;
+			case 'ganon':
+			case 'dungeons':
+				$this->world->getLocation("Ganon")->setItem(Item::get('Triforce'));
+				break;
+		}
+
 		// Set up World before we fill dungeons
 		$this->setShops();
 		$this->setMedallions($regions);
@@ -161,11 +171,6 @@ class Randomizer {
 			$locations["Thieves' Town - Blind"]->setItem($boss_item);
 			$locations["Turtle Rock - Trinexx"]->setItem($boss_item);
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
-		}
-
-		// Pedestal is the goal
-		if ($this->goal == 'pedestal') {
-			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
 		}
 
 		if ($this->logic == 'MajorGlitches') {

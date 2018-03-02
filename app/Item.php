@@ -204,7 +204,7 @@ class Item {
 			new Item('ProgressiveGlove', 'Progressive Glove', [0x61]),
 			new Item('singleRNG', 'Unique RNG Item', [0x62]),
 			new Item('multiRNG', 'Non-Unique RNG Item', [0x63]),
-			new Item('Triforce', 'Triforce', [0x6A]),
+			new Item\Event('Triforce', 'Triforce', [0x6A]),
 			new Item('PowerStar', 'Power Star', [0x6B]),
 			new Item('TriforcePiece', 'Triforce Piece', [0x6C]),
 			new Item\Map('MapLW', 'Light World Map', [0x70]),

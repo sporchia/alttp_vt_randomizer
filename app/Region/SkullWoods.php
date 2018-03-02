@@ -131,8 +131,6 @@ class SkullWoods extends Region {
 			return true;
 		});
 
-
-
 		$this->can_enter = function($locations, $items) {
 			return $items->has('RescueZelda')
 				&& $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
