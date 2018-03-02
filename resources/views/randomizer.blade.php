@@ -139,7 +139,7 @@
 	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
-	<input type="hidden" name="weapons" value="standard" />
+	<input type="hidden" name="weapons" value="randomized" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />

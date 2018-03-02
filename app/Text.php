@@ -778,7 +778,7 @@ class Text {
 
 			'blinds_hut_dude' => $converter->convertDialogCompressed("I'm just some dude, this is blind's hut."),
 
-			'end_triforce' => $converter->convertDialogCompressed("\n     G G"),
+			'end_triforce' => $converter->convertDialogCompressed("{SPEED2}\n{MENU}\n{NOBORDER}\n     G G"),
 			// 174
 			'toppi_fallen' => $converter->convertDialogCompressed("Ouch!\n\nYou Jerk!"),
 
