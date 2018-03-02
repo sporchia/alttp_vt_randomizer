@@ -69,17 +69,17 @@ class World {
 		$this->locations = new LocationCollection;
 
 		$this->prizepacks = [
-			'heart', 'heart', 'heart', 'heart', 'greenRupee', 'heart', 'heart', 'greenRupee',
-			'blueRupee', 'greenRupee', 'blueRupee', 'redRupee', 'blueRupee', 'greenRupee', 'blueRupee', 'blueRupee',
-			'largeMagic', 'smallMagic', 'smallMagic', 'blueRupee', 'largeMagic', 'smallMagic', 'heart', 'smallMagic',
-			'bomb1', 'bomb1', 'bomb1', 'bomb4', 'bomb1', 'bomb1', 'bomb8', 'bomb1',
-			'arrow5', 'heart', 'arrow5', 'arrow10', 'arrow5', 'heart', 'arrow5', 'arrow10',
-			'smallMagic', 'greenRupee', 'heart', 'arrow5', 'smallMagic', 'bomb1', 'greenRupee', 'heart',
-			'heart', 'faerie', 'largeMagic', 'redRupee', 'bomb8', 'heart', 'redRupee', 'arrow10',
-			'greenRupee', 'blueRupee', 'redRupee',
-			'greenRupee', 'redRupee',
-			'greenRupee',
-			'redRupee',
+			'0' => new Drops\PrizePack('0', 8),
+			'1' => new Drops\PrizePack('1', 8),
+			'2' => new Drops\PrizePack('2', 8),
+			'3' => new Drops\PrizePack('3', 8),
+			'4' => new Drops\PrizePack('4', 8),
+			'5' => new Drops\PrizePack('5', 8),
+			'6' => new Drops\PrizePack('6', 8),
+			'pull' => new Drops\PrizePack('pull', 3),
+			'crab' => new Drops\PrizePack('crab', 2),
+			'stun' => new Drops\PrizePack('stun', 1),
+			'fish' => new Drops\PrizePack('fish', 1),
 		];
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
@@ -723,5 +723,25 @@ class World {
 	 */
 	public function getRegionsWithItem(Item $item = null) {
 		return $this->getLocationsWithItem($item)->getRegions();
+	}
+
+	public function setDrop($pack, $ind, $drop) {
+		$this->prizepacks[$pack]->getDrops()[$ind]->setDrop($drop);
+	}
+
+	public function getAllDrops() {
+		$drops = [];
+		foreach ($this->prizepacks as $pack) {
+			$drops = array_merge($drops, $pack->getDrops());
+		}
+		return $drops;
+	}
+
+	public function getEmptyDropSlots() {
+		$emptyDrops = [];
+		foreach ($this->prizepacks as $pack) {
+			$emptyDrops = array_merge($emptyDrops, $pack->getEmptyDrops());
+		}
+		return $emptyDrops;
 	}
 }

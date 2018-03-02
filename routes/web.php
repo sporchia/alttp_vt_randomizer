@@ -257,8 +257,12 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 				$world->addPreCollectedItem(Item::get($item));
 			} catch (Exception $e) {}
 		}
-		foreach ($request->input('drops') as $pack => $item) {
 
+		foreach ($request->input('drops') as $pack => $item) {
+			if ($item != 'auto_fill') {
+				$parts = explode('-', $pack);
+				$world->setDrop($parts[2],$parts[3],Sprite::get($item));
+			}
 		}
 	}
 

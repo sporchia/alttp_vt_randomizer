@@ -330,29 +330,32 @@ function applySeed(rom, seed, second_attempt) {
 				}
 			}
 			formData.eq = starting_equipment;
-			if (test) {
-				$.post('/test' + (seed ? '/' + seed : ''), formData, function(patch) {
-					$('.info').show();
-					$('button[name=save-spoiler]').prop('disabled', false);
-					resolve({rom: rom, patch: patch});
-				}).fail(reject);
-			} else {
-				$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
-					rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
-					.then(rom.parseSprGfx)
-					.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
-					.then(rom.setHeartSpeed($('#heart-speed').val()))
-					.then(rom.setMenuSpeed($('#menu-speed').val()))
-					.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
-					.then(rom.setHeartColor($('#heart-color').val()))
-					.then(function(rom) {
+			localforage.getItem('vt.custom.drops.packs').then(function(drops) {
+				formData.drops = drops;
+				if (test) {
+					$.post('/test' + (seed ? '/' + seed : ''), formData, function(patch) {
 						$('.info').show();
-						$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+						$('button[name=save-spoiler]').prop('disabled', false);
 						resolve({rom: rom, patch: patch});
-					}));
-				}, 'json')
-				.fail(reject);
-			}
+					}).fail(reject);
+				} else {
+					$.post('/seed' + (seed ? '/' + seed : ''), formData, function(patch) {
+						rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
+						.then(rom.parseSprGfx)
+						.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
+						.then(rom.setHeartSpeed($('#heart-speed').val()))
+						.then(rom.setMenuSpeed($('#menu-speed').val()))
+						.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+						.then(rom.setHeartColor($('#heart-color').val()))
+						.then(function(rom) {
+							$('.info').show();
+							$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
+							resolve({rom: rom, patch: patch});
+						}));
+					}, 'json')
+					.fail(reject);
+				}
+			});
 		});
 	});
 }
