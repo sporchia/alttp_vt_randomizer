@@ -19,6 +19,8 @@ class TurtleRock extends Region {
 		0x155AB,
 	];
 
+	protected $map_reveal = 0x0008;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD7',

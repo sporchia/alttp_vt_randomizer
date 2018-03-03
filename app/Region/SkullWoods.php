@@ -23,6 +23,8 @@ class SkullWoods extends Region {
 		0x1560B,
 	];
 
+	protected $map_reveal = 0x0080;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD3',

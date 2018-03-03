@@ -16,6 +16,8 @@ class IcePalace extends Region {
 		0x155BF,
 	];
 
+	protected $map_reveal = 0x0040;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD5',

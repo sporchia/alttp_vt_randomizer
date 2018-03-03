@@ -297,6 +297,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$world = $rom->writeVanilla();
 		$rand = new ALttP\Randomizer('vanilla', 'NoMajorGlitches', 'ganon', 'none');
 		$rand->setWorld($world);
+		$rom->setRestrictFairyPonds(false);
 		return json_encode([
 			'seed' => 'vanilla',
 			'logic' => $rand->getLogic(),

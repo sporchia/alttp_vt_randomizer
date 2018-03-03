@@ -713,8 +713,8 @@ class Text {
 			'pond_of_wishing_good_luck' => $converter->convertDialogCompressed("\n is good luck"),
 
 			'pond_of_wishing_meh_luck' => $converter->convertDialogCompressed("\n is meh luck"),
-
-			'pond_of_wishing_bad_luck' => $converter->convertDialogCompressed("\n leopard luck"),
+			// Repurposed to no items in Randomizer
+			'pond_of_wishing_bad_luck' => $converter->convertDialogCompressed("Why you come in here and pretend like you have something this fountain wants? Come back with bottles!"),
 
 			'pond_of_wishing_fortune' => $converter->convertDialogCompressed("by the way, your fortune,"),
 

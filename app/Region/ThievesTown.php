@@ -16,6 +16,8 @@ class ThievesTown extends Region {
 		0x155C6,
 	];
 
+	protected $map_reveal = 0x0010;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD4',

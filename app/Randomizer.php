@@ -686,6 +686,7 @@ class Randomizer {
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
+		$rom->setRestrictFairyPonds(true);
 		$rom->setLimitProgressiveSword($this->config('item.overflow.count.Sword', 4),
 			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitProgressiveShield($this->config('item.overflow.count.Shield', 3),
@@ -718,6 +719,17 @@ class Randomizer {
 				break;
 			default:
 				$rom->setGanonInvincible('crystals');
+		}
+
+		if ($this->config('rom.mapOnPickup', false)) {
+			$green_pendant_region = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first()->getRegion();
+
+			$rom->setMapRevealSahasrahla($green_pendant_region->getMapReveal());
+
+			$crystal5_region = $this->world->getLocationsWithItem(Item::get('Crystal5'))->first()->getRegion();
+			$crystal6_region = $this->world->getLocationsWithItem(Item::get('Crystal6'))->first()->getRegion();
+
+			$rom->setMapRevealBombShop($crystal5_region->getMapReveal() | $crystal6_region->getMapReveal());
 		}
 
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));

@@ -33,6 +33,7 @@
 			<li>You can set Link's starting health</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
+		<li>Sahasrahla and Bomb Shop dude will mark your map after you talk to them</li>
 		<li>Stored water walking glitch is back</li>
 		<li>Triforce Hunt is now always 20/30 for all difficulties</li>
 		<li>All Lamps in Easy are before dark rooms</li>

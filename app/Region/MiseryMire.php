@@ -16,6 +16,8 @@ class MiseryMire extends Region {
 		0x155B9,
 	];
 
+	protected $map_reveal = 0x0100;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD6',
