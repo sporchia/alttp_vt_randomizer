@@ -1597,7 +1597,6 @@ class Randomizer {
 	 *
 	 * @return array
 	 */
-
 	public function getDropsPool() {
 		$drops = [];
 
@@ -1648,8 +1647,6 @@ class Randomizer {
 	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.
 	 * this now also handles prize pull trees.
 	 *
-	 * @TODO: create sprite classes
-	 * @TODO: create prize pack classes
 	 * @TODO: move remaining writes to Rom class
 	 */
 	public function writePrizePacksToRom(Rom $rom) {
@@ -1666,7 +1663,7 @@ class Randomizer {
 		}, $this->world->getAllDrops());
 
 		if ($this->config('rom.rupeeBow', false)) {
-			$shuffled = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+			$drop_bytes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
 		}
 
 		if ($this->config('bees', false)) {
