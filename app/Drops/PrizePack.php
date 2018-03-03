@@ -10,8 +10,8 @@
   /**
   * Constructor for PrizePack class
   *
-  * @param String the name of the Prize Pack
-  * @param int the number of slots the Prize Pack has
+  * @param String $name the name of the Prize Pack
+  * @param int $slots the number of slots the Prize Pack has
   */
    public function __construct($name, $slots) {
      $this->name = $name;
