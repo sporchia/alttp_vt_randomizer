@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "62414a496198b5c9b021712e319a787e",
+    "content-hash": "fa60d2ad114755ec69c8ce36a13ecfab",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3250,11 +3250,11 @@
         },
         {
             "name": "z3/entrancerandomizer",
-            "version": "0.5.2.1",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
-                "reference": "tags/0.5.2.1-dev"
+                "reference": "tags/0.6.0"
             },
             "type": "library"
         }
