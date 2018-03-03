@@ -78,7 +78,7 @@ $drops = [
 					</td>
 					<td class="col-md-3">
 						<input id="item-drops-placed-{{ $key }}" type="number" min="0" max="63" step="1" value="0" readonly
-							class="custom-drops-placed input-sm">
+							tabindex="-1" class="custom-drops-placed input-sm">
 					</td>
 					<td class="col-md-6">
 						<label for="item-drops-count-{{ $key }}">{{ $item['name'] }}</label>
