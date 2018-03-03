@@ -94,12 +94,6 @@
 			<label for="cust-region-wildBigKeys">Big Keys shuffled outside dungeon</label>
 			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, big keys that are randomly placed will be restricted to their respective dungeons. If Yes, they will be able to be randomly placed in any item location. This does not affect manually placed big keys."></span>
 		</div>
-		<div class="col-md-6 pb-5">
-			<input id="cust-bees" type="checkbox" name="data[alttp.custom.bees]"
-				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="Not" data-size="small">
-			<label id="bees-label" for="cust-bees">the Bees</label>
-			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, there will be a normal amount of bees in the game. If Yes, swarms of bees will be shuffled into enemy prize packs."></span>
-		</div>
 		<div class="clearfix"></div>
 		<div class="col-md-6 pb-5">
 			<span class="pull-right glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="Only applies to Triforce Hunt. The number of triforce pieces required to complete the game."></span>
@@ -191,11 +185,6 @@ $(function() {
 			}
 		}
 	});
-
-	$('#cust-bees').on('change', function() {
-		$('#bees-label').html(($(this).prop('checked')) ? 'More Bees!' : 'The Bees!');
-	});
-	$('#cust-bees').trigger('change');
 
 	localforage.getItem('vt.custom.switches').then(function(value) {
 		if (value !== null) {
