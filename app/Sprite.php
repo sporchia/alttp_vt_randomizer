@@ -206,7 +206,7 @@ class Sprite {
 			new Sprite("Zelda", "Princess Zelda", [0x76]),
 			new Sprite("Antifairy2", "Antifairy (Alternate)", [0x77]),
 			new Sprite("VillageElder", "Village Elder", [0x78]),
-			new Sprite("Bee", "Bee", [0x79]), // Bee hoard?
+			new Sprite\Droppable("Bee", "Bee Swarm", [0x79]), // Bee hoard?
 			new Sprite("Agahnim", "Agahnim", [0x7A]),
 			new Sprite("AgahnimBall", "Agahnim Energy Ball", [0x7B]),
 			new Sprite("Hyu", "Hyu", [0x7C]),
@@ -263,7 +263,7 @@ class Sprite {
 			new Sprite("PipeU", "Up Pipe", [0xAF]),
 			new Sprite("PipeR", "Right Pipe", [0xB0]),
 			new Sprite("PipeL", "Left Pipe", [0xB1]),
-			new Sprite\Droppable("BeeGood", "Good bee again?", [0xB2]), // released bee
+			new Sprite\Droppable("BeeGood", "Good Bee", [0xB2]), // released bee
 			new Sprite("HylianInscription", "Hylian Inscription", [0xB3]),
 			new Sprite("PurpleChest", "Thief's chest (not the one that follows you, the one that you grab from the DW smithy house)", [0xB4]),
 			new Sprite("BombSalesman", "Bomb Salesman", [0xB5]),

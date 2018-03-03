@@ -51,7 +51,11 @@ $drops = [
 	],
 	'BeeGood' => [
 		'count' => 0,
-		'name' => 'Good bee again?',
+		'name' => 'Good Bee',
+	],
+	'Bee' => [
+		'count' => 0,
+		'name' => 'Bee Swarm',
 	],
 ];
 ?>

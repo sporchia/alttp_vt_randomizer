@@ -1639,6 +1639,9 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('drop.count.BeeGood', 0); $i++) {
 			array_push($drops, Sprite::get('BeeGood'));
 		}
+		for ($i = 0; $i < $this->config('drop.count.Bee', 0); $i++) {
+			array_push($drops, Sprite::get('Bee'));
+		}
 
 		return $drops;
 	}
