@@ -1285,52 +1285,6 @@ class Randomizer {
  		return $advancement_items;
  	}
 
-	public function getDropsPool() {
-		$drops = [];
-
-		for ($i = 0; $i < $this->config('drop.count.Heart', 13); $i++) {
-			array_push($drops, Sprite::get('Heart'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.RupeeGreen', 9); $i++) {
-			array_push($drops, Sprite::get('RupeeGreen'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.RupeeBlue', 7); $i++) {
-			array_push($drops, Sprite::get('RupeeBlue'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.RupeeRed', 6); $i++) {
-			array_push($drops, Sprite::get('RupeeRed'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.BombRefill1', 7); $i++) {
-			array_push($drops, Sprite::get('BombRefill1'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.BombRefill4', 1); $i++) {
-			array_push($drops, Sprite::get('BombRefill4'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.BombRefill8', 2); $i++) {
-			array_push($drops, Sprite::get('BombRefill8'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.MagicRefillSmall', 6); $i++) {
-			array_push($drops, Sprite::get('MagicRefillSmall'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.MagicRefillFull', 3); $i++) {
-			array_push($drops, Sprite::get('MagicRefillFull'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.ArrowRefill5', 5); $i++) {
-			array_push($drops, Sprite::get('ArrowRefill5'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.ArrowRefill10', 3); $i++) {
-			array_push($drops, Sprite::get('ArrowRefill10'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.Fairy', 1); $i++) {
-			array_push($drops, Sprite::get('Fairy'));
-		}
-		for ($i = 0; $i < $this->config('drop.count.BeeGood', 0); $i++) {
-			array_push($drops, Sprite::get('BeeGood'));
-		}
-
-		return $drops;
-	}
-
 	/**
 	 * Get all the Items to insert into the Locations Available, should be randomly shuffled
 	 *
@@ -1612,6 +1566,58 @@ class Randomizer {
 		}
 
 		return $items_to_find;
+	}
+
+	/**
+	 * Get all the drops to insert into the PrizePackSlots Available, should be randomly shuffled
+	 *
+	 * @return array
+	 */
+
+	public function getDropsPool() {
+		$drops = [];
+
+		for ($i = 0; $i < $this->config('drop.count.Heart', 13); $i++) {
+			array_push($drops, Sprite::get('Heart'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeGreen', 9); $i++) {
+			array_push($drops, Sprite::get('RupeeGreen'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeBlue', 7); $i++) {
+			array_push($drops, Sprite::get('RupeeBlue'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeRed', 6); $i++) {
+			array_push($drops, Sprite::get('RupeeRed'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill1', 7); $i++) {
+			array_push($drops, Sprite::get('BombRefill1'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill4', 1); $i++) {
+			array_push($drops, Sprite::get('BombRefill4'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill8', 2); $i++) {
+			array_push($drops, Sprite::get('BombRefill8'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.MagicRefillSmall', 6); $i++) {
+			array_push($drops, Sprite::get('MagicRefillSmall'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.MagicRefillFull', 3); $i++) {
+			array_push($drops, Sprite::get('MagicRefillFull'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.ArrowRefill5', 5); $i++) {
+			array_push($drops, Sprite::get('ArrowRefill5'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.ArrowRefill10', 3); $i++) {
+			array_push($drops, Sprite::get('ArrowRefill10'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.Fairy', 1); $i++) {
+			array_push($drops, Sprite::get('Fairy'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BeeGood', 0); $i++) {
+			array_push($drops, Sprite::get('BeeGood'));
+		}
+
+		return $drops;
 	}
 
 	/**
