@@ -142,6 +142,17 @@ class NorthEast extends Region {
 				return false;
 			}
 
+			if ($this->world->getGoal() == 'ganon'
+				&& (!$items->has('Crystal1')
+					|| !$items->has('Crystal2')
+					|| !$items->has('Crystal3')
+					|| !$items->has('Crystal4')
+					|| !$items->has('Crystal5')
+					|| !$items->has('Crystal6')
+					|| !$items->has('Crystal7'))) {
+				return false;
+			}
+
 			return $items->has('MoonPearl')
 				&& $items->has('DefeatAgahnim2')
 				&& ($items->canLightTorches() || ($items->has('FireRod') && $items->canExtendMagic(2)))

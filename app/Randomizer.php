@@ -117,6 +117,8 @@ class Randomizer {
 	public function makeSeed(int $rng_seed = null) {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
+		// http://php.net/manual/en/migration72.incompatible.php#migration72.incompatible.rand-mt_rand-output
+		// GAHHHHHHH!!!! php 7.1 and 7.2 generate different things :/
 		mt_srand($this->rng_seed);
 		$this->seed->seed = $this->rng_seed;
 
