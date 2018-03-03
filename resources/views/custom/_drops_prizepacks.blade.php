@@ -55,7 +55,7 @@ $otherDrops = array_filter($prizepacks, function($v) {
 					@foreach ($item['items'] as $innerkey => $inneritem)
 					<tr>
 						<td class="col-md-3">
-							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables form-control selectpicker"></select>
+							<select name="drops[prize-pack-{{ $key }}-{{ $innerkey }}]" class="custom-drop droppables form-control selectpicker"></select>
 						</td>
 					</tr>
 					@endforeach
@@ -73,7 +73,7 @@ $otherDrops = array_filter($prizepacks, function($v) {
 					@foreach ($item['items'] as $innerkey => $inneritem)
 					<tr>
 						<td class="col-md-3">
-							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables form-control selectpicker"></select>
+							<select name="drops[prize-pack-{{ $key }}-{{ $innerkey }}]" class="custom-drop droppables form-control selectpicker"></select>
 						</td>
 					</tr>
 					@endforeach
@@ -90,7 +90,7 @@ $(function() {
 	$('#set-vanilla').on('click', function() {
 		for (pack in prize_packs) {
 			for (item in prize_packs[pack].items) {
-				$('select[name=prize-pack-' + pack + '-' + item).val(prize_packs[pack].items[item]).trigger('change');
+				$('select[name="drops[prize-pack-' + pack + '-' + item + ']"').val(prize_packs[pack].items[item]).trigger('change');
 			}
 		}
 	});
@@ -98,7 +98,7 @@ $(function() {
 	$('#set-random').on('click', function() {
 		for (pack in prize_packs) {
 			for (item in prize_packs[pack].items) {
-				$('select[name=prize-pack-' + pack + '-' + item).val('auto_fill').trigger('change');
+				$('select[name="drops[prize-pack-' + pack + '-' + item + ']"').val('auto_fill').trigger('change');
 			}
 		}
 	});
