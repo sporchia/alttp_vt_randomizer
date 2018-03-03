@@ -55,7 +55,7 @@ $otherDrops = array_filter($prizepacks, function($v) {
 					@foreach ($item['items'] as $innerkey => $inneritem)
 					<tr>
 						<td class="col-md-3">
-							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables"></select>
+							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables form-control selectpicker"></select>
 						</td>
 					</tr>
 					@endforeach
@@ -73,7 +73,7 @@ $otherDrops = array_filter($prizepacks, function($v) {
 					@foreach ($item['items'] as $innerkey => $inneritem)
 					<tr>
 						<td class="col-md-3">
-							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables"></select>
+							<select name="prize-pack-{{ $key }}-{{ $innerkey }}" class="custom-drop droppables form-control selectpicker"></select>
 						</td>
 					</tr>
 					@endforeach
