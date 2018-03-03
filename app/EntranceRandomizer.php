@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.5.2.1';
+	const VERSION = '0.6.0';
 	private $spoiler;
 	private $patch;
 	protected $shuffle;
@@ -38,14 +38,6 @@ class EntranceRandomizer extends Randomizer {
 		$this->timer_mode = 'none';
 		$this->seed = new Seed;
 		$this->keysanity = false;
-
-		// Add shuffle Ganon
-		switch ($this->shuffle) {
-			case 'madness':
-			case 'insanity':
-				$this->shuffle .= ' --shuffleganon';
-				break;
-		}
 
 		switch ($this->variation) {
 			case 'timed-race':
@@ -88,9 +80,12 @@ class EntranceRandomizer extends Randomizer {
 			. ' --seed ' . $rng_seed
 			. ' --jsonout --loglevel error');
 
+		Log::debug($proc->getCommandLine());
 		$proc->run();
 
 		if (!$proc->isSuccessful()) {
+			Log::debug($proc->getOutput());
+			Log::debug($proc->getErrorOutput());
 			throw new \Exception("Unable to generate");
 		}
 
@@ -119,7 +114,7 @@ class EntranceRandomizer extends Randomizer {
 		switch ($this->logic) {
 			case 'noglitches': return 'er-no-glitches-' . static::VERSION;
 		}
-		return 'unknown-' . static::LOGIC;
+		return 'er-unknown-' . static::LOGIC;
 	}
 
 	/**
