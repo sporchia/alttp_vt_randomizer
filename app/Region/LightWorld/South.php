@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -43,6 +45,26 @@ class South extends Region {
 			new Location\Standing("Sunken Treasure", 0x180145, null, $this),
 			new Location\Dig\HauntedGrove("Flute Spot", 0x18014A, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop("Light World Lake Hylia Shop",              0x03, 0xA0, 0x0112, 0x58, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("20 Rupee Cave",                    0x83, 0xA0, 0x0112, 0x7B, $this, [0xDBBED => [0x58]]),
+			new Shop\TakeAny("50 Rupee Cave",                    0x83, 0xA0, 0x0112, 0x79, $this, [0xDBBEB => [0x58]]),
+			new Shop\TakeAny("Bonk Fairy (Light)",               0x83, 0xA0, 0x0112, 0x77, $this, [0xDBBE9 => [0x58]]),
+			new Shop\TakeAny("Capacity Upgrade",                 0x83, 0xA0, 0x0112, 0x5D, $this, [0xDBBCF => [0x58]]),
+			new Shop\TakeAny("Desert Fairy",                     0x83, 0xA0, 0x0112, 0x72, $this, [0xDBBE4 => [0x58]]),
+			new Shop\TakeAny("Good Bee Cave",                    0x83, 0xA0, 0x0112, 0x6B, $this, [0xDBBDD => [0x58]]),
+			new Shop\TakeAny("Lake Hylia Fortune Teller",        0x83, 0xA0, 0x011F, 0x73, $this, [0xDBBE5 => [0x46]]),
+			new Shop\TakeAny("Lake Hylia Fairy",                 0x83, 0xA0, 0x0112, 0x5E, $this, [0xDBBD0 => [0x58]]),
+			new Shop\TakeAny("Light Hype Fairy",                 0x83, 0xA0, 0x0112, 0x6C, $this, [0xDBBDE => [0x58]]),
+			new Shop\TakeAny("Kakariko Gamble Game",             0x83, 0xA0, 0x011F, 0x67, $this, [0xDBBDA => [0x46]]),
+		]);
+
+		$this->shops["Light World Lake Hylia Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('Heart'), 10)
+			->addInventory(2, Item::get('TenBombs'), 50);
 	}
 
 	/**
@@ -88,7 +110,7 @@ class South extends Region {
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
 			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
-					|| (config('game-mode') == 'swordless' && $items->has('Hammer')))
+					|| ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')))
 				&& $items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		});
 
@@ -117,6 +139,10 @@ class South extends Region {
 		$this->locations["Flute Spot"]->setRequirements(function($locations, $items) {
 			return $items->has('Shovel');
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
 
 		return $this;
 	}
@@ -155,7 +181,7 @@ class South extends Region {
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
 			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
-					|| (config('game-mode') == 'swordless' && $items->has('Hammer')))
+					|| ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')))
 				&& ($items->has('PegasusBoots')
 					|| ($items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
 		});

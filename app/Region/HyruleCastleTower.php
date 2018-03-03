@@ -69,16 +69,17 @@ class HyruleCastleTower extends Region {
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->has('KeyA1', 2)
 				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && ($items->hasSword()
-					|| (config('game-mode') == 'swordless' && ($items->has('Hammer') || $items->has('BugCatchingNet'))));
+					|| ($this->world->config('mode.weapons')== 'swordless' && ($items->has('Hammer') || $items->has('BugCatchingNet'))));
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
 
 		$this->can_enter = function($locations, $items) {
 			return $items->canKillMostThings(8)
+				&& $items->has('RescueZelda')
 				&& ($items->has('Cape')
 					|| $items->hasUpgradedSword()
-					|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
+					|| ($this->world->config('mode.weapons')== 'swordless' && $items->has('Hammer')));
 		};
 
 		return $this;

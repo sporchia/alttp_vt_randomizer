@@ -181,6 +181,13 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
+	this.setQuickswap = function(enable) {
+		return new Promise(function(resolve, reject) {
+			this.write(0x18004B, enable ? 0x01 : 0x00);
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
 	this.setMusicVolume = function(enable) {
 		return new Promise(function(resolve, reject) {
 			for (volume in music) {
@@ -223,21 +230,32 @@ var ROM = (function(blob, loaded_callback) {
 			switch (color_on) {
 				case 'blue':
 					byte = 0x2C;
+					file_byte = 0x0D;
 					break;
 				case 'green':
 					byte = 0x3C;
+					file_byte = 0x19;
 					break;
 				case 'yellow':
 					byte = 0x28;
+					file_byte = 0x09;
 					break;
 				case 'red':
 				default:
 					byte = 0x24;
+					file_byte = 0x05;
 			}
-			this.write(0x6FA22, byte); // empty
-			this.write(0x6FA26, byte); // half
-			this.write(0x6FA28, byte); // full
-			this.write(0x6FA2A, byte); // new
+			this.write(0x6FA1E, byte);
+			this.write(0x6FA20, byte);
+			this.write(0x6FA22, byte);
+			this.write(0x6FA24, byte);
+			this.write(0x6FA26, byte);
+			this.write(0x6FA28, byte);
+			this.write(0x6FA2A, byte);
+			this.write(0x6FA2C, byte);
+			this.write(0x6FA2E, byte);
+			this.write(0x6FA30, byte);
+			this.write(0x65561, file_byte);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);
@@ -275,7 +293,19 @@ var ROM = (function(blob, loaded_callback) {
 		(new Uint8Array(resizedArrayBuffer, 0, resizeLen)).set(new Uint8Array(baseArrayBuffer, 0, resizeLen));
 
 		return resizedArrayBuffer;
-	}
+	};
+
+	this.downloadFilename = function() {
+		return this.name
+			|| 'ALttP - VT_' + this.logic
+			+ '_' + this.difficulty
+			+ '-' + this.mode
+			+ (this.weapons ? '_' + this.weapons : '')
+			+ '-' + this.goal
+			+ (this.variation == 'none' ? '' : '_' + this.variation)
+			+ '_' + this.seed
+			+ (this.special ? '_special' : '');
+	};
 });
 
 module.exports = ROM;

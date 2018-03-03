@@ -158,11 +158,11 @@ $items = [
 		'name' => 'Bomb (1)',
 	],
 	'ThreeBombs' => [
-		'count' => 10,
+		'count' => 9,
 		'name' => 'Bombs (3)',
 	],
 	'TenBombs' => [
-		'count' => 0,
+		'count' => 1,
 		'name' => 'Bombs (10)',
 	],
 	'BombUpgrade10' => [

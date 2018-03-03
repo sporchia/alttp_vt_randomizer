@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.1.0",
         "doctrine/dbal": "^2.5",
         "ezyang/htmlpurifier": "^4.9",
         "graham-campbell/markdown": "^9.0",
@@ -21,6 +21,8 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-rackspace": "^1.0",
+        "sentry/sentry": "^1.8",
+        "sentry/sentry-laravel": "^0.8.0",
         "z3/enemizer": "6.0.22",
         "z3/entrancerandomizer": "0.5.2.1"
     },

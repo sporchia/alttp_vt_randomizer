@@ -139,6 +139,9 @@ class Dialog {
 					case "{CHANGEPIC}":
 						$new_string = array_merge($new_string, [0xFE, 0x67, 0xFE, 0x67]);
 						break;
+					case "{CHANGEMUSIC}":
+						$new_string = array_merge($new_string, [0xFE, 0x67]);
+						break;
 					case "{INTRO}":
 						$pad_out = true;
 						$new_string = array_merge($new_string, [0xFE, 0x6E, 0x00, 0xFE, 0x77, 0x07, 0xFC, 0x03, 0xFE, 0x6B, 0x02, 0xFE, 0x67]);

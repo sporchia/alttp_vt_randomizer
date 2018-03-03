@@ -39,7 +39,9 @@ Route::get('sprites', function () {
 });
 
 Route::get('entrance/randomize{r?}', function () {
-	return view('entrance_randomizer');
+	return view('entrance_randomizer', [
+		'allow_quickswap' => true,
+	]);
 });
 
 Route::get('customize{r?}', function () {
@@ -225,6 +227,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
+	$weapons_mode = $request->input('weapons', 'randomized');
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
@@ -246,7 +249,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 			$decoded_location = base64_decode($location);
 			if (isset($locations[$decoded_location])) {
 				$place_item = Item::get($item);
-				if ($game_mode == 'swordless' && $place_item instanceof Item\Sword) {
+				if ($weapons_mode == 'swordless' && $place_item instanceof Item\Sword) {
 					$place_item = Item::get('TwentyRupees2');
 				}
 				$locations[$decoded_location]->setItem($place_item);
@@ -254,7 +257,11 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		}
 		foreach ($request->input('eq', []) as $item) {
 			try {
-				$world->addPreCollectedItem(Item::get($item));
+				$place_item = Item::get($item);
+				if ($weapons_mode == 'swordless' && $place_item instanceof Item\Sword) {
+					$place_item = Item::get('TwentyRupees2');
+				}
+				$world->addPreCollectedItem($place_item);
 			} catch (Exception $e) {}
 		}
 
@@ -266,7 +273,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		}
 	}
 
-	config(['game-mode' => $game_mode]);
+	config([
+		'game-mode' => $game_mode,
+		'alttp.mode.weapons' => $weapons_mode,
+	]);
 
 	$rom = new ALttP\Rom();
 	if ($request->filled('heart_speed')) {
@@ -292,10 +302,14 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	if (strtoupper($seed_id) == 'VANILLA') {
-		config(['game-mode' => 'vanilla']);
+		config([
+			'game-mode' => 'vanilla',
+			'alttp.mode.weapons' => 'uncle',
+		]);
 		$world = $rom->writeVanilla();
 		$rand = new ALttP\Randomizer('vanilla', 'NoMajorGlitches', 'ganon', 'none');
 		$rand->setWorld($world);
+		$rom->setRestrictFairyPonds(false);
 		return json_encode([
 			'seed' => 'vanilla',
 			'logic' => $rand->getLogic(),
@@ -358,12 +372,17 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$variation = $request->input('variation', 'none') ?: 'none';
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+	$game_mode = $request->input('mode', 'standard');
+	$weapons_mode = $request->input('weapons', 'randomized');
 
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
 	}
 
-	config(['game-mode' => $request->input('mode', 'standard')]);
+	config([
+		'game-mode' => $game_mode,
+		'alttp.mode.weapons' => $weapons_mode,
+	]);
 
 	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 		config([
@@ -385,6 +404,7 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
+	$weapons_mode = $request->input('weapons', 'randomized');
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
@@ -406,7 +426,7 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 			$decoded_location = base64_decode($location);
 			if (isset($locations[$decoded_location])) {
 				$place_item = Item::get($item);
-				if ($game_mode == 'swordless' && $place_item instanceof Item\Sword) {
+				if ($weapons_mode == 'swordless' && $place_item instanceof Item\Sword) {
 					$place_item = Item::get('TwentyRupees2');
 				}
 				$locations[$decoded_location]->setItem($place_item);
@@ -414,12 +434,19 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 		}
 		foreach ($request->input('eq', []) as $item) {
 			try {
-				$world->addPreCollectedItem(Item::get($item));
+				$place_item = Item::get($item);
+				if ($weapons_mode == 'swordless' && $place_item instanceof Item\Sword) {
+					$place_item = Item::get('TwentyRupees2');
+				}
+				$world->addPreCollectedItem($place_item);
 			} catch (Exception $e) {}
 		}
 	}
 
-	config(['game-mode' => $game_mode]);
+	config([
+		'game-mode' => $game_mode,
+		'alttp.mode.weapons' => $weapons_mode,
+	]);
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 

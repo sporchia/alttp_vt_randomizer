@@ -16,6 +16,8 @@ class MiseryMire extends Region {
 		0x155B9,
 	];
 
+	protected $map_reveal = 0x0100;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD6',
@@ -133,13 +135,14 @@ class MiseryMire extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
-					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
-					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
-			&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
-			&& $items->canKillMostThings(8)
-			&& $this->world->getRegion('Mire')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+						|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+						|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+					&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
+				&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
+				&& $items->canKillMostThings(8)
+				&& $this->world->getRegion('Mire')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -175,10 +178,11 @@ class MiseryMire extends Region {
 
 		// @TODO: doesn't account for 2x YBA
 		$this->can_enter = function($locations, $items) {
-			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+			return $items->has('RescueZelda')
+				&& ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 			&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
 			&& $this->world->getRegion('Mire')->canEnter($locations, $items);

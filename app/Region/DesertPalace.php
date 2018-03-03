@@ -19,6 +19,8 @@ class DesertPalace extends Region {
 		0x1559E,
 	];
 
+	protected $map_reveal = 0x1000;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyP2',
@@ -120,8 +122,9 @@ class DesertPalace extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('BookOfMudora')
-				|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly());
+			return $items->has('RescueZelda')
+				&& ($items->has('BookOfMudora')
+					|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly()));
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -145,9 +148,10 @@ class DesertPalace extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('BookOfMudora')
-				|| $items->has('PegasusBoots')
-				|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('BookOfMudora')
+					|| $items->has('PegasusBoots')
+					|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
 		};
 
 		return $this;

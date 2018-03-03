@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-17';
-	const HASH = 'b1e410fd90e59abb98eb8d6e3cb20661';
+	const BUILD = '2018-03-02';
+	const HASH = '2474a38036d12cf798bea821ebca9cdd';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -420,6 +420,7 @@ class Rom {
 				case 'BossHeartContainer':
 				case 'HeartContainer':
 					$equipment[0x36C] = min($equipment[0x36C] + 0x08, 0xA0);
+					$equipment[0x36D] = min($equipment[0x36D] + 0x08, 0xA0);
 					break;
 				case 'PieceOfHeart':
 					$equipment[0x36B] += 1;
@@ -688,10 +689,6 @@ class Rom {
 		$this->setMaxArrows($starting_arrow_capacity);
 		$this->setMaxBombs($starting_bomb_capacity);
 
-		if (config('game-mode') != 'swordless' && $equipment[0x359]) {
-			$this->write(0x180043, pack('C*', $equipment[0x359]));
-		}
-
 		return $this;
 	}
 
@@ -760,6 +757,19 @@ class Rom {
 	 */
 	public function setCaneOfByrnaSpikeCaveUsage(int $normal = 0x04, int $half = 0x02, int $quarter = 0x01) : self {
 		$this->write(0x18016B, pack('C*', $normal, $half, $quarter));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Byrna's ability to make you Invulnerable
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCaneOfByrnaInvulnerability(bool $enable = true) : self {
+		$this->write(0x18004F, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -1072,22 +1082,33 @@ class Rom {
 		switch ($color_on) {
 			case 'blue':
 				$byte = 0x2C;
+				$file_byte = 0x0D;
 				break;
 			case 'green':
 				$byte = 0x3C;
+				$file_byte = 0x19;
 				break;
 			case 'yellow':
 				$byte = 0x28;
+				$file_byte = 0x09;
 				break;
 			case 'red':
 			default:
 				$byte = 0x24;
+				$file_byte = 0x05;
 		}
+		$this->write(0x6FA1E, pack('C*', $byte));
+		$this->write(0x6FA20, pack('C*', $byte));
+		$this->write(0x6FA22, pack('C*', $byte));
+		$this->write(0x6FA24, pack('C*', $byte));
+		$this->write(0x6FA26, pack('C*', $byte));
+		$this->write(0x6FA28, pack('C*', $byte));
+		$this->write(0x6FA2A, pack('C*', $byte));
+		$this->write(0x6FA2C, pack('C*', $byte));
+		$this->write(0x6FA2E, pack('C*', $byte));
+		$this->write(0x6FA30, pack('C*', $byte));
 
-		$this->write(0x6FA22, pack('C*', $byte)); // empty
-		$this->write(0x6FA26, pack('C*', $byte)); // half
-		$this->write(0x6FA28, pack('C*', $byte)); // full
-		$this->write(0x6FA2A, pack('C*', $byte)); // new
+		$this->write(0x65561, pack('C*', $file_byte));
 
 		return $this;
 	}
@@ -1582,6 +1603,32 @@ class Rom {
 	}
 
 	/**
+	 * Enable/Disable the Quickswap function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setQuickSwap($enable = false) : self {
+		$this->write(0x18004B, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the Smithy Full Travel function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSmithyFreeTravel($enable = false) : self {
+		$this->write(0x18004C, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Set the single RNG Item table. These items will only get collected by player once per game.
 	 *
 	 * @param ItemCollection $items
@@ -1660,15 +1707,15 @@ class Rom {
 	 */
 	public function setGameType(string $setting) : self {
 		switch ($setting) {
-			case 'Plandomizer':
-				$byte = 0x01;
-				break;
-			case 'other':
-				$byte = 0xFF;
-				break;
-			case 'Randomizer':
+			case 'enemizer':
+				$byte = 0b00000101;
+			case 'entrance':
+				$byte = 0b00000110;
+			case 'room':
+				$byte = 0b00001000;
+			case 'item':
 			default:
-				$byte = 0x00;
+				$byte = 0b00000100;
 		}
 
 		$this->write(0x180211, pack('C', $byte));
@@ -1870,13 +1917,14 @@ class Rom {
 		$this->setCaneOfByrnaSpikeCaveUsage();
 		$this->setCapeSpikeCaveUsage();
 		$this->setByrnaCaveSpikeDamage(0x08);
+		$this->setCaneOfByrnaInvulnerability(true);
+		// Bryna magic amount used per "cycle"
+		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
 		switch ($level) {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-				// Bryna magic amount used per "cycle"
-				$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
@@ -1889,7 +1937,7 @@ class Rom {
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
-				$this->write(0x45C42, pack('C*', 0x08, 0x08, 0x08));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
@@ -1902,7 +1950,7 @@ class Rom {
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
@@ -1915,7 +1963,7 @@ class Rom {
 				break;
 			case 3:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
 				$this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills
 				$this->setShopBlueShieldCost(10000);
@@ -2056,6 +2104,71 @@ class Rom {
 		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
 		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
 			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
+
+		return $this;
+	}
+
+	/**
+	 * Set whether Sahasrahla updates your map with Green Pendant when you talk to him
+	 *
+	 * @param int $reveals bitfield of what he reveals
+	 *
+	 * @return $this
+	 */
+	public function setMapRevealSahasrahla(int $reveals = 0x0000) : self {
+		$this->write(0x18017A, pack('S*', $reveals));
+
+		return $this;
+	}
+
+	/**
+	 * Set whether Bomb Shop dude updates your map with Red Cyrstals when you talk to him
+	 *
+	 * @param int $reveals bitfield of what he reveals
+	 *
+	 * @return $this
+	 */
+	public function setMapRevealBombShop(int $reveals = 0x0000) : self {
+		$this->write(0x18017C, pack('S*', $reveals));
+
+		return $this;
+	}
+
+	/**
+	 * Set it so trade fairies only trade bottles
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setRestrictFairyPonds(bool $enable = true) : self {
+		$this->write(0x18017E, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Escape Assist
+	 *
+	 * @param int $flags assist -----mba m: Infinite Magic, b: Infinite Bombs, a: Infinite Arrows
+	 *
+	 * @return $this
+	 */
+	public function setEscapeAssist(int $flags = 0x00) : self {
+		$this->write(0x18004D, pack('C*', $flags));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Escape Fills
+	 *
+	 * @param int $flags assist -----mba m: Magic refill, b: Bomb refill, a: Arrow refill
+	 *
+	 * @return $this
+	 */
+	public function setEscapeFills(int $flags = 0x00) : self {
+		$this->write(0x18004E, pack('C*', $flags));
 
 		return $this;
 	}

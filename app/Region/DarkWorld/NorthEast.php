@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -34,6 +36,18 @@ class NorthEast extends Region {
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Left", 0xE980, null, $this));
 			$this->locations->addItem(new Location\Chest("Pyramid Fairy - Right", 0xE983, null, $this));
 		}
+
+		$this->shops = new ShopCollection([
+			new Shop("Dark World Potion Shop",                   0x03, 0xC1, 0x010F, 0x6F, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("East Dark World Hint",             0x83, 0xC1, 0x0112, 0x69, $this, [0xDBBDB => [0x58]]),
+			new Shop\TakeAny("Palace of Darkness Hint",          0x83, 0xC1, 0x010F, 0x68, $this, [0xDBBDA => [0x60]]),
+		]);
+
+		$this->shops["Dark World Potion Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('BlueShield'), 50)
+			->addInventory(2, Item::get('TenBombs'), 50);
 
 		// set these to not upgrade
 		$this->locations["Pyramid Fairy - Sword"]->setItem(Item::get('L1Sword'));
@@ -105,20 +119,39 @@ class NorthEast extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('DefeatAgahnim')
-				|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
-				|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl'));
+			return $items->has('RescueZelda')
+				&& ($items->has('DefeatAgahnim')
+					|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
+					|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl')));
 		};
 
-		// canbeataga2 && ((MS && (lamp || (fire rod && (bottle || magicupgrade || silverarrows)))) || (TS && (lamp || fire rod)))
 		$this->prize_location->setRequirements(function($locations, $items) {
+			if ($this->world->getGoal() == 'dungeons'
+				&& (!$items->has('PendantOfCourage')
+					|| !$items->has('PendantOfWisdom')
+					|| !$items->has('PendantOfPower')
+					|| !$items->has('DefeatAgahnim')
+					|| !$items->has('Crystal1')
+					|| !$items->has('Crystal2')
+					|| !$items->has('Crystal3')
+					|| !$items->has('Crystal4')
+					|| !$items->has('Crystal5')
+					|| !$items->has('Crystal6')
+					|| !$items->has('Crystal7')
+					|| !$items->has('DefeatAgahnim2'))) {
+				return false;
+			}
+
 			return $items->has('MoonPearl')
-				&& $items->has('DefeatAgahnim2') && $items->canLightTorches()
-				&& ($items->has('BowAndSilverArrows')
+				&& $items->has('DefeatAgahnim2')
+				&& ($items->canLightTorches() || ($items->has('FireRod') && $items->canExtendMagic(2)))
+				&& (!$this->world->config('region.requireBetterEquipment', false)
+					|| ($items->has('BowAndSilverArrows')
 					|| ($items->has('SilverArrowUpgrade')
-						&& ($items->has('Bow') || $items->has('BowAndArrows'))))
+						&& ($items->has('Bow') || $items->has('BowAndArrows')))))
 				&& (
-					(config('game-mode') == 'swordless' && $items->has('Hammer'))
+					($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
+					|| (!$this->world->config('region.requireBetterEquipment', false) && $items->hasUpgradedSword())
 					|| $items->has('L3Sword')
 					|| $items->has('L4Sword')
 					|| $items->has('ProgressiveSword', 3)

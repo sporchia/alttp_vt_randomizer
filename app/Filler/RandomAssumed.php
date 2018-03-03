@@ -64,6 +64,8 @@ class RandomAssumed extends Filler {
 		Log::debug(sprintf("Filling %s items in %s locations", $remaining_fill_items->count(),
 			$locations->getEmptyLocations()->count()));
 
+		$this->world->setCurrentlyFillingItems($remaining_fill_items);
+
 		if ($remaining_fill_items->count() > $locations->getEmptyLocations()->count()) {
 			throw new \Exception("Trying to fill more items than available locations.");
 		}
@@ -76,7 +78,8 @@ class RandomAssumed extends Filler {
 			});
 
 			if ($fillable_locations->count() == 0) {
-				throw new \Exception(sprintf('No Available Locations: "%s"', $item->getNiceName()));
+				throw new \Exception(sprintf('No Available Locations: "%s" %s', $item->getNiceName(),
+					json_encode($remaining_fill_items->map(function($i){return $i->getName();}))));
 			}
 
 			if ($item instanceof Item\Compass || $item instanceof Item\Map) {
@@ -88,7 +91,6 @@ class RandomAssumed extends Filler {
 			Log::debug(sprintf("Placing Item: %s in %s", $item->getNiceName(), $fill_location->getName()));
 
 			$fill_location->setItem($item);
-			$remaining_fill_items = $remaining_fill_items->removeItem($item->getName());
 		}
 	}
 }

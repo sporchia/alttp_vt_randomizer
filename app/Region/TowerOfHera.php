@@ -18,6 +18,8 @@ class TowerOfHera extends Region {
 		0x10B8C,
 	];
 
+	protected $map_reveal = 0x0020;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyP3',
@@ -116,7 +118,8 @@ class TowerOfHera extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return ($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+			return $items->has('RescueZelda')
+				&& ($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
 
@@ -181,8 +184,9 @@ class TowerOfHera extends Region {
 		};
 
 		$this->can_enter = function($locations, $items) use ($main, $mire) {
-			return $main($locations, $items)
-				|| $mire($locations, $items);
+			return $items->has('RescueZelda')
+				&& ($main($locations, $items)
+					|| $mire($locations, $items));
 		};
 
 		return $this;
@@ -198,9 +202,10 @@ class TowerOfHera extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots')
-				|| (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
-					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('PegasusBoots')
+					|| (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
+						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;

@@ -249,34 +249,10 @@ class RomTest extends TestCase {
 		$this->assertEquals(0xFF, $this->rom->read(0x180210));
 	}
 
-	public function testSetGameTypePlandomizer() {
-		$this->rom->setGameType('Plandomizer');
-
-		$this->assertEquals(0x01, $this->rom->read(0x180211));
-	}
-
-	public function testSeGameTypeRandomizer() {
-		$this->rom->setGameType('Randomizer');
-
-		$this->assertEquals(0x00, $this->rom->read(0x180211));
-	}
-
 	public function testSetPlandomizerAuthor() {
 		$this->rom->setPlandomizerAuthor('123456789012345678901');
 
 		$this->assertEquals([49,50,51,52,53,54,55,56,57,48,49,50,51,52,53,54,55,56,57,48,49], $this->rom->read(0x180220, 31));
-	}
-
-	public function testSeGameTypeDefaultsToRandomizer() {
-		$this->rom->setGameType('badType');
-
-		$this->assertEquals(0x00, $this->rom->read(0x180211));
-	}
-
-	public function testSeGameTypeOther() {
-		$this->rom->setGameType('other');
-
-		$this->assertEquals(0xFF, $this->rom->read(0x180211));
 	}
 
 	public function testSetHardMode2ChangesCapeMagicUsage() {

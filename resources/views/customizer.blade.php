@@ -16,6 +16,7 @@
 	<input type="hidden" name="difficulty" value="custom" />
 	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
+	<input type="hidden" name="weapons" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
@@ -72,7 +73,7 @@
 					<div class="row">
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
-								<span class="input-group-addon">Mode</span>
+								<span class="input-group-addon">State</span>
 								<select id="mode" class="form-control selectpicker">
 									@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
 										<option value="{{ $mode }}">{{ $name }}</option>
@@ -113,13 +114,12 @@
 					<div class="row">
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
-								<span class="input-group-addon">RNG Seed</span>
-								<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
-								<span class="input-group-btn">
-									<button id="seed-clear" class="btn btn-default" type="button">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</span>
+								<span class="input-group-addon">Swords</span>
+								<select id="weapons" class="form-control selectpicker">
+									@foreach (config('alttp.randomizer.item.weapons') as $mode => $name)
+										<option value="{{ $mode }}">{{ $name }}</option>
+									@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6 pb-5">
@@ -149,6 +149,17 @@
 										<option value="{{ $level }}">{{ $name }}</option>
 									@endforeach
 								</select>
+							</div>
+						</div>
+						<div class="col-md-6 pb-5">
+							<div class="input-group" role="group">
+								<span class="input-group-addon">RNG Seed</span>
+								<input type="text" id="seed" class="seed form-control" maxlength="9" placeholder="random">
+								<span class="input-group-btn">
+									<button id="seed-clear" class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -245,6 +256,7 @@ function seedApplied(data) {
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
+		rom.weapons = data.patch.spoiler.meta.weapons;
 		rom.difficulty = data.patch.difficulty;
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
@@ -334,6 +346,7 @@ function applySeed(rom, seed, second_attempt) {
 				formData.drops = drops;
 				if (test) {
 					$.post('/test' + (seed ? '/' + seed : ''), formData, function(patch) {
+
 						$('.info').show();
 						$('button[name=save-spoiler]').prop('disabled', false);
 						resolve({rom: rom, patch: patch});
@@ -347,6 +360,7 @@ function applySeed(rom, seed, second_attempt) {
 						.then(rom.setMenuSpeed($('#menu-speed').val()))
 						.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 						.then(rom.setHeartColor($('#heart-color').val()))
+						.then(rom.setQuickswap($('#generate-quickswap').val()))
 						.then(function(rom) {
 							$('.info').show();
 							$('button[name=save], button[name=save-spoiler]').prop('disabled', false);
@@ -479,6 +493,7 @@ $(function() {
 		'vt.custom.rom-logic',
 		'vt.custom.rom-difficulty',
 		'vt.custom.mode',
+		'vt.custom.weapons',
 		'vt.custom.goal',
 		'vt.custom.seed',
 		'vt.custom.drops.pool',
@@ -671,6 +686,17 @@ $(function() {
 		$('#mode').trigger('change');
 	});
 
+	$('#weapons').on('change', function() {
+		$('.info').hide();
+		localforage.setItem('vt.custom.weapons', $(this).val());
+		$('input[name=weapons]').val($(this).val());
+	});
+	localforage.getItem('vt.custom.weapons').then(function(value) {
+		if (value === null) return;
+		$('#weapons').val(value);
+		$('#weapons').trigger('change');
+	});
+
 	$('#goal').on('change', function() {
 		$('.info').hide();
 		var goal = $(this).val();
@@ -697,21 +723,11 @@ $(function() {
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.sfc');
+		return rom.save(rom.downloadFilename() + '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), rom.downloadFilename() + '.txt');
 	});
 
 	localforage.getItem('vt.customizer.lastTab').then(function(href) {

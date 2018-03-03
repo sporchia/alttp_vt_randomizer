@@ -11,33 +11,58 @@
 	</div>
 	<div class="panel-body">
 		<h4>Standard</h4>
-		<p>This mode is closest to the original game. You will start in Link's bed, get a sword from
-			Uncle, and rescue Zelda before continuing with the rest of the game.</p>
+		<p>This mode is closest to the original game. You will start in Link's bed, get a weapon from
+			Uncle (depending on your Swords option, see below), and rescue Zelda before continuing
+			with the rest of the game.</p>
 		<h4>Open</h4>
 		<p>This mode starts with the option to start in your house or the sanctuary, you are free to
 			explore. There are a few point to note in this mode:</p>
 			<ul>
-			<li>Uncle is already in the sewers and has a randomized item (not necessarily a sword!)
+			<li>Uncle is already in the sewers and has an item.
 			<li>Dark rooms don't get a free light cone, not even the sewers.
-			<li>You won't start with a sword, and it might be a while before you find one. Bombs are a
-				great early weapon, as are bushes and signs! Use whatever items you find to
-				defend yourself.
 			</ul>
-		<h4>Swordless</h4>
-		<p>Not for the faint of heart. You'll need to use unconventional methods along every step of
-			your adventure. Some changes have been made to account for the lack of a sword:
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Swords</h3>
+	</div>
+	<div class="panel-body">
+		<h4>Randomized</h4>
+		<p>All sword upgrades are randomized. You won't start with a sword, and it might be a while
+			before you find one. Bombs are a great early weapon, as are bushes and signs! Use
+			whatever items you find to defend yourself.
+		<p>If this option is combined with Standard Mode (see above), your uncle will graciously
+			give you one of the following items to ensure you can complete the escape sequence:</p>
 			<ul>
-			<li>Swords have been replaced with four copies of 20 rupees (the green rupee sprite with
+			<li>Sword Upgrade (yes, it's still possible)
+			<li>Hammer
+			<li>Bow + Full Arrow Refill
+			<li>Full Bomb Refill
+			<li>Fire Rod + Full Magic Refill
+			<li>Cane of Somaria + Full Magic Refill
+			<li>Cane of Byrna + Full Magic Refill
+			</ul>
+		<h4>Uncle Assured</h4>
+		<p>Uncle always has a sword. The remaining upgrades are randomized.</p>
+		<h4>Swordless</h4>
+		<p>All swords are removed from the game. Because the game expects you to have a sword, the
+			following changes are present only in swordless mode:</p>
+			<ul>
+			<li>Swords have been replaced with four copies of 20 rupees (a green rupee sprite with
 				"20" on it).
 			<li>The curtains blocking progress in Agahnim's Tower are pre-opened, as are the vines in
 				Skull Woods.
-			<li>Medallions can only be used to open Misery Mire or Turtle Rock. Normally, they require a sword to use.
+			<li>Medallions can only be used to open Misery Mire or Turtle Rock, or to progress
+				through Ice Palace. Normally, they require a sword to use.
 			<li>Ganon now takes damage from the hammer.
 			<li>Silver arrows are available in all difficulties.
 			<li>Ether and Bombos tablets require the Hammer and Book of Mudora.
 			</ul>
 	</div>
 </div>
+
 
 <div class="panel panel-info">
 	<div class="panel-heading">
@@ -52,8 +77,9 @@
 		<p>You may be required to save and quit in certain situations, like getting back to the light
 			world when you're in the dark world without the mirror.</p>
 		<h4>Overworld Glitches</h4>
-		<p>This mode accounts for some of the easier-to-execute overworld glitches. Two types of major
-			glitches are required:</p>
+		<p>This mode <span class="running-now">requires</span> some of the easier-to-execute
+			overworld glitches. It's more difficult than simply using fake flippers to visit the
+			hobo! The two types of major glitches are required:</p>
 		<ul>
 		<li>Overworld boots clipping
 		<li>Mirror clipping (DMD, TR Middle Clip, and Fluteless Mire)
@@ -116,36 +142,8 @@
 			Pedestal! Beware, you may have to venture all over Hyrule, including Ganon's Tower,
 			in order to complete your quest.</p>
 		<h4>Triforce Pieces</h4>
-		<p>The Triforce has been shattered and scattered throughout the world. Collect enough pieces
-			to win!</p>
-		<table class="table table-responsive">
-		<thead><tr>
-			<th>Difficulty</th>
-			<th>Required</th>
-			<th>Total</th>
-		</tr></thead>
-		<tbody><tr class="bg-info">
-			<td>Easy</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-success">
-			<td>Normal</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-warning">
-			<td>Hard</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-danger">
-			<td>Expert</td>
-			<td>20</td>
-			<td>30</td>
-		</tr><tr class="bg-danger">
-			<td>Insane</td>
-			<td>20</td>
-			<td>30</td>
-		</tr></tbody>
-		</table>
+		<p>The Triforce has been shattered and scattered into 30 pieces throughout Hyrule! Collect
+			20 pieces to win!</p>
 	</div>
 </div>
 
@@ -163,8 +161,12 @@
 		<li>Shields
 		<li>Bottles
 		<li>½ Magic
+		<li>Silver Arrows
 		</ul>
 		<p>Finding the second ½ Magic will upgrade you to ¼ Magic!</p>
+		<p>While in Standard Mode, if Uncle has the Bow, Bombs, Fire Rod, Cane of Somaria, or Cane of
+			Byrna, Link will be granted unlimited ammo for that item for the duration of the escape
+			sequence.</p>
 		<p>Additionally, you'll have 3x the opportunities to get the Lamp!</p>
 		<h4>Normal</h4>
 		<p>In this mode you'll find all the items from the original game.</p>
@@ -228,7 +230,8 @@
 				<ul>
 				<li>5x Ten Arrows
 				<li>1x Single Arrow
-				<li>10x Three Bombs
+				<li>1x Ten Bombs
+				<li>9x Three Bombs
 				<li>5x Three Hundred Rupees
 				<li>1x One Hundred Rupees
 				<li>7x Fifty Rupees
@@ -258,11 +261,12 @@
 		<p>The following items have had their functionality adjusted:</p>
 		<ul>
 		<li>Magic Cape uses 2x Magic as Normal (except in Spike Cave)
-		<li>Cane of Byrna uses 2x Magic as Normal (except in Spike Cave)
+		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
 		<li>Magic Powder does not turn Bubbles into Fairies
 		<li>Bug Net doesn't catch Fairies
 		<li>There are only 2 Bottles (4 in Glitched Logic)
-		<li>Potions heal 5 hearts and restore 1/2 magic
+        <li>Potions heal 5 hearts and restore 1/2 magic (except in Spike Cave where they behave
+			normally)
 		</ul>
 		<h4>Expert</h4>
 		<p>Looking for even more of a challenge? The following items have been removed, in addition to Hard:</p>
@@ -282,25 +286,26 @@
 		<p>The following items have had their functionality further adjusted from Hard:</p>
 		<ul>
 		<li>Magic Cape uses 4x Magic as Normal (except in Spike Cave)
-		<li>Cane of Byrna uses 4x Magic as Normal (except in Spike Cave)
+		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
 		<li>There is only 1 Bottle (4 in Major Glitched Logic)
-		<li>Potions heal 1 heart and restore 1/4 magic
+		<li>Potions heal 1 heart and restore 1/4 magic (except in Spike Cave where they behave
+			normally)
 		<li>Shields in Shops cannot be purchased
 		</ul>
 		<h4>Insane</h4>
 		<p>Expert not cutting it for you? Have you truly lost your mind? The following items have
 			been removed, in addition to Expert:</p>
 		<ul>
-		<li>Pieces of Heart</li>
+		<li>Pieces of Heart
 		</ul>
 		<p>The following items have had their total count reduced from Expert:</p>
 		<ul>
-		<li>Arrows</li>
-		<li>Bombs</li>
+		<li>Arrows
+		<li>Bombs
 		</ul>
 		<p>The following items have had their functionality further adjusted from Expert:</p>
 		<ul>
-		<li>Potions don't heal or restore magic</li>
+		<li>Potions don't heal or restore magic (except in Spike Cave where they behave normally)
 		</ul>
 
 	</div>

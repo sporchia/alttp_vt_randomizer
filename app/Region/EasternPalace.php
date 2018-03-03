@@ -16,6 +16,8 @@ class EasternPalace extends Region {
 		0x1559A,
 	];
 
+	protected $map_reveal = 0x2000;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyP1',
@@ -106,6 +108,10 @@ class EasternPalace extends Region {
 
 			return true;
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
 
 		$this->prize_location->setRequirements($this->can_complete);
 

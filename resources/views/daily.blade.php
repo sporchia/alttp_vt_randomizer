@@ -72,6 +72,7 @@ function applyHash(rom, hash, second_attempt) {
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(rom.setHeartColor($('#heart-color').val()))
+			.then(rom.setQuickswap($('#generate-quickswap').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -112,13 +113,7 @@ $(function() {
 	$('button[name=save]').hide();
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-				+ '_' + rom.difficulty
-				+ '-' + rom.mode
-				+ '-' + rom.goal
-				+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-				+ '_' + rom.seed
-				+ (rom.special ? '_special' : '') + '.sfc')
+		return rom.save(rom.downloadFilename() + '.sfc')
 	});
 });
 </script>

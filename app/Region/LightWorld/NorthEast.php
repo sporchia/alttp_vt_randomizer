@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -23,8 +25,6 @@ class NorthEast extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-			new Location\Npc("Link's Uncle", 0x2DF45, null, $this),
-			new Location\Chest("Secret Passage", 0xE971, null, $this),
 			new Location\Chest("Sahasrahla's Hut - Left", 0xEA82, null, $this),
 			new Location\Chest("Sahasrahla's Hut - Middle", 0xEA85, null, $this),
 			new Location\Chest("Sahasrahla's Hut - Right", 0xEA88, null, $this),
@@ -35,6 +35,10 @@ class NorthEast extends Region {
 			new Location\Chest("Waterfall Fairy - Left", 0xE9B0, null, $this),
 			new Location\Chest("Waterfall Fairy - Right", 0xE9D1, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop\TakeAny("Long Fairy Cave", 0x83, 0xA0, 0x0112, 0x55, $this, [0xDBBC7 => [0x58]]),
+		]);
 	}
 
 	/**
@@ -43,8 +47,6 @@ class NorthEast extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["Link's Uncle"]->setItem(Item::get('L1SwordAndShield'));
-		$this->locations["Secret Passage"]->setItem(Item::get('Lamp'));
 		$this->locations["Sahasrahla's Hut - Left"]->setItem(Item::get('FiftyRupees'));
 		$this->locations["Sahasrahla's Hut - Middle"]->setItem(Item::get('ThreeBombs'));
 		$this->locations["Sahasrahla's Hut - Right"]->setItem(Item::get('FiftyRupees'));
@@ -89,6 +91,10 @@ class NorthEast extends Region {
 		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers');
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
 
 		return $this;
 	}

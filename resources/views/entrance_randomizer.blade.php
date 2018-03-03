@@ -172,6 +172,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(rom.setHeartColor($('#heart-color').val()))
+			.then(rom.setQuickswap($('#generate-quickswap').val()))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -244,7 +245,9 @@ $(function() {
 		localforage.setItem('vt.er.difficulty', $(this).val());
 	});
 	localforage.getItem('vt.er.difficulty').then(function(value) {
-		if (!value) return;
+		if (!value) {
+			value = 'normal';
+		}
 		$('#difficulty').val(value);
 		$('#difficulty').trigger('change');
 	});

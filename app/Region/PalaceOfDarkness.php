@@ -16,6 +16,8 @@ class PalaceOfDarkness extends Region {
 		0x155B8,
 	];
 
+	protected $map_reveal = 0x0200;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD1',
@@ -179,7 +181,8 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl') && $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -197,9 +200,10 @@ class PalaceOfDarkness extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->glitchedLinkInDarkWorld()
-				&& $this->world->getRegion('North East Dark World')->canEnter($locations, $items)
-				|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& ($items->glitchedLinkInDarkWorld()
+					&& $this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+					|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 	}
 }

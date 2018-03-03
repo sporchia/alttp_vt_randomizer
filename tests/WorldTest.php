@@ -27,6 +27,6 @@ class WorldTest extends TestCase {
 
 	public function testGetPlaythroughNormalGame() {
 		$this->world->setVanilla();
-		$this->assertArraySubset(['longest_item_chain' => 32, 'regions_visited' => 47], $this->world->getPlaythrough());
+		$this->assertArraySubset(['longest_item_chain' => 33, 'regions_visited' => 48], $this->world->getPlaythrough());
 	}
 }

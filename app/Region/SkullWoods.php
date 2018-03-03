@@ -23,6 +23,8 @@ class SkullWoods extends Region {
 		0x1560B,
 	];
 
+	protected $map_reveal = 0x0080;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD3',
@@ -116,8 +118,9 @@ class SkullWoods extends Region {
 
 		$this->locations["Skull Woods - Mothula"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
+				&& $items->has('MoonPearl')
 				&& $items->has('FireRod')
-				&& (config('game-mode') == 'swordless' || $items->hasSword())
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
 				&& $items->has('KeyD3', 3)
 				&& $this->boss->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
@@ -130,10 +133,9 @@ class SkullWoods extends Region {
 			return true;
 		});
 
-
-
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -151,7 +153,8 @@ class SkullWoods extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 
 		return $this;
