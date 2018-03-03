@@ -744,7 +744,7 @@ class Randomizer {
 			return mt_rand(0, 0x100);
 		});
 
-		$this->writePrizesToRom($rom);
+		$this->writePrizePacksToRom($rom);
 
 		if ($this->config('sprite.shuffleOverworldBonkPrizes', false)) {
 			$this->writeOverworldBonkPrizeToRom($rom);
@@ -1652,7 +1652,7 @@ class Randomizer {
 	 * @TODO: create prize pack classes
 	 * @TODO: move remaining writes to Rom class
 	 */
-	public function writePrizesToRom(Rom $rom) {
+	public function writePrizePacksToRom(Rom $rom) {
 		$emptyDrops = $this->world->getEmptyDropSlots();
 		$dropsPool = mt_shuffle($this->getDropsPool());
 
