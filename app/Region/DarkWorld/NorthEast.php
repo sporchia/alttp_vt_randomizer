@@ -130,7 +130,15 @@ class NorthEast extends Region {
 				&& (!$items->has('PendantOfCourage')
 					|| !$items->has('PendantOfWisdom')
 					|| !$items->has('PendantOfPower')
-					|| !$items->has('DefeatAgahnim'))) {
+					|| !$items->has('DefeatAgahnim')
+					|| !$items->has('Crystal1')
+					|| !$items->has('Crystal2')
+					|| !$items->has('Crystal3')
+					|| !$items->has('Crystal4')
+					|| !$items->has('Crystal5')
+					|| !$items->has('Crystal6')
+					|| !$items->has('Crystal7')
+					|| !$items->has('DefeatAgahnim2'))) {
 				return false;
 			}
 
