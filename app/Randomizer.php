@@ -532,7 +532,7 @@ class Randomizer {
 
 		$shops->filter(function($shop) {
 			return !$shop instanceof Shop\TakeAny;
-		})->randomCollection(4)->each(function($shop) {
+		})->randomCollection(5)->each(function($shop) {
 			$shop->setActive(true);
 			if ($this->config('rom.rupeeBow', false)) {
 				$shop->addInventory(0, Item::get('Arrow'), 80);
@@ -1098,6 +1098,8 @@ class Randomizer {
 			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
 			"Thanks for\ndropping in,\nthe first\npassengers\nin a hot\nair balloon.\nwere a duck,\na sheep,\nand a rooster.",
 			"You think you\nare so smart?\n\nI bet you\ndidn't know\nYou can't hum\nwhile holding\nyour nose\nclosed.",
+			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously you\nwere supposed\nto bring food",
+			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the dark\nworld!\n\nOr else you\nwill die!",
 		])));
 
 		switch ($this->goal) {
