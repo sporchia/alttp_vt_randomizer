@@ -38,7 +38,9 @@ Route::get('sprites', function () {
 });
 
 Route::get('entrance/randomize{r?}', function () {
-	return view('entrance_randomizer');
+	return view('entrance_randomizer', [
+		'allow_quickswap' => true,
+	]);
 });
 
 Route::get('customize{r?}', function () {
@@ -224,7 +226,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
-	$weapons_mode = $request->input('weapons', 'standard');
+	$weapons_mode = $request->input('weapons', 'randomized');
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
@@ -299,6 +301,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		$world = $rom->writeVanilla();
 		$rand = new ALttP\Randomizer('vanilla', 'NoMajorGlitches', 'ganon', 'none');
 		$rand->setWorld($world);
+		$rom->setRestrictFairyPonds(false);
 		return json_encode([
 			'seed' => 'vanilla',
 			'logic' => $rand->getLogic(),
@@ -362,7 +365,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
-	$weapons_mode = $request->input('weapons', 'standard');
+	$weapons_mode = $request->input('weapons', 'randomized');
 
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
@@ -393,7 +396,7 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 	$game_mode = $request->input('mode', 'standard');
-	$weapons_mode = $request->input('weapons', 'standard');
+	$weapons_mode = $request->input('weapons', 'randomized');
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {

@@ -56,6 +56,9 @@ class NorthWest extends Region {
 			new Shop\TakeAny("Bush Covered House",               0x83, 0xA0, 0x011F, 0x44, $this, [0xDBBB6 => [0x46]]),
 			new Shop\TakeAny("Lost Woods Gamble",                0x83, 0xA0, 0x0112, 0x3C, $this, [0xDBBAE => [0x58]]),
 			new Shop\TakeAny("Lumberjack House",                 0x83, 0xA0, 0x011F, 0x76, $this, [0xDBBE8 => [0x46]]),
+			new Shop\TakeAny("Snitch Lady East",                 0x83, 0xA0, 0x011F, 0x3E, $this, [0xDBBB0 => [0x46]]),
+			new Shop\TakeAny("Snitch Lady West",                 0x83, 0xA0, 0x011F, 0x3F, $this, [0xDBBB1 => [0x46]]),
+			new Shop\TakeAny("Bomb Hut",                         0x83, 0xA0, 0x011F, 0x4A, $this, [0xDBBBC => [0x46]]),
 		]);
 
 		$this->shops["Light World Kakariko Shop"]->clearInventory()

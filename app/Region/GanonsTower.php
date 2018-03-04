@@ -336,7 +336,8 @@ class GanonsTower extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
 
 		return $this;
@@ -352,7 +353,8 @@ class GanonsTower extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots') && $items->has('MoonPearl');
+			return $items->has('RescueZelda')
+				&& $items->has('PegasusBoots') && $items->has('MoonPearl');
 		};
 
 		return $this;

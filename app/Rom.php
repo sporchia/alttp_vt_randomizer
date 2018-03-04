@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-02-26';
-	const HASH = '0e0eb15748d49e36225b9bfbe4cfdce4';
+	const BUILD = '2018-03-02';
+	const HASH = '2474a38036d12cf798bea821ebca9cdd';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1707,15 +1707,15 @@ class Rom {
 	 */
 	public function setGameType(string $setting) : self {
 		switch ($setting) {
-			case 'Plandomizer':
-				$byte = 0x01;
-				break;
-			case 'other':
-				$byte = 0xFF;
-				break;
-			case 'Randomizer':
+			case 'enemizer':
+				$byte = 0b00000101;
+			case 'entrance':
+				$byte = 0b00000110;
+			case 'room':
+				$byte = 0b00001000;
+			case 'item':
 			default:
-				$byte = 0x00;
+				$byte = 0b00000100;
 		}
 
 		$this->write(0x180211, pack('C', $byte));
@@ -2104,6 +2104,45 @@ class Rom {
 		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
 		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
 			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
+
+		return $this;
+	}
+
+	/**
+	 * Set whether Sahasrahla updates your map with Green Pendant when you talk to him
+	 *
+	 * @param int $reveals bitfield of what he reveals
+	 *
+	 * @return $this
+	 */
+	public function setMapRevealSahasrahla(int $reveals = 0x0000) : self {
+		$this->write(0x18017A, pack('S*', $reveals));
+
+		return $this;
+	}
+
+	/**
+	 * Set whether Bomb Shop dude updates your map with Red Cyrstals when you talk to him
+	 *
+	 * @param int $reveals bitfield of what he reveals
+	 *
+	 * @return $this
+	 */
+	public function setMapRevealBombShop(int $reveals = 0x0000) : self {
+		$this->write(0x18017C, pack('S*', $reveals));
+
+		return $this;
+	}
+
+	/**
+	 * Set it so trade fairies only trade bottles
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setRestrictFairyPonds(bool $enable = true) : self {
+		$this->write(0x18017E, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}

@@ -16,6 +16,8 @@ class PalaceOfDarkness extends Region {
 		0x155B8,
 	];
 
+	protected $map_reveal = 0x0200;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD1',

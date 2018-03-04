@@ -16,6 +16,8 @@ class SwampPalace extends Region {
 		0x155B7,
 	];
 
+	protected $map_reveal = 0x0400;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyD2',

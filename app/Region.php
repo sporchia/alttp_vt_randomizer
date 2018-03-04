@@ -17,6 +17,8 @@ class Region {
 	protected $region_items = [];
 	protected $boss = null;
 
+	protected $map_reveal = 0x0000;
+
 	/**
 	 * Create a new Region.
 	 *
@@ -74,7 +76,14 @@ class Region {
 		return $this;
 	}
 
-
+	/**
+	 * Get the map reveal word for this region
+	 *
+	 * @return int
+	 */
+	public function getMapReveal() : int {
+		return $this->map_reveal;
+	}
 
 	/**
 	 * Set the Prize Location for completeing this Region and set it's rules for access to completing the region.

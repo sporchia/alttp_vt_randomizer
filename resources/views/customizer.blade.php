@@ -71,7 +71,7 @@
 					<div class="row">
 						<div class="col-md-6 pb-5">
 							<div class="input-group" role="group">
-								<span class="input-group-addon">Mode</span>
+								<span class="input-group-addon">State</span>
 								<select id="mode" class="form-control selectpicker">
 									@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
 										<option value="{{ $mode }}">{{ $name }}</option>
@@ -349,6 +349,7 @@ function applySeed(rom, seed, second_attempt) {
 					.then(rom.setMenuSpeed($('#menu-speed').val()))
 					.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 					.then(rom.setHeartColor($('#heart-color').val()))
+					.then(rom.setQuickswap($('#generate-quickswap').prop('checked')))
 					.then(function(rom) {
 						$('.info').show();
 						$('button[name=save], button[name=save-spoiler]').prop('disabled', false);

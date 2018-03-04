@@ -18,6 +18,8 @@ class TowerOfHera extends Region {
 		0x10B8C,
 	];
 
+	protected $map_reveal = 0x0020;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyP3',

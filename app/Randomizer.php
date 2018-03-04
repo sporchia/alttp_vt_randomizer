@@ -117,12 +117,24 @@ class Randomizer {
 	public function makeSeed(int $rng_seed = null) {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
+		// http://php.net/manual/en/migration72.incompatible.php#migration72.incompatible.rand-mt_rand-output
+		// GAHHHHHHH!!!! php 7.1 and 7.2 generate different things :/
 		mt_srand($this->rng_seed);
 		$this->seed->seed = $this->rng_seed;
 
 		Log::info(sprintf("Seed: %s", $this->rng_seed));
 
 		$regions = $this->world->getRegions();
+
+		switch ($this->goal) {
+			case 'pedestal':
+				$this->world->getLocation("Master Sword Pedestal")->setItem(Item::get('Triforce'));
+				break;
+			case 'ganon':
+			case 'dungeons':
+				$this->world->getLocation("Ganon")->setItem(Item::get('Triforce'));
+				break;
+		}
 
 		// Set up World before we fill dungeons
 		$this->setShops();
@@ -161,11 +173,6 @@ class Randomizer {
 			$locations["Thieves' Town - Blind"]->setItem($boss_item);
 			$locations["Turtle Rock - Trinexx"]->setItem($boss_item);
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
-		}
-
-		// Pedestal is the goal
-		if ($this->goal == 'pedestal') {
-			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
 		}
 
 		if ($this->logic == 'MajorGlitches') {
@@ -681,6 +688,7 @@ class Randomizer {
 		$rom->setLockAgahnimDoorInEscape(false);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
+		$rom->setRestrictFairyPonds(true);
 		$rom->setLimitProgressiveSword($this->config('item.overflow.count.Sword', 4),
 			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitProgressiveShield($this->config('item.overflow.count.Shield', 3),
@@ -713,6 +721,17 @@ class Randomizer {
 				break;
 			default:
 				$rom->setGanonInvincible('crystals');
+		}
+
+		if ($this->config('rom.mapOnPickup', false)) {
+			$green_pendant_region = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first()->getRegion();
+
+			$rom->setMapRevealSahasrahla($green_pendant_region->getMapReveal());
+
+			$crystal5_region = $this->world->getLocationsWithItem(Item::get('Crystal5'))->first()->getRegion();
+			$crystal6_region = $this->world->getLocationsWithItem(Item::get('Crystal6'))->first()->getRegion();
+
+			$rom->setMapRevealBombShop($crystal5_region->getMapReveal() | $crystal6_region->getMapReveal());
 		}
 
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
@@ -788,6 +807,8 @@ class Randomizer {
 				$rom->setWorldOnAgahnimDeath(true);
 				break;
 		}
+
+		$rom->setGameType('item');
 
 		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));

@@ -33,13 +33,18 @@
 			<li>You can set Link's starting health</li>
 		</ul></li>
 		<li>Key-sanity logic fixes</li>
+		<li>Sahasrahla and Bomb Shop dude will mark your map after you talk to them</li>
 		<li>Stored water walking glitch is back</li>
 		<li>Triforce Hunt is now always 20/30 for all difficulties</li>
 		<li>All Lamps in Easy are before dark rooms</li>
 		<li>Extra Lamps in Easy are really rupees now</li>
 		<li>Flute time in credits fixed</li>
 		<li>Better boss logic for future fun</li>
+		<li>Added quick swap functionality</li>
 		<li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
+		<li>Added new player options<br />
+			<img src="http://spr.beegunslingers.com/sprites.29.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 </div>
 <h2>VT8.28</h2>

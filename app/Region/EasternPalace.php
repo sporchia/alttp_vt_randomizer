@@ -16,6 +16,8 @@ class EasternPalace extends Region {
 		0x1559A,
 	];
 
+	protected $map_reveal = 0x2000;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyP1',

@@ -181,6 +181,13 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
+	this.setQuickswap = function(enable) {
+		return new Promise(function(resolve, reject) {
+			this.write(0x18004B, enable ? 0x01 : 0x00);
+			resolve(this);
+		}.bind(this));
+	}.bind(this);
+
 	this.setMusicVolume = function(enable) {
 		return new Promise(function(resolve, reject) {
 			for (volume in music) {

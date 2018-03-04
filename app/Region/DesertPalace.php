@@ -19,6 +19,8 @@ class DesertPalace extends Region {
 		0x1559E,
 	];
 
+	protected $map_reveal = 0x1000;
+
 	protected $region_items = [
 		'BigKey',
 		'BigKeyP2',

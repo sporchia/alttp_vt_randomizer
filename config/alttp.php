@@ -690,6 +690,7 @@ return [
 			],
 			'goals' => [
 				'ganon' => 'Defeat Ganon',
+				'crystals' => 'Crystals',
 				'dungeons' => 'All Dungeons',
 				'pedestal' => 'Master Sword Pedestal',
 				'triforce-hunt' => 'Triforce Pieces',
@@ -705,7 +706,7 @@ return [
 				'simple' => 'Simple',
 				'restricted' => 'Restricted',
 				'full' => 'Full',
-				'madness' => 'Madness',
+				'crossed' => 'Crossed',
 				'insanity' => 'Insanity',
 			],
 			'variations' => [
