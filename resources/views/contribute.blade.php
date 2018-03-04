@@ -3,7 +3,7 @@
 @section('content')
 <h1>Contribute</h1>
 <div class="well">
-
+<h3>There are many ways to help out, join the Development channels on <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> to find out how you can use your skills!</h3><br/>
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">Sprite Development</h3>
@@ -25,17 +25,6 @@
 	<div class="panel-body">
 		<p>Interested in joining out team of restreamers, commentators, and trackers?</p>
 		<p>Well too bad because I don't know how to tell you how to do that.</p>
-	</div>
-</div>
-
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">Logic Development / ROM Hacking</h3>
-	</div>
-	<div class="panel-body">
-		<p>Have an idea for a new feature? Found a bug and have a fix? Want to put your technical
-			skills to work in Hyrule? Join the Development channels on
-			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!</p>
 	</div>
 </div>
 
