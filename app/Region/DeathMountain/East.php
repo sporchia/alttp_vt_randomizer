@@ -133,9 +133,10 @@ class East extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots')
-				|| (($items->has('Hookshot') || $items->has('MagicMirror'))
-					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('PegasusBoots')
+					|| (($items->has('Hookshot') || $items->has('MagicMirror'))
+						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;

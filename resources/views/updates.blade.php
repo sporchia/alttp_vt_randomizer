@@ -42,6 +42,9 @@
 		<li>Better boss logic for future fun</li>
 		<li>Added quick swap functionality</li>
 		<li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
+		<li>Added new player options<br />
+			<img src="http://spr.beegunslingers.com/sprites.29.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 </div>
 <h2>VT8.28</h2>

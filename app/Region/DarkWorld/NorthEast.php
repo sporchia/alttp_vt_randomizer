@@ -225,14 +225,15 @@ class NorthEast extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('DefeatAgahnim')
-				|| ($items->has('MoonPearl')
-					&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
-						|| ($items->has('Hammer') && $items->canLiftRocks())))
-				|| (($items->hasABottle()
-					|| ($items->has('MagicMirror') && $items->canSpinSpeed())
-					|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
-						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('DefeatAgahnim')
+					|| ($items->has('MoonPearl')
+						&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+							|| ($items->has('Hammer') && $items->canLiftRocks())))
+					|| (($items->hasABottle()
+						|| ($items->has('MagicMirror') && $items->canSpinSpeed())
+						|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
+							&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;
@@ -290,13 +291,14 @@ class NorthEast extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('DefeatAgahnim')
-				|| ($items->has('MoonPearl')
-					&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
-						|| ($items->has('Hammer') && $items->canLiftRocks())))
-				|| ((($items->has('MagicMirror') && $items->canSpinSpeed())
-					|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
-						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('DefeatAgahnim')
+					|| ($items->has('MoonPearl')
+						&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+							|| ($items->has('Hammer') && $items->canLiftRocks())))
+					|| ((($items->has('MagicMirror') && $items->canSpinSpeed())
+						|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
+							&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;
