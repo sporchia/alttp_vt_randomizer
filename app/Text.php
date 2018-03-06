@@ -444,7 +444,7 @@ class Text {
 
 			'game_race_boy_sneaky' => $converter->convertDialogCompressed("Thought you could sneak in, eh?"),
 
-			'bottle_vendor_choice' => $converter->convertDialogCompressed("I gots bottles.\nYous gots 100 rupees?\n  ≥ I want\n    no way!"),
+			'bottle_vendor_choice' => $converter->convertDialogCompressed("I gots bottles\nYous gots 100 rupees?\n  ≥ I want\n    no way!"),
 
 			'bottle_vendor_get' => $converter->convertDialogCompressed("Nice! Hold it up son! Show the world what you got!"),
 
