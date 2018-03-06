@@ -288,9 +288,9 @@ class Text {
 
 			'talking_tree_other' => $converter->convertDialogCompressed("I can breathe!"),
 
-			'item_get_pendant_power_alt' => $converter->convertDialogCompressed("We have the Pendant of Power! How Robust!"),
+			'item_get_pendant_power_alt' => $converter->convertDialogCompressed("We have the Pendant of Power! How robust!"),
 
-			'item_get_pendant_wisdom_alt' => $converter->convertDialogCompressed("We have the Pendant of wisdom! How Astute!"),
+			'item_get_pendant_wisdom_alt' => $converter->convertDialogCompressed("We have the Pendant of wisdom! How astute!"),
 
 			'game_shooting_choice' => $converter->convertDialogCompressed("20 rupees.\n5 arrows.\nWin rupees!\nWant to play?\n  ≥ yes\n    no\n{CHOICE}"),
 
