@@ -106,7 +106,7 @@ class Text {
 
 			'zelda_sewers' => $converter->convertDialogCompressed("Just a little further to the Sanctuary."),
 
-			'zelda_switch_room' => $converter->convertDialogCompressed("The Sanctuary!\n\nPull my finger."),
+			'zelda_switch_room' => $converter->convertDialogCompressed("The Sanctuary!\n\nPull my finger"),
 
 			'kakariko_saharalasa_wife' => $converter->convertDialogCompressed("Heya, @!\nLong time no see.\nYou want a master sword?\n\nWell good luck with that."),
 
@@ -114,7 +114,7 @@ class Text {
 
 			'kakariko_saharalasa_wife_closing' => $converter->convertDialogCompressed("Anywho, I have things to do. You see those 2 ovens?\n\nYeah, 2!\nWho has 2 ovens nowadays?!"),
 
-			'kakariko_saharalasa_after_master_sword' => $converter->convertDialogCompressed("Cool sword!\n\n\n…\n\n\n…\n\n\nPlease save us!"),
+			'kakariko_saharalasa_after_master_sword' => $converter->convertDialogCompressed("Cool sword!\n\n\n…\n\n\n…\n\n\nPlease save us"),
 
 			'kakariko_alert_guards' => $converter->convertDialogCompressed("GUARDS! HELP!\nThe creeper\n@ is here!"),
 
@@ -123,7 +123,7 @@ class Text {
 			'sahasrahla_quest_have_master_sword' => $converter->convertDialogCompressed("{BOTTOM}\nThat's a pretty sword, but I'm old, forgetful, and old. Why don't you go do all the hard work while I hang out in this hut."),
 
 			'sahasrahla_quest_information' => $converter->convertDialogCompressed("{BOTTOM}\n"
-				. "Sahasrahla, I am. You would do well to find the 3 pendants from the 3 dungeons in the light world.\n"
+				. "Sahasrahla, I am. You would do well to find the 3 pendants from the 3 dungeons in the Light World.\n"
 				. "Understand?\n  ≥ yes\n    no\n{CHOICE}"),
 
 			'sahasrahla_bring_courage' => $converter->convertDialogCompressed("{BOTTOM}\n"
@@ -138,7 +138,7 @@ class Text {
 
 			'sahasrahla_have_boots_no_icerod' => $converter->convertDialogCompressed("{BOTTOM}\nCave in South East has a cool item."),
 
-			'sahasrahla_have_courage' => $converter->convertDialogCompressed("{BOTTOM}\nLook, you have the green pendant! I'll give you something. Now, go kill the other two bosses for more pendant fun!"),
+			'sahasrahla_have_courage' => $converter->convertDialogCompressed("{BOTTOM}\nLook, you have the green pendant! I'll give you something. Go kill the other two bosses for more pendant fun!"),
 
 			'sahasrahla_found' => $converter->convertDialogCompressed("{BOTTOM}\nYup!\n\nI'm the old man you are looking for. I'll keep it short and sweet: Go into that dungeon, then bring me the green pendant and talk to me again."),
 
@@ -146,7 +146,7 @@ class Text {
 
 			'sign_north_of_links_house' => $converter->convertDialogCompressed("> Randomizer Don't read me, go beat Ganon!"),
 
-			'sign_path_to_death_mountain' => $converter->convertDialogCompressed("Cave to lost, old man. Good luck."),
+			'sign_path_to_death_mountain' => $converter->convertDialogCompressed("Cave to lost, old man.\nGood luck."),
 
 			'sign_lost_woods' => $converter->convertDialogCompressed("\n↑ Lost Woods"),
 
@@ -156,13 +156,13 @@ class Text {
 
 			'sign_death_mountain_cave_back' => $converter->convertDialogCompressed("Cave away from sky cabbages"),
 
-			'sign_east_of_links_house' => $converter->convertDialogCompressed("↓ Lake Hylia\n\n Also, a shop."),
+			'sign_east_of_links_house' => $converter->convertDialogCompressed("↓ Lake Hylia\n\n Also, a shop"),
 
 			'sign_south_of_lumberjacks' => $converter->convertDialogCompressed("← Kakariko\n  Village"),
 
 			'sign_east_of_desert' => $converter->convertDialogCompressed("← Desert\n\n      It's hot."),
 
-			'sign_east_of_sanctuary' => $converter->convertDialogCompressed("↑→ Potions!\n\nWishing Waterfall"),
+			'sign_east_of_sanctuary' => $converter->convertDialogCompressed("↑→ Potions!\n\nWish Waterfall"),
 
 			'sign_east_of_castle' => $converter->convertDialogCompressed("→ East Palace\n\n← Castle"),
 
@@ -204,11 +204,11 @@ class Text {
 
 			'item_get_power_gloves' => $converter->convertDialogCompressed("Feel the power! You can now lift light rocks! Rock on!"),
 
-			'item_get_pendant_courage' => $converter->convertDialogCompressed("We have the Pendant of Courage! Look out, Chuck Norris!"),
+			'item_get_pendant_courage' => $converter->convertDialogCompressed("We have the Pendant of Courage! How brave!"),
 
-			'item_get_pendant_power' => $converter->convertDialogCompressed("We have the Pendant of Power! A god among insects!"),
+			'item_get_pendant_power' => $converter->convertDialogCompressed("We have the Pendant of Power! How robust!"),
 
-			'item_get_pendant_wisdom' => $converter->convertDialogCompressed("We have the Pendant of Wisdom! No second-guessing!"),
+			'item_get_pendant_wisdom' => $converter->convertDialogCompressed("We have the Pendant of Wisdom! How astute!"),
 
 			'item_get_mushroom' => $converter->convertDialogCompressed("A Mushroom! Don't eat it. Find a witch."),
 
@@ -274,7 +274,7 @@ class Text {
 
 			'missing_magic' => $converter->convertDialogCompressed("Something is missing…\nMagic meter?"),
 
-			'item_get_pegasus_boots' => $converter->convertDialogCompressed("Finally, it's bonking time!\nHold A to dash."),
+			'item_get_pegasus_boots' => $converter->convertDialogCompressed("Finally, it's bonking time!\nHold A to dash"),
 
 			'talking_tree_info_start' => $converter->convertDialogCompressed("Whoa! I can talk again!"),
 
@@ -288,11 +288,9 @@ class Text {
 
 			'talking_tree_other' => $converter->convertDialogCompressed("I can breathe!"),
 
-			'item_get_pendant_courage_alt' => $converter->convertDialogCompressed("We have the Pendant of Courage! How brave!"),
+			'item_get_pendant_power_alt' => $converter->convertDialogCompressed("We have the Pendant of Power! How Robust!"),
 
-			'item_get_pendant_power_alt' => $converter->convertDialogCompressed("We have the Pendant of Power! How robust!"),
-
-			'item_get_pendant_wisdom_alt' => $converter->convertDialogCompressed("We have the Pendant of Wisdom! How astute!"),
+			'item_get_pendant_wisdom_alt' => $converter->convertDialogCompressed("We have the Pendant of wisdom! How Astute!"),
 
 			'game_shooting_choice' => $converter->convertDialogCompressed("20 rupees.\n5 arrows.\nWin rupees!\nWant to play?\n  ≥ yes\n    no\n{CHOICE}"),
 
@@ -314,13 +312,13 @@ class Text {
 
 			'pond_item_test_no_no' => $converter->convertDialogCompressed("Well, I don't want it, so take it back."),
 
-			'pond_item_boomerang' => $converter->convertDialogCompressed("I don't much like you, so have this worse boomerang."),
+			'pond_item_boomerang' => $converter->convertDialogCompressed("I don't much like you, so have this worse Boomerang."),
 
 			'pond_item_shield' => $converter->convertDialogCompressed("I grant you the ability to block fireballs. Don't lose this to a Pikit!"),
 
 			'pond_item_silvers' => $converter->convertDialogCompressed("So, wouldn't it be nice to kill Ganon? These should help in the final phase."),
 
-			'pond_item_bottle_filled' => $converter->convertDialogCompressed("A filled Bottle!\nMoney Saved!"),
+			'pond_item_bottle_filled' => $converter->convertDialogCompressed("Bottle Filled!\nMoney Saved!"),
 
 			'pond_item_sword' => $converter->convertDialogCompressed("Thank you for the sword, here is a stick of butter."),
 
@@ -350,13 +348,13 @@ class Text {
 
 			'mountain_old_man_in_his_cave_post_agahnim' => $converter->convertDialogCompressed("You should be heading to the castle… you have a portal there now.\nSay hi anytime you like."),
 
-			'tavern_old_man_awake' => $converter->convertDialogCompressed("Life? Love? Happiness? The question you should really ask is, 'Was this generated by Stoops Alu or Stoops Jet?'"),
+			'tavern_old_man_awake' => $converter->convertDialogCompressed("Life? Love? Happiness? The question you should really ask is: Was this generated by Stoops Alu or Stoops Jet?"),
 
-			'tavern_old_man_unactivated_flute' => $converter->convertDialogCompressed("You should play that flute for the weathervane, cause… reasons."),
+			'tavern_old_man_unactivated_flute' => $converter->convertDialogCompressed("You should play that flute for the weathervane, cause reasons."),
 
-			'tavern_old_man_know_tree_unactivated_flute' => $converter->convertDialogCompressed("You should play that flute for the weathervane, cause… reasons."),
+			'tavern_old_man_know_tree_unactivated_flute' => $converter->convertDialogCompressed("You should play that flute for the weathervane, cause reasons."),
 
-			'tavern_old_man_have_flute' => $converter->convertDialogCompressed("Life? Love? Happiness? The question you should really ask is, 'Was this generated by Stoops Alu or Stoops Jet?'"),
+			'tavern_old_man_have_flute' => $converter->convertDialogCompressed("Life? Love? Happiness? The question you should really ask is: Was this generated by Stoops Alu or Stoops Jet?"),
 
 			'chicken_hut_lady' => $converter->convertDialogCompressed("This is\nChristos' hut.\n\nHe's out, searching for a bow."),
 
@@ -370,7 +368,7 @@ class Text {
 
 			'sign_north_village_of_outcasts' => $converter->convertDialogCompressed("↑ Skull Woods\n\n↓ Steve's town"),
 
-			'sign_south_of_bumper_cave' => $converter->convertDialogCompressed("\n→ Karkat's cave"),
+			'sign_south_of_bumper_cave' => $converter->convertDialogCompressed("\n→ Karkats cave"),
 
 			'sign_east_of_pyramid' => $converter->convertDialogCompressed("\n→ Dark Palace"),
 
@@ -396,7 +394,7 @@ class Text {
 
 			'mastersword_pedestal_translated' => $converter->convertDialogCompressed("A test of strength: If you have 3 pendants, I'm yours."),
 
-			'telepathic_tile_spectacle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nUse the Mirror, or the Hookshot and Hammer, to get to Tower of Hera!"),
+			'telepathic_tile_spectacle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nThe Mirror, or the Hookshot & Hammer, will get you to Tower of Hera!"),
 
 			'telepathic_tile_swamp_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nDrain the floodgate to raise the water here!"),
 
@@ -450,7 +448,7 @@ class Text {
 
 			'bottle_vendor_get' => $converter->convertDialogCompressed("Nice! Hold it up son! Show the world what you got!"),
 
-			'bottle_vendor_no' => $converter->convertDialogCompressed("Fine! I didn't want your money anyways."),
+			'bottle_vendor_no' => $converter->convertDialogCompressed("Fine! I didn't want your money anyway."),
 
 			'bottle_vendor_already_collected' => $converter->convertDialogCompressed("Dude! You already have it."),
 
@@ -492,9 +490,9 @@ class Text {
 
 			'dark_flute_boy_no_get_shovel' => $converter->convertDialogCompressed("Oh I see, not good enough for you… FINE!"),
 
-			'dark_flute_boy_flute_not_found' => $converter->convertDialogCompressed("Still haven't found the item? Dig in the light world around here, dingus!"),
+			'dark_flute_boy_flute_not_found' => $converter->convertDialogCompressed("Still haven't found the item? Dig in the Light World around here, dingus!"),
 
-			'dark_flute_boy_after_shovel_get' => $converter->convertDialogCompressed("So, I gave you an item, and you're still here.\n\n\n\n\n\nI mean, we can sit here and stare at each other, if you like…\n\n\n\n\n\n\n\nFine, I guess you should just go."),
+			'dark_flute_boy_after_shovel_get' => $converter->convertDialogCompressed("So I gave you an item, and you're still here.\n\n\n\n\n\nI mean, we can sit here and stare at each other, if you like…\n\n\n\n\n\n\n\nFine, I guess you should just go."),
 
 			'shop_fortune_teller_lw_hint_0' => $converter->convertDialogCompressed("{BOTTOM}\nBy the black cats, the book opens the desert"),
 
@@ -552,11 +550,11 @@ class Text {
 				. "And speak my point of view but it's not sane,\n"
 				. "It's not sane"),
 
-			'sick_kid_no_bottle' => $converter->convertDialogCompressed("{BOTTOM}\nI'm sick! Show me a bottle; get something!"),
+			'sick_kid_no_bottle' => $converter->convertDialogCompressed("{BOTTOM}\nI'm sick! Show me a bottle, get something!"),
 
 			'sick_kid_trade' => $converter->convertDialogCompressed("{BOTTOM}\nCool Bottle! Here's something for you."),
 
-			'sick_kid_post_trade' => $converter->convertDialogCompressed("{BOTTOM}\nLeave me alone.\nI'm sick. You have my item."),
+			'sick_kid_post_trade' => $converter->convertDialogCompressed("{BOTTOM}\nLeave me alone\nI'm sick. You have my item."),
 
 			'desert_thief_sitting' => $converter->convertDialogCompressed("………………………"),
 
@@ -576,7 +574,7 @@ class Text {
 
 			'tablet_bombos_book' => $converter->convertDialogCompressed("Can you make things fall out of the sky? With the Master Sword, you can!"),
 
-			'magic_bat_wake' => $converter->convertDialogCompressed("You bum! I was sleeping. Where's my magic bolts?"),
+			'magic_bat_wake' => $converter->convertDialogCompressed("You bum! I was sleeping! Where's my magic bolts?"),
 
 			'magic_bat_give_half_magic' => $converter->convertDialogCompressed("How you like me now?"),
 
@@ -598,7 +596,7 @@ class Text {
 
 			'bomb_shop' => $converter->convertDialogCompressed("30 bombs for 100 rupees. Good deals all day!"),
 
-			'bomb_shop_big_bomb' => $converter->convertDialogCompressed("30 bombs for 100 rupees, 100 rupees for 1 BIG bomb. Good deals all day!"),
+			'bomb_shop_big_bomb' => $converter->convertDialogCompressed("30 bombs for 100 rupees, 100 rupees 1 BIG bomb. Good deals all day!"),
 
 			'bomb_shop_big_bomb_buy' => $converter->convertDialogCompressed("Thanks!\nBoom goes the dynamite!"),
 
@@ -630,7 +628,7 @@ class Text {
 
 			'aginah' => $converter->convertDialogCompressed("So, I've been living in this cave for years, and you think you can just come along and bomb open walls?"),
 
-			'aginah_need_better_sword' => $converter->convertDialogCompressed("Once, I farted in this cave so bad all the jazz hands guys ran away in hid in the sand."),
+			'aginah_need_better_sword' => $converter->convertDialogCompressed("Once, I farted in this cave so bad all the jazz hands guys ran away and hid in the sand."),
 
 			'aginah_have_better_sword' => $converter->convertDialogCompressed("Pandas are very vicious animals. Never forget…\n\n\n\n\nI never will…"),
 
@@ -644,11 +642,11 @@ class Text {
 
 			'lumberjack_left_post_agahnim' => $converter->convertDialogCompressed("One of us likes peanut butter."),
 
-			'fighting_brothers_right' => $converter->convertDialogCompressed("I walled off my brother Leo.\n\nWhat a dingus."),
+			'fighting_brothers_right' => $converter->convertDialogCompressed("I walled off my brother Leo\n\nWhat a dingus."),
 
 			'fighting_brothers_right_opened' => $converter->convertDialogCompressed("Now I should probably talk to him…"),
 
-			'fighting_brothers_left' => $converter->convertDialogCompressed("Did you come from my brother's room?\n\nAre we cool?"),
+			'fighting_brothers_left' => $converter->convertDialogCompressed("Did you come from my brothers room?\n\nAre we cool?"),
 
 			'maiden_crystal_1' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nI have a pretty red dress.\n{SPEED1}\n{SPEED2}Just thought I would tell you."),
 
@@ -662,17 +660,17 @@ class Text {
 
 			'maiden_crystal_6' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nI have a pretty green dress.\n{SPEED1}\n{SPEED2}Just thought I would tell you."),
 
-			'maiden_crystal_7' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nWell it's about friggin time!\n{SPEED1}\n{SPEED2}Do you know how long I've been waiting?!"),
+			'maiden_crystal_7' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nIt's about friggin time.\n{SPEED1}\n{SPEED2}Do you know how long I've been waiting?!"),
 
 			'maiden_ending' => $converter->convertDialogCompressed("May the way of the hero lead to the Triforce"),
 
 			'maiden_confirm_undersood' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nCapisce?\n  ≥ Yes\n    No\n{CHOICE}"),
 
-			'barrier_breaking' => $converter->convertDialogCompressed("What did the seven crystals say to Ganon's tower?"),
+			'barrier_breaking' => $converter->convertDialogCompressed("What did the seven crystals say to Ganon's Tower?"),
 
-			'maiden_crystal_7_again' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nWell it's about friggin time!\n{SPEED1}\n{SPEED2}Do you know how long I've been waiting?!"),
+			'maiden_crystal_7_again' => $converter->convertDialogCompressed("{SPEED2}\n{BOTTOM}\n{NOBORDER}\nIt's about friggin time.\n{SPEED1}\n{SPEED2}Do you know how long I've been waiting?!"),
 
-			'agahnim_zelda_teleport' => $converter->convertDialogCompressed("I am a magician, and this is my act. Watch as I make this girl disappear!"),
+			'agahnim_zelda_teleport' => $converter->convertDialogCompressed("I am a magician, and this is my act. Watch as I make this girl disappear"),
 
 			'agahnim_magic_running_away' => $converter->convertDialogCompressed("And now, the end is near\nAnd so I face the final curtain\nMy friend, I'll say it clear\nI'll state my case, of which I'm certain\nI've lived a life that's full\nI've traveled each and every highway\nBut more, much more than this\nI did it my way"),
 
@@ -698,7 +696,7 @@ class Text {
 
 			'dark_palace_tree_dude' => $converter->convertDialogCompressed("Did you know…\n\n\nA tree typically has many secondary branches supported clear of the ground by the trunk. This trunk typically contains woody tissue for strength, and vascular tissue to carry materials from one part of the tree to another."),
 
-			'fairy_wishing_ponds' => $converter->convertDialogCompressed("\n-wishing pond-\n\nThrow item in?\n  ≥ Yesh\n    Mmm, no\n{CHOICE}"),
+			'fairy_wishing_ponds' => $converter->convertDialogCompressed("\n-wishing pond-\n\nThrow item in?\n  ≥ Yesh\n    No\n{CHOICE}"),
 
 			'fairy_wishing_ponds_no' => $converter->convertDialogCompressed("\n   stop it!"),
 
@@ -804,11 +802,11 @@ class Text {
 
 			'game_chest_south_of_kakariko' => $converter->convertDialogCompressed("Pay 20 rupees, open 1 chest. Are you lucky?\nSo, Play game?\n  ≥ play\n    never!\n{CHOICE}"),
 
-			'game_chest_play_yes' => $converter->convertDialogCompressed("Good luck then."),
+			'game_chest_play_yes' => $converter->convertDialogCompressed("Good luck then"),
 
 			'game_chest_play_no' => $converter->convertDialogCompressed("Well fine, I didn't want your rupees."),
 
-			'game_chest_lost_woods' => $converter->convertDialogCompressed("Pay 100 rupees, open 1 chest. Are you lucky?\nSo, Play game?\n  ≥ play\n    never!\n{CHOICE}"),
+			'game_chest_lost_woods' => $converter->convertDialogCompressed("Pay 100 rupees open 1 chest. Are you lucky?\nSo, Play game?\n  ≥ play\n    never!\n{CHOICE}"),
 
 			'kakariko_flophouse_man_no_flippers' => $converter->convertDialogCompressed("I sure do have a lot of beds.\n\nZora is a cheapskate and will try to sell you his trash for 500 rupees…"),
 
@@ -824,7 +822,7 @@ class Text {
 
 			'game_digging_start' => $converter->convertDialogCompressed("Okay, use the shovel with Y!"),
 
-			'game_digging_no_cash' => $converter->convertDialogCompressed("Shovel rental is 80 rupees.\nI have all day."),
+			'game_digging_no_cash' => $converter->convertDialogCompressed("Shovel rental is 80 rupees.\nI have all day"),
 
 			'game_digging_end_time' => $converter->convertDialogCompressed("Time's up!\nTime for you to go."),
 
