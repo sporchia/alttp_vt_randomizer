@@ -394,7 +394,7 @@ class Text {
 
 			'mastersword_pedestal_translated' => $converter->convertDialogCompressed("A test of strength: If you have 3 pendants, I'm yours."),
 
-			'telepathic_tile_spectacle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nThe Mirror, or the Hookshot & Hammer, will get you to Tower of Hera!"),
+			'telepathic_tile_spectacle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nUse the Mirror, or the Hookshot and Hammer, to get to Tower of Hera!"),
 
 			'telepathic_tile_swamp_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nDrain the floodgate to raise the water here!"),
 
