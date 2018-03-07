@@ -254,9 +254,8 @@
 		</ul>
 		<p>The following items have had their total count reduced:</p>
 		<ul>
-		<li>Bombs
-		<li>Heart Containers (only 5x)
-		<li>Rupees
+		<li>Heart Container (only 6x)
+		<li>Piece of Heart (only 20x)
 		</ul>
 		<p>The following items have had their functionality adjusted:</p>
 		<ul>
@@ -271,17 +270,14 @@
 		<h4>Expert</h4>
 		<p>Looking for even more of a challenge? The following items have been removed, in addition to Hard:</p>
 		<ul>
-		<li>Heart Containers
 		<li>Blue Mail
 		<li>Fire Shield
-		<li>Fighter's Shield
 		<li>Silver Arrow Upgrade (except in Swordless Mode)
 		<li>Tempered Sword
 		</ul>
 		<p>The following items have had their total count reduced from Hard:</p>
 		<ul>
-		<li>Arrows
-		<li>Rupees
+		<li>Heart Container (only 1x)
 		</ul>
 		<p>The following items have had their functionality further adjusted from Hard:</p>
 		<ul>
@@ -296,12 +292,9 @@
 		<p>Expert not cutting it for you? Have you truly lost your mind? The following items have
 			been removed, in addition to Expert:</p>
 		<ul>
-		<li>Pieces of Heart
-		</ul>
-		<p>The following items have had their total count reduced from Expert:</p>
-		<ul>
-		<li>Arrows
-		<li>Bombs
+		<li>Fighter's Shield
+		<li>Heart Container
+		<li>Piece of Heart
 		</ul>
 		<p>The following items have had their functionality further adjusted from Expert:</p>
 		<ul>
