@@ -400,7 +400,7 @@ class Text {
 
 			'telepathic_tile_thieves_town_upstairs' => $converter->convertDialogCompressed("Secondary tournament winners\n{HARP}\n  ~~~2017~~~\nA: Zaen"),
 
-			'telepathic_tile_unused' => $converter->convertDialogCompressed("{NOBORDER}\nLighting 4 torches will open your way forward!"),
+			'telepathic_tile_misery_mire' => $converter->convertDialogCompressed("{NOBORDER}\nLighting 4 torches will open your way forward!"),
 
 			'hylian_text_2' => $converter->convertDialogCompressed("%%^= %==%\n ^ =%^=\n==%= ^^%^"),
 
@@ -794,7 +794,7 @@ class Text {
 			// 17A
 			'cukeman' => $converter->convertDialogCompressed("Did you hear that Veetorp beat ajneb174 in a 1 on 1 race at AGDQ?"),
 
-			'unknown_2' => $converter->convertDialogCompressed("You found Shabadoo, huh?\nNiiiiice"),
+			'cukeman_2' => $converter->convertDialogCompressed("You found Shabadoo, huh?\nNiiiiice"),
 
 			'potion_shop_no_cash' => $converter->convertDialogCompressed("Yo! I'm not running a charity here."),
 

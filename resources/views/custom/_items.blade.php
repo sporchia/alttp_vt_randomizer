@@ -145,10 +145,6 @@ $items = [
 		'count' => 6,
 		'name' => 'Arrow Upgrade (+5)',
 	],
-	'ArrowUpgrade70' => [
-		'count' => 0,
-		'name' => 'Arrow Upgrade (+70)',
-	],
 	'BlueMail' => [
 		'count' => 0,
 		'name' => 'Blue Mail',
@@ -172,10 +168,6 @@ $items = [
 	'BombUpgrade5' => [
 		'count' => 6,
 		'name' => 'Bomb Upgrade (+5)',
-	],
-	'BombUpgrade50' => [
-		'count' => 0,
-		'name' => 'Bomb Upgrade (+50)',
 	],
 	'Boomerang' => [
 		'count' => 1,

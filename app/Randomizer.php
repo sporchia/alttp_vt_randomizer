@@ -175,21 +175,25 @@ class Randomizer {
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
 
-		if ($this->logic == 'MajorGlitches') {
-			// MajorGlitches always has 4 bottles, no matter what
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
-			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
-		}
-
-		if ($this->logic == 'OverworldGlitches') {
-			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
-		}
-
-		// at this point we have filled all the base locations that will affect the rest of the actual item placements
+		$dungeon_items = $this->getDungeonPool();
 		$advancement_items = $this->getAdvancementItems();
+		$nice_items = $this->getNiceItems();
+		$trash_items = ($this->config('rng_items'))
+			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
+			: $this->getItemPool();
+
+		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches'])) {
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
+			foreach ($advancement_items as $key => $item) {
+				if ($item == Item::get('PegasusBoots')) {
+					unset($advancement_items[$key]);
+					array_push($trash_items, Item::get('TwentyRupees'));
+					break;
+				}
+			}
+		}
 
 		// take out all the swords and silver arrows
-		$nice_items = $this->getNiceItems();
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
 		foreach ($advancement_items as $key => $item) {
@@ -241,6 +245,7 @@ class Randomizer {
 
 			if ($this->config('region.takeAnys', false)) {
 				array_pop($nice_items_swords);
+				array_push($trash_items, Item::get('TwentyRupees'));
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -251,12 +256,7 @@ class Randomizer {
 		}
 		$nice_items = array_merge($nice_items, $nice_items_bottles);
 
-		// Remaining Items
-		$trash_items = ($this->config('rng_items'))
-			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
-			: $this->getItemPool();
 
-		$dungeon_items = $this->getDungeonPool();
 
 		if ($this->world->config('region.wildBigKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
@@ -532,7 +532,7 @@ class Randomizer {
 
 		$shops->filter(function($shop) {
 			return !$shop instanceof Shop\TakeAny;
-		})->randomCollection(4)->each(function($shop) {
+		})->randomCollection(5)->each(function($shop) {
 			$shop->setActive(true);
 			if ($this->config('rom.rupeeBow', false)) {
 				$shop->addInventory(0, Item::get('Arrow'), 80);
@@ -1098,6 +1098,8 @@ class Randomizer {
 			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
 			"Thanks for\ndropping in,\nthe first\npassengers\nin a hot\nair balloon.\nwere a duck,\na sheep,\nand a rooster.",
 			"You think you\nare so smart?\n\nI bet you\ndidn't know\nYou can't hum\nwhile holding\nyour nose\nclosed.",
+			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously you\nwere supposed\nto bring food",
+			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the dark\nworld!\n\nOr else you\nwill die!",
 		])));
 
 		switch ($this->goal) {
@@ -1296,16 +1298,12 @@ class Randomizer {
 			array_push($advancement_items, Item::get('TenBombs'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.HalfMagic', 1); $i++) {
 			array_push($advancement_items, Item::get('HalfMagic'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.QuarterMagicUpgrade', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.QuarterMagic', 0); $i++) {
 			array_push($advancement_items, Item::get('QuarterMagic'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 0); $i++) {
-			array_push($advancement_items, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 		}
 
 		return $advancement_items;
@@ -1389,17 +1387,11 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.BombUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('BombUpgrade10'));
 		}
-		for ($i = 0; $i < $this->config('item.count.BombUpgrade50', 0); $i++) {
-			array_push($items_to_find, Item::get('BombUpgrade50'));
-		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade5', 6); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade5'));
 		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade10'));
-		}
-		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade70', 0); $i++) {
-			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {
@@ -1647,6 +1639,24 @@ class Randomizer {
 			}
 
 			$rom->setOverworldDigPrizes($dig_prizes);
+		} else {
+			if ($this->config('rom.rupeeBow', false)) {
+				$rom->setOverworldDigPrizes([
+					0xB2, 0xD8, 0xD8, 0xD8,
+					0xD8, 0xD8, 0xD8, 0xD8, 0xD8,
+					0xD9, 0xD9, 0xD9, 0xD9, 0xD9,
+					0xDA, 0xDA, 0xDA, 0xDA, 0xDA,
+					0xDB, 0xDB, 0xDB, 0xDB, 0xDB,
+					0xDC, 0xDC, 0xDC, 0xDC, 0xDC,
+					0xDD, 0xDD, 0xDD, 0xDD, 0xDD,
+					0xDE, 0xDE, 0xDE, 0xDE, 0xDE,
+					0xDF, 0xDF, 0xDF, 0xDF, 0xDF,
+					0xE0, 0xE0, 0xE0, 0xE0, 0xE0,
+					0xDA, 0xDA, 0xDA, 0xDA, 0xDA,
+					0xDB, 0xDB, 0xDB, 0xDB, 0xDB,
+					0xE3, 0xE3, 0xE3, 0xE3, 0xE3,
+				]);
+			}
 		}
 
 		// write to trees

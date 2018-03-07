@@ -5,7 +5,7 @@
 @section('rom-settings')
 <div class="panel panel-info panel-collapse collapse" id="rom-settings">
 	<div class="panel-heading">
-		<h4 class="panel-title">Additional ROM Options</h4>
+		<h3 class="panel-title">Additional ROM Options</h3>
 	</div>
 	<div class="panel-body">
 		<div class="col-md-6 pb-5">
