@@ -254,40 +254,34 @@
 		</ul>
 		<p>The following items have had their total count reduced:</p>
 		<ul>
-		<li>Bombs
-		<li>Heart Containers (only 5x)
-		<li>Rupees
+		<li>Heart Container (only 6x)
+		<li>Piece of Heart (only 20x)
 		</ul>
 		<p>The following items have had their functionality adjusted:</p>
 		<ul>
 		<li>Magic Cape uses 2x Magic as Normal (except in Spike Cave)
 		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
-		<li>Magic Powder does not turn Bubbles into Fairies
+		<li>Magic Powder turns Bubbles into a very minor help
 		<li>Bug Net doesn't catch Fairies
-		<li>There are only 2 Bottles (4 in Glitched Logic)
-        <li>Potions heal 5 hearts and restore 1/2 magic (except in Spike Cave where they behave
+		<li>Potions heal 7 hearts and restore 1/2 magic (except in Spike Cave where they behave
 			normally)
 		</ul>
 		<h4>Expert</h4>
 		<p>Looking for even more of a challenge? The following items have been removed, in addition to Hard:</p>
 		<ul>
-		<li>Heart Containers
 		<li>Blue Mail
 		<li>Fire Shield
-		<li>Fighter's Shield
 		<li>Silver Arrow Upgrade (except in Swordless Mode)
 		<li>Tempered Sword
 		</ul>
 		<p>The following items have had their total count reduced from Hard:</p>
 		<ul>
-		<li>Arrows
-		<li>Rupees
+		<li>Heart Container (only 1x)
 		</ul>
 		<p>The following items have had their functionality further adjusted from Hard:</p>
 		<ul>
 		<li>Magic Cape uses 4x Magic as Normal (except in Spike Cave)
 		<li>Cane of Byrna doesn't protect you (except in Spike Cave)
-		<li>There is only 1 Bottle (4 in Major Glitched Logic)
 		<li>Potions heal 1 heart and restore 1/4 magic (except in Spike Cave where they behave
 			normally)
 		<li>Shields in Shops cannot be purchased
@@ -296,15 +290,13 @@
 		<p>Expert not cutting it for you? Have you truly lost your mind? The following items have
 			been removed, in addition to Expert:</p>
 		<ul>
-		<li>Pieces of Heart
-		</ul>
-		<p>The following items have had their total count reduced from Expert:</p>
-		<ul>
-		<li>Arrows
-		<li>Bombs
+		<li>Fighter's Shield
+		<li>Heart Container
+		<li>Piece of Heart
 		</ul>
 		<p>The following items have had their functionality further adjusted from Expert:</p>
 		<ul>
+		<li>Magic Powder turns Bubbles into much less of a nuisance
 		<li>Potions don't heal or restore magic (except in Spike Cave where they behave normally)
 		</ul>
 
@@ -364,12 +356,18 @@
 			<td>0</td>
 		</tr><tr class="bg-warning">
 			<td>Hard</td>
-			<td>5 minutes</td>
+			<td>7.5 minutes</td>
 			<td>20</td>
-			<td>0</td>
+			<td>1</td>
 		</tr><tr class="bg-danger">
-			<td>Expert / Insane</td>
+			<td>Expert</td>
 			<td>5 minutes</td>
+			<td>15</td>
+			<td>3</td>
+		</tr>
+		</tr><tr class="bg-danger">
+			<td>Insane</td>
+			<td>0 minutes</td>
 			<td>20</td>
 			<td>5</td>
 		</tr></tbody>
