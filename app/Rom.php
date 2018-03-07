@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-02';
-	const HASH = '2474a38036d12cf798bea821ebca9cdd';
+	const BUILD = '2018-03-06';
+	const HASH = '1610f23078c6b0367ea9bf6104963e87';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -454,17 +454,11 @@ class Rom {
 				case 'BombUpgrade10':
 					$starting_bomb_capacity += 10;
 					break;
-				case 'BombUpgrade50':
-					$starting_bomb_capacity += 50;
-					break;
 				case 'ArrowUpgrade5':
 					$starting_arrow_capacity += 5;
 					break;
 				case 'ArrowUpgrade10':
 					$starting_arrow_capacity += 10;
-					break;
-				case 'ArrowUpgrade70':
-					$starting_arrow_capacity += 70;
 					break;
 				case 'HalfMagic':
 					$equipment[0x37B] = 0x01;
@@ -688,6 +682,10 @@ class Rom {
 		$this->write(0x183000, pack('C*', ...$equipment));
 		$this->setMaxArrows($starting_arrow_capacity);
 		$this->setMaxBombs($starting_bomb_capacity);
+
+		if (config('game-mode') != 'swordless' && $equipment[0x359]) {
+			$this->write(0x180043, pack('C*', $equipment[0x359])); // write starting sword
+		}
 
 		return $this;
 	}
@@ -1939,7 +1937,7 @@ class Rom {
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
 				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
+				$this->setBottleFills([0x38, 0x40]); // 7 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
@@ -1951,7 +1949,7 @@ class Rom {
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
 				$this->setCaneOfByrnaInvulnerability(false);
-				$this->setPowderedSpriteFairyPrize(0x79); // Bees
+				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
 				$this->setShopRedShieldCost(9990);
@@ -2058,7 +2056,7 @@ class Rom {
 	public function setupCustomShops($shops) : self {
 		$shops = $shops->filter(function($shop) {
 			return $shop->getActive();
-		})->take(10); // current sram only alows 10ish shops
+		})->take(32);
 
 		$shop_data = [];
 		$items_data = [];
@@ -2072,6 +2070,10 @@ class Rom {
 			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes($sram_offset));
 			$sram_offset += ($shop instanceof Shop\TakeAny) ? 1 : count($shop->getInventory());
 
+			if ($sram_offset > 36) {
+				throw new \Exception("Exceeded SRAM indexing for shops");
+			}
+
 			foreach ($shop->getInventory() as $item) {
 				$items_data = array_merge($items_data, [$shop_id, $item['id']],
 					array_values(unpack('C*', pack('S', $item['price'] ?? 0))),
@@ -2083,7 +2085,7 @@ class Rom {
 		$this->write(0x184800, pack('C*', ...$shop_data));
 
 		$items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
-		$this->write(0x184880, pack('C*', ...$items_data));
+		$this->write(0x184900, pack('C*', ...$items_data));
 
 		return $this;
 	}
