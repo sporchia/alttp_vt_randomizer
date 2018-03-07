@@ -364,7 +364,6 @@
 			<td>5 minutes</td>
 			<td>15</td>
 			<td>3</td>
-		</tr>
 		</tr><tr class="bg-danger">
 			<td>Insane</td>
 			<td>0 minutes</td>
