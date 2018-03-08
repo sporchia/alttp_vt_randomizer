@@ -47,16 +47,16 @@ h4, .h4, h5, .h5 {
 	resize: none;
 }
 
-.btn-outline-secondary {
-	background-color: transparent;
-	border-color: #868E96;
+.btn-secondary {
+	background-color: #FF0000;
+	border-color: #FF0000;
 	border-image: none;
-	color: #868E96;
+	color: #FFFFFF;
 }
 
-.btn-outline-secondary:hover {
-	background-color: #868E96;
-	border-color: #868E96;
+.btn-secondary:hover {
+	background-color: #C10B0B;
+	border-color: #C10B0B;
 	color: #FFFFFF;
 }
 
@@ -242,4 +242,8 @@ input[readonly].custom-placed {
 
 .table-hover>tbody>tr:hover {
 	background-color: #D6D8DB;
+}
+
+.center {
+	text-align: center;
 }

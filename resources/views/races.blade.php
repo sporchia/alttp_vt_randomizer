@@ -14,13 +14,8 @@
 			info on how to get in on the action!</p>
 		<h4>Weekly Standard Mode Race, Saturdays at 3pm US Eastern Time</h4>
 		<p>The premier community event, the weekly race consistently reaches over 100 competitors!</p>
-		<h4>Daily Races</h4>
-		<p>Running 3 times every weekend with a variety of game types! Checkout the schedule
-			<a href="http://tiny.cc/alttprdaily" target="_blank" rel="noopener noreferrer">here!</a>
-			</p>
-		<div style="text-align:center;"><iframe
-			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5jViW67OL2AriPRUOpBZeyrQd08OdilAhX6HUB4cLTZufJOIAmihpp6xSgT6v-0IXy7FL80Mg8E4K/pubhtml?gid=0&single=true&widget=true&headers=false&range=A3:D999&chrome=false"
-			style="width:80%;height:150px;"></iframe></div>
+		<h4>Weekly Open Mode Race, Saturdays at 5pm US Eastern Time</h4>
+		<p>Join us Sundays for another popular weekly community race.</p>
 		<h4>Pickup Races</h4>
 		<p>Scheduled races not fitting in with your schedule? Looking to race with some more uncommon
 			options? Join a pickup race! You'll find willing players at all hours of the day. Join
@@ -37,6 +32,7 @@
 	<div class="panel-body">
 		<p>With so much going on, there's always a race to watch! Follow these networks and never
 			miss a match!</p>
+        <p class="center"><iframe src="https://calendar.google.com/calendar/embed?showTitle=0&showPrint=0&mode=WEEK&src=alttprandomizer%40gmail.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe></p>
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
 			href="https://www.twitch.tv/communities/lttprandomizer/"
@@ -44,11 +40,11 @@
 			role="button"
 			target="_blank">ALttP:R Twitch Community</a></div>
 		<ul>
-		<li><a href="http://speedgaming.org/" target="_blank" rel="noopener noreferrer">Speedgaming</a>
 		<li><a href="https://twitch.tv/alttprandomizer" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer</a>
 		<li><a href="https://twitch.tv/alttprandomizer2" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer2</a>
 		<li><a href="https://twitch.tv/alttprandomizer3" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer3</a>
 		<li><a href="https://twitch.tv/alttprandomizer4" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer4</a>
+		<li><a href="http://speedgaming.org/" target="_blank" rel="noopener noreferrer">Speedgaming</a>
 		</ul>
 	</div>
 </div>
@@ -79,14 +75,6 @@
 		<h4>Open Tournaments</h4>
 		<p>Alongside the invitational tournaments are tournaments that are open to all! New players
 			are encouraged to join, with most of the races being restreamed with commentary.</p>
-		<h4>Keysanity Tournament <span class="running-now">Live Now!</span></h4>
-		<p><a
-			href="http://alttpr.challonge.com/keysanity2018"
-			rel="noopener noreferrer"
-			target="_blank">Check out standings here!</a></p>
-		<div style="text-align:center;"><iframe
-			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTCyiHAGp10lzTeZSlyc1lKsUtgV5FuZcxQLQvjgE4FOXmBESiSjzrn4IfHURqX1to6D_Ns8DspD9K/pubhtml?gid=55970383&single=true&widget=true&headers=false&range=A1:E999&chrome=false"
-			style="width:65%;height:400px;"></iframe></div>
 	</div>
 </div>
 
