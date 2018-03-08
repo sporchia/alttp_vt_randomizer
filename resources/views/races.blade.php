@@ -72,9 +72,6 @@
 			and keep an eye out for qualifying races!</p>
 		<p>The Spring Invitational is Standard Mode and runs from March to June, and The Fall
 			Invitational is Open Mode and runs from September to December.</p>
-		<h4>Open Tournaments</h4>
-		<p>Alongside the invitational tournaments are tournaments that are open to all! New players
-			are encouraged to join, with most of the races being restreamed with commentary.</p>
 	</div>
 </div>
 
