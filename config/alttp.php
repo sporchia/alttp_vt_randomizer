@@ -512,8 +512,8 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 32,
-						'GreenClock' => 20,
+						'FiveRupees' => 42,
+						'GreenClock' => 10,
 						'RedClock' => 5,
 					],
 					'value' => [

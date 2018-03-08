@@ -155,7 +155,7 @@ class NorthEast extends Region {
 
 			return $items->has('MoonPearl')
 				&& $items->has('DefeatAgahnim2')
-				&& ($items->canLightTorches() || ($items->has('FireRod') && $items->canExtendMagic(2)))
+				&& ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(2)))
 				&& (!$this->world->config('region.requireBetterEquipment', false) || $items->canShootArrows(2))
 				&& (
 					($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))

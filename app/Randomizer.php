@@ -256,7 +256,16 @@ class Randomizer {
 		}
 		$nice_items = array_merge($nice_items, $nice_items_bottles);
 
-
+		if ($this->config('rom.rupeeBow', false)) {
+			$trash_items_replace = [];
+			foreach ($trash_items as $key => $item) {
+				if ($item instanceof Item\Arrow || $item instanceof Item\Upgrade\Arrow) {
+					unset($trash_items[$key]);
+					$trash_items_replace[] = Item::get('FiveRupees');
+				}
+			}
+			$trash_items = array_merge($trash_items, $trash_items_replace);
+		}
 
 		if ($this->world->config('region.wildBigKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
@@ -327,6 +336,9 @@ class Randomizer {
 		$this->world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare"));
 		$this->world->getRegion('Misery Mire')->setBoss(Boss::get("Vitreous"));
 		$this->world->getRegion('Turtle Rock')->setBoss(Boss::get("Trinexx"));
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Armos Knights"), 'bottom');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Lanmolas"), 'middle');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Moldorm"), 'top');
 		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Agahnim2"));
 
 		return $this;
@@ -758,8 +770,12 @@ class Randomizer {
 		$rom->setOpenMode(in_array(config('game-mode'), ['open']));
 		$rom->setSwordlessMode($this->config('mode.weapons') == 'swordless');
 
-		if (in_array(config('game-mode'), ['open'])) {
+		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Sword) {
 			$rom->removeUnclesSword();
+		}
+		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Shield
+			|| !$this->world->getLocation("Link's Uncle")->hasItem(Item::get('L1SwordAndShield'))) {
+			$rom->removeUnclesShield();
 		}
 
 		$this->randomizeCredits($rom);
@@ -779,8 +795,6 @@ class Randomizer {
 		$rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);
 		$rom->setGreenClock($this->config('item.value.GreenClock', 0) ?: 0);
 		$rom->setStartingTime($this->config('rom.timerStart', 0) ?: 0);
-
-		$rom->removeUnclesShield();
 
 		switch ($this->config('rom.logicMode', $this->logic)) {
 			case 'MajorGlitches':
