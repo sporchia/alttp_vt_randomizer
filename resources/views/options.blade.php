@@ -392,6 +392,39 @@
 		<p>You're probably wondering how you know which key / map / compass you found. We've got you
 			covered: There will be a text box that lets you know which dungeon it belongs to, but
 			the menu will also have a table to help you if you lose track.</p>
+		<h4>Retro</h4>
+		<p>A callback to the first entry in the Legend of Zelda series, Retro Mode links us even
+			to the past.</p>
+		<h5>Rupee Bow</h5>
+		<ul>
+		<li>The Bow no longer uses arrows for ammo. Instead it uses rupees! Each Wooden Arrow costs
+			10 rupees to fire while Silver Arrows costs 50 rupees.
+		<li>Wooden Arrows are now independent to the Bow, just like Silver Arrows; you must acquire
+			both the Bow and either Wooden Arrows or Silver Arrows in order to use the Bow.
+		<li>The Wooden Arrows must be bought from a shop. They are NOT available in regular chests
+			or anywhere outside of shops.
+		<li>If you find Silver Arrows without buying Wooden Arrows, you will only be able to fire
+			Silver Arrows.
+		</ul>
+		<h5>Overworld Shops</h5>
+		<p>Five shops out of a possible eleven will be randomly chosen each time to have new stock.
+			This does NOT include the Big Bomb Shop or the Witch's Potion Shop. Wooden Arrows will be
+			available for 80 rupees and Small Keys will be available for 100 rupees each. Small Keys
+			will be able to be purchased multiple times.</p>
+		<h5>Small Keys</h5>
+		<p>Small Keys are no longer dungeon specific. They are now shuffled into the general item
+			pool and will be found outside of dungeons. Keys under pots or dropped by enemies have
+			not been changed.</p>
+		<p>Ten keys have been removed from the item pool in Easy and Normal modes; fifteen have been
+			removed from Hard, Expert, and Insane modes. Think carefully before using keys, and
+			remember you can purchase some if you get stuck!</p>
+		<p>Big Keys, Maps, and Compasses remain dungeon-specific and have not been randomized outside
+			their dungeons.</p>
+		<h5>Take-Any Caves</h5>
+		<p>Four random single-entrace caves and houses which do not lead to an item location now lead
+			to Take-Any Caves where players are given a choice between a Heart Container or Blue
+			Potion refill. The Heart Containers have not been moved from the general item pool and
+			bonus ones. However, you will not be able to have more than 20 hearts at once.</p>
 	</div>
 </div>
 
