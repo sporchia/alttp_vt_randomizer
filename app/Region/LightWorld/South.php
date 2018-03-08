@@ -109,7 +109,7 @@ class South extends Region {
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+			return $items->has('BookOfMudora') && ($items->hasSword(2)
 					|| ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')))
 				&& $items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items);
 		});
@@ -180,7 +180,7 @@ class South extends Region {
 		});
 
 		$this->locations["Bombos Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+			return $items->has('BookOfMudora') && ($items->hasSword(2)
 					|| ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')))
 				&& ($items->has('PegasusBoots')
 					|| ($items->has('MagicMirror') && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
