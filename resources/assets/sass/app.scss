@@ -60,6 +60,19 @@ h4, .h4, h5, .h5 {
 	color: #FFFFFF;
 }
 
+.btn-outline-secondary {
+	background-color: transparent;
+	border-color: #868E96;
+	border-image: none;
+	color: #868E96;
+}
+
+.btn-outline-secondary:hover {
+	background-color: #868E96;
+	border-color: #868E96;
+	color: #FFFFFF;
+}
+
 .btn-wrapper {
 	display: flex;
 	justify-content: stretch;
