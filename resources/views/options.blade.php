@@ -15,8 +15,8 @@
 			Uncle (depending on your Swords option, see below), and rescue Zelda before continuing
 			with the rest of the game.</p>
 		<h4>Open</h4>
-		<p>This mode starts with the option to start in your house or the sanctuary, you are free to
-			explore. There are a few point to note in this mode:</p>
+		<p>This mode starts with the option to start in your house or the sanctuary, and you are free
+			to explore. There are a few point to note in this mode:</p>
 			<ul>
 			<li>Uncle is already in the sewers and has an item.
 			<li>Dark rooms don't get a free light cone, not even the sewers.
