@@ -44,6 +44,18 @@
 	</div>
 </div>
 																						
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Join the Discord Community!</h3>
+	</div>
+	<div class="panel-body">
+		<p>Did we mention that you should join us on 
+			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>?
+			The best way to get involved is to join and introduce yourself!</p>
+		<p></p>
+	</div>
+</div>
+
 </div>
 
 @overwrite
