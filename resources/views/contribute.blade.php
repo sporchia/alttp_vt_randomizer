@@ -27,7 +27,7 @@
 		<p>Interested in joining out team of restreamers, commentators, and trackers?</p>
 		<p>Fill out this form and keep an eye on
 		<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!</p>
-		<p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZc9r5sUgBSGvcG70Tn11xGyJcHgF8kupnWHVVwbA6usulnw/viewform?embedded=true" width="760" height="1100" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></p>
+		<p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxQmuQBbUDEV-vRbAqCVrDqGw1ceyhS6s9XlCgZBrsdTGU_g/viewform?embedded=true" width="760" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></p>
 	</div>
 </div>
 
