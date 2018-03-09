@@ -34,7 +34,7 @@
 	</div>
 	<div class="panel-body">
 		<h4>Upcoming Tournaments</h4>
-		<p>Join us for a Standard tournament starting this Spring! Join our <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> community to stay up to date!</p>
+		<p>Join us for the 2018 Spring Invitational starting this March! Join our <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> community to stay up to date!</p>
 		<h4>2017 Fall Invitational</h4>
 		<p>The <span style="font-weight:bold;">2017 Fall Invitational</span> has wrapped up!</p>
 		<p><a href="https://www.youtube.com/playlist?list=PLdoWICJMgPKWZKYiZD1uLn529-fdHHqUK" target="_blank" rel="noopener noreferrer">Watch all the matches here!</a></p>

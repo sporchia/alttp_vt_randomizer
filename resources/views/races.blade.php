@@ -32,7 +32,7 @@
 	<div class="panel-body">
 		<p>With so much going on, there's always a race to watch! Follow these networks and never
 			miss a match!</p>
-        <p class="center"><iframe src="https://calendar.google.com/calendar/embed?showTitle=0&showPrint=0&mode=WEEK&src=alttprandomizer%40gmail.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe></p>
+	 	 <p class="center"><iframe src="https://calendar.google.com/calendar/embed?showTitle=0&showPrint=0&mode=WEEK&src=alttprandomizer%40gmail.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe></p>
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
 			href="https://www.twitch.tv/communities/lttprandomizer/"
@@ -70,8 +70,8 @@
 			toe-to-toe with the best? Join
 			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>
 			and keep an eye out for qualifying races!</p>
-		<p>The Spring Invitational is Standard Mode and runs from March to June, and The Fall
-			Invitational is Open Mode and runs from September to December.</p>
+		<p>The Spring Invitational runs from March to June.</p>
+		<p>The Fall Invitational runs from September to December.</p>
 	</div>
 </div>
 
