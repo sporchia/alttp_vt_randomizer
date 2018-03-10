@@ -318,7 +318,7 @@ class TurtleRock extends Region {
 			return $this->canEnter($locations, $items)
 				&& $items->has('FireRod') && $items->has('IceRod')
 				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
-				&& ($items->has('Hammer') || $items->hasUpgradedSword())
+				&& ($items->has('Hammer') || $items->hasSword(2))
 				&& $items->has('KeyD7', 4);
 		};
 
