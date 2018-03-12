@@ -27,7 +27,7 @@
 	</div>
 	<div class="panel-body">
 		<div style="text-align:center;"><a
-			class="btn btn-outline-secondary btn-lg btn-xl"
+			class="btn btn-secondary btn-lg btn-xl"
 			href="https://www.youtube.com/channel/UCBMMk0WJAeldNv4fI9juovA"
 			role="button">ALttP:R Youtube Channel</a></div><br/>
 		<p>Check out our routing guides, glitch tutorials, update announcements, tournament
