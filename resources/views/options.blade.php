@@ -527,22 +527,21 @@
 		<h5>Rupee Bow</h5>
 		<ul>
 		<li>The Bow no longer uses arrows for ammo. Instead it uses rupees! Each Wooden Arrow costs
-			10 rupees to fire while Silver Arrows costs 50 rupees.
-		<li>Wooden Arrows are now independent to the Bow, just like Silver Arrows; you must acquire
+			10 rupees to fire while each Silver Arrow costs 50 rupees.
+		<li>Wooden Arrows are now independent of the Bow, just like Silver Arrows; you must acquire
 			both the Bow and either Wooden Arrows or Silver Arrows in order to use the Bow.
-		<li>The Wooden Arrows must be bought from a shop. They are NOT available in regular chests
-			or anywhere outside of shops.
+		<li>The Wooden Arrows are now an item to be acquired, and must be bought, once, from a shop.
+			They are NOT available in regular chests or anywhere outside of shops.
 		<li>If you find Silver Arrows without buying Wooden Arrows, you will only be able to fire
 			Silver Arrows.
 		</ul>
 		<h5>Overworld Shops</h5>
-		<p>Five shops out of a possible eight will be randomly chosen each time to have new stock.
-			This does NOT include the Big Bomb Shop, the Witch's Potion Shop, or the Light World
-			Death Mountain Shop. Wooden Arrows will be available for 80 rupees and Small Keys will be
-			available for 100 rupees each. Small Keys will be able to be purchased multiple times.
-			</p>
+		<p>Five shops out of a possible eight will be randomly chosen when the ROM is generated to
+			have new stock. This does NOT include the Big Bomb Shop or the Witch's Potion Shop.
+			The Wooden Arrow item will be available for 80 rupees, and Small Keys will be available
+			for 100 rupees each. Small Keys will be able to be purchased multiple times.</p>
 		<h5>Small Keys</h5>
-		<p>Small Keys are no longer dungeon specific. They are now shuffled into the general item
+		<p>Small Keys are no longer dungeon-specific. They are now shuffled into the general item
 			pool and will be found outside of dungeons. Keys under pots or dropped by enemies have
 			not been changed.</p>
 		<p>Ten keys have been removed from the item pool in Easy and Normal modes; fifteen have been

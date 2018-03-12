@@ -24,7 +24,7 @@
 		<h3 class="panel-title">Live Race Production</h3>
 	</div>
 	<div class="panel-body">
-		<p>Interested in joining out team of restreamers, commentators, and trackers?</p>
+		<p>Interested in joining our team of restreamers, commentators, and trackers?</p>
 		<p>Fill out this form and keep an eye on
 		<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!</p>
 		<p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxQmuQBbUDEV-vRbAqCVrDqGw1ceyhS6s9XlCgZBrsdTGU_g/viewform?embedded=true" width="760" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></p>
