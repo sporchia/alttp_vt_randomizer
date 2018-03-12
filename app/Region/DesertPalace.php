@@ -88,12 +88,23 @@ class DesertPalace extends Region {
 			return $items->has('BigKeyP2');
 		});
 
+		$this->might_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $items->canLiftRocks() && $items->canLightTorches()
+				&& $items->has('BigKeyP2')
+				&& $this->boss->canBeat($items, $locations);
+		};
+
 		$this->locations["Desert Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyP2');
+			return $items->has('KeyP2')
+				|| ($this->locations["Desert Palace - Lanmolas'"]->hasItem(Item::get('KeyP2'))
+					&& call_user_func($this->might_complete, $locations, $items));
 		});
 
 		$this->locations["Desert Palace - Compass Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('KeyP2');
+			return $items->has('KeyP2')
+				|| ($this->locations["Desert Palace - Lanmolas'"]->hasItem(Item::get('KeyP2'))
+					&& call_user_func($this->might_complete, $locations, $items));
 		});
 
 		$this->locations["Desert Palace - Torch"]->setRequirements(function($locations, $items) {
@@ -107,10 +118,9 @@ class DesertPalace extends Region {
 		};
 
 		$this->locations["Desert Palace - Lanmolas'"]->setRequirements(function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& $items->canLiftRocks() && $items->canLightTorches()
-				&& $items->has('BigKeyP2') && $items->has('KeyP2')
-				&& $this->boss->canBeat($items, $locations);
+			return call_user_func($this->might_complete, $locations, $items)
+				&& ($items->has('KeyP2') || $this->locations["Desert Palace - Big Key Chest"]->hasItem(Item::get('KeyP2'))
+					|| $this->locations["Desert Palace - Compass Chest"]->hasItem(Item::get('KeyP2')));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -141,14 +151,14 @@ class DesertPalace extends Region {
 	public function initOverworldGlitches() {
 		$this->initNoMajorGlitches();
 
-		$this->locations["Desert Palace - Lanmolas'"]->setRequirements(function($locations, $items) {
+		$this->might_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->canLightTorches()
-				&& $items->has('BigKeyP2') && $items->has('KeyP2')
+				&& $items->has('BigKeyP2')
 				&& $this->boss->canBeat($items, $locations)
 				&& (($items->has('BookOfMudora') && $items->canLiftRocks())
 					|| $items->has('PegasusBoots')
 					|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
-		});
+		};
 
 		$this->can_enter = function($locations, $items) {
 			return $items->has('RescueZelda')
