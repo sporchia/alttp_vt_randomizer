@@ -182,7 +182,7 @@ class Randomizer {
 			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
 			: $this->getItemPool();
 
-		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches'])) {
+		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches']) && $this->difficulty !== 'custom') {
 			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
 			foreach ($advancement_items as $key => $item) {
 				if ($item == Item::get('PegasusBoots')) {
@@ -222,6 +222,7 @@ class Randomizer {
 				}
 			}
 			// In swordless mode silvers are 100% required
+			config(['alttp.region.requireBetterBow' => true]);
 			foreach ($nice_items_swords as $unneeded) {
 				array_push($nice_items, Item::get('TwentyRupees2'));
 			}
@@ -697,7 +698,7 @@ class Randomizer {
 			$rom->setupCustomShops($this->world->getShops());
 		}
 		$rom->setRupeeArrow($this->config('rom.rupeeBow', false));
-		$rom->setLockAgahnimDoorInEscape(false);
+		$rom->setLockAgahnimDoorInEscape(true);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
 		$rom->setRestrictFairyPonds(true);
@@ -1712,11 +1713,9 @@ class Randomizer {
 		switch ($this->config('rom.HardMode', 0)) {
 			case 3:
 			case 2:
-				list($low, $high) = [3, 4]; // 12.5%, 6.25%
+				list($low, $high) = [2, 2]; // 25%
 				break;
 			case 1:
-				list($low, $high) = [2, 3]; // 25%, 12.5%
-				break;
 			default:
 				list($low, $high) = [1, 1]; // 50%
 		}

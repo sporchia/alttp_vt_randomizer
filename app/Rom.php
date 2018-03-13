@@ -1915,7 +1915,6 @@ class Rom {
 		$this->setCaneOfByrnaSpikeCaveUsage();
 		$this->setCapeSpikeCaveUsage();
 		$this->setByrnaCaveSpikeDamage(0x08);
-		$this->setCaneOfByrnaInvulnerability(true);
 		// Bryna magic amount used per "cycle"
 		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
@@ -1923,12 +1922,14 @@ class Rom {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
+				$this->setCaneOfByrnaInvulnerability(true);
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
 				$this->setShopRedShieldCost(500);
 				$this->setCatchableFairies(true);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x03);
 
 				$this->setRupoorValue(0);
 
@@ -1942,6 +1943,7 @@ class Rom {
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x01);
 
 				$this->setRupoorValue(10);
 
@@ -1955,6 +1957,7 @@ class Rom {
 				$this->setShopRedShieldCost(9990);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x00);
 
 				$this->setRupoorValue(20);
 
@@ -1968,10 +1971,13 @@ class Rom {
 				$this->setShopRedShieldCost(10000);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x00);
 
 				$this->setRupoorValue(9999);
 
 				break;
+			default:
+				throw new \Exception("Trying to set hard mode that doesn't exist");
 		}
 
 		return $this;
@@ -2262,6 +2268,20 @@ class Rom {
 	 */
 	public function setCatchableFairies(bool $enable = true) : self {
 		$this->write(0x34FD6, pack('C*', $enable ? 0xF0 : 0x80));
+
+		return $this;
+	}
+
+
+	/**
+	 * Enable which objects stun
+	 *
+	 * @param int $flags display ------hb h: hookshot, b: Boomerang
+	 *
+	 * @return $this
+	 */
+	public function setStunItems(int $flags = 0x03) : self {
+		$this->write(0x180180, pack('C*', $flags));
 
 		return $this;
 	}

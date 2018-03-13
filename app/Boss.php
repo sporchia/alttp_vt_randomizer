@@ -87,7 +87,8 @@ class Boss {
 			}),
 			new static("Trinexx", function($locations, $items) {
 				return $items->has('FireRod') && $items->has('IceRod')
-					&& ($items->has('Hammer') || ($items->canExtendMagic(2) && $items->hasSword(2))
+					&& ($items->hasSword(3) || $items->has('Hammer')
+						|| ($items->canExtendMagic(2) && $items->hasSword(2))
 						|| ($items->canExtendMagic(4) && $items->hasSword()));
 			}),
 			new static("Agahnim2", function($locations, $items) {

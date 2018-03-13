@@ -26,7 +26,8 @@ return [
 			],
 		],
 		'region' => [
-			'requireBetterEquipment' => true,
+			'requireBetterBow' => true,
+			'requireBetterSword' => true,
 		],
 		'rom' => [
 			'compassOnPickup' => 'on',
@@ -219,15 +220,13 @@ return [
 				'ArrowUpgrade10' => 0,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
-				'Boomerang' => 0,
 				'BossHeartContainer' => 6,
 				'HeartContainer' => 0,
 				'HalfMagic' => 0,
 				'QuarterMagic' => 0,
-				'RedBoomerang' => 0,
 				'SilverArrowUpgrade' => 1,
 				'PieceOfHeart' => 20,
-				'FiveRupees' => 30,
+				'FiveRupees' => 28,
 			],
 			'overflow' => [
 				'count' => [
@@ -258,7 +257,7 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 45,
+						'FiveRupees' => 43,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -286,7 +285,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 9,
+						'FiveRupees' => 7,
 						'GreenClock' => 20,
 						'RedClock' => 1,
 					],
@@ -307,7 +306,7 @@ return [
 				'item' => [
 					'count' => [
 						'FiveRupees' => 0,
-						'TwentyRupees' => 18,
+						'TwentyRupees' => 16,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -332,15 +331,13 @@ return [
 				'ArrowUpgrade10' => 0,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
-				'Boomerang' => 0,
 				'BossHeartContainer' => 1,
 				'HeartContainer' => 0,
 				'HalfMagic' => 0,
 				'QuarterMagic' => 0,
-				'RedBoomerang' => 0,
 				'PieceOfHeart' => 20,
 				'SilverArrowUpgrade' => 0,
-				'FiveRupees' => 36,
+				'FiveRupees' => 34,
 			],
 			'overflow' => [
 				'count' => [
@@ -371,7 +368,7 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 51,
+						'FiveRupees' => 49,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -399,7 +396,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 18,
+						'FiveRupees' => 16,
 						'GreenClock' => 15,
 						'RedClock' => 3,
 					],
@@ -420,7 +417,7 @@ return [
 				'item' => [
 					'count' => [
 						'FiveRupees' => 0,
-						'TwentyRupees' => 24,
+						'TwentyRupees' => 22,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -445,15 +442,13 @@ return [
 				'ArrowUpgrade10' => 0,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
-				'Boomerang' => 0,
 				'BossHeartContainer' => 0,
 				'HeartContainer' => 0,
 				'HalfMagic' => 0,
 				'QuarterMagic' => 0,
-				'RedBoomerang' => 0,
 				'SilverArrowUpgrade' => 0,
 				'PieceOfHeart' => 0,
-				'FiveRupees' => 57,
+				'FiveRupees' => 55,
 			],
 			'overflow' => [
 				'count' => [
@@ -484,7 +479,7 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 72,
+						'FiveRupees' => 70,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -512,7 +507,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 42,
+						'FiveRupees' => 40,
 						'GreenClock' => 10,
 						'RedClock' => 5,
 					],
@@ -532,7 +527,7 @@ return [
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 17,
+						'FiveRupees' => 15,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,

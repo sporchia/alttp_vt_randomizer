@@ -1,6 +1,7 @@
 <?php namespace ALttP;
 
 use ALttP\Support\Dialog;
+use Log;
 
 /**
  * Overwrite all the text in the main portion of the ROM
@@ -22,6 +23,9 @@ class Text {
 
 	function getByteArray($translation = 'en') {
 		$data = array_merge(...array_values($this->$translation()));
+
+		Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
+
 		if (count($data) > 0x7355) {
 			throw new \Exception("Too BIG", 1);
 		}
