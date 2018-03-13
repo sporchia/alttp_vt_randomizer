@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-12';
-	const HASH = '11f7784ffb9caf36749f5e6312bab067';
+	const BUILD = '2018-03-13';
+	const HASH = 'c618f9abd758260db5c321a958949ce9';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
