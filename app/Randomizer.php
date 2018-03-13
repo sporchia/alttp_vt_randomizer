@@ -634,7 +634,7 @@ class Randomizer {
 			'weapons' => $this->config('mode.weapons', 'randomized')
 		]);
 
-		if ($this->config('rom.HardMode', 0)) {
+		if ($this->config('rom.HardMode') !== null) {
 			$spoiler['meta']['difficulty_mode'] = config('alttp.randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
 		}
 
@@ -713,12 +713,14 @@ class Randomizer {
 
 		switch ($this->difficulty) {
 			case 'easy':
+				$rom->setSilversEquip('both');
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
 				]);
 				break;
 			default:
+				$rom->setSilversEquip('collection');
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 				]);

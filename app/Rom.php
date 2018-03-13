@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-06';
-	const HASH = '1610f23078c6b0367ea9bf6104963e87';
+	const BUILD = '2018-03-12';
+	const HASH = '11f7784ffb9caf36749f5e6312bab067';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1930,6 +1930,7 @@ class Rom {
 				$this->setCatchableFairies(true);
 				$this->setCatchableBees(true);
 				$this->setStunItems(0x03);
+				$this->setSilversOnlyAtGanon(false);
 
 				$this->setRupoorValue(0);
 
@@ -1944,6 +1945,7 @@ class Rom {
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
 				$this->setStunItems(0x01);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(10);
 
@@ -1958,6 +1960,7 @@ class Rom {
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
 				$this->setStunItems(0x00);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(20);
 
@@ -1972,6 +1975,7 @@ class Rom {
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
 				$this->setStunItems(0x00);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(9999);
 
@@ -2282,6 +2286,47 @@ class Rom {
 	 */
 	public function setStunItems(int $flags = 0x03) : self {
 		$this->write(0x180180, pack('C*', $flags));
+
+		return $this;
+	}
+
+	/**
+	 * Enable silver arrows can only be used in Ganon's room
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSilversOnlyAtGanon(bool $enable = false) : self {
+		$this->write(0x180181, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Set when silvers equip
+	 *
+	 * @param string $setting name
+	 *
+	 * @return $this
+	 */
+	public function setSilversEquip(string $setting) : self {
+		switch ($setting) {
+			case 'both':
+				$byte = 0x03;
+				break;
+			case 'ganon':
+				$byte = 0x02;
+				break;
+			case 'off':
+				$byte = 0x00;
+				break;
+			case 'collection':
+			default:
+				$byte = 0x01;
+		}
+
+		$this->write(0x180182, pack('C*', $byte));
 
 		return $this;
 	}
