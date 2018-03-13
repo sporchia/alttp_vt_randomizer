@@ -536,7 +536,7 @@
 			Silver Arrows.
 		</ul>
 		<h5>Overworld Shops</h5>
-		<p>Five shops out of a possible eight will be randomly chosen when the ROM is generated to
+		<p>Five shops out of a possible nine will be randomly chosen when the ROM is generated to
 			have new stock. This does NOT include the Big Bomb Shop or the Witch's Potion Shop.
 			The Wooden Arrow item will be available for 80 rupees, and Small Keys will be available
 			for 100 rupees each. Small Keys will be able to be purchased multiple times.</p>
