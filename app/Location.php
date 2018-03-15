@@ -189,7 +189,7 @@ class Location {
 
 		$item = $this->item;
 
-		if ($item instanceof Item\Key && $this->region->isRegionItem($item)) {
+		if ($item != Item::get('KeyH2') && $item instanceof Item\Key && $this->region->isRegionItem($item)) {
 			$item = Item::get('Key');
 		}
 

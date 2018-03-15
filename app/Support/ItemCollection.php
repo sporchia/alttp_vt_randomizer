@@ -218,7 +218,7 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function has($key, $at_least = 1) {
-		if (strpos($key, 'Key') === 0 && $this->world->config('rom.genericKeys', false)) {
+		if ($key != 'KeyH2' && strpos($key, 'Key') === 0 && $this->world->config('rom.genericKeys', false)) {
 			return true;
 		}
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
