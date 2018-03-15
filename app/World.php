@@ -2,6 +2,7 @@
 
 use ALttP\Support\ItemCollection;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use Closure;
 use Log;
 
@@ -15,9 +16,11 @@ class World {
 	protected $goal;
 	protected $regions = [];
 	protected $locations;
+	protected $shops;
 	protected $win_condition;
 	protected $collectable_locations;
 	protected $pre_collected_items;
+	protected $currently_filling_items;
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -34,10 +37,12 @@ class World {
 		$this->variation = $variation;
 		$this->logic = $logic;
 		$this->goal = $goal;
-		$this->pre_collected_items = new ItemCollection;
+		$this->pre_collected_items = new ItemCollection([], $this);
 
 		$this->regions = [
-			'Light World' => new Region\LightWorld($this),
+			'North East Light World' => new Region\LightWorld\NorthEast($this),
+			'North West Light World' => new Region\LightWorld\NorthWest($this),
+			'South Light World' => new Region\LightWorld\South($this),
 			'Escape' => new Region\HyruleCastleEscape($this),
 			'Eastern Palace' => new Region\EasternPalace($this),
 			'Desert Palace' => new Region\DesertPalace($this),
@@ -64,129 +69,19 @@ class World {
 		];
 
 		$this->locations = new LocationCollection;
+		$this->shops = new ShopCollection;
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
 			$region->init($logic);
 			$this->locations = $this->locations->merge($region->getLocations());
+			$this->shops = $this->shops->merge($region->getShops());
 		}
 
-		switch ($this->logic) {
-			case 'MajorGlitches':
-				$this->win_condition = function($collected_items) {
-					if ($this->goal == 'dungeons') {
-						if (!$collected_items->has('PendantOfCourage')
-							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')
-							|| !$collected_items->has('DefeatAgahnim')) {
-							return false;
-						}
-					}
-
-					return ($collected_items->has('MoonPearl') || $collected_items->hasABottle())
-						&& $collected_items->canLightTorches()
-						&& (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-						&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
-								|| ($collected_items->has('SilverArrowUpgrade')
-									&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
-						&& $collected_items->has('PegasusBoots')
-						&& $collected_items->has('Crystal1')
-						&& $collected_items->has('Crystal2')
-						&& $collected_items->has('Crystal3')
-						&& $collected_items->has('Crystal4')
-						&& $collected_items->has('Crystal5')
-						&& $collected_items->has('Crystal6')
-						&& $collected_items->has('Crystal7')
-						&& $collected_items->has('DefeatGanon');
-				};
-				break;
-			case 'OverworldGlitches':
-			case 'NoMajorGlitches':
-			default:
-				if ($this->config('rom.HardMode', 0) > 0) {
-					$this->win_condition = function($collected_items) {
-						if ($this->goal == 'dungeons') {
-							if (!$collected_items->has('PendantOfCourage')
-								|| !$collected_items->has('PendantOfWisdom')
-								|| !$collected_items->has('PendantOfPower')
-								|| !$collected_items->has('DefeatAgahnim')) {
-								return false;
-							}
-						}
-
-						return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-							&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
-									|| ($collected_items->has('SilverArrowUpgrade')
-										&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
-							&& $collected_items->canLightTorches()
-							&& $this->getLocation("Ganon's Tower - Moldorm Chest")->canAccess($collected_items);
-					};
-					break;
-				}
-
-				$this->win_condition = function($collected_items) {
-					if ($this->goal == 'dungeons') {
-						if (!$collected_items->has('PendantOfCourage')
-							|| !$collected_items->has('PendantOfWisdom')
-							|| !$collected_items->has('PendantOfPower')
-							|| !$collected_items->has('Crystal1')
-							|| !$collected_items->has('Crystal2')
-							|| !$collected_items->has('Crystal3')
-							|| !$collected_items->has('Crystal4')
-							|| !$collected_items->has('Crystal5')
-							|| !$collected_items->has('Crystal6')
-							|| !$collected_items->has('Crystal7')
-							|| !$collected_items->has('DefeatAgahnim')
-							|| !$collected_items->has('DefeatAgahnim2')
-							|| !$collected_items->has('DefeatGanon')) {
-							return false;
-						}
-					}
-
-					return $collected_items->has('DefeatGanon')
-						&& $collected_items->has('Crystal1')
-						&& $collected_items->has('Crystal2')
-						&& $collected_items->has('Crystal3')
-						&& $collected_items->has('Crystal4')
-						&& $collected_items->has('Crystal5')
-						&& $collected_items->has('Crystal6')
-						&& $collected_items->has('Crystal7');
-				};
-				break;
-		}
-
-		if ($this->difficulty == 'custom') {
-			$this->win_condition = function($collected_items) {
-				if ($this->goal == 'dungeons') {
-					if (!$collected_items->has('PendantOfCourage')
-						|| !$collected_items->has('PendantOfWisdom')
-						|| !$collected_items->has('PendantOfPower')
-						|| !$collected_items->has('DefeatAgahnim')) {
-						return false;
-					}
-				}
-
-				return (config('game-mode') == 'swordless' || $collected_items->hasUpgradedSword())
-					&& (config('game-mode') != 'swordless' || ($collected_items->has('BowAndSilverArrows')
-							|| ($collected_items->has('SilverArrowUpgrade')
-								&& ($collected_items->has('Bow') || $collected_items->has('BowAndArrows')))))
-					&& $collected_items->canLightTorches()
-					&& $this->getLocation("Ganon's Tower - Moldorm Chest")->canAccess($collected_items)
-					&& $collected_items->has('DefeatGanon');
-			};
-		}
-
-		if ($this->goal == 'pedestal') {
-			$this->win_condition = function($collected_items) {
-				return $this->getLocation("Master Sword Pedestal")->canAccess($collected_items);
-			};
-		}
-
-		if ($this->goal == 'triforce-hunt') {
-			$this->win_condition = function($collected_items) {
-				return $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'));
-			};
-		}
+		$this->win_condition = function($collected_items) {
+			return $collected_items->has('Triforce')
+				|| $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'));
+		};
 	}
 
 	/**
@@ -198,6 +93,28 @@ class World {
 		foreach ($this->regions as $name => $region) {
 			$region->setVanilla();
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Get the collection of items left to be filled in this world
+	 *
+	 * @return ItemCollection
+	 */
+	public function getCurrentlyFillingItems() : ItemCollection {
+		return $this->currently_filling_items ?? new ItemCollection([], $this);
+	}
+
+	/**
+	 * Set the collection of items left to be filled in this world
+	 *
+	 * @param ItemCollection $items collection of items that are being filled
+	 *
+	 * @return $this
+	 */
+	public function setCurrentlyFillingItems(ItemCollection $items = null) : self {
+		$this->currently_filling_items = $items;
 
 		return $this;
 	}
@@ -227,12 +144,25 @@ class World {
 	/**
 	 * Add a pre-collected Item
 	 *
-	 * @param Item $item collection of items that have been pre-collected
+	 * @param Item $item item to add
 	 *
 	 * @return $this
 	 */
 	public function addPreCollectedItem(Item $item) : self {
 		$this->pre_collected_items->addItem($item);
+
+		return $this;
+	}
+
+	/**
+	 * Remove a pre-collected Item
+	 *
+	 * @param Item $item item to remove
+	 *
+	 * @return $this
+	 */
+	public function removePreCollectedItem(Item $item) : self {
+		$this->pre_collected_items->removeItem($item->getName());
 
 		return $this;
 	}
@@ -342,13 +272,13 @@ class World {
 					continue;
 				}
 				$location->setItem();
-				if ($pulled_item instanceof Item\Map
-					|| $pulled_item instanceof Item\Compass
+				if ((!$this->config('region.wildMaps', false) && $pulled_item instanceof Item\Map)
+					|| (!$this->config('region.wildCompasses', false) && $pulled_item instanceof Item\Compass)
 					|| in_array($pulled_item, $junk_items)) {
 					continue;
 				}
 
-				if (!$shadow_world->getWinCondition()($collectable_locations->getItems())) {
+				if (!$shadow_world->getWinCondition()($collectable_locations->getItems($shadow_world)->copy())) {
 					// put item back
 					$location->setItem($this->locations[$location->getName()]->getItem());
 					$required_locations->addItem($location);
@@ -383,7 +313,7 @@ class World {
 							// remove the item we are trying to get
 							$temp_pull = $higher_location->getItem();
 							$higher_location->setItem();
-							$current_items = $collectable_locations->getItems();
+							$current_items = $collectable_locations->getItems($shadow_world)->copy();
 
 							if (!$higher_location->canAccess($current_items, $this->getLocations())) {
 								// put item back
@@ -441,7 +371,10 @@ class World {
 				}
 				Log::debug(sprintf("Pushing: %s from %s", $item->getNiceName(), $location->getName()));
 				array_push($location_order, $location);
-				if ($item instanceof Item\Key) {
+				if ((($this->config('rom.genericKeys', false) || !$this->config('region.wildKeys', false)) && $item instanceof Item\Key)
+					|| $item instanceof Item\Map
+					|| $item instanceof Item\Compass
+					|| $item == Item::get('RescueZelda')) {
 					return;
 				}
 				array_push($location_round[$longest_item_chain], $location);
@@ -459,10 +392,13 @@ class World {
 				}
 
 				$location = sprintf("Equipment Slot %s", ++$i);
-				$ret[0]['Equiped'][$location] = $item->getNiceName();
+				$ret[0]['Equipped'][$location] = $item->getNiceName();
 			}
 		}
 		foreach ($location_round as $round => $locations) {
+			$locations = array_filter($locations, function($location) {
+				return !$location instanceof Location\Trade;
+			});
 			if (!count($locations)) {
 				$ret['longest_item_chain']--;
 			}
@@ -490,10 +426,12 @@ class World {
 	/**
 	 * Determine if this World is beatable
 	 *
+	 * @param ItemCollection $collected precollected items for consideration
+	 *
 	 * @return bool
 	 */
-	public function checkWinCondition() {
-		return $this->getWinCondition()($this->collectItems());
+	public function checkWinCondition(ItemCollection $collected = null) {
+		return $this->getWinCondition()($this->collectItems($collected));
 	}
 
 	/**
@@ -505,7 +443,10 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+			config("alttp.goals.{$this->goal}.$key",
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.$key", $default))));
 	}
 
 	/**
@@ -562,7 +503,7 @@ class World {
 	 * @return ItemCollection
 	 */
 	public function collectItems(ItemCollection $collected = null) {
-		$my_items = $collected ?? new ItemCollection;
+		$my_items = $collected ?? new ItemCollection([], $this);
 		$my_items = $my_items->merge($this->pre_collected_items);
 		$available_locations = $this->getCollectableLocations()->filter(function($location) {
 			return $location->hasItem();
@@ -576,7 +517,7 @@ class World {
 			$available_locations = $available_locations->diff($search_locations);
 
 			$found_items = $search_locations->getItems();
-			$my_items = $found_items->merge($my_items);
+			$my_items = $my_items->merge($found_items);
 		} while ($found_items->count() > 0);
 
 		return $my_items;
@@ -597,7 +538,8 @@ class World {
 		}
 	}
 
-	/**	 * Determine the spheres that locations are in based on the items in the world
+	/**
+	 * Determine the spheres that locations are in based on the items in the world
 	 *
 	 * @return array
 	 */
@@ -615,8 +557,8 @@ class World {
 		do {
 			$sphere++;
 			$available_locations = $this->locations->filter(function($location) use ($my_items, $found_locations) {
-				return !is_a($location, Location\Medallion::class)
-					&& !is_a($location, Location\Fountain::class)
+				return !$location instanceof Location\Medallion
+					&& !$location instanceof Location\Fountain
 					&& !$found_locations->contains($location)
 					&& $location->canAccess($my_items);
 			});
@@ -629,6 +571,33 @@ class World {
 		} while ($found_items->count() > 0);
 
 		return $location_sphere;
+	}
+
+	/**
+	 * Get Difficulty in this world
+	 *
+	 * @return string
+	 */
+	public function getDifficulty() : string {
+		return $this->difficulty;
+	}
+
+	/**
+	 * Get Varation in this world
+	 *
+	 * @return string
+	 */
+	public function getVariation() : string {
+		return $this->variation;
+	}
+
+	/**
+	 * Get Goal in this world
+	 *
+	 * @return string
+	 */
+	public function getGoal() : string {
+		return $this->goal;
 	}
 
 	/**
@@ -673,5 +642,25 @@ class World {
 	 */
 	public function getRegionsWithItem(Item $item = null) {
 		return $this->getLocationsWithItem($item)->getRegions();
+	}
+
+	/**
+	 * Get all the Shops in all Regions in this world
+	 *
+	 * @return ShopCollection
+	 */
+	public function getShops() {
+		return $this->shops;
+	}
+
+	/**
+	 * Get Shop in this world by name
+	 *
+	 * @param string $name name of the Shop
+	 *
+	 * @return Shop
+	 */
+	public function getShop(string $name) {
+		return $this->shops[$name];
 	}
 }

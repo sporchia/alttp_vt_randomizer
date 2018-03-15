@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -14,6 +15,8 @@ class ThievesTown extends Region {
 	public $music_addresses = [
 		0x155C6,
 	];
+
+	protected $map_reveal = 0x0010;
 
 	protected $region_items = [
 		'BigKey',
@@ -35,6 +38,8 @@ class ThievesTown extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		$this->boss = Boss::get("Blind");
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("Thieves' Town - Attic", 0xEA0D, null, $this),
@@ -90,7 +95,7 @@ class ThievesTown extends Region {
 
 			return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
 		})->setAlwaysAllow(function($item, $items) {
-			return $item == Item::get('KeyD4');
+			return $item == Item::get('KeyD4') && $items->has('Hammer');
 		});
 
 		$this->locations["Thieves' Town - Blind's Cell"]->setRequirements(function($locations, $items) {
@@ -98,25 +103,28 @@ class ThievesTown extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& $items->has('KeyD4') && $items->has('BigKeyD4')
-				&& ($items->hasSword() || $items->has('Hammer')
-				|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna'));
+			return $this->locations["Thieves' Town - Blind"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD4'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD4'));
 		};
 
-		$this->locations["Thieves' Town - Blind"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
+		$this->locations["Thieves' Town - Blind"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $items->has('KeyD4') && $items->has('BigKeyD4')
+				&& $this->boss->canBeat($items, $locations);
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
 
-				return true;
-			});
+			return true;
+		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $items->has('MoonPearl') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -134,7 +142,8 @@ class ThievesTown extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->glitchedLinkInDarkWorld()
+			return $items->has('RescueZelda')
+				&& $items->glitchedLinkInDarkWorld()
 				&& $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
 		};
 

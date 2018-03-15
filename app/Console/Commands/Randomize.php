@@ -29,6 +29,7 @@ class Randomize extends Command {
 		. ' {--bulk=1 : generate multiple roms}'
 		. ' {--goal=ganon : set game goal}'
 		. ' {--mode=standard : set game mode}'
+		. ' {--weapons=randomized : set weapons mode}'
 		. ' {--sprite= : sprite file to change links graphics [zspr format]}'
 		. ' {--no-rom : no not generate output rom}'
 		. ' {--no-music : mute all music}'
@@ -91,7 +92,10 @@ class Randomize extends Command {
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 
-			config(['game-mode' => $this->option('mode')]);
+			config([
+				'game-mode' => $this->option('mode'),
+				'alttp.mode.weapons' => $this->option('weapons'),
+			]);
 
 			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 			$rand->makeSeed($this->option('seed'));
@@ -100,8 +104,8 @@ class Randomize extends Command {
 			$rom->muteMusic($this->option('no-music', false));
 			$rom->setMenuSpeed($this->option('menu-speed', 'normal'));
 
-			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.sfc',
-				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());
+			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s_%s.sfc',
+				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
 					$this->info("sprite");
@@ -120,8 +124,8 @@ class Randomize extends Command {
 				$this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 			if ($this->option('spoiler')) {
-				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.txt',
-					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());
+				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s_%s.txt',
+					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}

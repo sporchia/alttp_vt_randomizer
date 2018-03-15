@@ -39,6 +39,18 @@ abstract class Filler {
 
 	abstract public function fill(array $dungeon, array $required, array $nice, array $extra);
 
+	/**
+	 * If the filler uses GT Junk fill, this would be what to do with it.
+	 *
+	 * @param int $min minimum junk items to be placed
+	 * @param int $max maximum junk items to be placed
+	 *
+	 * @return $this
+	 */
+	public function setGanonJunkLimits(int $min, int $max) {
+		return $this;
+	}
+
 	protected function shuffleLocations(Locations $locations) {
 		return $locations->randomCollection($locations->count());
 	}

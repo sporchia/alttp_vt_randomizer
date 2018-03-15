@@ -4,15 +4,19 @@
 <h1>What is the Entrance Randomizer?</h1>
 <div class="well">
 <p>The Entrance Randomizer allows you to twist the world upside down and play the game. It should mostly follow
-	the standard VT rules for settings on everything, but it introduces a new option "Shuffle"</p>
+	the standard VT rules for settings on everything, but it introduces a new option "Shuffle".</p>
 
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<h3 class="panel-title">Simple</h3>
 		</div>
 		<div class="panel-body">
-			<p>Shuffle Dungeon Entrances/Exits between each other and keep all 4-entrance dungeons confined to one
-				location. All caves outside of death mountain are shuffled in pairs.</p>
+			<p>Shuffles dungeon entrances between each other and keeps all 4-entrance dungeons
+				confined to one location such that dungeons will one to one swap with each other.
+			</p>
+			<p>Other than on Light World Death Mountain, interiors are shuffled but still connect the
+				same points on the overworld. On Death Mountain, entrances are connected more freely.
+			</p>
 		</div>
 	</div>
 
@@ -21,7 +25,8 @@
 			<h3 class="panel-title">Restricted</h3>
 		</div>
 		<div class="panel-body">
-			<p>Use Dungeons shuffling from Simple but freely connect remaining entrances.</p>
+			<p>Uses dungeon shuffling from Simple but freely connects remaining entrances. Caves and
+				dungeons with multiple entrances will be confined to one world.</p>
 		</div>
 	</div>
 
@@ -30,19 +35,18 @@
 			<h3 class="panel-title">Full</h3>
 		</div>
 		<div class="panel-body">
-			<p>Mix cave and dungeon entrances freely.</p>
+			<p>Mixes cave and dungeon entrances freely. Caves and dungeons with multiple entrances
+				will be confined to one world.</p>
 		</div>
 	</div>
 
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title">Madness</h3>
+			<h3 class="panel-title">Crossed</h3>
 		</div>
 		<div class="panel-body">
-			<p>Decouple entrances and exits from each other and shuffle them freely, only ensuring that no fake
-				Light/Dark World happens and all locations are reachable.</p>
-			<p>Note: Ganon's Tower is included in the dungeon shuffle pool and the Pyramid Hole/Exit pair is included
-				in the Holes shuffle pool.</p>
+			<p>Mixes cave and dungeon entrances freely, but now connector caves and dungeons can link
+				Light World and Dark World.</p>
 		</div>
 	</div>
 
@@ -51,10 +55,9 @@
 			<h3 class="panel-title">Insanity</h3>
 		</div>
 		<div class="panel-body">
-			<p>Madness without the world restrictions. Mirror and Pearl are provided early to ensure Filling algorithm
-				works properly. Deal with Fake LW/DW at your discretion.</p>
-			<p>Note: Ganon's Tower is included in the dungeon shuffle pool and the Pyramid Hole/Exit pair is included
-				in the Holes shuffle pool.</p>
+			<p>Decouples entrances and exits from each other and shuffles them freely. Caves that
+				were single entrance in vanilla still can only exit to the same location from which
+				they were entered.</p>
 		</div>
 	</div>
 

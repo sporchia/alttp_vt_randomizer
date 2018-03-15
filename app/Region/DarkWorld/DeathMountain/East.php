@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -30,6 +32,17 @@ class East extends Region {
 			new Location\Chest("Hookshot Cave - Bottom Left", 0xEB57, null, $this),
 			new Location\Chest("Hookshot Cave - Bottom Right", 0xEB5A, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop("Dark World Death Mountain Shop",           0x03, 0xC1, 0x0112, 0x6E, $this),
+			// Single entrance caves with no items in them ;)
+			new Shop\TakeAny("Dark Death Mountain Fairy",        0x83, 0xC1, 0x0112, 0x70, $this, [0xDBBE2 => [0x58]]),
+		]);
+
+		$this->shops["Dark World Death Mountain Shop"]->clearInventory()
+			->addInventory(0, Item::get('RedPotion'), 150)
+			->addInventory(1, Item::get('Heart'), 10)
+			->addInventory(2, Item::get('TenBombs'), 50);
 	}
 
 	/**
@@ -80,7 +93,7 @@ class East extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canLiftDarkRocks()
+			return $items->has('RescueZelda') && $items->canLiftDarkRocks()
 				&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
 		};
 
@@ -99,10 +112,11 @@ class East extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			// @TODO: This should account for 2x YBA
-			return ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
-				|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
-					&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
-				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& (($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
+					|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
+						&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
+					|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;
@@ -132,10 +146,11 @@ class East extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return ($items->has('PegasusBoots') && $items->has('MoonPearl'))
-				|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
-				|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
-					&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& (($items->has('PegasusBoots') && $items->has('MoonPearl'))
+					|| ($items->has('MagicMirror') && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+					|| (($items->canLiftDarkRocks() || ($items->has('Hammer') && $items->has('PegasusBoots')))
+						&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;

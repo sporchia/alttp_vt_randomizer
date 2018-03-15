@@ -9,7 +9,7 @@ return [
 		'name' => 'Four Swords Link',
 		'author' => 'Mike Trethewey',
 	],
-	'arrghus.1.zspr' => [
+	'arrghus.2.zspr' => [
 		'name' => 'Arrghus',
 		'author' => 'fatmanspanda',
 	],
@@ -17,12 +17,36 @@ return [
 		'name' => 'Beau',
 		'author' => 'Achy',
 	],
-	'boo.1.zspr' => [
+	'bigkey.1.zspr' => [
+		'name' => 'Big Key',
+		'author' => 'Fouton',
+	],
+	'blacksmithlink.1.zspr' => [
+		'name' => 'Blacksmith Link',
+		'author' => 'Glan',
+	],
+	'bob.1.zspr' => [
+		'name' => 'Bob',
+		'author' => 'fatmanspanda',
+	],
+	'boo-two.1.zspr' => [
 		'name' => 'Boo 2',
 		'author' => 'Achy',
 	],
-	'boy.1.zspr' => [
+	'boo.2.zspr' => [
+		'name' => 'Boo',
+		'author' => 'Zarby89',
+	],
+	'broccoli.1.zspr' => [
+		'name' => 'Broccoli',
+		'author' => 'fatmanspanda',
+	],
+	'bsboy.1.zspr' => [
 		'name' => 'B.S. Boy',
+		'author' => 'InTheBeef',
+	],
+	'bsgirl.1.zspr' => [
+		'name' => 'B.S. Girl',
 		'author' => 'InTheBeef',
 	],
 	'cactuar.1.zspr' => [
@@ -37,9 +61,21 @@ return [
 		'name' => 'Cat Boo',
 		'author' => 'JaySee87',
 	],
+	'cheepcheep.1.zspr' => [
+		'name' => 'Cheep Cheep',
+		'author' => 'Faw',
+	],
 	'cirno.1.zspr' => [
 		'name' => 'Cirno',
 		'author' => 'Achy',
+	],
+	'conker.1.zspr' => [
+		'name' => 'Conker',
+		'author' => 'Charmander106/SePH',
+	],
+	'cursor.1.zspr' => [
+		'name' => 'Cursor',
+		'author' => 'PlaguedOne',
 	],
 	'darkboy.1.zspr' => [
 		'name' => 'Dark Boy',
@@ -65,7 +101,7 @@ return [
 		'name' => 'Dark Zelda',
 		'author' => 'iBazly',
 	],
-	'darkzora.1.zspr' => [
+	'darkzora.2.zspr' => [
 		'name' => 'Dark Zora',
 		'author' => 'iBazly',
 	],
@@ -85,7 +121,7 @@ return [
 		'name' => 'Fox Link',
 		'author' => 'InTheBeef',
 	],
-	'froglink.1.zspr' => [
+	'froglink.2.zspr' => [
 		'name' => 'Frog Link',
 		'author' => 'Mike Trethewey',
 	],
@@ -93,17 +129,17 @@ return [
 		'name' => 'Ganondorf',
 		'author' => 'Fish_waffle64',
 	],
-	'garfield.1.zspr' => [
+	'garfield.2.zspr' => [
 		'name' => 'Garfield',
 		'author' => 'Fwiller',
-	],
-	'girl.1.zspr' => [
-		'name' => 'B.S. Girl',
-		'author' => 'InTheBeef',
 	],
 	'headlesslink.1.zspr' => [
 		'name' => 'Headless Link',
 		'author' => 'fatmanspanda',
+	],
+	'hyruleknight.1.zspr' => [
+		'name' => 'Hyrule Knight',
+		'author' => 'InTheBeef',
 	],
 	'ignignokt.1.zspr' => [
 		'name' => 'Ignignokt',
@@ -117,6 +153,10 @@ return [
 		'name' => 'Invisible Link',
 		'author' => 'Mike Trethewey',
 	],
+	'jogurt.1.zspr' => [
+		'name' => 'Jogurt',
+		'author' => 'Nakuri',
+	],
 	'kirby-meta.1.zspr' => [
 		'name' => 'Kirby',
 		'author' => 'KHRoxas',
@@ -124,6 +164,14 @@ return [
 	'kore8.1.zspr' => [
 		'name' => 'Kore8',
 		'author' => 'Skewer',
+	],
+	'linkhatcolor.1.zspr' => [
+		'name' => 'Hat Color Link',
+		'author' => 'Damon',
+	],
+	'linktuniccolor.1.zspr' => [
+		'name' => 'Tunic Color Link',
+		'author' => 'Damon',
 	],
 	'littlepony.1.zspr' => [
 		'name' => 'Pony',
@@ -137,12 +185,20 @@ return [
 		'name' => 'Maiden',
 		'author' => 'Plan',
 	],
-	'maplequeen.1.zspr' => [
+	'mangalink.1.zspr' => [
+		'name' => 'Manga Link',
+		'author' => 'fatmanspanda',
+	],
+	'maplequeen.2.zspr' => [
 		'name' => 'Maple Queen',
 		'author' => 'Zarby89',
 	],
-	'mario-classic.1.zspr' => [
+	'mario-classic.2.zspr' => [
 		'name' => 'Mario (Classic)',
+		'author' => 'Damon',
+	],
+	'mariocappy.1.zspr' => [
+		'name' => 'Mario and Cappy',
 		'author' => 'Damon',
 	],
 	'marisa.1.zspr' => [
@@ -161,11 +217,15 @@ return [
 		'name' => 'Minish Cap Link',
 		'author' => 'Zarby89',
 	],
+	'missingno.1.zspr' => [
+		'name' => 'missingno',
+		'author' => '',
+	],
 	'modernlink.1.zspr' => [
 		'name' => 'Modern Link',
 		'author' => 'RyuTech',
 	],
-	'mog.1.zspr' => [
+	'mog.2.zspr' => [
 		'name' => 'Mog',
 		'author' => 'Krelbel',
 	],
@@ -177,11 +237,19 @@ return [
 		'name' => 'Nature Link',
 		'author' => 'iBazly',
 	],
+	'navi.1.zspr' => [
+		'name' => 'Navi',
+		'author' => 'qwertymodo',
+	],
 	'negativelink.1.zspr' => [
 		'name' => 'Negative Link',
 		'author' => 'iBazly',
 	],
-	'oldman.1.zspr' => [
+	'neslink.1.zspr' => [
+		'name' => ' NES Link',
+		'author' => 'MikeTrethewey/Fatmanspanda',
+	],
+	'oldman.2.zspr' => [
 		'name' => 'Old Man',
 		'author' => 'Zarby89',
 	],
@@ -193,7 +261,11 @@ return [
 		'name' => 'Penguin Link',
 		'author' => 'Fish_waffle64',
 	],
-	'pinkribbonlink.1.zspr' => [
+	'pikachu.1.zspr' => [
+		'name' => 'Pikachu',
+		'author' => 'toucansham',
+	],
+	'pinkribbonlink.2.zspr' => [
 		'name' => 'Pink Ribbon Link',
 		'author' => 'fatmanspanda',
 	],
@@ -225,17 +297,21 @@ return [
 		'name' => 'Samus',
 		'author' => 'Fish_waffle64',
 	],
-	'santalink.1.zspr' => [
-		'name' => 'Santa',
-		'author' => 'Hohoho',
+	'santalink.2.zspr' => [
+		'name' => 'Santa Link',
+		'author' => 'HOHOHO',
 	],
-	'shadowsaku.1.zspr' => [
+	'shadowsaku.2.zspr' => [
 		'name' => 'Shadow Sakura',
 		'author' => 'iBazly',
 	],
 	'sodacan.1.zspr' => [
 		'name' => 'Soda Can',
 		'author' => 'Zarby89',
+	],
+	'soldiersprite.1.zspr' => [
+		'name' => 'Hyrule Soldier',
+		'author' => 'InTheBeef',
 	],
 	'sonic.1.zspr' => [
 		'name' => 'Sonic the Hedgehog',
@@ -245,19 +321,31 @@ return [
 		'name' => 'Sora',
 		'author' => 'roxas232',
 	],
+	'squirtle.1.zspr' => [
+		'name' => 'Squirtle',
+		'author' => 'Numberplay',
+	],
 	'staticlink.1.zspr' => [
 		'name' => 'Static Link',
 		'author' => 'fatmanspanda',
 	],
-	'superbunny.1.zspr' => [
+	'superbunny.2.zspr' => [
 		'name' => 'Super Bunny',
 		'author' => 'TheOkayGuy',
+	],
+	'supermeatboy.1.zspr' => [
+		'name' => 'Super Meat Boy',
+		'author' => 'Achy',
 	],
 	'swatchy.1.zspr' => [
 		'name' => 'Swatchy',
 		'author' => 'Mike Trethewey',
 	],
-	'tile.1.zspr' => [
+	'terra.1.zspr' => [
+		'name' => 'Terra (Esper)',
+		'author' => 'All-in-one Mighty',
+	],
+	'tile.2.zspr' => [
 		'name' => 'Tile',
 		'author' => 'fatmanspanda',
 	],
@@ -265,9 +353,13 @@ return [
 		'name' => 'Tingle',
 		'author' => 'Xenobond',
 	],
-	'toad.1.zspr' => [
+	'toad.2.zspr' => [
 		'name' => 'Toad',
 		'author' => 'Zarby89',
+	],
+	'trogdor.1.zspr' => [
+		'name' => 'Trogdor the Burninator',
+		'author' => 'MikeTrethewey/Spanda',
 	],
 	'twilightprincesszelda.1.zspr' => [
 		'name' => 'Twilight Princess Zelda',
@@ -289,7 +381,7 @@ return [
 		'name' => 'Will',
 		'author' => 'Xenobond',
 	],
-	'wizzrobe.1.zspr' => [
+	'wizzrobe.2.zspr' => [
 		'name' => 'Wizzrobe',
 		'author' => 'iBazly',
 	],
@@ -305,8 +397,8 @@ return [
 		'name' => 'Zero Suit Samus',
 		'author' => 'Fish_waffle64',
 	],
-	'zora.1.zspr' => [
+	'zora.2.zspr' => [
 		'name' => 'Zora',
-		'author' => 'Zarby89',
+		'author' => 'Zarby, InTheBeef',
 	],
 ];

@@ -6,9 +6,9 @@
 	<meta name="description" content="ALttP Web VT Randomizer">
 	<meta charset="utf-8" />
 
-	<link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-	<script src="{{ elixir('js/app.js') }}"></script>
+	<script src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -20,7 +20,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/"><img src="/i/logo.png" title="ALttP VT Randomizer" /></a>
+				<a class="navbar-brand" href="/"><img src="/i/logo.png" title="ALttP VT Randomizer" alt="ALttP Randomizer logo" /></a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
@@ -44,7 +44,8 @@
 							<li{!! (request()->path() == 'races') ? ' class="active"' : '' !!}><a href="/races">Organized Play</a></li>
 							<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
 							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
-							<li><a href="https://discord.gg/yEvqSRk" target="_blank" rel="noopener noreferrer">Join us on Discord</a></li>
+							<li{!! (request()->path() == 'contribute') ? ' class="active"' : '' !!}><a href="/contribute">Contribute</a></li>
+							<li><a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Join us on Discord</a></li>
 							<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
 						</ul>
 					</li>

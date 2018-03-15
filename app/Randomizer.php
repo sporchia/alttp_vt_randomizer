@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 28;
+	const LOGIC = 29;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
@@ -22,22 +22,22 @@ class Randomizer {
 	protected $logic;
 	protected $starting_equipment;
 	static protected $logic_array = [
-		0x44, 0xD5, 0x8F, 0xB7, 0xE1, 0x29, 0x65, 0x9A,0x35, 0xAE, 0x7B, 0x05, 0x2E, 0x7D, 0x23, 0x11,
-		0xF5, 0x2F, 0xFC, 0x6E, 0x33, 0xE4, 0x06, 0xDB,0x3F, 0x20, 0xF7, 0xAB, 0xF0, 0x37, 0x15, 0x7C,
-		0x4F, 0xA5, 0xD1, 0x8A, 0x9C, 0xD6, 0x7A, 0x8E,0x51, 0x0C, 0x6D, 0x24, 0xD2, 0xB6, 0x92, 0x67,
-		0x2B, 0x3C, 0xFF, 0x96, 0xAD, 0x9F, 0x17, 0xF2,0xC5, 0xA7, 0x26, 0xE7, 0xBB, 0xE6, 0xF3, 0xAA,
-		0xEA, 0x30, 0x6F, 0x75, 0xD3, 0x08, 0x25, 0x84,0xC1, 0x21, 0xC6, 0x78, 0x53, 0x8D, 0x1E, 0x32,
-		0xF4, 0x34, 0x5A, 0x14, 0x47, 0xBF, 0x02, 0xCE,0x74, 0x98, 0x0E, 0xBD, 0xB2, 0x55, 0xA0, 0xC9,
-		0x1B, 0xBC, 0xD9, 0x6A, 0x61, 0x56, 0x52, 0xA1,0x42, 0xED, 0xD7, 0x12, 0x0F, 0xA2, 0x82, 0x0A,
-		0x36, 0xB4, 0x43, 0xF6, 0xE3, 0x09, 0xA9, 0x86,0x69, 0x5C, 0x22, 0xF9, 0xFE, 0x81, 0x4B, 0x54,
-		0x48, 0xE0, 0x4D, 0xC2, 0x4C, 0x87, 0x85, 0xF1,0xDC, 0x3A, 0xD0, 0x2C, 0x03, 0x04, 0x10, 0xB9,
-		0xB1, 0x6C, 0x60, 0x76, 0x13, 0x8C, 0x3D, 0xA6,0xAF, 0x3B, 0x49, 0xC4, 0xA4, 0x2A, 0x7F, 0x95,
-		0xA8, 0x41, 0x89, 0xDA, 0xC3, 0xE2, 0x27, 0x99,0x64, 0x01, 0x5B, 0x2D, 0x46, 0xE9, 0x1C, 0x80,
-		0xC7, 0xAC, 0xDE, 0x45, 0xD4, 0xF8, 0x28, 0x93,0x9D, 0xD8, 0x97, 0x70, 0x91, 0xEC, 0x4A, 0xEF,
-		0x0D, 0xB3, 0xCC, 0x73, 0x63, 0xB5, 0x00, 0x8B,0x9B, 0x59, 0xA3, 0xE8, 0x83, 0xCD, 0x0B, 0x5F,
-		0xC8, 0x94, 0xCA, 0x3E, 0x31, 0xEB, 0x66, 0x4E,0x68, 0xFA, 0x19, 0x5E, 0x79, 0xCF, 0x7E, 0xBE,
-		0xFB, 0xE5, 0xBA, 0x40, 0x1F, 0x9E, 0xB8, 0x62,0x1D, 0xDF, 0x6B, 0x88, 0x57, 0x16, 0x71, 0x18,
-		0x90, 0x5D, 0x72, 0xB0, 0x07, 0x50, 0xC0, 0x58,0xFD, 0x38, 0xCB, 0xDD, 0xEE, 0x39, 0x77, 0x1A,
+		0x23, 0xCD, 0xB6, 0xA5, 0xEC, 0xF8, 0xC1, 0x80,0x8B, 0x53, 0x88, 0xA8, 0xB9, 0x22, 0xD9, 0x29,
+		0xC4, 0x52, 0xBA, 0xD7, 0xC2, 0xE0, 0x43, 0x2B,0x0D, 0x9F, 0x66, 0x7A, 0x98, 0xDA, 0xBC, 0x05,
+		0xB2, 0xF0, 0xA9, 0xFE, 0x27, 0x4C, 0x31, 0x9E,0xFD, 0x3F, 0xEA, 0x72, 0x2E, 0x39, 0xF3, 0x94,
+		0x7C, 0x44, 0xA3, 0x60, 0x42, 0x5C, 0x84, 0x50,0xCE, 0x38, 0x6C, 0x03, 0xDF, 0xC9, 0x58, 0xD5,
+		0x7F, 0x55, 0x54, 0x33, 0x12, 0x0E, 0x59, 0xA1,0x7B, 0xCC, 0x3C, 0xAE, 0x90, 0x01, 0xAA, 0xA4,
+		0x76, 0xEE, 0xE9, 0x17, 0x4A, 0xB1, 0xFB, 0x77,0xE3, 0x16, 0xF7, 0x1E, 0x1D, 0xFC, 0x0B, 0x8A,
+		0x3A, 0x10, 0x24, 0x5A, 0xCB, 0x19, 0x2C, 0x11,0xB4, 0xF6, 0x8F, 0x70, 0xDD, 0xF2, 0xF1, 0x7E,
+		0x9B, 0x0F, 0x5D, 0x32, 0xBD, 0xC7, 0x07, 0x4E,0x20, 0x47, 0x69, 0x34, 0x74, 0x0A, 0x89, 0x92,
+		0x82, 0xE6, 0x9A, 0xD8, 0x06, 0xB0, 0xF4, 0x67,0xD0, 0x4D, 0x64, 0x6E, 0x83, 0x6A, 0x61, 0x09,
+		0x37, 0x71, 0x45, 0x49, 0xFF, 0x57, 0xA7, 0x91,0x97, 0xAB, 0x40, 0x08, 0x46, 0x00, 0xFA, 0xB5,
+		0x8D, 0x1B, 0x79, 0xD1, 0x30, 0x13, 0x68, 0xAC,0xE2, 0x21, 0x87, 0x02, 0xAD, 0x75, 0x14, 0x96,
+		0xA6, 0x65, 0xDC, 0xD3, 0x28, 0x6D, 0x5F, 0x86,0x2D, 0xF5, 0x15, 0x3D, 0xB7, 0x99, 0xD6, 0x04,
+		0xBE, 0x73, 0x51, 0x35, 0xE7, 0x8C, 0xBB, 0x36,0x0C, 0x95, 0xC8, 0x25, 0xCF, 0x1C, 0xA0, 0xB3,
+		0x7D, 0x78, 0x4F, 0x18, 0x9D, 0x56, 0xA2, 0xCA,0xEB, 0xE8, 0x93, 0xC0, 0xDB, 0x81, 0x62, 0xED,
+		0xE1, 0x6B, 0x63, 0x2A, 0xF9, 0x8E, 0xDE, 0xB8,0x26, 0x1F, 0xC3, 0xEF, 0x4B, 0x6F, 0x48, 0x85,
+		0xAF, 0xC5, 0x41, 0x2F, 0x5E, 0xD2, 0x9C, 0xD4,0x3E, 0xC6, 0xE5, 0x1A, 0x5B, 0x3B, 0xE4, 0xBF,
 	];
 
 	/**
@@ -62,7 +62,7 @@ class Randomizer {
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade10'),
-		]);
+		], $this->world);
 		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
@@ -117,23 +117,35 @@ class Randomizer {
 	public function makeSeed(int $rng_seed = null) {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
-		mt_srand($rng_seed);
-		$this->seed->seed = $rng_seed;
-
-		// BIG NOTE!!! in php 7.1 mt_srand changes how it seeds, so versions > 7.1 will create different results -_-
-		if (defined('MT_RAND_PHP')) {
-			mt_srand($rng_seed, MT_RAND_PHP);
-		}
+		// http://php.net/manual/en/migration72.incompatible.php#migration72.incompatible.rand-mt_rand-output
+		// GAHHHHHHH!!!! php 7.1 and 7.2 generate different things :/
+		mt_srand($this->rng_seed);
+		$this->seed->seed = $this->rng_seed;
 
 		Log::info(sprintf("Seed: %s", $this->rng_seed));
 
 		$regions = $this->world->getRegions();
 
+		switch ($this->goal) {
+			case 'pedestal':
+				$this->world->getLocation("Master Sword Pedestal")->setItem(Item::get('Triforce'));
+				break;
+			case 'ganon':
+			case 'dungeons':
+				$this->world->getLocation("Ganon")->setItem(Item::get('Triforce'));
+				break;
+		}
+
 		// Set up World before we fill dungeons
+		$this->setShops();
 		$this->setMedallions($regions);
+		$this->placeBosses($this->world);
 		$this->fillPrizes($this->world);
 
 		$regions['Fountains']->getLocations()->each(function($fountain) {
+			if ($fountain->hasItem()) {
+				return;
+			}
 			$fountain->setItem($this->getBottle(true));
 		});
 
@@ -163,26 +175,25 @@ class Randomizer {
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
 
-		// Pedestal is the goal
-		if ($this->goal == 'pedestal') {
-			$locations["Master Sword Pedestal"]->setItem(Item::get('Triforce'));
-		}
-
-		if ($this->logic == 'MajorGlitches') {
-			// MajorGlitches always has 4 bottles, no matter what
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
-			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
-		}
-
-		if ($this->logic == 'OverworldGlitches') {
-			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
-		}
-
-		// at this point we have filled all the base locations that will affect the rest of the actual item placements
+		$dungeon_items = $this->getDungeonPool();
 		$advancement_items = $this->getAdvancementItems();
+		$nice_items = $this->getNiceItems();
+		$trash_items = ($this->config('rng_items'))
+			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
+			: $this->getItemPool();
+
+		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches']) && $this->difficulty !== 'custom') {
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
+			foreach ($advancement_items as $key => $item) {
+				if ($item == Item::get('PegasusBoots')) {
+					unset($advancement_items[$key]);
+					array_push($trash_items, Item::get('TwentyRupees'));
+					break;
+				}
+			}
+		}
 
 		// take out all the swords and silver arrows
-		$nice_items = $this->getNiceItems();
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
 		foreach ($advancement_items as $key => $item) {
@@ -202,20 +213,7 @@ class Randomizer {
 				continue;
 			}
 		}
-		if (config('game-mode') != 'swordless') {
-			// put 1 sword back
-			if (count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
-			}
-			// 2 in open mode
-			if (config('game-mode') == 'open' && count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
-			} elseif ($this->config('region.forceUncleSword', true)) {
-				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
-			}
-
-			$nice_items = array_merge($nice_items, $nice_items_swords);
-		} else {
+		if ($this->config('mode.weapons') == 'swordless') {
 			// In swordless we need to catch all swords
 			foreach ($nice_items as $key => $item) {
 				if (is_a($item, Item\Sword::class)) {
@@ -224,15 +222,34 @@ class Randomizer {
 				}
 			}
 			// In swordless mode silvers are 100% required
+			config(['alttp.region.requireBetterBow' => true]);
 			foreach ($nice_items_swords as $unneeded) {
 				array_push($nice_items, Item::get('TwentyRupees2'));
 			}
 			$world_items = $this->world->collectItems()->values();
 			if (!in_array(Item::get('SilverArrowUpgrade'), $world_items) && !in_array(Item::get('BowAndSilverArrows'), $world_items)) {
 				if (array_search(Item::get('SilverArrowUpgrade'), $nice_items) === false && $this->difficulty !== 'custom') {
-					$nice_items[] = Item::get('SilverArrowUpgrade');
+					$advancement_items[] = Item::get('SilverArrowUpgrade');
 				}
 			}
+		} else {
+			// put 1 sword back
+			if (count($nice_items_swords)) {
+				array_push($advancement_items, array_pop($nice_items_swords));
+			}
+
+			if ($this->config('mode.weapons') == 'uncle') {
+				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+			} else {
+				array_push($advancement_items, array_pop($nice_items_swords));
+			}
+
+			if ($this->config('region.takeAnys', false)) {
+				array_pop($nice_items_swords);
+				array_push($trash_items, Item::get('TwentyRupees'));
+			}
+
+			$nice_items = array_merge($nice_items, $nice_items_swords);
 		}
 		// put 1 bottle back
 		if (count($nice_items_bottles)) {
@@ -240,12 +257,16 @@ class Randomizer {
 		}
 		$nice_items = array_merge($nice_items, $nice_items_bottles);
 
-		// Remaining Items
-		$trash_items = ($this->config('rng_items'))
-			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
-			: $this->getItemPool();
-
-		$dungeon_items = $this->getDungeonPool();
+		if ($this->config('rom.rupeeBow', false)) {
+			$trash_items_replace = [];
+			foreach ($trash_items as $key => $item) {
+				if ($item instanceof Item\Arrow || $item instanceof Item\Upgrade\Arrow) {
+					unset($trash_items[$key]);
+					$trash_items_replace[] = Item::get('FiveRupees');
+				}
+			}
+			$trash_items = array_merge($trash_items, $trash_items_replace);
+		}
 
 		if ($this->world->config('region.wildBigKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
@@ -257,7 +278,7 @@ class Randomizer {
 		}
 		if ($this->world->config('region.wildKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
-				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open', 'swordless']) || $item != Item::get('KeyH2'))) {
+				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open']) || $item != Item::get('KeyH2'))) {
 					unset($dungeon_items[$key]);
 					$advancement_items[] = $item;
 				}
@@ -267,7 +288,7 @@ class Randomizer {
 			foreach ($dungeon_items as $key => $item) {
 				if ($item instanceof Item\Map) {
 					unset($dungeon_items[$key]);
-					$nice_items[] = $item;
+					$advancement_items[] = $item;
 				}
 			}
 		}
@@ -275,14 +296,51 @@ class Randomizer {
 			foreach ($dungeon_items as $key => $item) {
 				if ($item instanceof Item\Compass) {
 					unset($dungeon_items[$key]);
-					$nice_items[] = $item;
+					$advancement_items[] = $item;
 				}
 			}
 		}
 
 		$advancement_items = mt_shuffle($advancement_items);
 
-		Filler::factory('RandomAssumed', $this->world)->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+		$filler = Filler::factory('RandomAssumed', $this->world);
+
+		// mess with the junk fill
+		if ($this->goal == 'triforce-hunt') {
+			$filler->setGanonJunkLimits(15, 50);
+		}
+		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
+			$filler->setGanonJunkLimits(0, 0);
+		}
+
+		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+
+		return $this;
+	}
+
+	/**
+	 * Place the bosses for each region.
+	 *
+	 * @param World $world world to place bosses in.
+	 *
+	 * @return $this
+	 */
+	public function placeBosses(World $world) : self {
+		$this->world->getRegion('Eastern Palace')->setBoss(Boss::get("Armos Knights"));
+		$this->world->getRegion('Desert Palace')->setBoss(Boss::get("Lanmolas"));
+		$this->world->getRegion('Tower of Hera')->setBoss(Boss::get("Moldorm"));
+		$this->world->getRegion('Hyrule Castle Tower')->setBoss(Boss::get("Agahnim"));
+		$this->world->getRegion('Palace of Darkness')->setBoss(Boss::get("Helmasaur King"));
+		$this->world->getRegion('Swamp Palace')->setBoss(Boss::get("Arrghus"));
+		$this->world->getRegion('Skull Woods')->setBoss(Boss::get("Mothula"));
+		$this->world->getRegion('Thieves Town')->setBoss(Boss::get("Blind"));
+		$this->world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare"));
+		$this->world->getRegion('Misery Mire')->setBoss(Boss::get("Vitreous"));
+		$this->world->getRegion('Turtle Rock')->setBoss(Boss::get("Trinexx"));
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Armos Knights"), 'bottom');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Lanmolas"), 'middle');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Moldorm"), 'top');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Agahnim2"));
 
 		return $this;
 	}
@@ -294,10 +352,10 @@ class Randomizer {
 	 *
 	 * @return $this
 	 */
-	public function fillPrizes(World $world) : self {
+	public function fillPrizes(World $world, $attempts = 5) : self {
 		$prize_locations = $world->getLocations()->filter(function($location) {
 			return is_a($location, Location\Prize::class);
-		});
+		})->randomCollection(15);
 
 		$crystal_locations = $prize_locations->filter(function($location) {
 			return is_a($location, Location\Prize\Crystal::class);
@@ -344,18 +402,47 @@ class Randomizer {
 				return is_a($item, Item\Crystal::class);
 			});
 
-		// This needs to try to place better than 1st or fail.
-		foreach ($crystal_locations->getEmptyLocations() as $location) {
-			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
-				$this->getDungeonPool(),
-				$this->getAdvancementItems(),
-				$place_prizes)));
-			if (!$location->canAccess($assumed_items)) {
-				throw new \Exception("Cannot Place Prize: " . $location->getName());
+		$empty_crystal_locations = $crystal_locations->getEmptyLocations();
+		foreach ($empty_crystal_locations as $location) {
+			$total_prizes = count($place_prizes);
+			for ($i = 0; $i < $total_prizes; ++$i) {
+				$place_prize = array_pop($place_prizes);
+				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+					$this->getDungeonPool(),
+					$this->getAdvancementItems(),
+					$place_prizes), $world));
+				if ($location->canAccess($assumed_items)) {
+					break;
+				}
+				array_unshift($place_prizes, $place_prize);
+			}
+			if ($total_prizes == count($place_prizes)) {
+				continue;
 			}
 
-			$location->setItem(array_pop($place_prizes));
+			$location->setItem($place_prize);
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
+
+			if (!$world->checkWinCondition($assumed_items)) {
+				if ($attempts > 0) {
+					$empty_crystal_locations->each(function($location) {
+						$location->setItem();
+					});
+					Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+					return $this->fillPrizes($world, $attempts - 1);
+				}
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+		}
+		if ($crystal_locations->getEmptyLocations()->count()) {
+			if ($attempts > 0) {
+				$empty_crystal_locations->each(function($location) {
+					$location->setItem();
+				});
+				Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+				return $this->fillPrizes($world, $attempts - 1);
+			}
+			throw new \Exception("Cannot Place Prize: " . $crystal_locations->getEmptyLocations()->first()->getName());
 		}
 
 		$place_prizes = ($this->config('prize.crossWorld', true))
@@ -364,17 +451,47 @@ class Randomizer {
 				return is_a($item, Item\Pendant::class);
 			});
 
-		foreach ($pendant_locations->getEmptyLocations() as $location) {
-			$assumed_items = $world->collectItems(new ItemCollection(array_merge(
-				$this->getDungeonPool(),
-				$this->getAdvancementItems(),
-				$place_prizes)));
-			if (!$location->canAccess($assumed_items)) {
-				throw new \Exception("Cannot Place Prize: " . $location->getName());
+		$empty_pendant_locations = $pendant_locations->getEmptyLocations();
+		foreach ($empty_pendant_locations as $location) {
+			$total_prizes = count($place_prizes);
+			for ($i = 0; $i < $total_prizes; ++$i) {
+				$place_prize = array_pop($place_prizes);
+				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
+					$this->getDungeonPool(),
+					$this->getAdvancementItems(),
+					$place_prizes), $world));
+				if ($location->canAccess($assumed_items)) {
+					break;
+				}
+				array_unshift($place_prizes, $place_prize);
+			}
+			if ($total_prizes == count($place_prizes)) {
+				continue;
 			}
 
-			$location->setItem(array_pop($place_prizes));
+			$location->setItem($place_prize);
 			Log::debug(sprintf("Placing: %s in %s", $location->getItem()->getNiceName(), $location->getName()));
+
+			if (!$world->checkWinCondition($assumed_items)) {
+				if ($attempts > 0) {
+					$empty_pendant_locations->each(function($location) {
+						$location->setItem();
+					});
+					Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+					return $this->fillPrizes($world, $attempts - 1);
+				}
+				throw new \Exception("Cannot Place Prize: " . $location->getName());
+			}
+		}
+		if ($pendant_locations->getEmptyLocations()->count()) {
+			if ($attempts > 0) {
+				$empty_pendant_locations->each(function($location) {
+					$location->setItem();
+				});
+				Log::debug(sprintf("Unwinnable Prize Placement (reset %s)", $attempts));
+				return $this->fillPrizes($world, $attempts - 1);
+			}
+			throw new \Exception("Cannot Place Prize: " . $pendant_locations->getEmptyLocations()->first()->getName());
 		}
 
 		return $this;
@@ -397,12 +514,66 @@ class Randomizer {
 		}
 	}
 
+	protected function setShops() {
+		if (!$this->config('rom.genericKeys', false)
+			|| !$this->config('rom.rupeeBow', false)
+			|| !$this->config('region.takeAnys', false)) {
+			return;
+		}
+
+		$shops = $this->world->getShops();
+
+		if ($this->config('region.takeAnys', false)) {
+			$shops->filter(function($shop) {
+				return $shop instanceof Shop\TakeAny;
+			})->randomCollection(4)->each(function($shop) {
+				$shop->setActive(true);
+				$shop->setShopkeeper('old_man');
+				$shop->addInventory(0, Item::get('BluePotion'), 0);
+				$shop->addInventory(1, Item::get('BossHeartContainer'), 0);
+			});
+
+			$old_man = $shops->filter(function($shop) {
+				return $shop instanceof Shop\TakeAny
+					&& !$shop->getActive();
+			})->random();
+
+			$old_man->setActive(true);
+			$old_man->setShopkeeper('old_man');
+			$old_man->addInventory(0, Item::get('ProgressiveSword'), 0);
+		}
+
+		$shops->filter(function($shop) {
+			return !$shop instanceof Shop\TakeAny;
+		})->randomCollection(5)->each(function($shop) {
+			$shop->setActive(true);
+			if ($this->config('rom.rupeeBow', false)) {
+				$shop->addInventory(0, Item::get('Arrow'), 80);
+			}
+			if ($this->config('rom.genericKeys', false)) {
+				$shop->addInventory(1, Item::get('KeyGK'), 100);
+			}
+			$shop->addInventory(2, Item::get('TenBombs'), 50);
+		});
+
+		if ($this->config('rom.rupeeBow', false)) {
+			// One shop has arrows for sale, we need to set the price correct for
+			$dw_shop = $this->world->getShop("Dark World Forest Shop");
+			if ($this->config('rom.rupeeBow') && !$dw_shop->getActive()) {
+				$dw_shop->setActive(true);
+				$dw_shop->addInventory(2, Item::get('Arrow'), 80);
+			}
+		}
+	}
+
 	/**
 	 * Get the current spoiler for this seed
 	 *
+	 * @param array $meta passthrough data to add to meta
+	 *
 	 * @return array
 	 */
-	public function getSpoiler() {
+	public function getSpoiler(array $meta = []) {
 		$spoiler = [];
 
 		if (count($this->starting_equipment)) {
@@ -414,7 +585,7 @@ class Randomizer {
 				}
 
 				$location = sprintf("Equipment Slot %s", ++$i);
-				$spoiler['Equiped'][$location] = $item->getNiceName();
+				$spoiler['Equipped'][$location] = $item->getNiceName();
 			}
 		}
 
@@ -429,22 +600,43 @@ class Randomizer {
 					return;
 				}
 				if ($location->hasItem()) {
-					$spoiler[$name][$location->getName()] = $location->getItem()->getNiceName();
+					$item = $location->getItem();
+					$spoiler[$name][$location->getName()] = $this->config('rom.genericKeys', false) && $item instanceof Item\Key
+						? 'Key'
+						: $item->getNiceName();
 				} else {
 					$spoiler[$name][$location->getName()] = 'Nothing';
 				}
 			});
 		}
+		foreach ($this->world->getShops() as $shop) {
+			if ($shop->getActive()) {
+				$shop_data = [
+					'location' => $shop->getName(),
+					'type' => $shop instanceof Shop\TakeAny ? 'Take Any' : 'Shop',
+				];
+				foreach ($shop->getInventory() as $slot => $item) {
+					$shop_data["item_$slot"] = $item['price'] ? $item['item']->getNiceName() . ' (' . $item['price'] . ')' : $item['item']->getNiceName();
+				}
+				$spoiler['Shops'][] = $shop_data;
+			}
+		}
 		$spoiler['playthrough'] = $this->world->getPlayThrough();
-		$spoiler['meta'] = [
+		$spoiler['meta'] = array_merge($meta, [
 			'difficulty' => $this->difficulty,
 			'variation' => $this->variation,
 			'logic' => $this->getLogic(),
+			'rom_mode' => $this->config('rom.logicMode', $this->logic),
 			'seed' => $this->rng_seed,
 			'goal' => $this->goal,
 			'build' => Rom::BUILD,
 			'mode' => config('game-mode', 'standard'),
-		];
+			'weapons' => $this->config('mode.weapons', 'randomized')
+		]);
+
+		if ($this->config('rom.HardMode') !== null) {
+			$spoiler['meta']['difficulty_mode'] = config('alttp.randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
+		}
 
 		$this->seed->spoiler = json_encode($spoiler);
 
@@ -460,7 +652,10 @@ class Randomizer {
 	 * @return mixed
 	 */
 	public function config($key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key", config("alttp.{$this->difficulty}.$key", $default));
+		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+			config("alttp.goals.{$this->goal}.$key",
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.$key", $default))));
 	}
 
 	/**
@@ -498,9 +693,15 @@ class Randomizer {
 		$rom->setGanonAgahnimRng($this->config('rom.GanonAgRNG', 'table'));
 
 		// testing features
-		$rom->setLockAgahnimDoorInEscape(false);
+		$rom->setGenericKeys($this->config('rom.genericKeys', false));
+		if ($this->config('rom.genericKeys', false)) {
+			$rom->setupCustomShops($this->world->getShops());
+		}
+		$rom->setRupeeArrow($this->config('rom.rupeeBow', false));
+		$rom->setLockAgahnimDoorInEscape(true);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
+		$rom->setRestrictFairyPonds(true);
 		$rom->setLimitProgressiveSword($this->config('item.overflow.count.Sword', 4),
 			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitProgressiveShield($this->config('item.overflow.count.Shield', 3),
@@ -509,6 +710,21 @@ class Randomizer {
 			Item::get($this->config('item.overflow.replacement.Armor', 'TwentyRupees'))->getBytes()[0]);
 		$rom->setLimitBottle($this->config('item.overflow.count.Bottle', 4),
 			Item::get($this->config('item.overflow.replacement.Bottle', 'TwentyRupees'))->getBytes()[0]);
+
+		switch ($this->difficulty) {
+			case 'easy':
+				$rom->setSilversEquip('both');
+				$rom->setSubstitutions([
+					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
+				]);
+				break;
+			default:
+				$rom->setSilversEquip('collection');
+				$rom->setSubstitutions([
+					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+				]);
+		}
 
 		switch ($this->goal) {
 			case 'triforce-hunt':
@@ -522,10 +738,21 @@ class Randomizer {
 				$rom->setGanonInvincible('crystals');
 		}
 
+		if ($this->config('rom.mapOnPickup', false)) {
+			$green_pendant_region = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first()->getRegion();
+
+			$rom->setMapRevealSahasrahla($green_pendant_region->getMapReveal());
+
+			$crystal5_region = $this->world->getLocationsWithItem(Item::get('Crystal5'))->first()->getRegion();
+			$crystal6_region = $this->world->getLocationsWithItem(Item::get('Crystal6'))->first()->getRegion();
+
+			$rom->setMapRevealBombShop($crystal5_region->getMapReveal() | $crystal6_region->getMapReveal());
+		}
+
 		$rom->setMapMode($this->config('rom.mapOnPickup', false));
 		$rom->setCompassMode($this->config('rom.compassOnPickup', 'off'));
 		$rom->setFreeItemTextMode($this->config('rom.freeItemText', false));
-		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', false));
+		$rom->setFreeItemMenu($this->config('rom.freeItemMenu', 0x00));
 		$rom->setDiggingGameRng(mt_rand(1, 30));
 
 		$rom->writeRNGBlock(function() {
@@ -543,11 +770,15 @@ class Randomizer {
 		$rom->setPyramidFairyChests($this->config('region.swordsInPool', true));
 		$rom->setSmithyQuickItemGive($this->config('region.swordsInPool', true));
 
-		$rom->setOpenMode(in_array(config('game-mode'), ['open', 'swordless']));
-		$rom->setSwordlessMode(config('game-mode') == 'swordless');
+		$rom->setOpenMode(in_array(config('game-mode'), ['open']));
+		$rom->setSwordlessMode($this->config('mode.weapons') == 'swordless');
 
-		if (in_array(config('game-mode'), ['open', 'swordless'])) {
+		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Sword) {
 			$rom->removeUnclesSword();
+		}
+		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Shield
+			|| !$this->world->getLocation("Link's Uncle")->hasItem(Item::get('L1SwordAndShield'))) {
+			$rom->removeUnclesShield();
 		}
 
 		$this->randomizeCredits($rom);
@@ -567,8 +798,6 @@ class Randomizer {
 		$rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);
 		$rom->setGreenClock($this->config('item.value.GreenClock', 0) ?: 0);
 		$rom->setStartingTime($this->config('rom.timerStart', 0) ?: 0);
-
-		$rom->removeUnclesShield();
 
 		switch ($this->config('rom.logicMode', $this->logic)) {
 			case 'MajorGlitches':
@@ -595,6 +824,8 @@ class Randomizer {
 				$rom->setWorldOnAgahnimDeath(true);
 				break;
 		}
+
+		$rom->setGameType('item');
 
 		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
@@ -881,6 +1112,11 @@ class Randomizer {
 			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
 			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
 			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
+			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
+			"Thanks for\ndropping in,\nthe first\npassengers\nin a hot\nair balloon.\nwere a duck,\na sheep,\nand a rooster.",
+			"You think you\nare so smart?\n\nI bet you\ndidn't know\nYou can't hum\nwhile holding\nyour nose\nclosed.",
+			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously you\nwere supposed\nto bring food",
+			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the dark\nworld!\n\nOr else you\nwill die!",
 		])));
 
 		switch ($this->goal) {
@@ -942,6 +1178,7 @@ class Randomizer {
 			"meow meow meow\nmeow meow meow\n  oh my god!",
 			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
 			".done\n\n.comment lol",
+			"You get to\ndrink from\nthe firehose",
 		])));
 
 		return $this;
@@ -1074,16 +1311,16 @@ class Randomizer {
 			array_push($advancement_items, Item::get('CaneOfByrna'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.TenBombs', 1); $i++) {
+			array_push($advancement_items, Item::get('TenBombs'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.HalfMagic', 1); $i++) {
 			array_push($advancement_items, Item::get('HalfMagic'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.QuarterMagicUpgrade', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.QuarterMagic', 0); $i++) {
 			array_push($advancement_items, Item::get('QuarterMagic'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 0); $i++) {
-			array_push($advancement_items, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 		}
 
 		return $advancement_items;
@@ -1167,17 +1404,11 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.BombUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('BombUpgrade10'));
 		}
-		for ($i = 0; $i < $this->config('item.count.BombUpgrade50', 0); $i++) {
-			array_push($items_to_find, Item::get('BombUpgrade50'));
-		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade5', 6); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade5'));
 		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade10'));
-		}
-		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade70', 0); $i++) {
-			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {
@@ -1190,7 +1421,7 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Bomb', 0); $i++) {
 			array_push($items_to_find, Item::get('Bomb'));
 		}
-		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 10); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ThreeBombs', 9); $i++) {
 			array_push($items_to_find, Item::get('ThreeBombs'));
 		}
 
@@ -1397,10 +1628,14 @@ class Randomizer {
 		];
 		$shuffled = mt_shuffle($prizes);
 
+		if ($this->config('rom.rupeeBow', false)) {
+			$shuffled = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+		}
+
 		if ($this->config('bees', false)) {
 			// you asked for it
 			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
-			$rom->setOverworldDigPrizes([
+			$dig_prizes = [
 				0xB2, 0xD8, 0xD8, 0xD8,
 				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
 				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
@@ -1414,7 +1649,31 @@ class Randomizer {
 				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
 				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
 				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
-			]);
+			];
+
+			if ($this->config('rom.rupeeBow', false)) {
+				$dig_prizes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $dig_prizes);
+			}
+
+			$rom->setOverworldDigPrizes($dig_prizes);
+		} else {
+			if ($this->config('rom.rupeeBow', false)) {
+				$rom->setOverworldDigPrizes([
+					0xB2, 0xD8, 0xD8, 0xD8,
+					0xD8, 0xD8, 0xD8, 0xD8, 0xD8,
+					0xD9, 0xD9, 0xD9, 0xD9, 0xD9,
+					0xDA, 0xDA, 0xDA, 0xDA, 0xDA,
+					0xDB, 0xDB, 0xDB, 0xDB, 0xDB,
+					0xDC, 0xDC, 0xDC, 0xDC, 0xDC,
+					0xDD, 0xDD, 0xDD, 0xDD, 0xDD,
+					0xDE, 0xDE, 0xDE, 0xDE, 0xDE,
+					0xDF, 0xDF, 0xDF, 0xDF, 0xDF,
+					0xE0, 0xE0, 0xE0, 0xE0, 0xE0,
+					0xDA, 0xDA, 0xDA, 0xDA, 0xDA,
+					0xDB, 0xDB, 0xDB, 0xDB, 0xDB,
+					0xE3, 0xE3, 0xE3, 0xE3, 0xE3,
+				]);
+			}
 		}
 
 		// write to trees
@@ -1456,11 +1715,9 @@ class Randomizer {
 		switch ($this->config('rom.HardMode', 0)) {
 			case 3:
 			case 2:
-				list($low, $high) = [3, 4]; // 12.5%, 6.25%
+				list($low, $high) = [2, 2]; // 25%
 				break;
 			case 1:
-				list($low, $high) = [2, 3]; // 25%, 12.5%
-				break;
 			default:
 				list($low, $high) = [1, 1]; // 50%
 		}

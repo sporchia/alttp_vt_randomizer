@@ -52,6 +52,10 @@ class West extends Region {
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
 
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
+
 		return $this;
 	}
 
@@ -70,6 +74,10 @@ class West extends Region {
 					|| ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic()) && $items->has('CaneOfByrna')))
 				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
 
 		return $this;
 	}

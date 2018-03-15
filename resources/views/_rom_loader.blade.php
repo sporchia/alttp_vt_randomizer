@@ -14,12 +14,13 @@
 	<div class="panel-body">
 		<p>
 			<label class="btn btn-default btn-file">
-				Select ROM File <input type="file" accept=".sfc" name="f2u" style="display: none;">
+				Select ROM File <input type="file" accept=".sfc,.smc" name="f2u" style="display: none;">
 			</label>
 		</p>
 		<ol>
 			<li>Select your rom file and load it into the browser
-				(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM)</li>
+				(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with
+				an .smc or .sfc extension)</li>
 			<li>Select the <a href="/options">options</a> for how you would like your game randomized</li>
 			<li>Click Generate</li>
 			<li>Then Save your rom and get to playing</li>
@@ -30,7 +31,7 @@
 <script>
 var rom;
 var current_rom_hash = '{{ $rom_hash or ALttP\Rom::HASH }}';
-var current_base_file = "{{ $rom_patch or elixir('js/base2current.json') }}";
+var current_base_file = "{{ $rom_patch or mix('js/base2current.json') }}";
 
 function resetRom() {
 	return new Promise(function(resolve, reject) {

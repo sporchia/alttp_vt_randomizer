@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -14,6 +15,8 @@ class EasternPalace extends Region {
 	public $music_addresses = [
 		0x1559A,
 	];
+
+	protected $map_reveal = 0x2000;
 
 	protected $region_items = [
 		'BigKey',
@@ -35,6 +38,9 @@ class EasternPalace extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		// set a default boss
+		$this->boss = Boss::get("Armos Knights");
 
 		$this->locations = new LocationCollection([
 			new Location\Chest("Eastern Palace - Compass Chest", 0xE977, null, $this),
@@ -80,24 +86,32 @@ class EasternPalace extends Region {
 		});
 
 		$this->locations["Eastern Palace - Big Key Chest"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp');
+			return $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $items->canShootArrows()
-				&& $items->has('Lamp') && $items->has('BigKeyP1');
+			return $this->locations["Eastern Palace - Armos Knights"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP1'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP1'));
 		};
 
-		$this->locations["Eastern Palace - Armos Knights"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-				if (!$this->world->config('region.bossNormalLocation', true)
-					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-					return false;
-				}
+		$this->locations["Eastern Palace - Armos Knights"]->setRequirements(function($locations, $items) {
+			return $items->canShootArrows()
+				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('BigKeyP1')
+				&& $this->boss->canBeat($items, $locations);
+		})->setFillRules(function($item, $locations, $items) {
+			if (!$this->world->config('region.bossNormalLocation', true)
+				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+					|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+				return false;
+			}
 
-				return true;
-			});
+			return true;
+		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('RescueZelda');
+		};
 
 		$this->prize_location->setRequirements($this->can_complete);
 

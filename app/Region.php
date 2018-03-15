@@ -1,17 +1,23 @@
 <?php namespace ALttP;
 
+use ALttP\Support\ShopCollection;
+
 /**
  * A logical collection of Locations. Can have special can_enter function that will apply to all locaitons contained,
  * and can_complete function set to validate that the region prize (if set) can be obtained.
  */
 class Region {
 	protected $locations;
+	protected $shops;
 	protected $can_enter;
 	protected $can_complete;
 	protected $name = 'Unknown';
 	protected $prize_location;
 	protected $world;
 	protected $region_items = [];
+	protected $boss = null;
+
+	protected $map_reveal = 0x0000;
 
 	/**
 	 * Create a new Region.
@@ -22,6 +28,7 @@ class Region {
 	 */
 	public function __construct(World $world) {
 		$this->world = $world;
+		$this->shops = new ShopCollection;
 
 		// hydrate region items.
 		foreach ($this->region_items as $key => $item) {
@@ -45,6 +52,37 @@ class Region {
 	 */
 	public function getName() {
 		return $this->name;
+	}
+
+	/**
+	 * Get the Boss of this Region.
+	 *
+	 * @return Boss
+	 */
+	public function getBoss() {
+		return $this->boss;
+	}
+
+	/**
+	 * Set the Boss of this Region.
+	 *
+	 * @param Boss $boss boss of the region
+	 *
+	 * @return $this
+	 */
+	public function setBoss(Boss $boss) : self {
+		$this->boss = $boss;
+
+		return $this;
+	}
+
+	/**
+	 * Get the map reveal word for this region
+	 *
+	 * @return int
+	 */
+	public function getMapReveal() : int {
+		return $this->map_reveal;
 	}
 
 	/**
@@ -199,7 +237,7 @@ class Region {
 	public function canFill(Item $item) : bool {
 		if (((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
 			|| (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
-			|| ($item == Item::get('KeyH2') && !in_array(config('game-mode'), ['open', 'swordless'])) // Sewers Key cannot leave
+			|| ($item == Item::get('KeyH2') && !in_array(config('game-mode'), ['open'])) // Sewers Key cannot leave
 			|| (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
 			|| (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass))
 			&& !in_array($item, $this->region_items)) {
@@ -260,5 +298,25 @@ class Region {
 	 */
 	public function locationsWithItem(Item $item = null) {
 		return $this->locations->locationsWithItem($item);
+	}
+
+	/**
+	 * Get all the Shops in this Region
+	 *
+	 * @return Support\ShopCollection
+	 */
+	public function getShops() {
+		return $this->shops;
+	}
+
+	/**
+	 * Get Shop in this Region by name
+	 *
+	 * @param string $name name of the Shop
+	 *
+	 * @return Shop
+	 */
+	public function getShop(string $name) {
+		return $this->shops[$name];
 	}
 }

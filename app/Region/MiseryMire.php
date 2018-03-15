@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -14,6 +15,8 @@ class MiseryMire extends Region {
 	public $music_addresses = [
 		0x155B9,
 	];
+
+	protected $map_reveal = 0x0100;
 
 	protected $region_items = [
 		'BigKey',
@@ -35,6 +38,8 @@ class MiseryMire extends Region {
 	 */
 	public function __construct(World $world) {
 		parent::__construct($world);
+
+		$this->boss = Boss::get("Vitreous");
 
 		$this->locations = new LocationCollection([
 			new Location\BigChest("Misery Mire - Big Chest", 0xEA67, null, $this),
@@ -109,32 +114,35 @@ class MiseryMire extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items)
-				&& $items->has('CaneOfSomaria') && $items->has('Lamp')
-				&& $items->has('BigKeyD6') && (
-					$items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
-				);
+			return $this->locations["Misery Mire - Vitreous"]->canAccess($items)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD6'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD6'));
 		};
 
-		$this->locations["Misery Mire - Vitreous"]->setRequirements($this->can_complete)
-			->setFillRules(function($item, $locations, $items) {
-					if (!$this->world->config('region.bossNormalLocation', true)
-						&& ($item instanceof Item\Key || $item instanceof Item\BigKey
-							|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
-						return false;
-					}
+		$this->locations["Misery Mire - Vitreous"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items)
+				&& $items->has('CaneOfSomaria') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+				&& $items->has('BigKeyD6')
+				&& $this->boss->canBeat($items, $locations);
+		})->setFillRules(function($item, $locations, $items) {
+				if (!$this->world->config('region.bossNormalLocation', true)
+					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
+						|| $item instanceof Item\Map || $item instanceof Item\Compass)) {
+					return false;
+				}
 
-				return true;
-			});
+			return true;
+		});
 
 		$this->can_enter = function($locations, $items) {
-			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
-					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
-					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
-			&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
-			&& $items->canKillMostThings(8)
-			&& $this->world->getRegion('Mire')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+						|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
+						|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
+					&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
+				&& $items->has('MoonPearl') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
+				&& $items->canKillMostThings(8)
+				&& $this->world->getRegion('Mire')->canEnter($locations, $items);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -151,9 +159,10 @@ class MiseryMire extends Region {
 	public function initMajorGlitches() {
 		$this->initNoMajorGlitches();
 
+		// @TODO: this function is probably wrong -_-
 		$this->can_complete = function($locations, $items) {
 			return ($this->canEnter($locations, $items)
-				&& $items->has('CaneOfSomaria') && $items->has('Lamp')
+				&& $items->has('CaneOfSomaria') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
 				&& $items->has('BigKeyD6') && (
 					$items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
 				))
@@ -169,10 +178,11 @@ class MiseryMire extends Region {
 
 		// @TODO: doesn't account for 2x YBA
 		$this->can_enter = function($locations, $items) {
-			return ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
+			return $items->has('RescueZelda')
+				&& ((($locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
-				&& (config('game-mode') == 'swordless' || $items->hasSword()))
+				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 			&& ($items->has('MoonPearl') || ($items->hasABottle() && $items->has('PegasusBoots')))
 			&& ($items->has('PegasusBoots') || $items->has('Hookshot'))
 			&& $this->world->getRegion('Mire')->canEnter($locations, $items);

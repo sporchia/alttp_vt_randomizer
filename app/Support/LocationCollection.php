@@ -2,6 +2,7 @@
 
 use ALttP\Location;
 use ALttP\Item;
+use ALttP\World;
 
 /**
  * Collection of Locations to place Items
@@ -75,14 +76,16 @@ class LocationCollection extends Collection {
 	/**
 	 * Get all the Items assigned in this
 	 *
+	 * @param World $world allow a world context to be passed in for item collection being returned
+	 *
 	 * @return ItemCollection
 	 */
-	public function getItems() {
+	public function getItems(World $world = null) {
 		return new ItemCollection($this->filter(function($location) {
 				return $location->hasItem();
 			})->map(function ($location) {
 				return $location->getItem();
-			}));
+			}), $world);
 	}
 
 	/**

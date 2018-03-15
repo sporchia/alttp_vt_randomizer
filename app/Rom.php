@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-01-06';
-	const HASH = '843cee371b4371fecfe035968747df95';
+	const BUILD = '2018-03-15';
+	const HASH = '7e64799c938ff57adcb151066fab5da5';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -69,7 +69,7 @@ class Rom {
 		$this->credits = new Credits;
 	}
 
- 	/**
+	/**
 	 * resize ROM to a given size
 	 *
 	 * @param int|null $size number of bytes the ROM should be
@@ -141,6 +141,12 @@ class Rom {
 			$location->writeItem($this);
 		}
 
+		$this->setSubstitutions([
+			0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
+			0x0C, 0x01, 0x44, 0xFF, // Blue boom -> 10 arrows
+			0x2A, 0x01, 0x46, 0xFF, // Red boom -> 300 rupees
+		]);
+
 		$this->setClockMode('off');
 		$this->setHardMode(0);
 
@@ -168,6 +174,21 @@ class Rom {
 	}
 
 	/**
+	 * Write subsitutions
+	 *
+	 * @param array $substitutions [[id, max, replace id, 0xFF], ...]
+	 *
+	 * @return $this
+	 */
+	public function setSubstitutions(array $substitutions = []) {
+		$substitutions = array_merge($substitutions, [0xFF, 0xFF, 0xFF, 0xFF]);
+
+		$this->write(0x184000, pack('C*', ...$substitutions));
+
+		return $this;
+	}
+
+	/**
 	 * set the items passed in as Link's starting equipment
 	 *
 	 * @param ItemCollection $items items to equip Link with
@@ -180,8 +201,10 @@ class Rom {
 		$starting_arrow_capacity = 0;
 		$starting_bomb_capacity = 0;
 		// starting heart containers
-		$equipment[0x36C] = 0x18;
-		$equipment[0x36D] = 0x18;
+		if ($items->heartCount(0) < 1) {
+			$equipment[0x36C] = 0x18;
+			$equipment[0x36D] = 0x18;
+		}
 		// default abilities
 		$equipment[0x379] |= 0b01101000;
 
@@ -397,6 +420,7 @@ class Rom {
 				case 'BossHeartContainer':
 				case 'HeartContainer':
 					$equipment[0x36C] = min($equipment[0x36C] + 0x08, 0xA0);
+					$equipment[0x36D] = min($equipment[0x36D] + 0x08, 0xA0);
 					break;
 				case 'PieceOfHeart':
 					$equipment[0x36B] += 1;
@@ -430,17 +454,11 @@ class Rom {
 				case 'BombUpgrade10':
 					$starting_bomb_capacity += 10;
 					break;
-				case 'BombUpgrade50':
-					$starting_bomb_capacity += 50;
-					break;
 				case 'ArrowUpgrade5':
 					$starting_arrow_capacity += 5;
 					break;
 				case 'ArrowUpgrade10':
 					$starting_arrow_capacity += 10;
-					break;
-				case 'ArrowUpgrade70':
-					$starting_arrow_capacity += 70;
 					break;
 				case 'HalfMagic':
 					$equipment[0x37B] = 0x01;
@@ -666,7 +684,7 @@ class Rom {
 		$this->setMaxBombs($starting_bomb_capacity);
 
 		if (config('game-mode') != 'swordless' && $equipment[0x359]) {
-			$this->write(0x180043, pack('C*', $equipment[0x359]));
+			$this->write(0x180043, pack('C*', $equipment[0x359])); // write starting sword
 		}
 
 		return $this;
@@ -737,6 +755,19 @@ class Rom {
 	 */
 	public function setCaneOfByrnaSpikeCaveUsage(int $normal = 0x04, int $half = 0x02, int $quarter = 0x01) : self {
 		$this->write(0x18016B, pack('C*', $normal, $half, $quarter));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Byrna's ability to make you Invulnerable
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setCaneOfByrnaInvulnerability(bool $enable = true) : self {
+		$this->write(0x18004F, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -1038,6 +1069,47 @@ class Rom {
 		return $this;
 	}
 
+	/**
+	 * Set hearts color for low vision people
+	 *
+	 * @param string $color color to have HUD hearts
+	 *
+	 * @return $this
+	 */
+	public function setHeartColors(string $color) : self {
+		switch ($color_on) {
+			case 'blue':
+				$byte = 0x2C;
+				$file_byte = 0x0D;
+				break;
+			case 'green':
+				$byte = 0x3C;
+				$file_byte = 0x19;
+				break;
+			case 'yellow':
+				$byte = 0x28;
+				$file_byte = 0x09;
+				break;
+			case 'red':
+			default:
+				$byte = 0x24;
+				$file_byte = 0x05;
+		}
+		$this->write(0x6FA1E, pack('C*', $byte));
+		$this->write(0x6FA20, pack('C*', $byte));
+		$this->write(0x6FA22, pack('C*', $byte));
+		$this->write(0x6FA24, pack('C*', $byte));
+		$this->write(0x6FA26, pack('C*', $byte));
+		$this->write(0x6FA28, pack('C*', $byte));
+		$this->write(0x6FA2A, pack('C*', $byte));
+		$this->write(0x6FA2C, pack('C*', $byte));
+		$this->write(0x6FA2E, pack('C*', $byte));
+		$this->write(0x6FA30, pack('C*', $byte));
+
+		$this->write(0x65561, pack('C*', $file_byte));
+
+		return $this;
+	}
 
 	/**
 	 * Set the opening Uncle text to a custom value
@@ -1529,6 +1601,32 @@ class Rom {
 	}
 
 	/**
+	 * Enable/Disable the Quickswap function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setQuickSwap($enable = false) : self {
+		$this->write(0x18004B, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable/Disable the Smithy Full Travel function
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSmithyFreeTravel($enable = false) : self {
+		$this->write(0x18004C, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Set the single RNG Item table. These items will only get collected by player once per game.
 	 *
 	 * @param ItemCollection $items
@@ -1607,15 +1705,15 @@ class Rom {
 	 */
 	public function setGameType(string $setting) : self {
 		switch ($setting) {
-			case 'Plandomizer':
-				$byte = 0x01;
-				break;
-			case 'other':
-				$byte = 0xFF;
-				break;
-			case 'Randomizer':
+			case 'enemizer':
+				$byte = 0b00000101;
+			case 'entrance':
+				$byte = 0b00000110;
+			case 'room':
+				$byte = 0b00001000;
+			case 'item':
 			default:
-				$byte = 0x00;
+				$byte = 0b00000100;
 		}
 
 		$this->write(0x180211, pack('C', $byte));
@@ -1817,62 +1915,73 @@ class Rom {
 		$this->setCaneOfByrnaSpikeCaveUsage();
 		$this->setCapeSpikeCaveUsage();
 		$this->setByrnaCaveSpikeDamage(0x08);
+		// Bryna magic amount used per "cycle"
+		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
 		switch ($level) {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-				// Bryna magic amount used per "cycle"
-				$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
+				$this->setCaneOfByrnaInvulnerability(true);
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
 				$this->setShopRedShieldCost(500);
 				$this->setCatchableFairies(true);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x03);
+				$this->setSilversOnlyAtGanon(false);
 
 				$this->setRupoorValue(0);
 
 				break;
 			case 1:
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
-				$this->write(0x45C42, pack('C*', 0x08, 0x08, 0x08));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
+				$this->setBottleFills([0x38, 0x40]); // 7 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x01);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(10);
 
 				break;
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
-				$this->setPowderedSpriteFairyPrize(0x79); // Bees
+				$this->setCaneOfByrnaInvulnerability(false);
+				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
 				$this->setShopRedShieldCost(9990);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x00);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(20);
 
 				break;
 			case 3:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
-				$this->write(0x45C42, pack('C*', 0x10, 0x10, 0x10));
+				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0x79); // Bees
-				$this->setBottleFills([0x00, 0x00]); // 1 heart, 1/4 magic refills
+				$this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills
 				$this->setShopBlueShieldCost(10000);
 				$this->setShopRedShieldCost(10000);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x00);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(9999);
 
 				break;
+			default:
+				throw new \Exception("Trying to set hard mode that doesn't exist");
 		}
 
 		return $this;
@@ -1954,6 +2063,166 @@ class Rom {
 		return $this;
 	}
 
+	public function setupCustomShops($shops) : self {
+		$shops = $shops->filter(function($shop) {
+			return $shop->getActive();
+		})->take(32);
+
+		$shop_data = [];
+		$items_data = [];
+		$shop_id = 0x00;
+		$sram_offset = 0x00;
+		foreach ($shops as $shop) {
+			if ($shop_id == $shops->count() - 1) {
+				$shop_id = 0xFF;
+			}
+			$shop->writeExtraData($this);
+			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes($sram_offset));
+			$sram_offset += ($shop instanceof Shop\TakeAny) ? 1 : count($shop->getInventory());
+
+			if ($sram_offset > 36) {
+				throw new \Exception("Exceeded SRAM indexing for shops");
+			}
+
+			foreach ($shop->getInventory() as $item) {
+				$items_data = array_merge($items_data, [$shop_id, $item['id']],
+					array_values(unpack('C*', pack('S', $item['price'] ?? 0))),
+					[$item['max'] ?? 0, $item['replace_id'] ?? 0xFF],
+					array_values(unpack('C*', pack('S', $item['replace_price'] ?? 0))));
+			}
+			++$shop_id;
+		}
+		$this->write(0x184800, pack('C*', ...$shop_data));
+
+		$items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
+		$this->write(0x184900, pack('C*', ...$items_data));
+
+		return $this;
+	}
+
+	/**
+	 * Set Rupee Arrow mode
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setRupeeArrow(bool $enable = false) : self {
+		$this->write(0x301FC, pack('C*', $enable ? 0xDA : 0xE1)); // replace Pot rupees
+		$this->write(0xECB4E, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // thief
+		$this->write(0xF0D96, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // pikit
+		$this->write(0x180175, pack('C*', $enable ? 0x01 : 0x00)); // enable mode
+		$this->write(0x180176, pack('S*', $enable ? 0x0A : 0x00)); // wood cost
+		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
+		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
+			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
+
+		return $this;
+	}
+
+	/**
+	 * Set whether Sahasrahla updates your map with Green Pendant when you talk to him
+	 *
+	 * @param int $reveals bitfield of what he reveals
+	 *
+	 * @return $this
+	 */
+	public function setMapRevealSahasrahla(int $reveals = 0x0000) : self {
+		$this->write(0x18017A, pack('S*', $reveals));
+
+		return $this;
+	}
+
+	/**
+	 * Set whether Bomb Shop dude updates your map with Red Cyrstals when you talk to him
+	 *
+	 * @param int $reveals bitfield of what he reveals
+	 *
+	 * @return $this
+	 */
+	public function setMapRevealBombShop(int $reveals = 0x0000) : self {
+		$this->write(0x18017C, pack('S*', $reveals));
+
+		return $this;
+	}
+
+	/**
+	 * Set it so trade fairies only trade bottles
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setRestrictFairyPonds(bool $enable = true) : self {
+		$this->write(0x18017E, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Escape Assist
+	 *
+	 * @param int $flags assist -----mba m: Infinite Magic, b: Infinite Bombs, a: Infinite Arrows
+	 *
+	 * @return $this
+	 */
+	public function setEscapeAssist(int $flags = 0x00) : self {
+		$this->write(0x18004D, pack('C*', $flags));
+
+		return $this;
+	}
+
+	/**
+	 * Enable Escape Fills
+	 *
+	 * @param int $flags assist -----mba m: Magic refill, b: Bomb refill, a: Arrow refill
+	 * @param int $rupess if rupee bow is enabled, this value is used for starting rupees
+	 *
+	 * @return $this
+	 */
+	public function setEscapeFills(int $flags = 0x00, int $rupees = 300) : self {
+		$this->write(0x18004E, pack('C*', $flags));
+		$this->write(0x180183, pack('S*', $rupees));
+
+		return $this;
+	}
+
+	/**
+	 * Set the prizes for the pick 3 chest games.
+	 *
+	 * @param array $prizes item id's of prizes should be length 32
+	 *
+	 * @return $this
+	 */
+	public function setChancePrizes(array $prizes = null) {
+		if (!$prizes) {
+			$prizes = [
+				// high stakes game
+				0x47, 0x34, 0x46, 0x34, 0x46, 0x46, 0x34, 0x47,
+				0x46, 0x47, 0x34, 0x46, 0x47, 0x34, 0x46, 0x47,
+				// low stakes game
+				0x34, 0x47, 0x41, 0x47, 0x41, 0x41, 0x47, 0x34,
+				0x41, 0x34, 0x47, 0x41, 0x34, 0x47, 0x41, 0x34,
+			];
+		}
+
+		$this->write(0xEED5, pack('C*', ...$prizes)); // 32 bytes
+
+		return $this;
+	}
+
+	/**
+	 * Set Generic keys mode, if enabled all keys will share 1 pool.
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setGenericKeys(bool $enable = false) : self {
+		$this->write(0x180172, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
 
 	/**
 	 * Set Smithy Quick Item Give mode. I.E. just gives an item if you rescue him with no sword bogarting
@@ -2005,6 +2274,61 @@ class Rom {
 	 */
 	public function setCatchableFairies(bool $enable = true) : self {
 		$this->write(0x34FD6, pack('C*', $enable ? 0xF0 : 0x80));
+
+		return $this;
+	}
+
+
+	/**
+	 * Enable which objects stun
+	 *
+	 * @param int $flags display ------hb h: hookshot, b: Boomerang
+	 *
+	 * @return $this
+	 */
+	public function setStunItems(int $flags = 0x03) : self {
+		$this->write(0x180180, pack('C*', $flags));
+
+		return $this;
+	}
+
+	/**
+	 * Enable silver arrows can only be used in Ganon's room
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSilversOnlyAtGanon(bool $enable = false) : self {
+		$this->write(0x180181, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Set when silvers equip
+	 *
+	 * @param string $setting name
+	 *
+	 * @return $this
+	 */
+	public function setSilversEquip(string $setting) : self {
+		switch ($setting) {
+			case 'both':
+				$byte = 0x03;
+				break;
+			case 'ganon':
+				$byte = 0x02;
+				break;
+			case 'off':
+				$byte = 0x00;
+				break;
+			case 'collection':
+			default:
+				$byte = 0x01;
+		}
+
+		$this->write(0x180182, pack('C*', $byte));
 
 		return $this;
 	}
@@ -2151,12 +2475,12 @@ class Rom {
 	/**
 	 * Enable free items to show up in menu
 	 *
-	 * @param bool $enable switch on or off
+	 * @param int $flags display ----dcba a: Small Keys, b: Big Key, c: Map, d: Compass
 	 *
 	 * @return $this
 	 */
-	public function setFreeItemMenu(bool $enable = true) : self {
-		$this->write(0x180045, pack('C*', $enable ? 0xFF : 0x00));
+	public function setFreeItemMenu(int $flags = 0x00) : self {
+		$this->write(0x180045, pack('C*', $flags));
 
 		return $this;
 	}
@@ -2297,6 +2621,20 @@ class Rom {
 	}
 
 	/**
+	 * Enable/Disable fix Fake Light World/Fake Dark World as caused by leaving the underworld.
+	 * Generally should only be used/enabled by Entrance Randomizer
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setFixFakeWorld(bool $enable = false) : self {
+		$this->write(0x180174, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
 	 * Set the Ganon Warp Phase and Agahnim BB mode
 	 *
 	 * @param string $setting name
@@ -2427,27 +2765,26 @@ class Rom {
 				0xD2C1F, 0xD2C69, 0xD2CA1, 0xD2CC5, 0xD2D05, 0xD2D73, 0xD2DAF, 0xD2E3D, 0xD2F36, 0xD2F46, 0xD2F6F,
 				0xD2FCF, 0xD2FDF, 0xD302B, 0xD3086, 0xD3099, 0xD30A5, 0xD30CD, 0xD30F6, 0xD3154, 0xD3184, 0xD333A,
 				0xD33D9, 0xD349F, 0xD354A, 0xD35E5, 0xD3624, 0xD363C, 0xD3672, 0xD3691, 0xD36B4, 0xD36C6, 0xD3724,
-				0xD3767, 0xD38CB, 0xD3B1D, 0xD3B2F, 0xD3B55, 0xD3B70, 0xD3B81, 0xD3BBF, 0xD3D34, 0xD3D55, 0xD3D6E,
-				0xD3DC6, 0xD3E04, 0xD3E38, 0xD3F65, 0xD3FA6, 0xD404F, 0xD4087, 0xD417A, 0xD41A0, 0xD425C, 0xD4319,
-				0xD433C, 0xD43EF, 0xD440C, 0xD4452, 0xD4494, 0xD44B5, 0xD4512, 0xD45D1, 0xD45EF, 0xD4682, 0xD46C3,
-				0xD483C, 0xD4848, 0xD4855, 0xD4862, 0xD486F, 0xD487C, 0xD4A1C, 0xD4A3B, 0xD4A60, 0xD4B27, 0xD4C7A,
-				0xD4D12, 0xD4D81, 0xD4E90, 0xD4ED6, 0xD4EE2, 0xD5005, 0xD502E, 0xD503C, 0xD5081, 0xD51B1, 0xD51C7,
-				0xD51CF, 0xD51EF, 0xD520C, 0xD5214, 0xD5231, 0xD5257, 0xD526D, 0xD5275, 0xD52AF, 0xD52BD, 0xD52CD,
-				0xD52DB, 0xD549C, 0xD5801, 0xD58A4, 0xD5A68, 0xD5A7F, 0xD5C12, 0xD5D71, 0xD5E10, 0xD5E9A, 0xD5F8B,
-				0xD5FA4, 0xD651A, 0xD6542, 0xD65ED, 0xD661D, 0xD66D7, 0xD6776, 0xD68BD, 0xD68E5, 0xD6956, 0xD6973,
-				0xD69A8, 0xD6A51, 0xD6A86, 0xD6B96, 0xD6C3E, 0xD6D4A, 0xD6E9C, 0xD6F80, 0xD717E, 0xD7190, 0xD71B9,
-				0xD811D, 0xD8139, 0xD816B, 0xD818A, 0xD819E, 0xD81BE, 0xD829C, 0xD82E1, 0xD8306, 0xD830E, 0xD835E,
-				0xD83AB, 0xD83CA, 0xD83F0, 0xD83F8, 0xD844B, 0xD8479, 0xD849E, 0xD84CB, 0xD84EB, 0xD84F3, 0xD854A,
-				0xD8573, 0xD859D, 0xD85B4, 0xD85CE, 0xD862A, 0xD8681, 0xD87E3, 0xD87FF, 0xD887B, 0xD88C6, 0xD88E3,
-				0xD8944, 0xD897B, 0xD8C97, 0xD8CA4, 0xD8CB3, 0xD8CC2, 0xD8CD1, 0xD8D01, 0xD917B, 0xD918C, 0xD919A,
-				0xD91B5, 0xD91D0, 0xD91DD, 0xD9220, 0xD9273, 0xD9284, 0xD9292, 0xD92AD, 0xD92C8, 0xD92D5, 0xD9311,
-				0xD9322, 0xD9330, 0xD934B, 0xD9366, 0xD9373, 0xD93B6, 0xD97A6, 0xD97C2, 0xD97DC, 0xD97FB, 0xD9811,
-				0xD98FF, 0xD996F, 0xD99A8, 0xD99D5, 0xD9A30, 0xD9A4E, 0xD9A6B, 0xD9A88, 0xD9AF7, 0xD9B1D, 0xD9B43,
-				0xD9B7C, 0xD9BA9, 0xD9C84, 0xD9C8D, 0xD9CAC, 0xD9CE8, 0xD9CF3, 0xD9CFD, 0xD9D46, 0xDA35E, 0xDA37E,
-				0xDA391, 0xDA478, 0xDA4C3, 0xDA4D7, 0xDA4F6, 0xDA515, 0xDA6E2, 0xDA9C2, 0xDA9ED, 0xDAA1B, 0xDAA57,
-				0xDABAF, 0xDABC9, 0xDABE2, 0xDAC28, 0xDAC46, 0xDAC63, 0xDACB8, 0xDACEC, 0xDAD08, 0xDAD25, 0xDAD42,
-				0xDAD5F, 0xDAE17, 0xDAE34, 0xDAE51, 0xDAF2E, 0xDAF55, 0xDAF6B, 0xDAF81, 0xDB14F, 0xDB16B, 0xDB180,
-				0xDB195, 0xDB1AA],
+				0xD3767, 0xD38CB, 0xD3B1D, 0xD3B2F, 0xD3B55, 0xD3B70, 0xD3B81, 0xD3BBF, 0xD3F65, 0xD3FA6, 0xD404F,
+				0xD4087, 0xD417A, 0xD41A0, 0xD425C, 0xD4319, 0xD433C, 0xD43EF, 0xD440C, 0xD4452, 0xD4494, 0xD44B5,
+				0xD4512, 0xD45D1, 0xD45EF, 0xD4682, 0xD46C3, 0xD483C, 0xD4848, 0xD4855, 0xD4862, 0xD486F, 0xD487C,
+				0xD4A1C, 0xD4A3B, 0xD4A60, 0xD4B27, 0xD4C7A, 0xD4D12, 0xD4D81, 0xD4E90, 0xD4ED6, 0xD4EE2, 0xD5005,
+				0xD502E, 0xD503C, 0xD5081, 0xD51B1, 0xD51C7, 0xD51CF, 0xD51EF, 0xD520C, 0xD5214, 0xD5231, 0xD5257,
+				0xD526D, 0xD5275, 0xD52AF, 0xD52BD, 0xD52CD, 0xD52DB, 0xD549C, 0xD5801, 0xD58A4, 0xD5A68, 0xD5A7F,
+				0xD5C12, 0xD5D71, 0xD5E10, 0xD5E9A, 0xD5F8B, 0xD5FA4, 0xD651A, 0xD6542, 0xD65ED, 0xD661D, 0xD66D7,
+				0xD6776, 0xD68BD, 0xD68E5, 0xD6956, 0xD6973, 0xD69A8, 0xD6A51, 0xD6A86, 0xD6B96, 0xD6C3E, 0xD6D4A,
+				0xD6E9C, 0xD6F80, 0xD717E, 0xD7190, 0xD71B9, 0xD811D, 0xD8139, 0xD816B, 0xD818A, 0xD819E, 0xD81BE,
+				0xD829C, 0xD82E1, 0xD8306, 0xD830E, 0xD835E, 0xD83AB, 0xD83CA, 0xD83F0, 0xD83F8, 0xD844B, 0xD8479,
+				0xD849E, 0xD84CB, 0xD84EB, 0xD84F3, 0xD854A, 0xD8573, 0xD859D, 0xD85B4, 0xD85CE, 0xD862A, 0xD8681,
+				0xD87E3, 0xD87FF, 0xD887B, 0xD88C6, 0xD88E3, 0xD8944, 0xD897B, 0xD8C97, 0xD8CA4, 0xD8CB3, 0xD8CC2,
+				0xD8CD1, 0xD8D01, 0xD917B, 0xD918C, 0xD919A, 0xD91B5, 0xD91D0, 0xD91DD, 0xD9220, 0xD9273, 0xD9284,
+				0xD9292, 0xD92AD, 0xD92C8, 0xD92D5, 0xD9311, 0xD9322, 0xD9330, 0xD934B, 0xD9366, 0xD9373, 0xD93B6,
+				0xD97A6, 0xD97C2, 0xD97DC, 0xD97FB, 0xD9811, 0xD98FF, 0xD996F, 0xD99A8, 0xD99D5, 0xD9A30, 0xD9A4E,
+				0xD9A6B, 0xD9A88, 0xD9AF7, 0xD9B1D, 0xD9B43, 0xD9B7C, 0xD9BA9, 0xD9C84, 0xD9C8D, 0xD9CAC, 0xD9CE8,
+				0xD9CF3, 0xD9CFD, 0xD9D46, 0xDA35E, 0xDA37E, 0xDA391, 0xDA478, 0xDA4C3, 0xDA4D7, 0xDA4F6, 0xDA515,
+				0xDA6E2, 0xDA9C2, 0xDA9ED, 0xDAA1B, 0xDAA57, 0xDABAF, 0xDABC9, 0xDABE2, 0xDAC28, 0xDAC46, 0xDAC63,
+				0xDACB8, 0xDACEC, 0xDAD08, 0xDAD25, 0xDAD42, 0xDAD5F, 0xDAE17, 0xDAE34, 0xDAE51, 0xDAF2E, 0xDAF55,
+				0xDAF6B, 0xDAF81, 0xDB14F, 0xDB16B, 0xDB180, 0xDB195, 0xDB1AA],
 			0xD2 => [0xD2B88, 0xD364A, 0xD369F, 0xD3747],
 			0xDC => [0xD213F, 0xD2174, 0xD229E, 0xD2426, 0xD4731, 0xD4753, 0xD4774, 0xD4795, 0xD47B6, 0xD4AA5,
 				0xD4AE4, 0xD4B96, 0xD4CA5, 0xD5477, 0xD5A3D, 0xD6566, 0xD672C, 0xD67C0, 0xD69B8, 0xD6AB1, 0xD6C05,
@@ -2455,8 +2792,8 @@ class Rom {
 				0xDAE88, 0xDAEC8, 0xDAEE6, 0xDB1BF],
 			0xE6 => [0xD210A, 0xD22DC, 0xD2447, 0xD5A4D, 0xD5DDC, 0xDA251, 0xDA26C],
 			0xF0 => [0xD945E, 0xD967D, 0xD96C2, 0xD9C95, 0xD9EE6, 0xDA5C6],
-			0xFA => [0xD2047, 0xD24C2, 0xD24EC, 0xD25A4, 0xD3DAA, 0xD51A8, 0xD51E6, 0xD524E, 0xD529E, 0xD6045,
-				0xD81DE, 0xD821E, 0xD94AA, 0xD9A9E, 0xD9AE4, 0xDA289],
+			0xFA => [0xD2047, 0xD24C2, 0xD24EC, 0xD25A4, 0xD51A8, 0xD51E6, 0xD524E, 0xD529E, 0xD6045, 0xD81DE,
+				0xD821E, 0xD94AA, 0xD9A9E, 0xD9AE4, 0xDA289],
 			0xFF => [0xD2085, 0xD21C5, 0xD5F28],
 		];
 

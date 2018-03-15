@@ -1,6 +1,60 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>VT8.29</h2>
+<div class="well">
+	<ul>
+		<li>Easy mode now gets 2 chances at silver arrow upgrade</li>
+		<li>Triforce hunt lessens the chance of finding triforce pieces in GT</li>
+		<li>Removed the GT Junk pre-fill for all glitched modes</li>
+		<li>Warning message on generation page when you select anything other than No Glitches logic</li>
+		<li>Small keys in spoiler for key-sanity</li>
+		<li>Maps/Compasses logically required for completion of dungeon in keysanity</li>
+		<li>Mirror warp sound is back in background music disable</li>
+		<li>Better placement of maps/compassess in dungeons</li>
+		<li>Byrna no longer protects you in hard/expert/insanity, but also uses normal amounts of magic</li>
+		<li>Customizer:<ul>
+			<li>Added "Test Generation" button, so you don't bloat the DB when just testing ideas</li>
+			<li>Removed some unuseful items</li>
+			<li>Fixes for better crystal/pendant placement (less broken generations)</li>
+			<li>Fairy bottle fix</li>
+			<li>Item listing cleanup and normalizing</li>
+			<li>Bottles can be set in starting equipment</li>
+			<li>Name listed in meta section</li>
+			<li>Item list header should be sticky</li>
+			<li>Remembers where you were</li>
+			<li>Save/Restore settings!</li>
+			<li>Names matter (well, more than they used to)</li>
+			<li>Add notes to your custom games</li>
+			<li>Set the hard mode adjustments (e.g. bottle refill)</li>
+			<li>You can allow dark room navigation</li>
+			<li>Pendants/Crystals can not be set for more than one dungeon</li>
+			<li>Pendants/Crystals should be more helpful when selecting them</li>
+			<li>You can set Link's starting health</li>
+		</ul></li>
+		<li>Key-sanity logic fixes</li>
+		<li>Sahasrahla and Bomb Shop dude will mark your map after you talk to them</li>
+		<li>Stored water walking glitch is back</li>
+		<li>Triforce Hunt is now always 20/30 for all difficulties</li>
+		<li>All Lamps in Easy are before dark rooms</li>
+		<li>Extra Lamps in Easy are really rupees now</li>
+		<li>Flute time in credits fixed</li>
+		<li>Better boss logic for future fun</li>
+		<li>Added quick swap functionality</li>
+		<li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
+		<li>Added new player options<br />
+			<img src="http://spr.beegunslingers.com/sprites.29.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
+	</ul>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xO-ObKYmB2A?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
 <h2>VT8.28</h2>
 <div class="well">
 	<ul>
@@ -13,7 +67,7 @@
 		<li>Fast Menu is now a select for what speed you want</li>
 		<li>Update to use new zspr format for Sprites</li>
 		<li>Credits updated</li>
-		<li>Updated Entrance Randomizer to v0.5.2 (has many more options, thanks KevinCathcart)</li>
+		<li>Updated Entrance Randomizer to v0.5.2.1 (has many more options, thanks KevinCathcart)</li>
 		<li>Some Grammar fixes (thanks fatmanspanda)</li>
 		<li>Ganon's Tower Big Key logic fix (thanks pancelor)</li>
 		<li>Rom checksum fix (thanks qwertymodo)</li>
@@ -128,7 +182,7 @@
 		<li>Special chest under Ganon removed in all modes</li>
 		<li>Added search of spoilers to quickly find items</li>
 		<li>Skull Woods spike trap room chest set back to Key all the time</li>
-		<li>New Fill algorithm that maximizes item randimization</li>
+		<li>New Fill algorithm that maximizes item randomization</li>
 		<li>Added many new player options<br />
 			<img src="http://spr.beegunslingers.com/sprites.2.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>

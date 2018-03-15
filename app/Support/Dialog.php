@@ -78,14 +78,18 @@ class Dialog {
 			$lines = $new_lines;
 		}
 		$i = 0;
-		$line_count = count($lines);
+		$line_count = (substr(end($lines), 0, 1) == '{') ? count($lines) - 1 : count($lines);
 		foreach ($lines as $line) {
 			$line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
 			// command
+			// @TODO: refactor this to use regex
 			if (reset($line_chars) == "{") {
 				switch (trim($line)) {
 					case "{SPEED0}":
 						$new_string = array_merge($new_string, [0xFC, 0x00]);
+						break;
+					case "{SPEED2}":
+						$new_string = array_merge($new_string, [0xFC, 0x02]);
 						break;
 					case "{SPEED6}":
 						$new_string = array_merge($new_string, [0xFC, 0x06]);
@@ -105,8 +109,14 @@ class Dialog {
 					case "{PAUSE9}":
 						$new_string = array_merge($new_string, [0xFE, 0x78, 0x09]);
 						break;
+					case "{INPUT}":
+						$new_string = array_merge($new_string, [0xFA]);
+						break;
 					case "{CHOICE}":
 						$new_string = array_merge($new_string, [0xFE, 0x68]);
+						break;
+					case "{ITEMSELECT}":
+						$new_string = array_merge($new_string, [0xFE, 0x69]);
 						break;
 					case "{CHOICE2}":
 						$new_string = array_merge($new_string, [0xFE, 0x71]);
@@ -114,8 +124,14 @@ class Dialog {
 					case "{CHOICE3}":
 						$new_string = array_merge($new_string, [0xFE, 0x72]);
 						break;
+					case "{HARP}":
+						$new_string = array_merge($new_string, [0xFE, 0x79, 0x2D]);
+						break;
 					case "{MENU}":
-						$new_string = array_merge($new_string, [0xFE, 0xD6, 0x00]);
+						$new_string = array_merge($new_string, [0xFE, 0x6D, 0x00]);
+						break;
+					case "{BOTTOM}":
+						$new_string = array_merge($new_string, [0xFE, 0x6D, 0x01]);
 						break;
 					case "{NOBORDER}":
 						$new_string = array_merge($new_string, [0xFE, 0x6B, 0x02]);
@@ -123,10 +139,15 @@ class Dialog {
 					case "{CHANGEPIC}":
 						$new_string = array_merge($new_string, [0xFE, 0x67, 0xFE, 0x67]);
 						break;
+					case "{CHANGEMUSIC}":
+						$new_string = array_merge($new_string, [0xFE, 0x67]);
+						break;
 					case "{INTRO}":
 						$pad_out = true;
 						$new_string = array_merge($new_string, [0xFE, 0x6E, 0x00, 0xFE, 0x77, 0x07, 0xFC, 0x03, 0xFE, 0x6B, 0x02, 0xFE, 0x67]);
 						break;
+					case "{NOTEXT}":
+						return [0xFB, 0xFE, 0x6E, 0x00, 0xFE, 0x6B, 0x04];
 					case "{IBOX}":
 						$new_string = array_merge($new_string, [0xFE, 0x6B, 0x02, 0xFE, 0x77, 0x07, 0xFC, 0x03, 0xF7]);
 						break;
@@ -197,6 +218,14 @@ class Dialog {
 		"→" => [0xE2],
 		"←" => [0xE3],
 		"≥" => [0xE4], // cursor
+		"¼" => [0xE5, 0xE7], // ¼ heart
+		"½" => [0xE6, 0xE7], // ½ heart
+		"¾" => [0xE8, 0xE9], // ¾ heart
+		"♥" => [0xEA, 0xEB], // full heart
+		"ᚋ" => [0xFE, 0x6C, 0x00], // var 0
+		"ᚌ" => [0xFE, 0x6C, 0x01], // var 1
+		"ᚍ" => [0xFE, 0x6C, 0x02], // var 2
+		"ᚎ" => [0xFE, 0x6C, 0x03], // var 3
 		"あ" => [0x00],
 		"い" => [0x01],
 		"う" => [0x02],

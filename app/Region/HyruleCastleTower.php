@@ -63,22 +63,23 @@ class HyruleCastleTower extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Castle Tower - Dark Maze"]->setRequirements(function($locations, $items) {
-			return $items->has('Lamp') && $items->has('KeyA1');
+			return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyA1');
 		});
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->has('KeyA1', 2)
-				&& $items->has('Lamp') && ($items->hasSword()
-					|| (config('game-mode') == 'swordless' && ($items->has('Hammer') || $items->has('BugCatchingNet'))));
+				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && ($items->hasSword()
+					|| ($this->world->config('mode.weapons')== 'swordless' && ($items->has('Hammer') || $items->has('BugCatchingNet'))));
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
 
 		$this->can_enter = function($locations, $items) {
 			return $items->canKillMostThings(8)
+				&& $items->has('RescueZelda')
 				&& ($items->has('Cape')
-					|| $items->hasUpgradedSword()
-					|| (config('game-mode') == 'swordless' && $items->has('Hammer')));
+					|| $items->hasSword(2)
+					|| ($this->world->config('mode.weapons')== 'swordless' && $items->has('Hammer')));
 		};
 
 		return $this;

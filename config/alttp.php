@@ -9,9 +9,11 @@ return [
 				'ProgressiveArmor' => 4,
 				'Bottles' => 8,
 				'TwentyRupees' => 14,
-				'HalfMagicUpgrade' => 2,
+				'HalfMagic' => 2,
 				'Lamp' => 3,
 				'FiveRupees' => 2,
+				'Arrow' => 0,
+				'SilverArrowUpgrade' => 2,
 			],
 			'overflow' => [
 				'Armor' => 'TwentyRupees',
@@ -19,9 +21,13 @@ return [
 				'Shield' => 'TwentyRupees',
 				'Sword' => 'TwentyRupees',
 			],
+			'require' => [
+				'Lamp' => 3,
+			],
 		],
 		'region' => [
-			'requireBetterEquipment' => true,
+			'requireBetterBow' => true,
+			'requireBetterSword' => true,
 		],
 		'rom' => [
 			'compassOnPickup' => 'on',
@@ -37,7 +43,17 @@ return [
 				'rom' => [
 					'mapOnPickup' => true,
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'region' => [
+					'takeAnys' => true,
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -49,31 +65,10 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'TriforcePiece' => 30,
-						'TwentyRupees' => 0,
-						'FiveRupees' => 0,
-					],
-					'overflow' => [
-						'replacement' => [
-							'Armor' => 'TriforcePiece',
-							'Bottle' => 'TriforcePiece',
-							'Shield' => 'TriforcePiece',
-							'Sword' => 'TriforcePiece',
-						],
-					],
-					'Goal' => [
-						'Required' => 10,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
+						'TwentyRupees' => 0,
 						'OneRupee' => 0,
 						'FiftyRupees' => 5,
 						'ThreeHundredRupees' => 7,
@@ -102,13 +97,13 @@ return [
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
-						'OneRupee' => 0, // 2 : 2
-						'FiveRupees' => 0, // 4 : 20
-						'ThreeBombs' => 0, // 10
+						'TwentyRupees' => 0,
+						'OneRupee' => 0,
+						'FiveRupees' => 0,
+						'ThreeBombs' => 0,
 						'FiftyRupees' => 5,
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 6, // 4 + 600
+						'OneHundredRupees' => 3,
+						'ThreeHundredRupees' => 6,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -141,7 +136,24 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'item' => [
+					'count' => [
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'TwentyRupees' => 38,
+					],
+				],
+				'region' => [
+					'takeAnys' => true,
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -153,25 +165,12 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'TriforcePiece' => 30,
-						'TwentyRupees' => 2,
-						'FiveRupees' => 0,
-					],
-					'Goal' => [
-						'Required' => 20,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
-						'OneHundredRupees' => 4, // 1 : + 200
-						'ThreeHundredRupees' => 5, // 4 + 300
+						'TwentyRupees' => 0,
+						'OneHundredRupees' => 4,
+						'ThreeHundredRupees' => 5,
 						'GreenClock' => 25,
 					],
 					'value' => [
@@ -189,12 +188,12 @@ return [
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
-						'OneRupee' => 0, // 2 : 2
-						'FiveRupees' => 0, // 4 : 20
-						'ThreeBombs' => 0, // 10
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 6, // 4 + 600
+						'TwentyRupees' => 0,
+						'OneRupee' => 0,
+						'FiveRupees' => 0,
+						'ThreeBombs' => 0,
+						'OneHundredRupees' => 3,
+						'ThreeHundredRupees' => 6,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -217,35 +216,21 @@ return [
 	'hard' => [
 		'item' => [
 			'count' => [
-				'Arrow' => 20,
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
-				'ArrowUpgrade70' => 0,
-				'Bomb' => 17,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
-				'BombUpgrade50' => 0,
-				'Boomerang' => 0,
-				'BossHeartContainer' => 5,
-				'OneRupee' => 5,
-				'FiveRupees' => 20,
-				'FiftyRupees' => 5,
+				'BossHeartContainer' => 6,
 				'HeartContainer' => 0,
-				'MagicUpgrade' => 0,
-				'HalfMagicUpgrade' => 0,
-				'QuarterMagicUpgrade' => 0,
-				'OneHundredRupees' => 3,
-				'RedBoomerang' => 0,
-				'TenArrows' => 5,
-				'ThreeBombs' => 5,
-				'ThreeHundredRupees' => 1,
-				'TwentyRupees' => 5,
+				'HalfMagic' => 0,
+				'QuarterMagic' => 0,
 				'SilverArrowUpgrade' => 1,
+				'PieceOfHeart' => 20,
+				'FiveRupees' => 28,
 			],
 			'overflow' => [
 				'count' => [
 					'Armor' => 1,
-					'Bottle' => 2,
 					'Shield' => 2,
 					'Sword' => 3,
 				],
@@ -266,7 +251,26 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'item' => [
+					'count' => [
+						'FiveRupees' => 43,
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+					],
+				],
+				'region' => [
+					'takeAnys' => true,
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -278,33 +282,16 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'TriforcePiece' => 40,
-						'FiveRupees' => 5,
-						'Arrow' => 1,
-						'Bomb' => 11,
-					],
-					'Goal' => [
-						'Required' => 30,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'OneRupee' => 12,
-						'TwentyRupees' => 0, // 28 : 560
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 5, // 4 + 300
-						'Arrow' => 1,
-						'Bomb' => 10,
+						'FiveRupees' => 7,
 						'GreenClock' => 20,
+						'RedClock' => 1,
 					],
 					'value' => [
 						'GreenClock' => 240,
+						'RedClock' => - 32400,
 					],
 				],
 				'region' => [
@@ -312,29 +299,22 @@ return [
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
-					'timerStart' => 5 * 60,
+					'timerStart' => 7.5 * 60,
 				],
 			],
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
-						'OneRupee' => 0, // 2 : 2
-						'FiveRupees' => 0, // 4 : 20
-						'ThreeBombs' => 0, // 10
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 6, // 4 + 600
+						'FiveRupees' => 0,
+						'TwentyRupees' => 16,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
-						'Bomb' => 10,
 					],
 					'value' => [
 						'GreenClock' => 240, // reversed for stopwatch
 						'BlueClock' => 120,
 						'RedClock' => -120,
-						'BombUpgrade5' => 2,
-						'BombUpgrade10' => 3,
 					],
 				],
 				'rom' => [
@@ -347,36 +327,22 @@ return [
 	'expert' => [
 		'item' => [
 			'count' => [
-				'Arrow' => 33,
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
-				'ArrowUpgrade70' => 0,
-				'Bomb' => 30,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
-				'BombUpgrade50' => 0,
-				'Boomerang' => 0,
-				'BossHeartContainer' => 0,
-				'OneRupee' => 5,
-				'FiveRupees' => 10,
-				'FiftyRupees' => 4,
+				'BossHeartContainer' => 1,
 				'HeartContainer' => 0,
-				'HalfMagicUpgrade' => 0,
-				'QuarterMagicUpgrade' => 0,
-				'MagicUpgrade' => 0,
-				'OneHundredRupees' => 1,
-				'RedBoomerang' => 0,
-				'TenArrows' => 1,
-				'ThreeBombs' => 1,
-				'ThreeHundredRupees' => 1,
-				'TwentyRupees' => 6,
+				'HalfMagic' => 0,
+				'QuarterMagic' => 0,
+				'PieceOfHeart' => 20,
 				'SilverArrowUpgrade' => 0,
+				'FiveRupees' => 34,
 			],
 			'overflow' => [
 				'count' => [
 					'Armor' => 0,
-					'Bottle' => 1,
-					'Shield' => 0,
+					'Shield' => 1,
 					'Sword' => 2,
 				],
 			],
@@ -396,7 +362,26 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'item' => [
+					'count' => [
+						'FiveRupees' => 49,
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+					],
+				],
+				'region' => [
+					'takeAnys' => true,
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -408,29 +393,12 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'Arrow' => 5,
-						'Bomb' => 23,
-						'FiveRupees' => 5,
-						'TriforcePiece' => 40,
-					],
-					'Goal' => [
-						'Required' => 40,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'OneRupee' => 13,
-						'TwentyRupees' => 10, // 28 : 560
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 5, // 4 + 300
-						'GreenClock' => 20,
-						'RedClock' => 5,
+						'FiveRupees' => 16,
+						'GreenClock' => 15,
+						'RedClock' => 3,
 					],
 					'value' => [
 						'GreenClock' => 240,
@@ -448,12 +416,8 @@ return [
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
-						'OneRupee' => 0, // 2 : 2
-						'FiveRupees' => 0, // 4 : 20
-						'ThreeBombs' => 0, // 10
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 6, // 4 + 600
+						'FiveRupees' => 0,
+						'TwentyRupees' => 22,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -462,8 +426,6 @@ return [
 						'GreenClock' => 240, // reversed for stopwatch
 						'BlueClock' => 120,
 						'RedClock' => -120,
-						'BombUpgrade5' => 2,
-						'BombUpgrade10' => 3,
 					],
 				],
 				'rom' => [
@@ -476,36 +438,21 @@ return [
 	'insane' => [
 		'item' => [
 			'count' => [
-				'Arrow' => 30,
 				'ArrowUpgrade5' => 0,
 				'ArrowUpgrade10' => 0,
-				'ArrowUpgrade70' => 0,
-				'Bomb' => 25,
 				'BombUpgrade5' => 0,
 				'BombUpgrade10' => 0,
-				'BombUpgrade50' => 0,
-				'Boomerang' => 0,
 				'BossHeartContainer' => 0,
-				'OneRupee' => 30,
-				'FiveRupees' => 10,
-				'FiftyRupees' => 4,
 				'HeartContainer' => 0,
-				'HalfMagicUpgrade' => 0,
-				'QuarterMagicUpgrade' => 0,
-				'MagicUpgrade' => 0,
-				'OneHundredRupees' => 4,
-				'RedBoomerang' => 0,
-				'TenArrows' => 1,
-				'ThreeBombs' => 1,
-				'ThreeHundredRupees' => 5,
-				'TwentyRupees' => 6,
+				'HalfMagic' => 0,
+				'QuarterMagic' => 0,
 				'SilverArrowUpgrade' => 0,
 				'PieceOfHeart' => 0,
+				'FiveRupees' => 55,
 			],
 			'overflow' => [
 				'count' => [
 					'Armor' => 0,
-					'Bottle' => 1,
 					'Shield' => 0,
 					'Sword' => 2,
 				],
@@ -526,7 +473,26 @@ return [
 					'mapOnPickup' => true,
 					'compassOnPickup' => 'pickup',
 					'freeItemText' => true,
-					'freeItemMenu' => true,
+					'freeItemMenu' => 0x0F,
+				],
+			],
+			'retro' => [
+				'item' => [
+					'count' => [
+						'FiveRupees' => 70,
+						'KeyA2' => 0,
+						'KeyD1' => 0,
+						'KeyD7' => 0,
+						'KeyP3' => 0,
+					],
+				],
+				'region' => [
+					'takeAnys' => true,
+					'wildKeys' => true,
+				],
+				'rom' => [
+					'genericKeys' => true,
+					'rupeeBow' => true,
 				],
 			],
 			'ohko' => [
@@ -538,28 +504,11 @@ return [
 					'timerStart' => 0,
 				],
 			],
-			'triforce-hunt' => [
-				'item' => [
-					'count' => [
-						'Arrow' => 1,
-						'Bomb' => 4,
-						'FiveRupees' => 0,
-						'TriforcePiece' => 50,
-					],
-					'Goal' => [
-						'Required' => 50,
-						'Icon' => 'triforce',
-					],
-				],
-			],
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'OneRupee' => 13,
-						'TwentyRupees' => 10, // 28 : 560
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 5, // 4 + 300
-						'GreenClock' => 20,
+						'FiveRupees' => 40,
+						'GreenClock' => 10,
 						'RedClock' => 5,
 					],
 					'value' => [
@@ -572,18 +521,13 @@ return [
 				],
 				'rom' => [
 					'timerMode' => 'countdown-ohko',
-					'timerStart' => 5 * 60,
+					'timerStart' => 0,
 				],
 			],
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'TwentyRupees' => 0, // 28 : 560
-						'OneRupee' => 0, // 2 : 2
-						'FiveRupees' => 0, // 4 : 20
-						'ThreeBombs' => 0, // 10
-						'OneHundredRupees' => 3, // 1 : + 200
-						'ThreeHundredRupees' => 6, // 4 + 600
+						'FiveRupees' => 15,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -592,8 +536,6 @@ return [
 						'GreenClock' => 240, // reversed for stopwatch
 						'BlueClock' => 120,
 						'RedClock' => -120,
-						'BombUpgrade5' => 2,
-						'BombUpgrade10' => 3,
 					],
 				],
 				'rom' => [
@@ -613,7 +555,6 @@ return [
 			'bossNormalLocation' => false,
 			'pyramidBowUpgrade' => false,
 			'bossHaveKey' => false,
-			'forceUncleSword' => false,
 			'forceSkullWoodsKey' => false,
 			'wildKeys' => false,
 			'wildBigKeys' => false,
@@ -640,7 +581,6 @@ return [
 		'region' => [
 			'swordsInPool' => false,
 			'pyramidBowUpgrade' => true,
-			'forceUncleSword' => true,
 			'forceSkullWoodsKey' => true,
 			'wildKeys' => false,
 			'wildBigKeys' => false,
@@ -655,6 +595,19 @@ return [
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
+	'goals' => [
+		'triforce-hunt' => [
+			'item' => [
+				'count' => [
+					'TriforcePiece' => 30,
+				],
+				'Goal' => [
+					'Required' => 20,
+					'Icon' => 'triforce',
+				],
+			],
+		],
+	],
 	'randomizer' => [
 		'entrance' => [
 			'difficulties' => [
@@ -666,6 +619,7 @@ return [
 			],
 			'goals' => [
 				'ganon' => 'Defeat Ganon',
+				'crystals' => 'Crystals',
 				'dungeons' => 'All Dungeons',
 				'pedestal' => 'Master Sword Pedestal',
 				'triforce-hunt' => 'Triforce Pieces',
@@ -681,7 +635,7 @@ return [
 				'simple' => 'Simple',
 				'restricted' => 'Restricted',
 				'full' => 'Full',
-				'madness' => 'Madness',
+				'crossed' => 'Crossed',
 				'insanity' => 'Insanity',
 			],
 			'variations' => [
@@ -715,6 +669,10 @@ return [
 			'modes' => [
 				'standard' => 'Standard',
 				'open' => 'Open',
+			],
+			'weapons' => [
+				'randomized' => 'Randomized',
+				'uncle' => 'Uncle Assured',
 				'swordless' => 'Swordless',
 			],
 			'variations' => [
@@ -722,8 +680,14 @@ return [
 				'timed-race' => 'Timed Race',
 				'timed-ohko' => 'Timed OHKO',
 				'ohko' => 'OHKO',
-				'triforce-hunt' => 'Triforce Piece Hunt',
 				'key-sanity' => 'Key-sanity',
+				'retro' => 'Retro',
+			],
+			'difficulty_adjustments' => [
+				0 => 'Normal',
+				1 => 'Hard',
+				2 => 'Expert',
+				3 => 'Insane',
 			],
 		],
 		'daily_weights' => [
@@ -736,10 +700,10 @@ return [
 					'insane' => 3,
 				],
 				'goals' => [
-					'ganon' => 65,
-					'dungeons' => 15,
+					'ganon' => 60,
+					'dungeons' => 10,
 					'pedestal' => 20,
-					'triforce-hunt' => 0,
+					'triforce-hunt' => 10,
 				],
 				'logics' => [
 					'NoMajorGlitches' => 85,
@@ -749,6 +713,10 @@ return [
 				'modes' => [
 					'standard' => 40,
 					'open' => 40,
+				],
+				'weapons' => [
+					'randomized' => 30,
+					'uncle' => 50,
 					'swordless' => 20,
 				],
 				'variations' => [
@@ -756,7 +724,6 @@ return [
 					'timed-race' => 0,
 					'timed-ohko' => 5,
 					'ohko' => 1,
-					'triforce-hunt' => 10,
 					'key-sanity' => 15,
 				],
 			],

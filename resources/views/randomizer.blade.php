@@ -8,7 +8,7 @@
 @yield('loader')
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Item Randomizer (v8.{!! ALttP\Randomizer::LOGIC !!})</h3>
+		<h3 class="panel-title pull-left">Item Randomizer (v{!! ALttP\Randomizer::LOGIC !!})</h3>
 		<div class="btn-toolbar pull-right">
 			<a class="btn btn-default" href="/entrance/randomizer">Switch to Entrance Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			@yield('rom-settings-button')
@@ -16,10 +16,11 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
+		@yield('rom-settings')
 		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Mode</span>
+					<span class="input-group-addon">State</span>
 					<select id="mode" class="form-control selectpicker">
 						@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
 							<option value="{{ $mode }}">{{ $name }}</option>
@@ -36,9 +37,20 @@
 						@endforeach
 					</select>
 				</div>
+				<div class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Swords</span>
+					<select id="weapons" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.weapons') as $mode => $name)
+							<option value="{{ $mode }}">{{ $name }}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Goal</span>
@@ -49,12 +61,24 @@
 					</select>
 				</div>
 			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Difficulty</span>
 					<select id="difficulty" class="form-control selectpicker">
 						@foreach (config('alttp.randomizer.item.difficulties') as $difficulty => $name)
 							<option value="{{ $difficulty }}">{{ $name }}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Variation</span>
+					<select id="variation" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.variations') as $variation => $name)
+							<option value="{{ $variation }}">{{ $name }}</option>
 						@endforeach
 					</select>
 				</div>
@@ -70,18 +94,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="col-md-6 pb-5">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Variation</span>
-					<select id="variation" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.item.variations') as $variation => $name)
-							<option value="{{ $variation }}">{{ $name }}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
 		</div>
-		@yield('rom-settings')
 	</div>
 	<div class="panel-footer">
 		<div class="row">
@@ -126,6 +139,7 @@
 	<input type="hidden" name="variation" value="none" />
 	<input type="hidden" name="mode" value="standard" />
 	<input type="hidden" name="goal" value="ganon" />
+	<input type="hidden" name="weapons" value="randomized" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />
@@ -158,6 +172,8 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.setHeartSpeed($('#heart-speed').val()))
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
+			.then(rom.setHeartColor($('#heart-color').val()))
+			.then(rom.setQuickswap($('#generate-quickswap').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -202,6 +218,7 @@ function seedApplied(data) {
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
+		rom.weapons = data.patch.spoiler.meta.weapons;
 		rom.difficulty = data.patch.difficulty;
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
@@ -243,13 +260,6 @@ $(function() {
 		var goal = $('#goal').val();
 		$('input[name=variation]').val(variation);
 		localforage.setItem('rom.variation', variation);
-		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
-			$('#goal').val('triforce-hunt');
-			$('#goal').trigger('change');
-		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
-			$('#goal').val('ganon');
-			$('#goal').trigger('change');
-		}
 	});
 	localforage.getItem('rom.variation').then(function(value) {
 		if (!value) return;
@@ -258,33 +268,18 @@ $(function() {
 	});
 
 	$('button[name=save]').on('click', function() {
-		return rom.save('ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.sfc');
+		return rom.save(rom.downloadFilename()+ '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
 		$.get("/spoiler_click/" + rom.seed);
-		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ALttP - VT_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.txt');
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), rom.downloadFilename() + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ALttP - VT_' + rom.logic
-					+ '_' + rom.difficulty
-					+ '-' + rom.mode
-					+ '-' + rom.goal
-					+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-					+ '_' + rom.seed + '.sfc');
+				return rom.save(rom.downloadFilename()+ '.sfc');
 			});
 	});
 
@@ -304,13 +299,21 @@ $(function() {
 	});
 
 	$('#logic').on('change', function() {
+		var value = $(this).val();
 		$('.info').hide();
-		localforage.setItem('rom.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
+		if (value == 'NoMajorGlitches') {
+			$('.logic-warning').hide();
+		} else {
+			$('.logic-warning').show();
+		}
+		localforage.setItem('rom.logic', value);
+		$('input[name=logic]').val(value);
 	});
+
 	localforage.getItem('rom.logic').then(function(value) {
-		if (value === null) return;
-		$('#logic').val(value);
+		if (value !== null) {
+			$('#logic').val(value);
+		}
 		$('#logic').trigger('change');
 	});
 
@@ -325,19 +328,25 @@ $(function() {
 		$('#mode').trigger('change');
 	});
 
+	$('#weapons').on('change', function() {
+		$('.info').hide();
+		localforage.setItem('rom.weapons', $(this).val());
+		$('input[name=weapons]').val($(this).val());
+	});
+	localforage.getItem('rom.weapons').then(function(value) {
+		if (!value) {
+			value = 'uncle';
+		}
+		$('#weapons').val(value);
+		$('#weapons').trigger('change');
+	});
+
 	$('#goal').on('change', function() {
 		$('.info').hide();
 		var goal = $(this).val();
 		var variation = $('#variation').val();
 		localforage.setItem('rom.goal', goal);
 		$('input[name=goal]').val(goal);
-		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
-			$('#variation').val('triforce-hunt');
-			$('#variation').trigger('change');
-		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
-			$('#variation').val('none');
-			$('#variation').trigger('change');
-		}
 	});
 	localforage.getItem('rom.goal').then(function(value) {
 		if (value === null) return;
@@ -373,6 +382,7 @@ $(function() {
 				var fname = 'ALttP - VT_' + data.patch.logic
 					+ '_' + data.patch.difficulty
 					+ '-' + data.patch.spoiler.meta.mode
+					+ (data.patch.spoiler.meta.weapons ? '-' + data.patch.spoiler.meta.weapons : '')
 					+ '-' + data.patch.spoiler.meta.goal
 					+ (data.patch.spoiler.meta.variation == 'none' ? '' : '_' + data.patch.spoiler.meta.variation)
 					+ '_' + data.patch.seed;

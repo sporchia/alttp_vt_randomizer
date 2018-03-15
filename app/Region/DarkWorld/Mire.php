@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -25,6 +27,11 @@ class Mire extends Region {
 		$this->locations = new LocationCollection([
 			new Location\Chest("Mire Shed - Left", 0xEA73, null, $this),
 			new Location\Chest("Mire Shed - Right", 0xEA76, null, $this),
+		]);
+
+		$this->shops = new ShopCollection([
+			new Shop\TakeAny("Dark Desert Fairy", 0x83, 0xC1, 0x0112, 0x56, $this, [0xDBBC8 => [0x58]]),
+			new Shop\TakeAny("Dark Desert Hint",  0x83, 0xC1, 0x0112, 0x62, $this, [0xDBBD4 => [0x58]]),
 		]);
 	}
 
@@ -57,7 +64,7 @@ class Mire extends Region {
 
 
 		$this->can_enter = function($locations, $items) {
-			return $items->canFly() && $items->canLiftDarkRocks();
+			return $items->has('RescueZelda') && $items->canFly() && $items->canLiftDarkRocks();
 		};
 
 		return $this;
@@ -71,10 +78,11 @@ class Mire extends Region {
 	 */
 	public function initMajorGlitches() {
 		$this->can_enter = function($locations, $items) {
-			return ($items->hasABottle() && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
-				|| ($items->canLiftDarkRocks() && ($items->canFly() || $items->hasABottle() || $items->has('PegasusBoots')))
-				|| ($items->glitchedLinkInDarkWorld() && $items->has('PegasusBoots')
-					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& (($items->hasABottle() && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+					|| ($items->canLiftDarkRocks() && ($items->canFly() || $items->hasABottle() || $items->has('PegasusBoots')))
+					|| ($items->glitchedLinkInDarkWorld() && $items->has('PegasusBoots')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
 		};
 
 		return $this;
@@ -96,9 +104,10 @@ class Mire extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return ($items->canLiftDarkRocks() && ($items->canFly() || $items->has('PegasusBoots')))
-				|| ($items->has('MoonPearl') && $items->has('PegasusBoots')
-					&& $this->world->getRegion('South Dark World')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& (($items->canLiftDarkRocks() && ($items->canFly() || $items->has('PegasusBoots')))
+					|| ($items->has('MoonPearl') && $items->has('PegasusBoots')
+						&& $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
 		};
 
 		return $this;
