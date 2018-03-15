@@ -193,9 +193,6 @@ class Randomizer {
 			}
 		}
 
-		// HOT FOX FOR BROKEN CHEST GAME REVERT LATER
-		$locations["Chest Game"]->setItem(Item::get('TwentyRupees'));
-
 		// take out all the swords and silver arrows
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
