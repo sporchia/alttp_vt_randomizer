@@ -2114,8 +2114,7 @@ class Rom {
 		$this->write(0x180175, pack('C*', $enable ? 0x01 : 0x00)); // enable mode
 		$this->write(0x180176, pack('S*', $enable ? 0x0A : 0x00)); // wood cost
 		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
-		$this->write(0xEDA5, $enable ? pack('C*', 0x35, 0x41)
-			: pack('C*', 0x43, 0x44)); // DW chest game
+		$this->write(0xEDA5, $enable ? pack('C*', 0x35, 0x41) : pack('C*', 0x43, 0x44)); // DW chest game
 
 		return $this;
 	}
