@@ -46,6 +46,14 @@
 			<img src="http://spr.beegunslingers.com/sprites.29.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
+	<div class="panel panel-info">
+		<div class="panel-heading">View updates</div>
+		<div class="panel-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xO-ObKYmB2A?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
 </div>
 <h2>VT8.28</h2>
 <div class="well">

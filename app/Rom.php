@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-14';
-	const HASH = 'a3c4dabda8bb9c36f0371cf5967a510e';
+	const BUILD = '2018-03-15';
+	const HASH = '7e64799c938ff57adcb151066fab5da5';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -2176,11 +2176,13 @@ class Rom {
 	 * Enable Escape Fills
 	 *
 	 * @param int $flags assist -----mba m: Magic refill, b: Bomb refill, a: Arrow refill
+	 * @param int $rupess if rupee bow is enabled, this value is used for starting rupees
 	 *
 	 * @return $this
 	 */
-	public function setEscapeFills(int $flags = 0x00) : self {
+	public function setEscapeFills(int $flags = 0x00, int $rupees = 300) : self {
 		$this->write(0x18004E, pack('C*', $flags));
+		$this->write(0x180183, pack('S*', $rupees));
 
 		return $this;
 	}
