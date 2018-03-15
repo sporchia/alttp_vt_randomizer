@@ -725,6 +725,7 @@ return [
 					'timed-ohko' => 5,
 					'ohko' => 1,
 					'key-sanity' => 15,
+					'retro' => 15,
 				],
 			],
 		],
