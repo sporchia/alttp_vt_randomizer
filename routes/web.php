@@ -194,6 +194,8 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
 	try {
 		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle);
 		$rand->makeSeed($seed_id);
