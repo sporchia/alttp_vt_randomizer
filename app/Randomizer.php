@@ -238,15 +238,19 @@ class Randomizer {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
-			if ($this->config('mode.weapons') == 'uncle') {
-				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
-			} else {
-				array_push($advancement_items, array_pop($nice_items_swords));
+			if (count($nice_items_swords)) {
+				if ($this->config('mode.weapons') == 'uncle') {
+					$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+				} else {
+					array_push($advancement_items, array_pop($nice_items_swords));
+				}
 			}
 
-			if ($this->config('region.takeAnys', false)) {
-				array_pop($nice_items_swords);
-				array_push($trash_items, Item::get('TwentyRupees'));
+			if (count($nice_items_swords)) {
+				if ($this->config('region.takeAnys', false)) {
+					array_pop($nice_items_swords);
+					array_push($trash_items, Item::get('TwentyRupees'));
+				}
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
