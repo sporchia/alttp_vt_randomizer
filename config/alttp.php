@@ -336,8 +336,8 @@ return [
 				'HalfMagic' => 0,
 				'QuarterMagic' => 0,
 				'PieceOfHeart' => 20,
-				'SilverArrowUpgrade' => 0,
-				'FiveRupees' => 34,
+				'SilverArrowUpgrade' => 1,
+				'FiveRupees' => 33,
 			],
 			'overflow' => [
 				'count' => [
@@ -368,7 +368,7 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 49,
+						'FiveRupees' => 48,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -396,7 +396,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 16,
+						'FiveRupees' => 15,
 						'GreenClock' => 15,
 						'RedClock' => 3,
 					],
@@ -417,7 +417,7 @@ return [
 				'item' => [
 					'count' => [
 						'FiveRupees' => 0,
-						'TwentyRupees' => 22,
+						'TwentyRupees' => 21,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
