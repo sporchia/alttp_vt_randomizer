@@ -1,5 +1,6 @@
 <?php namespace ALttP\Region;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
@@ -39,6 +40,11 @@ class GanonsTower extends Region {
 	public function __construct(World $world) {
 		parent::__construct($world);
 
+		$this->boss = Boss::get("Agahnim2");
+		$this->boss_top = Boss::get("Moldorm");
+		$this->boss_middle = Boss::get("Lanmolas");
+		$this->boss_bottom = Boss::get("Armos Knights");
+
 		$this->locations = new LocationCollection([
 			new Location\Dash("Ganon's Tower - Bob's Torch", 0x180161, null, $this),
 			new Location\Chest("Ganon's Tower - DMs Room - Top Left", 0xEAB8, null, $this),
@@ -72,6 +78,57 @@ class GanonsTower extends Region {
 
 		$this->prize_location = $this->locations["Agahnim 2"];
 		$this->prize_location->setItem(Item::get('DefeatAgahnim2'));
+	}
+
+	/**
+	 * Get the Boss of this Region.
+	 *
+	 * @param string $level which boss
+	 *
+	 * @return Boss
+	 */
+	public function getBoss(string $level = null) {
+		switch ($level) {
+			case null:
+				return $this->boss;
+			case 'top':
+				return $this->boss_top;
+			case 'middle':
+				return $this->boss_middle;
+			case 'bottom':
+				return $this->boss_bottom;
+		}
+
+		throw new \Exception(sprintf('Unknown Boss Location %s', $level));
+	}
+
+	/**
+	 * Set the Boss of this Region.
+	 *
+	 * @param Boss $boss boss of the region
+	 * @param string $level which boss
+	 *
+	 * @return $this
+	 */
+	public function setBoss(Boss $boss, string $level = null) : Region {
+		switch ($level) {
+			case null:
+				$this->boss = $boss;
+				break;
+			case 'top':
+				$this->boss_top = $boss;
+				break;
+			case 'middle':
+				$this->boss_middle = $boss;
+				break;
+			case 'bottom':
+				$this->boss_bottom = $boss;
+				break;
+			default:
+				throw new \Exception(sprintf('Unknown Boss Location %s', $level));
+		}
+
+		return $this;
 	}
 
 	/**
@@ -257,38 +314,44 @@ class GanonsTower extends Region {
 		$this->locations["Ganon's Tower - Big Key Chest"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				|| ($items->has('FireRod') && $items->has('CaneOfSomaria')))
-				&& $items->has('KeyA2', 3);
+				&& $items->has('KeyA2', 3)
+				&& $this->boss_bottom->canBeat($items, $locations);
 		});
 
 		$this->locations["Ganon's Tower - Big Key Room - Left"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				||($items->has('FireRod') && $items->has('CaneOfSomaria')))
-				&& $items->has('KeyA2', 3);
+				&& $items->has('KeyA2', 3)
+				&& $this->boss_bottom->canBeat($items, $locations);
 		});
 
 		$this->locations["Ganon's Tower - Big Key Room - Right"]->setRequirements(function($locations, $items) {
 			return (($items->has('Hammer') && $items->has('Hookshot'))
 				|| ($items->has('FireRod') && $items->has('CaneOfSomaria')))
-				&& $items->has('KeyA2', 3);
+				&& $items->has('KeyA2', 3)
+				&& $this->boss_bottom->canBeat($items, $locations);
 		});
 
 		$this->locations["Ganon's Tower - Mini Helmasaur Room - Left"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
-				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3);
+				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3)
+				&& $this->boss_middle->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
 
 		$this->locations["Ganon's Tower - Mini Helmasaur Room - Right"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
-				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3);
+				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3)
+				&& $this->boss_middle->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
 
 		$this->locations["Ganon's Tower - Pre-Moldorm Chest"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows() && $items->canLightTorches()
-				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3);
+				&& $items->has('BigKeyA2') && $items->has('KeyA2', 3)
+				&& $this->boss_middle->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('BigKeyA2');
 		});
@@ -296,8 +359,9 @@ class GanonsTower extends Region {
 		$this->locations["Ganon's Tower - Moldorm Chest"]->setRequirements(function($locations, $items) {
 			return $items->has('Hookshot')
 				&& $items->canShootArrows() && $items->canLightTorches()
-				&& ($items->has('Hammer') || $items->hasSword())
-				&& $items->has('BigKeyA2') && $items->has('KeyA2', 4);
+				&& $items->has('BigKeyA2') && $items->has('KeyA2', 4)
+				&& $this->boss_middle->canBeat($items, $locations)
+				&& $this->boss_top->canBeat($items, $locations);
 		})->setFillRules(function($item, $locations, $items) {
 			return $item != Item::get('KeyA2') && $item != Item::get('BigKeyA2');
 		});
@@ -305,7 +369,7 @@ class GanonsTower extends Region {
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $this->locations["Ganon's Tower - Moldorm Chest"]->canAccess($items)
-				&& ($items->hasSword() || $items->has('BugCatchingNet') || $items->has('Hammer'));
+				&& $this->boss->canBeat($items, $locations);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
@@ -336,7 +400,8 @@ class GanonsTower extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
 		};
 
 		return $this;
@@ -352,7 +417,8 @@ class GanonsTower extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots') && $items->has('MoonPearl');
+			return $items->has('RescueZelda')
+				&& $items->has('PegasusBoots') && $items->has('MoonPearl');
 		};
 
 		return $this;

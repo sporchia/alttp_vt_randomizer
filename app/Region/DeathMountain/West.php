@@ -56,7 +56,7 @@ class West extends Region {
 		});
 
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+			return $items->has('BookOfMudora') && ($items->hasSword(2)
 					|| ($this->world->config('mode.weapons')== 'swordless' && $items->has('Hammer')))
 				&& ($items->has('MagicMirror') || ($items->has('Hammer') && $items->has('Hookshot')));
 		});
@@ -84,8 +84,9 @@ class West extends Region {
 		$this->initOverworldGlitches();
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots') || $items->hasABottle()
-				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)));
+			return $items->has('RescueZelda')
+				&& ($items->has('PegasusBoots') || $items->hasABottle()
+					|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))));
 		};
 
 		return $this;
@@ -101,7 +102,7 @@ class West extends Region {
 		$this->initNoMajorGlitches();
 
 		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
-			return $items->has('BookOfMudora') && ($items->hasUpgradedSword()
+			return $items->has('BookOfMudora') && ($items->hasSword(2)
 					|| ($this->world->config('mode.weapons')== 'swordless' && $items->has('Hammer')))
 				&& $this->world->getRegion('Tower of Hera')->canEnter($locations, $items);
 		});
@@ -112,8 +113,9 @@ class West extends Region {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('PegasusBoots')
-				|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)));
+			return $items->has('RescueZelda')
+				&& ($items->has('PegasusBoots')
+					|| $items->canFly() || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))));
 		};
 
 		return $this;

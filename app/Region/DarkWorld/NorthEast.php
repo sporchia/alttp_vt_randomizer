@@ -155,17 +155,13 @@ class NorthEast extends Region {
 
 			return $items->has('MoonPearl')
 				&& $items->has('DefeatAgahnim2')
-				&& ($items->canLightTorches() || ($items->has('FireRod') && $items->canExtendMagic(2)))
-				&& (!$this->world->config('region.requireBetterEquipment', false)
-					|| ($items->has('BowAndSilverArrows')
-					|| ($items->has('SilverArrowUpgrade')
-						&& ($items->has('Bow') || $items->has('BowAndArrows')))))
+				&& (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows(2))
 				&& (
 					($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
-					|| (!$this->world->config('region.requireBetterEquipment', false) && $items->hasUpgradedSword())
-					|| $items->has('L3Sword')
-					|| $items->has('L4Sword')
-					|| $items->has('ProgressiveSword', 3)
+					|| (!$this->world->config('region.requireBetterSword', false) &&
+						($items->hasSword(2) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(3)))))
+					|| ($items->hasSword(3) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(2))))
+
 				);
 		});
 
@@ -225,14 +221,15 @@ class NorthEast extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('DefeatAgahnim')
-				|| ($items->has('MoonPearl')
-					&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
-						|| ($items->has('Hammer') && $items->canLiftRocks())))
-				|| (($items->hasABottle()
-					|| ($items->has('MagicMirror') && $items->canSpinSpeed())
-					|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
-						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('DefeatAgahnim')
+					|| ($items->has('MoonPearl')
+						&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+							|| ($items->has('Hammer') && $items->canLiftRocks())))
+					|| (($items->hasABottle()
+						|| ($items->has('MagicMirror') && $items->canSpinSpeed())
+						|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
+							&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;
@@ -290,13 +287,14 @@ class NorthEast extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return $items->has('DefeatAgahnim')
-				|| ($items->has('MoonPearl')
-					&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
-						|| ($items->has('Hammer') && $items->canLiftRocks())))
-				|| ((($items->has('MagicMirror') && $items->canSpinSpeed())
-					|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
-						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& ($items->has('DefeatAgahnim')
+					|| ($items->has('MoonPearl')
+						&& (($items->canLiftDarkRocks() && ($items->has('PegasusBoots') || $items->has('Flippers')))
+							|| ($items->has('Hammer') && $items->canLiftRocks())))
+					|| ((($items->has('MagicMirror') && $items->canSpinSpeed())
+						|| ($items->has('MoonPearl') && ($items->has('MagicMirror') || $items->has('PegasusBoots'))))
+							&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;

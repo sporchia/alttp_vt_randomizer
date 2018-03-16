@@ -273,10 +273,16 @@ class RomTest extends TestCase {
 		$this->assertEquals([0x04, 0x08, 0x10], $this->rom->read(0x3ADA7, 3));
 	}
 
+	public function testSetHardMode3ChangesBubbleTransform() {
+		$this->rom->setHardMode(3);
+
+		$this->assertEquals(0x79, $this->rom->read(0x36DD0));
+	}
+
 	public function testSetHardMode2ChangesBubbleTransform() {
 		$this->rom->setHardMode(2);
 
-		$this->assertEquals(0x79, $this->rom->read(0x36DD0));
+		$this->assertEquals(0xD8, $this->rom->read(0x36DD0));
 	}
 
 	public function testSetHardMode1ChangesBubbleTransform() {

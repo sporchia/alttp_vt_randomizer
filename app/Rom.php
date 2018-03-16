@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-02';
-	const HASH = '2474a38036d12cf798bea821ebca9cdd';
+	const BUILD = '2018-03-15';
+	const HASH = '7e64799c938ff57adcb151066fab5da5';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -454,17 +454,11 @@ class Rom {
 				case 'BombUpgrade10':
 					$starting_bomb_capacity += 10;
 					break;
-				case 'BombUpgrade50':
-					$starting_bomb_capacity += 50;
-					break;
 				case 'ArrowUpgrade5':
 					$starting_arrow_capacity += 5;
 					break;
 				case 'ArrowUpgrade10':
 					$starting_arrow_capacity += 10;
-					break;
-				case 'ArrowUpgrade70':
-					$starting_arrow_capacity += 70;
 					break;
 				case 'HalfMagic':
 					$equipment[0x37B] = 0x01;
@@ -688,6 +682,10 @@ class Rom {
 		$this->write(0x183000, pack('C*', ...$equipment));
 		$this->setMaxArrows($starting_arrow_capacity);
 		$this->setMaxBombs($starting_bomb_capacity);
+
+		if (config('game-mode') != 'swordless' && $equipment[0x359]) {
+			$this->write(0x180043, pack('C*', $equipment[0x359])); // write starting sword
+		}
 
 		return $this;
 	}
@@ -1917,7 +1915,6 @@ class Rom {
 		$this->setCaneOfByrnaSpikeCaveUsage();
 		$this->setCapeSpikeCaveUsage();
 		$this->setByrnaCaveSpikeDamage(0x08);
-		$this->setCaneOfByrnaInvulnerability(true);
 		// Bryna magic amount used per "cycle"
 		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
@@ -1925,12 +1922,15 @@ class Rom {
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
+				$this->setCaneOfByrnaInvulnerability(true);
 				$this->setPowderedSpriteFairyPrize(0xE3);
 				$this->setBottleFills([0xA0, 0x80]);
 				$this->setShopBlueShieldCost(50);
 				$this->setShopRedShieldCost(500);
 				$this->setCatchableFairies(true);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x03);
+				$this->setSilversOnlyAtGanon(false);
 
 				$this->setRupoorValue(0);
 
@@ -1939,11 +1939,13 @@ class Rom {
 				$this->write(0x3ADA7, pack('C*', 0x02, 0x02, 0x02));
 				$this->setCaneOfByrnaInvulnerability(false);
 				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-				$this->setBottleFills([0x28, 0x40]); // 5 hearts, 1/2 magic refills
+				$this->setBottleFills([0x38, 0x40]); // 7 hearts, 1/2 magic refills
 				$this->setShopBlueShieldCost(100);
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x01);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(10);
 
@@ -1951,12 +1953,14 @@ class Rom {
 			case 2:
 				$this->write(0x3ADA7, pack('C*', 0x01, 0x01, 0x01));
 				$this->setCaneOfByrnaInvulnerability(false);
-				$this->setPowderedSpriteFairyPrize(0x79); // Bees
+				$this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
 				$this->setBottleFills([0x08, 0x20]); // 1 heart, 1/4 magic refills
 				$this->setShopBlueShieldCost(9990);
 				$this->setShopRedShieldCost(9990);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x00);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(20);
 
@@ -1970,10 +1974,14 @@ class Rom {
 				$this->setShopRedShieldCost(10000);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
+				$this->setStunItems(0x00);
+				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(9999);
 
 				break;
+			default:
+				throw new \Exception("Trying to set hard mode that doesn't exist");
 		}
 
 		return $this;
@@ -2058,7 +2066,7 @@ class Rom {
 	public function setupCustomShops($shops) : self {
 		$shops = $shops->filter(function($shop) {
 			return $shop->getActive();
-		})->take(10); // current sram only alows 10ish shops
+		})->take(32);
 
 		$shop_data = [];
 		$items_data = [];
@@ -2072,6 +2080,10 @@ class Rom {
 			$shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes($sram_offset));
 			$sram_offset += ($shop instanceof Shop\TakeAny) ? 1 : count($shop->getInventory());
 
+			if ($sram_offset > 36) {
+				throw new \Exception("Exceeded SRAM indexing for shops");
+			}
+
 			foreach ($shop->getInventory() as $item) {
 				$items_data = array_merge($items_data, [$shop_id, $item['id']],
 					array_values(unpack('C*', pack('S', $item['price'] ?? 0))),
@@ -2083,7 +2095,7 @@ class Rom {
 		$this->write(0x184800, pack('C*', ...$shop_data));
 
 		$items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
-		$this->write(0x184880, pack('C*', ...$items_data));
+		$this->write(0x184900, pack('C*', ...$items_data));
 
 		return $this;
 	}
@@ -2164,11 +2176,13 @@ class Rom {
 	 * Enable Escape Fills
 	 *
 	 * @param int $flags assist -----mba m: Magic refill, b: Bomb refill, a: Arrow refill
+	 * @param int $rupess if rupee bow is enabled, this value is used for starting rupees
 	 *
 	 * @return $this
 	 */
-	public function setEscapeFills(int $flags = 0x00) : self {
+	public function setEscapeFills(int $flags = 0x00, int $rupees = 300) : self {
 		$this->write(0x18004E, pack('C*', $flags));
+		$this->write(0x180183, pack('S*', $rupees));
 
 		return $this;
 	}
@@ -2260,6 +2274,61 @@ class Rom {
 	 */
 	public function setCatchableFairies(bool $enable = true) : self {
 		$this->write(0x34FD6, pack('C*', $enable ? 0xF0 : 0x80));
+
+		return $this;
+	}
+
+
+	/**
+	 * Enable which objects stun
+	 *
+	 * @param int $flags display ------hb h: hookshot, b: Boomerang
+	 *
+	 * @return $this
+	 */
+	public function setStunItems(int $flags = 0x03) : self {
+		$this->write(0x180180, pack('C*', $flags));
+
+		return $this;
+	}
+
+	/**
+	 * Enable silver arrows can only be used in Ganon's room
+	 *
+	 * @param bool $enable switch on or off
+	 *
+	 * @return $this
+	 */
+	public function setSilversOnlyAtGanon(bool $enable = false) : self {
+		$this->write(0x180181, pack('C*', $enable ? 0x01 : 0x00));
+
+		return $this;
+	}
+
+	/**
+	 * Set when silvers equip
+	 *
+	 * @param string $setting name
+	 *
+	 * @return $this
+	 */
+	public function setSilversEquip(string $setting) : self {
+		switch ($setting) {
+			case 'both':
+				$byte = 0x03;
+				break;
+			case 'ganon':
+				$byte = 0x02;
+				break;
+			case 'off':
+				$byte = 0x00;
+				break;
+			case 'collection':
+			default:
+				$byte = 0x01;
+		}
+
+		$this->write(0x180182, pack('C*', $byte));
 
 		return $this;
 	}

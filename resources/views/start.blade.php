@@ -73,6 +73,7 @@
 		<p>There are other supported ways to play, including on original SNES hardware. There are
 			also certain emulators, such as zsnes, that won't work correctly with the randomizer.
 			Join us on <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> to learn more!</p>
+		<p>NOTE FOR SNESMINI PLAYERS: Rename your ROM file to have 61 characters or fewer as the SNESMini can't handle long file names.</p>
 	</div>
 </div>
 

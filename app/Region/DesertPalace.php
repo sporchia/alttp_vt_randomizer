@@ -144,7 +144,10 @@ class DesertPalace extends Region {
 		$this->locations["Desert Palace - Lanmolas'"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->canLightTorches()
 				&& $items->has('BigKeyP2') && $items->has('KeyP2')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (($items->has('BookOfMudora') && $items->canLiftRocks())
+					|| $items->has('PegasusBoots')
+					|| ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
 		});
 
 		$this->can_enter = function($locations, $items) {

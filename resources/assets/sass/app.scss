@@ -23,8 +23,7 @@ body {
 	background-color: #EEEEEE;
 }
 
-h4,
-.h4 {
+h4, .h4, h5, .h5 {
   font-weight: bold;
 }
 
@@ -46,6 +45,19 @@ h4,
 
 .no-resize {
 	resize: none;
+}
+
+.btn-secondary {
+	background-color: #FF0000;
+	border-color: #FF0000;
+	border-image: none;
+	color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+	background-color: #C10B0B;
+	border-color: #C10B0B;
+	color: #FFFFFF;
 }
 
 .btn-outline-secondary {
@@ -71,8 +83,13 @@ h4,
 	flex: 1 0 0px;
 }
 
-.btn-cta .btn {
+.btn-cta .btn, .btn-cal .btn {
 	width: 100%;
+}
+
+.btn-cal {
+	flex: 1 0 0px;
+	padding: 4px;
 }
 
 .btn-xl {
@@ -113,6 +130,11 @@ h4,
 .cust-tooltip {
 	color: #3097D1;
 	padding-left: 2px;
+}
+
+.options-tooltip {
+	color: #3097D1;
+	padding-left: 5px;
 }
 
 .input-group-addon .cust-tooltip {
@@ -230,4 +252,68 @@ input[readonly].custom-placed, input[readonly].custom-drops-placed {
     	background-color: $table-bg-accent;
   	}
   }
+}
+
+.table-secondary {
+	background-color: #EEEEEE;
+}
+
+.table-hover>tbody>tr:hover {
+	background-color: #D6D8DB;
+}
+
+.center {
+	text-align: center;
+}
+
+.btn-cal1 {
+	background-color: #AD2D2D;
+	color: #FFFFFF;
+}
+
+.btn-cal2 {
+	background-color: #668CD9;
+	color: #FFFFFF;
+}
+
+.btn-cal3 {
+	background-color: #CF9911;
+	color: #FFFFFF;
+}
+
+.btn-cal4 {
+	background-color: #8CBF40;
+	color: #FFFFFF;
+}
+
+.btn-cal5 {
+	background-color: #737373;
+	color: #FFFFFF;
+	margin: 4px;
+}
+
+.btn-cal1:hover {
+	background-color: #941414;
+	color: #FFFFFF;
+}
+
+.btn-cal2:hover {
+	background-color: #4D73C0;
+	color: #FFFFFF;
+}
+
+.btn-cal3:hover {
+	background-color: #B68000;
+	color: #FFFFFF;
+}
+
+.btn-cal4:hover {
+	background-color: #73A627;
+	color: #FFFFFF;
+}
+
+.btn-cal5:hover {
+	background-color: #737373;
+	color: #FFFFFF;
+	cursor: auto;
 }

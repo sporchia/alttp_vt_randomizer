@@ -173,7 +173,7 @@ function applySeed(rom, seed, second_attempt) {
 			.then(rom.setMenuSpeed($('#menu-speed').val()))
 			.then(rom.setSramTrace($('#generate-sram-trace').prop('checked')))
 			.then(rom.setHeartColor($('#heart-color').val()))
-			.then(rom.setQuickswap($('#generate-quickswap').val()))
+			.then(rom.setQuickswap($('#generate-quickswap').prop('checked')))
 			.then(function(rom) {
 				resolve({rom: rom, patch: patch});
 			}));
@@ -334,7 +334,9 @@ $(function() {
 		$('input[name=weapons]').val($(this).val());
 	});
 	localforage.getItem('rom.weapons').then(function(value) {
-		if (value === null) return;
+		if (!value) {
+			value = 'uncle';
+		}
 		$('#weapons').val(value);
 		$('#weapons').trigger('change');
 	});

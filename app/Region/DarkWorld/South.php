@@ -103,12 +103,13 @@ class South extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return ($items->has('MoonPearl')
-				&& ($items->canLiftDarkRocks()
-					|| ($items->has('Hammer') && $items->canLiftRocks())
-					|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')
-						|| ($items->has('Hookshot') && ($items->canLiftRocks() || $items->has('Flippers')))))))
-				|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+			return $items->has('RescueZelda')
+				&& (($items->has('MoonPearl')
+					&& ($items->canLiftDarkRocks()
+						|| ($items->has('Hammer') && $items->canLiftRocks())
+						|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')
+							|| ($items->has('Hookshot') && ($items->canLiftRocks() || $items->has('Flippers')))))))
+					|| $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
 		};
 
 		return $this;
@@ -129,13 +130,14 @@ class South extends Region {
 		}
 
 		$this->can_enter = function($locations, $items) {
-			return ($items->has('MoonPearl')
-				&& ($items->canLiftDarkRocks()
-					|| ($items->has('Hammer') && $items->canLiftRocks())
-					|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')
-						|| ($items->has('Hookshot') && ($items->canLiftRocks() || $items->has('Flippers')))))))
-				|| (($items->has('MagicMirror') || ($items->has('PegasusBoots') && $items->has('MoonPearl')))
-					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+			return $items->has('RescueZelda')
+				&& (($items->has('MoonPearl')
+					&& ($items->canLiftDarkRocks()
+						|| ($items->has('Hammer') && $items->canLiftRocks())
+						|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')
+							|| ($items->has('Hookshot') && ($items->canLiftRocks() || $items->has('Flippers')))))))
+					|| (($items->has('MagicMirror') || ($items->has('PegasusBoots') && $items->has('MoonPearl')))
+						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;
