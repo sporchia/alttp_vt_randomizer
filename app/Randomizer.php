@@ -544,7 +544,8 @@ class Randomizer {
 
 			$old_man->setActive(true);
 			$old_man->setShopkeeper('old_man');
-			$old_man->addInventory(0, Item::get('ProgressiveSword'), 0);
+			$old_man->addInventory(0, ($this->config('mode.weapons') == 'swordless') ? Item::get('ThreeHundredRupees')
+				: Item::get('ProgressiveSword'), 0);
 		}
 
 		$shops->filter(function($shop) {
