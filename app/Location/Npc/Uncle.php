@@ -20,31 +20,30 @@ class Uncle extends Location {
 		$item = $this->getItem();
 
 		$world = $this->region->getWorld();
-		if ($world->config('mode.weapons') == 'randomized') {
-			if ($item instanceof Item\Bow) {
-				$rom->setEscapeFills(0b00000001);
-			} elseif ($item instanceof Item\Upgrade\Bomb) {
-				$rom->setEscapeFills(0b00000010);
-			} elseif ($item == Item::get('FireRod')
-				|| $item == Item::get('CaneOfSomaria')
-				|| $item == Item::get('CaneOfByrna')) {
-				$rom->setEscapeFills(0b00000100);
-			}
+
+		if ($item instanceof Item\Bow) {
+			$rom->setEscapeFills(0b00000001);
+		} elseif ($item == Item::get('TenBombs')) {
+			$rom->setEscapeFills(0b00000010);
+		} elseif ($item == Item::get('FireRod')
+			|| $item == Item::get('CaneOfSomaria')
+			|| $item == Item::get('CaneOfByrna')) {
+			$rom->setEscapeFills(0b00000100);
 		} else {
 			$rom->setEscapeFills(0b00000000);
 		}
 
 		if ($world->getDifficulty() == 'easy') {
-			if ($world->config('mode.weapons') == 'randomized') {
-				if ($item instanceof Item\Bow) {
-					$rom->setEscapeAssist(0b00000001);
-				} elseif ($item instanceof Item\Upgrade\Bomb) {
-					$rom->setEscapeAssist(0b00000010);
-				} elseif ($item == Item::get('FireRod')
-					|| $item == Item::get('CaneOfSomaria')
-					|| $item == Item::get('CaneOfByrna')) {
-					$rom->setEscapeAssist(0b00000100);
-				}
+			if ($item instanceof Item\Bow) {
+				$rom->setEscapeAssist(0b00000001);
+			} elseif ($item == Item::get('TenBombs')) {
+				$rom->setEscapeAssist(0b00000010);
+			} elseif ($item == Item::get('FireRod')
+				|| $item == Item::get('CaneOfSomaria')
+				|| $item == Item::get('CaneOfByrna')) {
+				$rom->setEscapeAssist(0b00000100);
+			} else {
+				$rom->setEscapeAssist(0b00000000);
 			}
 		} else {
 			$rom->setEscapeAssist(0b00000000);

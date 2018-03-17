@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-15';
-	const HASH = '7e64799c938ff57adcb151066fab5da5';
+	const BUILD = '2018-03-16';
+	const HASH = '9ec36e320a2ddaf75da0fcc157cb3947';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1919,6 +1919,7 @@ class Rom {
 		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
 		switch ($level) {
+			case -1:
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));

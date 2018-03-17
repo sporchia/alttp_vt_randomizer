@@ -31,6 +31,7 @@ return [
 		],
 		'rom' => [
 			'compassOnPickup' => 'on',
+			'HardMode' => -1,
 		],
 		'variations' => [
 			'key-sanity' => [

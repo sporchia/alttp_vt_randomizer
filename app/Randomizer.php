@@ -1722,6 +1722,9 @@ class Randomizer {
 			case 2:
 				list($low, $high) = [2, 2]; // 25%
 				break;
+			case -1:
+				list($low, $high) = [0, 0]; // 100%
+				break;
 			case 1:
 			default:
 				list($low, $high) = [1, 1]; // 50%
