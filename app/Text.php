@@ -544,7 +544,7 @@ class Text {
 
 			'dark_sanctuary_no' => $converter->convertDialogCompressed("Then go away!"),
 
-			'dark_sanctuary_hint_1' => $converter->convertDialogCompressed("There is a thief in the desert, he can open creepy chests that follow you. But now taht we have that out of the way, Do you like my hair? I've spent eons getting it this way."),
+			'dark_sanctuary_hint_1' => $converter->convertDialogCompressed("There is a thief in the desert, he can open creepy chests that follow you. But now that we have that out of the way, Do you like my hair? I've spent eons getting it this way."),
 
 			'dark_sanctuary_yes' => $converter->convertDialogCompressed("With Crystals 5&6 you can find a great fairy in the pyramid.\n\nFlomp Flomp, Whizzle Whomp"),
 
