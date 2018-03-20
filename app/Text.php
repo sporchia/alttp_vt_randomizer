@@ -412,7 +412,7 @@ class Text {
 
 			'telepathic_tile_under_ganon' => $converter->convertDialogCompressed("{NOBORDER}\nOnly arrows will finish off a blue Ganon, or really well timed spins in phase 4."),
 
-			'telepathic_tile_zelda_unknown' => $converter->convertDialogCompressed("{NOBORDER}\nWhoa! you found this tile! you should screenshot this and send it to Veetorp!"),
+			'telepathic_tile_palace_of_darkness' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a funny looking Enemizer"),
 
 			'telepathic_tile_desert_bonk_torch_room' => $converter->convertDialogCompressed("{NOBORDER}\nThings can be knocked down, if you fancy yourself a dashing dude."),
 

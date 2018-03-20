@@ -2109,6 +2109,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setRupeeArrow(bool $enable = false) : self {
+		$this->write(0x30052, pack('C*', $enable ? 0xDB : 0xE2)); // fish bottle merchant
 		$this->write(0x301FC, pack('C*', $enable ? 0xDA : 0xE1)); // replace Pot rupees
 		$this->write(0xECB4E, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // thief
 		$this->write(0xF0D96, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // pikit
