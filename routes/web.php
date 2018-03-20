@@ -223,6 +223,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		'patch' => $patch,
 		'spoiler' => $spoiler,
 		'hash' => $hash,
+		'current_rom_hash' => Rom::HASH,
 	]);
 })->middleware('throttle:150,360');
 
@@ -314,6 +315,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 			'difficulty' => 'normal',
 			'patch' => $rom->getWriteLog(),
 			'spoiler' => $rand->getSpoiler(),
+			'current_rom_hash' => Rom::HASH,
 		]);
 	}
 
@@ -362,6 +364,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'patch' => patch_merge_minify($patch),
 		'spoiler' => $spoiler,
 		'hash' => $hash,
+		'current_rom_hash' => Rom::HASH,
 	]);
 })->middleware('throttle:150,360');
 
