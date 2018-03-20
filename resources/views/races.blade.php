@@ -10,17 +10,13 @@
 	</div>
 	<div class="panel-body">
 		<p>Most races are done through
-			<a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a>. Be sure to check them out for more
-			info on how to get in on the action!</p>
+			<a href="https://speedracing.tv/" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> or
+			<a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a>.
+			Be sure to check them out for more info on how to get in on the action!</p>
 		<h4>Weekly Standard Mode Race, Saturdays at 3pm US Eastern Time</h4>
 		<p>The premier community event, the weekly race consistently reaches over 100 competitors!</p>
-		<h4>Daily Races</h4>
-		<p>Running 3 times every weekend with a variety of game types! Checkout the schedule
-			<a href="http://tiny.cc/alttprdaily" target="_blank" rel="noopener noreferrer">here!</a>
-			</p>
-		<div style="text-align:center;"><iframe
-			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT5jViW67OL2AriPRUOpBZeyrQd08OdilAhX6HUB4cLTZufJOIAmihpp6xSgT6v-0IXy7FL80Mg8E4K/pubhtml?gid=0&single=true&widget=true&headers=false&range=A3:D999&chrome=false"
-			style="width:80%;height:150px;"></iframe></div>
+		<h4>Weekly Open Mode Race, Saturdays at 5pm US Eastern Time</h4>
+		<p>Join us Sundays for another popular weekly community race.</p>
 		<h4>Pickup Races</h4>
 		<p>Scheduled races not fitting in with your schedule? Looking to race with some more uncommon
 			options? Join a pickup race! You'll find willing players at all hours of the day. Join
@@ -37,19 +33,44 @@
 	<div class="panel-body">
 		<p>With so much going on, there's always a race to watch! Follow these networks and never
 			miss a match!</p>
+		<div class="btn-wrapper">
+			<div class="btn-cal"><a
+				class="btn btn-lg btn-xl btn-cal1"
+				href="https://twitch.tv/alttprandomizer"
+				rel="noopener noreferrer"
+				role="button"
+				target="_blank">twitch.tv/ALttPRandomizer</a></div>
+			<div class="btn-cal"><a
+				class="btn btn-lg btn-xl btn-cal2"
+				href="https://twitch.tv/alttprandomizer2"
+				rel="noopener noreferrer"
+				role="button"
+				target="_blank">twitch.tv/ALttPRandomizer2</a></div>
+		</div>
+		<div class="btn-wrapper">
+			<div class="btn-cal"><a
+				class="btn btn-lg btn-xl btn-cal3"
+				href="https://twitch.tv/alttprandomizer3"
+				rel="noopener noreferrer"
+				role="button"
+				target="_blank">twitch.tv/ALttPRandomizer3</a></div>
+			<div class="btn-cal"><a
+				class="btn btn-lg btn-xl btn-cal4"
+				href="https://twitch.tv/alttprandomizer4"
+				rel="noopener noreferrer"
+				role="button"
+				target="_blank">twitch.tv/ALttPRandomizer4</a></div>
+		</div>
+		<div class="center">
+			<a class="btn btn-lg btn-xl btn-cal5">Currently Unscheduled</a>
+		</div><br/>
+		<p class="center"><iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&height=600&wkst=1&bgcolor=%23FFFFFF&src=alttprandomizer%40gmail.com&color=%23711616&src=619so5cq75d5jnbcv1sbmaaiq4%40group.calendar.google.com&color=%232952A3&src=178t5rnk4uq8u9ge7otmg0goug%40group.calendar.google.com&color=%23875509&src=vqov7jnhlur2pqva0q0fq61qpg%40group.calendar.google.com&color=%23528800&src=3flvk65tefruq3j158ed93hrb8%40group.calendar.google.com&color=%23333333" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe></p>
 		<div style="text-align:center;"><a
 			class="btn btn-primary btn-lg btn-xl"
 			href="https://www.twitch.tv/communities/lttprandomizer/"
 			rel="noopener noreferrer"
 			role="button"
 			target="_blank">ALttP:R Twitch Community</a></div>
-		<ul>
-		<li><a href="http://speedgaming.org/" target="_blank" rel="noopener noreferrer">Speedgaming</a>
-		<li><a href="https://twitch.tv/alttprandomizer" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer</a>
-		<li><a href="https://twitch.tv/alttprandomizer2" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer2</a>
-		<li><a href="https://twitch.tv/alttprandomizer3" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer3</a>
-		<li><a href="https://twitch.tv/alttprandomizer4" target="_blank" rel="noopener noreferrer">twitch.tv/ALttPRandomizer4</a>
-		</ul>
 	</div>
 </div>
 
@@ -74,19 +95,8 @@
 			toe-to-toe with the best? Join
 			<a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>
 			and keep an eye out for qualifying races!</p>
-		<p>The Spring Invitational is Standard Mode and runs from March to June, and The Fall
-			Invitational is Open Mode and runs from September to December.</p>
-		<h4>Open Tournaments</h4>
-		<p>Alongside the invitational tournaments are tournaments that are open to all! New players
-			are encouraged to join, with most of the races being restreamed with commentary.</p>
-		<h4>Keysanity Tournament <span class="running-now">Live Now!</span></h4>
-		<p><a
-			href="http://alttpr.challonge.com/keysanity2018"
-			rel="noopener noreferrer"
-			target="_blank">Check out standings here!</a></p>
-		<div style="text-align:center;"><iframe
-			src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTCyiHAGp10lzTeZSlyc1lKsUtgV5FuZcxQLQvjgE4FOXmBESiSjzrn4IfHURqX1to6D_Ns8DspD9K/pubhtml?gid=55970383&single=true&widget=true&headers=false&range=A1:E999&chrome=false"
-			style="width:65%;height:400px;"></iframe></div>
+		<p>The Spring Invitational runs from March to June.</p>
+		<p>The Fall Invitational runs from September to December.</p>
 	</div>
 </div>
 

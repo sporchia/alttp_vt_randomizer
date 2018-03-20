@@ -146,6 +146,14 @@ Route::get('watch', function(Request $request) {
 	return view('watch');
 });
 
+Route::get('contribute', function(Request $request) {
+	return view('contribute');
+});
+
+Route::get('calendar', function(Request $request) {
+	return view('calendar');
+});
+
 Route::get('spoiler_click/{seed_id?}', function() {
 	return "Ok";
 });
@@ -185,6 +193,8 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	if ($request->filled('debug')) {
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
+
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
 	try {
 		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle);

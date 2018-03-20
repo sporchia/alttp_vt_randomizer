@@ -218,7 +218,7 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function has($key, $at_least = 1) {
-		if (strpos($key, 'Key') === 0 && $this->world->config('rom.genericKeys', false)) {
+		if ($key != 'KeyH2' && strpos($key, 'Key') === 0 && $this->world->config('rom.genericKeys', false)) {
 			return true;
 		}
 		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
@@ -387,12 +387,23 @@ class ItemCollection extends Collection {
 	/**
 	 * Requirements for lobbing arrows at things
 	 *
+	 * @param int $min_level minimum level of bow
+	 *
 	 * @return bool
 	 */
-	public function canShootArrows() {
-		return $this->has('Bow')
-			|| $this->has('BowAndArrows')
-			|| $this->has('BowAndSilverArrows');
+	public function canShootArrows(int $min_level = 1) {
+		switch ($min_level) {
+			case 2:
+				return $this->has('BowAndSilverArrows')
+					|| ($this->has('SilverArrowUpgrade')
+						&& ($this->has('Bow') || $this->has('BowAndArrows')));
+			case 1:
+			default:
+				return $this->has('Bow')
+					|| $this->has('BowAndArrows')
+					|| $this->has('BowAndSilverArrows');
+		}
+
 	}
 
 	/**
@@ -438,7 +449,7 @@ class ItemCollection extends Collection {
 			|| $this->has('CaneOfSomaria')
 			|| ($this->has('TenBombs') && $enemies < 6)
 			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
-			|| $this->canShootArrows() // @TODO: fill arrows in standard escape
+			|| $this->canShootArrows()
 			|| $this->has('Hammer')
 			|| $this->has('FireRod');
 	}
@@ -458,26 +469,35 @@ class ItemCollection extends Collection {
 	/**
 	 * Requirements for having a sword
 	 *
-	 * @return bool
-	 */
-	public function hasSword() {
-		return $this->has('L1Sword')
-			|| $this->has('L1SwordAndShield')
-			|| $this->has('ProgressiveSword')
-			|| $this->hasUpgradedSword();
-	}
-
-	/**
-	 * Requirements for having an upgraded sword
+	 * @param int $min_level minimum level of sword
 	 *
 	 * @return bool
 	 */
-	public function hasUpgradedSword() {
-		return $this->has('L2Sword')
-			|| $this->has('MasterSword')
-			|| $this->has('L3Sword')
-			|| $this->has('L4Sword')
-			|| $this->has('ProgressiveSword', 2);
+	public function hasSword(int $min_level = 1) {
+		switch ($min_level) {
+			case 4:
+				return $this->has('L4Sword')
+					|| $this->has('ProgressiveSword', 4);
+			case 3:
+				return $this->has('L3Sword')
+					|| $this->has('L4Sword')
+					|| $this->has('ProgressiveSword', 3);
+			case 2:
+				return $this->has('L2Sword')
+					|| $this->has('MasterSword')
+					|| $this->has('L3Sword')
+					|| $this->has('L4Sword')
+					|| $this->has('ProgressiveSword', 2);
+			case 1:
+			default:
+				return $this->has('L1Sword')
+					|| $this->has('L1SwordAndShield')
+					|| $this->has('L2Sword')
+					|| $this->has('MasterSword')
+					|| $this->has('L3Sword')
+					|| $this->has('L4Sword')
+					|| $this->has('ProgressiveSword');
+		}
 	}
 
 	/**

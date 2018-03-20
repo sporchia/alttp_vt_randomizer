@@ -175,21 +175,25 @@ class Randomizer {
 			$locations["Tower of Hera - Moldorm"]->setItem($boss_item);
 		}
 
-		if ($this->logic == 'MajorGlitches') {
-			// MajorGlitches always has 4 bottles, no matter what
-			config(["alttp.{$this->difficulty}.variations.{$this->variation}.item.overflow.count.Bottle" => 4]);
-			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
-		}
-
-		if ($this->logic == 'OverworldGlitches') {
-			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
-		}
-
-		// at this point we have filled all the base locations that will affect the rest of the actual item placements
+		$dungeon_items = $this->getDungeonPool();
 		$advancement_items = $this->getAdvancementItems();
+		$nice_items = $this->getNiceItems();
+		$trash_items = ($this->config('rng_items'))
+			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
+			: $this->getItemPool();
+
+		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches']) && $this->difficulty !== 'custom') {
+			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
+			foreach ($advancement_items as $key => $item) {
+				if ($item == Item::get('PegasusBoots')) {
+					unset($advancement_items[$key]);
+					array_push($trash_items, Item::get('TwentyRupees'));
+					break;
+				}
+			}
+		}
 
 		// take out all the swords and silver arrows
-		$nice_items = $this->getNiceItems();
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
 		foreach ($advancement_items as $key => $item) {
@@ -218,6 +222,7 @@ class Randomizer {
 				}
 			}
 			// In swordless mode silvers are 100% required
+			config(['alttp.region.requireBetterBow' => true]);
 			foreach ($nice_items_swords as $unneeded) {
 				array_push($nice_items, Item::get('TwentyRupees2'));
 			}
@@ -233,14 +238,19 @@ class Randomizer {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
-			if ($this->config('mode.weapons') == 'uncle') {
-				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
-			} else {
-				array_push($advancement_items, array_pop($nice_items_swords));
+			if (count($nice_items_swords)) {
+				if ($this->config('mode.weapons') == 'uncle') {
+					$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+				} else {
+					array_push($advancement_items, array_pop($nice_items_swords));
+				}
 			}
 
-			if ($this->config('region.takeAnys', false)) {
-				array_pop($nice_items_swords);
+			if (count($nice_items_swords)) {
+				if ($this->config('region.takeAnys', false)) {
+					array_pop($nice_items_swords);
+					array_push($trash_items, Item::get('TwentyRupees'));
+				}
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -251,12 +261,16 @@ class Randomizer {
 		}
 		$nice_items = array_merge($nice_items, $nice_items_bottles);
 
-		// Remaining Items
-		$trash_items = ($this->config('rng_items'))
-			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
-			: $this->getItemPool();
-
-		$dungeon_items = $this->getDungeonPool();
+		if ($this->config('rom.rupeeBow', false)) {
+			$trash_items_replace = [];
+			foreach ($trash_items as $key => $item) {
+				if ($item instanceof Item\Arrow || $item instanceof Item\Upgrade\Arrow) {
+					unset($trash_items[$key]);
+					$trash_items_replace[] = Item::get('FiveRupees');
+				}
+			}
+			$trash_items = array_merge($trash_items, $trash_items_replace);
+		}
 
 		if ($this->world->config('region.wildBigKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
@@ -327,6 +341,9 @@ class Randomizer {
 		$this->world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare"));
 		$this->world->getRegion('Misery Mire')->setBoss(Boss::get("Vitreous"));
 		$this->world->getRegion('Turtle Rock')->setBoss(Boss::get("Trinexx"));
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Armos Knights"), 'bottom');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Lanmolas"), 'middle');
+		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Moldorm"), 'top');
 		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Agahnim2"));
 
 		return $this;
@@ -527,7 +544,8 @@ class Randomizer {
 
 			$old_man->setActive(true);
 			$old_man->setShopkeeper('old_man');
-			$old_man->addInventory(0, Item::get('ProgressiveSword'), 0);
+			$old_man->addInventory(0, ($this->config('mode.weapons') == 'swordless') ? Item::get('ThreeHundredRupees')
+				: Item::get('ProgressiveSword'), 0);
 		}
 
 		$shops->filter(function($shop) {
@@ -621,7 +639,7 @@ class Randomizer {
 			'weapons' => $this->config('mode.weapons', 'randomized')
 		]);
 
-		if ($this->config('rom.HardMode', 0)) {
+		if ($this->config('rom.HardMode') !== null) {
 			$spoiler['meta']['difficulty_mode'] = config('alttp.randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
 		}
 
@@ -685,7 +703,7 @@ class Randomizer {
 			$rom->setupCustomShops($this->world->getShops());
 		}
 		$rom->setRupeeArrow($this->config('rom.rupeeBow', false));
-		$rom->setLockAgahnimDoorInEscape(false);
+		$rom->setLockAgahnimDoorInEscape(true);
 		$rom->setWishingWellChests(true);
 		$rom->setWishingWellUpgrade(false);
 		$rom->setRestrictFairyPonds(true);
@@ -700,12 +718,14 @@ class Randomizer {
 
 		switch ($this->difficulty) {
 			case 'easy':
+				$rom->setSilversEquip('both');
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
 				]);
 				break;
 			default:
+				$rom->setSilversEquip('collection');
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 				]);
@@ -758,8 +778,12 @@ class Randomizer {
 		$rom->setOpenMode(in_array(config('game-mode'), ['open']));
 		$rom->setSwordlessMode($this->config('mode.weapons') == 'swordless');
 
-		if (in_array(config('game-mode'), ['open'])) {
+		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Sword) {
 			$rom->removeUnclesSword();
+		}
+		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Shield
+			|| !$this->world->getLocation("Link's Uncle")->hasItem(Item::get('L1SwordAndShield'))) {
+			$rom->removeUnclesShield();
 		}
 
 		$this->randomizeCredits($rom);
@@ -779,8 +803,6 @@ class Randomizer {
 		$rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);
 		$rom->setGreenClock($this->config('item.value.GreenClock', 0) ?: 0);
 		$rom->setStartingTime($this->config('rom.timerStart', 0) ?: 0);
-
-		$rom->removeUnclesShield();
 
 		switch ($this->config('rom.logicMode', $this->logic)) {
 			case 'MajorGlitches':
@@ -1300,16 +1322,12 @@ class Randomizer {
 			array_push($advancement_items, Item::get('TenBombs'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.HalfMagicUpgrade', 1); $i++) {
+		for ($i = 0; $i < $this->config('item.count.HalfMagic', 1); $i++) {
 			array_push($advancement_items, Item::get('HalfMagic'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.QuarterMagicUpgrade', 0); $i++) {
+		for ($i = 0; $i < $this->config('item.count.QuarterMagic', 0); $i++) {
 			array_push($advancement_items, Item::get('QuarterMagic'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.MagicUpgrade', 0); $i++) {
-			array_push($advancement_items, (mt_rand(0, 3) == 0) ? Item::get('QuarterMagic') : Item::get('HalfMagic'));
 		}
 
 		return $advancement_items;
@@ -1393,17 +1411,11 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.BombUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('BombUpgrade10'));
 		}
-		for ($i = 0; $i < $this->config('item.count.BombUpgrade50', 0); $i++) {
-			array_push($items_to_find, Item::get('BombUpgrade50'));
-		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade5', 6); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade5'));
 		}
 		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade10', 1); $i++) {
 			array_push($items_to_find, Item::get('ArrowUpgrade10'));
-		}
-		for ($i = 0; $i < $this->config('item.count.ArrowUpgrade70', 0); $i++) {
-			array_push($items_to_find, Item::get('ArrowUpgrade70'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Arrow', 1); $i++) {
@@ -1710,11 +1722,12 @@ class Randomizer {
 		switch ($this->config('rom.HardMode', 0)) {
 			case 3:
 			case 2:
-				list($low, $high) = [3, 4]; // 12.5%, 6.25%
+				list($low, $high) = [2, 2]; // 25%
+				break;
+			case -1:
+				list($low, $high) = [0, 0]; // 100%
 				break;
 			case 1:
-				list($low, $high) = [2, 3]; // 25%, 12.5%
-				break;
 			default:
 				list($low, $high) = [1, 1]; // 50%
 		}

@@ -189,7 +189,8 @@ class Location {
 
 		$item = $this->item;
 
-		if ($item instanceof Item\Key && $this->region->isRegionItem($item)) {
+		if ($item instanceof Item\Key && $this->region->isRegionItem($item)
+			&& ($this->name != "Secret Passage" || $item != Item::get('KeyH2'))) { // special key-sanity case
 			$item = Item::get('Key');
 		}
 
@@ -199,13 +200,6 @@ class Location {
 
 		if ($this->region->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
 			$item = Item::get('KeyGK');
-		}
-
-		// might be better at a higher level to affect spoiler better
-		if ($this->region->getWorld()->config('rom.rupeeBow', false)
-			&& ($item instanceof Item\Arrow
-				|| $item instanceof Item\Upgrade\Arrow)) {
-			$item = Item::get('FiveRupees');
 		}
 
 		$item_bytes = $item->getBytes();

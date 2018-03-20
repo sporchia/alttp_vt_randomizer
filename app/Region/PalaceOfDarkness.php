@@ -102,7 +102,7 @@ class PalaceOfDarkness extends Region {
 
 		$this->locations["Palace of Darkness - Big Key Chest"]->setRequirements(function($locations, $items) {
 			if ($locations["Palace of Darkness - Big Key Chest"]->hasItem(Item::get('KeyD1'))) {
-				return (($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) ? $items->has('KeyD1', 3) : $items->has('KeyD1', 2));
+				return $items->has('KeyD1');
 			}
 
 			return (($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));

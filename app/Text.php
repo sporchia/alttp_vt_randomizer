@@ -1,6 +1,7 @@
 <?php namespace ALttP;
 
 use ALttP\Support\Dialog;
+use Log;
 
 /**
  * Overwrite all the text in the main portion of the ROM
@@ -22,6 +23,9 @@ class Text {
 
 	function getByteArray($translation = 'en') {
 		$data = array_merge(...array_values($this->$translation()));
+
+		Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
+
 		if (count($data) > 0x7355) {
 			throw new \Exception("Too BIG", 1);
 		}
@@ -408,7 +412,7 @@ class Text {
 
 			'telepathic_tile_under_ganon' => $converter->convertDialogCompressed("{NOBORDER}\nOnly arrows will finish off a blue Ganon, or really well-timed spins in phase 4."),
 
-			'telepathic_tile_zelda_unknown' => $converter->convertDialogCompressed("{NOBORDER}\nWhoa! You found this tile! You should screenshot this and send it to Veetorp!"),
+			'telepathic_tile_palace_of_darkness' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a funny looking Enemizer"),
 
 			'telepathic_tile_desert_bonk_torch_room' => $converter->convertDialogCompressed("{NOBORDER}\nThings can be knocked down, if you fancy yourself a dashing dude."),
 

@@ -334,7 +334,9 @@ $(function() {
 		$('input[name=weapons]').val($(this).val());
 	});
 	localforage.getItem('rom.weapons').then(function(value) {
-		if (value === null) return;
+		if (!value) {
+			value = 'uncle';
+		}
 		$('#weapons').val(value);
 		$('#weapons').trigger('change');
 	});
