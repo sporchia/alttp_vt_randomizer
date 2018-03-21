@@ -98,6 +98,7 @@ function seedApplied(data) {
 		rom.build = data.patch.spoiler.meta.build;
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.mode = data.patch.spoiler.meta.mode;
+		rom.weapons = data.patch.spoiler.meta.weapons;
 		rom.difficulty = data.patch.difficulty;
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.hash = data.patch.hash;

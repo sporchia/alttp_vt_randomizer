@@ -208,10 +208,6 @@ $(function() {
 	$('#generate-tournament').on('change', function() {
 		$('input[name=tournament]').val($(this).prop('checked'));
 	});
-
-	new secrets(function() {
-		$('.secrets').show();
-	});
 });
 </script>
 @overwrite
