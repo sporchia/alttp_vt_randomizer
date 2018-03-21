@@ -136,7 +136,7 @@ class Uncle extends Location {
 			case Item::get('Bomb'):
 			case Item::get('ThreeBombs'):
 			case Item::get('TenBombs'):
-				return "your uncle belives";
+				return "your uncle believes";
 			case Item::get('Mushroom'):
 				return "your uncle deals drugs";
 			case Item::get('Bottle'):
