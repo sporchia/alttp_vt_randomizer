@@ -319,6 +319,21 @@ class Randomizer {
 
 		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
 
+		// special handling for bomb escape in standard
+		$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
+		if ($uncle_item == Item::get('TenBombs') && config('game-mode') == 'standard') {
+			switch ($this->difficulty) {
+				case "normal":
+					$this->starting_equipment->addItem(Item::get('BombUpgrade5'));
+					$this->world->getLocationsWithItem(Item::get('BombUpgrade5'))->random()->setItem(Item::get('ThreeBombs'));
+					break;
+				case "easy":
+					$this->starting_equipment->addItem(Item::get('BombUpgrade10'));
+					$this->world->getLocationsWithItem(Item::get('BombUpgrade10'))->random()->setItem(Item::get('ThreeBombs'));
+					break;
+			}
+		}
+
 		return $this;
 	}
 
