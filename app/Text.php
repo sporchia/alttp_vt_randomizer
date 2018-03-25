@@ -583,18 +583,18 @@ class Text {
 			'magic_bat_give_half_magic' => $converter->convertDialogCompressed("How you like me now?"),
 
 			'intro_main' => $converter->convertDialogCompressed("{INTRO}\n Episode  III\n{PAUSE3}\n a link to\n   the past\n"
-				. "{PAUSE3}\n  randomizer\n{PAUSE3}\nAfter mostly disregarding what happened in the first two games.\n"
-				. "{PAUSE3}\nLink awakens to his uncle leaving the house,\n{PAUSE3}\nhe just runs out the door\n"
-				. "{PAUSE3}\ninto the rainy night.\n{PAUSE3}\n{CHANGEPIC}\nGanon has moved all the items around hyrule.\n"
-				. "{PAUSE7}\nYou will have to find all the items necessary to beat Ganon.\n"
-				. "{PAUSE7}\nThis is your chance to be a hero\n{PAUSE3}\n{CHANGEPIC}\n"
-				. "You must get the 7 crystals to beat Ganon.\n{PAUSE9}\n{CHANGEPIC}", false),
+				. "{PAUSE3}\n  Egg hunt\n{PAUSE3}\nAfter a long winter, spring has sprung.\n"
+				. "{PAUSE3}\nmischievous Bunnies and Colorful eggs Appeared all Around hyrule.\n{PAUSE3}\n"
+				. "{PAUSE3}\nRace against The clock to\n{CHANGEPIC}\nCollect as Many eggs as You can find.\n"
+				. "{PAUSE7}\nGanon does not Like eggs Because they Go well with Bacon.\n{PAUSE3}\nHe will Have to wait.\n"
+				. "{PAUSE7}\nOnly eggs will Bring victory.\n{CHANGEPIC}\nThis is your Chance to be An egg hunting hero\n{PAUSE3}\n"
+				. "{CHANGEPIC}\nTime to hop to It and collect Some eggs.\n{PAUSE9}\n", false),
 
-			'intro_throne_room' => $converter->convertDialogCompressed("{IBOX}\nLook at this stalfos on the throne.", false),
+			'intro_throne_room' => $converter->convertDialogCompressed("{IBOX}\nEgg hunting\ncompetition\nwill be stiff.", false),
 
-			'intro_zelda_cell' => $converter->convertDialogCompressed("{IBOX}\nIt is your time to shine!", false),
+			'intro_zelda_cell' => $converter->convertDialogCompressed("{IBOX}\nThere could be\nan egg here!", false),
 
-			'intro_agahnim' => $converter->convertDialogCompressed("{IBOX}\nAlso you need to defeat this guy!", false),
+			'intro_agahnim' => $converter->convertDialogCompressed("{IBOX}\nThis guy hates\nadorable\nfluffy bunnies", false),
 
 			'pickup_purple_chest' => $converter->convertDialogCompressed("A curious box, lets take it with us"),
 

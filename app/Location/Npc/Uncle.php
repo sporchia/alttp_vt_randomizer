@@ -63,6 +63,8 @@ class Uncle extends Location {
 				return "your uncle finds treasure";
 			case Item\Compass::class:
 				return "your uncle navigates";
+			case Item\Egg::class:
+				return "your uncle likes coloring";
 		}
 
 		switch ($this->item) {

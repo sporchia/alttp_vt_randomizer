@@ -172,6 +172,13 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 	abort(404);
 });
 
+Route::get('special', function () {
+	return view('special', [
+		'rom_hash' => '6b5ec1c6d7acff13ccb716b88dc03ae1',
+		'rom_patch' => 'js/base-6b5ec1c6d7acff13ccb716b88dc03ae1.json',
+	]);
+});
+
 Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	$variation = $request->input('variation', 'none') ?: 'none';
@@ -322,6 +329,13 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
 	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
+	if ($request->input('special') == 'true' && $difficulty != 'custom') {
+		if (in_array($variation, ['retro', 'timed-ohko', 'timed-race'])) {
+			$variation = 'none';
+		}
+		$goal = 'ganon';
+		$rand = new ALttP\SpecialRandomizer($difficulty, $logic, $goal, $variation);
+	}
 	if (isset($world)) {
 		$rand->setWorld($world);
 	}

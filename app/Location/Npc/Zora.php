@@ -25,6 +25,8 @@ class Zora extends Npc {
 				return "the world for sale";
 			case Item\Compass::class:
 				return "bearings for sale";
+			case Item\Egg::class:
+				return "Eggs for sale";
 		}
 
 		switch ($this->item) {

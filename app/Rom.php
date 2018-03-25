@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-16';
-	const HASH = '9ec36e320a2ddaf75da0fcc157cb3947';
+	const BUILD = '2018-03-24';
+	const HASH = 'abd1c8babe2bddf73df8034351e0dc1e';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -810,6 +810,9 @@ class Rom {
 				break;
 			case 'countdown-stop':
 				$bytes = [0x01, 0x00];
+				break;
+			case 'countdown-end':
+				$bytes = [0x01, 0x03];
 				break;
 			case 'off':
 			default:
