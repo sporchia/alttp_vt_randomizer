@@ -48,6 +48,8 @@ class Pedestal extends Location {
 				return "and the map";
 			case Item\Compass::class:
 				return "and the compass";
+			case Item\Egg::class:
+				return "and the egg";
 		}
 
 		switch ($this->item) {
@@ -284,6 +286,8 @@ class Pedestal extends Location {
 				return "You can now\nfind your way\nhome!";
 			case Item\Compass::class:
 				return "Now you know\nwhere the boss\nhides!";
+			case Item\Egg::class:
+				return "Egg-cited\nfor this";
 		}
 
 		switch ($this->item) {

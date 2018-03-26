@@ -83,6 +83,8 @@ class Bombos extends Location {
 				return "You can now\nfind your way\nhome!";
 			case Item\Compass::class:
 				return "Now you know\nwhere the boss\nhides!";
+			case Item\Egg::class:
+				return "Egg-cited\nfor this";
 		}
 
 		switch ($this->item) {

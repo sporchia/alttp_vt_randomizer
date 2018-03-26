@@ -166,6 +166,10 @@ function applySeed(rom, seed, second_attempt) {
 	}
 	return new Promise(function(resolve, reject) {
 		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form#config')), function(patch) {
+			if (patch.current_rom_hash && patch.current_rom_hash != current_rom_hash) {
+				// The base rom has been updated, refresh browser!
+				window.location.reload(true);
+			}
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))

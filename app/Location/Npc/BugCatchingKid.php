@@ -25,6 +25,8 @@ class BugCatchingKid extends Npc {
 				return "the cartographer kid";
 			case Item\Compass::class:
 				return "the navigating kid";
+			case Item\Egg::class:
+				return "the decorating kid";
 		}
 
 		switch ($this->item) {

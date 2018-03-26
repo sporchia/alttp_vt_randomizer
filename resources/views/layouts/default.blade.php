@@ -24,16 +24,23 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-                    <li{!! (request()->path() == 'start') ? ' class="active"' : '' !!}><a href="/start">Start Playing</a></li>
-                    <li{!! (request()->path() == 'watch') ? ' class="active"' : '' !!}><a href="/watch">Start Watching</a></li>
-                    <li class="dropdown{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer', 'daily', 'customizer'])) ? ' active' : '' !!}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generate Game <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
-        					<li{!! (in_array(request()->path(), ['daily'])) ? ' class="active"' : '' !!}><a href="/daily">Daily Challenge</a></li>
-		        			<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Create Customized Game</a></li>
-                        </ul>
-                    </li>
+					<li{!! (request()->path() == 'start') ? ' class="active"' : '' !!}><a href="/start">Start Playing</a></li>
+					<li{!! (request()->path() == 'watch') ? ' class="active"' : '' !!}><a href="/watch">Start Watching</a></li>
+					<li class="dropdown{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer', 'daily', 'customizer'])) ? ' active' : '' !!}">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generate Game <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
+							<li{!! (in_array(request()->path(), ['daily'])) ? ' class="active"' : '' !!}><a href="/daily">Daily Challenge</a></li>
+							<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Create Customized Game</a></li>
+						</ul>
+					</li>
+					<li{!! (in_array(request()->path(), ['special'])) ? ' class="active"' : '' !!}>
+						<a href="/special" class="alternate-color handwritten">
+							<span>P</span><span>l</span><span>a</span><span>y</span>
+							<span>F</span><span>e</span><span>s</span><span>t</span><span>i</span><span>v</span><span>e</span>
+							<span>R</span><span>a</span><span>n</span><span>d</span><span>o</span><span>m</span><span>i</span><span>z</span><span>e</span><span>r</span>
+						</a>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -78,7 +85,7 @@
 		ga('send', 'pageview');
 @else
 		ga = function() {
-		    console.log(arguments);
+			console.log(arguments);
 		};
 @endif
 	</script>

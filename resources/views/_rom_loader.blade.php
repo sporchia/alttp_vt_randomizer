@@ -83,6 +83,14 @@ function romOk(rom) {
 }
 
 function loadBlob(blob, show_error) {
+	if (!blob instanceof Blob) {
+		if (show_error) {
+			$('.alert .message').html('file not recognized. Please try another.');
+			$('.alert').show();
+		}
+		$('#rom-select').show();
+		return;
+	}
 	rom = new ROM(blob, function(rom) {
 		if (show_error) {
 			localforage.setItem('rom', rom.getArrayBuffer());
