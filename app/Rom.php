@@ -1948,7 +1948,7 @@ class Rom {
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
-				$this->setStunItems(0x01);
+				$this->setStunItems(0x02);
 				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(10);
