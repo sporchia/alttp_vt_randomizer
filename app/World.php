@@ -21,6 +21,7 @@ class World {
 	protected $collectable_locations;
 	protected $pre_collected_items;
 	protected $currently_filling_items;
+	private $config = [];
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -442,12 +443,16 @@ class World {
 	 *
 	 * @return mixed
 	 */
-	public function config(string $key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-			config("alttp.goals.{$this->goal}.$key",
-				config("alttp.{$this->difficulty}.$key",
-					config("alttp.$key", $default))));
-	}
+    public function config(string $key, $default = null) {
+        if (!array_key_exists($key, $this->config)) {
+            $this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+                config("alttp.goals.{$this->goal}.$key",
+                    config("alttp.{$this->difficulty}.$key",
+                        config("alttp.$key", null))));
+        }
+
+        return $this->config[$key] ?? $default;
+    }
 
 	/**
 	 * Get a region by Key name

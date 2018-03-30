@@ -21,6 +21,7 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	protected $starting_equipment;
+	private $config = [];
 	static protected $logic_array = [
 		0x23, 0xCD, 0xB6, 0xA5, 0xEC, 0xF8, 0xC1, 0x80,0x8B, 0x53, 0x88, 0xA8, 0xB9, 0x22, 0xD9, 0x29,
 		0xC4, 0x52, 0xBA, 0xD7, 0xC2, 0xE0, 0x43, 0x2B,0x0D, 0x9F, 0x66, 0x7A, 0x98, 0xDA, 0xBC, 0x05,
@@ -671,12 +672,16 @@ class Randomizer {
 	 *
 	 * @return mixed
 	 */
-	public function config($key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-			config("alttp.goals.{$this->goal}.$key",
-				config("alttp.{$this->difficulty}.$key",
-					config("alttp.$key", $default))));
-	}
+    public function config(string $key, $default = null) {
+        if (!array_key_exists($key, $this->config)) {
+            $this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+                config("alttp.goals.{$this->goal}.$key",
+                    config("alttp.{$this->difficulty}.$key",
+                        config("alttp.$key", null))));
+        }
+
+        return $this->config[$key] ?? $default;
+    }
 
 	/**
 	 * write the current generated data to the Rom
