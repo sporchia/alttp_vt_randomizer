@@ -245,7 +245,13 @@ class Randomizer {
 
 			if (count($nice_items_swords)) {
 				if ($this->config('mode.weapons') == 'uncle') {
-					$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+					$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
+					if ($uncle_item !== null && !$uncle_item instanceof Item\Sword) {
+						throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
+					}
+					if ($uncle_item === null) {
+						$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+					}
 				} else {
 					array_push($advancement_items, array_pop($nice_items_swords));
 				}
@@ -662,16 +668,16 @@ class Randomizer {
 	 *
 	 * @return mixed
 	 */
-    public function config(string $key, $default = null) {
-        if (!array_key_exists($key, $this->config)) {
-            $this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-                config("alttp.goals.{$this->goal}.$key",
-                    config("alttp.{$this->difficulty}.$key",
-                        config("alttp.$key", null))));
-        }
+	public function config(string $key, $default = null) {
+		if (!array_key_exists($key, $this->config)) {
+			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.goals.{$this->goal}.$key",
+						config("alttp.$key", null))));
+		}
 
-        return $this->config[$key] ?? $default;
-    }
+		return $this->config[$key] ?? $default;
+	}
 
 	/**
 	 * write the current generated data to the Rom

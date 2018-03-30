@@ -444,16 +444,16 @@ class World {
 	 *
 	 * @return mixed
 	 */
-    public function config(string $key, $default = null) {
-        if (!array_key_exists($key, $this->config)) {
-            $this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-                config("alttp.goals.{$this->goal}.$key",
-                    config("alttp.{$this->difficulty}.$key",
-                        config("alttp.$key", null))));
-        }
+	public function config(string $key, $default = null) {
+		if (!array_key_exists($key, $this->config)) {
+			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.goals.{$this->goal}.$key",
+						config("alttp.$key", null))));
+		}
 
-        return $this->config[$key] ?? $default;
-    }
+		return $this->config[$key] ?? $default;
+	}
 
 	/**
 	 * Get a region by Key name
