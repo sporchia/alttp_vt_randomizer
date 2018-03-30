@@ -90,7 +90,7 @@
 					<span class="input-group-addon">Variation</span>
 					<select id="variation" class="form-control selectpicker">
 						@foreach (config('alttp.randomizer.item.variations') as $variation => $name)
-						@if (!in_array($variation, ['retro', 'timed-ohko', 'timed-race']))
+						@if (!in_array($variation, ['retro', 'timed-ohko', 'timed-race', 'ohko']))
 							<option value="{{ $variation }}">{{ $name }}</option>
 						@endif
 						@endforeach

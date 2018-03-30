@@ -330,7 +330,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 	if ($request->input('special') == 'true' && $difficulty != 'custom') {
-		if (in_array($variation, ['retro', 'timed-ohko', 'timed-race'])) {
+		if (in_array($variation, ['retro', 'timed-ohko', 'timed-race', 'ohko'])) {
 			$variation = 'none';
 		}
 		$goal = 'ganon';
