@@ -194,6 +194,10 @@ class Randomizer {
 			}
 		}
 
+		if (config('game-mode') == 'open') {
+			$this->starting_equipment->addItem(Item::get('RescueZelda'));
+		}
+
 		// take out all the swords and silver arrows
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
@@ -311,7 +315,7 @@ class Randomizer {
 		$filler = Filler::factory('RandomAssumed', $this->world);
 
 		// mess with the junk fill
-		if ($this->goal == 'triforce-hunt') {
+		if ($this->goal == 'triforce-hunt' || $this->goal == 'pedestal') {
 			$filler->setGanonJunkLimits(15, 50);
 		}
 		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
@@ -319,21 +323,6 @@ class Randomizer {
 		}
 
 		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
-
-		// special handling for bomb escape in standard
-		$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
-		if ($uncle_item == Item::get('TenBombs') && config('game-mode') == 'standard') {
-			switch ($this->difficulty) {
-				case "normal":
-					$this->starting_equipment->addItem(Item::get('BombUpgrade5'));
-					$this->world->getLocationsWithItem(Item::get('BombUpgrade5'))->random()->setItem(Item::get('ThreeBombs'));
-					break;
-				case "easy":
-					$this->starting_equipment->addItem(Item::get('BombUpgrade10'));
-					$this->world->getLocationsWithItem(Item::get('BombUpgrade10'))->random()->setItem(Item::get('ThreeBombs'));
-					break;
-			}
-		}
 
 		return $this;
 	}
@@ -601,7 +590,8 @@ class Randomizer {
 			$i = 0;
 			foreach ($this->starting_equipment as $item) {
 				if ($item instanceof Item\Upgrade\Arrow
-					|| $item instanceof Item\Upgrade\Bomb) {
+					|| $item instanceof Item\Upgrade\Bomb
+					|| $item instanceof Item\Event) {
 					continue;
 				}
 

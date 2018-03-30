@@ -23,14 +23,26 @@ class Uncle extends Location {
 
 		if ($item instanceof Item\Bow) {
 			$rom->setEscapeFills(0b00000001);
+			$rom->setUncleSpawnRefills(0, 0, 70);
+			$rom->setZeldaSpawnRefills(0, 0, 10);
+			$rom->setMantleSpawnRefills(0, 0, 10);
 		} elseif ($item == Item::get('TenBombs')) {
 			$rom->setEscapeFills(0b00000010);
+			$rom->setUncleSpawnRefills(0, 50, 0);
+			$rom->setZeldaSpawnRefills(0, 3, 0);
+			$rom->setMantleSpawnRefills(0, 3, 0);
 		} elseif ($item == Item::get('FireRod')
 			|| $item == Item::get('CaneOfSomaria')
 			|| $item == Item::get('CaneOfByrna')) {
 			$rom->setEscapeFills(0b00000100);
+			$rom->setUncleSpawnRefills(0x80, 0, 0);
+			$rom->setZeldaSpawnRefills(0x10, 0, 0);
+			$rom->setMantleSpawnRefills(0x10, 0, 0);
 		} else {
 			$rom->setEscapeFills(0b00000000);
+			$rom->setUncleSpawnRefills(0, 0, 0);
+			$rom->setZeldaSpawnRefills(0, 0, 0);
+			$rom->setMantleSpawnRefills(0, 0, 0);
 		}
 
 		if ($world->getDifficulty() == 'easy') {

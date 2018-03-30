@@ -388,7 +388,8 @@ class World {
 			$i = 0;
 			foreach ($shadow_world->pre_collected_items as $item) {
 				if ($item instanceof Item\Upgrade\Arrow
-					|| $item instanceof Item\Upgrade\Bomb) {
+					|| $item instanceof Item\Upgrade\Bomb
+					|| $item instanceof Item\Event) {
 					continue;
 				}
 
