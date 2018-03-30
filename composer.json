@@ -13,6 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.1.0",
+        "ext-bcmath": "*",
         "doctrine/dbal": "^2.5",
         "ezyang/htmlpurifier": "^4.9",
         "graham-campbell/markdown": "^9.0",
