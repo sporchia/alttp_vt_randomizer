@@ -36,8 +36,8 @@ class Uncle extends Location {
 			|| $item == Item::get('CaneOfByrna')) {
 			$rom->setEscapeFills(0b00000100);
 			$rom->setUncleSpawnRefills(0x80, 0, 0);
-			$rom->setZeldaSpawnRefills(0x10, 0, 0);
-			$rom->setMantleSpawnRefills(0x10, 0, 0);
+			$rom->setZeldaSpawnRefills(0x20, 0, 0);
+			$rom->setMantleSpawnRefills(0x20, 0, 0);
 		} else {
 			$rom->setEscapeFills(0b00000000);
 			$rom->setUncleSpawnRefills(0, 0, 0);
