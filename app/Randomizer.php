@@ -21,6 +21,7 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	protected $starting_equipment;
+	private $config = [];
 	static protected $logic_array = [
 		0x23, 0xCD, 0xB6, 0xA5, 0xEC, 0xF8, 0xC1, 0x80,0x8B, 0x53, 0x88, 0xA8, 0xB9, 0x22, 0xD9, 0x29,
 		0xC4, 0x52, 0xBA, 0xD7, 0xC2, 0xE0, 0x43, 0x2B,0x0D, 0x9F, 0x66, 0x7A, 0x98, 0xDA, 0xBC, 0x05,
@@ -193,6 +194,10 @@ class Randomizer {
 			}
 		}
 
+		if (config('game-mode') == 'open') {
+			$this->starting_equipment->addItem(Item::get('RescueZelda'));
+		}
+
 		// take out all the swords and silver arrows
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
@@ -240,7 +245,13 @@ class Randomizer {
 
 			if (count($nice_items_swords)) {
 				if ($this->config('mode.weapons') == 'uncle') {
-					$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+					$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
+					if ($uncle_item !== null && !$uncle_item instanceof Item\Sword) {
+						throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
+					}
+					if ($uncle_item === null) {
+						$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+					}
 				} else {
 					array_push($advancement_items, array_pop($nice_items_swords));
 				}
@@ -310,7 +321,7 @@ class Randomizer {
 		$filler = Filler::factory('RandomAssumed', $this->world);
 
 		// mess with the junk fill
-		if ($this->goal == 'triforce-hunt') {
+		if ($this->goal == 'triforce-hunt' || $this->goal == 'pedestal') {
 			$filler->setGanonJunkLimits(15, 50);
 		}
 		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
@@ -585,7 +596,8 @@ class Randomizer {
 			$i = 0;
 			foreach ($this->starting_equipment as $item) {
 				if ($item instanceof Item\Upgrade\Arrow
-					|| $item instanceof Item\Upgrade\Bomb) {
+					|| $item instanceof Item\Upgrade\Bomb
+					|| $item instanceof Item\Event) {
 					continue;
 				}
 
@@ -656,11 +668,15 @@ class Randomizer {
 	 *
 	 * @return mixed
 	 */
-	public function config($key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-			config("alttp.goals.{$this->goal}.$key",
+	public function config(string $key, $default = null) {
+		if (!array_key_exists($key, $this->config)) {
+			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
 				config("alttp.{$this->difficulty}.$key",
-					config("alttp.$key", $default))));
+					config("alttp.goals.{$this->goal}.$key",
+						config("alttp.$key", null))));
+		}
+
+		return $this->config[$key] ?? $default;
 	}
 
 	/**

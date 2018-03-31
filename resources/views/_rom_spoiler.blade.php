@@ -46,7 +46,7 @@ function pasrseSpoilerToTabs(spoiler) {
 			+ ((section == active_nav) ? 'class="active"' : '') + '><a data-toggle="tab" data-section="' + section
 			+ '" href="#spoiler-' + section.replace(/ /g, '_') + '">' + section
 			+ '<span class="badge badge-pill"></span></a></li>'));
-		if (['entrances'].indexOf(section) !== -1) {
+		if (['Entrances'].indexOf(section) !== -1) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Entrance</th><th>Direction</th><th>Exit</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
 			for (loc in spoiler[section]) {
@@ -57,7 +57,7 @@ function pasrseSpoilerToTabs(spoiler) {
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'
 				+ '</div>').append(table));
-		} else if (['playthrough'].indexOf(section) !== -1 && !spoiler['entrances']) {
+		} else if (['playthrough'].indexOf(section) !== -1 && !spoiler['Entrances']) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Sphere</th><th>Region</th><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
 			for (sphere in spoiler[section]) {
@@ -73,7 +73,7 @@ function pasrseSpoilerToTabs(spoiler) {
 			content.append($('<div id="spoiler-' + section.replace(/ /g, '_') + '" class="tab-pane'
 				+ ((section == active_nav) ? ' active' : '') + '">'
 				+ '</div>').append(table));
-		} else if (['playthrough'].indexOf(section) !== -1 && spoiler['entrances']) {
+		} else if (['playthrough'].indexOf(section) !== -1 && spoiler['Entrances']) {
 			var table = $('<table class="table table-striped"><thead><tr><th>Sphere</th><th>Location</th><th>Item</th></tr></thead><tbody></tbody></table>');
 			var tbody = table.find('tbody');
 			for (sphere in spoiler[section]) {

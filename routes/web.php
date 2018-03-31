@@ -209,6 +209,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		$spoiler = $rand->getSpoiler();
 		$hash = $rand->saveSeedRecord();
 	} catch (Exception $e) {
+		report($e);
 		return response('Failed', 409);
 	}
 

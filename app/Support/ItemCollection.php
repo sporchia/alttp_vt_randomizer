@@ -169,12 +169,8 @@ class ItemCollection extends Collection {
 			return $this->copy();
 		}
 
-		if (is_array($items)) {
+		if (!$items instanceof static) {
 			return $this->merge(new static($items, $this->world));
-		}
-
-		if (!is_a($items, static::class)) {
-			return parent::merge($items);
 		}
 
 		$merged = $this->copy();
@@ -192,7 +188,8 @@ class ItemCollection extends Collection {
 	 * @return static
 	 */
 	public function copy() {
-		$new = new static($this->items, $this->world);
+		$new = new static([], $this->world);
+		$new->items = $this->items;
 		$new->item_counts = $this->item_counts;
 
 		return $new;
@@ -476,27 +473,27 @@ class ItemCollection extends Collection {
 	public function hasSword(int $min_level = 1) {
 		switch ($min_level) {
 			case 4:
-				return $this->has('L4Sword')
-					|| $this->has('ProgressiveSword', 4);
+				return $this->has('ProgressiveSword', 4)
+					|| $this->has('L4Sword');
 			case 3:
-				return $this->has('L3Sword')
-					|| $this->has('L4Sword')
-					|| $this->has('ProgressiveSword', 3);
+				return $this->has('ProgressiveSword', 3)
+					|| $this->has('L3Sword')
+					|| $this->has('L4Sword');
 			case 2:
-				return $this->has('L2Sword')
+				return $this->has('ProgressiveSword', 2)
+					|| $this->has('L2Sword')
 					|| $this->has('MasterSword')
 					|| $this->has('L3Sword')
-					|| $this->has('L4Sword')
-					|| $this->has('ProgressiveSword', 2);
+					|| $this->has('L4Sword');
 			case 1:
 			default:
-				return $this->has('L1Sword')
+				return $this->has('ProgressiveSword')
+					|| $this->has('L1Sword')
 					|| $this->has('L1SwordAndShield')
 					|| $this->has('L2Sword')
 					|| $this->has('MasterSword')
 					|| $this->has('L3Sword')
-					|| $this->has('L4Sword')
-					|| $this->has('ProgressiveSword');
+					|| $this->has('L4Sword');
 		}
 	}
 
