@@ -780,9 +780,7 @@ class Randomizer {
 			return mt_rand(0, 0x100);
 		});
 
-		if ($this->config('sprite.shufflePrizePack', true)) {
-			$this->writePrizeShuffleToRom($rom);
-		}
+		$this->writePrizePacksToRom($rom);
 
 		if ($this->config('sprite.shuffleOverworldBonkPrizes', false)) {
 			$this->writeOverworldBonkPrizeToRom($rom);
@@ -1627,61 +1625,81 @@ class Randomizer {
 	}
 
 	/**
+	 * Get all the drops to insert into the PrizePackSlots Available, should be randomly shuffled
+	 *
+	 * @return array
+	 */
+	public function getDropsPool() {
+		$drops = [];
+
+		for ($i = 0; $i < $this->config('drop.count.Heart', 13); $i++) {
+			array_push($drops, Sprite::get('Heart'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeGreen', 9); $i++) {
+			array_push($drops, Sprite::get('RupeeGreen'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeBlue', 7); $i++) {
+			array_push($drops, Sprite::get('RupeeBlue'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeRed', 6); $i++) {
+			array_push($drops, Sprite::get('RupeeRed'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill1', 7); $i++) {
+			array_push($drops, Sprite::get('BombRefill1'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill4', 1); $i++) {
+			array_push($drops, Sprite::get('BombRefill4'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill8', 2); $i++) {
+			array_push($drops, Sprite::get('BombRefill8'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.MagicRefillSmall', 6); $i++) {
+			array_push($drops, Sprite::get('MagicRefillSmall'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.MagicRefillFull', 3); $i++) {
+			array_push($drops, Sprite::get('MagicRefillFull'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.ArrowRefill5', 5); $i++) {
+			array_push($drops, Sprite::get('ArrowRefill5'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.ArrowRefill10', 3); $i++) {
+			array_push($drops, Sprite::get('ArrowRefill10'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.Fairy', 1); $i++) {
+			array_push($drops, Sprite::get('Fairy'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BeeGood', 0); $i++) {
+			array_push($drops, Sprite::get('BeeGood'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.Bee', 0); $i++) {
+			array_push($drops, Sprite::get('Bee'));
+		}
+
+		return $drops;
+	}
+
+	/**
 	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.
 	 * this now also handles prize pull trees.
 	 *
-	 * @TODO: create sprite classes
-	 * @TODO: create prize pack classes
 	 * @TODO: move remaining writes to Rom class
 	 */
-	public function writePrizeShuffleToRom(Rom $rom) {
-		// Pack shuffle
-		$prizes = [
-			0xD8, 0xD8, 0xD8, 0xD8, 0xD9, 0xD8, 0xD8, 0xD9, // pack 1
-			0xDA, 0xD9, 0xDA, 0xDB, 0xDA, 0xD9, 0xDA, 0xDA, // pack 2
-			0xE0, 0xDF, 0xDF, 0xDA, 0xE0, 0xDF, 0xD8, 0xDF, // pack 3
-			0xDC, 0xDC, 0xDC, 0xDD, 0xDC, 0xDC, 0xDE, 0xDC, // pack 4
-			0xE1, 0xD8, 0xE1, 0xE2, 0xE1, 0xD8, 0xE1, 0xE2, // pack 5
-			0xDF, 0xD9, 0xD8, 0xE1, 0xDF, 0xDC, 0xD9, 0xD8, // pack 6
-			0xD8, 0xE3, 0xE0, 0xDB, 0xDE, 0xD8, 0xDB, 0xE2, // pack 7
-			0xD9, 0xDA, 0xDB, // from pull trees
-			0xD9, 0xDB, // from prize crab
-			0xD9, // stunned prize
-			0xDB, // saved fish prize
-		];
-		$shuffled = mt_shuffle($prizes);
+	public function writePrizePacksToRom(Rom $rom) {
+		$emptyDrops = $this->world->getEmptyDropSlots();
+		$dropsPool = mt_shuffle($this->getDropsPool());
 
-		if ($this->config('rom.rupeeBow', false)) {
-			$shuffled = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+		for($i = 0; $i < count($emptyDrops); $i++) {
+			$curDrop = $dropsPool[$i];
+			$emptyDrops[$i]->setDrop($curDrop);
 		}
 
-		if ($this->config('bees', false)) {
-			// you asked for it
-			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
-			$dig_prizes = [
-				0xB2, 0xD8, 0xD8, 0xD8,
-				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
-				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
-				0xDA, 0xDA, 0xDA, 0xB2, 0xB2,
-				0xDB, 0xDB, 0xDB, 0xB2, 0xB2,
-				0xDC, 0xDC, 0xDC, 0xB2, 0xB2,
-				0xDD, 0xDD, 0xDD, 0xB2, 0xB2,
-				0xDE, 0xDE, 0xDE, 0xB2, 0xB2,
-				0xDF, 0xDF, 0xDF, 0xB2, 0xB2,
-				0xE0, 0xE0, 0xE0, 0xB2, 0xB2,
-				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
-				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
-				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
-			];
+		$drop_bytes = array_map(function($prize) {
+			return $prize->getDrop()->getBytes()[0];
+		}, $this->world->getAllDrops());
 
-			if ($this->config('rom.rupeeBow', false)) {
-				$dig_prizes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $dig_prizes);
-			}
-
-			$rom->setOverworldDigPrizes($dig_prizes);
-		} else {
-			if ($this->config('rom.rupeeBow', false)) {
-				$rom->setOverworldDigPrizes([
+		if ($this->config('rom.rupeeBow', false)) {
+			$drop_bytes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+			$rom->setOverworldDigPrizes([
 					0xB2, 0xD8, 0xD8, 0xD8,
 					0xD8, 0xD8, 0xD8, 0xD8, 0xD8,
 					0xD9, 0xD9, 0xD9, 0xD9, 0xD9,
@@ -1696,23 +1714,22 @@ class Randomizer {
 					0xDB, 0xDB, 0xDB, 0xDB, 0xDB,
 					0xE3, 0xE3, 0xE3, 0xE3, 0xE3,
 				]);
-			}
 		}
 
+		// write to prize packs
+		$rom->write(0x37A78, pack('C*', ...array_slice($drop_bytes, 0, 56)));
+
 		// write to trees
-		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
+		$rom->setPullTreePrizes($drop_bytes[56], $drop_bytes[57], $drop_bytes[58]);
 
 		// write to prize crab
-		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
+		$rom->setRupeeCrabPrizes($drop_bytes[59], $drop_bytes[60]);
 
 		// write to stunned
-		$rom->setStunnedSpritePrize(array_pop($shuffled));
+		$rom->setStunnedSpritePrize($drop_bytes[61]);
 
 		// write to saved fish
-		$rom->setFishSavePrize(array_pop($shuffled));
-
-		// write to prize packs
-		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
+		$rom->setFishSavePrize($drop_bytes[62]);
 
 		// Sprite prize pack
 		$idat = array_values(unpack('C*', base64_decode(
@@ -1795,10 +1812,6 @@ class Randomizer {
 			Item::get('BottleWithGoldBee'),
 			Item::get('BottleWithFairy'),
 		];
-
-		if ($this->config('bees', false)) {
-			return $bottles[mt_rand(4, 5)];
-		}
 
 		return $bottles[mt_rand($filled ? 1 : 0, count($bottles) - (($this->config('rom.HardMode', 0) > 0) ? 2 : 1))];
 	}

@@ -569,7 +569,6 @@ return [
 			'BootsLocation' => false,
 		],
 		'sprite' => [
-			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
@@ -592,7 +591,6 @@ return [
 			'HardMode' => 0,
 		],
 		'sprite' => [
-			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],

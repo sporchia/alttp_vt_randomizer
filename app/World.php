@@ -21,6 +21,7 @@ class World {
 	protected $collectable_locations;
 	protected $pre_collected_items;
 	protected $currently_filling_items;
+	protected $prizepacks;
 	private $config = [];
 
 	/**
@@ -71,6 +72,20 @@ class World {
 
 		$this->locations = new LocationCollection;
 		$this->shops = new ShopCollection;
+
+		$this->prizepacks = [
+			'0' => new Drops\PrizePack('0', 8),
+			'1' => new Drops\PrizePack('1', 8),
+			'2' => new Drops\PrizePack('2', 8),
+			'3' => new Drops\PrizePack('3', 8),
+			'4' => new Drops\PrizePack('4', 8),
+			'5' => new Drops\PrizePack('5', 8),
+			'6' => new Drops\PrizePack('6', 8),
+			'pull' => new Drops\PrizePack('pull', 3),
+			'crab' => new Drops\PrizePack('crab', 2),
+			'stun' => new Drops\PrizePack('stun', 1),
+			'fish' => new Drops\PrizePack('fish', 1),
+		];
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
@@ -485,6 +500,33 @@ class World {
 	}
 
 	/**
+	 * Get all the prizes for the prize packs in this world
+	 *
+	 * @return array
+	 */
+	public function getPrizePacks() {
+		return $this->prizepacks;
+	}
+
+	/**
+	 * Get all the Locations in all Regions in this world
+	 *
+	 * @return LocationCollection
+	 */
+	public function setPrizePacks($prizes) {
+		if ($prizes == null) {
+			return;
+		}
+		if (count($prizes) != 63) {
+			return;
+		}
+		if (array_diff($prizes, ['heart', 'greenRupee', 'blueRupee', 'redRupee', 'bomb1', 'bomb4', 'bomb8', 'smallMagic', 'largeMagic', 'arrow5', 'arrow10', 'faerie'])) {
+			return;
+		}
+		$this->prizepacks = $prizepacks;
+	}
+
+	/**
 	 * Get Locations considered collectable. I.E. can contain items that Link can have.
 	 * This is cached for faster retrevial
 	 *
@@ -648,6 +690,43 @@ class World {
 	 */
 	public function getRegionsWithItem(Item $item = null) {
 		return $this->getLocationsWithItem($item)->getRegions();
+	}
+
+	/**
+	 * Set a drop in a PrizePackSlot in a given PrizePack
+	 *
+	 * @param String the prize pack to set the drop in
+	 * @param int the index of the drop to set
+	 * @param String the name of the drop to set
+	 */
+	public function setDrop($pack, $ind, $drop) {
+		$this->prizepacks[$pack]->getDrops()[$ind]->setDrop($drop);
+	}
+
+	/**
+	 * Get all the drops in the prize packs as an array
+	 *
+	 * @return array
+	 */
+	public function getAllDrops() {
+		$drops = [];
+		foreach ($this->prizepacks as $pack) {
+			$drops = array_merge($drops, $pack->getDrops());
+		}
+		return $drops;
+	}
+
+	/**
+	 * Get all the drops that are empty in the prize packs as an array
+	 *
+	 * @return array
+	 */
+	public function getEmptyDropSlots() {
+		$emptyDrops = [];
+		foreach ($this->prizepacks as $pack) {
+			$emptyDrops = array_merge($emptyDrops, $pack->getEmptyDrops());
+		}
+		return $emptyDrops;
 	}
 
 	/**

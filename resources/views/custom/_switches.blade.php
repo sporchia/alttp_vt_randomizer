@@ -35,12 +35,6 @@
 			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="Only applies to Standard Mode. If No, Uncle will always say something random. If Yes, there is a 5% chance per seed Uncle will give a hint as to the location of the boots."></span>
 		</div>
 		<div class="col-md-6 pb-5">
-			<input id="cust-sprite-shufflePrizePack" type="checkbox" name="data[alttp.custom.sprite.shufflePrizePack]"
-				class="custom-switch" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="cust-sprite-shufflePrizePack">Shuffle Prize Packs</label>
-			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, enemies will drop prizes as they do in the vanilla game at the rates they do in the vanilla game. If Yes, all prize packs will be shuffled and prize pack drop rates will be set to 50%."></span>
-		</div>
-		<div class="col-md-6 pb-5">
 			<input id="cust-sprite-shuffleOverworldBonkPrizes" type="checkbox" name="data[alttp.custom.sprite.shuffleOverworldBonkPrizes]"
 				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-sprite-shuffleOverworldBonkPrizes">Shuffle Overworld Bonk Prizes</label>
@@ -99,12 +93,6 @@
 				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-region-wildBigKeys">Big Keys shuffled outside dungeon</label>
 			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, big keys that are randomly placed will be restricted to their respective dungeons. If Yes, they will be able to be randomly placed in any item location. This does not affect manually placed big keys."></span>
-		</div>
-		<div class="col-md-6 pb-5">
-			<input id="cust-bees" type="checkbox" name="data[alttp.custom.bees]"
-				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="Not" data-size="small">
-			<label id="bees-label" for="cust-bees">the Bees</label>
-			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, there will be a normal amount of bees in the game. If Yes, swarms of bees will be shuffled into enemy prize packs."></span>
 		</div>
 		<div class="clearfix"></div>
 		<div class="col-md-6 pb-5">
@@ -197,11 +185,6 @@ $(function() {
 			}
 		}
 	});
-
-	$('#cust-bees').on('change', function() {
-		$('#bees-label').html(($(this).prop('checked')) ? 'More Bees!' : 'The Bees!');
-	});
-	$('#cust-bees').trigger('change');
 
 	localforage.getItem('vt.custom.switches').then(function(value) {
 		if (value !== null) {
