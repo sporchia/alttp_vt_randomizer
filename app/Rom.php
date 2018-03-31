@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-24';
-	const HASH = 'abd1c8babe2bddf73df8034351e0dc1e';
+	const BUILD = '2018-03-29';
+	const HASH = '2bdd11c2326b6ea8c467f8c54a896d91';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1948,7 +1948,7 @@ class Rom {
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
-				$this->setStunItems(0x01);
+				$this->setStunItems(0x02);
 				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(10);
@@ -2187,6 +2187,51 @@ class Rom {
 	public function setEscapeFills(int $flags = 0x00, int $rupees = 300) : self {
 		$this->write(0x18004E, pack('C*', $flags));
 		$this->write(0x180183, pack('S*', $rupees));
+
+		return $this;
+	}
+
+	/**
+	 * Set Uncle Refills on respawn
+	 *
+	 * @param int $magic
+	 * @param int $bombs
+	 * @param int $arrows
+	 *
+	 * @return $this
+	 */
+	public function setUncleSpawnRefills(int $magic = 0x00, int $bombs = 0x00, int $arrows = 0x00) : self {
+		$this->write(0x180185, pack('C*', $magic, $bombs, $arrows));
+
+		return $this;
+	}
+
+	/**
+	 * Set Zelda Cell Refills on respawn
+	 *
+	 * @param int $magic
+	 * @param int $bombs
+	 * @param int $arrows
+	 *
+	 * @return $this
+	 */
+	public function setZeldaSpawnRefills(int $magic = 0x00, int $bombs = 0x00, int $arrows = 0x00) : self {
+		$this->write(0x180188, pack('C*', $magic, $bombs, $arrows));
+
+		return $this;
+	}
+
+	/**
+	 * Set Mantle Refills on respawn
+	 *
+	 * @param int $magic
+	 * @param int $bombs
+	 * @param int $arrows
+	 *
+	 * @return $this
+	 */
+	public function setMantleSpawnRefills(int $magic = 0x00, int $bombs = 0x00, int $arrows = 0x00) : self {
+		$this->write(0x18018B, pack('C*', $magic, $bombs, $arrows));
 
 		return $this;
 	}
