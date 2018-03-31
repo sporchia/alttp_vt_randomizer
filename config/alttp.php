@@ -646,6 +646,7 @@ return [
 				'ohko' => 'OHKO',
 				'triforce-hunt' => 'Triforce Piece Hunt',
 				'key-sanity' => 'Key-sanity',
+				'retro' => 'Retro',
 			],
 		],
 		'item' => [
