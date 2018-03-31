@@ -47,9 +47,13 @@
 				<span class="input-group-addon">Heart Color</span>
 				<select id="heart-color" class="form-control selectpicker">
 					<option value="blue">Blue</option>
+					<option value="navy">Navy</option>
 					<option value="green">Green</option>
 					<option value="red" selected>Red</option>
+					<option value="redgold">Red w/Gold Outline</option>
+					<option value="orange">Orange</option>
 					<option value="yellow">Yellow</option>
+					<option value="grey">Grey</option>
 				</select>
 			</div>
 		</div>

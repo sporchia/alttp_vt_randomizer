@@ -228,22 +228,39 @@ var ROM = (function(blob, loaded_callback) {
 	this.setHeartColor = function(color_on) {
 		return new Promise(function(resolve, reject) {
 			switch (color_on) {
-				case 'blue':
-					byte = 0x2C;
-					file_byte = 0x0D;
-					break;
-				case 'green':
-					byte = 0x3C;
-					file_byte = 0x19;
-					break;
-				case 'yellow':
-					byte = 0x28;
-					file_byte = 0x09;
+				case 'orange':
+					byte = 0x20;
+					file_byte = 0x01;
 					break;
 				case 'red':
 				default:
 					byte = 0x24;
 					file_byte = 0x05;
+					break;
+				case 'yellow':
+					byte = 0x28;
+					file_byte = 0x09;
+					break;
+				case 'blue':
+					byte = 0x2C;
+					file_byte = 0x0D;
+					break;
+				case 'grey':
+					byte = 0x30;
+					file_byte = 0x11;
+					break;
+				case 'redgold':
+					byte = 0x34;
+					file_byte = 0x15;
+					break;
+				case 'navy':
+					byte = 0x38;
+					file_byte = 0x1D;
+					break;
+				case 'green':
+					byte = 0x3C;
+					file_byte = 0x19;
+					break;
 			}
 			this.write(0x6FA1E, byte);
 			this.write(0x6FA20, byte);
