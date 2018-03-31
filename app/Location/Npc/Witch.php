@@ -25,6 +25,8 @@ class Witch extends Npc {
 				return "shrooms find secrets";
 			case Item\Compass::class:
 				return "shrooms for navigation";
+			case Item\Egg::class:
+				return "shrooms for eggs";
 		}
 
 		switch ($this->item) {

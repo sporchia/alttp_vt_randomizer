@@ -15,7 +15,6 @@ require('bootstrap-slider');
 require('select2');
 window.SparkMD5 = require('./spark-md5');
 window.localforage = require('localforage');
-window.secrets = require('konami-js');
 window.jszip = require('jszip');
 window.FileSaver = require('file-saver');
 window.ROM = require('./rom.js');

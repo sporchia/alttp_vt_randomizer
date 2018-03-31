@@ -13,6 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.1.0",
+        "ext-bcmath": "*",
         "doctrine/dbal": "^2.5",
         "ezyang/htmlpurifier": "^4.9",
         "graham-campbell/markdown": "^9.0",
@@ -24,7 +25,7 @@
         "sentry/sentry": "^1.8",
         "sentry/sentry-laravel": "^0.8.0",
         "z3/enemizer": "6.0.22",
-        "z3/entrancerandomizer": "0.6.0"
+        "z3/entrancerandomizer": "0.6.1"
     },
     "require-dev": {
         "sami/sami": "*",
@@ -52,11 +53,11 @@
             "type": "package",
             "package": {
                 "name": "z3/entrancerandomizer",
-                "version": "0.6.0",
+                "version": "0.6.1",
                 "source": {
                     "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
                     "type": "git",
-                    "reference": "tags/0.6.0"
+                    "reference": "tags/0.6.1"
                 }
             }
         }

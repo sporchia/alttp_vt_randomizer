@@ -554,6 +554,8 @@
 			to Take-Any Caves where players are given a choice between a Heart Container or Blue
 			Potion refill. The Heart Containers have not been moved from the general item pool and
 			bonus ones. However, you will not be able to have more than 20 hearts at once.</p>
+		<p>One random single-entrace cave will contain a mysterious yet familiar old man with a sword
+			 upgrade. This sword upgrade takes the place of one in the item pool.</p>
 	</div>
 </div>
 

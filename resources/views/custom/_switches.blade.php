@@ -66,7 +66,7 @@
 		</div>
 		<div class="col-md-6 pb-5">
 			<input id="cust-rom-freeItemMenu" type="checkbox" name="data[alttp.custom.rom.freeItemMenu]"
-				class="custom-switch" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
+				class="custom-switch" value="15" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
 			<label for="cust-rom-freeItemMenu">Show dungeon item table in menu</label>
 			<span class="glyphicon glyphicon-info-sign cust-tooltip" data-toggle="tooltip" title="If No, the menu will behave as it does in the vanilla game. If Yes, key collection information will be displayed at the bottom of the item menu."></span>
 		</div>

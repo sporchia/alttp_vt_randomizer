@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.6.0';
+	const VERSION = '0.6.1';
 	private $spoiler;
 	private $patch;
 	protected $shuffle;
@@ -38,6 +38,7 @@ class EntranceRandomizer extends Randomizer {
 		$this->timer_mode = 'none';
 		$this->seed = new Seed;
 		$this->keysanity = false;
+		$this->retro = false;
 
 		switch ($this->variation) {
 			case 'timed-race':
@@ -55,6 +56,9 @@ class EntranceRandomizer extends Randomizer {
 			case 'key-sanity':
 				$this->keysanity = true;
 				break;
+			case 'retro':
+				$this->retro = true;
+				break;
 		}
 	}
 
@@ -68,6 +72,10 @@ class EntranceRandomizer extends Randomizer {
 		if ($this->keysanity) {
 			$keysanity_flag = ' --keysanity';
 		}
+		$retro_flag = '';
+		if ($this->retro) {
+			$retro_flag = ' --retro';
+		}
 
 		$proc = new Process('python3 '
 			. base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py')
@@ -77,6 +85,7 @@ class EntranceRandomizer extends Randomizer {
 			. ' --shuffle ' .  $this->shuffle
 			. ' --timer ' . $this->timer_mode
 			. $keysanity_flag
+			. $retro_flag
 			. ' --seed ' . $rng_seed
 			. ' --jsonout --loglevel error');
 

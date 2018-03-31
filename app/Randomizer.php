@@ -21,6 +21,7 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	protected $starting_equipment;
+	private $config = [];
 	static protected $logic_array = [
 		0x23, 0xCD, 0xB6, 0xA5, 0xEC, 0xF8, 0xC1, 0x80,0x8B, 0x53, 0x88, 0xA8, 0xB9, 0x22, 0xD9, 0x29,
 		0xC4, 0x52, 0xBA, 0xD7, 0xC2, 0xE0, 0x43, 0x2B,0x0D, 0x9F, 0x66, 0x7A, 0x98, 0xDA, 0xBC, 0x05,
@@ -193,6 +194,10 @@ class Randomizer {
 			}
 		}
 
+		if (config('game-mode') == 'open') {
+			$this->starting_equipment->addItem(Item::get('RescueZelda'));
+		}
+
 		// take out all the swords and silver arrows
 		$nice_items_swords = [];
 		$nice_items_bottles = [];
@@ -238,15 +243,25 @@ class Randomizer {
 				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
-			if ($this->config('mode.weapons') == 'uncle') {
-				$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
-			} else {
-				array_push($advancement_items, array_pop($nice_items_swords));
+			if (count($nice_items_swords)) {
+				if ($this->config('mode.weapons') == 'uncle') {
+					$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
+					if ($uncle_item !== null && !$uncle_item instanceof Item\Sword) {
+						throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
+					}
+					if ($uncle_item === null) {
+						$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
+					}
+				} else {
+					array_push($advancement_items, array_pop($nice_items_swords));
+				}
 			}
 
-			if ($this->config('region.takeAnys', false)) {
-				array_pop($nice_items_swords);
-				array_push($trash_items, Item::get('TwentyRupees'));
+			if (count($nice_items_swords)) {
+				if ($this->config('region.takeAnys', false)) {
+					array_pop($nice_items_swords);
+					array_push($trash_items, Item::get('TwentyRupees'));
+				}
 			}
 
 			$nice_items = array_merge($nice_items, $nice_items_swords);
@@ -306,7 +321,7 @@ class Randomizer {
 		$filler = Filler::factory('RandomAssumed', $this->world);
 
 		// mess with the junk fill
-		if ($this->goal == 'triforce-hunt') {
+		if ($this->goal == 'triforce-hunt' || $this->goal == 'pedestal') {
 			$filler->setGanonJunkLimits(15, 50);
 		}
 		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
@@ -540,7 +555,8 @@ class Randomizer {
 
 			$old_man->setActive(true);
 			$old_man->setShopkeeper('old_man');
-			$old_man->addInventory(0, Item::get('ProgressiveSword'), 0);
+			$old_man->addInventory(0, ($this->config('mode.weapons') == 'swordless') ? Item::get('ThreeHundredRupees')
+				: Item::get('ProgressiveSword'), 0);
 		}
 
 		$shops->filter(function($shop) {
@@ -580,7 +596,8 @@ class Randomizer {
 			$i = 0;
 			foreach ($this->starting_equipment as $item) {
 				if ($item instanceof Item\Upgrade\Arrow
-					|| $item instanceof Item\Upgrade\Bomb) {
+					|| $item instanceof Item\Upgrade\Bomb
+					|| $item instanceof Item\Event) {
 					continue;
 				}
 
@@ -651,11 +668,15 @@ class Randomizer {
 	 *
 	 * @return mixed
 	 */
-	public function config($key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-			config("alttp.goals.{$this->goal}.$key",
+	public function config(string $key, $default = null) {
+		if (!array_key_exists($key, $this->config)) {
+			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
 				config("alttp.{$this->difficulty}.$key",
-					config("alttp.$key", $default))));
+					config("alttp.goals.{$this->goal}.$key",
+						config("alttp.$key", null))));
+		}
+
+		return $this->config[$key] ?? $default;
 	}
 
 	/**
@@ -896,7 +917,8 @@ class Randomizer {
 			"saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
 			"sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
 			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
-			"sharshalah", "shahabadoo", "sassafrass",
+			"sharshalah", "shahabadoo", "sassafrass", "saddlebags", "sandalwood", "shagadelic", "sandcastle",
+			"saltpeters", "shabbiness",
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
@@ -907,6 +929,7 @@ class Randomizer {
 			"double lumberman",
 			"lumberclones",
 			"woodfellas",
+			"dos axes",
 		])));
 
 		switch (mt_rand(0, 1)) {
@@ -931,7 +954,7 @@ class Randomizer {
 			"venus. queen of faeries",
 			"Venus was her name",
 			"I'm your Venus",
-			"Yeah, baby, shes got it",
+			"Yeah, baby, she's got it",
 			"Venus, I'm your fire",
 			"Venus, At your desire",
 		])));
@@ -970,8 +993,8 @@ class Randomizer {
 				"I'm going to\ngo watch the\nMoth tutorial.",
 				"This seed is\nthe worst.",
 				"Chasing tail.\nFly ladies.\nDo not follow.",
-				"I feel like\nI've done this\nbefore...",
-				"Magic cape can\npass through\nthe barrier!",
+				"I feel like\nI've done this\nbefore…",
+				"Magic Cape can\npass through\nthe barrier!",
 				"If this is a\nKanzeon seed,\nI'm quitting.",
 				"I am not your\nreal uncle.",
 				"You're going\nto have a very\nbad time.",
@@ -993,10 +1016,10 @@ class Randomizer {
 				"RED MAIL\nIS FOR\nCOWARDS.",
 				"HEY!\n\nLISTEN!",
 				"Well\nexcuuuuuse me,\nprincess!",
-				"5,000 Rupee\nreward for >\nYou're boned",
+				"5,000 Rupee\nreward for >\nYou're boned.",
 				"Welcome to\nStoops Lonk's\nHoose",
 				"Erreur de\ntraduction.\nsvp reessayer",
-				"I could beat\nit in an hour\nand one life",
+				"I could beat\nit in an hour\nand one life.",
 				"I thought this\nwas open mode?",
 			])));
 		}
@@ -1018,40 +1041,40 @@ class Randomizer {
 
 		$rom->setBlindTextString(array_first(mt_shuffle([
 			"I hate insect\npuns, they\nreally bug me.",
-			"I haven't seen\nthe eye doctor\nin years",
-			"I don't see\nyou having a\nbright future",
+			"I haven't seen\nthe eye doctor\nin years.",
+			"I don't see\nyou having a\nbright future.",
 			"Are you doing\na blind run\nof this game?",
-			"pizza joke? no\nI think it's a\nbit too cheesy",
+			"Pizza joke? No\nI think it's a\nbit too cheesy",
 			"A novice skier\noften jumps to\ncontusions.",
-			"the beach?\nI'm not shore\nI can make it.",
+			"The beach?\nI'm not shore\nI can make it.",
 			"Rental agents\noffer quarters\nfor dollars.",
 			"I got my tires\nfixed for a\nflat rate.",
-			"New lightbulb\ninvented?\nEnlighten me.",
+			"New light bulb\ninvented?\nEnlighten me.",
 			"A baker's job\nis a piece of\ncake.",
 			"My optometrist\nsaid I have\nvision!",
-			"when you're a\nbaker, don't\nloaf around",
-			"mire requires\nether quake,\nor bombos",
+			"When you're a\nbaker, don't\nloaf around.",
+			"Mire requires\nEther Quake,\nor Bombos.",
 			"Broken pencils\nare pointless.",
-			"The food they\nserve guards\nlasts sentries",
-			"being crushed\nby big objects\nis depressing.",
+			"The food they\nserve guards\nlasts sentries.",
+			"Being crushed\nby big objects\nis depressing.",
 			"A tap dancer's\nroutine runs\nhot and cold.",
-			"A weeknight is\na tiny\nnobleman",
+			"A weeknight is\na tiny\nnobleman.",
 			"The chimney\nsweep wore a\nsoot and tye.",
 			"Gardeners like\nto spring into\naction.",
-			"bad at nuclear\nphysics. I\nGot no fission",
+			"Bad at nuclear\nphysics. I\nGot no fission",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
-			"What do you\ncall a blind\ndinosaur?\nadoyouthink-\nhesaurus\n",
-			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.\n",
-			"What do ducks\nlike to eat?\n\nQuackers!\n",
-			"How do you\nset up a party\nin space?\n\nYou planet!\n",
-			"I'm glad I\nknow sign\nlanguage,\nit's pretty\nhandy.\n",
-			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
+			"What do you\ncall a blind\ndinosaur?\na doyouthink-\nhesaurus.",
+			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.",
+			"What do ducks\nlike to eat?\n\nQuackers!",
+			"How do you\nset up a party\nin space?\n\nYou planet!",
+			"I'm glad I\nknow sign\nlanguage.\nIt's pretty\nhandy.",
+			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!",
 			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
 			"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
-			"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!\n",
-			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!\n",
+			"What's the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!",
+			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!",
 			"If you haven't\nfound Quake\nyet…\nit's not your\nfault.",
 			"Why is Peter\nPan always\nflying?\nBecause he\nNeverlands!",
 			"I once told a\njoke to Armos.\n\nBut he\nremained\nstone-faced!",
@@ -1072,36 +1095,36 @@ class Randomizer {
 			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
 			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBar exam!",
 			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
-			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
+			"Don't tell\nStalfos I'm\nhere.\nHe has a bone\nto pick with\nme!",
 			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
 			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
 			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
 			"I was sharing\na drink with\nPoe.\nFor no reason,\nhe left in a\nheartbeat!",
-			"Don’t trust\nhorsemen on\nDeath Mountain\nThey’re Lynel\nthe time!",
+			"Don't trust\nhorsemen on\nDeath Mountain.\nThey're Lynel\nthe time!",
 			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
-			"Don’t walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
+			"Don't walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
 			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
-			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
+			"Geldman wants\nto be a\nBroadway star.\nHe's always\npracticing\nJazz Hands!",
 			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
 			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
 			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
-			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
-			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
+			"Know that fox\nin Steve's\nTown?\nHe'll Pikku\npockets if you\naren't careful",
+			"Dash through\nDark World\nbushes.\nYou'll see\nGanon is tryin\nto Stal you!",
 			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
 			"I like my\nwhiskey neat.\n\nSome prefer it\nOctoroks!",
 			"I consoled\nFreezor over a\ncup of coffee.\nHis problems\njust seemed to\nmelt away!",
-			"Magic droplets\nof water don’t\nshut up.\nThey just\nKyameron!",
+			"Magic droplets\nof water don't\nshut up.\nThey just\nKyameron!",
 			"I bought hot\nwings for\nSluggula.\nThey gave him\nexplosive\ndiarrhea!",
-			"Hardhat Beetle\nwon’t\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
+			"Hardhat Beetle\nwon't\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
 		])));
 
 		$rom->setGanon1TextString(array_first(mt_shuffle([
-			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
-			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
-			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurrect me.",
-			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nback off buddy",
+			"Start your day\nsmiling with a\ndelicious\nwhole grain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
+			"You drove\naway my other\nself, Agahnim,\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
+			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nYour blood can\nresurrect me.",
+			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nBack off buddy",
 			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
-			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
+			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\n,or tentacles,\non their head.",
 			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
 			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
 			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
@@ -1111,18 +1134,18 @@ class Randomizer {
 			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
 			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
 			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
-			"Thanks for\ndropping in,\nthe first\npassengers\nin a hot\nair balloon.\nwere a duck,\na sheep,\nand a rooster.",
-			"You think you\nare so smart?\n\nI bet you\ndidn't know\nYou can't hum\nwhile holding\nyour nose\nclosed.",
-			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously you\nwere supposed\nto bring food",
-			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the dark\nworld!\n\nOr else you\nwill die!",
+			"Thanks for\ndropping in.\nThe first\npassengers\nin a hot\nair balloon\nwere a duck,\na sheep,\nand a rooster.",
+			"You think you\nare so smart?\n\nI bet you\ndidn't know\nyou can't hum\nwhile holding\nyour nose\nclosed.",
+			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously, you\nwere supposed\nto bring food.",
+			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the Dark\nWorld!\n\nOr else you\nwill die!",
 		])));
 
 		switch ($this->goal) {
 			case 'pedestal':
-				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nit's on the\npedestal.\n\nYou dingus\n");
+				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nIt's on the\npedestal.\n\nYou dingus!\n");
 				break;
 			case 'triforce-hunt':
-				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\ntriforce\npieces well.\nWithout them\nyou can't win!");
+				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\nTriforce\npieces well.\nWithout them,\nyou can't win!");
 				break;
 			default:
 				$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
@@ -1136,7 +1159,7 @@ class Randomizer {
 		}
 
 		if (!$silver_arrows_location) {
-			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes");
+			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes?");
 		} else {
 			switch ($silver_arrows_location->getRegion()->getName()) {
 				case "Ganons Tower":
@@ -1151,7 +1174,7 @@ class Randomizer {
 		$rom->setTriforceTextString(array_first(mt_shuffle([
 			"\n     G G",
 			"All your base\nare belong\nto us.",
-			"You have ended\nthe domination\nof dr. wily",
+			"You have ended\nthe domination\nof Dr. Wily",
 			"  thanks for\n  playing!!!",
 			"\n   You Win!",
 			"  Thank you!\n  your quest\n   is over.",
@@ -1733,6 +1756,9 @@ class Randomizer {
 			case 3:
 			case 2:
 				list($low, $high) = [2, 2]; // 25%
+				break;
+			case -1:
+				list($low, $high) = [0, 0]; // 100%
 				break;
 			case 1:
 			default:

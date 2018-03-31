@@ -5,12 +5,26 @@
 @include('_rom_spoiler')
 
 @section('content')
+<div class="col-md-12 handwritten prose">
+	<p>
+		It's time for all heroes in Hyrule to break out the Easter baskets, because it's egg hunting season!
+		Help Link find as many colorful eggs in this egg-citing new holiday mode! You'll have one hour to
+		find as many eggs as possible, so hop to it! Find eggs in chests or in take-any caves, and watch
+		out for those pesky bunnies!
+	</p>
+	<h3 class="pull-right">- WalkingEye, Zarby89, and Veetorp</h3>
+</div>
+
+<div class="clearfix pb-5"></div>
 @yield('loader')
-<div id="seed-generate" class="panel panel-info" style="display:none">
+<div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Entrance Randomizer ({!! ALttP\EntranceRandomizer::VERSION !!})</h3>
+		<h3 class="panel-title pull-left alternate-color handwritten" style="font-size:20px">
+			<span>F</span><span>e</span><span>s</span><span>t</span><span>i</span><span>v</span><span>e</span>
+			<span>I</span><span>t</span><span>e</span><span>m</span>
+			<span>R</span><span>a</span><span>n</span><span>d</span><span>o</span><span>m</span><span>i</span><span>z</span><span>e</span><span>r</span>
+		</h3>
 		<div class="btn-toolbar pull-right">
-			<a class="btn btn-default" href="/randomizer">Switch to Item Randomizer <span class="glyphicon glyphicon-expand"></span></a>
 			@yield('rom-settings-button')
 		</div>
 		<div class="clearfix"></div>
@@ -20,9 +34,9 @@
 		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Mode</span>
+					<span class="input-group-addon">State</span>
 					<select id="mode" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.entrance.modes') as $mode => $name)
+						@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
 							<option value="{{ $mode }}">{{ $name }}</option>
 						@endforeach
 					</select>
@@ -32,9 +46,30 @@
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Logic</span>
 					<select id="logic" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.entrance.logics') as $logic => $name)
+						@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
 							<option value="{{ $logic }}">{{ $name }}</option>
 						@endforeach
+					</select>
+				</div>
+				<div class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Swords</span>
+					<select id="weapons" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.weapons') as $mode => $name)
+							<option value="{{ $mode }}">{{ $name }}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Goal</span>
+					<select id="goal" class="form-control selectpicker">
+						<option value="collect-eggs">Egg Hunt</option>
 					</select>
 				</div>
 			</div>
@@ -42,20 +77,22 @@
 		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Goal</span>
-					<select id="goal" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.entrance.goals') as $goal => $name)
-							<option value="{{ $goal }}">{{ $name }}</option>
+					<span class="input-group-addon">Difficulty</span>
+					<select id="difficulty" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.difficulties') as $difficulty => $name)
+							<option value="{{ $difficulty }}">{{ $name }}</option>
 						@endforeach
 					</select>
 				</div>
 			</div>
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Difficulty</span>
-					<select id="difficulty" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.entrance.difficulties') as $difficulty => $name)
-							<option value="{{ $difficulty }}">{{ $name }}</option>
+					<span class="input-group-addon">Variation</span>
+					<select id="variation" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.variations') as $variation => $name)
+						@if (!in_array($variation, ['retro', 'timed-ohko', 'timed-race', 'ohko']))
+							<option value="{{ $variation }}">{{ $name }}</option>
+						@endif
 						@endforeach
 					</select>
 				</div>
@@ -69,28 +106,6 @@
 					<span class="input-group-btn">
 						<button id="seed-clear" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button>
 					</span>
-				</div>
-			</div>
-			<div class="col-md-6 pb-5">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Variation</span>
-					<select id="variation" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.entrance.variations') as $variation => $name)
-							<option value="{{ $variation }}">{{ $name }}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 pb-5">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Shuffle</span>
-					<select id="shuffle" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.entrance.shuffles') as $shuffle => $name)
-							<option value="{{ $shuffle }}">{{ $name }}</option>
-						@endforeach
-					</select>
 				</div>
 			</div>
 		</div>
@@ -136,14 +151,15 @@
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
 	<input type="hidden" name="variation" value="none" />
-	<input type="hidden" name="mode" value="open" />
-	<input type="hidden" name="goal" value="ganon" />
-	<input type="hidden" name="shuffle" value="full" />
+	<input type="hidden" name="mode" value="standard" />
+	<input type="hidden" name="goal" value="collect-eggs" />
+	<input type="hidden" name="weapons" value="randomized" />
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />
 	<input type="hidden" name="debug" value="false" />
 	<input type="hidden" name="tournament" value="false" />
+	<input type="hidden" name="special" value="true" />
 </form>
 
 <script>
@@ -164,11 +180,7 @@ function applySeed(rom, seed, second_attempt) {
 			});
 	}
 	return new Promise(function(resolve, reject) {
-		$.post('/entrance/seed' + (seed ? '/' + seed : ''), getFormData($('form#config')), function(patch) {
-			if (patch.current_rom_hash && patch.current_rom_hash != current_rom_hash) {
-				// The base rom has been updated, refresh browser!
-				window.location.reload(true);
-			}
+		$.post('/seed' + (seed ? '/' + seed : ''), getFormData($('form#config')), function(patch) {
 			rom.parsePatch(patch.patch).then(getSprite($('#sprite-gfx').val())
 			.then(rom.parseSprGfx)
 			.then(rom.setMusicVolume($('#generate-music-on').prop('checked')))
@@ -221,11 +233,12 @@ function seedApplied(data) {
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
-		rom.variation = data.patch.spoiler.meta.variation;
+		rom.weapons = data.patch.spoiler.meta.weapons;
 		rom.difficulty = data.patch.difficulty;
+		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
-		rom.shuffle = data.patch.spoiler.meta.shuffle;
 		rom.spoiler = data.patch.spoiler;
+		rom.special = data.patch.spoiler.meta.special;
 		$('button[name=save], button[name=save-spoiler]').show().prop('disabled', false);
 		resolve(rom);
 	});
@@ -238,6 +251,7 @@ $(function() {
 	$('.spoiler-toggle').on('click', function() {
 		$(this).next().animate({height: 'toggle'});
 		if ($(this).find('span').hasClass('glyphicon-plus')) {
+			$.get("/spoiler_click/" + rom.seed);
 			$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
 		} else {
 			$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
@@ -246,9 +260,9 @@ $(function() {
 	$('#difficulty').on('change', function() {
 		$('.info').hide();
 		$('input[name=difficulty]').val($(this).val());
-		localforage.setItem('vt.er.difficulty', $(this).val());
+		localforage.setItem('rom.difficulty', $(this).val());
 	});
-	localforage.getItem('vt.er.difficulty').then(function(value) {
+	localforage.getItem('rom.difficulty').then(function(value) {
 		if (!value) {
 			value = 'normal';
 		}
@@ -261,61 +275,27 @@ $(function() {
 		var variation = $(this).val();
 		var goal = $('#goal').val();
 		$('input[name=variation]').val(variation);
-		localforage.setItem('vt.er.variation', variation);
-		if (variation === 'triforce-hunt' && goal !== 'triforce-hunt') {
-			$('#goal').val('triforce-hunt');
-			$('#goal').trigger('change');
-		} else if (variation !== 'triforce-hunt' && goal === 'triforce-hunt') {
-			$('#goal').val('ganon');
-			$('#goal').trigger('change');
-		}
+		localforage.setItem('rom.variation', variation);
 	});
-	localforage.getItem('vt.er.variation').then(function(value) {
+	localforage.getItem('rom.variation').then(function(value) {
 		if (!value) return;
 		$('#variation').val(value);
 		$('#variation').trigger('change');
 	});
 
-	$('#shuffle').on('change', function() {
-		$('.info').hide();
-		$('input[name=shuffle]').val($(this).val());
-		localforage.setItem('vt.er.shuffle', $(this).val());
-	});
-	localforage.getItem('vt.er.shuffle').then(function(value) {
-		if (!value) {
-			value = 'full';
-		}
-		$('#shuffle').val(value);
-		$('#shuffle').trigger('change');
-	});
-
 	$('button[name=save]').on('click', function() {
-		return rom.save('ER_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.sfc');
+		return rom.save(rom.downloadFilename()+ '.sfc');
 	});
 	$('button[name=save-spoiler]').on('click', function() {
-		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), 'ER_' + rom.logic
-			+ '_' + rom.difficulty
-			+ '-' + rom.mode
-			+ '-' + rom.goal
-			+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-			+ '_' + rom.seed + '.txt');
+		$.get("/spoiler_click/" + rom.seed);
+		return FileSaver.saveAs(new Blob([$('.spoiler-text pre').html()]), rom.downloadFilename() + '.txt');
 	});
 
 	$('button[name=generate-save]').on('click', function() {
 		applySeed(rom, $('#seed').val())
 			.then(seedApplied, seedFailed)
 			.then(function(rom) {
-				return rom.save('ER_' + rom.logic
-					+ '_' + rom.difficulty
-					+ '-' + rom.mode
-					+ '-' + rom.goal
-					+ (rom.variation == 'none' ? '' : '_' + rom.variation)
-					+ '_' + rom.seed + '.sfc');
+				return rom.save(rom.downloadFilename()+ '.sfc');
 			});
 	});
 
@@ -335,45 +315,46 @@ $(function() {
 	});
 
 	$('#logic').on('change', function() {
+		var value = $(this).val();
 		$('.info').hide();
-		localforage.setItem('vt.er.logic', $(this).val());
-		$('input[name=logic]').val($(this).val());
+		if (value == 'NoMajorGlitches') {
+			$('.logic-warning').hide();
+		} else {
+			$('.logic-warning').show();
+		}
+		localforage.setItem('rom.logic', value);
+		$('input[name=logic]').val(value);
 	});
-	localforage.getItem('vt.er.logic').then(function(value) {
-		if (value === null) return;
-		$('#logic').val(value);
+
+	localforage.getItem('rom.logic').then(function(value) {
+		if (value !== null) {
+			$('#logic').val(value);
+		}
 		$('#logic').trigger('change');
 	});
 
 	$('#mode').on('change', function() {
 		$('.info').hide();
-		localforage.setItem('vt.er.mode', $(this).val());
+		localforage.setItem('rom.mode', $(this).val());
 		$('input[name=mode]').val($(this).val());
 	});
-	localforage.getItem('vt.er.mode').then(function(value) {
+	localforage.getItem('rom.mode').then(function(value) {
 		if (value === null) return;
 		$('#mode').val(value);
 		$('#mode').trigger('change');
 	});
 
-	$('#goal').on('change', function() {
+	$('#weapons').on('change', function() {
 		$('.info').hide();
-		var goal = $(this).val();
-		var variation = $('#variation').val();
-		localforage.setItem('vt.er.goal', goal);
-		$('input[name=goal]').val(goal);
-		if (goal === 'triforce-hunt' && variation !== 'triforce-hunt') {
-			$('#variation').val('triforce-hunt');
-			$('#variation').trigger('change');
-		} else if (goal !== 'triforce-hunt' && variation === 'triforce-hunt') {
-			$('#variation').val('none');
-			$('#variation').trigger('change');
-		}
+		localforage.setItem('rom.weapons', $(this).val());
+		$('input[name=weapons]').val($(this).val());
 	});
-	localforage.getItem('vt.er.goal').then(function(value) {
-		if (value === null) return;
-		$('#goal').val(value);
-		$('#goal').trigger('change');
+	localforage.getItem('rom.weapons').then(function(value) {
+		if (!value) {
+			value = 'uncle';
+		}
+		$('#weapons').val(value);
+		$('#weapons').trigger('change');
 	});
 
 	$('#seed-clear').on('click', function() {
@@ -401,9 +382,10 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				var fname = 'ER_' + data.patch.logic
+				var fname = 'ALttP - VT_' + data.patch.logic
 					+ '_' + data.patch.difficulty
 					+ '-' + data.patch.spoiler.meta.mode
+					+ (data.patch.spoiler.meta.weapons ? '-' + data.patch.spoiler.meta.weapons : '')
 					+ '-' + data.patch.spoiler.meta.goal
 					+ (data.patch.spoiler.meta.variation == 'none' ? '' : '_' + data.patch.spoiler.meta.variation)
 					+ '_' + data.patch.seed;

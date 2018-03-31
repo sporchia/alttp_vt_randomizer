@@ -191,11 +191,25 @@ h4, .h4, h5, .h5 {
 	padding: 25px;
 }
 
-.alternate-color span:nth-of-type(even) {
-	color: green;
+.alternate-color span {
+	font-weight: bold;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
-.alternate-color span:nth-of-type(odd) {
-	color: red;
+.alternate-color span:nth-of-type(4n) {
+	color: #e1f7d5;
+}
+.alternate-color span:nth-of-type(4n + 1) {
+	color: #ffbdbd;
+}
+.alternate-color span:nth-of-type(4n + 2) {
+	color: #c9c9ff;
+}
+.alternate-color span:nth-of-type(4n + 3) {
+	color: #f1cbff;
 }
 
 @-webkit-keyframes pulse {

@@ -25,6 +25,8 @@ class HauntedGrove extends Dig {
 				return "map boy navigates again";
 			case Item\Compass::class:
 				return "compass boy finds boss again";
+			case Item\Egg::class:
+				return "egg boy paints again";
 		}
 
 		switch ($this->item) {

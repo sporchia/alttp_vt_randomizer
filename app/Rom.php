@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-03-15';
-	const HASH = '7e64799c938ff57adcb151066fab5da5';
+	const BUILD = '2018-03-29';
+	const HASH = '2bdd11c2326b6ea8c467f8c54a896d91';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -810,6 +810,9 @@ class Rom {
 				break;
 			case 'countdown-stop':
 				$bytes = [0x01, 0x00];
+				break;
+			case 'countdown-end':
+				$bytes = [0x01, 0x03];
 				break;
 			case 'off':
 			default:
@@ -1919,6 +1922,7 @@ class Rom {
 		$this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
 
 		switch ($level) {
+			case -1:
 			case 0:
 				// Cape magic
 				$this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
@@ -1944,7 +1948,7 @@ class Rom {
 				$this->setShopRedShieldCost(999);
 				$this->setCatchableFairies(false);
 				$this->setCatchableBees(true);
-				$this->setStunItems(0x01);
+				$this->setStunItems(0x02);
 				$this->setSilversOnlyAtGanon(true);
 
 				$this->setRupoorValue(10);
@@ -2108,14 +2112,14 @@ class Rom {
 	 * @return $this
 	 */
 	public function setRupeeArrow(bool $enable = false) : self {
+		$this->write(0x30052, pack('C*', $enable ? 0xDB : 0xE2)); // fish bottle merchant
 		$this->write(0x301FC, pack('C*', $enable ? 0xDA : 0xE1)); // replace Pot rupees
 		$this->write(0xECB4E, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // thief
 		$this->write(0xF0D96, $enable ? pack('C*', 0xA9, 0x00, 0xEA, 0xEA) : pack('C*', 0xAF, 0x77, 0xF3, 0x7E)); // pikit
 		$this->write(0x180175, pack('C*', $enable ? 0x01 : 0x00)); // enable mode
 		$this->write(0x180176, pack('S*', $enable ? 0x0A : 0x00)); // wood cost
 		$this->write(0x180178, pack('S*', $enable ? 0x32 : 0x00)); // silver cost
-		$this->write(0xEDA1, $enable ? pack('C*', 0x40, 0x41, 0x34, 0x42, 0x35, 0x41, 0x27, 0x17)
-			: pack('C*', 0x40, 0x41, 0x34, 0x42, 0x43, 0x44, 0x27, 0x17)); // DW chest game
+		$this->write(0xEDA5, $enable ? pack('C*', 0x35, 0x41) : pack('C*', 0x43, 0x44)); // DW chest game
 
 		return $this;
 	}
@@ -2183,6 +2187,51 @@ class Rom {
 	public function setEscapeFills(int $flags = 0x00, int $rupees = 300) : self {
 		$this->write(0x18004E, pack('C*', $flags));
 		$this->write(0x180183, pack('S*', $rupees));
+
+		return $this;
+	}
+
+	/**
+	 * Set Uncle Refills on respawn
+	 *
+	 * @param int $magic
+	 * @param int $bombs
+	 * @param int $arrows
+	 *
+	 * @return $this
+	 */
+	public function setUncleSpawnRefills(int $magic = 0x00, int $bombs = 0x00, int $arrows = 0x00) : self {
+		$this->write(0x180185, pack('C*', $magic, $bombs, $arrows));
+
+		return $this;
+	}
+
+	/**
+	 * Set Zelda Cell Refills on respawn
+	 *
+	 * @param int $magic
+	 * @param int $bombs
+	 * @param int $arrows
+	 *
+	 * @return $this
+	 */
+	public function setZeldaSpawnRefills(int $magic = 0x00, int $bombs = 0x00, int $arrows = 0x00) : self {
+		$this->write(0x180188, pack('C*', $magic, $bombs, $arrows));
+
+		return $this;
+	}
+
+	/**
+	 * Set Mantle Refills on respawn
+	 *
+	 * @param int $magic
+	 * @param int $bombs
+	 * @param int $arrows
+	 *
+	 * @return $this
+	 */
+	public function setMantleSpawnRefills(int $magic = 0x00, int $bombs = 0x00, int $arrows = 0x00) : self {
+		$this->write(0x18018B, pack('C*', $magic, $bombs, $arrows));
 
 		return $this;
 	}

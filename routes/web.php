@@ -177,6 +177,10 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 	abort(404);
 });
 
+Route::get('special', function () {
+	return redirect('/');
+});
+
 Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
 	$variation = $request->input('variation', 'none') ?: 'none';
@@ -199,6 +203,8 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		$rom->setDebugMode($request->input('debug') == 'true');
 	}
 
+	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
+
 	try {
 		$rand = new ALttP\EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle);
 		$rand->makeSeed($seed_id);
@@ -208,6 +214,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		$spoiler = $rand->getSpoiler();
 		$hash = $rand->saveSeedRecord();
 	} catch (Exception $e) {
+		report($e);
 		return response('Failed', 409);
 	}
 
@@ -226,6 +233,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		'patch' => $patch,
 		'spoiler' => $spoiler,
 		'hash' => $hash,
+		'current_rom_hash' => Rom::HASH,
 	]);
 })->middleware('throttle:150,360');
 
@@ -324,6 +332,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 			'difficulty' => 'normal',
 			'patch' => $rom->getWriteLog(),
 			'spoiler' => $rand->getSpoiler(),
+			'current_rom_hash' => Rom::HASH,
 		]);
 	}
 
@@ -372,6 +381,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'patch' => patch_merge_minify($patch),
 		'spoiler' => $spoiler,
 		'hash' => $hash,
+		'current_rom_hash' => Rom::HASH,
 	]);
 })->middleware('throttle:150,360');
 

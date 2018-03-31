@@ -22,6 +22,7 @@ class World {
 	protected $pre_collected_items;
 	protected $currently_filling_items;
 	protected $prizepacks;
+	private $config = [];
 
 	/**
 	 * Create a new world and initialize all of the Regions within it
@@ -402,7 +403,8 @@ class World {
 			$i = 0;
 			foreach ($shadow_world->pre_collected_items as $item) {
 				if ($item instanceof Item\Upgrade\Arrow
-					|| $item instanceof Item\Upgrade\Bomb) {
+					|| $item instanceof Item\Upgrade\Bomb
+					|| $item instanceof Item\Event) {
 					continue;
 				}
 
@@ -458,10 +460,14 @@ class World {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		return config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-			config("alttp.goals.{$this->goal}.$key",
+		if (!array_key_exists($key, $this->config)) {
+			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
 				config("alttp.{$this->difficulty}.$key",
-					config("alttp.$key", $default))));
+					config("alttp.goals.{$this->goal}.$key",
+						config("alttp.$key", null))));
+		}
+
+		return $this->config[$key] ?? $default;
 	}
 
 	/**

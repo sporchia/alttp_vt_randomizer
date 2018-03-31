@@ -20,31 +20,42 @@ class Uncle extends Location {
 		$item = $this->getItem();
 
 		$world = $this->region->getWorld();
-		if ($world->config('mode.weapons') == 'randomized') {
-			if ($item instanceof Item\Bow) {
-				$rom->setEscapeFills(0b00000001);
-			} elseif ($item instanceof Item\Upgrade\Bomb) {
-				$rom->setEscapeFills(0b00000010);
-			} elseif ($item == Item::get('FireRod')
-				|| $item == Item::get('CaneOfSomaria')
-				|| $item == Item::get('CaneOfByrna')) {
-				$rom->setEscapeFills(0b00000100);
-			}
+
+		if ($item instanceof Item\Bow) {
+			$rom->setEscapeFills(0b00000001);
+			$rom->setUncleSpawnRefills(0, 0, 70);
+			$rom->setZeldaSpawnRefills(0, 0, 10);
+			$rom->setMantleSpawnRefills(0, 0, 10);
+		} elseif ($item == Item::get('TenBombs')) {
+			$rom->setEscapeFills(0b00000010);
+			$rom->setUncleSpawnRefills(0, 50, 0);
+			$rom->setZeldaSpawnRefills(0, 3, 0);
+			$rom->setMantleSpawnRefills(0, 3, 0);
+		} elseif ($item == Item::get('FireRod')
+			|| $item == Item::get('CaneOfSomaria')
+			|| $item == Item::get('CaneOfByrna')) {
+			$rom->setEscapeFills(0b00000100);
+			$rom->setUncleSpawnRefills(0x80, 0, 0);
+			$rom->setZeldaSpawnRefills(0x20, 0, 0);
+			$rom->setMantleSpawnRefills(0x20, 0, 0);
 		} else {
 			$rom->setEscapeFills(0b00000000);
+			$rom->setUncleSpawnRefills(0, 0, 0);
+			$rom->setZeldaSpawnRefills(0, 0, 0);
+			$rom->setMantleSpawnRefills(0, 0, 0);
 		}
 
 		if ($world->getDifficulty() == 'easy') {
-			if ($world->config('mode.weapons') == 'randomized') {
-				if ($item instanceof Item\Bow) {
-					$rom->setEscapeAssist(0b00000001);
-				} elseif ($item instanceof Item\Upgrade\Bomb) {
-					$rom->setEscapeAssist(0b00000010);
-				} elseif ($item == Item::get('FireRod')
-					|| $item == Item::get('CaneOfSomaria')
-					|| $item == Item::get('CaneOfByrna')) {
-					$rom->setEscapeAssist(0b00000100);
-				}
+			if ($item instanceof Item\Bow) {
+				$rom->setEscapeAssist(0b00000001);
+			} elseif ($item == Item::get('TenBombs')) {
+				$rom->setEscapeAssist(0b00000010);
+			} elseif ($item == Item::get('FireRod')
+				|| $item == Item::get('CaneOfSomaria')
+				|| $item == Item::get('CaneOfByrna')) {
+				$rom->setEscapeAssist(0b00000100);
+			} else {
+				$rom->setEscapeAssist(0b00000000);
 			}
 		} else {
 			$rom->setEscapeAssist(0b00000000);
@@ -64,6 +75,8 @@ class Uncle extends Location {
 				return "your uncle finds treasure";
 			case Item\Compass::class:
 				return "your uncle navigates";
+			case Item\Egg::class:
+				return "your uncle likes coloring";
 		}
 
 		switch ($this->item) {
@@ -137,7 +150,7 @@ class Uncle extends Location {
 			case Item::get('Bomb'):
 			case Item::get('ThreeBombs'):
 			case Item::get('TenBombs'):
-				return "your uncle belives";
+				return "your uncle believes";
 			case Item::get('Mushroom'):
 				return "your uncle deals drugs";
 			case Item::get('Bottle'):

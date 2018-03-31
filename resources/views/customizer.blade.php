@@ -524,21 +524,32 @@ $(function() {
 		});
 	});
 
+	function onSettingsParseError() {
+		$('.alert .message').html('Unable to parse settings file. Sorry :(');
+		$('.alert').show();
+	}
+
 	// Dirty restore to match dirty save to match dirty cleanup
 	$('input[name=customizer-restore]').on('change', function() {
 		var file = this.files[0];
-		if (file.type !== "application/json") {
-			return;
+		if (file.type !== "application/json" && file.type !== "application/octet-stream") {
+			return onSettingsParseError();
 		}
 
 		var fileReader = new FileReader();
 
 		fileReader.onload = function(e) {
-			var settings = JSON.parse(fileReader.result);
+			try {
+				var settings = JSON.parse(fileReader.result);
+			} catch (e) {
+				return onSettingsParseError();
+			}
 			var promises = [];
 			for (var i = 0; i < save_restore_settings.length; ++i) {
+				if (!settings[save_restore_settings[i]]) continue;
 				promises.push(localforage.setItem(save_restore_settings[i], settings[save_restore_settings[i]] || null));
 			}
+			if (!promises.length) return onSettingsParseError();
 			Promise.all(promises).then(function(values) {
 				window.location = window.location;
 			});
