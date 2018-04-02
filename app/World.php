@@ -504,16 +504,16 @@ class World {
 	 *
 	 * @return array
 	 */
-	public function getPrizePacks() {
+	public function getPrizePacks() : array {
 		return $this->prizepacks;
 	}
 
 	/**
-	 * Get all the Locations in all Regions in this world
+	 * Set the prize packs ?
 	 *
-	 * @return LocationCollection
+	 * @return $this
 	 */
-	public function setPrizePacks($prizes) {
+	public function setPrizePacks($prizes) : self {
 		if ($prizes == null) {
 			return;
 		}
@@ -524,6 +524,8 @@ class World {
 			return;
 		}
 		$this->prizepacks = $prizepacks;
+
+		return $this;
 	}
 
 	/**

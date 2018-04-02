@@ -284,7 +284,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		foreach ($request->input('drops', []) as $pack => $item) {
 			if ($item != 'auto_fill') {
 				$parts = explode('-', $pack);
-				$world->setDrop($parts[2],$parts[3],Sprite::get($item));
+				$world->setDrop($parts[2], $parts[3], Sprite::get($item));
 			}
 		}
 	}
