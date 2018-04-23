@@ -104,8 +104,8 @@ class Randomize extends Command {
 			$rom->muteMusic($this->option('no-music', false));
 			$rom->setMenuSpeed($this->option('menu-speed', 'normal'));
 
-			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s_%s.sfc',
-				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
+			$output_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.sfc',
+				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons') ? '_' . $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_' . $this->option('variation') , $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
 					$this->info("sprite");
