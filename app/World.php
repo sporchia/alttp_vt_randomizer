@@ -67,6 +67,28 @@ class World {
 			'Ganons Tower' => new Region\GanonsTower($this),
 			'Medallions' => new Region\Medallions($this),
 			'Fountains' => new Region\Fountains($this),
+
+			'Central Crateria' => new Region\SuperMetroid\Crateria\Central($this),
+			'West Crateria' => new Region\SuperMetroid\Crateria\West($this),
+			'East Crateria' => new Region\SuperMetroid\Crateria\East($this),
+
+			'Green Brinstar' => new Region\SuperMetroid\Brinstar\Green($this),
+			'Pink Brinstar' => new Region\SuperMetroid\Brinstar\Pink($this),
+			'Blue Brinstar' => new Region\SuperMetroid\Brinstar\Blue($this),
+			'Red Brinstar' => new Region\SuperMetroid\Brinstar\Red($this),
+			'Kraids Lair Brinstar' => new Region\SuperMetroid\Brinstar\Kraid($this),
+
+			'West Norfair' => new Region\SuperMetroid\Norfair\West($this),
+			'East Norfair' => new Region\SuperMetroid\Norfair\East($this),
+			'Crocomires Lair Norfair' => new Region\SuperMetroid\Norfair\Crocomire($this),
+
+			'West Lower Norfair' => new Region\SuperMetroid\LowerNorfair\West($this),
+			'East Lower Norfair' => new Region\SuperMetroid\LowerNorfair\East($this),
+
+			'Wrecked Ship' => new Region\SuperMetroid\WreckedShip\WreckedShip($this),
+
+			'Outer Maridia' => new Region\SuperMetroid\Maridia\Outer($this),
+			'Inner Maridia' => new Region\SuperMetroid\Maridia\Inner($this),
 		];
 
 		$this->locations = new LocationCollection;
@@ -80,8 +102,8 @@ class World {
 		}
 
 		$this->win_condition = function($collected_items) {
-			return $collected_items->has('Triforce')
-				|| $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'));
+			return ($collected_items->has('Triforce')
+				|| $collected_items->has('TriforcePiece', $this->config('item.Goal.Required')));
 		};
 	}
 

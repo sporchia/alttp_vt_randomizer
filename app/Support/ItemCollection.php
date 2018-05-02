@@ -463,6 +463,131 @@ class ItemCollection extends Collection {
 				|| ($this->hasSword() && $this->has('Quake')));
 	}
 
+
+	public function canAccessDeathMountainPortal()
+	{
+		return (($this->canDestroyBombWalls() || $this->has('SpeedBooster'))
+		&& ($this->has('Super') && $this->has('Morph')));
+	}
+
+	public function canAccessMiseryMirePortal()
+	{
+		return $this->heatProof()
+			&& $this->has('Super')
+			&& ($this->has('HiJump') || $this->has('Gravity'))
+			&& $this->canUsePowerBombs()
+			&& ($this->heatProof() && ($this->has('HiJump') || $this->has('Gravity')));
+	}
+
+	public function canAccessDarkWorldPortal()
+	{
+		return $this->canUsePowerBombs()
+			&& $this->has('Super')
+			&& ($items->has('Gravity')
+			 || ($items->has('HiJump') && $items->has('IceBeam') && $items->has('Grapple')))
+			&& ($this->has('IceBeam') || $this->has('SpeedBooster'));
+	}
+
+
+	/* Super Metroid Ability Macros */
+	public function canIbj() {
+		return $this->has('Morph') && $this->has('Bombs');
+	}
+
+	public function canFlySM() {
+		return $this->canIbj() || $this->has('SpaceJump');
+	}
+
+	public function canCrystalFlash()
+	{
+		return $this->has('Missile', 2) 
+			&& $this->has('Super', 2)
+			&& $this->has('PowerBomb', 3);
+	}
+
+	public function hasEnergyReserves(int $amount = 0)
+	{
+		return (($this->countItem('ETank') + $this->countItem('ReserveTank')) >= $amount);
+	}
+
+	public function heatProof()
+	{
+		return $this->has('Varia');
+	}
+
+	public function canHellRun()
+	{
+		return $this->heatProof() || $this->hasEnergyReserves(4);
+	}
+
+	public function canUsePowerBombs()
+	{
+		return $this->has('Morph') && $this->has('PowerBomb');
+	}
+
+	public function canOpenRedDoors()
+	{
+		return $this->has('Missile') || $this->has('Super');
+	}
+
+	public function canDestroyBombWalls()
+	{
+		return ($this->has('Morph') 
+				&&	($this->has('Bombs')
+					|| $this->has('PowerBomb')))
+			|| $this->has('ScrewAttack');
+	}
+
+	public function canEnterAndLeaveGauntlet()
+	{
+		return ($this->canFlySM() || $this->has('HiJump') || $this->has('SpeedBooster'))
+			&& ($this->canIbj()
+				|| ($this->canUsePowerBombs() && $this->has('PowerBomb', 2))
+				|| $this->has('ScrewAttack')
+				|| ($this->has('SpeedBooster') && $this->canUsePowerBombs() && $this->hasEnergyReserves(2)));
+	}
+
+	public function canPassBombPassages()
+	{
+		return $this->canUsePowerBombs() || $this->canIbj();
+	}
+
+	public function canAccessNorfairPortal()
+	{
+		return $this->canFly() || ($this->canLiftRocks() && $this->has('Lamp'));
+	}
+
+	public function canAccessLowerNorfairPortal()
+	{
+		return $this->canFly() && $this->has('MoonPearl') && $this->canLiftDarkRocks();		
+	}
+
+	public function canAccessMaridiaPortal()
+	{
+		return $this->has('RescueZelda')
+		&& $this->has('Flippers')
+		&& (($this->has('MoonPearl')
+			&& ($this->canLiftDarkRocks()
+				|| ($this->has('Hammer') && $this->canLiftRocks())
+				|| ($this->has('DefeatAgahnim') && ($this->has('Hammer')
+					|| ($this->has('Hookshot') && ($this->canLiftRocks() || $this->has('Flippers')))))))
+			|| (($this->has('MagicMirror') || ($this->has('PegasusBoots') && $this->has('MoonPearl')))
+				&& ($this->has('RescueZelda')
+				&& ($this->canFly()
+					|| ($this->canLiftRocks() && $this->has('Lamp', $this->world->config('item.require.Lamp', 1)))))			
+			));
+	}
+
+	public function canDefeatBotwoon()
+	{
+		return $this->has('IceBeam') || $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
+	}
+
+	public function canDefeatDraygon()
+	{
+		return $this->canDefeatBotwoon() && $this->has('Gravity');
+	}
+
 	/**
 	 * Requirements for having a sword
 	 *

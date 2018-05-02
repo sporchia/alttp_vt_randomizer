@@ -149,7 +149,8 @@ class NorthEast extends Region {
 					|| !$items->has('Crystal4')
 					|| !$items->has('Crystal5')
 					|| !$items->has('Crystal6')
-					|| !$items->has('Crystal7'))) {
+					|| !$items->has('Crystal7')
+					)) {
 				return false;
 			}
 

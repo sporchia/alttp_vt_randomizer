@@ -13,6 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
+	const LOGIC_COMBO = 3;
 	const LOGIC = 29;
 	protected $rng_seed;
 	protected $seed;
@@ -58,12 +59,23 @@ class Randomizer {
 		$this->goal = $goal;
 		$this->world = new World($difficulty, $logic, $goal, $variation);
 		$this->seed = new Seed;
-		$this->starting_equipment = new ItemCollection([
-			Item::get('BombUpgrade10'),
-			Item::get('ArrowUpgrade10'),
-			Item::get('ArrowUpgrade10'),
-			Item::get('ArrowUpgrade10'),
-		], $this->world);
+		if($variation == 'combo')
+		{
+			$this->starting_equipment = new ItemCollection([
+				Item::get('BombUpgrade10'),
+				Item::get('ArrowUpgrade10'),
+				Item::get('ArrowUpgrade10'),
+				Item::get('ArrowUpgrade10'),
+				Item::get('L1Sword'),
+			], $this->world);
+		} else {
+			$this->starting_equipment = new ItemCollection([
+				Item::get('BombUpgrade10'),
+				Item::get('ArrowUpgrade10'),
+				Item::get('ArrowUpgrade10'),
+				Item::get('ArrowUpgrade10'),
+			], $this->world);			
+		}
 		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
@@ -83,12 +95,12 @@ class Randomizer {
 	 */
 	public function getLogic() {
 		switch ($this->logic) {
-			case 'None': return 'none-' . static::LOGIC;
-			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC;
-			case 'OverworldGlitches': return 'overworld-glitches-' . static::LOGIC;
-			case 'MajorGlitches': return 'major-glitches-' . static::LOGIC;
+			case 'None': return 'none-' . static::LOGIC_COMBO . '-' . static::LOGIC;
+			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC_COMBO . '-' . static::LOGIC;
+			case 'OverworldGlitches': return 'overworld-glitches-' . static::LOGIC_COMBO . '-' . static::LOGIC;
+			case 'MajorGlitches': return 'major-glitches-' . static::LOGIC_COMBO . '-' . static::LOGIC;
 		}
-		return 'unknown-' . static::LOGIC;
+		return 'unknown-' . static::LOGIC_COMBO . '-' . static::LOGIC;
 	}
 
 	/**
@@ -356,7 +368,6 @@ class Randomizer {
 		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Lanmolas"), 'middle');
 		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Moldorm"), 'top');
 		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Agahnim2"));
-
 		return $this;
 	}
 
@@ -849,7 +860,7 @@ class Randomizer {
 		$rom->setGameType('item');
 
 		$rom->writeRandomizerLogicHash(self::$logic_array);
-		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
+		$rom->setSeedString(str_pad(sprintf("ZSM%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
 
 		if (static::class == self::class) {
 			$rom->writeCredits();
@@ -1344,6 +1355,47 @@ class Randomizer {
 			array_push($advancement_items, Item::get('QuarterMagic'));
 		}
 
+		/* Super Metroid Advancement Items */
+		for ($i = 0; $i < $this->config('item.count.Bombs', 1); $i++) {
+			array_push($advancement_items, Item::get('Bombs'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.IceBeam', 1); $i++) {
+			array_push($advancement_items, Item::get('IceBeam'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.HiJump', 1); $i++) {
+			array_push($advancement_items, Item::get('HiJump'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.SpeedBooster', 1); $i++) {
+			array_push($advancement_items, Item::get('SpeedBooster'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ScrewAttack', 1); $i++) {
+			array_push($advancement_items, Item::get('ScrewAttack'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Varia', 1); $i++) {
+			array_push($advancement_items, Item::get('Varia'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Gravity', 1); $i++) {
+			array_push($advancement_items, Item::get('Gravity'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Grapple', 1); $i++) {
+			array_push($advancement_items, Item::get('Grapple'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Morph', 1); $i++) {
+			array_push($advancement_items, Item::get('Morph'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ScrewAttack', 1); $i++) {
+			array_push($advancement_items, Item::get('ScrewAttack'));
+		}
+
 		return $advancement_items;
 	}
 
@@ -1402,6 +1454,35 @@ class Randomizer {
 		}
 		for ($i = 0; $i < $this->config('item.count.GreenClock', 0); $i++) {
 			array_push($items_to_find, Item::get('GreenClock'));
+		}
+
+		/* Super Metroid Items */
+		for ($i = 0; $i < $this->config('item.count.ChargeBeam', 1); $i++) {
+			array_push($items_to_find, Item::get('ChargeBeam'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.WaveBeam', 1); $i++) {
+			array_push($items_to_find, Item::get('WaveBeam'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Spazer', 1); $i++) {
+			array_push($items_to_find, Item::get('Spazer'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.SpringBall', 1); $i++) {
+			array_push($items_to_find, Item::get('SpringBall'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Plasma', 1); $i++) {
+			array_push($items_to_find, Item::get('Plasma'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.XRay', 1); $i++) {
+			array_push($items_to_find, Item::get('XRay'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.SpaceJump', 1); $i++) {
+			array_push($items_to_find, Item::get('SpaceJump'));
 		}
 
 		return $items_to_find;
@@ -1472,6 +1553,29 @@ class Randomizer {
 		for ($i = 0; $i < $this->config('item.count.Rupoor', 0); $i++) {
 			array_push($items_to_find, Item::get('Rupoor'));
 		}
+
+		/* Super Metroid Items */
+		for ($i = 0; $i < $this->config('item.count.ETank', 14); $i++) {
+			array_push($items_to_find, Item::get('ETank'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ReserveTank', 4); $i++) {
+			array_push($items_to_find, Item::get('ReserveTank'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Missile', 40); $i++) {
+			array_push($items_to_find, Item::get('Missile'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Super', 17); $i++) {
+			array_push($items_to_find, Item::get('Super'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.PowerBomb', 10); $i++) {
+			array_push($items_to_find, Item::get('PowerBomb'));
+		}
+
+
 
 		return $items_to_find;
 	}

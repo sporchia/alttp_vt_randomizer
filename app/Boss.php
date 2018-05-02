@@ -94,7 +94,6 @@ class Boss {
 			new static("Agahnim2", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer') || $items->has('BugCatchingNet');
 			}),
-
 		]);
 
 		return static::all();

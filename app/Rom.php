@@ -713,7 +713,7 @@ class Rom {
 				$byte = 0x20;
 		}
 
-		$this->write(0x180033, pack('C', $byte));
+		//$this->write(0x180033, pack('C', $byte));
 
 		return $this;
 	}
@@ -1551,8 +1551,8 @@ class Rom {
 	 * @return $this
 	 */
 	public function setDebugMode($enable = true) : self {
-		$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
-		$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
+		//$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
+		//$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
 
 		return $this;
 	}
@@ -1565,7 +1565,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSRAMTrace($enable = true) : self {
-		$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
+		//$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}
@@ -2715,7 +2715,7 @@ class Rom {
 	 */
 	public function setSeedString(string $seed) : self {
 		$this->write(0x7FC0, substr($seed, 0, 21));
-
+		$this->write(0xFFFFC0, substr($seed, 0, 21));
 		return $this;
 	}
 
@@ -2922,7 +2922,14 @@ class Rom {
 	 *
 	 * @return bool
 	 */
-	public function save(string $output_location) : bool {
+	public function save(string $output_location) : bool {	
+		// foreach ($this->getWriteLog() as $logLine)
+		// {
+		// 	foreach($logLine as $k => $v)
+		// 	{
+		// 		echo("Write to: " . sprintf("%x", $k) . "\n");
+		// 	}
+		// }	
 		return copy($this->tmp_file, $output_location);
 	}
 
@@ -2936,6 +2943,15 @@ class Rom {
 	 * @return $this
 	 */
 	public function write(int $offset, string $data, bool $log = true) : self {
+		
+		/* If we're doing combo-rando, adjust offsets to match the combo-rom */
+		if(config('variation') == 'combo')
+		{
+			$offset = $this->getComboOffset($offset);
+		} else {
+			echo('Non-combo write to:' . $offset . "\n");
+		}
+
 		if ($log) {
 			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		}
@@ -2944,7 +2960,7 @@ class Rom {
 
 		return $this;
 	}
-
+	
 	/**
 	 * Get the array of bytes written in the order they were written to the rom
 	 *
@@ -2963,6 +2979,15 @@ class Rom {
 	 * @return array
 	 */
 	public function read(int $offset, int $length = 1) {
+		
+		/* If we're doing combo-rando, adjust offsets to match the combo-rom */
+		if(config('variation') == 'combo')
+		{
+			$offset = $this->getComboOffset($offset);
+		} else {
+			echo('Non-combo read from:' . $offset . "\n");
+		}
+		
 		fseek($this->rom, $offset);
 		$unpacked = unpack('C*', fread($this->rom, $length));
 		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);
@@ -2996,5 +3021,52 @@ class Rom {
 		}
 
 		return $this;
+	}
+
+	private function getComboOffset(int $offset) : int
+	{
+		$orig_offset = $offset;
+		
+		if($offset < 0x170000)
+		{
+			/* This converts LoROM to HiROM mapping and then applies the ExHiROM offset */
+			$offset = 0x400000 + ($offset + (0x8000 * (floor($offset/0x8000)+1)));
+		}
+		else if(($offset & 0xff0000) == 0x180000)
+		{
+			/* Change 0x180000 access into ExHiROM bank 40 */
+			$offset = 0x400000 + ($offset & 0x00ffff);
+		}
+		else if($offset == 0x178000)
+		{
+			/* Repoint RNG Block */
+			$offset = 0x420000;
+		}
+		else if(($offset & 0xff0000) == 0xf70000)
+		{
+			/* SM Items */
+			$offset = 0xf0000 + ($offset & 0x00ffff);
+		}
+		else if(($offset & 0xff0000) == 0xff0000)
+		{
+			/* SM ExHiROM Header */
+			$offset = ($offset & 0x00ffff);
+		}
+		else
+		{
+			echo("Unmapped ROM Access: " . sprintf("%x", $orig_offset) . "\n");
+			echo("Write to unmapped location: " . sprintf("%x", $offset) . "\n");
+			exit();
+		}
+
+		if($offset > 0x600000)
+		{
+			echo("Unmapped ROM Access: " . sprintf("%x", $orig_offset) . "\n");
+			echo("Write to invalid location: " . sprintf("%x", $offset) . "\n");
+			exit();
+			
+		}
+
+		return $offset;
 	}
 }

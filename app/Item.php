@@ -7,6 +7,9 @@ use ALttP\Support\ItemCollection;
  */
 class Item {
 	protected $bytes;
+	protected $visiblePlm;
+	protected $hiddenPlm;
+	protected $chozoPlm;
 	protected $address;
 	protected $name;
 	protected $nice_name;
@@ -105,95 +108,95 @@ class Item {
 		}
 
 		static::$items = new ItemCollection([
-			new Item('Nothing', 'Nothing', [0x5A]),
-			new Item\Sword('L1Sword', 'Fighters Sword', [0x49]), // Uncle must be dead
-			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', [0x00]), // Uncle must be dead
-			new Item\Sword('L2Sword', 'Master Sword', [0x01]),
-			new Item\Sword('MasterSword', 'Master Sword', [0x50]),
-			new Item\Sword('L3Sword', 'Tempered Sword', [0x02]), // Uncle must be dead
-			new Item\Sword('L4Sword', 'Golden Sword', [0x03]), // Uncle must be dead
-			new Item\Shield('BlueShield', 'Fighters Shield', [0x04]), // Uncle must be dead
-			new Item\Shield('RedShield', 'Fire Shield', [0x05]), // Uncle must be dead
-			new Item\Shield('MirrorShield', 'Mirror Shield', [0x06]), // Uncle must be dead
-			new Item('FireRod', 'Fire Rod', [0x07]),
-			new Item('IceRod', 'Ice Rod', [0x08]),
-			new Item('Hammer', 'Hammer', [0x09]),
-			new Item('Hookshot', 'Hookshot', [0x0A]),
-			new Item\Bow('Bow', 'Bow', [0x0B]),
-			new Item('Boomerang', 'Blue Boomerang', [0x0C]),
-			new Item('Powder', 'Magic Powder', [0x0D]),
-			new Item\BottleContents('Bee', 'Bee', [0x0E]),
-			new Item\Medallion('Bombos', 'Bombos', [0x0f, 0x00, 't0' => 0x31, 't1' => 0x90, 't2' => 0x00, 'm0' => 0x31, 'm1' => 0x80, 'm2' => 0x00]),
-			new Item\Medallion('Ether', 'Ether', [0x10, 0x01, 't0' => 0x31, 't1' => 0x98, 't2' => 0x00, 'm0' => 0x13, 'm1' => 0x9F, 'm2' => 0xF1]),
-			new Item\Medallion('Quake', 'Quake', [0x11, 0x02, 't0' => 0x14, 't1' => 0xEF, 't2' => 0xC4, 'm0' => 0x31, 'm1' => 0x88, 'm2' => 0x00]),
-			new Item('Lamp', 'Lamp', [0x12]),
-			new Item('Shovel', 'Shovel', [0x13]),
-			new Item('OcarinaInactive', 'Flute', [0x14]),
-			new Item('CaneOfSomaria', 'Cane Of Somaria', [0x15]),
-			new Item\Bottle('Bottle', 'Bottle (Empty)', [0x16]),
-			new Item\Upgrade\Health('PieceOfHeart', 'Piece Of Heart', [0x17]),
-			new Item('CaneOfByrna', 'Cane Of Byrna', [0x18]),
-			new Item('Cape', 'Magic Cape', [0x19]),
-			new Item('MagicMirror', 'Magic Mirror', [0x1A]),
-			new Item('PowerGlove', 'Power Glove', [0x1B]),
-			new Item('TitansMitt', 'Titans Mitt', [0x1C]),
-			new Item('BookOfMudora', 'Book Of Mudora', [0x1D]),
-			new Item('Flippers', 'Flippers', [0x1E]),
-			new Item('MoonPearl', 'Moon Pearl', [0x1F]),
-			new Item('BugCatchingNet', 'Bug Catching Net', [0x21]),
-			new Item('BlueMail', 'Blue Mail', [0x22]),
-			new Item('RedMail', 'Red Mail', [0x23]),
+			new Item('Nothing', 'Nothing', [0x5A], null, 0xf094, 0xe8 + 0xf094, 0x1d0 + 0xf094),
+			new Item\Sword('L1Sword', 'Fighters Sword', [0x49], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c), // Uncle must be dead
+			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', [0x00], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c), // Uncle must be dead
+			new Item\Sword('L2Sword', 'Master Sword', [0x01], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c),
+			new Item\Sword('MasterSword', 'Master Sword', [0x50], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c),
+			new Item\Sword('L3Sword', 'Tempered Sword', [0x02], null, 0xf070, 0xe8 + 0xf070, 0x1d0 + 0xf070), // Uncle must be dead
+			new Item\Sword('L4Sword', 'Golden Sword', [0x03], null, 0xf074, 0xe8 + 0xf074, 0x1d0 + 0xf074), // Uncle must be dead
+			new Item\Shield('BlueShield', 'Fighters Shield', [0x04], null, 0xf080, 0xe8 + 0xf080, 0x1d0 + 0xf080), // Uncle must be dead
+			new Item\Shield('RedShield', 'Fire Shield', [0x05], null, 0xf084, 0xe8 + 0xf084, 0x1d0 + 0xf084), // Uncle must be dead
+			new Item\Shield('MirrorShield', 'Mirror Shield', [0x06], null, 0xf088, 0xe8 + 0xf088, 0x1d0 + 0xf088), // Uncle must be dead
+			new Item('FireRod', 'Fire Rod', [0x07], null, 0xf000, 0xe8 + 0xf000, 0x1d0 + 0xf000),
+			new Item('IceRod', 'Ice Rod', [0x08], null, 0xf004, 0xe8 + 0xf004, 0x1d0 + 0xf004),
+			new Item('Hammer', 'Hammer', [0x09], null, 0xf018, 0xe8 + 0xf018, 0x1d0 + 0xf018),
+			new Item('Hookshot', 'Hookshot', [0x0A], null, 0xeff0, 0xe8 + 0xeff0, 0x1d0 + 0xeff0),
+			new Item\Bow('Bow', 'Bow', [0x0B], null, 0xefe0, 0xe8 + 0xefe0, 0x1d0 + 0xefe0),
+			new Item('Boomerang', 'Blue Boomerang', [0x0C], null, 0xefe8, 0xe8 + 0xefe8, 0x1d0 + 0xefe8),
+			new Item('Powder', 'Magic Powder', [0x0D], null, 0xeffc, 0xe8 + 0xeffc, 0x1d0 + 0xeffc),
+			new Item\BottleContents('Bee', 'Bee', [0x0E], null, 0xefe0, 0xe8 + 0xefe0, 0x1d0 + 0xefe0),
+			new Item\Medallion('Bombos', 'Bombos', [0x0f, 0x00, 't0' => 0x51, 't1' => 0x10, 't2' => 0x00, 'm0' => 0x51, 'm1' => 0x00, 'm2' => 0x00], null, 0xf008, 0xe8 + 0xf008, 0x1d0 + 0xf008),
+			new Item\Medallion('Ether', 'Ether', [0x10, 0x01, 't0' => 0x51, 't1' => 0x18, 't2' => 0x00, 'm0' => 0x13, 'm1' => 0x9F, 'm2' => 0xF1], null, 0xf00c, 0xe8 + 0xf00c, 0x1d0 + 0xf00c),
+			new Item\Medallion('Quake', 'Quake', [0x11, 0x02, 't0' => 0x14, 't1' => 0xEF, 't2' => 0xC4, 'm0' => 0x51, 'm1' => 0x08, 'm2' => 0x00], null, 0xf010, 0xe8 + 0xf010, 0x1d0 + 0xf010),
+			new Item('Lamp', 'Lamp', [0x12], null, 0xf014, 0xe8 + 0xf014, 0x1d0 + 0xf014),
+			new Item('Shovel', 'Shovel', [0x13], null, 0xf01c, 0xe8 + 0xf01c, 0x1d0 + 0xf01c),
+			new Item('OcarinaInactive', 'Flute', [0x14], null, 0xf020, 0xe8 + 0xf020, 0x1d0 + 0xf020),
+			new Item('CaneOfSomaria', 'Cane Of Somaria', [0x15], null, 0xf048, 0xe8 + 0xf048, 0x1d0 + 0xf048),
+			new Item\Bottle('Bottle', 'Bottle (Empty)', [0x16], null, 0xf02c, 0xe8 + 0xf02c, 0x1d0 + 0xf02c),
+			new Item\Upgrade\Health('PieceOfHeart', 'Piece Of Heart', [0x17], null, 0xf08c, 0xe8 + 0xf08c, 0x1d0 + 0xf08c),
+			new Item('CaneOfByrna', 'Cane Of Byrna', [0x18], null, 0xf04c, 0xe8 + 0xf04c, 0x1d0 + 0xf04c),
+			new Item('Cape', 'Magic Cape', [0x19], null, 0xf050, 0xe8 + 0xf050, 0x1d0 + 0xf050),
+			new Item('MagicMirror', 'Magic Mirror', [0x1A], null, 0xf054, 0xe8 + 0xf054, 0x1d0 + 0xf054),
+			new Item('PowerGlove', 'Power Glove', [0x1B], null, 0xf058, 0xe8 + 0xf058, 0x1d0 + 0xf058),
+			new Item('TitansMitt', 'Titans Mitt', [0x1C], null, 0xf05c, 0xe8 + 0xf05c, 0x1d0 + 0xf05c),
+			new Item('BookOfMudora', 'Book Of Mudora', [0x1D], null, 0xf028, 0xe8 + 0xf028, 0x1d0 + 0xf028),
+			new Item('Flippers', 'Flippers', [0x1E], null, 0xf064, 0xe8 + 0xf064, 0x1d0 + 0xf064),
+			new Item('MoonPearl', 'Moon Pearl', [0x1F], null, 0xf068, 0xe8 + 0xf068, 0x1d0 + 0xf068),
+			new Item('BugCatchingNet', 'Bug Catching Net', [0x21], null, 0xf024, 0xe8 + 0xf024, 0x1d0 + 0xf024),
+			new Item('BlueMail', 'Blue Mail', [0x22], null, 0xf078, 0xe8 + 0xf078, 0x1d0 + 0xf078),
+			new Item('RedMail', 'Red Mail', [0x23], null, 0xf07c, 0xe8 + 0xf07c, 0x1d0 + 0xf07c),
 			new Item\Key('Key', 'Key', [0x24]),
 			new Item\Compass('Compass', 'Compass', [0x25]),
-			new Item\Upgrade\Health('HeartContainerNoAnimation', 'Heart Container (no animation)', [0x26]),
-			new Item('Bomb', 'Single Bomb', [0x27]),
-			new Item('ThreeBombs', 'Three Bombs', [0x28]),
-			new Item('Mushroom', 'Mushroom', [0x29]),
-			new Item('RedBoomerang', 'Magical Boomerang', [0x2A]),
-			new Item\Bottle('BottleWithRedPotion', 'Bottle (Red Potion)', [0x2B]),
-			new Item\Bottle('BottleWithGreenPotion', 'Bottle (Green Potion)', [0x2C]),
-			new Item\Bottle('BottleWithBluePotion', 'Bottle (Blue Potion)', [0x2D]),
+			new Item\Upgrade\Health('HeartContainerNoAnimation', 'Heart Container (no animation)', [0x26], null, 0xf090, 0xe8 + 0xf090, 0x1d0 + 0xf090),
+			new Item('Bomb', 'Single Bomb', [0x27], null, 0xeff4, 0xe8 + 0xeff4, 0x1d0 + 0xeff4),
+			new Item('ThreeBombs', 'Three Bombs', [0x28], null, 0xf0a0, 0xe8 + 0xf0a0, 0x1d0 + 0xf0a0),
+			new Item('Mushroom', 'Mushroom', [0x29], null, 0xeff8, 0xe8 + 0xeff8, 0x1d0 + 0xeff8),
+			new Item('RedBoomerang', 'Magical Boomerang', [0x2A], null, 0xefec, 0xe8 + 0xefec, 0x1d0 + 0xefec),
+			new Item\Bottle('BottleWithRedPotion', 'Bottle (Red Potion)', [0x2B], null, 0xf030, 0xe8 + 0xf030, 0x1d0 + 0xf030),
+			new Item\Bottle('BottleWithGreenPotion', 'Bottle (Green Potion)', [0x2C], null, 0xf034, 0xe8 + 0xf034, 0x1d0 + 0xf034),
+			new Item\Bottle('BottleWithBluePotion', 'Bottle (Blue Potion)', [0x2D], null, 0xf038, 0xe8 + 0xf038, 0x1d0 + 0xf038),
 			new Item\BottleContents('RedPotion', 'Red Potion', [0x2E]),
 			new Item\BottleContents('GreenPotion', 'Green Potion', [0x2F]),
 			new Item\BottleContents('BluePotion', 'Blue Potion', [0x30]),
-			new Item('TenBombs', 'Ten Bombs', [0x31]),
+			new Item('TenBombs', 'Ten Bombs', [0x31], null, 0xf0a4, 0xe8 + 0xf0a4, 0x1d0 + 0xf0a4),
 			new Item\BigKey('BigKey', 'Big Key', [0x32]),
 			new Item\Map('Map', 'Dungeon Map', [0x33]),
-			new Item('OneRupee', 'One Rupee', [0x34]),
-			new Item('FiveRupees', 'Five Rupees', [0x35]),
-			new Item('TwentyRupees', 'Twenty Rupees', [0x36]),
+			new Item('OneRupee', 'One Rupee', [0x34], null, 0xf0a8, 0xe8 + 0xf0a8, 0x1d0 + 0xf0a8),
+			new Item('FiveRupees', 'Five Rupees', [0x35], null, 0xf0ac, 0xe8 + 0xf0ac, 0x1d0 + 0xf0ac),
+			new Item('TwentyRupees', 'Twenty Rupees', [0x36], null, 0xf0b0, 0xe8 + 0xf0b0, 0x1d0 + 0xf0b0),
 			new Item\Pendant('PendantOfCourage', 'Pendant Of Courage', [0x37, 0x04, 0x38, 0x62, 0x00, 0x69, 0x01]),
 			new Item\Pendant('PendantOfWisdom', 'Pendant Of Wisdom', [0x38, 0x01, 0x32, 0x60, 0x00, 0x69, 0x03]),
 			new Item\Pendant('PendantOfPower', 'Pendant Of Power', [0x39, 0x02, 0x34, 0x60, 0x00, 0x69, 0x02]),
-			new Item\Bow('BowAndArrows', 'Bow And Arrows', [0x3A]),
-			new Item\Bow('BowAndSilverArrows', 'Bow And Silver Arrows', [0x3B]),
-			new Item\Bottle('BottleWithBee', 'Bottle (Bee)', [0x3C]),
-			new Item\Bottle('BottleWithFairy', 'Bottle (Fairy)', [0x3D]),
-			new Item\Upgrade\Health('BossHeartContainer', 'Heart Container', [0x3E]),
-			new Item\Upgrade\Health('HeartContainer', 'Sancturary Heart Container', [0x3F]),
-			new Item('OneHundredRupees', 'One Hundred Rupees', [0x40]),
-			new Item('FiftyRupees', 'Fifty Rupees', [0x41]),
+			new Item\Bow('BowAndArrows', 'Bow And Arrows', [0x3A], null, 0xefe0, 0xe8 + 0xefe0, 0x1d0 + 0xefe0),
+			new Item\Bow('BowAndSilverArrows', 'Bow And Silver Arrows', [0x3B], null, 0xefe4, 0xe8 + 0xefe4, 0x1d0 + 0xefe4),
+			new Item\Bottle('BottleWithBee', 'Bottle (Bee)', [0x3C], null, 0xf03c, 0xe8 + 0xf03c, 0x1d0 + 0xf03c),
+			new Item\Bottle('BottleWithFairy', 'Bottle (Fairy)', [0x3D], null, 0xf044, 0xe8 + 0xf044, 0x1d0 + 0xf044),
+			new Item\Upgrade\Health('BossHeartContainer', 'Heart Container', [0x3E], null, 0xf090, 0xe8 + 0xf090, 0x1d0 + 0xf090),
+			new Item\Upgrade\Health('HeartContainer', 'Sancturary Heart Container', [0x3F], null, 0xf090, 0xe8 + 0xf090, 0x1d0 + 0xf090),
+			new Item('OneHundredRupees', 'One Hundred Rupees', [0x40], null, 0xf0b8, 0xe8 + 0xf0b8, 0x1d0 + 0xf0b8),
+			new Item('FiftyRupees', 'Fifty Rupees', [0x41], null, 0xf0b4, 0xe8 + 0xf0b4, 0x1d0 + 0xf0b4),
 			new Item('Heart', 'Small Heart', [0x42]),
-			new Item\Arrow('Arrow', 'Single Arrow', [0x43]),
-			new Item\Arrow('TenArrows', 'Ten Arrows', [0x44]),
+			new Item\Arrow('Arrow', 'Single Arrow', [0x43], null, 0xf094, 0xe8 + 0xf094, 0x1d0 + 0xf094),
+			new Item\Arrow('TenArrows', 'Ten Arrows', [0x44], null, 0xf09c, 0xe8 + 0xf09c, 0x1d0 + 0xf09c),
 			new Item('SmallMagic', 'Small Magic', [0x45]),
-			new Item('ThreeHundredRupees', 'Three Hundred Rupees', [0x46]),
-			new Item('TwentyRupees2', 'Twenty Rupees', [0x47]),
-			new Item\Bottle('BottleWithGoldBee', 'Bottle (Golden Bee)', [0x48]),
-			new Item('OcarinaActive', 'Flute (active)', [0x4A]),
-			new Item('PegasusBoots', 'Pegasus Boots', [0x4B]),
+			new Item('ThreeHundredRupees', 'Three Hundred Rupees', [0x46], null, 0xf0bc, 0xe8 + 0xf0bc, 0x1d0 + 0xf0bc),
+			new Item('TwentyRupees2', 'Twenty Rupees', [0x47], null, 0xf0b0, 0xe8 + 0xf0b0, 0x1d0 + 0xf0b0),
+			new Item\Bottle('BottleWithGoldBee', 'Bottle (Golden Bee)', [0x48], null, 0xf040, 0xe8 + 0xf040, 0x1d0 + 0xf040),
+			new Item('OcarinaActive', 'Flute (active)', [0x4A], null, 0xf020, 0xe8 + 0xf020, 0x1d0 + 0xf020),
+			new Item('PegasusBoots', 'Pegasus Boots', [0x4B], null, 0xf060, 0xe8 + 0xf060, 0x1d0 + 0xf060),
 			new Item\Upgrade\Bomb('BombUpgrade5', 'Bomb Upgrade (+5)', [0x51]),
 			new Item\Upgrade\Bomb('BombUpgrade10', 'Bomb Upgrade (+10)', [0x52]),
 			new Item\Upgrade\Bomb('BombUpgrade50', 'Bomb Upgrade (+50)', [0x4C]),
 			new Item\Upgrade\Arrow('ArrowUpgrade5', 'Arrow Upgrade (+5)', [0x53]),
 			new Item\Upgrade\Arrow('ArrowUpgrade10', 'Arrow Upgrade (+10)', [0x54]),
 			new Item\Upgrade\Arrow('ArrowUpgrade70', 'Arrow Upgrade (+70)', [0x4D]),
-			new Item\Upgrade\Magic('HalfMagic', 'Half Magic', [0x4E]),
-			new Item\Upgrade\Magic('QuarterMagic', 'Quarter Magic', [0x4F]),
+			new Item\Upgrade\Magic('HalfMagic', 'Half Magic', [0x4E], null, 0xf0c0, 0xe8 + 0xf0c0, 0x1d0 + 0xf0c0),
+			new Item\Upgrade\Magic('QuarterMagic', 'Quarter Magic', [0x4F], null, 0xf0c4, 0xe8 + 0xf0c4, 0x1d0 + 0xf0c4),
 			new Item\Programmable('Programmable1', 'Programmable 1', [0x55]),
 			new Item\Programmable('Programmable2', 'Programmable 2', [0x56]),
 			new Item\Programmable('Programmable3', 'Programmable 3', [0x57]),
-			new Item('SilverArrowUpgrade', 'Silver Arrows Upgrade', [0x58]),
+			new Item('SilverArrowUpgrade', 'Silver Arrows Upgrade', [0x58], null, 0xefe4, 0xe8 + 0xefe4, 0x1d0 + 0xefe4),
 			new Item('Rupoor', 'Rupoor', [0x59]),
 			new Item('RedClock', 'Red Clock', [0x5B]),
 			new Item('BlueClock', 'Blue Clock', [0x5C]),
@@ -266,6 +269,28 @@ class Item {
 			new Item\Key('KeyD7', 'Turtle Rock Key', [0xAC]),
 			new Item\Key('KeyA2', 'Ganons Tower Key', [0xAD]),
 			new Item\Key('KeyGK', 'Generic Key', [0xAF]),
+			new Item\SuperMetroid('Grapple', 'Grappling Beam', [0xB0], null, 0xef17, 0x54 + 0xef17, 0xa8 + 0xef17),
+			new Item\SuperMetroid('XRay', 'X-Ray Scope', [0xB1], null, 0xef0f, 0x54 + 0xef0f, 0xa8 + 0xef0f),
+			new Item\SuperMetroid('Varia', 'Varia Suit', [0xB2], null, 0xef07, 0x54 + 0xef07, 0xa8 + 0xef07),
+			new Item\SuperMetroid('SpringBall', 'Spring Ball', [0xB3], null, 0xef03, 0x54 + 0xef03, 0xa8 + 0xef03),
+			new Item\SuperMetroid('Morph', 'Morphing Ball', [0xB4], null, 0xef23, 0x54 + 0xef23, 0xa8 + 0xef23),
+			new Item\SuperMetroid('ScrewAttack', 'Screw Attack', [0xB5], null, 0xef1f, 0x54 + 0xef1f, 0xa8 + 0xef1f),
+			new Item\SuperMetroid('Gravity', 'Gravity Suit', [0xB6], null, 0xef0b, 0x54 + 0xef0b, 0xa8 + 0xef0b),
+			new Item\SuperMetroid('HiJump', 'Hi-Jump Boots', [0xB7], null, 0xeef3, 0x54 + 0xeef3, 0xa8 + 0xeef3),
+			new Item\SuperMetroid('SpaceJump', 'Space Jump', [0xB8], null, 0xef1b, 0x54 + 0xef1b, 0xa8 + 0xef1b),
+			new Item\SuperMetroid('Bombs', 'Bombs', [0xB9], null, 0xeee7, 0x54 + 0xeee7, 0xa8 + 0xeee7),
+			new Item\SuperMetroid('SpeedBooster', 'Speed Booster', [0xBA], null, 0xeef7, 0x54 + 0xeef7, 0xa8 + 0xeef7),
+			new Item\SuperMetroid('ChargeBeam', 'Charge Beam', [0xBB], null, 0xeeeb, 0x54 + 0xeeeb, 0xa8 + 0xeeeb),
+			new Item\SuperMetroid('IceBeam', 'Ice Beam', [0xBC], null, 0xeeef, 0x54 + 0xeeef, 0xa8 + 0xeeef),
+			new Item\SuperMetroid('WaveBeam', 'Wave Beam', [0xBD], null, 0xeefb, 0x54 + 0xeefb, 0xa8 + 0xeefb),
+			new Item\SuperMetroid('Spazer', 'Spazer', [0xBE], null, 0xeeff, 0x54 + 0xeeff, 0xa8 + 0xeeff),
+			new Item\SuperMetroid('Plasma', 'Plasma Beam', [0xBF], null, 0xef13, 0x54 + 0xef13, 0xa8 + 0xef13),
+			new Item\SuperMetroid('ETank', 'Energy Tank', [0xC0], null, 0xeed7, 0x54 + 0xeed7, 0xa8 + 0xeed7),
+			new Item\SuperMetroid('ReserveTank', 'Reserve Tank', [0xC1], null, 0xef27, 0x54 + 0xef27, 0xa8 + 0xef27),
+			new Item\SuperMetroid('Missile', 'Missile', [0xC2], null, 0xeedb, 0x54 + 0xeedb, 0xa8 + 0xeedb),
+			new Item\SuperMetroid('Super', 'Super Missile', [0xC3], null, 0xeedf, 0x54 + 0xeedf, 0xa8 + 0xeedf),
+			new Item\SuperMetroid('PowerBomb', 'Power Bomb', [0xC4], null, 0xeee3, 0x54 + 0xeee3, 0xa8 + 0xeee3),
+
 			new Item\Crystal('Crystal1', 'Crystal 1', [null, 0x02, 0x34, 0x64, 0x40, 0x7F, 0x06]),
 			new Item\Crystal('Crystal2', 'Crystal 2', [null, 0x10, 0x34, 0x64, 0x40, 0x79, 0x06]),
 			new Item\Crystal('Crystal3', 'Crystal 3', [null, 0x40, 0x34, 0x64, 0x40, 0x6C, 0x06]),
@@ -291,11 +316,14 @@ class Item {
 	 *
 	 * @return void
 	 */
-	public function __construct($name, $nice_name, $bytes, $address = null) {
+	public function __construct($name, $nice_name, $bytes, $address = null, $visiblePlm = null, $chozoPlm = null, $hiddenPlm = null) {
 		$this->name = $name;
 		$this->nice_name = $nice_name;
 		$this->bytes = (array) $bytes;
 		$this->address = (array) $address;
+		$this->visiblePlm = $visiblePlm;
+		$this->chozoPlm = $chozoPlm;
+		$this->hiddenPlm = $hiddenPlm;
 	}
 
 	/**
@@ -323,6 +351,47 @@ class Item {
 	 */
 	public function getBytes() {
 		return $this->bytes;
+	}
+
+	/**
+	 * Get the bytes to write
+	 *
+	 * @return array
+	 */
+	public function getVisibleBytes() {
+		if($this->visiblePlm == null)
+		{
+			echo("Null Visible PLM");
+		}
+		$bytes = [$this->visiblePlm & 0xFF, ($this->visiblePlm >> 8) & 0xFF]; 
+		return $bytes;
+	}
+
+	/**
+	 * Get the bytes to write
+	 *
+	 * @return array
+	 */
+	public function getHiddenBytes() {
+		if($this->hiddenPlm == null)
+		{
+			echo("Null Hidden PLM");
+		}
+
+		return [$this->hiddenPlm & 0xFF, ($this->hiddenPlm >> 8) & 0xFF];
+	}
+
+    /**
+	 * Get the bytes to write
+	 *
+	 * @return array
+	 */
+	public function getChozoBytes() {
+		if($this->chozoPlm == null)
+		{
+			echo("Null Chozo PLM");
+		}
+		return [$this->chozoPlm & 0xFF, ($this->chozoPlm >> 8) & 0xFF];
 	}
 
 	/**

@@ -212,6 +212,35 @@ return [
 					'timerStart' => 0,
 				],
 			],
+			'combo' => [
+				'item' => [
+					'count' => [
+						'ProgressiveSword' => 0,
+						'ProgressiveGlove' => 0,
+						'ProgressiveShield' => 0,
+						'ProgressiveArmor' => 0,
+						'L1Sword' => 0,
+						'MasterSword' => 1,
+						'L3Sword' => 1,
+						'L4Sword' => 1,
+						'BlueShield' => 1,
+						'RedShield' => 1,
+						'MirrorShield' => 1,
+						'BlueMail' => 1,
+						'RedMail' => 1,
+						'PowerGlove' => 1,
+						'TitansMitt' => 1,
+						'BombUpgrade5' => 0,
+						'BombUpgrade10' => 0,
+						'ArrowUpgrade5' => 0,
+						'ArrowUpgrade10' => 0,
+						'TwentyRupees' => 44,
+					],
+				],
+				'rom' => [
+					'comboRom' => 1
+				]
+			]
 		],
 	],
 	'hard' => [
