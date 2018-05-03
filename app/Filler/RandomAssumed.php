@@ -20,21 +20,26 @@ class RandomAssumed extends Filler {
 	 *
 	 * @return null
 	 */
-	public function fill(array $dungeon, array $required, array $nice, array $extra) {
+	public function fill(array $dungeon, array $required, array $nice, array $extra, array $initial = null) {
 		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
 
-		$this->fillItemsInLocations($dungeon, $randomized_order_locations, array_merge($required, $nice));
+		$this->fillItemsInLocations($dungeon, $randomized_order_locations, array_merge($required, $nice, $initial));
+
+		// Initial items fill
+		$randomized_order_locations = $this->shuffleLocations($this->world->getEmptyLocations());
+		$this->fillItemsInLocations($initial, $randomized_order_locations);
 
 		// random junk fill
 		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()
 			->randomCollection(mt_rand($this->ganon_junk_lower, $this->ganon_junk_upper));
+		
 		$extra = $this->shuffleItems($extra);
 		$trash = array_splice($extra, 0, $gt_locations->count());
 		$this->fastFillItemsInLocations($trash, $gt_locations);
 
 		$randomized_order_locations = $randomized_order_locations->getEmptyLocations()->reverse();
 
-		$this->fillItemsInLocations($this->shuffleItems($required), $randomized_order_locations);
+		$this->fillItemsInLocations($this->shuffleItems($required), $randomized_order_locations, $initial);
 
 		$randomized_order_locations = $this->shuffleLocations($randomized_order_locations->getEmptyLocations());
 

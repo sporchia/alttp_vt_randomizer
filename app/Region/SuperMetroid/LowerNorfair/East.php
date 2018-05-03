@@ -29,8 +29,12 @@ class East extends Region {
             new Location\SuperMetroid\Visible("Power Bomb (Power Bombs of shame)", 0xF790C0, null, $this),
             new Location\SuperMetroid\Visible("Missile (lower Norfair near Wave Beam)", 0xF79100, null, $this),
             new Location\SuperMetroid\Hidden("Energy Tank, Ridley", 0xF79108, null, $this),
-            new Location\SuperMetroid\Visible("Energy Tank, Firefleas", 0xF79184, null, $this),
+			new Location\SuperMetroid\Visible("Energy Tank, Firefleas", 0xF79184, null, $this),
+			new Location\Prize\Event("Ridley", null, null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Ridley"];
+		$this->prize_location->setItem(Item::get('DefeatRidley'));
 	}
 
 	/**
@@ -72,7 +76,13 @@ class East extends Region {
                 && ($items->canFlySM() || $items->has('HiJump') || $items->has('IceBeam'))
                 && $items->canPassBombPassages());
         };
-        
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super');
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+		
 		return $this;
 	}
 

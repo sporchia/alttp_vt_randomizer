@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC_COMBO = 3;
+	const LOGIC_COMBO = 4;
 	const LOGIC = 29;
 	protected $rng_seed;
 	protected $seed;
@@ -191,6 +191,7 @@ class Randomizer {
 		$dungeon_items = $this->getDungeonPool();
 		$advancement_items = $this->getAdvancementItems();
 		$nice_items = $this->getNiceItems();
+		$initial_items = $this->getInitialItems();
 		$trash_items = ($this->config('rng_items'))
 			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
 			: $this->getItemPool();
@@ -340,7 +341,9 @@ class Randomizer {
 			$filler->setGanonJunkLimits(0, 0);
 		}
 
-		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items);
+		//$filler->setGanonJunkLimits(50, 50);
+
+		$filler->fill($dungeon_items, $advancement_items, $nice_items, $trash_items, $initial_items);
 
 		return $this;
 	}
@@ -381,7 +384,7 @@ class Randomizer {
 	public function fillPrizes(World $world, $attempts = 5) : self {
 		$prize_locations = $world->getLocations()->filter(function($location) {
 			return is_a($location, Location\Prize::class);
-		})->randomCollection(15);
+		})->randomCollection(20);
 
 		$crystal_locations = $prize_locations->filter(function($location) {
 			return is_a($location, Location\Prize\Crystal::class);
@@ -436,6 +439,7 @@ class Randomizer {
 				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 					$this->getDungeonPool(),
 					$this->getAdvancementItems(),
+					$this->getInitialItems(),
 					$place_prizes), $world));
 				if ($location->canAccess($assumed_items)) {
 					break;
@@ -485,6 +489,7 @@ class Randomizer {
 				$assumed_items = $world->collectItems(new ItemCollection(array_merge(
 					$this->getDungeonPool(),
 					$this->getAdvancementItems(),
+					$this->getInitialItems(),
 					$place_prizes), $world));
 				if ($location->canAccess($assumed_items)) {
 					break;
@@ -1216,6 +1221,18 @@ class Randomizer {
 		return $this;
 	}
 
+	public function getInitialItems()
+	{
+		$initial_items = [];
+		
+		// array_push($initial_items, Item::get('Morph'));
+		// array_push($initial_items, Item::get('Missile'));
+		// array_push($initial_items, Item::get('Super'));
+		// array_push($initial_items, Item::get('PowerBomb'));
+
+		return $initial_items;
+	}
+
 	/**
 	 * Get a shuffled array of Item's necessary for giving access to more locations as well as completing the game.
 	 *
@@ -1388,13 +1405,18 @@ class Randomizer {
 			array_push($advancement_items, Item::get('Grapple'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Morph', 1); $i++) {
-			array_push($advancement_items, Item::get('Morph'));
+		for ($i = 0; $i < $this->config('item.count.SpaceJump', 1); $i++) {
+			array_push($advancement_items, Item::get('SpaceJump'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ScrewAttack', 1); $i++) {
-			array_push($advancement_items, Item::get('ScrewAttack'));
+		for ($i = 0; $i < $this->config('item.count.SpringBall', 1); $i++) {
+			array_push($advancement_items, Item::get('SpringBall'));
 		}
+
+		array_push($advancement_items, Item::get('Morph'));
+		array_push($advancement_items, Item::get('Missile'));
+		array_push($advancement_items, Item::get('Super'));
+		array_push($advancement_items, Item::get('PowerBomb'));
 
 		return $advancement_items;
 	}
@@ -1469,20 +1491,12 @@ class Randomizer {
 			array_push($items_to_find, Item::get('Spazer'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.SpringBall', 1); $i++) {
-			array_push($items_to_find, Item::get('SpringBall'));
-		}
-
 		for ($i = 0; $i < $this->config('item.count.Plasma', 1); $i++) {
 			array_push($items_to_find, Item::get('Plasma'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.XRay', 1); $i++) {
 			array_push($items_to_find, Item::get('XRay'));
-		}
-
-		for ($i = 0; $i < $this->config('item.count.SpaceJump', 1); $i++) {
-			array_push($items_to_find, Item::get('SpaceJump'));
 		}
 
 		return $items_to_find;
@@ -1563,15 +1577,15 @@ class Randomizer {
 			array_push($items_to_find, Item::get('ReserveTank'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Missile', 40); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Missile', 39); $i++) {
 			array_push($items_to_find, Item::get('Missile'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Super', 17); $i++) {
+		for ($i = 0; $i < $this->config('item.count.Super', 16); $i++) {
 			array_push($items_to_find, Item::get('Super'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.PowerBomb', 10); $i++) {
+		for ($i = 0; $i < $this->config('item.count.PowerBomb', 9); $i++) {
 			array_push($items_to_find, Item::get('PowerBomb'));
 		}
 

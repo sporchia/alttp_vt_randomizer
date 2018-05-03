@@ -37,7 +37,11 @@ class Inner extends Region {
 			new Location\SuperMetroid\Visible("Missile (Draygon)", 0xF7C74D, null, $this),
 			new Location\SuperMetroid\Visible("Energy Tank, Botwoon", 0xF7C755, null, $this),
 			new Location\SuperMetroid\Visible("Space Jump", 0xF7C7A7, null, $this),
-        ]);
+			new Location\Prize\Event("Draygon", null, null, $this),
+		]);
+		
+		$this->prize_location = $this->locations["Draygon"];
+		$this->prize_location->setItem(Item::get('DefeatDraygon'));
 	}
 
 	/**
@@ -111,7 +115,13 @@ class Inner extends Region {
             return $this->world->getRegion('Outer Maridia')->canEnter($locations, $items)
                 && ($items->has('Gravity') || ($items->has('Grapple') && $items->has('HiJump') && $items->has('IceBeam')));
         };
-        
+		
+		$this->can_complete = function($locations, $items) {
+			return ($this->canEnter($locations, $items) && $items->canDefeatBotwoon() && $items->canDefeatDraygon());
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 

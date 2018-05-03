@@ -384,6 +384,7 @@ class GanonsTower extends Region {
 				&& $items->has('Crystal5')
 				&& $items->has('Crystal6')
 				&& $items->has('Crystal7')
+				&& $items->has('DefeatMotherBrain')
 				&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 		};
 

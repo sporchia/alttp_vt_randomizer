@@ -19,6 +19,8 @@ class Prize extends Location {
 	 */
 	public function setItem(Item $item = null) {
 		if (!is_a($item, Pendant::class) && !is_a($item, Crystal::class) && $item !== null) {
+			echo($item);
+			echo($this);
 			throw new \Exception('Trying to set non-Pendant/Crystal in a Prize Location');
 		}
 

@@ -89,6 +89,8 @@ class World {
 
 			'Outer Maridia' => new Region\SuperMetroid\Maridia\Outer($this),
 			'Inner Maridia' => new Region\SuperMetroid\Maridia\Inner($this),
+
+			'Tourian' => new Region\SuperMetroid\Tourian($this),
 		];
 
 		$this->locations = new LocationCollection;

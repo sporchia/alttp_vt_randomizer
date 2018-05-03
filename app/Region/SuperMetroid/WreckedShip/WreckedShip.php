@@ -31,7 +31,11 @@ class WreckedShip extends Region {
 			new Location\SuperMetroid\Visible("Super Missile (Wrecked Ship left)", 0xF7C357, null, $this),
 			new Location\SuperMetroid\Visible("Right Super, Wrecked Ship", 0xF7C365, null, $this),
 			new Location\SuperMetroid\Chozo("Gravity Suit", 0xF7C36D, null, $this),
+			new Location\Prize\Event("Phantoon", null, null, $this),
 		]);
+
+		$this->prize_location = $this->locations["Phantoon"];
+		$this->prize_location->setItem(Item::get('DefeatPhantoon'));
 	}
 
 	/**
@@ -82,8 +86,14 @@ class WreckedShip extends Region {
 
         $this->can_enter = function($locations, $items) {
 			return $items->canUsePowerBombs() && $items->has('Super');
-        };
-        
+		};
+		
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items);
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
 		return $this;
 	}
 

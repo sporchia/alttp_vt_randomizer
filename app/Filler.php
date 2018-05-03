@@ -37,7 +37,7 @@ abstract class Filler {
 		$this->world = $world;
 	}
 
-	abstract public function fill(array $dungeon, array $required, array $nice, array $extra);
+	abstract public function fill(array $dungeon, array $required, array $nice, array $extra, array $initial = null);
 
 	/**
 	 * If the filler uses GT Junk fill, this would be what to do with it.

@@ -27,7 +27,11 @@ class Kraid extends Region {
 			new Location\SuperMetroid\Hidden("Energy Tank, Kraid", 0xF7899C, null, $this),
 			new Location\SuperMetroid\Chozo("Varia Suit", 0xF78ACA, null, $this),
 			new Location\SuperMetroid\Hidden("Missile (Kraid)", 0xF789EC, null, $this),
+			new Location\Prize\Event("Kraid", null, null, $this),
 		]);		
+
+		$this->prize_location = $this->locations["Kraid"];
+		$this->prize_location->setItem(Item::get('DefeatKraid'));		
     }
 
 	/**
@@ -60,6 +64,12 @@ class Kraid extends Region {
                 && ($items->has('Super') && $items->has('Morph'))
                 && $items->canPassBombPassages();
 		};
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items);
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
 	}

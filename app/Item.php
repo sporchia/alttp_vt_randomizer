@@ -302,6 +302,12 @@ class Item {
 			new Item\Event('DefeatAgahnim', 'Defeat Agahnim', [null]),
 			new Item\Event('DefeatAgahnim2', 'Defeat Agahnim 2', [null]),
 			new Item\Event('DefeatGanon', 'Defeat Ganon', [null]),
+
+			new Item\Event('DefeatPhantoon', 'Defeat Phantoon', [null]),
+			new Item\Event('DefeatKraid', 'Defeat Kraid', [null]),
+			new Item\Event('DefeatDraygon', 'Defeat Draygon', [null]),
+			new Item\Event('DefeatRidley', 'Defeat Ridley', [null]),
+			new Item\Event('DefeatMotherBrain', 'Defeat Mother Brain', [null]),
 		]);
 		return static::all();
 	}
