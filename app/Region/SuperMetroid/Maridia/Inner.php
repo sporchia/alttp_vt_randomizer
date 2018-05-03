@@ -33,10 +33,10 @@ class Inner extends Region {
 			new Location\SuperMetroid\Visible("Power Bomb (right Maridia sand pit room)", 0xF7C5F1, null, $this),
 			new Location\SuperMetroid\Visible("Missile (pink Maridia)", 0xF7C603, null, $this),
 			new Location\SuperMetroid\Visible("Super Missile (pink Maridia)", 0xF7C609, null, $this),
-			new Location\SuperMetroid\Visible("Spring Ball", 0xF7C6E5, null, $this),
-			new Location\SuperMetroid\Visible("Missile (Draygon)", 0xF7C74D, null, $this),
+			new Location\SuperMetroid\Chozo("Spring Ball", 0xF7C6E5, null, $this),
+			new Location\SuperMetroid\Hidden("Missile (Draygon)", 0xF7C74D, null, $this),
 			new Location\SuperMetroid\Visible("Energy Tank, Botwoon", 0xF7C755, null, $this),
-			new Location\SuperMetroid\Visible("Space Jump", 0xF7C7A7, null, $this),
+			new Location\SuperMetroid\Chozo("Space Jump", 0xF7C7A7, null, $this),
 			new Location\Prize\Event("Draygon", null, null, $this),
 		]);
 		

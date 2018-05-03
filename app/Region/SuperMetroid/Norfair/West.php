@@ -54,7 +54,7 @@ class West extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Ice Beam"]->setRequirements(function($location, $items) {
-			return $items->has('Morph') && ($items->heatProof() || $items->hasEnergyReserves(2));
+			return $items->has('Morph') && ($items->heatProof() || $items->hasEnergyReserves(3));
         });
 
         $this->locations["Missile (below Ice Beam)"]->setRequirements(function($location, $items) {

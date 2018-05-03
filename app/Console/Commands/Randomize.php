@@ -72,6 +72,12 @@ class Randomize extends Command {
 			if (!$this->option('skip-md5') && !$rom->checkMD5()) {
 				return $this->error('MD5 check failed :(');
 			}
+			
+			config([
+				'game-mode' => $this->option('mode'),
+				'variation' => $this->option('variation'),
+				'alttp.mode.weapons' => $this->option('weapons'),
+			]);
 
 			$rom->setDebugMode($this->option('debug'));
 
@@ -92,12 +98,7 @@ class Randomize extends Command {
 				return $this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 
-			config([
-				'game-mode' => $this->option('mode'),
-				'variation' => $this->option('variation'),
-				'alttp.mode.weapons' => $this->option('weapons'),
-			]);
-
+			
 			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 			$rand->makeSeed($this->option('seed'));
 

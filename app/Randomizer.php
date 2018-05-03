@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC_COMBO = 4;
+	const LOGIC_COMBO = 5;
 	const LOGIC = 29;
 	protected $rng_seed;
 	protected $seed;
@@ -867,9 +867,10 @@ class Randomizer {
 		$rom->writeRandomizerLogicHash(self::$logic_array);
 		$rom->setSeedString(str_pad(sprintf("ZSM%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
 
-		if (static::class == self::class) {
-			$rom->writeCredits();
-		}
+		// TODO: Add back when credits patch is in the ROM
+		// if (static::class == self::class) {
+		// 	$rom->writeCredits();
+		// }
 
 		$this->seed->patch = json_encode($rom->getWriteLog());
 		$this->seed->build = Rom::BUILD;
@@ -1413,10 +1414,29 @@ class Randomizer {
 			array_push($advancement_items, Item::get('SpringBall'));
 		}
 
-		array_push($advancement_items, Item::get('Morph'));
-		array_push($advancement_items, Item::get('Missile'));
-		array_push($advancement_items, Item::get('Super'));
-		array_push($advancement_items, Item::get('PowerBomb'));
+		for ($i = 0; $i < $this->config('item.count.Morph', 1); $i++) {
+			array_push($advancement_items, Item::get('Morph'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.AdvancementMissile', 1); $i++) {
+			array_push($advancement_items, Item::get('Missile'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.AdvancementSuper', 1); $i++) {
+			array_push($advancement_items, Item::get('Super'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.AdvancementPowerBomb', 1); $i++) {
+			array_push($advancement_items, Item::get('PowerBomb'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.AdvancementETank', 5); $i++) {
+			array_push($advancement_items, Item::get('ETank'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.ChargeBeam', 1); $i++) {
+			array_push($advancement_items, Item::get('ChargeBeam'));
+		}
 
 		return $advancement_items;
 	}
@@ -1479,10 +1499,6 @@ class Randomizer {
 		}
 
 		/* Super Metroid Items */
-		for ($i = 0; $i < $this->config('item.count.ChargeBeam', 1); $i++) {
-			array_push($items_to_find, Item::get('ChargeBeam'));
-		}
-
 		for ($i = 0; $i < $this->config('item.count.WaveBeam', 1); $i++) {
 			array_push($items_to_find, Item::get('WaveBeam'));
 		}
@@ -1569,7 +1585,7 @@ class Randomizer {
 		}
 
 		/* Super Metroid Items */
-		for ($i = 0; $i < $this->config('item.count.ETank', 14); $i++) {
+		for ($i = 0; $i < $this->config('item.count.ETank', 9); $i++) {
 			array_push($items_to_find, Item::get('ETank'));
 		}
 

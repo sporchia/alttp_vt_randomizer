@@ -517,7 +517,7 @@ class ItemCollection extends Collection {
 
 	public function canHellRun()
 	{
-		return $this->heatProof() || $this->hasEnergyReserves(4);
+		return $this->heatProof() || $this->hasEnergyReserves(5);
 	}
 
 	public function canUsePowerBombs()

@@ -1551,9 +1551,9 @@ class Rom {
 	 * @return $this
 	 */
 	public function setDebugMode($enable = true) : self {
-		//$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
-		//$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
-
+		$this->write(0x65B88, pack('S*', $enable ? 0xEAEA : 0x21F0));
+		$this->write(0x65B91, pack('S*', $enable ? 0xEAEA : 0x18D0));
+		
 		return $this;
 	}
 
@@ -1565,7 +1565,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSRAMTrace($enable = true) : self {
-		//$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
+		$this->write(0x180030, pack('C*', $enable ? 0x01 : 0x00));
 
 		return $this;
 	}
