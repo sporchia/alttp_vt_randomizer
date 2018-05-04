@@ -95,8 +95,7 @@ class Inner extends Region {
 		});
 
         $this->locations["Spring Ball"]->setRequirements(function($location, $items) {
-            return $items->has('IceBeam')
-                || ($items->has('Grapple') && ($items->canFlySM() || $items->has('HiJump')));
+            return $items->has('Gravity') && ($items->has('Grapple') && ($items->canFlySM() || $items->has('HiJump')));
 		});
 
         $this->locations["Missile (Draygon)"]->setRequirements(function($location, $items) {
