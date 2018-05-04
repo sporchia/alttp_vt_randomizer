@@ -137,8 +137,7 @@ class South extends Region {
 						|| ($items->has('DefeatAgahnim') && ($items->has('Hammer')
 							|| ($items->has('Hookshot') && ($items->canLiftRocks() || $items->has('Flippers')))))))
 					|| (($items->has('MagicMirror') || ($items->has('PegasusBoots') && $items->has('MoonPearl')))
-						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
-					|| ($items->canAccessDarkWorldPortal() && $items->has('Flippers')));
+						&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
 		};
 
 		return $this;
