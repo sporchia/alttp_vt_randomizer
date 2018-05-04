@@ -483,11 +483,10 @@ class ItemCollection extends Collection {
 	{
 		return $this->canUsePowerBombs()
 			&& $this->has('Super')
-			&& ($items->has('Gravity')
-			 || ($items->has('HiJump') && $items->has('IceBeam') && $items->has('Grapple')))
-			&& ($this->has('IceBeam') || $this->has('SpeedBooster'));
+			&& ($this->has('Gravity')
+			 || ($this->has('HiJump') && $this->has('IceBeam') && $this->has('Grapple')))
+			&& ($this->has('IceBeam') || ($this->has('SpeedBooster') && $this->has('Gravity')));
 	}
-
 
 	/* Super Metroid Ability Macros */
 	public function canIbj() {
