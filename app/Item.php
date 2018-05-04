@@ -109,8 +109,8 @@ class Item {
 
 		static::$items = new ItemCollection([
 			new Item('Nothing', 'Nothing', [0x5A], null, 0xf094, 0xe8 + 0xf094, 0x1d0 + 0xf094),
-			new Item\Sword('L1Sword', 'Fighters Sword', [0x49], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c), // Uncle must be dead
-			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', [0x00], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c), // Uncle must be dead
+			new Item\Sword('L1Sword', 'Fighters Sword', [0x49], null, 0xf2f8, 0xf2fc, 0xf300), // Uncle must be dead
+			new Item\Sword('L1SwordAndShield', 'Fighters Sword and Shield', [0x00], null, 0xf2f8, 0xf2fc, 0xf300), // Uncle must be dead
 			new Item\Sword('L2Sword', 'Master Sword', [0x01], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c),
 			new Item\Sword('MasterSword', 'Master Sword', [0x50], null, 0xf06c, 0xe8 + 0xf06c, 0x1d0 + 0xf06c),
 			new Item\Sword('L3Sword', 'Tempered Sword', [0x02], null, 0xf070, 0xe8 + 0xf070, 0x1d0 + 0xf070), // Uncle must be dead
@@ -185,11 +185,11 @@ class Item {
 			new Item\Bottle('BottleWithGoldBee', 'Bottle (Golden Bee)', [0x48], null, 0xf040, 0xe8 + 0xf040, 0x1d0 + 0xf040),
 			new Item('OcarinaActive', 'Flute (active)', [0x4A], null, 0xf020, 0xe8 + 0xf020, 0x1d0 + 0xf020),
 			new Item('PegasusBoots', 'Pegasus Boots', [0x4B], null, 0xf060, 0xe8 + 0xf060, 0x1d0 + 0xf060),
-			new Item\Upgrade\Bomb('BombUpgrade5', 'Bomb Upgrade (+5)', [0x51]),
-			new Item\Upgrade\Bomb('BombUpgrade10', 'Bomb Upgrade (+10)', [0x52]),
+			new Item\Upgrade\Bomb('BombUpgrade5', 'Bomb Upgrade (+5)', [0x51], null, 0xf2c8, 0xf2cc, 0xf2d0),
+			new Item\Upgrade\Bomb('BombUpgrade10', 'Bomb Upgrade (+10)', [0x52], null, 0xf2d4, 0xf2d8, 0xf2dc),
 			new Item\Upgrade\Bomb('BombUpgrade50', 'Bomb Upgrade (+50)', [0x4C]),
-			new Item\Upgrade\Arrow('ArrowUpgrade5', 'Arrow Upgrade (+5)', [0x53]),
-			new Item\Upgrade\Arrow('ArrowUpgrade10', 'Arrow Upgrade (+10)', [0x54]),
+			new Item\Upgrade\Arrow('ArrowUpgrade5', 'Arrow Upgrade (+5)', [0x53], null, 0xf2e0, 0xf2e4, 0xf2e8),
+			new Item\Upgrade\Arrow('ArrowUpgrade10', 'Arrow Upgrade (+10)', [0x54], null, 0xf2ec, 0xf2f0, 0xf2f4),
 			new Item\Upgrade\Arrow('ArrowUpgrade70', 'Arrow Upgrade (+70)', [0x4D]),
 			new Item\Upgrade\Magic('HalfMagic', 'Half Magic', [0x4E], null, 0xf0c0, 0xe8 + 0xf0c0, 0x1d0 + 0xf0c0),
 			new Item\Upgrade\Magic('QuarterMagic', 'Quarter Magic', [0x4F], null, 0xf0c4, 0xe8 + 0xf0c4, 0x1d0 + 0xf0c4),

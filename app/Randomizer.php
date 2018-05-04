@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC_COMBO = 5;
+	const LOGIC_COMBO = 6;
 	const LOGIC = 29;
 	protected $rng_seed;
 	protected $seed;
@@ -59,23 +59,12 @@ class Randomizer {
 		$this->goal = $goal;
 		$this->world = new World($difficulty, $logic, $goal, $variation);
 		$this->seed = new Seed;
-		if($variation == 'combo')
-		{
-			$this->starting_equipment = new ItemCollection([
-				Item::get('BombUpgrade10'),
-				Item::get('ArrowUpgrade10'),
-				Item::get('ArrowUpgrade10'),
-				Item::get('ArrowUpgrade10'),
-				Item::get('L1Sword'),
-			], $this->world);
-		} else {
-			$this->starting_equipment = new ItemCollection([
-				Item::get('BombUpgrade10'),
-				Item::get('ArrowUpgrade10'),
-				Item::get('ArrowUpgrade10'),
-				Item::get('ArrowUpgrade10'),
-			], $this->world);			
-		}
+		$this->starting_equipment = new ItemCollection([
+			Item::get('BombUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+			Item::get('ArrowUpgrade10'),
+		], $this->world);			
 		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 

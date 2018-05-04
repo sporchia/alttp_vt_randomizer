@@ -213,17 +213,10 @@ return [
 				],
 			],
 			'combo' => [
-				'item' => [
-					'count' => [
-						'ProgressiveSword' => 3,
-						'L1Sword' => 0,
-						'BombUpgrade5' => 0,
-						'BombUpgrade10' => 0,
-						'ArrowUpgrade5' => 0,
-						'ArrowUpgrade10' => 0,
-						'TwentyRupees' => 44,
-					],
-				],
+				// 'item' => [
+				// 	'count' => [
+				// 	],
+				// ],
 				'rom' => [
 					'comboRom' => 1
 				]
