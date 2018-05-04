@@ -122,7 +122,8 @@ class NorthEast extends Region {
 			return $items->has('RescueZelda')
 				&& ($items->has('DefeatAgahnim')
 					|| ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
-					|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl')));
+					|| ($items->canLiftDarkRocks() && $items->has('Flippers') && $items->has('MoonPearl'))
+					|| ($items->canAccessDarkWorldPortal() && $items->has('Flippers') && $items->has('MoonPearl')));
 		};
 
 		$this->prize_location->setRequirements(function($locations, $items) {

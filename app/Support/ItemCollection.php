@@ -564,18 +564,16 @@ class ItemCollection extends Collection {
 
 	public function canAccessMaridiaPortal()
 	{
-		return $this->has('RescueZelda')
+		return $this->has('MoonPearl')
+		&& $this->has('RescueZelda')
 		&& $this->has('Flippers')
-		&& (($this->has('MoonPearl')
-			&& ($this->canLiftDarkRocks()
-				|| ($this->has('Hammer') && $this->canLiftRocks())
-				|| ($this->has('DefeatAgahnim') && ($this->has('Hammer')
-					|| ($this->has('Hookshot') && ($this->canLiftRocks() || $this->has('Flippers')))))))
-			|| (($this->has('MagicMirror') || ($this->has('PegasusBoots') && $this->has('MoonPearl')))
-				&& ($this->has('RescueZelda')
-				&& ($this->canFly()
-					|| ($this->canLiftRocks() && $this->has('Lamp', $this->world->config('item.require.Lamp', 1)))))			
-			));
+		&& ((($this->has('DefeatAgahnim')
+			|| ($this->has('Hammer') && $this->canLiftRocks() && $this->has('MoonPearl'))
+			|| ($this->canLiftDarkRocks() && $this->has('Flippers') && $this->has('MoonPearl'))) && ($this->has('Hammer')
+			|| ($this->has('Hookshot') && ($this->has('Flippers') || $this->canLiftRocks()))))
+			|| ($this->has('Hammer') && $this->canLiftRocks())
+			|| $this->canLiftDarkRocks());
+
 	}
 
 	public function canDefeatBotwoon()
