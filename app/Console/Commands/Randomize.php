@@ -124,8 +124,8 @@ class Randomize extends Command {
 				$this->info(sprintf('Rom Saved: %s', $output_file));
 			}
 			if ($this->option('spoiler')) {
-				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s_%s.txt',
-					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
+				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.txt',
+					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons') ? '_' . $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_' . $this->option('variation') , $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}
