@@ -132,7 +132,7 @@
 <form id="config" style="display:none">
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
 	<input type="hidden" name="difficulty" value="normal" />
-	<input type="hidden" name="variation" value="none" />
+	<input type="hidden" name="variation" value="combo" />
 	<input type="hidden" name="mode" value="open" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="weapons" value="randomized" />
