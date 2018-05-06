@@ -23,7 +23,7 @@ class Blue extends Region {
 		parent::__construct($world);
 
 		$this->locations = new LocationCollection([
-            new Location\SuperMetroid\Visible("Morphing Ball", 0xF786DE, null, $this),
+            new Location\SuperMetroid\Visible("Morphing Ball", 0xF786EC, null, $this),
             new Location\SuperMetroid\Visible("Power Bomb (blue Brinstar)", 0xF7874C, null, $this),
             new Location\SuperMetroid\Visible("Missile (blue Brinstar middle)", 0xF78798, null, $this),
             new Location\SuperMetroid\Hidden("Energy Tank, Brinstar Ceiling", 0xF7879E, null, $this),
