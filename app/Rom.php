@@ -10,7 +10,7 @@ use Log;
  */
 class Rom {
 	const BUILD = '2018-05-06';
-	const HASH = '05f6ff13320ef9145c43d416d1e44782';
+	const HASH = 'ffd76758614595faad2a9c2018a3fde4';
 	const SIZE = 6291456;
 	static private $digit_gfx = [
 		0 => 0x30,
