@@ -72,7 +72,7 @@ class Crocomire extends Region {
             return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
                 || $items->canAccessNorfairPortal())
-                && ($items->hasEnergyReserves(2) || $items->heatProof())
+                && ($items->hasEnergyReserves(3) || $items->heatProof())
                 && $items->has('Super')
                 && ((($items->canFlySM() || $items->has('HiJump')) && $items->has('Morph')) || $items->has('SpeedBooster'));
         };

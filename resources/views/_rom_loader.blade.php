@@ -14,13 +14,17 @@
 	<div class="panel-body">
 		<p>
 			<label class="btn btn-default btn-file">
-				Select ROM File <input type="file" accept=".sfc,.smc" name="f2u" style="display: none;">
+				Select A Link to the Past ROM File <input type="file" accept=".sfc,.smc" name="f2ualttp" style="display: none;">
+			</label>
+		</p>
+		<p>
+			<label class="btn btn-default btn-file">
+				Select Super Metroid ROM File <input type="file" accept=".sfc,.smc" name="f2usm" style="display: none;">
 			</label>
 		</p>
 		<ol>
-			<li>Select your rom file and load it into the browser
-				(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with
-				an .smc or .sfc extension)</li>
+			<li>Select your roms and load it into the browser
+				(Please use <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> and <strong>Super Metroid (JU)</strong> ROMs with .smc or .sfc extensions)</li>
 			<li>Select the <a href="/options">options</a> for how you would like your game randomized</li>
 			<li>Click Generate</li>
 			<li>Then Save your rom and get to playing</li>
@@ -91,6 +95,7 @@ function loadBlob(blob, show_error) {
 		$('#rom-select').show();
 		return;
 	}
+
 	rom = new ROM(blob, function(rom) {
 		if (show_error) {
 			localforage.setItem('rom', rom.getArrayBuffer());
@@ -110,13 +115,79 @@ function loadBlob(blob, show_error) {
 	});
 }
 
+function loadMergedBlobs(smBlob, alttpBlob)
+{
+	var smRomBuffer = null;
+	var alttpRomBuffer = null;
+
+	var smFileReader = new FileReader();
+	smFileReader.onloadend = function() { 
+		smRomBuffer = smFileReader.result;
+		var alttpFileReader = new FileReader();
+		alttpFileReader.onloadend = function() { 
+			alttpRomBuffer = alttpFileReader.result;
+			loadMergedBuffers(smRomBuffer, alttpRomBuffer);
+		};	
+		alttpFileReader.readAsArrayBuffer(alttpBlob);
+	};
+	smFileReader.readAsArrayBuffer(smBlob);
+}
+
+function loadMergedBuffers(smRomBuffer, alttpRomBuffer)
+{
+	var smRom = new Uint8Array(smRomBuffer);
+	var alttpRom = new Uint8Array(alttpRomBuffer);
+
+	var data = new Uint8Array(0x600000);
+	var pos = 0;
+	for(var i = 0; i < 0x40; i++)
+	{
+		var hi_bank = smRom.slice((i*0x8000), (i*0x8000)+0x8000);
+		var lo_bank = smRom.slice(((i+0x40)*0x8000), ((i+0x40)*0x8000)+0x8000);
+
+		data.set(lo_bank, pos);
+		data.set(hi_bank, pos + 0x8000);
+		pos += 0x10000;
+	}
+ 
+	pos = 0x400000;
+
+	for(var i = 0; i < 0x20; i++)
+	{
+		var hi_bank = alttpRom.slice((i*0x8000), (i*0x8000)+0x8000);
+		data.set(hi_bank, pos + 0x8000);
+		pos += 0x10000;
+	}
+
+	loadBlob(new Blob([data]), true);
+}
+
+var smUploadedBlob = null;
+var alttpUploadedBlob = null;
+
 $(function() {
 	$('.alert, .info').hide();
 
-	$('input[name=f2u]').on('change', function() {
-		$('#rom-select').hide();
-		$('.alert').hide();
-		loadBlob(this.files[0], true);
+	$('input[name=f2ualttp]').on('change', function() {
+		alttpUploadedBlob = this.files[0];
+		if(alttpUploadedBlob != null && smUploadedBlob != null)
+		{
+			$('#rom-select').hide();
+			$('.alert').hide();
+			loadMergedBlobs(smUploadedBlob, alttpUploadedBlob);
+			//loadBlob(mergedBlob, true);
+		}
+	});
+
+	$('input[name=f2usm]').on('change', function() {
+		smUploadedBlob = this.files[0];
+		if(this.files[0] != null)
+		{
+			$('#rom-select').hide();
+			$('.alert').hide();
+			loadMergedBlobs(smUploadedBlob, alttpUploadedBlob);
+			//loadBlob(mergedBlob, true);
+		}
 	});
 
 	// Load ROM from local storage if it's there

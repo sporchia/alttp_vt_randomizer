@@ -74,7 +74,13 @@ class East extends Region {
             return ($this->world->getRegion('West Lower Norfair')->canEnter($locations, $items)
                 && ($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->canFlySM() || $items->has('HiJump') || $items->has('IceBeam'))
-                && $items->canPassBombPassages());
+				&& $items->canPassBombPassages()
+				&& (($items->heatProof() && ($items->has('HiJump') || $items->has('Gravity')))
+					|| ($items->heatProof()
+					&& ($items->canIbj() 
+						|| ($items->has('SpaceJump') && ($items->has('ScrewAttack') || $items->canPassBombPassages() || $items->canUsePowerbombs())) 
+						|| ($items->has('SpringBall') && $items->canUsePowerBombs()) 
+						|| $items->has('SpeedBooster')))));
         };
 
 		$this->can_complete = function($locations, $items) {

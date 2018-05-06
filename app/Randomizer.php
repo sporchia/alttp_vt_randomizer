@@ -13,7 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC_COMBO = 6;
+	const LOGIC_COMBO = 7;
 	const LOGIC = 29;
 	protected $rng_seed;
 	protected $seed;
@@ -1215,10 +1215,13 @@ class Randomizer {
 	{
 		$initial_items = [];
 		
-		// array_push($initial_items, Item::get('Morph'));
-		// array_push($initial_items, Item::get('Missile'));
-		// array_push($initial_items, Item::get('Super'));
-		// array_push($initial_items, Item::get('PowerBomb'));
+		for ($i = 0; $i < $this->config('item.count.Varia', 1); $i++) {
+			array_push($initial_items, Item::get('Varia'));
+		}
+
+		for ($i = 0; $i < $this->config('item.count.Gravity', 1); $i++) {
+			array_push($initial_items, Item::get('Gravity'));
+		}
 
 		return $initial_items;
 	}
@@ -1383,13 +1386,13 @@ class Randomizer {
 			array_push($advancement_items, Item::get('ScrewAttack'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Varia', 1); $i++) {
-			array_push($advancement_items, Item::get('Varia'));
-		}
+		// for ($i = 0; $i < $this->config('item.count.Varia', 1); $i++) {
+		// 	array_push($advancement_items, Item::get('Varia'));
+		// }
 
-		for ($i = 0; $i < $this->config('item.count.Gravity', 1); $i++) {
-			array_push($advancement_items, Item::get('Gravity'));
-		}
+		// for ($i = 0; $i < $this->config('item.count.Gravity', 1); $i++) {
+		// 	array_push($advancement_items, Item::get('Gravity'));
+		// }
 
 		for ($i = 0; $i < $this->config('item.count.Grapple', 1); $i++) {
 			array_push($advancement_items, Item::get('Grapple'));

@@ -280,6 +280,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	config([
 		'game-mode' => $game_mode,
 		'alttp.mode.weapons' => $weapons_mode,
+		'variation' => $variation,
 	]);
 
 	$rom = new ALttP\Rom();

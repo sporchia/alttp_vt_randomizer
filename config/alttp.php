@@ -213,10 +213,6 @@ return [
 				],
 			],
 			'combo' => [
-				// 'item' => [
-				// 	'count' => [
-				// 	],
-				// ],
 				'rom' => [
 					'comboRom' => 1
 				]
@@ -660,39 +656,40 @@ return [
 		],
 		'item' => [
 			'difficulties' => [
-				'easy' => 'Easy',
+				//'easy' => 'Easy',
 				'normal' => 'Normal',
-				'hard' => 'Hard',
-				'expert' => 'Expert',
-				'insane' => 'Insane',
+				//'hard' => 'Hard',
+				//'expert' => 'Expert',
+				//'insane' => 'Insane',
 			],
 			'goals' => [
 				'ganon' => 'Defeat Ganon',
-				'dungeons' => 'All Dungeons',
-				'pedestal' => 'Master Sword Pedestal',
-				'triforce-hunt' => 'Triforce Pieces',
+				//'dungeons' => 'All Dungeons',
+				//'pedestal' => 'Master Sword Pedestal',
+				//'triforce-hunt' => 'Triforce Pieces',
 			],
 			'logics' => [
 				'NoMajorGlitches' => 'No Glitches',
-				'OverworldGlitches' => 'Overworld Glitches',
-				'MajorGlitches' => 'Major Glitches',
+				//'OverworldGlitches' => 'Overworld Glitches',
+				//'MajorGlitches' => 'Major Glitches',
 			],
 			'modes' => [
-				'standard' => 'Standard',
+				//'standard' => 'Standard',
 				'open' => 'Open',
 			],
 			'weapons' => [
 				'randomized' => 'Randomized',
-				'uncle' => 'Uncle Assured',
-				'swordless' => 'Swordless',
+				//'uncle' => 'Uncle Assured',
+				//'swordless' => 'Swordless',
 			],
 			'variations' => [
-				'none' => 'None',
-				'timed-race' => 'Timed Race',
-				'timed-ohko' => 'Timed OHKO',
-				'ohko' => 'OHKO',
-				'key-sanity' => 'Key-sanity',
-				'retro' => 'Retro',
+				//'none' => 'None',
+				//'timed-race' => 'Timed Race',
+				//'timed-ohko' => 'Timed OHKO',
+				//'ohko' => 'OHKO',
+				//'key-sanity' => 'Key-sanity',
+				//'retro' => 'Retro',
+				'combo' => 'ALTTP+SM Combo Randomizer',
 			],
 			'difficulty_adjustments' => [
 				0 => 'Normal',
@@ -737,6 +734,7 @@ return [
 					'ohko' => 1,
 					'key-sanity' => 15,
 					'retro' => 15,
+					'combo' => 0,
 				],
 			],
 		],

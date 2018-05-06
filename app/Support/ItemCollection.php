@@ -475,8 +475,7 @@ class ItemCollection extends Collection {
 		return $this->heatProof()
 			&& $this->has('Super')
 			&& ($this->has('HiJump') || $this->has('Gravity'))
-			&& $this->canUsePowerBombs()
-			&& ($this->heatProof() && ($this->has('HiJump') || $this->has('Gravity')));
+			&& $this->canUsePowerBombs();
 	}
 
 	public function canAccessDarkWorldPortal()
@@ -558,7 +557,7 @@ class ItemCollection extends Collection {
 
 	public function canAccessLowerNorfairPortal()
 	{
-		return $this->canFly() && $this->has('MoonPearl') && $this->canLiftDarkRocks();		
+		return $this->canFly() && $this->canLiftDarkRocks();		
 	}
 
 	public function canAccessMaridiaPortal()
@@ -572,7 +571,6 @@ class ItemCollection extends Collection {
 			|| ($this->has('Hookshot') && ($this->has('Flippers') || $this->canLiftRocks()))))
 			|| ($this->has('Hammer') && $this->canLiftRocks())
 			|| $this->canLiftDarkRocks());
-
 	}
 
 	public function canDefeatBotwoon()

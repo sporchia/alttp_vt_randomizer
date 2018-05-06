@@ -8,11 +8,7 @@
 @yield('loader')
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Item Randomizer (v{!! ALttP\Randomizer::LOGIC !!})</h3>
-		<div class="btn-toolbar pull-right">
-			<a class="btn btn-default" href="/entrance/randomizer">Switch to Entrance Randomizer <span class="glyphicon glyphicon-expand"></span></a>
-			@yield('rom-settings-button')
-		</div>
+		<h3 class="panel-title pull-left">Super Metroid and A Link to the Past Item Randomizer (v{!! ALttP\Randomizer::LOGIC_COMBO !!}-{!! ALttP\Randomizer::LOGIC !!})</h3>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">

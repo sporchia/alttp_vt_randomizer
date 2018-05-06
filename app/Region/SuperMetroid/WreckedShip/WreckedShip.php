@@ -64,7 +64,7 @@ class WreckedShip extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Reserve Tank, Wrecked Ship"]->setRequirements(function($location, $items) {
-			return $items->has('SpeedBooster') && ($items->has('Varia') || $items->hasEnergyReserves(2));
+			return $items->has('SpeedBooster') && ($items->has('Varia') || $items->hasEnergyReserves(3));
 		});
 
         $this->locations["Missile (Gravity Suit)"]->setRequirements(function($location, $items) {
@@ -81,7 +81,8 @@ class WreckedShip extends Region {
                 || $items->has('HiJump')
                 || $items->has('SpaceJump')
                 || $items->has('SpeedBooster')
-                || $items->has('SpringBall');
+				|| $items->has('SpringBall')
+				|| $items->has('Gravity');
 		});
 
         $this->can_enter = function($locations, $items) {

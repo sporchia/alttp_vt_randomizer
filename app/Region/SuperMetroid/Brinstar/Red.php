@@ -82,7 +82,7 @@ class Red extends Region {
         $this->can_enter = function($locations, $items) {
             return (($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
-                || $items->canAccessNorfairPortal();
+                || ($items->canAccessNorfairPortal() && ($items->has('IceBeam') || $items->has('HiJump') || $items->canFlySM()));
 		};
 
 		return $this;

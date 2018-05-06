@@ -80,7 +80,7 @@ class Pink extends Region {
 		});
 
         $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && ($items->has('WaveBeam') || $items->has('Super'));
+			return $items->canUsePowerBombs() && ($items->has('WaveBeam') || ($items->has('Super') && $items->has('HiJump')));
 		});
 
         $this->can_enter = function($locations, $items) {
