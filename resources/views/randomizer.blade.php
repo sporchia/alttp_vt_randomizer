@@ -8,7 +8,7 @@
 @yield('loader')
 <div id="seed-generate" class="panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left">Super Metroid and A Link to the Past Item Randomizer (v{!! ALttP\Randomizer::LOGIC_COMBO !!}-{!! ALttP\Randomizer::LOGIC !!})</h3>
+		<h3 class="panel-title pull-left">Super Metroid and A Link to the Past Item Randomizer (v{!! ALttP\Randomizer::LOGIC !!})</h3>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
@@ -367,7 +367,7 @@ $(function() {
 		genToZip(zip, itters).then(function(zip) {
 			zip.generateAsync({type: "blob", compression: "DEFLATE"})
 			.then(function(content) {
-				FileSaver.saveAs(content, "VT-alttp-roms.zip");
+				FileSaver.saveAs(content, "sm-alttp-roms.zip");
 				$('button[name=generate]').html('Generate').prop('disabled', false);
 				$('button[name=generate-save]').prop('disabled', false);
 			});
@@ -379,7 +379,7 @@ $(function() {
 		return new Promise(function(resolve, reject) {
 			applySeed(rom, $('#seed').val()).then(function(data) {
 				var buffer = data.rom.getArrayBuffer().slice(0);
-				var fname = 'ALttP - VT_' + data.patch.logic
+				var fname = 'SMALttP - v' + data.patch.logic
 					+ '_' + data.patch.difficulty
 					+ '-' + data.patch.spoiler.meta.mode
 					+ (data.patch.spoiler.meta.weapons ? '-' + data.patch.spoiler.meta.weapons : '')

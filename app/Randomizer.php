@@ -13,8 +13,7 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC_COMBO = 7;
-	const LOGIC = 29;
+	const LOGIC = 7;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
@@ -84,12 +83,12 @@ class Randomizer {
 	 */
 	public function getLogic() {
 		switch ($this->logic) {
-			case 'None': return 'none-' . static::LOGIC_COMBO . '-' . static::LOGIC;
-			case 'NoMajorGlitches': return 'no-glitches-' . static::LOGIC_COMBO . '-' . static::LOGIC;
-			case 'OverworldGlitches': return 'overworld-glitches-' . static::LOGIC_COMBO . '-' . static::LOGIC;
-			case 'MajorGlitches': return 'major-glitches-' . static::LOGIC_COMBO . '-' . static::LOGIC;
+			case 'None': return 'none-v' . static::LOGIC;
+			case 'NoMajorGlitches': return 'no-glitches-v' . static::LOGIC;
+			case 'OverworldGlitches': return 'overworld-glitches-v' . static::LOGIC;
+			case 'MajorGlitches': return 'major-glitches-v' . static::LOGIC;
 		}
-		return 'unknown-' . static::LOGIC_COMBO . '-' . static::LOGIC;
+		return 'unknown-v' . static::LOGIC;
 	}
 
 	/**
