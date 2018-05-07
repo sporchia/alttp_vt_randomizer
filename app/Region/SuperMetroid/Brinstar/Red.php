@@ -68,7 +68,7 @@ class Red extends Region {
 		});
 
         $this->locations["Power Bomb (red Brinstar spike room)"]->setRequirements(function($location, $items) {
-            return $items->canUsePowerBombs() && $items->has('Super');
+            return $items->has('Super');
 		});
 
         $this->locations["Missile (red Brinstar spike room)"]->setRequirements(function($location, $items) {

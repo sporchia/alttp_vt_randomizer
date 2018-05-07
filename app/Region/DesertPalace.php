@@ -124,7 +124,9 @@ class DesertPalace extends Region {
 		$this->can_enter = function($locations, $items) {
 			return $items->has('RescueZelda')
 				&& ($items->has('BookOfMudora')
-					|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly()));
+					|| ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly())
+					|| ($items->canAccessMiseryMirePortal() && $items->has('MagicMirror'))
+				);
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);
