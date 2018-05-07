@@ -1698,7 +1698,7 @@ class Randomizer {
 		}, $this->world->getAllDrops());
 
 		if ($this->config('rom.rupeeBow', false)) {
-			$drop_bytes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+			$drop_bytes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $drop_bytes);
 			$rom->setOverworldDigPrizes([
 					0xB2, 0xD8, 0xD8, 0xD8,
 					0xD8, 0xD8, 0xD8, 0xD8, 0xD8,

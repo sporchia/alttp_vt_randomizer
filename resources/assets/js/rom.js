@@ -2,8 +2,10 @@ const SparkMD5 = require('./spark-md5');
 const FileSaver = require('file-saver');
 
 var ROM = (function(blob, loaded_callback) {
-	var u_array;
+	var u_array = [];
 	var arrayBuffer;
+	var base_patch;
+	var original_data;
 
 	var music = {
 		0x00:[0xD373B,0xD375B,0xD90F8],
@@ -87,6 +89,8 @@ var ROM = (function(blob, loaded_callback) {
 			arrayBuffer = this.resizeUint8(arrayBuffer, 2097152);
 		}
 
+		original_data = arrayBuffer.slice(0);
+
 		u_array = new Uint8Array(arrayBuffer);
 
 		if (loaded_callback) loaded_callback(this);
@@ -103,7 +107,7 @@ var ROM = (function(blob, loaded_callback) {
 	};
 
 	this.write = function(seek, bytes) {
-		if (!bytes.length) {
+		if (bytes && !bytes.length) {
 			u_array[seek] = bytes;
 			return;
 		}
@@ -273,16 +277,31 @@ var ROM = (function(blob, loaded_callback) {
 		}.bind(this));
 	}.bind(this);
 
-	this.parsePatch = function(patch, progressCallback) {
+	this.parsePatch = function(data, progressCallback) {
 		return new Promise(function(resolve, reject) {
-			patch.forEach(function(value, index, array) {
-				if (progressCallback) progressCallback(index / patch.length, this);
+			this.logic = data.logic;
+			this.difficulty = data.difficulty;
+			this.seed = data.seed;
+			this.spoiler = data.spoiler;
+			if (data.spoiler && data.spoiler.meta) {
+				this.goal = data.spoiler.meta.goal;
+				this.build = data.spoiler.meta.build;
+				this.mode = data.spoiler.meta.mode;
+				this.weapons = data.spoiler.meta.weapons;
+				this.variation = data.spoiler.meta.variation;
+			}
+			data.patch.forEach(function(value, index, array) {
+				if (progressCallback) progressCallback(index / data.patch.length, this);
 				for (address in value) {
 					this.write(Number(address), value[address]);
 				}
 			}.bind(this));
 			resolve(this);
 		}.bind(this));
+	};
+
+	this.setBasePatch = function(patch) {
+		this.base_patch = patch;
 	};
 
 	this.resizeUint8 = function(baseArrayBuffer, newByteSize) {
@@ -305,6 +324,18 @@ var ROM = (function(blob, loaded_callback) {
 			+ (this.variation == 'none' ? '' : '_' + this.variation)
 			+ '_' + this.seed
 			+ (this.special ? '_special' : '');
+	};
+
+	this.reset = function() {
+		return new Promise((resolve, reject) => {
+			arrayBuffer = original_data.slice(0);
+			if (!this.base_patch) {
+				reject('base patch not set');
+			}
+			this.parsePatch({patch: this.base_patch}).then((rom) => {
+				resolve(rom);
+			});
+		});
 	};
 });
 

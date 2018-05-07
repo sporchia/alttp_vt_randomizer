@@ -81,13 +81,6 @@ You can run the current test suite with the following command (you may need to i
 $ phpunit
 ```
 
-## API Documentation
-The API documentation can be generated after you install by running:
-
-```
-$ composer documentation
-```
-
 ## Bug Reports
 Bug reports for the current release version can be opened in this repository's [issue tracker](https://github.com/sporchia/alttp_vt_randomizer/issues).
 

@@ -159,10 +159,6 @@ Route::get('calendar', function(Request $request) {
 	return view('calendar');
 });
 
-Route::get('spoiler_click/{seed_id?}', function() {
-	return "Ok";
-});
-
 Route::any('hash/{hash}', function(Request $request, $hash) {
 	$seed = ALttP\Seed::where('hash', $hash)->first();
 	if ($seed) {

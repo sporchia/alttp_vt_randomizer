@@ -3,211 +3,105 @@
 @overwrite
 
 @section('rom-settings')
-<div class="panel panel-info panel-collapse collapse" id="rom-settings">
-	<div class="panel-heading">
-		<h3 class="panel-title">Additional ROM Options</h3>
-	</div>
-	<div class="panel-body">
-		<div class="col-md-6 pb-5">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Heart Beep</span>
-				<select id="heart-speed" class="form-control selectpicker">
-					<option value="off">Off</option>
-					<option value="normal">Normal Speed</option>
-					<option value="half" selected>Half Speed</option>
-					<option value="quarter">Quarter Speed</option>
-				</select>
+<div class="collapse" id="rom-settings">
+	<div class="card">
+		<div class="card-header bg-primary text-white">Additional ROM Options</div>
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col">
+					<vt-select id="heart-speed" :options="settings.heartSpeeds" storage-key="rom.heart-speed"
+						:value="defaults.heartSpeeds" rom-function="setHeartSpeed">Heart Speed</vt-select>
+				</div>
+				<div class="col">
+					<vt-sprite-select id="sprite-gfx" @select="onSpriteSelect" storage-key="rom.sram-trace"></vt-sprite-select>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col">
+					<vt-select id="menu-speed" no-race="true" :options="settings.menuSpeeds" storage-key="rom.menu-speed"
+						:value="defaults.menuSpeeds" rom-function="setMenuSpeed">Menu Speed</vt-select>
+				</div>
+				<div class="col">
+					<vt-select id="heart-color" :options="settings.heartColors" storage-key="rom.heart-color"
+						:value="defaults.heartColors" rom-function="setHeartColor">Heart Color</vt-select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<vt-toggle id="sram-trace" :value="defaults.sramTrace" no-race="true" storage-key="rom.sram-trace">SRAM Trace</vt-toggle>
+				</div>
+				<div class="col">
+					<vt-toggle id="quickswap" storage-key="rom.quickswap" :no-race="true">Item Quickswap</vt-toggle>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<vt-toggle id="music-on" storage-key="rom.music-on">Background Music (set to "No" for MSU-1 support)</vt-toggle>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-6 pb-5">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Play as</span>
-				<select id="sprite-gfx" class="form-control selectpicker" data-live-search="true"
-					data-style="sprite-icons" data-dropup-auto="false">
-				@foreach(config('sprites') as $sprite_file => $sprite_info)
-					<option data-icon="icon-custom-{{ str_replace([' ', ')', '(', '.'], '', $sprite_info['name']) }}" value="{{ $sprite_file }}">{{ $sprite_info['name'] }}</option>
-				@endforeach
-					<option data-icon="icon-custom-Random" value="random">Random</option>
-				</select>
-			</div>
+		<div class="card-footer">
+			<div><strong>*</strong> Does not work in Race Roms</div>
 		</div>
-		<div class="col-md-6 pb-5">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Menu Speed<sup><strong>*</strong></sup></span>
-				<select id="menu-speed" class="form-control selectpicker">
-					<option value="instant">Instant</option>
-					<option value="fast">Fast</option>
-					<option value="normal" selected>Normal</option>
-					<option value="slow">Slow</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-6 pb-5">
-			<div class="input-group" role="group">
-				<span class="input-group-addon">Heart Color</span>
-				<select id="heart-color" class="form-control selectpicker">
-					<option value="blue">Blue</option>
-					<option value="green">Green</option>
-					<option value="red" selected>Red</option>
-					<option value="yellow">Yellow</option>
-				</select>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="col-md-6">
-			<input id="generate-sram-trace" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-sram-trace">SRAM Trace<sup><strong>*</strong></sup></label>
-		</div>
-		<div class="col-md-6">
-			<input id="generate-quickswap" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-quickswap">Item Quickswap{!! (isset($allow_quickswap) && $allow_quickswap) ? '' : '<sup><strong>*</strong></sup>' !!}</label>
-		</div>
-		@if (!isset($disallow_disable_music) || !$disallow_disable_music)
-		<div class="col-md-6 music-disable-toggle">
-			<input id="generate-music-on" type="checkbox" value="true" checked data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-			<label for="generate-music-on">Background Music (set to "No" for MSU-1 support)</label>
-		</div>
-		@endif
-		<div class="secrets" style="display:none">
-			<div class="col-md-6">
-				<input id="generate-debug" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-				<label for="generate-debug">Debug Mode</label>
-			</div>
-			<div class="col-md-6">
-				<input id="generate-tournament" type="checkbox" value="true" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small">
-				<label for="generate-tournament">Tournament Mode</label>
-			</div>
-		</div>
-	</div>
-	<div class="panel-footer">
-		<div><strong>*</strong> Does not work in Race Roms</div>
 	</div>
 </div>
 
 <script>
-function getSprite(sprite_name) {
-	return new Promise(function(resolve, reject) {
-		if (sprite_name == 'random') {
-			var options = $('#sprite-gfx option');
-			sprite_name = options[Math.floor(Math.random() * (options.length - 1))].value;
+new Vue({
+	el: '#rom-settings',
+	data: {
+		settings: {
+			heartSpeeds: [
+				{value: 'off', name: 'Off'},
+				{value: 'normal', name: 'Normal Speed'},
+				{value: 'half', name: 'Half Speed'},
+				{value: 'quarter', name: 'Quarter Speed'},
+			],
+			menuSpeeds: [
+				{value: 'instant', name: 'Instant'},
+				{value: 'fast', name: 'Fast'},
+				{value: 'normal', name: 'Normal'},
+				{value: 'slow', name: 'Slow'},
+			],
+			heartColors: [
+				{value: 'blue', name: 'Blue'},
+				{value: 'green', name: 'Green'},
+				{value: 'red', name: 'Red'},
+				{value: 'yellow', name: 'Yellow'},
+			],
+		},
+		defaults: {
+			heartSpeeds: {value: 'half', name: 'Half Speed'},
+			menuSpeeds: {value: 'normal', name: 'Normal'},
+			heartColors: {value: 'red', name: 'Red'},
 		}
-		localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
-			if (spr) {
-				resolve(spr);
-				return;
+	},
+	methods: {
+		onSpriteSelect(selected) {
+			let sprite_name = path.basename(selected.file);
+			if (rom) {
+				new Promise((resolve, reject) => {
+					localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
+						if (spr) {
+							resolve(spr);
+						}
+						axios.get(selected.file, {responseType: 'arraybuffer'}).then(response => {
+							var spr_array = new Uint8Array(response.data);
+							localforage.setItem('vt_sprites.' + sprite_name, spr_array).then(function(spr) {
+								resolve(spr);
+							}).catch(function() {
+								reject('could not save sprite to local storage');
+							});
+						}).catch(function(){
+							reject('cannot find sprite file');
+						});
+					});
+				}).then(rom.parseSprGfx);
 			}
-			var oReq = new XMLHttpRequest();
-			oReq.open("GET", "http://spr.beegunslingers.com/" + sprite_name, true);
-			oReq.responseType = "arraybuffer";
-
-			oReq.onload = function(oEvent) {
-				var spr_array = new Uint8Array(oReq.response);
-				localforage.setItem('vt_sprites.' + sprite_name, spr_array).then(function(spr) {
-					resolve(spr);
-				});
-			};
-
-			oReq.send();
-		});
-	});
-}
-
-$(function() {
-	$('#heart-speed').on('change', function() {
-		if (rom) {
-			rom.setHeartSpeed($(this).val());
+			localforage.setItem('rom.sprite-gfx', sprite_name);
 		}
-		localforage.setItem('rom.heart-speed', $(this).val());
-		$('input[name=heart_speed]').val($(this).val());
-	});
-	localforage.getItem('rom.heart-speed').then(function(value) {
-		if (value === null) return;
-		$('#heart-speed').val(value);
-		$('#heart-speed').trigger('change');
-	});
-
-	$('#sprite-gfx').on('change', function() {
-		if (rom) {
-			getSprite($(this).val())
-				.then(rom.parseSprGfx)
-		}
-		localforage.setItem('rom.sprite-gfx', $(this).val());
-	});
-	localforage.getItem('rom.sprite-gfx').then(function(value) {
-		if (value === null) return;
-		$('#sprite-gfx').val(value);
-		$('#sprite-gfx').trigger('change');
-	});
-
-	$('#generate-sram-trace').on('change', function() {
-		if (rom) {
-			rom.setSramTrace($(this).prop('checked'));
-		}
-		localforage.setItem('rom.sram-trace', $(this).prop('checked'));
-		$('input[name=sram_trace]').val($(this).prop('checked'));
-	});
-	localforage.getItem('rom.sram-trace').then(function(value) {
-		if (value === null) return;
-		$('#generate-sram-trace').prop('checked', value);
-		$('#generate-sram-trace').trigger('change');
-	});
-
-	$('#generate-quickswap').on('change', function() {
-		if (rom) {
-			rom.setQuickswap($(this).prop('checked'));
-		}
-		localforage.setItem('rom.quickswap', $(this).prop('checked'));
-		$('input[name=quickswap]').val($(this).prop('checked'));
-	});
-	localforage.getItem('rom.quickswap').then(function(value) {
-		if (value === null) return;
-		$('#generate-quickswap').prop('checked', value);
-		$('#generate-quickswap').trigger('change');
-	});
-
-	$('#menu-speed').on('change', function() {
-		if (rom) {
-			rom.setMenuSpeed($(this).val());
-		}
-		localforage.setItem('rom.menu-speed', $(this).val());
-		$('input[name=menu_speed]').val($(this).val());
-	});
-	localforage.getItem('rom.menu-speed').then(function(value) {
-		if (value === null) return;
-		$('#menu-speed').val(value);
-		$('#menu-speed').trigger('change');
-	});
-
-	$('#generate-music-on').on('change', function() {
-		if (rom) {
-			rom.setMusicVolume($(this).prop('checked'));
-		}
-		localforage.setItem('rom.music-on', $(this).prop('checked'));
-	});
-	localforage.getItem('rom.music-on').then(function(value) {
-		if (value === null) return;
-		$('#generate-music-on').prop('checked', value);
-		$('#generate-music-on').trigger('change');
-	});
-
-	$('#heart-color').on('change', function() {
-		if (rom) {
-			rom.setHeartColor($(this).val());
-		}
-		localforage.setItem('rom.heart-color', $(this).val());
-	});
-	localforage.getItem('rom.heart-color').then(function(value) {
-		if (value === null) return;
-		$('#heart-color').val(value);
-		$('#heart-color').trigger('change');
-	});
-
-	$('#generate-debug').on('change', function() {
-		$('input[name=debug]').val($(this).prop('checked'));
-	});
-	$('#generate-tournament').on('change', function() {
-		$('input[name=tournament]').val($(this).prop('checked'));
-	});
+	}
 });
 </script>
 @overwrite
+

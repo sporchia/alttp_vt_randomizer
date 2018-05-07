@@ -515,13 +515,13 @@ class World {
 	 */
 	public function setPrizePacks($prizes) : self {
 		if ($prizes == null) {
-			return;
+			return $this;
 		}
 		if (count($prizes) != 63) {
-			return;
+			return $this;
 		}
 		if (array_diff($prizes, ['heart', 'greenRupee', 'blueRupee', 'redRupee', 'bomb1', 'bomb4', 'bomb8', 'smallMagic', 'largeMagic', 'arrow5', 'arrow10', 'faerie'])) {
-			return;
+			return $this;
 		}
 		$this->prizepacks = $prizepacks;
 

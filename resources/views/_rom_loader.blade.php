@@ -39,7 +39,7 @@ function resetRom() {
 			rom = new ROM(new Blob([blob]), function(rom) {
 				patchRomFromJSON(rom).then(function() {
 					resolve(rom);
-				});
+				}).catch(reject);
 			});
 		});
 	});
@@ -48,7 +48,7 @@ function resetRom() {
 function patchRomFromJSON(rom) {
 	return new Promise(function(resolve, reject) {
 		if (typeof vt_base_patch !== 'undefined') {
-			rom.parsePatch(vt_base_patch).then(function(rom) {
+			rom.parsePatch({patch: vt_base_patch}).then(function(rom) {
 				resolve(rom);
 			});
 			return;
@@ -56,7 +56,7 @@ function patchRomFromJSON(rom) {
 		localforage.getItem('vt_stored_base').then(function(stored_base_file) {
 			if (current_base_file == stored_base_file) {
 				localforage.getItem('vt_base_json').then(function(patch) {
-					rom.parsePatch(patch).then(function(rom) {
+					rom.parsePatch({patch: patch}).then(function(rom) {
 						resolve(rom);
 					});
 				});
@@ -111,8 +111,6 @@ function loadBlob(blob, show_error) {
 }
 
 $(function() {
-	$('.alert, .info').hide();
-
 	$('input[name=f2u]').on('change', function() {
 		$('#rom-select').hide();
 		$('.alert').hide();
