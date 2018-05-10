@@ -18,7 +18,7 @@ class GenerateStats extends Command {
 		. ' {--seed= : generate stats file for specific seed}'
 		. ' {--bulk=100000 : generate stats for multiple seeds}'
 		. ' {--goal=ganon : set game goal}'
-		. ' {--mode=standard : set game mode}'
+		. ' {--state=standard : set game state}'
 		. ' {--variation=none : set game variation}';
 
 	/**
@@ -41,7 +41,7 @@ class GenerateStats extends Command {
 		}
 
 		$bulk = ($this->option('seed') == null) ? $this->option('bulk') : 100000;
-		
+
 		$seeds = [];
 
 		if ($this->option('seed') !== null) {
@@ -74,13 +74,14 @@ class GenerateStats extends Command {
 		foreach ($seeds as $seed) {
 			$rom = new Rom(null);
 
-			config(['game-mode' => $this->option('mode')]);
+			config(['alttp.mode.state' => $this->option('state')]);
 
 			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 
 			$rand->makeSeed($seed);
 
-			$spheres_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.stats.txt', $rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('variation'), $rand->getSeed());
+			$spheres_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s.stats.txt',
+				$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('variation'), $rand->getSeed());
 
 			file_put_contents($spheres_file, json_encode($this->getStats($rand), JSON_PRETTY_PRINT));
 
@@ -106,7 +107,7 @@ class GenerateStats extends Command {
 			'goal' => $this->option('goal'),
 			'variation' => $this->option('variation'),
 			'build' => Rom::BUILD,
-			'mode' => config('game-mode', 'standard'),
+			'mode' => config('alttp.mode.state', 'standard'),
 		];
 
 		return $stats;

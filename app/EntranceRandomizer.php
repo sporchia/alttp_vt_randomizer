@@ -79,7 +79,7 @@ class EntranceRandomizer extends Randomizer {
 
 		$proc = new Process('python3 '
 			. base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py')
-			. ' --mode ' . config('game-mode')
+			. ' --mode ' . $this->config('mode.state')
 			. ' --goal ' . $this->goal
 			. ' --difficulty ' . $this->difficulty
 			. ' --shuffle ' .  $this->shuffle

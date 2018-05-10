@@ -28,7 +28,7 @@ class Randomize extends Command {
 		. ' {--seed= : set seed number}'
 		. ' {--bulk=1 : generate multiple roms}'
 		. ' {--goal=ganon : set game goal}'
-		. ' {--mode=standard : set game mode}'
+		. ' {--state=standard : set game state}'
 		. ' {--weapons=randomized : set weapons mode}'
 		. ' {--sprite= : sprite file to change links graphics [zspr format]}'
 		. ' {--no-rom : no not generate output rom}'
@@ -93,7 +93,7 @@ class Randomize extends Command {
 			}
 
 			config([
-				'game-mode' => $this->option('mode'),
+				'alttp.mode.state' => $this->option('state'),
 				'alttp.mode.weapons' => $this->option('weapons'),
 			]);
 
@@ -105,7 +105,7 @@ class Randomize extends Command {
 			$rom->setMenuSpeed($this->option('menu-speed', 'normal'));
 
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s_%s.sfc',
-				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
+				$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
 					$this->info("sprite");
@@ -125,7 +125,7 @@ class Randomize extends Command {
 			}
 			if ($this->option('spoiler')) {
 				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'alttp - VT_%s_%s_%s_%s_%s_%s.txt',
-					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
+					$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons'), $this->option('variation'), $rand->getSeed());
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}

@@ -33,6 +33,18 @@ class Text {
 		return array_pad($data, 0x7355, 0xFF);
 	}
 
+	function getByteString($translation = 'en') {
+		$data = array_merge(...array_values($this->$translation()));
+
+		Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
+
+		if (count($data) > 0x7355) {
+			throw new \Exception("Too BIG", 1);
+		}
+
+		return pack('C*', ...array_pad($data, 0x7355, 0xFF));
+	}
+
 	function en() {
 		$converter = new Dialog;
 		// php all arrays are ordered

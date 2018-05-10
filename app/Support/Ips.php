@@ -40,4 +40,40 @@ class Ips {
 
 		return $output;
 	}
+
+	public function ipsFromFiles(string $original_rom, string $updated_rom) {
+		if (!is_readable($updated_rom) || !is_readable($original_rom)) {
+			throw new \Exception('Source Files not readable');
+		}
+
+		$original_rom = fopen($original_rom, "r");
+		$updated_rom = fopen($updated_rom, "r");
+
+		$i = 0;
+		$cont = $i;
+		$out = [];
+		while (!feof($original_rom)) {
+			$original_byte = fread($original_rom, 1);
+			$updated_byte = fread($updated_rom, 1);
+			if ($updated_byte !== $original_byte) {
+				$out[$i] = [unpack('C*', $updated_byte)[1]];
+			}
+			$i++;
+		}
+
+		$backwards = array_reverse($out, true);
+		foreach ($backwards as $off => $value) {
+			if (isset($backwards[$off - 1])) {
+				$backwards[$off - 1] = array_merge($backwards[$off - 1], $backwards[$off]);
+				unset($backwards[$off]);
+			}
+		}
+		$forwards = array_reverse($backwards, true);
+
+		array_walk($forwards, function(&$write, $address) {
+			$write = [$address => $write];
+		});
+
+		return $this->patchToIps(array_values($forwards));
+	}
 }

@@ -21,7 +21,6 @@ class Randomizer {
 	protected $variation;
 	protected $logic;
 	protected $starting_equipment;
-	private $config = [];
 	static protected $logic_array = [
 		0x25, 0x62, 0x19, 0x0E, 0xF0, 0xDB, 0x14, 0xC1,0x0D, 0x1C, 0x2F, 0xAE, 0x2D, 0x86, 0x2E, 0xD9,
 		0x3A, 0x91, 0x8D, 0x59, 0x55, 0xEE, 0xC8, 0xE6,0xE1, 0x98, 0x94, 0xBA, 0xDE, 0x21, 0x4E, 0x9B,
@@ -194,7 +193,7 @@ class Randomizer {
 			}
 		}
 
-		if (config('game-mode') == 'open') {
+		if ($this->config('mode.state') == 'open') {
 			$this->starting_equipment->addItem(Item::get('RescueZelda'));
 		}
 
@@ -293,7 +292,7 @@ class Randomizer {
 		}
 		if ($this->world->config('region.wildKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
-				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open']) || $item != Item::get('KeyH2'))) {
+				if ($item instanceof Item\Key && ($this->config('mode.state') == 'open' || $item != Item::get('KeyH2'))) {
 					unset($dungeon_items[$key]);
 					$advancement_items[] = $item;
 				}
@@ -647,12 +646,12 @@ class Randomizer {
 			'seed' => $this->rng_seed,
 			'goal' => $this->goal,
 			'build' => Rom::BUILD,
-			'mode' => config('game-mode', 'standard'),
+			'mode' => $this->config('mode.state', 'standard'),
 			'weapons' => $this->config('mode.weapons', 'randomized')
 		]);
 
 		if ($this->config('rom.HardMode') !== null) {
-			$spoiler['meta']['difficulty_mode'] = config('alttp.randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
+			$spoiler['meta']['difficulty_mode'] = $this->config('randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
 		}
 
 		$this->seed->spoiler = json_encode($spoiler);
@@ -669,14 +668,7 @@ class Randomizer {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		if (!array_key_exists($key, $this->config)) {
-			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-				config("alttp.{$this->difficulty}.$key",
-					config("alttp.goals.{$this->goal}.$key",
-						config("alttp.$key", null))));
-		}
-
-		return $this->config[$key] ?? $default;
+		return $this->world->config($key, $default);
 	}
 
 	/**
@@ -789,7 +781,7 @@ class Randomizer {
 		$rom->setPyramidFairyChests($this->config('region.swordsInPool', true));
 		$rom->setSmithyQuickItemGive($this->config('region.swordsInPool', true));
 
-		$rom->setOpenMode(in_array(config('game-mode'), ['open']));
+		$rom->setOpenMode($this->config('mode.state') == 'open');
 		$rom->setSwordlessMode($this->config('mode.weapons') == 'swordless');
 
 		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Sword) {

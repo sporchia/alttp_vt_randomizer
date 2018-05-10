@@ -183,7 +183,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$shuffle = $request->input('shuffle', 'full') ?: 'full';
 
-	config(['game-mode' => $request->input('mode', 'standard')]);
+	config(['alttp.mode.state' => $request->input('mode', 'standard')]);
 
 	$rom = new ALttP\Rom();
 	if ($request->filled('heart_speed')) {
@@ -286,7 +286,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	config([
-		'game-mode' => $game_mode,
+		'alttp.mode.state' => $game_mode,
 		'alttp.mode.weapons' => $weapons_mode,
 	]);
 
@@ -315,7 +315,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	if (strtoupper($seed_id) == 'VANILLA') {
 		config([
-			'game-mode' => 'vanilla',
+			'alttp.mode.state' => 'vanilla',
 			'alttp.mode.weapons' => 'uncle',
 		]);
 		$world = $rom->writeVanilla();
@@ -394,7 +394,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	}
 
 	config([
-		'game-mode' => $game_mode,
+		'alttp.mode.state' => $game_mode,
 		'alttp.mode.weapons' => $weapons_mode,
 	]);
 
@@ -458,7 +458,7 @@ Route::any('test/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	config([
-		'game-mode' => $game_mode,
+		'alttp.mode.state' => $game_mode,
 		'alttp.mode.weapons' => $weapons_mode,
 	]);
 

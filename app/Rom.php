@@ -683,7 +683,7 @@ class Rom {
 		$this->setMaxArrows($starting_arrow_capacity);
 		$this->setMaxBombs($starting_bomb_capacity);
 
-		if (config('game-mode') != 'swordless' && $equipment[0x359]) {
+		if (config('alttp.mode.state') != 'swordless' && $equipment[0x359]) {
 			$this->write(0x180043, pack('C*', $equipment[0x359])); // write starting sword
 		}
 
@@ -2937,7 +2937,8 @@ class Rom {
 	 */
 	public function write(int $offset, string $data, bool $log = true) : self {
 		if ($log) {
-			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
+			$unpacked = array_values(unpack('C*', $data));
+			$this->write_log[] = [$offset => $unpacked];
 		}
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);

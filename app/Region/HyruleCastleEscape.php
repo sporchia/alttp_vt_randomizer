@@ -79,7 +79,7 @@ class HyruleCastleEscape extends Region {
 	 */
 	public function initNoMajorGlitches() {
 		$this->locations["Sanctuary"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return true;
 			}
 
@@ -87,7 +87,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Sewers - Secret Room - Left"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
 			}
 
@@ -95,7 +95,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Sewers - Secret Room - Middle"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
 			}
 
@@ -103,7 +103,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Sewers - Secret Room - Right"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
 			}
 
@@ -111,7 +111,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Sewers - Dark Cross"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
 			}
 
@@ -119,7 +119,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Hyrule Castle - Boomerang Chest"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return $items->has('KeyH2');
 			}
 
@@ -127,7 +127,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Hyrule Castle - Map Chest"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return true;
 			}
 
@@ -135,7 +135,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Hyrule Castle - Zelda's Cell"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return $items->has('KeyH2');
 			}
 
@@ -143,7 +143,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->locations["Secret Passage"]->setRequirements(function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return true;
 			}
 
@@ -164,7 +164,7 @@ class HyruleCastleEscape extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			if (in_array(config('game-mode'), ['open'])) {
+			if ($this->world->config('mode.state') == 'open') {
 				return true;
 			}
 
