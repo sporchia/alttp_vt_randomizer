@@ -73,7 +73,7 @@ class East extends Region {
         $this->can_enter = function($locations, $items) {
             return ($this->world->getRegion('West Lower Norfair')->canEnter($locations, $items)
                 && ($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
-                && ($items->canFlySM() || $items->has('HiJump') || $items->has('IceBeam'))
+                && ($items->canFlySM() || $items->has('HiJump') || ($items->has('IceBeam') && $items->has('ChargeBeam')))
 				&& $items->canPassBombPassages()
 				&& (($items->heatProof() && ($items->has('HiJump') || $items->has('Gravity')))
 					|| ($items->heatProof()
