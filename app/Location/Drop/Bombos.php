@@ -64,7 +64,7 @@ class Bombos extends Location {
 			case Item::get('KeyD2'):
 				return "Access to\nthe swamp\nis granted";
 			case Item::get('KeyA1'):
-				return "Agahanim\nhalfway\nunlocked";
+				return "Agahnim\nhalfway\nunlocked";
 			case Item::get('KeyP2'):
 				return "Sand spills\nout of this\nsmall key";
 			case Item::get('KeyP1'):
