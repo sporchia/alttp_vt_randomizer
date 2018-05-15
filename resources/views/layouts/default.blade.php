@@ -43,7 +43,7 @@
 							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
 							<li{!! (request()->path() == 'contribute') ? ' class="active"' : '' !!}><a href="/contribute">Contribute</a></li>
 							<li><a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Join us on Discord</a></li> -->
-							<li><a href="https://github.com/tewtal/alttp_sm_combo_randomizer/issues/new" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
+							<li><a href="https://github.com/tewtal/alttp_sm_combo_randomizer/issues/" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
 						</ul>
 					</li>
 					@if (Auth::check())
