@@ -230,7 +230,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 		'hash' => $hash,
 		'current_rom_hash' => Rom::HASH,
 	]);
-})->middleware('throttle:150,360');
+})->middleware('throttle:250,1');
 
 Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$difficulty = $request->input('difficulty', 'normal') ?: 'normal';
@@ -372,7 +372,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'hash' => $hash,
 		'current_rom_hash' => Rom::HASH,
 	]);
-})->middleware('throttle:150,360');
+})->middleware('throttle:250,1');
 
 Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$difficulty = $request->input('difficulty', 'normal');
