@@ -108,6 +108,8 @@ function loadBlob(blob, show_error) {
 					$('.alert .message').html('ROM not recognized. Please try another.');
 					$('.alert').show();
 				}
+				smUploadedBlob = null;
+				alttpUploadedBlob = null;
 				$('#rom-select').show();
 			}
 		});
