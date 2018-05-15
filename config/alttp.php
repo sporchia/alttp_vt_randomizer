@@ -663,7 +663,7 @@ return [
 				//'insane' => 'Insane',
 			],
 			'goals' => [
-				'ganon' => 'Defeat Ganon',
+				'ganon' => 'Defeat Ganon and Mother Brain',
 				//'dungeons' => 'All Dungeons',
 				//'pedestal' => 'Master Sword Pedestal',
 				//'triforce-hunt' => 'Triforce Pieces',
