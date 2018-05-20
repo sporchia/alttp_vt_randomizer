@@ -8,9 +8,11 @@
 <div id="seed-details" class="info panel panel-success" style="display:none">
 	<div class="panel-heading panel-heading-btn">
 		<h3 class="panel-title pull-left"><span class="name">Game Details: <span class="seed"></span></span></h3>
+		<!--
 		<div class="btn-toolbar pull-right">
 			@yield('rom-settings-button')
 		</div>
+		-->
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body">
@@ -96,6 +98,8 @@ function seedApplied(data) {
 		rom.seed = data.patch.hash;
 		rom.name = data.patch.spoiler.meta.name;
 		rom.special = data.patch.spoiler.meta.special;
+		rom.weapons = data.patch.spoiler.meta.weapons;
+		rom.morph = data.patch.spoiler.meta.morph;
 		$('button[name=save]').show().prop('disabled', false);
 		resolve(rom);
 	});

@@ -609,7 +609,7 @@ class ItemCollection extends Collection {
 		switch($this->world->getSMLogic())
 		{
 			case 'Casual':
-				return $this->canDefeatBotwoon() && $this->has('Gravity') && ($this->has('SpeedBooster') || $this->canFlySM());
+				return $this->canDefeatBotwoon() && $this->has('Gravity') && (($this->has('SpeedBooster') && $this->has('HiJump')) || $this->canFlySM());
 			case 'Tournament':
 			default:
 				return $this->canDefeatBotwoon() && $this->has('Gravity');

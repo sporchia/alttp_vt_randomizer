@@ -159,7 +159,7 @@ class Inner extends Region {
 		});
 
         $this->locations["Space Jump"]->setRequirements(function($location, $items) {
-            return $items->canDefeatDraygon() && ($items->canFlySM() || $items->has('SpeedBooster'));
+            return $items->canDefeatDraygon() && ($items->canFlySM() || ($items->has('SpeedBooster') && $items->has('HiJump')));
 		});
 
         $this->can_enter = function($locations, $items) {
