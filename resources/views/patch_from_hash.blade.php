@@ -86,6 +86,7 @@ function seedApplied(data) {
 	return new Promise(function(resolve, reject) {
 		parseInfoFromPatch(data.patch);
 		rom.logic = data.patch.spoiler.meta.logic;
+		rom.sm_logic = data.patch.spoiler.meta.sm_logic;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.mode = data.patch.spoiler.meta.mode;

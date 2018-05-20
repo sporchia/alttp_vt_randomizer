@@ -16,17 +16,7 @@
 		<div class="row">
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">State</span>
-					<select id="mode" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.item.modes') as $mode => $name)
-							<option value="{{ $mode }}">{{ $name }}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-			<div class="col-md-6 pb-5">
-				<div class="input-group" role="group">
-					<span class="input-group-addon">Logic</span>
+					<span class="input-group-addon">A Link to the Past Logic</span>
 					<select id="logic" class="form-control selectpicker">
 						@foreach (config('alttp.randomizer.item.logics') as $logic => $name)
 							<option value="{{ $logic }}">{{ $name }}</option>
@@ -35,6 +25,16 @@
 				</div>
 				<div class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 			</div>
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Super Metroid Logic</span>
+					<select id="sm_logic" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.sm_logics') as $logic => $name)
+							<option value="{{ $logic }}">{{ $name }}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>			
 		</div>
 		<div class="row">
 			<div class="col-md-6 pb-5">
@@ -49,10 +49,10 @@
 			</div>
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
-					<span class="input-group-addon">Goal</span>
-					<select id="goal" class="form-control selectpicker">
-						@foreach (config('alttp.randomizer.item.goals') as $goal => $name)
-							<option value="{{ $goal }}">{{ $name }}</option>
+					<span class="input-group-addon">Morph</span>
+					<select id="morph" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.morph') as $mode => $name)
+							<option value="{{ $mode }}">{{ $name }}</option>
 						@endforeach
 					</select>
 				</div>
@@ -81,6 +81,16 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-6 pb-5">
+				<div class="input-group" role="group">
+					<span class="input-group-addon">Goal</span>
+					<select id="goal" class="form-control selectpicker">
+						@foreach (config('alttp.randomizer.item.goals') as $goal => $name)
+							<option value="{{ $goal }}">{{ $name }}</option>
+						@endforeach
+					</select>
+				</div>
+			</div>		
 			<div class="col-md-6 pb-5">
 				<div class="input-group" role="group">
 					<span class="input-group-addon">Seed</span>
@@ -129,13 +139,16 @@
 		@yield('rom-spoiler')
 	</div>
 </div>
+
 <form id="config" style="display:none">
 	<input type="hidden" name="logic" value="NoMajorGlitches" />
+	<input type="hidden" name="sm_logic" value="Casual" />
 	<input type="hidden" name="difficulty" value="normal" />
 	<input type="hidden" name="variation" value="combo" />
 	<input type="hidden" name="mode" value="open" />
 	<input type="hidden" name="goal" value="ganon" />
 	<input type="hidden" name="weapons" value="randomized" />
+	<input type="hidden" name="morph" value="randomized" />	
 	<input type="hidden" name="heart_speed" value="half" />
 	<input type="hidden" name="sram_trace" value="false" />
 	<input type="hidden" name="menu_speed" value="normal" />
@@ -215,10 +228,12 @@ function seedApplied(data) {
 		parseInfoFromPatch(data.patch);
 		pasrseSpoilerToTabs(data.patch.spoiler);
 		rom.logic = data.patch.logic;
+		rom.sm_logic = data.patch.spoiler.meta.sm_logic;
 		rom.goal = data.patch.spoiler.meta.goal;
 		rom.build = data.patch.spoiler.meta.build;
 		rom.mode = data.patch.spoiler.meta.mode;
 		rom.weapons = data.patch.spoiler.meta.weapons;
+		rom.morph = data.patch.spoiler.meta.morph;
 		rom.difficulty = data.patch.difficulty;
 		rom.variation = data.patch.spoiler.meta.variation;
 		rom.seed = data.patch.seed;
@@ -317,6 +332,20 @@ $(function() {
 		$('#logic').trigger('change');
 	});
 
+	$('#sm_logic').on('change', function() {
+		var value = $(this).val();
+		$('.info').hide();
+		localforage.setItem('rom.sm_logic', value);
+		$('input[name=sm_logic]').val(value);
+	});
+
+	localforage.getItem('rom.sm_logic').then(function(value) {
+		if (value !== null) {
+			$('#sm_logic').val(value);
+		}
+		$('#sm_logic').trigger('change');
+	});
+
 	$('#mode').on('change', function() {
 		$('.info').hide();
 		localforage.setItem('rom.mode', $(this).val());
@@ -339,6 +368,19 @@ $(function() {
 		}
 		$('#weapons').val(value);
 		$('#weapons').trigger('change');
+	});
+
+	$('#morph').on('change', function() {
+		$('.info').hide();
+		localforage.setItem('rom.morph', $(this).val());
+		$('input[name=morph]').val($(this).val());
+	});
+	localforage.getItem('rom.morph').then(function(value) {
+		if (!value) {
+			value = 'randomized';
+		}
+		$('#morph').val(value);
+		$('#morph').trigger('change');
 	});
 
 	$('#goal').on('change', function() {

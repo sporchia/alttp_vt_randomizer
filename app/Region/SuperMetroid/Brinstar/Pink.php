@@ -20,7 +20,7 @@ class Pink extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
 			new Location\SuperMetroid\Chozo("Super Missile (pink Brinstar)", 0xF784E4, null, $this),
@@ -54,11 +54,11 @@ class Pink extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 		$this->locations["Super Missile (pink Brinstar)"]->setRequirements(function($location, $items) {
 			return $items->canPassBombPassages() && $items->has('Super');
 		});
@@ -93,11 +93,40 @@ class Pink extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+		$this->locations["Super Missile (pink Brinstar)"]->setRequirements(function($location, $items) {
+			return $items->canPassBombPassages() && $items->has('Super');
+		});
+
+        $this->locations["Charge Beam"]->setRequirements(function($location, $items) {
+			return $items->canPassBombPassages();
+		});
+
+        $this->locations["Power Bomb (pink Brinstar)"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerBombs() && $items->has('Super');
+		});
+
+        $this->locations["Missile (green Brinstar pipe)"]->setRequirements(function($location, $items) {
+			return $items->has('Morph') && ($items->has('PowerBomb') || $items->has('Super'));
+		});
+
+        $this->locations["Energy Tank, Waterway"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster');
+		});
+
+        $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerBombs() && $items->has('WaveBeam');
+		});
+
+        $this->can_enter = function($locations, $items) {
+            return ($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
+                && ($items->canOpenRedDoors() || ($items->canDestroyBombWalls() && $items->has('PowerBomb')));
+		};
+
+		return $this;
 	}
 }

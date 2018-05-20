@@ -20,7 +20,7 @@ class Inner extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Super Missile (yellow Maridia)", 0xF7C4AF, null, $this),            
@@ -70,11 +70,11 @@ class Inner extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
         
         $this->locations["Plasma Beam"]->setRequirements(function($location, $items) {
             return $items->canDefeatDraygon()
@@ -130,7 +130,48 @@ class Inner extends Region {
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+        
+        $this->locations["Plasma Beam"]->setRequirements(function($location, $items) {
+            return $items->canDefeatDraygon()
+                && ($items->has('Plasma') || $items->has('ScrewAttack'))
+				&& ($items->canFlySM() || $items->has('HiJump'));          
+		});
+
+        $this->locations["Missile (pink Maridia)"]->setRequirements(function($location, $items) {
+            return $items->has('SpeedBooster');
+		});
+
+        $this->locations["Super Missile (pink Maridia)"]->setRequirements(function($location, $items) {
+            return $items->has('SpeedBooster');
+		});
+
+        $this->locations["Spring Ball"]->setRequirements(function($location, $items) {
+            return ($items->has('Grapple') && ($items->has('SpaceJump') || $items->has('HiJump')));
+		});
+
+        $this->locations["Missile (Draygon)"]->setRequirements(function($location, $items) {
+            return $items->canDefeatBotwoon();
+		});
+
+        $this->locations["Energy Tank, Botwoon"]->setRequirements(function($location, $items) {
+            return $items->canDefeatBotwoon();
+		});
+
+        $this->locations["Space Jump"]->setRequirements(function($location, $items) {
+            return $items->canDefeatDraygon() && ($items->canFlySM() || $items->has('SpeedBooster'));
+		});
+
+        $this->can_enter = function($locations, $items) {
+            return $this->world->getRegion('Outer Maridia')->canEnter($locations, $items);
+        };
+		
+		$this->can_complete = function($locations, $items) {
+			return ($this->canEnter($locations, $items) && $items->canDefeatBotwoon() && $items->canDefeatDraygon());
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+
+		return $this;
 	}
 }

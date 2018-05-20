@@ -472,19 +472,37 @@ class ItemCollection extends Collection {
 
 	public function canAccessMiseryMirePortal()
 	{
-		return $this->heatProof()
-			&& $this->has('Super')
-			&& ($this->has('HiJump') || $this->has('Gravity'))
-			&& $this->canUsePowerBombs();
+		switch($this->world->getSMLogic())
+		{
+			case 'Casual':
+				return $this->heatProof()
+					&& $this->has('Super')
+					&& $this->canUsePowerBombs()
+					&& ($this->has('Gravity') && $this->has('SpaceJump'));
+
+			case 'Tournament':
+			default:
+				return $this->heatProof()
+					&& $this->has('Super')
+					&& ($this->has('HiJump') || $this->has('Gravity'))
+					&& $this->canUsePowerBombs();
+		}
 	}
 
 	public function canAccessDarkWorldPortal()
 	{
-		return $this->canUsePowerBombs()
-			&& $this->has('Super')
-			&& ($this->has('Gravity')
-			 || ($this->has('HiJump') && $this->has('IceBeam') && $this->has('Grapple')))
-			&& ($this->has('IceBeam') || ($this->has('SpeedBooster') && $this->has('Gravity')));
+		switch($this->world->getSMLogic())
+		{
+			case 'Casual':
+				return $this->canUsePowerBombs() && $this->has('Super') && $this->has('Gravity') && $this->has('SpeedBooster');
+			case 'Tournament':
+			default:
+				return $this->canUsePowerBombs()
+					&& $this->has('Super')
+					&& ($this->has('Gravity')
+					|| ($this->has('HiJump') && $this->has('IceBeam') && $this->has('Grapple')))
+					&& ($this->has('IceBeam') || ($this->has('SpeedBooster') && $this->has('Gravity')));
+		}
 	}
 
 	/* Super Metroid Ability Macros */
@@ -575,12 +593,27 @@ class ItemCollection extends Collection {
 
 	public function canDefeatBotwoon()
 	{
-		return $this->has('IceBeam') || $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
+		switch($this->world->getSMLogic())
+		{
+			case 'Casual':
+				return $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
+			case 'Tournament':
+			default:
+				return $this->has('IceBeam') || $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
+		}
 	}
 
 	public function canDefeatDraygon()
 	{
-		return $this->canDefeatBotwoon() && $this->has('Gravity');
+		
+		switch($this->world->getSMLogic())
+		{
+			case 'Casual':
+				return $this->canDefeatBotwoon() && $this->has('Gravity') && ($this->has('SpeedBooster') || $this->canFlySM());
+			case 'Tournament':
+			default:
+				return $this->canDefeatBotwoon() && $this->has('Gravity');
+		}
 	}
 
 	/**

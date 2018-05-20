@@ -2944,17 +2944,12 @@ class Rom {
 	 */
 	public function write(int $offset, string $data, bool $log = true) : self {
 		
-		/* If we're doing combo-rando, adjust offsets to match the combo-rom */
-		if(config('variation') == 'combo')
-		{
-			$offset = $this->getComboOffset($offset);
-		} else {
-			echo('Non-combo write to:' . $offset . "\n");
-		}
+		$offset = $this->getComboOffset($offset);
 
 		if ($log) {
 			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		}
+
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 
@@ -2981,13 +2976,8 @@ class Rom {
 	public function read(int $offset, int $length = 1) {
 		
 		/* If we're doing combo-rando, adjust offsets to match the combo-rom */
-		if(config('variation') == 'combo')
-		{
-			$offset = $this->getComboOffset($offset);
-		} else {
-			echo('Non-combo read from:' . $offset . "\n");
-		}
-		
+		$offset = $this->getComboOffset($offset);
+
 		fseek($this->rom, $offset);
 		$unpacked = unpack('C*', fread($this->rom, $length));
 		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);

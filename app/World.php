@@ -33,10 +33,11 @@ class World {
 	 *
 	 * @return void
 	 */
-	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
+	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none', $sm_logic = 'Tournament') {
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
 		$this->logic = $logic;
+		$this->sm_logic = $sm_logic;
 		$this->goal = $goal;
 		$this->pre_collected_items = new ItemCollection([], $this);
 
@@ -98,7 +99,7 @@ class World {
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
-			$region->init($logic);
+			$region->init(($region->getGame() == 'ALTTP' ? $logic : $sm_logic));
 			$this->locations = $this->locations->merge($region->getLocations());
 			$this->shops = $this->shops->merge($region->getShops());
 		}
@@ -601,6 +602,14 @@ class World {
 		} while ($found_items->count() > 0);
 
 		return $location_sphere;
+	}
+
+	public function getLogic() : string {
+		return $this->logic;
+	}
+
+	public function getSMLogic() : string {
+		return $this->sm_logic;
 	}
 
 	/**

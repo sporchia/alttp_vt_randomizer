@@ -1,12 +1,14 @@
 @section('rom-info')
 <div class="col-md-6">
-	<div>Logic: <span class="logic"></span></div>
+	<div>ALTTP Logic: <span class="logic"></span></div>
+	<div>SM Logic: <span class="sm_logic"></span></div>
 	<div>ROM build: <span class="build"></span></div>
 	<div>Difficulty: <span class="difficulty"></span></div>
 	<div>Variation: <span class="variation"></span></div>
 	<div style="display:none">Shuffle: <span class="shuffle"></span></div>
 	<div>Mode: <span class="mode"></span></div>
 	<div style="display:none">Swords: <span class="weapons"></span></div>
+	<div style="display:none">Morph: <span class="morph"></span></div>
 	<div>Goal: <span class="goal"></span></div>
 	<div>Seed: <span class="seed"></span></div>
 	<div style="display:none">Special: <span class="special"></span></div>
@@ -30,6 +32,7 @@ function parseInfoFromPatch(patch) {
 		$('.info .seed').html(patch.hash);
 	}
 	$('.info .logic').html(patch.spoiler.meta.logic);
+	$('.info .sm_logic').html(patch.spoiler.meta.sm_logic);
 	$('.info .build').html(patch.spoiler.meta.build);
 	$('.info .goal').html(patch.spoiler.meta.goal);
 	$('.info .mode').html(patch.spoiler.meta.mode);
@@ -39,6 +42,12 @@ function parseInfoFromPatch(patch) {
 	} else {
 		$('.info .weapons').parent().hide();
 	}
+	if (patch.spoiler.meta.morph) {
+		$('.info .morph').parent().show();
+		$('.info .morph').html(patch.spoiler.meta.morph);
+	} else {
+		$('.info .morph').parent().hide();
+	}	
 	$('.info .variation').html(patch.spoiler.meta.variation);
 	if (patch.difficulty == 'custom') {
 		$('.info .difficulty').html(patch.difficulty + ' (' + patch.spoiler.meta.difficulty_mode + ')');

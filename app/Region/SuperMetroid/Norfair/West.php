@@ -20,7 +20,7 @@ class West extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Chozo("Ice Beam", 0xF78B24, null, $this),
@@ -48,11 +48,11 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 		$this->locations["Ice Beam"]->setRequirements(function($location, $items) {
 			return $items->has('Morph') && ($items->heatProof() || $items->hasEnergyReserves(3));
         });
@@ -80,11 +80,33 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+		$this->locations["Ice Beam"]->setRequirements(function($location, $items) {
+			return $items->canPassBombPassages() && $items->has('Varia') && $items->has('SpeedBooster');
+        });
+
+        $this->locations["Missile (below Ice Beam)"]->setRequirements(function($location, $items) {
+			return ($items->canUsePowerBombs() && $items->has('Varia') && $items->has('SpeedBooster')) || ($items->has('Varia') && $items->has('SpeedBooster'));
+        });
+
+        $this->locations["Hi-Jump Boots"]->setRequirements(function($location, $items) {
+			return $items->canPassBombPassages();
+        });
+
+        $this->locations["Missile (Hi-Jump Boots)"]->setRequirements(function($location, $items) {
+			return $items->canPassBombPassages();
+        });
+
+        $this->can_enter = function($locations, $items) {
+            return (($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
+                && ($items->has('Super') && $items->has('Morph')))
+                || $items->canAccessNorfairPortal();
+        };
+        
+		return $this;
 	}
 }

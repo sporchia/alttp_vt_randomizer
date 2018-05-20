@@ -20,7 +20,7 @@ class East extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Missile (outside Wrecked Ship bottom)", 0xF781E8, null, $this),
@@ -46,11 +46,11 @@ class East extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament Mode
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 
         $this->can_enter = function($locations, $items) {
 			return $items->canUsePowerBombs() && $items->has('Super');
@@ -61,11 +61,30 @@ class East extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+
+		$this->locations["Missile (outside Wrecked Ship bottom)"]->setRequirements(function($location, $items) {
+			return ($items->has('SpaceJump') || $items->has('SpeedBooster') || $items->has('Grapple'));
+		});
+
+		$this->locations["Missile (outside Wrecked Ship top)"]->setRequirements(function($location, $items) {
+			return ($items->has('SpaceJump') || $items->has('SpeedBooster') || $items->has('Grapple'))
+				&& $items->hasEnergyReserves(2);
+		});
+
+		$this->locations["Missile (outside Wrecked Ship middle)"]->setRequirements(function($location, $items) {
+			return ($items->has('SpaceJump') || $items->has('SpeedBooster') || $items->has('Grapple'))
+				&& $items->hasEnergyReserves(2);
+		});
+
+        $this->can_enter = function($locations, $items) {
+			return $items->canUsePowerBombs() && $items->has('Super');
+		};
+
+		return $this;
 	}
 }

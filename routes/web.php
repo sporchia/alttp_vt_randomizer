@@ -237,8 +237,10 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$variation = $request->input('variation', 'none') ?: 'none';
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+	$sm_logic = $request->input('sm_logic', 'Tournament') ?: 'Tournament';
 	$game_mode = $request->input('mode', 'standard');
 	$weapons_mode = $request->input('weapons', 'randomized');
+	$morph_mode = $request->input('morph', 'randomized');
 	$spoiler_meta = [];
 
 	if ($difficulty == 'custom') {
@@ -280,6 +282,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	config([
 		'game-mode' => $game_mode,
 		'alttp.mode.weapons' => $weapons_mode,
+		'alttp.mode.morph' => $morph_mode,
 		'variation' => $variation,
 	]);
 
@@ -327,7 +330,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
+	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation, $sm_logic);
 	if (isset($world)) {
 		$rand->setWorld($world);
 	}
@@ -379,8 +382,10 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	$variation = $request->input('variation', 'none') ?: 'none';
 	$goal = $request->input('goal', 'ganon') ?: 'ganon';
 	$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
+	$sm_logic = $request->input('sm_logic', 'Tournament') ?: 'Tournament';
 	$game_mode = $request->input('mode', 'standard');
 	$weapons_mode = $request->input('weapons', 'randomized');
+	$morph_mode = $request->input('morph', 'randomized');
 
 	if ($difficulty == 'custom') {
 		config($request->input('data'));
@@ -389,6 +394,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 	config([
 		'game-mode' => $game_mode,
 		'alttp.mode.weapons' => $weapons_mode,
+		'alttp.mode.morph' => $morph_mode,
 	]);
 
 	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
@@ -399,7 +405,7 @@ Route::get('spoiler/{seed_id}', function(Request $request, $seed_id) {
 
 	$seed_id = is_numeric($seed_id) ? $seed_id : abs(crc32($seed_id));
 
-	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
+	$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation, $sm_logic);
 	$rand->makeSeed($seed_id);
 	return json_encode($rand->getSpoiler());
 });
