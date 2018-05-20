@@ -11,7 +11,8 @@
 	<p>
 	<br />
 	<p>This project is based on V29 of the <a href="http://vt.alttp.run">ALttP Randomizer</a> and the <a href="https://itemrando.supermetroid.run">Tournament SM Randomizer</a>, so being familiar with both of those will be helpful to be able to complete this.</p>
-	<p>Currently there are no selectable difficulties or options, but this will be implemented in future versions.</p>
+	<br />
+	<p>As of version 9, an easier difficulty settings for Super Metroid (Casual) is now available that's more in line with the "no-glitches" A Link to the Past logic.</p>
 	<br />
 	<p>Huge credits to the <strong><a href="http://vt.alttp.run">ALttP Randomizer</a></strong> team for much of the tools used for the randomization and for the ALttP randomization patches and logic.</p>
 </div>
