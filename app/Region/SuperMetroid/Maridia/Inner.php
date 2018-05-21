@@ -164,7 +164,7 @@ class Inner extends Region {
 
         $this->can_enter = function($locations, $items) {
 			return $this->world->getRegion('Outer Maridia')->canEnter($locations, $items)
-			    && ($this->canFlySM() || $this->has('Grapple') || $this->has('SpeedBooster') || $this->canAccessMaridiaPortal());
+			    && ($items->canFlySM() || $items->has('Grapple') || $items->has('SpeedBooster') || $items->canAccessMaridiaPortal());
         };
 		
 		$this->can_complete = function($locations, $items) {
