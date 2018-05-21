@@ -56,6 +56,7 @@ class ItemCollection extends Collection {
 		if (!isset($this->item_counts[$name])) {
 			return $this;
 		}
+
 		$this->item_counts[$name]--;
 		if ($this->item_counts[$name] === 0) {
 			$this->offsetUnset($name);
@@ -440,15 +441,23 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canKillMostThings($enemies = 5) {
-		return ($this->hasSword()
-				&& (in_array($this->world->config('mode.weapons'), ['uncle', 'swordless'])
-					|| !($this->world->getCurrentlyFillingItems()->count() && $this->world->getCurrentlyFillingItems()->hasSword())))
+		return $this->has('UncleSword')
+			|| (!$this->world->getCurrentlyFillingItems()->count() && $this->hasSword())
 			|| $this->has('CaneOfSomaria')
 			|| ($this->has('TenBombs') && $enemies < 6)
 			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
 			|| $this->canShootArrows()
 			|| $this->has('Hammer')
 			|| $this->has('FireRod');
+	}
+
+	/**
+	 * Requirements for bombing things
+	 *
+	 * @return bool
+	 */
+	public function canBombThings() {
+		return true;
 	}
 
 	/**
@@ -464,7 +473,7 @@ class ItemCollection extends Collection {
 	}
 
 	/**
-	 * Requirements for having a sword
+	 * Requirements for having a sword, we treat the special UncleSword like a progressive sword.
 	 *
 	 * @param int $min_level minimum level of sword
 	 *
@@ -474,13 +483,16 @@ class ItemCollection extends Collection {
 		switch ($min_level) {
 			case 4:
 				return $this->has('ProgressiveSword', 4)
+					|| $this->has('UncleSword') && $this->has('ProgressiveSword', 3)
 					|| $this->has('L4Sword');
 			case 3:
 				return $this->has('ProgressiveSword', 3)
+					|| $this->has('UncleSword') && $this->has('ProgressiveSword', 2)
 					|| $this->has('L3Sword')
 					|| $this->has('L4Sword');
 			case 2:
 				return $this->has('ProgressiveSword', 2)
+					|| $this->has('UncleSword') && $this->has('ProgressiveSword')
 					|| $this->has('L2Sword')
 					|| $this->has('MasterSword')
 					|| $this->has('L3Sword')
@@ -488,6 +500,7 @@ class ItemCollection extends Collection {
 			case 1:
 			default:
 				return $this->has('ProgressiveSword')
+					|| $this->has('UncleSword')
 					|| $this->has('L1Sword')
 					|| $this->has('L1SwordAndShield')
 					|| $this->has('L2Sword')

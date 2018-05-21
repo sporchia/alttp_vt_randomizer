@@ -34,6 +34,9 @@ Vue.component('vt-item-randomizer', require('./views/ItemRandomizer.vue'));
 Vue.component('vt-entrance-randomizer', require('./views/EntranceRandomizer.vue'));
 Vue.component('vt-customizer', require('./views/Customizer.vue'));
 
+// ignore adsense
+Vue.config.ignoredElements = ['ins'];
+
 // todo: remove this later
 window.getSprite = function getSprite(sprite_name) {
 	return new Promise(function(resolve, reject) {

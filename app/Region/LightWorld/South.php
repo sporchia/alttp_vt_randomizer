@@ -104,6 +104,26 @@ class South extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->shops["20 Rupee Cave"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks();
+		});
+
+		$this->shops["50 Rupee Cave"]->setRequirements(function($locations, $items) {
+			return $items->canLiftRocks();
+		});
+
+		$this->shops["Bonk Fairy (Light)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
+		$this->shops["Light Hype Fairy"]->setRequirements(function($locations, $items) {
+			return $items->canBombThings();
+		});
+
+		$this->shops["Capacity Upgrade"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers');
+		});
+
 		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
 			return $items->has('Flippers');
 		});

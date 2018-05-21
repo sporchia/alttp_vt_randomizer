@@ -336,6 +336,9 @@ export default {
 			this.settings.difficulties = Object.keys(response.data.difficulties).map(function(key) { return {value: key, name: response.data.difficulties[key]}});
 			this.settings.variations = Object.keys(response.data.variations).map(function(key) { return {value: key, name: response.data.variations[key]}});
 		});
+		axios.get(`/customizer/settings`).then(response => {
+			consle.log(response.data);
+		});
 		localforage.getItem('rom').then(function(blob) {
 			EventBus.$emit('loadBlob', {target: {files: [new Blob([blob])]}});
 		});

@@ -14,6 +14,7 @@ class Shop {
 	protected $room_id;
 	protected $door_id;
 	protected $region;
+	protected $requirement_callback;
 	protected $writes = [];
 	protected $active = false;
 	protected $inventory = [];
@@ -125,6 +126,39 @@ class Shop {
 
 	public function getInventory() : array {
 		return $this->inventory;
+	}
+
+	/**
+	 * Determine if Link can access this location given his Items collected. Starts by checking if access to the Region
+	 * is granted, then checks the spcific location.
+	 *
+	 * @param ItemCollection $items Items Link can collect
+	 *
+	 * @return bool
+	 */
+	public function canAccess($items, $locations = null) {
+		if (!$this->region->canEnter($locations ?? $this->region->getWorld()->getLocations(), $items)) {
+			return false;
+		}
+
+		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $locations ?? $this->region->getWorld()->getLocations(), $items)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Set the requirements callback for this Lcation, closure should take 2 arguments, $locations and $items and
+	 * return boolean.
+	 *
+	 * @param Callable $callback function to be called when checking if Location can have Item
+	 *
+	 * @return $this
+	 */
+	public function setRequirements(Callable $callback) {
+		$this->requirement_callback = $callback;
+		return $this;
 	}
 
 	/**

@@ -77,6 +77,9 @@
 				</div>
 			</div>
 		</div>
+
+		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
 		<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded">
 			<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}"><h3 class="card-title">Game Details</h3></div>
 			<div class="card-body">

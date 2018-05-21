@@ -278,6 +278,10 @@ class Item {
 			new Item\Event('DefeatAgahnim2', 'Defeat Agahnim 2', [null]),
 			new Item\Event('DefeatGanon', 'Defeat Ganon', [null]),
 		]);
+
+		// Logical aliases
+		static::$items->addItem(new ItemAlias('UncleSword', 'ProgressiveSword'));
+
 		return static::all();
 	}
 

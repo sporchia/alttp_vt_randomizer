@@ -118,7 +118,6 @@ class Randomizer {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
 		// http://php.net/manual/en/migration72.incompatible.php#migration72.incompatible.rand-mt_rand-output
-		// GAHHHHHHH!!!! php 7.1 and 7.2 generate different things :/
 		mt_srand($this->rng_seed);
 		$this->seed->seed = $this->rng_seed;
 
@@ -193,6 +192,13 @@ class Randomizer {
 			}
 		}
 
+		// Easy starts with
+		if ($this->difficulty == 'easy') {
+			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+		}
+
 		if ($this->config('mode.state') == 'open') {
 			$this->starting_equipment->addItem(Item::get('RescueZelda'));
 		}
@@ -220,7 +226,7 @@ class Randomizer {
 		if ($this->config('mode.weapons') == 'swordless') {
 			// In swordless we need to catch all swords
 			foreach ($nice_items as $key => $item) {
-				if (is_a($item, Item\Sword::class)) {
+				if ($item instanceof Item\Sword) {
 					unset($nice_items[$key]);
 					$nice_items_swords[] = $item;
 				}
@@ -228,7 +234,7 @@ class Randomizer {
 			// In swordless mode silvers are 100% required
 			config(['alttp.region.requireBetterBow' => true]);
 			foreach ($nice_items_swords as $unneeded) {
-				array_push($nice_items, Item::get('TwentyRupees2'));
+				$nice_items[] = Item::get('TwentyRupees2');
 			}
 			$world_items = $this->world->collectItems()->values();
 			if (!in_array(Item::get('SilverArrowUpgrade'), $world_items) && !in_array(Item::get('BowAndSilverArrows'), $world_items)) {
@@ -239,7 +245,7 @@ class Randomizer {
 		} else {
 			// put 1 sword back
 			if (count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
+				array_push($advancement_items, Item::get('UncleSword')->setTarget(array_pop($nice_items_swords)));
 			}
 
 			if (count($nice_items_swords)) {
@@ -730,6 +736,7 @@ class Randomizer {
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
+					0x3E, 0x07, 0x36, 0xFF, // 7 boss hearts -> 20 rupees
 				]);
 				break;
 			default:

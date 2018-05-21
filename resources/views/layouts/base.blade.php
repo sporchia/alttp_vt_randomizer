@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ALttP VT Randomizer {{ isset($title) ? ' - ' . $title : '' }}</title>
+	<title>ALttP VT Randomizer{{ $title or '' }}</title>
 	<meta name="keywords" content="ALttP, Randomizer, patcher">
 	<meta name="description" content="ALttP Web VT Randomizer">
 	<meta charset="utf-8" />
@@ -26,12 +26,11 @@
 		};
 	@endif
 	</script>
+	@if (App::environment() == 'production' || env('AD_TEST'))
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: "ca-pub-5161309967767506",
-			enable_page_level_ads: true
-		});
+		(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
+	@endif
 </body>
 </html>
