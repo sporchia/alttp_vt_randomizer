@@ -1,6 +1,7 @@
 <?php namespace ALttP\Console\Commands;
 
 use Illuminate\Console\Command;
+use ALttP\Rom;
 
 class UpdateBaseJson extends Command {
 	/**
@@ -27,8 +28,13 @@ class UpdateBaseJson extends Command {
 			return $this->error('Source Files not readable');
 		}
 
-		$original_rom = fopen($this->argument('original_rom'), "r");
+		$tmp_file = tempnam(sys_get_temp_dir(), __CLASS__);
+		copy($this->argument('original_rom'), $tmp_file);
+
+		$original_rom = fopen($tmp_file, "r+");
+		ftruncate($original_rom, Rom::SIZE);
 		$updated_rom = fopen($this->argument('updated_rom'), "r");
+
 
 		$i = 0;
 		$cont = $i;
@@ -43,6 +49,7 @@ class UpdateBaseJson extends Command {
 		}
 		fclose($updated_rom);
 		fclose($original_rom);
+		unlink($tmp_file);
 
 		$backwards = array_reverse($out, true);
 		foreach ($backwards as $off => $value) {

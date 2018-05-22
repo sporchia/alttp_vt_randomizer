@@ -1061,6 +1061,15 @@ class Randomizer {
 			"The chimney\nsweep wore a\nsoot and tye.",
 			"Gardeners like\nto spring into\naction.",
 			"Bad at nuclear\nphysics. I\nGot no fission",
+			"Flint and\nsteel are a\ngood match.",
+			"I'd peg you\nas a fan of\nthe hammer.",
+			"Archers give\ngifts tied\nwith a bow.",
+			"A healed\ngambler is\nall better.",
+			"Any old sword\nwill make the\ncut here.",
+			"Lazy wyrms\nkeep dragon\ntheir feet.",
+			"Percussionist\nmasters drum\nup audiences.",
+			"Retrievers\nlove fetch\nquests.",
+			"Sausage is\nthe wurst.",
 		])));
 
 		$rom->setTavernManTextString(array_first(mt_shuffle([
