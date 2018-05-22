@@ -52,6 +52,7 @@
 			<ul>
 			<li>Swords have been replaced with four copies of 20 rupees (a green rupee sprite with
 				"20" on it).
+			<li>The barrier blocking access to Agahnim's Tower can be broken with the Hammer.
 			<li>The curtains blocking progress in Agahnim's Tower are pre-opened, as are the vines in
 				Skull Woods.
 			<li>Medallions can only be used to open Misery Mire or Turtle Rock, or to progress
