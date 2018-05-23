@@ -24,7 +24,7 @@
         "league/flysystem-rackspace": "^1.0",
         "sentry/sentry": "^1.8",
         "sentry/sentry-laravel": "^0.8.0",
-        "z3/enemizer": "6.0.22",
+        "z3/enemizer": "6.0.29",
         "z3/entrancerandomizer": "0.6.1"
     },
     "require-dev": {
@@ -41,11 +41,11 @@
             "type": "package",
             "package": {
                 "name": "z3/enemizer",
-                "version": "6.0.22",
+                "version": "6.0.29",
                 "source": {
                     "url": "https://github.com/Zarby89/Enemizer",
                     "type": "git",
-                    "reference": "tags/6.0.22"
+                    "reference": "tags/6.0.29"
                 }
             }
         },
