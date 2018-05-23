@@ -7,14 +7,17 @@
 		</div>
 		<div v-if="show" class="spoiler-tabed">
 			<div class="row">
-				<div class="col"></div>
+				<div class="col">
+					<vt-select v-model="search_location" id="location-search" :options="locations" placeholder="Search for Location"></vt-select>
+				</div>
 				<div class="col">
 					<vt-select v-model="search" id="item-search" :options="items" placeholder="Search for Item"></vt-select>
 				</div>
 			</div>
 			<tabs>
 				<tab v-for="(value, section) in regions" :key="section" :name="section"
-					:count="Object.values(value).filter((item) => { return item == search.value; }).length">
+					:count="Object.values(value).filter((item) => { return item == search.value; }).length
+						+ Object.keys(value).filter((location) => { return location == search_location.value; }).length">
 					<table class="table table-striped table-sm">
 						<thead>
 							<tr>
@@ -23,7 +26,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(item, location) in value" class="spoil-item-location" :class="{ 'bg-info text-light': item == search.value }">
+							<tr v-for="(item, location) in value" class="spoil-item-location" :class="{ 'bg-info text-light': item == search.value
+								|| location == search_location.value }">
 								<td>{{ location }}</td>
 								<td class="item">{{ item }}</td>
 							</tr>
@@ -52,7 +56,7 @@
 					</div>
 				</tab>
 				<tab v-if="shops" key="shops" name="Shops" :count="Object.values(shops).filter((item) => {
-						return [item.item_0, item.item_1, item.item_2].indexOf(search.value) !== -1;
+						return search !== '' && [item.item_0, item.item_1, item.item_2].indexOf(search.value) !== -1;
 					}).length">
 					<table class="table table-striped table-sm">
 						<thead>
@@ -66,7 +70,7 @@
 						</thead>
 						<tbody>
 							<tr v-for="row in shops" class="spoil-item-location"
-								:class="{ 'bg-info text-light': [row.item_0, row.item_1, row.item_2].indexOf(search.value) !== -1 }">
+								:class="{ 'bg-info text-light': search !== '' && [row.item_0, row.item_1, row.item_2].indexOf(search.value) !== -1 }">
 								<td>{{ row.location }}</td>
 								<td>{{ row.type }}</td>
 								<td class="item">{{ row.item_0 }}</td>
@@ -150,6 +154,7 @@ export default {
 		return {
 			show: false,
 			search: '',
+			search_location: '',
 		}
 	},
 	computed: {
@@ -214,6 +219,19 @@ export default {
 			}
 			return Object.keys(items).sort().map((item) => {
 				return {name: item, value: item};
+			});
+		},
+		locations: (vm) => {
+			let locations = {};
+			for (name in vm.rom.spoiler) {
+				if (['meta', 'playthrough', 'Entrances', 'paths', 'Shops'].indexOf(name) === -1) {
+					Object.keys(vm.rom.spoiler[name]).forEach((location) => {
+						locations[location] = true;
+					});
+				}
+			}
+			return Object.keys(locations).sort().map((location) => {
+				return {name: location, value: location};
 			});
 		},
 	},

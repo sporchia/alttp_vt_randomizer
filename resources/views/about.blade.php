@@ -13,7 +13,7 @@
 	role="button"
 	style="margin-left:20px;">Start Watching</a></div>
 </div>
-<div class="well" style="font-size:22px;margin-top:40px;">
+<div class="card card-body bg-light" style="font-size:22px;margin-top:40px;">
 	<p><span style="font-weight:bold;">ALttP: Randomizer</span> is a new take on the classic game The Legend of Zelda: A Link to the Past.
 		Each playthrough shuffles the location of all the important items in
 		the game. Will you find the Bow atop Death Mountain, the Fire Rod resting silently in the
@@ -23,8 +23,11 @@
 		take home the crown in our <a href="/races">twice-yearly invitational tournament</a>. See you
 		in Hyrule!</p>
 </div>
-<div class="well" style="text-align:center;">
-	<iframe
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
+<div class="card card-body bg-light">
+	<iframe class="mx-auto"
 		allow="encrypted-media"
 		allowfullscreen
 		frameborder="0"

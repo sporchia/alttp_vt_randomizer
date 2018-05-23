@@ -30,6 +30,7 @@ Vue.component('vt-spoiler', require('./components/VTSpoiler.vue'));
 Vue.component('vt-rom-loader', require('./components/VTRomLoader.vue'));
 
 // Views
+Vue.component('vt-hash-loader', require('./views/HashLoader.vue'));
 Vue.component('vt-item-randomizer', require('./views/ItemRandomizer.vue'));
 Vue.component('vt-entrance-randomizer', require('./views/EntranceRandomizer.vue'));
 Vue.component('vt-customizer', require('./views/Customizer.vue'));

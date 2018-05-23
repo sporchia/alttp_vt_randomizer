@@ -49,7 +49,7 @@ class EntranceRandomizerController extends Controller {
 			$seed = $rand->getSeed();
 			$patch = $rom->getWriteLog();
 			$spoiler = $rand->getSpoiler();
-			$hash = ($save) $rand->saveSeedRecord() : $seed;
+			$hash = ($save) ? $rand->saveSeedRecord() : $seed;
 		} catch (Exception $e) {
 			report($e);
 			return response('Failed', 409);

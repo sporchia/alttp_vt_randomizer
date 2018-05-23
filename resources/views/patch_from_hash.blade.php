@@ -1,30 +1,15 @@
 @extends('layouts.default')
-@include('_rom_info')
-@include('_rom_loader')
-@include('_rom_settings')
 
 @section('content')
-@yield('loader')
-<div id="seed-details" class="info panel panel-success" style="display:none">
-	<div class="panel-heading panel-heading-btn">
-		<h3 class="panel-title pull-left"><span class="name">Game Details: <span class="seed"></span></span></h3>
-		<div class="btn-toolbar pull-right">
-			@yield('rom-settings-button')
-		</div>
-		<div class="clearfix"></div>
-	</div>
-	<div class="panel-body">
-		<div class="row" style="padding-bottom:5px;">
-			@yield('rom-info')
-			<div class="col-md-6">
-				<div class="row">
-					<button name="save" class="btn btn-success" disabled>Save Rom</button>
-				</div>
-			</div>
-		</div>
-		@yield('rom-settings')
-	</div>
+<div id="root">
+	<vt-hash-loader version="{!! ALttP\Randomizer::LOGIC !!}" id="seed-generate"></vt-hash-loader>
 </div>
+
+<script>
+new Vue({
+	el: '#root',
+});
+</script>
 
 <script>
 var current_rom_hash = '{{ $md5 }}';
