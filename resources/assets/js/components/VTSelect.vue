@@ -1,11 +1,13 @@
 <template>
-	<div class="input-group" role="group">
-		<div v-if="$slots.default" class="input-group-prepend">
-			<span class="input-group-text"><slot></slot><sup v-if="noRace"><strong>*</strong></sup></span>
+	<div class="flex-input">
+		<div class="input-group" role="group">
+			<div v-if="$slots.default" class="input-group-prepend">
+				<span class="input-group-text"><slot></slot><sup v-if="noRace"><strong>*</strong></sup></span>
+			</div>
+			<multiselect class="form-control" v-model="value" :options="options" :show-labels="false" :allow-empty="false"
+				:custom-label="customLabel" :placeholder="placeholder" @select="onSelect"></multiselect>
 		</div>
-		<multiselect class="form-control" v-model="value" :options="options" :show-labels="false" :allow-empty="false"
-			:custom-label="customLabel" :placeholder="placeholder" @select="onSelect"></multiselect>
-		<span v-if="$slots['tooltip']" v-tooltip="$slots['tooltip'][0].text"><img class="icon" src="/i/svg/info.svg" alt="tooltip"></span>
+		<span v-if="$slots['tooltip']" v-tooltip="$slots['tooltip'][0].text"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span>
 	</div>
 </template>
 
@@ -60,9 +62,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.flex-input {
+	display: flex;
+	flex-direction: row;
+}
 .multiselect__option--highlight.multiselect__option--selected {
 	background: #41b883;
 	color: #fff;
+}
+.icon {
+	vertical-align: -.9em;
+}
+.has-tooltip {
+	cursor: help;
 }
 </style>

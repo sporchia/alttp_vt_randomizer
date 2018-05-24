@@ -340,19 +340,19 @@ $title = ' - Options';
 				<td># of Silver Arrows</td>
 				<td>2</td>
 				<td>1</td>
-				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
-				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
+				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
+				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
 				<td>0</td>
 			</tr><tr class="table-secondary">
 				<td># of Silver Arrows (Swordless)</td>
 				<td>2</td>
 				<td>1</td>
-				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
-				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
-				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
+				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
+				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
+				<td>1<span v-tooltip="'Silver Arrows only function in Ganon’s room.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
 			</tr><tr class="table-primary">
 				<td># of Bottles</td>
-				<td>8<span v-tooltip="'Once 4 Bottles have been collected, the remaining Bottles will revert to rupees.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
+				<td>8<span v-tooltip="'Once 4 Bottles have been collected, the remaining Bottles will revert to rupees.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
 				<td>4</td>
 				<td>4</td>
 				<td>4</td>
@@ -365,7 +365,7 @@ $title = ' - Options';
 				<td>1</td>
 				<td>1</td>
 			</tr><tr class="table-primary">
-				<td>Potion Magic Refill<span v-tooltip="'Potions will fill 100% magic in Spike Cave.'"><img class="icon" src="i/svg/info.svg" alt="tooltip"></span></td>
+				<td>Potion Magic Refill<span v-tooltip="'Potions will fill 100% magic in Spike Cave.'"><img class="icon" src="i/svg/question-mark.svg" alt="tooltip"></span></td>
 				<td>100%</td>
 				<td>100%</td>
 				<td>50%</td>
@@ -373,7 +373,7 @@ $title = ' - Options';
 				<td>0%</td>
 			</tr><tr class="table-primary">
 				<td>Potion Hearts Refill
-					<span v-tooltip="'Potions will fill 20 hearts in Spike Cave.'"><img class="icon" src="/i/svg/info.svg" alt="tooltip"></span>
+					<span v-tooltip="'Potions will fill 20 hearts in Spike Cave.'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span>
 				</td>
 				<td>20</td>
 				<td>20</td>

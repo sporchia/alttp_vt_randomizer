@@ -221,12 +221,10 @@
 								</vt-text>
 							</div>
 							<div class="col">
-								<div class="col">
-									<vt-select :options="settings.timers" storage-key="vt.custom.rom.timerMode" v-model="choice.timer">
-										Timer
-										<template slot="tooltip">Sets the behavior of the in game timer. Stopwatch will count up, while countdown will count down. When the countdown timer hits 0, what happens depends on the option selected. OHKO will send Link into one hit knockout mode, and taking any damage will cause death. Continue will cause the timer to continue counting down past zero. Stop will cause the timer to stop at zero. Outside of OHKO, the value of the timer has no effect on gameplay.</template>
-									</vt-select>
-								</div>
+								<vt-select :options="settings.timers" storage-key="vt.custom.rom.timerMode" v-model="choice.timer">
+									Timer
+									<template slot="tooltip">Sets the behavior of the in game timer. Stopwatch will count up, while countdown will count down. When the countdown timer hits 0, what happens depends on the option selected. OHKO will send Link into one hit knockout mode, and taking any damage will cause death. Continue will cause the timer to continue counting down past zero. Stop will cause the timer to stop at zero. Outside of OHKO, the value of the timer has no effect on gameplay.</template>
+								</vt-select>
 							</div>
 						</div>
 						<div class="row mb-3">
@@ -337,7 +335,7 @@ export default {
 			this.settings.variations = Object.keys(response.data.variations).map(function(key) { return {value: key, name: response.data.variations[key]}});
 		});
 		axios.get(`/customizer/settings`).then(response => {
-			consle.log(response.data);
+			console.log(response.data);
 		});
 		localforage.getItem('rom').then(function(blob) {
 			EventBus.$emit('loadBlob', {target: {files: [new Blob([blob])]}});
