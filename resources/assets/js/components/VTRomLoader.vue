@@ -1,22 +1,24 @@
 <template>
-	<div id="rom-select" class="card border-info">
-		<div class="card-header bg-info">
-			<h4 class="card-title">Getting Started</h4>
-		</div>
-		<div class="card-body">
-			<p>
-				<label class="btn btn-outline-primary btn-file">
-					Select ROM File <input type="file" accept=".sfc,.smc" @change="loadBlob">
-				</label>
-			</p>
-			<ol>
-				<li>Select your rom file and load it into the browser
-					(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with
-					an .smc or .sfc extension)</li>
-				<li>Select the <a href="/options">options</a> for how you would like your game randomized</li>
-				<li>Click Generate</li>
-				<li>Then Save your rom and get to playing</li>
-			</ol>
+	<div>
+		<div v-if="!loading" id="rom-select" class="card border-info">
+			<div class="card-header bg-info">
+				<h4 class="card-title">Getting Started</h4>
+			</div>
+			<div class="card-body">
+				<p>
+					<label class="btn btn-outline-primary btn-file">
+						Select ROM File <input type="file" accept=".sfc,.smc" @change="loadBlob">
+					</label>
+				</p>
+				<ol>
+					<li>Select your rom file and load it into the browser
+						(Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with
+						an .smc or .sfc extension)</li>
+					<li>Select the <a href="/options">options</a> for how you would like your game randomized</li>
+					<li>Click Generate</li>
+					<li>Then Save your rom and get to playing</li>
+				</ol>
+			</div>
 		</div>
 	</div>
 </template>
@@ -29,6 +31,7 @@ export default {
 		return {
 			current_rom_hash: '',
 			current_base_file: '',
+			loading: true,
 		};
 	},
 	created () {
@@ -53,24 +56,27 @@ export default {
 	},
 	mounted () {
 		EventBus.$on('loadBlob', this.loadBlob);
+		EventBus.$on('noBlob', this.noBlob);
 	},
 	methods: {
+		noBlob() {
+			this.loading = false;
+		},
 		loadBlob(change) {
+			this.loading = true;
 			let blob = change.target.files[0];
-			if (!blob) {
-				console.log(blob);
-				return;
-			}
 
 			new ROM(blob, (rom) => {
 				this.patchRomFromJSON(rom).then((rom) => {
 					if (rom.checkMD5() != this.current_rom_hash) {
 						this.$emit('error', 'File not recognized');
+						this.loading = false;
 						return;
 					} else {
 						localforage.setItem('rom', rom.getArrayBuffer());
 						this.$emit('update', rom, this.current_rom_hash);
 						EventBus.$emit('applyHash', rom);
+						this.loading = false;
 					}
 				});
 			});
@@ -85,7 +91,6 @@ export default {
 					return;
 				}
 				localforage.getItem('vt.stored_base').then((stored_base_file) => {
-					console.log(this.current_base_file, stored_base_file);
 					if (this.current_base_file == stored_base_file) {
 						localforage.getItem('vt.base_json').then((patch) => {
 							rom.parsePatch({patch: patch}).then((rom) => {

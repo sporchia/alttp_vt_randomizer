@@ -338,6 +338,10 @@ export default {
 			console.log(response.data);
 		});
 		localforage.getItem('rom').then(function(blob) {
+			if (blob == null) {
+				EventBus.$emit('noBlob');
+				return;
+			}
 			EventBus.$emit('loadBlob', {target: {files: [new Blob([blob])]}});
 		});
 	},

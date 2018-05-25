@@ -151,6 +151,10 @@ export default {
 			this.settings.variations = Object.keys(response.data.variations).map(function(key) { return {value: key, name: response.data.variations[key]}});
 		});
 		localforage.getItem('rom').then(function(blob) {
+			if (blob == null) {
+				EventBus.$emit('noBlob');
+				return;
+			}
 			EventBus.$emit('loadBlob', {target: {files: [new Blob([blob])]}});
 		});
 	},
