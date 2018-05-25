@@ -103,14 +103,12 @@ class ItemRandomizerController extends Controller {
 		if ($request->filled('menu_fast')) {
 			$rom->setQuickMenu($request->input('menu_fast') == 'true');
 		}
-		if ($request->filled('debug')) {
-			$rom->setDebugMode($request->input('debug') == 'true');
-		}
 
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 			config([
 				"tournament-mode" => true,
 			]);
+			$spoiler_meta['tournament'] = true;
 			$rom->setTournamentType('standard');
 		} else {
 			$rom->setTournamentType('none');

@@ -75,7 +75,6 @@ export default {
 	methods: {
 		applyHash(e, second_attempt) {
 			if (this.rom.checkMD5() != this.current_rom_hash) {
-				console.log(this.rom.checkMD5(), this.current_rom_hash)
 				if (second_attempt) {
 					return new Promise(function(resolve, reject) {
 						reject(this.rom);
@@ -95,6 +94,7 @@ export default {
 							// The base rom has been updated.
 						}
 						this.gameLoaded = true;
+						EventBus.$emit('gameLoaded', this.rom);
 						resolve({rom: this.rom, patch: response.data.patch});
 					}.bind(this));
 				}).catch((error) => {

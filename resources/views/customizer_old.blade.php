@@ -1,8 +1,4 @@
 @extends('layouts.building')
-@include('_rom_info')
-@include('_rom_loader')
-@include('_rom_settings')
-@include('_rom_spoiler')
 @include('custom/_equipment')
 @include('custom/_drops_pool')
 @include('custom/_drops_prizepacks')

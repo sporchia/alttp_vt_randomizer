@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import EventBus from '../core/event-bus';
+
 export default {
 	components: {
 		Multiselect: Multiselect.default
@@ -30,6 +32,7 @@ export default {
 	props: {
 		title: {default: 'Play As'},
 		selected: {default: null},
+		storageKey: {default: ''},
 		rom: {default: null},
 	},
 	data() {
@@ -58,6 +61,11 @@ export default {
 			}.bind(this));
 		});
 	},
+	mounted () {
+		EventBus.$on('gameLoaded', (rom) => {
+			this.applyRomFunctions(this, rom)
+		});
+	},
 	computed: {
 		options: function() {
 			return this.sprites;
@@ -71,8 +79,35 @@ export default {
 			return `"icon-custom-" + option.name.replace(/[ \)\(\.]/g, '')`;
 		},
 		onSelect (option) {
-			this.$emit('select', option);
-		}
+			this.value = option;
+			if (this.storageKey) {
+				let sprite_name = path.basename(option.file);
+				localforage.setItem(this.storageKey, sprite_name);
+			}
+			if (this.rom) {
+				this.applyRomFunctions(this, this.rom);
+			}
+		},
+		applyRomFunctions: (vm, rom) => {
+			let sprite_name = path.basename(vm.value.file);
+			new Promise((resolve, reject) => {
+				localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
+					if (spr) {
+						resolve(spr);
+					}
+					axios.get(vm.value.file, {responseType: 'arraybuffer'}).then(response => {
+						var spr_array = new Uint8Array(response.data);
+						localforage.setItem('vt_sprites.' + sprite_name, spr_array).then(function(spr) {
+							resolve(spr);
+						}).catch(function() {
+							reject('could not save sprite to local storage');
+						});
+					}).catch(function(){
+						reject('cannot find sprite file');
+					});
+				});
+			}).then(rom.parseSprGfx);
+		},
 	}
 }
 </script>

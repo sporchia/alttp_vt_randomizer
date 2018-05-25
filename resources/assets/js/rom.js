@@ -106,6 +106,10 @@ var ROM = (function(blob, loaded_callback) {
 		return arrayBuffer;
 	};
 
+	this.getOriginalArrayBuffer = function() {
+		return original_data;
+	};
+
 	this.write = function(seek, bytes) {
 		if (bytes && !bytes.length) {
 			u_array[seek] = bytes;
@@ -271,6 +275,7 @@ var ROM = (function(blob, loaded_callback) {
 				case 'off': sbyte = 0x00; break;
 				case 'half': sbyte = 0x40; break;
 				case 'quarter': sbyte = 0x80; break;
+				case 'double': sbyte = 0x10; break;
 			}
 			this.write(0x180033, sbyte);
 			resolve(this);
@@ -282,6 +287,8 @@ var ROM = (function(blob, loaded_callback) {
 			this.difficulty = data.difficulty;
 			this.seed = data.seed;
 			this.spoiler = data.spoiler;
+			this.hash = data.hash;
+			this.generated = data.generated;
 			if (data.spoiler && data.spoiler.meta) {
 				this.build = data.spoiler.meta.build;
 				this.goal = data.spoiler.meta.goal;
@@ -330,11 +337,16 @@ var ROM = (function(blob, loaded_callback) {
 	this.reset = function() {
 		return new Promise((resolve, reject) => {
 			arrayBuffer = original_data.slice(0);
+			u_array = new Uint8Array(arrayBuffer);
+
 			if (!this.base_patch) {
 				reject('base patch not set');
 			}
 			this.parsePatch({patch: this.base_patch}).then((rom) => {
 				resolve(rom);
+			}).catch((error) => {
+				console.log(error, ":(");
+				reject('sadness');
 			});
 		});
 	};

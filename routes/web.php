@@ -74,6 +74,7 @@ Route::get('h/{hash}', function(Request $request, $hash) {
 			'md5' => $build->hash,
 			'patch' => $build->patch,
 			'seed' => $seed,
+			'spoiler' => json_decode($seed->spoiler),
 		]);
 	}
 	abort(404);
@@ -82,12 +83,17 @@ Route::get('h/{hash}', function(Request $request, $hash) {
 Route::any('hash/{hash}', function(Request $request, $hash) {
 	$seed = ALttP\Seed::where('hash', $hash)->first();
 	if ($seed) {
+		$spoiler = json_decode($seed->spoiler, true);
+		$return_spoiler = ($spoiler['meta']['tournament'] ?? false)
+			? array_except(array_only($spoiler, ['meta']), ['meta.seed'])
+			: $spoiler;
 		return json_encode([
 			'logic' => $seed->logic,
 			'difficulty' => $seed->rules,
 			'patch' => json_decode($seed->patch),
-			'spoiler' => array_except(array_only(json_decode($seed->spoiler, true), ['meta']), ['meta.seed']),
+			'spoiler' => $return_spoiler,
 			'hash' => $seed->hash,
+			'generated' => $seed->created_at->diffForHumans(),
 		]);
 	}
 	abort(404);

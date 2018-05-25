@@ -8,10 +8,10 @@
 		<div v-if="show" class="spoiler-tabed">
 			<div class="row">
 				<div class="col">
-					<vt-select v-if="locations.length" v-model="search_location" id="location-search" :options="locations" placeholder="Search for Location"></vt-select>
+					<vt-select v-if="locations.length" v-model="search_location" id="location-search" clearable="true" :options="locations" placeholder="Search for Location"></vt-select>
 				</div>
 				<div class="col">
-					<vt-select v-if="items.length" v-model="search" id="item-search" :options="items" placeholder="Search for Item"></vt-select>
+					<vt-select v-if="items.length" v-model="search" id="item-search" clearable="true" :options="items" placeholder="Search for Item"></vt-select>
 				</div>
 			</div>
 			<tabs>
@@ -36,7 +36,7 @@
 				</tab>
 				<tab v-if="paths" key="paths" name="Paths">
 					<div v-for="(rows, location) in paths" class="row border-top">
-						<div class="col-4 ">{{ location }}</div>
+						<div class="col-4">{{ location }}</div>
 						<div class="col-8">
 							<table class="table table-striped table-sm mb-0">
 								<thead>

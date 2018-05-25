@@ -6,12 +6,17 @@
 			</div>
 			<multiselect class="form-control" v-model="value" :options="options" :show-labels="false" :allow-empty="false"
 				:custom-label="customLabel" :placeholder="placeholder" @select="onSelect"></multiselect>
+			<div v-if="clearable" class="input-group-append">
+				<span class="input-group-text" @click="onClear"><img class="icon" src="/i/svg/x.svg" alt="clear"></span>
+			</div>
 		</div>
 		<span v-if="$slots['tooltip']" v-tooltip="$slots['tooltip'][0].text"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span>
 	</div>
 </template>
 
 <script>
+import EventBus from '../core/event-bus';
+
 export default {
 	components: {
 		Multiselect: Multiselect.default
@@ -23,9 +28,13 @@ export default {
 		storageKey: {default: ''},
 		romFunction: {default: null},
 		placeholder: {default: 'Select option'},
-		rom: {default : null},
+		rom: {default: null},
+		clearable: {default: false},
 	},
 	mounted () {
+		EventBus.$on('gameLoaded', (rom) => {
+			this.applyRomFunctions(this, rom)
+		});
 		if (!this.storageKey) return;
 		localforage.getItem(this.storageKey).then(function(value) {
 			if (value === null) return;
@@ -57,7 +66,17 @@ export default {
 			}
 			this.$emit('select', option);
 			this.$emit('input', option);
-		}
+		},
+		applyRomFunctions: (vm, rom) => {
+			if (rom && vm.romFunction) {
+				rom[vm.romFunction](vm.value.value);
+			}
+		},
+		onClear () {
+			this.value = null;
+			this.$emit('select', null);
+			this.$emit('input', {value: null});
+		},
 	}
 }
 </script>

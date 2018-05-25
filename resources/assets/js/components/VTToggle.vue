@@ -8,13 +8,20 @@
 </template>
 
 <script>
+import EventBus from '../core/event-bus';
+
 export default {
 	props: {
 		noRace: {default: false},
 		storageKey: {default: ''},
 		selected: {default: false},
+		romFunction: {default: null},
+		rom: {default: null},
 	},
 	mounted () {
+		EventBus.$on('gameLoaded', (rom) => {
+			this.applyRomFunctions(this, rom)
+		});
 		localforage.getItem(this.storageKey).then(function(value) {
 			if (value === null) return;
 			this.value = value;
@@ -32,6 +39,11 @@ export default {
 		},
 		onClickLabel() {
 			this.value = !this.value;
+		},
+		applyRomFunctions: (vm, rom) => {
+			if (rom && vm.romFunction) {
+				rom[vm.romFunction](vm.value);
+			}
 		},
 	}
 }

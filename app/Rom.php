@@ -708,6 +708,9 @@ class Rom {
 			case 'quarter':
 				$byte = 0x80;
 				break;
+			case 'double':
+				$byte = 0x10;
+				break;
 			case 'normal':
 			default:
 				$byte = 0x20;

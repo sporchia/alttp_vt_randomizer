@@ -215,7 +215,7 @@
 						<div class="clearfix"></div>
 						<div class="row mb-3">
 							<div class="col">
-								<vt-text type="number" placeholder="seconds" maxlength="9" storage-key="vt.custom.item.Goal.Required">
+								<vt-text type="number" placeholder="pieces" maxlength="9" storage-key="vt.custom.item.Goal.Required">
 									Goal Items
 									<template slot="tooltip">Only applies to Triforce Hunt. The number of triforce pieces required to complete the game.</template>
 								</vt-text>
@@ -257,7 +257,7 @@
 						</div>
 						<div class="row mb-3">
 							<div class="col">
-								<vt-text type="number" placeholder="seconds" maxlength="9" storage-key="vt.custom.item.value.Rupoor">
+								<vt-text type="number" placeholder="rupees to take away" maxlength="9" storage-key="vt.custom.item.value.Rupoor">
 									Rupoor Value
 									<template slot="tooltip">The amount of rupees a Rupoor will subtract from Link's total when collected.</template>
 								</vt-text>
@@ -384,6 +384,7 @@ export default {
 							// The base rom has been updated.
 						}
 						this.gameLoaded = true;
+						EventBus.$emit('gameLoaded', this.rom);
 						resolve({rom: this.rom, patch: response.data.patch});
 					}.bind(this));
 				}).catch((error) => {

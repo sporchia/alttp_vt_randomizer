@@ -73,7 +73,7 @@ export default {
 						this.loading = false;
 						return;
 					} else {
-						localforage.setItem('rom', rom.getArrayBuffer());
+						localforage.setItem('rom', rom.getOriginalArrayBuffer());
 						this.$emit('update', rom, this.current_rom_hash);
 						EventBus.$emit('applyHash', rom);
 						this.loading = false;
@@ -84,11 +84,10 @@ export default {
 		patchRomFromJSON(rom) {
 			return new Promise((resolve, reject) => {
 				if (typeof vt_base_patch !== 'undefined') {
-					rom.parsePatch({patch: vt_base_patch}).then((rom) => {
+					return rom.parsePatch({patch: vt_base_patch}).then((rom) => {
 						rom.setBasePatch(vt_base_patch);
 						resolve(rom);
 					});
-					return;
 				}
 				localforage.getItem('vt.stored_base').then((stored_base_file) => {
 					if (this.current_base_file == stored_base_file) {
