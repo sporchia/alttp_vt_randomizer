@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Calendar';
+$title = 'Calendar - ';
 @endphp
 
 @section('content')

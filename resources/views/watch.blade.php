@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Watch';
+$title = 'Start Watching - ';
 @endphp
 
 @section('content')

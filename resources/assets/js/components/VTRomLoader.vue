@@ -32,6 +32,10 @@ export default {
 		};
 	},
 	created () {
+		if (typeof current_rom_hash !== 'undefined') {
+			this.current_rom_hash = current_rom_hash;
+			return;
+		}
 		axios.get(`/base_rom/settings`).then(response => {
 			this.current_rom_hash = response.data.rom_hash;
 			this.current_base_file = response.data.base_file;
@@ -66,6 +70,7 @@ export default {
 					} else {
 						localforage.setItem('rom', rom.getArrayBuffer());
 						this.$emit('update', rom, this.current_rom_hash);
+						EventBus.$emit('applyHash', rom);
 					}
 				});
 			});

@@ -1,7 +1,7 @@
 @extends('layouts.base', ['title' => 'Customizer'])
 
 @php
-$title = ' - Customizer';
+$title = 'Customizer - ';
 @endphp
 
 @section('window')

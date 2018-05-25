@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Start Playing';
+$title = 'Start Playing - ';
 @endphp
 
 @section('content')

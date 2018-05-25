@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Updates';
+$title = 'Updates - ';
 @endphp
 
 @section('content')

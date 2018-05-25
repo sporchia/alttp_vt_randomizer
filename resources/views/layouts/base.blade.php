@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ALttP VT Randomizer{{ $title or '' }}</title>
+	<title>{{ $title or '' }}ALttP VT Randomizer</title>
 	<meta name="keywords" content="ALttP, Randomizer, patcher">
 	<meta name="description" content="ALttP Web VT Randomizer">
 	<meta charset="utf-8" />

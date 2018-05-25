@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Resources';
+$title = 'Resources - ';
 @endphp
 
 @section('content')

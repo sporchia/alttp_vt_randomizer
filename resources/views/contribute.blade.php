@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Contribute';
+$title = 'Contribute - ';
 @endphp
 
 @section('content')

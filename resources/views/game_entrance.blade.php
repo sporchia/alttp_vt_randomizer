@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Entrance Options';
+$title = 'Entrance Options - ';
 @endphp
 
 @section('content')

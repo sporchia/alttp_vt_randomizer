@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Racing';
+$title = 'Racing - ';
 @endphp
 
 @section('content')

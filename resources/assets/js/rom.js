@@ -279,16 +279,17 @@ var ROM = (function(blob, loaded_callback) {
 
 	this.parsePatch = function(data, progressCallback) {
 		return new Promise(function(resolve, reject) {
-			this.logic = data.logic;
 			this.difficulty = data.difficulty;
 			this.seed = data.seed;
 			this.spoiler = data.spoiler;
 			if (data.spoiler && data.spoiler.meta) {
-				this.goal = data.spoiler.meta.goal;
 				this.build = data.spoiler.meta.build;
+				this.goal = data.spoiler.meta.goal;
+				this.logic = data.spoiler.meta.logic;
 				this.mode = data.spoiler.meta.mode;
-				this.weapons = data.spoiler.meta.weapons;
+				this.name = data.spoiler.meta.name;
 				this.variation = data.spoiler.meta.variation;
+				this.weapons = data.spoiler.meta.weapons;
 			}
 			data.patch.forEach(function(value, index, array) {
 				if (progressCallback) progressCallback(index / data.patch.length, this);

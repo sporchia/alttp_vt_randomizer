@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @php
-$title = ' - Entrance Randomizer';
+$title = 'Entrance Randomizer - ';
 @endphp
 
 @section('content')

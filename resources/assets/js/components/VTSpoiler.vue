@@ -8,10 +8,10 @@
 		<div v-if="show" class="spoiler-tabed">
 			<div class="row">
 				<div class="col">
-					<vt-select v-model="search_location" id="location-search" :options="locations" placeholder="Search for Location"></vt-select>
+					<vt-select v-if="locations.length" v-model="search_location" id="location-search" :options="locations" placeholder="Search for Location"></vt-select>
 				</div>
 				<div class="col">
-					<vt-select v-model="search" id="item-search" :options="items" placeholder="Search for Item"></vt-select>
+					<vt-select v-if="items.length" v-model="search" id="item-search" :options="items" placeholder="Search for Item"></vt-select>
 				</div>
 			</div>
 			<tabs>
@@ -176,6 +176,9 @@ export default {
 		playthrough: (vm) => {
 			let playthrough = [];
 			let spoiler = vm.rom.spoiler.playthrough;
+			if (!spoiler) {
+				return false;
+			}
 			if (typeof vm.rom.spoiler.Entrances !== 'undefined') {
 				Object.keys(spoiler).forEach((sphere) => {
 					Object.keys(spoiler[sphere]).forEach((location) => {
