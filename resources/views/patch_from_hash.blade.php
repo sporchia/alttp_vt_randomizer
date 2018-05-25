@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@php
+$title = sprintf(' - %s - %s - %s', $seed->logic, $seed->rules, $seed->hash);
+@endphp
+
 @section('content')
 <div id="root">
 	<vt-hash-loader version="{!! ALttP\Randomizer::LOGIC !!}" id="seed-generate"></vt-hash-loader>

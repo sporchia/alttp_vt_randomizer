@@ -73,6 +73,7 @@ Route::get('h/{hash}', function(Request $request, $hash) {
 			'hash' => $hash,
 			'md5' => $build->hash,
 			'patch' => $build->patch,
+			'seed' => $seed,
 		]);
 	}
 	abort(404);
