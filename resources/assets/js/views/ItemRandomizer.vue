@@ -80,7 +80,7 @@
 
 		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
 
-		<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded">
+		<div id="seed-details" class="card border-info mt-3" v-if="gameLoaded && romLoaded">
 			<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}"><h3 class="card-title">Game Details</h3></div>
 			<div class="card-body">
 				<div class="row">
@@ -168,8 +168,8 @@ export default {
 			this.applySeed();
 		},
 		applySeed(e, second_attempt) {
+			this.error = false;
 			if (this.rom.checkMD5() != this.current_rom_hash) {
-				console.log(this.rom.checkMD5(), this.current_rom_hash)
 				if (second_attempt) {
 					return new Promise(function(resolve, reject) {
 						reject(this.rom);

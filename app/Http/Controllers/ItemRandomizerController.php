@@ -13,15 +13,27 @@ use Markdown;
 
 class ItemRandomizerController extends Controller {
 	public function generateSeed(Request $request, $seed_id = null) {
-		return json_encode($this->prepSeed($request, $seed_id, true));
+		try {
+			return json_encode($this->prepSeed($request, $seed_id, true));
+		} catch (Exception $e) {
+			return response($e->getMessage(), 409);
+		}
 	}
 
 	public function generateSpoiler(Request $request, $seed_id) {
-		return json_encode($this->prepSeed($request, $seed_id)['spoiler']);
+		try {
+			return json_encode($this->prepSeed($request, $seed_id)['spoiler']);
+		} catch (Exception $e) {
+			return response($e->getMessage(), 409);
+		}
 	}
 
 	public function testGenerateSeed(Request $request, $seed_id = null) {
-		return json_encode(array_except($this->prepSeed($request, $seed_id), ['patch']));
+		try {
+			return json_encode(array_except($this->prepSeed($request, $seed_id), ['patch']));
+		} catch (Exception $e) {
+			return response($e->getMessage(), 409);
+		}
 	}
 
 	protected function prepSeed(Request $request, $seed_id = null, $save = false) {
@@ -130,17 +142,13 @@ class ItemRandomizerController extends Controller {
 			$rand->setWorld($world);
 		}
 
-		try {
-			$rand->makeSeed($seed_id);
-		} catch (Exception $e) {
-			return response($e->getMessage(), 409);
-		}
+		$rand->makeSeed($seed_id);
 
 		$rand->writeToRom($rom);
 		$seed = $rand->getSeed();
 
 		if (!$rand->getWorld()->checkWinCondition()) {
-			return response('Game Unwinnable', 409);
+			throw new Exception('Game Unwinnable');
 		}
 
 		$patch = $rom->getWriteLog();
