@@ -79,7 +79,7 @@ class Inner extends Region {
         $this->locations["Plasma Beam"]->setRequirements(function($location, $items) {
             return $items->canDefeatDraygon()
                 && ($items->has('SpeedBooster')
-                 || (($items->has('ChargeBeam') || $items->has('ScrewAttack')) && ($items->canFlySM() || $items->has('HiJump'))));                 
+                 || ((($items->has('ChargeBeam') && ($items->hasEnergyReserves(4) || ($items->has('Varia') && $items->hasEnergyReserves(1)))) || $items->has('Plasma') || $items->has('ScrewAttack')) && ($items->canFlySM() || $items->has('HiJump'))));                 
 		});
 
         $this->locations["Power Bomb (right Maridia sand pit room)"]->setRequirements(function($location, $items) {
