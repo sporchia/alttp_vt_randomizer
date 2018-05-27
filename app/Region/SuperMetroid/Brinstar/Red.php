@@ -20,7 +20,7 @@ class Red extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
 			new Location\SuperMetroid\Chozo("X-Ray Scope", 0xF78876, null, $this),
@@ -48,11 +48,11 @@ class Red extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 
 		$this->locations["X-Ray Scope"]->setRequirements(function($location, $items) {
             return $items->canUsePowerBombs()
@@ -90,11 +90,40 @@ class Red extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+
+		$this->locations["X-Ray Scope"]->setRequirements(function($location, $items) {
+            return $items->canUsePowerBombs()
+                && $items->canOpenRedDoors()
+                && ($items->has('Grapple') || $items->has('SpaceJump'));
+		});
+
+        $this->locations["Power Bomb (red Brinstar sidehopper room)"]->setRequirements(function($location, $items) {
+            return $items->canUsePowerBombs() && $items->has('Super');
+		});
+
+        $this->locations["Power Bomb (red Brinstar spike room)"]->setRequirements(function($location, $items) {
+            return ($items->canUsePowerBombs() || $items->has('IceBeam')) && $items->has('Super');
+		});
+
+        $this->locations["Missile (red Brinstar spike room)"]->setRequirements(function($location, $items) {
+            return $items->canUsePowerBombs() && $items->has('Super');
+		});
+
+        $this->locations["Spazer"]->setRequirements(function($location, $items) {
+            return $items->canPassBombPassages() && $items->has('Super');
+		});
+
+        $this->can_enter = function($locations, $items) {
+            return (($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
+                && ($items->has('Super') && $items->has('Morph')))
+                || ($items->canAccessNorfairPortal() && ($items->has('IceBeam') || $items->has('HiJump') || $items->canFlySM()));
+		};
+
+		return $this;
 	}
 }

@@ -297,11 +297,14 @@ var ROM = (function(blob, loaded_callback) {
 
 	this.downloadFilename = function() {
 		return this.name
-			|| 'SMALttP - ' + this.logic
+			|| 'SMALttP - '
+			+ this.sm_logic
+			+ '_' + this.logic
 			+ '_' + this.difficulty
 			+ '-' + this.mode
-			+ (this.weapons ? '_' + this.weapons : '')
-			+ '-' + this.goal
+			+ (this.weapons ? '_swords-' + this.weapons : '')
+			+ (this.morph ? '_morph-' + this.morph : '')
+			+ '_' + this.goal
 			+ (this.variation == 'none' ? '' : '_' + this.variation)
 			+ '_' + this.seed
 			+ (this.special ? '_special' : '');

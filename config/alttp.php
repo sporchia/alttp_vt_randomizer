@@ -673,6 +673,10 @@ return [
 				//'OverworldGlitches' => 'Overworld Glitches',
 				//'MajorGlitches' => 'Major Glitches',
 			],
+			'sm_logics' => [
+				'Casual' => 'Casual',
+				'Tournament' => 'Tournament',
+			],
 			'modes' => [
 				//'standard' => 'Standard',
 				'open' => 'Open',
@@ -681,6 +685,10 @@ return [
 				'randomized' => 'Randomized',
 				//'uncle' => 'Uncle Assured',
 				//'swordless' => 'Swordless',
+			],
+			'morph' => [
+				'randomized' => 'Randomized',
+				'vanilla' => 'Vanilla',
 			],
 			'variations' => [
 				//'none' => 'None',

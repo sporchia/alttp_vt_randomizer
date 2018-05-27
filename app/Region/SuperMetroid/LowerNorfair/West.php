@@ -20,7 +20,7 @@ class West extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Missile (Gold Torizo)", 0xF78E6E, null, $this),
@@ -44,11 +44,11 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 
 		$this->locations["Missile (Gold Torizo)"]->setRequirements(function($location, $items) {
 			return $items->canUsePowerbombs() 
@@ -92,11 +92,32 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+		$this->locations["Missile (Gold Torizo)"]->setRequirements(function($location, $items) {
+			return ($items->canUsePowerbombs() && $items->has('SpaceJump'));
+        });
+
+        $this->locations["Super Missile (Gold Torizo)"]->setRequirements(function($location, $items) {
+			return $items->canDestroyBombWalls()
+				&& ($items->canAccessLowerNorfairPortal() || ($items->has('SpaceJump') && $items->canUsePowerBombs()));
+        });
+
+        $this->locations["Screw Attack"]->setRequirements(function($location, $items) {
+			return $items->canDestroyBombWalls()
+				&& ($items->canAccessLowerNorfairPortal() || ($items->has('SpaceJump') && $items->canUsePowerBombs()));        
+		});
+
+        $this->can_enter = function($locations, $items) {
+            return $this->world->getRegion('East Norfair')->canEnter($locations, $items)
+				&& ($items->canUsePowerBombs() || $items->canAccessLowerNorfairPortal())
+				&& $items->has('Varia')
+                && (($items->has('Gravity') && $items->has('SpaceJump')) || $items->canAccessLowerNorfairPortal());
+        };
+        
+		return $this;
 	}
 }

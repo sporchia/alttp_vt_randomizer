@@ -20,7 +20,7 @@ class West extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Energy Tank, Terminator", 0xF78432, null, $this),
@@ -47,11 +47,11 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 		$this->locations["Energy Tank, Gauntlet"]->setRequirements(function($location, $items) {
 			return $items->canEnterAndLeaveGauntlet();
         });
@@ -73,11 +73,34 @@ class West extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+
+		$this->locations["Energy Tank, Gauntlet"]->setRequirements(function($location, $items) {
+			return $items->canEnterAndLeaveGauntlet()
+			    && $items->hasEnergyReserves(1)
+				&& ($items->canFlySM() || $items->has('SpeedBooster'));
+        });
+
+        $this->locations["Missile (Crateria gauntlet right)"]->setRequirements(function($location, $items) {
+			return $items->canEnterAndLeaveGauntlet() && $items->canPassBombPassages()
+				&& $items->hasEnergyReserves(1)
+				&& ($items->canFlySM() || $items->has('SpeedBooster'));
+		});
+
+        $this->locations["Missile (Crateria gauntlet left)"]->setRequirements(function($location, $items) {
+			return $items->canEnterAndLeaveGauntlet() && $items->canPassBombPassages()
+				&& $items->hasEnergyReserves(1)
+				&& ($items->canFlySM() || $items->has('SpeedBooster'));
+		});
+        
+        $this->can_enter = function($locations, $items) {
+			return $items->canDestroyBombWalls() || $items->has('SpeedBooster');
+		};
+
+		return $this;
 	}
 }

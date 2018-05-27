@@ -20,7 +20,7 @@ class Blue extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Morphing Ball", 0xF786EC, null, $this),
@@ -52,11 +52,11 @@ class Blue extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
 		$this->locations["Power Bomb (blue Brinstar)"]->setRequirements(function($location, $items) {
 			return $items->canUsePowerBombs();
 		});
@@ -82,11 +82,36 @@ class Blue extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+
+	public function initCasual() {
+		$this->locations["Power Bomb (blue Brinstar)"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerBombs();
+		});
+
+        $this->locations["Missile (blue Brinstar middle)"]->setRequirements(function($location, $items) {
+			return $items->has('Morph');
+		});
+
+        $this->locations["Missile (blue Brinstar bottom)"]->setRequirements(function($location, $items) {
+			return $items->has('Morph');
+		});
+
+        $this->locations["Missile (blue Brinstar top)"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerBombs();
+		});
+
+        $this->locations["Missile (blue Brinstar behind missile)"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerBombs();
+		});
+
+        $this->locations["Energy Tank, Brinstar Ceiling"]->setRequirements(function($location, $items) {
+			return $items->canFlySM() || $items->has('HiJump') || $items->has('SpeedBooster') || $items->has('IceBeam');
+		});		
+
+		return $this;
 	}
 }

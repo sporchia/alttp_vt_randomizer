@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-05-14';
-	const HASH = '44e0e9f5e8c08fa9e739c0da9bb447da';
+	const BUILD = '2018-05-20';
+	const HASH = '0b3aadf863a65ce1e57935b96910cc68';
 	const SIZE = 6291456;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -2944,17 +2944,12 @@ class Rom {
 	 */
 	public function write(int $offset, string $data, bool $log = true) : self {
 		
-		/* If we're doing combo-rando, adjust offsets to match the combo-rom */
-		if(config('variation') == 'combo')
-		{
-			$offset = $this->getComboOffset($offset);
-		} else {
-			echo('Non-combo write to:' . $offset . "\n");
-		}
+		$offset = $this->getComboOffset($offset);
 
 		if ($log) {
 			$this->write_log[] = [$offset => array_values(unpack('C*', $data))];
 		}
+
 		fseek($this->rom, $offset);
 		fwrite($this->rom, $data);
 
@@ -2981,13 +2976,8 @@ class Rom {
 	public function read(int $offset, int $length = 1) {
 		
 		/* If we're doing combo-rando, adjust offsets to match the combo-rom */
-		if(config('variation') == 'combo')
-		{
-			$offset = $this->getComboOffset($offset);
-		} else {
-			echo('Non-combo read from:' . $offset . "\n");
-		}
-		
+		$offset = $this->getComboOffset($offset);
+
 		fseek($this->rom, $offset);
 		$unpacked = unpack('C*', fread($this->rom, $length));
 		return count($unpacked) == 1 ? $unpacked[1] : array_values($unpacked);

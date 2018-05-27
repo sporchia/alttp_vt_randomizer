@@ -20,7 +20,7 @@ class Crocomire extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Energy Tank, Crocomire", 0xF78BA4, null, $this),            
@@ -50,14 +50,18 @@ class Crocomire extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
         
         $this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
 			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && $items->has('SpeedBooster'))) && $items->canHellRun();
+        });
+
+		$this->locations["Missile (below Crocomire)"]->setRequirements(function($location, $items) {
+			return $items->has('Morph');
         });
 
         $this->locations["Missile (Grapple Beam)"]->setRequirements(function($location, $items) {
@@ -82,11 +86,42 @@ class Crocomire extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for Overworld Glitches Mode
+	 * within for Casual Mode
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+        
+        $this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
+			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && $items->has('SpeedBooster')));
+        });
+
+		$this->locations["Missile (below Crocomire)"]->setRequirements(function($location, $items) {
+			return $items->has('Morph');
+        });
+
+        $this->locations["Missile (Grapple Beam)"]->setRequirements(function($location, $items) {
+			return $items->has('Morph') && ($items->canFlySM() || $items->has('SpeedBooster'));
+        });
+
+        $this->locations["Grapple Beam"]->setRequirements(function($location, $items) {
+			return $items->has('Morph') && ($items->canFlySM() || $items->has('SpeedBooster'));
+        });
+
+		$this->locations["Power Bomb (Crocomire)"]->setRequirements(function($location, $items) {
+			return ($items->canFlySM() || $items->has('HiJump') || $items->has('Grapple') || $items->has('SpeedBooster'));
+		});
+
+        $this->can_enter = function($locations, $items) {
+            return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
+                && ($items->has('Super') && $items->has('Morph')))
+                || $items->canAccessNorfairPortal())
+                && $items->has('Varia')
+				&& $items->has('Super')
+				&& (($items->canUsePowerBombs() && $items->has('SpeedBooster')) || $items->has('WaveBeam'))
+                && ((($items->canFlySM() || $items->has('HiJump')) && $items->has('Morph')) || $items->has('SpeedBooster'));
+        };
+
+		return $this;
 	}
 }

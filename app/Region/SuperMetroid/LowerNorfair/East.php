@@ -20,7 +20,7 @@ class East extends Region {
 	 * @return void
 	 */
 	public function __construct(World $world) {
-		parent::__construct($world);
+		parent::__construct($world, 'SM');
 
 		$this->locations = new LocationCollection([
             new Location\SuperMetroid\Visible("Missile (Mickey Mouse room)", 0xF78F30, null, $this),
@@ -56,11 +56,11 @@ class East extends Region {
 
 	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-	 * within for No Major Glitches
+	 * within for Tournament
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initTournament() {
         
         $this->locations["Power Bomb (Power Bombs of shame)"]->setRequirements(function($location, $items) {
 			return $items->canUsePowerbombs();
@@ -98,7 +98,28 @@ class East extends Region {
 	 *
 	 * @return $this
 	 */
-	public function initOverworldGlitches() {
-		$this->initNoMajorGlitches();
+	public function initCasual() {
+        $this->locations["Power Bomb (Power Bombs of shame)"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerbombs();
+        });
+
+        $this->locations["Energy Tank, Ridley"]->setRequirements(function($location, $items) {
+			return $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
+        });
+
+        $this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('West Lower Norfair')->canEnter($locations, $items)
+				&& $items->canUsePowerbombs()
+				&& $items->canFlySM()
+				&& $items->has('Varia');
+        };
+
+		$this->can_complete = function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
+		};
+
+		$this->prize_location->setRequirements($this->can_complete);
+		
+		return $this;
 	}
 }
