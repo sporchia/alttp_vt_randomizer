@@ -90,7 +90,7 @@ class West extends Region {
         });
 
         $this->locations["Missile (below Ice Beam)"]->setRequirements(function($location, $items) {
-			return ($items->canUsePowerBombs() && $items->has('Varia') && $items->has('SpeedBooster')) || ($items->has('Varia') && $items->has('SpeedBooster'));
+			return ($items->canUsePowerBombs() || $items->has('WaveBeam')) && $items->has('Varia') && $items->has('SpeedBooster');
         });
 
         $this->locations["Hi-Jump Boots"]->setRequirements(function($location, $items) {
