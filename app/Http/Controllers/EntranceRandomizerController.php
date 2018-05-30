@@ -26,7 +26,7 @@ class EntranceRandomizerController extends Controller {
 
 		config(['alttp.mode.state' => $request->input('mode', 'standard')]);
 
-		$rom = new Rom;
+		$rom = new Rom(env('ENEMIZER_BASE', null));
 		if ($request->filled('heart_speed')) {
 			$rom->setHeartBeepSpeed($request->input('heart_speed'));
 		}

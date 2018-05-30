@@ -970,6 +970,16 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function setTexts(Rom $rom) {
+		$strings = cache()->rememberForever('strings', function() {
+			return [
+				'uncle' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/uncle.txt'))))),
+				'tavern_man' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/tavern_man.txt'))))),
+				'blind' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/blind.txt'))))),
+				'ganon_1' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/ganon_1.txt'))))),
+				'triforce' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/triforce.txt'))))),
+			];
+		});
+
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
 		if ($this->config('spoil.BootsLocation', false) && mt_rand() % 20 == 0 && $boots_location) {
@@ -985,43 +995,7 @@ class Randomizer {
 					$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 			}
 		} else {
-			$rom->setUncleTextString(array_first(mt_shuffle([
-				"We're out of\nWeetabix. To\nthe store!",
-				"This seed is\nbootless\nuntil boots.",
-				"Why do we only\nhave one bed?",
-				"This is the\nonly textbox.",
-				"I'm going to\ngo watch the\nMoth tutorial.",
-				"This seed is\nthe worst.",
-				"Chasing tail.\nFly ladies.\nDo not follow.",
-				"I feel like\nI've done this\nbefore…",
-				"Magic Cape can\npass through\nthe barrier!",
-				"If this is a\nKanzeon seed,\nI'm quitting.",
-				"I am not your\nreal uncle.",
-				"You're going\nto have a very\nbad time.",
-				"Today you\nwill have\nbad luck.",
-				"I am leaving\nforever.\nGoodbye.",
-				"Don't worry.\nI got this\ncovered.",
-				"Race you to\nthe castle!",
-				"\n      hi",
-				"I'M JUST GOING\nOUT FOR A\nPACK OF SMOKES",
-				"It's dangerous\nto go alone.\nSee ya!",
-				"ARE YOU A BAD\nENOUGH DUDE TO\nRESCUE ZELDA?",
-				"\n\n    I AM ERROR",
-				"This seed is\nsub 2 hours,\nguaranteed.",
-				"The chest is\na secret to\neverybody.",
-				"I'm off to\nfind the\nwind fish.",
-				"The shortcut\nto Ganon\nis this way!",
-				"THE MOON IS\nCRASHING! RUN\nFOR YOUR LIFE!",
-				"Time to fight\nhe who must\nnot be named.",
-				"RED MAIL\nIS FOR\nCOWARDS.",
-				"HEY!\n\nLISTEN!",
-				"Well\nexcuuuuuse me,\nprincess!",
-				"5,000 Rupee\nreward for >\nYou're boned.",
-				"Welcome to\nStoops Lonk's\nHoose",
-				"Erreur de\ntraduction.\nsvp reessayer",
-				"I could beat\nit in an hour\nand one life.",
-				"I thought this\nwas open mode?",
-			])));
+			$rom->setUncleTextString(array_first(mt_shuffle($strings['uncle'])));
 		}
 
 		$green_pendant_location = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first();
@@ -1039,115 +1013,11 @@ class Randomizer {
 			. $crystal6_location->getRegion()->getName()
 			. "\nso I can make\na big bomb!");
 
-		$rom->setBlindTextString(array_first(mt_shuffle([
-			"I hate insect\npuns, they\nreally bug me.",
-			"I haven't seen\nthe eye doctor\nin years.",
-			"I don't see\nyou having a\nbright future.",
-			"Are you doing\na blind run\nof this game?",
-			"Pizza joke? No\nI think it's a\nbit too cheesy",
-			"A novice skier\noften jumps to\ncontusions.",
-			"The beach?\nI'm not shore\nI can make it.",
-			"Rental agents\noffer quarters\nfor dollars.",
-			"I got my tires\nfixed for a\nflat rate.",
-			"New light bulb\ninvented?\nEnlighten me.",
-			"A baker's job\nis a piece of\ncake.",
-			"My optometrist\nsaid I have\nvision!",
-			"When you're a\nbaker, don't\nloaf around.",
-			"Mire requires\nEther Quake,\nor Bombos.",
-			"Broken pencils\nare pointless.",
-			"The food they\nserve guards\nlasts sentries.",
-			"Being crushed\nby big objects\nis depressing.",
-			"A tap dancer's\nroutine runs\nhot and cold.",
-			"A weeknight is\na tiny\nnobleman.",
-			"The chimney\nsweep wore a\nsoot and tye.",
-			"Gardeners like\nto spring into\naction.",
-			"Bad at nuclear\nphysics. I\nGot no fission",
-			"Flint and\nsteel are a\ngood match.",
-			"I'd peg you\nas a fan of\nthe hammer.",
-			"Archers give\ngifts tied\nwith a bow.",
-			"A healed\ngambler is\nall better.",
-			"Any old sword\nwill make the\ncut here.",
-			"Lazy wyrms\nkeep dragon\ntheir feet.",
-			"Percussionist\nmasters drum\nup audiences.",
-			"Retrievers\nlove fetch\nquests.",
-			"Sausage is\nthe wurst.",
-		])));
+		$rom->setBlindTextString(array_first(mt_shuffle($strings['blind'])));
 
-		$rom->setTavernManTextString(array_first(mt_shuffle([
-			"What do you\ncall a blind\ndinosaur?\na doyouthink-\nhesaurus.",
-			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.",
-			"What do ducks\nlike to eat?\n\nQuackers!",
-			"How do you\nset up a party\nin space?\n\nYou planet!",
-			"I'm glad I\nknow sign\nlanguage.\nIt's pretty\nhandy.",
-			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!",
-			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
-			"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
-			"What's the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!",
-			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!",
-			"If you haven't\nfound Quake\nyet…\nit's not your\nfault.",
-			"Why is Peter\nPan always\nflying?\nBecause he\nNeverlands!",
-			"I once told a\njoke to Armos.\n\nBut he\nremained\nstone-faced!",
-			"Lanmola was\nlate to our\ndinner party.\nHe just came\nfor the desert",
-			"Moldorm is\nsuch a\nprankster.\nAnd I fall for\nit every time!",
-			"Helmasaur is\nthrowing a\nparty.\nI hope it's\na masquerade!",
-			"I'd like to\nknow Arrghus\nbetter.\nBut he won't\ncome out of\nhis shell!",
-			"Mothula didn't\nhave much fun\nat the party.\nHe's immune to\nspiked punch!",
-			"Don't set me\nup with that\nchick from\nSteve's Town.\n\n\nI'm not\ninterested in\na Blind date!",
-			"Kholdstare is\nafraid to go\nto the circus.\nHungry kids\nthought he was\ncotton candy!",
-			"I asked who\nVitreous' best\nfriends are.\nHe said,\n'Me, Myself,\nand Eye!'",
-			"Trinexx can be\na hothead or\nhe can be an\nice guy. In\nthe end, he's\na solid\nindividual!",
-			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
-			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
-			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
-			"I offered a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
-			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
-			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
-			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBar exam!",
-			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
-			"Don't tell\nStalfos I'm\nhere.\nHe has a bone\nto pick with\nme!",
-			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
-			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
-			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
-			"I was sharing\na drink with\nPoe.\nFor no reason,\nhe left in a\nheartbeat!",
-			"Don't trust\nhorsemen on\nDeath Mountain.\nThey're Lynel\nthe time!",
-			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
-			"Don't walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
-			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
-			"Geldman wants\nto be a\nBroadway star.\nHe's always\npracticing\nJazz Hands!",
-			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
-			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
-			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
-			"Know that fox\nin Steve's\nTown?\nHe'll Pikku\npockets if you\naren't careful",
-			"Dash through\nDark World\nbushes.\nYou'll see\nGanon is tryin\nto Stal you!",
-			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
-			"I like my\nwhiskey neat.\n\nSome prefer it\nOctoroks!",
-			"I consoled\nFreezor over a\ncup of coffee.\nHis problems\njust seemed to\nmelt away!",
-			"Magic droplets\nof water don't\nshut up.\nThey just\nKyameron!",
-			"I bought hot\nwings for\nSluggula.\nThey gave him\nexplosive\ndiarrhea!",
-			"Hardhat Beetle\nwon't\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
-		])));
+		$rom->setTavernManTextString(array_first(mt_shuffle($strings['tavern_man'])));
 
-		$rom->setGanon1TextString(array_first(mt_shuffle([
-			"Start your day\nsmiling with a\ndelicious\nwhole grain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
-			"You drove\naway my other\nself, Agahnim,\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
-			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nYour blood can\nresurrect me.",
-			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nBack off buddy",
-			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
-			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\n,or tentacles,\non their head.",
-			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
-			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
-			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
-			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
-			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\ndeja vu\nall over again",
-			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
-			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
-			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
-			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
-			"Thanks for\ndropping in.\nThe first\npassengers\nin a hot\nair balloon\nwere a duck,\na sheep,\nand a rooster.",
-			"You think you\nare so smart?\n\nI bet you\ndidn't know\nyou can't hum\nwhile holding\nyour nose\nclosed.",
-			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously, you\nwere supposed\nto bring food.",
-			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the Dark\nWorld!\n\nOr else you\nwill die!",
-		])));
+		$rom->setGanon1TextString(array_first(mt_shuffle($strings['ganon_1'])));
 
 		switch ($this->goal) {
 			case 'pedestal':
@@ -1180,36 +1050,7 @@ class Randomizer {
 
 		}
 
-		$rom->setTriforceTextString(array_first(mt_shuffle([
-			"\n     G G",
-			"All your base\nare belong\nto us.",
-			"You have ended\nthe domination\nof Dr. Wily",
-			"  thanks for\n  playing!!!",
-			"\n   You Win!",
-			"  Thank you!\n  your quest\n   is over.",
-			"   A winner\n      is\n     you!",
-			"\n   WINNER!!",
-			"\n  I'm  sorry\n\nbut your\nprincess is in\nanother castle",
-			"\n   success!",
-			"    Whelp…\n  that  just\n   happened",
-			"   Oh  hey…\n   it's you",
-			"\n  Wheeeeee!!",
-			"   Time for\n another one?",
-			"and\n\n         scene",
-			"\n   GOT EM!!",
-			"\nTHE VALUUUE!!!",
-			"Cool seed,\n\nright?",
-			"\n  We did it!",
-			"  Spam those\n  emotes in\n  wilds chat",
-			"\n   O  M  G",
-			" Hello.  Will\n  you be my\n   friend?",
-			"   Beetorp\n     was\n    here!",
-			"The Wind Fish\nwill wake\nsoon.    Hoot!",
-			"meow meow meow\nmeow meow meow\n  oh my god!",
-			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
-			".done\n\n.comment lol",
-			"You get to\ndrink from\nthe firehose",
-		])));
+		$rom->setTriforceTextString(array_first(mt_shuffle($strings['triforce'])));
 
 		return $this;
 	}

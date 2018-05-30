@@ -76,6 +76,10 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->shops["Light World Death Mountain Shop"]->setRequirements(function($locations, $items) {
+			return $items->canBombThings();
+		});
+
 		$this->locations["Mimic Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MagicMirror') && $items->has('KeyD7', 2)
 				&& $this->world->getRegion('Turtle Rock')->canEnter($locations, $items);
