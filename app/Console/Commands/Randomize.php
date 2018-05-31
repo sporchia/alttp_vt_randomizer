@@ -61,6 +61,12 @@ class Randomize extends Command {
 
 		$bulk = ($this->option('seed') == null) ? $this->option('bulk') : 1;
 
+		if ($this->option('tournament', false)) {
+			config([
+				"tournament-mode" => true,
+			]);
+		}
+
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
 
