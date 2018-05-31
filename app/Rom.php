@@ -2880,37 +2880,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function rummageTable() : self {
-		$swip = [];
-		$swap = [];
-
-		$idat = array_values(unpack('C*', base64_decode(
-			"MgAAVQAAcQAAqAAAEwEAqYAAFgEAFgEANwAANoAACwEAc4AAZwAAfgAAWIAAWAAAVwAAVwAAHwAAfgAAnoAAdwAAFAEAuQAAdAA" .
-			"AuAAABAEA/gAAdQAADAEAaAAAhQAAAwEAFAEALgAALQEAswAAPwAAXwAArgAAhwAACAEABgEAHAEACgEAqgAAJ4AAJwAAWQAA2w" .
-			"AA2wAA3AAAywAAZQAARIAARQAAtgAAJIAAtwAAtwAA1gAAFAAA1QAA1QAA1QAA1QAABAAAOgAAKgAAKgAAGoAAGgAAGgAACgAAa" .
-			"gAAagAAKwAAGQAAGQAACQAAwgAAogAAwQAAw4AAwwAA0QAAswAADQEADQEAEgAA+AAA+AAABQEABQEABQEAFwEALwAALwAALwAA" .
-			"LwAALwAAKAAARgAANAAANQAAdgAAdgAAZgAA0AAA4AAAewAAewAAewAAewAAfAAAfAAAfAAAfAAAfQAAiwAAjIAAjAAAjAAAjAA" .
-			"AjQAAnQAAnQAAnQAAnQAAHAAAHAAAHAAAWwAAPQAAPQAAPQAATQAAgAAAcgAAHQEAHQEAHQEAHQEAHQEAHgEAHgEAHgEAHgEA7w" .
-			"AA7wAA7wAA7wAA7wAA/wAA/wAAJAEAIwEAIwEAIwEAIwEAIAEAPAAAPAAAPAAAPAAAEQAAEQAAEQAA"
-		)));
-
-		$data = $this->read(0xE96C, 504);
-		foreach ($data as $i => $v) {
-			$data[$i] = ($v == 0) ? $idat[$i] : $v;
-		}
-		$data = array_chunk($data, 3);
-		foreach ($data as $chunk) {
-			$swip[($chunk[0] << 8) + ($chunk[1] | 0x80)][] = $chunk;
-		}
-
-		for ($i = 0; $i < count($data); ++$i) {
-			$swip = mt_shuffle($swip);
-			$swap[] = array_shift($swip[0]);
-			if (!count($swip[0])) {
-				unset($swip[0]);
-			}
-		}
-
-		$this->write(0xE96C, pack('C*', ...array_flatten($swap)));
+		Tournament::apply($this);
 
 		return $this;
 	}

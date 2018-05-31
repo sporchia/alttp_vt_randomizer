@@ -184,7 +184,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
-	$rom = new ALttP\Rom();
+	$rom = new ALttP\Rom(env('ENEMIZER_BASE', null));
 	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
@@ -241,6 +241,12 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	$weapons_mode = $request->input('weapons', 'randomized');
 	$spoiler_meta = [];
 
+	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
+		config([
+			"tournament-mode" => true,
+		]);
+	}
+
 	if ($difficulty == 'custom') {
 		$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
 		$purifier_settings->loadArray(config("purifier.default"));
@@ -282,7 +288,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 		'alttp.mode.weapons' => $weapons_mode,
 	]);
 
-	$rom = new ALttP\Rom();
+	$rom = new ALttP\Rom(env('ENEMIZER_BASE', null));
 	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
@@ -297,9 +303,6 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	}
 
 	if ($request->filled('tournament') && $request->input('tournament') == 'true') {
-		config([
-			"tournament-mode" => true,
-		]);
 		$rom->setTournamentType('standard');
 	} else {
 		$rom->setTournamentType('none');

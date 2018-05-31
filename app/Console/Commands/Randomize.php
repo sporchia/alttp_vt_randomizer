@@ -25,6 +25,7 @@ class Randomize extends Command {
 		. ' {--heartbeep=half : set heart beep speed}'
 		. ' {--skip-md5 : do not validate md5 of base rom}'
 		. ' {--trace : enable SRAM trace}'
+		. ' {--tournament : enable tournament mode}'
 		. ' {--seed= : set seed number}'
 		. ' {--bulk=1 : generate multiple roms}'
 		. ' {--goal=ganon : set game goal}'
@@ -59,6 +60,12 @@ class Randomize extends Command {
 		}
 
 		$bulk = ($this->option('seed') == null) ? $this->option('bulk') : 1;
+
+		if ($this->option('tournament', false)) {
+			config([
+				"tournament-mode" => true,
+			]);
+		}
 
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
@@ -118,6 +125,10 @@ class Randomize extends Command {
 					} catch (\Exception $e) {
 						return $this->error("Sprite not in ZSPR format");
 					}
+				}
+				if ($this->option('tournament', false)) {
+					$rom->setTournamentType('standard');
+					$rom->rummageTable();
 				}
 				$rom->updateChecksum();
 				$rom->save($output_file);

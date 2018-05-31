@@ -40,7 +40,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	 */
 	public function random() {
 		$new = $this->values();
-		return $new[mt_rand(0, $this->count() - 1)];
+		return $new[get_random_int(0, $this->count() - 1)];
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 		$old = $this->values();
 		$new = [];
 		while ($number-- > 0 && count($old) > 0) {
-			$new = array_merge($new, array_splice($old, mt_rand(0, count($old) - 1), 1));
+			$new = array_merge($new, array_splice($old, get_random_int(0, count($old) - 1), 1));
 		}
 		return new static($new);
 	}

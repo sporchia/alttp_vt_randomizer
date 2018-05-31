@@ -54,7 +54,7 @@ class GenerateStats extends Command {
 				$count = 0;
 
 				do {
-					$rng_seed = mt_rand(1, 999999999);
+					$rng_seed = get_random_int(1, 999999999);
 					$count++;
 
 					if (!in_array($rng_seed, $seeds)) {

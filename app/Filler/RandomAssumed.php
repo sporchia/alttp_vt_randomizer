@@ -27,7 +27,7 @@ class RandomAssumed extends Filler {
 
 		// random junk fill
 		$gt_locations = $this->world->getRegion('Ganons Tower')->getEmptyLocations()
-			->randomCollection(mt_rand($this->ganon_junk_lower, $this->ganon_junk_upper));
+			->randomCollection(get_random_int($this->ganon_junk_lower, $this->ganon_junk_upper));
 		$extra = $this->shuffleItems($extra);
 		$trash = array_splice($extra, 0, $gt_locations->count());
 		$this->fastFillItemsInLocations($trash, $gt_locations);
