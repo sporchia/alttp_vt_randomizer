@@ -9,7 +9,7 @@
 function mt_shuffle(array $array) {
 	$new_array = [];
 	while(count($array)) {
-		$pull_key = mt_rand(0, count($array) - 1);
+		$pull_key = get_random_int(0, count($array) - 1);
 		$new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
 	}
 	return $new_array;
@@ -28,7 +28,7 @@ function weighted_random_pick(array $array, array $weights, int $pick = 1) {
 	$picked = [];
 	$total_weight = array_sum($weights);
 	while(--$pick >= 0) {
-		$random_pick = mt_rand(1, $total_weight);
+		$random_pick = get_random_int(1, $total_weight);
 		$current = 0;
 		foreach ($array as $key => $item) {
 			$current += $weights[$key];
