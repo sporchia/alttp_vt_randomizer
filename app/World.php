@@ -199,7 +199,7 @@ class World {
 	 * @return static
 	 */
 	public function copy() {
-		$copy = new static($this->difficulty, $this->logic, $this->goal, $this->variation);
+		$copy = new static($this->difficulty, $this->logic, $this->goal, $this->variation, $this->sm_logic);
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
@@ -275,6 +275,8 @@ class World {
 			Item::get('ThreeHundredRupees'),
 			Item::get('Heart'),
 			Item::get('Rupoor'),
+			Item::get('XRay'),
+			Item::get('Spazer'),
 		];
 
 		$location_sphere = $shadow_world->getLocationSpheres();

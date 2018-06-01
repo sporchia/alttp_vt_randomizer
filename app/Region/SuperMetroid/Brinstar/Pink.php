@@ -84,8 +84,9 @@ class Pink extends Region {
 		});
 
         $this->can_enter = function($locations, $items) {
-            return ($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
-                && ($items->canOpenRedDoors() || ($items->canDestroyBombWalls() && $items->has('PowerBomb')));
+			return ($items->canOpenRedDoors() && ($items->canDestroyBombWalls() || $items->has('SpeedBooster')))
+				|| $items->canUsePowerBombs()
+				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->has('IceBeam') || $items->has('HiJump') || $items->canFlySM()));                
 		};
 
 		return $this;
@@ -123,8 +124,9 @@ class Pink extends Region {
 		});
 
         $this->can_enter = function($locations, $items) {
-            return ($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
-                && ($items->canOpenRedDoors() || ($items->canDestroyBombWalls() && $items->has('PowerBomb')));
+			return ($items->canOpenRedDoors() && ($items->canDestroyBombWalls() || $items->has('SpeedBooster')))
+				|| $items->canUsePowerBombs()
+				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && $items->has('WaveBeam') && ($items->has('IceBeam') || $items->has('HiJump') || $items->canFlySM()));
 		};
 
 		return $this;
