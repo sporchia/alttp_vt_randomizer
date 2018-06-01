@@ -13,3 +13,14 @@ function get_random_int($min = PHP_INT_MIN, $max = PHP_INT_MAX) {
 	}
 	return mt_rand($min, $max);
 }
+
+/**
+ * Convert PC address to SNES Lorom addresses
+ *
+ * @param int $address
+ *
+ * @return int
+ */
+function pc_to_snes(int $address) {
+	return (($address * 2) & 0xFF0000) + ($address & 0x7FFF) + 0x8000;
+}
