@@ -1,5 +1,6 @@
 <?php namespace ALttP;
 
+use ALttP\Text;
 use ALttP\Support\Credits;
 use ALttP\Support\Dialog;
 use ALttP\Support\ItemCollection;
@@ -24,6 +25,10 @@ class Rom {
 		8 => 0x32,
 		9 => 0x33,
 	];
+
+	private $texts;
+	private $stringTable;
+	private $converter;
 
 	private $tmp_file;
 	private $credits;
@@ -67,6 +72,10 @@ class Rom {
 
 		$this->rom = fopen($this->tmp_file, "r+");
 		$this->credits = new Credits;
+
+		$this->texts = new Text;
+		$this->stringTable = $this->texts->en();
+		$this->converter = new Dialog;
 	}
 
 	/**
@@ -1134,6 +1143,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon1TextString(string $string) : self {
+		$this->stringTable['ganon_fall_in'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180600);
 		return $this;
 	}
@@ -1146,6 +1156,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon2TextString(string $string) : self {
+		$this->stringTable['ganon_phase_3'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180700);
 		return $this;
 	}
@@ -1183,6 +1194,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTriforceTextString(string $string) : self {
+		$this->stringTable['end_triforce'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180400);
 		return $this;
 	}
@@ -1195,6 +1207,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBlindTextString(string $string) : self {
+		$this->stringTable['blind_by_the_light'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180800);
 		return $this;
 	}
@@ -1207,6 +1220,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTavernManTextString(string $string) : self {
+		$this->stringTable['kakariko_tavern_fisherman'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180C00);
 		return $this;
 	}
@@ -1219,6 +1233,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSahasrahla1TextString(string $string) : self {
+		$this->stringTable['sahasrahla_quest_information'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180A00);
 		return $this;
 	}
@@ -1243,6 +1258,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombShop1TextString(string $string) : self {
+		$this->stringTable['bomb_shop'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180E00);
 		return $this;
 	}
@@ -1279,6 +1295,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setPedestalTextbox(string $string) : self {
+		$this->stringTable['mastersword_pedestal_translated'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180300);
 		return $this;
 	}
@@ -1291,6 +1308,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombosTextbox(string $string) : self {
+		$this->stringTable['tablet_bombos_book'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x181000);
 		return $this;
 	}
@@ -1303,8 +1321,19 @@ class Rom {
 	 * @return $this
 	 */
 	public function setEtherTextbox(string $string) : self {
+		$this->stringTable['tablet_ether_book'] = $this->converter->convertDialogCompressed($string);
 		$this->writeDialog($string, 0x180F00);
 		return $this;
+	}
+
+	public function commitTextChanges() : self {
+		$vanillaTextOffset = 0xE0000;
+    
+    $bytes = $this->texts->getBytes($this->stringTable);
+		$data = pack('C*', ...$bytes);
+    $this->write($vanillaTextOffset, $data);
+    
+    return $this;
 	}
 
 	/**
@@ -3004,9 +3033,7 @@ class Rom {
 	 * @return $this
 	 */
 	private function writeDialog(string $string, int $offset) : self {
-		$converter = new Dialog;
-
-		foreach ($converter->convertDialog($string) as $byte) {
+		foreach ($this->converter->convertDialog($string) as $byte) {
 			$this->write($offset++, pack('C', $byte));
 		}
 

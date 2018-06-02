@@ -21,8 +21,8 @@ class Text {
 		fclose($bin);
 	}
 
-	function getByteArray($translation = 'en') {
-		$data = array_merge(...array_values($this->$translation()));
+	function getBytes($stringTable) {
+		$data = array_merge(...array_values($stringTable));
 
 		Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
 
@@ -31,6 +31,10 @@ class Text {
 		}
 
 		return array_pad($data, 0x7355, 0xFF);
+	}
+
+	function getByteArray($translation = 'en') {
+		return $this->getBytes($this->$translation());
 	}
 
 	function en() {
@@ -131,8 +135,7 @@ class Text {
 				. "Understand?\n  ≥ yes\n    no\n{CHOICE}"),
 
 			'sahasrahla_bring_courage' => $converter->convertDialogCompressed("{BOTTOM}\n"
-				. "While you're here, could you do me a solid and get the green pendant from that dungeon?\n"
-				. "{HARP}\nI'll give you a present if you do."),
+				. "son of a butt!"),
 
 			'sahasrahla_have_ice_rod' => $converter->convertDialogCompressed("{BOTTOM}\nLike, I sit here, and tell you what to do?\n\n\nalright, go and find all the maidens, there are like maybe 7 of them, I dunno anymore. I'm old."),
 

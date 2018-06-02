@@ -897,6 +897,8 @@ class Randomizer {
 		// if (static::class == self::class) {
 		// 	$rom->writeCredits();
 		// }
+    
+ 		$rom->commitTextChanges();
 
 		$this->seed->patch = json_encode($rom->getWriteLog());
 		$this->seed->build = Rom::BUILD;
