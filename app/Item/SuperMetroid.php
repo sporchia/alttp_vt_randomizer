@@ -11,17 +11,17 @@ class SuperMetroid extends Item {
 			case Item::get('Grapple'):
 				return "Some kind of\nfuturistic\nhookshot?";
 			case Item::get('XRay'):
-				return "this can see\nthrough walls!";
+				return "THIS LENS OF\nTRUTH IS MADE\nIN ZEBES!";
 			case Item::get('Varia'):
 				return "Alien armor?";
 			case Item::get('SpringBall'):
-				return "Super bouncy.";
+				return "Bouncy bouncy\nbouncy bouncy\nbounce.";
 			case Item::get('Morph'):
-				return "roly poly!";
+				return "Why can't\nMetroid crawl?";
 			case Item::get('ScrewAttack'):
-				return "it's flying,\nspinning death!";
+				return "U spin me right\nround baby\nright round";
 			case Item::get('Gravity'):
-				return "I think this\nwalks under\nthe water?";
+				return "No more water\nphysics.";
 			case Item::get('HiJump'):
 				return "this would be\ngreat if I\ncould jump.";
 			case Item::get('SpaceJump'):
@@ -29,13 +29,13 @@ class SuperMetroid extends Item {
 			case Item::get('Bombs'):
 				return "bombs from\nthe future.";
 			case Item::get('SpeedBooster'):
-				return "a machine for\ngoing fast.";
+				return "THE GREEN\nBOOMERANG IS\nTHE FASTEST!";
 			case Item::get('ChargeBeam'):
-				return "something for\na space gun?";
+				return "IM'A CHARGIN\nMA LAZER!";
 			case Item::get('IceBeam'):
 				return "some kind of\nice rod for\naliens?";
 			case Item::get('WaveBeam'):
-				return "it's all wavy.";
+				return "Trigonometry gun.";
 			case Item::get('Spazer'):
 				return "even space\nlasers can\nbe sucky.";
 			case Item::get('Plasma'):
@@ -49,7 +49,7 @@ class SuperMetroid extends Item {
 			case Item::get('Super'):
 				return "a really big\nflying bomb!";
 			case Item::get('PowerBomb'):
-				return "big bang!";
+				return "Big bada boom!";
 			default:
 				return "ERROR\nSM ITEM\nNO DESCRIPTION";
 		}
