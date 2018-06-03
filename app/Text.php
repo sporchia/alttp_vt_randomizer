@@ -135,7 +135,8 @@ class Text {
 				. "Understand?\n  ≥ yes\n    no\n{CHOICE}"),
 
 			'sahasrahla_bring_courage' => $converter->convertDialogCompressed("{BOTTOM}\n"
-				. "son of a butt!"),
+				. "While you're here, could you do me a solid and get the green pendant from that dungeon?\n"
+				. "{HARP}\nI'll give you a present if you do."),
 
 			'sahasrahla_have_ice_rod' => $converter->convertDialogCompressed("{BOTTOM}\nLike, I sit here, and tell you what to do?\n\n\nalright, go and find all the maidens, there are like maybe 7 of them, I dunno anymore. I'm old."),
 
