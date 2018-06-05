@@ -185,6 +185,7 @@ Route::any('entrance/seed/{seed_id?}', function(Request $request, $seed_id = nul
 	config(['game-mode' => $request->input('mode', 'standard')]);
 
 	$rom = new ALttP\Rom(env('ENEMIZER_BASE', null));
+	$rom->applyPatchFile(public_path('js/base2current.json'));
 	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}
@@ -289,6 +290,7 @@ Route::any('seed/{seed_id?}', function(Request $request, $seed_id = null) {
 	]);
 
 	$rom = new ALttP\Rom(env('ENEMIZER_BASE', null));
+	$rom->applyPatchFile(public_path('js/base2current.json'));
 	if ($request->filled('heart_speed')) {
 		$rom->setHeartBeepSpeed($request->input('heart_speed'));
 	}

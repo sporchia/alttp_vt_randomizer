@@ -53,6 +53,8 @@ class Rom {
 	 *
 	 * @param string $source_location location of source ROM to edit
 	 *
+	 * @throws Exception if ROM source isn't readable
+	 *
 	 * @return void
 	 */
 	public function __construct(string $source_location = null) {
@@ -1911,6 +1913,8 @@ class Rom {
 	 *
 	 * @param int $level how hard to make it, higher should be harder
 	 *
+	 * @throws Exception if an unknown hard mode is selected
+	 *
 	 * @return $this
 	 */
 	public function setHardMode(int $level = 0) : self {
@@ -2867,11 +2871,29 @@ class Rom {
 	public function applyPatch(array $patch) : self {
 		foreach ($patch as $part) {
 			foreach ($part as $address => $data) {
-				$this->write($address, pack('C*', ...array_values($data)));
+				$this->write($address, pack('C*', ...array_values($data)), false);
 			}
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Apply a patch file to the ROM
+	 *
+	 * @param string $file_name JSON file to load and apply
+	 *
+	 * @throws Exception if the file isn't readable
+	 *
+	 * @return $this
+	 *
+	 **/
+	public function applyPatchFile(string $file_name) : self {
+		if (!is_readable($file_name)) {
+			return new \Exception('Patch file not readable');
+		}
+
+		return $this->applyPatch(json_decode(file_get_contents($file_name), true));
 	}
 
 	/**
