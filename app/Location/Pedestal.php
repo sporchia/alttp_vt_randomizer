@@ -288,6 +288,8 @@ class Pedestal extends Location {
 				return "Now you know\nwhere the boss\nhides!";
 			case Item\Egg::class:
 				return "Egg-cited\nfor this";
+			case Item\SuperMetroid::class:
+				return $this->item->getTabletText();
 		}
 
 		switch ($this->item) {

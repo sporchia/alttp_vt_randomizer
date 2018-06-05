@@ -21,8 +21,8 @@ class Text {
 		fclose($bin);
 	}
 
-	function getByteArray($translation = 'en') {
-		$data = array_merge(...array_values($this->$translation()));
+	function getBytes($stringTable) {
+		$data = array_merge(...array_values($stringTable));
 
 		Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
 
@@ -31,6 +31,10 @@ class Text {
 		}
 
 		return array_pad($data, 0x7355, 0xFF);
+	}
+
+	function getByteArray($translation = 'en') {
+		return $this->getBytes($this->$translation());
 	}
 
 	function en() {
