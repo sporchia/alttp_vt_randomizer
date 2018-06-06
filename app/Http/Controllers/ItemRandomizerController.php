@@ -167,8 +167,9 @@ class ItemRandomizerController extends Controller {
 				$rand->updateSeedRecordPatch($patch);
 			}
 			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
-			$seed = $hash;
 		}
+
+		$seed = $hash;
 
 		return [
 			'seed' => $seed,

@@ -6,7 +6,7 @@ $title = 'Entrance Randomizer - ';
 
 @section('content')
 <div id="root">
-	<vt-entrance-randomizer version="{!! ALttP\EntranceRandomizer::VERSION !!}" id="seed-generate"></vt-entrance-randomizer>
+	<vt-entrance-randomizer version="{!! ALttP\EntranceRandomizer::VERSION !!}" enemizer-version="{!! ALttP\Enemizer::VERSION !!}" id="seed-generate"></vt-entrance-randomizer>
 </div>
 
 <script>

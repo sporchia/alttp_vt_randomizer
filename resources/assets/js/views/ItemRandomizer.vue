@@ -54,11 +54,20 @@
 							:rom="rom" :selected="choice.variation">Variation</vt-select>
 					</div>
 				</div>
-				<div class="row">
+				<div v-if="!enemizerEnabled"  class="row">
 					<div class="col-md mb-3">
-						<vt-text v-model="choice.seed" id="seed" placeholder="Random" maxlength="9" storage-key="vt.seed">Seed</vt-text>
 					</div>
 					<div class="col-md mb-3">
+						<div class="btn-group btn-flex" role="group">
+							<button class="btn btn-light border-secondary" @click="enemizerEnabled=true">
+								Enable Enemizer <img class="icon" src="/i/svg/flash.svg" alt="Enemizer">
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md">
+						<vt-enemizer v-if="enemizerEnabled" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
 					</div>
 				</div>
 			</div>
@@ -110,6 +119,7 @@ import EventBus from '../core/event-bus';
 export default {
 	props: [
 		'version',
+		'enemizerVersion',
 	],
 	data() {
 		return {
@@ -117,6 +127,7 @@ export default {
 			error: false,
 			generating: false,
 			romLoaded: false,
+			enemizerEnabled: false,
 			current_rom_hash: '',
 			gameLoaded: false,
 			choice: {
@@ -126,7 +137,6 @@ export default {
 				weapons: {value: 'uncle', name: 'Uncle Assured'},
 				logic: {value: 'NoMajorGlitches', name: 'No Glitches'},
 				variation: {value: 'none', name: 'None'},
-				seed: null,
 				tournament: false,
 			},
 			settings: {
@@ -150,6 +160,10 @@ export default {
 			this.settings.difficulties = Object.keys(response.data.difficulties).map(function(key) { return {value: key, name: response.data.difficulties[key]}});
 			this.settings.variations = Object.keys(response.data.variations).map(function(key) { return {value: key, name: response.data.variations[key]}});
 		});
+		localforage.getItem('en.enabled').then(function(value) {
+			if (value == null) return;
+			this.enemizerEnabled = value;
+		}.bind(this));
 		localforage.getItem('rom').then(function(blob) {
 			if (blob == null) {
 				EventBus.$emit('noBlob');
@@ -183,7 +197,7 @@ export default {
 			}
 			return new Promise(function(resolve, reject) {
 				this.gameLoaded = false;
-				axios.post(`/seed` + (this.choice.seed ? '/' + this.choice.seed : ''), {
+				axios.post(`/seed`, {
 					logic: this.choice.logic.value,
 					difficulty: this.choice.difficulty.value,
 					variation: this.choice.variation.value,
@@ -233,6 +247,11 @@ export default {
 		onError(error) {
 			this.error = error;
 		}
+	},
+	watch: {
+		enemizerEnabled: function (value) {
+			localforage.setItem('en.enabled', value);
+		},
 	},
 }
 </script>
