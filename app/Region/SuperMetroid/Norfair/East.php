@@ -49,7 +49,7 @@ class East extends Region {
         $this->locations["Missile (Speed Booster)"]->setItem(Item::get('Missile'));
         $this->locations["Speed Booster"]->setItem(Item::get('SpeedBooster'));
         $this->locations["Missile (Wave Beam)"]->setItem(Item::get('Missile'));
-        $this->locations["Speed Booster"]->setItem(Item::get('WaveBeam'));        
+        $this->locations["Wave Beam"]->setItem(Item::get('WaveBeam'));        /* Speed Booster was listed here again! */
 		return $this;
 	}
 
@@ -74,7 +74,7 @@ class East extends Region {
 
         $this->locations["Missile (Norfair Reserve Tank)"]->setRequirements(function($location, $items) {
             return $items->has('Morph')
-                && $items->has('Super')
+		&& $items->has('Super')
                 && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
         });
 
@@ -82,6 +82,17 @@ class East extends Region {
             return $items->has('Super')
                 && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
         });
+		
+	$this->locations["Wave Beam"]->setRequirements(function($location, $items) {
+            return $items->has('Super')
+		&& ($items->has('Morph') || $items->has('Grapple'))
+		&& ($items->canFlySM() || $items->has('HiJump') || $items->has('IceBeam'));
+        });
+	/*
+	Adding in logic for the Wave Beam location.
+	Kept the Super requirement for Wave since Bubble Mountain is also Super-locked.
+	Escaping Wave in tournament should only require morph or grapple + GGG/Wave
+	*/
 
         $this->can_enter = function($locations, $items) {
             return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
@@ -121,6 +132,16 @@ class East extends Region {
             return $items->has('Super')
                 && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
         });
+		
+	$this->locations["Wave Beam"]->setRequirements(function($location, $items) {
+            return ($items->has('Super') && $items->has('Morph') && ($items->has('Grapple') || $items->CanFlySM())
+        	&& $items->has('HiJump') || $items->has('IceBeam'));
+        });
+	/*
+	Adding in logic for the Wave Beam location.
+	Kept the Super requirement for Wave since Bubble Mountain is also Super-locked.
+	Made escaping Wave require Grapple/Space since people may be afraid of spikes.
+	*/
 
         $this->can_enter = function($locations, $items) {
             return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
