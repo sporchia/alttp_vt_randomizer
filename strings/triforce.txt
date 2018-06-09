@@ -102,3 +102,19 @@ You get to
 drink from
 the firehose
 -
+Do you prefer
+ bacon, pork,
+   or ham?
+-
+You get one
+wish.  Choose
+wisely, hero!
+-
+Can you please
+break us three
+up?  Thanks.
+-
+  Pick us up
+  before we
+  get dizzy!
+-
