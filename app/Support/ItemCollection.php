@@ -518,8 +518,11 @@ class ItemCollection extends Collection {
 	{
 		return $this->has('Missile', 2) 
 			&& $this->has('Super', 2)
-			&& $this->has('PowerBomb', 3);
+			&& $this->has('PowerBomb', 3)
+			&& $this->has('Morph');
 	}
+	// Not having morph in logic for Crystal flash could create a very crazy edge-case where CF is needed in Norfair,
+	// but Morph is in Bubble Mountain for example, and the game only gave you 2 tanks for the heat run.
 
 	public function hasEnergyReserves(int $amount = 0)
 	{
