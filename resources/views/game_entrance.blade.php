@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Entrance Options - ';
-@endphp
+@extends('layouts.default', ['title' => 'Entrance Options - '])
 
 @section('content')
 <h1>What is the Entrance Randomizer?</h1>

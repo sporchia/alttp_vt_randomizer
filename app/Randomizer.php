@@ -322,7 +322,7 @@ class Randomizer {
 			}
 		}
 
-		$advancement_items = mt_shuffle($advancement_items);
+		$advancement_items = fy_shuffle($advancement_items);
 
 		$filler = Filler::factory('RandomAssumed', $this->world);
 
@@ -404,7 +404,7 @@ class Randomizer {
 
 		$placed_prizes = $prize_locations->getItems();
 
-		$remaining_prizes = mt_shuffle(array_diff([
+		$remaining_prizes = fy_shuffle(array_diff([
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
 			Item::get('Crystal3'),
@@ -899,19 +899,19 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function randomizeCredits(Rom $rom) {
-		$rom->setKingsReturnCredits(array_first(mt_shuffle([
+		$rom->setKingsReturnCredits(array_first(fy_shuffle([
 			"the return of the king",
 			"fellowship of the ring",
 			"the two towers",
 		])));
 
-		$rom->setSanctuaryCredits(array_first(mt_shuffle([
+		$rom->setSanctuaryCredits(array_first(fy_shuffle([
 			"the loyal priest",
 			"read a book",
 			"sits in own pew",
 		])));
 
-		$name = array_first(mt_shuffle([
+		$name = array_first(fy_shuffle([
 			"sahasralah", "sabotaging", "sacahuista", "sacahuiste", "saccharase", "saccharide", "saccharify",
 			"saccharine", "saccharins", "sacerdotal", "sackcloths", "salmonella", "saltarelli", "saltarello",
 			"saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
@@ -922,7 +922,7 @@ class Randomizer {
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
-		$rom->setWoodsmansHutCredits(array_first(mt_shuffle([
+		$rom->setWoodsmansHutCredits(array_first(fy_shuffle([
 			"twin lumberjacks",
 			"fresh flapjacks",
 			"two woodchoppers",
@@ -938,19 +938,19 @@ class Randomizer {
 				break;
 		}
 
-		$rom->setDeathMountainCredits(array_first(mt_shuffle([
+		$rom->setDeathMountainCredits(array_first(fy_shuffle([
 			"the lost old man",
 			"gary the old man",
 			"Your ad here",
 		])));
 
-		$rom->setLostWoodsCredits(array_first(mt_shuffle([
+		$rom->setLostWoodsCredits(array_first(fy_shuffle([
 			"the forest thief",
 			"dancing pickles",
 			"flying vultures",
 		])));
 
-		$rom->setWishingWellCredits(array_first(mt_shuffle([
+		$rom->setWishingWellCredits(array_first(fy_shuffle([
 			"venus. queen of faeries",
 			"Venus was her name",
 			"I'm your Venus",
@@ -995,7 +995,7 @@ class Randomizer {
 					$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 			}
 		} else {
-			$rom->setUncleTextString(array_first(mt_shuffle($strings['uncle'])));
+			$rom->setUncleTextString(array_first(fy_shuffle($strings['uncle'])));
 		}
 
 		$green_pendant_location = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first();
@@ -1013,11 +1013,11 @@ class Randomizer {
 			. $crystal6_location->getRegion()->getName()
 			. "\nso I can make\na big bomb!");
 
-		$rom->setBlindTextString(array_first(mt_shuffle($strings['blind'])));
+		$rom->setBlindTextString(array_first(fy_shuffle($strings['blind'])));
 
-		$rom->setTavernManTextString(array_first(mt_shuffle($strings['tavern_man'])));
+		$rom->setTavernManTextString(array_first(fy_shuffle($strings['tavern_man'])));
 
-		$rom->setGanon1TextString(array_first(mt_shuffle($strings['ganon_1'])));
+		$rom->setGanon1TextString(array_first(fy_shuffle($strings['ganon_1'])));
 
 		switch ($this->goal) {
 			case 'pedestal':
@@ -1050,7 +1050,7 @@ class Randomizer {
 
 		}
 
-		$rom->setTriforceTextString(array_first(mt_shuffle($strings['triforce'])));
+		$rom->setTriforceTextString(array_first(fy_shuffle($strings['triforce'])));
 
 		return $this;
 	}
@@ -1536,7 +1536,7 @@ class Randomizer {
 	 */
 	public function writePrizePacksToRom(Rom $rom) {
 		$emptyDrops = $this->world->getEmptyDropSlots();
-		$dropsPool = mt_shuffle($this->getDropsPool());
+		$dropsPool = fy_shuffle($this->getDropsPool());
 
 		for($i = 0; $i < count($emptyDrops); $i++) {
 			$curDrop = $dropsPool[$i];
@@ -1640,7 +1640,7 @@ class Randomizer {
 			0xDB, 0x79, 0xE3, 0xD8, 0xAC, 0x79, 0xE3, 0xDB,
 			0xDB, 0xE3, 0xE3, 0x79, 0xD8, 0xDD
 		];
-		$shuffled = mt_shuffle($prizes);
+		$shuffled = fy_shuffle($prizes);
 
 		$rom->setOverworldBonkPrizes($shuffled);
 	}

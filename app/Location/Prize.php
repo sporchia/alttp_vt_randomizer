@@ -39,7 +39,7 @@ class Prize extends Location {
 
 		if (isset($this->region->music_addresses) && is_array($this->region->music_addresses)) {
 			if ($this->region->getWorld()->config('rom.mapOnPickup', false)) {
-				$music = array_first(mt_shuffle([0x11, 0x16]));
+				$music = array_first(fy_shuffle([0x11, 0x16]));
 			} else {
 				$item = $this->getItem();
 				$music = is_a($item, Pendant::class) ? 0x11 : 0x16;

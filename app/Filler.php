@@ -56,7 +56,7 @@ abstract class Filler {
 	}
 
 	protected function shuffleItems(array $items) {
-		return mt_shuffle($items);
+		return fy_shuffle($items);
 	}
 
 	protected function fastFillItemsInLocations($fill_items, $locations) {

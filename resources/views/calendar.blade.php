@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Calendar - ';
-@endphp
+@extends('layouts.default', ['title' => 'Calendar - '])
 
 @section('content')
 <h1>Events Calendar</h1>

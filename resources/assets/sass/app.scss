@@ -10,8 +10,6 @@
 
 @import 'bootstrap4fixes';
 
-@import "equipment";
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~vue-multiselect/dist/vue-multiselect.min';
@@ -31,13 +29,13 @@ h4, .h4, h5, .h5 {
   font-weight: bold;
 }
 
-.panel-heading-sticky {
+.panel-heading-sticky, .card-heading-sticky {
 	position: sticky;
-	top: 58px;
+	top: 0px;
 	z-index: 1100;
 }
 
-.panel-sticky {
+.panel-sticky, .card-sticky {
 	position: sticky;
 	top: 0;
 	z-index: 1000;

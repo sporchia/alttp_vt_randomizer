@@ -1,6 +1,6 @@
 <?php
 /**
- * Shuffle the contents of an array using mt_rand
+ * Shuffle the contents of an array using VT Shuffle
  *
  * @param array $array array to shuffle
  *
@@ -12,6 +12,26 @@ function mt_shuffle(array $array) {
 		$pull_key = get_random_int(0, count($array) - 1);
 		$new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
 	}
+	return $new_array;
+}
+
+/**
+ * Shuffle the contents of an array using Fisher-Yates shuffle
+ *
+ * @param array $array array to shuffle
+ *
+ * @return array
+ */
+function fy_shuffle(array $array) {
+	return mt_shuffle($array);
+	$new_array = array_values($array);
+	$count = count($array);
+
+	for ($i = $count - 1; $i >= 0; --$i) {
+		$r = get_random_int(0, $i);
+		list($new_array[$i], $new_array[$r]) = [$new_array[$r], $new_array[$i]];
+	}
+
 	return $new_array;
 }
 

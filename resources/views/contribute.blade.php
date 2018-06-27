@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Contribute - ';
-@endphp
+@extends('layouts.default', ['title' => 'Contribute - '])
 
 @section('content')
 <h1>Contribute</h1>

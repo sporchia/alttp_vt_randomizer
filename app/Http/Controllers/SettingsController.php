@@ -55,8 +55,10 @@ class SettingsController extends Controller {
 						]);
 				})->map(function($item) {
 					return [
-						'key' => $item->getName(),
+						'value' => $item->getName(),
 						'name' => $item->getNiceName(),
+						'count' => 0,
+						'placed' => 0,
 					];
 				}),
 				'prizes' => $items->filter(function($item) {
@@ -64,32 +66,40 @@ class SettingsController extends Controller {
 						|| $item instanceof Item\Crystal;
 				})->map(function($item) {
 					return [
-						'key' => $item->getName(),
+						'value' => $item->getName(),
 						'name' => $item->getNiceName(),
+						'count' => 0,
+						'placed' => 0,
 					];
 				}),
 				'medallions' => $items->filter(function($item) {
 					return $item instanceof Item\Medallion;
 				})->map(function($item) {
 					return [
-						'key' => $item->getName(),
+						'value' => $item->getName(),
 						'name' => $item->getNiceName(),
+						'count' => 0,
+						'placed' => 0,
 					];
 				}),
 				'bottles' => $items->filter(function($item) {
 					return $item instanceof Item\Bottle;
 				})->map(function($item) {
 					return [
-						'key' => $item->getName(),
+						'value' => $item->getName(),
 						'name' => $item->getNiceName(),
+						'count' => 0,
+						'placed' => 0,
 					];
 				}),
 				'droppables' => array_values($sprites->filter(function($sprite) {
 					return $sprite instanceof Sprite\Droppable;
 				})->map(function($item) {
 					return [
-						'key' => $item->getName(),
+						'value' => $item->getName(),
 						'name' => $item->getNiceName(),
+						'count' => 0,
+						'placed' => 0,
 					];
 				})),
 			];

@@ -1,8 +1,4 @@
-@extends('layouts.base', ['title' => 'Customizer'])
-
-@php
-$title = 'Customizer - ';
-@endphp
+@extends('layouts.base', ['title' => 'Customizer - '])
 
 @section('window')
 <div id="root">

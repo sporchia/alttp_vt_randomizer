@@ -10,6 +10,11 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.options({
+    hmrOptions: {
+        port: '3031'
+    }
+});
 
 mix.js('resources/assets/js/app.js', 'public/js').sourceMaps();
 mix.sass('resources/assets/sass/app.scss', 'public/css');

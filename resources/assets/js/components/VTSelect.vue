@@ -30,6 +30,7 @@ export default {
 		placeholder: {default: 'Select option'},
 		rom: {default: null},
 		clearable: {default: false},
+		sid: {default: null},
 	},
 	mounted () {
 		EventBus.$on('gameLoaded', (rom) => {
@@ -58,14 +59,17 @@ export default {
 			return `${option.name}`;
 		},
 		onSelect (option) {
+			if (!option) {
+				return;
+			}
 			if (this.storageKey) {
 				localforage.setItem(this.storageKey, option.value);
 			}
 			if (this.rom && this.romFunction) {
 				this.rom[this.romFunction](option.value);
 			}
-			this.$emit('select', option);
-			this.$emit('input', option);
+			this.$emit('select', option, this.sid);
+			this.$emit('input', option, this.sid);
 		},
 		applyRomFunctions: (vm, rom) => {
 			if (rom && vm.romFunction) {

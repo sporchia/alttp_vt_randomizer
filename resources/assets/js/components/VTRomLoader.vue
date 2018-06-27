@@ -84,6 +84,9 @@ export default {
 		patchRomFromJSON(rom) {
 			return new Promise((resolve, reject) => {
 				if (typeof vt_base_patch !== 'undefined') {
+					if (!Array.isArray(vt_base_patch)) {
+						reject('base patch corrupt');
+					}
 					return rom.parsePatch({patch: vt_base_patch}).then((rom) => {
 						rom.setBasePatch(vt_base_patch);
 						resolve(rom);
@@ -92,6 +95,9 @@ export default {
 				localforage.getItem('vt.stored_base').then((stored_base_file) => {
 					if (this.current_base_file == stored_base_file) {
 						localforage.getItem('vt.base_json').then((patch) => {
+							if (!Array.isArray(patch)) {
+								reject('base patch corrupt');
+							}
 							rom.parsePatch({patch: patch}).then((rom) => {
 								rom.setBasePatch(patch);
 								resolve(rom);

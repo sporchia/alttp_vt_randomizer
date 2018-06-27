@@ -27,7 +27,7 @@ class LogicArray extends Command {
 	 */
 	public function handle() {
 		mt_srand(Randomizer::LOGIC);
-		$array = array_chunk(mt_shuffle(range(0, 255)), 16);
+		$array = array_chunk(fy_shuffle(range(0, 255)), 16);
 		foreach ($array as $row) {
 			$this->info(sprintf("0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X,"
 				. "0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X, 0x%02X,", ...$row));

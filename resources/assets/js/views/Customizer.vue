@@ -269,6 +269,14 @@
 				</div>
 			</tab>
 			<tab name="Starting Equipment">
+				<equipment-select></equipment-select>
+			</tab>
+			<tab name="Item Pool">
+				<item-pool :items="settings.items" />
+			</tab>
+			<tab name="Location Pool">
+				<location-pool :locations="settings.locations" :items="settings.items" :bottles="settings.bottles"
+					:prizes="settings.prizes" :medallions="settings.medallions" />
 			</tab>
 		</tabs>
 	</div>
@@ -278,11 +286,17 @@
 import EventBus from '../core/event-bus';
 import Tab from '../components/VTTab.vue';
 import Tabs from '../components/VTTabs.vue';
+import EquipmentSelect from '../components/EquipmentSelect.vue';
+import ItemPool from '../components/ItemPool.vue';
+import LocationPool from '../components/LocationPool.vue';
 
 export default {
 	components: {
 		Tabs: Tabs,
 		Tab: Tab,
+		EquipmentSelect: EquipmentSelect,
+		ItemPool: ItemPool,
+		LocationPool: LocationPool,
 	},
 	props: [
 		'version',
@@ -322,6 +336,8 @@ export default {
 					{value: 'countdown-continue', name: 'Countdown Continue'},
 					{value: 'countdown-stop', name: 'Countdown Stop'},
 				],
+				items: [],
+				locations: [],
 			},
 		};
 	},
@@ -336,6 +352,11 @@ export default {
 		});
 		axios.get(`/customizer/settings`).then(response => {
 			console.log(response.data);
+			this.settings.items = response.data.items;
+			this.settings.locations = response.data.locations;
+			this.settings.prizes = response.data.prizes;
+			this.settings.bottles = response.data.bottles;
+			this.settings.medallions = response.data.medallions;
 		});
 		localforage.getItem('rom').then(function(blob) {
 			if (blob == null) {
@@ -344,6 +365,8 @@ export default {
 			}
 			EventBus.$emit('loadBlob', {target: {files: [new Blob([blob])]}});
 		});
+		EventBus.$on('itemAdd', this.incrementItem);
+		EventBus.$on('itemRemove', this.decrementItem);
 	},
 	methods: {
 		applySpoilerSeed() {
@@ -400,6 +423,22 @@ export default {
 					}
 				});
 			}.bind(this));
+		},
+		incrementItem(item) {
+			for (var i = 0; i <= this.settings.items.length; ++i) {
+				if (this.settings.items[i].value == item) {
+					this.settings.items[i].placed++;
+					break;
+				}
+			}
+		},
+		decrementItem(item) {
+			for (var i = 0; i <= this.settings.items.length; ++i) {
+				if (this.settings.items[i].value == item) {
+					this.settings.items[i].placed--;
+					break;
+				}
+			}
 		},
 		saveRom() {
 			return this.rom.save(this.rom.downloadFilename()+ '.sfc');

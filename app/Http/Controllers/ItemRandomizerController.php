@@ -100,9 +100,6 @@ class ItemRandomizerController extends Controller {
 		if ($request->filled('sram_trace')) {
 			$rom->setSRAMTrace($request->input('sram_trace') == 'true');
 		}
-		if ($request->filled('menu_fast')) {
-			$rom->setQuickMenu($request->input('menu_fast') == 'true');
-		}
 
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 			config([

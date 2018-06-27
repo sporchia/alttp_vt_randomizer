@@ -25,7 +25,7 @@
 				<vt-rom-settings :rom="rom"></vt-rom-settings>
 				<div class="row">
 					<div class="col-md mb-3">
-						<vt-select v-model="choice.state" id="mode-state" :options="settings.mode.states"storage-key="vt.mode.state"
+						<vt-select v-model="choice.state" id="mode-state" :options="settings.mode.states" storage-key="vt.mode.state"
 							:rom="rom" :selected="choice.state">State</vt-select>
 					</div>
 					<div class="col-md mb-3">

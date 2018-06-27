@@ -6,6 +6,7 @@ var ROM = (function(blob, loaded_callback) {
 	var arrayBuffer;
 	var base_patch;
 	var original_data;
+	var size = 2; // mb
 
 	var music = {
 		0x00:[0xD373B,0xD375B,0xD90F8],
@@ -84,12 +85,8 @@ var ROM = (function(blob, loaded_callback) {
 			arrayBuffer = arrayBuffer.slice(0x200, arrayBuffer.byteLength);
 		}
 
-		// fill out rom to 2mb
-		if (arrayBuffer.byteLength < 2097152) {
-			arrayBuffer = this.resizeUint8(arrayBuffer, 2097152);
-		}
-
 		original_data = arrayBuffer.slice(0);
+		this.resize(size);
 
 		u_array = new Uint8Array(arrayBuffer);
 
@@ -322,6 +319,22 @@ var ROM = (function(blob, loaded_callback) {
 		return resizedArrayBuffer;
 	};
 
+	this.resize = function(size) {
+		switch (size) {
+			case 4:
+				arrayBuffer = this.resizeUint8(arrayBuffer, 4194304);
+				break;
+			case 2:
+				arrayBuffer = this.resizeUint8(arrayBuffer, 2097152);
+				break;
+			case 1:
+			default:
+				size = 1;
+				arrayBuffer = this.resizeUint8(arrayBuffer, 1048576);
+		}
+		this.size = size;
+	};
+
 	this.downloadFilename = function() {
 		return this.name
 			|| 'ALttP - VT_' + this.logic
@@ -334,9 +347,11 @@ var ROM = (function(blob, loaded_callback) {
 			+ (this.special ? '_special' : '');
 	};
 
-	this.reset = function() {
+	this.reset = function(size) {
 		return new Promise((resolve, reject) => {
 			arrayBuffer = original_data.slice(0);
+			console.log(size, this.size);
+			this.resize(size || this.size);
 			u_array = new Uint8Array(arrayBuffer);
 
 			if (!this.base_patch) {
