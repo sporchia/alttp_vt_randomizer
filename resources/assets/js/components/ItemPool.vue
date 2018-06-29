@@ -1,7 +1,7 @@
 <template>
 	<div class="card border-success">
 		<div class="card-header bg-success card-heading-btn card-heading-sticky">
-			<h3 class="card-title text-white float-left">Item Pool {{ placedItemCount }} / {{ placedItemCount }}</h3>
+			<h3 class="card-title text-white float-left">Item Pool {{ itemCount }} / {{ placedItemCount }}</h3>
 			<div class="btn-toolbar float-right">
 				<input id="items-filter" placeholder="search" type="text" v-model="search" />
 			</div>
@@ -12,14 +12,14 @@
 				<thead>
 					<tr class="sticky-head">
 						<th>Randomly Place</th>
-						<th>Currently Placed</th>
+						<th>Manually Placed</th>
 						<th>Item Name</th>
 					</tr>
 				</thead>
 				<tbody class="searchable">
-					<tr v-for="item in items" v-show="searchEx.test(item.name)">
+					<tr v-for="item in orderedItems" v-if="item.hasOwnProperty('count')" v-show="searchEx.test(item.name)">
 						<td class="col w-25">
-							<input :id="'item-count-' + item.value" type="number" :value="item.count"
+							<input :id="'item-count-' + item.value" type="number" v-model="item.count"
 								min="0" max="218" step="1" :name="'data[alttp.custom.item.count.' + item.value + ']'" class="input-sm custom-items">
 						</td>
 						<td class="col w-25">
@@ -50,15 +50,25 @@ export default {
 		searchEx: (vm) => {
 			return new RegExp(vm.search, 'i');
 		},
+		orderedItems: function () {
+			return _.orderBy(this.items, 'name');
+		},
 		placedItemCount: (vm) => {
 			if (!vm.items.length) {
 				return 0;
 			}
-
+			return vm.items.filter(item => {
+				return item.value == 'auto_fill';
+			})[0].placed;
+		},
+		itemCount: (vm) => {
+			if (!vm.items.length) {
+				return 0;
+			}
 			return vm.items.map(item => {
-				return item.placed;
-			}).reduce((carry, placed) => {
-				return carry + placed;
+				return Number(item.count || 0);
+			}).reduce((carry, count) => {
+				return carry + count;
 			});
 		},
 	},

@@ -78,6 +78,11 @@ export default {
 						EventBus.$emit('applyHash', rom);
 						this.loading = false;
 					}
+				}).catch((error) => {
+					if (error == 'base patch corrupt') {
+						localforage.setItem('vt.stored_base');
+						this.loadBlob(change);
+					}
 				});
 			});
 		},
@@ -85,7 +90,7 @@ export default {
 			return new Promise((resolve, reject) => {
 				if (typeof vt_base_patch !== 'undefined') {
 					if (!Array.isArray(vt_base_patch)) {
-						reject('base patch corrupt');
+						return reject('base patch corrupt');
 					}
 					return rom.parsePatch({patch: vt_base_patch}).then((rom) => {
 						rom.setBasePatch(vt_base_patch);
@@ -96,7 +101,7 @@ export default {
 					if (this.current_base_file == stored_base_file) {
 						localforage.getItem('vt.base_json').then((patch) => {
 							if (!Array.isArray(patch)) {
-								reject('base patch corrupt');
+								return reject('base patch corrupt');
 							}
 							rom.parsePatch({patch: patch}).then((rom) => {
 								rom.setBasePatch(patch);

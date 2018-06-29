@@ -428,6 +428,11 @@ export default {
 			for (var i = 0; i <= this.settings.items.length; ++i) {
 				if (this.settings.items[i].value == item) {
 					this.settings.items[i].placed++;
+					if (this.settings.items[i].count > 0) {
+						this.settings.items[i].count--;
+					} else {
+						this.settings.items[i].neg_count = this.settings.items[i].neg_count ? this.settings.items[i].neg_count - 1 : -1;
+					}
 					break;
 				}
 			}
@@ -436,6 +441,11 @@ export default {
 			for (var i = 0; i <= this.settings.items.length; ++i) {
 				if (this.settings.items[i].value == item) {
 					this.settings.items[i].placed--;
+					if (this.settings.items[i].neg_count < 0) {
+						this.settings.items[i].neg_count++;
+					} else {
+						this.settings.items[i].count++;
+					}
 					break;
 				}
 			}

@@ -520,7 +520,20 @@ class World {
 		if (count($prizes) != 63) {
 			return $this;
 		}
-		if (array_diff($prizes, ['heart', 'greenRupee', 'blueRupee', 'redRupee', 'bomb1', 'bomb4', 'bomb8', 'smallMagic', 'largeMagic', 'arrow5', 'arrow10', 'faerie'])) {
+		if (array_diff($prizes, [
+			'heart',
+			'greenRupee',
+			'blueRupee',
+			'redRupee',
+			'bomb1',
+			'bomb4',
+			'bomb8',
+			'smallMagic',
+			'largeMagic',
+			'arrow5',
+			'arrow10',
+			'faerie',
+		])) {
 			return $this;
 		}
 		$this->prizepacks = $prizepacks;

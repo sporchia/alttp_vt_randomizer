@@ -17,7 +17,8 @@
 					</tr>
 				</thead>
 				<tbody class="searchable">
-					<tr v-for="location in locations" v-show="searchEx.test(location.name) || searchEx.test(location.region)">
+					<tr v-for="location in locations" v-show="searchEx.test(location.name) || searchEx.test(location.region)
+						|| searchEx.test(oldValues['location-' + location.hash])">
 						<td class="col w-25">
 							<label :for="'item-count-' + location.hash">{{ location.region }}</label>
 						</td>
@@ -26,7 +27,7 @@
 						</td>
 						<td class="col w-25">
 							<vt-select :sid="'location-' + location.hash" @input="selectedItem" v-if="location.class == 'items'"
-								:options="items" :storage-key="'vt.custom.' + location.hash" />
+								:options="items" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
 							<vt-select v-if="location.class == 'bottles'" :options="bottles" :storage-key="'vt.custom.' + location.hash" />
 							<vt-select v-if="location.class == 'prizes'" :options="prizes" :storage-key="'vt.custom.' + location.hash" />
 							<vt-select v-if="location.class == 'medallions'" :options="medallions" :storage-key="'vt.custom.' + location.hash" />
@@ -57,6 +58,7 @@ export default {
 		return {
 			search: '',
 			oldValues: {},
+			defaultItem: {name:'Random', value:'auto_fill'},
 		};
 	},
 	mounted () {

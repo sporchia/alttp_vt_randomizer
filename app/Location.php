@@ -68,7 +68,8 @@ class Location {
 		$this->setItem($item);
 		$fillable = ($this->always_callback && call_user_func($this->always_callback, $item, $items))
 			|| ($this->region->canFill($item)
-				&& (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+				&& (!$this->fill_callback
+					|| call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
 				&& (!$check_access || $this->canAccess($items)));
 		$this->setItem($old_item);
 
@@ -88,7 +89,8 @@ class Location {
 			return false;
 		}
 
-		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $locations ?? $this->region->getWorld()->getLocations(), $items)) {
+		if (!$this->requirement_callback
+			|| call_user_func($this->requirement_callback, $locations ?? $this->region->getWorld()->getLocations(), $items)) {
 			return true;
 		}
 

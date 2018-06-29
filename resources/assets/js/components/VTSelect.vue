@@ -26,6 +26,7 @@ export default {
 		selected: {default: null},
 		noRace: {default: false},
 		storageKey: {default: ''},
+		storageKeyRemoveOn: {default: null},
 		romFunction: {default: null},
 		placeholder: {default: 'Select option'},
 		rom: {default: null},
@@ -63,7 +64,11 @@ export default {
 				return;
 			}
 			if (this.storageKey) {
-				localforage.setItem(this.storageKey, option.value);
+				if (option.value == this.storageKeyRemoveOn) {
+					localforage.removeItem(this.storageKey);
+				} else {
+					localforage.setItem(this.storageKey, option.value);
+				}
 			}
 			if (this.rom && this.romFunction) {
 				this.rom[this.romFunction](option.value);
