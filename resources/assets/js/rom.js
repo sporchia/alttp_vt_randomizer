@@ -295,12 +295,14 @@ var ROM = (function(blob, loaded_callback) {
 				this.variation = data.spoiler.meta.variation;
 				this.weapons = data.spoiler.meta.weapons;
 			}
-			data.patch.forEach(function(value, index, array) {
-				if (progressCallback) progressCallback(index / data.patch.length, this);
-				for (address in value) {
-					this.write(Number(address), value[address]);
-				}
-			}.bind(this));
+			if (data.patch && data.patch.length) {
+				data.patch.forEach(function(value, index, array) {
+					if (progressCallback) progressCallback(index / data.patch.length, this);
+					for (address in value) {
+						this.write(Number(address), value[address]);
+					}
+				}.bind(this));
+			}
 			resolve(this);
 		}.bind(this));
 	};
@@ -350,7 +352,6 @@ var ROM = (function(blob, loaded_callback) {
 	this.reset = function(size) {
 		return new Promise((resolve, reject) => {
 			arrayBuffer = original_data.slice(0);
-			console.log(size, this.size);
 			this.resize(size || this.size);
 			u_array = new Uint8Array(arrayBuffer);
 

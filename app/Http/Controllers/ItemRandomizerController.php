@@ -30,7 +30,7 @@ class ItemRandomizerController extends Controller {
 
 	public function testGenerateSeed(Request $request, $seed_id = null) {
 		try {
-			return json_encode(array_except($this->prepSeed($request, $seed_id), ['patch']));
+			return json_encode(array_except($this->prepSeed($request, $seed_id), ['patch', 'seed', 'hash']));
 		} catch (Exception $e) {
 			return response($e->getMessage(), 409);
 		}

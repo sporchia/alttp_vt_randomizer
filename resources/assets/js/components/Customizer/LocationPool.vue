@@ -29,7 +29,8 @@
 							<vt-select :sid="'location-' + location.hash" @input="selectedItem" v-if="location.class == 'items'"
 								:options="orderedItems" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
 							<vt-select v-if="location.class == 'bottles'" :options="bottles" :storage-key="'vt.custom.' + location.hash" />
-							<vt-select v-if="location.class == 'prizes'" :options="prizes" :storage-key="'vt.custom.' + location.hash" />
+							<vt-select :sid="'location-' + location.hash" @input="selectedPrize" v-if="location.class == 'prizes'"
+								:options="prizes" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
 							<vt-select v-if="location.class == 'medallions'" :options="medallions" :storage-key="'vt.custom.' + location.hash" />
 						</td>
 					</tr>
@@ -40,8 +41,8 @@
 </template>
 
 <script>
-import VTSelect from './VTSelect.vue';
-import EventBus from '../core/event-bus';
+import VTSelect from '../VTSelect.vue';
+import EventBus from '../../core/event-bus';
 
 export default {
 	components: {
@@ -72,6 +73,9 @@ export default {
 			}
 			this.oldValues[sid] = selectedOption.value;
 			this.itemSearch[sid] = selectedOption.name;
+		},
+		selectedPrize (selectedOption, sid) {
+
 		},
 	},
 	computed: {

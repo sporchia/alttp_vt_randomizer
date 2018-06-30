@@ -131,8 +131,8 @@ class SettingsController extends Controller {
 						'name' => $location->getName(),
 						'region' => $location->getRegion()->getName(),
 						'class' => $location instanceof Location\Fountain ? 'bottles'
-							: $location instanceof Location\Medallion ? 'medallions'
-							: $location instanceof Location\Prize ? 'prizes' : 'items',
+							: ($location instanceof Location\Medallion ? 'medallions'
+							: ($location instanceof Location\Prize ? 'prizes' : 'items')),
 					];
 				})),
 				'items' => array_merge([
@@ -157,26 +157,32 @@ class SettingsController extends Controller {
 							'TwentyRupees2',
 							'HeartContainerNoAnimation',
 							'UncleSword',
-						]);
-				})->map(function($item) {
-					return [
-						'value' => $item->getName(),
-						'name' => $item->getNiceName(),
-						'count' => $this->items[$item->getName()] ?? 0,
-						'placed' => 0,
-					];
-				})),
-				'prizes' => $items->filter(function($item) {
-					return $item instanceof Item\Pendant
-						|| $item instanceof Item\Crystal;
-				})->map(function($item) {
-					return [
-						'value' => $item->getName(),
-						'name' => $item->getNiceName(),
-						'count' => 0,
-						'placed' => 0,
-					];
-				}),
+						])
+						|| $item == Item::get('Triforce');
+					})->map(function($item) {
+						return [
+							'value' => $item->getName(),
+							'name' => $item->getNiceName(),
+							'count' => $this->items[$item->getName()] ?? 0,
+							'placed' => 0,
+						];
+					})
+				),
+				'prizes' => array_merge([
+						['value' => 'auto_fill', 'name' => 'Random', 'placed' => 0],
+					],
+					$items->filter(function($item) {
+						return $item instanceof Item\Pendant
+							|| $item instanceof Item\Crystal;
+					})->map(function($item) {
+						return [
+							'value' => $item->getName(),
+							'name' => $item->getNiceName(),
+							'count' => 0,
+							'placed' => 0,
+						];
+					})
+				),
 				'medallions' => $items->filter(function($item) {
 					return $item instanceof Item\Medallion;
 				})->map(function($item) {

@@ -8,66 +8,109 @@
 			<div class="cell">
 				<div class="row">
 					<div class="cell">
-						<div @click="toggleItem" class="equipment item ProgressiveArmor active" data-item="ProgressiveArmor"></div>
-						<div @click="toggleItem" class="equipment item ProgressiveSword" data-item="ProgressiveSword"></div>
-						<div @click="toggleItem" class="equipment item ProgressiveShield" data-item="ProgressiveShield"></div>
-						<div @click="toggleItem" class="equipment item MoonPearl" data-item="MoonPearl"></div>
+						<div @click="incrementItem('ProgressiveArmor')"
+							:class="[items.ProgressiveArmor ? 'active-' + items.ProgressiveArmor : '', {active: items.ProgressiveArmor}]"
+							class="item ProgressiveArmor active"></div>
+						<div @click="incrementItem('ProgressiveSword')"
+							:class="[items.ProgressiveSword ? 'active-' + items.ProgressiveSword : '', {active: items.ProgressiveSword}]"
+							class="item ProgressiveSword"></div>
+						<div @click="incrementItem('ProgressiveShield')"
+							:class="[items.ProgressiveShield ? 'active-' + items.ProgressiveShield : '', {active: items.ProgressiveShield}]"
+							class="item ProgressiveShield"></div>
+						<div @click="toggleItem('MoonPearl')" :class="{active: items.MoonPearl}"
+							class="item MoonPearl"></div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item Bottle1 Bottle" data-item="Bottle1"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Bottle2 Bottle" data-item="Bottle2"></div></div>
+					<div class="cell"><div @click="incrementItem('Bottle1')"
+						:class="[items.Bottle1 ? 'active-' + items.Bottle1 : '', {active: items.Bottle1}]"
+						class="item Bottle"></div></div>
+					<div class="cell"><div @click="incrementItem('Bottle2')"
+						:class="[items.Bottle2 ? 'active-' + items.Bottle2 : '', {active: items.Bottle2}]"
+						class="item Bottle"></div></div>
 				</div>
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item Bottle3 Bottle" data-item="Bottle3"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Bottle4 Bottle" data-item="Bottle4"></div></div>
+					<div class="cell"><div @click="incrementItem('Bottle3')"
+						:class="[items.Bottle3 ? 'active-' + items.Bottle3 : '', {active: items.Bottle3}]"
+						class="item Bottle"></div></div>
+					<div class="cell"><div @click="incrementItem('Bottle4')"
+						:class="[items.Bottle4 ? 'active-' + items.Bottle4 : '', {active: items.Bottle4}]"
+						class="item Bottle"></div></div>
 				</div>
 			</div>
 			<div class="cell">
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item ProgressiveBow" data-item="ProgressiveBow"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Boomerang" data-item="Boomerang"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Hookshot" data-item="Hookshot"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Mushroom" data-item="Mushroom"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Powder" data-item="Powder"></div></div>
+					<div class="cell"><div @click="incrementItem('ProgressiveBow')"
+						:class="[items.ProgressiveBow ? 'active-' + items.ProgressiveBow : '', {active: items.ProgressiveBow}]"
+						class="item ProgressiveBow"></div></div>
+					<div class="cell"><div @click="incrementItem('Boomerang')"
+						:class="[items.Boomerang ? 'active-' + items.Boomerang : '', {active: items.Boomerang}]"
+						class="item Boomerang"></div></div>
+					<div class="cell"><div @click="toggleItem('Hookshot')" :class="{active: items.Hookshot}"
+						class="item Hookshot"></div></div>
+					<div class="cell"><div @click="toggleItem('Mushroom')" :class="{active: items.Mushroom}"
+						class="item Mushroom"></div></div>
+					<div class="cell"><div @click="toggleItem('Powder')" :class="{active: items.Powder}"
+						class="item Powder"></div></div>
 				</div>
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item FireRod" data-item="FireRod"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item IceRod" data-item="IceRod"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Bombos" data-item="Bombos"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Ether" data-item="Ether"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Quake" data-item="Quake"></div></div>
+					<div class="cell"><div @click="toggleItem('FireRod')" :class="{active: items.FireRod}"
+						class="item FireRod"></div></div>
+					<div class="cell"><div @click="toggleItem('IceRod')" :class="{active: items.IceRod}"
+						class="item IceRod"></div></div>
+					<div class="cell"><div @click="toggleItem('Bombos')" :class="{active: items.Bombos}"
+						class="item Bombos"></div></div>
+					<div class="cell"><div @click="toggleItem('Ether')" :class="{active: items.Ether}"
+						class="item Ether"></div></div>
+					<div class="cell"><div @click="toggleItem('Quake')" :class="{active: items.Quake}"
+						class="item Quake"></div></div>
 				</div>
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item Lamp" data-item="Lamp"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Hammer" data-item="Hammer"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Shovel" data-item="Shovel"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item BugCatchingNet" data-item="BugCatchingNet"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item BookOfMudora" data-item="BookOfMudora"></div></div>
+					<div class="cell"><div @click="toggleItem('Lamp')" :class="{active: items.Lamp}"
+						class="item Lamp"></div></div>
+					<div class="cell"><div @click="toggleItem('Hammer')" :class="{active: items.Hammer}"
+						class="item Hammer"></div></div>
+					<div class="cell"><div @click="toggleItem('Shovel')" :class="{active: items.Shovel}"
+						class="item Shovel"></div></div>
+					<div class="cell"><div @click="toggleItem('BugCatchingNet')" :class="{active: items.BugCatchingNet}"
+						class="item BugCatchingNet"></div></div>
+					<div class="cell"><div @click="toggleItem('BookOfMudora')" :class="{active: items.BookOfMudora}"
+						class="item BookOfMudora"></div></div>
 				</div>
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item empty"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item CaneOfSomaria" data-item="CaneOfSomaria"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item CaneOfByrna" data-item="CaneOfByrna"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Cape" data-item="Cape"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item MagicMirror" data-item="MagicMirror"></div></div>
+					<div class="cell"><div class="item empty"></div></div>
+					<div class="cell"><div @click="toggleItem('CaneOfSomaria')" :class="{active: items.CaneOfSomaria}"
+						class="item CaneOfSomaria"></div></div>
+					<div class="cell"><div @click="toggleItem('CaneOfByrna')" :class="{active: items.CaneOfByrna}"
+						class="item CaneOfByrna"></div></div>
+					<div class="cell"><div @click="toggleItem('Cape')" :class="{active: items.Cape}"
+						class="item Cape"></div></div>
+					<div class="cell"><div @click="toggleItem('MagicMirror')" :class="{active: items.MagicMirror}"
+						class="item MagicMirror"></div></div>
 				</div>
 				<div class="row">
-					<div class="cell"><div @click="toggleItem" class="equipment item PegasusBoots" data-item="PegasusBoots"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item ProgressiveGlove" data-item="ProgressiveGlove"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item Flippers" data-item="Flippers"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item OcarinaInactive" data-item="OcarinaInactive"></div></div>
-					<div class="cell"><div @click="toggleItem" class="equipment item empty"></div></div>
+					<div class="cell"><div @click="toggleItem('PegasusBoots')" :class="{active: items.PegasusBoots}"
+						class="item PegasusBoots"></div></div>
+					<div class="cell"><div @click="incrementItem('ProgressiveGlove')"
+						:class="[items.ProgressiveGlove ? 'active-' + items.ProgressiveGlove : '', {active: items.ProgressiveGlove}]"
+						class="item ProgressiveGlove"></div></div>
+					<div class="cell"><div @click="toggleItem('Flippers')" :class="{active: items.Flippers}"
+						class="item Flippers"></div></div>
+					<div class="cell"><div @click="toggleItem('OcarinaInactive')" :class="{active: items.OcarinaInactive}"
+						class="item OcarinaInactive"></div></div>
+					<div class="cell"><div class="item empty"></div></div>
 				</div>
 			</div>
 			<div class="cell">
 				<div class="row">
-					<div class="cell">
-						<input id="equipped-health" type="text" value="3" />
+					<div class="cell w-100">
+						<vue-slider ref="slider" @drag-end="saveEquipment" :min="1" :max="20" tooltip="hover" v-model="items.BossHeartContainer"></vue-slider>
 					</div>
 				</div>
 				<div class="row">
-					<div id="custom-equipment-hearts" class="cell" style="width:321px"></div>
+					<div id="custom-equipment-hearts" class="cell" style="width:321px">
+						<div v-for="n in items.BossHeartContainer" class="Heart" style="display:inline-block"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -76,7 +119,12 @@
 </template>
 
 <script>
+import vueSlider from 'vue-slider-component'
+
 export default {
+	components: {
+		vueSlider: vueSlider,
+	},
 	data() {
 		return {
 			items: {
@@ -124,35 +172,12 @@ export default {
 		};
 	},
 	mounted () {
-		/*
-		localforage.getItem('vt.custom.equipment').then(function(value) {
-			if (value !== null) {
-				for (id in value) {
-					var inc = value[id];
-
-					if (id == 'BossHeartContainer') {
-						this.updateHealth(inc);
-						continue;
-					}
-					if (typeof inc === 'boolean') {
-						inc = inc ? 1 : 0;
-					}
-					for (var i = 0; i < inc; ++i) {
-						this.toggleItem($('#equipment-selector .' + id)[0]);
-					}
-				}
+		localforage.getItem('vt.custom.equipment').then(value => {
+			if (value === null) {
+				return;
 			}
-
-			var starting_hearts = (value !== null) ? value.BossHeartContainer : 3
-			$("#equipped-health").slider({id: 'health-slider', step: 1, min: 1, max: 20, value: starting_hearts});
-			$("#equipped-health").on("slide", function(slideEvt) {
-				this.updateHealth(slideEvt.value);
-				items.BossHeartContainer = slideEvt.value;
-				localforage.setItem('vt.custom.equipment', items);
-			});
-			this.updateHealth(starting_hearts);
+			this.items = value;
 		});
-*/
 	},
 	methods: {
 		counter(value, delta, max, min) {
@@ -168,11 +193,11 @@ export default {
 				var max = limits[item].max,
 					min = limits[item].min;
 
-				return items[item] = counter(items[item], delta, max, min);
+				return this.items[item] = this.counter(this.items[item], delta, max, min);
 			};
 		},
 		increment(name) {
-			var inc = counters(1, {
+			var inc = this.counters(1, {
 				ProgressiveArmor: { max: 2 },
 				ProgressiveSword: { max: 4 },
 				ProgressiveShield: { max: 3 },
@@ -183,76 +208,61 @@ export default {
 				ProgressiveBow: { max: 3 },
 				Boomerang: { max: 3 },
 				ProgressiveGlove: { max: 2 }
-			});
+			}).bind(this);
 
 			return inc(name);
 		},
-		toggleItem(target) {
-			var name = this.itemName(target.classList);
-			if ((typeof items[name]) === 'boolean') {
-				items[name] = !items[name];
-				target.classList[items[name] ? 'add' : 'remove']('active');
-			} else {
-				var value = this.increment(name);
-				target.className = target.className.replace(/ ?active-\w+/, '');
-				if (value) {
-					target.classList.add('active');
-					target.classList.add('active-' + value);
-				} else {
-					target.classList.remove('active');
-				}
-			}
+		incrementItem(name) {
+			this.increment(name);
+			this.saveEquipment();
 		},
-		itemName(class_list) {
-			var terms = ['item', 'active', 'equipment'];
-			return Array.from(class_list).filter(function(x) { return !(terms.includes(x) || x.match(/^active-/)); })[0];
+		toggleItem(name) {
+			this.items[name] = !this.items[name];
+			this.saveEquipment();
 		},
-		updateHealth(hearts) {
-			$('#custom-equipment-hearts').html('');
-			for (var i = 0; i < hearts; ++i) {
-				$('#custom-equipment-hearts').append($('<div class="Heart" style="display:inline-block"></div>'));
-			}
+		saveEquipment() {
+			localforage.setItem('vt.custom.equipment', this.items);
 		},
-	}
+	},
 };
 </script>
 
 <style scoped>
-#equipment-selector {
+.card-body {
 	background-color: #C0C0C0;
 }
 
-#tracker .row {
+.row {
 	margin: auto;
 }
-#tracker .row:before,
-#tracker .row:after {
+.row:before,
+.row:after {
 	content: " ";
 	display: table;
 }
-#tracker .row:after {
+.row:after {
 	clear: both;
 }
-#tracker .cell {
+.cell {
 	position: relative;
 	float: left;
 }
 
-#tracker .ProgressiveArmor {
+.ProgressiveArmor {
 	width: 128px;
 	height: 128px;
 }
-#tracker .ProgressiveSword {
+.ProgressiveSword {
 	position: absolute;
 	top: 12px;
 	right: -8px;
 }
-#tracker .ProgressiveShield {
+.ProgressiveShield {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 }
-#tracker .MoonPearl {
+.MoonPearl {
 	width: 48px;
 	height: 48px;
 	position: absolute;
@@ -260,13 +270,11 @@ export default {
 	right: 0;
 }
 
-#tracker {
-	.item {
-		opacity: .25;
-	}
-	.item.active, .ProgressiveArmor {
-		opacity: 1;
-	}
+.item {
+	opacity: .25;
+}
+.item.active, .ProgressiveArmor {
+	opacity: 1;
 }
 
 .icon {
@@ -348,43 +356,43 @@ export default {
 	background-position: -320px 0;
 }
 
-.Bottle, .Bottle.active-1 { // empty
+.Bottle, .Bottle.active-1 { /* empty */
 	width: 64px;
 	height: 64px;
 	background-position: -384px 0;
 }
 
-.Bottle.active-6 { // gold bee
+.Bottle.active-6 { /* gold bee */
 	width: 64px;
 	height: 64px;
 	background-position: -448px 0;
 }
 
-.Bottle.active-3 { // blue potion
+.Bottle.active-3 { /* blue potion */
 	width: 64px;
 	height: 64px;
 	background-position: 0 -64px;
 }
 
-.Bottle.active-4 { // green potion
+.Bottle.active-4 { /* green potion */
 	width: 64px;
 	height: 64px;
 	background-position: -64px -64px;
 }
 
-.Bottle.active-2 { // red potion
+.Bottle.active-2 { /* red potion */
 	width: 64px;
 	height: 64px;
 	background-position: -128px -64px;
 }
 
-.Bottle.active-5 { // bee
+.Bottle.active-5 { /* bee */
 	width: 64px;
 	height: 64px;
 	background-position: -64px -384px;
 }
 
-.Bottle.active-7 { // fairy
+.Bottle.active-7 { /* fairy */
 	width: 64px;
 	height: 64px;
 	background-position: 0 -384px;
