@@ -80,21 +80,15 @@ class West extends Region {
 	public function initCasual() {
 
 		$this->locations["Energy Tank, Gauntlet"]->setRequirements(function($location, $items) {
-			return $items->canEnterAndLeaveGauntlet()
-			    && $items->hasEnergyReserves(1)
-				&& ($items->canFlySM() || $items->has('SpeedBooster'));
+			return $items->canEnterAndLeaveGauntlet() && $items->hasEnergyReserves(1)
         });
 
         $this->locations["Missile (Crateria gauntlet right)"]->setRequirements(function($location, $items) {
-			return $items->canEnterAndLeaveGauntlet() && $items->canPassBombPassages()
-				&& $items->hasEnergyReserves(1)
-				&& ($items->canFlySM() || $items->has('SpeedBooster'));
+			return $items->canEnterAndLeaveGauntlet() && $items->canPassBombPassages() && $items->hasEnergyReserves(2)
 		});
 
         $this->locations["Missile (Crateria gauntlet left)"]->setRequirements(function($location, $items) {
-			return $items->canEnterAndLeaveGauntlet() && $items->canPassBombPassages()
-				&& $items->hasEnergyReserves(1)
-				&& ($items->canFlySM() || $items->has('SpeedBooster'));
+			return $items->canEnterAndLeaveGauntlet() && $items->canPassBombPassages() && $items->hasEnergyReserves(2)
 		});
         
         $this->can_enter = function($locations, $items) {

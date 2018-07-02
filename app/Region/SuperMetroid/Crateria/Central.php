@@ -100,7 +100,7 @@ class Central extends Region {
 		});
 
 		$this->locations["Bombs"]->setRequirements(function($location, $items) {
-			return $items->canPassBombPassages() && $items->has('Missile');
+			return $items->canPassBombPassages() && $items->canOpenRedDoors();
 		});
 
 		return $this;		

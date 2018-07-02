@@ -92,8 +92,12 @@ class Crocomire extends Region {
 	 * @return $this
 	 */
 	public function initCasual() {
-        
-        $this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
+		
+        $this->locations["Energy Tank, Crocomire"]->setRequirements(function($location, $items) {
+			return $items->hasEnergyReserves(1) || $items->has('SpaceJump') || $items->has('Grapple');
+        });
+
+		$this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
 			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && $items->has('SpeedBooster')));
         });
 
@@ -102,15 +106,15 @@ class Crocomire extends Region {
         });
 
         $this->locations["Missile (Grapple Beam)"]->setRequirements(function($location, $items) {
-			return $items->has('Morph') && ($items->canFlySM() || $items->has('SpeedBooster'));
+			return $items->has('Morph') && ($items->canFlySM() || ($items->has('SpeedBooster') && $items->canUsePowerBombs()));
         });
 
         $this->locations["Grapple Beam"]->setRequirements(function($location, $items) {
-			return $items->has('Morph') && ($items->canFlySM() || $items->has('SpeedBooster'));
+			return $items->has('Morph') && ($items->canFlySM() || ($items->has('SpeedBooster') && $items->canUsePowerBombs()));
         });
 
 		$this->locations["Power Bomb (Crocomire)"]->setRequirements(function($location, $items) {
-			return ($items->canFlySM() || $items->has('HiJump') || $items->has('Grapple') || $items->has('SpeedBooster'));
+			return $items->canFlySM() || $items->has('HiJump') || $items->has('Grapple');
 		});
 
         $this->can_enter = function($locations, $items) {
@@ -119,8 +123,7 @@ class Crocomire extends Region {
                 || $items->canAccessNorfairPortal())
                 && $items->has('Varia')
 				&& $items->has('Super')
-				&& (($items->canUsePowerBombs() && $items->has('SpeedBooster')) || $items->has('WaveBeam'))
-                && ((($items->canFlySM() || $items->has('HiJump')) && $items->has('Morph')) || $items->has('SpeedBooster'));
+				&& (($items->canUsePowerBombs() && $items->has('SpeedBooster')) || ($items->has('SpeedBooster') && $items->has('WaveBeam')) || ($items->has('Morph') && ($items->canFlySM() || $items->has('HiJump')) && $items->has('WaveBeam')));
         };
 
 		return $this;

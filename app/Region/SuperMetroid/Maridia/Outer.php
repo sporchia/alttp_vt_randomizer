@@ -88,8 +88,9 @@ class Outer extends Region {
 		});
 
         $this->can_enter = function($locations, $items) {
-            return $this->world->getRegion('West Norfair')->canEnter($locations, $items)
-                && $items->canUsePowerBombs()
+            return (($this->world->getRegion('West Norfair')->canEnter($locations, $items)
+				&& $items->canUsePowerBombs())
+				|| $items->canAccessMaridiaPortal()))				
                 && $items->has('Gravity');
         };
         

@@ -107,10 +107,16 @@ class East extends Region {
         });
 
         $this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('West Lower Norfair')->canEnter($locations, $items)
-				&& $items->canUsePowerbombs()
-				&& $items->canFlySM()
-				&& $items->has('Varia');
+			return $items->heatProof()
+				&&	(($this->world->getRegion('East Norfair')->canEnter($locations, $items)
+						&& $items->canUsePowerBombs()		
+						&& ($items->has('SpaceJump') && $items->has('Gravity')))
+					|| ($items->canAccessLowerNorfairPortal() 
+						&& $items->canDestroyBombWalls()
+						&& $items->has('Super')
+						&& $items->canUsePowerBombs()
+						&& ($items->canFlySM() || $items->has('SpeedBooster'))))
+				&& ($items->canFlySM() || $items->has('HiJump'));
         };
 
 		$this->can_complete = function($locations, $items) {
