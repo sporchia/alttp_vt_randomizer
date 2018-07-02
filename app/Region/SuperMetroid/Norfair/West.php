@@ -90,19 +90,23 @@ class West extends Region {
 	 */
 	public function initCasual() {
 		$this->locations["Ice Beam"]->setRequirements(function($location, $items) {
-			return $items->canPassBombPassages() && $items->has('Varia') && $items->has('SpeedBooster');
+			return $items->has('Super') && $items->canPassBombPassages() && $items->has('Varia') && $items->has('SpeedBooster');
         });
 
         $this->locations["Missile (below Ice Beam)"]->setRequirements(function($location, $items) {
-			return ($items->canUsePowerBombs() || $items->has('WaveBeam')) && $items->has('Varia') && $items->has('SpeedBooster');
+			return $items->has('Super') && $items->canUsePowerBombs() && $items->has('Varia') && $items->has('SpeedBooster');
+        });
+
+		$this->locations["Energy Tank (Hi-Jump Boots)"]->setRequirements(function($location, $items) {
+			return $items->canOpenRedDoors();
         });
 
         $this->locations["Hi-Jump Boots"]->setRequirements(function($location, $items) {
-			return $items->canPassBombPassages();
+			return $items->canOpenRedDoors() && $items->canPassBombPassages();
         });
 
         $this->locations["Missile (Hi-Jump Boots)"]->setRequirements(function($location, $items) {
-			return $items->canPassBombPassages();
+			return $items->canOpenRedDoors() && $items->has('Morph');
         });
 
         $this->can_enter = function($locations, $items) {

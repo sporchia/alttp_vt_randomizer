@@ -562,11 +562,10 @@ class ItemCollection extends Collection {
 		switch($this->world->getSMLogic())
 		{
 			case 'Casual':
-				return ($this->canFlySM() || $this->has('HiJump') || $this->has('SpeedBooster'))
+				return ($this->has('Morph') && ($this->canFlySM() || $this->has('SpeedBooster')))
 					&& ($this->canIbj()
 						|| ($this->canUsePowerBombs() && $this->has('PowerBomb', 2))
-						|| $this->has('ScrewAttack')
-						|| ($this->has('SpeedBooster') && $this->canUsePowerBombs() && $this->hasEnergyReserves(2)));
+						|| $this->has('ScrewAttack'));
 			case 'Tournament':
 			default:
 				return ($this->has('Morph') && ($this->has('Bombs') || $this->has('PowerBomb', 2)))
@@ -592,14 +591,28 @@ class ItemCollection extends Collection {
 
 	public function canAccessMaridiaPortal()
 	{
-		return $this->has('MoonPearl')
-		&& $this->has('RescueZelda')
-		&& $this->has('Flippers')
-		&& ($this->has('SpringBall') || $this->has('HiJump'))
-		&& $this->has('Morph')
-		&& ($this->has('DefeatAgahnim')
-		 || ($this->has('Hammer') && $this->canLiftRocks())
-		 || $this->canLiftDarkRocks());
+		switch($this->world->getSMLogic())
+		{
+			case 'Casual':
+				return $this->has('MoonPearl')
+					&& $this->has('RescueZelda')
+					&& $this->has('Flippers')
+					&& $this->has('Gravity')
+					&& $this->has('Morph')
+					&& ($this->has('DefeatAgahnim')
+						|| ($this->has('Hammer') && $this->canLiftRocks())
+						|| $this->canLiftDarkRocks());
+			case 'Tournament':
+			default:
+				return $this->has('MoonPearl')
+					&& $this->has('RescueZelda')
+					&& $this->has('Flippers')
+					&& ($this->has('SpringBall') || $this->has('HiJump') || $this->has('Gravity'))
+					&& $this->has('Morph')
+					&& ($this->has('DefeatAgahnim')
+						|| ($this->has('Hammer') && $this->canLiftRocks())
+						|| $this->canLiftDarkRocks());
+				}
 	}
 
 	public function canDefeatBotwoon()

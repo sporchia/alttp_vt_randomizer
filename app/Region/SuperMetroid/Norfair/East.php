@@ -115,37 +115,41 @@ class East extends Region {
 
         $this->locations["Reserve Tank, Norfair"]->setRequirements(function($location, $items) {
             return $items->has('Morph')
-                && $items->has('Super')
-                && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
+                && ($items->canFlySM() || ($items->has('Grapple') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
         });
 
         $this->locations["Missile (Norfair Reserve Tank)"]->setRequirements(function($location, $items) {
             return $items->has('Morph')
-                && $items->has('Super')
-                && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
+                && ($items->canFlySM() || ($items->has('Grapple') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
         });
 
         $this->locations["Missile (bubble Norfair green door)"]->setRequirements(function($location, $items) {
-            return $items->has('Super')
-                && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
+            return $items->canFlySM() || ($items->has('Grapple') && $items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam');
         });
-		
-	$this->locations["Wave Beam"]->setRequirements(function($location, $items) {
-            return ($items->has('Super') && $items->has('Morph') && ($items->has('Grapple') || $items->CanFlySM())
-        	&& $items->has('HiJump') || $items->has('IceBeam'));
+        
+        $this->locations["Missile (Speed Booster)"]->setRequirements(function($location, $items) {
+            return $items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam');
         });
-	/*
-	Adding in logic for the Wave Beam location.
-	Kept the Super requirement for Wave since Bubble Mountain is also Super-locked.
-	Made escaping Wave require Grapple/Space since people may be afraid of spikes.
-	*/
 
+        $this->locations["Speed Booster"]->setRequirements(function($location, $items) {
+            return $items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam');
+        });
+
+	    $this->locations["Wave Beam"]->setRequirements(function($location, $items) {
+            return $items->has('Morph') && ($items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
+        });
+
+        $this->locations["Missile (Wave Beam)"]->setRequirements(function($location, $items) {
+            return ($items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
+        });
+        
         $this->can_enter = function($locations, $items) {
             return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
                 || $items->canAccessNorfairPortal())
                 && $items->has('Varia')
-                && ($items->canFlySM() || $items->has('HiJump') || ($items->has('SpeedBooster') && $items->canUsePowerBombs()) || ($items->has('Varia') && ($items->has('IceBeam') || $items->has('SpeedBooster'))));
+                && $items->has('Super')
+                && ($items->canFlySM() || $items->has('HiJump') || $items->has('SpeedBooster'));
         };
         
 		return $this;
