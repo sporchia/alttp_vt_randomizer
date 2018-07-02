@@ -722,7 +722,7 @@ class Rom {
 				$byte = 0x20;
 		}
 
-		//$this->write(0x180033, pack('C', $byte));
+		$this->write(0x180033, pack('C', $byte));
 
 		return $this;
 	}

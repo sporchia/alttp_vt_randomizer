@@ -34,7 +34,8 @@ class Randomize extends Command {
 		. ' {--sprite= : sprite file to change links graphics [zspr format]}'
 		. ' {--no-rom : no not generate output rom}'
 		. ' {--no-music : mute all music}'
-		. ' {--menu-speed=normal : menu speed}';
+		. ' {--menu-speed=normal : menu speed}'
+		. ' {--morph=randomized : \'vanilla\' for vanilla Morph Ball location}';
 
 	/**
 	 * The console command description.
@@ -101,6 +102,7 @@ class Randomize extends Command {
 
 			
 			$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'), $this->option('sm-logic'));
+			$rand->setMorph($this->option('morph'));
 			$rand->makeSeed($this->option('seed'));
 
 			$rand->writeToRom($rom);

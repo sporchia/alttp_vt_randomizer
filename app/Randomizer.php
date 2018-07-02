@@ -69,6 +69,10 @@ class Randomizer {
 		$this->world->setPreCollectedItems($this->starting_equipment);
 	}
 
+	public function setMorph($string) {
+		$this->config['mode.morph'] = $string;
+	}
+
 	/**
 	 * Get the current RNG seed number
 	 *
