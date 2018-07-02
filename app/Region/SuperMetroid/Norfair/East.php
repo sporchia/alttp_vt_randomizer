@@ -67,39 +67,36 @@ class East extends Region {
         });
 
         $this->locations["Reserve Tank, Norfair"]->setRequirements(function($location, $items) {
-            return $items->has('Morph')
-                && $items->has('Super')
-                && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
+            return $items->has('Morph') && $items->has('Super');
         });
 
         $this->locations["Missile (Norfair Reserve Tank)"]->setRequirements(function($location, $items) {
-            return $items->has('Morph')
-		&& $items->has('Super')
-                && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
+            return $items->has('Morph') && $items->has('Super');
         });
 
         $this->locations["Missile (bubble Norfair green door)"]->setRequirements(function($location, $items) {
-            return $items->has('Super')
-                && ($items->canFlySM() || $items->has('Grapple') || $items->has('HiJump') || $items->has('IceBeam'));
+            return $items->has('Super');
         });
-		
-	$this->locations["Wave Beam"]->setRequirements(function($location, $items) {
-            return $items->has('Super')
-		&& ($items->has('Morph') || $items->has('Grapple'))
-		&& ($items->canFlySM() || $items->has('HiJump') || $items->has('IceBeam'));
+
+        $this->locations["Missile (Speed Booster)"]->setRequirements(function($location, $items) {
+            return $items->has('Super');
         });
-	/*
-	Adding in logic for the Wave Beam location.
-	Kept the Super requirement for Wave since Bubble Mountain is also Super-locked.
-	Escaping Wave in tournament should only require morph or grapple + GGG/Wave
-	*/
+
+        $this->locations["Speed Booster"]->setRequirements(function($location, $items) {
+            return $items->has('Super');
+        });
+
+	    $this->locations["Wave Beam"]->setRequirements(function($location, $items) {
+            return $items->canOpenRedDoors() && ($items->has('Morph') || $items->has('Grapple') || ($items->has('HiJump') && $items->heatProof()) || $items->has('SpaceJump'));
+        });
 
         $this->can_enter = function($locations, $items) {
             return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
                 || $items->canAccessNorfairPortal())
                 && $items->canHellRun()
-                && ($items->canFlySM() || $items->has('HiJump') || ($items->has('SpeedBooster') && $items->canUsePowerBombs()) || ($items->has('Varia') && ($items->has('IceBeam') || $items->has('SpeedBooster'))));
+                && ($items->has('Super') && ($items->canFlySM() || $items->has('HiJump') || $items->has('SpringBall') || ($items->has('Varia') && ($items->has('IceBeam') || $items->has('SpeedBooster'))))
+                 || ($items->has('SpeedBooster') && $items->canUsePowerBombs()));
         };
         
 		return $this;

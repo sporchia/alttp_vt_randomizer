@@ -68,19 +68,17 @@ class Green extends Region {
 		});
 
         $this->locations["Super Missile (green Brinstar top)"]->setRequirements(function($location, $items) {
-            return ($items->has('SpeedBooster') || $items->canDestroyBombWalls())
-                && $items->canOpenRedDoors()
+            return $items->canOpenRedDoors()
                 && ($items->has('Morph') || $items->has('SpeedBooster'));
 		});
 
         $this->locations["Reserve Tank, Brinstar"]->setRequirements(function($location, $items) {
-            return ($items->has('SpeedBooster') || $items->canDestroyBombWalls())
-                && $items->canOpenRedDoors()
+            return $items->canOpenRedDoors()
                 && ($items->has('Morph') || $items->has('SpeedBooster'));
 		});
 
         $this->locations["Missile (green Brinstar behind missile)"]->setRequirements(function($location, $items) {
-			return $items->canPassBombPassages() && $items->canOpenRedDoors();
+			return ($items->canPassBombPassages() || ($items->has('Morph') && $items->has('ScrewAttack'))) && $items->canOpenRedDoors();
 		});
 
         $this->locations["Missile (green Brinstar behind reserve tank)"]->setRequirements(function($location, $items) {

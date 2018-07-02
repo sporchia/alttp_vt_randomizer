@@ -72,21 +72,21 @@ class Pink extends Region {
 		});
 
         $this->locations["Missile (green Brinstar pipe)"]->setRequirements(function($location, $items) {
-			return $items->has('Morph') && ($items->has('PowerBomb') || $items->has('Super'));
+			return $items->has('Morph') && ($items->has('PowerBomb') || $items->has('Super') || $items->canAccessNorfairPortal());
 		});
 
         $this->locations["Energy Tank, Waterway"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster');
+			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster') && $items->hasEnergyReserves(1);
 		});
 
         $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && ($items->has('WaveBeam') || ($items->has('Super') && $items->has('HiJump')));
+			return $items->canUsePowerBombs() && ($items->has('WaveBeam') || $items->has('Super'));
 		});
 
         $this->can_enter = function($locations, $items) {
 			return ($items->canOpenRedDoors() && ($items->canDestroyBombWalls() || $items->has('SpeedBooster')))
 				|| $items->canUsePowerBombs()
-				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->has('IceBeam') || $items->has('HiJump') || $items->canFlySM()));                
+				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->canOpenRedDoors() || $items->has('Wave')) && ($items->has('IceBeam') || $items->has('HiJump') || $items->has('SpringBall') || $items->canFlySM()));
 		};
 
 		return $this;

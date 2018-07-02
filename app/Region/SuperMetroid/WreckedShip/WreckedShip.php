@@ -64,15 +64,15 @@ class WreckedShip extends Region {
 	 */
 	public function initTournament() {
 		$this->locations["Reserve Tank, Wrecked Ship"]->setRequirements(function($location, $items) {
-			return $items->has('SpeedBooster') && ($items->has('Varia') || $items->hasEnergyReserves(3));
+			return $items->has('SpeedBooster') && ($items->has('Varia') || $items->hasEnergyReserves(2));
 		});
 
         $this->locations["Missile (Gravity Suit)"]->setRequirements(function($location, $items) {
-			return $items->has('Varia') || $items->hasEnergyReserves(2);
+			return $items->has('Varia') || $items->hasEnergyReserves(1);
 		});
 
         $this->locations["Gravity Suit"]->setRequirements(function($location, $items) {
-			return $items->has('Varia') || $items->hasEnergyReserves(2);
+			return $items->has('Varia') || $items->hasEnergyReserves(1);
 		});
 
         $this->locations["Energy Tank, Wrecked Ship"]->setRequirements(function($location, $items) {
@@ -86,7 +86,7 @@ class WreckedShip extends Region {
 		});
 
         $this->can_enter = function($locations, $items) {
-			return $items->canUsePowerBombs() && $items->has('Super');
+			return $items->has('Super') && ($items->canUsePowerBombs() || ($items->canAccessMaridiaPortal() && $items->has('HiJump') && $items->canPassBombPassages()));
 		};
 		
 		$this->can_complete = function($locations, $items) {

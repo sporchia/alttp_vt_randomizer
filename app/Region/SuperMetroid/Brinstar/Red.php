@@ -59,8 +59,8 @@ class Red extends Region {
                 && $items->canOpenRedDoors()
                 && ($items->has('Grapple')
                  || $items->has('SpaceJump')
-                 || ($items->has('Varia') && $items->hasEnergyReserves(3) && $items->canIbj())
-                 || ($items->hasEnergyReserves(6) && $items->canIbj()));
+                 || ($items->has('Varia') && $items->hasEnergyReserves(3) && ($items->canIbj() || ($items->has('HiJump') && $items->has('SpeedBooster')) || $items->has('SpringBall')))
+                 || ($items->hasEnergyReserves(5) && ($items->canIbj() || ($items->has('HiJump') && $items->has('SpeedBooster')) || $items->has('SpringBall'))));
 		});
 
         $this->locations["Power Bomb (red Brinstar sidehopper room)"]->setRequirements(function($location, $items) {
@@ -82,7 +82,7 @@ class Red extends Region {
         $this->can_enter = function($locations, $items) {
             return (($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
-                || ($items->canAccessNorfairPortal() && ($items->has('IceBeam') || $items->has('HiJump') || $items->canFlySM()));
+                || ($items->canAccessNorfairPortal() && ($items->has('IceBeam') || $items->has('SpringBall') || $items->has('HiJump') || $items->canFlySM()));
 		};
 
 		return $this;

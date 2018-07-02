@@ -57,7 +57,7 @@ class Crocomire extends Region {
 	public function initTournament() {
         
         $this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
-			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && $items->has('SpeedBooster'))) && $items->canHellRun();
+			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && ($items->has('SpeedBooster') || $items->has('SpringBall')))) && $items->canHellRun();
         });
 
 		$this->locations["Missile (below Crocomire)"]->setRequirements(function($location, $items) {
@@ -65,20 +65,21 @@ class Crocomire extends Region {
         });
 
         $this->locations["Missile (Grapple Beam)"]->setRequirements(function($location, $items) {
-			return ($items->canFlySM() || $items->has('SpeedBooster') || $items->has('Grapple')) && $items->has('Morph');
+			return $items->has('SpeedBooster') || ($items->has('Morph') && ($items->canFlySM() || $items->has('Grapple')));
         });
 
         $this->locations["Grapple Beam"]->setRequirements(function($location, $items) {
-			return ($items->canFlySM() || $items->has('HiJump') || $items->has('Grapple') || $items->has('Morph'));
+			return ($items->has('SpaceJump') || $items->has('Morph') || $items->has('Grapple') || ($items->has('HiJump') && $items->has('SpeedBooster')));
         });
 
         $this->can_enter = function($locations, $items) {
             return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
                 || $items->canAccessNorfairPortal())
-                && ($items->hasEnergyReserves(3) || $items->heatProof())
                 && $items->has('Super')
-                && ((($items->canFlySM() || $items->has('HiJump')) && $items->has('Morph')) || $items->has('SpeedBooster'));
+                && ($items->hasEnergyReserves(2) && $items->has('SpeedBooster') || $items->canHellRun())
+				&& (($items->canFlySM() || $items->has('HiJump') || $items->has('SpringBall') || ($items->has('Varia') && $items->has('IceBeam'))) || $items->has('SpeedBooster'))
+				&& ($items->canPassBombPassages() || $items->has('SpeedBooster') || ($items->heatProof() && $items->has('Morph')));
         };
         
 		return $this;

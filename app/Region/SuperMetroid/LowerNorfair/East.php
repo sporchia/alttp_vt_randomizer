@@ -70,25 +70,24 @@ class East extends Region {
 			return $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
         });
 
-        $this->can_enter = function($locations, $items) {
-            return ($this->world->getRegion('West Lower Norfair')->canEnter($locations, $items)
-                && ($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
-                && ($items->canFlySM() || $items->has('HiJump') || ($items->has('IceBeam') && $items->has('ChargeBeam')))
-				&& $items->canPassBombPassages()
-				&& (($items->heatProof() && ($items->has('HiJump') || $items->has('Gravity')))
-					|| ($items->heatProof()
-					&& ($items->canIbj() 
-						|| ($items->has('SpaceJump') && ($items->has('ScrewAttack') || $items->canPassBombPassages() || $items->canUsePowerbombs())) 
-						|| ($items->has('SpringBall') && $items->canUsePowerBombs()) 
-						|| $items->has('SpeedBooster')))));
-        };
+		$this->can_enter = function($locations, $items) {
+			return $items->heatProof()
+				&&	(($this->world->getRegion('East Norfair')->canEnter($locations, $items)
+						&& $items->canUsePowerBombs()		
+						&& ($items->has('HiJump') || $items->has('Gravity')))
+					|| ($items->canAccessLowerNorfairPortal() 
+						&& $items->canDestroyBombWalls() 
+						&& ($items->canFlySM() || $items->has('SpringBall') || $items->has('SpeedBooster'))))
+				&& ($items->canFlySM() || $items->has('HiJump') || $items->has('SpringBall') || ($items->has('IceBeam') && $items->has('ChargeBeam')))
+				&& ($items->canPassBombPassages() || ($items->has('ScrewAttack') && $items->has('SpaceJump')));
+		};
 
 		$this->can_complete = function($locations, $items) {
 			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
 		};
 
-		$this->prize_location->setRequirements($this->can_complete);
-		
+		$this->prize_location->setRequirements($this->can_complete);	
+
 		return $this;
 	}
 

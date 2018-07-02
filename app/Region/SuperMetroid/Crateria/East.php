@@ -51,9 +51,19 @@ class East extends Region {
 	 * @return $this
 	 */
 	public function initTournament() {
+		
+		$this->locations["Missile (outside Wrecked Ship top)"]->setRequirements(function($location, $items) {
+			return $items->has('Super') && $items->canPassBombPassages();				
+		});
+
+		$this->locations["Missile (outside Wrecked Ship middle)"]->setRequirements(function($location, $items) {
+			return $items->has('Super') && $items->canPassBombPassages();				
+		});
 
         $this->can_enter = function($locations, $items) {
-			return $items->canUsePowerBombs() && $items->has('Super');
+			return ($items->canUsePowerBombs() && $items->has('Super'))
+				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('IceBeam') || $items->has('SpringBall') || $items->has('HiJump') || $items->canFlySM()))
+				|| ($items->canAccessMaridiaPortal() && $items->has('HiJump') && $items->has('Super'));
 		};
 
 		return $this;

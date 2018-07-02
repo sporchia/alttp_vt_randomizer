@@ -499,8 +499,8 @@ class ItemCollection extends Collection {
 			default:
 				return $this->canUsePowerBombs()
 					&& $this->has('Super')
-					&& ($this->has('Gravity')
-					|| ($this->has('HiJump') && $this->has('IceBeam') && $this->has('Grapple')))
+					&& ($this->has('ChargeBeam') || ($this->has('Super') && $this->has('Missile')))
+					&& ($this->has('Gravity') || ($this->has('HiJump') && $this->has('IceBeam') && $this->has('Grapple')))
 					&& ($this->has('IceBeam') || ($this->has('SpeedBooster') && $this->has('Gravity')));
 		}
 	}
@@ -559,11 +559,20 @@ class ItemCollection extends Collection {
 
 	public function canEnterAndLeaveGauntlet()
 	{
-		return ($this->canFlySM() || $this->has('HiJump') || $this->has('SpeedBooster'))
-			&& ($this->canIbj()
-				|| ($this->canUsePowerBombs() && $this->has('PowerBomb', 2))
-				|| $this->has('ScrewAttack')
-				|| ($this->has('SpeedBooster') && $this->canUsePowerBombs() && $this->hasEnergyReserves(2)));
+		switch($this->world->getSMLogic())
+		{
+			case 'Casual':
+				return ($this->canFlySM() || $this->has('HiJump') || $this->has('SpeedBooster'))
+					&& ($this->canIbj()
+						|| ($this->canUsePowerBombs() && $this->has('PowerBomb', 2))
+						|| $this->has('ScrewAttack')
+						|| ($this->has('SpeedBooster') && $this->canUsePowerBombs() && $this->hasEnergyReserves(2)));
+			case 'Tournament':
+			default:
+				return ($this->has('Morph') && ($this->has('Bombs') || $this->has('PowerBomb', 2)))
+					 || $this->has('ScrewAttack')
+					 || ($this->has('SpeedBooster') && $this->canUsePowerBombs() && $this->hasEnergyReserves(2));
+		}		
 	}
 
 	public function canPassBombPassages()
@@ -586,12 +595,11 @@ class ItemCollection extends Collection {
 		return $this->has('MoonPearl')
 		&& $this->has('RescueZelda')
 		&& $this->has('Flippers')
-		&& ((($this->has('DefeatAgahnim')
-			|| ($this->has('Hammer') && $this->canLiftRocks() && $this->has('MoonPearl'))
-			|| ($this->canLiftDarkRocks() && $this->has('Flippers') && $this->has('MoonPearl'))) && ($this->has('Hammer')
-			|| ($this->has('Hookshot') && ($this->has('Flippers') || $this->canLiftRocks()))))
-			|| ($this->has('Hammer') && $this->canLiftRocks())
-			|| $this->canLiftDarkRocks());
+		&& ($this->has('SpringBall') || $this->has('HiJump'))
+		&& $this->has('Morph')
+		&& ($this->has('DefeatAgahnim')
+		 || ($this->has('Hammer') && $this->canLiftRocks())
+		 || $this->canLiftDarkRocks());
 	}
 
 	public function canDefeatBotwoon()

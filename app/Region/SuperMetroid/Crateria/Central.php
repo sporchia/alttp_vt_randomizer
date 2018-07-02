@@ -70,7 +70,7 @@ class Central extends Region {
 		});
 
 		$this->locations["Bombs"]->setRequirements(function($location, $items) {
-			return $items->has('Morph') && $items->has('Missile');
+			return $items->has('Morph') && $items->canOpenRedDoors();
 		});
 
 		return $this;

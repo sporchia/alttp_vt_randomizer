@@ -119,7 +119,7 @@ class South extends Region {
 		});
 
 		$this->locations["Checkerboard Cave"]->setRequirements(function($locations, $items) {
-			return $items->canFly() && $items->canLiftDarkRocks() && $items->has('MagicMirror');
+			return (($items->canFly() && $items->canLiftDarkRocks()) || $items->canAccessMiseryMirePortal()) && $items->has('MagicMirror');
 		});
 
 		$this->locations["Library"]->setRequirements(function($locations, $items) {
