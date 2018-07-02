@@ -121,7 +121,7 @@ class Inner extends Region {
         $this->locations["Spring Ball"]->setRequirements(function($location, $items) {
 			return $items->has('Grapple') 
 				&& $items->canUsePowerBombs()
-				&& ($items->has('Gravity') && ($items->canFlySM() || $items->has('HiJump'))
+				&& (($items->has('Gravity') && ($items->canFlySM() || $items->has('HiJump')))
 				|| ($items->has('HiJump') && $items->has('SpringBall') && $items->has('SpaceJump')));
 		});
 
@@ -216,7 +216,7 @@ class Inner extends Region {
             return (($this->world->getRegion('West Norfair')->canEnter($locations, $items)
 				&& $items->canUsePowerBombs()
 				&& ($items->canFlySM() || $items->has('SpeedBooster') || $items->has('Grapple')))
-				|| $items->canAccessMaridiaPortal()))
+				|| $items->canAccessMaridiaPortal())
                 && $items->has('Gravity');
         };
 		
