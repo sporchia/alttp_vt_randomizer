@@ -1,5 +1,4 @@
 
-window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
 /**
@@ -39,12 +38,6 @@ window.axios = require('axios');
 //    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 //}
 
-//require('./bootstrap-toggle');
-//require('bootstrap-select');
-require('bootstrap-slider');
-//require('select2');
-window.SparkMD5 = require('./spark-md5');
 window.localforage = require('localforage');
 window.jszip = require('jszip');
-window.FileSaver = require('file-saver');
 window.ROM = require('./rom.js');

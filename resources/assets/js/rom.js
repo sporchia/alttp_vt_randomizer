@@ -1,4 +1,4 @@
-const SparkMD5 = require('./spark-md5');
+const SparkMD5 = require('spark-md5');
 const FileSaver = require('file-saver');
 
 var ROM = (function(blob, loaded_callback) {

@@ -86,6 +86,42 @@ export default {
 					console.log(error);
 				})
 			}
+			if (window.s3_prefix) {
+				return new Promise(function(resolve, reject) {
+					this.gameLoaded = false;
+					// try to load from S3.
+					axios.get(window.s3_prefix + '/' + this.hash + '.json').then(response => {
+						this.rom.parsePatch(response.data).then(function() {
+							console.log('loaded from s3 :)');
+							this.gameLoaded = true;
+							EventBus.$emit('gameLoaded', this.rom);
+							resolve({rom: this.rom, patch: response.data.patch});
+						}.bind(this));
+					}).catch(function() {
+						axios.post(`/hash/` + this.hash).then(response => {
+							this.rom.parsePatch(response.data).then(function() {
+								if (response.data.patch.current_rom_hash && response.data.patch.current_rom_hash != this.current_rom_hash) {
+									// The base rom has been updated.
+								}
+								this.gameLoaded = true;
+								EventBus.$emit('gameLoaded', this.rom);
+								resolve({rom: this.rom, patch: response.data.patch});
+							}.bind(this));
+						}).catch((error) => {
+							if (error.response) {
+								switch (error.response.status) {
+									case 429:
+										this.error = 'While we apprecate your want to generate a lot of games, Other people would like'
+											+ ' to as well. Please come back later if you would like to generate more.';
+										break;
+									default:
+										this.error = 'Failed Creating Seed :(';
+								}
+							}
+						});
+					}.bind(this));
+				}.bind(this));
+			}
 			return new Promise(function(resolve, reject) {
 				this.gameLoaded = false;
 				axios.post(`/hash/` + this.hash).then(response => {

@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Options - ';
-@endphp
+@extends('layouts.default', ['title' => 'Options - '])
 
 @section('content')
 <h1>Options</h1>

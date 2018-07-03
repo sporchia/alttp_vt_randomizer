@@ -10,11 +10,16 @@ use HTMLPurifier;
 use HTMLPurifier_Config;
 use Illuminate\Http\Request;
 use Markdown;
+use Storage;
 
 class ItemRandomizerController extends Controller {
 	public function generateSeed(Request $request, $seed_id = null) {
 		try {
-			return json_encode($this->prepSeed($request, $seed_id, true));
+			$payload = $this->prepSeed($request, $seed_id, true);
+			$save_data = json_encode(array_except($payload, ['current_rom_hash']));
+			Storage::put($payload['hash'] . '.json', $save_data);
+			cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
+			return json_encode($payload);
 		} catch (Exception $e) {
 			return response($e->getMessage(), 409);
 		}
@@ -175,6 +180,7 @@ class ItemRandomizerController extends Controller {
 			'patch' => patch_merge_minify($patch),
 			'spoiler' => $spoiler,
 			'hash' => $hash,
+			'generated' => $rand->getSeedRecord()->created_at->toIso8601String(),
 			'current_rom_hash' => Rom::HASH,
 		];
 	}

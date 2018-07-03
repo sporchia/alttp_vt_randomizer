@@ -175,6 +175,7 @@ export default {
 				items: [],
 				locations: [],
 			},
+			itemArrayLookup: {},
 		};
 	},
 	created () {
@@ -188,6 +189,9 @@ export default {
 		});
 		axios.get(`/customizer/settings`).then(response => {
 			this.settings.items = response.data.items;
+			this.settings.items.forEach((item, i) => {
+				this.itemArrayLookup[item.value] = i;
+			});
 			this.settings.locations = response.data.locations;
 			this.settings.prizes = response.data.prizes;
 			this.settings.bottles = response.data.bottles;
@@ -258,34 +262,50 @@ export default {
 				});
 			}.bind(this));
 		},
-		incrementItem(item) {
-			for (var i = 0; i <= this.settings.items.length; ++i) {
-				if (this.settings.items[i].value == item) {
-					this.settings.items[i].placed++;
-					if (this.settings.items[i].count > 0) {
-						this.settings.items[i].count--;
-					} else {
-						this.settings.items[i].neg_count = this.settings.items[i].neg_count ? this.settings.items[i].neg_count - 1 : -1;
-					}
-					break;
-				}
+		incrementItem(itemName) {
+			var item = this.settings.items[this.itemArrayLookup[itemName]];
+			item.placed++;
+			if (itemName.indexOf('Bottle') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['BottleWithRandom']];
+			}
+			if (itemName.indexOf('Shield') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['ProgressiveShield']];
+			}
+			if (itemName.indexOf('Sword') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['ProgressiveSword']];
+			}
+			if (itemName.indexOf('Mail') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['ProgressiveArmor']];
+			}
+			if (item.count > 0) {
+				item.count--;
+			} else {
+				item.neg_count = item.neg_count ? item.neg_count - 1 : -1;
 			}
 		},
-		decrementItem(item) {
-			for (var i = 0; i <= this.settings.items.length; ++i) {
-				if (this.settings.items[i].value == item) {
-					this.settings.items[i].placed--;
-					if (this.settings.items[i].neg_count < 0) {
-						this.settings.items[i].neg_count++;
-					} else {
-						this.settings.items[i].count++;
-					}
-					break;
-				}
+		decrementItem(itemName) {
+			var item = this.settings.items[this.itemArrayLookup[itemName]];
+			item.placed--;
+			if (itemName.indexOf('Bottle') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['BottleWithRandom']];
+			}
+			if (itemName.indexOf('Shield') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['ProgressiveShield']];
+			}
+			if (itemName.indexOf('Sword') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['ProgressiveSword']];
+			}
+			if (itemName.indexOf('Mail') !== -1) {
+				item = this.settings.items[this.itemArrayLookup['ProgressiveArmor']];
+			}
+			if (item.neg_count < 0) {
+				item.neg_count++;
+			} else {
+				item.count++;
 			}
 		},
 		saveRom() {
-			return this.rom.save(this.rom.downloadFilename()+ '.sfc');
+			return this.rom.save(this.rom.downloadFilename() + '.sfc');
 		},
 		saveSpoiler() {
 			return FileSaver.saveAs(new Blob([JSON.stringify(this.rom.spoiler, null, 4)]), this.rom.downloadFilename() + '.txt');

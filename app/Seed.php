@@ -15,7 +15,7 @@ class Seed extends Model {
 			if ($seed->stored_patch) {
 				$sha1 = sha1($seed->stored_patch);
 				$patch = Patch::firstOrCreate([
-					'sha1' => $sha1
+					'sha1' => $sha1,
 				]);
 				$patch->patch = $seed->stored_patch;
 				$patch->save();

@@ -81,22 +81,19 @@ Route::get('h/{hash}', function(Request $request, $hash) {
 });
 
 Route::any('hash/{hash}', function(Request $request, $hash) {
-	$seed = ALttP\Seed::where('hash', $hash)->first();
-	if ($seed) {
-		$spoiler = json_decode($seed->spoiler, true);
-		$return_spoiler = ($spoiler['meta']['tournament'] ?? false)
-			? array_except(array_only($spoiler, ['meta']), ['meta.seed'])
-			: $spoiler;
-		return json_encode([
-			'logic' => $seed->logic,
-			'difficulty' => $seed->rules,
-			'patch' => json_decode($seed->patch),
-			'spoiler' => $return_spoiler,
-			'hash' => $seed->hash,
-			'generated' => $seed->created_at->diffForHumans(),
-		]);
+	$cache_hash = 'hash.' . $hash;
+	$payload = cache($cache_hash);
+	if (!$payload) {
+		try {
+			cache([$cache_hash => Storage::get($hash . '.json')], now()->addDays(7));
+			return cache($cache_hash);
+		} catch (\Exception $e) {
+			logger()->error($e);
+		}
+		abort(404);
 	}
-	abort(404);
+
+	return $payload;
 });
 
 Route::get('daily', function(Request $request) {

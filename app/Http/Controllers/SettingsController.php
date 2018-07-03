@@ -137,7 +137,7 @@ class SettingsController extends Controller {
 				})),
 				'items' => array_merge([
 						['value' => 'auto_fill', 'name' => 'Random', 'placed' => 0],
-						['value' => 'Bottle', 'name' => 'Bottle (Random)', 'count' => 4, 'placed' => 0],
+						['value' => 'BottleWithRandom', 'name' => 'Bottle (Random)', 'count' => 4, 'placed' => 0],
 					],
 					$items->filter(function($item) {
 					return !$item instanceof Item\Pendant

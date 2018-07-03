@@ -11,7 +11,7 @@
 		<div v-if="rom.seed">Seed: <a :href="permalink">{{ rom.seed }}</a></div>
 		<div v-if="rom.special">Special: {{ rom.special }}</div>
 		<div v-if="rom.notes">Notes: {{ rom.notes }}</div>
-		<div v-if="rom.generated">Created: {{ rom.generated }}</div>
+		<div v-if="rom.generated">Created: <timeago :since="rom.generated" :auto-update="60"></timeago></div>
 	</div>
 </template>
 

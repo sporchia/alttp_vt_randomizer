@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import orderBy from 'lodash.orderby';
+
 export default {
 	props: [
 		'items',
@@ -51,7 +53,7 @@ export default {
 			return new RegExp(vm.search, 'i');
 		},
 		orderedItems: function () {
-			return _.orderBy(this.items, 'name');
+			return orderBy(this.items, 'name');
 		},
 		placedItemCount: (vm) => {
 			if (!vm.items.length) {

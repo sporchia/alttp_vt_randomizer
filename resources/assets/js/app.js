@@ -15,11 +15,13 @@ window.Vue = require('vue');
 window.Multiselect = require('vue-multiselect');
 window.path = require('path');
 
-import VTooltip from 'v-tooltip'
-import ToggleButton from 'vue-js-toggle-button'
+import VTooltip from 'v-tooltip';
+import ToggleButton from 'vue-js-toggle-button';
+import VueTimeago from 'vue-timeago';
 
 Vue.use(VTooltip);
 Vue.use(ToggleButton);
+Vue.use(VueTimeago);
 Vue.component('vt-rom-info', require('./components/VTRomInfo.vue'));
 Vue.component('vt-rom-loader', require('./components/VTRomLoader.vue'));
 Vue.component('vt-rom-settings', require('./components/VTRomSettings.vue'));

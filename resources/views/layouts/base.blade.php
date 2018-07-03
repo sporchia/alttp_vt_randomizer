@@ -25,6 +25,7 @@
 			console.log(arguments);
 		};
 	@endif
+	var s3_prefix = "{{ env('AWS_URL') }}";
 	</script>
 	@if (App::environment() == 'production' || env('AD_TEST'))
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

@@ -43,6 +43,7 @@
 <script>
 import VTSelect from '../VTSelect.vue';
 import EventBus from '../../core/event-bus';
+import orderBy from 'lodash.orderby';
 
 export default {
 	components: {
@@ -83,7 +84,7 @@ export default {
 			return new RegExp(vm.search, 'i');
 		},
 		orderedItems: function () {
-			return _.orderBy(this.items, 'name');
+			return orderBy(this.items, 'name');
 		},
 	},
 };
