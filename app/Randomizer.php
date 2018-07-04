@@ -957,6 +957,8 @@ class Randomizer {
 			"Yeah, baby, she's got it",
 			"Venus, I'm your fire",
 			"Venus, At your desire",
+			"Venus Love Chain",
+			"Venus Crescent Beam",
 		])));
 
 		return $this;
