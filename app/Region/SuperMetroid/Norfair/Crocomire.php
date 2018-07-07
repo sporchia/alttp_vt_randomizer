@@ -57,7 +57,7 @@ class Crocomire extends Region {
 	public function initTournament() {
         
         $this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
-			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && ($items->has('SpeedBooster') || $items->has('SpringBall')))) && $items->canHellRun();
+			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && ($items->has('SpeedBooster') || $items->canSpringBallJump()))) && $items->canHellRun();
         });
 
 		$this->locations["Missile (below Crocomire)"]->setRequirements(function($location, $items) {
@@ -78,7 +78,7 @@ class Crocomire extends Region {
                 || $items->canAccessNorfairPortal())
                 && $items->has('Super')
                 && ($items->hasEnergyReserves(2) && $items->has('SpeedBooster') || $items->canHellRun())
-				&& (($items->canFlySM() || $items->has('HiJump') || $items->has('SpringBall') || ($items->has('Varia') && $items->has('IceBeam'))) || $items->has('SpeedBooster'))
+				&& (($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Varia') && $items->has('IceBeam'))) || $items->has('SpeedBooster'))
 				&& ($items->canPassBombPassages() || $items->has('SpeedBooster') || ($items->heatProof() && $items->has('Morph')));
         };
         

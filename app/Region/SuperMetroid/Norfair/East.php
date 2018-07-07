@@ -95,7 +95,7 @@ class East extends Region {
                 && ($items->has('Super') && $items->has('Morph')))
                 || $items->canAccessNorfairPortal())
                 && $items->canHellRun()
-                && ($items->has('Super') && ($items->canFlySM() || $items->has('HiJump') || $items->has('SpringBall') || ($items->has('Varia') && ($items->has('IceBeam') || $items->has('SpeedBooster'))))
+                && ($items->has('Super') && ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Varia') && ($items->has('IceBeam') || $items->has('SpeedBooster'))))
                  || ($items->has('SpeedBooster') && $items->canUsePowerBombs()));
         };
         

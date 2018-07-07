@@ -56,7 +56,7 @@ class West extends Region {
 				&& $items->heatProof()
 				&& ($items->has('HiJump') || $items->has('Gravity') 
 					|| ($items->canAccessLowerNorfairPortal() &&
-						($items->canFlySM() || $items->has('SpringBall') || $items->has('SpeedBooster'))));
+						($items->canFlySM() || $items->canSpringBallJump() || $items->has('SpeedBooster'))));
         });
 
         $this->locations["Super Missile (Gold Torizo)"]->setRequirements(function($location, $items) {
