@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded">
-					<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}"><h3 class="card-title">Game Details</h3></div>
+					<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}"><h3 class="card-title">Game Details<span v-if="rom.name">: {{rom.name}}</span></h3></div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md mb-3">
@@ -103,7 +103,7 @@
 				</div>
 			</tab>
 			<tab name="Settings">
-				<settings></settings>
+				<settings :context="context"></settings>
 			</tab>
 			<tab name="Starting Equipment">
 				<equipment-select></equipment-select>
@@ -175,7 +175,9 @@ export default {
 				items: [],
 				locations: [],
 			},
+			context: {},
 			itemArrayLookup: {},
+			locationPlacement: {},
 		};
 	},
 	created () {
@@ -233,12 +235,33 @@ export default {
 				this.gameLoaded = false;
 				axios.post(this.endpoint, {
 					logic: this.choice.logic.value,
-					difficulty: this.choice.difficulty.value,
+					difficulty: 'custom',
 					variation: this.choice.variation.value,
 					mode: this.choice.state.value,
 					goal: this.choice.goal.value,
 					weapons: this.choice.weapons.value,
 					tournament: this.choice.tournament,
+					name: this.choice.name,
+					notes: this.choice.notes,
+					l: this.locationPlacement,
+					data: {
+						alttp: {
+							custom: {
+								...this.context,
+								rom: {
+									HardMode: this.choice.difficulty.value,
+									logicMode: this.choice.romLogic.value,
+								},
+								item: {
+									count: this.settings.items.reduce((map, obj) => {
+										if (obj.value == 'auto_fill') return map;
+										map[obj.value] = obj.count;
+										return map;
+									}, {}),
+								}
+							},
+						},
+					},
 				}).then(response => {
 					this.rom.parsePatch(response.data).then(function() {
 						if (response.data.patch && response.data.patch.current_rom_hash && response.data.patch.current_rom_hash != this.current_rom_hash) {
@@ -262,7 +285,12 @@ export default {
 				});
 			}.bind(this));
 		},
-		incrementItem(itemName) {
+		incrementItem(itemName, sid) {
+			if (itemName === 'auto_fill') {
+				delete(this.locationPlacement[sid]);
+			} else {
+				this.locationPlacement[sid] = itemName;
+			}
 			var item = this.settings.items[this.itemArrayLookup[itemName]];
 			item.placed++;
 			if (itemName.indexOf('Bottle') !== -1) {

@@ -42,6 +42,7 @@ class NorthEast extends Region {
 			// Single entrance caves with no items in them ;)
 			new Shop\TakeAny("East Dark World Hint",             0x83, 0xC1, 0x0112, 0x69, $this, [0xDBBDB => [0x58]]),
 			new Shop\TakeAny("Palace of Darkness Hint",          0x83, 0xC1, 0x010F, 0x68, $this, [0xDBBDA => [0x60]]),
+			// @TODO: are we missing a cave?
 		]);
 
 		$this->shops["Dark World Potion Shop"]->clearInventory()
@@ -83,6 +84,20 @@ class NorthEast extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->shops["Dark World Potion Shop"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& ($items->canLiftRocks() || $items->has('Hammer'));
+		});
+
+		// @TODO: do we want to allow super bunny item shopping
+		$this->shops["East Dark World Hint"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->shops["Palace of Darkness Hint"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
 		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->canLiftRocks();
 		});

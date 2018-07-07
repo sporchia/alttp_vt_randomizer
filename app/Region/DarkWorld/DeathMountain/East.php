@@ -34,9 +34,7 @@ class East extends Region {
 		]);
 
 		$this->shops = new ShopCollection([
-			new Shop("Dark World Death Mountain Shop",           0x03, 0xC1, 0x0112, 0x6E, $this),
-			// Single entrance caves with no items in them ;)
-			new Shop\TakeAny("Dark Death Mountain Fairy",        0x83, 0xC1, 0x0112, 0x70, $this, [0xDBBE2 => [0x58]]),
+			new Shop("Dark World Death Mountain Shop", 0x03, 0xC1, 0x0112, 0x6E, $this),
 		]);
 
 		$this->shops["Dark World Death Mountain Shop"]->clearInventory()

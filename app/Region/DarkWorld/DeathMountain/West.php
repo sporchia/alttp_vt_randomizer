@@ -3,7 +3,9 @@
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
+use ALttP\Shop;
 use ALttP\Support\LocationCollection;
+use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -25,6 +27,11 @@ class West extends Region {
 		$this->locations = new LocationCollection([
 			new Location\Chest("Spike Cave", 0xEA8B, null, $this),
 		]);
+
+		$this->shops = new ShopCollection([
+			new Shop\TakeAny("Dark Death Mountain Fairy", 0x83, 0xC1, 0x0112, 0x70, $this, [0xDBBE2 => [0x58]]),
+		]);
+
 	}
 
 	/**

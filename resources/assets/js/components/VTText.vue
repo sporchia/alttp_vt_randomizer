@@ -4,7 +4,7 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text"><slot></slot><sup v-if="noRace"><strong>*</strong></sup></span>
 			</div>
-			<input :type="type" v-model="value" @change="onInput" :maxlength="maxlength" :placeholder="placeholder"
+			<input :type="type" v-model="value" @input="onInput" :maxlength="maxlength" :placeholder="placeholder"
 				class="form-control"></input>
 			<div class="input-group-append">
 				<span class="input-group-text" @click="onClear"><img class="icon" src="/i/svg/x.svg" alt="clear"></span>
@@ -27,6 +27,7 @@ export default {
 		localforage.getItem(this.storageKey).then(function(value) {
 			if (value === null) return;
 			this.value = value;
+			this.$emit('input', this.value);
 		}.bind(this));
 	},
 	data() {

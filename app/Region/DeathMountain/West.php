@@ -1,9 +1,9 @@
 <?php namespace ALttP\Region\DeathMountain;
 
-use ALttP\Support\LocationCollection;
+use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
-use ALttP\Item;
+use ALttP\Support\LocationCollection;
 use ALttP\World;
 
 /**

@@ -56,13 +56,13 @@ class ItemRandomizerController extends Controller {
 			$purifier = new HTMLPurifier($purifier_settings);
 			if ($request->filled('name')) {
 				$markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
-				$spoiler_meta['name'] = $purifier->purify($markdowned);
+				$spoiler_meta['name'] = strip_tags($purifier->purify($markdowned));
 			}
 			if ($request->filled('notes')) {
 				$markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
 				$spoiler_meta['notes'] = $purifier->purify($markdowned);
 			}
-			config($request->input('data'));
+			config(array_dot($request->input('data')));
 			$world = new World($difficulty, $logic, $goal, $variation);
 			$locations = $world->getLocations();
 			foreach ($request->input('l', []) as $location => $item) {
@@ -180,7 +180,7 @@ class ItemRandomizerController extends Controller {
 			'patch' => patch_merge_minify($patch),
 			'spoiler' => $spoiler,
 			'hash' => $hash,
-			'generated' => $rand->getSeedRecord()->created_at->toIso8601String(),
+			'generated' => $rand->getSeedRecord()->created_at ? $rand->getSeedRecord()->created_at->toIso8601String() : now()->toIso8601String(),
 			'current_rom_hash' => Rom::HASH,
 		];
 	}

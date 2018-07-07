@@ -294,6 +294,8 @@ var ROM = (function(blob, loaded_callback) {
 				this.name = data.spoiler.meta.name;
 				this.variation = data.spoiler.meta.variation;
 				this.weapons = data.spoiler.meta.weapons;
+				this.difficulty_mode = data.spoiler.meta.difficulty_mode;
+				this.notes = data.spoiler.meta.notes;
 			}
 			if (data.patch && data.patch.length) {
 				data.patch.forEach(function(value, index, array) {

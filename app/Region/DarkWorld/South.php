@@ -75,6 +75,23 @@ class South extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->shops["Bonk Fairy (Dark)"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots');
+		});
+
+		// @TODO: these 2 might be reveresed, check that!
+		$this->shops["Dark Lake Hylia Ledge Fairy"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers') && $items->canBombThings();
+		});
+
+		$this->shops["Dark Lake Hylia Ledge Hint"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers') && $items->canLiftRocks();
+		});
+
+		$this->shops["Dark Lake Hylia Ledge Spike Cave"]->setRequirements(function($locations, $items) {
+			return $items->has('Flippers');
+		});
+
 		$this->can_enter = function($locations, $items) {
 			return $items->has('MoonPearl')
 				&& $items->has('RescueZelda')

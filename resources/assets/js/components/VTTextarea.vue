@@ -5,7 +5,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><slot></slot><sup v-if="noRace"><strong>*</strong></sup></span>
 				</div>
-				<textarea class="form-control no-resize" v-model="value" @change="onInput" :placeholder="placeholder" :rows="rows" :maxlength="maxlength"></textarea>
+				<textarea class="form-control no-resize" v-model="value" @input="onInput" :placeholder="placeholder" :rows="rows" :maxlength="maxlength"></textarea>
 			</div>
 			<span v-if="$slots['tooltip']" v-tooltip="$slots['tooltip'][0].text"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span>
 
@@ -28,6 +28,7 @@ export default {
 		localforage.getItem(this.storageKey).then(function(value) {
 			if (value === null) return;
 			this.value = value;
+			this.$emit('input', this.value);
 		}.bind(this));
 	},
 	data() {

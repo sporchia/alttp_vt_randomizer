@@ -18,7 +18,7 @@
 				</thead>
 				<tbody class="searchable">
 					<tr v-for="location in locations" v-show="searchEx.test(location.name) || searchEx.test(location.region)
-						|| searchEx.test(itemSearch['location-' + location.hash])">
+						|| searchEx.test(itemSearch[location.hash])">
 						<td class="col w-25">
 							<label :for="'item-count-' + location.hash">{{ location.region }}</label>
 						</td>
@@ -26,10 +26,10 @@
 							<label :for="'item-count-' + location.hash">{{ location.name }}</label>
 						</td>
 						<td class="col w-25">
-							<vt-select :sid="'location-' + location.hash" @input="selectedItem" v-if="location.class == 'items'"
+							<vt-select :sid="location.hash" @input="selectedItem" v-if="location.class == 'items'"
 								:options="orderedItems" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
 							<vt-select v-if="location.class == 'bottles'" :options="bottles" :storage-key="'vt.custom.' + location.hash" />
-							<vt-select :sid="'location-' + location.hash" @input="selectedPrize" v-if="location.class == 'prizes'"
+							<vt-select :sid="location.hash" @input="selectedPrize" v-if="location.class == 'prizes'"
 								:options="prizes" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
 							<vt-select v-if="location.class == 'medallions'" :options="medallions" :storage-key="'vt.custom.' + location.hash" />
 						</td>
@@ -68,7 +68,7 @@ export default {
 	},
 	methods: {
 		selectedItem (selectedOption, sid) {
-			EventBus.$emit('itemAdd', selectedOption.value);
+			EventBus.$emit('itemAdd', selectedOption.value, sid);
 			if (sid in this.oldValues) {
 				EventBus.$emit('itemRemove', this.oldValues[sid]);
 			}
