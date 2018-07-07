@@ -86,7 +86,7 @@ class Pink extends Region {
         $this->can_enter = function($locations, $items) {
 			return ($items->canOpenRedDoors() && ($items->canDestroyBombWalls() || $items->has('SpeedBooster')))
 				|| $items->canUsePowerBombs()
-				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->canOpenRedDoors() || $items->has('Wave')) && ($items->has('IceBeam') || $items->has('HiJump') || $items->has('SpringBall') || $items->canFlySM()));
+				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->canOpenRedDoors() || $items->has('Wave')) && ($items->has('IceBeam') || $items->has('HiJump') || $items->canSpringBallJump() || $items->canFlySM()));
 		};
 
 		return $this;

@@ -77,8 +77,8 @@ class East extends Region {
 						&& ($items->has('HiJump') || $items->has('Gravity')))
 					|| ($items->canAccessLowerNorfairPortal() 
 						&& $items->canDestroyBombWalls() 
-						&& ($items->canFlySM() || $items->has('SpringBall') || $items->has('SpeedBooster'))))
-				&& ($items->canFlySM() || $items->has('HiJump') || $items->has('SpringBall') || ($items->has('IceBeam') && $items->has('ChargeBeam')))
+						&& ($items->canFlySM() || $items->canSpringBallJump() || $items->has('SpeedBooster'))))
+				&& ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('IceBeam') && $items->has('ChargeBeam')))
 				&& ($items->canPassBombPassages() || ($items->has('ScrewAttack') && $items->has('SpaceJump')));
 		};
 

@@ -62,7 +62,7 @@ class East extends Region {
 
         $this->can_enter = function($locations, $items) {
 			return ($items->canUsePowerBombs() && $items->has('Super'))
-				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('IceBeam') || $items->has('SpringBall') || $items->has('HiJump') || $items->canFlySM()))
+				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('IceBeam') || $items->canSpringBallJump() || $items->has('HiJump') || $items->canFlySM()))
 				|| ($items->canAccessMaridiaPortal() && $items->has('HiJump') && $items->has('Super'));
 		};
 
@@ -78,16 +78,16 @@ class East extends Region {
 	public function initCasual() {
 
 		$this->locations["Missile (outside Wrecked Ship bottom)"]->setRequirements(function($location, $items) {
-			return ($items->has('SpeedBooster') || $items->has('Grapple') || $items->has('SpaceJump') || $items->has('SpringBall') || $items->canAccessMaridiaPortal());
+			return ($items->has('SpeedBooster') || $items->has('Grapple') || $items->has('SpaceJump') || $items->canSpringBallJump() || $items->canAccessMaridiaPortal());
 		});
 
 		$this->locations["Missile (outside Wrecked Ship top)"]->setRequirements(function($location, $items) {
-			return (($items->has('Super') && ($items->has('SpeedBooster') || $items->has('Grapple') || $items->has('SpaceJump') || $items->has('SpringBall'))) || $items->canAccessMaridiaPortal())
+			return (($items->has('Super') && ($items->has('SpeedBooster') || $items->has('Grapple') || $items->has('SpaceJump') || $items->canSpringBallJump())) || $items->canAccessMaridiaPortal())
 				&& ($items->has('HiJump') || $items->canFlySM() || $items->has('SpeedBooster'));
 		});
 
 		$this->locations["Missile (outside Wrecked Ship middle)"]->setRequirements(function($location, $items) {
-			return ($items->has('SpeedBooster') || $items->has('Grapple') || $items->has('SpaceJump') || $items->has('SpringBall') || $items->canAccessMaridiaPortal())
+			return ($items->has('SpeedBooster') || $items->has('Grapple') || $items->has('SpaceJump') || $items->canSpringBallJump() || $items->canAccessMaridiaPortal())
 			    && $items->has('Super');
 		});
 

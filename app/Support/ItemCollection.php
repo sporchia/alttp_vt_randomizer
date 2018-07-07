@@ -557,6 +557,11 @@ class ItemCollection extends Collection {
 			|| $this->has('ScrewAttack');
 	}
 
+	public function canSpringBallJump()
+	{
+		return $this->has('Morph') && $this->has('SpringBall');
+	}
+
 	public function canEnterAndLeaveGauntlet()
 	{
 		switch($this->world->getSMLogic())
@@ -607,7 +612,7 @@ class ItemCollection extends Collection {
 				return $this->has('MoonPearl')
 					&& $this->has('RescueZelda')
 					&& $this->has('Flippers')
-					&& ($this->has('SpringBall') || $this->has('HiJump') || $this->has('Gravity'))
+					&& ($this->canSpringBallJump() || $this->has('HiJump') || $this->has('Gravity'))
 					&& $this->has('Morph')
 					&& ($this->has('DefeatAgahnim')
 						|| ($this->has('Hammer') && $this->canLiftRocks())
