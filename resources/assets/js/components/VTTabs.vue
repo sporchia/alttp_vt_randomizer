@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<div class="tabs">
-			<ul class="nav nav-pills">
-				<li class="nav-item" v-for="tab in tabs" :class="{ 'is-active': tab.isActive }">
-					<a class="nav-link" :href="tab.href" @click="selectTab(tab)">
+			<ul class="nav" :class="'nav-' + navType">
+				<li class="nav-item" v-for="tab in tabs">
+					<a class="nav-link" :class="{ 'active': tab.isActive }" :href="tab.href" @click="selectTab(tab)">
 						{{ tab.name }}
 						<span v-if="tab.count" class="badge badge-pill badge-secondary">{{ tab.count }}</span>
 					</a>
@@ -18,6 +18,9 @@
 
 <script>
 export default {
+	props: {
+		navType: {default: 'pills'},
+	},
 	data() {
 		return {
 			tabs: [],

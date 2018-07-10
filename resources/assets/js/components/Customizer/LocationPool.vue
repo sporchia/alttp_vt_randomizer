@@ -27,7 +27,8 @@
 						</td>
 						<td class="col w-25">
 							<vt-select :sid="location.hash" @input="selectedItem" v-if="location.class == 'items'"
-								:options="orderedItems" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
+								:options="orderedItems" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
+								:clearable="true" />
 							<vt-select v-if="location.class == 'bottles'" :options="bottles" :storage-key="'vt.custom.' + location.hash" />
 							<vt-select :sid="location.hash" @input="selectedPrize" v-if="location.class == 'prizes'"
 								:options="prizes" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
@@ -68,6 +69,9 @@ export default {
 	},
 	methods: {
 		selectedItem (selectedOption, sid) {
+			if (!selectedOption) {
+				selectedOption = this.defaultItem;
+			}
 			EventBus.$emit('itemAdd', selectedOption.value, sid);
 			if (sid in this.oldValues) {
 				EventBus.$emit('itemRemove', this.oldValues[sid]);

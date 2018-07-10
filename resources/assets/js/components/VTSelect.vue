@@ -82,7 +82,10 @@ export default {
 			}
 		},
 		onClear () {
-			this.value = null;
+			this.value = this.storageKeyRemoveOn ? this.selected : null;
+			if (this.value) {
+				return this.onSelect(this.value)
+			}
 			this.$emit('select', null);
 			this.$emit('input', {value: null});
 		},

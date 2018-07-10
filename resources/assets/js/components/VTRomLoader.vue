@@ -38,6 +38,7 @@ export default {
 	created () {
 		if (typeof current_rom_hash !== 'undefined') {
 			this.current_rom_hash = current_rom_hash;
+			this.settings_loaded = true;
 			return;
 		}
 		axios.get(`/base_rom/settings`).then(response => {

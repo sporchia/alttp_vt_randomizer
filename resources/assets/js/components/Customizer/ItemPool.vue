@@ -56,12 +56,15 @@ export default {
 			return orderBy(this.items, 'name');
 		},
 		placedItemCount: (vm) => {
-			if (!vm.items.length) {
+			if (!vm.placedItem) {
 				return 0;
 			}
+			return vm.placedItem.placed;
+		},
+		placedItem: (vm) => {
 			return vm.items.filter(item => {
 				return item.value == 'auto_fill';
-			})[0].placed;
+			})[0]
 		},
 		itemCount: (vm) => {
 			if (!vm.items.length) {

@@ -8,7 +8,7 @@
 			<span class="sr-only">Error:</span>
 			<span class="message">{{ this.error }}</span>
 		</div>
-		<tabs class="think">
+		<tabs class="think" nav-type="tabs">
 			<tab id="seed-generate" name="Generate">
 				<vt-rom-loader v-if="!romLoaded" @update="updateRom" @error="onError"></vt-rom-loader>
 				<div v-if="romLoaded" class="card border-success mb-3">
