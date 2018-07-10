@@ -17,7 +17,7 @@ class ItemRandomizerController extends Controller {
 		try {
 			$payload = $this->prepSeed($request, $seed_id, true);
 			$save_data = json_encode(array_except($payload, ['current_rom_hash']));
-			Storage::put($payload['hash'] . '.json', $save_data);
+			//Storage::put($payload['hash'] . '.json', $save_data);
 			cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
 			return json_encode($payload);
 		} catch (Exception $e) {
@@ -99,6 +99,7 @@ class ItemRandomizerController extends Controller {
 		]);
 
 		$rom = new Rom(env('ENEMIZER_BASE', null));
+		$rom->applyPatchFile(public_path('js/base2current.json'));
 		if ($request->filled('heart_speed')) {
 			$rom->setHeartBeepSpeed($request->input('heart_speed'));
 		}

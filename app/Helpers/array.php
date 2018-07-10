@@ -23,7 +23,6 @@ function mt_shuffle(array $array) {
  * @return array
  */
 function fy_shuffle(array $array) {
-	return mt_shuffle($array);
 	$new_array = array_values($array);
 	$count = count($array);
 

@@ -1,6 +1,6 @@
-@extends('layouts.base', ['title' => 'Customizer - '])
+@extends('layouts.default', ['title' => 'Customizer - '])
 
-@section('window')
+@section('content')
 <div id="root">
 	<vt-customizer></vt-customizer>
 </div>

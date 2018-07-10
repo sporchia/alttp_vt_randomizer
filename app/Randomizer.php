@@ -246,13 +246,18 @@ class Randomizer {
 		} else {
 			// put 1 sword back
 			if (count($nice_items_swords)) {
-				array_push($advancement_items, Item::get('UncleSword')->setTarget(array_pop($nice_items_swords)));
+				$uncle_sword = Item::get('UncleSword')->setTarget(array_pop($nice_items_swords));
+				if ($this->config('mode.weapons') == 'uncle' && !$this->world->getLocation("Link's Uncle")->hasItem()) {
+					$this->world->getLocation("Link's Uncle")->setItem($uncle_sword);
+				} else {
+					array_push($advancement_items, $uncle_sword);
+				}
 			}
 
 			if (count($nice_items_swords)) {
 				if ($this->config('mode.weapons') == 'uncle') {
 					$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
-					if ($uncle_item !== null && !$uncle_item instanceof Item\Sword) {
+					if ($uncle_item !== null && !$uncle_item->getTarget() instanceof Item\Sword) {
 						throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
 					}
 					if ($uncle_item === null) {

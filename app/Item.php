@@ -303,6 +303,26 @@ class Item {
 	}
 
 	/**
+	 * Get the target of this item, which happens to be this item.
+	 *
+	 * @return $this
+	 */
+	public function getTarget() {
+		return $this;
+	}
+
+	/**
+	 * Get an ItemAlias version of this.
+	 *
+	 * DO NOT USE: completely untested.
+	 *
+	 * @return ItemAlias
+	 */
+	public function setTarget(Item $item) {
+		return new ItemAlias($this->getName(), $item->getName());
+	}
+
+	/**
 	 * Get the name of this Item
 	 *
 	 * @return string
@@ -338,12 +358,22 @@ class Item {
 		return $this->address;
 	}
 
+	/**
+	 * Link this item to a Region
+	 *
+	 * @return $this
+	 */
 	public function linkRegion(Region $region) {
 		$this->linked_region = $region;
 
 		return $this;
 	}
 
+	/**
+	 * Get the region to which this item has been linked.
+	 *
+	 * @return Region
+	 */
 	public function getLinkedRegion() {
 		return $this->linked_region;
 	}

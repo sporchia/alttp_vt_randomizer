@@ -32,6 +32,7 @@ export default {
 			current_rom_hash: '',
 			current_base_file: '',
 			loading: true,
+			settings_loaded: false,
 		};
 	},
 	created () {
@@ -42,6 +43,7 @@ export default {
 		axios.get(`/base_rom/settings`).then(response => {
 			this.current_rom_hash = response.data.rom_hash;
 			this.current_base_file = response.data.base_file;
+			this.settings_loaded = true;
 
 			localforage.getItem('rom.sprite-gfx').then(function(value) {
 				if (value === null) return;
@@ -63,6 +65,9 @@ export default {
 			this.loading = false;
 		},
 		loadBlob(change) {
+			if (!this.settings_loaded) {
+				return setTimeout(this.loadBlob, 50, change);
+			}
 			this.loading = true;
 			let blob = change.target.files[0];
 
