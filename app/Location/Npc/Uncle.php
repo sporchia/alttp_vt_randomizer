@@ -21,7 +21,7 @@ class Uncle extends Location {
 
 		$world = $this->region->getWorld();
 
-		if (config('game-mode') == 'standard') {
+		if ($world->config('mode.state') == 'standard') {
 			if ($item instanceof Item\Bow) {
 				$rom->setEscapeFills(0b00000001);
 				$rom->setUncleSpawnRefills(0, 0, 70);
@@ -46,7 +46,7 @@ class Uncle extends Location {
 				$rom->setMantleSpawnRefills(0, 0, 0);
 			}
 
-			if ($world->getDifficulty() == 'easy') {
+			if ($world->config('rom.HardMode') == -1) {
 				if ($item instanceof Item\Bow) {
 					$rom->setEscapeAssist(0b00000001);
 				} elseif ($item == Item::get('TenBombs')) {

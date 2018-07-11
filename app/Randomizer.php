@@ -13,32 +13,32 @@ class Randomizer {
 	 * This represents the logic for the Randmizer, if any locations logic gets changed this should change as well, so
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
-	const LOGIC = 29;
+	const LOGIC = 30;
 	protected $rng_seed;
 	protected $seed;
 	protected $world;
 	protected $difficulty;
 	protected $variation;
 	protected $logic;
+	protected $config = [];
 	protected $starting_equipment;
-	private $config = [];
 	static protected $logic_array = [
-		0x23, 0xCD, 0xB6, 0xA5, 0xEC, 0xF8, 0xC1, 0x80,0x8B, 0x53, 0x88, 0xA8, 0xB9, 0x22, 0xD9, 0x29,
-		0xC4, 0x52, 0xBA, 0xD7, 0xC2, 0xE0, 0x43, 0x2B,0x0D, 0x9F, 0x66, 0x7A, 0x98, 0xDA, 0xBC, 0x05,
-		0xB2, 0xF0, 0xA9, 0xFE, 0x27, 0x4C, 0x31, 0x9E,0xFD, 0x3F, 0xEA, 0x72, 0x2E, 0x39, 0xF3, 0x94,
-		0x7C, 0x44, 0xA3, 0x60, 0x42, 0x5C, 0x84, 0x50,0xCE, 0x38, 0x6C, 0x03, 0xDF, 0xC9, 0x58, 0xD5,
-		0x7F, 0x55, 0x54, 0x33, 0x12, 0x0E, 0x59, 0xA1,0x7B, 0xCC, 0x3C, 0xAE, 0x90, 0x01, 0xAA, 0xA4,
-		0x76, 0xEE, 0xE9, 0x17, 0x4A, 0xB1, 0xFB, 0x77,0xE3, 0x16, 0xF7, 0x1E, 0x1D, 0xFC, 0x0B, 0x8A,
-		0x3A, 0x10, 0x24, 0x5A, 0xCB, 0x19, 0x2C, 0x11,0xB4, 0xF6, 0x8F, 0x70, 0xDD, 0xF2, 0xF1, 0x7E,
-		0x9B, 0x0F, 0x5D, 0x32, 0xBD, 0xC7, 0x07, 0x4E,0x20, 0x47, 0x69, 0x34, 0x74, 0x0A, 0x89, 0x92,
-		0x82, 0xE6, 0x9A, 0xD8, 0x06, 0xB0, 0xF4, 0x67,0xD0, 0x4D, 0x64, 0x6E, 0x83, 0x6A, 0x61, 0x09,
-		0x37, 0x71, 0x45, 0x49, 0xFF, 0x57, 0xA7, 0x91,0x97, 0xAB, 0x40, 0x08, 0x46, 0x00, 0xFA, 0xB5,
-		0x8D, 0x1B, 0x79, 0xD1, 0x30, 0x13, 0x68, 0xAC,0xE2, 0x21, 0x87, 0x02, 0xAD, 0x75, 0x14, 0x96,
-		0xA6, 0x65, 0xDC, 0xD3, 0x28, 0x6D, 0x5F, 0x86,0x2D, 0xF5, 0x15, 0x3D, 0xB7, 0x99, 0xD6, 0x04,
-		0xBE, 0x73, 0x51, 0x35, 0xE7, 0x8C, 0xBB, 0x36,0x0C, 0x95, 0xC8, 0x25, 0xCF, 0x1C, 0xA0, 0xB3,
-		0x7D, 0x78, 0x4F, 0x18, 0x9D, 0x56, 0xA2, 0xCA,0xEB, 0xE8, 0x93, 0xC0, 0xDB, 0x81, 0x62, 0xED,
-		0xE1, 0x6B, 0x63, 0x2A, 0xF9, 0x8E, 0xDE, 0xB8,0x26, 0x1F, 0xC3, 0xEF, 0x4B, 0x6F, 0x48, 0x85,
-		0xAF, 0xC5, 0x41, 0x2F, 0x5E, 0xD2, 0x9C, 0xD4,0x3E, 0xC6, 0xE5, 0x1A, 0x5B, 0x3B, 0xE4, 0xBF,
+		0x25, 0x62, 0x19, 0x0E, 0xF0, 0xDB, 0x14, 0xC1,0x0D, 0x1C, 0x2F, 0xAE, 0x2D, 0x86, 0x2E, 0xD9,
+		0x3A, 0x91, 0x8D, 0x59, 0x55, 0xEE, 0xC8, 0xE6,0xE1, 0x98, 0x94, 0xBA, 0xDE, 0x21, 0x4E, 0x9B,
+		0x7C, 0xBF, 0x8B, 0x01, 0xD0, 0xCC, 0x13, 0x4D,0xD3, 0x77, 0xAF, 0x82, 0x6F, 0xA1, 0x2A, 0xA2,
+		0x36, 0x47, 0xFB, 0x69, 0x32, 0xC9, 0xCA, 0xA8,0xE5, 0x09, 0x31, 0x5E, 0x16, 0x6D, 0xE4, 0xED,
+		0xC5, 0x8A, 0x1B, 0x44, 0xC2, 0xD2, 0xCD, 0x28,0x53, 0x58, 0x54, 0x15, 0x64, 0x99, 0xD8, 0x52,
+		0x67, 0xF2, 0x9C, 0x49, 0x56, 0xE7, 0xC4, 0x17,0x6C, 0xFE, 0x30, 0x93, 0x4B, 0xC7, 0xB9, 0x23,
+		0xA7, 0x0B, 0x63, 0xA0, 0x6B, 0x5B, 0xF3, 0x03,0x29, 0x2C, 0x3C, 0xE3, 0xBB, 0x73, 0xFF, 0x78,
+		0x9A, 0x8E, 0xFA, 0xCF, 0x79, 0x22, 0x90, 0xB6,0xD4, 0x70, 0xB2, 0xB0, 0x71, 0x5A, 0x88, 0x46,
+		0x97, 0xD6, 0x75, 0x96, 0x81, 0x68, 0xB5, 0x7E,0xF7, 0x9E, 0x3E, 0xE0, 0x10, 0x5C, 0x50, 0x0A,
+		0x26, 0x65, 0x18, 0xCB, 0xAD, 0x0C, 0x42, 0x76,0x02, 0xEB, 0x9D, 0xAA, 0x7D, 0xCE, 0x60, 0xE9,
+		0x7A, 0x39, 0xBE, 0x8C, 0xA3, 0xEC, 0x9F, 0x40,0x33, 0x57, 0xBC, 0x6A, 0x41, 0x48, 0xB8, 0xF8,
+		0x3B, 0x24, 0xC6, 0x4C, 0xB4, 0x34, 0x7F, 0x7B,0x35, 0xF5, 0x4A, 0xD1, 0x5F, 0x04, 0x45, 0xA4,
+		0x06, 0xAB, 0xF6, 0xFC, 0x72, 0xC3, 0xDD, 0x1F,0xB3, 0x43, 0x95, 0xDC, 0xF9, 0x51, 0xEA, 0xB7,
+		0xD7, 0xC0, 0x11, 0x4F, 0xD5, 0x74, 0x1E, 0x27,0x5D, 0x37, 0x00, 0x05, 0x8F, 0x1A, 0x84, 0xE2,
+		0x20, 0xF1, 0x3F, 0xFD, 0x61, 0x92, 0xE8, 0x80,0xAC, 0x2B, 0x07, 0x87, 0xA5, 0x3D, 0xA9, 0xDA,
+		0x85, 0x0F, 0x89, 0xF4, 0x38, 0x83, 0xA6, 0xEF,0x1D, 0x6E, 0xB1, 0xDF, 0x08, 0x66, 0xBD, 0x12,
 	];
 
 	/**
@@ -119,7 +119,6 @@ class Randomizer {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
 		// http://php.net/manual/en/migration72.incompatible.php#migration72.incompatible.rand-mt_rand-output
-		// GAHHHHHHH!!!! php 7.1 and 7.2 generate different things :/
 		mt_srand($this->rng_seed);
 		$this->seed->seed = $this->rng_seed;
 
@@ -194,7 +193,14 @@ class Randomizer {
 			}
 		}
 
-		if (config('game-mode') == 'open') {
+		// Easy starts with
+		if ($this->difficulty == 'easy') {
+			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+		}
+
+		if ($this->config('mode.state') == 'open') {
 			$this->starting_equipment->addItem(Item::get('RescueZelda'));
 		}
 
@@ -221,7 +227,7 @@ class Randomizer {
 		if ($this->config('mode.weapons') == 'swordless') {
 			// In swordless we need to catch all swords
 			foreach ($nice_items as $key => $item) {
-				if (is_a($item, Item\Sword::class)) {
+				if ($item instanceof Item\Sword) {
 					unset($nice_items[$key]);
 					$nice_items_swords[] = $item;
 				}
@@ -229,7 +235,7 @@ class Randomizer {
 			// In swordless mode silvers are 100% required
 			config(['alttp.region.requireBetterBow' => true]);
 			foreach ($nice_items_swords as $unneeded) {
-				array_push($nice_items, Item::get('TwentyRupees2'));
+				$nice_items[] = Item::get('TwentyRupees2');
 			}
 			$world_items = $this->world->collectItems()->values();
 			if (!in_array(Item::get('SilverArrowUpgrade'), $world_items) && !in_array(Item::get('BowAndSilverArrows'), $world_items)) {
@@ -240,13 +246,18 @@ class Randomizer {
 		} else {
 			// put 1 sword back
 			if (count($nice_items_swords)) {
-				array_push($advancement_items, array_pop($nice_items_swords));
+				$uncle_sword = Item::get('UncleSword')->setTarget(array_pop($nice_items_swords));
+				if ($this->config('mode.weapons') == 'uncle' && !$this->world->getLocation("Link's Uncle")->hasItem()) {
+					$this->world->getLocation("Link's Uncle")->setItem($uncle_sword);
+				} else {
+					array_push($advancement_items, $uncle_sword);
+				}
 			}
 
 			if (count($nice_items_swords)) {
 				if ($this->config('mode.weapons') == 'uncle') {
 					$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
-					if ($uncle_item !== null && !$uncle_item instanceof Item\Sword) {
+					if ($uncle_item !== null && !$uncle_item->getTarget() instanceof Item\Sword) {
 						throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
 					}
 					if ($uncle_item === null) {
@@ -293,7 +304,7 @@ class Randomizer {
 		}
 		if ($this->world->config('region.wildKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
-				if ($item instanceof Item\Key && (in_array(config('game-mode'), ['open']) || $item != Item::get('KeyH2'))) {
+				if ($item instanceof Item\Key && ($this->config('mode.state') == 'open' || $item != Item::get('KeyH2'))) {
 					unset($dungeon_items[$key]);
 					$advancement_items[] = $item;
 				}
@@ -316,7 +327,7 @@ class Randomizer {
 			}
 		}
 
-		$advancement_items = mt_shuffle($advancement_items);
+		$advancement_items = fy_shuffle($advancement_items);
 
 		$filler = Filler::factory('RandomAssumed', $this->world);
 
@@ -398,7 +409,7 @@ class Randomizer {
 
 		$placed_prizes = $prize_locations->getItems();
 
-		$remaining_prizes = mt_shuffle(array_diff([
+		$remaining_prizes = fy_shuffle(array_diff([
 			Item::get('Crystal1'),
 			Item::get('Crystal2'),
 			Item::get('Crystal3'),
@@ -647,12 +658,12 @@ class Randomizer {
 			'seed' => $this->rng_seed,
 			'goal' => $this->goal,
 			'build' => Rom::BUILD,
-			'mode' => config('game-mode', 'standard'),
+			'mode' => $this->config('mode.state', 'standard'),
 			'weapons' => $this->config('mode.weapons', 'randomized')
 		]);
 
 		if ($this->config('rom.HardMode') !== null) {
-			$spoiler['meta']['difficulty_mode'] = config('alttp.randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
+			$spoiler['meta']['difficulty_mode'] = $this->config('randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
 		}
 
 		$this->seed->spoiler = json_encode($spoiler);
@@ -669,14 +680,7 @@ class Randomizer {
 	 * @return mixed
 	 */
 	public function config(string $key, $default = null) {
-		if (!array_key_exists($key, $this->config)) {
-			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
-				config("alttp.{$this->difficulty}.$key",
-					config("alttp.goals.{$this->goal}.$key",
-						config("alttp.$key", null))));
-		}
-
-		return $this->config[$key] ?? $default;
+		return $this->world->config($key, $default);
 	}
 
 	/**
@@ -738,6 +742,7 @@ class Randomizer {
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
+					0x3E, 0x07, 0x36, 0xFF, // 7 boss hearts -> 20 rupees
 				]);
 				break;
 			default:
@@ -780,9 +785,7 @@ class Randomizer {
 			return get_random_int(0, 0x100);
 		});
 
-		if ($this->config('sprite.shufflePrizePack', true)) {
-			$this->writePrizeShuffleToRom($rom);
-		}
+		$this->writePrizePacksToRom($rom);
 
 		if ($this->config('sprite.shuffleOverworldBonkPrizes', false)) {
 			$this->writeOverworldBonkPrizeToRom($rom);
@@ -791,7 +794,7 @@ class Randomizer {
 		$rom->setPyramidFairyChests($this->config('region.swordsInPool', true));
 		$rom->setSmithyQuickItemGive($this->config('region.swordsInPool', true));
 
-		$rom->setOpenMode(in_array(config('game-mode'), ['open']));
+		$rom->setOpenMode($this->config('mode.state') == 'open');
 		$rom->setSwordlessMode($this->config('mode.weapons') == 'swordless');
 
 		if (!$this->world->getLocation("Link's Uncle")->getItem() instanceof Item\Sword) {
@@ -901,35 +904,37 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function randomizeCredits(Rom $rom) {
-		$rom->setKingsReturnCredits(array_first(mt_shuffle([
+		$rom->setKingsReturnCredits(array_first(fy_shuffle([
 			"the return of the king",
 			"fellowship of the ring",
 			"the two towers",
 		])));
 
-		$rom->setSanctuaryCredits(array_first(mt_shuffle([
+		$rom->setSanctuaryCredits(array_first(fy_shuffle([
 			"the loyal priest",
 			"read a book",
 			"sits in own pew",
 		])));
 
-		$name = array_first(mt_shuffle([
+		$name = array_first(fy_shuffle([
 			"sahasralah", "sabotaging", "sacahuista", "sacahuiste", "saccharase", "saccharide", "saccharify",
 			"saccharine", "saccharins", "sacerdotal", "sackcloths", "salmonella", "saltarelli", "saltarello",
 			"saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
 			"sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
 			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
-			"sharshalah", "shahabadoo", "sassafrass", "shlrshlrsh",
+			"sharshalah", "shahabadoo", "sassafrass", "saddlebags", "sandalwood", "shagadelic", "sandcastle",
+			"saltpeters", "shabbiness", "shlrshlrsh",
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
-		$rom->setWoodsmansHutCredits(array_first(mt_shuffle([
+		$rom->setWoodsmansHutCredits(array_first(fy_shuffle([
 			"twin lumberjacks",
 			"fresh flapjacks",
 			"two woodchoppers",
 			"double lumberman",
 			"lumberclones",
 			"woodfellas",
+			"dos axes",
 		])));
 
 		switch (get_random_int(0, 1)) {
@@ -938,23 +943,23 @@ class Randomizer {
 				break;
 		}
 
-		$rom->setDeathMountainCredits(array_first(mt_shuffle([
+		$rom->setDeathMountainCredits(array_first(fy_shuffle([
 			"the lost old man",
 			"gary the old man",
 			"Your ad here",
 		])));
 
-		$rom->setLostWoodsCredits(array_first(mt_shuffle([
+		$rom->setLostWoodsCredits(array_first(fy_shuffle([
 			"the forest thief",
 			"dancing pickles",
 			"flying vultures",
 		])));
 
-		$rom->setWishingWellCredits(array_first(mt_shuffle([
+		$rom->setWishingWellCredits(array_first(fy_shuffle([
 			"venus. queen of faeries",
 			"Venus was her name",
 			"I'm your Venus",
-			"Yeah, baby, shes got it",
+			"Yeah, baby, she's got it",
 			"Venus, I'm your fire",
 			"Venus, At your desire",
 		])));
@@ -970,6 +975,16 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function setTexts(Rom $rom) {
+		$strings = cache()->rememberForever('strings', function() {
+			return [
+				'uncle' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/uncle.txt'))))),
+				'tavern_man' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/tavern_man.txt'))))),
+				'blind' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/blind.txt'))))),
+				'ganon_1' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/ganon_1.txt'))))),
+				'triforce' => array_filter(explode("\n-\n", preg_replace('/^-\n/', '', file_get_contents(base_path('strings/triforce.txt'))))),
+			];
+		});
+
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
 		if ($this->config('spoil.BootsLocation', false) && get_random_int() % 20 == 0 && $boots_location) {
@@ -985,43 +1000,7 @@ class Randomizer {
 					$rom->setUncleTextString("Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
 			}
 		} else {
-			$rom->setUncleTextString(array_first(mt_shuffle([
-				"We're out of\nWeetabix. To\nthe store!",
-				"This seed is\nbootless\nuntil boots.",
-				"Why do we only\nhave one bed?",
-				"This is the\nonly textbox.",
-				"I'm going to\ngo watch the\nMoth tutorial.",
-				"This seed is\nthe worst.",
-				"Chasing tail.\nFly ladies.\nDo not follow.",
-				"I feel like\nI've done this\nbefore...",
-				"Magic cape can\npass through\nthe barrier!",
-				"If this is a\nKanzeon seed,\nI'm quitting.",
-				"I am not your\nreal uncle.",
-				"You're going\nto have a very\nbad time.",
-				"Today you\nwill have\nbad luck.",
-				"I am leaving\nforever.\nGoodbye.",
-				"Don't worry.\nI got this\ncovered.",
-				"Race you to\nthe castle!",
-				"\n      hi",
-				"I'M JUST GOING\nOUT FOR A\nPACK OF SMOKES",
-				"It's dangerous\nto go alone.\nSee ya!",
-				"ARE YOU A BAD\nENOUGH DUDE TO\nRESCUE ZELDA?",
-				"\n\n    I AM ERROR",
-				"This seed is\nsub 2 hours,\nguaranteed.",
-				"The chest is\na secret to\neverybody.",
-				"I'm off to\nfind the\nwind fish.",
-				"The shortcut\nto Ganon\nis this way!",
-				"THE MOON IS\nCRASHING! RUN\nFOR YOUR LIFE!",
-				"Time to fight\nhe who must\nnot be named.",
-				"RED MAIL\nIS FOR\nCOWARDS.",
-				"HEY!\n\nLISTEN!",
-				"Well\nexcuuuuuse me,\nprincess!",
-				"5,000 Rupee\nreward for >\nYou're boned",
-				"Welcome to\nStoops Lonk's\nHoose",
-				"Erreur de\ntraduction.\nsvp reessayer",
-				"I could beat\nit in an hour\nand one life",
-				"I thought this\nwas open mode?",
-			])));
+			$rom->setUncleTextString(array_first(fy_shuffle($strings['uncle'])));
 		}
 
 		$green_pendant_location = $this->world->getLocationsWithItem(Item::get('PendantOfCourage'))->first();
@@ -1039,122 +1018,18 @@ class Randomizer {
 			. $crystal6_location->getRegion()->getName()
 			. "\nso I can make\na big bomb!");
 
-		$rom->setBlindTextString(array_first(mt_shuffle([
-			"I hate insect\npuns, they\nreally bug me.",
-			"I haven't seen\nthe eye doctor\nin years",
-			"I don't see\nyou having a\nbright future",
-			"Are you doing\na blind run\nof this game?",
-			"pizza joke? no\nI think it's a\nbit too cheesy",
-			"A novice skier\noften jumps to\ncontusions.",
-			"the beach?\nI'm not shore\nI can make it.",
-			"Rental agents\noffer quarters\nfor dollars.",
-			"I got my tires\nfixed for a\nflat rate.",
-			"New lightbulb\ninvented?\nEnlighten me.",
-			"A baker's job\nis a piece of\ncake.",
-			"My optometrist\nsaid I have\nvision!",
-			"when you're a\nbaker, don't\nloaf around",
-			"mire requires\nether quake,\nor bombos",
-			"Broken pencils\nare pointless.",
-			"The food they\nserve guards\nlasts sentries",
-			"being crushed\nby big objects\nis depressing.",
-			"A tap dancer's\nroutine runs\nhot and cold.",
-			"A weeknight is\na tiny\nnobleman",
-			"The chimney\nsweep wore a\nsoot and tye.",
-			"Gardeners like\nto spring into\naction.",
-			"bad at nuclear\nphysics. I\nGot no fission",
-			"Flint and\nsteel are a\ngood match.",
-			"I'd peg you\nas a fan of\nthe hammer.",
-			"Archers give\ngifts tied\nwith a bow.",
-			"A healed\ngambler is\nall better.",
-			"Any old sword\nwill make the\ncut here.",
-			"Lazy wyrms\nkeep dragon\ntheir feet.",
-			"Percussionist\nmasters drum\nup audiences.",
-			"Retrievers\nlove fetch\nquests.",
-			"Sausage is\nthe wurst.",
-		])));
+		$rom->setBlindTextString(array_first(fy_shuffle($strings['blind'])));
 
-		$rom->setTavernManTextString(array_first(mt_shuffle([
-			"What do you\ncall a blind\ndinosaur?\nadoyouthink-\nhesaurus\n",
-			"A blind man\nwalks into\na bar.\nAnd a table.\nAnd a chair.\n",
-			"What do ducks\nlike to eat?\n\nQuackers!\n",
-			"How do you\nset up a party\nin space?\n\nYou planet!\n",
-			"I'm glad I\nknow sign\nlanguage,\nit's pretty\nhandy.\n",
-			"What did Zelda\nsay to Link at\na secure door?\n\nTRIFORCE!\n",
-			"I am on a\nseafood diet.\n\nEvery time\nI see food,\nI eat it.",
-			"I've decided\nto sell my\nvacuum.\nIt was just\ngathering\ndust.",
-			"Whats the best\ntime to go to\nthe dentist?\n\nTooth-hurtie!\n",
-			"Why can't a\nbike stand on\nits own?\n\nIt's two-tired!\n",
-			"If you haven't\nfound Quake\nyet…\nit's not your\nfault.",
-			"Why is Peter\nPan always\nflying?\nBecause he\nNeverlands!",
-			"I once told a\njoke to Armos.\n\nBut he\nremained\nstone-faced!",
-			"Lanmola was\nlate to our\ndinner party.\nHe just came\nfor the desert",
-			"Moldorm is\nsuch a\nprankster.\nAnd I fall for\nit every time!",
-			"Helmasaur is\nthrowing a\nparty.\nI hope it's\na masquerade!",
-			"I'd like to\nknow Arrghus\nbetter.\nBut he won't\ncome out of\nhis shell!",
-			"Mothula didn't\nhave much fun\nat the party.\nHe's immune to\nspiked punch!",
-			"Don't set me\nup with that\nchick from\nSteve's Town.\n\n\nI'm not\ninterested in\na Blind date!",
-			"Kholdstare is\nafraid to go\nto the circus.\nHungry kids\nthought he was\ncotton candy!",
-			"I asked who\nVitreous' best\nfriends are.\nHe said,\n'Me, Myself,\nand Eye!'",
-			"Trinexx can be\na hothead or\nhe can be an\nice guy. In\nthe end, he's\na solid\nindividual!",
-			"Bari thought I\nhad moved out\nof town.\nHe was shocked\nto see me!",
-			"I can only get\nWeetabix\naround here.\nI have to go\nto Steve's\nTown for Count\nChocula!",
-			"Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!",
-			"I offered a\ndrink to a\nself-loathing\nGhini.\nHe said he\ndidn't like\nspirits!",
-			"I was supposed\nto meet Gibdo\nfor lunch.\nBut he got\nwrapped up in\nsomething!",
-			"Goriya sure\nhas changed\nin this game.\nI hope he\ncomes back\naround!",
-			"Hinox actually\nwants to be a\nlawyer.\nToo bad he\nbombed the\nBar exam!",
-			"I'm surprised\nMoblin's tusks\nare so gross.\nHe always has\nhis Trident\nwith him!",
-			"Don’t tell\nStalfos I’m\nhere.\nHe has a bone\nto pick with\nme!",
-			"I got\nWallmaster to\nhelp me move\nfurniture.\nHe was really\nhandy!",
-			"Wizzrobe was\njust here.\nHe always\nvanishes right\nbefore we get\nthe check!",
-			"I shouldn't\nhave picked up\nZora's tab.\nThat guy\ndrinks like\na fish!",
-			"I was sharing\na drink with\nPoe.\nFor no reason,\nhe left in a\nheartbeat!",
-			"Don’t trust\nhorsemen on\nDeath Mountain\nThey’re Lynel\nthe time!",
-			"Today's\nspecial is\nbattered bat.\nGot slapped\nfor offering a\nlady a Keese!",
-			"Don’t walk\nunder\npropellered\npineapples.\nYou may end up\nwearing\na pee hat!",
-			"My girlfriend\nburrowed under\nthe sand.\nSo I decided\nto Leever!",
-			"Geldman wants\nto be a\nBroadway star.\nHe’s always\npracticing\nJazz Hands!",
-			"Octoballoon\nmust be mad\nat me.\nHe blows up\nat the sight\nof me!",
-			"Toppo is a\ntotal pothead.\n\nHe hates it\nwhen you take\naway his grass",
-			"I lost my\nshield by\nthat house.\nWhy did they\nput up a\nPikit fence?!",
-			"Know that fox\nin Steve’s\nTown?\nHe’ll Pikku\npockets if you\naren't careful",
-			"Dash through\nDark World\nbushes.\nYou’ll see\nGanon is tryin\nto Stal you!",
-			"Eyegore!\n\nYou gore!\nWe all gore\nthose jerks\nwith arrows!",
-			"I like my\nwhiskey neat.\n\nSome prefer it\nOctoroks!",
-			"I consoled\nFreezor over a\ncup of coffee.\nHis problems\njust seemed to\nmelt away!",
-			"Magic droplets\nof water don’t\nshut up.\nThey just\nKyameron!",
-			"I bought hot\nwings for\nSluggula.\nThey gave him\nexplosive\ndiarrhea!",
-			"Hardhat Beetle\nwon’t\nLet It Be?\nTell it to Get\nBack or give\nit a Ticket to\nRide down\na hole!",
-		])));
+		$rom->setTavernManTextString(array_first(fy_shuffle($strings['tavern_man'])));
 
-		$rom->setGanon1TextString(array_first(mt_shuffle([
-			"Start your day\nsmiling with a\ndelicious\nwholegrain\nbreakfast\ncreated for\nyour\nincredible\ninsides.",
-			"You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!",
-			"Impa says that\nthe mark on\nyour hand\nmeans that you\nare the hero\nchosen to\nawaken Zelda.\nyour blood can\nresurrect me.",
-			"Don't stand,\n\ndon't stand so\nDon't stand so\n\nclose to me\nDon't stand so\nclose to me\nback off buddy",
-			"So ya\nThought ya\nMight like to\ngo to the show\nTo feel the\nwarm thrill of\nconfusion\nThat space\ncadet glow.",
-			"Like other\npulmonate land\ngastropods,\nthe majority\nof land slugs\nhave two pairs\nof 'feelers'\nor tentacles\non their head.",
-			"If you were a\nburrito, what\nkind of a\nburrito would\nyou be?\nMe, I fancy I\nwould be a\nspicy barbacoa\nburrito.",
-			"I am your\nfather's\nbrother's\nnephew's\ncousin's\nformer\nroommate. What\ndoes that make\nus, you ask?",
-			"I'll be more\neager about\nencouraging\nthinking\noutside the\nbox when there\nis evidence of\nany thinking\ninside it.",
-			"If we're not\nmeant to have\nmidnight\nsnacks, then\nwhy is there\na light in the\nfridge?\n",
-			"I feel like we\nkeep ending up\nhere.\n\nDon't you?\n\nIt's like\ndeja vu\nall over again",
-			"Did you know?\nThe biggest\nand heaviest\ncheese ever\nproduced\nweighed\n57,518 pounds\nand was 32\nfeet long.",
-			"Now there was\na time, When\nyou loved me\nso. I couldn't\ndo wrong,\nAnd now you\nneed to know.\nSo How you\nlike me now?",
-			"Did you know?\nNutrition\nexperts\nrecommend that\nat least half\nof our daily\ngrains come\nfrom whole\ngrain products",
-			"The Hemiptera\nor true bugs\nare an order\nof insects\ncovering 50k\nto 80k species\nlike aphids,\ncicadas, and\nshield bugs.",
-			"Thanks for\ndropping in,\nthe first\npassengers\nin a hot\nair balloon.\nwere a duck,\na sheep,\nand a rooster.",
-			"You think you\nare so smart?\n\nI bet you\ndidn't know\nYou can't hum\nwhile holding\nyour nose\nclosed.",
-			"grumble,\n\ngrumble…\ngrumble,\n\ngrumble…\nSeriously you\nwere supposed\nto bring food",
-			"Join me hero,\nand I shall\nmake your face\nthe greatest\nin the dark\nworld!\n\nOr else you\nwill die!",
-		])));
+		$rom->setGanon1TextString(array_first(fy_shuffle($strings['ganon_1'])));
 
 		switch ($this->goal) {
 			case 'pedestal':
-				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nit's on the\npedestal.\n\nYou dingus\n");
+				$rom->setGanon1InvincibleTextString("You cannot\nkill me. You\nshould go for\nyour real goal\nIt's on the\npedestal.\n\nYou dingus!\n");
 				break;
 			case 'triforce-hunt':
-				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\ntriforce\npieces well.\nWithout them\nyou can't win!");
+				$rom->setGanon1InvincibleTextString("So you thought\nyou could come\nhere and beat\nme? I have\nhidden the\nTriforce\npieces well.\nWithout them,\nyou can't win!");
 				break;
 			default:
 				$rom->setGanon1InvincibleTextString("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
@@ -1168,7 +1043,7 @@ class Randomizer {
 		}
 
 		if (!$silver_arrows_location) {
-			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes");
+			$rom->setGanon2TextString("Did you find\nthe arrows on\nPlanet Zebes?");
 		} else {
 			switch ($silver_arrows_location->getRegion()->getName()) {
 				case "Ganons Tower":
@@ -1180,36 +1055,7 @@ class Randomizer {
 
 		}
 
-		$rom->setTriforceTextString(array_first(mt_shuffle([
-			"\n     G G",
-			"All your base\nare belong\nto us.",
-			"You have ended\nthe domination\nof dr. wily",
-			"  thanks for\n  playing!!!",
-			"\n   You Win!",
-			"  Thank you!\n  your quest\n   is over.",
-			"   A winner\n      is\n     you!",
-			"\n   WINNER!!",
-			"\n  I'm  sorry\n\nbut your\nprincess is in\nanother castle",
-			"\n   success!",
-			"    Whelp…\n  that  just\n   happened",
-			"   Oh  hey…\n   it's you",
-			"\n  Wheeeeee!!",
-			"   Time for\n another one?",
-			"and\n\n         scene",
-			"\n   GOT EM!!",
-			"\nTHE VALUUUE!!!",
-			"Cool seed,\n\nright?",
-			"\n  We did it!",
-			"  Spam those\n  emotes in\n  wilds chat",
-			"\n   O  M  G",
-			" Hello.  Will\n  you be my\n   friend?",
-			"   Beetorp\n     was\n    here!",
-			"The Wind Fish\nwill wake\nsoon.    Hoot!",
-			"meow meow meow\nmeow meow meow\n  oh my god!",
-			"Ahhhhhhhhh\nYa ya yaaaah\nYa ya yaaah",
-			".done\n\n.comment lol",
-			"You get to\ndrink from\nthe firehose",
-		])));
+		$rom->setTriforceTextString(array_first(fy_shuffle($strings['triforce'])));
 
 		return $this;
 	}
@@ -1634,61 +1480,81 @@ class Randomizer {
 	}
 
 	/**
+	 * Get all the drops to insert into the PrizePackSlots Available, should be randomly shuffled
+	 *
+	 * @return array
+	 */
+	public function getDropsPool() {
+		$drops = [];
+
+		for ($i = 0; $i < $this->config('drop.count.Heart', 13); $i++) {
+			array_push($drops, Sprite::get('Heart'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeGreen', 9); $i++) {
+			array_push($drops, Sprite::get('RupeeGreen'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeBlue', 7); $i++) {
+			array_push($drops, Sprite::get('RupeeBlue'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.RupeeRed', 6); $i++) {
+			array_push($drops, Sprite::get('RupeeRed'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill1', 7); $i++) {
+			array_push($drops, Sprite::get('BombRefill1'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill4', 1); $i++) {
+			array_push($drops, Sprite::get('BombRefill4'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BombRefill8', 2); $i++) {
+			array_push($drops, Sprite::get('BombRefill8'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.MagicRefillSmall', 6); $i++) {
+			array_push($drops, Sprite::get('MagicRefillSmall'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.MagicRefillFull', 3); $i++) {
+			array_push($drops, Sprite::get('MagicRefillFull'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.ArrowRefill5', 5); $i++) {
+			array_push($drops, Sprite::get('ArrowRefill5'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.ArrowRefill10', 3); $i++) {
+			array_push($drops, Sprite::get('ArrowRefill10'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.Fairy', 1); $i++) {
+			array_push($drops, Sprite::get('Fairy'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.BeeGood', 0); $i++) {
+			array_push($drops, Sprite::get('BeeGood'));
+		}
+		for ($i = 0; $i < $this->config('drop.count.Bee', 0); $i++) {
+			array_push($drops, Sprite::get('Bee'));
+		}
+
+		return $drops;
+	}
+
+	/**
 	 * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.
 	 * this now also handles prize pull trees.
 	 *
-	 * @TODO: create sprite classes
-	 * @TODO: create prize pack classes
 	 * @TODO: move remaining writes to Rom class
 	 */
-	public function writePrizeShuffleToRom(Rom $rom) {
-		// Pack shuffle
-		$prizes = [
-			0xD8, 0xD8, 0xD8, 0xD8, 0xD9, 0xD8, 0xD8, 0xD9, // pack 1
-			0xDA, 0xD9, 0xDA, 0xDB, 0xDA, 0xD9, 0xDA, 0xDA, // pack 2
-			0xE0, 0xDF, 0xDF, 0xDA, 0xE0, 0xDF, 0xD8, 0xDF, // pack 3
-			0xDC, 0xDC, 0xDC, 0xDD, 0xDC, 0xDC, 0xDE, 0xDC, // pack 4
-			0xE1, 0xD8, 0xE1, 0xE2, 0xE1, 0xD8, 0xE1, 0xE2, // pack 5
-			0xDF, 0xD9, 0xD8, 0xE1, 0xDF, 0xDC, 0xD9, 0xD8, // pack 6
-			0xD8, 0xE3, 0xE0, 0xDB, 0xDE, 0xD8, 0xDB, 0xE2, // pack 7
-			0xD9, 0xDA, 0xDB, // from pull trees
-			0xD9, 0xDB, // from prize crab
-			0xD9, // stunned prize
-			0xDB, // saved fish prize
-		];
-		$shuffled = mt_shuffle($prizes);
+	public function writePrizePacksToRom(Rom $rom) {
+		$emptyDrops = $this->world->getEmptyDropSlots();
+		$dropsPool = fy_shuffle($this->getDropsPool());
 
-		if ($this->config('rom.rupeeBow', false)) {
-			$shuffled = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $shuffled);
+		for($i = 0; $i < count($emptyDrops); $i++) {
+			$curDrop = $dropsPool[$i];
+			$emptyDrops[$i]->setDrop($curDrop);
 		}
 
-		if ($this->config('bees', false)) {
-			// you asked for it
-			$shuffled = mt_shuffle(array_merge($shuffled, array_fill(0, 25, 0x79)));
-			$dig_prizes = [
-				0xB2, 0xD8, 0xD8, 0xD8,
-				0xD8, 0xD8, 0xD8, 0xB2, 0xB2,
-				0xD9, 0xD9, 0xD9, 0xB2, 0xB2,
-				0xDA, 0xDA, 0xDA, 0xB2, 0xB2,
-				0xDB, 0xDB, 0xDB, 0xB2, 0xB2,
-				0xDC, 0xDC, 0xDC, 0xB2, 0xB2,
-				0xDD, 0xDD, 0xDD, 0xB2, 0xB2,
-				0xDE, 0xDE, 0xDE, 0xB2, 0xB2,
-				0xDF, 0xDF, 0xDF, 0xB2, 0xB2,
-				0xE0, 0xE0, 0xE0, 0xB2, 0xB2,
-				0xE1, 0xE1, 0xE1, 0xB2, 0xB2,
-				0xE2, 0xE2, 0xE2, 0xB2, 0xB2,
-				0xE3, 0xE3, 0xE3, 0xB2, 0xB2,
-			];
+		$drop_bytes = array_map(function($prize) {
+			return $prize->getDrop()->getBytes()[0];
+		}, $this->world->getAllDrops());
 
-			if ($this->config('rom.rupeeBow', false)) {
-				$dig_prizes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $dig_prizes);
-			}
-
-			$rom->setOverworldDigPrizes($dig_prizes);
-		} else {
-			if ($this->config('rom.rupeeBow', false)) {
-				$rom->setOverworldDigPrizes([
+		if ($this->config('rom.rupeeBow', false)) {
+			$drop_bytes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $drop_bytes);
+			$rom->setOverworldDigPrizes([
 					0xB2, 0xD8, 0xD8, 0xD8,
 					0xD8, 0xD8, 0xD8, 0xD8, 0xD8,
 					0xD9, 0xD9, 0xD9, 0xD9, 0xD9,
@@ -1703,23 +1569,22 @@ class Randomizer {
 					0xDB, 0xDB, 0xDB, 0xDB, 0xDB,
 					0xE3, 0xE3, 0xE3, 0xE3, 0xE3,
 				]);
-			}
 		}
 
+		// write to prize packs
+		$rom->write(0x37A78, pack('C*', ...array_slice($drop_bytes, 0, 56)));
+
 		// write to trees
-		$rom->setPullTreePrizes(array_pop($shuffled), array_pop($shuffled), array_pop($shuffled));
+		$rom->setPullTreePrizes($drop_bytes[56], $drop_bytes[57], $drop_bytes[58]);
 
 		// write to prize crab
-		$rom->setRupeeCrabPrizes(array_pop($shuffled), array_pop($shuffled));
+		$rom->setRupeeCrabPrizes($drop_bytes[59], $drop_bytes[60]);
 
 		// write to stunned
-		$rom->setStunnedSpritePrize(array_pop($shuffled));
+		$rom->setStunnedSpritePrize($drop_bytes[61]);
 
 		// write to saved fish
-		$rom->setFishSavePrize(array_pop($shuffled));
-
-		// write to prize packs
-		$rom->write(0x37A78, pack('C*', ...array_slice($shuffled, 0, 56)));
+		$rom->setFishSavePrize($drop_bytes[62]);
 
 		// Sprite prize pack
 		$idat = array_values(unpack('C*', base64_decode(
@@ -1780,7 +1645,7 @@ class Randomizer {
 			0xDB, 0x79, 0xE3, 0xD8, 0xAC, 0x79, 0xE3, 0xDB,
 			0xDB, 0xE3, 0xE3, 0x79, 0xD8, 0xDD
 		];
-		$shuffled = mt_shuffle($prizes);
+		$shuffled = fy_shuffle($prizes);
 
 		$rom->setOverworldBonkPrizes($shuffled);
 	}
@@ -1802,10 +1667,6 @@ class Randomizer {
 			Item::get('BottleWithGoldBee'),
 			Item::get('BottleWithFairy'),
 		];
-
-		if ($this->config('bees', false)) {
-			return $bottles[get_random_int(4, 5)];
-		}
 
 		return $bottles[get_random_int($filled ? 1 : 0, count($bottles) - (($this->config('rom.HardMode', 0) > 0) ? 2 : 1))];
 	}

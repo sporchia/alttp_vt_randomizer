@@ -107,6 +107,10 @@ class NorthWest extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		$this->shops["Bomb Hut"]->setRequirements(function($locations, $items) {
+			return $items->canBombThings();
+		});
+
 		$this->locations["Master Sword Pedestal"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')
 				&& $items->has('PendantOfWisdom')

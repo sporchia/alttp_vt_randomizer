@@ -35,13 +35,24 @@
 				font-size: 72px;
 				margin-bottom: 40px;
 			}
+			.logo {
+				margin: -180px auto;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
+				<img src="/i/logo-large.png" class="logo" />
 				<div class="title">Be right back.</div>
 			</div>
+			<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
 		</div>
+		@if (App::environment() == 'production' || env('AD_TEST'))
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		@endif
 	</body>
 </html>

@@ -1,8 +1,3 @@
-.sprite-icons {
-	padding: 5px 12px !important; // override bs-select
-	border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186) !important;
-}
-
 // montage *.spr.png -tile x1 -background none -geometry +0+0 sprites.1.png
 [class^="icon-custom-"],
 [class*=" icon-custom-"] {

@@ -1,16 +1,16 @@
-@extends('layouts.default')
+@extends('layouts.default', ['title' => 'Entrance Options - '])
 
 @section('content')
 <h1>What is the Entrance Randomizer?</h1>
-<div class="well">
-<p>The Entrance Randomizer allows you to twist the world upside down and play the game. It should mostly follow
-	the standard VT rules for settings on everything, but it introduces a new option "Shuffle".</p>
+<div class="card card-body bg-light">
+	<p>The Entrance Randomizer allows you to twist the world upside down and play the game. It should mostly follow
+		the standard VT rules for settings on everything, but it introduces a new option "Shuffle".</p>
 
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">Simple</h3>
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info">
+			<h3 class="card-title text-white">Simple</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p>Shuffles dungeon entrances between each other and keeps all 4-entrance dungeons
 				confined to one location such that dungeons will one to one swap with each other.
 			</p>
@@ -20,46 +20,47 @@
 		</div>
 	</div>
 
-	<div class="panel panel-warning">
-		<div class="panel-heading">
-			<h3 class="panel-title">Restricted</h3>
+	<div class="card border-warning mt-4">
+		<div class="card-header bg-warning">
+			<h3 class="card-title">Restricted</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p>Uses dungeon shuffling from Simple but freely connects remaining entrances. Caves and
 				dungeons with multiple entrances will be confined to one world.</p>
 		</div>
 	</div>
 
-	<div class="panel panel-warning">
-		<div class="panel-heading">
-			<h3 class="panel-title">Full</h3>
+	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
+	<div class="card border-warning mt-4">
+		<div class="card-header bg-warning">
+			<h3 class="card-title">Full</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p>Mixes cave and dungeon entrances freely. Caves and dungeons with multiple entrances
 				will be confined to one world.</p>
 		</div>
 	</div>
 
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h3 class="panel-title">Crossed</h3>
+	<div class="card border-danger mt-4">
+		<div class="card-header bg-danger">
+			<h3 class="card-title text-white">Crossed</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p>Mixes cave and dungeon entrances freely, but now connector caves and dungeons can link
 				Light World and Dark World.</p>
 		</div>
 	</div>
 
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h3 class="panel-title">Insanity</h3>
+	<div class="card border-danger mt-4">
+		<div class="card-header bg-danger">
+			<h3 class="card-title text-white">Insanity</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p>Decouples entrances and exits from each other and shuffles them freely. Caves that
 				were single entrance in vanilla still can only exit to the same location from which
 				they were entered.</p>
 		</div>
 	</div>
-
 </div>
 @overwrite

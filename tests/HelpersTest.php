@@ -5,12 +5,12 @@ class HelpersTest extends TestCase {
 	public function testMtShuffleDifferentReturn() {
 		$unshuffled = range(0, 1000);
 
-		$this->assertNotEquals(mt_shuffle($unshuffled), $unshuffled);
+		$this->assertNotEquals(fy_shuffle($unshuffled), $unshuffled);
 	}
 
 	public function testMtShuffleSameValues() {
 		$unshuffled = range(0, 1000);
-		$shuffled = mt_shuffle($unshuffled);
+		$shuffled = fy_shuffle($unshuffled);
 
 		sort($unshuffled);
 		sort($shuffled);

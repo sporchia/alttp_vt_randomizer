@@ -79,7 +79,7 @@ class EntranceRandomizer extends Randomizer {
 
 		$proc = new Process('python3 '
 			. base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py')
-			. ' --mode ' . config('game-mode')
+			. ' --mode ' . $this->config('mode.state')
 			. ' --goal ' . $this->goal
 			. ' --difficulty ' . $this->difficulty
 			. ' --shuffle ' .  $this->shuffle
@@ -141,6 +141,25 @@ class EntranceRandomizer extends Randomizer {
 		}
 
 		return $rom;
+	}
+
+	/**
+	 * Get config value based on the currently set rules
+	 *
+	 * @param string $key dot notation key of config
+	 * @param mixed|null $default value to return if $key is not found
+	 *
+	 * @return mixed
+	 */
+	public function config(string $key, $default = null) {
+		if (!array_key_exists($key, $this->config)) {
+			$this->config[$key] = config("alttp.{$this->difficulty}.variations.{$this->variation}.$key",
+				config("alttp.{$this->difficulty}.$key",
+					config("alttp.goals.{$this->goal}.$key",
+						config("alttp.$key", null))));
+		}
+
+		return $this->config[$key] ?? $default;
 	}
 
 	/**

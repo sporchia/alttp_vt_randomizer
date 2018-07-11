@@ -569,7 +569,6 @@ return [
 			'BootsLocation' => false,
 		],
 		'sprite' => [
-			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
@@ -592,7 +591,6 @@ return [
 			'HardMode' => 0,
 		],
 		'sprite' => [
-			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
@@ -667,6 +665,7 @@ return [
 				'NoMajorGlitches' => 'No Glitches',
 				'OverworldGlitches' => 'Overworld Glitches',
 				'MajorGlitches' => 'Major Glitches',
+				'None' => 'None (I know what I’m doing)',
 			],
 			'modes' => [
 				'standard' => 'Standard',
@@ -686,6 +685,7 @@ return [
 				'retro' => 'Retro',
 			],
 			'difficulty_adjustments' => [
+				-1 => 'Easy',
 				0 => 'Normal',
 				1 => 'Hard',
 				2 => 'Expert',

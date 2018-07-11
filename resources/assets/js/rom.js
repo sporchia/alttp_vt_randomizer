@@ -1,9 +1,12 @@
-const SparkMD5 = require('./spark-md5');
+const SparkMD5 = require('spark-md5');
 const FileSaver = require('file-saver');
 
 var ROM = (function(blob, loaded_callback) {
-	var u_array;
+	var u_array = [];
 	var arrayBuffer;
+	var base_patch;
+	var original_data;
+	var size = 2; // mb
 
 	var music = {
 		0x00:[0xD373B,0xD375B,0xD90F8],
@@ -82,10 +85,8 @@ var ROM = (function(blob, loaded_callback) {
 			arrayBuffer = arrayBuffer.slice(0x200, arrayBuffer.byteLength);
 		}
 
-		// fill out rom to 2mb
-		if (arrayBuffer.byteLength < 2097152) {
-			arrayBuffer = this.resizeUint8(arrayBuffer, 2097152);
-		}
+		original_data = arrayBuffer.slice(0);
+		this.resize(size);
 
 		u_array = new Uint8Array(arrayBuffer);
 
@@ -102,8 +103,12 @@ var ROM = (function(blob, loaded_callback) {
 		return arrayBuffer;
 	};
 
+	this.getOriginalArrayBuffer = function() {
+		return original_data;
+	};
+
 	this.write = function(seek, bytes) {
-		if (!bytes.length) {
+		if (bytes && !bytes.length) {
 			u_array[seek] = bytes;
 			return;
 		}
@@ -267,22 +272,45 @@ var ROM = (function(blob, loaded_callback) {
 				case 'off': sbyte = 0x00; break;
 				case 'half': sbyte = 0x40; break;
 				case 'quarter': sbyte = 0x80; break;
+				case 'double': sbyte = 0x10; break;
 			}
 			this.write(0x180033, sbyte);
 			resolve(this);
 		}.bind(this));
 	}.bind(this);
 
-	this.parsePatch = function(patch, progressCallback) {
+	this.parsePatch = function(data, progressCallback) {
 		return new Promise(function(resolve, reject) {
-			patch.forEach(function(value, index, array) {
-				if (progressCallback) progressCallback(index / patch.length, this);
-				for (address in value) {
-					this.write(Number(address), value[address]);
-				}
-			}.bind(this));
+			this.difficulty = data.difficulty;
+			this.seed = data.seed;
+			this.spoiler = data.spoiler;
+			this.hash = data.hash;
+			this.generated = data.generated;
+			if (data.spoiler && data.spoiler.meta) {
+				this.build = data.spoiler.meta.build;
+				this.goal = data.spoiler.meta.goal;
+				this.logic = data.spoiler.meta.logic;
+				this.mode = data.spoiler.meta.mode;
+				this.name = data.spoiler.meta.name;
+				this.variation = data.spoiler.meta.variation;
+				this.weapons = data.spoiler.meta.weapons;
+				this.difficulty_mode = data.spoiler.meta.difficulty_mode;
+				this.notes = data.spoiler.meta.notes;
+			}
+			if (data.patch && data.patch.length) {
+				data.patch.forEach(function(value, index, array) {
+					if (progressCallback) progressCallback(index / data.patch.length, this);
+					for (address in value) {
+						this.write(Number(address), value[address]);
+					}
+				}.bind(this));
+			}
 			resolve(this);
 		}.bind(this));
+	};
+
+	this.setBasePatch = function(patch) {
+		this.base_patch = patch;
 	};
 
 	this.resizeUint8 = function(baseArrayBuffer, newByteSize) {
@@ -295,6 +323,22 @@ var ROM = (function(blob, loaded_callback) {
 		return resizedArrayBuffer;
 	};
 
+	this.resize = function(size) {
+		switch (size) {
+			case 4:
+				arrayBuffer = this.resizeUint8(arrayBuffer, 4194304);
+				break;
+			case 2:
+				arrayBuffer = this.resizeUint8(arrayBuffer, 2097152);
+				break;
+			case 1:
+			default:
+				size = 1;
+				arrayBuffer = this.resizeUint8(arrayBuffer, 1048576);
+		}
+		this.size = size;
+	};
+
 	this.downloadFilename = function() {
 		return this.name
 			|| 'ALttP - VT_' + this.logic
@@ -305,6 +349,24 @@ var ROM = (function(blob, loaded_callback) {
 			+ (this.variation == 'none' ? '' : '_' + this.variation)
 			+ '_' + this.seed
 			+ (this.special ? '_special' : '');
+	};
+
+	this.reset = function(size) {
+		return new Promise((resolve, reject) => {
+			arrayBuffer = original_data.slice(0);
+			this.resize(size || this.size);
+			u_array = new Uint8Array(arrayBuffer);
+
+			if (!this.base_patch) {
+				reject('base patch not set');
+			}
+			this.parsePatch({patch: this.base_patch}).then((rom) => {
+				resolve(rom);
+			}).catch((error) => {
+				console.log(error, ":(");
+				reject('sadness');
+			});
+		});
 	};
 });
 

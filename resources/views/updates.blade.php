@@ -1,8 +1,12 @@
 @extends('layouts.default')
 
+@php
+$title = 'Updates - ';
+@endphp
+
 @section('content')
 <h2>VT8.29</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Easy mode now gets 2 chances at silver arrow upgrade</li>
 		<li>Triforce hunt lessens the chance of finding triforce pieces in GT</li>
@@ -46,17 +50,20 @@
 			<img src="http://spr.beegunslingers.com/sprites.29.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
-	<div class="panel panel-info">
-		<div class="panel-heading">View updates</div>
-		<div class="panel-body">
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xO-ObKYmB2A?rel=0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</div>
 </div>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
 <h2>VT8.28</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Daily Challenges</li>
 		<li>Tweaked the Bees a little</li>
@@ -84,8 +91,9 @@
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
 </div>
+
 <h2>VT8.27</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Easy difficulty will always have dungeon counts in HUD enabled</li>
 		<li>Added + to golden bee bottle in menu</li>
@@ -104,9 +112,9 @@
 			<img src="http://spr.beegunslingers.com/sprites.27.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
-	<div class="panel panel-info">
-		<div class="panel-heading">View updates</div>
-		<div class="panel-body">
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/u8QMJsqMGJw?rel=0" allowfullscreen></iframe>
 			</div>
@@ -115,7 +123,7 @@
 </div>
 
 <h2>VT8.26.2</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Turtle Rock small key fix</li>
 		<li>Skull Woods small key fix</li>
@@ -126,7 +134,7 @@
 </div>
 
 <h2>VT8.26</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>updated timed-OHKO for different difficulties</li>
 		<li>Boots are no longer guaranteed in Sanctuary for Major Glitches</li>
@@ -151,9 +159,9 @@
 			<img src="http://spr.beegunslingers.com/sprites.3.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
-	<div class="panel panel-info">
-		<div class="panel-heading">View updates</div>
-		<div class="panel-body">
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/L3FdC-f7f38?rel=0" allowfullscreen></iframe>
 			</div>
@@ -162,7 +170,7 @@
 </div>
 
 <h2>VT8.25</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Fake Flippers death safey has been readded</li>
 		<li>Green Pendant has an asterisk in the map to help with low visual acuity</li>
@@ -187,9 +195,9 @@
 			<img src="http://spr.beegunslingers.com/sprites.2.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
-	<div class="panel panel-info">
-		<div class="panel-heading">View updates</div>
-		<div class="panel-body">
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/n0_SnUraLL8?rel=0" allowfullscreen></iframe>
 			</div>
@@ -198,7 +206,7 @@
 </div>
 
 <h2>VT8.24</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Sword Upgrades are dealt with differently by the fill algorithm to be distributed more evenly over the game world.</li>
 		<li>New Full Distribution <a href="https://docs.google.com/spreadsheets/d/17-_wlQBC6Fnt6qSoAkao1NAEoBXeDUmrGCNX5y7auNA" target="_blank" rel="noopener noreferrer">here</a></li>
@@ -211,7 +219,7 @@
 </div>
 
 <h2>VT8.23</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>The bookcase in the throne room of Hyrule Castle can now be moved without Zelda once she has been rescued</li>
 		<li>The logic for the 4 chests in Sewers have had the Gloves requirement removed as you can no longer softlock</li>
@@ -241,9 +249,9 @@
 		<li>You can use medallions swordless outside Misery Mire and Turtle Rock (but nowhere else) [swordless]</li>
 		<li>The 4 swords have been removed from the pool and replaced with 20 rupees [swordless]</li>
 	</ul>
-	<div class="panel panel-info">
-		<div class="panel-heading">View updates</div>
-		<div class="panel-body">
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/GaUggPXL3M0?rel=0" allowfullscreen></iframe>
 			</div>
@@ -252,7 +260,7 @@
 </div>
 
 <h2>VT8.22</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>The free lamp cone has been removed in the Light World (dark rooms are still never required the logic)</li>
 		<li>The frog now persists through s+q (and death) as per vanilla</li>
@@ -297,9 +305,9 @@
 		<li>Map no longer breaks after you’ve beaten Ganon’s Tower [glitched]</li>
 		<li>Fake DW no longer corrupts Agahnim 2 [glitched]</li>
 	</ul>
-	<div class="panel panel-info">
-		<div class="panel-heading">View updates</div>
-		<div class="panel-body">
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YCTbYA_eVNw?rel=0" allowfullscreen></iframe>
 			</div>
@@ -308,10 +316,10 @@
 </div>
 
 <h2>V8 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<p>Switched to VT web based version</p>
 
-	<div class="well">
+	<div class="card card-body bg-light mb-3">
 		<h3>Modes</h3>
 		<h4>Open</h4>
 		<ul>
@@ -330,7 +338,7 @@
 		</ul>
 	</div>
 
-	<div class="well">
+	<div class="card card-body bg-light mb-3">
 		<h3>Difficulties</h3>
 		<h4>Expert</h4>
 		<ul>
@@ -363,7 +371,7 @@
 		</ul>
 	</div>
 
-	<div class="well">
+	<div class="card card-body bg-light mb-3">
 		<h3>Logics</h3>
 		<h3>Major Glitches</h3>
 		<ul>
@@ -426,7 +434,7 @@
 </div>
 
 <h2>V7 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Boss hearts and the ½ magic bat statue have been added as new item locations</li>
 		<li>Bomb and arrow capacity upgrades have been added to the item pool (70 arrows and 50 bombs)</li>
@@ -456,7 +464,7 @@
 </div>
 
 <h2>V6 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>The Chest Game is limited to 2 chests per session to prevent crashes (error with v5.2)</li>
 		<li>The cursed dwarf is removed when you die or s+q with him following you (error with v5.11)</li>
@@ -475,7 +483,7 @@
 </div>
 
 <h2>V5 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Bottles are randomly filled upon collection with an equal chance for each bottle prize, including empty</li>
 		<li>Throwing bottles into Faerie fountains now yields an equal chance for each bottle prize, including empty</li>
@@ -500,7 +508,7 @@
 </div>
 
 <h2>V4 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>NPCs are no longer guaranteed to give unique items</li>
 		<li>Catfish throws a bomb if his item is a downgrade of an item you already have</li>
@@ -526,7 +534,7 @@
 </div>
 
 <h2>V3 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Fire Shield is now an NPC/chest item (replaced a 20 rupee chest)</li>
 		<li>Mirror Shield and Red Mail are restricted to the DW</li>
@@ -546,7 +554,7 @@
 </div>
 
 <h2>V2 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>Bug fixes (seed creation error)</li>
 		<li>Logic improvements (accounting for access to lower DW with Hookshot)</li>
@@ -554,7 +562,7 @@
 </div>
 
 <h2>V1 Updates</h2>
-<div class="well">
+<div class="card card-body bg-light mb-3">
 	<ul>
 		<li>All unique chests and NPC rewards are randomized; NPCs always give unique items</li>
 		<li>Swamp Palace water levels reset upon leaving the overworld screen</li>

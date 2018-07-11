@@ -1,40 +1,325 @@
-#equipment-selector {
+<template>
+	<div class="card border-success">
+		<div class="card-header bg-success">
+			<h3 class="card-title text-white">Equipment</h3>
+		</div>
+		<div class="card-body">
+				<div class="row">
+			<div class="cell">
+				<div class="row">
+					<div class="cell">
+						<div @click="incrementItem('ProgressiveArmor')"
+							:class="[items.ProgressiveArmor ? 'active-' + items.ProgressiveArmor : '', {active: items.ProgressiveArmor}]"
+							class="item ProgressiveArmor active"></div>
+						<div @click="incrementItem('ProgressiveSword')"
+							:class="[items.ProgressiveSword ? 'active-' + items.ProgressiveSword : '', {active: items.ProgressiveSword}]"
+							class="item ProgressiveSword"></div>
+						<div @click="incrementItem('ProgressiveShield')"
+							:class="[items.ProgressiveShield ? 'active-' + items.ProgressiveShield : '', {active: items.ProgressiveShield}]"
+							class="item ProgressiveShield"></div>
+						<div @click="toggleItem('MoonPearl')" :class="{active: items.MoonPearl}"
+							class="item MoonPearl"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="cell"><div @click="incrementItem('Bottle1')"
+						:class="[items.Bottle1 ? 'active-' + items.Bottle1 : '', {active: items.Bottle1}]"
+						class="item Bottle"></div></div>
+					<div class="cell"><div @click="incrementItem('Bottle2')"
+						:class="[items.Bottle2 ? 'active-' + items.Bottle2 : '', {active: items.Bottle2}]"
+						class="item Bottle"></div></div>
+				</div>
+				<div class="row">
+					<div class="cell"><div @click="incrementItem('Bottle3')"
+						:class="[items.Bottle3 ? 'active-' + items.Bottle3 : '', {active: items.Bottle3}]"
+						class="item Bottle"></div></div>
+					<div class="cell"><div @click="incrementItem('Bottle4')"
+						:class="[items.Bottle4 ? 'active-' + items.Bottle4 : '', {active: items.Bottle4}]"
+						class="item Bottle"></div></div>
+				</div>
+			</div>
+			<div class="cell">
+				<div class="row">
+					<div class="cell"><div @click="incrementItem('ProgressiveBow')"
+						:class="[items.ProgressiveBow ? 'active-' + items.ProgressiveBow : '', {active: items.ProgressiveBow}]"
+						class="item ProgressiveBow"></div></div>
+					<div class="cell"><div @click="incrementItem('Boomerang')"
+						:class="[items.Boomerang ? 'active-' + items.Boomerang : '', {active: items.Boomerang}]"
+						class="item Boomerang"></div></div>
+					<div class="cell"><div @click="toggleItem('Hookshot')" :class="{active: items.Hookshot}"
+						class="item Hookshot"></div></div>
+					<div class="cell"><div @click="toggleItem('Mushroom')" :class="{active: items.Mushroom}"
+						class="item Mushroom"></div></div>
+					<div class="cell"><div @click="toggleItem('Powder')" :class="{active: items.Powder}"
+						class="item Powder"></div></div>
+				</div>
+				<div class="row">
+					<div class="cell"><div @click="toggleItem('FireRod')" :class="{active: items.FireRod}"
+						class="item FireRod"></div></div>
+					<div class="cell"><div @click="toggleItem('IceRod')" :class="{active: items.IceRod}"
+						class="item IceRod"></div></div>
+					<div class="cell"><div @click="toggleItem('Bombos')" :class="{active: items.Bombos}"
+						class="item Bombos"></div></div>
+					<div class="cell"><div @click="toggleItem('Ether')" :class="{active: items.Ether}"
+						class="item Ether"></div></div>
+					<div class="cell"><div @click="toggleItem('Quake')" :class="{active: items.Quake}"
+						class="item Quake"></div></div>
+				</div>
+				<div class="row">
+					<div class="cell"><div @click="toggleItem('Lamp')" :class="{active: items.Lamp}"
+						class="item Lamp"></div></div>
+					<div class="cell"><div @click="toggleItem('Hammer')" :class="{active: items.Hammer}"
+						class="item Hammer"></div></div>
+					<div class="cell"><div @click="toggleItem('Shovel')" :class="{active: items.Shovel}"
+						class="item Shovel"></div></div>
+					<div class="cell"><div @click="toggleItem('BugCatchingNet')" :class="{active: items.BugCatchingNet}"
+						class="item BugCatchingNet"></div></div>
+					<div class="cell"><div @click="toggleItem('BookOfMudora')" :class="{active: items.BookOfMudora}"
+						class="item BookOfMudora"></div></div>
+				</div>
+				<div class="row">
+					<div class="cell"><div class="item empty"></div></div>
+					<div class="cell"><div @click="toggleItem('CaneOfSomaria')" :class="{active: items.CaneOfSomaria}"
+						class="item CaneOfSomaria"></div></div>
+					<div class="cell"><div @click="toggleItem('CaneOfByrna')" :class="{active: items.CaneOfByrna}"
+						class="item CaneOfByrna"></div></div>
+					<div class="cell"><div @click="toggleItem('Cape')" :class="{active: items.Cape}"
+						class="item Cape"></div></div>
+					<div class="cell"><div @click="toggleItem('MagicMirror')" :class="{active: items.MagicMirror}"
+						class="item MagicMirror"></div></div>
+				</div>
+				<div class="row">
+					<div class="cell"><div @click="toggleItem('PegasusBoots')" :class="{active: items.PegasusBoots}"
+						class="item PegasusBoots"></div></div>
+					<div class="cell"><div @click="incrementItem('ProgressiveGlove')"
+						:class="[items.ProgressiveGlove ? 'active-' + items.ProgressiveGlove : '', {active: items.ProgressiveGlove}]"
+						class="item ProgressiveGlove"></div></div>
+					<div class="cell"><div @click="toggleItem('Flippers')" :class="{active: items.Flippers}"
+						class="item Flippers"></div></div>
+					<div class="cell"><div @click="toggleItem('OcarinaInactive')" :class="{active: items.OcarinaInactive}"
+						class="item OcarinaInactive"></div></div>
+					<div class="cell"><div class="item empty"></div></div>
+				</div>
+			</div>
+			<div class="cell">
+				<div class="row">
+					<div class="cell w-100">
+						<vue-slider ref="slider" @drag-end="saveEquipment" :min="1" :max="20" tooltip="hover" v-model="items.BossHeartContainer"></vue-slider>
+					</div>
+				</div>
+				<div class="row">
+					<div id="custom-equipment-hearts" class="cell" style="width:321px">
+						<div v-for="n in items.BossHeartContainer" class="Heart" style="display:inline-block"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</template>
+
+<script>
+import vueSlider from 'vue-slider-component'
+
+export default {
+	components: {
+		vueSlider: vueSlider,
+	},
+	props: ['value'],
+	data() {
+		return {
+			items: {
+				ProgressiveArmor: 0,
+				ProgressiveSword: 0,
+				ProgressiveShield: 0,
+				MoonPearl: false,
+
+				ProgressiveBow: 0,
+				Boomerang: 0,
+				Hookshot: false,
+				Mushroom: false,
+				Powder: false,
+
+				FireRod: false,
+				IceRod: false,
+				Bombos: false,
+				Ether: false,
+				Quake: false,
+
+				Lamp: false,
+				Hammer: false,
+				Shovel: false,
+				BugCatchingNet: false,
+				BookOfMudora: false,
+
+				Bottle1: 0,
+				Bottle2: 0,
+				Bottle3: 0,
+				Bottle4: 0,
+				CaneOfSomaria: false,
+				CaneOfByrna: false,
+				Cape: false,
+				MagicMirror: false,
+
+				PegasusBoots: false,
+				ProgressiveGlove: 0,
+				Flippers: false,
+				OcarinaInactive: false,
+
+				BossHeartContainer: 3,
+
+				empty: false,
+			}
+		};
+	},
+	mounted () {
+		localforage.getItem('vt.custom.equipment').then(value => {
+			if (value === null) {
+				return;
+			}
+			this.items = value;
+		}).then(() => {
+			this.$emit('input', this.selectedEq);
+		});
+	},
+	methods: {
+		counter(value, delta, max, min) {
+			min = min || 0;
+			value += delta;
+
+			if (value > max) value = min;
+			if (value < min) value = max;
+			return value;
+		},
+		counters(delta, limits) {
+			return function(item) {
+				var max = limits[item].max,
+					min = limits[item].min;
+
+				return this.items[item] = this.counter(this.items[item], delta, max, min);
+			};
+		},
+		increment(name) {
+			var inc = this.counters(1, {
+				ProgressiveArmor: { max: 2 },
+				ProgressiveSword: { max: 4 },
+				ProgressiveShield: { max: 3 },
+				Bottle1: { max: 7 },
+				Bottle2: { max: 7 },
+				Bottle3: { max: 7 },
+				Bottle4: { max: 7 },
+				ProgressiveBow: { max: 3 },
+				Boomerang: { max: 3 },
+				ProgressiveGlove: { max: 2 }
+			}).bind(this);
+
+			return inc(name);
+		},
+		incrementItem(name) {
+			this.increment(name);
+			this.saveEquipment();
+		},
+		toggleItem(name) {
+			this.items[name] = !this.items[name];
+			this.saveEquipment();
+		},
+		saveEquipment() {
+			localforage.setItem('vt.custom.equipment', this.items);
+			this.$emit('input', this.selectedEq);
+		},
+	},
+	computed: {
+		selectedEq () {
+			var starting_equipment = [];
+			var keys = Object.keys(this.items).filter(item => {
+				return this.items[item];
+			});
+			for (var i = 0; i < keys.length; ++i) {
+				if (typeof this.items[keys[i]] === 'boolean') {
+					starting_equipment.push(keys[i]);
+				} else if (keys[i] == 'ProgressiveBow') {
+					starting_equipment.push([
+						'nothing',
+						'SilverArrowUpgrade',
+						'Bow',
+						'BowAndSilverArrows',
+					][this.items[keys[i]]]);
+				} else if (keys[i] == 'Boomerang') {
+					switch (this.items[keys[i]]) {
+						case 3: starting_equipment.push('RedBoomerang');
+						case 1: starting_equipment.push('Boomerang'); break;
+						case 2: starting_equipment.push('RedBoomerang'); break;
+					}
+				} else if (keys[i].match(/^Bottle/)) {
+					switch (this.items[keys[i]]) {
+						case 1: starting_equipment.push('Bottle'); break;
+						case 2: starting_equipment.push('BottleWithRedPotion'); break;
+						case 3: starting_equipment.push('BottleWithGreenPotion'); break;
+						case 4: starting_equipment.push('BottleWithBluePotion'); break;
+						case 5: starting_equipment.push('BottleWithBee'); break;
+						case 6: starting_equipment.push('BottleWithGoldBee'); break;
+						case 7: starting_equipment.push('BottleWithFairy'); break;
+					}
+				} else {
+					for (var j = 0; j < this.items[keys[i]]; ++j) {
+						starting_equipment.push(keys[i]);
+					}
+				}
+			}
+			return starting_equipment;
+		},
+		active () {
+			// This hack has to do with VueSliderComponent's inability to be loaded in a v-show
+			return this.$parent.isActive;
+		}
+	},
+	watch: {
+		active (val) {
+			// This hack has to do with VueSliderComponent's inability to be loaded in a v-show
+			if (val) {
+				this.$nextTick(() => this.$refs.slider.refresh());
+			}
+		}
+	},
+};
+</script>
+
+<style scoped>
+.card-body {
 	background-color: #C0C0C0;
 }
 
-#tracker .row {
+.row {
 	margin: auto;
 }
-#tracker .row:before,
-#tracker .row:after {
+.row:before,
+.row:after {
 	content: " ";
 	display: table;
 }
-#tracker .row:after {
+.row:after {
 	clear: both;
 }
-#tracker .cell {
+.cell {
 	position: relative;
 	float: left;
 }
 
-
-
-#tracker .ProgressiveArmor {
+.ProgressiveArmor {
 	width: 128px;
 	height: 128px;
 }
-#tracker .ProgressiveSword {
+.ProgressiveSword {
 	position: absolute;
 	top: 12px;
 	right: -8px;
 }
-#tracker .ProgressiveShield {
+.ProgressiveShield {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 }
-#tracker .MoonPearl {
+.MoonPearl {
 	width: 48px;
 	height: 48px;
 	position: absolute;
@@ -42,15 +327,12 @@
 	right: 0;
 }
 
-#tracker {
-	.item {
-		opacity: .25;
-	}
-	.item.active, .ProgressiveArmor {
-		opacity: 1;
-	}
+.item {
+	opacity: .25;
 }
-
+.item.active, .ProgressiveArmor {
+	opacity: 1;
+}
 
 .icon {
 	width: 16px;
@@ -131,43 +413,43 @@
 	background-position: -320px 0;
 }
 
-.Bottle, .Bottle.active-1 { // empty
+.Bottle, .Bottle.active-1 { /* empty */
 	width: 64px;
 	height: 64px;
 	background-position: -384px 0;
 }
 
-.Bottle.active-6 { // gold bee
+.Bottle.active-6 { /* gold bee */
 	width: 64px;
 	height: 64px;
 	background-position: -448px 0;
 }
 
-.Bottle.active-3 { // blue potion
+.Bottle.active-3 { /* blue potion */
 	width: 64px;
 	height: 64px;
 	background-position: 0 -64px;
 }
 
-.Bottle.active-4 { // green potion
+.Bottle.active-4 { /* green potion */
 	width: 64px;
 	height: 64px;
 	background-position: -64px -64px;
 }
 
-.Bottle.active-2 { // red potion
+.Bottle.active-2 { /* red potion */
 	width: 64px;
 	height: 64px;
 	background-position: -128px -64px;
 }
 
-.Bottle.active-5 { // bee
+.Bottle.active-5 { /* bee */
 	width: 64px;
 	height: 64px;
 	background-position: -64px -384px;
 }
 
-.Bottle.active-7 { // fairy
+.Bottle.active-7 { /* fairy */
 	width: 64px;
 	height: 64px;
 	background-position: 0 -384px;
@@ -405,3 +687,4 @@
 	height: 64px;
 	background-position: 64px 64px;
 }
+</style>

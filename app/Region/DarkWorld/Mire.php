@@ -54,6 +54,15 @@ class Mire extends Region {
 	 * @return $this
 	 */
 	public function initNoMajorGlitches() {
+		// @TODO: do we want to allow super bunny item shopping
+		$this->shops["Dark Desert Fairy"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->shops["Dark Desert Hint"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
 		$this->locations["Mire Shed - Left"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
 		});

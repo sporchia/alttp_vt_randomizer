@@ -63,7 +63,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 				config('alttp.randomizer.daily_weights.item.weapons')));
 
 			config([
-				'game-mode' => $game_mode,
+				'alttp.mode.state' => $game_mode,
 				'alttp.mode.weapons' => $weapons_mode,
 			]);
 
