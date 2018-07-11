@@ -923,7 +923,7 @@ class Randomizer {
 			"sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
 			"schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
 			"sharshalah", "shahabadoo", "sassafrass", "saddlebags", "sandalwood", "shagadelic", "sandcastle",
-			"saltpeters", "shabbiness",
+			"saltpeters", "shabbiness", "shlrshlrsh",
 		]));
 		$rom->setKakarikoTownCredits("$name's homecoming");
 
