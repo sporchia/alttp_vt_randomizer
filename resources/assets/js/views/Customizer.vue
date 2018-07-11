@@ -147,14 +147,15 @@
 </template>
 
 <script>
-import EventBus from '../core/event-bus';
-import Tab from '../components/VTTab.vue';
-import Tabs from '../components/VTTabs.vue';
-import VTTextarea from '../components/VTTextarea.vue'
 import EquipmentSelect from '../components/Customizer/EquipmentSelect.vue';
+import EventBus from '../core/event-bus';
+import FileSaver from 'file-saver';
 import ItemPool from '../components/Customizer/ItemPool.vue';
 import LocationPool from '../components/Customizer/LocationPool.vue';
 import Settings from '../components/Customizer/Settings.vue';
+import Tab from '../components/VTTab.vue';
+import Tabs from '../components/VTTabs.vue';
+import VTTextarea from '../components/VTTextarea.vue'
 
 export default {
 	components: {
@@ -298,6 +299,7 @@ export default {
 						}
 						this.gameLoaded = true;
 						EventBus.$emit('gameLoaded', this.rom);
+						this.error = null;
 						resolve({rom: this.rom, patch: response.data.patch});
 					}.bind(this));
 				}).catch((error) => {

@@ -44,6 +44,7 @@
 
 <script>
 import EventBus from '../core/event-bus';
+import FileSaver from 'file-saver';
 
 export default {
 	props: [

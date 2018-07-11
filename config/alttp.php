@@ -665,6 +665,7 @@ return [
 				'NoMajorGlitches' => 'No Glitches',
 				'OverworldGlitches' => 'Overworld Glitches',
 				'MajorGlitches' => 'Major Glitches',
+				'None' => 'None (I know what I’m doing)',
 			],
 			'modes' => [
 				'standard' => 'Standard',

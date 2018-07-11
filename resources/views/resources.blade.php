@@ -96,7 +96,6 @@ $title = 'Resources - ';
 			</ul>
 			<h4>What has stayed the same?</h4>
 			<ul>
-			<li>Link's Uncle gives you the Fighter's Sword (except in Open Mode)
 			<li>All shops throughout Hyrule
 			<li>The archery game and various rupee chest games
 			<li>Small keys underneath pots or held by enemies
