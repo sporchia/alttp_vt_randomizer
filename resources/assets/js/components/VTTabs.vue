@@ -20,6 +20,7 @@
 export default {
 	props: {
 		navType: {default: 'pills'},
+		defaultTab: {default: null},
 	},
 	data() {
 		return {
@@ -27,7 +28,6 @@ export default {
 			activeTab: null,
 		};
 	},
-
 	created() {
 		this.tabs = this.$children;
 	},
@@ -52,6 +52,10 @@ export default {
 					this.activeTab = tab.href;
 				}
 			});
+			if (!this.activeTab) {
+				window.location.hash = this.defaultTab || this.tabs[0].href;
+				this.selectTabHref(window.location.hash);
+			}
 		}
 	}
 }

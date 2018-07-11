@@ -125,6 +125,7 @@ export default {
 	components: {
 		vueSlider: vueSlider,
 	},
+	props: ['value'],
 	data() {
 		return {
 			items: {
@@ -177,6 +178,8 @@ export default {
 				return;
 			}
 			this.items = value;
+		}).then(() => {
+			this.$emit('input', this.selectedEq);
 		});
 	},
 	methods: {
@@ -222,7 +225,61 @@ export default {
 		},
 		saveEquipment() {
 			localforage.setItem('vt.custom.equipment', this.items);
+			this.$emit('input', this.selectedEq);
 		},
+	},
+	computed: {
+		selectedEq () {
+			var starting_equipment = [];
+			var keys = Object.keys(this.items).filter(item => {
+				return this.items[item];
+			});
+			for (var i = 0; i < keys.length; ++i) {
+				if (typeof this.items[keys[i]] === 'boolean') {
+					starting_equipment.push(keys[i]);
+				} else if (keys[i] == 'ProgressiveBow') {
+					starting_equipment.push([
+						'nothing',
+						'SilverArrowUpgrade',
+						'Bow',
+						'BowAndSilverArrows',
+					][this.items[keys[i]]]);
+				} else if (keys[i] == 'Boomerang') {
+					switch (this.items[keys[i]]) {
+						case 3: starting_equipment.push('RedBoomerang');
+						case 1: starting_equipment.push('Boomerang'); break;
+						case 2: starting_equipment.push('RedBoomerang'); break;
+					}
+				} else if (keys[i].match(/^Bottle/)) {
+					switch (this.items[keys[i]]) {
+						case 1: starting_equipment.push('Bottle'); break;
+						case 2: starting_equipment.push('BottleWithRedPotion'); break;
+						case 3: starting_equipment.push('BottleWithGreenPotion'); break;
+						case 4: starting_equipment.push('BottleWithBluePotion'); break;
+						case 5: starting_equipment.push('BottleWithBee'); break;
+						case 6: starting_equipment.push('BottleWithGoldBee'); break;
+						case 7: starting_equipment.push('BottleWithFairy'); break;
+					}
+				} else {
+					for (var j = 0; j < this.items[keys[i]]; ++j) {
+						starting_equipment.push(keys[i]);
+					}
+				}
+			}
+			return starting_equipment;
+		},
+		active () {
+			// This hack has to do with VueSliderComponent's inability to be loaded in a v-show
+			return this.$parent.isActive;
+		}
+	},
+	watch: {
+		active (val) {
+			// This hack has to do with VueSliderComponent's inability to be loaded in a v-show
+			if (val) {
+				this.$nextTick(() => this.$refs.slider.refresh());
+			}
+		}
 	},
 };
 </script>

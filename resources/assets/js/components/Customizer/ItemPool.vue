@@ -1,7 +1,7 @@
 <template>
-	<div class="card border-success">
-		<div class="card-header bg-success card-heading-btn card-heading-sticky">
-			<h3 class="card-title text-white float-left">Item Pool {{ itemCount }} / {{ placedItemCount }}</h3>
+	<div class="card border-success" :class="{'border-danger': unevenCount}">
+		<div class="card-header bg-success card-heading-btn card-heading-sticky" :class="{'bg-danger': unevenCount}">
+			<h3 class="card-title text-white float-left">Item Pool {{ itemCount + placedItemCount }} / 216</h3>
 			<div class="btn-toolbar float-right">
 				<input id="items-filter" placeholder="search" type="text" v-model="search" />
 			</div>
@@ -11,8 +11,8 @@
 			<table class="table table-sm">
 				<thead>
 					<tr class="sticky-head">
-						<th>Randomly Place</th>
-						<th>Manually Placed</th>
+						<th>Randomly Place ({{ itemCount }})</th>
+						<th>Manually Placed ({{ placedItemCount }})</th>
 						<th>Item Name</th>
 					</tr>
 				</thead>
@@ -55,16 +55,20 @@ export default {
 		orderedItems: function () {
 			return orderBy(this.items, 'name');
 		},
-		placedItemCount: (vm) => {
-			if (!vm.placedItem) {
+		unevenCount () {
+			return this.placedItemCount + this.itemCount != 216;
+		},
+		placedItemCount (vm) {
+			if (!vm.items.length) {
 				return 0;
 			}
-			return vm.placedItem.placed;
-		},
-		placedItem: (vm) => {
 			return vm.items.filter(item => {
-				return item.value == 'auto_fill';
-			})[0]
+				return item.value !== 'auto_fill';
+			}).map(item => {
+				return Number(item.placed || 0);
+			}).reduce((carry, placed) => {
+				return carry + placed;
+			});
 		},
 		itemCount: (vm) => {
 			if (!vm.items.length) {

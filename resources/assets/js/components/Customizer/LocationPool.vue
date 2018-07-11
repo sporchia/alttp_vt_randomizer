@@ -29,10 +29,15 @@
 							<vt-select :sid="location.hash" @input="selectedItem" v-if="location.class == 'items'"
 								:options="orderedItems" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
 								:clearable="true" />
-							<vt-select v-if="location.class == 'bottles'" :options="bottles" :storage-key="'vt.custom.' + location.hash" />
+							<vt-select :sid="location.hash" @input="selectedOther" v-if="location.class == 'bottles'"
+								:options="bottles" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
+								:clearable="true" />
 							<vt-select :sid="location.hash" @input="selectedPrize" v-if="location.class == 'prizes'"
-								:options="prizes" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill" />
-							<vt-select v-if="location.class == 'medallions'" :options="medallions" :storage-key="'vt.custom.' + location.hash" />
+								:options="prizes" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
+								:clearable="true" />
+							<vt-select :sid="location.hash" @input="selectedOther" v-if="location.class == 'medallions'"
+								:options="medallions" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
+								:clearable="true" />
 						</td>
 					</tr>
 				</tbody>
@@ -72,7 +77,7 @@ export default {
 			if (!selectedOption) {
 				selectedOption = this.defaultItem;
 			}
-			EventBus.$emit('itemAdd', selectedOption.value, sid);
+			EventBus.$emit('itemAdd', selectedOption.value, sid, true);
 			if (sid in this.oldValues) {
 				EventBus.$emit('itemRemove', this.oldValues[sid]);
 			}
@@ -80,7 +85,38 @@ export default {
 			this.itemSearch[sid] = selectedOption.name;
 		},
 		selectedPrize (selectedOption, sid) {
+			if (!selectedOption) {
+				selectedOption = this.defaultItem;
+			}
+			EventBus.$emit('itemAdd', selectedOption.value, sid);
+			if (this.oldValues[sid] && this.oldValues[sid] !== 'auto_fill') {
+				for (var i = 0; i < this.prizes.length; ++i) {
+					console.log(i, this.prizes[i].value , this.oldValues[sid]);
+					if (this.prizes[i].value == this.oldValues[sid]) {
+						this.prizes[i].$isDisabled = false;
+						break;
+					}
+				}
+			}
 
+			this.oldValues[sid] = selectedOption.value;
+			this.itemSearch[sid] = selectedOption.name;
+			if (selectedOption.value !== 'auto_fill') {
+				for (var i = 0; i < this.prizes.length; ++i) {
+					if (this.prizes[i].value == selectedOption.value) {
+						this.prizes[i].$isDisabled = true;
+						break;
+					}
+				}
+			}
+		},
+		selectedOther (selectedOption, sid) {
+			if (!selectedOption) {
+				selectedOption = this.defaultItem;
+			}
+			EventBus.$emit('itemAdd', selectedOption.value, sid);
+			this.oldValues[sid] = selectedOption.value;
+			this.itemSearch[sid] = selectedOption.name;
 		},
 	},
 	computed: {

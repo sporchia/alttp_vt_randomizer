@@ -9,21 +9,18 @@ export default {
 		selected: { default: false },
 		count: {default: ''},
 	},
-
 	data() {
 		return {
 			isActive: false
 		};
 	},
-
+	mounted() {
+		this.isActive = this.selected;
+	},
 	computed: {
 		href() {
 			return '#' + this.name.toLowerCase().replace(/ /g, '-');
 		}
-	},
-
-	mounted() {
-		this.isActive = this.selected;
 	},
 }
 </script>

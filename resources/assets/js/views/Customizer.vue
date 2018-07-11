@@ -9,11 +9,38 @@
 			<span class="message">{{ this.error }}</span>
 		</div>
 		<tabs class="think" nav-type="tabs">
+			<tab name="Home" :selected="true">
+				<div class="card border-success mb-3">
+					<div class="card-header bg-success">
+						<h3 class="card-title text-white">Welcome to Customizer: Just because you can, doesn't mean you should</h3>
+					</div>
+					<div class="card-body">
+						<h2>What is this?</h2>
+						<p>Customizer is an advanced interface where you have total control over item placement. If you're
+							just looking to make a randomized game and get playing, head over to the <a href="/start">Start
+							Playing section.</a></p>
+						<h2>What can be customized?</h2>
+						<ul>
+							<li>Every item location can be set to a specific item, no item, or a random item.</li>
+							<li>Keys, maps, and compasses can be placed outside of their dungeons.</li>
+							<li>Every prize can be set to any pendant or crystal.</li>
+							<li>The overall item pool for random items.</li>
+							<li>Link's starting equipment.</li>
+							<li>...and more!</li>
+						</ul>
+						<h2>How do I use this?</h2>
+						<p>Simply click on one of the sections on the left hand panel.</p>
+						<p>Beware! You can generate incompletable games using this. If that is your choice please don't report
+							item locks generated using this tool.</p>
+						<p>Here are the keys to Hyrule. Enjoy!</p>
+					</div>
+				</div>
+			</tab>
 			<tab id="seed-generate" name="Generate">
 				<vt-rom-loader v-if="!romLoaded" @update="updateRom" @error="onError"></vt-rom-loader>
 				<div v-if="romLoaded" class="card border-success mb-3">
 					<div class="card-header bg-success card-heading-btn">
-						<h3 class="card-title text-white float-left">Customizer (v4) Just because you can, doesn't mean you should</h3>
+						<h3 class="card-title text-white float-left">Customizer (v4): Just because you can, doesn't mean you should</h3>
 						<div class="btn-toolbar float-right">
 							<button class="btn btn-light border-secondary" data-toggle="collapse" href="#rom-settings">
 								ROM Options <img class="icon pulse" src="/i/svg/cog.svg" alt="ROM Options">
@@ -106,7 +133,7 @@
 				<settings :context="context"></settings>
 			</tab>
 			<tab name="Starting Equipment">
-				<equipment-select></equipment-select>
+				<equipment-select v-model="equipment"></equipment-select>
 			</tab>
 			<tab name="Item Pool">
 				<item-pool :items="settings.items" />
@@ -175,6 +202,7 @@ export default {
 				items: [],
 				locations: [],
 			},
+			equipment: [],
 			context: {},
 			itemArrayLookup: {},
 			locationPlacement: {},
@@ -244,6 +272,7 @@ export default {
 					name: this.choice.name,
 					notes: this.choice.notes,
 					l: this.locationPlacement,
+					eq: this.equipment,
 					data: {
 						alttp: {
 							custom: {
@@ -285,11 +314,14 @@ export default {
 				});
 			}.bind(this));
 		},
-		incrementItem(itemName, sid) {
+		incrementItem(itemName, sid, pool) {
 			if (itemName === 'auto_fill') {
 				delete(this.locationPlacement[sid]);
 			} else {
 				this.locationPlacement[sid] = itemName;
+			}
+			if (!pool) {
+				return;
 			}
 			var item = this.settings.items[this.itemArrayLookup[itemName]];
 			item.placed++;
@@ -353,3 +385,10 @@ export default {
 	},
 }
 </script>
+
+<style scoped>
+.think .tabs {
+	position: fixed !important;
+	top: 0;
+}
+</style>

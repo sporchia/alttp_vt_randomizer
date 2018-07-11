@@ -23,7 +23,7 @@
 				<vt-rom-settings :rom="rom"></vt-rom-settings>
 				<div class="row">
 					<div class="col-md mb-3">
-						<vt-rom-info :rom="rom"></vt-rom-info>
+						<vt-rom-info :no-link="true" :rom="rom"></vt-rom-info>
 					</div>
 					<div class="col-md mb-3">
 						<div class="row">
