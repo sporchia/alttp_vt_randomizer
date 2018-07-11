@@ -8,36 +8,40 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="card-body">
+			<div class="sticky-head">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th class="col w-20">Region</th>
+							<th class="col w-40">Location</th>
+							<th class="col w-40">Item</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
 			<table class="table table-sm">
-				<thead>
-					<tr class="sticky-head">
-						<th>Region</th>
-						<th>Location</th>
-						<th>Item</th>
-					</tr>
-				</thead>
 				<tbody class="searchable">
 					<tr v-for="location in locations" v-show="searchEx.test(location.name) || searchEx.test(location.region)
 						|| searchEx.test(itemSearch[location.hash])">
-						<td class="col w-25">
+						<td class="col w-20">
 							<label :for="'item-count-' + location.hash">{{ location.region }}</label>
 						</td>
-						<td class="col w-50">
+						<td class="col w-40">
 							<label :for="'item-count-' + location.hash">{{ location.name }}</label>
 						</td>
-						<td class="col w-25">
+						<td class="col w-40">
 							<vt-select :sid="location.hash" @input="selectedItem" v-if="location.class == 'items'"
 								:options="orderedItems" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
-								:clearable="true" />
+								:clearable="true" placeholder="type to search" />
 							<vt-select :sid="location.hash" @input="selectedOther" v-if="location.class == 'bottles'"
 								:options="bottles" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
-								:clearable="true" />
+								:clearable="true" placeholder="type to search" />
 							<vt-select :sid="location.hash" @input="selectedPrize" v-if="location.class == 'prizes'"
 								:options="prizes" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
-								:clearable="true" />
+								:clearable="true" placeholder="type to search" />
 							<vt-select :sid="location.hash" @input="selectedOther" v-if="location.class == 'medallions'"
 								:options="medallions" :storage-key="'vt.custom.' + location.hash" :selected="defaultItem" storage-key-remove-on="auto_fill"
-								:clearable="true" />
+								:clearable="true" placeholder="type to search" />
 						</td>
 					</tr>
 				</tbody>
@@ -133,7 +137,11 @@ export default {
 <style scoped>
 .sticky-head {
 	position: sticky;
-	top: 40px;
-	z-index: 1200;
+	top: 143px;
+	z-index: 990;
+	background-color: white;
+}
+>>> .multiselect__input::placeholder {
+	color: #DCDCDC;
 }
 </style>

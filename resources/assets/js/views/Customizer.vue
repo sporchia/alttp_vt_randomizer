@@ -8,7 +8,7 @@
 			<span class="sr-only">Error:</span>
 			<span class="message">{{ this.error }}</span>
 		</div>
-		<tabs class="think" nav-type="tabs">
+		<tabs class="think" nav-type="tabs" :sticky="true">
 			<tab name="Home" :selected="true">
 				<div class="card border-success mb-3">
 					<div class="card-header bg-success">

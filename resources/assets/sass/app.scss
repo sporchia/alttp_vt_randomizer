@@ -23,16 +23,22 @@ h4, .h4, h5, .h5 {
   font-weight: bold;
 }
 
+.nav-tabs-sticky {
+	position: sticky;
+	top: 53px;
+	z-index: 990;
+}
+
 .panel-heading-sticky, .card-heading-sticky {
 	position: sticky;
-	top: 50px;
-	z-index: 1100;
+	top: 93px;
+	z-index: 990;
 }
 
 .panel-sticky, .card-sticky {
 	position: sticky;
 	top: 0;
-	z-index: 1000;
+	z-index: 990;
 }
 
 .navbar {
@@ -348,4 +354,24 @@ input[readonly].custom-placed, input[readonly].custom-drops-placed {
 .ml-auto .dropdown-menu {
 	left: auto !important;
 	right: 0px;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-33 {
+  width: 33.33% !important;
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.w-80 {
+  width: 80% !important;
 }

@@ -6,3 +6,13 @@
 	border: none;
 	padding-top: 10px;
 }
+.multiselect__content-wrapper {
+	z-index: 995;
+}
+.multiselect__option--highlight.multiselect__option--selected {
+	background: #41b883;
+	color: #fff;
+}
+.multiselect--active {
+  z-index: 995;
+}

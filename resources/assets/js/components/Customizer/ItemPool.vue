@@ -8,14 +8,18 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="card-body">
+			<div class="sticky-head">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th class="col w-25">Randomly Place ({{ itemCount }})</th>
+							<th class="col w-25">Manually Placed ({{ placedItemCount }})</th>
+							<th class="col w-50">Item Name</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
 			<table class="table table-sm">
-				<thead>
-					<tr class="sticky-head">
-						<th>Randomly Place ({{ itemCount }})</th>
-						<th>Manually Placed ({{ placedItemCount }})</th>
-						<th>Item Name</th>
-					</tr>
-				</thead>
 				<tbody class="searchable">
 					<tr v-for="item in orderedItems" v-if="item.hasOwnProperty('count')" v-show="searchEx.test(item.name)">
 						<td class="col w-25">
@@ -87,7 +91,8 @@ export default {
 <style scoped>
 .sticky-head {
 	position: sticky;
-	top: 40px;
-	z-index: 1200;
+	top: 143px;
+	z-index: 990;
+	background-color: white;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="tabs">
+		<div class="tabs" :class="{'nav-tabs-sticky': sticky}">
 			<ul class="nav" :class="'nav-' + navType">
 				<li class="nav-item" v-for="tab in tabs">
 					<a class="nav-link" :class="{ 'active': tab.isActive }" :href="tab.href" @click="selectTab(tab)">
@@ -20,6 +20,7 @@
 export default {
 	props: {
 		navType: {default: 'pills'},
+		sticky: {default: false},
 		defaultTab: {default: null},
 	},
 	data() {
@@ -60,3 +61,9 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.nav-tabs-sticky {
+	background-color: #EEEEEE;
+}
+</style>
