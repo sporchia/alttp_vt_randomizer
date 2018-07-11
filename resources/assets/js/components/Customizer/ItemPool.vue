@@ -1,7 +1,9 @@
 <template>
 	<div class="card border-success" :class="{'border-danger': unevenCount}">
 		<div class="card-header bg-success card-heading-btn card-heading-sticky" :class="{'bg-danger': unevenCount}">
-			<h3 class="card-title text-white float-left">Item Pool {{ itemCount + placedItemCount }} / 216</h3>
+			<h3 class="card-title text-white float-left">Item Pool {{ itemCount + placedItemCount }} / 216
+				<span v-if="itemCount + placedItemCount < 216">({{ 216 - itemCount - placedItemCount}} empty locations)</span>
+			</h3>
 			<div class="btn-toolbar float-right">
 				<input id="items-filter" placeholder="search" type="text" v-model="search" />
 			</div>
