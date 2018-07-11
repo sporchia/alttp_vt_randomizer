@@ -1,4 +1,4 @@
-@extends('layouts.building')
+@extends('layouts.base')
 @include('custom/_equipment')
 @include('custom/_drops_pool')
 @include('custom/_drops_prizepacks')

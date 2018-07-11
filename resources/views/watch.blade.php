@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Start Watching - ';
-@endphp
+@extends('layouts.default', ['title' => 'Start Watching - '])
 
 @section('content')
 <h1>Join the Adventure!</h1>

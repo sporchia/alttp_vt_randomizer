@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Item Randomizer - ';
-@endphp
+@extends('layouts.default', ['title' => 'Item Randomizer - '])
 
 @section('content')
 <div id="root">

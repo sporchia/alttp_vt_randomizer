@@ -170,7 +170,7 @@ class Item {
 			new Item\Bottle('BottleWithBee', 'Bottle (Bee)', [0x3C]),
 			new Item\Bottle('BottleWithFairy', 'Bottle (Fairy)', [0x3D]),
 			new Item\Upgrade\Health('BossHeartContainer', 'Heart Container', [0x3E]),
-			new Item\Upgrade\Health('HeartContainer', 'Sancturary Heart Container', [0x3F]),
+			new Item\Upgrade\Health('HeartContainer', 'Sanctuary Heart Container', [0x3F]),
 			new Item('OneHundredRupees', 'One Hundred Rupees', [0x40]),
 			new Item('FiftyRupees', 'Fifty Rupees', [0x41]),
 			new Item('Heart', 'Small Heart', [0x42]),

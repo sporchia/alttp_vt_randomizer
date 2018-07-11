@@ -9,7 +9,7 @@ class Credits {
 			['type' => 'small', 'x' => 5, 'y' => 19, 'text' => 'The return of the King'],
 			['type' => 'large', 'x' => 9, 'y' => 23, 'text' => 'Hyrule Castle'],
 		],
-		'sancturary' => [
+		'sanctuary' => [
 			['type' => 'small', 'x' => 8, 'y' => 19, 'text' => 'The loyal priest'],
 			['type' => 'large', 'x' => 11, 'y' => 23, 'text' => 'Sanctuary'],
 		],

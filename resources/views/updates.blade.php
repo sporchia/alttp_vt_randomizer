@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Updates - ';
-@endphp
+@extends('layouts.default', ['title' => 'Updates - '])
 
 @section('content')
 <h2>VT8.29</h2>

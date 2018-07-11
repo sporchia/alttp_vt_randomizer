@@ -1,8 +1,4 @@
-@extends('layouts.default')
-
-@php
-$title = 'Resources - ';
-@endphp
+@extends('layouts.default', ['title' => 'Resources - '])
 
 @section('content')
 <h1>Resources</h1>

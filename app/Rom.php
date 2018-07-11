@@ -1335,7 +1335,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSanctuaryCredits(string $string) : self {
-		$this->credits->updateCreditLine('sancturary', 0, $string);
+		$this->credits->updateCreditLine('sanctuary', 0, $string);
 
 		return $this;
 	}
