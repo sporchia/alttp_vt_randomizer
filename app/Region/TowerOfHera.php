@@ -77,6 +77,26 @@ class TowerOfHera extends Region {
 	}
 
 	/**
+	 * Check if a Boss can be placed in this region.
+	 * currently Agahnim or Ganon can't be moved.
+	 *
+	 * @param Boss $boss boss we are testing
+	 *
+	 * @return bool
+	 */
+	public function canPlaceBoss(Boss $boss) : bool {
+		return !in_array($boss->getName(), [
+			"Agahnim",
+			"Agahnim2",
+			"Armos Knights",
+			"Arrghus",
+			"Blind",
+			"Ganon",
+			"Trinexx",
+		]);
+	}
+
+	/**
 	 * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
 	 * within for No Major Glitches
 	 *

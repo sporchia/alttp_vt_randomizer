@@ -123,6 +123,15 @@ class Boss {
 	}
 
 	/**
+	 * Get the name of this Boss for Enemizer
+	 *
+	 * @return string
+	 */
+	public function getEName() {
+		return explode(' ', $this->name)[0];
+	}
+
+	/**
 	 * Determine if Link can beat this Boss.
 	 *
 	 * @param ItemCollection $items Items Link can collect

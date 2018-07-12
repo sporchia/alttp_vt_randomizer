@@ -77,6 +77,22 @@ class Region {
 	}
 
 	/**
+	 * Check if a Boss can be placed in this region.
+	 * currently Agahnim or Ganon can't be moved.
+	 *
+	 * @param Boss $boss boss we are testing
+	 *
+	 * @return bool
+	 */
+	public function canPlaceBoss(Boss $boss) : bool {
+		return !in_array($boss->getName(), [
+			"Agahnim",
+			"Agahnim2",
+			"Ganon",
+		]);
+	}
+
+	/**
 	 * Get the map reveal word for this region
 	 *
 	 * @return int

@@ -67,7 +67,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md">
-						<vt-enemizer v-if="enemizerEnabled" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
+						<vt-enemizer v-if="enemizerEnabled" v-model="enemizerSettings" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
 					</div>
 				</div>
 			</div>
@@ -129,6 +129,7 @@ export default {
 			generating: false,
 			romLoaded: false,
 			enemizerEnabled: false,
+			enemizerSettings: {},
 			current_rom_hash: '',
 			gameLoaded: false,
 			choice: {
@@ -186,14 +187,14 @@ export default {
 			this.error = false;
 			if (this.rom.checkMD5() != this.current_rom_hash) {
 				if (second_attempt) {
-					return new Promise(function(resolve, reject) {
+					return new Promise((resolve, reject) => {
 						reject(this.rom);
 					});
 				}
-				return this.rom.reset().then(function() {
+				return this.rom.reset().then(() => {
 					return this.applySeed(e, true);
-				}.bind(this)).catch((error) => {
-					console.log(error);
+				}).catch(error => {
+					console.error(error);
 				})
 			}
 			return new Promise(function(resolve, reject) {
@@ -206,6 +207,7 @@ export default {
 					goal: this.choice.goal.value,
 					weapons: this.choice.weapons.value,
 					tournament: this.choice.tournament,
+					enemizer: this.enemizerEnabled ? this.enemizerSettings : false,
 				}).then(response => {
 					this.rom.parsePatch(response.data).then(function() {
 						if (response.data.patch.current_rom_hash && response.data.patch.current_rom_hash != this.current_rom_hash) {

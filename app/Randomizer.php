@@ -195,9 +195,9 @@ class Randomizer {
 
 		// Easy starts with
 		if ($this->difficulty == 'easy') {
-			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
-			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
-			$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+			for ($i = 0; $i < 6; ++$i) {
+				$this->starting_equipment->addItem(Item::get('BossHeartContainer'));
+			}
 		}
 
 		if ($this->config('mode.state') == 'open') {
@@ -352,20 +352,87 @@ class Randomizer {
 	 * @return $this
 	 */
 	public function placeBosses(World $world) : self {
-		$this->world->getRegion('Eastern Palace')->setBoss(Boss::get("Armos Knights"));
-		$this->world->getRegion('Desert Palace')->setBoss(Boss::get("Lanmolas"));
-		$this->world->getRegion('Tower of Hera')->setBoss(Boss::get("Moldorm"));
+		// most restrictive first
+		$boss_locations = [
+			['Ganons Tower', 'top'],
+			['Tower of Hera', null],
+			['Skull Woods', null],
+			['Eastern Palace', null],
+			['Desert Palace', null],
+			['Palace of Darkness', null],
+			['Swamp Palace', null],
+			['Thieves Town', null],
+			['Ice Palace', null],
+			['Misery Mire', null],
+			['Turtle Rock', null],
+			['Ganons Tower', 'bottom'],
+			['Ganons Tower', 'middle'],
+		];
+
+		$placeable_bosses = Boss::all()->filter(function($boss) {
+			return !in_array($boss->getName(), [
+				"Agahnim",
+				"Agahnim2",
+				"Ganon",
+			]);
+		});
+
+		switch ($this->config('boss_shuffle')) {
+			case 'chaos':
+				foreach ($boss_locations as $location) {
+					do {
+						$boss = Boss::all()->random();
+					} while (!$this->world->getRegion($location[0])->canPlaceBoss($boss, $location[1]));
+					logger()->debug(json_encode([$location[0], $location[1], $boss->getName()]));
+					$this->world->getRegion($location[0])->setBoss($boss, $location[1]);
+				}
+				break;
+			case 'normal': // 1 copy of each, +3 other copies
+				$bosses = fy_shuffle(array_merge($placeable_bosses->values(), $placeable_bosses->randomCollection(3)->values()));
+				foreach ($boss_locations as $location) {
+					$boss = array_shift($bosses);
+					while (!$this->world->getRegion($location[0])->canPlaceBoss($boss, $location[1])) {
+						array_push($bosses, $boss);
+						$boss = array_shift($bosses);
+					}
+					logger()->debug(json_encode([$location[0], $location[1], $boss->getName()]));
+					$this->world->getRegion($location[0])->setBoss($boss, $location[1]);
+				}
+				break;
+			case 'basic': // 1:1
+				$bosses = fy_shuffle(array_merge($placeable_bosses->values(), [
+					Boss::get("Armos Knights"),
+					Boss::get("Lanmolas"),
+					Boss::get("Moldorm"),
+				]));
+				foreach ($boss_locations as $location) {
+					$boss = array_shift($bosses);
+					while (!$this->world->getRegion($location[0])->canPlaceBoss($boss, $location[1])) {
+						array_push($bosses, $boss);
+						$boss = array_shift($bosses);
+					}
+					logger()->debug(json_encode([$location[0], $location[1], $boss->getName()]));
+					$this->world->getRegion($location[0])->setBoss($boss, $location[1]);
+				}
+				break;
+			case 'off':
+			default:
+				$this->world->getRegion('Eastern Palace')->setBoss(Boss::get("Armos Knights"));
+				$this->world->getRegion('Desert Palace')->setBoss(Boss::get("Lanmolas"));
+				$this->world->getRegion('Tower of Hera')->setBoss(Boss::get("Moldorm"));
+				$this->world->getRegion('Palace of Darkness')->setBoss(Boss::get("Helmasaur King"));
+				$this->world->getRegion('Swamp Palace')->setBoss(Boss::get("Arrghus"));
+				$this->world->getRegion('Skull Woods')->setBoss(Boss::get("Mothula"));
+				$this->world->getRegion('Thieves Town')->setBoss(Boss::get("Blind"));
+				$this->world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare"));
+				$this->world->getRegion('Misery Mire')->setBoss(Boss::get("Vitreous"));
+				$this->world->getRegion('Turtle Rock')->setBoss(Boss::get("Trinexx"));
+				$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Armos Knights"), 'bottom');
+				$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Lanmolas"), 'middle');
+				$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Moldorm"), 'top');
+		}
+
 		$this->world->getRegion('Hyrule Castle Tower')->setBoss(Boss::get("Agahnim"));
-		$this->world->getRegion('Palace of Darkness')->setBoss(Boss::get("Helmasaur King"));
-		$this->world->getRegion('Swamp Palace')->setBoss(Boss::get("Arrghus"));
-		$this->world->getRegion('Skull Woods')->setBoss(Boss::get("Mothula"));
-		$this->world->getRegion('Thieves Town')->setBoss(Boss::get("Blind"));
-		$this->world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare"));
-		$this->world->getRegion('Misery Mire')->setBoss(Boss::get("Vitreous"));
-		$this->world->getRegion('Turtle Rock')->setBoss(Boss::get("Trinexx"));
-		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Armos Knights"), 'bottom');
-		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Lanmolas"), 'middle');
-		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Moldorm"), 'top');
 		$this->world->getRegion('Ganons Tower')->setBoss(Boss::get("Agahnim2"));
 
 		return $this;
@@ -825,6 +892,7 @@ class Randomizer {
 
 		switch ($this->config('rom.logicMode', $this->logic)) {
 			case 'MajorGlitches':
+			case 'None':
 				$type_flag = 'G';
 				$rom->setSwampWaterLevel(false);
 				$rom->setPreAgahnimDarkWorldDeathInDungeon(false);

@@ -286,6 +286,9 @@ var ROM = (function(blob, loaded_callback) {
 			this.spoiler = data.spoiler;
 			this.hash = data.hash;
 			this.generated = data.generated;
+			if (data.size) {
+				this.resize(data.size);
+			}
 			if (data.spoiler && data.spoiler.meta) {
 				this.build = data.spoiler.meta.build;
 				this.goal = data.spoiler.meta.goal;
@@ -336,6 +339,7 @@ var ROM = (function(blob, loaded_callback) {
 				size = 1;
 				arrayBuffer = this.resizeUint8(arrayBuffer, 1048576);
 		}
+		u_array = new Uint8Array(arrayBuffer);
 		this.size = size;
 	};
 
@@ -354,8 +358,8 @@ var ROM = (function(blob, loaded_callback) {
 	this.reset = function(size) {
 		return new Promise((resolve, reject) => {
 			arrayBuffer = original_data.slice(0);
-			this.resize(size || this.size);
-			u_array = new Uint8Array(arrayBuffer);
+			// always reset to 2mb so we can verify MD5 later
+			this.resize(2);
 
 			if (!this.base_patch) {
 				reject('base patch not set');

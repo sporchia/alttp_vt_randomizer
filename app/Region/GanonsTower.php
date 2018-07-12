@@ -132,6 +132,34 @@ class GanonsTower extends Region {
 	}
 
 	/**
+	 * Check if a Boss can be placed in this region.
+	 * currently Agahnim or Ganon can't be moved.
+	 *
+	 * @param Boss $boss boss we are testing
+	 *
+	 * @return bool
+	 */
+	public function canPlaceBoss(Boss $boss, string $level = 'top') : bool {
+		if ($level == 'top') {
+			return !in_array($boss->getName(), [
+				"Agahnim",
+				"Agahnim2",
+				"Armos Knights",
+				"Arrghus",
+				"Blind",
+				"Ganon",
+				"Trinexx",
+			]);
+		}
+
+		return !in_array($boss->getName(), [
+			"Agahnim",
+			"Agahnim2",
+			"Ganon",
+		]);
+	}
+
+	/**
 	 * Set Locations to have Items like the vanilla game.
 	 *
 	 * @return $this

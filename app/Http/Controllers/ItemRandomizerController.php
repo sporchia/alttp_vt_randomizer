@@ -48,7 +48,11 @@ class ItemRandomizerController extends Controller {
 		$logic = $request->input('logic', 'NoMajorGlitches') ?: 'NoMajorGlitches';
 		$game_mode = $request->input('mode', 'standard');
 		$weapons_mode = $request->input('weapons', 'randomized');
+		$enemizer = $request->input('enemizer', false);
 		$spoiler_meta = [];
+		if ($enemizer && $enemizer['bosses']) {
+			config(['alttp.boss_shuffle' => $enemizer['bosses']]);
+		}
 
 		if ($difficulty == 'custom') {
 			$purifier_settings = HTMLPurifier_Config::createDefault(config("purifier.default"));
@@ -155,9 +159,15 @@ class ItemRandomizerController extends Controller {
 		$patch = $rom->getWriteLog();
 		$spoiler = $rand->getSpoiler($spoiler_meta);
 
-		if (config('enemizer.enabled', false)) {
-			$en = new Enemizer($rand);
+		if ($enemizer) {
+			$en = new Enemizer($rand, $patch, $enemizer);
 			$en->makeSeed();
+			$en->writeToRom($rom);
+			$patch = patch_merge_minify($rom->getWriteLog());
+			if ($save) {
+				// TODO: this is borked!
+				//$rand->updateSeedRecordPatch($patch);
+			}
 		}
 
 		$hash = ($save) ? $rand->saveSeedRecord() : $seed;
@@ -181,6 +191,7 @@ class ItemRandomizerController extends Controller {
 			'patch' => patch_merge_minify($patch),
 			'spoiler' => $spoiler,
 			'hash' => $hash,
+			'size' => $enemizer ? 4 : 2,
 			'generated' => $rand->getSeedRecord()->created_at ? $rand->getSeedRecord()->created_at->toIso8601String() : now()->toIso8601String(),
 			'current_rom_hash' => Rom::HASH,
 		];

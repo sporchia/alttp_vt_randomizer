@@ -1,4 +1,5 @@
 /node_modules
+/bin
 /public/hot
 /public/fonts/vendor
 /public/mix-*.json

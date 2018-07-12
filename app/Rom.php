@@ -682,6 +682,8 @@ class Rom {
 		$equipment[0x363] = $equipment[0x361] = $starting_rupees >> 8;
 
 		$this->write(0x183000, pack('C*', ...$equipment));
+		// For file select screen
+		$this->write(0x271A6, pack('C*', ...array_slice($equipment, 0, 60)));
 		$this->setMaxArrows($starting_arrow_capacity);
 		$this->setMaxBombs($starting_bomb_capacity);
 

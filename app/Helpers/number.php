@@ -33,5 +33,6 @@ function pc_to_snes(int $address) {
  * @return int
  */
 function snes_to_pc(int $address) {
+	if ($address >= 0x808000) $address -= 0x808000;
 	return ($address & 0x7FFF) + (($address / 2) & 0xFF8000);
 }
