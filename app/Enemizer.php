@@ -80,7 +80,7 @@ class Enemizer {
 		$system = php_uname('s') == 'Darwin' ? 'osx' : 'linux';
 		$world = $this->randomizer->getWorld();
 		file_put_contents($this->options_file, json_encode([
-			"RandomizeEnemies" => $this->settings['enemy'],
+			"RandomizeEnemies" => $this->settings['enemy'] ?? true,
 			"RandomizeEnemiesType" => 3,
 			"RandomizeBushEnemyChance" => true,
 			"RandomizeEnemyHealthRange" => (bool) $this->settings['enemy_health'],
@@ -129,7 +129,7 @@ class Enemizer {
 			"GrayscaleMode" => false,
 			"GenerateSpoilers" => false,
 			"RandomizeLinkSpritePalette" => false,
-			"RandomizePots" => $this->settings['pot_shuffle'],
+			"RandomizePots" => $this->settings['pot_shuffle'] ?? false,
 			"ShuffleMusic" => false,
 			"BootlegMagic" => true,
 			"CustomBosses" => false,
