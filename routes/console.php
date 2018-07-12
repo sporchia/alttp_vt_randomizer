@@ -67,7 +67,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 				'alttp.mode.weapons' => $weapons_mode,
 			]);
 
-			$rom = new ALttP\Rom();
+			$rom = new ALttP\Rom(env('ENEMIZER_BASE', null));
+			$rom->applyPatchFile(public_path('js/base2current.json'));
 			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 
 			$rand->makeSeed();

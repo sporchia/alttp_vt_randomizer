@@ -32,7 +32,6 @@ class SettingsController extends Controller {
 		'Ether' => 1,
 		'Bombos' => 1,
 		'Quake' => 1,
-		'Bottles' => 4,
 		'SilverArrowUpgrade' => 1,
 		'Arrow' => 1,
 		'TenArrows' => 5,

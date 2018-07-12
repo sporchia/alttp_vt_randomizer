@@ -7,7 +7,7 @@ return [
 				'ProgressiveSword' => 8,
 				'ProgressiveShield' => 6,
 				'ProgressiveArmor' => 4,
-				'Bottles' => 8,
+				'BottleWithRandom' => 8,
 				'TwentyRupees' => 14,
 				'HalfMagic' => 2,
 				'Lamp' => 3,

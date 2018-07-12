@@ -136,10 +136,10 @@
 				<equipment-select v-model="equipment"></equipment-select>
 			</tab>
 			<tab name="Item Pool">
-				<item-pool :items="settings.items" />
+				<item-pool v-model="items" />
 			</tab>
 			<tab name="Location Pool">
-				<location-pool :locations="settings.locations" :items="settings.items" :bottles="settings.bottles"
+				<location-pool :locations="settings.locations" :items="items" :bottles="settings.bottles"
 					:prizes="settings.prizes" :medallions="settings.medallions" />
 			</tab>
 		</tabs>
@@ -203,6 +203,7 @@ export default {
 				items: [],
 				locations: [],
 			},
+			items: [],
 			equipment: [],
 			context: {},
 			itemArrayLookup: {},
@@ -219,14 +220,26 @@ export default {
 			this.settings.variations = Object.keys(response.data.variations).map(function(key) { return {value: key, name: response.data.variations[key]}});
 		});
 		axios.get(`/customizer/settings`).then(response => {
-			this.settings.items = response.data.items;
-			this.settings.items.forEach((item, i) => {
+			this.items = response.data.items
+			this.items.forEach((item, i) => {
 				this.itemArrayLookup[item.value] = i;
 			});
 			this.settings.locations = response.data.locations;
 			this.settings.prizes = response.data.prizes;
 			this.settings.bottles = response.data.bottles;
 			this.settings.medallions = response.data.medallions;
+		}).then(() => {
+			localforage.getItem('vt.custom.items').then(items => {
+				if (!items) {
+					return;
+				}
+
+				Object.keys(items).forEach(itemName => {
+					// v3 compat, remove in v5
+					var name = itemName.replace(/^item-count-/);
+					this.items[this.itemArrayLookup[itemName]].count = items[itemName];
+				});
+			});
 		});
 		localforage.getItem('rom').then(function(blob) {
 			if (blob == null) {
@@ -283,11 +296,7 @@ export default {
 									logicMode: this.choice.romLogic.value,
 								},
 								item: {
-									count: this.settings.items.reduce((map, obj) => {
-										if (obj.value == 'auto_fill') return map;
-										map[obj.value] = obj.count;
-										return map;
-									}, {}),
+									count: this.simpleItems,
 								}
 							},
 						},
@@ -325,19 +334,19 @@ export default {
 			if (!pool) {
 				return;
 			}
-			var item = this.settings.items[this.itemArrayLookup[itemName]];
+			var item = this.items[this.itemArrayLookup[itemName]];
 			item.placed++;
 			if (itemName.indexOf('Bottle') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['BottleWithRandom']];
+				item = this.items[this.itemArrayLookup['BottleWithRandom']];
 			}
 			if (itemName.indexOf('Shield') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['ProgressiveShield']];
+				item = this.items[this.itemArrayLookup['ProgressiveShield']];
 			}
 			if (itemName.indexOf('Sword') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['ProgressiveSword']];
+				item = this.items[this.itemArrayLookup['ProgressiveSword']];
 			}
 			if (itemName.indexOf('Mail') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['ProgressiveArmor']];
+				item = this.items[this.itemArrayLookup['ProgressiveArmor']];
 			}
 			if (item.count > 0) {
 				item.count--;
@@ -346,19 +355,19 @@ export default {
 			}
 		},
 		decrementItem(itemName) {
-			var item = this.settings.items[this.itemArrayLookup[itemName]];
+			var item = this.items[this.itemArrayLookup[itemName]];
 			item.placed--;
 			if (itemName.indexOf('Bottle') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['BottleWithRandom']];
+				item = this.items[this.itemArrayLookup['BottleWithRandom']];
 			}
 			if (itemName.indexOf('Shield') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['ProgressiveShield']];
+				item = this.items[this.itemArrayLookup['ProgressiveShield']];
 			}
 			if (itemName.indexOf('Sword') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['ProgressiveSword']];
+				item = this.items[this.itemArrayLookup['ProgressiveSword']];
 			}
 			if (itemName.indexOf('Mail') !== -1) {
-				item = this.settings.items[this.itemArrayLookup['ProgressiveArmor']];
+				item = this.items[this.itemArrayLookup['ProgressiveArmor']];
 			}
 			if (item.neg_count < 0) {
 				item.neg_count++;
@@ -383,6 +392,20 @@ export default {
 		},
 		onError(error) {
 			this.error = error;
+		}
+	},
+	computed: {
+		simpleItems () {
+			return this.items.reduce((map, obj) => {
+				if (obj.value == 'auto_fill') return map;
+				map[obj.value] = Number(obj.count);
+				return map;
+			}, {})
+		}
+	},
+	watch: {
+		simpleItems (val) {
+			localforage.setItem('vt.custom.items', val);
 		}
 	},
 }

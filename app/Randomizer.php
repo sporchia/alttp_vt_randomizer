@@ -1149,8 +1149,29 @@ class Randomizer {
 			array_push($advancement_items, Item::get('ProgressiveSword'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.Bottles', 4); $i++) {
+		for ($i = 0; $i < $this->config('item.count.BottleWithRandom', 4); $i++) {
 			array_push($advancement_items, $this->getBottle());
+		}
+		for ($i = 0; $i < $this->config('item.count.Bottle', 0); $i++) {
+			array_push($advancement_items, Item::get('Bottle'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BottleWithRedPotion', 0); $i++) {
+			array_push($advancement_items, Item::get('BottleWithRedPotion'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BottleWithGreenPotion', 0); $i++) {
+			array_push($advancement_items, Item::get('BottleWithGreenPotion'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BottleWithBluePotion', 0); $i++) {
+			array_push($advancement_items, Item::get('BottleWithBluePotion'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BottleWithBee', 0); $i++) {
+			array_push($advancement_items, Item::get('BottleWithBee'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BottleWithGoldBee', 0); $i++) {
+			array_push($advancement_items, Item::get('BottleWithGoldBee'));
+		}
+		for ($i = 0; $i < $this->config('item.count.BottleWithFairy', 0); $i++) {
+			array_push($advancement_items, Item::get('BottleWithFairy'));
 		}
 		for ($i = 0; $i < $this->config('item.count.Bombos', 1); $i++) {
 			array_push($advancement_items, Item::get('Bombos'));

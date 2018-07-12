@@ -47,7 +47,7 @@ import orderBy from 'lodash.orderby';
 
 export default {
 	props: [
-		'items',
+		'value',
 	],
 	data() {
 		return {
@@ -59,16 +59,16 @@ export default {
 			return new RegExp(vm.search, 'i');
 		},
 		orderedItems: function () {
-			return orderBy(this.items, 'name');
+			return orderBy(this.value, 'name');
 		},
 		unevenCount () {
 			return this.placedItemCount + this.itemCount != 216;
 		},
 		placedItemCount (vm) {
-			if (!vm.items.length) {
+			if (!vm.value.length) {
 				return 0;
 			}
-			return vm.items.filter(item => {
+			return vm.value.filter(item => {
 				return item.value !== 'auto_fill';
 			}).map(item => {
 				return Number(item.placed || 0);
@@ -77,10 +77,10 @@ export default {
 			});
 		},
 		itemCount: (vm) => {
-			if (!vm.items.length) {
+			if (!vm.value.length) {
 				return 0;
 			}
-			return vm.items.map(item => {
+			return vm.value.map(item => {
 				return Number(item.count || 0);
 			}).reduce((carry, count) => {
 				return carry + count;

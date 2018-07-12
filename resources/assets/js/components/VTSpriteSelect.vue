@@ -62,9 +62,10 @@ export default {
 		});
 	},
 	mounted () {
-		EventBus.$on('gameLoaded', (rom) => {
-			this.applyRomFunctions(this, rom)
-		});
+		EventBus.$on('gameLoaded', this.gameLoadedListener);
+	},
+	beforeDestroy () {
+		EventBus.$off('gameLoaded', this.gameLoadedListener);
 	},
 	computed: {
 		options: function() {
@@ -72,6 +73,9 @@ export default {
 		}
 	},
 	methods: {
+		gameLoadedListener (rom) {
+			this.applyRomFunctions(this, rom);
+		},
 		customLabel (option) {
 			return `${option.name}`;
 		},
@@ -94,6 +98,7 @@ export default {
 				localforage.getItem('vt_sprites.' + sprite_name).then(function(spr) {
 					if (spr) {
 						resolve(spr);
+						return;
 					}
 					axios.get(vm.value.file, {responseType: 'arraybuffer'}).then(response => {
 						var spr_array = new Uint8Array(response.data);
