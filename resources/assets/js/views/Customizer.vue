@@ -237,7 +237,9 @@ export default {
 				Object.keys(items).forEach(itemName => {
 					// v3 compat, remove in v5
 					var name = itemName.replace(/^item-count-/);
-					this.items[this.itemArrayLookup[itemName]].count = items[itemName];
+					if (this.items[this.itemArrayLookup[name]]) {
+						this.items[this.itemArrayLookup[name]].count = items[name];
+					}
 				});
 			});
 		});

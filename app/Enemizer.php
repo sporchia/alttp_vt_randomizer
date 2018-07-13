@@ -53,7 +53,7 @@ class Enemizer {
 			. ' --base ' . public_path('js/base2current.json')
 			. ' --randomizer ' .  $this->randomizer_patch
 			. ' --enemizer ' . $this->options_file
-			. ' --output ' . $this->patch_file, base_path("bin/enemizer/$system/"));
+			. ' --output ' . $this->patch_file, base_path("bin/enemizer/$system"));
 
 		$proc->run();
 

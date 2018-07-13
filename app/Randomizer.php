@@ -729,6 +729,25 @@ class Randomizer {
 			'weapons' => $this->config('mode.weapons', 'randomized')
 		]);
 
+		$spoiler['Bosses'] = [
+			"Eastern Palace" => $this->world->getRegion('Eastern Palace')->getBoss()->getName(),
+			"Desert Palace" => $this->world->getRegion('Desert Palace')->getBoss()->getName(),
+			"Tower Of Hera" => $this->world->getRegion('Tower of Hera')->getBoss()->getName(),
+			"Hyrule Castle" => "Agahnim",
+			"Palace Of Darkness" => $this->world->getRegion('Palace of Darkness')->getBoss()->getName(),
+			"Swamp Palace" => $this->world->getRegion('Swamp Palace')->getBoss()->getName(),
+			"Skull Woods" => $this->world->getRegion('Skull Woods')->getBoss()->getName(),
+			"Thieves Town" => $this->world->getRegion('Thieves Town')->getBoss()->getName(),
+			"Ice Palace" => $this->world->getRegion('Ice Palace')->getBoss()->getName(),
+			"Misery Mire" => $this->world->getRegion('Misery Mire')->getBoss()->getName(),
+			"Turtle Rock" => $this->world->getRegion('Turtle Rock')->getBoss()->getName(),
+			"Ganons Tower Basement" => $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getName(),
+			"Ganons Tower Middle" => $this->world->getRegion('Ganons Tower')->getBoss('middle')->getName(),
+			"Ganons Tower Top" => $this->world->getRegion('Ganons Tower')->getBoss('top')->getName(),
+			"Ganons Tower" => "Agahnim 2",
+			"Ganon" => "Ganon"
+		];
+
 		if ($this->config('rom.HardMode') !== null) {
 			$spoiler['meta']['difficulty_mode'] = $this->config('randomizer.item.difficulty_adjustments.' . $this->config('rom.HardMode', 0));
 		}
