@@ -119,7 +119,7 @@ export default {
 	data() {
 		return {
 			oldValues: {},
-			defaultItem: {name:'Heart', value:'Heart'},
+			defaultItem: {name:'Random', value:'auto_fill'},
 		}
 	},
 	mounted () {
