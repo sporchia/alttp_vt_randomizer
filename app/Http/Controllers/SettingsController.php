@@ -182,36 +182,45 @@ class SettingsController extends Controller {
 						];
 					})
 				),
-				'medallions' => $items->filter(function($item) {
-					return $item instanceof Item\Medallion;
-				})->map(function($item) {
-					return [
-						'value' => $item->getName(),
-						'name' => $item->getNiceName(),
-						'count' => 0,
-						'placed' => 0,
-					];
-				}),
-				'bottles' => $items->filter(function($item) {
-					return $item instanceof Item\Bottle;
-				})->map(function($item) {
-					return [
-						'value' => $item->getName(),
-						'name' => $item->getNiceName(),
-						'count' => 0,
-						'placed' => 0,
-					];
-				}),
-				'droppables' => array_values($sprites->filter(function($sprite) {
-					return $sprite instanceof Sprite\Droppable;
-				})->map(function($item) {
-					return [
-						'value' => $item->getName(),
-						'name' => $item->getNiceName(),
-						'count' => 0,
-						'placed' => 0,
-					];
-				})),
+				'medallions' => array_merge([
+						['value' => 'auto_fill', 'name' => 'Random', 'placed' => 0],
+					], $items->filter(function($item) {
+						return $item instanceof Item\Medallion;
+					})->map(function($item) {
+						return [
+							'value' => $item->getName(),
+							'name' => $item->getNiceName(),
+							'count' => 0,
+							'placed' => 0,
+						];
+					})
+				),
+				'bottles' => array_merge([
+						['value' => 'auto_fill', 'name' => 'Random', 'placed' => 0],
+					], $items->filter(function($item) {
+						return $item instanceof Item\Bottle;
+					})->map(function($item) {
+						return [
+							'value' => $item->getName(),
+							'name' => $item->getNiceName(),
+							'count' => 0,
+							'placed' => 0,
+						];
+					})
+				),
+				'droppables' => array_merge([
+						['value' => 'auto_fill', 'name' => 'Random', 'placed' => 0],
+					], array_values($sprites->filter(function($sprite) {
+						return $sprite instanceof Sprite\Droppable;
+					})->map(function($item) {
+						return [
+							'value' => $item->getName(),
+							'name' => $item->getNiceName(),
+							'count' => 0,
+							'placed' => 0,
+						];
+					})
+				)),
 			];
 		//});
 	}

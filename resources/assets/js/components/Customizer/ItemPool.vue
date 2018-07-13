@@ -43,6 +43,7 @@
 </template>
 
 <script>
+// @TODO: consider using Array.prototype.sort().
 import orderBy from 'lodash.orderby';
 
 export default {

@@ -142,6 +142,10 @@
 				<location-pool :locations="settings.locations" :items="items" :bottles="settings.bottles"
 					:prizes="settings.prizes" :medallions="settings.medallions" />
 			</tab>
+			<tab name="Prize Packs">
+				<prize-packs :drops="drops" v-model="packs" />
+			</tab>
+
 		</tabs>
 	</div>
 </template>
@@ -152,20 +156,22 @@ import EventBus from '../core/event-bus';
 import FileSaver from 'file-saver';
 import ItemPool from '../components/Customizer/ItemPool.vue';
 import LocationPool from '../components/Customizer/LocationPool.vue';
+import PrizePacks from '../components/Customizer/PrizePacks.vue';
 import Settings from '../components/Customizer/Settings.vue';
 import Tab from '../components/VTTab.vue';
 import Tabs from '../components/VTTabs.vue';
-import VTTextarea from '../components/VTTextarea.vue'
+import VTTextarea from '../components/VTTextarea.vue';
 
 export default {
 	components: {
-		Tabs: Tabs,
-		Tab: Tab,
 		EquipmentSelect: EquipmentSelect,
 		ItemPool: ItemPool,
 		LocationPool: LocationPool,
-		VtTextarea: VTTextarea,
+		PrizePacks: PrizePacks,
 		Settings: Settings,
+		Tab: Tab,
+		Tabs: Tabs,
+		VtTextarea: VTTextarea,
 	},
 	props: [
 		'version',
@@ -203,8 +209,22 @@ export default {
 				items: [],
 				locations: [],
 			},
+			drops: [],
 			items: [],
 			equipment: [],
+			packs: {
+				0: [],
+				1: [],
+				2: [],
+				3: [],
+				4: [],
+				5: [],
+				6: [],
+				pull: [],
+				crab: [],
+				stun: [],
+				fish: [],
+			},
 			context: {},
 			itemArrayLookup: {},
 			locationPlacement: {},
@@ -228,6 +248,7 @@ export default {
 			this.settings.prizes = response.data.prizes;
 			this.settings.bottles = response.data.bottles;
 			this.settings.medallions = response.data.medallions;
+			this.drops = response.data.droppables;
 		}).then(() => {
 			localforage.getItem('vt.custom.items').then(items => {
 				if (!items) {
@@ -289,6 +310,7 @@ export default {
 					notes: this.choice.notes,
 					l: this.locationPlacement,
 					eq: this.equipment,
+					drops: this.simplePacks,
 					data: {
 						alttp: {
 							custom: {
@@ -403,7 +425,15 @@ export default {
 				map[obj.value] = Number(obj.count);
 				return map;
 			}, {})
-		}
+		},
+		simplePacks () {
+			return Object.keys(this.packs).reduce((map, pack) => {
+				map[pack] = this.packs[pack].map(item => {
+					return item.value;
+				})
+				return map;
+			}, {})
+		},
 	},
 	watch: {
 		simpleItems (val) {

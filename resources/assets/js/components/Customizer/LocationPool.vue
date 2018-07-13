@@ -95,7 +95,6 @@ export default {
 			EventBus.$emit('itemAdd', selectedOption.value, sid);
 			if (this.oldValues[sid] && this.oldValues[sid] !== 'auto_fill') {
 				for (var i = 0; i < this.prizes.length; ++i) {
-					console.log(i, this.prizes[i].value , this.oldValues[sid]);
 					if (this.prizes[i].value == this.oldValues[sid]) {
 						this.prizes[i].$isDisabled = false;
 						break;

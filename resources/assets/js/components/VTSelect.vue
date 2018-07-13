@@ -29,6 +29,7 @@ export default {
 		storageKeyRemoveOn: {default: null},
 		romFunction: {default: null},
 		placeholder: {default: 'Select option'},
+		triggerOnMount: {default: false},
 		rom: {default: null},
 		clearable: {default: false},
 		sid: {default: null},
@@ -37,7 +38,12 @@ export default {
 		EventBus.$on('gameLoaded', (rom) => {
 			this.applyRomFunctions(this, rom)
 		});
-		if (!this.storageKey) return;
+		if (!this.storageKey) {
+			if (this.triggerOnMount) {
+				this.onSelect(this.value);
+			}
+			return;
+		}
 		localforage.getItem(this.storageKey).then(function(value) {
 			if (value === null) return;
 			for (var i in this.options) {

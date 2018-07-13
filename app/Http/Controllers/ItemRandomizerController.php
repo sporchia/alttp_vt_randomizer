@@ -4,6 +4,7 @@ use ALttP\Enemizer;
 use ALttP\Item;
 use ALttP\Randomizer;
 use ALttP\Rom;
+use ALttP\Sprite;
 use ALttP\World;
 use Exception;
 use HTMLPurifier;
@@ -89,10 +90,13 @@ class ItemRandomizerController extends Controller {
 				} catch (Exception $e) {}
 			}
 
-			foreach ($request->input('drops', []) as $pack => $item) {
-				if ($item != 'auto_fill') {
-					$parts = explode('-', $pack);
-					$world->setDrop($parts[2], $parts[3], Sprite::get($item));
+			foreach ($request->input('drops', []) as $pack => $items) {
+				foreach ($items as $place => $item) {
+					if ($item == 'auto_fill') {
+						continue;
+					}
+
+					$world->setDrop($pack, $place, Sprite::get($item));
 				}
 			}
 		}
