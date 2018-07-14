@@ -93,6 +93,20 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$feature->seed_id = $seed_record->id;
 			$feature->description = sprintf("%s %s %s %s %s", $difficulty, $game_mode, $logic, $goal, $variation);
 			$feature->save();
+
+			$save_data = json_encode([
+				'seed' => $seed,
+				'logic' => $rand->getLogic(),
+				'difficulty' => $difficulty,
+				'patch' => $patch,
+				'spoiler' => $spoiler,
+				'hash' => $hash,
+				'size' => 2,
+				'generated' => $rand->getSeedRecord()->created_at ? $rand->getSeedRecord()->created_at->toIso8601String() : now()->toIso8601String(),
+			]);
+
+			Storage::put($hash . '.json', $save_data);
+			cache(['hash.' . $hash => $save_data], now()->addDays(7));
 		}
 	}
 });
