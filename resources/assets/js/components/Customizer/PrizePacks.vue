@@ -34,7 +34,7 @@
 							<Select :sid="id + '-6'" v-model="pack[6]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<Select :sid="id + '-5'" v-model="pack[3]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="id + '-3'" v-model="pack[3]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 							<Select :sid="id + '-7'" v-model="pack[7]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 					</tr>
