@@ -37,6 +37,7 @@ class MakeTranslation extends Command {
 		}
 
 		$i18n = new Text;
+		$i18n->removeUnwanted();
 
 		if ($this->option('input_file')) {
 			$rom = new Rom($this->option('input_file'));
