@@ -120,10 +120,9 @@ class ItemRandomizerController extends Controller {
 				"tournament-mode" => true,
 			]);
 			$spoiler_meta['tournament'] = true;
-			$rom->setTournamentType('standard');
-		} else {
-			$rom->setTournamentType('none');
 		}
+
+		$rom->setTournamentType('none');
 
 		if (strtoupper($seed_id) == 'VANILLA') {
 			config([
@@ -177,6 +176,7 @@ class ItemRandomizerController extends Controller {
 
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+			$rom->setTournamentType('standard');
 			$rom->rummageTable();
 			$patch = patch_merge_minify($rom->getWriteLog());
 			if ($save) {
