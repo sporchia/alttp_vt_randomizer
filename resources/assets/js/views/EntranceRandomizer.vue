@@ -68,7 +68,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md">
-						<vt-enemizer v-if="enemizerEnabled" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
+						<vt-enemizer v-if="enemizerEnabled" v-model="enemizerSettings" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
 					</div>
 				</div>
 			</div>
@@ -130,6 +130,7 @@ export default {
 			generating: false,
 			romLoaded: false,
 			enemizerEnabled: false,
+			enemizerSettings: {},
 			current_rom_hash: '',
 			gameLoaded: false,
 			choice: {
@@ -208,6 +209,7 @@ export default {
 					goal: this.choice.goal.value,
 					shuffle: this.choice.shuffle.value,
 					tournament: this.choice.tournament,
+					enemizer: this.enemizerEnabled ? this.enemizerSettings : false,
 				}).then(response => {
 					this.rom.parsePatch(response.data).then(function() {
 						if (response.data.patch.current_rom_hash && response.data.patch.current_rom_hash != this.current_rom_hash) {

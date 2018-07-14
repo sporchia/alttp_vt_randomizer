@@ -14,7 +14,7 @@
 				Be sure to check them out for more info on how to get in on the action!</p>
 			<h4>Weekly Standard Mode Race, Saturdays at 3pm US Eastern Time</h4>
 			<p>The premier community event, the weekly race consistently reaches over 100 competitors!</p>
-			<h4>Weekly Open Mode Race, Saturdays at 5pm US Eastern Time</h4>
+			<h4>Weekly Open Mode Race, Sundays at 5pm US Eastern Time</h4>
 			<p>Join us Sundays for another popular weekly community race.</p>
 			<h4>Pickup Races</h4>
 			<p>Scheduled races not fitting in with your schedule? Looking to race with some more uncommon

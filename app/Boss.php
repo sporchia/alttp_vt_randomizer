@@ -10,6 +10,7 @@ use ALttP\Support\LocationCollection;
  */
 class Boss {
 	protected $name;
+	protected $enemizer_name;
 	protected $can_beat;
 
 	static protected $items;
@@ -43,55 +44,55 @@ class Boss {
 		}
 
 		static::$items = new BossCollection([
-			new static("Armos Knights", function($locations, $items) {
+			new static("Armos Knights", "Armos", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer') || $items->canShootArrows()
 					|| $items->has('Boomerang') || $items->has('RedBoomerang')
 					|| ($items->canExtendMagic(4) && ($items->has('FireRod') || $items->has('IceRod')))
 					|| ($items->canExtendMagic(2) && ($items->has('CaneOfByrna') || $items->has('CaneOfSomaria')));
 			}),
-			new static("Lanmolas", function($locations, $items) {
+			new static("Lanmolas", "Lanmola", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer')
 					|| $items->canShootArrows() || $items->has('FireRod') || $items->has('IceRod')
 					|| $items->has('CaneOfByrna') || $items->has('CaneOfSomaria');
 			}),
-			new static("Moldorm", function($locations, $items) {
+			new static("Moldorm", "Moldorm", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer');
 			}),
-			new static("Agahnim", function($locations, $items) {
+			new static("Agahnim", "Agahnim", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer') || $items->has('BugCatchingNet');
 			}),
-			new static("Helmasaur King", function($locations, $items) {
+			new static("Helmasaur King", "Helmasaur", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer') || $items->canShootArrows();
 			}),
-			new static("Arrghus", function($locations, $items) {
+			new static("Arrghus", "Arrghus", function($locations, $items) {
 				return $items->has('Hookshot') && ($items->has('Hammer') || $items->hasSword()
 					|| (($items->canExtendMagic(2) || $items->canShootArrows()) && ($items->has('FireRod') || $items->has('IceRod'))));
 			}),
-			new static("Mothula", function($locations, $items) {
+			new static("Mothula", "Mothula", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer')
 					|| ($items->canExtendMagic(2) && ($items->has('FireRod') || $items->has('CaneOfSomaria')
 						|| $items->has('CaneOfByrna')))
 					|| $items->canGetGoodBee();
 			}),
-			new static("Blind", function($locations, $items) {
+			new static("Blind", "Blind", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer')
 					|| $items->has('CaneOfSomaria') || $items->has('CaneOfByrna');
 			}),
-			new static("Kholdstare", function($locations, $items) {
+			new static("Kholdstare", "Kholdstare", function($locations, $items) {
 				return $items->canMeltThings() && ($items->has('Hammer') || $items->hasSword()
 					|| ($items->canExtendMagic(3) && $items->has('FireRod'))
 					|| ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos')));
 			}),
-			new static("Vitreous", function($locations, $items) {
+			new static("Vitreous", "Vitreous", function($locations, $items) {
 				return $items->has('Hammer') || $items->hasSword() || $items->canShootArrows();
 			}),
-			new static("Trinexx", function($locations, $items) {
+			new static("Trinexx", "Trinexx", function($locations, $items) {
 				return $items->has('FireRod') && $items->has('IceRod')
 					&& ($items->hasSword(3) || $items->has('Hammer')
 						|| ($items->canExtendMagic(2) && $items->hasSword(2))
 						|| ($items->canExtendMagic(4) && $items->hasSword()));
 			}),
-			new static("Agahnim2", function($locations, $items) {
+			new static("Agahnim2", "Agahnim2", function($locations, $items) {
 				return $items->hasSword() || $items->has('Hammer') || $items->has('BugCatchingNet');
 			}),
 
@@ -108,8 +109,9 @@ class Boss {
 	 *
 	 * @return void
 	 */
-	public function __construct(string $name, callable $can_beat) {
+	public function __construct(string $name, string $ename, callable $can_beat) {
 		$this->name = $name;
+		$this->enemizer_name = $ename;
 		$this->can_beat = $can_beat;
 	}
 
@@ -128,7 +130,7 @@ class Boss {
 	 * @return string
 	 */
 	public function getEName() {
-		return explode(' ', $this->name)[0];
+		return $this->enemizer_name;
 	}
 
 	/**

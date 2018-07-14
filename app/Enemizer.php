@@ -55,12 +55,17 @@ class Enemizer {
 			. ' --enemizer ' . $this->options_file
 			. ' --output ' . $this->patch_file, base_path("bin/enemizer/$system"));
 
-		$proc->run();
+		logger()->debug($proc->getCommandLine());
+
+		$proc->run(function ($type, $buffer) {
+			logger()->debug((Process::ERR === $type) ? "ERR > $buffer" : "OUT > $buffer");
+		});
 
 		if (!$proc->isSuccessful()) {
 			logger()->error($proc->getErrorOutput());
 			throw new \Exception("Unable to generate");
 		}
+
 		$base_patch = json_decode(file_get_contents(base_path("bin/enemizer/$system/enemizerBasePatch.json")));
 		$patch = json_decode(file_get_contents($this->patch_file));
 
@@ -79,8 +84,8 @@ class Enemizer {
 
 	public function writeOptionsFile() {
 		$system = php_uname('s') == 'Darwin' ? 'osx' : 'linux';
-		$world = $this->randomizer->getWorld();
-		file_put_contents($this->options_file, json_encode([
+
+		$options = [
 			"RandomizeEnemies" => $this->settings['enemy'] ?? true,
 			"RandomizeEnemiesType" => 3,
 			"RandomizeBushEnemyChance" => true,
@@ -111,8 +116,12 @@ class Enemizer {
 				"RedRupee" => true,
 			],
 			"BossMadness" => false,
-			"RandomizeBosses" => false,
-			"RandomizeBossesType" => 0,
+			"RandomizeBosses" => $this->randomizer->config('boss_shuffle', 'off') !== 'off',
+			"RandomizeBossesType" => ($this->settings['native_boss_shuffle'] ?? false) ? [
+				'basic' => 0,
+				'normal' => 1,
+				'chaos' => 2,
+			][$this->randomizer->config('boss_shuffle', 'off')] : 0,
 			"RandomizeBossHealth" => false,
 			"RandomizeBossHealthMinAmount" => 0,
 			"RandomizeBossHealthMaxAmount" => 300,
@@ -137,8 +146,8 @@ class Enemizer {
 			"AndyMode" => false,
 			"HeartBeepSpeed" => 2,
 			"AlternateGfx" => false,
-			"ShieldGraphics" => base_path("bin/enemizer/$system/shield_gfx/normal.gfx"),
-			"SwordGraphics" => base_path("bin/enemizer/$system/sword_gfx/normal.gfx"),
+			"ShieldGraphics" => "shield_gfx/normal.gfx",
+			"SwordGraphics" => "sword_gfx/normal.gfx",
 			"BeeMizer" => false,
 			"BeesLevel" => 3,
 			"RandomizeTileTrapPattern" => true,
@@ -153,26 +162,36 @@ class Enemizer {
 			"DebugOpenShutterDoors" => false,
 			"DebugForceEnemyDamageZero" => true,
 			"DebugShowRoomIdInRupeeCounter" => true,
-			"UseManualBosses" => $world->config('boss_shuffle', 'off') !== 'off',
-			"ManualBosses" => [
-				"EasternPalace" => $world->getRegion('Eastern Palace')->getBoss()->getEName(),
-				"DesertPalace" => $world->getRegion('Desert Palace')->getBoss()->getEName(),
-				"TowerOfHera" => $world->getRegion('Tower of Hera')->getBoss()->getEName(),
-				"PalaceOfDarkness" => $world->getRegion('Palace of Darkness')->getBoss()->getEName(),
-				"SwampPalace" => $world->getRegion('Swamp Palace')->getBoss()->getEName(),
-				"SkullWoods" => $world->getRegion('Skull Woods')->getBoss()->getEName(),
-				"ThievesTown" => $world->getRegion('Thieves Town')->getBoss()->getEName(),
-				"IcePalace" => $world->getRegion('Ice Palace')->getBoss()->getEName(),
-				"MiseryMire" => $world->getRegion('Misery Mire')->getBoss()->getEName(),
-				"TurtleRock" => $world->getRegion('Turtle Rock')->getBoss()->getEName(),
-				"GanonsTower1" => $world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
-				"GanonsTower2" => $world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
-				"GanonsTower3" => $world->getRegion('Ganons Tower')->getBoss('top')->getEName(),
-				"AgahnimsTower" => "Agahnim",
-				"GanonsTower4" => "Agahnim2",
-				"Ganon" => "Ganon"
-			]
-		]));
+			"UseManualBosses" => !($this->settings['native_boss_shuffle'] ?? false)
+				&& $this->randomizer->config('boss_shuffle', 'off') !== 'off',
+		];
+
+		if (!($this->settings['native_boss_shuffle'] ?? false)) {
+			$world = $this->randomizer->getWorld();
+
+			$options = array_merge($options, [
+				"ManualBosses" => [
+					"EasternPalace" => $world->getRegion('Eastern Palace')->getBoss()->getEName(),
+					"DesertPalace" => $world->getRegion('Desert Palace')->getBoss()->getEName(),
+					"TowerOfHera" => $world->getRegion('Tower of Hera')->getBoss()->getEName(),
+					"AgahnimsTower" => "Agahnim",
+					"PalaceOfDarkness" => $world->getRegion('Palace of Darkness')->getBoss()->getEName(),
+					"SwampPalace" => $world->getRegion('Swamp Palace')->getBoss()->getEName(),
+					"SkullWoods" => $world->getRegion('Skull Woods')->getBoss()->getEName(),
+					"ThievesTown" => $world->getRegion('Thieves Town')->getBoss()->getEName(),
+					"IcePalace" => $world->getRegion('Ice Palace')->getBoss()->getEName(),
+					"MiseryMire" => $world->getRegion('Misery Mire')->getBoss()->getEName(),
+					"TurtleRock" => $world->getRegion('Turtle Rock')->getBoss()->getEName(),
+					"GanonsTower1" => $world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+					"GanonsTower2" => $world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+					"GanonsTower3" => $world->getRegion('Ganons Tower')->getBoss('top')->getEName(),
+					"GanonsTower4" => "Agahnim2",
+					"Ganon" => "Ganon"
+				],
+			]);
+		}
+
+		file_put_contents($this->options_file, json_encode($options));
 	}
 
 	/**

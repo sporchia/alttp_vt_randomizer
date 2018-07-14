@@ -23,6 +23,10 @@ class EntranceRandomizerController extends Controller {
 		$variation = $request->input('variation', 'none') ?: 'none';
 		$goal = $request->input('goal', 'ganon') ?: 'ganon';
 		$shuffle = $request->input('shuffle', 'full') ?: 'full';
+		$enemizer = $request->input('enemizer', false);
+		if ($enemizer && $enemizer['bosses']) {
+			config(['alttp.boss_shuffle' => $enemizer['bosses']]);
+		}
 
 		config(['alttp.mode.state' => $request->input('mode', 'standard')]);
 
@@ -56,6 +60,16 @@ class EntranceRandomizerController extends Controller {
 			return response('Failed', 409);
 		}
 
+		if ($enemizer) {
+			$en = new Enemizer($rand, $patch, array_merge($enemizer, ['native_boss_shuffle' => true]));
+			$en->makeSeed();
+			$en->writeToRom($rom);
+			$patch = patch_merge_minify($rom->getWriteLog());
+			if ($save) {
+				$rand->updateSeedRecordPatch($patch);
+			}
+		}
+
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 			$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $hash), 21, ' '));
 			$patch = patch_merge_minify($rom->getWriteLog());
@@ -73,6 +87,7 @@ class EntranceRandomizerController extends Controller {
 			'patch' => patch_merge_minify($patch),
 			'spoiler' => $spoiler,
 			'hash' => $hash,
+			'size' => $enemizer ? 4 : 2,
 			'current_rom_hash' => Rom::HASH,
 		];
 	}
