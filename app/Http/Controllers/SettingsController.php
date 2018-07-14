@@ -106,6 +106,22 @@ class SettingsController extends Controller {
 		'ProgressiveSword' => 4,
 		'ProgressiveArmor' => 2,
 	];
+	protected $drops = [
+		'ArrowRefill10' => 3,
+		'ArrowRefill5' => 5,
+		'Bee' => 0,
+		'BeeGood' => 0,
+		'BombRefill1' => 7,
+		'BombRefill4' => 1,
+		'BombRefill8' => 2,
+		'Fairy' => 1,
+		'Heart' => 13,
+		'MagicRefillFull' => 3,
+		'MagicRefillSmall' => 6,
+		'RupeeBlue' => 7,
+		'RupeeGreen' => 9,
+		'RupeeRed' => 6,
+	];
 
 	public function item(Request $request) {
 		return config('alttp.randomizer.item');
@@ -216,7 +232,7 @@ class SettingsController extends Controller {
 						return [
 							'value' => $item->getName(),
 							'name' => $item->getNiceName(),
-							'count' => 0,
+							'count' => $this->drops[$item->getName()] ?? 0,
 							'placed' => 0,
 						];
 					})

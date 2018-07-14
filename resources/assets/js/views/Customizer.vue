@@ -138,9 +138,12 @@
 			<tab name="Item Pool">
 				<item-pool v-model="items" />
 			</tab>
-			<tab name="Location Pool">
+			<tab name="Locations">
 				<location-pool :locations="settings.locations" :items="items" :bottles="settings.bottles"
 					:prizes="settings.prizes" :medallions="settings.medallions" />
+			</tab>
+			<tab name="Prize Pack Pool">
+				<prize-pack-pool v-model="drops" />
 			</tab>
 			<tab name="Prize Packs">
 				<prize-packs :drops="drops" v-model="packs" />
@@ -156,6 +159,7 @@ import EventBus from '../core/event-bus';
 import FileSaver from 'file-saver';
 import ItemPool from '../components/Customizer/ItemPool.vue';
 import LocationPool from '../components/Customizer/LocationPool.vue';
+import PrizePackPool from '../components/Customizer/PrizePackPool.vue';
 import PrizePacks from '../components/Customizer/PrizePacks.vue';
 import Settings from '../components/Customizer/Settings.vue';
 import Tab from '../components/VTTab.vue';
@@ -167,6 +171,7 @@ export default {
 		EquipmentSelect: EquipmentSelect,
 		ItemPool: ItemPool,
 		LocationPool: LocationPool,
+		PrizePackPool: PrizePackPool,
 		PrizePacks: PrizePacks,
 		Settings: Settings,
 		Tab: Tab,
@@ -213,13 +218,13 @@ export default {
 			items: [],
 			equipment: [],
 			packs: {
-				0: {},
 				1: {},
 				2: {},
 				3: {},
 				4: {},
 				5: {},
 				6: {},
+				7: {},
 				pull: {},
 				crab: {},
 				stun: {},
@@ -229,6 +234,7 @@ export default {
 			itemArrayLookup: {},
 			dropItemLookup: {},
 			locationPlacement: {},
+			prizePackPlacement: {},
 		};
 	},
 	created () {
@@ -267,6 +273,17 @@ export default {
 					}
 				});
 			});
+			localforage.getItem('vt.custom.drops').then(drops => {
+				if (!drops) {
+					return;
+				}
+
+				Object.keys(drops).forEach(name => {
+					if (this.drops[this.dropItemLookup[name]]) {
+						this.drops[this.dropItemLookup[name]].count = drops[name];
+					}
+				});
+			});
 			localforage.getItem('vt.custom.prizepacks').then(packs => {
 				if (!packs) {
 					return;
@@ -274,6 +291,7 @@ export default {
 				Object.keys(packs).forEach(i => {
 					Object.keys(packs[i]).forEach(j => {
 						this.packs[i][j] = this.drops[this.dropItemLookup[packs[i][j]]];
+						this.incrementDrop(packs[i][j], i + '-' + j);
 					});
 				});
 			});
@@ -287,6 +305,7 @@ export default {
 		});
 		EventBus.$on('itemAdd', this.incrementItem);
 		EventBus.$on('itemRemove', this.decrementItem);
+		EventBus.$on('prizePackAdd', this.incrementDrop);
 	},
 	methods: {
 		applySpoilerSeed() {
@@ -335,7 +354,10 @@ export default {
 								},
 								item: {
 									count: this.simpleItems,
-								}
+								},
+								drop: {
+									count: this.simpleDrops,
+								},
 							},
 						},
 					},
@@ -413,6 +435,25 @@ export default {
 				item.count++;
 			}
 		},
+		incrementDrop(dropName, sid) {
+			if (dropName === 'auto_fill') {
+				delete(this.prizePackPlacement[sid]);
+			} else {
+				this.prizePackPlacement[sid] = dropName;
+			}
+
+			var drop = this.drops[this.dropItemLookup[dropName]];
+			if (!drop) {
+				return;
+			}
+			drop.placed++;
+
+			if (drop.count > 0) {
+				drop.count--;
+			} else {
+				drop.neg_count = drop.neg_count ? drop.neg_count - 1 : -1;
+			}
+		},
 		saveRom() {
 			return this.rom.save(this.rom.downloadFilename() + '.sfc');
 		},
@@ -440,6 +481,13 @@ export default {
 				return map;
 			}, {})
 		},
+		simpleDrops () {
+			return this.drops.reduce((map, obj) => {
+				if (obj.value == 'auto_fill') return map;
+				map[obj.value] = Number(obj.count);
+				return map;
+			}, {})
+		},
 		simplePacks () {
 			return Object.keys(this.packs).reduce((map, pack) => {
 				map[pack] = Object.keys(this.packs[pack]).reduce((submap, item) => {
@@ -453,6 +501,9 @@ export default {
 	watch: {
 		simpleItems (val) {
 			localforage.setItem('vt.custom.items', val);
+		},
+		simpleDrops (val) {
+			localforage.setItem('vt.custom.drops', val);
 		},
 		simplePacks (val) {
 			localforage.setItem('vt.custom.prizepacks', val);
