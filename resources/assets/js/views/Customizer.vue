@@ -213,20 +213,21 @@ export default {
 			items: [],
 			equipment: [],
 			packs: {
-				0: [],
-				1: [],
-				2: [],
-				3: [],
-				4: [],
-				5: [],
-				6: [],
-				pull: [],
-				crab: [],
-				stun: [],
-				fish: [],
+				0: {},
+				1: {},
+				2: {},
+				3: {},
+				4: {},
+				5: {},
+				6: {},
+				pull: {},
+				crab: {},
+				stun: {},
+				fish: {},
 			},
 			context: {},
 			itemArrayLookup: {},
+			dropItemLookup: {},
 			locationPlacement: {},
 		};
 	},
@@ -249,6 +250,9 @@ export default {
 			this.settings.bottles = response.data.bottles;
 			this.settings.medallions = response.data.medallions;
 			this.drops = response.data.droppables;
+			this.drops.forEach((drop, i) => {
+				this.dropItemLookup[drop.value] = i;
+			});
 		}).then(() => {
 			localforage.getItem('vt.custom.items').then(items => {
 				if (!items) {
@@ -261,6 +265,16 @@ export default {
 					if (this.items[this.itemArrayLookup[name]]) {
 						this.items[this.itemArrayLookup[name]].count = items[name];
 					}
+				});
+			});
+			localforage.getItem('vt.custom.prizepacks').then(packs => {
+				if (!packs) {
+					return;
+				}
+				Object.keys(packs).forEach(i => {
+					Object.keys(packs[i]).forEach(j => {
+						this.packs[i][j] = this.drops[this.dropItemLookup[packs[i][j]]];
+					});
 				});
 			});
 		});
@@ -428,9 +442,10 @@ export default {
 		},
 		simplePacks () {
 			return Object.keys(this.packs).reduce((map, pack) => {
-				map[pack] = this.packs[pack].map(item => {
-					return item.value;
-				})
+				map[pack] = Object.keys(this.packs[pack]).reduce((submap, item) => {
+					submap[item] = this.packs[pack][item].value;
+					return submap;
+				}, {});
 				return map;
 			}, {})
 		},
@@ -438,7 +453,10 @@ export default {
 	watch: {
 		simpleItems (val) {
 			localforage.setItem('vt.custom.items', val);
-		}
+		},
+		simplePacks (val) {
+			localforage.setItem('vt.custom.prizepacks', val);
+		},
 	},
 }
 </script>

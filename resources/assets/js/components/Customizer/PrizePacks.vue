@@ -22,20 +22,20 @@
 							{{ id }}
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="pack[0]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
-							<vt-select v-model="pack[4]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[4]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="pack[1]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
-							<vt-select v-model="pack[5]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[1]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[5]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="pack[2]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
-							<vt-select v-model="pack[6]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[2]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[6]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="pack[3]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
-							<vt-select v-model="pack[7]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[3]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="pack[7]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 					</tr>
 					<tr>
@@ -43,13 +43,13 @@
 							Pull
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.pull[0]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.pull[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.pull[1]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.pull[1]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.pull[2]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.pull[2]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
 						</td>
@@ -59,10 +59,10 @@
 							Crab
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.crab[0]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.crab[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.crab[1]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.crab[1]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
 						</td>
@@ -74,7 +74,7 @@
 							Stun
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.stun[0]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.stun[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
 						</td>
@@ -88,7 +88,7 @@
 							Fish
 						</td>
 						<td class="col w-20">
-							<vt-select v-model="value.fish[0]" @input="selectedItem" :options="drops" :selected="defaultItem" :trigger-on-mount="true" />
+							<Select v-model="value.fish[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
 						</td>
 						<td class="col w-20">
 						</td>
@@ -104,13 +104,13 @@
 </template>
 
 <script>
-import VTSelect from '../VTSelect.vue';
+import Select from '../Select.vue';
 import EventBus from '../../core/event-bus';
 import orderBy from 'lodash.orderby';
 
 export default {
 	components: {
-		VTSelect: VTSelect,
+		Select,
 	},
 	props: [
 		'drops',
@@ -123,25 +123,18 @@ export default {
 		}
 	},
 	mounted () {
-		localforage.getItem('vt.custom.prizepacks').then(value => {
-			if (value === null) {
-				return;
-			}
-			//this.items = value;
-		}).then(() => {
-			//this.$emit('input', this.selectedEq);
-		});
 	},
 	methods: {
 		selectedItem (selectedOption, sid) {
 			if (!selectedOption) {
 				selectedOption = this.defaultItem;
 			}
+			this.$forceUpdate()
 			EventBus.$emit('prizePackAdd', selectedOption.value, sid, true);
-			if (sid in this.oldValues) {
-				EventBus.$emit('prizePackRemove', this.oldValues[sid]);
-			}
-			this.oldValues[sid] = selectedOption.value;
+			//if (sid in this.oldValues) {
+			//	EventBus.$emit('prizePackRemove', this.oldValues[sid]);
+			//}
+			//this.oldValues[sid] = selectedOption.value;
 		},
 	},
 };
