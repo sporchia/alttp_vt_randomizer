@@ -118,6 +118,7 @@ class Enemizer {
 			"BossMadness" => false,
 			"RandomizeBosses" => $this->randomizer->config('boss_shuffle', 'off') !== 'off',
 			"RandomizeBossesType" => ($this->settings['native_boss_shuffle'] ?? false) ? [
+				'off' => 0,
 				'basic' => 0,
 				'normal' => 1,
 				'chaos' => 2,
