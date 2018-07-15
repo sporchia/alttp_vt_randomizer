@@ -1,8 +1,8 @@
 <?php namespace ALttP;
 
 use ALttP\Support\Credits;
-use ALttP\Support\Dialog;
 use ALttP\Support\ItemCollection;
+use ALttP\Text;
 use Log;
 
 /**
@@ -27,6 +27,7 @@ class Rom {
 
 	private $tmp_file;
 	private $credits;
+	private $text;
 	protected $rom;
 	protected $write_log = [];
 
@@ -69,6 +70,8 @@ class Rom {
 
 		$this->rom = fopen($this->tmp_file, "r+");
 		$this->credits = new Credits;
+		$this->text = new Text;
+		$this->text->removeUnwanted();
 	}
 
 	/**
@@ -169,6 +172,8 @@ class Rom {
 		$this->setGanon1TextString("You drove\naway my other\nself, Agahnim\ntwo times…\nBut, I won't\ngive you the\nTriforce.\nI'll defeat\nyou!");
 		$this->setGanon2TextString("can you beat\nmy darkness\ntechnique?");
 		$this->setTriforceTextString("\n     G G");
+
+		$this->writeText();
 
 		$this->setSeedString(str_pad("ZELDANODENSETSU", 21, ' '));
 
@@ -1129,7 +1134,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setUncleTextString(string $string) : self {
-		$this->writeDialog($string, 0x180500);
+		$this->text->setString('uncle_leaving_text', $string);
 		return $this;
 	}
 
@@ -1141,7 +1146,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon1TextString(string $string) : self {
-		$this->writeDialog($string, 0x180600);
+		$this->text->setString('ganon_fall_in', $string);
 		return $this;
 	}
 
@@ -1153,7 +1158,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon2TextString(string $string) : self {
-		$this->writeDialog($string, 0x180700);
+		$this->text->setString('ganon_phase_3', $string);
 		return $this;
 	}
 
@@ -1165,7 +1170,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon1InvincibleTextString(string $string) : self {
-		$this->writeDialog($string, 0x181100);
+		$this->text->setString('ganon_fall_in_alt', $string);
 		return $this;
 	}
 
@@ -1177,7 +1182,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setGanon2InvincibleTextString(string $string) : self {
-		$this->writeDialog($string, 0x181200);
+		$this->text->setString('ganon_phase_3_alt', $string);
 		return $this;
 	}
 
@@ -1190,7 +1195,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTriforceTextString(string $string) : self {
-		$this->writeDialog($string, 0x180400);
+		$this->text->setString('end_triforce', "{NOBORDER}\n" . $string);
 		return $this;
 	}
 
@@ -1202,7 +1207,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBlindTextString(string $string) : self {
-		$this->writeDialog($string, 0x180800);
+		$this->text->setString('blind_by_the_light', $string);
 		return $this;
 	}
 
@@ -1214,7 +1219,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTavernManTextString(string $string) : self {
-		$this->writeDialog($string, 0x180C00);
+		$this->text->setString('kakariko_tavern_fisherman', $string);
 		return $this;
 	}
 
@@ -1226,7 +1231,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSahasrahla1TextString(string $string) : self {
-		$this->writeDialog($string, 0x180A00);
+		$this->text->setString('sahasrahla_bring_courage', $string);
 		return $this;
 	}
 
@@ -1238,7 +1243,8 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSahasrahla2TextString(string $string) : self {
-		$this->writeDialog($string, 0x180B00);
+		$this->text->setString('sahasrahla_have_boots_no_icerod', $string);
+		// Yes. That is the string randomizer uses for after green pendant
 		return $this;
 	}
 
@@ -1250,7 +1256,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombShop1TextString(string $string) : self {
-		$this->writeDialog($string, 0x180E00);
+		$this->text->setString('bomb_shop', $string);
 		return $this;
 	}
 
@@ -1262,7 +1268,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombShop2TextString(string $string) : self {
-		$this->writeDialog($string, 0x180D00);
+		$this->text->setString('bomb_shop_big_bomb', $string);
 		return $this;
 	}
 
@@ -1274,7 +1280,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setPyramidFairyTextString(string $string) : self {
-		$this->writeDialog($string, 0x180900);
+		$this->text->setString('pond_will_upgrade', $string);
 		return $this;
 	}
 
@@ -1286,7 +1292,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setPedestalTextbox(string $string) : self {
-		$this->writeDialog($string, 0x180300);
+		$this->text->setString('mastersword_pedestal_translated', $string);
 		return $this;
 	}
 
@@ -1298,7 +1304,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setBombosTextbox(string $string) : self {
-		$this->writeDialog($string, 0x181000);
+		$this->text->setString('tablet_bombos_book', $string);
 		return $this;
 	}
 
@@ -1310,7 +1316,17 @@ class Rom {
 	 * @return $this
 	 */
 	public function setEtherTextbox(string $string) : self {
-		$this->writeDialog($string, 0x180F00);
+		$this->text->setString('tablet_ether_book', $string);
+		return $this;
+	}
+
+	/**
+	 * Commit the text table to rom
+	 *
+	 * @return $this
+	 */
+	public function writeText() : self {
+		$this->write(0xE0000, pack('C*', ...$this->text->getByteArray()));
 		return $this;
 	}
 
@@ -2976,23 +2992,5 @@ class Rom {
 			fclose($this->rom);
 		}
 		unlink($this->tmp_file);
-	}
-
-	/**
-	 * Set the text for a dialog
-	 *
-	 * @param string $string Text for the dialog
-	 * @param int $offset The offset of the text box
-	 *
-	 * @return $this
-	 */
-	private function writeDialog(string $string, int $offset) : self {
-		$converter = new Dialog;
-
-		foreach ($converter->convertDialog($string) as $byte) {
-			$this->write($offset++, pack('C', $byte));
-		}
-
-		return $this;
 	}
 }

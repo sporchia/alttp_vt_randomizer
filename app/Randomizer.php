@@ -1126,6 +1126,8 @@ class Randomizer {
 
 		$rom->setGanon2InvincibleTextString("Got wax in\nyour ears?\nI cannot die!");
 
+		$rom->setPyramidFairyTextString("Hey!\n\nListen!");
+
 		$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('SilverArrowUpgrade'))->first();
 		if (!$silver_arrows_location) {
 			$silver_arrows_location = $this->world->getLocationsWithItem(Item::get('BowAndSilverArrows'))->first();
@@ -1145,6 +1147,8 @@ class Randomizer {
 		}
 
 		$rom->setTriforceTextString(array_first(fy_shuffle($strings['triforce'])));
+
+		$rom->writeText();
 
 		return $this;
 	}
