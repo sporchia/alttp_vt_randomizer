@@ -41,10 +41,10 @@ class MakeTranslation extends Command {
 
 		if ($this->option('input_file')) {
 			$rom = new Rom($this->option('input_file'));
-			$rom->write(0xE0000, pack('C*', ...$i18n->getByteArray()));
+			$rom->write(0xE0000, pack('C*', ...$i18n->getByteArray(true)));
 		} else {
 			$rom = new Rom;
-			$rom->write(0x0, pack('C*', ...$i18n->getByteArray()));
+			$rom->write(0x0, pack('C*', ...$i18n->getByteArray(true)));
 		}
 
 		$rom->save($this->argument('output_file'));

@@ -55,7 +55,7 @@ class Text {
 		fclose($bin);
 	}
 
-	function getByteArray() {
+	function getByteArray(bool $pad=false) {
 		$data = array_merge(...array_values($this->text_array));
 
 		Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
@@ -63,8 +63,11 @@ class Text {
 		if (count($data) > 0x7355) {
 			throw new \Exception("Too BIG", 1);
 		}
-
-		return array_pad($data, 0x7355, 0xFF);
+		if($pad){
+			return array_pad($data, 0x7355, 0xFF);
+		} else {
+			return $data;
+		}
 	}
 
 	function getByteString() {
@@ -890,6 +893,7 @@ class Text {
 			'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
 			// 0x190
 			'end_pad_data' => $converter->convertDialogCompressed(""),
+			'terminator' => [0xFF, 0xFF]
 		];
 	}
 
