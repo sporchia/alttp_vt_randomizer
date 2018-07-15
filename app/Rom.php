@@ -1195,7 +1195,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setTriforceTextString(string $string) : self {
-		$this->text->setString('end_triforce', $string);
+		$this->text->setString('end_triforce', "{NOBORDER}\n" . $string);
 		return $this;
 	}
 
