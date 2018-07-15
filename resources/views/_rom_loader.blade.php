@@ -183,7 +183,7 @@ $(function() {
 
 	$('input[name=f2usm]').on('change', function() {
 		smUploadedBlob = this.files[0];
-		if(this.files[0] != null)
+		if(alttpUploadedBlob != null && smUploadedBlob != null)
 		{
 			$('#rom-select').hide();
 			$('.alert').hide();
