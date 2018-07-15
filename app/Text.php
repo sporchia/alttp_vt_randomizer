@@ -685,9 +685,9 @@ class Text {
 
 			'aginah_have_better_sword' => $converter->convertDialogCompressed("Pandas are very vicious animals. Never forget…\n\n\n\n\nI never will…"),
 
-			'unknown_0' => $converter->convertDialogCompressed("You woke me from my nap! Take this, and get out!"),
+			'catfish' => $converter->convertDialogCompressed("You woke me from my nap! Take this, and get out!"),
 
-			'unknown_1' => $converter->convertDialogCompressed("I don't have anything else for you!\nTake this!"),
+			'catfish_after_item' => $converter->convertDialogCompressed("I don't have anything else for you!\nTake this!"),
 			// 12C
 			'lumberjack_right' => $converter->convertDialogCompressed("One of us always lies."),
 
@@ -1015,8 +1015,8 @@ class Text {
 			'shop_buy_heart',
 			'bomb_shop_big_bomb_buy',
 			'item_get_big_bomb',
-			'unknown_0', //catfish
-			'unknown_1', //catfish
+			'catfish', 
+			'catfish_after_item',
 			'zora_meeting',
 			'zora_tells_cost',
 			'zora_get_flippers',
