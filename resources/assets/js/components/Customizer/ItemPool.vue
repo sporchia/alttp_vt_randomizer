@@ -1,8 +1,8 @@
 <template>
 	<div class="card border-success" :class="{'border-danger': unevenCount}">
 		<div class="card-header bg-success card-heading-btn card-heading-sticky" :class="{'bg-danger': unevenCount}">
-			<h3 class="card-title text-white float-left">Item Pool {{ itemCount + placedItemCount }} / 216
-				<span v-if="itemCount + placedItemCount < 216">({{ 216 - itemCount - placedItemCount}} empty locations)</span>
+			<h3 class="card-title text-white float-left">Item Pool {{ itemCount + placedItemCount }} / {{ max }}
+				<span v-if="itemCount + placedItemCount < max">({{ max - itemCount - placedItemCount}} empty locations)</span>
 			</h3>
 			<div class="btn-toolbar float-right">
 				<input id="items-filter" placeholder="search" type="text" v-model="search" />
@@ -25,15 +25,15 @@
 				<tbody class="searchable">
 					<tr v-for="item in orderedItems" v-if="item.hasOwnProperty('count')" v-show="searchEx.test(item.name)">
 						<td class="col w-25">
-							<input :id="'item-count-' + item.value" type="number" v-model="item.count"
-								min="0" max="218" step="1" :name="'data[alttp.custom.item.count.' + item.value + ']'" class="input-sm custom-items">
+							<input type="number" :value="item.count" @input="itemCountChanged($event, item)"
+								min="0" :max="max" step="1" class="input-sm custom-items">
 						</td>
 						<td class="col w-25">
-							<input :id="'item-placed-' + item.value" :value="item.placed" type="number" min="0" max="218" step="1" readonly
+							<input :value="item.placed" type="number" min="0" :max="max" step="1" readonly
 								tabindex="-1" class="custom-placed input-sm">
 						</td>
 						<td class="col w-50">
-							<label :for="'item-count-' + item.value">{{ item.name }}</label>
+							<label>{{ item.name }}</label>
 						</td>
 					</tr>
 				</tbody>
@@ -43,45 +43,56 @@
 </template>
 
 <script>
-// @TODO: consider using Array.prototype.sort().
-import orderBy from 'lodash.orderby';
-
 export default {
-	props: [
-		'value',
-	],
 	data() {
 		return {
 			search: '',
+			max: 216,
 		};
 	},
-	computed: {
-		searchEx: (vm) => {
-			return new RegExp(vm.search, 'i');
+	methods: {
+		itemCountChanged (e, item) {
+			this.$store.dispatch('itemLocations/setItemCount', {
+				item: item,
+				count: e.target.value,
+			});
+
+			this.$emit('input', e.target.value);
 		},
-		orderedItems: function () {
-			return orderBy(this.value, 'name');
+	},
+	computed: {
+		searchEx ()  {
+			return new RegExp(this.search, 'i');
+		},
+		orderedItems () {
+			return this.$store.state.itemLocations.pool.items.slice().sort((a, b) => {
+				var nameA = a.name.toUpperCase();
+				var nameB = b.name.toUpperCase();
+				if (nameA < nameB) return -1;
+				if (nameA > nameB) return 1;
+				return 0;
+			});
 		},
 		unevenCount () {
-			return this.placedItemCount + this.itemCount != 216;
+			return this.placedItemCount + this.itemCount != this.max;
 		},
-		placedItemCount (vm) {
-			if (!vm.value.length) {
+		placedItemCount () {
+			if (!this.orderedItems.length) {
 				return 0;
 			}
-			return vm.value.filter(item => {
-				return item.value !== 'auto_fill';
+			return this.orderedItems.filter(item => {
+				return item.orderedItems !== 'auto_fill';
 			}).map(item => {
 				return Number(item.placed || 0);
 			}).reduce((carry, placed) => {
 				return carry + placed;
 			});
 		},
-		itemCount: (vm) => {
-			if (!vm.value.length) {
+		itemCount () {
+			if (!this.orderedItems.length) {
 				return 0;
 			}
-			return vm.value.map(item => {
+			return this.orderedItems.map(item => {
 				return Number(item.count || 0);
 			}).reduce((carry, count) => {
 				return carry + count;

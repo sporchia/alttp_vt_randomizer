@@ -150,6 +150,12 @@ class SettingsController extends Controller {
 							: ($location instanceof Location\Prize ? 'prizes' : 'items')),
 					];
 				})),
+				'prizepacks' => array_values(array_map(function($pack) {
+					return [
+						'name' => $pack->getName(),
+						'slots' => count($pack->getDrops()),
+					];
+				}, $world->getPrizePacks())),
 				'items' => array_merge([
 						['value' => 'auto_fill', 'name' => 'Random', 'placed' => 0],
 						['value' => 'BottleWithRandom', 'name' => 'Bottle (Random)', 'count' => 4, 'placed' => 0],

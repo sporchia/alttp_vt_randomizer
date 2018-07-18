@@ -8,7 +8,11 @@
 			<span class="sr-only">Error:</span>
 			<span class="message">{{ this.error }}</span>
 		</div>
-		<tabs class="think" nav-type="tabs" :sticky="true">
+		<div v-if="$store.state.loading" class="center">
+			<img src="/i/loading.gif" alt="Loading..." />
+			<h1>Loading...</h1>
+		</div>
+		<tabs v-show="!$store.state.loading" class="think" nav-type="tabs" :sticky="true">
 			<tab name="Home" :selected="true">
 				<div class="card border-success mb-3">
 					<div class="card-header bg-success">
@@ -136,17 +140,16 @@
 				<equipment-select v-model="equipment"></equipment-select>
 			</tab>
 			<tab name="Item Pool">
-				<item-pool v-model="items" />
+				<item-pool v-if="!$store.state.loading" />
 			</tab>
 			<tab name="Locations">
-				<location-pool :locations="settings.locations" :items="items" :bottles="settings.bottles"
-					:prizes="settings.prizes" :medallions="settings.medallions" />
+				<locations v-if="!$store.state.loading" />
 			</tab>
 			<tab name="Prize Pack Pool">
-				<prize-pack-pool v-model="drops" />
+				<prize-pack-pool v-if="!$store.state.loading" />
 			</tab>
 			<tab name="Prize Packs">
-				<prize-packs :drops="drops" v-model="packs" />
+				<prize-packs v-if="!$store.state.loading" />
 			</tab>
 
 		</tabs>
@@ -158,7 +161,7 @@ import EquipmentSelect from '../components/Customizer/EquipmentSelect.vue';
 import EventBus from '../core/event-bus';
 import FileSaver from 'file-saver';
 import ItemPool from '../components/Customizer/ItemPool.vue';
-import LocationPool from '../components/Customizer/LocationPool.vue';
+import Locations from '../components/Customizer/Locations.vue';
 import PrizePackPool from '../components/Customizer/PrizePackPool.vue';
 import PrizePacks from '../components/Customizer/PrizePacks.vue';
 import Settings from '../components/Customizer/Settings.vue';
@@ -170,7 +173,7 @@ export default {
 	components: {
 		EquipmentSelect: EquipmentSelect,
 		ItemPool: ItemPool,
-		LocationPool: LocationPool,
+		Locations: Locations,
 		PrizePackPool: PrizePackPool,
 		PrizePacks: PrizePacks,
 		Settings: Settings,
@@ -178,9 +181,6 @@ export default {
 		Tabs: Tabs,
 		VtTextarea: VTTextarea,
 	},
-	props: [
-		'version',
-	],
 	data() {
 		return {
 			rom: null,
@@ -211,30 +211,9 @@ export default {
 				goals: [],
 				difficulties: [],
 				variations: [],
-				items: [],
-				locations: [],
 			},
-			drops: [],
-			items: [],
 			equipment: [],
-			packs: {
-				1: {},
-				2: {},
-				3: {},
-				4: {},
-				5: {},
-				6: {},
-				7: {},
-				pull: {},
-				crab: {},
-				stun: {},
-				fish: {},
-			},
 			context: {},
-			itemArrayLookup: {},
-			dropItemLookup: {},
-			locationPlacement: {},
-			prizePackPlacement: {},
 		};
 	},
 	created () {
@@ -246,56 +225,6 @@ export default {
 			this.settings.difficulties = Object.keys(response.data.difficulty_adjustments).map(function(key) { return {value: key, name: response.data.difficulty_adjustments[key]}});
 			this.settings.variations = Object.keys(response.data.variations).map(function(key) { return {value: key, name: response.data.variations[key]}});
 		});
-		axios.get(`/customizer/settings`).then(response => {
-			this.items = response.data.items
-			this.items.forEach((item, i) => {
-				this.itemArrayLookup[item.value] = i;
-			});
-			this.settings.locations = response.data.locations;
-			this.settings.prizes = response.data.prizes;
-			this.settings.bottles = response.data.bottles;
-			this.settings.medallions = response.data.medallions;
-			this.drops = response.data.droppables;
-			this.drops.forEach((drop, i) => {
-				this.dropItemLookup[drop.value] = i;
-			});
-		}).then(() => {
-			localforage.getItem('vt.custom.items').then(items => {
-				if (!items) {
-					return;
-				}
-
-				Object.keys(items).forEach(itemName => {
-					// v3 compat, remove in v5
-					var name = itemName.replace(/^item-count-/);
-					if (this.items[this.itemArrayLookup[name]]) {
-						this.items[this.itemArrayLookup[name]].count = items[name];
-					}
-				});
-			});
-			localforage.getItem('vt.custom.drops').then(drops => {
-				if (!drops) {
-					return;
-				}
-
-				Object.keys(drops).forEach(name => {
-					if (this.drops[this.dropItemLookup[name]]) {
-						this.drops[this.dropItemLookup[name]].count = drops[name];
-					}
-				});
-			});
-			localforage.getItem('vt.custom.prizepacks').then(packs => {
-				if (!packs) {
-					return;
-				}
-				Object.keys(packs).forEach(i => {
-					Object.keys(packs[i]).forEach(j => {
-						this.packs[i][j] = this.drops[this.dropItemLookup[packs[i][j]]];
-						this.incrementDrop(packs[i][j], i + '-' + j);
-					});
-				});
-			});
-		});
 		localforage.getItem('rom').then(function(blob) {
 			if (blob == null) {
 				EventBus.$emit('noBlob');
@@ -303,9 +232,6 @@ export default {
 			}
 			EventBus.$emit('loadBlob', {target: {files: [new Blob([blob])]}});
 		});
-		EventBus.$on('itemAdd', this.incrementItem);
-		EventBus.$on('itemRemove', this.decrementItem);
-		EventBus.$on('prizePackAdd', this.incrementDrop);
 	},
 	methods: {
 		applySpoilerSeed() {
@@ -341,9 +267,9 @@ export default {
 					tournament: this.choice.tournament,
 					name: this.choice.name,
 					notes: this.choice.notes,
-					l: this.locationPlacement,
+					l: this.locations,
 					eq: this.equipment,
-					drops: this.simplePacks,
+					drops: this.packs,
 					data: {
 						alttp: {
 							custom: {
@@ -353,10 +279,10 @@ export default {
 									logicMode: this.choice.romLogic.value,
 								},
 								item: {
-									count: this.simpleItems,
+									count: this.itemPool,
 								},
 								drop: {
-									count: this.simpleDrops,
+									count: this.dropPool,
 								},
 							},
 						},
@@ -385,75 +311,6 @@ export default {
 				});
 			}.bind(this));
 		},
-		incrementItem(itemName, sid, pool) {
-			if (itemName === 'auto_fill') {
-				delete(this.locationPlacement[sid]);
-			} else {
-				this.locationPlacement[sid] = itemName;
-			}
-			if (!pool) {
-				return;
-			}
-			var item = this.items[this.itemArrayLookup[itemName]];
-			item.placed++;
-			if (itemName.indexOf('Bottle') !== -1) {
-				item = this.items[this.itemArrayLookup['BottleWithRandom']];
-			}
-			if (itemName.indexOf('Shield') !== -1) {
-				item = this.items[this.itemArrayLookup['ProgressiveShield']];
-			}
-			if (itemName.indexOf('Sword') !== -1) {
-				item = this.items[this.itemArrayLookup['ProgressiveSword']];
-			}
-			if (itemName.indexOf('Mail') !== -1) {
-				item = this.items[this.itemArrayLookup['ProgressiveArmor']];
-			}
-			if (item.count > 0) {
-				item.count--;
-			} else {
-				item.neg_count = item.neg_count ? item.neg_count - 1 : -1;
-			}
-		},
-		decrementItem(itemName) {
-			var item = this.items[this.itemArrayLookup[itemName]];
-			item.placed--;
-			if (itemName.indexOf('Bottle') !== -1) {
-				item = this.items[this.itemArrayLookup['BottleWithRandom']];
-			}
-			if (itemName.indexOf('Shield') !== -1) {
-				item = this.items[this.itemArrayLookup['ProgressiveShield']];
-			}
-			if (itemName.indexOf('Sword') !== -1) {
-				item = this.items[this.itemArrayLookup['ProgressiveSword']];
-			}
-			if (itemName.indexOf('Mail') !== -1) {
-				item = this.items[this.itemArrayLookup['ProgressiveArmor']];
-			}
-			if (item.neg_count < 0) {
-				item.neg_count++;
-			} else {
-				item.count++;
-			}
-		},
-		incrementDrop(dropName, sid) {
-			if (dropName === 'auto_fill') {
-				delete(this.prizePackPlacement[sid]);
-			} else {
-				this.prizePackPlacement[sid] = dropName;
-			}
-
-			var drop = this.drops[this.dropItemLookup[dropName]];
-			if (!drop) {
-				return;
-			}
-			drop.placed++;
-
-			if (drop.count > 0) {
-				drop.count--;
-			} else {
-				drop.neg_count = drop.neg_count ? drop.neg_count - 1 : -1;
-			}
-		},
 		saveRom() {
 			return this.rom.save(this.rom.downloadFilename() + '.sfc');
 		},
@@ -474,39 +331,17 @@ export default {
 		}
 	},
 	computed: {
-		simpleItems () {
-			return this.items.reduce((map, obj) => {
-				if (obj.value == 'auto_fill') return map;
-				map[obj.value] = Number(obj.count);
-				return map;
-			}, {})
+		itemPool () {
+			return this.$store.getters['itemLocations/flatItemPool'];
 		},
-		simpleDrops () {
-			return this.drops.reduce((map, obj) => {
-				if (obj.value == 'auto_fill') return map;
-				map[obj.value] = Number(obj.count);
-				return map;
-			}, {})
+		dropPool () {
+			return this.$store.getters['prizePacks/flatPool'];
 		},
-		simplePacks () {
-			return Object.keys(this.packs).reduce((map, pack) => {
-				map[pack] = Object.keys(this.packs[pack]).reduce((submap, item) => {
-					submap[item] = this.packs[pack][item].value;
-					return submap;
-				}, {});
-				return map;
-			}, {})
+		locations () {
+			return this.$store.getters['itemLocations/flatLocations'];
 		},
-	},
-	watch: {
-		simpleItems (val) {
-			localforage.setItem('vt.custom.items', val);
-		},
-		simpleDrops (val) {
-			localforage.setItem('vt.custom.drops', val);
-		},
-		simplePacks (val) {
-			localforage.setItem('vt.custom.prizepacks', val);
+		packs () {
+			return this.$store.state.prizePacks.flatpacks;
 		},
 	},
 }

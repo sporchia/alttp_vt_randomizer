@@ -17,64 +17,64 @@
 			</div>
 			<table class="table table-sm">
 				<tbody class="searchable">
-					<tr v-for="(pack, id) in value" v-if="['pull', 'crab', 'stun', 'fish'].indexOf(id) === -1">
+					<tr v-for="(pack, id) in packs" v-if="['pull', 'crab', 'stun', 'fish'].indexOf(id) === -1">
 						<td class="col w-10">
 							{{ id }}
 						</td>
 						<td class="col w-20">
-							<Select :sid="id + '-0'" v-model="pack[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
-							<Select :sid="id + '-4'" v-model="pack[4]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="[id, 0]" :value="pack[0]" @input="selectedItem" :options="options" />
+							<Select :sid="[id, 4]" :value="pack[4]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
-							<Select :sid="id + '-1'" v-model="pack[1]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
-							<Select :sid="id + '-5'" v-model="pack[5]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="[id, 1]" :value="pack[1]" @input="selectedItem" :options="options" />
+							<Select :sid="[id, 5]" :value="pack[5]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
-							<Select :sid="id + '-2'" v-model="pack[2]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
-							<Select :sid="id + '-6'" v-model="pack[6]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="[id, 2]" :value="pack[2]" @input="selectedItem" :options="options" />
+							<Select :sid="[id, 6]" :value="pack[6]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
-							<Select :sid="id + '-3'" v-model="pack[3]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
-							<Select :sid="id + '-7'" v-model="pack[7]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="[id, 3]" :value="pack[3]" @input="selectedItem" :options="options" />
+							<Select :sid="[id, 7]" :value="pack[7]" @input="selectedItem" :options="options" />
 						</td>
 					</tr>
-					<tr>
+					<tr v-if="packs.pull">
 						<td class="col w-10">
 							Pull
 						</td>
 						<td class="col w-20">
-							<Select sid="pull-0" v-model="value.pull[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['pull', 0]" :value="packs.pull[0]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
-							<Select sid="pull-1" v-model="value.pull[1]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['pull', 1]" :value="packs.pull[1]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
-							<Select sid="pull-2" v-model="value.pull[2]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['pull', 2]" :value="packs.pull[2]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
 						</td>
 					</tr>
-					<tr>
+					<tr v-if="packs.crab">
 						<td class="col w-10">
 							Crab
 						</td>
 						<td class="col w-20">
-							<Select sid="crab-0" v-model="value.crab[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['crab', 0]" :value="packs.crab[0]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
-							<Select sid="crab-1" v-model="value.crab[1]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['crab', 1]" :value="packs.crab[1]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
 						</td>
 						<td class="col w-20">
 						</td>
 					</tr>
-					<tr>
+					<tr v-if="packs.stun">
 						<td class="col w-10">
 							Stun
 						</td>
 						<td class="col w-20">
-							<Select sid="stun-0" v-model="value.stun[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['stun', 0]" :value="packs.stun[0]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
 						</td>
@@ -83,12 +83,12 @@
 						<td class="col w-20">
 						</td>
 					</tr>
-					<tr>
+					<tr v-if="packs.fish">
 						<td class="col w-10">
 							Fish
 						</td>
 						<td class="col w-20">
-							<Select sid="fish-0" v-model="value.fish[0]" @input="selectedItem" :options="drops" :default-item="defaultItem" :trigger-on-mount="true" />
+							<Select :sid="['fish', 0]" :value="packs.fish[0]" @input="selectedItem" :options="options" />
 						</td>
 						<td class="col w-20">
 						</td>
@@ -105,36 +105,27 @@
 
 <script>
 import Select from '../Select.vue';
-import EventBus from '../../core/event-bus';
-import orderBy from 'lodash.orderby';
 
 export default {
 	components: {
 		Select,
 	},
-	props: [
-		'drops',
-		'value',
-	],
-	data() {
-		return {
-			oldValues: {},
-			defaultItem: {name:'Random', value:'auto_fill'},
-		}
-	},
-	mounted () {
-	},
 	methods: {
 		selectedItem (selectedOption, sid) {
-			if (!selectedOption) {
-				selectedOption = this.defaultItem;
-			}
-			this.$forceUpdate()
-			EventBus.$emit('prizePackAdd', selectedOption.value, sid);
-			//if (sid in this.oldValues) {
-			//	EventBus.$emit('prizePackRemove', this.oldValues[sid]);
-			//}
-			this.oldValues[sid] = selectedOption.value;
+			this.$store.dispatch('prizePacks/setDrop', {
+				pack: sid[0],
+				slot: sid[1],
+				drop: selectedOption,
+			});
+			this.$forceUpdate();
+		},
+	},
+	computed: {
+		options() {
+			return this.$store.state.settings.droppables;
+		},
+		packs () {
+			return this.$store.state.prizePacks.packs;
 		},
 	},
 };

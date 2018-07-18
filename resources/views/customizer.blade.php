@@ -8,6 +8,10 @@
 <script>
 new Vue({
 	el: '#root',
+	store: cStore,
+	created() {
+		this.$store.dispatch('getSettings');
+	},
 });
 </script>
 @overwrite

@@ -24,11 +24,8 @@ export default {
 	props: {
 		options: {default: () => []},
 		noRace: {default: false},
-		storageKey: {default: ''},
-		storageKeyRemoveOn: {default: null},
 		romFunction: {default: null},
 		placeholder: {default: 'Select option'},
-		triggerOnMount: {default: false},
 		defaultItem: {default: null},
 		rom: {default: null},
 		clearable: {default: false},
@@ -39,23 +36,6 @@ export default {
 		EventBus.$on('gameLoaded', (rom) => {
 			this.applyRomFunctions(this, rom)
 		});
-		if (!this.storageKey) {
-			if (this.triggerOnMount) {
-				this.onSelect(this.value);
-			}
-			return;
-		}
-		localforage.getItem(this.storageKey).then(function(value) {
-			if (value === null) return;
-			for (var i in this.options) {
-				if (this.options[i].value == value) {
-					this.value = this.options[i];
-					break;
-				}
-			}
-		}.bind(this)).then(function() {
-			this.onSelect(this.value);
-		}.bind(this));
 	},
 	data() {
 		return {
@@ -66,27 +46,7 @@ export default {
 			return `${option.name}`;
 		},
 		onSelect (option) {
-			if (this.defaultItem && !option) {
-				option = this.defaultItem;
-			}
-
-			if (!option) {
-				return;
-			}
-
 			this.$emit('input', option, this.sid);
-			this.$emit('select', option, this.sid);
-
-			if (this.storageKey) {
-				if (option.value == this.storageKeyRemoveOn) {
-					localforage.removeItem(this.storageKey);
-				} else {
-					localforage.setItem(this.storageKey, option.value);
-				}
-			}
-			if (this.rom && this.romFunction) {
-				this.rom[this.romFunction](option.value);
-			}
 		},
 		applyRomFunctions: (vm, rom) => {
 			if (rom && vm.romFunction) {
@@ -94,12 +54,7 @@ export default {
 			}
 		},
 		onClear () {
-			this.value = this.storageKeyRemoveOn ? this.value : null;
-			if (this.value) {
-				return this.onSelect(this.value)
-			}
-			this.$emit('select', null);
-			this.$emit('input', {value: null});
+			return this.onSelect(this.defaultItem)
 		},
 	}
 }

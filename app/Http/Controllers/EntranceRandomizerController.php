@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class EntranceRandomizerController extends Controller {
 	public function generateSeed(Request $request, $seed_id = null) {
-		return json_encode($this->prepSeed($request, $seed_id, true));
+		$payload = $this->prepSeed($request, $seed_id, true);
+		$save_data = json_encode(array_except($payload, ['current_rom_hash']));
+		//Storage::put($payload['hash'] . '.json', $save_data);
+		cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
+		return json_encode($payload);
 	}
 
 	public function generateSpoiler(Request $request, $seed_id) {

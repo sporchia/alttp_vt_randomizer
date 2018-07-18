@@ -39,5 +39,4 @@ window.axios = require('axios');
 //}
 
 window.localforage = require('localforage');
-window.jszip = require('jszip');
 window.ROM = require('./rom.js');

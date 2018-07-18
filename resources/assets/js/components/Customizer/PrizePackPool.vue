@@ -1,8 +1,8 @@
 <template>
 	<div class="card border-success" :class="{'border-danger': unevenCount}">
 		<div class="card-header bg-success card-heading-btn card-heading-sticky" :class="{'bg-danger': unevenCount}">
-			<h3 class="card-title text-white float-left">Drop Pool {{ dropCount + placedDropCount }} / 63
-				<span v-if="dropCount + placedDropCount < 63">({{ 63 - dropCount - placedDropCount}} empty locations)</span>
+			<h3 class="card-title text-white float-left">Drop Pool {{ dropCount + placedDropCount }} / {{ max }}
+				<span v-if="dropCount + placedDropCount < max">({{ max - dropCount - placedDropCount}} empty drops)</span>
 			</h3>
 			<div class="btn-toolbar float-right">
 				<input id="drops-filter" placeholder="search" type="text" v-model="search" />
@@ -23,17 +23,17 @@
 			</div>
 			<table class="table table-sm">
 				<tbody class="searchable">
-					<tr v-for="drop in ordereddrops" v-if="drop.hasOwnProperty('count')" v-show="searchEx.test(drop.name)">
+					<tr v-for="drop in orderedDrops" v-if="drop.hasOwnProperty('count')" v-show="searchEx.test(drop.name)">
 						<td class="col w-25">
-							<input :id="'drop-count-' + drop.value" type="number" v-model="drop.count"
-								min="0" max="218" step="1" :name="'data[alttp.custom.drop.count.' + drop.value + ']'" class="input-sm custom-drops">
+							<input type="number" :value="drop.count" @input="dropCountChanged($event, drop)"
+								min="0" :max="max" step="1" class="input-sm custom-drops">
 						</td>
 						<td class="col w-25">
-							<input :id="'drop-placed-' + drop.value" :value="drop.placed" type="number" min="0" max="218" step="1" readonly
+							<input :value="drop.placed" type="number" min="0" :max="max" step="1" readonly
 								tabindex="-1" class="custom-placed input-sm">
 						</td>
 						<td class="col w-50">
-							<label :for="'drop-count-' + drop.value">{{ drop.name }}</label>
+							<label>{{ drop.name }}</label>
 						</td>
 					</tr>
 				</tbody>
@@ -43,33 +43,44 @@
 </template>
 
 <script>
-// @TODO: consider using Array.prototype.sort().
-import orderBy from 'lodash.orderby';
-
 export default {
-	props: [
-		'value',
-	],
 	data() {
 		return {
 			search: '',
+			max: 63,
 		};
 	},
-	computed: {
-		searchEx: (vm) => {
-			return new RegExp(vm.search, 'i');
+	methods: {
+		dropCountChanged (e, drop) {
+			this.$store.dispatch('prizePacks/setDropCount', {
+				drop: drop,
+				count: e.target.value,
+			});
+
+			this.$emit('input', e.target.value);
 		},
-		ordereddrops: function () {
-			return orderBy(this.value, 'name');
+	},
+	computed: {
+		searchEx () {
+			return new RegExp(this.search, 'i');
+		},
+		orderedDrops () {
+			return this.$store.state.prizePacks.pool.slice().sort((a, b) => {
+				var nameA = a.name.toUpperCase();
+				var nameB = b.name.toUpperCase();
+				if (nameA < nameB) return -1;
+				if (nameA > nameB) return 1;
+				return 0;
+			});
 		},
 		unevenCount () {
-			return this.placedDropCount + this.dropCount != 63;
+			return this.placedDropCount + this.dropCount != this.max;
 		},
-		placedDropCount (vm) {
-			if (!vm.value.length) {
+		placedDropCount () {
+			if (!this.orderedDrops.length) {
 				return 0;
 			}
-			return vm.value.filter(drop => {
+			return this.orderedDrops.filter(drop => {
 				return drop.value !== 'auto_fill';
 			}).map(drop => {
 				return Number(drop.placed || 0);
@@ -77,11 +88,11 @@ export default {
 				return carry + placed;
 			});
 		},
-		dropCount: (vm) => {
-			if (!vm.value.length) {
+		dropCount () {
+			if (!this.orderedDrops.length) {
 				return 0;
 			}
-			return vm.value.map(drop => {
+			return this.orderedDrops.map(drop => {
 				return Number(drop.count || 0);
 			}).reduce((carry, count) => {
 				return carry + count;

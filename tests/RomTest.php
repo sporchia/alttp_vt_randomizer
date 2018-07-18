@@ -164,16 +164,6 @@ class RomTest extends TestCase {
 		$this->assertEquals([1, 2], $this->rom->read(0x180084, 2));
 	}
 
-	public function testSetUncleTextCustom() {
-		$this->rom->setUncleTextString("1234567890abcd\nline2 specials\n ?!,-.~'");
-
-		$converted = [116, 0, 161, 0, 162, 0, 163, 0, 164, 0, 165, 0, 166, 0, 167, 0, 168, 0, 169, 0, 160, 0, 170, 0,
-			171, 0, 172, 0, 173, 117, 0, 181, 0, 178, 0, 183, 0, 174, 0, 162, 0, 255, 0, 188, 0, 185, 0, 174, 0, 172,
-			0, 178, 0, 170, 0, 181, 0, 188, 118, 0, 255, 0, 198, 0, 199, 0, 200, 0, 201, 0, 205, 0, 206, 0, 216, 127];
-
-		$this->assertEquals($converted, $this->rom->read(0x180500, 76));
-	}
-
 	public function testSetDebugModeOn() {
 		$this->rom->setDebugMode(true);
 

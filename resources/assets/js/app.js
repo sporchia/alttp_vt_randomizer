@@ -14,10 +14,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.Multiselect = require('vue-multiselect');
 window.path = require('path');
+window.cStore = require('./store/customizer').default;
 
 import VTooltip from 'v-tooltip';
 import ToggleButton from 'vue-js-toggle-button';
 import VueTimeago from 'vue-timeago';
+//import Vuex from 'vuex';
+//Vue.use(Vuex);
 
 Vue.use(VTooltip);
 Vue.use(ToggleButton);
