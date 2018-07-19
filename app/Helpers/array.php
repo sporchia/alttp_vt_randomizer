@@ -133,6 +133,22 @@ function sabsi(array $array, $index, string $order = 'asc', bool $natsort = fals
 	return $sorted;
 }
 
+function hash_array($id) {
+	$ret = 0;
+	$id = ($id * 99371) % 33554431;
+	for ($i = 0; $i < 25; ++$i) {
+		$ret += (($id >> $i) & 1) << ((($i % 5) + 1) * 5 - floor($i / 5));
+	}
+
+	return [
+		($ret >> 20) & 0x1F,
+		($ret >> 15) & 0x1F,
+		($ret >> 10) & 0x1F,
+		($ret >> 5) & 0x1F,
+		$ret & 0x1F,
+	];
+}
+
 /**
  * Take our patch format and merge it down to a more compact version
  *

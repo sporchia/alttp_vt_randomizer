@@ -86,7 +86,7 @@ class Text {
 		$converter = $this->converter;
 		// php all arrays are ordered
 
-		// Numbers in comments refer to US text numbers. Except for 
+		// Numbers in comments refer to US text numbers. Except for
 		// the first few entries, JP1.0 text numbers are smaller by 2
 		return [
 			'set_cursor' => [0xFB, 0xFC, 0x00, 0xF9, 0xFF, 0xFF, 0xFF, 0xF8, 0xFF, 0xFF, 0xE4, 0xFE, 0x68],
@@ -888,10 +888,12 @@ class Text {
 
 			'menu_start_4' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Mountain Cave\n{CHOICE3}", false),
 
-			'ganon_fall_in_alt' => $converter->convertDialogCompressed('You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!'),
+			'ganon_fall_in_alt' => $converter->convertDialogCompressed("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!"),
 
 			'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
 			// 0x190
+			'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("How did you get up here?"),
+
 			'end_pad_data' => $converter->convertDialogCompressed(""),
 			'terminator' => [0xFF, 0xFF]
 		];
@@ -974,7 +976,7 @@ class Text {
 			'item_get_pendant_wisdom_alt',
 			'item_get_pendant_power_alt',
 			'pond_item_boomerang',
-			'blacksmiths_tempered_already', 
+			'blacksmiths_tempered_already',
 			'item_get_whole_heart',
 			'item_get_sanc_heart',
 			'item_get_14_heart',
@@ -1019,7 +1021,7 @@ class Text {
 			'shop_buy_heart',
 			'bomb_shop_big_bomb_buy',
 			'item_get_big_bomb',
-			'catfish', 
+			'catfish',
 			'catfish_after_item',
 			'zora_meeting',
 			'zora_tells_cost',
@@ -1056,7 +1058,7 @@ class Text {
 			'game_digging_start',
 			'dark_flute_boy_storytime',
 			'dark_flute_boy_get_shovel',
-			'fish_and_thief_money',
+			//'fish_and_thief_money',
 			'game_chest_village_of_outcasts',
 			'game_chest_village_of_outcasts_play',
 			'hylian_text_2',

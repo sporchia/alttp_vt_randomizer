@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-07-18';
-	const HASH = '37f00274e54dff9a451dd74373ccaef0';
+	const BUILD = '2018-07-19';
+	const HASH = 'cef64eb34bbb95511bc8ff2ddc8e67b9';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -1778,6 +1778,19 @@ class Rom {
 		}
 
 		$this->write(0x180213, pack('C*', ...$bytes));
+
+		return $this;
+	}
+
+	/**
+	 * Set the Hash on the Start Screen
+	 *
+	 * @param array $bytes 5 bytes that will appear on the start screen for verification
+	 *
+	 * @return $this
+	 */
+	public function setStartScreenHash(array $bytes) : self {
+		$this->write(0x180215, pack('C*', ...array_pad(array_slice($bytes, 0, 5), 5, 0x00)));
 
 		return $this;
 	}

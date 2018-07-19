@@ -168,21 +168,21 @@ class ItemRandomizerController extends Controller {
 			$en = new Enemizer($rand, $patch, $enemizer);
 			$en->makeSeed();
 			$en->writeToRom($rom);
-			$patch = patch_merge_minify($rom->getWriteLog());
-			if ($save) {
-				$rand->updateSeedRecordPatch($patch);
-			}
+			$patch = $rom->getWriteLog();
 		}
 
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
 			$rom->setTournamentType('standard');
 			$rom->rummageTable();
-			$patch = patch_merge_minify($rom->getWriteLog());
-			if ($save) {
-				$rand->updateSeedRecordPatch($patch);
-			}
+			$patch = $rom->getWriteLog();
 			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+		}
+
+		if ($save) {
+			$rom->setStartScreenHash($rand->getSeedRecord()->hashArray());
+			$patch = patch_merge_minify($rom->getWriteLog());
+			$rand->updateSeedRecordPatch($patch);
 		}
 
 		$seed = $hash;

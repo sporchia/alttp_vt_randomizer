@@ -68,20 +68,20 @@ class EntranceRandomizerController extends Controller {
 			$en = new Enemizer($rand, $patch, array_merge($enemizer, ['native_boss_shuffle' => true]));
 			$en->makeSeed();
 			$en->writeToRom($rom);
-			$patch = patch_merge_minify($rom->getWriteLog());
-			if ($save) {
-				$rand->updateSeedRecordPatch($patch);
-			}
+			$patch = $rom->getWriteLog();
 		}
 
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
 			$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $hash), 21, ' '));
-			$patch = patch_merge_minify($rom->getWriteLog());
-			if ($save) {
-				$rand->updateSeedRecordPatch($patch);
-			}
+			$patch = $rom->getWriteLog();
 			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
 			$seed = $hash;
+		}
+
+		if ($save) {
+			$rom->setStartScreenHash($rand->getSeedRecord()->hashArray());
+			$patch = patch_merge_minify($rom->getWriteLog());
+			$rand->updateSeedRecordPatch($patch);
 		}
 
 		return [

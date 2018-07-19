@@ -32,6 +32,10 @@ class Seed extends Model {
 		});
 	}
 
+	public function hashArray() {
+		return hash_array($this->id);
+	}
+
 	public function setPatchAttribute($value) {
 		$this->stored_patch = $value;
 	}
