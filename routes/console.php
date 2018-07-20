@@ -5,43 +5,6 @@ use ALttP\Sprite;
 use ALttP\Support\Zspr;
 use Carbon\Carbon;
 
-Artisan::command('alttp:test', function () {
-	$data = array_values(unpack('C*', base64_decode(
-		"IhEDEhEDEyMRgwADIxHkLAAAMSMRCyMzFwEzMxERARAAMSMRAiMzFyIRABKDAEwiEQUSEQERMTEjEQMTMxMxIxECIzMnIhGDAAM" .
-		"AMiQRCwERMUEREhAhATMXMSIRACGDAEUGERETIyADJywAABApACQRAyIiJwGDAAECIxM3RBESAgETIycAJCICAiIyPwAAMSIRAw" .
-		"EjMxcnAAAxIxEBIzOFAL8CAyMjhwEYJwAHARERAzEAAxMkAAIgAAc0AAAQ5JkAJBEEISInACEiEQUBEREAEREkAAAxIxEDAxMXM" .
-		"SMRBCMzFzFDIhEDAwMXMSMRgwIdAEMiEYMCHSMRAwMzFzEjEQQDEycxQyIRhAIlIhEEAwMnMUMiEYMCNSMRAiMzFyIRBCERARMz" .
-		"JBEDAyMjMYQAwYQAjoQCcycAADGEAmEBMzMnAAMTMzMwgwBMAwEzMxCDAEwkEQMDEyExIxECAxMhJwAHMRERExEhMxc1AAEDAyU" .
-		"AAQMD5DcAJBECARMz5CcAAVExIhGDAh0jEQIBEREnAI8CcCIRBBIRAzMTJwCEAsACAzMT5DcAIhEAEiIRADEvAAcBEREQIQMzMz" .
-		"8AhQEYATIyJwAEARIhIBIlAAEQASIAJBEAAYQBHgQQAQEzFycAAQERIgAABDEAADGDAf4DAzMjAIQEMQAQgwC2AACDAEwjEQIhA" .
-		"TKEAm8DIQMzEiIRBBARARMyIhElAIMEgSoAIhGDAAMAIz8AIhEEEiEBAxIiEQMSEQIygwH8BBABARIyhgEYACKHBOA5AAQRAAAC" .
-		"AoQEZwEABSYAAQEChAPfBBEDATExIhEEIQMzEzEiEYMFLCQRASEjhgEXADODAfyDA3slEQIDExMkEQEBEOQwACIRhABj5FAAAxE" .
-		"RMBEjAIMF6eQiAAABgwXpMAABATElAAEBMYMD4AMSAxMTJwAIURERMCEDMTFQJwABERElAAERESIAAECFBQ8ABIQBLiQAIhGDAG" .
-		"MAIYMEPwACJwACEAIiJAACIAAHJBECIREnMAABAzMoAAACIgD///////////////////////////8="
-	)));
-
-	$lz2 = new \ALttP\Support\Lz2(true);
-	$uncompressed = $lz2->decompress($data);
-
-	$mem = [];
-	foreach ($uncompressed as $i => $val) {
-		$mem[] = $val >> 4;
-		$mem[] = $val & 0xF;
-	}
-	$mem[0xD66] = 0x04; // allow Ganon arrow dmg, need to understand what this value actually is
-
-	for ($i = 0; $i < count($uncompressed); ++$i) {
-		$uncompressed[$i] = ($mem[$i * 2] << 4) | $mem[$i * 2 + 1];
-	}
-	//dd(implode(' ', array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed)));
-	$compressed = $lz2->compress($uncompressed);
-	dd(implode(array_map(function($b){return sprintf('%02X', $b);}, $lz2->compress($uncompressed))));
-	$uncompressed2 = $lz2->decompress($compressed);
-	dd(array_diff($uncompressed2, $uncompressed));
-	dd(array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed2));
-
-});
-
 Artisan::command('alttp:dailies {days=7}', function ($days) {
 	for ($i = 0; $i < $days; ++$i) {
 		$date = Carbon::now()->addDays($i);
@@ -73,7 +36,6 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 
 			$rand->makeSeed();
 			$rand->writeToRom($rom);
-			$seed = $rand->getSeed();
 
 			$patch = $rom->getWriteLog();
 			$spoiler = $rand->getSpoiler([
@@ -86,7 +48,6 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$patch = patch_merge_minify($rom->getWriteLog());
 			$rand->updateSeedRecordPatch($patch);
 			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
-			$seed = $hash;
 
 			$seed_record = ALttP\Seed::where('hash', $hash)->first();
 
@@ -95,7 +56,6 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$feature->save();
 
 			$save_data = json_encode([
-				'seed' => $seed,
 				'logic' => $rand->getLogic(),
 				'difficulty' => $difficulty,
 				'patch' => $patch,

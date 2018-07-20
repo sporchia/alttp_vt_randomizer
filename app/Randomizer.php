@@ -14,7 +14,6 @@ class Randomizer {
 	 * one knows that if they got the same seed, items will probably not be in the same locations.
 	 */
 	const LOGIC = 30;
-	protected $rng_seed;
 	protected $seed;
 	protected $world;
 	protected $difficulty;
@@ -68,15 +67,6 @@ class Randomizer {
 	}
 
 	/**
-	 * Get the current RNG seed number
-	 *
-	 * @return int
-	 */
-	public function getSeed() {
-		return $this->rng_seed;
-	}
-
-	/**
 	 * Get the current Logic identifier
 	 *
 	 * @return string
@@ -111,18 +101,10 @@ class Randomizer {
 	 * portions of the world. Then taking the remaining empty locations we order them, and try to fill them in
 	 * order in a way that opens more locations.
 	 *
-	 * @param int|null $rng_seed Seed to create, or random if null
-	 *
 	 * @return $this
 	 */
-	public function makeSeed(int $rng_seed = null) {
-		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
-		$this->rng_seed = $rng_seed % 1000000000;
-		// http://php.net/manual/en/migration72.incompatible.php#migration72.incompatible.rand-mt_rand-output
-		mt_srand($this->rng_seed);
-		$this->seed->seed = $this->rng_seed;
-
-		Log::info(sprintf("Seed: %s", $this->rng_seed));
+	public function makeSeed() {
+		Log::info("Making Seed");
 
 		$regions = $this->world->getRegions();
 
@@ -722,7 +704,6 @@ class Randomizer {
 			'variation' => $this->variation,
 			'logic' => $this->getLogic(),
 			'rom_mode' => $this->config('rom.logicMode', $this->logic),
-			'seed' => $this->rng_seed,
 			'goal' => $this->goal,
 			'build' => Rom::BUILD,
 			'mode' => $this->config('mode.state', 'standard'),
@@ -939,7 +920,6 @@ class Randomizer {
 		$rom->setGameType('item');
 
 		$rom->writeRandomizerLogicHash(self::$logic_array);
-		$rom->setSeedString(str_pad(sprintf("VT%s%'.09d%'.03s%s", $type_flag, $this->rng_seed, static::LOGIC, $this->difficulty), 21, ' '));
 
 		if (static::class == self::class) {
 			$rom->writeCredits();
@@ -1076,7 +1056,7 @@ class Randomizer {
 
 		$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 
-		if ($this->config('spoil.BootsLocation', false) && get_random_int() % 20 == 0 && $boots_location) {
+		if ($this->config('spoil.BootsLocation', false) && $boots_location) {
 			Log::info('Boots revealed');
 			switch ($boots_location->getName()) {
 				case "Link's House":

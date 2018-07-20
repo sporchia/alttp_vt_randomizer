@@ -17,16 +17,6 @@ class RandomizerTest extends TestCase {
 		unset($this->randomizer);
 	}
 
-	public function testGetSeedIsNullBeforeRandomization() {
-		$this->assertNull($this->randomizer->getSeed());
-	}
-
-	public function testGetSeedIsNotNullAfterRandomization() {
-		$this->randomizer->makeSeed();
-
-		$this->assertNotNull($this->randomizer->getSeed());
-	}
-
 	/**
 	 * @group crystals
 	 */

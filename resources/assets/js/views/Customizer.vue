@@ -8,7 +8,7 @@
 			<span class="sr-only">Error:</span>
 			<span class="message">{{ this.error }}</span>
 		</div>
-		<div v-if="$store.state.loading" class="center">
+		<div v-show="$store.state.loading" class="center">
 			<img src="/i/loading.gif" alt="Loading..." />
 			<h1>Loading...</h1>
 		</div>
@@ -134,7 +134,7 @@
 				</div>
 			</tab>
 			<tab name="Settings">
-				<settings :context="context"></settings>
+				<settings v-if="!$store.state.loading"></settings>
 			</tab>
 			<tab name="Starting Equipment">
 				<equipment-select v-model="equipment"></equipment-select>
@@ -213,7 +213,6 @@ export default {
 				variations: [],
 			},
 			equipment: [],
-			context: {},
 		};
 	},
 	created () {
@@ -342,6 +341,9 @@ export default {
 		},
 		packs () {
 			return this.$store.state.prizePacks.flatpacks;
+		},
+		context () {
+			return this.$store.state.context.settings;
 		},
 	},
 }

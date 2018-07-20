@@ -114,7 +114,7 @@ class Randomize extends Command {
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.sfc',
 				$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons') ? '_'
 				. $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_'
-				. $this->option('variation') , $rand->getSeed());
+				. $this->option('variation'), $i);
 
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
@@ -141,7 +141,7 @@ class Randomize extends Command {
 				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.txt',
 					$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons') ? '_'
 					. $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_'
-					. $this->option('variation') , $rand->getSeed());
+					. $this->option('variation'), $i);
 
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));

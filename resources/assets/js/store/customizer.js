@@ -1,6 +1,7 @@
 import axios from 'axios';
 import prizePacks from './modules/prizePacks';
 import itemLocations from './modules/itemLocations';
+import context from './modules/context';
 import Vuex from 'vuex';
 
 export default new Vuex.Store({
@@ -12,6 +13,7 @@ export default new Vuex.Store({
 	modules: {
 		prizePacks,
 		itemLocations,
+		context,
 	},
 	getters: {
 		droppableLookup: state => {
@@ -56,6 +58,7 @@ export default new Vuex.Store({
 				return Promise.all([
 					dispatch('prizePacks/initalize', this.state.settings.prizepacks),
 					dispatch('itemLocations/initalize', this.state.settings.locations),
+					dispatch('context/initalize'),
 				]).then(() => {
 					console.log('loaded!');
 					commit('setLoading', false);

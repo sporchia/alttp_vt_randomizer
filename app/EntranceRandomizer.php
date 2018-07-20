@@ -66,7 +66,6 @@ class EntranceRandomizer extends Randomizer {
 		$rng_seed = $rng_seed ?: random_int(1, 999999999); // cryptographic pRNG for seeding
 		$this->rng_seed = $rng_seed % 1000000000;
 		mt_srand($rng_seed);
-		$this->seed->seed = $rng_seed;
 
 		$keysanity_flag = '';
 		if ($this->keysanity) {
@@ -177,7 +176,6 @@ class EntranceRandomizer extends Randomizer {
 	 * @return string hash of record
 	 */
 	public function saveSeedRecord() {
-		$this->seed->seed = $this->spoiler->meta->seed;
 		$this->seed->spoiler = json_encode($this->spoiler);
 		$this->seed->patch = json_encode(array_values((array) $this->patch));
 		$this->seed->build = Rom::BUILD;

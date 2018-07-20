@@ -64,10 +64,10 @@ export default {
 								item: rootGetters.itemLookup[lookupName],
 								count: value[name],
 								save: false,
-							})
+							});
 						}
 					});
-				})
+				});
 			}).then(() => {
 				return commit('setInitalizing', false);
 			});

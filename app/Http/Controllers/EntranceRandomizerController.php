@@ -55,10 +55,9 @@ class EntranceRandomizerController extends Controller {
 			$rand = new EntranceRandomizer($difficulty, 'noglitches', $goal, $variation, $shuffle);
 			$rand->makeSeed($seed_id);
 			$rand->writeToRom($rom);
-			$seed = $rand->getSeed();
 			$patch = $rom->getWriteLog();
 			$spoiler = $rand->getSpoiler();
-			$hash = ($save) ? $rand->saveSeedRecord() : $seed;
+			$hash = ($save) ? $rand->saveSeedRecord() : $spoiler->meta->seed;
 		} catch (Exception $e) {
 			report($e);
 			return response('Failed', 409);
@@ -85,7 +84,6 @@ class EntranceRandomizerController extends Controller {
 		}
 
 		return [
-			'seed' => $seed,
 			'logic' => $rand->getLogic(),
 			'difficulty' => $difficulty,
 			'patch' => patch_merge_minify($patch),

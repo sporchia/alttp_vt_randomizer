@@ -134,11 +134,10 @@ class ItemRandomizerController extends Controller {
 			$rand->setWorld($world);
 			$rom->setRestrictFairyPonds(false);
 			return [
-				'seed' => 'vanilla',
 				'logic' => $rand->getLogic(),
 				'difficulty' => 'normal',
 				'patch' => $rom->getWriteLog(),
-				'spoiler' => $rand->getSpoiler(),
+				'spoiler' => $rand->getSpoiler(['name' => 'Vanilla']),
 				'current_rom_hash' => Rom::HASH,
 			];
 		}
@@ -153,7 +152,6 @@ class ItemRandomizerController extends Controller {
 		$rand->makeSeed($seed_id);
 
 		$rand->writeToRom($rom);
-		$seed = $rand->getSeed();
 
 		if (!$rand->getWorld()->checkWinCondition()) {
 			throw new Exception('Game Unwinnable');
@@ -162,7 +160,8 @@ class ItemRandomizerController extends Controller {
 		$patch = $rom->getWriteLog();
 		$spoiler = $rand->getSpoiler($spoiler_meta);
 
-		$hash = ($save) ? $rand->saveSeedRecord() : $seed;
+		$hash = ($save) ? $rand->saveSeedRecord() : 'none';
+		$rom->setSeedString(str_pad(sprintf("VT %s", $hash), 21, ' '));
 
 		if ($enemizer) {
 			$en = new Enemizer($rand, $patch, $enemizer);
@@ -172,7 +171,6 @@ class ItemRandomizerController extends Controller {
 		}
 
 		if ($request->filled('tournament') && $request->input('tournament') == 'true') {
-			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
 			$rom->setTournamentType('standard');
 			$rom->rummageTable();
 			$patch = $rom->getWriteLog();
@@ -185,10 +183,7 @@ class ItemRandomizerController extends Controller {
 			$rand->updateSeedRecordPatch($patch);
 		}
 
-		$seed = $hash;
-
 		return [
-			'seed' => $seed,
 			'logic' => $rand->getLogic(),
 			'difficulty' => $difficulty,
 			'patch' => patch_merge_minify($patch),

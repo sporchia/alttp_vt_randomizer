@@ -3,7 +3,8 @@
 		<div class="card-header bg-success card-heading-btn card-heading-sticky">
 			<h3 class="card-title text-white float-left">Locations</h3>
 			<div class="btn-toolbar float-right">
-				<input id="items-filter" placeholder="search" type="text" v-model="search" />
+				<Select v-model="searchRegion" class="region-searcher" :options="regions" />
+				<input class="items-filter" placeholder="search" type="text" v-model="search" />
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -21,8 +22,8 @@
 			</div>
 			<table class="table table-sm">
 				<tbody class="searchable">
-					<tr v-for="location in locations" v-show="searchEx.test(location.name) || searchEx.test(location.region)
-						|| searchEx.test(location.item.name)">
+					<tr v-for="location in locations" v-show="(searchRegion.value == 'all' || location.region == searchRegion.value)
+						&& (searchEx.test(location.name) || searchEx.test(location.region) || searchEx.test(location.item.name))">
 						<td class="col w-20">
 							<label :for="'item-count-' + location.hash">{{ location.region }}</label>
 						</td>
@@ -56,6 +57,7 @@ export default {
 	data() {
 		return {
 			search: '',
+			searchRegion: {name:'All Regions',value:'all'},
 		};
 	},
 	methods: {
@@ -69,6 +71,19 @@ export default {
 	computed: {
 		searchEx () {
 			return new RegExp(this.search, 'i');
+		},
+		regions () {
+			var regions = {
+				all: true,
+			}
+			this.$store.state.itemLocations.locations.forEach(location => {
+				regions[location.region] = true;
+			});
+
+			return Object.keys(regions).map(item => {
+				if (item == 'all') return {name:'All Regions',value:'all'};
+				return {name: item, value: item};
+			});
 		},
 		locations () {
 			return this.$store.state.itemLocations.locations;
@@ -98,10 +113,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scss scoped>
+.card-heading-sticky {
+	z-index: 995;
+}
+.region-searcher {
+	width: 200px;
+}
+.region-searcher >>> .input-group {
+	width: 190px !important;
+}
+.region-searcher >>> .multiselect {
+	min-height: 34px !important;
+}
+.region-searcher >>> .multiselect__tags {
+	min-height: 34px;
+	padding-top: 7px;
+}
+.region-searcher >>> .multiselect__content,
+.region-searcher >>> .multiselect__content-wrapper {
+	z-index: 995;
+}
+.items-filter {
+	width: 220px;
+}
 .sticky-head {
 	position: sticky;
-	top: 143px;
+	top: 146px;
 	z-index: 990;
 	background-color: white;
 }
