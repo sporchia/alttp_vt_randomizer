@@ -840,7 +840,7 @@ class Text {
 
 			'kakariko_tavern_fisherman' => $converter->convertDialogCompressed("Don't argue\nwith a frozen\nDeadrock.\nHe'll never\nchange his\nposition!"),
 
-			'fish_and_thief_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
+			'thief_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 
 			'theif_desert_rupee_cave' => $converter->convertDialogCompressed("So you, like, busted down my door, and are being a jerk by talking to me? Normally I would be angry and make you pay for it, but I bet you're just going to break all my pots and steal my 50 rupees."),
 
@@ -893,6 +893,8 @@ class Text {
 			'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
 			// 0x190
 			'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("How did you get up here?"),
+
+			'fish_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 
 			'end_pad_data' => $converter->convertDialogCompressed(""),
 			'terminator' => [0xFF, 0xFF]
@@ -1058,7 +1060,7 @@ class Text {
 			'game_digging_start',
 			'dark_flute_boy_storytime',
 			'dark_flute_boy_get_shovel',
-			//'fish_and_thief_money',
+			'thief_money',
 			'game_chest_village_of_outcasts',
 			'game_chest_village_of_outcasts_play',
 			'hylian_text_2',

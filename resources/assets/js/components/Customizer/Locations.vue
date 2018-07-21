@@ -25,10 +25,10 @@
 					<tr v-for="location in locations" v-show="(searchRegion.value == 'all' || location.region == searchRegion.value)
 						&& (searchEx.test(location.name) || searchEx.test(location.region) || searchEx.test(location.item.name))">
 						<td class="col w-20">
-							<label :for="'item-count-' + location.hash">{{ location.region }}</label>
+							<label>{{ location.region }}</label>
 						</td>
 						<td class="col w-40">
-							<label :for="'item-count-' + location.hash">{{ location.name }}</label>
+							<label>{{ location.name }}</label>
 						</td>
 						<td class="col w-40">
 							<Select :sid="location" :value="location.item" @input="selectedItem" v-if="location.class == 'items'"

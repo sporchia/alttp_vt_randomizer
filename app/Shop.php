@@ -2,6 +2,7 @@
 
 use ALttP\Rom;
 use ALttP\Support\ShopCollection;
+use ALttP\Support\LocationCollection;
 
 /**
  * Shop related features.
@@ -128,6 +129,26 @@ class Shop {
 		return $this->inventory;
 	}
 
+	public function getLocations() : LocationCollection {
+		$locations = [];
+		foreach($this->inventory as $slot => $record) {
+			$location = (new Location("$this->name - $slot", []))->setItem($record['item'])->setRegion($this->region);
+			if ($this->requirement_callback) {
+				$location->setRequirements($this->requirement_callback);
+			}
+			$locations[] = $location;
+
+			if ($record['replacement_item']) {
+				$location = (new Location("$this->name - $slot.2", []))->setItem($record['replacement_item'])->setRegion($this->region);
+				if ($this->requirement_callback) {
+					$location->setRequirements($this->requirement_callback);
+				}
+				$locations[] = $location;
+			}
+		}
+		return new LocationCollection($locations);
+	}
+
 	/**
 	 * Determine if Link can access this location given his Items collected. Starts by checking if access to the Region
 	 * is granted, then checks the spcific location.
@@ -158,6 +179,7 @@ class Shop {
 	 */
 	public function setRequirements(Callable $callback) {
 		$this->requirement_callback = $callback;
+
 		return $this;
 	}
 
@@ -168,6 +190,14 @@ class Shop {
 	 */
 	public function getRegion() {
 		return $this->region;
+	}
+
+	public function copy() {
+		$copy = new static($this->name, $this->config, $this->shopkeeper, $this->room_id, $this->door_id, $this->region, $this->writes);
+		$copy->inventory = $this->inventory;
+		$copy->requirement_callback = $this->requirement_callback;
+
+		return $copy;
 	}
 
 	/**

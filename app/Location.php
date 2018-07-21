@@ -107,6 +107,7 @@ class Location {
 	 */
 	public function setRequirements(Callable $callback) {
 		$this->requirement_callback = $callback;
+
 		return $this;
 	}
 

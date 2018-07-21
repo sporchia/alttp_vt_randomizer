@@ -236,17 +236,10 @@ class Randomizer {
 				}
 			}
 
-			if (count($nice_items_swords)) {
-				if ($this->config('mode.weapons') == 'uncle') {
-					$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
-					if ($uncle_item !== null && !$uncle_item->getTarget() instanceof Item\Sword) {
-						throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
-					}
-					if ($uncle_item === null) {
-						$this->world->getLocation("Link's Uncle")->setItem(array_pop($nice_items_swords));
-					}
-				} else {
-					array_push($advancement_items, array_pop($nice_items_swords));
+			if ($this->config('mode.weapons') == 'uncle') {
+				$uncle_item = $this->world->getLocation("Link's Uncle")->getItem();
+				if ($uncle_item !== null && !$uncle_item->getTarget() instanceof Item\Sword) {
+					throw new \Exception("Uncle must have a sword item when Uncle Assured is selected");
 				}
 			}
 
@@ -590,13 +583,19 @@ class Randomizer {
 	}
 
 	protected function setShops() {
+		$shops = $this->world->getShops();
+
+		$shops->filter(function($shop) {
+			return !$shop instanceof Shop\TakeAny;
+		})->each(function($shop) {
+			$shop->setActive(true);
+		});
+
 		if (!$this->config('rom.genericKeys', false)
 			|| !$this->config('rom.rupeeBow', false)
 			|| !$this->config('region.takeAnys', false)) {
 			return;
 		}
-
-		$shops = $this->world->getShops();
 
 		if ($this->config('region.takeAnys', false)) {
 			$shops->filter(function($shop) {
@@ -923,6 +922,7 @@ class Randomizer {
 
 		if (static::class == self::class) {
 			$rom->writeCredits();
+			$rom->writeText();
 		}
 
 		$this->seed->patch = json_encode($rom->getWriteLog());
@@ -1127,8 +1127,6 @@ class Randomizer {
 		}
 
 		$rom->setTriforceTextString(array_first(fy_shuffle($strings['triforce'])));
-
-		$rom->writeText();
 
 		return $this;
 	}

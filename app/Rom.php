@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-07-19';
-	const HASH = 'cef64eb34bbb95511bc8ff2ddc8e67b9';
+	const BUILD = '2018-07-20';
+	const HASH = 'cdc53f5bb89481759879acfba5e5acdc';
 	const SIZE = 2097152;
 	static private $digit_gfx = [
 		0 => 0x30,
@@ -2108,7 +2108,7 @@ class Rom {
 	public function setupCustomShops($shops) : self {
 		$shops = $shops->filter(function($shop) {
 			return $shop->getActive();
-		})->take(32);
+		});
 
 		$shop_data = [];
 		$items_data = [];

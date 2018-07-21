@@ -193,6 +193,9 @@ class World {
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
+		foreach ($this->shops as $name => $shop) {
+			$copy->shops[$name] = $shop->copy();
+		}
 
 		$copy->setPreCollectedItems($this->pre_collected_items->copy());
 
@@ -296,7 +299,7 @@ class World {
 
 				if (!$shadow_world->getWinCondition()($collectable_locations->getItems($shadow_world)->copy())) {
 					// put item back
-					$location->setItem($this->locations[$location->getName()]->getItem());
+					$location->setItem($this->getCollectableLocations()[$location->getName()]->getItem());
 					$required_locations->addItem($location);
 					$required_locations_sphere[$sphere_level][] = $location;
 					Log::debug(sprintf("playthrough Keep: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
@@ -333,9 +336,9 @@ class World {
 
 							if (!$higher_location->canAccess($current_items, $this->getLocations())) {
 								// put item back
-								$location->setItem($this->locations[$location->getName()]->getItem());
+								$location->setItem($this->getCollectableLocations()[$location->getName()]->getItem());
 								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(),
-									$this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+									$this->getCollectableLocations()[$higher_location->getName()]->getItem()->getNiceName()));
 								$required_locations->addItem($location);
 								$required_locations_sphere[$sphere_level][] = $location;
 								Log::debug(sprintf("playthrough Readd: %s :: %s", $location->getName(),
@@ -347,7 +350,7 @@ class World {
 					}
 					// put all higher items back
 					foreach ($required_locations as $higher_location) {
-						$higher_location->setItem($this->locations[$higher_location->getName()]->getItem());
+						$higher_location->setItem($this->getCollectableLocations()[$higher_location->getName()]->getItem());
 					}
 				}
 			}
@@ -355,7 +358,7 @@ class World {
 
 		foreach ($required_locations as $higher_location) {
 			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(),
-				$this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+				$this->getCollectableLocations()[$higher_location->getName()]->getItem()->getNiceName()));
 		}
 		if (!$walkthrough) {
 			return $required_locations->values();
@@ -550,9 +553,9 @@ class World {
 	public function getCollectableLocations() {
 		if (!$this->collectable_locations) {
 			$this->collectable_locations = $this->locations->filter(function($location) {
-				return !is_a($location, Location\Medallion::class)
-					&& !is_a($location, Location\Fountain::class);
-			});
+				return !$location instanceof Location\Medallion
+					&& !$location instanceof Location\Fountain;
+			})->merge($this->shops->getLocations());
 		}
 
 		return $this->collectable_locations;
@@ -560,6 +563,7 @@ class World {
 
 	/**
 	 * Collect the items in the world, you may pass in a set of pre-collected items.
+	 * This also checks for shop items.
 	 *
 	 * @param ItemCollection $collected precollected items for consideration in out collecting
 	 *
@@ -619,10 +623,8 @@ class World {
 		$found_locations = new LocationCollection;
 		do {
 			$sphere++;
-			$available_locations = $this->locations->filter(function($location) use ($my_items, $found_locations) {
-				return !$location instanceof Location\Medallion
-					&& !$location instanceof Location\Fountain
-					&& !$found_locations->contains($location)
+			$available_locations = $this->getCollectableLocations()->filter(function($location) use ($my_items, $found_locations) {
+				return !$found_locations->contains($location)
 					&& $location->canAccess($my_items);
 			});
 			$location_sphere[$sphere] = $available_locations;

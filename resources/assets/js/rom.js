@@ -351,7 +351,7 @@ var ROM = (function(blob, loaded_callback) {
 			+ (this.weapons ? '_' + this.weapons : '')
 			+ '-' + this.goal
 			+ (this.variation == 'none' ? '' : '_' + this.variation)
-			+ '_' + this.seed
+			+ '_' + this.hash
 			+ (this.special ? '_special' : '');
 	};
 
