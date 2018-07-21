@@ -29,6 +29,12 @@ export default {
 		}
 	},
 	actions: {
+		clearStorage({commit, dispatch, state}) {
+			return Promise.all([
+				localforage.removeItem('vt.custom.locations'),
+				localforage.removeItem('vt.custom.items'),
+			]);
+		},
 		initalize({commit, dispatch, state, rootState, rootGetters}, locations) {
 			var commit_locations = [];
 			state.locations.forEach(location => {

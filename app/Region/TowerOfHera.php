@@ -118,15 +118,15 @@ class TowerOfHera extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Tower of Hera - Moldorm"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP3'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP3'));
+			return $this->locations["Tower of Hera - Moldorm"]->canAccess($items);
 		};
 
 		$this->locations["Tower of Hera - Moldorm"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $this->boss->canBeat($items, $locations)
-				&& $items->has('BigKeyP3');
+				&& $items->has('BigKeyP3')
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP3'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP3'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -135,6 +135,9 @@ class TowerOfHera extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassP3') || $item == Item::get('MapP3'));
 		});
 
 		$this->can_enter = function($locations, $items) {

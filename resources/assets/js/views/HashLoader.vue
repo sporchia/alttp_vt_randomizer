@@ -10,8 +10,8 @@
 		</div>
 		<vt-rom-loader v-if="!romLoaded" @update="updateRom" @error="onError"></vt-rom-loader>
 
-		<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded">
-			<div class="card-header bg-success card-heading-btn">
+		<div id="seed-details" class="card border-success" v-if="gameLoaded && romLoaded">
+			<div class="card-header bg-success card-heading-btn" :class="{'bg-info': rom.tournament}">
 				<h3 class="card-title text-white float-left">{{ rom.name || 'Game Details' }}</h3>
 				<div class="btn-toolbar float-right">
 					<button class="btn btn-light border-secondary" data-toggle="collapse" href="#rom-settings">

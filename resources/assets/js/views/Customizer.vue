@@ -55,22 +55,22 @@
 						<vt-rom-settings :rom="rom"></vt-rom-settings>
 						<div class="row">
 							<div class="col-md mb-3">
-								<vt-select v-model="choice.state" id="mode-state" :options="settings.mode.states"storage-key="vt.mode.state"
+								<vt-select v-model="choice.state" id="mode-state" :options="settings.mode.states"storage-key="vt.custom.state"
 									:rom="rom" :selected="choice.state">State</vt-select>
 							</div>
 							<div class="col-md mb-3">
-								<vt-select v-model="choice.logic" id="logic" :options="settings.logics" storage-key="vt.logic"
+								<vt-select v-model="choice.logic" id="logic" :options="settings.logics" storage-key="vt.custom.logic"
 									:rom="rom" :selected="choice.logic">Logic</vt-select>
 								<div v-if="false" class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md mb-3">
-								<vt-select v-model="choice.weapons" id="weapons" :options="settings.weapons" storage-key="vt.weapons"
+								<vt-select v-model="choice.weapons" id="weapons" :options="settings.weapons" storage-key="vt.custom.weapons"
 									:rom="rom" :selected="choice.weapons">Swords</vt-select>
 							</div>
 							<div class="col-md mb-3">
-								<vt-select v-model="choice.goal" id="goal" :options="settings.goals" storage-key="vt.goal"
+								<vt-select v-model="choice.goal" id="goal" :options="settings.goals" storage-key="vt.custom.goal"
 									:rom="rom" :selected="choice.goal">Goal</vt-select>
 							</div>
 						</div>
@@ -151,7 +151,20 @@
 			<tab name="Prize Packs">
 				<prize-packs v-if="!$store.state.loading" />
 			</tab>
-
+			<tab name="Save/Restore">
+				<div class="card border-info">
+					<div class="card-header text-white bg-success">
+						<h3 class="card-title">Save/Restore</h3>
+					</div>
+					<div class="card-body">
+						<button class="btn btn-success" @click="saveSettings">Save</button>
+						<label class="btn btn-info btn-file">
+							Load <input type="file" accept=".json" @change="loadSettings">
+						</label>
+						<button class="btn btn-danger" @click="iveDoneMessedUp">Reset Everything</button>
+					</div>
+				</div>
+			</tab>
 		</tabs>
 	</div>
 </template>
@@ -213,6 +226,22 @@ export default {
 				variations: [],
 			},
 			equipment: [],
+			save_restore_settings: [
+				'vt.custom.drops',
+				'vt.custom.equipment',
+				'vt.custom.HardMode',
+				'vt.custom.items',
+				'vt.custom.locations',
+				'vt.custom.name',
+				'vt.custom.notes',
+				'vt.custom.prizepacks',
+				'vt.custom.settings',
+				'vt.custom.rom-logic',
+				'vt.custom.weapons',
+				'vt.custom.goal',
+				'vt.custom.logic',
+				'vt.custom.state',
+			],
 		};
 	},
 	created () {
@@ -327,7 +356,51 @@ export default {
 		},
 		onError(error) {
 			this.error = error;
-		}
+		},
+		saveSettings() {
+			var promises = [];
+			for (var i = 0; i < this.save_restore_settings.length; ++i) {
+				promises.push(localforage.getItem(this.save_restore_settings[i]));
+			}
+			Promise.all(promises).then(values => {
+				var save = {};
+				for (var i = 0; i < this.save_restore_settings.length; ++i) {
+					save[this.save_restore_settings[i]] = values[i];
+				}
+				return FileSaver.saveAs(new Blob([JSON.stringify(save)]), (this.choice.name ? this.choice.name : 'customizer') + '-settings.json');
+			});
+		},
+		loadSettings(change) {
+			var file = change.target.files[0];
+			var fileReader = new FileReader();
+
+			fileReader.onload = e => {
+				try {
+					var settings = JSON.parse(fileReader.result);
+				} catch (e) {
+					this.error = e;
+					return;
+				}
+				var promises = [];
+				for (var i = 0; i < this.save_restore_settings.length; ++i) {
+					if (!settings[this.save_restore_settings[i]]) continue;
+					promises.push(localforage.setItem(this.save_restore_settings[i], settings[this.save_restore_settings[i]] || null));
+				}
+				if (!promises.length) return onSettingsParseError();
+				Promise.all(promises).then(function(values) {
+					window.location.hash = '';
+					window.location.reload();
+				});
+			}
+
+			fileReader.readAsText(file);
+		},
+		iveDoneMessedUp() {
+			this.$store.dispatch('nukeStore').then(() => {
+				window.location.hash = '';
+				window.location.reload();
+			});
+		},
 	},
 	computed: {
 		itemPool () {
@@ -350,6 +423,9 @@ export default {
 </script>
 
 <style scoped>
+.btn-file {
+	margin: 0;
+}
 .think .tabs {
 	position: fixed !important;
 	top: 0;

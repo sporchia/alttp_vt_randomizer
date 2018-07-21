@@ -27,8 +27,8 @@
 				</div>
 				<div class="col">
 					<Toggle :value="context['region.bossNormalLocation']" @input="toggle($event, 'region.bossNormalLocation')">
-						Boss Hearts can contain Dungeon Items
-						<template slot="tooltip">If No, all bosses will drop full heart containers. If Yes, bosses may drop any item.</template>
+						Bosses can drop Dungeon Items
+						<template slot="tooltip">If No, bosses will not drop Maps/Compasses/Keys. If Yes, bosses may drop any item.</template>
 					</Toggle>
 				</div>
 			</div>
@@ -110,6 +110,10 @@
 					</Toggle>
 				</div>
 				<div class="col">
+					<Toggle :value="context['rom.rupeeBow']" @input="toggle($event, 'rom.rupeeBow')">
+						Rupee Bow
+						<template slot="tooltip">Zelda 1 style Bow that consumes rupees, will also remove arrows as drops and replace them with blue rupees.</template>
+					</Toggle>
 				</div>
 			</div>
 			<div class="clearfix"></div>

@@ -101,13 +101,7 @@ class IcePalace extends Region {
 		$this->locations["Ice Palace - Spike Room"]->setRequirements(function($locations, $items) {
 			return (!$this->world->config('region.cantTakeDamage', false)
 					|| $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
-				&& ($items->has('Hookshot')
-					|| $items->has('KeyD5', 1) && $locations->itemInLocations(Item::get('BigKeyD5'), [
-							"Ice Palace - Spike Room",
-							"Ice Palace - Map Chest",
-							"Ice Palace - Big Key Chest",
-						])
-					|| $items->has('KeyD5', 2));
+				&& ($items->has('Hookshot') || $items->has('KeyD5', 2));
 		});
 
 		$this->locations["Ice Palace - Freezor Chest"]->setRequirements(function($locations, $items) {
@@ -119,9 +113,7 @@ class IcePalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Ice Palace - Kholdstare"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD5'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD5'));
+			return $this->locations["Ice Palace - Kholdstare"]->canAccess($items);
 		};
 
 		$this->locations["Ice Palace - Kholdstare"]->setRequirements(function($locations, $items) {
@@ -131,7 +123,9 @@ class IcePalace extends Region {
 				&& $items->has('BigKeyD5') && (
 					($items->has('CaneOfSomaria') && $items->has('KeyD5'))
 					|| $items->has('KeyD5', 2)
-				);
+				)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD5'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD5'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& (is_a($item, Item\Key::class) || is_a($item, Item\BigKey::class)
@@ -140,6 +134,9 @@ class IcePalace extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD5') || $item == Item::get('MapD5'));
 		});
 
 

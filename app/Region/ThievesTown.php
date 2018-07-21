@@ -103,15 +103,15 @@ class ThievesTown extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Thieves' Town - Blind"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD4'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD4'));
+			return $this->locations["Thieves' Town - Blind"]->canAccess($items);
 		};
 
 		$this->locations["Thieves' Town - Blind"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->has('KeyD4') && $items->has('BigKeyD4')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD4'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD4'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -120,6 +120,9 @@ class ThievesTown extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD4') || $item == Item::get('MapD4'));
 		});
 
 		$this->can_enter = function($locations, $items) {

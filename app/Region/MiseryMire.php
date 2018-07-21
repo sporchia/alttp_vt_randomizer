@@ -114,16 +114,16 @@ class MiseryMire extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Misery Mire - Vitreous"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD6'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD6'));
+			return $this->locations["Misery Mire - Vitreous"]->canAccess($items);
 		};
 
 		$this->locations["Misery Mire - Vitreous"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->has('CaneOfSomaria') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
 				&& $items->has('BigKeyD6')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD6'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD6'));
 		})->setFillRules(function($item, $locations, $items) {
 				if (!$this->world->config('region.bossNormalLocation', true)
 					&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -132,6 +132,9 @@ class MiseryMire extends Region {
 				}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD6') || $item == Item::get('MapD6'));
 		});
 
 		$this->can_enter = function($locations, $items) {

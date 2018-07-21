@@ -299,6 +299,7 @@ var ROM = (function(blob, loaded_callback) {
 				this.weapons = data.spoiler.meta.weapons;
 				this.difficulty_mode = data.spoiler.meta.difficulty_mode;
 				this.notes = data.spoiler.meta.notes;
+				this.tournament = data.spoiler.meta.tournament;
 			}
 			if (data.patch && data.patch.length) {
 				data.patch.forEach(function(value, index, array) {

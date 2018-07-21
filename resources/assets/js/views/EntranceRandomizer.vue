@@ -108,7 +108,7 @@
 						</div>
 					</div>
 				</div>
-				<vt-spoiler :rom="rom"></vt-spoiler>
+				<vt-spoiler v-model="show_spoiler" :rom="rom"></vt-spoiler>
 			</div>
 		</div>
 	</div>
@@ -133,6 +133,7 @@ export default {
 			enemizerSettings: {},
 			current_rom_hash: '',
 			gameLoaded: false,
+			show_spoiler: false,
 			choice: {
 				state: {value: 'open', name: 'Open'},
 				difficulty: {value: 'normal', name: 'Normal'},

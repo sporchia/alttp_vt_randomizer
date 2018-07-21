@@ -154,9 +154,7 @@ class TurtleRock extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Turtle Rock - Trinexx"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD7'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD7'));
+			return $this->locations["Turtle Rock - Trinexx"]->canAccess($items);
 		};
 
 		$this->locations["Turtle Rock - Trinexx"]->setRequirements(function($locations, $items) {
@@ -164,7 +162,9 @@ class TurtleRock extends Region {
 				&& $items->has('KeyD7', 4)
 				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
 				&& $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD7'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD7'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -173,6 +173,9 @@ class TurtleRock extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD7') || $item == Item::get('MapD7'));
 		});
 
 		$this->can_enter = function($locations, $items) {

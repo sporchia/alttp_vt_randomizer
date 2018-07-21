@@ -31,7 +31,7 @@
 					<div class="col-md mb-3">
 						<vt-select v-model="choice.logic" id="logic" :options="settings.logics" storage-key="vt.logic"
 							:rom="rom" :selected="choice.logic">Logic</vt-select>
-						<div v-if="false" class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
+						<div v-if="choice.logic.value != 'NoMajorGlitches'" class="logic-warning text-danger text-right">This Logic requires knowledge of Major Glitches<sup>**</sup></div>
 					</div>
 				</div>
 				<div class="row">
@@ -75,12 +75,19 @@
 				<div class="row">
 					<div class="col-md">
 						<div class="btn-group btn-flex" role="group">
-							<button class="btn btn-info" name="generate-tournament-rom" @click="applyTournamentSeed">Generate Race ROM (no spoilers)</button>
+							<button class="btn btn-primary w-50" name="generate-tournament-rom" @click="applyTournamentSeed">
+								Generate Race ROM (no spoilers)
+							</button>
+							<button class="btn btn-info w-50" name="generate-tournament-rom" @click="applyTournamentSpoilerSeed">
+								Spoiler Race ROM
+							</button>
 						</div>
 					</div>
 					<div class="col-md">
 						<div class="btn-group btn-flex" role="group">
-							<button name="generate" class="btn btn-success" @click="applySpoilerSeed">Generate ROM</button>
+							<button name="generate" class="btn btn-success text-center" @click="applySpoilerSeed">
+								Generate ROM
+							</button>
 						</div>
 					</div>
 				</div>
@@ -107,7 +114,7 @@
 						</div>
 					</div>
 				</div>
-				<vt-spoiler :rom="rom"></vt-spoiler>
+				<vt-spoiler v-model="show_spoiler" :rom="rom"></vt-spoiler>
 			</div>
 		</div>
 	</div>
@@ -132,6 +139,7 @@ export default {
 			enemizerSettings: {},
 			current_rom_hash: '',
 			gameLoaded: false,
+			show_spoiler: false,
 			choice: {
 				state: {value: 'standard', name: 'Standard'},
 				difficulty: {value: 'normal', name: 'Normal'},
@@ -140,6 +148,7 @@ export default {
 				logic: {value: 'NoMajorGlitches', name: 'No Glitches'},
 				variation: {value: 'none', name: 'None'},
 				tournament: false,
+				spoilers: false,
 			},
 			settings: {
 				mode: {
@@ -177,10 +186,17 @@ export default {
 	methods: {
 		applySpoilerSeed() {
 			this.choice.tournament = false;
+			this.choice.spoilers = false;
 			this.applySeed();
 		},
 		applyTournamentSeed() {
 			this.choice.tournament = true;
+			this.choice.spoilers = false;
+			this.applySeed();
+		},
+		applyTournamentSpoilerSeed() {
+			this.choice.tournament = true;
+			this.choice.spoilers = true;
 			this.applySeed();
 		},
 		applySeed(e, second_attempt) {
@@ -207,6 +223,7 @@ export default {
 					goal: this.choice.goal.value,
 					weapons: this.choice.weapons.value,
 					tournament: this.choice.tournament,
+					spoilers: this.choice.spoilers,
 					enemizer: this.enemizerEnabled ? this.enemizerSettings : false,
 				}).then(response => {
 					this.rom.parsePatch(response.data).then(function() {

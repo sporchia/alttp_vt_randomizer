@@ -160,16 +160,16 @@ class PalaceOfDarkness extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Palace of Darkness - Helmasaur King"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD1'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD1'));
+			return $this->locations["Palace of Darkness - Helmasaur King"]->canAccess($items);
 		};
 
 		$this->locations["Palace of Darkness - Helmasaur King"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $this->boss->canBeat($items, $locations)
 				&& $items->has('Hammer') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->canShootArrows()
-				&& $items->has('BigKeyD1') && $items->has('KeyD1', 6);
+				&& $items->has('BigKeyD1') && $items->has('KeyD1', 6)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD1'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD1'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -178,6 +178,9 @@ class PalaceOfDarkness extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD1') || $item == Item::get('MapD1'));
 		});
 
 		$this->can_enter = function($locations, $items) {

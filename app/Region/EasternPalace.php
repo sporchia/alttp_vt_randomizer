@@ -90,15 +90,15 @@ class EasternPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Eastern Palace - Armos Knights"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP1'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP1'));
+			return $this->locations["Eastern Palace - Armos Knights"]->canAccess($items);
 		};
 
 		$this->locations["Eastern Palace - Armos Knights"]->setRequirements(function($locations, $items) {
 			return $items->canShootArrows()
 				&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('BigKeyP1')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP1'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP1'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -107,6 +107,9 @@ class EasternPalace extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassP1') || $item == Item::get('MapP1'));
 		});
 
 		$this->can_enter = function($locations, $items) {

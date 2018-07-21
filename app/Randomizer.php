@@ -467,7 +467,7 @@ class Randomizer {
 		$place_prizes = ($this->config('prize.crossWorld', true))
 			? $remaining_prizes
 			: array_filter($remaining_prizes, function($item) {
-				return is_a($item, Item\Crystal::class);
+				return $item instanceof Item\Crystal;
 			});
 
 		$empty_crystal_locations = $crystal_locations->getEmptyLocations();

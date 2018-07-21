@@ -3,7 +3,7 @@ import localforage from 'localforage';
 export default {
 	namespaced: true,
 	state: {
-		pool: {},
+		pool: [],
 		packs: {},
 		flatpacks: {},
 		initializing: true,
@@ -18,7 +18,13 @@ export default {
 		},
 	},
 	actions: {
-		initalize({commit, dispatch, state, rootState, rootGetters}, packs) {
+		clearStorage({commit, dispatch, state}) {
+			return Promise.all([
+				localforage.removeItem('vt.custom.prizepacks'),
+				localforage.removeItem('vt.custom.drops'),
+			]);
+		},
+		initalize({commit, dispatch, state, rootState, getters, rootGetters}, packs) {
 			var commit_packs = {};
 			var commit_flatpacks = {};
 			for (var i = 0; i < packs.length; ++i) {

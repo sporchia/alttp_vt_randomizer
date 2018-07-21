@@ -1,6 +1,6 @@
 <template>
 	<div class="spoiler col-md-12">
-		<div class="spoiler-toggle" @click="show = !show">
+		<div class="spoiler-toggle" @click="clickShow">
 			<img v-if="!show" src="/i/svg/plus.svg">
 			<img v-if="show" src="/i/svg/minus.svg">
 			Spoiler!
@@ -149,12 +149,26 @@ export default {
 		Tabs: Tabs,
 		Tab: Tab,
 	},
-	props: ['rom'],
+	props: [
+		'rom',
+		'value',
+	],
 	data() {
 		return {
 			show: false,
 			search: '',
 			search_location: '',
+		}
+	},
+	created() {
+		if (this.value) {
+			this.show = this.value;
+		}
+	},
+	methods: {
+		clickShow() {
+			this.show = !this.show;
+			this.$emit('input', this.show);
 		}
 	},
 	computed: {

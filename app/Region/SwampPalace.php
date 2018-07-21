@@ -138,16 +138,16 @@ class SwampPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Swamp Palace - Arrghus"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD2'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD2'));
+			return $this->locations["Swamp Palace - Arrghus"]->canAccess($items);
 		};
 
 		$this->locations["Swamp Palace - Arrghus"]->setRequirements(function($locations, $items) {
 			return $items->has('KeyD2')
 				&& $items->has('Hammer')
 				&& $items->has('Hookshot')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD2'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD2'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -156,6 +156,9 @@ class SwampPalace extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD2') || $item == Item::get('MapD2'));
 		});
 
 		$this->can_enter = function($locations, $items) {

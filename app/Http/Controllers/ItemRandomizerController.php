@@ -174,7 +174,11 @@ class ItemRandomizerController extends Controller {
 			$rom->setTournamentType('standard');
 			$rom->rummageTable();
 			$patch = $rom->getWriteLog();
-			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+			if ($request->input('spoilers', false)) {
+				$spoiler = array_except($spoiler, ['playthrough']);
+			} else {
+				$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+			}
 		}
 
 		if ($save) {

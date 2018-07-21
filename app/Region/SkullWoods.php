@@ -128,9 +128,7 @@ class SkullWoods extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Skull Woods - Mothula"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD3'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD3'));
+			return $this->locations["Skull Woods - Mothula"]->canAccess($items);
 		};
 
 		$this->locations["Skull Woods - Mothula"]->setRequirements(function($locations, $items) {
@@ -139,7 +137,9 @@ class SkullWoods extends Region {
 				&& $items->has('FireRod')
 				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
 				&& $items->has('KeyD3', 3)
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD3'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapD3'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -148,6 +148,9 @@ class SkullWoods extends Region {
 			}
 
 			return true;
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassD3') || $item == Item::get('MapD3'));
 		});
 
 		$this->can_enter = function($locations, $items) {

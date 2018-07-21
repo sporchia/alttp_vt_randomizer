@@ -24,14 +24,16 @@ export default {
 			'rom.mapOnPickup': false,
 			'rom.timerMode': 'off',
 			'rom.timerStart': '',
+			'rom.rupeeBow': false,
 			'spoil.BootsLocation': false,
 			'sprite.shuffleOverworldBonkPrizes': false,
 		},
 		initializing: true,
 	},
-	getters: {
-	},
 	actions: {
+		clearStorage({commit, dispatch, state}) {
+			return localforage.removeItem('vt.custom.settings');
+		},
 		initalize({commit, dispatch, state, rootState, rootGetters}, packs) {
 			return localforage.getItem('vt.custom.settings').then(value => {
 				if (value === null) {

@@ -101,16 +101,16 @@ class DesertPalace extends Region {
 		});
 
 		$this->can_complete = function($locations, $items) {
-			return $this->locations["Desert Palace - Lanmolas'"]->canAccess($items)
-				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP2'))
-				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP2'));
+			return $this->locations["Desert Palace - Lanmolas'"]->canAccess($items);
 		};
 
 		$this->locations["Desert Palace - Lanmolas'"]->setRequirements(function($locations, $items) {
 			return $this->canEnter($locations, $items)
 				&& $items->canLiftRocks() && $items->canLightTorches()
 				&& $items->has('BigKeyP2') && $items->has('KeyP2')
-				&& $this->boss->canBeat($items, $locations);
+				&& $this->boss->canBeat($items, $locations)
+				&& (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP2'))
+				&& (!$this->world->config('region.wildMaps', false) || $items->has('MapP2'));
 		})->setFillRules(function($item, $locations, $items) {
 			if (!$this->world->config('region.bossNormalLocation', true)
 				&& ($item instanceof Item\Key || $item instanceof Item\BigKey
@@ -119,6 +119,9 @@ class DesertPalace extends Region {
 			}
 
 			return !in_array($item, [Item::get('KeyP2'), Item::get('BigKeyP2')]);
+		})->setAlwaysAllow(function($item, $items) {
+			return $this->world->config('region.bossNormalLocation', true)
+				&& ($item == Item::get('CompassP2') || $item == Item::get('MapP2'));
 		});
 
 		$this->can_enter = function($locations, $items) {
