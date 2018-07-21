@@ -1,6 +1,15 @@
 @extends('layouts.default', ['title' => 'Updates - '])
 
 @section('content')
+<h2>v30</h2>
+<div class="card card-body bg-light mb-3">
+	<ul>
+		<li>Front end rewrite into Vue framework... you have no idea how much went into this.</li>
+	</ul>
+</div>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
 <h2>VT8.29</h2>
 <div class="card card-body bg-light mb-3">
 	<ul>
@@ -55,8 +64,6 @@
 		</div>
 	</div>
 </div>
-
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
 
 <h2>VT8.28</h2>
 <div class="card card-body bg-light mb-3">
