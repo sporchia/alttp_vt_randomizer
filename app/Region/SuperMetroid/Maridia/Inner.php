@@ -95,11 +95,11 @@ class Inner extends Region {
 		});
 
 		$this->locations["Missile (left Maridia sand pit room)"]->setRequirements(function($location, $items) {
-			return $items->has('HiJump') || $items->has('Gravity');
+			return ($items->has('HiJump') && ($items->has('SpaceJump') || $items->canSpringBallJump())) || $items->has('Gravity');
 		});
 
 		$this->locations["Reserve Tank, Maridia"]->setRequirements(function($location, $items) {
-			return $items->has('HiJump') || $items->has('Gravity');
+			return ($items->has('HiJump') && ($items->has('SpaceJump') || $items->canSpringBallJump())) || $items->has('Gravity');
 		});
 
 		$this->locations["Missile (right Maridia sand pit room)"]->setRequirements(function($location, $items) {
