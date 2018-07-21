@@ -15,7 +15,8 @@
 						<tr>
 							<th class="col w-20">Region</th>
 							<th class="col w-40">Location</th>
-							<th class="col w-40">Item</th>
+							<th class="col w-40">Item  <img class="icon" @click="onlyHasItem = !onlyHasItem"
+								:src="onlyHasItem ? '/i/svg/x.svg' : '/i/svg/eye.svg'" alt="filter"></th>
 						</tr>
 					</thead>
 				</table>
@@ -23,7 +24,8 @@
 			<table class="table table-sm">
 				<tbody class="searchable">
 					<tr v-for="location in locations" v-show="(searchRegion.value == 'all' || location.region == searchRegion.value)
-						&& (searchEx.test(location.name) || searchEx.test(location.region) || searchEx.test(location.item.name))">
+						&& (searchEx.test(location.name) || searchEx.test(location.region) || searchEx.test(location.item.name))
+						&& (!onlyHasItem || location.item.value != 'auto_fill')">
 						<td class="col w-20">
 							<label>{{ location.region }}</label>
 						</td>
@@ -58,6 +60,7 @@ export default {
 		return {
 			search: '',
 			searchRegion: {name:'All Regions',value:'all'},
+			onlyHasItem: false,
 		};
 	},
 	methods: {
@@ -145,5 +148,9 @@ export default {
 }
 >>> .multiselect__input::placeholder {
 	color: #DCDCDC;
+}
+.icon {
+	width: 12px;
+	height: 12px;
 }
 </style>

@@ -14,8 +14,10 @@
 				<table class="table table-sm">
 					<thead>
 						<tr>
-							<th class="col w-25">Randomly Place ({{ itemCount }})</th>
-							<th class="col w-25">Manually Placed ({{ placedItemCount }})</th>
+							<th class="col w-25">Randomly Place ({{ itemCount }}) <img class="icon" @click="manualOnly = !manualOnly"
+								:src="manualOnly ? '/i/svg/x.svg' : '/i/svg/eye.svg'" alt="filter"></th>
+							<th class="col w-25">Manually Placed ({{ placedItemCount }}) <img class="icon" @click="placedOnly = !placedOnly"
+								:src="placedOnly ? '/i/svg/x.svg' : '/i/svg/eye.svg'" alt="filter"></th>
 							<th class="col w-50">Item Name</th>
 						</tr>
 					</thead>
@@ -23,7 +25,8 @@
 			</div>
 			<table class="table table-sm">
 				<tbody class="searchable">
-					<tr v-for="item in orderedItems" v-if="item.hasOwnProperty('count')" v-show="searchEx.test(item.name)">
+					<tr v-for="item in orderedItems" v-if="item.hasOwnProperty('count')" v-show="searchEx.test(item.name)
+						&& (!placedOnly || item.placed) && (!manualOnly || item.count)">
 						<td class="col w-25">
 							<input type="number" :value="item.count" @input="itemCountChanged($event, item)"
 								min="0" :max="max" step="1" class="input-sm custom-items">
@@ -48,6 +51,8 @@ export default {
 		return {
 			search: '',
 			max: 216,
+			manualOnly: false,
+			placedOnly: false,
 		};
 	},
 	methods: {
@@ -108,5 +113,9 @@ export default {
 	top: 143px;
 	z-index: 990;
 	background-color: white;
+}
+.icon {
+	width: 12px;
+	height: 12px;
 }
 </style>

@@ -15,6 +15,7 @@ class Distribution extends Command {
 		. ' {--difficulty=normal : set difficulty}'
 		. ' {--logic=NoMajorGlitches : set logic}'
 		. ' {--goal=ganon : set game goal}'
+		. ' {--variation=none : set game variation}'
 		. ' {--mode=standard : set game mode}'
 		. ' {--tournament : enable tournament mode}'
 		. ' {--csv= : file to write to}';
@@ -131,7 +132,7 @@ class Distribution extends Command {
 	}
 
 	private function item(Item $item, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocationsWithItem($item) as $location) {
@@ -143,7 +144,7 @@ class Distribution extends Command {
 	}
 
 	private function location($location_name, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
@@ -155,7 +156,7 @@ class Distribution extends Command {
 	}
 
 	private function location_ordered($location_name, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		$item_name = $rand->getWorld()->getLocation($location_name)->getItem()->getNiceName();
@@ -164,7 +165,7 @@ class Distribution extends Command {
 	}
 
 	private function region($region_name, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getRegion($region_name)->getLocations() as $location) {
@@ -178,7 +179,7 @@ class Distribution extends Command {
 	}
 
 	private function required($unused, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		$required_locations = $rand->getWorld()->getPlayThrough(false);
@@ -199,7 +200,7 @@ class Distribution extends Command {
 	}
 
 	private function required_ordered($unused, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		$required_locations = $rand->getWorld()->getPlayThrough(false);
@@ -219,7 +220,7 @@ class Distribution extends Command {
 	}
 
 	private function full($unused, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocations() as $location) {
@@ -239,7 +240,7 @@ class Distribution extends Command {
 	}
 
 	private function full_ordered($unused, &$locations) {
-		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'));
+		$rand = new Randomizer($this->option('difficulty'), $this->option('logic'), $this->option('goal'), $this->option('variation'));
 		$rand->makeSeed();
 
 		foreach ($rand->getWorld()->getLocations() as $location) {

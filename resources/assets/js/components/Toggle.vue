@@ -15,11 +15,9 @@ export default {
 	},
 	methods: {
 		onInput(input) {
-			console.log(input, this.value);
 			this.$emit('input', input);
 		},
 		onClickLabel() {
-			console.log(this.value);
 			this.$emit('input', !this.value);
 		},
 	}
