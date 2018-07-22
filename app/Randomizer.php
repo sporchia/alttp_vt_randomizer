@@ -110,8 +110,8 @@ class Randomizer {
 	public function getSMLogicNiceName() {
 		switch ($this->sm_logic) {
 			case 'None': return 'None';
-			case 'Tournament': return 'Normal';
-			case 'Casual': return 'Hard';
+			case 'Tournament': return 'Hard';
+			case 'Casual': return 'Normal';
 
 		}
 		return 'Unknown';
