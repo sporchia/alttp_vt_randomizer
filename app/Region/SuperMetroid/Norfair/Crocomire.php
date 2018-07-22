@@ -73,13 +73,14 @@ class Crocomire extends Region {
         });
 
         $this->can_enter = function($locations, $items) {
-            return ((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
-                && ($items->has('Super') && $items->has('Morph')))
-                || $items->canAccessNorfairPortal())
-                && $items->has('Super')
-                && ($items->hasEnergyReserves(2) && $items->has('SpeedBooster') || $items->canHellRun())
-				&& (($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Varia') && $items->has('IceBeam'))) || $items->has('SpeedBooster'))
-				&& ($items->canPassBombPassages() || $items->has('SpeedBooster') || ($items->heatProof() && $items->has('Morph')));
+            return (((($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
+					&& ($items->has('Super') && $items->has('Morph')))
+					|| $items->canAccessNorfairPortal())
+					&& $items->has('Super')
+					&& ($items->hasEnergyReserves(2) && $items->has('SpeedBooster') || $items->canHellRun())
+					&& (($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Varia') && $items->has('IceBeam'))) || $items->has('SpeedBooster'))
+					&& ($items->canPassBombPassages() || $items->has('SpeedBooster') || ($items->heatProof() && $items->has('Morph'))))
+				|| ($items->canAccessLowerNorfairPortal() && $items->has('ScrewAttack') && $items->has('SpaceJump') && $items->has('Varia') && $items->has('Super') && $items->hasEnergyReserves(2));
         };
         
 		return $this;
