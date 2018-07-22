@@ -674,8 +674,8 @@ return [
 				//'MajorGlitches' => 'Major Glitches',
 			],
 			'sm_logics' => [
-				'Casual' => 'Casual',
-				'Tournament' => 'Tournament',
+				'Casual' => 'Normal',
+				'Tournament' => 'Hard',
 			],
 			'modes' => [
 				//'standard' => 'Standard',

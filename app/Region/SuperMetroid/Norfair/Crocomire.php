@@ -57,7 +57,7 @@ class Crocomire extends Region {
 	public function initTournament() {
         
         $this->locations["Missile (above Crocomire)"]->setRequirements(function($location, $items) {
-			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && ($items->has('SpeedBooster') || $items->canSpringBallJump()))) && $items->canHellRun();
+			return ($items->canFlySM() || $items->has('Grapple') || ($items->has('HiJump') && ($items->has('SpeedBooster') || $items->canSpringBallJump() || ($items->has('Varia') && $items->has('IceBeam'))))) && $items->canHellRun();
         });
 
 		$this->locations["Missile (below Crocomire)"]->setRequirements(function($location, $items) {
