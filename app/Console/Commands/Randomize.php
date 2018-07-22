@@ -20,7 +20,7 @@ class Randomize extends Command {
 		. ' {--debug : enable BAGE mode}'
 		. ' {--spoiler : generate a spoiler file}'
 		. ' {--difficulty=normal : set difficulty}'
-		. ' {--variation=none : set variation}'
+		. ' {--variation=combo : set variation}'
 		. ' {--logic=NoMajorGlitches : set logic}'
 		. ' {--sm-logic=Tournament : set SM logic}'
 		. ' {--heartbeep=half : set heart beep speed}'
