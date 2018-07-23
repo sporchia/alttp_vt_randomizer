@@ -93,7 +93,7 @@ class East extends Region {
 						&& ($items->canFlySM() || $items->canSpringBallJump() || $items->has('SpeedBooster'))))
 				&& ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('IceBeam') && $items->has('ChargeBeam')))
 				&& ($items->canPassBombPassages() || ($items->has('ScrewAttack') && $items->has('SpaceJump')))
-				&& ($items->has('Morph') || $items->energyReserveCount(5));
+				&& ($items->has('Morph') || $items->hasEnergyReserves(5));
 		};
 
 		$this->can_complete = function($locations, $items) {
