@@ -90,7 +90,7 @@ class Inner extends Region {
 
         $this->locations["Plasma Beam"]->setRequirements(function($location, $items) {
 			return $items->canDefeatDraygon()
-				&& (($items->has('ChargeBeam') && $items->hasEnergyReserves(3)) || $items->has('ScrewAttack') || $items->has('PlasmaBeam') || $items->has('SpeedBooster'))
+				&& (($items->has('ChargeBeam') && $items->hasEnergyReserves(3)) || $items->has('ScrewAttack') || $items->has('Plasma') || $items->has('SpeedBooster'))
 				&& ($items->has('HiJump') || $items->canSpringBallJump() || $items->canFlySM() || $items->has('SpeedBooster'));
 		});
 
@@ -175,7 +175,7 @@ class Inner extends Region {
 
         $this->locations["Plasma Beam"]->setRequirements(function($location, $items) {
 			return $items->canDefeatDraygon()
-				&& ($items->has('ScrewAttack') || $items->has('PlasmaBeam'))
+				&& ($items->has('ScrewAttack') || $items->has('Plasma'))
 				&& ($items->has('HiJump') || $items->canFlySM());
 		});
 
