@@ -499,9 +499,9 @@ class ItemCollection extends Collection {
 			default:
 				return $this->canUsePowerBombs()
 					&& $this->has('Super')
-					&& ($this->has('ChargeBeam') || ($this->has('Super') && $this->has('Missile')))
-					&& ($this->has('Gravity') || ($this->has('HiJump') && $this->has('IceBeam') && $this->has('Grapple')))
-					&& ($this->has('IceBeam') || ($this->has('SpeedBooster') && $this->has('Gravity')));
+					&& ($this->has('Charge') || ($this->has('Super') && $this->has('Missile')))
+					&& ($this->has('Gravity') || ($this->has('HiJump') && $this->has('Ice') && $this->has('Grapple')))
+					&& ($this->has('Ice') || ($this->has('SpeedBooster') && $this->has('Gravity')));
 		}
 	}
 
@@ -628,7 +628,7 @@ class ItemCollection extends Collection {
 				return $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
 			case 'Tournament':
 			default:
-				return $this->has('IceBeam') || $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
+				return $this->has('Ice') || $this->has('SpeedBooster') || $this->canAccessMaridiaPortal();
 		}
 	}
 

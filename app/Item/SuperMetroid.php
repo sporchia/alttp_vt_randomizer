@@ -30,11 +30,11 @@ class SuperMetroid extends Item {
 				return "bombs from\nthe future.";
 			case Item::get('SpeedBooster'):
 				return "THE GREEN\nBOOMERANG IS\nTHE FASTEST!";
-			case Item::get('ChargeBeam'):
+			case Item::get('Charge'):
 				return "IM'A CHARGIN\nMA LAZER!";
-			case Item::get('IceBeam'):
+			case Item::get('Ice'):
 				return "some kind of\nice rod for\naliens?";
-			case Item::get('WaveBeam'):
+			case Item::get('Wave'):
 				return "Trigonometry gun.";
 			case Item::get('Spazer'):
 				return "even space\nlasers can\nbe sucky.";

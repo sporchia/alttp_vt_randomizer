@@ -79,7 +79,7 @@ class East extends Region {
         });
 
         $this->locations["Energy Tank, Ridley"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
+			return $items->canUsePowerbombs() && $items->has('Super') && $items->has('Charge');
         });
 
 		$this->can_enter = function($locations, $items) {
@@ -91,13 +91,13 @@ class East extends Region {
 						&& $items->canDestroyBombWalls()
 						&& $items->has('Super') 
 						&& ($items->canFlySM() || $items->canSpringBallJump() || $items->has('SpeedBooster'))))
-				&& ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('IceBeam') && $items->has('ChargeBeam')))
+				&& ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Ice') && $items->has('Charge')))
 				&& ($items->canPassBombPassages() || ($items->has('ScrewAttack') && $items->has('SpaceJump')))
 				&& ($items->has('Morph') || $items->hasEnergyReserves(5));
 		};
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
+			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super') && $items->has('Charge');
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);	
@@ -117,7 +117,7 @@ class East extends Region {
         });
 
         $this->locations["Energy Tank, Ridley"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
+			return $items->canUsePowerbombs() && $items->has('Super') && $items->has('Charge');
         });
 
         $this->can_enter = function($locations, $items) {
@@ -134,7 +134,7 @@ class East extends Region {
         };
 
 		$this->can_complete = function($locations, $items) {
-			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super') && $items->has('ChargeBeam');
+			return $this->canEnter($locations, $items) && $items->canUsePowerbombs() && $items->has('Super') && $items->has('Charge');
 		};
 
 		$this->prize_location->setRequirements($this->can_complete);

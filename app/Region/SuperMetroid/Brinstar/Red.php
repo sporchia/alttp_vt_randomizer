@@ -82,7 +82,7 @@ class Red extends Region {
         $this->can_enter = function($locations, $items) {
             return (($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
-                || ($items->canAccessNorfairPortal() && ($items->has('IceBeam') || $items->canSpringBallJump() || $items->has('HiJump') || $items->canFlySM()));
+                || ($items->canAccessNorfairPortal() && ($items->has('Ice') || $items->canSpringBallJump() || $items->has('HiJump') || $items->canFlySM()));
 		};
 
 		return $this;
@@ -107,7 +107,7 @@ class Red extends Region {
 		});
 
         $this->locations["Power Bomb (red Brinstar spike room)"]->setRequirements(function($location, $items) {
-            return ($items->canUsePowerBombs() || $items->has('IceBeam')) && $items->has('Super');
+            return ($items->canUsePowerBombs() || $items->has('Ice')) && $items->has('Super');
 		});
 
         $this->locations["Missile (red Brinstar spike room)"]->setRequirements(function($location, $items) {
@@ -121,7 +121,7 @@ class Red extends Region {
         $this->can_enter = function($locations, $items) {
             return (($items->canDestroyBombWalls() || $items->has('SpeedBooster'))
                 && ($items->has('Super') && $items->has('Morph')))
-                || ($items->canAccessNorfairPortal() && ($items->has('IceBeam') || $items->has('HiJump') || $items->has('SpaceJump')));
+                || ($items->canAccessNorfairPortal() && ($items->has('Ice') || $items->has('HiJump') || $items->has('SpaceJump')));
 		};
 
 		return $this;

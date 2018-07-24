@@ -1413,8 +1413,8 @@ class Randomizer {
 			array_push($advancement_items, Item::get('Bombs'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.IceBeam', 1); $i++) {
-			array_push($advancement_items, Item::get('IceBeam'));
+		for ($i = 0; $i < $this->config('item.count.Ice', 1); $i++) {
+			array_push($advancement_items, Item::get('Ice'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.HiJump', 1); $i++) {
@@ -1469,8 +1469,8 @@ class Randomizer {
 			array_push($advancement_items, Item::get('ETank'));
 		}
 
-		for ($i = 0; $i < $this->config('item.count.ChargeBeam', 1); $i++) {
-			array_push($advancement_items, Item::get('ChargeBeam'));
+		for ($i = 0; $i < $this->config('item.count.Charge', 1); $i++) {
+			array_push($advancement_items, Item::get('Charge'));
 		}
 
 		return $advancement_items;
@@ -1534,8 +1534,8 @@ class Randomizer {
 		}
 
 		/* Super Metroid Items */
-		for ($i = 0; $i < $this->config('item.count.WaveBeam', 1); $i++) {
-			array_push($items_to_find, Item::get('WaveBeam'));
+		for ($i = 0; $i < $this->config('item.count.Wave', 1); $i++) {
+			array_push($items_to_find, Item::get('Wave'));
 		}
 
 		for ($i = 0; $i < $this->config('item.count.Spazer', 1); $i++) {

@@ -37,7 +37,7 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function setVanilla() {
-		$this->locations["Ice Beam"]->setItem(Item::get('IceBeam'));
+		$this->locations["Ice Beam"]->setItem(Item::get('Ice'));
 		$this->locations["Missile (below Ice Beam)"]->setItem(Item::get('Missile'));
 		$this->locations["Hi-Jump Boots"]->setItem(Item::get('HiJump'));
 		$this->locations["Missile (Hi-Jump Boots)"]->setItem(Item::get('Missile'));
