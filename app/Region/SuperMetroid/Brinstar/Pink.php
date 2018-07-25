@@ -76,7 +76,7 @@ class Pink extends Region {
 		});
 
         $this->locations["Energy Tank, Waterway"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster') && $items->hasEnergyReserves(1);
+			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster') && ($items->hasEnergyReserves(1) || $items->has('Gravity'));
 		});
 
         $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
@@ -116,7 +116,7 @@ class Pink extends Region {
 		});
 
         $this->locations["Energy Tank, Waterway"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster') && $items->hasEnergyReserves(1);
+			return $items->canUsePowerBombs() && $items->canOpenRedDoors() && $items->has('SpeedBooster') && ($items->hasEnergyReserves(1) || $items->has('Gravity'));
 		});
 
         $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
