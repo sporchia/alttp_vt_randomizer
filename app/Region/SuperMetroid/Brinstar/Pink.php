@@ -43,7 +43,7 @@ class Pink extends Region {
 		$this->locations["Super Missile (pink Brinstar)"]->setItem(Item::get('Super'));
 		$this->locations["Missile (pink Brinstar top)"]->setItem(Item::get('Missile'));
 		$this->locations["Missile (pink Brinstar bottom)"]->setItem(Item::get('Missile'));
-		$this->locations["Charge Beam"]->setItem(Item::get('ChargeBeam'));
+		$this->locations["Charge Beam"]->setItem(Item::get('Charge'));
 		$this->locations["Power Bomb (pink Brinstar)"]->setItem(Item::get('PowerBomb'));
 		$this->locations["Missile (green Brinstar pipe)"]->setItem(Item::get('Missile'));
 		$this->locations["Energy Tank, Waterway"]->setItem(Item::get('ETank'));
@@ -80,13 +80,13 @@ class Pink extends Region {
 		});
 
         $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && ($items->has('WaveBeam') || $items->has('Super'));
+			return $items->canUsePowerBombs() && ($items->has('Wave') || $items->has('Super'));
 		});
 
         $this->can_enter = function($locations, $items) {
 			return ($items->canOpenRedDoors() && ($items->canDestroyBombWalls() || $items->has('SpeedBooster')))
 				|| $items->canUsePowerBombs()
-				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->canOpenRedDoors() || $items->has('WaveBeam')) && ($items->has('IceBeam') || $items->has('HiJump') || $items->canSpringBallJump() || $items->canFlySM()));
+				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && ($items->canOpenRedDoors() || $items->has('Wave')) && ($items->has('Ice') || $items->has('HiJump') || $items->canSpringBallJump() || $items->canFlySM()));
 		};
 
 		return $this;
@@ -120,13 +120,13 @@ class Pink extends Region {
 		});
 
         $this->locations["Energy Tank, Brinstar Gate"]->setRequirements(function($location, $items) {
-			return $items->canUsePowerBombs() && $items->has('WaveBeam') && $items->hasEnergyReserves(1);
+			return $items->canUsePowerBombs() && $items->has('Wave') && $items->hasEnergyReserves(1);
 		});
 
         $this->can_enter = function($locations, $items) {
 			return ($items->canOpenRedDoors() && ($items->canDestroyBombWalls() || $items->has('SpeedBooster')))
 				|| $items->canUsePowerBombs()
-				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && $items->has('WaveBeam') && ($items->has('IceBeam') || $items->has('HiJump') || $items->has('SpaceJump')));
+				|| ($items->canAccessNorfairPortal() && $items->has('Morph') && $items->has('Wave') && ($items->has('Ice') || $items->has('HiJump') || $items->has('SpaceJump')));
 		};
 
 		return $this;

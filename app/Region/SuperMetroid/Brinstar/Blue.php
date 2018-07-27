@@ -109,7 +109,7 @@ class Blue extends Region {
 		});
 
         $this->locations["Energy Tank, Brinstar Ceiling"]->setRequirements(function($location, $items) {
-			return $items->canFlySM() || $items->has('HiJump') || $items->has('SpeedBooster') || $items->has('IceBeam');
+			return $items->canFlySM() || $items->has('HiJump') || $items->has('SpeedBooster') || $items->has('Ice');
 		});		
 
 		return $this;

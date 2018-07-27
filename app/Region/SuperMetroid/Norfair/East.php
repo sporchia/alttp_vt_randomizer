@@ -49,7 +49,7 @@ class East extends Region {
         $this->locations["Missile (Speed Booster)"]->setItem(Item::get('Missile'));
         $this->locations["Speed Booster"]->setItem(Item::get('SpeedBooster'));
         $this->locations["Missile (Wave Beam)"]->setItem(Item::get('Missile'));
-        $this->locations["Wave Beam"]->setItem(Item::get('WaveBeam'));        /* Speed Booster was listed here again! */
+        $this->locations["Wave Beam"]->setItem(Item::get('Wave'));        /* Speed Booster was listed here again! */
 		return $this;
 	}
 
@@ -95,7 +95,7 @@ class East extends Region {
                 && ($items->has('Super') && $items->has('Morph')))
                 || $items->canAccessNorfairPortal())
                 && $items->canHellRun()
-                && ($items->has('Super') && ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Varia') && ($items->has('IceBeam') || $items->has('SpeedBooster'))))
+                && ($items->has('Super') && ($items->canFlySM() || $items->has('HiJump') || $items->canSpringBallJump() || ($items->has('Varia') && ($items->has('Ice') || $items->has('SpeedBooster'))))
                  || ($items->has('SpeedBooster') && $items->canUsePowerBombs()));
         };
         
@@ -115,32 +115,32 @@ class East extends Region {
 
         $this->locations["Reserve Tank, Norfair"]->setRequirements(function($location, $items) {
             return $items->has('Morph')
-                && ($items->canFlySM() || ($items->has('Grapple') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
+                && ($items->canFlySM() || ($items->has('Grapple') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice'));
         });
 
         $this->locations["Missile (Norfair Reserve Tank)"]->setRequirements(function($location, $items) {
             return $items->has('Morph')
-                && ($items->canFlySM() || ($items->has('Grapple') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
+                && ($items->canFlySM() || ($items->has('Grapple') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice'));
         });
 
         $this->locations["Missile (bubble Norfair green door)"]->setRequirements(function($location, $items) {
-            return $items->canFlySM() || ($items->has('Grapple') && $items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam');
+            return $items->canFlySM() || ($items->has('Grapple') && $items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice');
         });
         
         $this->locations["Missile (Speed Booster)"]->setRequirements(function($location, $items) {
-            return $items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam');
+            return $items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice');
         });
 
         $this->locations["Speed Booster"]->setRequirements(function($location, $items) {
-            return $items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam');
+            return $items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice');
         });
 
 	    $this->locations["Wave Beam"]->setRequirements(function($location, $items) {
-            return $items->has('Morph') && ($items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
+            return $items->has('Morph') && ($items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice'));
         });
 
         $this->locations["Missile (Wave Beam)"]->setRequirements(function($location, $items) {
-            return ($items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('IceBeam'));
+            return ($items->canFlySM() || ($items->has('Morph') && ($items->has('SpeedBooster') || $items->canPassBombPassages())) || $items->has('HiJump') || $items->has('Ice'));
         });
         
         $this->can_enter = function($locations, $items) {

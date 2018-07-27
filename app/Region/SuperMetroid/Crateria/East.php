@@ -62,7 +62,7 @@ class East extends Region {
 
         $this->can_enter = function($locations, $items) {
 			return ($items->canUsePowerBombs() && $items->has('Super'))
-				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('IceBeam') || $items->canSpringBallJump() || $items->has('HiJump') || $items->canFlySM()))
+				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('Ice') || $items->canSpringBallJump() || $items->has('HiJump') || $items->canFlySM()))
 				|| ($items->canAccessMaridiaPortal() && $items->has('HiJump') && $items->has('Super'));
 		};
 
@@ -93,7 +93,7 @@ class East extends Region {
 
 		$this->can_enter = function($locations, $items) {
 			return ($items->canUsePowerBombs() && $items->has('Super'))
-				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('IceBeam') || $items->has('HiJump') || $items->has('SpaceJump')))
+				|| ($items->canAccessNorfairPortal() && $items->canUsePowerBombs() && ($items->has('Ice') || $items->has('HiJump') || $items->has('SpaceJump')))
 				|| ($items->canAccessMaridiaPortal() && $items->has('Gravity') && $items->has('Super'));
 		};
 

@@ -64,7 +64,7 @@ class Outer extends Region {
             return ($this->world->getRegion('West Norfair')->canEnter($locations, $items)
                 && $items->canUsePowerBombs()
                 && ($items->has('Gravity')
-				 || ($items->has('HiJump') && ($items->canSpringBallJump() || $items->has('IceBeam')))))
+				 || ($items->has('HiJump') && ($items->canSpringBallJump() || $items->has('Ice')))))
 			 || $items->canAccessMaridiaPortal();
         };
         
