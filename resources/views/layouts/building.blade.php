@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ALttP VT Randomizer</title>
-	<meta name="keywords" content="ALttP, Randomizer, patcher">
-	<meta name="description" content="ALttP Web VT Randomizer">
+	<title>Super Metroid and A Link to the Past Combo Randomizer</title>
+	<meta name="keywords" content="ALttP, SM, Combo, Randomizer, patcher">
+	<meta name="description" content="Super Metroid and A Link to the Past Combo Randomizer">
 	<meta charset="utf-8" />
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -55,20 +55,5 @@
     </div>
   </div>
 </div>
-	<script>
-@if (App::environment() == 'production')
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-		ga('create', '{{ env('GA_CODE') }}', 'auto');
-		ga('send', 'pageview');
-@else
-		ga = function() {
-		    console.log(arguments);
-		};
-@endif
-	</script>
 </body>
 </html>
