@@ -13,6 +13,7 @@
 	<h3>2018-07-27 - Version 10</h3>
 	<ul>
 	<li>Dynamic text is now added back in, which means that checking pedestal and tables will now give a hint to what items is at those locations.</li>
+	<li>Progressive items in the same room in SM now works properly, although the second item will show incorrect graphics.</li>
 	<li>A bunch of general logic bugfixes that should fix a few weird possible edge cases.</li>
 	<li>Super Metroid logic has been renamed and is now "Normal" and "Hard", where "Normal" is the old "Casual" and "Hard" is the old "Tournament"</li>
 	<li>Normal logic has been reworked and should now be a bit more consistent in terms of required techniques.</li>
