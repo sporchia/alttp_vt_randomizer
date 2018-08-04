@@ -9,6 +9,7 @@
 		<div v-if="rom.variation">Variation: {{ rom.variation }}</div>
 		<div v-if="rom.shuffle">Shuffle: {{ rom.shuffle }}</div>
 		<div v-if="rom.mode">Mode: {{ rom.mode }}</div>
+		<div v-if="rom.shuffle">Shuffle: {{ rom.shuffle }}</div>
 		<div v-if="rom.weapons">Swords: {{ rom.weapons }}</div>
 		<div v-if="rom.goal">Goal: {{ rom.goal }}</div>
 		<div v-if="!noLink && rom.hash">Permalink: <a :href="permalink">{{ permalink }}</a></div>

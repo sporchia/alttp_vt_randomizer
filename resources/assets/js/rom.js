@@ -297,6 +297,7 @@ var ROM = (function(blob, loaded_callback) {
 				this.name = data.spoiler.meta.name;
 				this.variation = data.spoiler.meta.variation;
 				this.weapons = data.spoiler.meta.weapons;
+				this.shuffle = data.spoiler.meta.shuffle;
 				this.difficulty_mode = data.spoiler.meta.difficulty_mode;
 				this.notes = data.spoiler.meta.notes;
 				this.tournament = data.spoiler.meta.tournament;
