@@ -216,7 +216,7 @@ class Text {
 
 			'sign_south_of_lumberjacks' => $converter->convertDialogCompressed("← Kakariko\n  Village"),
 
-			'sign_east_of_desert' => $converter->convertDialogCompressed("← Desert\n\n      It's hot."),
+			'sign_east_of_desert' => $converter->convertDialogCompressed("← Desert\n\n     It's hot."),
 
 			'sign_east_of_sanctuary' => $converter->convertDialogCompressed("↑→ Potions!\n\nWish Waterfall"),
 
@@ -346,7 +346,7 @@ class Text {
 
 			'item_get_pendant_power_alt' => $converter->convertDialogCompressed("We have the Pendant of Power! How robust!"),
 
-			'item_get_pendant_wisdom_alt' => $converter->convertDialogCompressed("We have the Pendant of wisdom! How astute!"),
+			'item_get_pendant_wisdom_alt' => $converter->convertDialogCompressed("We have the Pendant of Wisdom! How astute!"),
 
 			'game_shooting_choice' => $converter->convertDialogCompressed("20 rupees.\n5 arrows.\nWin rupees!\nWant to play?\n  ≥ yes\n    no\n{CHOICE}"),
 
@@ -422,7 +422,7 @@ class Text {
 
 			'sign_catfish' => $converter->convertDialogCompressed("toss rocks\ntoss items\ntoss cookies"),
 
-			'sign_north_village_of_outcasts' => $converter->convertDialogCompressed("↑ Skull Woods\n\n↓ Steve's town"),
+			'sign_north_village_of_outcasts' => $converter->convertDialogCompressed("↑ Skull Woods\n\n↓ Steve's Town"),
 
 			'sign_south_of_bumper_cave' => $converter->convertDialogCompressed("\n→ Karkats cave"),
 
@@ -470,7 +470,7 @@ class Text {
 
 			'telepathic_tile_castle_tower' => $converter->convertDialogCompressed("{NOBORDER}\nYou can reflect Agahnim's energy with Sword, Bug-net or Hammer."),
 
-			'telepathic_tile_ice_large_room' => $converter->convertDialogCompressed("{NOBORDER}\nAll right stop collaborate and listen\nice is back with my brand new invention."),
+			'telepathic_tile_ice_large_room' => $converter->convertDialogCompressed("{NOBORDER}\nAll right stop collaborate and listen\nIce is back with my brand new invention."),
 
 			'telepathic_tile_turtle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nYou Shall not pass… without the red cane."),
 
@@ -634,8 +634,8 @@ class Text {
 
 			'magic_bat_give_half_magic' => $converter->convertDialogCompressed("How you like me now?"),
 
-			'intro_main' => $converter->convertDialogCompressed("{INTRO}\n Episode  III\n{PAUSE3}\n a link to\n   the past\n"
-				. "{PAUSE3}\n  randomizer\n{PAUSE3}\nAfter mostly disregarding what happened in the first two games.\n"
+			'intro_main' => $converter->convertDialogCompressed("{INTRO}\n Episode  III\n{PAUSE3}\n A Link to\n   the Past\n"
+				. "{PAUSE3}\n  Randomizer\n{PAUSE3}\nAfter mostly disregarding what happened in the first two games.\n"
 				. "{PAUSE3}\nLink awakens to his uncle leaving the house.\n{PAUSE3}\nHe just runs out the door,\n"
 				. "{PAUSE3}\ninto the rainy night.\n{PAUSE3}\n{CHANGEPIC}\nGanon has moved around all the items in Hyrule.\n"
 				. "{PAUSE7}\nYou will have to find all the items necessary to beat Ganon.\n"
@@ -842,9 +842,9 @@ class Text {
 
 			'thief_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 
-			'theif_desert_rupee_cave' => $converter->convertDialogCompressed("So you, like, busted down my door, and are being a jerk by talking to me? Normally I would be angry and make you pay for it, but I bet you're just going to break all my pots and steal my 50 rupees."),
+			'thief_desert_rupee_cave' => $converter->convertDialogCompressed("So you, like, busted down my door, and are being a jerk by talking to me? Normally I would be angry and make you pay for it, but I bet you're just going to break all my pots and steal my 50 rupees."),
 
-			'theif_ice_rupee_cave' => $converter->convertDialogCompressed("I'm a rupee pot farmer. One day I will take over the world with my skillz. Have you met my brother in the desert? He's way richer than I am."),
+			'thief_ice_rupee_cave' => $converter->convertDialogCompressed("I'm a rupee pot farmer. One day I will take over the world with my skillz. Have you met my brother in the desert? He's way richer than I am."),
 
 			'telepathic_tile_south_east_darkworld_cave' => $converter->convertDialogCompressed("~~ dev cave ~~\n  no farming\n   required"),
 			// 0x17A

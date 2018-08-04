@@ -22,7 +22,7 @@ function get_random_int($min = PHP_INT_MIN, $max = PHP_INT_MAX) {
  * @return int
  */
 function pc_to_snes(int $address) {
-	return (($address * 2) & 0xFF0000) + ($address & 0x7FFF) + 0x8000;
+	return (($address<<1)&0x7F0000)|($address&0x7FFF)|0x8000;
 }
 
 /**
@@ -33,6 +33,5 @@ function pc_to_snes(int $address) {
  * @return int
  */
 function snes_to_pc(int $address) {
-	if ($address >= 0x808000) $address -= 0x808000;
-	return ($address & 0x7FFF) + (($address / 2) & 0xFF8000);
+	return (($address&0x7F0000)>>1)|($address&0x7FFF);
 }

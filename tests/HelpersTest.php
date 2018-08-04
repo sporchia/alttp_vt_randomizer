@@ -74,6 +74,21 @@ class HelpersTest extends TestCase {
 		], patch_merge_minify([], $patch));
 	}
 
+	public function testSnesToPc() {
+		$this->assertEquals(snes_to_pc(0x008123), 0x000123);
+		$this->assertEquals(snes_to_pc(0x808123), 0x000123);
+		$this->assertEquals(snes_to_pc(0x018456), 0x008456);
+		$this->assertEquals(snes_to_pc(0x818456), 0x008456);
+		$this->assertEquals(snes_to_pc(0x04FFFF), 0x027FFF);
+		$this->assertEquals(snes_to_pc(0x05FFFF), 0x02FFFF);
+	}
+	public function testPcToSnes() {
+		$this->assertEquals(pc_to_snes(0x000123), 0x008123);
+		$this->assertEquals(pc_to_snes(0x008456), 0x018456);
+		$this->assertEquals(pc_to_snes(0x027FFF), 0x04FFFF);
+		$this->assertEquals(pc_to_snes(0x02FFFF), 0x05FFFF);
+	}
+
 	public function testPatchMergeMinify() {
 		$patch = [
 			[1 => [2]],
