@@ -1243,7 +1243,7 @@ class Rom {
 	 * @return $this
 	 */
 	public function setSahasrahla2TextString(string $string) : self {
-		$this->text->setString('sahasrahla_have_boots_no_icerod', $string);
+		$this->text->setString('sahasrahla_quest_have_master_sword', $string);
 		// Yes. That is the string randomizer uses for after green pendant
 		return $this;
 	}
