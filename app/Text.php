@@ -1067,7 +1067,13 @@ class Text {
 			'hylian_text_2',
 			'desert_entry_translated',
 			'uncle_dying_sewer',
-			'telepathic_intro'
+			'telepathic_intro',
+			'desert_thief_sitting',
+            		'desert_thief_following',
+            		'desert_thief_question',
+            		'desert_thief_question_yes',
+            		'desert_thief_after_item_get',
+            		'desert_thief_reassure'
 		];
 
 		foreach ($messages_to_zero as $msg) {
