@@ -6,17 +6,17 @@ return [
 	'enemy_health' => [
 		'title' => 'Enemy Health',
 		'options' => [
-			0 => 'Regular',
+			0 => 'Default',
 			1 => 'Easy (1-4 hp)',
-			2 => 'Medium (2-15 hp)',
+			2 => 'Normal (2-15 hp)',
 			3 => 'Hard (2-30 hp)',
-			4 => 'Insane (4-50 hp)',
+			4 => 'Brick Wall (4-50 hp)',
 		],
 	],
 	'enemy_damage' => [
 		'title' => 'Enemy Damage',
 		'options' => [
-			'off' => 'Regular',
+			'off' => 'Default',
 			'shuffle' => 'Shuffled',
 			'chaos' => 'Chaos',
 		],
@@ -24,9 +24,9 @@ return [
 	'bosses' => [
 		'title' => 'Bosses',
 		'options' => [
-			'off' => 'Regular',
-			'basic' => 'Basic',
-			'normal' => 'Normal',
+			'off' => 'Off',
+			'basic' => 'Simple',
+			'normal' => 'Full',
 			'chaos' => 'Chaos',
 		],
 	],

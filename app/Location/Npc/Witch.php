@@ -17,7 +17,7 @@ class Witch extends Npc {
 	}
 
 	private function getItemCreditsText() {
-		switch (get_class($this->item)) {
+		switch (get_class($this->item->getTarget())) {
 			case Item\Key::class:
 			case Item\BigKey::class:
 				return "keys, keys, keys";
@@ -29,7 +29,7 @@ class Witch extends Npc {
 				return "shrooms for eggs";
 		}
 
-		switch ($this->item) {
+		switch ($this->item->getTarget()) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
 				return "fungus for slasher";

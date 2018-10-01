@@ -14,6 +14,16 @@ return [
 			'insane' => 'Wahnsinnig',
 		],
 	],
+	'difficulty_adjustments' => [
+		'title' => 'Schwierigkeitsgrad “Fixes”',
+		'options' => [
+			-1 => 'Einfach',
+			0 => 'Normal',
+			1 => 'Schwer',
+			2 => 'Experte',
+			3 => 'Wahnsinnig',
+		],
+	],
 	'goal' => [
 		'title' => 'Ziel',
 		'options' => [

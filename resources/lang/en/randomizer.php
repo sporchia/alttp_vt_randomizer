@@ -14,6 +14,16 @@ return [
 			'insane' => 'Insane',
 		],
 	],
+	'difficulty_adjustments' => [
+		'title' => 'Difficulty “Fixes”',
+		'options' => [
+			-1 => 'Easy',
+			0 => 'Normal',
+			1 => 'Hard',
+			2 => 'Expert',
+			3 => 'Insane',
+		],
+	],
 	'goal' => [
 		'title' => 'Goal',
 		'options' => [

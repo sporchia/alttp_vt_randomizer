@@ -17,7 +17,7 @@ class Zora extends Npc {
 	}
 
 	private function getItemCreditsText() {
-		switch (get_class($this->item)) {
+		switch (get_class($this->item->getTarget())) {
 			case Item\Key::class:
 			case Item\BigKey::class:
 				return "advancement for sale";
@@ -29,7 +29,7 @@ class Zora extends Npc {
 				return "Eggs for sale";
 		}
 
-		switch ($this->item) {
+		switch ($this->item->getTarget()) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
 				return "sword for sale";

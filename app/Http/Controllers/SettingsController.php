@@ -29,7 +29,7 @@ class SettingsController extends Controller {
 	}
 
 	public function customizer(Request $request) {
-		//return Cache::rememberForever('customizer_settings', function() {
+		return Cache::rememberForever('customizer_settings', function() {
 			$world = World::factory();
 			$items = Item::all();
 			$sprites = Sprite::all();
@@ -67,8 +67,11 @@ class SettingsController extends Controller {
 							'BigKey',
 							'Compass',
 							'Key',
+							'KeyGK',
 							'L2Sword',
 							'Map',
+							'MapLW',
+							'MapDW',
 							'multiRNG',
 							'PowerStar',
 							'singleRNG',
@@ -143,7 +146,7 @@ class SettingsController extends Controller {
 					})
 				)),
 			];
-		//});
+		});
 	}
 
 	public function rom(Request $request) {

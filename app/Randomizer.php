@@ -146,7 +146,7 @@ class Randomizer {
 			? array_fill(0, count($this->getItemPool()), Item::get('singleRNG'))
 			: $this->getItemPool();
 
-		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches']) && $this->difficulty !== 'custom') {
+		if (in_array($this->logic, ['MajorGlitches', 'OverworldGlitches', 'None']) && $this->difficulty !== 'custom') {
 			$this->starting_equipment->addItem(Item::get('PegasusBoots'));
 			foreach ($advancement_items as $key => $item) {
 				if ($item == Item::get('PegasusBoots')) {
@@ -1190,6 +1190,10 @@ class Randomizer {
 					$hint = $this->world->getLocation($pick)->getHint();
 				}
 
+				if (!$hint) {
+					continue;
+				}
+
 				logger()->debug("$tile: $hint");
 				$rom->setText($tile, $hint);
 			}
@@ -1199,6 +1203,7 @@ class Randomizer {
 					&& !$item instanceof Item\Key
 					&& !$item instanceof Item\Map
 					&& !$item instanceof Item\Compass
+					&& (!$this->world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey)
 					&& !$item instanceof Item\Bottle
 					&& !$item instanceof Item\Sword
 					&& !in_array($item->getName(), ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
@@ -1235,7 +1240,7 @@ class Randomizer {
 					&& !$item instanceof Item\Key
 					&& !$item instanceof Item\Map
 					&& !$item instanceof Item\Compass
-					&& ($this->variation != 'key-sanity' || !$item instanceof Item\BigKey);
+					&& (!$this->world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey);
 			});
 			$hint_locations = $locations_with_item->randomCollection(get_random_int(floor((count($tiles) - count($hints)) / 2), count($tiles) - count($hints)))->merge($hints);
 

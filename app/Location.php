@@ -180,7 +180,7 @@ class Location {
 			return null;
 		}
 
-		$item_name = __('hint.item.' . $this->item->getName());
+		$item_name = __('hint.item.' . $this->item->getTarget()->getName());
 
 		if (is_array($item_name)) {
 			$item_name = array_first(fy_shuffle($item_name));

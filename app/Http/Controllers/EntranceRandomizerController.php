@@ -63,6 +63,7 @@ class EntranceRandomizerController extends Controller {
 			$patch = $rom->getWriteLog();
 			$spoiler = $rand->getSpoiler($spoiler_meta);
 			$hash = ($save) ? $rand->saveSeedRecord() : $spoiler['meta']['seed'];
+			$rom->setSeedString(str_pad(sprintf("ER %s", $hash), 21, ' '));
 		} catch (Exception $e) {
 			report($e);
 			return response('Failed', 409);

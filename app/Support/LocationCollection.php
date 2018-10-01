@@ -60,7 +60,7 @@ class LocationCollection extends Collection {
 	 */
 	public function getHint() {
 		$items = $this->getItems()->map(function($item) {
-			$item_name = __('hint.item.' . $item->getName());
+			$item_name = __('hint.item.' . $item->getTarget()->getName());
 
 			return (is_array($item_name)) ? array_first(fy_shuffle($item_name)) : $item_name;
 		});

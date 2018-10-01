@@ -17,7 +17,7 @@ class Bombos extends Location {
 	}
 
 	private function getItemText() {
-		switch ($this->item) {
+		switch ($this->item->getTarget()) {
 			case Item::get('BigKeyA2'):
 				return "The big key\nof evil's bane";
 			case Item::get('BigKeyD7'):
@@ -74,7 +74,7 @@ class Bombos extends Location {
 				return "The key to\nthe castle";
 		}
 
-		switch (get_class($this->item)) {
+		switch (get_class($this->item->getTarget())) {
 			case Item\Key::class:
 				return "The small key\nto the Kingdom";
 			case Item\BigKey::class:
@@ -87,7 +87,7 @@ class Bombos extends Location {
 				return "Egg-cited\nfor this";
 		}
 
-		switch ($this->item) {
+		switch ($this->item->getTarget()) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
 				return "A pathetic\nsword rests\nhere!";

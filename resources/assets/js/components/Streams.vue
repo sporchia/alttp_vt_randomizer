@@ -59,6 +59,8 @@ export default {
 					});
 				});
 				this.streams = streams;
+			}).catch((error) => {
+				this.streams = [];
 			});
 		},
 	},

@@ -17,7 +17,7 @@ class BugCatchingKid extends Npc {
 	}
 
 	private function getItemCreditsText() {
-		switch (get_class($this->item)) {
+		switch (get_class($this->item->getTarget())) {
 			case Item\Key::class:
 			case Item\BigKey::class:
 				return "the key-holding kid";
@@ -29,7 +29,7 @@ class BugCatchingKid extends Npc {
 				return "the decorating kid";
 		}
 
-		switch ($this->item) {
+		switch ($this->item->getTarget()) {
 			case Item::get('ProgressiveSword'):
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):

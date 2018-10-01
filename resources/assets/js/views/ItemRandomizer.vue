@@ -50,7 +50,7 @@
 							:rom="rom" :selected="choice.variation">{{ $t('randomizer.variation.title') }}</vt-select>
 					</div>
 				</div>
-				<div v-if="enemizerAllowed && !enemizerEnabled"  class="row">
+				<div v-if="!enemizerEnabled"  class="row">
 					<div class="col-md mb-3">
 					</div>
 					<div class="col-md mb-3">
@@ -63,7 +63,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md">
-						<vt-enemizer v-if="enemizerAllowed && enemizerEnabled" v-model="enemizerSettings" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
+						<vt-enemizer v-if="enemizerEnabled" v-model="enemizerSettings" :restrictedSettings="enemizerRestricted" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
 					</div>
 				</div>
 			</div>
@@ -102,12 +102,12 @@
 					<div class="col-md mb-3">
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<div class="btn-group btn-flex" role="group">
+								<div class="btn-group btn-flex" role="group" v-if="this.rom">
 									<button class="btn btn-light border-secondary text-center" @click="saveSpoiler">{{ $t('randomizer.details.save_spoiler') }}</button>
 								</div>
 							</div>
 							<div class="col-md-6 mb-3">
-								<div class="btn-group btn-flex" role="group">
+								<div class="btn-group btn-flex" role="group" v-if="this.rom">
 									<button class="btn btn-success text-center" @click="saveRom">{{ $t('randomizer.details.save_rom') }}</button>
 								</div>
 							</div>
@@ -227,7 +227,7 @@ export default {
 					weapons: this.choice.weapons.value,
 					tournament: this.choice.tournament,
 					spoilers: this.choice.spoilers,
-					enemizer: (this.enemizerEnabled && this.enemizerAllowed) ? this.enemizerSettings : false,
+					enemizer: this.enemizerEnabled ? this.enemizerSettings : false,
 					lang: document.documentElement.lang,
 				}).then(response => {
 					this.rom.parsePatch(response.data).then(function() {
@@ -273,7 +273,7 @@ export default {
 		}
 	},
 	computed: {
-		enemizerAllowed() {
+		enemizerRestricted() {
 			return this.choice.state.value !== 'standard';
 		},
 	},

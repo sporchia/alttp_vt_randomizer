@@ -75,7 +75,7 @@ class Uncle extends Location {
 	}
 
 	private function getItemCreditsText() {
-		switch (get_class($this->item)) {
+		switch (get_class($this->item->getTarget())) {
 			case Item\Key::class:
 			case Item\BigKey::class:
 				return "your uncle picks locks";
@@ -87,7 +87,7 @@ class Uncle extends Location {
 				return "your uncle likes coloring";
 		}
 
-		switch ($this->item) {
+		switch ($this->item->getTarget()) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
 			case Item::get('L2Sword'):

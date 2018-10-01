@@ -75,9 +75,9 @@
 								<vt-text v-model="choice.name" placeholder="name this" maxlength="100" storage-key="vt.custom.name">Name</vt-text>
 							</div>
 							<div class="col-md mb-3">
-								<vt-select v-model="choice.difficulty" id="difficulty" :options="difficulties" storage-key="vt.custom.HardMode"
+								<vt-select v-model="choice.difficulty" id="difficulty" :options="difficulty_adjustments" storage-key="vt.custom.HardMode"
 									:rom="rom" :selected="choice.difficulty">
-									Difficulty "fixes"
+									{{ $t('randomizer.difficulty_adjustments.title') }}
 								<template slot="tooltip">Will adjust drop rates, and item costs in shops.</template>
 							</vt-select>
 							</div>
@@ -208,7 +208,7 @@ export default {
 			endpoint: '/seed',
 			choice: {
 				state: {value: 'standard', name: this.$i18n.t('randomizer.mode.options.standard')},
-				difficulty: {value: 0, name: this.$i18n.t('randomizer.difficulty.options.normal')},
+				difficulty: {value: 0, name: this.$i18n.t('randomizer.difficulty_adjustments.options.0')},
 				goal: {value: 'ganon', name: this.$i18n.t('randomizer.goal.options.ganon')},
 				weapons: {value: 'uncle', name: this.$i18n.t('randomizer.weapons.options.uncle')},
 				logic: {value: 'NoGlitches', name: this.$i18n.t('randomizer.logic.options.NoGlitches')},
@@ -222,7 +222,6 @@ export default {
 				logics: [],
 				weapons: [],
 				goals: [],
-				difficulties: [],
 				variations: [],
 			},
 			equipment: [],
@@ -439,9 +438,9 @@ export default {
 				return {value: key, name: this.$i18n.t('randomizer.goal.options.' + key)};
 			});
 		},
-		difficulties () {
-			return Object.keys(this.$store.state.randomizer_settings.difficulties).map(key => {
-				return {value: key, name: this.$i18n.t('randomizer.difficulty.options.' + key)};
+		difficulty_adjustments () {
+			return Object.keys(this.$store.state.randomizer_settings.difficulty_adjustments).map(key => {
+				return {value: key, name: this.$i18n.t('randomizer.difficulty_adjustments.options.' + key)};
 			});
 		},
 		variations () {

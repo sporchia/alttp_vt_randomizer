@@ -63,8 +63,17 @@ class ItemRandomizerController extends Controller {
 				'spoilers' => $spoilers,
 			],
 		];
-		if ($enemizer && $enemizer['bosses']) {
-			config(['alttp.boss_shuffle' => $enemizer['bosses']]);
+		if ($enemizer) {
+			foreach ($enemizer as $key => $value) {
+				if ($game_mode == 'standard' && in_array($key, ['enemy_health', 'enemy'])) {
+					unset($enemizer[$key]);
+					continue;
+				}
+				$spoiler_meta["enemizer_$key"] = $value;
+			}
+			if ($enemizer['bosses']) {
+				config(['alttp.boss_shuffle' => $enemizer['bosses']]);
+			}
 		}
 
 		if ($difficulty == 'custom') {

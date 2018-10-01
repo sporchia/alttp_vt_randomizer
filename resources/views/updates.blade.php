@@ -34,6 +34,14 @@
 			<img src="https://s3.us-east-2.amazonaws.com/alttpr/sprites.30.lg.png"
 				alt="Link sprite options" style="width:50%" /></li>
 	</ul>
+	<div class="card border-info mt-4">
+		<div class="card-header bg-info text-white">View updates</div>
+		<div class="card-body">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vdqTpCH1sCM?rel=0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
 </div>
 
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>

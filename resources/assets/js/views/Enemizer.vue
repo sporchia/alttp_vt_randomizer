@@ -12,9 +12,9 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md mb-3">
-						<vt-select :value="value.enemy_health" @input="value.enemy_health = $event.value"
-							id="enemizer-enemy_health" :options="settings.enemy_healths" storage-key="en.enemy_health"
-							:rom="rom" :selected="defaults.enemy_health">{{ $t('enemizer.enemy_health.title') }}</vt-select>
+						<vt-select :value="value.bosses" @input="value.bosses = $event.value"
+							id="enemizer-boss" :options="settings.bosses" storage-key="en.boss"
+							:rom="rom" :selected="defaults.boss">{{ $t('enemizer.bosses.title') }}</vt-select>
 					</div>
 					<div class="col-md mb-3">
 						<vt-select :value="value.enemy_damage" @input="value.enemy_damage = $event.value"
@@ -24,23 +24,23 @@
 				</div>
 				<div class="row">
 					<div class="col-md mb-3">
-						<vt-select :value="value.bosses" @input="value.bosses = $event.value"
-							id="enemizer-boss" :options="settings.bosses" storage-key="en.boss"
-							:rom="rom" :selected="defaults.boss">{{ $t('enemizer.bosses.title') }}</vt-select>
-					</div>
-					<div class="col-md mb-3">
 						<vt-toggle v-model="value.pot_shuffle" id="enemizer-pot_shuffle" :selected="defaults.pot_shuffle"
 							storage-key="en.pot_shuffle" :rom="rom">{{ $t('enemizer.pot_shuffle') }}</vt-toggle>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md mb-3">
-						<vt-toggle v-model="value.enemy" id="enemizer-enemy" :selected="defaults.enemy" storage-key="en.enemy"
-							:rom="rom">{{ $t('enemizer.enemy_shuffle') }}</vt-toggle>
 					</div>
 					<div class="col-md mb-3">
 						<vt-toggle v-model="value.palette_shuffle" id="enemizer-palette_shuffle" :selected="defaults.palette_shuffle"
 							storage-key="en.palette_shuffle" :rom="rom">{{ $t('enemizer.palette_shuffle') }}</vt-toggle>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md mb-3">
+						<vt-select v-if="restrictedSettings" :value="value.enemy_health" @input="value.enemy_health = $event.value"
+							id="enemizer-enemy_health" :options="settings.enemy_healths" storage-key="en.enemy_health"
+							:rom="rom" :selected="defaults.enemy_health">{{ $t('enemizer.enemy_health.title') }}</vt-select>
+					</div>
+					<div class="col-md mb-3">
+						<vt-toggle v-if="restrictedSettings" v-model="value.enemy" id="enemizer-enemy" :selected="defaults.enemy" storage-key="en.enemy"
+							:rom="rom">{{ $t('enemizer.enemy_shuffle') }}</vt-toggle>
 					</div>
 				</div>
 			</div>
@@ -54,6 +54,7 @@ export default {
 		'version',
 		'rom',
 		'value',
+		'restrictedSettings',
 	],
 	data() {
 		return {
