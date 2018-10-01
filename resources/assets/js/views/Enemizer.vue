@@ -17,15 +17,15 @@
 							:rom="rom" :selected="defaults.boss">{{ $t('enemizer.bosses.title') }}</vt-select>
 					</div>
 					<div class="col-md mb-3">
-						<vt-select :value="value.enemy_damage" @input="value.enemy_damage = $event.value"
-							id="enemizer-enemy_damage" :options="settings.enemy_damages" storage-key="en.enemy_damage"
-							:rom="rom" :selected="defaults.enemy_damage">{{ $t('enemizer.enemy_damage.title') }}</vt-select>
+						<vt-toggle v-model="value.pot_shuffle" id="enemizer-pot_shuffle" :selected="defaults.pot_shuffle"
+							storage-key="en.pot_shuffle" :rom="rom">{{ $t('enemizer.pot_shuffle') }}</vt-toggle>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md mb-3">
-						<vt-toggle v-model="value.pot_shuffle" id="enemizer-pot_shuffle" :selected="defaults.pot_shuffle"
-							storage-key="en.pot_shuffle" :rom="rom">{{ $t('enemizer.pot_shuffle') }}</vt-toggle>
+						<vt-select :value="value.enemy_damage" @input="value.enemy_damage = $event.value"
+							id="enemizer-enemy_damage" :options="settings.enemy_damages" storage-key="en.enemy_damage"
+							:rom="rom" :selected="defaults.enemy_damage">{{ $t('enemizer.enemy_damage.title') }}</vt-select>
 					</div>
 					<div class="col-md mb-3">
 						<vt-toggle v-model="value.palette_shuffle" id="enemizer-palette_shuffle" :selected="defaults.palette_shuffle"
