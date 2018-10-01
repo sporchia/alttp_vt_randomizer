@@ -10,7 +10,7 @@ use TestCase;
 class EastTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'OverworldGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {

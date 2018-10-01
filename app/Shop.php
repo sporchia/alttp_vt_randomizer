@@ -2,6 +2,7 @@
 
 use ALttP\Rom;
 use ALttP\Support\ShopCollection;
+use ALttP\Support\LocationCollection;
 
 /**
  * Shop related features.
@@ -14,6 +15,7 @@ class Shop {
 	protected $room_id;
 	protected $door_id;
 	protected $region;
+	protected $requirement_callback;
 	protected $writes = [];
 	protected $active = false;
 	protected $inventory = [];
@@ -127,6 +129,60 @@ class Shop {
 		return $this->inventory;
 	}
 
+	public function getLocations() : LocationCollection {
+		$locations = [];
+		foreach($this->inventory as $slot => $record) {
+			$location = (new Location("$this->name - $slot", []))->setItem($record['item'])->setRegion($this->region);
+			if ($this->requirement_callback) {
+				$location->setRequirements($this->requirement_callback);
+			}
+			$locations[] = $location;
+
+			if ($record['replacement_item']) {
+				$location = (new Location("$this->name - $slot.2", []))->setItem($record['replacement_item'])->setRegion($this->region);
+				if ($this->requirement_callback) {
+					$location->setRequirements($this->requirement_callback);
+				}
+				$locations[] = $location;
+			}
+		}
+		return new LocationCollection($locations);
+	}
+
+	/**
+	 * Determine if Link can access this location given his Items collected. Starts by checking if access to the Region
+	 * is granted, then checks the spcific location.
+	 *
+	 * @param ItemCollection $items Items Link can collect
+	 *
+	 * @return bool
+	 */
+	public function canAccess($items, $locations = null) {
+		if (!$this->region->canEnter($locations ?? $this->region->getWorld()->getLocations(), $items)) {
+			return false;
+		}
+
+		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $locations ?? $this->region->getWorld()->getLocations(), $items)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Set the requirements callback for this Lcation, closure should take 2 arguments, $locations and $items and
+	 * return boolean.
+	 *
+	 * @param Callable $callback function to be called when checking if Location can have Item
+	 *
+	 * @return $this
+	 */
+	public function setRequirements(Callable $callback) {
+		$this->requirement_callback = $callback;
+
+		return $this;
+	}
+
 	/**
 	 * Get the Region of this Location.
 	 *
@@ -134,6 +190,14 @@ class Shop {
 	 */
 	public function getRegion() {
 		return $this->region;
+	}
+
+	public function copy() {
+		$copy = new static($this->name, $this->config, $this->shopkeeper, $this->room_id, $this->door_id, $this->region, $this->writes);
+		$copy->inventory = $this->inventory;
+		$copy->requirement_callback = $this->requirement_callback;
+
+		return $copy;
 	}
 
 	/**

@@ -10,7 +10,7 @@ use TestCase;
 class LightWorldTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'MajorGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'MajorGlitches');
 	}
 
 	public function tearDown() {

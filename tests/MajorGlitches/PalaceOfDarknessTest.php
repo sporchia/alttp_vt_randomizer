@@ -10,7 +10,7 @@ use TestCase;
 class PalaceOfDarknessTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'MajorGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'MajorGlitches');
 	}
 
 	public function tearDown() {
@@ -66,7 +66,7 @@ class PalaceOfDarknessTest extends TestCase {
 
 			["Palace of Darkness - Shooter Room", true, 'BigKeyD1', [], ['BigKeyD1']],
 
-			["Palace of Darkness - Helmasaur King", false, 'BigKeyD1', [], ['BigKeyD1']],
+			["Palace of Darkness - Boss", false, 'BigKeyD1', [], ['BigKeyD1']],
 		];
 	}
 
@@ -212,15 +212,15 @@ class PalaceOfDarknessTest extends TestCase {
 			["Palace of Darkness - Shooter Room", true, ['MoonPearl', 'Flippers', 'TitansMitt']],
 			["Palace of Darkness - Shooter Room", true, ['MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove']],
 
-			["Palace of Darkness - Helmasaur King", false, []],
-			["Palace of Darkness - Helmasaur King", false, [], ['Lamp']],
-			["Palace of Darkness - Helmasaur King", false, [], ['Hammer']],
-			["Palace of Darkness - Helmasaur King", false, [], ['AnyBow']],
-			["Palace of Darkness - Helmasaur King", false, [], ['BigKeyD1']],
-			["Palace of Darkness - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'DefeatAgahnim']],
-			["Palace of Darkness - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'PowerGlove']],
-			["Palace of Darkness - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'TitansMitt']],
-			["Palace of Darkness - Helmasaur King", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'ProgressiveGlove']],
+			["Palace of Darkness - Boss", false, []],
+			["Palace of Darkness - Boss", false, [], ['Lamp']],
+			["Palace of Darkness - Boss", false, [], ['Hammer']],
+			["Palace of Darkness - Boss", false, [], ['AnyBow']],
+			["Palace of Darkness - Boss", false, [], ['BigKeyD1']],
+			["Palace of Darkness - Boss", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'DefeatAgahnim']],
+			["Palace of Darkness - Boss", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'PowerGlove']],
+			["Palace of Darkness - Boss", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'TitansMitt']],
+			["Palace of Darkness - Boss", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'BigKeyD1', 'MoonPearl', 'Lamp', 'Hammer', 'Bow', 'ProgressiveGlove']],
 		];
 	}
 }

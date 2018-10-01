@@ -5,26 +5,24 @@
 <div class="btn-wrapper">
 <div class="btn-cta"><a
 	class="btn btn-primary btn-lg"
-	href="/start"
-	role="button">Start Playing</a></div>
+	href="/{{ app()->getLocale() }}/start"
+	role="button">{{ __('navigation.start_playing') }}</a></div>
 <div class="btn-cta"><a
 	class="btn btn-outline-secondary btn-lg"
-	href="/watch"
+	href="/{{ app()->getLocale() }}/watch"
 	role="button"
-	style="margin-left:20px;">Start Watching</a></div>
+	style="margin-left:20px;">{{ __('navigation.start_watching') }}</a></div>
 </div>
-<div class="well" style="font-size:22px;margin-top:40px;">
-	<p><span style="font-weight:bold;">ALttP: Randomizer</span> is a new take on the classic game The Legend of Zelda: A Link to the Past.
-		Each playthrough shuffles the location of all the important items in
-		the game. Will you find the Bow atop Death Mountain, the Fire Rod resting silently in the
-		library, or even the Master Sword itself waiting in a chicken coop?</p>
-	<p>Challenge your friends to get the fastest time on a particular shuffle or take part in the
-		<a href="/races">weekly speedrun competition</a>. Hone your skills enough and maybe you'll
-		take home the crown in our <a href="/races">twice-yearly invitational tournament</a>. See you
-		in Hyrule!</p>
+<div class="card card-body bg-light" style="font-size:22px;margin-top:40px;">
+	@foreach (__('about.content') as $block)
+		<p>{!! $block !!}</p>
+	@endforeach
 </div>
-<div class="well" style="text-align:center;">
-	<iframe
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
+<div class="card card-body bg-light">
+	<iframe class="mx-auto"
 		allow="encrypted-media"
 		allowfullscreen
 		frameborder="0"

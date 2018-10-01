@@ -1,86 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>ALttP VT Randomizer</title>
-	<meta name="keywords" content="ALttP, Randomizer, patcher">
-	<meta name="description" content="ALttP Web VT Randomizer">
-	<meta charset="utf-8" />
+@extends('layouts.base')
 
-	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-	<script src="{{ mix('js/app.js') }}"></script>
-</head>
-<body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/"><img src="/i/logo.png" title="ALttP VT Randomizer" alt="ALttP Randomizer logo" /></a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-left">
-					<li{!! (request()->path() == 'start') ? ' class="active"' : '' !!}><a href="/start">Start Playing</a></li>
-					<li{!! (request()->path() == 'watch') ? ' class="active"' : '' !!}><a href="/watch">Start Watching</a></li>
-					<li class="dropdown{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer', 'daily', 'customizer'])) ? ' active' : '' !!}">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generate Game <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' class="active"' : '' !!}><a href="/randomizer">Generate Randomized Game</a></li>
-							<li{!! (in_array(request()->path(), ['daily'])) ? ' class="active"' : '' !!}><a href="/daily">Daily Challenge</a></li>
-							<li{!! (in_array(request()->path(), ['customizer'])) ? ' class="active"' : '' !!}><a href="/customizer">Create Customized Game</a></li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li{!! (request()->path() == 'resources') ? ' class="active"' : '' !!}><a href="/resources">Resources</a></li>
-							<li{!! (request()->path() == 'options') ? ' class="active"' : '' !!}><a href="/options">Game Options</a></li>
-							<li{!! (request()->path() == 'races') ? ' class="active"' : '' !!}><a href="/races">Organized Play</a></li>
-							<li{!! (request()->path() == 'updates') ? ' class="active"' : '' !!}><a href="/updates">Updates</a></li>
-							<li{!! (request()->path() == 'game_entrance') ? ' class="active"' : '' !!}><a href="/game_entrance">Entrance Randomizer</a></li>
-							<li{!! (request()->path() == 'contribute') ? ' class="active"' : '' !!}><a href="/contribute">Contribute</a></li>
-							<li><a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Join us on Discord</a></li>
-							<li><a href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
-						</ul>
-					</li>
-					@if (Auth::check())
-					<li class="dropdown">
-					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-					  <ul class="dropdown-menu">
-						<li><a href="/auth/logout">Logout</a></li>
-					  </ul>
-					</li>
-					@else
-					<!-- <li{!! (request()->path() == 'about') ? ' class="active"' : '' !!}><a href="/auth/login">Login</a></li> -->
-					@endif
-				</ul>
-			</div>
+@section('window')
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+		<a class="navbar-brand" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/"><img src="/i/logo.png" title="ALttP VT Randomizer" alt="ALttP Randomizer logo" /></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item{!! (request()->path() == 'start') ? ' active' : '' !!}"><a class="nav-link" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/start">{{ __('navigation.start_playing') }}</a></li>
+				<li class="nav-item{!! (request()->path() == 'watch') ? ' active' : '' !!}"><a class="nav-link" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/watch">{{ __('navigation.start_watching') }}</a></li>
+				<li class="nav-item dropdown{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer', 'daily', 'customizer'])) ? ' active' : '' !!}">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('navigation.generate') }}<span class="caret"></span></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer'])) ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/randomizer">{{ __('navigation.randomizer') }}</a>
+						<a class="dropdown-item{!! (in_array(request()->path(), ['daily'])) ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/daily">{{ __('navigation.daily') }}</a>
+						<a class="dropdown-item{!! (in_array(request()->path(), ['customizer'])) ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/customizer">{{ __('navigation.customizer') }}</a>
+					</div>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<Streams></Streams>
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{!! __('navigation.language') !!} <span class="caret"></span></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ preg_replace('/^\/?'.app()->getLocale().'/', '/en', request()->path()) }}"><span class="flag-icon flag-icon-us"></span> English</a>
+						<a class="dropdown-item" href="{{ preg_replace('/^\/?'.app()->getLocale().'/', '/fr', request()->path()) }}"><span class="flag-icon flag-icon-fr"></span> Français</a>
+						<a class="dropdown-item" href="{{ preg_replace('/^\/?'.app()->getLocale().'/', '/de', request()->path()) }}"><span class="flag-icon flag-icon-de"></span> Deutsch</a>
+						<a class="dropdown-item" href="{{ preg_replace('/^\/?'.app()->getLocale().'/', '/es', request()->path()) }}"><span class="flag-icon flag-icon-es"></span> Español</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('navigation.help') }} <span class="caret"></span></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item{!! (request()->path() == 'resources') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/resources">{{ __('navigation.resources') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'options') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/options">{{ __('navigation.options') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'races') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/races">{{ __('navigation.races') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'updates') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/updates">{{ __('navigation.updates') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'game_entrance') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/game_entrance">{{ __('navigation.game_entrance') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'game_enemizer') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/game_enemizer">{{ __('navigation.game_enemizer') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'contribute') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/contribute">{{ __('navigation.contribute') }}</a>
+						<a class="dropdown-item" href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">{{ __('navigation.discord') }}</a>
+						<a class="dropdown-item" href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank" rel="noopener noreferrer">{{ __('navigation.report_issue') }}</a>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</nav>
 	<div class="clearfix" style="padding-top:70px"></div>
 	<div class="container">
 	@yield('content')
 	</div>
-	<script>
-@if (App::environment() == 'production')
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-		ga('create', '{{ env('GA_CODE') }}', 'auto');
-		ga('send', 'pageview');
-@else
-		ga = function() {
-			console.log(arguments);
-		};
-@endif
-	</script>
-</body>
-</html>
+@overwrite

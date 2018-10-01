@@ -10,6 +10,7 @@ use ArrayIterator;
 class ItemCollection extends Collection {
 	protected $item_counts = [];
 	protected $world;
+	private $string_rep = null;
 
 	/**
 	 * Create a new collection.
@@ -37,12 +38,14 @@ class ItemCollection extends Collection {
 	 * @return $this
 	 */
 	public function addItem(Item $item) {
-		$this->offsetSet($item->getName(), $item);
-		if (!isset($this->item_counts[$item->getName()])) {
-			$this->item_counts[$item->getName()] = 0;
+		$item_name = $item->getName();
+		$this->offsetSet($item_name, $item);
+		if (!isset($this->item_counts[$item_name])) {
+			$this->item_counts[$item_name] = 0;
 		}
 
-		$this->item_counts[$item->getName()]++;
+		$this->item_counts[$item_name]++;
+		$this->string_rep = null;
 
 		return $this;
 	}
@@ -56,6 +59,7 @@ class ItemCollection extends Collection {
 		if (!isset($this->item_counts[$name])) {
 			return $this;
 		}
+
 		$this->item_counts[$name]--;
 		if ($this->item_counts[$name] === 0) {
 			$this->offsetUnset($name);
@@ -196,6 +200,18 @@ class ItemCollection extends Collection {
 	}
 
 	/**
+	 * Reduce the collection to a single value.
+	 *
+	 * @param callable $callback
+	 * @param mixed $initial
+	 *
+	 * @return mixed
+	 */
+	public function reduce(callable $callback, $initial = null) {
+		return array_reduce($this->values(), $callback, $initial);
+	}
+
+	/**
 	 * Run a map over each of the items.
 	 *
 	 * @param callable $callback
@@ -215,10 +231,21 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function has($key, $at_least = 1) {
-		if ($key != 'KeyH2' && strpos($key, 'Key') === 0 && $this->world->config('rom.genericKeys', false)) {
+		if ($at_least === 0) {
 			return true;
 		}
-		return $this->offsetExists($key) && $this->item_counts[$key] >= $at_least;
+
+		if ($at_least == null) {
+			return false;
+		}
+
+		// @TODO: this check is expensive, as this function is called A LOT, can we reduce it somehow?
+		if ($this->world->config('rom.genericKeys', false) && ($this->item_counts['ShopKey'] ?? false)
+			&& strpos($key, 'Key') === 0) {
+			return true;
+		}
+
+		return ($this->item_counts[$key] ?? 0) >= $at_least;
 	}
 
 	/**
@@ -368,6 +395,10 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canFly() {
+		if ($this->world instanceof World\Inverted
+			&& !($this->has('MoonPearl') && $this->world->getRegion('North West Light World')->canEnter([], $this))) {
+			return false;
+		}
 		return $this->has('OcarinaActive') || $this->has('OcarinaInactive');
 	}
 
@@ -396,7 +427,8 @@ class ItemCollection extends Collection {
 						&& ($this->has('Bow') || $this->has('BowAndArrows')));
 			case 1:
 			default:
-				return $this->has('Bow')
+				return ($this->has('Bow')
+						&& (!$this->world->config('rom.rupeeBow', false) || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
 					|| $this->has('BowAndArrows')
 					|| $this->has('BowAndSilverArrows');
 		}
@@ -440,15 +472,23 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canKillMostThings($enemies = 5) {
-		return ($this->hasSword()
-				&& (in_array($this->world->config('mode.weapons'), ['uncle', 'swordless'])
-					|| !($this->world->getCurrentlyFillingItems()->count() && $this->world->getCurrentlyFillingItems()->hasSword())))
+		return $this->has('UncleSword')
+			|| (!$this->world->getCurrentlyFillingItems()->count() && $this->hasSword())
 			|| $this->has('CaneOfSomaria')
 			|| ($this->has('TenBombs') && $enemies < 6)
 			|| ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
 			|| $this->canShootArrows()
 			|| $this->has('Hammer')
 			|| $this->has('FireRod');
+	}
+
+	/**
+	 * Requirements for bombing things
+	 *
+	 * @return bool
+	 */
+	public function canBombThings() {
+		return true;
 	}
 
 	/**
@@ -464,7 +504,7 @@ class ItemCollection extends Collection {
 	}
 
 	/**
-	 * Requirements for having a sword
+	 * Requirements for having a sword, we treat the special UncleSword like a progressive sword.
 	 *
 	 * @param int $min_level minimum level of sword
 	 *
@@ -474,13 +514,16 @@ class ItemCollection extends Collection {
 		switch ($min_level) {
 			case 4:
 				return $this->has('ProgressiveSword', 4)
+					|| $this->has('UncleSword') && $this->has('ProgressiveSword', 3)
 					|| $this->has('L4Sword');
 			case 3:
 				return $this->has('ProgressiveSword', 3)
+					|| $this->has('UncleSword') && $this->has('ProgressiveSword', 2)
 					|| $this->has('L3Sword')
 					|| $this->has('L4Sword');
 			case 2:
 				return $this->has('ProgressiveSword', 2)
+					|| $this->has('UncleSword') && $this->has('ProgressiveSword')
 					|| $this->has('L2Sword')
 					|| $this->has('MasterSword')
 					|| $this->has('L3Sword')
@@ -488,6 +531,7 @@ class ItemCollection extends Collection {
 			case 1:
 			default:
 				return $this->has('ProgressiveSword')
+					|| $this->has('UncleSword')
 					|| $this->has('L1Sword')
 					|| $this->has('L1SwordAndShield')
 					|| $this->has('L2Sword')
@@ -534,5 +578,15 @@ class ItemCollection extends Collection {
 			|| $this->has('BottleWithBluePotion')
 			|| $this->has('Bottle')
 			|| $this->has('BottleWithGoldBee');
+	}
+
+	public function __toString() {
+		if ($this->string_rep === null) {
+			$this->string_rep = $this->reduce(function($carry, $item) {
+				return $carry . $item->getName();
+			}, '');
+		}
+
+		return $this->string_rep;
 	}
 }

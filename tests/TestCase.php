@@ -21,6 +21,14 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
 		$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
+		//$app->singleton('translator', function ($app) {
+		//	return new class {
+		//		public function getFromJson($name) {
+		//			return $name;
+		//		}
+		//	};
+		//});
+
 		return $app;
 	}
 
@@ -63,7 +71,9 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase {
 					$items->offsetUnset('L1Sword');
 					$items->offsetUnset('L1SwordAndShield');
 					$items->offsetUnset('ProgressiveSword');
+					$items->offsetUnset('UncleSword');
 				case 'UpgradedSword':
+					$items->offsetUnset('UncleSword');
 					$items->offsetUnset('L2Sword');
 					$items->offsetUnset('MasterSword');
 					$items->offsetUnset('L3Sword');

@@ -10,7 +10,7 @@ use TestCase;
 class DesertPalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'OverworldGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {
@@ -72,8 +72,8 @@ class DesertPalaceTest extends TestCase {
 
 			["Desert Palace - Big Chest", false, 'BigKeyP2', [], ['BigKeyP2']],
 
-			["Desert Palace - Lanmolas'", false, 'BigKeyP2', [], ['BigKeyP2']],
-			["Desert Palace - Lanmolas'", false, 'KeyP2', [], ['KeyP2']],
+			["Desert Palace - Boss", false, 'BigKeyP2', [], ['BigKeyP2']],
+			["Desert Palace - Boss", false, 'KeyP2', [], ['KeyP2']],
 		];
 	}
 
@@ -126,20 +126,20 @@ class DesertPalaceTest extends TestCase {
 			["Desert Palace - Big Key Chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove', 'KeyP2']],
 			["Desert Palace - Big Key Chest", true, ['Flute', 'MagicMirror', 'TitansMitt', 'KeyP2']],
 
-			["Desert Palace - Lanmolas'", false, []],
-			["Desert Palace - Lanmolas'", false, [], ['KeyP2']],
-			["Desert Palace - Lanmolas'", false, [], ['BigKeyP2']],
-			["Desert Palace - Lanmolas'", false, [], ['Lamp', 'FireRod']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
-			["Desert Palace - Lanmolas'", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Boss", false, []],
+			["Desert Palace - Boss", false, [], ['KeyP2']],
+			["Desert Palace - Boss", false, [], ['BigKeyP2']],
+			["Desert Palace - Boss", false, [], ['Lamp', 'FireRod']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'Lamp', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'Lamp', 'PowerGlove', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'FireRod', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'FireRod', 'PowerGlove', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'BookOfMudora', 'FireRod', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'Lamp', 'TitansMitt', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'ProgressiveGlove', 'ProgressiveGlove', 'BigKeyP2']],
+			["Desert Palace - Boss", true, ['L1Sword', 'KeyP2', 'Flute', 'MagicMirror', 'FireRod', 'TitansMitt', 'BigKeyP2']],
 		];
 	}
 }

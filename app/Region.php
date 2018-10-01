@@ -77,6 +77,27 @@ class Region {
 	}
 
 	/**
+	 * Check if a Boss can be placed in this region.
+	 * currently Agahnim or Ganon can't be moved.
+	 *
+	 * @param Boss $boss boss we are testing
+	 *
+	 * @return bool
+	 */
+	public function canPlaceBoss(Boss $boss) : bool {
+		if ($this->name != "Ice Palace" && $this->world->config('mode.weapons') == 'swordless'
+			&& $boss->getName() == 'Kholdstare') {
+			return false;
+		}
+
+		return !in_array($boss->getName(), [
+			"Agahnim",
+			"Agahnim2",
+			"Ganon",
+		]);
+	}
+
+	/**
 	 * Get the map reveal word for this region
 	 *
 	 * @return int
@@ -156,7 +177,7 @@ class Region {
 	 *
 	 * @return $this
 	 */
-	public function init(string $type = 'NoMajorGlitches') {
+	public function init(string $type = 'NoGlitches') {
 		return call_user_func([$this, 'init' . $type]);
 	}
 
@@ -170,11 +191,11 @@ class Region {
 	}
 
 	/**
-	 * Initalize the No Major Glitches logic for the Region
+	 * Initalize the No Glitches logic for the Region
 	 *
 	 * @return $this
 	 */
-	public function initNoMajorGlitches() {
+	public function initNoGlitches() {
 		return $this;
 	}
 
@@ -193,7 +214,7 @@ class Region {
 	 * @return $this
 	 */
 	public function initOverworldGlitches() {
-		return $this->initNoMajorGlitches();
+		return $this->initNoGlitches();
 	}
 
 
@@ -237,7 +258,7 @@ class Region {
 	public function canFill(Item $item) : bool {
 		if (((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
 			|| (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
-			|| ($item == Item::get('KeyH2') && !in_array(config('game-mode'), ['open'])) // Sewers Key cannot leave
+			|| ($item == Item::get('KeyH2') && $this->world->config('mode.state') != 'open') // Sewers Key cannot leave
 			|| (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
 			|| (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass))
 			&& !in_array($item, $this->region_items)) {

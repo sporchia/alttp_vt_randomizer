@@ -6,18 +6,21 @@
 @import 'variables';
 
 @import 'sprites';
-@import 'loader';
 
-@import "equipment";
+@import 'bootstrap4fixes';
 
 // Bootstrap
-@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
-@import 'node_modules/bootstrap-toggle/css/bootstrap-toggle';
-@import 'node_modules/bootstrap-select/sass/bootstrap-select';
-@import 'navbar-fixed-side';
-@import 'node_modules/select2/dist/css/select2';
-@import 'node_modules/select2-bootstrap-theme/dist/select2-bootstrap';
-@import 'node_modules/bootstrap-slider/dist/css/bootstrap-slider';
+@import '~bootstrap/scss/bootstrap';
+@import '~vue-multiselect/dist/vue-multiselect.min';
+@import 'vue-multiselect';
+@import 'v-tooltip';
+@import 'loading';
+@import '~flag-icon-css/sass/variables';
+@import "~flag-icon-css/sass/flag-icon-base";
+@include flag-icon(us);
+@include flag-icon(fr);
+@include flag-icon(de);
+@include flag-icon(es);
 
 body {
 	background-color: #EEEEEE;
@@ -27,16 +30,26 @@ h4, .h4, h5, .h5 {
   font-weight: bold;
 }
 
-.panel-heading-sticky {
+.nav-tabs-sticky {
 	position: sticky;
-	top: 58px;
-	z-index: 1100;
+	top: 53px;
+	z-index: 990;
 }
 
-.panel-sticky {
+.panel-heading-sticky, .card-heading-sticky {
+	position: sticky;
+	top: 93px;
+	z-index: 990;
+}
+
+.panel-sticky, .card-sticky {
 	position: sticky;
 	top: 0;
-	z-index: 1000;
+	z-index: 990;
+}
+
+.navbar {
+	padding: 0.1rem 2rem;
 }
 
 .navbar-brand {
@@ -52,6 +65,10 @@ h4, .h4, h5, .h5 {
 	border-color: #FF0000;
 	border-image: none;
 	color: #FFFFFF;
+}
+
+ins.adsbygoogle {
+	margin-top: 10px;
 }
 
 .btn-secondary:hover {
@@ -125,6 +142,14 @@ h4, .h4, h5, .h5 {
 	right: 0;
 	text-align: right;
 	top: 0;
+}
+
+.card-header {
+	padding: 0.5rem 1.25rem;
+}
+.card-title {
+	margin-top: 0.2rem;
+	margin-bottom: 0;
 }
 
 .cust-tooltip {
@@ -238,7 +263,7 @@ h4, .h4, h5, .h5 {
 	}
 }
 
-input[readonly].custom-placed {
+input[readonly].custom-placed, input[readonly].custom-drops-placed {
 	background-color:transparent;
 	border: 0;
 	font-size: 1em;
@@ -330,4 +355,43 @@ input[readonly].custom-placed {
 	background-color: #737373;
 	color: #FFFFFF;
 	cursor: auto;
+}
+
+// invert dropdown on right nav items
+.ml-auto .dropdown-menu {
+	left: auto !important;
+	right: 0px;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-33 {
+  width: 33.33% !important;
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.led-green {
+	display: inline-table;
+	width: 12px;
+	height: 12px;
+	background-color: #66FF00;
+	border-radius: 50%;
+	box-shadow: #000000 0 -1px 7px 1px, inset #55AA00 0 -1px 9px, #77DD00 0 2px 12px;
 }

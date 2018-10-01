@@ -9,6 +9,6 @@ class Patch extends Model {
 	];
 
 	public function seeds() {
-		return $this->belongsToMany(Seed::class);
+		return $this->hasMany(Seed::class);
 	}
 }

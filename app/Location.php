@@ -68,7 +68,8 @@ class Location {
 		$this->setItem($item);
 		$fillable = ($this->always_callback && call_user_func($this->always_callback, $item, $items))
 			|| ($this->region->canFill($item)
-				&& (!$this->fill_callback || call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
+				&& (!$this->fill_callback
+					|| call_user_func($this->fill_callback, $item, $this->region->getWorld()->getLocations(), $items))
 				&& (!$check_access || $this->canAccess($items)));
 		$this->setItem($old_item);
 
@@ -84,11 +85,14 @@ class Location {
 	 * @return bool
 	 */
 	public function canAccess($items, $locations = null) {
-		if (!$this->region->canEnter($locations ?? $this->region->getWorld()->getLocations(), $items)) {
+		$locations = $locations ?? $this->region->getWorld()->getLocations();
+
+		// @TODO: optimize this call, perhaps cache?
+		if (!$this->region->canEnter($locations, $items)) {
 			return false;
 		}
 
-		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $locations ?? $this->region->getWorld()->getLocations(), $items)) {
+		if (!$this->requirement_callback || call_user_func($this->requirement_callback, $locations, $items)) {
 			return true;
 		}
 
@@ -105,6 +109,7 @@ class Location {
 	 */
 	public function setRequirements(Callable $callback) {
 		$this->requirement_callback = $callback;
+
 		return $this;
 	}
 
@@ -168,6 +173,29 @@ class Location {
 	}
 
 	/**
+	 * get the hint string for this location.
+	 */
+	public function getHint() {
+		if (!$this->item) {
+			return null;
+		}
+
+		$item_name = __('hint.item.' . $this->item->getName());
+
+		if (is_array($item_name)) {
+			$item_name = array_first(fy_shuffle($item_name));
+		}
+
+		$location_name = __('hint.location.' . $this->name);
+
+		if (is_array($location_name)) {
+			$location_name = array_first(fy_shuffle($location_name));
+		}
+
+		return "$item_name $location_name";
+	}
+
+	/**
 	 * Write the Item to this Location in ROM. Will set Item if passed in, and only write if there is an Item set.
 	 * @TODO: this is side-affecty
 	 *
@@ -213,27 +241,6 @@ class Location {
 			if (!isset($this->bytes[$key]) || !isset($address)) continue;
 			$rom->write($address, pack('C', $this->bytes[$key]));
 		}
-
-		return $this;
-	}
-
-	/**
-	 * Read Item from ROM into this Location.
-	 *
-	 * @param Rom $rom ROM we are reading from
-	 *
-	 * @throws Exception if cannot read Item
-	 *
-	 * @return $this
-	 */
-	public function readItem(Rom $rom) {
-		if (empty($this->address) || !$this->address[0]) {
-			throw new \Exception(sprintf("No Address to read: %s", $this->getName()));
-		}
-
-		$read_byte = $rom->read($this->address[0]);
-
-		$this->setItem(Item::getWithByte($read_byte));
 
 		return $this;
 	}

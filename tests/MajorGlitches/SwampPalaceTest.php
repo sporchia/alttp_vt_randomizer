@@ -10,7 +10,7 @@ use TestCase;
 class SwampPalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'MajorGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'MajorGlitches');
 
 		$this->world->getLocation("Misery Mire Medallion")->setItem(Item::get('Ether'));
 	}
@@ -80,7 +80,7 @@ class SwampPalaceTest extends TestCase {
 
 			["Swamp Palace - Waterfall Room", true, 'BigKeyD2', [], ['BigKeyD2']],
 
-			["Swamp Palace - Arrghus", true, 'BigKeyD2', [], ['BigKeyD2']],
+			["Swamp Palace - Boss", true, 'BigKeyD2', [], ['BigKeyD2']],
 		];
 	}
 
@@ -155,13 +155,13 @@ class SwampPalaceTest extends TestCase {
 			["Swamp Palace - Waterfall Room", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'PowerGlove', 'Hammer', 'Hookshot']],
 			["Swamp Palace - Waterfall Room", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
 
-			["Swamp Palace - Arrghus", false, []],
-			["Swamp Palace - Arrghus", false, [], ['Flippers']],
-			["Swamp Palace - Arrghus", false, [], ['Hookshot']],
-			["Swamp Palace - Arrghus", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'TitansMitt', 'Hammer', 'Hookshot']],
-			["Swamp Palace - Arrghus", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'Hammer', 'Hookshot']],
-			["Swamp Palace - Arrghus", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'PowerGlove', 'Hammer', 'Hookshot']],
-			["Swamp Palace - Arrghus", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
+			["Swamp Palace - Boss", false, []],
+			["Swamp Palace - Boss", false, [], ['Flippers']],
+			["Swamp Palace - Boss", false, [], ['Hookshot']],
+			["Swamp Palace - Boss", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'TitansMitt', 'Hammer', 'Hookshot']],
+			["Swamp Palace - Boss", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'Hammer', 'Hookshot']],
+			["Swamp Palace - Boss", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'PowerGlove', 'Hammer', 'Hookshot']],
+			["Swamp Palace - Boss", true, ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
 		];
 	}
 }

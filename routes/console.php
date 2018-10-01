@@ -1,46 +1,10 @@
 <?php
 
 use ALttP\Console\Commands\Distribution;
+use ALttP\Jobs\SendPatchToDisk;
 use ALttP\Sprite;
 use ALttP\Support\Zspr;
 use Carbon\Carbon;
-
-Artisan::command('alttp:test', function () {
-	$data = array_values(unpack('C*', base64_decode(
-		"IhEDEhEDEyMRgwADIxHkLAAAMSMRCyMzFwEzMxERARAAMSMRAiMzFyIRABKDAEwiEQUSEQERMTEjEQMTMxMxIxECIzMnIhGDAAM" .
-		"AMiQRCwERMUEREhAhATMXMSIRACGDAEUGERETIyADJywAABApACQRAyIiJwGDAAECIxM3RBESAgETIycAJCICAiIyPwAAMSIRAw" .
-		"EjMxcnAAAxIxEBIzOFAL8CAyMjhwEYJwAHARERAzEAAxMkAAIgAAc0AAAQ5JkAJBEEISInACEiEQUBEREAEREkAAAxIxEDAxMXM" .
-		"SMRBCMzFzFDIhEDAwMXMSMRgwIdAEMiEYMCHSMRAwMzFzEjEQQDEycxQyIRhAIlIhEEAwMnMUMiEYMCNSMRAiMzFyIRBCERARMz" .
-		"JBEDAyMjMYQAwYQAjoQCcycAADGEAmEBMzMnAAMTMzMwgwBMAwEzMxCDAEwkEQMDEyExIxECAxMhJwAHMRERExEhMxc1AAEDAyU" .
-		"AAQMD5DcAJBECARMz5CcAAVExIhGDAh0jEQIBEREnAI8CcCIRBBIRAzMTJwCEAsACAzMT5DcAIhEAEiIRADEvAAcBEREQIQMzMz" .
-		"8AhQEYATIyJwAEARIhIBIlAAEQASIAJBEAAYQBHgQQAQEzFycAAQERIgAABDEAADGDAf4DAzMjAIQEMQAQgwC2AACDAEwjEQIhA" .
-		"TKEAm8DIQMzEiIRBBARARMyIhElAIMEgSoAIhGDAAMAIz8AIhEEEiEBAxIiEQMSEQIygwH8BBABARIyhgEYACKHBOA5AAQRAAAC" .
-		"AoQEZwEABSYAAQEChAPfBBEDATExIhEEIQMzEzEiEYMFLCQRASEjhgEXADODAfyDA3slEQIDExMkEQEBEOQwACIRhABj5FAAAxE" .
-		"RMBEjAIMF6eQiAAABgwXpMAABATElAAEBMYMD4AMSAxMTJwAIURERMCEDMTFQJwABERElAAERESIAAECFBQ8ABIQBLiQAIhGDAG" .
-		"MAIYMEPwACJwACEAIiJAACIAAHJBECIREnMAABAzMoAAACIgD///////////////////////////8="
-	)));
-
-	$lz2 = new \ALttP\Support\Lz2(true);
-	$uncompressed = $lz2->decompress($data);
-
-	$mem = [];
-	foreach ($uncompressed as $i => $val) {
-		$mem[] = $val >> 4;
-		$mem[] = $val & 0xF;
-	}
-	$mem[0xD66] = 0x04; // allow Ganon arrow dmg, need to understand what this value actually is
-
-	for ($i = 0; $i < count($uncompressed); ++$i) {
-		$uncompressed[$i] = ($mem[$i * 2] << 4) | $mem[$i * 2 + 1];
-	}
-	//dd(implode(' ', array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed)));
-	$compressed = $lz2->compress($uncompressed);
-	dd(implode(array_map(function($b){return sprintf('%02X', $b);}, $lz2->compress($uncompressed))));
-	$uncompressed2 = $lz2->decompress($compressed);
-	dd(array_diff($uncompressed2, $uncompressed));
-	dd(array_map(function($b){return sprintf('0x%02X', $b);}, $uncompressed2));
-
-});
 
 Artisan::command('alttp:dailies {days=7}', function ($days) {
 	for ($i = 0; $i < $days; ++$i) {
@@ -63,20 +27,26 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 				config('alttp.randomizer.daily_weights.item.weapons')));
 
 			config([
-				'game-mode' => $game_mode,
+				'alttp.mode.state' => $game_mode,
 				'alttp.mode.weapons' => $weapons_mode,
 			]);
 
-			$rom = new ALttP\Rom();
+			$rom = new ALttP\Rom(env('ENEMIZER_BASE', null));
+			$rom->applyPatchFile(public_path('js/base2current.json'));
 			$rand = new ALttP\Randomizer($difficulty, $logic, $goal, $variation);
 
 			$rand->makeSeed();
 			$rand->writeToRom($rom);
-			$seed = $rand->getSeed();
 
 			$patch = $rom->getWriteLog();
 			$spoiler = $rand->getSpoiler([
 				'name' => 'Daily Challenge: ' . $date->toFormattedDateString(),
+				'tournament' => true,
+				'_meta' => [
+					'enemizer' => false,
+					'size' => 2,
+					'spoilers' => false,
+				],
 			]);
 			$hash = $rand->saveSeedRecord();
 
@@ -85,13 +55,25 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$patch = patch_merge_minify($rom->getWriteLog());
 			$rand->updateSeedRecordPatch($patch);
 			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
-			$seed = $hash;
 
 			$seed_record = ALttP\Seed::where('hash', $hash)->first();
 
 			$feature->seed_id = $seed_record->id;
 			$feature->description = sprintf("%s %s %s %s %s", $difficulty, $game_mode, $logic, $goal, $variation);
 			$feature->save();
+
+			$save_data = json_encode([
+				'logic' => $rand->getLogic(),
+				'difficulty' => $difficulty,
+				'patch' => $patch,
+				'spoiler' => $spoiler,
+				'hash' => $hash,
+				'size' => 2,
+				'generated' => $rand->getSeedRecord()->created_at ? $rand->getSeedRecord()->created_at->toIso8601String() : now()->toIso8601String(),
+			]);
+
+			SendPatchToDisk::dispatch($seed_record);
+			cache(['hash.' . $hash => $save_data], now()->addDays(7));
 		}
 	}
 });
@@ -251,12 +233,12 @@ Artisan::command('alttp:sprpub', function() {
 		if (preg_match('/\.gitignore$/', $file)) {
 			continue;
 		}
-		if (Storage::disk('rackspace')->has($file)) {
+		if (Storage::disk('images')->has($file)) {
 			continue;
 		}
 
 		$this->info($file);
-		Storage::disk('rackspace')->put($file, Storage::disk('sprites')->get($file), [
+		Storage::disk('images')->put($file, Storage::disk('sprites')->get($file), [
 			'headers' => [
 				'Access-Control-Expose-Headers' => 'Access-Control-Allow-Origin',
 				'Access-Control-Allow-Origin' => '*',

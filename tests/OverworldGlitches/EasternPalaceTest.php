@@ -10,7 +10,7 @@ use TestCase;
 class EasternPalaceTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'OverworldGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {
@@ -75,7 +75,7 @@ class EasternPalaceTest extends TestCase {
 
 			["Eastern Palace - Big Key Chest", true, 'BigKeyP1', [], ['BigKeyP1']],
 
-			["Eastern Palace - Armos Knights", false, 'BigKeyP1', [], ['BigKeyP1']],
+			["Eastern Palace - Boss", false, 'BigKeyP1', [], ['BigKeyP1']],
 		];
 	}
 
@@ -96,11 +96,11 @@ class EasternPalaceTest extends TestCase {
 			["Eastern Palace - Big Key Chest", true, ['Lamp']],
 
 
-			["Eastern Palace - Armos Knights", false, []],
-			["Eastern Palace - Armos Knights", false, [], ['Lamp']],
-			["Eastern Palace - Armos Knights", false, [], ['AnyBow']],
-			["Eastern Palace - Armos Knights", false, [], ['BigKeyP1']],
-			["Eastern Palace - Armos Knights", true, ['Lamp', 'Bow', 'BigKeyP1']],
+			["Eastern Palace - Boss", false, []],
+			["Eastern Palace - Boss", false, [], ['Lamp']],
+			["Eastern Palace - Boss", false, [], ['AnyBow']],
+			["Eastern Palace - Boss", false, [], ['BigKeyP1']],
+			["Eastern Palace - Boss", true, ['Lamp', 'Bow', 'BigKeyP1']],
 		];
 	}
 }

@@ -17,7 +17,7 @@ abstract class Filler {
 	 */
 	public static function factory($type = null, World $world = null) : self {
 		if (!$world) {
-			$world = new World;
+			$world = World::factory();
 		}
 
 		switch ($type) {
@@ -56,7 +56,7 @@ abstract class Filler {
 	}
 
 	protected function shuffleItems(array $items) {
-		return mt_shuffle($items);
+		return fy_shuffle($items);
 	}
 
 	protected function fastFillItemsInLocations($fill_items, $locations) {

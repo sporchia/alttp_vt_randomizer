@@ -10,7 +10,7 @@ use TestCase;
 class TowerOfHeraTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'OverworldGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'OverworldGlitches');
 	}
 
 	public function tearDown() {
@@ -78,7 +78,7 @@ class TowerOfHeraTest extends TestCase {
 
 			["Tower of Hera - Big Chest", false, 'BigKeyP3', [], ['BigKeyP3']],
 
-			["Tower of Hera - Moldorm", false, 'BigKeyP3', [], ['BigKeyP3']],
+			["Tower of Hera - Boss", false, 'BigKeyP3', [], ['BigKeyP3']],
 		];
 	}
 
@@ -136,32 +136,32 @@ class TowerOfHeraTest extends TestCase {
 			["Tower of Hera - Big Chest", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
 			["Tower of Hera - Big Chest", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
 
-			["Tower of Hera - Moldorm", false, []],
-			["Tower of Hera - Moldorm", false, [], ['AnySword', 'Hammer']],
-			["Tower of Hera - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
-			["Tower of Hera - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
-			["Tower of Hera - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
-			["Tower of Hera - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
-			["Tower of Hera - Moldorm", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
-			["Tower of Hera - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
-			["Tower of Hera - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
-			["Tower of Hera - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
-			["Tower of Hera - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
-			["Tower of Hera - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
-			["Tower of Hera - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
-			["Tower of Hera - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
-			["Tower of Hera - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
-			["Tower of Hera - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
-			["Tower of Hera - Moldorm", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
-			["Tower of Hera - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
-			["Tower of Hera - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
-			["Tower of Hera - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
-			["Tower of Hera - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
-			["Tower of Hera - Moldorm", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
-			["Tower of Hera - Moldorm", true, ['Flute', 'Hookshot', 'Hammer', 'BigKeyP3']],
-			["Tower of Hera - Moldorm", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
-			["Tower of Hera - Moldorm", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
-			["Tower of Hera - Moldorm", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Tower of Hera - Boss", false, []],
+			["Tower of Hera - Boss", false, [], ['AnySword', 'Hammer']],
+			["Tower of Hera - Boss", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Tower of Hera - Boss", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Tower of Hera - Boss", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Tower of Hera - Boss", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Tower of Hera - Boss", true, ['Flute', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Tower of Hera - Boss", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Tower of Hera - Boss", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Tower of Hera - Boss", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Tower of Hera - Boss", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Tower of Hera - Boss", true, ['ProgressiveGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Tower of Hera - Boss", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Tower of Hera - Boss", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Tower of Hera - Boss", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Tower of Hera - Boss", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Tower of Hera - Boss", true, ['PowerGlove', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Tower of Hera - Boss", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L1Sword']],
+			["Tower of Hera - Boss", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'MasterSword']],
+			["Tower of Hera - Boss", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'ProgressiveSword']],
+			["Tower of Hera - Boss", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L3Sword']],
+			["Tower of Hera - Boss", true, ['TitansMitt', 'Lamp', 'MagicMirror', 'BigKeyP3', 'L4Sword']],
+			["Tower of Hera - Boss", true, ['Flute', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Tower of Hera - Boss", true, ['ProgressiveGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Tower of Hera - Boss", true, ['PowerGlove', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
+			["Tower of Hera - Boss", true, ['TitansMitt', 'Lamp', 'Hookshot', 'Hammer', 'BigKeyP3']],
 		];
 	}
 }

@@ -25,25 +25,4 @@ class Medallion extends Location {
 		$this->item = $item;
 		return $this;
 	}
-
-	/**
-	 * Read Item from ROM into this Location.
-	 *
-	 * @param Rom $rom ROM we are reading from
-	 *
-	 * @throws Exception if cannot read Item
-	 *
-	 * @return $this
-	 */
-	public function readItem(Rom $rom) {
-		if (!$this->address[1]) {
-			throw new \Exception(sprintf("No Address to read: %s", $this->getName()));
-		}
-
-		$read_byte = $rom->read($this->address[1]);
-
-		$this->setItem(Item::getWithBytes([1 => $read_byte]));
-
-		return $this;
-	}
 }

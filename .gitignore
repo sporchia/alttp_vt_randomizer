@@ -1,10 +1,17 @@
 /node_modules
+/bin
+/public/hot
 /public/fonts/vendor
 /public/mix-*.json
 /public/storage
+/public/vendor
+/public/i/svg
+/public/images/vendor
 /storage/*.key
+/resources/assets/js/*.generated.js
 /vendor
 /docs
 /.idea
 .env
 .env.debug
+.phpunit.result.cache

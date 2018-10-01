@@ -7,7 +7,7 @@ return [
 				'ProgressiveSword' => 8,
 				'ProgressiveShield' => 6,
 				'ProgressiveArmor' => 4,
-				'Bottles' => 8,
+				'BottleWithRandom' => 8,
 				'TwentyRupees' => 14,
 				'HalfMagic' => 2,
 				'Lamp' => 3,
@@ -569,7 +569,6 @@ return [
 			'BootsLocation' => false,
 		],
 		'sprite' => [
-			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
@@ -592,7 +591,6 @@ return [
 			'HardMode' => 0,
 		],
 		'sprite' => [
-			'shufflePrizePack' => false,
 			'shuffleOverworldBonkPrizes' => false,
 		],
 	],
@@ -623,10 +621,10 @@ return [
 				'crystals' => 'Crystals',
 				'dungeons' => 'All Dungeons',
 				'pedestal' => 'Master Sword Pedestal',
-				'triforce-hunt' => 'Triforce Pieces',
+				'triforcehunt' => 'Triforce Pieces',
 			],
 			'logics' => [
-				'NoMajorGlitches' => 'No Glitches',
+				'NoGlitches' => 'No Glitches',
 			],
 			'modes' => [
 				'open' => 'Open',
@@ -664,13 +662,15 @@ return [
 				'triforce-hunt' => 'Triforce Pieces',
 			],
 			'logics' => [
-				'NoMajorGlitches' => 'No Glitches',
+				'NoGlitches' => 'No Glitches',
 				'OverworldGlitches' => 'Overworld Glitches',
 				'MajorGlitches' => 'Major Glitches',
+				'None' => 'None (I know what I’m doing)',
 			],
 			'modes' => [
 				'standard' => 'Standard',
 				'open' => 'Open',
+				'inverted' => 'Inverted',
 			],
 			'weapons' => [
 				'randomized' => 'Randomized',
@@ -686,6 +686,7 @@ return [
 				'retro' => 'Retro',
 			],
 			'difficulty_adjustments' => [
+				-1 => 'Easy',
 				0 => 'Normal',
 				1 => 'Hard',
 				2 => 'Expert',
@@ -708,13 +709,14 @@ return [
 					'triforce-hunt' => 10,
 				],
 				'logics' => [
-					'NoMajorGlitches' => 85,
+					'NoGlitches' => 85,
 					'OverworldGlitches' => 13,
 					'MajorGlitches' => 2,
 				],
 				'modes' => [
-					'standard' => 40,
-					'open' => 40,
+					'standard' => 30,
+					'open' => 30,
+					'inverted' => 40,
 				],
 				'weapons' => [
 					'randomized' => 30,

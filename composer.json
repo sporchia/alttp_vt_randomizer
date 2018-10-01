@@ -12,27 +12,33 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.2.0",
         "ext-bcmath": "*",
+        "codedungeon/phpunit-result-printer": "^0.20.1",
         "doctrine/dbal": "^2.5",
         "ezyang/htmlpurifier": "^4.9",
-        "graham-campbell/markdown": "^9.0",
+        "graham-campbell/markdown": "^10.0",
         "hashids/hashids": "^2.0",
-        "laravel/dusk": "^2.0",
-        "laravel/framework": "5.5.*",
+        "laravel/dusk": "^3.0",
+        "laravel/framework": "5.6.*",
+        "laravel/horizon": "^1.4",
         "laravel/tinker": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-cached-adapter": "^1.0",
         "league/flysystem-rackspace": "^1.0",
+        "martinlindhe/laravel-vue-i18n-generator": "^0.1.28",
         "sentry/sentry": "^1.8",
         "sentry/sentry-laravel": "^0.8.0",
-        "z3/enemizer": "6.0.22",
-        "z3/entrancerandomizer": "0.6.1"
+        "wnx/laravel-stats": "^1.7",
+        "z3/enemizer": "6.0.29",
+        "z3/entrancerandomizer": "0.6.2+pre0"
     },
     "require-dev": {
-        "sami/sami": "*",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~6.0",
+        "nunomaduro/collision": "^2.0",
+        "phpunit/phpunit": "~7.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*"
     },
@@ -41,11 +47,11 @@
             "type": "package",
             "package": {
                 "name": "z3/enemizer",
-                "version": "6.0.22",
+                "version": "6.0.29",
                 "source": {
                     "url": "https://github.com/Zarby89/Enemizer",
                     "type": "git",
-                    "reference": "tags/6.0.22"
+                    "reference": "tags/6.0.29"
                 }
             }
         },
@@ -53,11 +59,11 @@
             "type": "package",
             "package": {
                 "name": "z3/entrancerandomizer",
-                "version": "0.6.1",
+                "version": "0.6.2+pre0",
                 "source": {
-                    "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
+                    "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
                     "type": "git",
-                    "reference": "tags/0.6.1"
+                    "reference": "tags/0.6.2-pre0"
                 }
             }
         }
@@ -88,9 +94,6 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
-        ],
-        "documentation": [
-            "./vendor/sami/sami/sami.php update sami.php"
         ]
     },
     "config": {

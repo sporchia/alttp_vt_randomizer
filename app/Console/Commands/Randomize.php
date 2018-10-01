@@ -17,19 +17,17 @@ class Randomize extends Command {
 		. ' {output_directory : where to place randomized rom}'
 		. ' {--unrandomized : do not apply randomization to the rom}'
 		. ' {--vanilla : set game to vanilla item locations}'
-		. ' {--debug : enable BAGE mode}'
 		. ' {--spoiler : generate a spoiler file}'
 		. ' {--difficulty=normal : set difficulty}'
 		. ' {--variation=none : set variation}'
-		. ' {--logic=NoMajorGlitches : set logic}'
+		. ' {--logic=NoGlitches : set logic}'
 		. ' {--heartbeep=half : set heart beep speed}'
 		. ' {--skip-md5 : do not validate md5 of base rom}'
-		. ' {--trace : enable SRAM trace}'
 		. ' {--tournament : enable tournament mode}'
 		. ' {--seed= : set seed number}'
 		. ' {--bulk=1 : generate multiple roms}'
 		. ' {--goal=ganon : set game goal}'
-		. ' {--mode=standard : set game mode}'
+		. ' {--state=standard : set game state}'
 		. ' {--weapons=randomized : set weapons mode}'
 		. ' {--sprite= : sprite file to change links graphics [zspr format]}'
 		. ' {--no-rom : no not generate output rom}'
@@ -80,11 +78,7 @@ class Randomize extends Command {
 				return $this->error('MD5 check failed :(');
 			}
 
-			$rom->setDebugMode($this->option('debug'));
-
 			$rom->setHeartBeepSpeed($this->option('heartbeep'));
-
-			$rom->setSRAMTrace($this->option('trace'));
 
 			// break out for unrandomized/vanilla base game
 			if ($this->option('vanilla')) {
@@ -100,7 +94,7 @@ class Randomize extends Command {
 			}
 
 			config([
-				'game-mode' => $this->option('mode'),
+				'alttp.mode.state' => $this->option('state'),
 				'alttp.mode.weapons' => $this->option('weapons'),
 			]);
 
@@ -112,7 +106,10 @@ class Randomize extends Command {
 			$rom->setMenuSpeed($this->option('menu-speed', 'normal'));
 
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.sfc',
-				$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons') ? '_' . $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_' . $this->option('variation') , $rand->getSeed());
+				$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons') ? '_'
+				. $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_'
+				. $this->option('variation'), $i);
+
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
 					$this->info("sprite");
@@ -136,7 +133,10 @@ class Randomize extends Command {
 			}
 			if ($this->option('spoiler')) {
 				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.txt',
-					$rand->getLogic(), $this->option('difficulty'), config('game-mode'), $this->option('weapons') ? '_' . $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_' . $this->option('variation') , $rand->getSeed());
+					$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons') ? '_'
+					. $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_'
+					. $this->option('variation'), $i);
+
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
 			}

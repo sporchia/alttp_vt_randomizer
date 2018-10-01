@@ -7,7 +7,7 @@ class WorldTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->world = new World('test_rules', 'NoMajorGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'NoGlitches');
 	}
 
 	public function tearDown() {
@@ -27,6 +27,6 @@ class WorldTest extends TestCase {
 
 	public function testGetPlaythroughNormalGame() {
 		$this->world->setVanilla();
-		$this->assertArraySubset(['longest_item_chain' => 33, 'regions_visited' => 48], $this->world->getPlaythrough());
+		$this->assertArraySubset(['longest_item_chain' => 34, 'regions_visited' => 50], $this->world->getPlaythrough());
 	}
 }

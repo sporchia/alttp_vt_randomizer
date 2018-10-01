@@ -9,7 +9,7 @@ use Log;
 /**
  * This is the container for all the regions and locations one can find items in the game.
  */
-class World {
+abstract class World {
 	protected $difficulty;
 	protected $variation;
 	protected $logic;
@@ -21,6 +21,7 @@ class World {
 	protected $collectable_locations;
 	protected $pre_collected_items;
 	protected $currently_filling_items;
+	protected $prizepacks;
 	private $config = [];
 
 	/**
@@ -33,44 +34,29 @@ class World {
 	 *
 	 * @return void
 	 */
-	public function __construct($difficulty = 'normal', $logic = 'NoMajorGlitches', $goal = 'ganon', $variation = 'none') {
+	public function __construct($difficulty = 'normal', $logic = 'NoGlitches', $goal = 'ganon', $variation = 'none') {
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
 		$this->logic = $logic;
 		$this->goal = $goal;
 		$this->pre_collected_items = new ItemCollection([], $this);
 
-		$this->regions = [
-			'North East Light World' => new Region\LightWorld\NorthEast($this),
-			'North West Light World' => new Region\LightWorld\NorthWest($this),
-			'South Light World' => new Region\LightWorld\South($this),
-			'Escape' => new Region\HyruleCastleEscape($this),
-			'Eastern Palace' => new Region\EasternPalace($this),
-			'Desert Palace' => new Region\DesertPalace($this),
-			'West Death Mountain' => new Region\DeathMountain\West($this),
-			'East Death Mountain' => new Region\DeathMountain\East($this),
-			'Tower of Hera' => new Region\TowerOfHera($this),
-			'Hyrule Castle Tower' => new Region\HyruleCastleTower($this),
-			'East Dark World Death Mountain' => new Region\DarkWorld\DeathMountain\East($this),
-			'West Dark World Death Mountain' => new Region\DarkWorld\DeathMountain\West($this),
-			'North East Dark World' => new Region\DarkWorld\NorthEast($this),
-			'North West Dark World' => new Region\DarkWorld\NorthWest($this),
-			'South Dark World' => new Region\DarkWorld\South($this),
-			'Mire' => new Region\DarkWorld\Mire($this),
-			'Palace of Darkness' => new Region\PalaceOfDarkness($this),
-			'Swamp Palace' => new Region\SwampPalace($this),
-			'Skull Woods' => new Region\SkullWoods($this),
-			'Thieves Town' => new Region\ThievesTown($this),
-			'Ice Palace' => new Region\IcePalace($this),
-			'Misery Mire' => new Region\MiseryMire($this),
-			'Turtle Rock' => new Region\TurtleRock($this),
-			'Ganons Tower' => new Region\GanonsTower($this),
-			'Medallions' => new Region\Medallions($this),
-			'Fountains' => new Region\Fountains($this),
-		];
-
 		$this->locations = new LocationCollection;
 		$this->shops = new ShopCollection;
+
+		$this->prizepacks = [
+			'0' => new Drops\PrizePack('0', 8),
+			'1' => new Drops\PrizePack('1', 8),
+			'2' => new Drops\PrizePack('2', 8),
+			'3' => new Drops\PrizePack('3', 8),
+			'4' => new Drops\PrizePack('4', 8),
+			'5' => new Drops\PrizePack('5', 8),
+			'6' => new Drops\PrizePack('6', 8),
+			'pull' => new Drops\PrizePack('pull', 3),
+			'crab' => new Drops\PrizePack('crab', 2),
+			'stun' => new Drops\PrizePack('stun', 1),
+			'fish' => new Drops\PrizePack('fish', 1),
+		];
 
 		// Initialize the Logic and Prizes for each Region that has them and fill our LocationsCollection
 		foreach ($this->regions as $name => $region) {
@@ -83,6 +69,18 @@ class World {
 			return $collected_items->has('Triforce')
 				|| $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'));
 		};
+	}
+
+	static public function factory(string $type = null, $difficulty = 'normal', $logic = 'NoGlitches', $goal = 'ganon', $variation = 'none') {
+		switch ($type) {
+			case 'open':
+				return new World\Open($difficulty, $logic, $goal, $variation);
+			case 'inverted':
+				return new World\Inverted($difficulty, $logic, $goal, $variation);
+			case 'standard':
+			default:
+				return new World\Standard($difficulty, $logic, $goal, $variation);
+		}
 	}
 
 	/**
@@ -178,29 +176,13 @@ class World {
 		foreach ($this->locations as $name => $location) {
 			$copy->locations[$name]->setItem($location->getItem());
 		}
+		foreach ($this->shops as $name => $shop) {
+			$copy->shops[$name] = $shop->copy();
+		}
 
 		$copy->setPreCollectedItems($this->pre_collected_items->copy());
 
 		return $copy;
-	}
-
-	/**
-	 * Create world based on ROM file we read. Might only function with newer v7+ ROMs.
-	 * TODO: is this better here or on the Rom object?
-	 *
-	 * @param Rom $rom Rom object to read from.
-	 *
-	 * @return $this
-	 */
-	public function modelFromRom(Rom $rom) {
-		foreach ($this->locations as $location) {
-			try {
-				$location->readItem($rom);
-			} catch (\Exception $e) {
-				continue;
-			}
-		}
-		return $this;
 	}
 
 	/**
@@ -238,7 +220,8 @@ class World {
 			Item::get('ArrowUpgrade5'),
 			Item::get('ArrowUpgrade10'),
 			Item::get('ArrowUpgrade70'),
-			Item::get('Arrow'),
+			Item::get('RedPotion'),
+			Item::get('Bee'),
 			Item::get('TenArrows'),
 			Item::get('Bomb'),
 			Item::get('ThreeBombs'),
@@ -252,6 +235,14 @@ class World {
 			Item::get('Rupoor'),
 		];
 
+		// remove junk locations for filtering later
+		$shadow_world->getLocations()->each(function($location) use ($junk_items) {
+			$location_item = $location->getItem();
+			if ($location_item && in_array($location_item, $junk_items)) {
+				$location->setItem();
+			}
+		});
+
 		$location_sphere = $shadow_world->getLocationSpheres();
 		$collectable_locations = new LocationCollection(array_flatten(array_map(function($collection) {
 			return $collection->values();
@@ -259,6 +250,7 @@ class World {
 		$required_locations = new LocationCollection;
 		$required_locations_sphere = [];
 		$reverse_location_sphere = array_reverse($location_sphere, true);
+
 		foreach ($reverse_location_sphere as $sphere_level => $sphere) {
 			if ($sphere_level == 0) {
 				continue;
@@ -281,7 +273,7 @@ class World {
 
 				if (!$shadow_world->getWinCondition()($collectable_locations->getItems($shadow_world)->copy())) {
 					// put item back
-					$location->setItem($this->locations[$location->getName()]->getItem());
+					$location->setItem($this->getCollectableLocations()[$location->getName()]->getItem());
 					$required_locations->addItem($location);
 					$required_locations_sphere[$sphere_level][] = $location;
 					Log::debug(sprintf("playthrough Keep: %s :: %s", $location->getName(), $location->getItem()->getNiceName()));
@@ -318,9 +310,9 @@ class World {
 
 							if (!$higher_location->canAccess($current_items, $this->getLocations())) {
 								// put item back
-								$location->setItem($this->locations[$location->getName()]->getItem());
+								$location->setItem($this->getCollectableLocations()[$location->getName()]->getItem());
 								Log::debug(sprintf("playthrough Higher Location: %s :: %s", $higher_location->getName(),
-									$this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+									$this->getCollectableLocations()[$higher_location->getName()]->getItem()->getNiceName()));
 								$required_locations->addItem($location);
 								$required_locations_sphere[$sphere_level][] = $location;
 								Log::debug(sprintf("playthrough Readd: %s :: %s", $location->getName(),
@@ -332,7 +324,7 @@ class World {
 					}
 					// put all higher items back
 					foreach ($required_locations as $higher_location) {
-						$higher_location->setItem($this->locations[$higher_location->getName()]->getItem());
+						$higher_location->setItem($this->getCollectableLocations()[$higher_location->getName()]->getItem());
 					}
 				}
 			}
@@ -340,7 +332,7 @@ class World {
 
 		foreach ($required_locations as $higher_location) {
 			Log::debug(sprintf("playthrough REQ: %s :: %s", $higher_location->getName(),
-				$this->locations[$higher_location->getName()]->getItem()->getNiceName()));
+				$this->getCollectableLocations()[$higher_location->getName()]->getItem()->getNiceName()));
 		}
 		if (!$walkthrough) {
 			return $required_locations->values();
@@ -394,7 +386,7 @@ class World {
 				}
 
 				$location = sprintf("Equipment Slot %s", ++$i);
-				$ret[0]['Equipped'][$location] = $item->getNiceName();
+				$ret[0]['Equipped'][$location] = $item->getName();
 			}
 		}
 		foreach ($location_round as $round => $locations) {
@@ -405,7 +397,7 @@ class World {
 				$ret['longest_item_chain']--;
 			}
 			foreach ($locations as $location) {
-				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getNiceName();
+				$ret[$round][$location->getRegion()->getName()][$location->getName()] = $location->getItem()->getName();
 			}
 		}
 
@@ -485,6 +477,48 @@ class World {
 	}
 
 	/**
+	 * Get all the prizes for the prize packs in this world
+	 *
+	 * @return array
+	 */
+	public function getPrizePacks() : array {
+		return $this->prizepacks;
+	}
+
+	/**
+	 * Set the prize packs ?
+	 *
+	 * @return $this
+	 */
+	public function setPrizePacks($prizes) : self {
+		if ($prizes == null) {
+			return $this;
+		}
+		if (count($prizes) != 63) {
+			return $this;
+		}
+		if (array_diff($prizes, [
+			'heart',
+			'greenRupee',
+			'blueRupee',
+			'redRupee',
+			'bomb1',
+			'bomb4',
+			'bomb8',
+			'smallMagic',
+			'largeMagic',
+			'arrow5',
+			'arrow10',
+			'faerie',
+		])) {
+			return $this;
+		}
+		$this->prizepacks = $prizepacks;
+
+		return $this;
+	}
+
+	/**
 	 * Get Locations considered collectable. I.E. can contain items that Link can have.
 	 * This is cached for faster retrevial
 	 *
@@ -493,9 +527,9 @@ class World {
 	public function getCollectableLocations() {
 		if (!$this->collectable_locations) {
 			$this->collectable_locations = $this->locations->filter(function($location) {
-				return !is_a($location, Location\Medallion::class)
-					&& !is_a($location, Location\Fountain::class);
-			});
+				return !$location instanceof Location\Medallion
+					&& !$location instanceof Location\Fountain;
+			})->merge($this->shops->getLocations());
 		}
 
 		return $this->collectable_locations;
@@ -503,6 +537,7 @@ class World {
 
 	/**
 	 * Collect the items in the world, you may pass in a set of pre-collected items.
+	 * This also checks for shop items.
 	 *
 	 * @param ItemCollection $collected precollected items for consideration in out collecting
 	 *
@@ -530,22 +565,10 @@ class World {
 	}
 
 	/**
-	 * Determine if an item is collectable.
-	 *
-	 * @param mixed $key
-	 * @param int $at_least mininum number of item in collection
-	 *
-	 * @return bool
-	 */
-	public function canCollect($key, $at_least = 1) {
-		switch ($key) {
-			case 'anyBow': return $this->collectItems()->canShootArrows();
-			default: return $this->collectItems()->has($key, $at_least);
-		}
-	}
-
-	/**
 	 * Determine the spheres that locations are in based on the items in the world
+	 *
+	 * @TODO: consider a re-factor to match the collectItems method of reducing the available_locations instead of
+	 * using found_locations.
 	 *
 	 * @return array
 	 */
@@ -562,9 +585,8 @@ class World {
 		$found_locations = new LocationCollection;
 		do {
 			$sphere++;
-			$available_locations = $this->locations->filter(function($location) use ($my_items, $found_locations) {
-				return !$location instanceof Location\Medallion
-					&& !$location instanceof Location\Fountain
+			$available_locations = $this->getCollectableLocations()->filter(function($location) use ($my_items, $found_locations) {
+				return $location->hasItem()
 					&& !$found_locations->contains($location)
 					&& $location->canAccess($my_items);
 			});
@@ -648,6 +670,43 @@ class World {
 	 */
 	public function getRegionsWithItem(Item $item = null) {
 		return $this->getLocationsWithItem($item)->getRegions();
+	}
+
+	/**
+	 * Set a drop in a PrizePackSlot in a given PrizePack
+	 *
+	 * @param String the prize pack to set the drop in
+	 * @param int the index of the drop to set
+	 * @param String the name of the drop to set
+	 */
+	public function setDrop($pack, $ind, $drop) {
+		$this->prizepacks[$pack]->getDrops()[$ind]->setDrop($drop);
+	}
+
+	/**
+	 * Get all the drops in the prize packs as an array
+	 *
+	 * @return array
+	 */
+	public function getAllDrops() {
+		$drops = [];
+		foreach ($this->prizepacks as $pack) {
+			$drops = array_merge($drops, $pack->getDrops());
+		}
+		return $drops;
+	}
+
+	/**
+	 * Get all the drops that are empty in the prize packs as an array
+	 *
+	 * @return array
+	 */
+	public function getEmptyDropSlots() {
+		$emptyDrops = [];
+		foreach ($this->prizepacks as $pack) {
+			$emptyDrops = array_merge($emptyDrops, $pack->getEmptyDrops());
+		}
+		return $emptyDrops;
 	}
 
 	/**

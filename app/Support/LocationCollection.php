@@ -56,6 +56,34 @@ class LocationCollection extends Collection {
 	}
 
 	/**
+	 * get the hint string for this location collection.
+	 */
+	public function getHint() {
+		$items = $this->getItems()->map(function($item) {
+			$item_name = __('hint.item.' . $item->getName());
+
+			return (is_array($item_name)) ? array_first(fy_shuffle($item_name)) : $item_name;
+		});
+
+		switch (count($items)) {
+			case 1: return $this->locationsWithItem()->first()->getHint();
+			case 0: return null;
+		}
+
+		$prime_location = $this->locationsWithItem()->first();
+
+		$location_name = __('hint.location.' . $prime_location->getName());
+
+		if (is_array($location_name)) {
+			$location_name = array_first($location_name); // on multi-locations we want the first one
+		}
+
+		$last_item = array_pop($items);
+
+		return implode(', ', $items) . ' and ' . $last_item . ' ' . $location_name;
+	}
+
+	/**
 	 * Deterime if the Locations given has at least a particular amount of a particular Item
 	 *
 	 * @param Item $item Item to search for

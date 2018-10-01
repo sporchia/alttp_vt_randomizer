@@ -1,6 +1,6 @@
 <?php
 /**
- * Shuffle the contents of an array using mt_rand
+ * Shuffle the contents of an array using VT Shuffle
  *
  * @param array $array array to shuffle
  *
@@ -12,6 +12,25 @@ function mt_shuffle(array $array) {
 		$pull_key = get_random_int(0, count($array) - 1);
 		$new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
 	}
+	return $new_array;
+}
+
+/**
+ * Shuffle the contents of an array using Fisher-Yates shuffle
+ *
+ * @param array $array array to shuffle
+ *
+ * @return array
+ */
+function fy_shuffle(array $array) {
+	$new_array = array_values($array);
+	$count = count($array);
+
+	for ($i = $count - 1; $i >= 0; --$i) {
+		$r = get_random_int(0, $i);
+		list($new_array[$i], $new_array[$r]) = [$new_array[$r], $new_array[$i]];
+	}
+
 	return $new_array;
 }
 
@@ -112,6 +131,22 @@ function sabsi(array $array, $index, string $order = 'asc', bool $natsort = fals
 		}
 	}
 	return $sorted;
+}
+
+function hash_array($id) {
+	$ret = 0;
+	$id = ($id * 99371) % 33554431;
+	for ($i = 0; $i < 25; ++$i) {
+		$ret += (($id >> $i) & 1) << ((($i % 5) + 1) * 5 - floor($i / 5));
+	}
+
+	return [
+		($ret >> 20) & 0x1F,
+		($ret >> 15) & 0x1F,
+		($ret >> 10) & 0x1F,
+		($ret >> 5) & 0x1F,
+		$ret & 0x1F,
+	];
 }
 
 /**

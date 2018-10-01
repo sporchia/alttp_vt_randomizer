@@ -10,7 +10,7 @@ use TestCase;
 class TurtleRockTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
-		$this->world = new World('test_rules', 'OverworldGlitches');
+		$this->world = World::factory('standard', 'test_rules', 'OverworldGlitches');
 
 		$this->world->getLocation("Turtle Rock Medallion")->setItem(Item::get('Quake'));
 	}
@@ -83,8 +83,8 @@ class TurtleRockTest extends TestCase {
 
 			["Turtle Rock - Eye Bridge - Top Right", false, 'BigKeyD7', [], ['BigKeyD7']],
 
-			["Turtle Rock - Trinexx", false, 'BigKeyD7', [], ['BigKeyD7']],
-			["Turtle Rock - Trinexx", false, 'KeyD7', [], ['KeyD7']],
+			["Turtle Rock - Boss", false, 'BigKeyD7', [], ['BigKeyD7']],
+			["Turtle Rock - Boss", false, 'KeyD7', [], ['KeyD7']],
 		];
 	}
 
@@ -251,16 +251,16 @@ class TurtleRockTest extends TestCase {
 			["Turtle Rock - Eye Bridge - Top Right", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
 			["Turtle Rock - Eye Bridge - Top Right", true, ['Lamp', 'ProgressiveShield', 'ProgressiveShield', 'ProgressiveShield', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
 
-			["Turtle Rock - Trinexx", false, []],
-			["Turtle Rock - Trinexx", false, [], ['CaneOfSomaria']],
-			["Turtle Rock - Trinexx", false, [], ['IceRod']],
-			["Turtle Rock - Trinexx", false, [], ['FireRod']],
-			["Turtle Rock - Trinexx", false, [], ['Lamp']],
-			["Turtle Rock - Trinexx", false, [], ['BigKeyD7']],
-			["Turtle Rock - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-			["Turtle Rock - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-			["Turtle Rock - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-			["Turtle Rock - Trinexx", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Turtle Rock - Boss", false, []],
+			["Turtle Rock - Boss", false, [], ['CaneOfSomaria']],
+			["Turtle Rock - Boss", false, [], ['IceRod']],
+			["Turtle Rock - Boss", false, [], ['FireRod']],
+			["Turtle Rock - Boss", false, [], ['Lamp']],
+			["Turtle Rock - Boss", false, [], ['BigKeyD7']],
+			["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'L1Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+			["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
 		];
 	}
 }

@@ -164,40 +164,6 @@ class RomTest extends TestCase {
 		$this->assertEquals([1, 2], $this->rom->read(0x180084, 2));
 	}
 
-	public function testSetUncleTextCustom() {
-		$this->rom->setUncleTextString("1234567890abcd\nline2 specials\n ?!,-.~'");
-
-		$converted = [116, 0, 161, 0, 162, 0, 163, 0, 164, 0, 165, 0, 166, 0, 167, 0, 168, 0, 169, 0, 160, 0, 170, 0,
-			171, 0, 172, 0, 173, 117, 0, 181, 0, 178, 0, 183, 0, 174, 0, 162, 0, 255, 0, 188, 0, 185, 0, 174, 0, 172,
-			0, 178, 0, 170, 0, 181, 0, 188, 118, 0, 255, 0, 198, 0, 199, 0, 200, 0, 201, 0, 205, 0, 206, 0, 216, 127];
-
-		$this->assertEquals($converted, $this->rom->read(0x180500, 76));
-	}
-
-	public function testSetDebugModeOn() {
-		$this->rom->setDebugMode(true);
-
-		$this->assertEquals([[0xEA, 0xEA],[0xEA, 0xEA]], [$this->rom->read(0x65B88, 2), $this->rom->read(0x65B91, 2)]);
-	}
-
-	public function testSetDebugModeOff() {
-		$this->rom->setDebugMode(false);
-
-		$this->assertEquals([[0xF0, 0x21],[0xD0, 0x18]], [$this->rom->read(0x65B88, 2), $this->rom->read(0x65B91, 2)]);
-	}
-
-	public function testSetSRAMTraceOn() {
-		$this->rom->setSRAMTrace(true);
-
-		$this->assertEquals(0x01, $this->rom->read(0x180030));
-	}
-
-	public function testSetSRAMTraceOff() {
-		$this->rom->setSRAMTrace(false);
-
-		$this->assertEquals(0x00, $this->rom->read(0x180030));
-	}
-
 	public function testSetSingleRNGTable() {
 		$items = new ItemCollection([
 			Item::get('ProgressiveSword'),
@@ -232,12 +198,12 @@ class RomTest extends TestCase {
 	}
 
 	public function testSetRandomizerSeedTypeNormal() {
-		$this->rom->setRandomizerSeedType('NoMajorGlitches');
+		$this->rom->setRandomizerSeedType('NoGlitches');
 
 		$this->assertEquals(0x00, $this->rom->read(0x180210));
 	}
 
-	public function testSetRandomizerSeedTypeDefaultsToNMG() {
+	public function testSetRandomizerSeedTypeDefaultsToNoGlitches() {
 		$this->rom->setRandomizerSeedType('badType');
 
 		$this->assertEquals(0x00, $this->rom->read(0x180210));

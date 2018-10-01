@@ -39,7 +39,7 @@ class Prize extends Location {
 
 		if (isset($this->region->music_addresses) && is_array($this->region->music_addresses)) {
 			if ($this->region->getWorld()->config('rom.mapOnPickup', false)) {
-				$music = array_first(mt_shuffle([0x11, 0x16]));
+				$music = array_first(fy_shuffle([0x11, 0x16]));
 			} else {
 				$item = $this->getItem();
 				$music = is_a($item, Pendant::class) ? 0x11 : 0x16;
@@ -49,28 +49,6 @@ class Prize extends Location {
 				$rom->write($address, pack('C*', $music));
 			}
 		}
-
-		return $this;
-	}
-
-	/**
-	 * Read Item from ROM into this Location.
-	 *
-	 * @param Rom $rom ROM we are reading from
-	 *
-	 * @throws Exception if cannot read Item
-	 *
-	 * @return $this
-	 */
-	public function readItem(Rom $rom) {
-		if (!$this->address[1] || !$this->address[6]) {
-			throw new \Exception(sprintf("No Address to read: %s", $this->getName()));
-		}
-
-		$read_byte_1 = $rom->read($this->address[1]);
-		$read_byte_6 = $rom->read($this->address[6]);
-
-		$this->setItem(Item::getWithBytes([1 => $read_byte_1, 6 => $read_byte_6]));
 
 		return $this;
 	}

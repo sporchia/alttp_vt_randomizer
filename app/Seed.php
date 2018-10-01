@@ -15,7 +15,7 @@ class Seed extends Model {
 			if ($seed->stored_patch) {
 				$sha1 = sha1($seed->stored_patch);
 				$patch = Patch::firstOrCreate([
-					'sha1' => $sha1
+					'sha1' => $sha1,
 				]);
 				$patch->patch = $seed->stored_patch;
 				$patch->save();
@@ -32,15 +32,23 @@ class Seed extends Model {
 		});
 	}
 
+	public function hashArray() {
+		return hash_array($this->id);
+	}
+
 	public function setPatchAttribute($value) {
 		$this->stored_patch = $value;
 	}
 
 	public function getPatchAttribute() {
-		return $this->patch()->first()->patch;
+		return $this->patch()->first()->patch ?? null;
 	}
 
 	public function patch() {
 		return $this->belongsTo(Patch::class, 'patch_id');
+	}
+
+	public function clearPatch() {
+		$this->patch()->delete();
 	}
 }
