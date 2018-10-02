@@ -73,7 +73,7 @@ return [
 		"OneHundredRupees" => "Some cash",
 		"FiftyRupees" => "Some cash",
 		"Heart" => "A Small Heart",
-		"Arrow" => ["The Single Arrow", "A Unique Item"],
+		"Arrow" => "The Single Arrow",
 		"TenArrows" => "some Arrows",
 		"SmallMagic" => "Small Magic",
 		"ThreeHundredRupees" => "Some cash",
