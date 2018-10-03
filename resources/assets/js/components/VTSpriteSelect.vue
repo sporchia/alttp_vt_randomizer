@@ -70,6 +70,10 @@ export default {
 		applyRomFunctions: (vm, rom) => {
 			let pickedSprite = vm.value;
 
+			if (pickedSprite === null) {
+				pickedSprite = vm.sprites[0];
+			}
+
 			while (pickedSprite.file === null) {
 				pickedSprite = vm.sprites[Math.floor(Math.random() * vm.sprites.length)];
 			}

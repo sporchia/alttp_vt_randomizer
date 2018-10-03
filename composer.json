@@ -26,7 +26,7 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "league/flysystem-cached-adapter": "^1.0",
         "league/flysystem-rackspace": "^1.0",
-        "martinlindhe/laravel-vue-i18n-generator": "^0.1.28",
+        "martinlindhe/laravel-vue-i18n-generator": "0.1.28.1",
         "sentry/sentry": "^1.8",
         "sentry/sentry-laravel": "^0.8.0",
         "wnx/laravel-stats": "^1.7",
@@ -64,6 +64,30 @@
                     "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
                     "type": "git",
                     "reference": "tags/0.6.2-pre0"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "martinlindhe/laravel-vue-i18n-generator",
+                "version": "0.1.28.1",
+                "source": {
+                    "url": "https://github.com/sporchia/laravel-vue-i18n-generator",
+                    "type": "git",
+                    "reference": "tags/0.1.28.1"
+                },
+                "autoload": {
+                    "psr-4": {
+                        "MartinLindhe\\VueInternationalizationGenerator\\": "src/"
+                    }
+                },
+                "extra": {
+                    "laravel": {
+                        "providers": [
+                            "MartinLindhe\\VueInternationalizationGenerator\\GeneratorProvider"
+                        ]
+                    }
                 }
             }
         }
