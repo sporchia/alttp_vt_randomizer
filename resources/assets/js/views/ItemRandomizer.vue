@@ -230,7 +230,20 @@ export default {
 					enemizer: this.enemizerEnabled ? this.enemizerSettings : false,
 					lang: document.documentElement.lang,
 				}).then(response => {
-					this.rom.parsePatch(response.data).then(function() {
+					let prom;
+					if (this.rom.checkMD5() != this.current_rom_hash) {
+						prom = this.rom.reset().then(() => {
+							if (this.rom.checkMD5() != this.current_rom_hash) {
+								return new Promise((resolve, reject) => {
+									reject(this.rom);
+								});
+							}
+							return this.rom.parsePatch(response.data);
+						});
+					} else {
+						prom = this.rom.parsePatch(response.data);
+					}
+					prom.then(function() {
 						if (response.data.current_rom_hash && response.data.current_rom_hash != this.current_rom_hash) {
 							// The base rom has been updated.
 							window.location.reload(true);
