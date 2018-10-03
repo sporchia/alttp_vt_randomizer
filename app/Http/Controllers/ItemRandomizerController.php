@@ -53,7 +53,7 @@ class ItemRandomizerController extends Controller {
 		$logic = $request->input('logic', 'NoGlitches') ?: 'NoGlitches';
 		$game_mode = $request->input('mode', 'standard');
 		$weapons_mode = $request->input('weapons', 'randomized');
-		$enemizer = $request->input('enemizer', false);
+		$enemizer = ($difficulty != 'custom') ? $request->input('enemizer', false) : false;
 		$spoilers = $request->input('spoilers', false);
 		$tournament = $request->filled('tournament') && $request->input('tournament') == 'true';
 		$spoiler_meta = [

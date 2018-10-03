@@ -1159,10 +1159,14 @@ class Randomizer {
 
 		if ($this->world->config('region.wildBigKeys', false)) {
 			$tile = array_pop($tiles);
-			$gtbk_hint = $this->world->getLocationsWithItem(Item::get('BigKeyA2'))->first()->getHint();
+			$gtbk_location = $this->world->getLocationsWithItem(Item::get('BigKeyA2'))->first();
 
-			logger()->debug("$tile: $gtbk_hint");
-			$rom->setText($tile, $gtbk_hint);
+			if ($gtbk_location) {
+				$gtbk_hint = $gtbk_location->getHint();
+
+				logger()->debug("$tile: $gtbk_hint");
+				$rom->setText($tile, $gtbk_hint);
+			}
 		}
 
 		if ($this->config('spoil.Hints', true)) {
