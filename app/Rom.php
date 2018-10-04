@@ -2421,6 +2421,7 @@ class Rom {
 
 	public function setGameState(string $state = null) {
 		$this->setOpenMode(false);
+		$this->setFixFakeWorld(false);
 		switch ($state) {
 			case 'open':
 				return $this->setOpenMode(true);

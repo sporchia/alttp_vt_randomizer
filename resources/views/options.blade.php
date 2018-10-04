@@ -341,12 +341,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<ul>
-						<li>6x Arrow Upgrade (+5)</li>
-						<li>1x Arrow Upgrade (+10)</li>
 						<li>10x Big Key</li>
 						<li>1x Blue Mail</li>
-						<li>6x Bomb Upgrade (+5)</li>
-						<li>1x Bomb Upgrade (+10)</li>
 						<li>1x Bombos</li>
 						<li>1x Book Of Mudora</li>
 						<li>1x Boomerang</li>
@@ -370,13 +366,13 @@
 						<li>11x Heart Container</li>
 						<li>1x Hookshot</li>
 						<li>1x Ice Rod</li>
+						<li>28x Small Key</li>
+						<li>1x Lamp</li>
+						<li>1x Magic Cape</li>
 					</ul>
 				</div>
 				<div class="col-md-6">
 					<ul>
-						<li>28x Small Key</li>
-						<li>1x Lamp</li>
-						<li>1x Magic Cape</li>
 						<li>1x Magic Mirror</li>
 						<li>1x Magic Powder</li>
 						<li>1x Magical Boomerang</li>
@@ -394,11 +390,14 @@
 						<li>1x Tempered Sword</li>
 						<li>1x Titans Mitt</li>
 					</ul>
+					<ul style="list-style-type:	none">
+						<li>&nbsp;</li>
+					</ul>
 					<ul>
-						<li>5x Ten Arrows</li>
+						<li>12x Ten Arrows</li>
 						<li>1x Single Arrow</li>
 						<li>1x Ten Bombs</li>
-						<li>9x Three Bombs</li>
+						<li>16x Three Bombs</li>
 						<li>5x Three Hundred Rupees</li>
 						<li>1x One Hundred Rupees</li>
 						<li>7x Fifty Rupees</li>
