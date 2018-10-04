@@ -124,6 +124,12 @@ class Dialog {
 					case "{CHOICE3}":
 						$new_string = array_merge($new_string, [0xFE, 0x72]);
 						break;
+					case "{C:GREEN}":
+						$new_string = array_merge($new_string, [0xFE, 0x77, 0x07]);
+						break;
+					case "{C:YELLOW}":
+						$new_string = array_merge($new_string, [0xFE, 0x77, 0x02]);
+						break;
 					case "{HARP}":
 						$new_string = array_merge($new_string, [0xFE, 0x79, 0x2D]);
 						break;

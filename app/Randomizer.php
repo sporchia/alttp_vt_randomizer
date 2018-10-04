@@ -1250,7 +1250,7 @@ class Randomizer {
 
 			foreach ($tiles as $tile) {
 				$hint = $hint_locations->pop();
-				$hint_text = ($hint ? $hint->getHint() : null) ?? array_first(fy_shuffle($strings['hint']));
+				$hint_text = ($hint ? $hint->getHint() : null) ?? "{C:GREEN}\n" . array_first(fy_shuffle($strings['hint']));
 
 				logger()->debug(str_replace("\n", " ", "$tile: $hint_text"));
 				$rom->setText($tile, $hint_text);
