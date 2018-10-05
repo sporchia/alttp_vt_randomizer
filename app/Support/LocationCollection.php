@@ -59,18 +59,23 @@ class LocationCollection extends Collection {
 	 * get the hint string for this location collection.
 	 */
 	public function getHint() {
-		$items = $this->getItems()->map(function($item) {
+		$prime_location = $this->locationsWithItem()->first();
+
+		$items = $this->getItems()->map(function($item) use ($prime_location) {
+			if ($prime_location->getRegion()->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
+				$item = Item::get('KeyGK');
+			}
+
 			$item_name = __('hint.item.' . $item->getTarget()->getName());
 
 			return (is_array($item_name)) ? array_first(fy_shuffle($item_name)) : $item_name;
 		});
 
 		switch (count($items)) {
-			case 1: return $this->locationsWithItem()->first()->getHint();
+			case 1: return $prime_location->getHint();
 			case 0: return null;
 		}
 
-		$prime_location = $this->locationsWithItem()->first();
 
 		$location_name = __('hint.location.' . $prime_location->getName());
 

@@ -58,7 +58,7 @@ return [
 			'timed-ohko' => 'Muerte Súbita cronometrada',
 			'ohko' => 'Muerte Súbita',
 			'triforce-hunt' => 'Caza de la Trifuerza',
-			'key-sanity' => 'Key-sanity',
+			'key-sanity' => 'Keysanity',
 			'retro' => 'Retro',
 		],
 	],

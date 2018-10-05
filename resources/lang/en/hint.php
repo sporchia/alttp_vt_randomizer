@@ -358,7 +358,7 @@ return [
 		"Pyramid Fairy - Right" => ["requires a big red bomb", "is with a great fairy"],
 		"Pyramid Fairy - Sword" => ["requires a big red bomb", "is with a great fairy"],
 		"Pyramid" => "is in plain sight",
-		"Sahasrahla" => ["requires a green pendant", "is held by a sage"],
+		"Sahasrahla" => ["requires a green pendant", "is held by the Kakariko village elder"],
 		"Sahasrahla's Hut - Left" => "is in a sages closet",
 		"Sahasrahla's Hut - Middle" => "is in a sages closet",
 		"Sahasrahla's Hut - Right" => "is in a sages closet",

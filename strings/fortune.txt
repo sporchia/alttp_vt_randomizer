@@ -5,7 +5,7 @@ damage.
 -
 The Cape can
 pass through
-agahanims
+Agahnim’s
 barrier.
 -
 Tempered and

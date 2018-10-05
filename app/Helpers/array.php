@@ -167,6 +167,7 @@ function patch_merge_minify(array $patch_left, array $patch_right = []) {
 			}
 		}
 	}
+	unset($patch_left);
 	// decompose right and overwrite
 	foreach ($patch_right as $wri) {
 		foreach ($wri as $seek => $bytes) {
@@ -175,7 +176,9 @@ function patch_merge_minify(array $patch_left, array $patch_right = []) {
 			}
 		}
 	}
+	unset($patch_right);
 	$out = $write_array;
+	unset($write_array);
 	ksort($out);
 
 	$backwards = array_reverse($out, true);
@@ -189,6 +192,7 @@ function patch_merge_minify(array $patch_left, array $patch_right = []) {
 	}
 
 	$forwards = array_reverse($backwards, true);
+	unset($backwards);
 
 	array_walk($forwards, function(&$write, $address) {
 		$write = [$address => $write];

@@ -10,7 +10,7 @@ use Symfony\Component\Process\Process;
  * functions support mt_rand (e.g. array_shuffle), so those had to be cloned to maintain seed integrity.
  */
 class Enemizer {
-	const VERSION = '6.0.32';
+	const VERSION = '6.0.33';
 	private $randomizer;
 	private $randomizer_patch;
 	private $options_file;

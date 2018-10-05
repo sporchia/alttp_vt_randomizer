@@ -71,17 +71,17 @@
 				<div class="row">
 					<div class="col-md">
 						<div class="btn-group btn-flex" role="group">
-							<button class="btn btn-primary w-50 text-center" v-tooltip="$t('randomizer.generate.race_warning')" name="generate-tournament-rom" @click="applyTournamentSeed">
+							<button class="btn btn-primary w-50 text-center" v-tooltip="$t('randomizer.generate.race_warning')" :disabled="generating" name="generate-tournament-rom" @click="applyTournamentSeed">
 								{{ $t('randomizer.generate.race') }}
 							</button>
-							<button class="btn btn-info w-50 text-center" name="generate-tournament-rom" @click="applyTournamentSpoilerSeed">
+							<button class="btn btn-info w-50 text-center" name="generate-tournament-rom" :disabled="generating" @click="applyTournamentSpoilerSeed">
 								{{ $t('randomizer.generate.spoiler_race') }}
 							</button>
 						</div>
 					</div>
 					<div class="col-md">
 						<div class="btn-group btn-flex" role="group">
-							<button name="generate" class="btn btn-success text-center" @click="applySpoilerSeed">
+							<button name="generate" class="btn btn-success text-center" :disabled="generating" @click="applySpoilerSeed">
 								{{ $t('randomizer.generate.casual') }}
 							</button>
 						</div>
@@ -204,9 +204,11 @@ export default {
 		},
 		applySeed(e, second_attempt) {
 			this.error = false;
+			this.generating = true;
 			if (this.rom.checkMD5() != this.current_rom_hash) {
 				if (second_attempt) {
 					return new Promise((resolve, reject) => {
+						this.generating = false;
 						reject(this.rom);
 					});
 				}
@@ -214,7 +216,8 @@ export default {
 					return this.applySeed(e, true);
 				}).catch(error => {
 					console.error(error);
-				})
+					this.generating = false;
+				});
 			}
 			return new Promise(function(resolve, reject) {
 				this.gameLoaded = false;
@@ -262,6 +265,8 @@ export default {
 								this.error = this.$i18n.t('error.failed_generation');
 						}
 					}
+				}).finally(() => {
+					this.generating = false;
 				});
 			}.bind(this));
 		},

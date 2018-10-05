@@ -48,7 +48,7 @@ class South extends Region {
 
 		$this->shops = new ShopCollection([
 			new Shop("Light World Lake Hylia Shop",       0x03, 0xA0, 0x0112, 0x58, $this),
-			new Shop("Capacity Upgrade",                  0x12, 0x04, 0x0115, 0x5D, $this),
+			new Shop\Upgrade("Capacity Upgrade",          0x12, 0x04, 0x0115, 0x5D, $this),
 			// Single entrance caves with no items in them ;)
 			new Shop\TakeAny("20 Rupee Cave",             0x83, 0xA0, 0x0112, 0x7B, $this, [0xDBBED => [0x58]]),
 			new Shop\TakeAny("50 Rupee Cave",             0x83, 0xA0, 0x0112, 0x79, $this, [0xDBBEB => [0x58]]),

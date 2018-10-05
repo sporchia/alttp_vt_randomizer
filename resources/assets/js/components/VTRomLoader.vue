@@ -72,14 +72,26 @@ export default {
 						this.loading = false;
 						return;
 					} else {
-						localforage.setItem('rom', rom.getOriginalArrayBuffer());
+						localforage.setItem('rom', rom.getOriginalArrayBuffer()).catch((error) => {
+							if (error === 'QuotaExceededError') {
+								this.$emit('error', this.$i18n.t('error.quota_exceeded_error'));
+								return;
+							}
+							throw error;
+						});
 						this.$emit('update', rom, this.current_rom_hash);
 						EventBus.$emit('applyHash', rom);
 						this.loading = false;
 					}
 				}).catch((error) => {
 					if (error == 'base patch corrupt') {
-						localforage.setItem('vt.stored_base');
+						localforage.setItem('vt.stored_base').catch((error) => {
+							if (error === 'QuotaExceededError') {
+								this.$emit('error', this.$i18n.t('error.quota_exceeded_error'));
+								return;
+							}
+							throw error;
+						});
 						this.loadBlob(change);
 					}
 				});
@@ -113,7 +125,21 @@ export default {
 								localforage.setItem('vt.base_json', response.data)
 									.then(this.patchRomFromJSON(rom).then(() => {
 										return resolve(rom);
-									}));
+									}))
+									.catch((error) => {
+										if (error === 'QuotaExceededError') {
+											this.$emit('error', this.$i18n.t('error.quota_exceeded_error'));
+											return;
+										}
+										throw error;
+									});
+							})
+							.catch((error) => {
+								if (error === 'QuotaExceededError') {
+									this.$emit('error', this.$i18n.t('error.quota_exceeded_error'));
+									return;
+								}
+								throw error;
 							});
 						});
 					}

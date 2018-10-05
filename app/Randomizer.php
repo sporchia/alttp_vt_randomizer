@@ -33,6 +33,9 @@ class Randomizer {
 	 * @return void
 	 */
 	public function __construct($difficulty = 'normal', $logic = 'NoGlitches', $goal = 'ganon', $variation = 'none') {
+		if ($logic === 'None') {
+			config(['alttp.region.forceSkullWoodsKey' => false]);
+		}
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
 		$this->logic = $logic;
@@ -610,6 +613,7 @@ class Randomizer {
 
 		$shops->filter(function($shop) {
 			return !$shop instanceof Shop\TakeAny
+				&& !$shop instanceof Shop\Upgrade
 				&& (!$this->world instanceof ALttP\World\Inverted || $shop->getName() != "Dark World Lake Hylia Shop");
 		})->randomCollection(5)->each(function($shop) {
 			$shop->setActive(true);
@@ -631,6 +635,9 @@ class Randomizer {
 					$dw_shop->addInventory($slot, Item::get('ShopArrow'), 80);
 				}
 			}
+
+			$this->world->getShop("Capacity Upgrade")->clearInventory()
+				->addInventory(0, Item::get('BombUpgrade5'), 100, 7);
 		}
 	}
 

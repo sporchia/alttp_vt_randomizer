@@ -58,7 +58,7 @@ return [
 			'timed-ohko' => 'Zeitlimit bis OHKO',
 			'ohko' => 'OHKO',
 			'triforce-hunt' => 'Triforce-Splitter Jagd',
-			'key-sanity' => 'Key-sanity',
+			'key-sanity' => 'Keysanity',
 			'retro' => 'Retro',
 		],
 	],

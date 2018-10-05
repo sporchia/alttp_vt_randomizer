@@ -96,12 +96,12 @@
 						<div class="row">
 							<div class="col-md">
 								<div class="btn-group btn-flex" role="group">
-									<button name="generate" class="btn btn-success" @click="applySpoilerSeed">{{ $t('randomizer.generate.casual') }}</button>
+									<button name="generate" :disabled="generating" class="btn btn-success" @click="applySpoilerSeed">{{ $t('randomizer.generate.casual') }}</button>
 								</div>
 							</div>
 							<div class="col-md">
 								<div class="btn-group btn-flex" role="group">
-									<button class="btn btn-info" name="generate-tournament-rom" @click="testSpoilerSeed">Test Placements</button>
+									<button class="btn btn-info" name="generate-tournament-rom" :disabled="generating" @click="testSpoilerSeed">Test Placements</button>
 								</div>
 							</div>
 						</div>
@@ -262,9 +262,12 @@ export default {
 			this.applySeed();
 		},
 		applySeed(e, second_attempt) {
+			this.error = false;
+			this.generating = true;
 			if (this.rom.checkMD5() != this.current_rom_hash) {
 				if (second_attempt) {
 					return new Promise(function(resolve, reject) {
+						this.generating = false;
 						reject(this.rom);
 					});
 				}
@@ -272,6 +275,7 @@ export default {
 					return this.applySeed(e, true);
 				}.bind(this)).catch((error) => {
 					console.log(error);
+					this.generating = false;
 				})
 			}
 			return new Promise(function(resolve, reject) {
@@ -328,6 +332,8 @@ export default {
 									+ error.response.data;
 						}
 					}
+				}).finally(() => {
+					this.generating = false;
 				});
 			}.bind(this));
 		},

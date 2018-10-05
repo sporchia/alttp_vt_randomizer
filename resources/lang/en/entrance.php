@@ -58,7 +58,7 @@ return [
 			'timed-ohko' => 'Timed OHKO',
 			'ohko' => 'OHKO',
 			'triforce-hunt' => 'Triforce Piece Hunt',
-			'key-sanity' => 'Key-sanity',
+			'key-sanity' => 'Keysanity',
 			'retro' => 'Retro',
 		],
 	],

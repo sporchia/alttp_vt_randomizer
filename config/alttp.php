@@ -643,7 +643,7 @@ return [
 				'timed-ohko' => 'Timed OHKO',
 				'ohko' => 'OHKO',
 				'triforce-hunt' => 'Triforce Piece Hunt',
-				'key-sanity' => 'Key-sanity',
+				'key-sanity' => 'Keysanity',
 				'retro' => 'Retro',
 			],
 		],
@@ -679,11 +679,11 @@ return [
 			],
 			'variations' => [
 				'none' => 'None',
+				'key-sanity' => 'Keysanity',
+				'retro' => 'Retro',
 				'timed-race' => 'Timed Race',
 				'timed-ohko' => 'Timed OHKO',
 				'ohko' => 'OHKO',
-				'key-sanity' => 'Key-sanity',
-				'retro' => 'Retro',
 			],
 			'difficulty_adjustments' => [
 				-1 => 'Easy',

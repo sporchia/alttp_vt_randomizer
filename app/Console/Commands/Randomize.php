@@ -3,8 +3,9 @@
 use ALttP\Item;
 use ALttP\Randomizer;
 use ALttP\Rom;
-use ALttP\World;
 use ALttP\Support\Zspr;
+use ALttP\World;
+use Hashids\Hashids;
 use Illuminate\Console\Command;
 
 class Randomize extends Command {
@@ -49,6 +50,9 @@ class Randomize extends Command {
 	 * @return mixed
 	 */
 	public function handle() {
+		ini_set('memory_limit', '512M');
+		$hasher = new Hashids('local', 15);
+
 		if (!is_readable($this->argument('input_file'))) {
 			return $this->error('Source File not readable');
 		}
@@ -67,6 +71,7 @@ class Randomize extends Command {
 
 		for ($i = 0; $i < $bulk; $i++) {
 			$rom = new Rom($this->argument('input_file'));
+			$hash = $hasher->encode((int) (microtime(true) * 1000));
 
 			if (!$this->option('skip-md5') && !$rom->checkMD5()) {
 				$rom->resize();
@@ -108,7 +113,7 @@ class Randomize extends Command {
 			$output_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.sfc',
 				$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons') ? '_'
 				. $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_'
-				. $this->option('variation'), $i);
+				. $this->option('variation'), $hash);
 
 			if (!$this->option('no-rom', false)) {
 				if ($this->option('sprite') && is_readable($this->option('sprite'))) {
@@ -135,7 +140,7 @@ class Randomize extends Command {
 				$spoiler_file = sprintf($this->argument('output_directory') . '/' . 'ALttP - VT_%s_%s-%s%s-%s%s_%s.txt',
 					$rand->getLogic(), $this->option('difficulty'), $this->option('state'), $this->option('weapons') ? '_'
 					. $this->option('weapons') : '', $this->option('goal'), $this->option('variation')=='none' ? '' : '_'
-					. $this->option('variation'), $i);
+					. $this->option('variation'), $hash);
 
 				file_put_contents($spoiler_file, json_encode($rand->getSpoiler(), JSON_PRETTY_PRINT));
 				$this->info(sprintf('Spoiler Saved: %s', $spoiler_file));

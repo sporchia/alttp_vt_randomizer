@@ -66,7 +66,7 @@ return [
 			'timed-race' => 'Timed Race',
 			'timed-ohko' => 'Timed OHKO',
 			'ohko' => 'OHKO',
-			'key-sanity' => 'Key-sanity',
+			'key-sanity' => 'Keysanity',
 			'retro' => 'Retro',
 		],
 	],

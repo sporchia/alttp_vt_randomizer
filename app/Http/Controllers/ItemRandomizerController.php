@@ -78,10 +78,12 @@ class ItemRandomizerController extends Controller {
 
 		if ($difficulty == 'custom') {
 			$custom_data = array_dot($request->input('data'));
+			$placed_item_count = array_count_values($request->input('l', []));
 			// some simple validation
 			// @TODO: move to validator type classes later
 			if ($goal === 'triforce-hunt'
-				&& ($custom_data['alttp.custom.item.Goal.Required'] ?? 0) > ($custom_data['alttp.custom.item.count.TriforcePiece'] ?? 0)) {
+				&& ($custom_data['alttp.custom.item.Goal.Required'] ?? 0)
+					> ($custom_data['alttp.custom.item.count.TriforcePiece'] ?? 0) + ($placed_item_count['TriforcePiece'] ?? 0)) {
 				throw new Exception("Not enough Triforce Pieces for the hunt");
 			}
 

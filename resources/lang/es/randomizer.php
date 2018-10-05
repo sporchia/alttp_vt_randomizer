@@ -66,7 +66,7 @@ return [
 			'timed-race' => 'Carrera cronometrada',
 			'timed-ohko' => 'Muerte Súbita cronometrada',
 			'ohko' => 'Muerte Súbita',
-			'key-sanity' => 'Key-sanity',
+			'key-sanity' => 'Keysanity',
 			'retro' => 'Retro',
 		],
 	],

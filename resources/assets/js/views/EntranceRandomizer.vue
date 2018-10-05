@@ -71,17 +71,17 @@
 				<div class="row">
 					<div class="col-md">
 						<div class="btn-group btn-flex" role="group">
-							<button class="btn btn-primary w-50 text-center" v-tooltip="$t('randomizer.generate.race_warning')" name="generate-tournament-rom" @click="applyTournamentSeed">
+							<button class="btn btn-primary w-50 text-center" v-tooltip="$t('randomizer.generate.race_warning')" name="generate-tournament-rom" :disabled="generating" @click="applyTournamentSeed">
 								{{ $t('entrance.generate.race') }}
 							</button>
-							<button class="btn btn-info w-50 text-center" name="generate-tournament-rom" @click="applyTournamentSpoilerSeed">
+							<button class="btn btn-info w-50 text-center" name="generate-tournament-rom" :disabled="generating" @click="applyTournamentSpoilerSeed">
 								{{ $t('entrance.generate.spoiler_race') }}
 							</button>
 						</div>
 					</div>
 					<div class="col-md">
 						<div class="btn-group btn-flex" role="group">
-							<button name="generate" class="btn btn-success text-center" @click="applySpoilerSeed">{{ $t('entrance.generate.casual') }}</button>
+							<button name="generate" :disabled="generating" class="btn btn-success text-center" @click="applySpoilerSeed">{{ $t('entrance.generate.casual') }}</button>
 						</div>
 					</div>
 				</div>
@@ -201,10 +201,13 @@ export default {
 			this.applySeed();
 		},
 		applySeed(e, second_attempt) {
+			this.error = false;
+			this.generating = true;
 			if (this.rom.checkMD5() != this.current_rom_hash) {
 				console.log(this.rom.checkMD5(), this.current_rom_hash)
 				if (second_attempt) {
 					return new Promise(function(resolve, reject) {
+						this.generating = false;
 						reject(this.rom);
 					});
 				}
@@ -212,6 +215,7 @@ export default {
 					return this.applySeed(e, true);
 				}.bind(this)).catch((error) => {
 					console.log(error);
+					this.generating = false;
 				})
 			}
 			return new Promise(function(resolve, reject) {
@@ -248,6 +252,8 @@ export default {
 								this.error = this.$i18n.t('error.failed_generation');
 						}
 					}
+				}).finally(() => {
+					this.generating = false;
 				});
 			}.bind(this));
 		},

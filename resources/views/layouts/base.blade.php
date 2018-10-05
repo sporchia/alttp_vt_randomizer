@@ -29,7 +29,7 @@
 
 	new Vue({
 		el: '#navbar',
-		i18n,
+		i18n: i18n,
 		store: cStore,
 	});
 	</script>

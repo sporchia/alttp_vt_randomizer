@@ -62,7 +62,7 @@ class Boss {
 				return $items->hasSword() || $items->has('Hammer') || $items->has('BugCatchingNet');
 			}),
 			new static("Helmasaur King", "Helmasaur", function($locations, $items) {
-				return $items->hasSword() || $items->has('Hammer') || $items->canShootArrows();
+				return $items->hasSword() || $items->canShootArrows();
 			}),
 			new static("Arrghus", "Arrghus", function($locations, $items) {
 				return $items->has('Hookshot') && ($items->has('Hammer') || $items->hasSword()
