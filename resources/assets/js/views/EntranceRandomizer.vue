@@ -63,7 +63,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md">
-						<vt-enemizer v-if="enemizerEnabled" v-model="enemizerSettings" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
+						<vt-enemizer v-if="enemizerEnabled" v-model="enemizerSettings" :restrictedSettings="true" :rom="rom" :version="enemizerVersion" @closed="enemizerEnabled=false"></vt-enemizer>
 					</div>
 				</div>
 			</div>
