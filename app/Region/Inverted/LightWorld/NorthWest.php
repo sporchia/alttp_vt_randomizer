@@ -19,6 +19,14 @@ class NorthWest extends Region\Standard\LightWorld\NorthWest {
 	 * @return $this
 	 */
 	public function initNoGlitches() {
+		$this->shops["Bush Covered House"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->shops["Bomb Hut"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && $items->canBombThings();
+		});
+
 		// Bunny can pull pedestal
 		$this->locations["Master Sword Pedestal"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfPower')

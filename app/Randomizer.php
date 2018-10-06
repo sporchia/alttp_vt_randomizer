@@ -809,7 +809,7 @@ class Randomizer {
 				$rom->setSilversEquip('both');
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
-					0x58, 0x01, 0x43, 0xFF, // silver arrows -> 1 arrow
+					0x58, 0x01, $this->config('rom.rupeeBow', false) ? 0x36 : 0x43, 0xFF, // silver arrows -> 1 arrow
 					0x3E, 0x07, 0x36, 0xFF, // 7 boss hearts -> 20 rupees
 					0x51, 0x06, 0x52, 0xFF, // 6 +5 bomb upgrades -> +10 bomb upgrade
 					0x53, 0x06, 0x54, 0xFF, // 6 +5 arrow upgrades -> +10 arrow upgrade
@@ -1214,7 +1214,7 @@ class Randomizer {
 					&& !$item instanceof Item\Key
 					&& !$item instanceof Item\Map
 					&& !$item instanceof Item\Compass
-					&& (!$this->world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey)
+					&& ($this->world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey)
 					&& !$item instanceof Item\Bottle
 					&& !$item instanceof Item\Sword
 					&& !in_array($item->getName(), ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
@@ -1251,9 +1251,10 @@ class Randomizer {
 					&& !$item instanceof Item\Key
 					&& !$item instanceof Item\Map
 					&& !$item instanceof Item\Compass
-					&& (!$this->world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey);
+					&& ($this->world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey);
 			});
-			$hint_locations = $locations_with_item->randomCollection(get_random_int(floor((count($tiles) - count($hints)) / 2), count($tiles) - count($hints)))->merge($hints);
+
+			$hint_locations = $locations_with_item->randomCollection(get_random_int(floor((count($tiles) - count($hints)) / 2) - 1, count($tiles) - count($hints) - 1))->merge($hints);
 
 			foreach ($tiles as $tile) {
 				$hint = $hint_locations->pop();

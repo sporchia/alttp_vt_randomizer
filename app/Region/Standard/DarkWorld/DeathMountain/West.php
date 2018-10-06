@@ -51,6 +51,11 @@ class West extends Region {
 	 * @return $this
 	 */
 	public function initNoGlitches() {
+		$this->shops["Dark Death Mountain Fairy"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+		});
+
 		$this->locations["Spike Cave"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
 				&& (($items->canExtendMagic() && $items->has('Cape'))

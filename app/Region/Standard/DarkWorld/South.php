@@ -39,7 +39,6 @@ class South extends Region {
 			// Single entrance caves with no items in them ;)
 			new Shop\TakeAny("Archery Game",                     0x83, 0xC1, 0x010F, 0x59, $this, [0xDBBCB => [0x60]]),
 			new Shop\TakeAny("Bonk Fairy (Dark)",                0x83, 0xC1, 0x0112, 0x78, $this, [0xDBBEA => [0x58]]),
-			new Shop\TakeAny("Dark Lake Hylia Fairy",            0x83, 0xC1, 0x0112, 0x6D, $this, [0xDBBDF => [0x58]]),
 			new Shop\TakeAny("Dark Lake Hylia Ledge Fairy",      0x83, 0xC1, 0x0112, 0x81, $this, [0xDBBF3 => [0x58]]),
 			new Shop\TakeAny("Dark Lake Hylia Ledge Hint",       0x83, 0xC1, 0x0112, 0x6A, $this, [0xDBBDC => [0x58]]),
 			new Shop\TakeAny("Dark Lake Hylia Ledge Spike Cave", 0x83, 0xC1, 0x0112, 0x7C, $this, [0xDBBEE => [0x58]]),
