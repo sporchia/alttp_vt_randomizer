@@ -101,7 +101,7 @@ class IcePalace extends Region {
 		$this->locations["Ice Palace - Spike Room"]->setRequirements(function($locations, $items) {
 			return (!$this->world->config('region.cantTakeDamage', false)
 					|| $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
-				&& ($items->has('Hookshot') || $items->has('KeyD5', 2));
+				&& ($items->has('Hookshot') || ($items->has('BigKeyD5') ? $items->has('Hookshot') : $items->has('KeyD5', 1)));
 		});
 
 		$this->locations["Ice Palace - Freezor Chest"]->setRequirements(function($locations, $items) {
