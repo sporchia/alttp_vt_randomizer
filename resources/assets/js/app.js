@@ -11,12 +11,15 @@ if (process.env.MIX_SENTRY_DSN_PUBLIC) {
 			// Chrome extensions
 			/extensions\//i,
 			/^chrome:\/\//i,
+			// Firefox extensions
+			/^moz-extension:\/\//i,
 			// AdSense
 			/pagead2\.googlesyndication\.com/i,
 		],
 	}).install();
 }
 
+require('./polyfill');
 require('./bootstrap');
 
 window.Vue = require('vue');
