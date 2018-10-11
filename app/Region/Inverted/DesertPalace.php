@@ -43,7 +43,7 @@ class DesertPalace extends Region\Standard\DesertPalace {
 		});
 
 		$this->can_enter = function($locations, $items) {
-			return $this->world->getRegion('South Light World')->canEnter($locations, $items))
+			return $this->world->getRegion('South Light World')->canEnter($locations, $items)
 				&& ($items->has('BookOfMudora')
 					|| ($items->has('MoonPearl') && $items->has('PegasusBoots')));
 		};
