@@ -54,11 +54,11 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape {
 
 		$this->locations["Secret Passage"]->setRequirements(function($locations, $items) {
 			return $items->canKillMostThings() && $items->has('MoonPearl');
-		})
+		});
 
 		$this->locations["Link's Uncle"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl');
-		})
+		});
 
 		return $this;
 	}
