@@ -37,4 +37,5 @@ class Mire extends Region\Standard\DarkWorld\Mire {
 		};
 
 		return $this;
+	}
 }
