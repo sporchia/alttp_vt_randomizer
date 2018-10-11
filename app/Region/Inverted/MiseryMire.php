@@ -32,4 +32,8 @@ class MiseryMire extends Region\Standard\MiseryMire {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		return $this->initNoGlitches();
+	}
 }

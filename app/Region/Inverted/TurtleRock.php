@@ -210,4 +210,8 @@ class TurtleRock extends Region\Standard\TurtleRock {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		return $this->initNoGlitches();
+	}
 }

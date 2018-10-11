@@ -27,4 +27,8 @@ class PalaceOfDarkness extends Region\Standard\PalaceOfDarkness {
 		return $this;
 	}
 
+	public function initOverworldGlitches() {
+		return $this->initNoGlitches();
+	}
+
 }
