@@ -70,15 +70,15 @@ class TurtleRock extends Region\Standard\TurtleRock {
 	}
 
 	protected function enterTop($locations, $items) {
-		return call_user_func([$this, 'enterTop' . $this->world->logic], $locations, $items);
+		return call_user_func([$this, 'enterTop' . $this->world->getLogic()], $locations, $items);
 	}
 
 	protected function enterMiddle($locations, $items) {
-		return call_user_func([$this, 'enterMiddle' . $this->world->logic], $locations, $items);
+		return call_user_func([$this, 'enterMiddle' . $this->world->getLogic()], $locations, $items);
 	}
 
 	protected function enterBottom($locations, $items) {
-		return call_user_func([$this, 'enterBottom' . $this->world->logic], $locations, $items);
+		return call_user_func([$this, 'enterBottom' . $this->world->getLogic()], $locations, $items);
 	}
 
 	/**

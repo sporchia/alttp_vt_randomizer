@@ -602,6 +602,15 @@ abstract class World {
 	}
 
 	/**
+	 * Get Logic in this world
+	 *
+	 * @return string
+	 */
+	public function getLogic() : string {
+		return $this->logic;
+	}
+
+	/**
 	 * Get Difficulty in this world
 	 *
 	 * @return string
