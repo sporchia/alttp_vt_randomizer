@@ -26,4 +26,5 @@ class PalaceOfDarkness extends Region\Standard\PalaceOfDarkness {
 
 		return $this;
 	}
+
 }

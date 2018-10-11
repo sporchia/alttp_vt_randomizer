@@ -27,4 +27,14 @@ class EasternPalace extends Region\Standard\EasternPalace {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('North East Light World')->canEnter($locations, $items);
+		};
+
+		return $this;
+	}
 }

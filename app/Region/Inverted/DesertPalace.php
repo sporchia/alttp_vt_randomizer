@@ -29,4 +29,25 @@ class DesertPalace extends Region\Standard\DesertPalace {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->locations["Desert Palace - Boss"]->setRequirements(function($locations, $items) {
+			return $this->canEnter($locations, $items) && $items->canLightTorches()
+				&& $items->has('BigKeyP2') && $items->has('KeyP2')
+				&& $this->boss->canBeat($items, $locations)
+				&& (($items->has('BookOfMudora') && $items->canLiftRocks())
+					|| ($items->has('PegasusBoots')))
+				&& $items->has('MoonPearl');
+		});
+
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('South Light World')->canEnter($locations, $items))
+				&& ($items->has('BookOfMudora')
+					|| ($items->has('MoonPearl') && $items->has('PegasusBoots')));
+		};
+
+		return $this;
+	}
 }

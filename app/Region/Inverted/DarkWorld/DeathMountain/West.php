@@ -45,4 +45,16 @@ class West extends Region\Standard\DarkWorld\DeathMountain\West {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->canFly()
+					|| $items->has('PegasusBoots')
+					|| ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)));
+		};
+
+		return $this;
+	}
 }

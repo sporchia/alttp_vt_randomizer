@@ -42,4 +42,14 @@ class West extends Region\Standard\LightWorld\DeathMountain\West {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $this->world->getRegion('West Dark World Death Mountain')->canEnter($locations, $items);
+		};
+
+		return $this;
+	}
 }

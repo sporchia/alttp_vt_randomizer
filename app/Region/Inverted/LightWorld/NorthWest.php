@@ -120,4 +120,43 @@ class NorthWest extends Region\Standard\LightWorld\NorthWest {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->locations["King's Tomb"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && ($items->canLiftDarkRocks() || $items->has('MagicMirror')) && $items->has('PegasusBoots');
+		});
+
+		$this->locations["Kakariko Tavern"]->setRequirements(function($locations, $items) {
+			return !$this->world->config('region.cantTakeDamage', false) || $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Kakariko Well - Left"]->setRequirements(null);
+		$this->locations["Kakariko Well - Middle"]->setRequirements(null);
+		$this->locations["Kakariko Well - Right"]->setRequirements(null);
+		$this->locations["Kakariko Well - Bottom"]->setRequirements(null);
+
+		$this->locations["Blind's Hideout - Left"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Blind's Hideout - Right"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Blind's Hideout - Far Left"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Blind's Hideout - Far Right"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Magic Bat"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && ($items->has('Hammer') || $items->has('PegasusBoots')) && $items->has('Powder');
+		});
+
+		return $this;
+	}
 }
