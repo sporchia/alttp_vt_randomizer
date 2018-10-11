@@ -49,11 +49,11 @@ class TurtleRock extends Region\Standard\TurtleRock {
 		return $this->enterTopOverworldGlitches($locations, $items);
 	}
 
-	protected function enterMiddleOverworldGlitches($locations, $items) {
+	protected function enterMiddleMajorGlitches($locations, $items) {
 		return $this->enterMiddleOverworldGlitches($locations, $items);
 	}
 
-	protected function enterBottomOverworldGlitches($locations, $items) {
+	protected function enterBottomMajorGlitches($locations, $items) {
 		return $this->enterBottomOverworldGlitches($locations, $items);
 	}
 
