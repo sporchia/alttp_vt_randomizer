@@ -75,7 +75,9 @@ archery game.
 -
 The mirror is
 a way to enter
-Desert Palace.
+Desert Palace,
+except in
+inverted mode.
 -
 Northeast of
 the pyramid,
