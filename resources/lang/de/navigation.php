@@ -19,6 +19,8 @@ return [
 	'races' => 'Organisierte Rennen',
 	'updates' => 'Updates',
 	'game_entrance' => 'Entrance Randomizer',
+	'game_enemizer' => 'Enemizer',
+	'sprite_preview' => 'Sprite Options',
 	'contribute' => 'Mitwirken',
 	'discord' => 'Trete uns auf Discord bei',
 	'report_issue' => 'Melde ein Problem',

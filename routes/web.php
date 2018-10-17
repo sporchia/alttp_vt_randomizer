@@ -80,6 +80,8 @@ Route::prefix('{lang?}')->middleware('locale')->group(function() {
 
 	Route::redirect('special', '/');
 
+	Route::view('sprite_preview', 'sprite_preview');
+
 	Route::view('start', 'start');
 
 	Route::view('updates', 'updates');
