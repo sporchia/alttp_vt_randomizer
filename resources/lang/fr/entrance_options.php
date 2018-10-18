@@ -1,37 +1,37 @@
 <?php
 return [
-	'header' => 'Qu’est ce que le Randomizer d’Entrée?',
-	'subheader' => 'Le Randomizer d’entrées vous permet de tourner le monde à l’envers et de jouer. Il devrait principalement suivre les règles VT standard pour les paramètres sur tout, mais il introduit une nouvelle option “' . __('entrance.shuffle.title') . '”.',
+	'header' => 'Qu’est ce que le Randomizer de Portes ?',
+	'subheader' => 'Ce randomiseur suit globalement les règles standards du randomiseur d’items, mais introduit une nouvelle option “' . __('entrance.shuffle.title') . '”.',
 	'cards' => [
 		'simple' => [
 			'header' => __('entrance.shuffle.options.simple'),
 			'content' => [
-				'Mélangez les entrées des donjons les unes aux autres et conservez tous les donjons à 4 entrées confinés à un endroit tel que les donjons échangent les uns avec les autres.',
-				'En dehors de Light World Death Mountain, les intérieurs sont mélangés mais connectent toujours les mêmes points sur le monde extérieur. Sur la Montagne de la Mort, les entrées sont connectées plus librement.',
+				'Mélange les entrées des donjons entre elles. Si un donjon possède plusieurs entrées elles sont mélangées de telle sorte qu’elles restent toute dans la même zone.',
+				'À l’exception de la montagne de la mort côté monde de lumière ou le mélange est plus permissif, les intérieurs sont également mélangés mais sont reliés au même endroit extérieur.',
 			],
 		],
 		'restricted' => [
 			'header' => __('entrance.shuffle.options.restricted'),
 			'content' => [
-				'Utilise le mélangeur de donjon à partir du mode Simple mais connecte librement les entrées restantes. Les grottes et les donjons avec des entrées multiples seront confinés à un seul monde.',
+				'Les entrées de donjons sont mélangées comme dans le mélange simple, mais les autres entrées sont connectées plus librement. Si une zone possède plusieurs entrées, elles sont toutes dans le même monde.',
 			],
 		],
 		'full' => [
 			'header' => __('entrance.shuffle.options.full'),
 			'content' => [
-				'Mélange librement les entrées des grottes et des donjons. Les grottes et les donjons avec des entrées multiples seront confinés à un seul monde.',
+				'Mélange les entrées de cavernes et de donjons entre elles. Si une zone possède plusieurs entrées, elles sont toutes dans le même monde.',
 			],
 		],
 		'crossed' => [
 			'header' => __('entrance.shuffle.options.crossed'),
 			'content' => [
-				'Mélange librement les entrées des grottes et des donjons, mais à présent, les grottes et les donjons des connecteurs peuvent relier Light World et Dark World.',
+				'Mélange les entrées de cavernes et de donjons entre elles, mais les zones peuvent maintenant se croiser entre monde des ténèbres et monde de lumière.',
 			],
 		],
 		'insanity' => [
 			'header' => __('entrance.shuffle.options.insanity'),
 			'content' => [
-				'Découple les entrées et les sorties les unes des autres et les mélange librement. Les grottes qui étaient une seule entrée ne peuvent toujours sortir qu’au même endroit d’où elles sont entrées.',
+				'Sépare les entrées et les sorties des zones et mélange le tout. Les cavernes qui ne possèdent qu’une seule entrée dans le jeu de base ressortent quand même au même endroit.',
 			],
 		],
 	],

@@ -1,8 +1,8 @@
 <?php
 return [
-	'title' => 'Randomizer d’objets',
+	'title' => 'Randomiseur d’objets',
 	'switch' => [
-		'entrance' => 'Passer au Randomizer d’entrée',
+		'entrance' => 'Passer au Randomiseur de portes',
 	],
 	'difficulty' => [
 		'title' => 'Difficulté',
@@ -29,8 +29,8 @@ return [
 		'options' => [
 			'ganon' => 'Vaincre Ganon',
 			'dungeons' => 'Tous les Donjons',
-			'pedestal' => 'Piédestal de Master Sword',
-			'triforce-hunt' => 'Pièces de Triforce ',
+			'pedestal' => 'Piédestal de la Master Sword',
+			'triforce-hunt' => 'Morceaux de Triforce ',
 		],
 	],
 	'logic' => [
@@ -44,9 +44,9 @@ return [
 		'glitch_warning' => 'Cette logique nécessite la connaissance des glitches majeurs<sup>**</sup>',
 	],
 	'mode' => [
-		'title' => 'Réglage',
+		'title' => 'Mode',
 		'options' => [
-			'standard' => 'Norme',
+			'standard' => 'Standard',
 			'open' => 'Ouvert',
 			'inverted' => 'Inversé',
 		],
@@ -54,31 +54,31 @@ return [
 			'weapons' => [
 		'title' => 'Épées',
 		'options' => [
-			'randomized' => 'Randomisé',
-			'uncle' => 'Oncle Assuré',
+			'randomized' => 'Randomisées',
+			'uncle' => 'Assurés',
 			'swordless' => 'Sans Épée',
 		],
 	],
 	'variation' => [
 		'title' => 'Variation',
 		'options' => [
-			'none' => 'Aucun',
-			'timed-race' => 'Course Chronométrée',
-			'timed-ohko' => 'OHKO Chronométré',
-			'ohko' => 'OHKO',
-			'key-sanity' => 'Clé-insensé',
-			'retro' => 'Classique',
+			'none' => 'Aucune',
+			'timed-race' => 'Chronométrée',
+			'timed-ohko' => 'Décompte Finale',
+			'ohko' => 'Zéro Coeurs',
+			'key-sanity' => 'Clé-sordre',
+			'retro' => 'Retro',
 		],
 	],
 	'generate' => [
-		'race' => 'Générer ROM de Course',
-		'race_warning' => 'Les spoilers seront <span class="running-now">jamais</span> disponibles pour cette option.',
-		'spoiler_race' => ' ROM de Course spoiler',
+		'race' => 'Générer une ROM de Course',
+		'race_warning' => 'Les spoilers ne seront <span class="running-now">jamais</span> disponibles pour cette option.',
+		'spoiler_race' => 'Spoiler de la ROM de Course',
 		'casual' => 'Générer une ROM',
 	],
 	'details' => [
 		'title' => 'Détails du jeu',
 		'save_spoiler' => 'Enregistrer le spoiler',
-		'save_rom' => 'Sauvegarder Rom',
+		'save_rom' => 'Sauvegarder la ROM',
 	],
 ];

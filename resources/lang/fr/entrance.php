@@ -1,6 +1,6 @@
 <?php
 return [
-	'title' => 'Randomizer d’entrées',
+	'title' => 'Randomizer de portes',
 	'switch' => [
 		'item' => 'Passer au Randomizer d’objets',
 	],
@@ -11,7 +11,7 @@ return [
 		'title' => 'Difficulté',
 		'options' => [
 			'easy' => 'Facile',
-			'normal' => 'Ordinaire',
+			'normal' => 'Normal',
 			'hard' => 'Difficile',
 			'expert' => 'Expert',
 			'insane' => 'Insensé',
@@ -44,9 +44,9 @@ return [
 		'title' => 'Mélanger',
 		'options' => [
 			'simple' => 'Simple',
-			'restricted' => 'Limité',
+			'restricted' => 'Restreint',
 			'full' => 'Complet',
-			'crossed' => 'Franchi',
+			'crossed' => 'Croisé',
 			'insanity' => 'Insensé',
 		],
 	],
@@ -54,22 +54,22 @@ return [
 		'title' => 'Variation',
 		'options' => [
 			'none' => 'Aucun',
-			'timed-race' => 'Course Chronométrée',
-			'timed-ohko' => 'OHKO Chronométré',
-			'ohko' => 'OHKO',
-			'triforce-hunt' => 'Chasse à la pièce Triforce',
-			'key-sanity' => 'Clé-insensé',
-			'retro' => 'Classique',
+			'timed-race' => 'Chronométrée',
+			'timed-ohko' => 'Décompte Final',
+			'ohko' => 'Zéro Coeurs',
+			'triforce-hunt' => 'Chasse aux morceaux de Triforce',
+			'key-sanity' => 'Clé-sordre',
+			'retro' => 'Rétro',
 		],
 	],
 	'generate' => [
 		'race' => 'Générer une ROM de course',
-		'spoiler_race' => 'ROM de Course spoiler',
+		'spoiler_race' => 'Spoiler de la ROM de Course',
 		'casual' => 'Générer une ROM',
 	],
 	'details' => [
 		'title' => 'Détails du jeu',
 		'save_spoiler' => 'Enregistrer le spoiler',
-		'save_rom' => 'Sauvegarder Rom',
+		'save_rom' => 'Sauvegarder la ROM',
 	],
 ];
