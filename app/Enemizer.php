@@ -86,7 +86,7 @@ class Enemizer {
 		$system = php_uname('s') == 'Darwin' ? 'osx' : 'linux';
 
 		$options = [
-			"RandomizeEnemies" => $this->settings['enemy'] ?? true,
+			"RandomizeEnemies" => $this->settings['enemy'] ?? false,
 			"RandomizeEnemiesType" => 3,
 			"RandomizeBushEnemyChance" => true,
 			"RandomizeEnemyHealthRange" => (bool) ($this->settings['enemy_health'] ?? false),
@@ -153,7 +153,7 @@ class Enemizer {
 			"BeesLevel" => 3,
 			"RandomizeTileTrapPattern" => true,
 			"RandomizeTileTrapFloorTile" => false,
-			"AllowKillableThief" => $this->settings['enemy'] ?? true,
+			"AllowKillableThief" => $this->settings['enemy'] ?? false,
 			"RandomizeSpriteOnHit" => false,
 			"DebugMode" => false,
 			"DebugForceEnemy" => true,
