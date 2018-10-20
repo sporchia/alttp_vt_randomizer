@@ -1,38 +1,38 @@
 <?php
 return [
-	'header' => 'Jeu Organisé',
+	'header' => 'Parties organisées',
 	'cards' => [
 		'races' => [
-			'header' => 'Les courses',
+			'header' => 'Courses',
 			'sections' => [
 				[
 					'header' => '',
 					'content' => [
-						'La plupart des courses se font via <a href="https://speedracing.tv/" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> ou <a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a>. Assurez-vous de les consulter pour plus d’informations sur la façon de participer à l’action!',
+						'La plupart des courses sont faites au travers de <a href="https://speedracing.tv/" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> ou <a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a>. Vous y trouverez toutes les informations nécessaires pour profiter de l’action !',
 					],
 				],
 				[
-					'header' => 'Course hebdomadaire en mode standard, le samedi à 15h, heure de l’est (EST)',
+					'header' => 'Courses en Mode Standard, Hebdomadaires, le Samedi à 15h heure de l’Est Américain',
 					'content' => [
-						'Le premier événement communautaire, la course hebdomadaire a beaucoup de concurrents!',
+						'Événement principal de la communauté, cette course hebdomadaire compte beaucoup de compétiteurs !',
 					],
 				],
 				[
-					'header' => 'Course hebdomadaire en mode ouvert, le dimanche à 17h, heure de l’est (EST)',
+					'header' => 'Course en Mode Ouvert, Hebdomadaire, le Dimanche à 17h heure de l’Est Américain',
 					'content' => [
-						'Rejoignez-nous le dimanche pour une autre course communautaire hebdomadaire populaire.',
+						'Rejoignez-nous tous les Dimanches pour une autre course hebdomadaire populaire dans la communauté.',
 					],
 				],
 				[
-					'header' => 'La course nocturne communautaire, 22h heure de l’est (EST)',
+					'header' => 'La Course Communautaire Nocturne, 22h heure de l’Est Américain',
 					'content' => [
-						'Nous organisons également une course nocturne pour tous ceux qui cherchent à jouer tous les jours!',
+						'Nous faisons aussi des courses nocturnes pour ceux qui cherchent à jouer tous les jours !',
 					],
 				],
 				[
-					'header' => 'Courses de ramassage',
+					'header' => 'Courses Ponctuelles',
 					'content' => [
-						'Les courses programmées ne correspondent pas à votre emploi du temps? Vous cherchez à courir avec des options plus rares? Rejoignez une course de ramassage! Vous trouverez des joueurs volontaires à toute heure du jour. Rejoignez le canal de planification de la course dans notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
+						'Les courses planifiées ne correspondent pas avec vos horaires ? Vous cherchez une course avec des options exotiques ? Rejoignez une course ponctuelle ! Vous trouverez des joueurs à toute heure de la journée. Rejoignez le canal #race-planning sur notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
 					],
 				],
 			],
@@ -40,14 +40,14 @@ return [
 		'watch' => [
 			'header' => 'Regarder',
 			'content' => [
-				'Avec tant de choses, il y a toujours une course à suivre! Suivez ces réseaux et ne manquez jamais un match!',
+				'Avec autant d’événements, il y a toujours une course à regarder ! Suivez ces réseaux et ne manquez aucun match !',
 			],
 		],
 		'network' => [
-			'header' => 'Réseaux de course',
+			'header' => 'Réseaux de Courses',
 			'content' => [
-				'Les courses se font généralement sur un réseau de course. Ces sites facilitent l’organisation de courses, ajoutent un chronomètre officiel et permettent aux coureurs et aux téléspectateurs de trouver plus facilement des courses.',
-				'Veillez à consulter les <a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a> et <a href="http://speedracing.tv" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> pour plus d’informations!',
+				'Les courses sont habituellement organisées au sein d’un réseau de course. Ces sites facilitent l’organisation, ajoutent un chronomètre officiel et permettent autant aux coureurs qu’aux spectateurs de trouver plus facilement des courses.',
+				'Soyez surs de jeter un oeil aux sites <a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a> et <a href="http://speedracing.tv" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> pour plus d’informations !',
 			],
 		],
 		'tournament' => [
@@ -56,15 +56,15 @@ return [
 				[
 					'header' => '',
 					'content' => [
-						'Rejoignez-nous pour un tournoi passionnant avec des commentaires d’experts aux côtés de jeux d’élite!',
+						'Rejoignez-nous pour de l’action au cours de tournois avec des commentateurs experts au côté de joueurs d’élite !',
 					],
 				],
 				[
-					'header' => 'Tournoi sur invitation deux fois par an',
+					'header' => 'Tournois bi-annuels sur invitation',
 					'content' => [
-						'Témoin, les meilleurs coureurs se disputent le trophée! Pensez-vous avoir ce qu’il faut pour affronter les meilleurs? Inscrivez-vous à <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> et restez à l’affût des courses qualificatives!',
-						'L’invitation printanière se déroule de mars à juin.',
-						'L’Invitation de l’automne se déroule de septembre à décembre.',
+						'Soyez témoins des meilleurs coureurs en compétition pour le Trophée ! Vous pensez avoir ce qu’il faut pour être au coude à coude avec les meilleurs ? Rejoignez notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> et gardez un oeil sur les qualifications !',
+						'Le tournoi du Printemps sur invitation dure de Mars à Juin.',
+						'Le tournoi d’Automne sur invitation dure de Septembre à Décembre.',
 					],
 				],
 			],

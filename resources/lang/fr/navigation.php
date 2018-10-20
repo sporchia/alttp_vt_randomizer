@@ -16,7 +16,7 @@ return [
 	'help' => 'Aidez-moi',
 	'resources' => 'Ressources',
 	'options' => 'Options de Jeu',
-	'races' => 'Jeu Organisé',
+	'races' => 'Parties organisées',
 	'updates' => 'Mises à jour',
 	'game_entrance' => 'Randomizer d’entrée',
 	'contribute' => 'Contribuer',

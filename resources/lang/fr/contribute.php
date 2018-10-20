@@ -1,33 +1,33 @@
 <?php
 return [
 	'header' => 'Contribuer',
-	'subheader' => 'Il existe de nombreuses façons d’aider, rejoignez les canaux de développement sur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
+	'subheader' => 'Vous pouvez nous aider de bien des manières, n’hésitez pas à rejoindre notre équipe de développement sur notre serveur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> pour participer !',
 	'cards' => [
 		'sprite' => [
-			'header' => 'Développement Sprite',
+			'header' => 'Infographie',
 			'content' => [
-				'Voulez-vous voir votre propre sprite personnalisé prendre la place de Link? Regardez <a href="https://github.com/fatmanspanda/ALttPNG/wiki" target="_blank" rel="noopener noreferrer">la documentation de fatmanspanda!</a>',
-				'Pour plus d’informations sur la création de sprites et l’obtention d’un sprite personnalisé dans ALttP:R, connectez-vous a #sprite-dev sur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
+				'Vous voulez ajouter votre propre héros en remplacement de Link ? Commencez par consulter la <a href="https://github.com/fatmanspanda/ALttPNG/wiki" target="_blank" rel="noopener noreferrer">la documentation de fatmanspanda!</a> à ce propos.',
+				'Pour plus d’informations, rejoignez le serveur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> et faites un tour sur le canal #sprite-dev !',
 			]
 		],
 		'live' => [
-			'header' => 'Production de Course en direct',
+			'header' => 'Direct',
 			'content' => [
-				'Vous souhaitez rejoindre notre équipe de restreamers, commentators et trackers?',
-				'Remplissez ce formulaire et surveillez <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
+				'Vous souhaitez participer au stream en faisant du commentaire, en aidant à la diffusion ou à la comptabilisation des items des participants ?',
+				'Remplissez ce formulaire, et venez faire un tour sur le <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
 				'<div class="center"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxQmuQBbUDEV-vRbAqCVrDqGw1ceyhS6s9XlCgZBrsdTGU_g/viewform?embedded=true" width="760" height="1300" frameborder="0" marginheight="0" marginwidth="0">Chargement...</iframe></div>',
 			]
 		],
 		'other' => [
-			'header' => 'Autres Contributions',
+			'header' => 'Autre',
 			'content' => [
-				'Vous avez une idée pour une fonctionnalité? Trouvez un bug en jouant? Vous souhaitez mettre vos compétences techniques au travail? Rejoignez la chaîne #suggestions sur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> et présentez-vous!',
+				'Vous avez une idée pour améliorer le randomiseur ? Vous souhaitez mettre à profit vos compétences techniques ? Ou peut-être avez vous rencontrés un bug ? Le canal #suggestions du serveur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> est fait pour vous !',
 			]
 		],
 		'discord' => [
 			'header' => 'Rejoignez la communauté Discord!',
 			'content' => [
-				'Avons-nous mentionné que vous devriez nous rejoindre sur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>? La meilleure façon de vous impliquer est de vous joindre et de vous présenter!',
+				'On vous a dit qu’on avait un serveur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>? N’hésitez pas, nous serons ravis de vous accueillir.',
 			]
 		],
 	],

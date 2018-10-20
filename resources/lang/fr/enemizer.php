@@ -1,8 +1,8 @@
 <?php
 return [
 	'title' => 'Enemizer',
-	'enable' => 'Activer Enemizer',
-	'disable' => 'Désactiver Enemizer',
+	'enable' => 'Activer l’Ennemiseur',
+	'disable' => 'Désactiver l’Ennemiseur',
 	'enemy_health' => [
 		'title' => 'Santé Ennemis',
 		'options' => [
@@ -14,7 +14,7 @@ return [
 		],
 	],
 	'enemy_damage' => [
-		'title' => 'Dégâts Ennemis',
+		'title' => 'Dégâts des Ennemis',
 		'options' => [
 			'off' => 'Ordinaire',
 			'shuffle' => 'Mélangé',
@@ -31,6 +31,6 @@ return [
 		],
 	],
 	'palette_shuffle' => 'Mélange les Palettes',
-	'pot_shuffle' => 'Mélange les Pot',
-	'enemy_shuffle' => 'Mélanger les Ennemi',
+	'pot_shuffle' => 'Mélange les Pots',
+	'enemy_shuffle' => 'Mélanger les Ennemis',
 ];
