@@ -9,8 +9,8 @@ use Log;
  * Wrapper for ROM file
  */
 class Rom {
-	const BUILD = '2018-10-07';
-	const HASH = '2ae47489ef9eba6a4c91596438e8199d';
+	const BUILD = '2018-10-18';
+	const HASH = 'cb560220b7b1b8202e92381aee19cd36';
 	const SIZE = 2097152;
 
 	private $tmp_file;
@@ -2726,7 +2726,10 @@ class Rom {
 		$this->text->setString('sign_bumper_cave', "Cave to lost, old man.\nGood luck.");
 		$this->text->setString('sign_east_of_bomb_shop', "\n← Your House");
 		$this->text->setString('sign_east_of_links_house', "\n← Bomb Shoppe");
-		$this->text->setString('kiki_leaving_screen', "{NOTEXT}", False);
+		$this->text->setString('kiki_leaving_screen', "{NOTEXT}", false);
+		$this->text->setString('dark_sanctuary', "{NOTEXT}", false);
+		$this->text->setString('dark_sanctuary_yes', "{NOTEXT}", false);
+		$this->text->setString('dark_sanctuary_no', "If you want that healing you're gonna need 20 rupees.");
 
 		$this->text->setString('menu_start_2', "{MENU}\n{SPEED0}\n≥@'s house\n Dark Chapel\n{CHOICE3}", false);
 		$this->text->setString('menu_start_3', "{MENU}\n{SPEED0}\n≥@'s house\n Dark Chapel\n Dark Mountain\n{CHOICE2}", false);

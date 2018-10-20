@@ -124,6 +124,10 @@
 					</Toggle>
 				</div>
 				<div class="col">
+					<Toggle :value="context['rom.genericKeys']" @input="toggle($event, 'rom.genericKeys')">
+						Generic Small Keys
+						<template slot="tooltip">All Small keys will be converted to Generic keys.</template>
+					</Toggle>
 				</div>
 			</div>
 			<div class="clearfix"></div>
