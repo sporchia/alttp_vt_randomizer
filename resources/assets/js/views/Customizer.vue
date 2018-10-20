@@ -96,12 +96,17 @@
 						<div class="row">
 							<div class="col-md">
 								<div class="btn-group btn-flex" role="group">
-									<button name="generate" :disabled="generating" class="btn btn-success" @click="applySpoilerSeed">{{ $t('randomizer.generate.casual') }}</button>
+									<button class="btn btn-primary w-50 text-center" v-tooltip="$t('randomizer.generate.race_warning')" :disabled="generating" name="generate-tournament-rom" @click="applyNoSpoilerSeed">
+										Generate Spoiler Free ROM
+									</button>
+									<button class="btn btn-success w-50 text-center" name="generate-tournament-rom" :disabled="generating" @click="applySpoilerSeed">
+										{{ $t('randomizer.generate.casual') }}
+									</button>
 								</div>
 							</div>
 							<div class="col-md">
 								<div class="btn-group btn-flex" role="group">
-									<button class="btn btn-info" name="generate-tournament-rom" :disabled="generating" @click="testSpoilerSeed">Test Placements</button>
+									<button class="btn btn-info text-center" name="generate-tournament-rom" :disabled="generating" @click="testSpoilerSeed">Test Placements</button>
 								</div>
 							</div>
 						</div>
@@ -217,6 +222,7 @@ export default {
 				name: '',
 				notes: '',
 				tournament: false,
+				spoilers: true,
 			},
 			settings: {
 				logics: [],
@@ -253,12 +259,22 @@ export default {
 		});
 	},
 	methods: {
+		applyNoSpoilerSeed() {
+			this.endpoint = '/seed';
+			this.choice.tournament = true;
+			this.choice.spoilers = false;
+			this.applySeed();
+		},
 		applySpoilerSeed() {
 			this.endpoint = '/seed';
+			this.choice.tournament = false;
+			this.choice.spoilers = true;
 			this.applySeed();
 		},
 		testSpoilerSeed() {
 			this.endpoint = '/test';
+			this.choice.tournament = false;
+			this.choice.spoilers = true;
 			this.applySeed();
 		},
 		applySeed(e, second_attempt) {
@@ -288,6 +304,7 @@ export default {
 					goal: this.choice.goal.value,
 					weapons: this.choice.weapons.value,
 					tournament: this.choice.tournament,
+					spoilers: this.choice.spoilers,
 					name: this.choice.name,
 					notes: this.choice.notes,
 					l: this.locations,
