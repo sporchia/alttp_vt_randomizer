@@ -202,6 +202,13 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 		return $this->error('Must be a directory of zsprs');
 	}
 
+	try {
+		$sprite_metafile = file_get_contents("$sprites/spritemeta.json");
+	} catch (Exception $e) {
+		return $this->error("Missing $sprites/spritemeta.json");
+	}
+	$sprite_meta = json_decode($sprite_metafile, true);
+
 	$sprites = array_map(function($filename) use ($sprites) {
 		return "$sprites/$filename";
 	}, scandir($sprites));
@@ -214,14 +221,24 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 		} catch (Exception $e) {
 			continue;
 		}
-		$output[basename($spr_file)] = [
-			'name' => $spr->getDisplayText(),
-			'author' => $spr->getAuthor(),
-		];
+		$sprite_ID = strtok(basename($spr_file),'.');
+		$output[basename($spr_file)] = array_merge(
+			[
+				'ID' => $sprite_ID,
+				'name' => $spr->getDisplayText(),
+				'author' => $spr->getAuthor(),
+			],
+			$sprite_meta[$sprite_ID]
+		);
+
+
 		$this->info(sprintf(".icon-custom-%s {background-position: %d * -16px 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
 	}
-	file_put_contents(config_path('sprites.php'), preg_replace('/  /', "\t",
-		preg_replace(["/^array \(/", "/\)$/", "/=>\s*array\s*\(/", "/\),/"], ["<?php\n\nreturn [", "];\n", '=> [', '],'], var_export($output, true))
+	file_put_contents(config_path('sprites.php'),  //this is where sprites.php is written
+		preg_replace('/  /', "\t",
+			preg_replace(["/^array \(/", "/\)$/", "/=>\s*array\s*\(/", "/\),/"],
+					     ["<?php\n\nreturn [", "];\n", '=> [', '],'],
+					      var_export($output, true))
 	));
 });
 
