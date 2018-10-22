@@ -5,9 +5,9 @@ return [
 		'twitch' => [
 			'header' => 'Twitch',
 			'content' => [
-				'Avec tant de choses, il y a toujours une course à suivre! Suivez ces réseaux et ne manquez jamais un match!',
+				'Avec autant d’événements, il y a toujours une course à regarder ! Suivez ces réseaux et ne manquez aucun match !',
 			],
-			'button' => 'ALttP:R Communauté Twitch',
+			'button' => 'Communauté Twitch ALttP:R',
 		],
 		'tournament' => [
 			'header' => 'Tournois',
@@ -15,7 +15,7 @@ return [
 				[
 					'header' => 'Tournois à Venir',
 					'content' => [
-						'Rejoignez-nous pour le printemps 2018 invitation à partir de ce mois de mars! Rejoignez notre communauté <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> pour rester à jour!',
+						'Rejoignez-nous pour le printemps 2018, invitation à partir de ce mois de mars ! Rejoignez notre communauté <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> pour rester à jour !',
 					],
 				],
 				[
@@ -30,8 +30,8 @@ return [
 		'youtube' => [
 			'header' => 'Youtube',
 			'content' => [
-				'<div class="center"><a class="btn btn-secondary btn-lg btn-xl "href="https://www.youtube.com/channel/UCBMMk0WJAeldNv4fI9juovA" rel="noopener noreferrer" role="button" target="_blank">ALttP:R Youtube Channel</a></div>',
-				'Abonnez-vous à notre chaîne Youtube pour des mises à jour, des faits saillants de tournois, et plus encore!',
+				'<div class="center"><a class="btn btn-secondary btn-lg btn-xl "href="https://www.youtube.com/channel/UCBMMk0WJAeldNv4fI9juovA" rel="noopener noreferrer" role="button" target="_blank">Chaîne YouTube ALttP:R</a></div>',
+				'Abonnez-vous à notre chaîne Youtube et jetez un oeil à nos guides de routing, nos tutoriels sur les glitchs, les annonces de mise à jour, les annonces de tournois, et plus encore !',
 			]
 		],
 	],
