@@ -197,21 +197,21 @@ Artisan::command('alttp:sprtopng {sprites}', function($sprites) {
 	}
 });
 
-Artisan::command('alttp:sprconf {sprites}', function($sprites) {
-	if (!is_dir($sprites)) {
+Artisan::command('alttp:sprconf {sprite_dir}', function($sprite_dir) {
+	if (!is_dir($sprite_dir)) {
 		return $this->error('Must be a directory of zsprs');
 	}
 
 	try {
-		$sprite_metafile = file_get_contents("$sprites/spritemeta.json");
+		$sprite_metafile = file_get_contents("$sprite_dir/spritemeta.json");
 	} catch (Exception $e) {
-		return $this->error("Missing $sprites/spritemeta.json");
+		return $this->error("Missing $sprite_dir/spritemeta.json");
 	}
 	$sprite_meta = json_decode($sprite_metafile, true);
 
-	$sprites = array_map(function($filename) use ($sprites) {
-		return "$sprites/$filename";
-	}, scandir($sprites));
+	$sprites = array_map(function($filename) use ($sprite_dir) {
+		return "$sprite_dir/$filename";
+	}, scandir($sprite_dir));
 
 	$output = [];
 	$i = 0;
@@ -221,16 +221,19 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 		} catch (Exception $e) {
 			continue;
 		}
-		$sprite_ID = strtok(basename($spr_file),'.');
+		$sprite_ID = strtok(basename($spr_file),'.');  //by convention, filename is id.version.zspr
+
+		if(!array_key_exists($sprite_ID, $sprite_meta)) {
+			return $this->error("Error: No metadata in spritemeta.json for $sprite_ID, terminating process");
+		}
+
 		$output[basename($spr_file)] = array_merge(
 			[
-				'ID' => $sprite_ID,
 				'name' => $spr->getDisplayText(),
 				'author' => $spr->getAuthor(),
 			],
 			$sprite_meta[$sprite_ID]
 		);
-
 
 		$this->info(sprintf(".icon-custom-%s {background-position: %d * -16px 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
 	}
