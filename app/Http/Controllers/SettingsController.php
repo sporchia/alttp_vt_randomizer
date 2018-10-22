@@ -158,12 +158,10 @@ class SettingsController extends Controller {
 
 	public function sprites(Request $request) {
 		$sprites =  [];
-		foreach (config('sprites') as $file => $info) {
-			$sprites[] = [
-				'name' => $info['name'],
-				'author' => $info['author'],
-				'file' => 'https://s3.us-east-2.amazonaws.com/alttpr/' . $file,
-			];
+		foreach (config('sprites') as $file => $info) {     //imports this from sprites.php
+			$sprites[] = array_merge($info,[				//throw the file name onto everything we know
+				'file' => 'resources/sprites/' . $file,
+			]);
 		}
 		return $sprites;
 	}
