@@ -97,7 +97,7 @@
 							<div class="col-md">
 								<div class="btn-group btn-flex" role="group">
 									<button class="btn btn-primary w-50 text-center" v-tooltip="$t('randomizer.generate.race_warning')" :disabled="generating" name="generate-tournament-rom" @click="applyNoSpoilerSeed">
-										Generate Spoiler Free ROM
+										{{ $t('randomizer.generate.race') }}
 									</button>
 									<button class="btn btn-success w-50 text-center" name="generate-tournament-rom" :disabled="generating" @click="applySpoilerSeed">
 										{{ $t('randomizer.generate.casual') }}
