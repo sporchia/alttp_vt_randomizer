@@ -741,6 +741,27 @@ class Randomizer {
 	}
 
 	/**
+	 * add something to the spoiler record if seed exists
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 *
+	 * @return array
+	 */
+	public function addToSpoiler($key, $value) {
+		if (!$this->seed) {
+			return;
+		}
+		$spoiler = json_decode($this->seed->spoiler, true);
+
+		array_set($spoiler, $key, $value);
+
+		$this->seed->spoiler = json_encode($spoiler);
+
+		return $spoiler;
+	}
+
+	/**
 	 * Get config value based on the currently set difficulty/variation
 	 *
 	 * @param string $key dot notation key of config

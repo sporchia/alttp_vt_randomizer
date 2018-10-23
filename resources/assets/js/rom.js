@@ -1,7 +1,7 @@
 const SparkMD5 = require('spark-md5');
 const FileSaver = require('file-saver');
 
-var ROM = (function(blob, loaded_callback) {
+var ROM = (function(blob, loaded_callback, error_callback) {
 	var u_array = [];
 	var arrayBuffer;
 	var base_patch;
@@ -80,6 +80,10 @@ var ROM = (function(blob, loaded_callback) {
 	};
 
 	fileReader.onloadend = function() {
+		if (typeof arrayBuffer === 'undefined') {
+			if (error_callback) error_callback();
+			return;
+		}
 		// Check rom for header and cut it out
 		if (arrayBuffer.byteLength % 0x400 == 0x200) {
 			arrayBuffer = arrayBuffer.slice(0x200, arrayBuffer.byteLength);

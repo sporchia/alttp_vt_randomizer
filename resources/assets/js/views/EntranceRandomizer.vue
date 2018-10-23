@@ -142,7 +142,7 @@ export default {
 			gameLoaded: false,
 			show_spoiler: false,
 			choice: {
-				state: {value: 'open', name: this.$i18n.t('entrance.mode.options.standard')},
+				state: {value: 'open', name: this.$i18n.t('entrance.mode.options.open')},
 				difficulty: {value: 'normal', name: this.$i18n.t('entrance.difficulty.options.normal')},
 				goal: {value: 'ganon', name: this.$i18n.t('entrance.goal.options.ganon')},
 				shuffle: {value: 'full', name: this.$i18n.t('entrance.shuffle.options.full')},
