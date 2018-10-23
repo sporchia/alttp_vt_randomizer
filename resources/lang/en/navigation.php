@@ -20,6 +20,7 @@ return [
 	'updates' => 'Updates',
 	'game_entrance' => 'Entrance Randomizer',
 	'game_enemizer' => 'Enemizer',
+	'sprite_preview' => 'Sprite Options',
 	'contribute' => 'Contribute',
 	'discord' => 'Join us on Discord',
 	'report_issue' => 'Report Issue',

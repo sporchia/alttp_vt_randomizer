@@ -69,12 +69,17 @@ return [
 			'key-sanity' => 'Keysanity',
 			'retro' => 'Retro',
 		],
+		'ohko_enemizer_warning' => 'OHKO may not be completable with Enemizer enabled<sup>**</sup>',
 	],
 	'generate' => [
 		'race' => 'Generate Race ROM',
 		'race_warning' => 'Spoilers will <span class="running-now">never</span> be available for this option.',
 		'spoiler_race' => 'Spoiler Race ROM',
 		'casual' => 'Generate ROM',
+		'back' => 'Change Settings',
+		'regenerate' => 'Generate Again',
+		'regenerate_tooltip' => 'Generate new game with same settings',
+		'generating' => 'Generating...',
 	],
 	'details' => [
 		'title' => 'Game Details',

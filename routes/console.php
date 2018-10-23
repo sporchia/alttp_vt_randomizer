@@ -218,7 +218,7 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 			'name' => $spr->getDisplayText(),
 			'author' => $spr->getAuthor(),
 		];
-		$this->info(sprintf(".icon-custom-%s {background-position: %d * -16px 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
+		$this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 149)/ 148) 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
 	}
 	file_put_contents(config_path('sprites.php'), preg_replace('/  /', "\t",
 		preg_replace(["/^array \(/", "/\)$/", "/=>\s*array\s*\(/", "/\),/"], ["<?php\n\nreturn [", "];\n", '=> [', '],'], var_export($output, true))

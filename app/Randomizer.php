@@ -584,6 +584,19 @@ class Randomizer {
 			$shop->setActive(true);
 		});
 
+		// handle hardmode shops
+		switch ($this->config('rom.HardMode', 0)) {
+			case 1:
+				$this->world->getShop("Capacity Upgrade")->clearInventory()
+					->addInventory(0, Item::get('BombUpgrade5'), 200, 3)
+					->addInventory(1, Item::get('ArrowUpgrade5'), 200, 3);
+				break;
+			case 2:
+			case 3:
+				$this->world->getShop("Capacity Upgrade")->clearInventory();
+				break;
+		}
+
 		if (!$this->config('rom.genericKeys', false)
 			&& !$this->config('rom.rupeeBow', false)
 			&& !$this->config('region.takeAnys', false)) {
@@ -636,8 +649,19 @@ class Randomizer {
 				}
 			}
 
-			$this->world->getShop("Capacity Upgrade")->clearInventory()
-				->addInventory(0, Item::get('BombUpgrade5'), 100, 7);
+			switch ($this->config('rom.HardMode', 0)) {
+				case 1:
+					$this->world->getShop("Capacity Upgrade")->clearInventory()
+						->addInventory(0, Item::get('BombUpgrade5'), 200, 3);
+					break;
+				case 2:
+				case 3:
+					$this->world->getShop("Capacity Upgrade")->clearInventory();
+					break;
+				default:
+					$this->world->getShop("Capacity Upgrade")->clearInventory()
+						->addInventory(0, Item::get('BombUpgrade5'), 100, 7);
+			}
 		}
 	}
 
@@ -1186,10 +1210,10 @@ class Randomizer {
 		]);
 
 		if ($this->world->config('region.wildBigKeys', false)) {
-			$tile = array_pop($tiles);
 			$gtbk_location = $this->world->getLocationsWithItem(Item::get('BigKeyA2'))->first();
 
 			if ($gtbk_location) {
+				$tile = array_pop($tiles);
 				$gtbk_hint = $gtbk_location->getHint();
 
 				logger()->debug("$tile: $gtbk_hint");
@@ -1199,9 +1223,9 @@ class Randomizer {
 
 		if ($this->config('spoil.Hints', true)) {
 			// boots hint v30 testing
-			$tile = array_pop($tiles);
 			$boots_location = $this->world->getLocationsWithItem(Item::get('PegasusBoots'))->first();
 			if ($boots_location) {
+				$tile = array_pop($tiles);
 				$boots_hint = $boots_location->getHint();
 
 				logger()->debug("$tile: $boots_hint");
@@ -1212,7 +1236,6 @@ class Randomizer {
 			for ($i = 0; $i < 5; ++$i) {
 				$picks = fy_shuffle($picks);
 				$pick = $locations[array_pop($picks)];
-				$tile = array_pop($tiles);
 
 				if (is_array($pick)) {
 					$hint = $this->world->getLocations()->filter(function($location) use ($pick) {
@@ -1225,6 +1248,7 @@ class Randomizer {
 				if (!$hint) {
 					continue;
 				}
+				$tile = array_pop($tiles);
 
 				logger()->debug("$tile: $hint");
 				$rom->setText($tile, $hint);
