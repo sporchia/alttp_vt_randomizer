@@ -96,6 +96,9 @@ export default {
 					axios.get(window.s3_prefix + '/' + this.hash + '.json').then(response => {
 						this.rom.parsePatch(response.data).then(function() {
 							console.log('loaded from s3 :)');
+							if (this.rom.shuffle) {
+								this.rom.allowQuickSwap = true;
+							}
 							this.gameLoaded = true;
 							EventBus.$emit('gameLoaded', this.rom);
 							resolve({rom: this.rom, patch: response.data.patch});
@@ -105,6 +108,9 @@ export default {
 							this.rom.parsePatch(response.data).then(function() {
 								if (response.data.patch.current_rom_hash && response.data.patch.current_rom_hash != this.current_rom_hash) {
 									// The base rom has been updated.
+								}
+								if (this.rom.shuffle) {
+									this.rom.allowQuickSwap = true;
 								}
 								this.gameLoaded = true;
 								EventBus.$emit('gameLoaded', this.rom);

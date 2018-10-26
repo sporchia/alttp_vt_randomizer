@@ -39,6 +39,7 @@
 						<a class="dropdown-item{!! (request()->path() == 'updates') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/updates">{{ __('navigation.updates') }}</a>
 						<a class="dropdown-item{!! (request()->path() == 'game_entrance') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/game_entrance">{{ __('navigation.game_entrance') }}</a>
 						<a class="dropdown-item{!! (request()->path() == 'game_enemizer') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/game_enemizer">{{ __('navigation.game_enemizer') }}</a>
+						<a class="dropdown-item{!! (request()->path() == 'sprite_preview') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/sprite_preview">{{ __('navigation.sprite_preview') }}</a>
 						<a class="dropdown-item{!! (request()->path() == 'contribute') ? ' active' : '' !!}" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/contribute">{{ __('navigation.contribute') }}</a>
 						<a class="dropdown-item" href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">{{ __('navigation.discord') }}</a>
 						<a class="dropdown-item" href="https://github.com/sporchia/alttp_vt_randomizer/issues/new" target="_blank" rel="noopener noreferrer">{{ __('navigation.report_issue') }}</a>

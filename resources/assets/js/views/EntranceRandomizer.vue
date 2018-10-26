@@ -9,7 +9,7 @@
 			<span class="message">{{ this.error }}</span>
 		</div>
 		<vt-rom-loader v-if="!romLoaded" @update="updateRom" @error="onError"></vt-rom-loader>
-		<div v-if="romLoaded" class="card border-success mb-3">
+		<div v-if="romLoaded && !gameLoaded && !generating" class="card border-success mb-3">
 			<div class="card-header bg-success card-heading-btn">
 				<h3 class="card-title text-white float-left">{{ $t('entrance.title') }} (v{{ version }})</h3>
 				<div class="btn-toolbar float-right">
@@ -48,6 +48,7 @@
 					<div class="col-md mb-3">
 						<vt-select v-model="choice.variation" id="variation" :options="settings.variations" storage-key="er.variation"
 							:rom="rom" :selected="choice.variation">{{ $t('entrance.variation.title') }}</vt-select>
+						<div v-if="enemizerOHKOWarning" class="logic-warning text-danger text-right" v-html="$t('randomizer.variation.ohko_enemizer_warning')" />
 					</div>
 				</div>
 				<div class="row">
@@ -90,8 +91,24 @@
 
 		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
 
-		<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded">
-			<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}"><h3 class="card-title">{{ $t('entrance.details.title') }}</h3></div>
+		<div v-show="generating" class="center">
+			<div class="loading"/>
+			<h1>{{ $t('randomizer.generate.generating') }}</h1>
+		</div>
+
+		<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded && !generating">
+			<div class="card-header bg-success text-white card-heading-btn" :class="{'bg-info': choice.tournament}">
+				<h3 class="card-title text-white float-left">{{ $t('entrance.details.title') }}</h3>
+				<div class="btn-toolbar float-right">
+					<a class="btn btn-light text-dark border-secondary" role="button" @click="gameLoaded = false">
+						{{ $t('randomizer.generate.back') }} <img class="icon" src="/i/svg/cog.svg" alt="">
+					</a>
+					<a class="btn btn-light text-dark border-secondary ml-3" role="button"
+						v-tooltip="$t('randomizer.generate.regenerate_tooltip')" @click="applySeed">
+						{{ $t('randomizer.generate.regenerate') }} <img class="icon" src="/i/svg/reload.svg" alt="">
+					</a>
+				</div>
+			</div>
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md mb-3">
@@ -142,7 +159,7 @@ export default {
 			gameLoaded: false,
 			show_spoiler: false,
 			choice: {
-				state: {value: 'open', name: this.$i18n.t('entrance.mode.options.standard')},
+				state: {value: 'open', name: this.$i18n.t('entrance.mode.options.open')},
 				difficulty: {value: 'normal', name: this.$i18n.t('entrance.difficulty.options.normal')},
 				goal: {value: 'ganon', name: this.$i18n.t('entrance.goal.options.ganon')},
 				shuffle: {value: 'full', name: this.$i18n.t('entrance.shuffle.options.full')},
@@ -276,6 +293,11 @@ export default {
 		onError(error) {
 			this.error = error;
 		}
+	},
+	computed: {
+		enemizerOHKOWarning() {
+			return this.enemizerEnabled && ['timed-ohko', 'ohko'].indexOf(this.choice.variation.value) !== -1;
+		},
 	},
 	watch: {
 		enemizerEnabled: function (value) {

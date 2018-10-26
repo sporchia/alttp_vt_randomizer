@@ -17,7 +17,11 @@ class Ether extends Location {
 	}
 
 	private function getItemText() {
-		switch ($this->item->getTarget()) {
+		$item = ($this->region->getWorld()->config('rom.genericKeys', false) && $this->item instanceof Item\Key)
+			? Item::get('KeyGK')
+			: $this->item;
+
+		switch ($item->getTarget()) {
 			case Item::get('BigKeyA2'):
 				return "The big key\nof evil's bane";
 			case Item::get('BigKeyD7'):
@@ -74,11 +78,11 @@ class Ether extends Location {
 				return "The key to\nthe castle";
 		}
 
-		switch (get_class($this->item->getTarget())) {
+		switch (get_class($item->getTarget())) {
 			case Item\Key::class:
-				return "The small key\nto the Kingdom";
+				return "A small key\nto the Kingdom";
 			case Item\BigKey::class:
-				return "The big key\nto the Kingdom";
+				return "A big key\nto the Kingdom";
 			case Item\Map::class:
 				return "You can now\nfind your way\nhome!";
 			case Item\Compass::class:
@@ -87,7 +91,7 @@ class Ether extends Location {
 				return "Egg-cited\nfor this";
 		}
 
-		switch ($this->item->getTarget()) {
+		switch ($item->getTarget()) {
 			case Item::get('L1Sword'):
 			case Item::get('L1SwordAndShield'):
 				return "A pathetic\nsword rests\nhere!";

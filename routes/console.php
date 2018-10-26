@@ -221,6 +221,7 @@ Artisan::command('alttp:sprconf {sprite_dir}', function($sprite_dir) {
 		} catch (Exception $e) {
 			continue;
 		}
+
 		$sprite_ID = strtok(basename($spr_file),'.');  //by convention, filename is id.version.zspr
 
 		if(!array_key_exists($sprite_ID, $sprite_meta)) {
@@ -235,7 +236,7 @@ Artisan::command('alttp:sprconf {sprite_dir}', function($sprite_dir) {
 			$sprite_meta[$sprite_ID]
 		);
 
-		$this->info(sprintf(".icon-custom-%s {background-position: %d * -16px 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
+		$this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 149)/ 148) 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
 	}
 	file_put_contents(config_path('sprites.php'),  //this is where sprites.php is written
 		preg_replace('/  /', "\t",

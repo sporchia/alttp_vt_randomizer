@@ -75,6 +75,7 @@ export default {
 						localforage.setItem('rom', rom.getOriginalArrayBuffer()).catch((error) => {
 							if (error === 'QuotaExceededError') {
 								this.$emit('error', this.$i18n.t('error.quota_exceeded_error'));
+								this.loading = false;
 								return;
 							}
 							throw error;
@@ -88,6 +89,7 @@ export default {
 						localforage.setItem('vt.stored_base').catch((error) => {
 							if (error === 'QuotaExceededError') {
 								this.$emit('error', this.$i18n.t('error.quota_exceeded_error'));
+								this.loading = false;
 								return;
 							}
 							throw error;
@@ -95,6 +97,9 @@ export default {
 						this.loadBlob(change);
 					}
 				});
+			}, (error) => {
+				this.$emit('error', 'Unknown Error: something went wrong?');
+				this.loading = false;
 			});
 		},
 		patchRomFromJSON(rom) {

@@ -11,12 +11,15 @@ if (process.env.MIX_SENTRY_DSN_PUBLIC) {
 			// Chrome extensions
 			/extensions\//i,
 			/^chrome:\/\//i,
+			// Firefox extensions
+			/^moz-extension:\/\//i,
 			// AdSense
 			/pagead2\.googlesyndication\.com/i,
 		],
 	}).install();
 }
 
+require('./polyfill');
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -66,6 +69,7 @@ Vue.component('vt-enemizer', require('./views/Enemizer.vue'));
 Vue.component('vt-entrance-randomizer', require('./views/EntranceRandomizer.vue'));
 Vue.component('vt-hash-loader', require('./views/HashLoader.vue'));
 Vue.component('vt-item-randomizer', require('./views/ItemRandomizer.vue'));
+Vue.component('sprites', require('./views/Sprites.vue'));
 
 // ignore adsense
 Vue.config.ignoredElements = ['ins'];

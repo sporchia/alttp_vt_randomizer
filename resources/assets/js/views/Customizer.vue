@@ -42,7 +42,7 @@
 			</tab>
 			<tab id="seed-generate" name="Generate">
 				<vt-rom-loader v-if="!romLoaded" @update="updateRom" @error="onError"></vt-rom-loader>
-				<div v-if="romLoaded" class="card border-success mb-3">
+				<div v-if="romLoaded && !generating" class="card border-success mb-3">
 					<div class="card-header bg-success card-heading-btn">
 						<h3 class="card-title text-white float-left">Customizer (v4): Just because you can, doesn't mean you should</h3>
 						<div class="btn-toolbar float-right">
@@ -107,8 +107,16 @@
 						</div>
 					</div>
 				</div>
-				<div id="seed-details" class="card border-info" v-if="gameLoaded && romLoaded">
-					<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}"><h3 class="card-title">{{ $t('randomizer.details.title') }}<span v-if="rom.name">: {{rom.name}}</span></h3></div>
+				<div v-show="generating" class="center">
+					<div class="loading"/>
+					<h1>{{ $t('randomizer.generate.generating') }}</h1>
+				</div>
+			</tab>
+			<tab name="Game Details" v-show="gameLoaded">
+				<div id="seed-details" class="card border-success" :class="{'border-info': choice.tournament}" v-if="gameLoaded && romLoaded">
+					<div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}">
+						<h3 class="card-title">{{ $t('randomizer.details.title') }}<span v-if="rom.name">: {{rom.name}}</span></h3>
+					</div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md mb-3">
@@ -133,6 +141,14 @@
 							</div>
 						</div>
 						<vt-spoiler :rom="rom"></vt-spoiler>
+					</div>
+				</div>
+				<div class="card border-info" v-if="!gameLoaded || !romLoaded">
+					<div class="card-header text-white bg-info">
+						<h3 class="card-title">No Game Generated</h3>
+					</div>
+					<div class="card-body">
+						<p>Please Generate or Test Generate settings for this panel to have information</p>
 					</div>
 				</div>
 			</tab>
@@ -316,8 +332,11 @@ export default {
 							// The base rom has been updated. or test call
 							window.location.reload(true);
 						}
+
 						this.gameLoaded = true;
+						this.generating = false;
 						EventBus.$emit('gameLoaded', this.rom);
+						EventBus.$emit('selectTabHref', '#game-details');
 						this.error = null;
 						resolve({rom: this.rom, patch: response.data.patch});
 					}.bind(this));

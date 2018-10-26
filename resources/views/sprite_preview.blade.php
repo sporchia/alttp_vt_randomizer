@@ -1,8 +1,8 @@
-@extends('layouts.default', ['title' => 'Customizer - '])
+@extends('layouts.default', ['title' => __('navigation.sprite_preview') . ' - '])
 
 @section('content')
 <div id="root">
-	<vt-customizer></vt-customizer>
+	<sprites/>
 </div>
 
 <script>
@@ -12,8 +12,6 @@ new Vue({
 	store: cStore,
 	created: function created() {
 		this.$store.dispatch('getSprites');
-		this.$store.dispatch('getSettings');
-		this.$store.dispatch('getItemSettings');
 	},
 });
 </script>
