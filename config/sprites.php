@@ -44,7 +44,7 @@ return [
 		'Gender' => 'Male',
 		'Type' => 'Humanoid',
 		'Origin' => 'Game',
-		'Universe' => 'Breath of Fire',
+		'Universe' => 'Animal Crossing',
 		'Character' => 'Beau',
 		'Variation' => 'Standard',
 		'Alignment' => 'Hero',
