@@ -15,3 +15,9 @@
 .env
 .env.debug
 .phpunit.result.cache
+composer.json
+composer.lock
+config/filesystems.php
+package.json
+package-lock.json
+readme.md
