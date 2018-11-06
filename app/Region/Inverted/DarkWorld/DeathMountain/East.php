@@ -45,7 +45,8 @@ class East extends Region\Standard\DarkWorld\DeathMountain\East {
 
 		$this->can_enter = function($locations, $items) {
 			return $this->world->getRegion('West Dark World Death Mountain')->canEnter($locations, $items)
-				&& (!$this->world->config('region.cantTakeDamage', false) || $items->has('CaneOfByrna') || $items->has('Cape'));
+				&& ((!$this->world->config('region.cantTakeDamage', false) || $items->has('CaneOfByrna') || $items->has('Cape'))
+                    			|| ($items->has('MagicMirror') && $items->has('Hookshot') && $items->has('MoonPearl')));
 		};
 
 		return $this;
