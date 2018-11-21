@@ -213,9 +213,11 @@ return [
 					],
 				],
 				[
-					'header' => __('randomizer.goal.options.triforce-hunt'),
+					'header' => __('randomizer.difficulty.options.crowd_control'),
 					'content' => [
-						'The Triforce has been shattered and scattered into 30 pieces throughout Hyrule! Collect 20 pieces to win!',
+						'A special difficulty intended for use with the Crowd Control Twitch extension.',
+                        'The item pool is based on the Hard difficulty but with special considerations for what\'s available in the the Crowd Control shop.'
+                        'Find out more at <a href="https://crowdcontrol.live/" target="_blank" rel="noopener noreferrer>crowdcontrol.live</a>',
 					],
 				],
 			],
@@ -235,7 +237,7 @@ return [
 				'number_bottles' => '# of Bottles',
 				'number_lamps' => '# of Lamps',
 				'potion_magic' => 'Potion Magic Refill',
-				'potion_health' => 'Potion Hearts Refill ',
+				'potion_health' => 'Potion Hearts Refill',
 				'bug_net_fairy' => 'Bug Net Catches Faeries',
 				'powder_bubble' => 'Magic Powder on Bubbles',
 				'cape_consumption' => 'Cape Magic Consumption Rate',
@@ -354,7 +356,7 @@ return [
 						[
 							'header' => 'Take-Any Caves',
 							'content' => [
-								'Four random single-entrace caves and houses which do not lead to an item location now lead to Take-Any Caves where players are given a choice between a Heart Container or Blue Potion refill. The Heart Containers have not been moved from the general item pool and bonus ones. However, you will not be able to have more than 20 hearts at once.',
+								'Four random single-entrace caves and houses which do not lead to an item location now lead to Take-Any Caves where players are given a choice between a Heart Container or Blue Potion refill. The Heart Containers have not been removed from the general item pool; they are bonus heart containers. However, you will not be able to have more than 20 hearts at once.',
 								'One random single-entrace cave will contain a mysterious yet familiar old man with a sword upgrade. This sword upgrade takes the place of one in the item pool.',
 							],
 						],
