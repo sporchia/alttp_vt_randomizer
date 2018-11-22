@@ -252,6 +252,7 @@ class Randomizer {
 				}
 			}
 			$trash_items = array_merge($trash_items, $trash_items_replace);
+			$this->write(0x6F661, pack("C*", 0xBA, 0x28, 0xBB, 0x28, 0xCA, 0x24, 0xCB, 0x28);
 		}
 
 		if ($this->world->config('region.wildBigKeys', false)) {
