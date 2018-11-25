@@ -31,7 +31,8 @@
         "sentry/sentry-laravel": "^0.8.0",
         "wnx/laravel-stats": "^1.7",
         "z3/enemizer": "6.0.29",
-        "z3/entrancerandomizer": "0.6.2+pre0"
+        "z3/entrancerandomizer": "0.6.2+pre0",
+        "z3/randomizer": "v30"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -43,6 +44,18 @@
         "symfony/dom-crawler": "3.1.*"
     },
     "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "z3/randomizer",
+                "version": "v30",
+                "source": {
+                    "url": "https://github.com/mmxbass/z3randomizer",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {
