@@ -212,12 +212,6 @@ return [
 						'Looking for a challenge? These advanced difficulties adjust the game even further to test your skills! Check out the comparison below for details.',
 					],
 				],
-				[
-					'header' => __('randomizer.goal.options.triforce-hunt'),
-					'content' => [
-						'The Triforce has been shattered and scattered into 30 pieces throughout Hyrule! Collect 20 pieces to win!',
-					],
-				],
 			],
 			'comparison' => [
 				'header' => 'Difficulty Comparison',

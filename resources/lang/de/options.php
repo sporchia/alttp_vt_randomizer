@@ -206,12 +206,6 @@ return [
 						'Du suchst eine Herausforderung? Diese fortschrittlichen Schwierigkeitsgrade passen das Spiel um einiges mehr an um dein Können zu testen! Schau dir unten den Vergleich an für mehr Informationen.',
 					],
 				],
-				[
-					'header' => __('randomizer.goal.options.triforce-hunt'),
-					'content' => [
-						'Das Triforce wurde in 30 Splitter zerschlagen und über ganz Hyrule verteilt! Sammle 20 Splitter um zu gewinnen!',
-					],
-				],
 			],
 			'comparison' => [
 				'header' => 'Schwierigkeitsgrade Vergleichs',

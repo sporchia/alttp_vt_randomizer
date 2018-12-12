@@ -206,12 +206,6 @@ return [
 						'¿Buscas un reto? ¡Estas dificultades avanzadas ajustan el juego incluso más para poner a prueba tus habilidades! Mira la comparación abajo para más detalles.',
 					],
 				],
-				[
-					'header' => __('randomizer.goal.options.triforce-hunt'),
-					'content' => [
-						'¡La Trifuerza se ha roto en 30 fragmentps esparcidos por todo Hyrule! ¡Consigue 20 piezas fragmentos para ganar!',
-					],
-				],
 			],
 			'comparison' => [
 				'header' => 'Comparación de Dificultad',
