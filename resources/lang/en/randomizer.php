@@ -12,6 +12,7 @@ return [
 			'hard' => 'Hard',
 			'expert' => 'Expert',
 			'insane' => 'Insane',
+			'crowdControl' => 'Crowd Control',
 		],
 	],
 	'difficulty_adjustments' => [
