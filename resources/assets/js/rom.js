@@ -298,6 +298,7 @@ var ROM = (function(blob, loaded_callback, error_callback) {
 				this.difficulty_mode = data.spoiler.meta.difficulty_mode;
 				this.notes = data.spoiler.meta.notes;
 				this.tournament = data.spoiler.meta.tournament;
+				this.special = data.spoiler.meta.special;
 			}
 			if (data.patch && data.patch.length) {
 				data.patch.forEach(function(value, index, array) {
