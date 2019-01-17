@@ -216,7 +216,7 @@ return [
 					'header' => __('randomizer.difficulty.options.crowd_control'),
 					'content' => [
 						'A special difficulty intended for use with the Crowd Control Twitch extension.',
-                        'The item pool is based on the Hard difficulty but with special considerations for what\'s available in the the Crowd Control shop.'
+                        'The item pool is based on the Hard difficulty but with special considerations for what\'s available in the the Crowd Control shop.',
                         'Find out more at <a href="https://crowdcontrol.live/" target="_blank" rel="noopener noreferrer>crowdcontrol.live</a>',
 					],
 				],
