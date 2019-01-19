@@ -227,7 +227,7 @@ return [
 				'QuarterMagic' => 0,
 				'SilverArrowUpgrade' => 1,
 				'PieceOfHeart' => 20,
-				'FiveRupees' => 28,
+				'FiveRupees' => 14,
 			],
 			'overflow' => [
 				'count' => [
@@ -258,7 +258,8 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 43,
+						'FiveRupees' => 33,
+						'BossHeartContainer' => 2,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -286,7 +287,8 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 7,
+						'FiveRupees' => 0,
+						'TwentyRupees' => 21,
 						'GreenClock' => 20,
 						'RedClock' => 1,
 					],
@@ -307,7 +309,7 @@ return [
 				'item' => [
 					'count' => [
 						'FiveRupees' => 0,
-						'TwentyRupees' => 16,
+						'TwentyRupees' => 2,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -338,7 +340,7 @@ return [
 				'QuarterMagic' => 0,
 				'PieceOfHeart' => 20,
 				'SilverArrowUpgrade' => 1,
-				'FiveRupees' => 33,
+				'FiveRupees' => 19,
 			],
 			'overflow' => [
 				'count' => [
@@ -369,7 +371,8 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 48,
+						'FiveRupees' => 35,
+						'BossHeartContainer' => 0,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -397,6 +400,8 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
+						'FiveRupees' => 0,
+						'TwentyRupees' => 14,
 						'FiveRupees' => 15,
 						'GreenClock' => 15,
 						'RedClock' => 3,
@@ -418,7 +423,7 @@ return [
 				'item' => [
 					'count' => [
 						'FiveRupees' => 0,
-						'TwentyRupees' => 21,
+						'TwentyRupees' => 7,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,
@@ -449,7 +454,7 @@ return [
 				'QuarterMagic' => 0,
 				'SilverArrowUpgrade' => 0,
 				'PieceOfHeart' => 0,
-				'FiveRupees' => 55,
+				'FiveRupees' => 41,
 			],
 			'overflow' => [
 				'count' => [
@@ -480,7 +485,7 @@ return [
 			'retro' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 70,
+						'FiveRupees' => 56,
 						'KeyA2' => 0,
 						'KeyD1' => 0,
 						'KeyD7' => 0,
@@ -508,7 +513,7 @@ return [
 			'timed-ohko' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 40,
+						'FiveRupees' => 26,
 						'GreenClock' => 10,
 						'RedClock' => 5,
 					],
@@ -528,7 +533,7 @@ return [
 			'timed-race' => [
 				'item' => [
 					'count' => [
-						'FiveRupees' => 15,
+						'FiveRupees' => 1,
 						'GreenClock' => 20,
 						'BlueClock' => 10,
 						'RedClock' => 10,

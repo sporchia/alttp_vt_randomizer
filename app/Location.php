@@ -222,7 +222,7 @@ class Location {
 		$item = $this->item;
 
 		if ($item instanceof Item\Key && $this->region->isRegionItem($item)
-			&& ($this->name != "Secret Passage" || $item != Item::get('KeyH2'))) { // special key-sanity case
+			&& (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('KeyH2'))) { // special key-sanity case
 			$item = Item::get('Key');
 		}
 

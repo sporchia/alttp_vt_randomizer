@@ -295,7 +295,7 @@ return [
 					],
 				],
 				[
-					'header' => __('randomizer.variation.options.timed-ohko') . ' (One Hit Kockout)',
+					'header' => __('randomizer.variation.options.timed-ohko') . ' (One Hit Knockout)',
 					'content' => [
 						'In this mode you start with time on the timer, and found green clocks add time to the timer.',
 						'If your timer reaches zero, you’ll enter One Hit Knockout mode, where anything will kill you.',
@@ -309,7 +309,7 @@ return [
 					],
 				],
 				[
-					'header' => __('randomizer.variation.options.ohko') . ' (One Hit Kockout)',
+					'header' => __('randomizer.variation.options.ohko') . ' (One Hit Knockout)',
 					'content' => [
 						'Take any damage, and Link is a goner. Not for the faint of heart.',
 					],

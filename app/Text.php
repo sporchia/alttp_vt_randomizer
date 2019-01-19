@@ -234,7 +234,7 @@ class Text {
 
 			'witch_brewing_the_item' => $converter->convertDialogCompressed("This mushroom is busy brewing. Come back later."),
 
-			'witch_assistant_no_bottle' => $converter->convertDialogCompressed("A bottle for your thoughts? Or, to put potions in."),
+			'witch_assistant_no_bottle' => $converter->convertDialogCompressed("You got to give me the mushroom, Numpty."),
 
 			'witch_assistant_no_empty_bottle' => $converter->convertDialogCompressed("Gotta use your stuff before you can get more."),
 
