@@ -116,7 +116,7 @@
 				<td>{{ __('options.cards.difficulty.comparison.number_in_pool') }}</td>
 				<td>4</td>
 				<td>2</td>
-				<td>1</td>
+				<td>2</td>
 				<td>0</td>
 				<td>0</td>
 			</tr><tr class="table-primary">
