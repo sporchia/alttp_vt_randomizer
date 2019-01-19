@@ -17,7 +17,7 @@ class TurtleRock extends Region\Standard\TurtleRock {
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
 				&& ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
 			&& $items->has('CaneOfSomaria')
-			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+			&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 	}
 
 	protected function enterMiddle($locations, $items) {
