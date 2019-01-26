@@ -28,4 +28,16 @@ class TowerOfHera extends Region\Standard\TowerOfHera {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('MoonPearl')
+				&& (($items->has('Hammer') && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
+					|| ($items->has('PegasusBoots')  && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
+		};
+
+		return $this;
+	}
 }

@@ -17,7 +17,7 @@ class Inverted extends World {
 	public function __construct($difficulty = 'normal', $logic = 'NoGlitches', $goal = 'ganon', $variation = 'none') {
 		$this->difficulty = $difficulty;
 		$this->variation = $variation;
-		$this->logic = in_array($logic, ['None', 'NoGlitches']) ? $logic : 'NoGlitches'; // currently only support for No Glicthes and None logic
+		$this->logic = in_array($logic, ['None', 'OverworldGlitches', 'NoGlitches']) ? $logic : 'NoGlitches'; // currently only support for No Glicthes and None logic
 		$this->goal = $goal;
 
 		$this->regions = [

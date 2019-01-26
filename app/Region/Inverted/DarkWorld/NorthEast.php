@@ -67,4 +67,32 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->shops["Dark World Potion Shop"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| $items->canLiftRocks()
+				|| $items->has('Hammer')
+				|| $items->has('Flippers')
+				|| $items->canFly()
+				|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $this->world->getRegion('North East Light World')->canEnter($locations, $items));
+		});
+
+		$this->locations["Catfish"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| $items->canLiftRocks()
+				|| ($this->world->getRegion('North East Light World')->canEnter($locations, $items) && $items->has('MoonPearl') && $items->has('MagicMirror'));
+		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('Hammer')
+				|| $items->has('Flippers')
+				|| $items->has('PegasusBoots')
+				|| ($items->has('MagicMirror') && $this->world->getRegion('North East Light World')->canEnter($locations, $items));
+		};
+
+		return $this;
+	}
 }

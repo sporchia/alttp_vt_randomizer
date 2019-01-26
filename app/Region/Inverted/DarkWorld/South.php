@@ -75,4 +75,34 @@ class South extends Region\Standard\DarkWorld\South {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->shops["Dark Lake Hylia Ledge Fairy"]->setRequirements(function($locations, $items) {
+			return (($items->has('Flippers')
+					|| $items->canFly()
+					|| $items->has('PegasusBoots'))
+					|| ($this->world->getRegion('South Light World')->canEnter($locations, $items) && $items->has('MagicMirror')))
+				&& $items->canBombThings();
+		});
+
+		$this->shops["Dark Lake Hylia Ledge Hint"]->setRequirements(function($locations, $items) {
+			return (($items->has('Flippers')
+					|| $items->canFly()
+					|| $items->has('PegasusBoots'))
+					|| ($this->world->getRegion('South Light World')->canEnter($locations, $items) && $items->has('MagicMirror')))
+				&& $items->canLiftRocks();
+		});
+
+		$this->shops["Dark Lake Hylia Ledge Spike Cave"]->setRequirements(function($locations, $items) {
+			return (($items->has('Flippers')
+					|| $items->canFly()
+					|| $items->has('PegasusBoots'))
+					|| ($this->world->getRegion('South Light World')->canEnter($locations, $items) && $items->has('MagicMirror')))
+				&& $items->canLiftRocks();
+		});
+
+		return $this;
+	}
 }

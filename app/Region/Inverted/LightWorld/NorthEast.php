@@ -34,11 +34,11 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast {
 		$this->locations["Sahasrahla's Hut - Middle"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->canBombThings();
 		});
-		
+
 		$this->locations["Sahasrahla's Hut - Right"]->setRequirements(function($locations, $items) {
 			return $items->has('MoonPearl') && $items->canBombThings();
 		});
-		
+
 		$this->locations["Sahasrahla"]->setRequirements(function($locations, $items) {
 			return $items->has('PendantOfCourage');
 		});
@@ -111,4 +111,51 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->locations["Sahasrahla's Hut - Left"]->setRequirements(function($locations, $items) {
+			return ($items->has('MoonPearl') && $items->canBombThings())
+				|| ($items->has('PegasusBoots') && ($items->has('MagicMirror') || !$this->world->config('region.cantTakeDamage', false)));
+		});
+
+		$this->locations["Sahasrahla's Hut - Middle"]->setRequirements(function($locations, $items) {
+			return ($items->has('MoonPearl') && $items->canBombThings())
+				|| ($items->has('PegasusBoots') && ($items->has('MagicMirror') || !$this->world->config('region.cantTakeDamage', false)));
+		});
+
+		$this->locations["Sahasrahla's Hut - Right"]->setRequirements(function($locations, $items) {
+			return ($items->has('MoonPearl') && $items->canBombThings())
+				|| ($items->has('PegasusBoots') && ($items->has('MagicMirror') || !$this->world->config('region.cantTakeDamage', false)));
+		});
+
+		$this->locations["Waterfall Fairy - Left"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["Zora's Ledge"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && ($items->has('Flippers') || $items->has('PegasusBoots'));
+		});
+
+		$this->locations["King Zora"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->can_enter = function($locations, $items) {
+			return $items->has('DefeatAgahnim')
+				|| ($items->has('MoonPearl')
+					&& (($items->has('Hammer') && $items->canLiftRocks())
+						|| $items->canLiftDarkRocks()))
+				|| ($items->has('MoonPearl') && $items->has('PegasusBoots'))
+				|| ($items->has('PegasusBoots') && $items->has('MagicMirror'));
+		};
+
+		return $this;
+	}
+
 }

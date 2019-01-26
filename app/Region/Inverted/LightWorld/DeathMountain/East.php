@@ -91,4 +91,31 @@ class East extends Region\Standard\LightWorld\DeathMountain\East {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->locations["Spiral Cave"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || ($items->has('MagicMirror') && $items->hasSword(1));
+		});
+
+		$this->locations["Ether Tablet"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && $items->has('BookOfMudora')
+				&& (($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
+					|| ($this->world->config('mode.weapons') != 'swordless' && $items->hasSword(2) && ($items->has('Hammer') || $items->has('PegasusBoots'))));
+		});
+
+		$this->locations["Spectacle Rock"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') && ($items->has('Hammer') || $items->has('Boots'));
+		});
+
+
+		$this->can_enter = function($locations, $items) {
+			return ($items->canLiftDarkRocks() && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))
+				|| ($items->has('MoonPearl') && ($items->has('Hookshot') || $items->has('PegasusBoots'))
+					&& $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+		};
+
+		return $this;
+	}
 }
