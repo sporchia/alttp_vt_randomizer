@@ -139,4 +139,50 @@ class South extends Region\Standard\LightWorld\South {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->shops["Capacity Upgrade"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["Bomb Merchant"]->setRequirements(function($locations, $items) {
+			return $items->has('Crystal5') && $items->has('Crystal6');
+		});
+
+		$this->locations["Ice Rod Cave"]->setRequirements(function($locations, $items) {
+			return ($items->has('MoonPearl') && $items->canBombThings()) || ($items->has('MagicMirror') && $items->has('BigRedBomb'));
+		});
+
+		$this->locations["Cave 45"]->setRequirements(function($locations, $items) {
+			return !$this->world->config('region.cantTakeDamage', false) || $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Library"]->setRequirements(function($locations, $items) {
+			return ($items->has('MoonPearl') || $items->has('MagicMirror')) && $items->has('PegasusBoots');
+		});
+
+		$this->locations["Hobo"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["Lake Hylia Island"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl');
+		});
+
+		$this->locations["Floodgate Chest"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Sunken Treasure"]->setRequirements(function($locations, $items) {
+			return $items->has('MoonPearl') || $items->has('MagicMirror');
+		});
+
+		$this->locations["Desert Ledge"]->setRequirements(function($locations, $items) {
+			return ($items->has('MoonPearl') && $items->has('PegasusBoots')) || $this->world->getRegion('Desert Palace')->canEnter($locations, $items);
+		});
+
+		return $this;
+	}
 }

@@ -36,4 +36,20 @@ class IcePalace extends Region\Standard\IcePalace {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->can_enter = function($locations, $items) {
+			return $items->canMeltThings()
+				&& ($items->has('Flippers')
+					|| $items->has('PegasusBoots')
+					|| ($this->world->getRegion('South Light World')->canEnter($locations, $items) && $items->has('MagicMirror'))
+					|| ($items->canFly())
+					|| ($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && $items->has('Hammer'))
+					|| ($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && $items->canLiftRocks()));
+		};
+
+		return $this;
+	}
 }

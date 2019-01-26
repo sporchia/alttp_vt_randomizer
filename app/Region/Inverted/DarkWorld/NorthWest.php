@@ -52,4 +52,33 @@ class NorthWest extends Region\Standard\DarkWorld\NorthWest {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		$this->initNoGlitches();
+
+		$this->shops["Dark World Outcasts Shop"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer')
+				|| ($items->has('MoonPearl') && $items->has('MagicMirror') && $this->world->getRegion('North West Light World')->canEnter($locations, $items));
+		});
+
+		$this->locations["Hammer Pegs"]->setRequirements(function($locations, $items) {
+			return $items->has('Hammer')
+				&& ($items->canLiftDarkRocks() || $items->has('PegasusBoots')
+					|| ($items->has('MagicMirror') && $this->world->getRegion('North West Light World')->canEnter($locations, $items)));
+		});
+
+		$this->locations["Bumper Cave"]->setRequirements(function($locations, $items) {
+			return $items->has('PegasusBoots')
+				|| ($items->canLiftRocks() && $items->has('Cape') && $items->has('MoonPearl') && $items->has('MagicMirror')
+					&& $this->world->getRegion('North West Light World')->canEnter($locations, $items));
+		});
+
+		$this->locations["Purple Chest"]->setRequirements(function($locations, $items) {
+			return ($items->canLiftDarkRocks() || $items->has('MagicMirror') || $items->has('Boots'))
+				&& $this->world->getRegion('North West Light World')->canEnter($locations, $items)
+				&& $this->world->getRegion('South Light World')->canEnter($locations, $items);
+		});
+
+		return $this;
+	}
 }

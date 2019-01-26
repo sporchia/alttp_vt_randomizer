@@ -11,7 +11,7 @@ use ALttP\World;
  * Turtle Rock Region and it's Locations contained within
  */
 class TurtleRock extends Region\Standard\TurtleRock {
-	protected function enterTop($locations, $items) {
+	protected function enterTopNoGlitches($locations, $items) {
 		return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos')) && $items->has('Bombos'))
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether')) && $items->has('Ether'))
 					|| ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake')) && $items->has('Quake')))
@@ -20,14 +20,65 @@ class TurtleRock extends Region\Standard\TurtleRock {
 			&& $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
 	}
 
-	protected function enterMiddle($locations, $items) {
+	protected function enterMiddleNoGlitches($locations, $items) {
 		return $items->has('MagicMirror')
 			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
 	}
 
-	protected function enterBottom($locations, $items) {
+	protected function enterBottomNoGlitches($locations, $items) {
 		return $items->has('MagicMirror')
 			&& $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+	}
+
+	protected function enterTopOverworldGlitches($locations, $items) {
+		return $this->enterTopNoGlitches($locations, $items);
+	}
+
+	protected function enterMiddleOverworldGlitches($locations, $items) {
+		return $this->enterMiddleNoGlitches($locations, $items)
+			|| ($this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items)
+				&& $items->has('PegasusBoots')
+				&& ($items->has('Hookshot') || $items->hasSword(1)));
+	}
+
+	protected function enterBottomOverworldGlitches($locations, $items) {
+		return $this->enterBottomNoGlitches($locations, $items);
+	}
+
+	protected function enterTopMajorGlitches($locations, $items) {
+		return $this->enterTopOverworldGlitches($locations, $items);
+	}
+
+	protected function enterMiddleMajorGlitches($locations, $items) {
+		return $this->enterMiddleOverworldGlitches($locations, $items);
+	}
+
+	protected function enterBottomMajorGlitches($locations, $items) {
+		return $this->enterBottomOverworldGlitches($locations, $items);
+	}
+
+	protected function enterTopNone($locations, $items) {
+		return true;
+	}
+
+	protected function enterMiddleNone($locations, $items) {
+		return true;
+	}
+
+	protected function enterBottomNone($locations, $items) {
+		return true;
+	}
+
+	protected function enterTop($locations, $items) {
+		return call_user_func([$this, 'enterTop' . $this->world->getLogic()], $locations, $items);
+	}
+
+	protected function enterMiddle($locations, $items) {
+		return call_user_func([$this, 'enterMiddle' . $this->world->getLogic()], $locations, $items);
+	}
+
+	protected function enterBottom($locations, $items) {
+		return call_user_func([$this, 'enterBottom' . $this->world->getLogic()], $locations, $items);
 	}
 
 	/**
@@ -148,7 +199,7 @@ class TurtleRock extends Region\Standard\TurtleRock {
 			return $this->world->config('region.bossNormalLocation', true)
 				&& ($item == Item::get('CompassD7') || $item == Item::get('MapD7'));
 		});
-		
+
 		$this->can_enter = function($locations, $items) {
 			return $this->enterTop($locations, $items)
 				|| $this->enterMiddle($locations, $items)
@@ -158,5 +209,9 @@ class TurtleRock extends Region\Standard\TurtleRock {
 		$this->prize_location->setRequirements($this->can_complete);
 
 		return $this;
+	}
+
+	public function initOverworldGlitches() {
+		return $this->initNoGlitches();
 	}
 }

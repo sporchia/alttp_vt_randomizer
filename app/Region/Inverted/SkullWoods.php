@@ -41,4 +41,8 @@ class SkullWoods extends Region\Standard\SkullWoods {
 
 		return $this;
 	}
+
+	public function initOverworldGlitches() {
+		return $this->initNoGlitches();
+	}
 }
