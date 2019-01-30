@@ -206,6 +206,7 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 		return "$sprites/$filename";
 	}, scandir($sprites));
 
+	$sprite_meta = array();    //placeholder for a later implementation that bulk loads the sprite metadata
 	$output = [];
 	$i = 0;
 	foreach ($sprites as $spr_file) {
@@ -214,10 +215,14 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 		} catch (Exception $e) {
 			continue;
 		}
-		$output[basename($spr_file)] = [
+		$sprite_ID = strtok(basename($spr_file),'.'); //by convention, filename is id.version.zspr
+		if(!array_key_exists($sprite_ID, $sprite_meta)) { //if empty metadata
+			$sprite_meta[$sprite_ID] = array();
+		}
+		$output[basename($spr_file)] = array_merge([
 			'name' => $spr->getDisplayText(),
 			'author' => $spr->getAuthor(),
-		];
+		],$sprite_meta[$sprite_ID]);
 		$this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 149)/ 148) 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
 	}
 	file_put_contents(config_path('sprites.php'), preg_replace('/  /', "\t",
