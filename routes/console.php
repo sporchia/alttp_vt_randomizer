@@ -201,6 +201,11 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 	if (!is_dir($sprites)) {
 		return $this->error('Must be a directory of zsprs');
 	}
+	if (!file_exists("$sprites/spritemeta.json")) {
+		return $this->error("Missing $sprites/spritemeta.json");
+	}
+
+	$sprite_meta = json_decode(file_get_contents("$sprites/spritemeta.json"), true);
 
 	$sprites = array_map(function($filename) use ($sprites) {
 		return "$sprites/$filename";
