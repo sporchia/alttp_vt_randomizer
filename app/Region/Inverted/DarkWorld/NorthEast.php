@@ -62,6 +62,7 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast {
 		$this->can_enter = function($locations, $items) {
 			return $items->has('Hammer')
 				|| $items->has('Flippers')
+				|| $items->canFly()
 				|| ($items->has('MagicMirror') && $this->world->getRegion('North East Light World')->canEnter($locations, $items));
 		};
 
@@ -90,6 +91,7 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast {
 			return $items->has('Hammer')
 				|| $items->has('Flippers')
 				|| $items->has('PegasusBoots')
+				|| $items->canFly()
 				|| ($items->has('MagicMirror') && $this->world->getRegion('North East Light World')->canEnter($locations, $items));
 		};
 
