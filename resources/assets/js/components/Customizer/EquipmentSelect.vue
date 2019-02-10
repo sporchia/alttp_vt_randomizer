@@ -105,7 +105,7 @@
 				<div class="cell ml-4">
 					<div class="row">
 						<div class="cell w-100">
-							<vue-slider ref="slider" @drag-end="saveEquipment" :min="1" :max="20" tooltip="hover" v-model="items.BossHeartContainer"></vue-slider>
+							<vue-slider ref="slider" @drag-end="saveEquipment" :min="3" :max="20" tooltip="hover" v-model="items.BossHeartContainer"></vue-slider>
 						</div>
 					</div>
 					<div class="row">

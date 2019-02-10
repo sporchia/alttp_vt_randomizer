@@ -175,6 +175,18 @@ return [
 	'DefeatAgahnim2' => 'Vaincre Agahnim 2',
 	'DefeatGanon' => 'Vaincre Ganon',
 
+	'NoSlipBoots' => 'Crampons de Glace',
+	'Reindeer1' => 'Fonceur',
+	'Reindeer2' => 'Danseur',
+	'Reindeer3' => 'Sauteur',
+	'Reindeer4' => 'Fripponne',
+	'Reindeer5' => 'Comète',
+	'Reindeer6' => 'Cupidonne',
+	'Reindeer7' => 'Tonnerre',
+	'Reindeer8' => 'Éclair',
+	'Coal1' => 'Charbon',
+	'Coal2' => 'Charbon',
+
 	'Armos Knights' => 'Armos Knights',
 	'Lanmolas' => 'Lanmolas',
 	'Moldorm' => 'Moldorm',

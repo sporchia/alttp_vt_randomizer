@@ -100,6 +100,13 @@ class ItemRandomizerController extends Controller {
 			}
 
 			$custom_data['alttp.custom.item.require.Lamp'] = $custom_data['alttp.custom.item.require.Lamp'] ? 0 : 1;
+			if ($custom_data['alttp.custom.rom.freeItemMenu']) {
+				$custom_data['alttp.custom.rom.freeItemMenu'] = 0x00
+					| ($custom_data['alttp.custom.region.wildMaps'] << 3)
+					| ($custom_data['alttp.custom.region.wildCompasses'] << 2)
+					| ($custom_data['alttp.custom.region.wildBigKeys'] << 1)
+					| $custom_data['alttp.custom.region.wildKeys'];
+			}
 			config($custom_data);
 
 			$world = World::factory($game_mode, $difficulty, $logic, $goal, $variation);
@@ -107,7 +114,11 @@ class ItemRandomizerController extends Controller {
 			foreach ($request->input('l', []) as $location => $item) {
 				$decoded_location = base64_decode($location);
 				if (isset($locations[$decoded_location])) {
-					$place_item = Item::get($item);
+					if ($item === 'BottleWithRandom') {
+						$place_item = (new Randomizer)->getBottle();
+					} else {
+						$place_item = Item::get($item);
+					}
 					if ($weapons_mode == 'swordless' && $place_item instanceof Item\Sword) {
 						$place_item = Item::get('TwentyRupees2');
 					}

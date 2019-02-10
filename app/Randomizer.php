@@ -160,6 +160,10 @@ class Randomizer {
 			}
 		}
 
+		if (!$this->config('region.forceSkullWoodsKey', true)) {
+			array_push($dungeon_items, Item::get('KeyD3'));
+		}
+
 		// Easy starts with
 		if ($this->difficulty == 'easy') {
 			for ($i = 0; $i < 6; ++$i) {
@@ -167,7 +171,7 @@ class Randomizer {
 			}
 		}
 
-		if ($this->config('mode.state') == 'open') {
+		if ($this->config('mode.state') != 'standard') {
 			$this->starting_equipment->addItem(Item::get('RescueZelda'));
 		}
 
@@ -211,7 +215,7 @@ class Randomizer {
 				}
 			}
 		} else {
-			// put 1 sword back
+			// put uncle sword back
 			if (count($nice_items_swords)) {
 				$uncle_sword = Item::get('UncleSword')->setTarget(array_pop($nice_items_swords));
 				if ($this->config('mode.weapons') == 'uncle' && !$this->world->getLocation("Link's Uncle")->hasItem()) {
@@ -219,6 +223,11 @@ class Randomizer {
 				} else {
 					array_push($advancement_items, $uncle_sword);
 				}
+			}
+
+			// put 1 more sword back in
+			if (count($nice_items_swords)) {
+				array_push($advancement_items, array_pop($nice_items_swords));
 			}
 
 			if ($this->config('mode.weapons') == 'uncle') {
@@ -264,7 +273,7 @@ class Randomizer {
 		}
 		if ($this->world->config('region.wildKeys', false)) {
 			foreach ($dungeon_items as $key => $item) {
-				if ($item instanceof Item\Key && ($this->config('mode.state') == 'open' || $item != Item::get('KeyH2'))) {
+				if ($item instanceof Item\Key && ($this->config('mode.state') != 'standard' || $item != Item::get('KeyH2'))) {
 					unset($dungeon_items[$key]);
 					$advancement_items[] = $item;
 				}
@@ -295,7 +304,7 @@ class Randomizer {
 		if ($this->goal == 'triforce-hunt' || $this->goal == 'pedestal') {
 			$filler->setGanonJunkLimits(15, 50);
 		}
-		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches'])) {
+		if (in_array($this->logic, ['OverworldGlitches', 'MajorGlitches', 'None'])) {
 			$filler->setGanonJunkLimits(0, 0);
 		}
 
@@ -590,10 +599,20 @@ class Randomizer {
 				$this->world->getShop("Capacity Upgrade")->clearInventory()
 					->addInventory(0, Item::get('BombUpgrade5'), 200, 3)
 					->addInventory(1, Item::get('ArrowUpgrade5'), 200, 3);
+				$this->world->getShop("Dark World Potion Shop")->addInventory(1, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Forest Shop")->addInventory(0, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Lumberjack Hut Shop")->addInventory(1, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Outcasts Shop")->addInventory(1, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Lake Hylia Shop")->addInventory(1, Item::get('Nothing'), 0);					
 				break;
 			case 2:
 			case 3:
 				$this->world->getShop("Capacity Upgrade")->clearInventory();
+				$this->world->getShop("Dark World Potion Shop")->addInventory(1, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Forest Shop")->addInventory(0, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Lumberjack Hut Shop")->addInventory(1, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Outcasts Shop")->addInventory(1, Item::get('Nothing'), 0);
+				$this->world->getShop("Dark World Lake Hylia Shop")->addInventory(1, Item::get('Nothing'), 0);	
 				break;
 		}
 
@@ -841,13 +860,13 @@ class Randomizer {
 		$rom->setHyliaFairyShop(true);
 		$rom->setRestrictFairyPonds(true);
 		$rom->setLimitProgressiveSword($this->config('item.overflow.count.Sword', 4),
-			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees'))->getBytes()[0]);
+			Item::get($this->config('item.overflow.replacement.Sword', 'TwentyRupees2'))->getBytes()[0]);
 		$rom->setLimitProgressiveShield($this->config('item.overflow.count.Shield', 3),
-			Item::get($this->config('item.overflow.replacement.Shield', 'TwentyRupees'))->getBytes()[0]);
+			Item::get($this->config('item.overflow.replacement.Shield', 'TwentyRupees2'))->getBytes()[0]);
 		$rom->setLimitProgressiveArmor($this->config('item.overflow.count.Armor', 2),
-			Item::get($this->config('item.overflow.replacement.Armor', 'TwentyRupees'))->getBytes()[0]);
+			Item::get($this->config('item.overflow.replacement.Armor', 'TwentyRupees2'))->getBytes()[0]);
 		$rom->setLimitBottle($this->config('item.overflow.count.Bottle', 4),
-			Item::get($this->config('item.overflow.replacement.Bottle', 'TwentyRupees'))->getBytes()[0]);
+			Item::get($this->config('item.overflow.replacement.Bottle', 'TwentyRupees2'))->getBytes()[0]);
 
 		switch ($this->difficulty) {
 			case 'easy':
@@ -855,7 +874,7 @@ class Randomizer {
 				$rom->setSubstitutions([
 					0x12, 0x01, 0x35, 0xFF, // lamp -> 5 rupees
 					0x58, 0x01, $this->config('rom.rupeeBow', false) ? 0x36 : 0x43, 0xFF, // silver arrows -> 1 arrow
-					0x3E, 0x07, 0x36, 0xFF, // 7 boss hearts -> 20 rupees
+					0x3E, 0x07, 0x47, 0xFF, // 7 boss hearts -> 20 rupees
 					0x51, 0x06, 0x52, 0xFF, // 6 +5 bomb upgrades -> +10 bomb upgrade
 					0x53, 0x06, 0x54, 0xFF, // 6 +5 arrow upgrades -> +10 arrow upgrade
 				]);
