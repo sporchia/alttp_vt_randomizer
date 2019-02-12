@@ -449,7 +449,9 @@ class ItemCollection extends Collection {
 	}
 
 	/**
-	 * Requirements for blocking lasers
+	 * Requirements for magic usage
+	 *
+	 * @param float $bars number of magic bars
 	 *
 	 * @return bool
 	 */
