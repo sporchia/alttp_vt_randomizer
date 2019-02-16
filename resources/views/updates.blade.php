@@ -1,6 +1,125 @@
 @extends('layouts.default', ['title' => 'Updates - '])
 
 @section('content')
+<h2>v30.4</h2>
+<div class="card card-body bg-light mb-3">
+	<ul>
+		<li>Fixed bottle with random in customizer</li>
+		<li>Fixed key-sanity menu in customizer</li>
+		<li>Fixed generic key on uncle</li>
+		<li>Fixed missing 3rd skull woods key</li>
+		<li>Fixed tablets not having progression due to swords</li>
+		<li>Fixed junk fill in no logic</li>
+		<li>Fixed sewers key in inverted</li>
+		<li>Fixed buying shields in hard+</li>
+		<li>Updated replacement to be green 20 rupees</li>
+		<li>Fixed witch text when you have mushroom and talk to her</li>
+		<li>Fixed hard+ pieces of heart missing</li>
+		<li>Fixed customizer &lt;3 starting hearts by not allowing &lt; 3 starting hearts</li>
+		<li>Fixed spelling of Knockout</li>
+		<li>Added under water to zora and catfish hints</li>
+		<li>Removed triforce hunt difficulty options description</li>
+		<li>Fixed Skull Woods Customizer extra key</li>
+	</ul>
+</div>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
+<h2>v30.3</h2>
+<div class="card card-body bg-light mb-3">
+	<ul>
+		<li>Hints:<ul>
+		<li>Fixed a bug where old V29 general hints were sometimes coming through in V30</li>
+		<li>Fake hints now have a :LinkFace: included to more easily identify them</li>
+		</ul></li>
+		<li>Added Race ROM support to Customizer and split generated Customizers to their own tab</li>
+		<li>Added warning to OHKO/Enemizer that it may be impossible with unlucky enemy placements</li>
+		<li>In inverted the NPC “thing” in Dark Chapel now instafills your health without any text (but still costs you 20 rupees!)</li>
+		<li>Fixed a bug where the Blacksmith would give theitem even if you didn’t have 10 rupees!<ul>
+			<li>A text box has been added to tell you if you have insufficient rupees</li>
+		</ul></li>
+		<li>Fixed a bug in Inverted where some enemies in Agahnim’s Tower and Old Man Cave had DW properties</li>
+		<li>Added a “loading animation” when ROMS are being generated so people know things are happening!</li>
+		<li>Fixed a bug where Crystals sometimes wouldn’t drop in boss rooms in extremely rare situations</li>
+		<li>Updated Pedestal/Tablets texts to reference generic keys in Retro and not specific keys</li>
+		<li>Updated ER permalinks to include Quick Swap</li>
+		<li>Bomb/Arrow Capacity Upgrades:<ul>
+			<li>Hard: now only sells two +5 upgrades and one +10 upgrade at an increased cost of 200 rupees each</li>
+			<li>Expert/Insane: removed all capacity upgrades</li>
+		</ul></li>
+		<li>Updated Old Man so that he still appears if the Purple Chest has been moved but not turned into the Desert Thief</li>
+		<li>Added a sprite page to the website detailing more info and crediting the authors</li>
+	</ul>
+</div>
+
+<h2>v30.2</h2>
+<div class="card card-body bg-light mb-3">
+	<ul>
+		<li>Fixed a bug where ROM corruptions were happening in Enemizer/Inverted</li>
+		<li>Fixed a bug where exiting to random places on the Overworld were happening in Inverted</li>
+		<li>Fixed a bug with Gold Sword showing on the title/credits tracker when Swordless</li>
+		<li>Removed bomb and arrow capacity upgrade references on the website</li>
+		<li>Removed hammer only logic for Helmasaur (it’s now just ‘Sword or Bow’)</li>
+		<li>Updated Enemizer label “Bosses” to “Boss Shuffle” for more clarity</li>
+		<li>Reordered Variations: Keysanity, Retro, Timed Race, Timed OHKO, OHKO</li>
+		<li>Key-sanity has been relabelled to Keysanity</li>
+		<li>Removed the guaranteed small key in pinball room of Skull Woods in No Logic</li>
+		<li>Re-enabled vanilla “fake world” behaviour in all Glitched logics</li>
+		<li>Fixed a bug where Triforce Pieces were not working properly in Customizer</li>
+		<li>Arrow capacity upgrades have been removed from Pond of Happiness in Retro</li>
+		<li>Updated hints for keys in Retro to read “a generic key” instead of the specific key names</li>
+		<li>Added the missing “Enemy Shuffle” to Entrance Randomizer</li>
+		<li>Updated all fake hints to be in green text to be clearer that they’re not actual hints</li>
+		<li>Updated Sahasrahla’s item location to “is held by the Kakariko village elder” instead of “held by a sage” to be clearer</li>
+		<li>Big Keys are removed from hints in all modes except Keysanity (except for when they’re in a “worst location”)</li>
+		<li>FIxed a bug where the second copy of Silver Arrows were reverting to Wooden Arrows in Retro/Easy</li>
+		<li>Updated logic for shops access in Inverted to prevent softlocks (!)</li>
+		<li>Updated hints for NPC locations to read “held by someone friendly” to be clearer</li>
+		<li>Reverted  Ice Palace logic back to V29 due a keylock which was identified</li>
+	</ul>
+</div>
+
+<h2>v30.1</h2>
+<div class="card card-body bg-light mb-3">
+	<ul>
+		<li>Added Standard State/Enemizer initial compatibility</li>
+		<li>Added Boots as initial equipment to No Logic</li>
+		<li>Removed generic keys from Customizer</li>
+		<li>Fixed incorrect text when reading Pedestal Tablet</li>
+		<li>Updated Enemizer labels:<ul>
+			<li>Boss Shuffle: Off, Simple, Full, Chaos</li>
+			<li>Enemy HP: Default, Easy, Normal, Hard, Brick Wall</li>
+			<li>Enemy Damage: Default, Shuffled, Chaos</li>
+			</ul>
+		</li>
+		<li>Hints:<ul>
+			<li>Removed Big Keys from non-keysanity hints</li>
+			<li>Added Progressive Gloves to “unique items” list</li>
+			<li>Updated Swords to be called “something sharp”</li>
+			<li>Updated Purple Chest to “in a chest requiring a specialist to unlock”</li>
+			<li>Lumberjack location no longer has incorrect “requires bombs” instead of “requires boots”</li>
+			<li>Swamp map chest no longer has incorrect “requires hammer”</li>
+			<li>The following have been added to “is in plain sight”<ul>
+				<li>Spectacle Rock Cave</li>
+				<li>Spectacle Rock HP</li>
+				<li>Floating Island</li>
+				<li>Desert Torch</li>
+				<li>Ganon’s Tower Torch</li>
+				<li>Hera Basement Cage</li>
+				</ul>
+			</li>
+			<li>Desert Torch and Ganon’s Tower Torch now have “requires boots”</li>
+			<li>Ganon’s Tower Tile Room now has “requires Cane of Somaria”</li>
+			<li>Kakariko Well Bomb Wall Chest now has “requires bombs”</li>
+			<li>Sahasrahla’s back 3 chests no longer incorrectly has “requires bombs”</li>
+			<li>Back of Escape 3 chests no longer incorrectly has “requires bombs”</li>
+			<li>Most Turtle Rock locations now correctly have “requires Cane of Somaria”</li>
+			<li>Added Swamp Palace Flooded Room Chests to “are underwater”</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
 <h2>v30</h2>
 <div class="card card-body bg-light mb-3">
 	<ul>
