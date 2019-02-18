@@ -76,7 +76,7 @@
 			</div>
 			<div class="row mb-3">
 				<div class="col">
-					<Toggle :value="context['rom.freeItemMenu']" @input="toggle($event, 'rom.freeItemMenu')">
+					<Toggle :value="context['rom.freeItemMenu']*0x0F" @input="toggle($event, 'rom.freeItemMenu')">
 						Show dungeon item table in menu
 						<template slot="tooltip">If No, the menu will behave as it does in the vanilla game. If Yes, key collection information will be displayed at the bottom of the item menu.</template>
 					</Toggle>
