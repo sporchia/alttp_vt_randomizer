@@ -1052,6 +1052,7 @@ class Randomizer {
 			"the loyal priest",
 			"read a book",
 			"sits in own pew",
+			"heal plz",
 		])));
 
 		$name = array_first(fy_shuffle([
