@@ -65,6 +65,17 @@ You will need to build assets the first time (you will need [NPM](https://www.np
 
 ```
 $ npm install
+```
+
+Next generate the [Laravel-vue](https://github.com/martinlindhe/laravel-vue-i18n-generator) include file with
+
+```
+php artisan vue-i18n:generate
+```
+
+And finally
+
+```
 $ npm run production
 ```
 
