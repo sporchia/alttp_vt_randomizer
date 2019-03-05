@@ -267,14 +267,16 @@ class Rom {
 					break;
 				case 'SilverArrowUpgrade':
 					$equipment[0x38E] |= 0b01000000;
-					if ($this->config('rom.rupeeBow', true))
+					if ($this->config('rom.rupeeBow', false)) {
 						$equipment[0x377] = 0x01;
+					}
 					break;
 				case 'BowAndSilverArrows':
 					$equipment[0x340] = 0x04;
 					$equipment[0x38E] |= 0b01000000;
-					if ($this->config('rom.rupeeBow', true))
+					if ($this->config('rom.rupeeBow', false)) {
 						$equipment[0x377] = 0x01;
+					}
 					break;
 				case 'Boomerang':
 					$equipment[0x341] = 0x01;
@@ -286,8 +288,7 @@ class Rom {
 					break;
 				case 'Mushroom':
 					$equipment[0x344] = 0x01;
-					$equipment[0x38C] |= 0b00100000;
-					$equipment[0x38C] |= 0b00001000;
+					$equipment[0x38C] |= 0b00101000;
 					break;
 				case 'Powder':
 					$equipment[0x344] = 0x02;
