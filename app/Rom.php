@@ -278,11 +278,11 @@ class Rom {
 					break;
 				case 'BowAndSilverArrows':
 					$equipment[0x340] = 0x04;
-					$equipment[0x38E] |= 01000000;
+					$equipment[0x38E] |= 0b01000000;
 					if ($this->config('rom.rupeeBow', false)) {
 						$equipment[0x377] = 0x01;
 					} else {
-						$equipment[0x38E] |= 10000000;
+						$equipment[0x38E] |= 0b10000000;
 					}
 					break;
 				case 'Boomerang':
