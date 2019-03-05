@@ -22,7 +22,7 @@ return [
 		],
 	],
 	'bosses' => [
-		'title' => 'Bosse Shuffle',
+		'title' => 'Boss Shuffle',
 		'options' => [
 			'off' => 'Off',
 			'basic' => 'Simple',

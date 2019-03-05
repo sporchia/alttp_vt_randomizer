@@ -11,6 +11,7 @@
 /resources/assets/js/*.generated.js
 /vendor
 /docs
+/report
 /.idea
 .env
 .env.debug

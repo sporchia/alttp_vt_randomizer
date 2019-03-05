@@ -160,7 +160,7 @@ class Randomizer {
 			}
 		}
 
-		if (!$this->config('region.forceSkullWoodsKey', true)) {
+		if (!$this->config('region.forceSkullWoodsKey', true) && $this->difficulty !== 'custom') {
 			array_push($dungeon_items, Item::get('KeyD3'));
 		}
 

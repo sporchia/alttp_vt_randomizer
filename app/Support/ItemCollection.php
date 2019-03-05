@@ -456,8 +456,8 @@ class ItemCollection extends Collection {
 	 * @return bool
 	 */
 	public function canExtendMagic($bars = 2) {
-		return ($this->has('HalfMagic') ? 2 : 1)
-			* ($this->has('QuarterMagic') ? 4 : 1)
+		return ($this->has('QuarterMagic') ? 4 : 
+			($this->has('HalfMagic') ? 2 : 1))
 			* ($this->bottleCount() + 1) >= $bars;
 	}
 
