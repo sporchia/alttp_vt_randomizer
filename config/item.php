@@ -70,7 +70,7 @@ return [
 		'BombUpgrade10' => 0,
 		'BombUpgrade50' => 0,
 		'ArrowUpgrade5' => 0,
-		'ArrowUpgrade10' => 0
+		'ArrowUpgrade10' => 0,
 		'ArrowUpgrade70' => 0,
 		'Arrow' => 1,
 		'TenArrows' => 12,
