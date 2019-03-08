@@ -103,11 +103,11 @@ class Location {
 	 * Set the requirements callback for this Lcation, closure should take 2 arguments, $locations and $items and
 	 * return boolean.
 	 *
-	 * @param Callable $callback function to be called when checking if Location can have Item
+	 * @param Callable|null $callback function to be called when checking if Location can have Item
 	 *
 	 * @return $this
 	 */
-	public function setRequirements(Callable $callback) {
+	public function setRequirements(Callable $callback = null) {
 		$this->requirement_callback = $callback;
 
 		return $this;
