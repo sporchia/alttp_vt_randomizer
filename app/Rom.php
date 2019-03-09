@@ -282,7 +282,7 @@ class Rom {
 					break;
 				case 'Mushroom':
 					$equipment[0x344] = 0x01;
-					$equipment[0x38C] |= 0b00100000;
+					$equipment[0x38C] |= 0b00101000;
 					break;
 				case 'Powder':
 					$equipment[0x344] = 0x02;
