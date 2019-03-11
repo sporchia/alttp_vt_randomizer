@@ -54,7 +54,7 @@
 					</Toggle>
 				</div>
 				<div class="col">
-					<Toggle :value="context['rom.compassOnPickup']" @input="toggle($event, 'rom.compassOnPickup')">
+					<Toggle :value="context['rom.compassOnPickup']" @input="toggle($event, 'rom.compassOnPickup')?'pickup':'off'">
 						Display dungeon counts on Compass Pickup
 						<template slot="tooltip">If No, compasses will behave as they do in the vanilla game. If Yes, they will additionally show how many uncollected items are left in their respective dungeons while Link is in that dungeon.</template>
 					</Toggle>
