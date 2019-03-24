@@ -43,7 +43,16 @@ class EntranceRandomizerController extends Controller {
 			config(['alttp.boss_shuffle' => $enemizer['bosses']]);
 		}
 
-		config(['alttp.mode.state' => $request->input('mode', 'standard')]);
+		switch ($request->input('mode', 'open')) {
+			case 'open':
+			case 'swordless':
+				config(['alttp.mode.state' => $request->input('mode', 'open')]);
+				break;
+			default:
+				config(['alttp.mode.state' => 'open']);
+		}
+
+		
 
 		$rom = new Rom(env('ENEMIZER_BASE', null));
 		$rom->applyPatchFile(public_path('js/base2current.json'));

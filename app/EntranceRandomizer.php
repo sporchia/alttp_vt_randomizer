@@ -31,11 +31,45 @@ class EntranceRandomizer extends Randomizer {
 	 * @return void
 	 */
 	public function __construct($difficulty = 'normal', $logic = 'noglitches', $goal = 'ganon', $variation = 'none', $shuffle = 'none') {
-		$this->difficulty = $difficulty;
+		switch ($difficulty) {
+			case 'easy':
+			case 'hard':
+			case 'expert':
+			case 'insane':
+			case 'normal':
+				$this->difficulty = $difficulty;
+				break;
+			default:
+				$this->difficulty = 'normal';
+		}
+		
+		switch ($goal) {
+			case 'ganon':
+			case 'crystals':
+			case 'dungeons':
+			case 'pedestal':
+			case 'triforcehunt':
+				$this->goal = $goal;
+				break;
+			default:
+				$this->goal = 'crystals';
+		}
+
+        switch ($shuffle) {
+            case 'simple':
+            case 'restricted':
+            case 'full':
+            case 'crossed':
+            case 'insanity':
+                $this->shuffle = $shuffle;
+                break;
+            default:
+                $this->shuffle = 'simple';
+        }
+
 		$this->variation = $variation;
-		$this->shuffle = $shuffle;
+		
 		$this->logic = $logic;
-		$this->goal = $goal;
 		$this->timer_mode = 'none';
 		$this->seed = new Seed;
 		$this->keysanity = false;
@@ -60,6 +94,8 @@ class EntranceRandomizer extends Randomizer {
 			case 'retro':
 				$this->retro = true;
 				break;
+			default:
+				$this->variation = 'none';
 		}
 	}
 
