@@ -114,16 +114,15 @@ class NorthEast extends Region {
 		});
 
 		$this->locations["Zora's Ledge"]->setRequirements(function($locations, $items) {
-			return $items->has('Flippers')
-				|| ($items->has('PegasusBoots') && $items->has('MoonPearl'));
+			return $items->has('Flippers') || $items->has('PegasusBoots');
 		});
 
 		$this->locations["Waterfall Fairy - Left"]->setRequirements(function($locations, $items) {
-			return $items->has('Flippers') || $items->has('MoonPearl');
+			return $items->has('Flippers') || $items->has('MoonPearl') || $items->has('PegasusBoots');
 		});
 
 		$this->locations["Waterfall Fairy - Right"]->setRequirements(function($locations, $items) {
-			return $items->has('Flippers') || $items->has('MoonPearl');
+			return $items->has('Flippers') || $items->has('MoonPearl') || $items->has('PegasusBoots');
 		});
 
 		return $this;

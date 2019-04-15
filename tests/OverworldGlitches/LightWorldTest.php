@@ -228,21 +228,23 @@ class LightWorldTest extends TestCase {
 
 			["Zora's Ledge", false, []],
 			["Zora's Ledge", true, ['Flippers']],
-			["Zora's Ledge", true, ['MoonPearl', 'PegasusBoots']],
+			["Zora's Ledge", true, ['PegasusBoots']],
 
 			["Flute Spot", false, []],
 			["Flute Spot", false, [], ['Shovel']],
 			["Flute Spot", true, ['Shovel']],
 
 			["Waterfall Fairy - Left", false, []],
-			["Waterfall Fairy - Left", false, [], ['Flippers', 'MoonPearl']],
+			["Waterfall Fairy - Left", false, [], ['Flippers', 'MoonPearl', 'PegasusBoots']],
 			["Waterfall Fairy - Left", true, ['Flippers']],
 			["Waterfall Fairy - Left", true, ['MoonPearl']],
+			["Waterfall Fairy - Left", true, ['PegasusBoots']],
 
 			["Waterfall Fairy - Right", false, []],
-			["Waterfall Fairy - Right", false, [], ['Flippers', 'MoonPearl']],
+			["Waterfall Fairy - Right", false, [], ['Flippers', 'MoonPearl', 'PegasusBoots']],
 			["Waterfall Fairy - Right", true, ['Flippers']],
 			["Waterfall Fairy - Right", true, ['MoonPearl']],
+			["Waterfall Fairy - Right", true, ['PegasusBoots']],
 		];
 	}
 }
