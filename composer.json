@@ -31,7 +31,7 @@
         "sentry/sentry-laravel": "^0.8.0",
         "wnx/laravel-stats": "^1.7",
         "z3/enemizer": "6.0.29",
-        "z3/entrancerandomizer": "0.6.2+pre0"
+        "z3/entrancerandomizer": "^0.6.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -59,11 +59,11 @@
             "type": "package",
             "package": {
                 "name": "z3/entrancerandomizer",
-                "version": "0.6.2+pre0",
+                "version": "0.6.2",
                 "source": {
-                    "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
+                    "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
                     "type": "git",
-                    "reference": "tags/0.6.2-pre0"
+                    "reference": "tags/0.6.2"
                 }
             }
         },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "542cf9733524793f80054d0d58160bf4",
+    "content-hash": "9ee915857c74f23d4b28c3e7513e8f11",
     "packages": [
         {
             "name": "2bj/phanybar",
@@ -4395,11 +4395,11 @@
         },
         {
             "name": "z3/entrancerandomizer",
-            "version": "0.6.2+pre0",
+            "version": "0.6.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
-                "reference": "tags/0.6.2-pre0"
+                "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
+                "reference": "tags/0.6.2"
             },
             "type": "library"
         }

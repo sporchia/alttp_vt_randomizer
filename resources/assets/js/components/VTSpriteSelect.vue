@@ -8,13 +8,13 @@
 			:custom-label="customLabel" @select="onSelect">
 			<template slot="singleLabel" slot-scope="props">
 				<div class="option__desc">
-					<div class="float-left" :class="'icon-custom-' + props.option.name.replace(/[ \)\(\.]/g, '')"></div>
+					<div class="float-left" :class="'icon-custom-' + props.option.name.replace(/[ \)\(\.\']/g, '')"></div>
 					<div class="option__title sprite-name">{{ props.option.name }}</div>
 				</div>
 			</template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
-					<div class="float-left" :class="'icon-custom-' + props.option.name.replace(/[ \)\(\.]/g, '')"></div>
+					<div class="float-left" :class="'icon-custom-' + props.option.name.replace(/[ \)\(\.\']/g, '')"></div>
 					<span class="option__title sprite-name">{{ props.option.name }}</span>
 				</div>
 			</template>
@@ -55,7 +55,7 @@ export default {
 			return `${option.name}`;
 		},
 		customClass (option) {
-			return `"icon-custom-" + option.name.replace(/[ \)\(\.]/g, '')`;
+			return `"icon-custom-" + option.name.replace(/[ \)\(\.\']/g, '')`;
 		},
 		onSelect (option) {
 			this.value = option;

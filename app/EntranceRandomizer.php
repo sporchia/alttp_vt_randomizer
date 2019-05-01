@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
  */
 class EntranceRandomizer extends Randomizer {
 	const LOGIC = -1;
-	const VERSION = '0.6.1.5';
+	const VERSION = '0.6.2';
 	private $spoiler;
 	private $patch;
 	protected $config = [];
@@ -42,7 +42,7 @@ class EntranceRandomizer extends Randomizer {
 			default:
 				$this->difficulty = 'normal';
 		}
-		
+
 		switch ($goal) {
 			case 'ganon':
 			case 'crystals':
@@ -68,7 +68,7 @@ class EntranceRandomizer extends Randomizer {
         }
 
 		$this->variation = $variation;
-		
+
 		$this->logic = $logic;
 		$this->timer_mode = 'none';
 		$this->seed = new Seed;
@@ -127,6 +127,7 @@ class EntranceRandomizer extends Randomizer {
 			. $keysanity_flag
 			. $retro_flag
 			. $boss_flag
+			. ' --hint '
 			. ' --seed ' . $rng_seed
 			. ' --jsonout --loglevel error');
 

@@ -5,7 +5,7 @@
 		</div>
 		<div class="sprite-container">
 			<div v-for="sprite in sprites" class="sprite" v-if="sprite.file" v-show="searchEx.test(sprite.name) || searchEx.test(sprite.author)">
-				<div :class="'sprite-preview icon-custom-' + sprite.name.replace(/[ \.\(\)]/g, '')"></div>
+				<div :class="'sprite-preview icon-custom-' + sprite.name.replace(/[ \.\(\)\']/g, '')"></div>
 				<div class="sprite-name">{{ sprite.name }}</div>
 				<div class="sprite-author">by: {{ sprite.author }}</div>
 			</div>

@@ -52,6 +52,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 
 			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
 			$rom->rummageTable();
+			$rom->setStartScreenHash($rand->getSeedRecord()->hashArray());
 			$patch = patch_merge_minify($rom->getWriteLog());
 			$rand->updateSeedRecordPatch($patch);
 			$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
@@ -218,7 +219,7 @@ Artisan::command('alttp:sprconf {sprites}', function($sprites) {
 			'name' => $spr->getDisplayText(),
 			'author' => $spr->getAuthor(),
 		];
-		$this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 149)/ 148) 0}", str_replace([' ', ')', '(', '.'], '', $spr->getDisplayText()), ++$i));
+		$this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 215)/ 214) 0}", str_replace([' ', ')', '(', '.', "'"], '', $spr->getDisplayText()), ++$i));
 	}
 	file_put_contents(config_path('sprites.php'), preg_replace('/  /', "\t",
 		preg_replace(["/^array \(/", "/\)$/", "/=>\s*array\s*\(/", "/\),/"], ["<?php\n\nreturn [", "];\n", '=> [', '],'], var_export($output, true))

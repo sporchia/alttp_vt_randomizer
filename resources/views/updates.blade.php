@@ -1,6 +1,18 @@
 @extends('layouts.default', ['title' => 'Updates - '])
 
 @section('content')
+<h2>v30.5</h2>
+<div class="card card-body bg-light mb-3">
+	<ul>
+		<li>Updated Entrance Randomizer to v0.6.2 (now with more hints).</li>
+		<li>Added new player options<br />
+			<img src="https://s3.us-east-2.amazonaws.com/alttpr/sprites.30.5.lg.png"
+				alt="Link sprite options" style="width:50%" /></li>
+	</ul>
+</div>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
+
 <h2>v30.4</h2>
 <div class="card card-body bg-light mb-3">
 	<ul>
@@ -22,8 +34,6 @@
 		<li>Fixed Skull Woods Customizer extra key</li>
 	</ul>
 </div>
-
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408" data-ad-format="auto"></ins>
 
 <h2>v30.3</h2>
 <div class="card card-body bg-light mb-3">
