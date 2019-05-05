@@ -11,7 +11,7 @@ return [
 			. '</ol>',
 	],
 	'info' => [
-		'spoilerwarning' => 'ADVERTENCIA: Generador de juego visto el registro de spoiler.',
+		'spoilerwarning' => 'ADVERTENCIA: El generador de este juego a visto el registro de spoiler.',
 		'logic' => __('randomizer.logic.title'),
 		'build' => 'Build de la ROM',
 		'difficulty' => __('randomizer.difficulty.title'),
