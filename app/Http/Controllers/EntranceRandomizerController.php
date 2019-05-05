@@ -11,7 +11,7 @@ class EntranceRandomizerController extends Controller {
 		$payload = $this->prepSeed($request, $seed_id, true);
 		$save_data = json_encode(array_except($payload, ['current_rom_hash', 'seed']));
 		SendPatchToDisk::dispatch($payload['seed']);
-		cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
+		// cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
 		return json_encode(array_except($payload, ['seed']));
 	}
 
@@ -30,14 +30,17 @@ class EntranceRandomizerController extends Controller {
 		$shuffle = $request->input('shuffle', 'full') ?: 'full';
 		$enemizer = $request->input('enemizer', false);
 		$spoilers = $request->input('spoilers', false);
+		$spoilersongenerate = $request->input('spoilersongenerate', false);
 		$tournament = $request->filled('tournament') && $request->input('tournament') == 'true';
 		$spoiler_meta = [
 			'_meta' => [
 				'enemizer' => $enemizer,
 				'size' => $enemizer ? 4 : 2,
 				'spoilers' => $spoilers,
+				'spoilersongenerate' => $spoilersongenerate,
 			],
 			'tournament' => $tournament,
+			'spoilersongenerate' => $spoilersongenerate,
 		];
 		if ($enemizer && $enemizer['bosses']) {
 			config(['alttp.boss_shuffle' => $enemizer['bosses']]);
@@ -79,7 +82,7 @@ class EntranceRandomizerController extends Controller {
 		if ($tournament) {
 			$rom->setSeedString(str_pad(sprintf("ER TOURNEY %s", $hash), 21, ' '));
 			$patch = $rom->getWriteLog();
-			if ($spoilers) {
+			if ($spoilers || $spoilersongenerate) {
 				$spoiler = array_except($spoiler, ['playthrough']);
 			} else {
 				$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);

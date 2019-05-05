@@ -25,10 +25,15 @@ Route::any('hash/{hash}', function(Request $request, $hash) {
 	$payload = cache($cache_hash);
 	if (!$payload) {
 		try {
-			cache([$cache_hash => Storage::get($hash . '.json')], now()->addDays(7));
+			cache([$cache_hash => gzdecode(Storage::get($hash . '.json'))], now()->addDays(7));
 			return cache($cache_hash);
 		} catch (\Exception $e) {
-			logger()->error($e);
+			try {
+				cache([$cache_hash => Storage::get($hash . '.json')], now()->addDays(7));
+				return cache($cache_hash);
+			} catch (\Exception $e) {
+				logger()->error($e);
+			}
 		}
 		abort(404);
 	}

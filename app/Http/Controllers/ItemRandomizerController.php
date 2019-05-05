@@ -22,7 +22,7 @@ class ItemRandomizerController extends Controller {
 			$payload = $this->prepSeed($request, $seed_id, true);
 			$save_data = json_encode(array_except($payload, ['current_rom_hash', 'seed']));
 			SendPatchToDisk::dispatch($payload['seed']);
-			cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
+			// cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
 
 			return json_encode(array_except($payload, ['seed']));
 		} catch (Exception $e) {
@@ -55,12 +55,14 @@ class ItemRandomizerController extends Controller {
 		$weapons_mode = $request->input('weapons', 'randomized');
 		$enemizer = ($difficulty != 'custom') ? $request->input('enemizer', false) : false;
 		$spoilers = $request->input('spoilers', false);
+		$spoilersongenerate = $request->input('spoilersongenerate', false);
 		$tournament = $request->filled('tournament') && $request->input('tournament') == 'true';
 		$spoiler_meta = [
 			'_meta' => [
 				'enemizer' => $enemizer,
 				'size' => $enemizer ? 4 : 2,
 				'spoilers' => $spoilers,
+				'spoilersongenerate' => $spoilersongenerate,
 			],
 		];
 		if ($enemizer) {
@@ -164,6 +166,10 @@ class ItemRandomizerController extends Controller {
 			$spoiler_meta['tournament'] = true;
 		}
 
+		if ($spoilersongenerate) {
+			$spoiler_meta['spoilersongenerate'] = true;
+		}
+
 		$rom->setTournamentType('none');
 
 		if (strtoupper($seed_id) == 'VANILLA') {
@@ -216,7 +222,7 @@ class ItemRandomizerController extends Controller {
 			$rom->setTournamentType('standard');
 			$rom->rummageTable();
 			$patch = $rom->getWriteLog();
-			if ($spoilers) {
+			if ($spoilers || $spoilersongenerate) {
 				$spoiler = array_except($spoiler, ['playthrough']);
 			} else {
 				$spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
