@@ -11,7 +11,7 @@ return [
 			. '</ol>',
 	],
 	'info' => [
-		'spoilerwarning' => 'WARNING: Generator of game viewed the spoiler log.',
+		'spoilerwarning' => 'WARNING: The generator of this game viewed the spoiler log.',
 		'logic' => __('randomizer.logic.title'),
 		'build' => 'ROM build',
 		'difficulty' => __('randomizer.difficulty.title'),
