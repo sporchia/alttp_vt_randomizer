@@ -1,6 +1,6 @@
 <template>
 	<div>	
-		<div v-if="rom.spoiler.meta.spoilersongenerate==true" class="spoiler-warning">WARNING: Generator of game viewed the spoiler log.</div>
+		<div v-if="rom.spoiler.meta.spoilersongenerate==true" class="spoiler-warning">{{ $t('rom.info.spoilerwarning') }}</div>
 		<div v-if="rom.logic">{{ $t('rom.info.logic') }}: {{ rom.logic }}</div>
 		<div v-if="rom.build">{{ $t('rom.info.build') }}: {{ rom.build }}</div>
 		<div v-if="rom.difficulty">
