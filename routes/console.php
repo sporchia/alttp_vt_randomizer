@@ -51,6 +51,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			$hash = $rand->saveSeedRecord();
 
 			$rom->setSeedString(str_pad(sprintf("VT TOURNEY %s", $hash), 21, ' '));
+			$rom->setStartScreenHash($rand->getSeedRecord()->hashArray());
+			
 			$rom->rummageTable();
 			$patch = patch_merge_minify($rom->getWriteLog());
 			$rand->updateSeedRecordPatch($patch);
