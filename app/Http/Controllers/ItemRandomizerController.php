@@ -22,7 +22,6 @@ class ItemRandomizerController extends Controller {
 			$payload = $this->prepSeed($request, $seed_id, true);
 			$save_data = json_encode(array_except($payload, ['current_rom_hash', 'seed']));
 			SendPatchToDisk::dispatch($payload['seed']);
-			// cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
 
 			return json_encode(array_except($payload, ['seed']));
 		} catch (Exception $e) {

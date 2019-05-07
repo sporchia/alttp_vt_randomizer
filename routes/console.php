@@ -73,7 +73,6 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
 			]);
 
 			SendPatchToDisk::dispatch($seed_record);
-			cache(['hash.' . $hash => $save_data], now()->addDays(7));
 		}
 	}
 });

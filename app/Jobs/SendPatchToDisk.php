@@ -43,7 +43,7 @@ class SendPatchToDisk implements ShouldQueue {
 		}
 		logger()->info("Sending file seed: {$this->seed->id}");
 
-		Storage::put("{$this->seed->hash}.json", gzencode(json_encode([
+		$save_data = json_encode([
 			'logic' => $this->seed->logic,
 			'difficulty' => $this->seed->rules,
 			'patch' => json_decode($this->seed->patch),
@@ -51,7 +51,10 @@ class SendPatchToDisk implements ShouldQueue {
 			'hash' => $this->seed->hash,
 			'size' => $spoiler['meta']['_meta']['size'] ?? 2,
 			'generated' => $this->seed->created_at ? $this->seed->created_at->toIso8601String() : now()->toIso8601String(),
-		])), ['ContentEncoding' => 'gzip', 'ContentType' => 'application/json']);
+		]);
+
+		Storage::put("{$this->seed->hash}.json", gzencode($save_data), ['ContentEncoding' => 'gzip', 'ContentType' => 'application/json']);
+		cache(['hash.' . $this->seed->hash => $save_data], now()->addDays(7));
 
 		if ($this->clear_record) {
 			$this->seed->clearPatch();
