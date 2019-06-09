@@ -1476,24 +1476,12 @@ class Randomizer {
 		// write to saved fish
 		$rom->setFishSavePrize($drop_bytes[62]);
 
-		// Sprite prize pack
-		$idat = array_values(unpack('C*', base64_decode(
-			"g5aEgICAgIACAAKAoIOXgICUkQcAgACAkpaAoAAAAIAEgIIGBgAAgICAgICAgICAgICAgICAgICAgIAAAICAkICRkZGXkZWVk5c" .
-			"UkZKBgoKAhYCAgAQEgJGAgICAgICAgACAgIKKgICAgJKRgIKBgYCBgICAgICAgICAgJeAgICAwoAVFRcGAIAAwBNAAAIGEBQAAE" .
-			"AAAAAAE0YRgIAAAAAQAAAAFhYWgYeCAICAAAAAAICAAAAAAAAAAAAAAAAAAAAAgAAAABcAEgAAAAAAEBcAQAEAAAAAAAAAAAAAA" .
-			"AAAAABAAAAAAAAAAACAAAAAAAAA"
-		)));
-		$offset = 0x6B632;
-		$bytes = $rom->read($offset, 243);
-		foreach ($bytes as $i => $v) {
-			$bytes[$i] = ($v == 0) ? $idat[$i] : $v;
-		}
-		for ($i = 0; $i < 243; $i++) {
-			// skip sprites that were not in prize packs before
-			if (!isset($bytes[$i]) || ($bytes[$i] & 0xF) == 0) {
-				continue;
-			}
-			$rom->write($offset + $i, pack('C*', ($bytes[$i] >> 4 << 4) + get_random_int(1, 7)));
+		// write to enemy sprite prize packs
+		foreach ($this->enemySpritePrizePacks() as list($offset, $bytes)) {
+			$bytes = array_map(function($byte) {
+				return $byte + get_random_int(1, 7);
+			}, $bytes);
+			$rom->write($offset, pack('C*', ...$bytes));
 		}
 
 		// Pack drop chance
@@ -1513,6 +1501,59 @@ class Randomizer {
 		for ($i = 0; $i < 7; $i++) {
 			$rom->write($offset + $i, pack('C*', pow(2, get_random_int($low, $high)) - 1));
 		}
+	}
+
+	// Todo: hunt down this last issue?
+	// Deadrock turns into $8F Blob when powdered, but those "onion blobs" always drop prize pack 1.
+	private function enemySpritePrizePacks() {
+		$offset = 0x6B632;
+		return [
+			// sprite_prep
+			[0x3088D, [0x00]], // Keese DW
+			[0x308A8, [0x00]], // Rope
+			[0x30967, [0x00, 0x00]], // Crow/Dacto
+			[0x31125, [0x00, 0x00]], // Red/Blue Hardhat Bettle
+			// sprite properties
+			[$offset+0x01, [0x90]], // Vulture
+			[$offset+0x08, [0x00]], // Octorok (One Way)
+			[$offset+0x0A, [0x00]], // Octorok (Four Way)
+			[$offset+0x0D, [0x80, 0x90]], // Buzzblob, Snapdragon
+			[$offset+0x11, [0x90, 0x90, 0x00]], // Hinox, Moblin, Mini Helmasaur
+			[$offset+0x18, [0x90, 0x90]], // Mini Moldorm, Poe/Hyu
+			[$offset+0x20, [0x00]], // Sluggula
+			[$offset+0x22, [0x80, 0x00, 0x00]], // Ropa, Red Bari, Blue Bari
+			// Blue Soldier/Tarus, Green Soldier, Red Spear Soldier
+			// Blue Assault Soldier, Red Assault Spear Soldier/Tarus
+			// Blue Archer, Green Archer
+			// Red Javelin Soldier, Red Bush Javelin Soldier
+			// Red Bomb Soldiers, Green Soldier Recruits,
+			// Geldman, Toppo, Popo, Popo 2
+			[$offset+0x41, [0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x10, 0x90, 0x90, 0x80, 0x80, 0x80]],
+			[$offset+0x51, [0x80]], // Armos
+			[$offset+0x55, [0x00, 0x00]], // Ku, Zora
+			[$offset+0x58, [0x90]], // Crab
+			[$offset+0x64, [0x80]], // Devalant (Shooter)
+			[$offset+0x6A, [0x90, 0x90]], // Ball N' Chain Trooper, Cannon Soldier
+			[$offset+0x6D, [0x80, 0x80]], // Rat/Buzz, (Stal)Rope
+			[$offset+0x71, [0x80]], // Leever
+			[$offset+0x7C, [0x90]], // Initially Floating Stal
+			[$offset+0x81, [0xC0]], // Hover
+			// Green Eyegore/Mimic, Red Eyegore/Mimic
+			// Detached Stalfos Body, Kodongo
+			[$offset+0x83, [0x10, 0x10, 0x10, 0x00]],
+			[$offset+0x8B, [0x10]], // Gibdo
+			[$offset+0x8E, [0x00, 0x00]], // Terrorpin, Blob
+			[$offset+0x91, [0x10]], // Stalfos Knight
+			[$offset+0x99, [0x10]], // Pengator
+			[$offset+0x9B, [0x10]], // Wizzrobe
+			// Blue Zazak, Red Zazak, Stalfos
+			// Green Zirro, Blue Zirro, Pikit
+			[$offset+0xA5, [0x10, 0x10, 0x10, 0x80, 0x80, 0x80]],
+			[$offset+0xC7, [0x10]], // Hokku-Bokku
+			[$offset+0xC9, [0x10]], // Tektite
+			[$offset+0xD0, [0x10]], // Lynel
+			[$offset+0xD3, [0x00]], // Stal
+		];
 	}
 
 	/**
