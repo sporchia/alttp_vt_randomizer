@@ -56,7 +56,7 @@ class Ether extends Location {
 			case Item::get('KeyD4'):
 				return "The small key\nof rogues";
 			case Item::get('KeyP3'):
-				return "The key\nto moldorms\nbasement";
+				return "The key\nto moldorm's\nbasement";
 			case Item::get('KeyD5'):
 				return "A frozen\nsmall key\nrests here";
 			case Item::get('KeyD3'):
