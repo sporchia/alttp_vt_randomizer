@@ -1,0 +1,22 @@
+/* corrections to fit in BS4 */
+.multiselect.form-control {
+  padding: 0;
+}
+.multiselect__placeholder {
+  padding-top: 0;
+  margin-bottom: 4px;
+}
+.multiselect__tags {
+  border: none;
+  padding-top: 10px;
+}
+.multiselect__content-wrapper {
+  z-index: 995;
+}
+.multiselect__option--highlight.multiselect__option--selected {
+  background: #41b883;
+  color: #fff;
+}
+.multiselect--active {
+  z-index: 995;
+}

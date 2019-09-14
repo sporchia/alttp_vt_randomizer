@@ -1,10 +1,11 @@
-<?php namespace ALttP\Location;
+<?php
+
+namespace ALttP\Location;
 
 use ALttP\Location;
 
 /**
  * BigChest type Location
  */
-class BigChest extends Chest {
-
-}
+class BigChest extends Chest
+{ }

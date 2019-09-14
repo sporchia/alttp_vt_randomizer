@@ -94,11 +94,37 @@ either.  >
 A dog exists
 somewhere. >
 -
-Your car keys
-are in the
-laundry.  >
+If all else
+fails use
+fire.  >
 -
-The umbrella
+Items are
+required to
+win.  >
+-
+Did you try
+checking
+vanilla?  >
+-
+> If you find
+my lunch,
+don't eat it.
+-
+Deadrocks are
+annoying.  >
+-
+Mist Form
 is in the
-break room. >
+Catacombs.  >
+-
+Maybe you
+could hire a
+detective?  >
+-
+>  READ
+or the owl
+will eat you.
+-
+> Bunnies
+are cute.
 -

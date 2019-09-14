@@ -1,10 +1,11 @@
-<?php namespace ALttP\Item;
+<?php
+
+namespace ALttP\Item;
 
 use ALttP\Item;
 
 /**
  * Bottle Contents type Item
  */
-class BottleContents extends Item {
-
-}
+class BottleContents extends Item
+{ }

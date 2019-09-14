@@ -1,0 +1,5 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+parameters:
+    excludes_analyse:
+        - /*/*/Tournament.php

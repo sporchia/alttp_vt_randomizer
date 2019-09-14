@@ -1,53 +1,72 @@
-<?php namespace ALttP\Console\Commands;
+<?php
+
+namespace ALttP\Console\Commands;
 
 use Illuminate\Console\Command;
 use ALttP\Rom;
 use ALttP\Text;
 
-class MakeTranslation extends Command {
-	/**
-	 * The name and signature of the console command.
-	 *
-	 * @var string
-	 */
-	protected $signature = 'alttp:i18n'
-		. ' {output_file : where to write translated rom}'
-		. ' {--i|input_file= : rom to translate}';
+class MakeTranslation extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'alttp:i18n'
+        . ' {output_file : where to write translated rom}'
+        . ' {--i|input_file= : rom to translate}';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'generate i18n bin file for patching';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'generate i18n bin file for patching';
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function handle() {
-		if ($this->option('input_file') && !is_readable($this->option('input_file'))) {
-			return $this->error('Source File not readable');
-		}
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        if (
+            $this->hasOption('input_file')
+            && trim($this->option('input_file')) !== ''
+            && (!is_string($this->option('input_file')) || !is_readable($this->option('input_file')))
+        ) {
+            $this->error('Source File not readable: ' . $this->option('input_file'));
 
-		if ((file_exists($this->argument('output_file')) && !is_writable($this->argument('output_file')))
-			|| (!file_exists($this->argument('output_file')) && !is_writable(dirname($this->argument('output_file'))))) {
-			return $this->error('Target file not writable');
-		}
+            return 1;
+        }
 
-		$i18n = new Text;
-		$i18n->removeUnwanted();
+        if (
+            !is_string($this->argument('output_file'))
+            || (file_exists($this->argument('output_file')) && !is_writable($this->argument('output_file')))
+            || (!file_exists($this->argument('output_file')) && !is_writable(dirname($this->argument('output_file'))))
+        ) {
+            $this->error('Target file not writable');
 
-		if ($this->option('input_file')) {
-			$rom = new Rom($this->option('input_file'));
-			$rom->write(0xE0000, pack('C*', ...$i18n->getByteArray(true)));
-		} else {
-			$rom = new Rom;
-			$rom->write(0x0, pack('C*', ...$i18n->getByteArray(true)));
-		}
+            return 2;
+        }
 
-		$rom->save($this->argument('output_file'));
-		$this->info("File written");
-	}
+        $i18n = new Text;
+        $i18n->removeUnwanted();
+
+        if (
+            $this->hasOption('input_file')
+            && trim($this->option('input_file')) !== ''
+            && is_string($this->option('input_file'))
+        ) {
+            $rom = new Rom($this->option('input_file'));
+            $rom->write(0xE0000, pack('C*', ...$i18n->getByteArray(true)));
+        } else {
+            $rom = new Rom;
+            $rom->write(0x0, pack('C*', ...$i18n->getByteArray(true)));
+        }
+
+        $rom->save($this->argument('output_file'));
+        $this->info("File written");
+    }
 }

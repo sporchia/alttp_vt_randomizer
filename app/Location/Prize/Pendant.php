@@ -1,10 +1,11 @@
-<?php namespace ALttP\Location\Prize;
+<?php
+
+namespace ALttP\Location\Prize;
 
 use ALttP\Location\Prize;
 
 /**
  * Pendant Location
  */
-class Pendant extends Prize {
-
-}
+class Pendant extends Prize
+{ }

@@ -14,5 +14,11 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/user', function (Request $request) {
-	return $request->user();
+    return $request->user();
 })->middleware('auth:api');
+
+Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('throttle:150,360');
+
+Route::post('customizer', 'CustomizerController@generateSeed')->middleware('throttle:50,360');
+
+Route::post('customizer/test', 'CustomizerController@testGenerateSeed')->middleware('throttle:200,360');
