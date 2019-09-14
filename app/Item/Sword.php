@@ -1,10 +1,11 @@
-<?php namespace ALttP\Item;
+<?php
+
+namespace ALttP\Item;
 
 use ALttP\Item;
 
 /**
  * Sword type Item
  */
-class Sword extends Item {
-
-}
+class Sword extends Item
+{ }

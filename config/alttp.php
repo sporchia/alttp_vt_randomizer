@@ -1,743 +1,377 @@
 <?php
 
 return [
-	'easy' => [
-		'item' => [
-			'count' => [
-				'ProgressiveSword' => 8,
-				'ProgressiveShield' => 6,
-				'ProgressiveArmor' => 4,
-				'BottleWithRandom' => 8,
-				'TwentyRupees' => 14,
-				'HalfMagic' => 2,
-				'Lamp' => 3,
-				'FiveRupees' => 2,
-				'Arrow' => 0,
-				'SilverArrowUpgrade' => 2,
-			],
-			'overflow' => [
-				'Armor' => 'TwentyRupees',
-				'Bottle' => 'TwentyRupees',
-				'Shield' => 'TwentyRupees',
-				'Sword' => 'TwentyRupees',
-			],
-			'require' => [
-				'Lamp' => 3,
-			],
-		],
-		'region' => [
-			'requireBetterBow' => true,
-			'requireBetterSword' => true,
-		],
-		'rom' => [
-			'compassOnPickup' => 'on',
-			'HardMode' => -1,
-		],
-		'variations' => [
-			'key-sanity' => [
-				'region' => [
-					'wildKeys' => true,
-					'wildBigKeys' => true,
-					'wildMaps' => true,
-					'wildCompasses' => true,
-				],
-				'rom' => [
-					'mapOnPickup' => true,
-					'freeItemText' => true,
-					'freeItemMenu' => 0x0F,
-				],
-			],
-			'retro' => [
-				'region' => [
-					'takeAnys' => true,
-					'wildKeys' => true,
-				],
-				'rom' => [
-					'genericKeys' => true,
-					'rupeeBow' => true,
-				],
-			],
-			'ohko' => [
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 0,
-				],
-			],
-			'timed-ohko' => [
-				'item' => [
-					'count' => [
-						'TwentyRupees' => 0,
-						'OneRupee' => 0,
-						'FiftyRupees' => 5,
-						'ThreeHundredRupees' => 7,
-						'GreenClock' => 17,
-					],
-					'overflow' => [ // 13 things
-						'replacement' => [
-							'Armor' => 'GreenClock',
-							'Bottle' => 'GreenClock',
-							'Shield' => 'GreenClock',
-							'Sword' => 'GreenClock',
-						],
-					],
-					'value' => [
-						'GreenClock' => 240,
-					],
-				],
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 20 * 60,
-				],
-			],
-			'timed-race' => [
-				'item' => [
-					'count' => [
-						'TwentyRupees' => 0,
-						'OneRupee' => 0,
-						'FiveRupees' => 0,
-						'ThreeBombs' => 0,
-						'FiftyRupees' => 5,
-						'OneHundredRupees' => 3,
-						'ThreeHundredRupees' => 6,
-						'GreenClock' => 20,
-						'BlueClock' => 10,
-						'RedClock' => 10,
-					],
-					'value' => [
-						'GreenClock' => 240, // reversed for stopwatch
-						'BlueClock' => 120,
-						'RedClock' => -120,
-						'BombUpgrade5' => 2,
-						'BombUpgrade10' => 3,
-					],
-				],
-				'rom' => [
-					'timerMode' => 'stopwatch',
-					'timerStart' => 0,
-				],
-			],
-		],
-	],
-	'normal' => [
-		'variations' => [
-			'key-sanity' => [
-				'region' => [
-					'wildKeys' => true,
-					'wildBigKeys' => true,
-					'wildMaps' => true,
-					'wildCompasses' => true,
-				],
-				'rom' => [
-					'mapOnPickup' => true,
-					'compassOnPickup' => 'pickup',
-					'freeItemText' => true,
-					'freeItemMenu' => 0x0F,
-				],
-			],
-			'retro' => [
-				'item' => [
-					'count' => [
-						'KeyA2' => 0,
-						'KeyD1' => 0,
-						'TwentyRupees' => 38,
-					],
-				],
-				'region' => [
-					'takeAnys' => true,
-					'wildKeys' => true,
-				],
-				'rom' => [
-					'genericKeys' => true,
-					'rupeeBow' => true,
-				],
-			],
-			'ohko' => [
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 0,
-				],
-			],
-			'timed-ohko' => [
-				'item' => [
-					'count' => [
-						'TwentyRupees' => 0,
-						'OneHundredRupees' => 4,
-						'ThreeHundredRupees' => 5,
-						'GreenClock' => 25,
-					],
-					'value' => [
-						'GreenClock' => 240,
-					],
-				],
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 10 * 60,
-				],
-			],
-			'timed-race' => [
-				'item' => [
-					'count' => [
-						'TwentyRupees' => 0,
-						'OneRupee' => 0,
-						'FiveRupees' => 0,
-						'ThreeBombs' => 0,
-						'OneHundredRupees' => 3,
-						'ThreeHundredRupees' => 6,
-						'GreenClock' => 20,
-						'BlueClock' => 10,
-						'RedClock' => 10,
-					],
-					'value' => [
-						'GreenClock' => 240, // reversed for stopwatch
-						'BlueClock' => 120,
-						'RedClock' => -120,
-						'BombUpgrade5' => 2,
-						'BombUpgrade10' => 3,
-					],
-				],
-				'rom' => [
-					'timerMode' => 'stopwatch',
-					'timerStart' => 0,
-				],
-			],
-		],
-	],
-	'hard' => [
-		'item' => [
-			'count' => [
-				'ArrowUpgrade5' => 0,
-				'ArrowUpgrade10' => 0,
-				'BombUpgrade5' => 0,
-				'BombUpgrade10' => 0,
-				'BossHeartContainer' => 6,
-				'HeartContainer' => 0,
-				'HalfMagic' => 0,
-				'QuarterMagic' => 0,
-				'SilverArrowUpgrade' => 1,
-				'PieceOfHeart' => 20,
-				'FiveRupees' => 14,
-			],
-			'overflow' => [
-				'count' => [
-					'Armor' => 1,
-					'Shield' => 2,
-					'Sword' => 3,
-				],
-			],
-		],
-		'rom' => [
-			'HardMode' => 1,
-		],
-		'variations' => [
-			'key-sanity' => [
-				'region' => [
-					'wildKeys' => true,
-					'wildBigKeys' => true,
-					'wildMaps' => true,
-					'wildCompasses' => true,
-				],
-				'rom' => [
-					'mapOnPickup' => true,
-					'compassOnPickup' => 'pickup',
-					'freeItemText' => true,
-					'freeItemMenu' => 0x0F,
-				],
-			],
-			'retro' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 33,
-						'BossHeartContainer' => 2,
-						'KeyA2' => 0,
-						'KeyD1' => 0,
-						'KeyD7' => 0,
-						'KeyP3' => 0,
-					],
-				],
-				'region' => [
-					'takeAnys' => true,
-					'wildKeys' => true,
-				],
-				'rom' => [
-					'genericKeys' => true,
-					'rupeeBow' => true,
-				],
-			],
-			'ohko' => [
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 0,
-				],
-			],
-			'timed-ohko' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 0,
-						'TwentyRupees' => 21,
-						'GreenClock' => 20,
-						'RedClock' => 1,
-					],
-					'value' => [
-						'GreenClock' => 240,
-						'RedClock' => - 32400,
-					],
-				],
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 7.5 * 60,
-				],
-			],
-			'timed-race' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 0,
-						'TwentyRupees' => 2,
-						'GreenClock' => 20,
-						'BlueClock' => 10,
-						'RedClock' => 10,
-					],
-					'value' => [
-						'GreenClock' => 240, // reversed for stopwatch
-						'BlueClock' => 120,
-						'RedClock' => -120,
-					],
-				],
-				'rom' => [
-					'timerMode' => 'stopwatch',
-					'timerStart' => 0,
-				],
-			],
-		],
-	],
-	'expert' => [
-		'item' => [
-			'count' => [
-				'ArrowUpgrade5' => 0,
-				'ArrowUpgrade10' => 0,
-				'BombUpgrade5' => 0,
-				'BombUpgrade10' => 0,
-				'BossHeartContainer' => 1,
-				'HeartContainer' => 0,
-				'HalfMagic' => 0,
-				'QuarterMagic' => 0,
-				'PieceOfHeart' => 20,
-				'SilverArrowUpgrade' => 1,
-				'FiveRupees' => 19,
-			],
-			'overflow' => [
-				'count' => [
-					'Armor' => 0,
-					'Shield' => 1,
-					'Sword' => 2,
-				],
-			],
-		],
-		'rom' => [
-			'HardMode' => 2,
-		],
-		'variations' => [
-			'key-sanity' => [
-				'region' => [
-					'wildKeys' => true,
-					'wildBigKeys' => true,
-					'wildMaps' => true,
-					'wildCompasses' => true,
-				],
-				'rom' => [
-					'mapOnPickup' => true,
-					'compassOnPickup' => 'pickup',
-					'freeItemText' => true,
-					'freeItemMenu' => 0x0F,
-				],
-			],
-			'retro' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 35,
-						'BossHeartContainer' => 0,
-						'KeyA2' => 0,
-						'KeyD1' => 0,
-						'KeyD7' => 0,
-						'KeyP3' => 0,
-					],
-				],
-				'region' => [
-					'takeAnys' => true,
-					'wildKeys' => true,
-				],
-				'rom' => [
-					'genericKeys' => true,
-					'rupeeBow' => true,
-				],
-			],
-			'ohko' => [
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 0,
-				],
-			],
-			'timed-ohko' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 0,
-						'TwentyRupees' => 14,
-						'FiveRupees' => 15,
-						'GreenClock' => 15,
-						'RedClock' => 3,
-					],
-					'value' => [
-						'GreenClock' => 240,
-						'RedClock' => - 32400,
-					],
-				],
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 5 * 60,
-				],
-			],
-			'timed-race' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 0,
-						'TwentyRupees' => 7,
-						'GreenClock' => 20,
-						'BlueClock' => 10,
-						'RedClock' => 10,
-					],
-					'value' => [
-						'GreenClock' => 240, // reversed for stopwatch
-						'BlueClock' => 120,
-						'RedClock' => -120,
-					],
-				],
-				'rom' => [
-					'timerMode' => 'stopwatch',
-					'timerStart' => 0,
-				],
-			],
-		],
-	],
-	'insane' => [
-		'item' => [
-			'count' => [
-				'ArrowUpgrade5' => 0,
-				'ArrowUpgrade10' => 0,
-				'BombUpgrade5' => 0,
-				'BombUpgrade10' => 0,
-				'BossHeartContainer' => 0,
-				'HeartContainer' => 0,
-				'HalfMagic' => 0,
-				'QuarterMagic' => 0,
-				'SilverArrowUpgrade' => 0,
-				'PieceOfHeart' => 0,
-				'FiveRupees' => 41,
-			],
-			'overflow' => [
-				'count' => [
-					'Armor' => 0,
-					'Shield' => 0,
-					'Sword' => 2,
-				],
-			],
-		],
-		'rom' => [
-			'HardMode' => 3,
-		],
-		'variations' => [
-			'key-sanity' => [
-				'region' => [
-					'wildKeys' => true,
-					'wildBigKeys' => true,
-					'wildMaps' => true,
-					'wildCompasses' => true,
-				],
-				'rom' => [
-					'mapOnPickup' => true,
-					'compassOnPickup' => 'pickup',
-					'freeItemText' => true,
-					'freeItemMenu' => 0x0F,
-				],
-			],
-			'retro' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 56,
-						'KeyA2' => 0,
-						'KeyD1' => 0,
-						'KeyD7' => 0,
-						'KeyP3' => 0,
-					],
-				],
-				'region' => [
-					'takeAnys' => true,
-					'wildKeys' => true,
-				],
-				'rom' => [
-					'genericKeys' => true,
-					'rupeeBow' => true,
-				],
-			],
-			'ohko' => [
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 0,
-				],
-			],
-			'timed-ohko' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 26,
-						'GreenClock' => 10,
-						'RedClock' => 5,
-					],
-					'value' => [
-						'GreenClock' => 240,
-						'RedClock' => - 32400,
-					],
-				],
-				'region' => [
-					'cantTakeDamage' => true,
-				],
-				'rom' => [
-					'timerMode' => 'countdown-ohko',
-					'timerStart' => 0,
-				],
-			],
-			'timed-race' => [
-				'item' => [
-					'count' => [
-						'FiveRupees' => 1,
-						'GreenClock' => 20,
-						'BlueClock' => 10,
-						'RedClock' => 10,
-					],
-					'value' => [
-						'GreenClock' => 240, // reversed for stopwatch
-						'BlueClock' => 120,
-						'RedClock' => -120,
-					],
-				],
-				'rom' => [
-					'timerMode' => 'stopwatch',
-					'timerStart' => 0,
-				],
-			],
-		],
-	],
-	'custom' => [
-		'prize' => [
-			'crossWorld' => false,
-			'shufflePendants' => false,
-			'shuffleCrystals' => false,
-		],
-		'region' => [
-			'bossNormalLocation' => false,
-			'pyramidBowUpgrade' => false,
-			'bossHaveKey' => false,
-			'forceSkullWoodsKey' => false,
-			'wildKeys' => false,
-			'wildBigKeys' => false,
-			'wildMaps' => false,
-			'wildCompasses' => false,
-		],
-		'rom' => [
-			'HardMode' => 0,
-			'genericKeys' => false,
-		],
-		'spoil' => [
-			'BootsLocation' => false,
-		],
-		'sprite' => [
-			'shuffleOverworldBonkPrizes' => false,
-		],
-	],
-	'vanilla' => [
-		'prize' => [
-			'crossWorld' => false,
-			'shufflePendants' => false,
-			'shuffleCrystals' => false,
-		],
-		'region' => [
-			'swordsInPool' => false,
-			'pyramidBowUpgrade' => true,
-			'forceSkullWoodsKey' => true,
-			'wildKeys' => false,
-			'wildBigKeys' => false,
-			'wildMaps' => false,
-			'wildCompasses' => false,
-		],
-		'rom' => [
-			'HardMode' => 0,
-		],
-		'sprite' => [
-			'shuffleOverworldBonkPrizes' => false,
-		],
-	],
-	'goals' => [
-		'triforce-hunt' => [
-			'item' => [
-				'count' => [
-					'TriforcePiece' => 30,
-				],
-				'Goal' => [
-					'Required' => 20,
-					'Icon' => 'triforce',
-				],
-			],
-		],
-	],
-	'randomizer' => [
-		'entrance' => [
-			'difficulties' => [
-				'easy' => 'Easy',
-				'normal' => 'Normal',
-				'hard' => 'Hard',
-				'expert' => 'Expert',
-				'insane' => 'Insane',
-			],
-			'goals' => [
-				'ganon' => 'Defeat Ganon',
-				'crystals' => 'Crystals',
-				'dungeons' => 'All Dungeons',
-				'pedestal' => 'Master Sword Pedestal',
-				'triforcehunt' => 'Triforce Pieces',
-			],
-			'logics' => [
-				'NoGlitches' => 'No Glitches',
-			],
-			'modes' => [
-				'open' => 'Open',
-				'swordless' => 'Swordless',
-			],
-			'shuffles' => [
-				'simple' => 'Simple',
-				'restricted' => 'Restricted',
-				'full' => 'Full',
-				'crossed' => 'Crossed',
-				'insanity' => 'Insanity',
-			],
-			'variations' => [
-				'none' => 'None',
-				'timed-race' => 'Timed Race',
-				'timed-ohko' => 'Timed OHKO',
-				'ohko' => 'OHKO',
-				'triforce-hunt' => 'Triforce Piece Hunt',
-				'key-sanity' => 'Keysanity',
-				'retro' => 'Retro',
-			],
-		],
-		'item' => [
-			'difficulties' => [
-				'easy' => 'Easy',
-				'normal' => 'Normal',
-				'hard' => 'Hard',
-				'expert' => 'Expert',
-				'insane' => 'Insane',
-			],
-			'goals' => [
-				'ganon' => 'Defeat Ganon',
-				'dungeons' => 'All Dungeons',
-				'pedestal' => 'Master Sword Pedestal',
-				'triforce-hunt' => 'Triforce Pieces',
-			],
-			'logics' => [
-				'NoGlitches' => 'No Glitches',
-				'OverworldGlitches' => 'Overworld Glitches',
-				'MajorGlitches' => 'Major Glitches',
-				'None' => 'None (I know what I’m doing)',
-			],
-			'modes' => [
-				'standard' => 'Standard',
-				'open' => 'Open',
-				'inverted' => 'Inverted',
-			],
-			'weapons' => [
-				'randomized' => 'Randomized',
-				'uncle' => 'Uncle Assured',
-				'swordless' => 'Swordless',
-			],
-			'variations' => [
-				'none' => 'None',
-				'key-sanity' => 'Keysanity',
-				'retro' => 'Retro',
-				'timed-race' => 'Timed Race',
-				'timed-ohko' => 'Timed OHKO',
-				'ohko' => 'OHKO',
-			],
-			'difficulty_adjustments' => [
-				-1 => 'Easy',
-				0 => 'Normal',
-				1 => 'Hard',
-				2 => 'Expert',
-				3 => 'Insane',
-			],
-		],
-		'daily_weights' => [
-			'item' => [
-				'difficulties' => [
-					'easy' => 20,
-					'normal' => 60,
-					'hard' => 10,
-					'expert' => 7,
-					'insane' => 3,
-				],
-				'goals' => [
-					'ganon' => 60,
-					'dungeons' => 10,
-					'pedestal' => 20,
-					'triforce-hunt' => 10,
-				],
-				'logics' => [
-					'NoGlitches' => 85,
-					'OverworldGlitches' => 13,
-					'MajorGlitches' => 2,
-				],
-				'modes' => [
-					'standard' => 30,
-					'open' => 30,
-					'inverted' => 40,
-				],
-				'weapons' => [
-					'randomized' => 30,
-					'uncle' => 50,
-					'swordless' => 20,
-				],
-				'variations' => [
-					'none' => 69,
-					'timed-race' => 0,
-					'timed-ohko' => 5,
-					'ohko' => 1,
-					'key-sanity' => 15,
-					'retro' => 15,
-				],
-			],
-		],
-	],
+    'custom' => [
+        'prize' => [
+            'crossWorld' => false,
+            'shufflePendants' => false,
+            'shuffleCrystals' => false,
+        ],
+        'region' => [
+            'bossNormalLocation' => false,
+            'pyramidBowUpgrade' => false,
+            'bossHaveKey' => false,
+            'forceSkullWoodsKey' => false,
+            'wildKeys' => false,
+            'wildBigKeys' => false,
+            'wildMaps' => false,
+            'wildCompasses' => false,
+        ],
+        'rom' => [
+            'HardMode' => 0,
+            'genericKeys' => false,
+        ],
+        'spoil' => [
+            'BootsLocation' => false,
+        ],
+    ],
+    'goals' => [
+        'triforce-hunt' => [
+            'item' => [
+                'count' => [
+                    'TriforcePiece' => 30,
+                ],
+                'Goal' => [
+                    'Required' => 20,
+                    'Icon' => 'triforce',
+                ],
+            ],
+        ],
+    ],
+    'randomizer' => [
+        'item' => [
+            'presets' => [
+                'custom' => [],
+                'beginner' => [
+                    'glitches_required' => 'none',
+                    'item_placement' => 'basic',
+                    'dungeon_items' => 'standard',
+                    'accessibility' => 'locations',
+                    'goal' => 'ganon',
+                    'tower_open' => '7',
+                    'ganon_open' => '7',
+                    'world_state' => 'standard',
+                    'entrance_shuffle' => 'none',
+                    'boss_shuffle' => 'none',
+                    'enemy_shuffle' => 'none',
+                    'hints' => 'on',
+                    'weapons' => 'vanilla',
+                    'item_pool' => 'normal',
+                    'item_functionality' => 'normal',
+                    'enemy_damage' => 'default',
+                    'enemy_health' => 'default',
+                ],
+                'default' => [
+                    'glitches_required' => 'none',
+                    'item_placement' => 'advanced',
+                    'dungeon_items' => 'standard',
+                    'accessibility' => 'items',
+                    'goal' => 'ganon',
+                    'tower_open' => '7',
+                    'ganon_open' => '7',
+                    'world_state' => 'open',
+                    'entrance_shuffle' => 'none',
+                    'boss_shuffle' => 'none',
+                    'enemy_shuffle' => 'none',
+                    'hints' => 'on',
+                    'weapons' => 'randomized',
+                    'item_pool' => 'normal',
+                    'item_functionality' => 'normal',
+                    'enemy_damage' => 'default',
+                    'enemy_health' => 'default',
+                ],
+                'veetorp' => [
+                    'glitches_required' => 'overworld_glitches',
+                    'item_placement' => 'basic',
+                    'dungeon_items' => 'standard',
+                    'accessibility' => 'locations',
+                    'goal' => 'fast_ganon',
+                    'tower_open' => '7',
+                    'ganon_open' => '7',
+                    'world_state' => 'open',
+                    'entrance_shuffle' => 'none',
+                    'boss_shuffle' => 'none',
+                    'enemy_shuffle' => 'none',
+                    'hints' => 'on',
+                    'weapons' => 'randomized',
+                    'item_pool' => 'normal',
+                    'item_functionality' => 'normal',
+                    'enemy_damage' => 'default',
+                    'enemy_health' => 'default',
+                ],
+                'crosskeys' => [
+                    'glitches_required' => 'none',
+                    'item_placement' => 'advanced',
+                    'dungeon_items' => 'full',
+                    'accessibility' => 'items',
+                    'goal' => 'fast_ganon',
+                    'tower_open' => '7',
+                    'ganon_open' => '7',
+                    'world_state' => 'open',
+                    'entrance_shuffle' => 'crossed',
+                    'boss_shuffle' => 'none',
+                    'enemy_shuffle' => 'none',
+                    'hints' => 'on',
+                    'weapons' => 'randomized',
+                    'item_pool' => 'normal',
+                    'item_functionality' => 'normal',
+                    'enemy_damage' => 'default',
+                    'enemy_health' => 'default',
+                ],
+                'quick' => [
+                    'glitches_required' => 'none',
+                    'item_placement' => 'advanced',
+                    'dungeon_items' => 'standard',
+                    'accessibility' => 'none',
+                    'goal' => 'fast_ganon',
+                    'tower_open' => '0',
+                    'ganon_open' => '0',
+                    'world_state' => 'open',
+                    'entrance_shuffle' => 'none',
+                    'boss_shuffle' => 'none',
+                    'enemy_shuffle' => 'none',
+                    'hints' => 'off',
+                    'weapons' => 'assured',
+                    'item_pool' => 'normal',
+                    'item_functionality' => 'normal',
+                    'enemy_damage' => 'default',
+                    'enemy_health' => 'default',
+                ],
+                'nightmare' => [
+                    'glitches_required' => 'none',
+                    'item_placement' => 'advanced',
+                    'dungeon_items' => 'full',
+                    'accessibility' => 'none',
+                    'goal' => 'ganon',
+                    'tower_open' => '7',
+                    'ganon_open' => '7',
+                    'world_state' => 'inverted',
+                    'entrance_shuffle' => 'insanity',
+                    'boss_shuffle' => 'random',
+                    'enemy_shuffle' => 'random',
+                    'hints' => 'off',
+                    'weapons' => 'swordless',
+                    'item_pool' => 'expert',
+                    'item_functionality' => 'expert',
+                    'enemy_damage' => 'random',
+                    'enemy_health' => 'expert',
+                ],
+            ],
+            'glitches_required' => [
+                'none' => 'None',
+                'overworld_glitches' => 'Overworld Glitches',
+                'major_glitches' => 'Major Glitches',
+                'no_logic' => 'No Logic',
+            ],
+            'item_placement' => [
+                'basic' => 'Basic',
+                'advanced' => 'Advanced',
+            ],
+            'dungeon_items' => [
+                'standard' => 'Standard',
+                'mc' => 'MC Shuffle',
+                'mcs' => 'MCS Shuffle',
+                'full' => 'Full Shuffle',
+            ],
+            'accessibility' => [
+                'items' => '100% Inventory',
+                'locations' => '100% Locations',
+                'none' => 'Not Guaranteed',
+            ],
+            'goals' => [
+                'ganon' => 'Defeat Ganon',
+                'fast_ganon' => 'Fast Ganon',
+                'dungeons' => 'All Dungeons',
+                'pedestal' => 'Master Sword Pedestal',
+                'triforce-hunt' => 'Triforce Pieces',
+            ],
+            'tower_open' => [
+                '0' => 'none',
+                '1' => '1',
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+                '6' => '6',
+                '7' => '7',
+                'random' => 'random',
+            ],
+            'ganon_open' => [
+                '0' => 'none',
+                '1' => '1',
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+                '6' => '6',
+                '7' => '7',
+                'random' => 'random',
+            ],
+            'world_state' => [
+                'standard' => 'Standard',
+                'open' => 'Open',
+                'inverted' => 'Inverted',
+                'retro' => 'Retro',
+            ],
+            'entrance_shuffle' => [
+                'none' => 'None',
+                'simple' => 'Simple',
+                'restricted' => 'Restricted',
+                'full' => 'Full',
+                'crossed' => 'Crossed',
+                'insanity' => 'Insanity',
+            ],
+            'boss_shuffle' => [
+                'none' => 'None',
+                'simple' => 'Simple',
+                'full' => 'Full',
+                'random' => 'Random',
+            ],
+            'enemy_shuffle' => [
+                'none' => 'None',
+                'shuffled' => 'Shuffled',
+                'random' => 'Random',
+            ],
+            'hints' => [
+                'on' => 'On',
+                'off' => 'Off',
+            ],
+            'weapons' => [
+                'randomized' => 'Randomized',
+                'assured' => 'Assured',
+                'vanilla' => 'Vanilla',
+                'swordless' => 'Swordless',
+            ],
+            'item_pool' => [
+                'normal' => 'Normal',
+                'hard' => 'Hard',
+                'expert' => 'Expert',
+                'crowd_control' => 'Crowd Control',
+            ],
+            'item_functionality' => [
+                'normal' => 'Normal',
+                'hard' => 'Hard',
+                'expert' => 'Expert',
+            ],
+            'enemy_damage' => [
+                'default' => 'Default',
+                'shuffled' => 'Shuffled',
+                'random' => 'Random',
+            ],
+            'enemy_health' => [
+                'default' => 'Default',
+                'easy' => 'Easy',
+                'hard' => 'Hard',
+                'expert' => 'Expert',
+            ],
+        ],
+        'daily_weights' => [
+            'glitches_required' => [
+                'none' => 76,
+                'overworld_glitches' => 21,
+                'major_glitches' => 3,
+                'no_logic' => 0,
+            ],
+            'item_placement' => [
+                'basic' => 60,
+                'advanced' => 40,
+            ],
+            'dungeon_items' => [
+                'standard' => 60,
+                'mc' => 10,
+                'mcs' => 10,
+                'full' => 20,
+            ],
+            'accessibility' => [
+                'items' => 60,
+                'locations' => 10,
+                'none' => 30,
+            ],
+            'goals' => [
+                'ganon' => 30,
+                'fast_ganon' => 40,
+                'dungeons' => 10,
+                'pedestal' => 10,
+                'triforce-hunt' => 10,
+            ],
+            'tower_open' => [
+                '0' => 5,
+                '1' => 5,
+                '2' => 5,
+                '3' => 5,
+                '4' => 5,
+                '5' => 5,
+                '6' => 5,
+                '7' => 50,
+                'random' => 15,
+            ],
+            'ganon_open' => [
+                '0' => 5,
+                '1' => 5,
+                '2' => 5,
+                '3' => 5,
+                '4' => 5,
+                '5' => 5,
+                '6' => 5,
+                '7' => 50,
+                'random' => 15,
+            ],
+            'world_state' => [
+                'standard' => 20,
+                'open' => 45,
+                'inverted' => 25,
+                'retro' => 10,
+            ],
+            'entrance_shuffle' => [
+                'none' => 90,
+                'simple' => 2,
+                'restricted' => 2,
+                'full' => 2,
+                'crossed' => 2,
+                'insanity' => 2,
+            ],
+            'boss_shuffle' => [
+                'none' => 60,
+                'simple' => 10,
+                'full' => 10,
+                'random' => 20,
+            ],
+            'enemy_shuffle' => [
+                'none' => 80,
+                'shuffled' => 10,
+                'random' => 10,
+            ],
+            'hints' => [
+                'on' => 50,
+                'off' => 50,
+            ],
+            'weapons' => [
+                'randomized' => 60,
+                'assured' => 10,
+                'vanilla' => 10,
+                'swordless' => 10,
+            ],
+            'item_pool' => [
+                'normal' => 70,
+                'hard' => 20,
+                'expert' => 10,
+            ],
+            'item_functionality' => [
+                'normal' => 70,
+                'hard' => 20,
+                'expert' => 10,
+            ],
+            'enemy_damage' => [
+                'default' => 80,
+                'shuffled' => 10,
+                'random' => 10,
+            ],
+            'enemy_health' => [
+                'easy' => 5,
+                'default' => 80,
+                'hard' => 10,
+                'expert' => 5,
+            ],
+        ],
+    ],
 ];

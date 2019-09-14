@@ -1,0 +1,32 @@
+[
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost:8000\/build\/css\/app-8e671e2d8b.css - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1498097288662
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost:8000\/build\/js\/app-3d50b16868.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1498097288662
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost:8000\/build\/js\/all-6554e95847.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1498097288662
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost:8000\/build\/js\/all-6554e95847.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1498097288662
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost:8000\/favicon.ico - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1498097288685
+    }
+]

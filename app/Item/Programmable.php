@@ -1,10 +1,11 @@
-<?php namespace ALttP\Item;
+<?php
+
+namespace ALttP\Item;
 
 use ALttP\Item;
 
 /**
  * Programmable items
  */
-class Programmable extends Item {
-
-}
+class Programmable extends Item
+{ }

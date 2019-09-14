@@ -1,10 +1,11 @@
-<?php namespace ALttP\Location\Prize;
+<?php
+
+namespace ALttP\Location\Prize;
 
 use ALttP\Location\Prize;
 
 /**
  * Crystal Location
  */
-class Crystal extends Prize {
-
-}
+class Crystal extends Prize
+{ }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * mb_str_pad
  *
@@ -10,7 +11,8 @@
  *
  * @return string
  */
-function mb_str_pad($input, $pad_length, $pad_string = ' ', $pad_type = STR_PAD_RIGHT, $encoding = null) {
+function mb_str_pad($input, $pad_length, $pad_string = ' ', $pad_type = STR_PAD_RIGHT, $encoding = null)
+{
     if (!$encoding) {
         $diff = strlen($input) - mb_strlen($input);
     } else {
@@ -29,29 +31,37 @@ function mb_str_pad($input, $pad_length, $pad_string = ' ', $pad_type = STR_PAD_
  *
  * @return string
  */
-function mb_wordwrap(string $str, int $width = 75, string $break = "\n", bool $cut = false) : string {
-	if (mb_strlen($str) === strlen($str)) {
-		return wordwrap($str, $width, $break, $cut);
-	}
+function mb_wordwrap(string $str, int $width = 75, string $break = "\n", bool $cut = false): string
+{
+    if (mb_strlen($str) === strlen($str)) {
+        return wordwrap($str, $width, $break, $cut);
+    }
 
     $lines = explode($break, $str);
+
+    if ($lines === false) {
+        return $str;
+    }
+
     foreach ($lines as &$line) {
         $line = rtrim($line);
-        if (mb_strlen($line) <= $width)
+        if (mb_strlen($line) <= $width) {
             continue;
+        }
         $words = explode(' ', $line);
         $line = '';
         $actual = '';
         foreach ($words as $word) {
-            if (mb_strlen($actual.$word) <= $width)
-                $actual .= $word.' ';
-            else {
-                if ($actual != '')
-                    $line .= rtrim($actual).$break;
+            if (mb_strlen($actual . $word) <= $width) {
+                $actual .= $word . ' ';
+            } else {
+                if ($actual != '') {
+                    $line .= rtrim($actual) . $break;
+                }
                 $actual = $word;
                 if ($cut) {
                     while (mb_strlen($actual) > $width) {
-                        $line .= mb_substr($actual, 0, $width).$break;
+                        $line .= mb_substr($actual, 0, $width) . $break;
                         $actual = mb_substr($actual, $width);
                     }
                 }

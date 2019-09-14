@@ -1,4 +1,6 @@
-<?php namespace OverworldGlitches\DarkWorld\DeathMountain;
+<?php
+
+namespace OverworldGlitches\DarkWorld\DeathMountain;
 
 use ALttP\Item;
 use ALttP\World;
@@ -7,97 +9,104 @@ use TestCase;
 /**
  * @group OverworldGlitches
  */
-class EastTest extends TestCase {
-	public function setUp() {
-		parent::setUp();
-		$this->world = World::factory('standard', 'test_rules', 'OverworldGlitches');
-	}
+class EastTest extends TestCase
+{
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'logic' => 'OverworldGlitches']);
+        $this->addCollected(['RescueZelda']);
+        $this->collected->setChecksForWorld($this->world->id);
+    }
 
-	public function tearDown() {
-		parent::tearDown();
-		unset($this->world);
-	}
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        unset($this->world);
+    }
 
-	/**
-	 * @param string $location
-	 * @param bool $access
-	 * @param array $items
-	 * @param array $except
-	 *
-	 * @dataProvider accessPool
-	 */
-	public function testLocation(string $location, bool $access, array $items, array $except = []) {
-		if (count($except)) {
-			$this->collected = $this->allItemsExcept($except);
-		}
+    /**
+     * @param string $location
+     * @param bool $access
+     * @param array $items
+     * @param array $except
+     *
+     * @dataProvider accessPool
+     */
+    public function testLocation(string $location, bool $access, array $items, array $except = [])
+    {
+        if (count($except)) {
+            $this->collected = $this->allItemsExcept($except);
+        }
 
-		$this->addCollected($items);
+        $this->addCollected($items);
 
-		$this->assertEquals($access, $this->world->getLocation($location)
-			->canAccess($this->collected));
-	}
+        $this->assertEquals($access, $this->world->getLocation($location)
+            ->canAccess($this->collected));
+    }
 
-	public function accessPool() {
-		return [
-			["Superbunny Cave - Top", false, []],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Flute']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Flute']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Lamp']],
-			["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Lamp']],
+    public function accessPool()
+    {
+        return [
+            ["Superbunny Cave - Top", false, []],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Flute']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Flute']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Lamp']],
+            ["Superbunny Cave - Top", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Lamp']],
 
-			["Superbunny Cave - Bottom", false, []],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Flute']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Flute']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Lamp']],
-			["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Lamp']],
+            ["Superbunny Cave - Bottom", false, []],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Flute']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Flute']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Lamp']],
+            ["Superbunny Cave - Bottom", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Lamp']],
 
-			["Hookshot Cave - Bottom Right", false, []],
-			["Hookshot Cave - Bottom Right", false, [], ['Gloves', 'PegasusBoots']],
-			["Hookshot Cave - Bottom Right", false, [], ['MoonPearl']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'PegasusBoots']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Flute', 'PegasusBoots']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Flute', 'PegasusBoots']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Lamp', 'PegasusBoots']],
-			["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Lamp', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Right", false, []],
+            ["Hookshot Cave - Bottom Right", false, [], ['Gloves', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Right", false, [], ['MoonPearl']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Flute', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Flute', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'Hammer', 'Lamp', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Right", true, ['MoonPearl', 'TitansMitt', 'MagicMirror', 'Hammer', 'Lamp', 'PegasusBoots']],
 
-			["Hookshot Cave - Bottom Left", false, []],
-			["Hookshot Cave - Bottom Left", false, [], ['Gloves', 'PegasusBoots']],
-			["Hookshot Cave - Bottom Left", false, [], ['MoonPearl']],
-			["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'PegasusBoots', 'Hookshot']],
-			["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
-			["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Bottom Left", false, []],
+            ["Hookshot Cave - Bottom Left", false, [], ['Gloves', 'PegasusBoots']],
+            ["Hookshot Cave - Bottom Left", false, [], ['MoonPearl']],
+            ["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'PegasusBoots', 'Hookshot']],
+            ["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Bottom Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
 
-			["Hookshot Cave - Top Left", false, []],
-			["Hookshot Cave - Top Left", false, [], ['Gloves', 'PegasusBoots']],
-			["Hookshot Cave - Top Left", false, [], ['MoonPearl']],
-			["Hookshot Cave - Top Left", true, ['MoonPearl', 'PegasusBoots', 'Hookshot']],
-			["Hookshot Cave - Top Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Top Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Top Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
-			["Hookshot Cave - Top Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Top Left", false, []],
+            ["Hookshot Cave - Top Left", false, [], ['Gloves', 'PegasusBoots']],
+            ["Hookshot Cave - Top Left", false, [], ['MoonPearl']],
+            ["Hookshot Cave - Top Left", true, ['MoonPearl', 'PegasusBoots', 'Hookshot']],
+            ["Hookshot Cave - Top Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Top Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Top Left", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Top Left", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
 
-			["Hookshot Cave - Top Right", false, []],
-			["Hookshot Cave - Top Right", false, [], ['Gloves', 'PegasusBoots']],
-			["Hookshot Cave - Top Right", false, [], ['MoonPearl']],
-			["Hookshot Cave - Top Right", true, ['MoonPearl', 'PegasusBoots', 'Hookshot']],
-			["Hookshot Cave - Top Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Top Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
-			["Hookshot Cave - Top Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
-			["Hookshot Cave - Top Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
-		];
-	}
+            ["Hookshot Cave - Top Right", false, []],
+            ["Hookshot Cave - Top Right", false, [], ['Gloves', 'PegasusBoots']],
+            ["Hookshot Cave - Top Right", false, [], ['MoonPearl']],
+            ["Hookshot Cave - Top Right", true, ['MoonPearl', 'PegasusBoots', 'Hookshot']],
+            ["Hookshot Cave - Top Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Top Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Flute']],
+            ["Hookshot Cave - Top Right", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove', 'Hookshot', 'Lamp']],
+            ["Hookshot Cave - Top Right", true, ['MoonPearl', 'TitansMitt', 'Hookshot', 'Lamp']],
+        ];
+    }
 }

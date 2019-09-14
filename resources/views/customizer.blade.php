@@ -2,19 +2,14 @@
 
 @section('content')
 <div id="root">
-	<vt-customizer></vt-customizer>
+    <Customizer></Customizer>
 </div>
 
 <script>
 new Vue({
-	el: '#root',
-	i18n: i18n,
-	store: cStore,
-	created: function created() {
-		this.$store.dispatch('getSprites');
-		this.$store.dispatch('getSettings');
-		this.$store.dispatch('getItemSettings');
-	},
+    el: '#root',
+    i18n: i18n,
+    store: cStore,
 });
 </script>
 @overwrite
