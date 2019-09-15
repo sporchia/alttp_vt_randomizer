@@ -62,9 +62,9 @@
         "name": "z3/entrancerandomizer",
         "version": "0.6.3",
         "source": {
-          "url": "https://github.com/AmazingAmpharos/ALttPEntranceRandomizer",
+          "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
           "type": "git",
-          "reference": "tags/0.6.3-pre5"
+          "reference": "tags/0.6.3-pre6"
         }
       }
     }

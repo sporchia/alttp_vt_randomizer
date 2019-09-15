@@ -38,6 +38,14 @@
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
+    <div class="card border-info mt-4">
+        <div class="card-header bg-info text-white">View updates</div>
+        <div class="card-body">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DJUBFGdKIPE?rel=0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -46,7 +46,7 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.no_logic'),
                     'content' => [
-                        'There is seriously no checking whatsoever of where items end up, Good Luck if you try this option.',
+                        'No logic is applied whatsoever. Items can be anywhere. It may be impossible to get items, although due to the strength of glitches, it is extremely rare for games to be unbeatable. This setting will generally require extensive use of glitches which are excluded from other logics (which include EG, Door Glitches and Overworld Bunny Revival).',
                     ],
                 ],
             ],
@@ -71,6 +71,12 @@ return [
         'dungeon_items' => [
             'header' => __('randomizer.dungeon_items.title'),
             'sections' => [
+                [
+                    'header' => '',
+                    'content' => [
+                        'When maps are shuffled outside dungeons the Overworld map will not display dungeon prizes without dungeon maps. However, maps are always logically required for dungeon completion in both Basic and Advanced item placements. Note that a dungeon’s boss can contain that dungeon’s map.',
+                    ],
+                ],
                 [
                     'header' => __('randomizer.dungeon_items.options.standard'),
                     'content' => [
