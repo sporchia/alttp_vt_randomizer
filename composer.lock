@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67f26b55affe5ef9d56603435ff3a654",
+    "content-hash": "6610e12136e5b7dfac5ea59184912dc3",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -5601,7 +5601,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
-                "reference": "tags/0.6.3-pre5"
+                "reference": "tags/0.6.3-pre6"
             },
             "type": "library"
         },
