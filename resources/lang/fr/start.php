@@ -1,7 +1,7 @@
 <?php
 return [
     'header' => 'Commencez Votre Aventure!',
-    'subheader' => 'Vous voulez tester vos compétences dans un Hyrule mélangé ? Vous êtes arrivé au bon endroit !',
+    'subheader' => 'Vous voulez tester vos compétences dans un Hyrule mélangé ? Vous êtes au bon endroit !',
     'cards' => [
         'discord' => [
             'header' => '1. Rejoignez notre communauté Discord',
@@ -13,7 +13,7 @@ return [
         'rom' => [
             'header' => '2. Obtenez la ROM',
             'content' => [
-                'Vous aurez besoin de la ROM de base du jeu. Ce devrait être une ROM <span class="font-weight-bold">Zelda no Densetsu: Kamigami no Triforce v1.0</span>. Ne vous inquiétez pas si vous ne pouvez pas lire le japonais; Le processus de correction fournit du texte en anglais tout en conservant les glitches propres à la version originale.',
+                'Vous aurez besoin de la ROM de base du jeu. Ce devrait être une ROM <span class="font-weight-bold">Zelda no Densetsu: Kamigami no Triforce v1.0</span>. Ne vous inquiétez pas si vous ne pouvez pas lire le japonais : le processus de correction fournit du texte en anglais tout en conservant les glitches propres à la version originale.',
                 'Si vous rencontrez des problèmes, n’hésitez pas à demander de l’aide sur notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
             ]
         ],
@@ -40,7 +40,7 @@ return [
                 '<ul>'
                     . '<li>Vous pouvez utiliser le bouton Y pour alterner entre les flèches d’argent et les flèches normales, le Boomerang bleu et le rouge, le Champignon et la Poudre Magique, et entre la Pelle et la Flûte.</li>'
                     . '<li>Dans le Monde des Ténèbres, vous pouvez utiliser le Grappin au dessus de la rivière au nord de la Pyramide. Cherchez les herbes qui dessinent une flèche !</li>'
-                    . '<li>Si vous vous trouvez dans la Bumper Cave avec la Cape Magique mais sans le Grappin, essayez de passer en haut à gauche du précipice … aucun Grappin nécessaire !</li>'
+                    . '<li>Si vous vous trouvez dans la Bumper Cave avec la Cape Magique mais sans le Grappin, essayez de passer en haut à gauche du précipice... pas besoin du Grapprin ici!</li>'
                     . '<li>Vous pouvez traverser des petits précipices en rebondissant contre des objets ou des murs grâce aux Bottes de Pégase.</li>'
                     . '<li>Le forgeron et le coffre violet resteront avec vous même si vous Sauvegardez et Quittez.</li>'
                     . '<li>Les clés peuvent ne pas être accessibles si elles ne sont pas requises pour finir le jeu. Par exemple, dans Skull Woods, la grande clé peut se trouver dans le grand coffre.</li>'

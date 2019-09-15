@@ -1,6 +1,6 @@
 <?php
 return [
-    'title' => 'Enemizer',
+    'title' => 'Randomizer de enemigos (Enemizer)',
     'enable' => 'Activar Enemizer',
     'disable' => 'Desactivar Enemizer',
     'enemy_health' => [
@@ -30,7 +30,7 @@ return [
             'chaos' => 'Caos',
         ],
     ],
-    'palette_shuffle' => 'Paleta aleatorias',
+    'palette_shuffle' => 'Paleta aleatoria',
     'pot_shuffle' => 'Vasijas aleatorias',
     'enemy_shuffle' => 'Enemigos aleatorios',
 ];

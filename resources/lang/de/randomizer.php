@@ -38,7 +38,7 @@ return [
         'options' => [
             'items' => '100% Inventory',
             'locations' => '100% Locations',
-            'none' => 'Not Guaranteed',
+            'none' => 'Beatable',
         ],
     ],
     'glitches_required' => [

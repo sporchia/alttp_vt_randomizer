@@ -2,78 +2,78 @@
 return [
     'settings' => [
         'timers' => [
-            'off' => 'Off',
-            'stopwatch' => 'Stopwatch',
-            'countdown-ohko' => 'Countdown OHKO',
-            'countdown-continue' => 'Countdown Continue',
-            'countdown-stop' => 'Countdown Stop',
+            'off' => 'Sin temporizador',
+            'stopwatch' => 'Cronómetro',
+            'countdown-ohko' => 'Cuenta atrás (muerte súbita)',
+            'countdown-continue' => 'Cuenta atrás (continua)',
+            'countdown-stop' => 'Cuenta atrás (para)',
         ],
         'dungeon_count' => [
-            'off' => 'Off',
-            'on' => 'Always On',
-            'pickup' => 'On Compass Pickup',
+            'off' => 'Desactivado',
+            'on' => 'Siempre visible',
+            'pickup' => 'Visible con brújula',
         ],
     ],
     'glitches' => [
         'canBombJump' => [
-            'title' => 'Bomb Jump',
-            'description' => 'One may be required to Bomb jump over gaps.',
+            'title' => 'Salto Bomba',
+            'description' => 'Podría ser necesario tener que hacer Saltos Bomba para atravesar agujeros.',
         ],
         'canBootsClip' => [
-            'title' => 'Boots Clip',
-            'description' => 'When one has the Boots, they may be required to clip through walls in the in overworld.',
+            'title' => 'Clips de Botas',
+            'description' => 'Cuando se tengan las botas, podría ser necesario hacer <i>clips</i> a través de paredes de la superfície.',
         ],
         'canBunnyRevive' => [
-            'title' => 'Bunny Revive',
-            'description' => 'One may be required to go somewhere as bunny form and abuse death/fairy revive to be Link.',
+            'title' => 'Reanimación como Conejo',
+            'description' => 'Podría ser necesario ir a algún sitio como conejo y abusar de morir o revivir con hadas para ser Link.',
         ],
         'canBunnySurf' => [
-            'title' => 'Bunny Surf',
-            'description' => 'One may be required to water walk in bunny state.',
+            'title' => 'Surf como Conejo',
+            'description' => 'Podría ser necesario andar sobre el agua en estado de conejo.',
         ],
         'canDungeonRevive' => [
-            'title' => 'Dungeon Revive',
-            'description' => 'One may be required to revive as a bunny in a dungeon to collect items as Link.',
+            'title' => 'Reanimación en Mazmorras',
+            'description' => 'Podría ser necesario revivir como conejo en una mazmorra para conseguir objetos como Link.',
         ],
         'canFakeFlipper' => [
-            'title' => 'Fake Flipper',
-            'description' => 'One may be required to use the fake flipper glitch to collect items.',
+            'title' => 'Aletas Falsas',
+            'description' => 'Podría ser necesario usar el glitch de las Aletas Falsas para conseguir objetos.',
         ],
         'canMirrorClip' => [
-            'title' => 'Mirror Clip',
-            'description' => 'One may be required to abuse Mirror bouce to go out of bounds.',
+            'title' => 'Clips de Espejo',
+            'description' => 'Podría ser necesario abusar la animación del espejo para salir del mapa.',
         ],
         'canMirrorWrap' => [
             'title' => 'Mirror Wrap',
-            'description' => 'One may be required to use Mirror to auto scroll to a different location.',
+            'description' => 'Podría ser necesario usar el Espejo para hacer <i>scroll</i> automático a otro sitio.',
         ],
         'canOneFrameClipOW' => [
-            'title' => 'One Frame Clip (overworld)',
-            'description' => 'You don’t want this. Trust me.',
+            'title' => 'Clip de un frame (superfície)',
+            'description' => 'Créeme, no quieres hacer esto.',
         ],
         'canOWYBA' => [
-            'title' => 'YBA (overworld)',
-            'description' => 'May be required to use bottles in the overworld to teleport to different locations.',
+            'title' => 'YBA (superfície)',
+            'description' => 'Podría ser necesario usar botellas en la superfície para teletransportarse a otras localizaciones.',
         ],
         'canSuperBunny' => [
-            'title' => 'Super Bunny',
-            'description' => 'One may be required to activate super bunny to access locations.',
+            'title' => 'Súper Conejo',
+            'description' => 'Podría ser necesario activar el estado de súper conejo para acceder algunas localizaciones.',
         ],
         'canSuperSpeed' => [
-            'title' => 'Super Speed',
-            'description' => 'One may be required to super speed clip through edges in overworld.',
+            'title' => 'Súper Velocidad',
+            'description' => 'Podría ser necesario hacer <i>clips</i> con súper velocidad a través de esquinas de la superfície.',
         ],
         'canWaterFairyRevive' => [
-            'title' => 'Water Fairy Revive',
-            'description' => 'This setup is silly and requires a bunch of items.',
+            'title' => 'Reanimación en el Agua con Hadas',
+            'description' => 'Este <i>setup</i> es estúpido y requiere un montón de objetos.',
         ],
         'canWaterWalk' => [
-            'title' => 'Water walk',
-            'description' => 'One may be required to use boots to walk on top of water.',
+            'title' => 'Andar por el Agua',
+            'description' => 'Podría ser necesario utilizar las Botas para andar sobre el agua.',
         ],
         'noLogic' => [
-            'title' => 'Disable all logic checks',
-            'description' => 'When this is selected all bets are off, and nothing below matters.',
+            'title' => 'Desactivar todas las comprobaciones de lógica',
+            'description' => 'Cuando esto está activado, todas las garantías desaparecen, y nada de lo que hay aquí importa.',
         ],
     ]
 ];

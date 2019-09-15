@@ -16,7 +16,7 @@ return [
         'build' => 'Création de ROM',
         'difficulty' => __('randomizer.difficulty.title'),
         'variation' => __('randomizer.variation.title'),
-        'shuffle' => __('entrance.shuffle.title'),
+        'shuffle' => __('randomizer.entrance_shuffle.title'),
         'mode' => __('randomizer.world_state.title'),
         'weapons' => __('randomizer.weapons.title'),
         'goal' => __('randomizer.goal.title'),
@@ -52,7 +52,7 @@ return [
         'music' => 'Musique de fond',
         'music_info' => '(définie sur "Non" pour <a href="https://alttprlinks.page.link/SjiP" target="_blank" rel="noopener noreferrer">le support MSU-1</a>)',
         'quickswap' => 'Changement rapide d’objets',
-        'palette_shuffle' => 'Palette Shuffle',
+        'palette_shuffle' => 'Mélange des Couleurs de Palettes',
         'race_warning' => 'Ne fonctionne pas dans les ROMs de course',
     ],
 ];

@@ -24,7 +24,7 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'La Carrera Nocturna de la Comunidad, 10pm EST',
+                    'header' => 'Carrera Nocturna de la Comunidad, 10pm EST',
                     'content' => [
                         '¡También tenemos una carrera nocturna para cualquiera que quiera jugar cada día!',
                     ],

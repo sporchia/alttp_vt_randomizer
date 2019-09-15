@@ -12,19 +12,19 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'Courses en Mode Standard, Hebdomadaires, le Samedi à 15h heure de l’Est Américain',
+                    'header' => 'Courses Hebdomadaires en Mode Standard, le Samedi à 15h, heure de l’Est Américain',
                     'content' => [
                         'Événement principal de la communauté, cette course hebdomadaire compte beaucoup de compétiteurs !',
                     ],
                 ],
                 [
-                    'header' => 'Course en Mode Ouvert, Hebdomadaire, le Dimanche à 17h heure de l’Est Américain',
+                    'header' => 'Courses Hebdomadaires en Mode Ouvert, le Dimanche à 17h, heure de l’Est Américain',
                     'content' => [
                         'Rejoignez-nous tous les Dimanches pour une autre course hebdomadaire populaire dans la communauté.',
                     ],
                 ],
                 [
-                    'header' => 'La Course Communautaire Nocturne, 22h heure de l’Est Américain',
+                    'header' => 'La Course Communautaire Nocturne, 22h, heure de l’Est Américain',
                     'content' => [
                         'Nous faisons aussi des courses nocturnes pour ceux qui cherchent à jouer tous les jours !',
                     ],
@@ -32,7 +32,7 @@ return [
                 [
                     'header' => 'Courses Ponctuelles',
                     'content' => [
-                        'Les courses planifiées ne correspondent pas avec vos horaires ? Vous cherchez une course avec des options exotiques ? Rejoignez une course ponctuelle ! Vous trouverez des joueurs à toute heure de la journée. Rejoignez le canal #race-planning sur notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
+                        'Les courses planifiées ne correspondent pas avec vos horaires ? Vous cherchez une course avec des options exotiques ? Rejoignez une course ponctuelle ! Vous trouverez des joueurs à toute heure de la journée. Rejoignez le canal #race-planning sur notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">serveur Discord</a>!',
                     ],
                 ],
             ],
@@ -62,7 +62,7 @@ return [
                 [
                     'header' => 'Tournois bi-annuels sur invitation',
                     'content' => [
-                        'Soyez témoins des meilleurs coureurs en compétition pour le Trophée ! Vous pensez avoir ce qu’il faut pour être au coude à coude avec les meilleurs ? Rejoignez notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> et gardez un oeil sur les qualifications !',
+                        'Soyez témoins des meilleurs coureurs en compétition pour le Trophée ! Vous pensez avoir ce qu’il faut pour être au coude à coude avec les meilleurs ? Rejoignez notre <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">serveur Discord</a> et gardez un oeil sur les qualifications !',
                         'Le tournoi du Printemps sur invitation dure de Mars à Juin.',
                         'Le tournoi d’Automne sur invitation dure de Septembre à Décembre.',
                     ],
