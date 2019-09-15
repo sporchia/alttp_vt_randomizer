@@ -11,12 +11,12 @@ return [
             . '</ol>',
     ],
     'info' => [
-        'spoilerwarning' => 'ADVERTENCIA: El generador de este juego a visto el registro de spoiler.',
+        'spoilerwarning' => 'ADVERTENCIA: El generador de este juego ha visto el registro de spoiler.',
         'logic' => __('randomizer.glitches_required.title'),
         'build' => 'Build de la ROM',
         'difficulty' => __('randomizer.difficulty.title'),
         'variation' => __('randomizer.variation.title'),
-        'shuffle' => __('entrance.shuffle.title'),
+        'shuffle' => __('randomizer.entrance_shuffle.title'),
         'mode' => __('randomizer.world_state.title'),
         'weapons' => __('randomizer.weapons.title'),
         'goal' => __('randomizer.goal.title'),
@@ -52,7 +52,7 @@ return [
         'music' => 'Música de fondo',
         'music_info' => '(poner en "No" para <a href="https://alttprlinks.page.link/SjiP" target="_blank" rel="noopener noreferrer">soporte con MSU-1</a>)',
         'quickswap' => 'Cambio Rápido de Objetos',
-        'palette_shuffle' => 'Palette Shuffle',
+        'palette_shuffle' => 'Paletas aleatorias',
         'race_warning' => 'No funciona en ROMs para carreras',
     ],
 ];

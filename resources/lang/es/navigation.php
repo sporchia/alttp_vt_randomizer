@@ -18,7 +18,7 @@ return [
     'options' => 'Opciones de Juego',
     'races' => 'Partidas Organizadas',
     'updates' => 'Actualizaciones',
-    'sprite_preview' => 'Sprite Options',
+    'sprite_preview' => 'Opciones de sprite',
     'contribute' => 'Contribuir',
     'discord' => 'Únete a nosotros en Discord',
     'report_issue' => 'Reportar un Problema',

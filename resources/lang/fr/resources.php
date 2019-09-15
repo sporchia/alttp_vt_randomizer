@@ -84,7 +84,7 @@ return [
                             . '<li>Des symboles sont affichés en haut de l’écran de sélection des parties. Il s’agit d’un identifiant unique généré pour chaque seed, afin de vérifier que les joueurs utilisent la même. Ces symboles n’ont aucun autre intérêt.</li>'
                             . '<li>La Pyramid Fairy et la Waterfall Fairy n’améliorent plus vos items. A la place, leurs grottes contiennent deux coffres qui comptent chacun comme correspondant aux améliorations qu’apportent les fées.</li>'
                             . '<li>Le jeu de la pelle vous donnera obligatoirement l’item avant le 30ème coup de pelle.</li>'
-                            . '<li>Dans le Village of Outcasts, l’item du jeu des coffres est garanti à la première tentative (cela peut être le 1er ou de 2nd coffre).</li>'
+                            . '<li>Dans le Village of Outcasts, l’item du jeu des coffres est garanti à la première tentative (cela peut être le 1er ou de 2e coffre).</li>'
                         . '</ul>',
                     ],
                 ],

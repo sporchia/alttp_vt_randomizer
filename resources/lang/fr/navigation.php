@@ -5,7 +5,7 @@ return [
     'start_watching' => 'Commencer à Regarder',
     'generate' => 'Générer un Jeu',
     'randomizer' => 'Générer un Jeu Aléatoire',
-    'entrance' => 'Randomizer d’entrée',
+    'entrance' => 'Randomiseur d’entrée',
     'daily' => 'Défi Quotidien',
     'customizer' => 'Créer un Jeu Personnalisé',
 

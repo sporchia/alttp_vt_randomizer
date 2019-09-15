@@ -16,7 +16,7 @@ return [
         'build' => 'ROM build',
         'difficulty' => __('randomizer.difficulty.title'),
         'variation' => __('randomizer.variation.title'),
-        'shuffle' => __('entrance.shuffle.title'),
+        'shuffle' => __('randomizer.entrance_shuffle.title'),
         'mode' => __('randomizer.world_state.title'),
         'weapons' => __('randomizer.weapons.title'),
         'goal' => __('randomizer.goal.title'),
