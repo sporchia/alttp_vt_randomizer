@@ -103,7 +103,7 @@ class SkullWoods extends Region
     public function initalize()
     {
         $this->locations["Skull Woods - Pinball Room"]->setFillRules(function ($item, $locations, $items) {
-            return $item == Item::get('KeyD3', $this->world);
+            return !$this->world->config('region.forceSkullWoodsKey', false) || $item == Item::get('KeyD3', $this->world);
         });
 
         $this->locations["Skull Woods - Big Chest"]->setRequirements(function ($locations, $items) {
