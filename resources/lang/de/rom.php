@@ -27,11 +27,11 @@ return [
         'generated' => 'Erstellt',
     ],
     'settings' => [
-        'heart_speed' => 'Herz Geschwindigkeit',
+        'heart_speed' => 'Geschwindigkeit des Warnungston bei wenig Leben',
         'heart_speeds' => [
             'off' => 'Aus',
             'double' => 'Doppelte Geschwindigkeit',
-            'normal' => 'Geschwindigkeit',
+            'normal' => 'Normale Geschwindigkeit',
             'half' => 'Halbe Geschwindigkeit',
             'quarter' => 'Viertel Geschwindigkeit',
         ],

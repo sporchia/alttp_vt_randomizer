@@ -1,7 +1,7 @@
 <?php
 return [
-    'Random' => 'Random',
-    'BottleWithRandom' => 'Bottle (Random)',
+    'Random' => 'Zufällig',
+    'BottleWithRandom' => 'Flasche (Zufällig)',
     'Nothing' => 'Nichts',
     'UncleSword' => 'Progressives Schwert',
     'L1Sword' => 'Schwert des Onkels',
@@ -179,9 +179,9 @@ return [
     'DefeatAgahnim2' => 'Besiege Agahnim 2',
     'DefeatGanon' => 'Besiege Ganon',
 
-    'ChocoboEgg' => 'Chocobo Egg',
+    'ChocoboEgg' => 'Chocobo Ei',
 
-    'NoSlipBoots' => 'Ice Cleats',
+    'NoSlipBoots' => 'Winterstiefel',
     'Reindeer1' => 'Dasher',
     'Reindeer2' => 'Dancer',
     'Reindeer3' => 'Prancer',
@@ -190,8 +190,8 @@ return [
     'Reindeer6' => 'Cupid',
     'Reindeer7' => 'Donner',
     'Reindeer8' => 'Blitzen',
-    'Coal1' => 'Coal',
-    'Coal2' => 'Coal',
+    'Coal1' => 'Kohle',
+    'Coal2' => 'Kohle',
 
     'Armos Knights' => 'Armos Knights',
     'Lanmolas' => 'Lanmolas',
@@ -210,5 +210,5 @@ return [
     'Agahnim 2' => 'Agahnim 2',
     'Ganon' => 'Ganon',
 
-    'Test' => 'Testing Item',
+    'Test' => 'Gegenstand fürs testen',
 ];

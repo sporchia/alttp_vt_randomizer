@@ -227,7 +227,7 @@ return [
                                     . '<li>The second Progressive Bow can shoot Wooden Arrows and Silver Arrows.</li>'
                                     . '<li>However neither Bow can be used until a Rupee Quiver has been purchased.</li>'
                                     . '<li>The Rupee Quiver costs 80 rupees and only appears in one randomly chosen shop!</li>'
-                                    . '<li>Each Wooden Arrow costs 10 rupee sand each Silver Arrow costs 50 rupees.</li>'
+                                    . '<li>Each Wooden Arrow costs 10 rupees and each Silver Arrow costs 50 rupees.</li>'
                                     . '</ul>',
                             ],
                         ],
@@ -407,7 +407,7 @@ return [
         'hints' => [
             'header' => __('randomizer.hints.title'),
             'content' => [
-                'Enable or disable hints which can be found on the telepathic throughout the world.',
+                'Enable or disable hints which can be found on the telepathic tiles throughout the world.',
             ],
         ],
         'difficulty' => [

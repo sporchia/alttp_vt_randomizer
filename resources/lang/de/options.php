@@ -9,13 +9,13 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.none'),
                     'content' => [
-                        'This setting requires no knowledge of any glitches.',
+                        'Hierfür wird kein Wissen über Glitches benötigt.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.glitches_required.options.overworld_glitches'),
                     'content' => [
-                        'This setting requires knowledge of certain major glitches (on the overworld) as well as knowledge of most minor glitches. Specifically:',
+                        'Für Overworld Gitches wird Wissen über Major Glitches vorausgesetzt sowie das Wissen über fast alle Minor Glitches. Folgende Glitches die du beherrschen solltest:',
                         '<ul>'
                             . '<li>Overworld boots clipping</li>'
                             . '<li>Overworld mirror clips</li>'
@@ -29,24 +29,24 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of more advanced major glitches. Specifically:',
+                        'Für Major Glitches wird Wissen über Major Glitches vorrausgesetzt die ein bisschen fortgeschrittener sind. Folgende Glitches die du beherrschen solltest:',
                         '<ul>'
                             . '<li>Overworld fake flutes</li>'
                             . '<li>Overworld screenwraps</li>'
                             . '<li>Overworld and Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
                             . '</ul>',
-                        'Some additional changes have also been made:',
+                        'Es wurden zusätzliche Änderungen hier gemacht:',
                         '<ul>'
-                            . '<li>Fake worlds exist as per the original game (e.g. dying in a Dark World dungeon without defeating Agahnim will put you in the fake Dark World)</li>'
-                            . '<li>Crystals always drop regardless of pendant conflicts (QoL fix from the original)</li>'
-                            . '<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>'
+                            . '<li>Fake Worlds existieren wie im Originalspiel (z.B. sterben in einem Schattenwelt Palast ohne Aghanim besiegt zu haben setzt dich auf eine Fake Schattenwelt)</li>'
+                            . '<li>Kristalle fallen immer (QoL Fix von dem Original)</li>'
+                            . '<li>Das Wasser im Sumpfpalast fließt nicht ab wenn man auf der Overworld sich auf einen anderen Bildschirm bewegt (außer für den ersten Raum)</li>'
                             . '</ul>',
                     ],
                 ],
                 [
                     'header' => __('randomizer.glitches_required.options.no_logic'),
                     'content' => [
-                        'Es gibt überhaupt keine Überprüfung wo ein Gegenstand landen wird, so viel Glück wenn du diese Option versuchst.',
+                        'Keine Logik wird angewendet. Gegenstände können überall sein. Es könnte unmöglich sein Gegenstände normal zu bekommen, aber dank der Effektivität einiger Glitches, würde es nur in sehr seltenen Falle vorkommen das ein Spiel nicht schaffbar ist. Diese Einstellung setzt ein häufiges nutzen von Glitches voraus, die nicht in anderen Logikeinstellungen vorkommen (dazu zählt EG, Door Glitches und Overworld Bunny Revival).',
                     ],
                 ],
             ],
@@ -57,13 +57,13 @@ return [
                 [
                     'header' => __('randomizer.item_placement.options.basic'),
                     'content' => [
-                        'This setting is aimed at new players or people looking for a more casual experience. Logical restrictions are in place to prevent items being placed in obscure locations which require niche knowledge to access (e.g. accessing Bumper Cave ledge without the Hookshot). Other logical restrictions also ensure excessively difficult execution is not required in order to progress. For example if you need to beat a late-game Dark World dungeon you will always have access to some sword and defense upgrades somewhere in the world.',
+                        'Diese Einstellung ist gezielt für Anfänger gemacht oder für Leute die eine mehr entspannte Erfahrung suchen. Es wurden Einschränkungen in der Logik gemacht damit Gegenstände nicht in merkwürdigen Orte platziert werden die gewisses Fachwissen benötigen (z.B. um an den Vorsprung über Bumper Cave zu gelangen ohne Enterhaken). Andere Einschränkungen in der Logik stellen also sicher das man nicht gewisse Sachen machen muss die einfach zu schwierig im Moment wären. Zum Beispiel: falls es vorausgesetzt wird das man einen Palast machen muss den man eigentlich erst im Late-Game machen müsste, werden aufjedenfall Schwert- und Rüstungupgrades in der Welt platziert.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.item_placement.options.advanced'),
                     'content' => [
-                        'This setting is aimed at regular players and racers. The intention of this setting is to maximize glitchless item placement reach. However one exception is made to prevent navigation through dark rooms. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
+                        'Diese Einstellung ist für Spieler die regulär spielen oder an Rennen teilnehmen gedacht. Das Ziel dieser Einstellung ist die Reichweiter der Platzierung der Gegenstände zu maximieren die man ohne Glitches erreichen kann. Es wird jedoch eine Ausnahme gemacht, um die Navigation durch dunkle Räume zu verhindern . Es wird nichts anderes berücksichtigt in Bezug auf die Platzierung der Gegendstände oder auf die Schwierigkeit die vorrausgesetzt wird um gewisse Orte zu erreichen. Die Erwartung ist, dass ein Spieler, der diese Einstellung wählt, mit dem Originalspiel vertraut ist und damit trainiert hat.',
                     ],
                 ],
             ],
@@ -74,31 +74,31 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        'When maps are shuffled outside dungeons the Overworld map will not display dungeon prizes without dungeon maps. However, maps are always logically required for dungeon completion in both Basic and Advanced item placements. Note that a dungeon’s boss can contain that dungeon’s map.',
+                        'Wenn Karten außerhalb ihres Palastes gemischt werden, wird die Overworld Karte nicht anzeigen ob der Palast ein Kristall oder ein Amulett ist. Karten werden nach der Logik immer vorausgesetzt für das beenden eines Palastes, das gilt für beide Einstellungen der Platzierung der Gegenstände. Der Boss eines Palastes könnte die Karte des Palastes haben.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.dungeon_items.options.standard'),
                     'content' => [
-                        'All dungeons items are locked to their respective dungeons but are randomized within each dungeon.',
+                        'Alle Form von Gegenstände eines Palast sind an ihren Palast gebunden, könnten aber innerhalb des Palast gemischt werden.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.dungeon_items.options.mc'),
                     'content' => [
-                        'Maps and compasses are no longer locked to their respective dungeons (although may still end up there). All keys remain locked to their respective dungeons.',
+                        'Karten und Kompasse sind nicht mehr an ihrem Palast gebunden (könnten trotzdem noch drin landen). Alle Schlüssel bleiben an ihren Palast gebunden.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.dungeon_items.options.mcs'),
                     'content' => [
-                        'Maps, compasses and small keys are no longer locked to their respective dungeons (although may still end up there). All big keys remain locked to their respective dungeons.',
+                        'Karten, Kompasse und kleine Schlüssel sind nicht mehr an ihrem Palast gebunden (könnten trotzdem noch drin landen). Alle großen Schlüssel bleiben an ihren Palast gebunden.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.dungeon_items.options.full'),
                     'content' => [
-                        'Maps, compasses, small keys and big keys are no longer locked to their respective dungeons (although may still end up there).',
+                        'Karten, Kompasse, kleine Schlüssel und große Schlüssel sind nicht mehr an ihren Palast gebunden (könnten trotzdem noch drin landen).',
                     ],
                 ],
             ],
@@ -109,19 +109,19 @@ return [
                 [
                     'header' => __('randomizer.accessibility.options.items'),
                     'content' => [
-                        'This setting ensures all inventory items can be obtained but retains the possibility for certain keys to be unobtainable. For example non-required big keys may be in big chests and certain small keys may be locked behind key doors (which you could lock yourself out of depending on how you use small keys). In practice you will be able to reach almost every location with this setting.',
+                        'Diese Einstellung geht sicher das man ein volles Inventar erhalten kann, aber es besteht die Möglichkeit das man manche Schlüssel nicht erhalten kann. Zum Beispiel könnten alle nicht benötigten großen Schlüssel in der Großen Truhe sein und manche kleine Schlüssel hinter verschlossener Tür (wo man sich selbst aussperren könnte, je nachdem wie man seine kleine Schlüssel benutzt. Aber in der Praxis solltest du fast jeden Ort mit dieser Einstellung erreichen können.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.accessibility.options.locations'),
                     'content' => [
-                        'This setting ensures all 216 locations can always be reached regardless of how inefficiently keys are used within dungeons. Specifically, big keys cannot be in big chests and certain chests behind key doors cannot contain small keys.',
+                        'Diese Einstellung geht sicher das alle 216 Gegenstände erreichbar sind, egal wie ineffizient man seine Schlüssel nutzt. Das heißt: große Schlüssel können nicht in großen Truhen sein und kleine Schlüssel die man braucht können nicht hinter verschlossenen Türen sein.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.accessibility.options.none'),
                     'content' => [
-                        'This setting only ensures the game can be beaten. You may be locked out of non-required items (e.g. Fire Rod if it is not needed to complete the goal) and even non-required dungeons.',
+                        'Diese Einstellung geht nur sicher das man das Spiel schaffen kann. Du könntest von manchen Gegenstände ausgesperrt werden, falls sie nicht gebraucht werden (z. B. Der Feuerstab wenn er nicht gebraucht wird um das Ziel zu erreichen). Das gleiche kann für Paläste passieren.',
                     ],
                 ],
             ],
@@ -132,31 +132,31 @@ return [
                 [
                     'header' => __('randomizer.goal.options.ganon'),
                     'content' => [
-                        'This setting requires full completion of Ganon’s Tower in addition to defeating Ganon. The number of required crystals for each depends on the requirements chosen.',
+                        'Diese Einstellung setzt voraus das man durch Ganon’s Turm geht um Ganon besiegen zu können. Die Nummer der Kristalle hängt von der gewählten Einstellung ab.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.goal.options.fast_ganon'),
                     'content' => [
-                        'This setting only requires defeating Ganon and does not require completion of Ganon’s Tower. For this to work the hole leading to Ganon has been made permanently accessible (except if entrances are randomized). The number of required crystal depends on the requirements chosen.',
+                        'TDiese Einstellung setzt nur das besiegen von Ganon voraus. Ganon`s Turm wird nicht benötigt. Um dies zu ermöglichen wurde das Loch in der Pyramide permanent geöffnet (außer in Entrance Randomizer). Die Nummer der Kristalle hängt von der gewählten Einstellung ab.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.goal.options.dungeons'),
                     'content' => [
-                        'This setting requires full completion of all dungeons. This includes the 3 Light World pendant dungeons, the 7 Dark World crystal dungeons, Agahnim’s Tower and Ganon’s Tower.',
+                        'Diese Einstellung setzt nur die Vollendung aller Paläste voraus. Dies beinhaltet die 3 Paläste in der Lichtwelt, die 7 in der Schattenwelt, Agahnim´s Turm und Ganon´s Turm.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.goal.options.pedestal'),
                     'content' => [
-                        'This setting requires collection of the 3 pendants in order to pull the Triforce from the pedestal in the Lost Woods. ',
+                        'Diese Einstellung setzt voraus das man alle 3 Amulette sammelt damit man das Triforce aus dem Sockel des Master-Swords ziehen kann.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.goal.options.triforce-hunt'),
                     'content' => [
-                        'The Triforce has been shattered into 30 pieces and scattered throughout Hyrule! You must collect 20 of the 30 pieces and take them to Murahdahla to receive the Triforce. Who is Murahdahla I hear you ask? Why, he is obviously the younger brother of Sahasrahla and Aginah! Back from his vacation in Lorule you can find him hanging out around Hyrule Castle courtyard.',
+                        'Das Triforce wurde in 30 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 20 von den 30 Teilen sammeln und sie zu Murahdahla bringen um das Triforce zu erhalten. Wer Murahdahla ist fragst du? Wieso? Er ist doch ganz klar der jüngere Bruder von Sahasrahla und Aginah! Er ist zurück aus seine Urlaub in Lorule und hängt jetzt im Hof von Schloss Hyrule ab.',
                     ],
                 ],
             ],
@@ -164,13 +164,13 @@ return [
         'tower_open' => [
             'header' => __('randomizer.tower_open.title'),
             'content' => [
-                'This settings lets you choose the number of crystals required to open Ganon’s Tower. If 0 is chosen then the dungeon is freely accessible. If Random is chosen there will be a sign outside Ganon’s Tower informing you of how many crystals are required. In Inverted this sign will be outside Hyrule Castle accordingly.',
+                'Diese Einstellung lässt dich auswählen wie viele Kristalle benötigt werden um Ganon´s Turm zu öffnen. Falls 0 gewählt wird, ist der Turm immer offen. Bei Zufällig wird ein Schild vor dem Turm platziert der die Anzahl der benötigten Kristalle verrät. In Invertiert steht das Schild vor dem Schloss von Hyrule.',
             ],
         ],
         'ganon_open' => [
             'header' => __('randomizer.ganon_open.title'),
             'content' => [
-                'This settings lets you choose the number of crystals required to make Ganon vulnerable to your attacks. If 0 is chosen then he can be beaten as soon as you can reach him! If Random is chosen then there will be a sign on the Pyramid informing you of how many crystals are required. In Inverted this sign will be outside Hyrule Castle accordingly.',
+                'Diese Einstellung lässt dich wählen wie viele Kristalle benötigt wird um Ganon verwundbar zu machen. Falls 0 gewählt wird, kann er jederzeit verletzt werden. Bei zufällig wird ein Schild vor die Pyramide gestellt die die Anzahl der benötigten Kristalle verrät. Bei Invertiert steht dieses Schild vor dem Schloss von Hyrule.',
             ],
         ],
         'world_state' => [
@@ -179,74 +179,74 @@ return [
                 [
                     'header' => __('randomizer.world_state.options.standard'),
                     'content' => [
-                        'This setting is the closest to the original game. It retains the initial prologue of rescuing Zelda in Hyrule Castle and delivering her to the Sanctuary. This must be completed before you are free to explore Hyrule. Your uncle is guaranteed to give you an item which lets you clear the prologue (although not necessarily a sword). You are given a light cone for navigating the dark rooms of the Sewers even without the Lamp (although any future visits to dark rooms, including the Sewers, will be in total darkness until you find the Lamp).',
+                        'Diese Einstellung hält sich nahe an das Originalspiel. Es enthält den Prologe wo man Zelda retten und sie zum Heiligtum eskortieren muss. Dies muss getan werden bevor man die Welt frei erkunden kann. Dein Onkel wird dir immer ein Gegenstand geben damit den Prologe schaffen kannst (muss aber nicht immer ein Schwert sein). Dir wird ein Lichtpegel gegeben damit man ohne Probleme durch die dunklen Räume in der Kanalisation kommt. Dies gilt aber nur im Prolog, alle anderen Besuche der Kanalisation werden komplett in der Dunkelheit sein wenn man die Lampe nicht besitzt.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.world_state.options.open'),
                     'content' => [
-                        'This setting starts as if the initial prologue has already been beaten. Zelda has already been rescued and you are free to start in either Link’s House or at the Sanctuary. All the chests in Hyrule Castle have not been opened so you must decide when and whether to visit.',
+                        'Diese Einstellung startet so, als hätte man den Prolog schon geschafft. Zelda wurde schon gerettet und du kann wählen ob du in deinem Haus oder im Heiligtum starten möchtest. Alle Truhen im Schloss von Hyrule sind ungeöffnet, du musst also entscheiden ob du hingehst und sie öffnest oder nicht.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.world_state.options.inverted'),
                     'content' => [
-                        'In this setting Link starts in the Dark World and must navigate his way to the Light World in order to defeat Ganon! There are several major changes for this to work:',
+                        'Diese Einstellung startet in der Schattenwelt und man muss seinen Weg in die Lichtwelt finden um Ganon zu besiegen. Es wurden diese großen Änderung unternommen um dies zu ermöglichen:',
                         '<ul>'
-                            . '<li>Ganon’s Tower and Agahnim’s Tower have traded places.</li>'
-                            . '<li>Ganon has abandoned the Pyramid and is hiding underneath Hyrule Castle.</li>'
-                            . '<li>All portals now take you from the Dark World to the Light World.</li>'
-                            . '<li>Link will be a bunny in the Light World without the Moon Pearl.</li>'
-                            . '<li>The Magic Mirror now transports you from the Light World to the Dark World.</li>'
-                            . '<li>The crystals now unlock the door to Hyrule Castle Tower (not Ganon’s Tower).</li>'
+                            . '<li>Ganon´s Turm und Agahnim´s Turm haben die Plätze getauscht.</li>'
+                            . '<li>Ganon hat die Pyramide hinter sich gelassen und versteckt sich nun unter dem Schloss von Hyrule.</li>'
+                            . '<li>Alle Portale bringen dich nun von der Schattenwelt in die Lichtwelt.</li>'
+                            . '<li>Link wechselt ohne Mondperle in die Hasenform in der Lichtwelt.</li>'
+                            . '<li>Der magische Spiegel transpotiert dich nun von der Lichtwelt in die Schattenwelt.</li>'
+                            . '<li>Die Kristalle entsperren nun den Turm auf Schloss Hyurle, und nicht Ganon´s Turm.</li>'
                             . '</ul>',
-                        'However there are other modifications to the game world which were required in order to ensure this concept worked properly:',
+                        'Aber es wurden noch einige andere Änderungen im Spiel unternommen damit dieses Konzept aufgeht:',
                         '<ul>'
-                            . '<li>Link’s House and the Bomb Shop have traded places.</li>'
-                            . '<li>The flute only works in the Dark World and must still be activated in Kakariko.</li>'
-                            . '<li>Lots of terrain in the Light World has been modified in order to retain accessibility without being able to mirror from the Dark World.</li>'
-                            . '<li>The Death Mountain cave system has changed considerably. It is now possible to access Dark World Death Mountain from the Dark World mainland. </li>'
-                            . '<li>The Old Man on Death Mountain is now lost wandering in the Dark World and you will have to return him to his home in the Light World.</li>'
-                            . '<li>Dark World Death Mountain now has some stairs allowing access to Ganon’s Tower and East Dark World Death Mountain.</li>'
-                            . '<li>Ice Palace is now accessible directly from the Dark World.</li>'
-                            . '<li>Turtle Rock is now accessible by jumping from its tail!</li>'
+                            . '<li>Link´s Haus und der Bombenladen haben die Plätze getauscht.</li>'
+                            . '<li>Die Flöte funktioniert nur in der Schattenwelt, muss aber trotzdem noch an der Statue in Kakariko aktiviert werden.</li>'
+                            . '<li>Einige Gegende wurden in der Lichtwelt so abgeändert das man den Spiegel dafür nicht mehr dafür braucht.</li>'
+                            . '<li>Das Höhlensystem vom Todesberg hat sich stark geändert. In der Schattenwelt kommst du nun auf den dunklen Todesberg wo man normalerweise auf den normalen Todesberg geht. </li>'
+                            . '<li>Der alte Mann auf dem Todesberg hat es irgendwie geschafft sich in die Schattenwelt zu verirren und möchte zurück zu seinem Zuhause in der Lichtwelt.</li>'
+                            . '<li>Der Todesberg in der Schattenwelt hat nun Treppen damit Ganon´s Turm und der östliche Teil des Todesberg erreichbar sind.</li>'
+                            . '<li>Der Eispalast kann nun direkt von der Schattenwelt aus betreten werden.</li>'
+                            . '<li>Du kannst den Schwanz der Schildkröte besteigen um auf die Plattform auf dem Schildkrötenfelsen zu gelangen!</li>'
                             . '</ul>',
-                        'Remember that bunny Link can use the Book of Mudora, as well as talk to NPC’s and collection freestanding items. Inverted games can be <strong>really difficult</strong> so we recommend starting with some of the other world states.',
+                        'Man sollte sich dran erinnern das man als Hase das Buch von Mudora nutzen und das man mit NPC´s reden kann. Invertierte Spiele können <strong>sehr schwierig</strong> sein, wir empfehlen als erstmal mit anderen Modi zu beginnen.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.world_state.options.retro'),
                     'content' => [
-                        'This setting is a throwback to the original The Legend of Zelda. The main concept includes:',
+                        'Diese Einstellung soll an das originale Legend of Zelda erinnern. Das Hauptkonzept enthält:',
                         [
-                            'header' => 'Rupee Bow',
+                            'header' => 'Rubine um Bogen zu nutzen',
                             'content' => [
                                 '<ul>'
-                                    . '<li>They no longer use arrows for ammo and instead uses rupees!</li>'
-                                    . '<li>The first Progressive Bow only shoots Wooden Arrows.</li>'
-                                    . '<li>The second Progressive Bow can shoot Wooden Arrows and Silver Arrows.</li>'
-                                    . '<li>However neither Bow can be used until a Rupee Quiver has been purchased.</li>'
-                                    . '<li>The Rupee Quiver costs 80 rupees and only appears in one randomly chosen shop!</li>'
-                                    . '<li>Each Wooden Arrow costs 10 rupee sand each Silver Arrow costs 50 rupees.</li>'
+                                    . '<li>Es werden nicht länger Pfeile genutzt, sondern Rubine um den Bogen abzufeuern!</li>'
+                                    . '<li>Der erste Progressive Bogen schiesst nur Holfpfeile ab.</li>'
+                                    . '<li>Der zweite Progressive Bogen kann Hold- und Silberpfeile abschiessen.</li>'
+                                    . '<li>Aber... man kann keiner der Bögen nutzen ohne einen Rubinenköcher.</li>'
+                                    . '<li>Der Rubinenköcher kostet 80 Rubine und wird zufällig in einem Laden platziert!</li>'
+                                    . '<li>Holzpfeile kosten 10 Rubine und Silberpfeile 50 Rubine.</li>'
                                     . '</ul>',
                             ],
                         ],
                         [
-                            'header' => 'Shops',
+                            'header' => 'Läden',
                             'content' => [
-                                'Five shops out of a possible nine will be randomly chosen to contain new stock. This does not include the Bomb Shop or the Potion Shop. One of these shops will contain the Rupee Quiver at a price of 80 rupees. Additionally, small keys will be available in multiple shops for a price of 100 rupees and there is no limit on how many may be purchased.',
+                                'Fünf Läden der 9 möglichen werden zufällig ausgewählt und werden neue Ware erhalten. Der Bombenladen und Hexenschuppen zählen nicht dazu. Einer der ausgewählten Läden wird den Rubinenköcher für 80 Rubinen haben. Zusätzlich werden kleine Schlüssel in mehreren Läden kaufbar sein für 100 Rubine und es gibt Limit wie vielen man insgesamt kaufen kann.',
                             ],
                         ],
                         [
-                            'header' => 'Small Keys',
+                            'header' => 'Kleine Schlüssel',
                             'content' => [
-                                'Small keys are no longer dungeon-specific and can be used to open key doors in any dungeon. They are no longer locked to their respective dungeons and may be found anywhere (e.g. in the overworld). Keys under pots and keys dropped by enemies remain unchanged. Ten keys have been removed from the item pool (fifteen on harder difficulties). Big keys, maps and compasses remain dungeon-specific and have not been randomized outside of their respective dungeons.',
+                                'Kleine Schlüssel sind nicht mehr an ihren Palast gebunden und können nun für jeden benutzt werden. Ebenfalls müssen diese Schlüssel nicht mehr in ihrem Palast sein und können nun auch auf der Overworld gefunden werden. Schlüssel unter Töpfe und die von Gegner fallen gelassen werden, wurden nicht geändert. 10 Schlüssel wurden vom Gegenstandspool entfernt (15 in härteren Schwierigkeitsgraden). Große Schlüssel, Karten und Kompasse sind weiterhin an ihren Palast gebunden und können nur innerhalb ihres Palast gefunden werden..',
                             ],
                         ],
                         [
-                            'header' => 'Take-Any Caves',
+                            'header' => 'Take-Any Höhlen',
                             'content' => [
-                                'Five randomly chosen single-entrance caves/houses (which do not ordinarily lead to an item location) now lead to take-any caves. Four of these caves offer players the choice between a Heart Container and a Blue Potion refill, and the fifth leads to a sword upgrade (which has been taken from the item pool). This means there are only 3 swords to be found in the regular item pool. The Heart Containers are bonus ones in addition to the ones existing in the item pool. However it is not possible to have more than a total of 20 hearts. The Blue Potion refills require you to already have an empty bottle.',
+                                'Fünf zufällig ausgewählte Eingänge (welche normalerweise nicht zu einem Gegenstand führen) werden dich nun zu einer Take-Any Höhle bringen. Vier dieser Höhlen bieten die Auswahl zwischen einem Herzcontainer und einem Blauen Trank, der fünfte zu einem Schwertupgrade (das aus dem Gegenstandspool genommen wurde). Man kann also nur 3 Schwerter auf normalen Weg finden und das vierte in einer dieser Höhlen. Die Herzcontainer wurden nicht aus Gegenstandspool genommen, sondern als Bonus hinzugefügt. Das heißt aber nicht das man mehr als 20 Herzen damit erhalten kann. Die Auswahl des blauen Tranks setzt voraus das man eine leere Flasche mit sich führt.',
                             ],
                         ],
                     ],
@@ -256,65 +256,65 @@ return [
         'entrance_shuffle' => [
             'header' => __('randomizer.entrance_shuffle.title'),
             'subheader' => [
-                'This setting randomizes where entrances lead. For example walking into Kakariko shop might take you to a fairy fountain, and so on. Different entrance types are grouped together and then each group is randomized. How entrances are grouped depends on which shuffle you choose. Overworld transitions are never randomized.',
-                'Multi-entrance caves/dungeons exhibit some specific behaviours, unless noted otherwise:',
+                'Diese Einstellung mischt den Ausgang eines Einganges. Wenn man zum Beispiel in den Laden in Kakariko geht, könnte er zu einem Feen Brunnen führen oder wo anders hin. Die verschiedene Arten der Eingänge werden zu einer Gruppe hinzugefügt und dann vermischt. Wie die Eingänge gruppiert werden hängt an der Einstellung der Mischung ab. Overworld Übergange werden nicht gemischt.',
+                'Höhlen/Paläste mit mehreren Eingängen weisen bestimmte Verhaltensweisen auf, sofern nicht anders angegeben:',
                 '<ul>'
-                    . '<li>All entrances remain coupled. This means exiting one of these caves/dungeons will take you back to the entrance from which it was entered.</li>'
-                    . '<li>All entrances for a given multi-entrance cave/dungeon are confined to appear within the same world (i.e. they do not connect the Light World and the Dark World).</li>'
+                    . '<li>Alle Eingänge sind mit einander verbunden, das heißt man kommt wieder an den selben Eingang raus, wenn man die Höhle wieder verlässt</li>'
+                    . '<li>Alle Eingänge für ein spezifischen Höhlensystem/Palast sind an die selbe Welt gebunden (d.H. Eine Höhle/Palast kann nicht einen Eingang in der Lichtwelt und der Schattenwelt haben.</li>'
                     . '</ul>',
-                'Link’s House and the south-facing entrance leading to the back of Kakariko bar are not randomized. However on ' . __('randomizer.world_state.options.inverted') . ' ' . __('randomizer.world_state.title') . ' note that Link’s House (in the Dark World) and the Bomb Shop (in the Light World) are both randomized.',
+                'Die Eingänge von Link´s Haus und der Hintereingang von der Bar in Kakriko werden nicht gemischt. Aber in ' . __('randomizer.world_state.options.inverted') . ' ' . __('randomizer.world_state.title') . ' werden die Eingänge von Link´s Haus (in der Schattenwelt) und dem Bombenladen (in der Lichtwelt) gemischt',
             ],
             'sections' => [
                 'none' => [
                     'header' => __('randomizer.entrance_shuffle.options.none'),
                     'content' => [
-                        'No entrances are randomized. All entrances lead to their original locations.',
+                        'Keiner der Eingänge wird gemischt. Alle führen zu ihrem originalen Platz.',
                     ],
                 ],
                 'simple' => [
                     'header' => __('randomizer.entrance_shuffle.options.simple'),
                     'content' => [
-                        'This setting uses the highest number of entrance type groupings. This restricts how thoroughly different entrances are randomized with the intention of keeping things simple.',
+                        'Diese Einstellung nutzt die meiste Anzahl an Gruppen. Dies schränkt ein wie gründlich die verschiedenen Eingangstypen vermischt werden um es Simpel zu halten.',
                         [
-                            'header' => 'Single-Entrance Dungeons',
+                            'header' => 'Paläste mit nur einem Eingang',
                             'content' => [
-                                'All entrances are grouped and randomized with each other. This includes the final section of Skull Woods (leading to the boss) but does not include any other Skull Woods entrances.',
+                                'Alle Eingänge gehören zu einer Gruppe und werden untereinander vermischt. Dazu zählt der letzte Eingang vom Skelettwald (der zum Boss führt), aber nicht die anderen Eingänge.',
                             ],
                         ],
                         [
-                            'header' => 'Multi-Entrance Dungeons (excluding Skull Woods)',
+                            'header' => 'Paläste mit mehreren Eingänge (außer dem Skelettwald)',
                             'content' => [
-                                'Each of the 4 entrances of Hyrule Castle, Desert Palace and Turtle Rock remain grouped together. Each group of 4 are randomized with each other using a static mapping. For example if Hyrule Castle and Desert Palace are randomized with each other, the main entrance of Desert Palace will lead to the main entrance of Hyrule Castle, the left entrance of Desert Palace will lead to the left entrance of Hyrule Castle, and so on. However Hyrule Castle is not randomized on ' . __('randomizer.world_state.options.standard') . ' ' . __('randomizer.world_state.title') . '.',
+                                'Jeder der 4 Eingänge vom Schloss Hyrule, Wüstenpalast und dem Schildkrötenfelsen werden zu einer Gruppe hinzugefügt. Jede der 4er Gruppen werden untereinander vermischt mit einer statischen Zuordnung. Um ein Beispiel zu geben: Schloss Hyrule und der Wüstenpalast wurden untereinander vermischt, aber der Haupteingang vom Wüstenpalast wird immer zum Haupteingang von Schloss Hyrule führen, der linke Eingang vom Wüstenpalast immer zum linken Eingang von Schloss Hyrule. Das passiert mit jedem der Eingänge. Die Ausnahme ist Schloss Hyrule in ' . __('randomizer.world_state.options.standard') . ' ' . __('randomizer.world_state.title') . '.',
                             ],
                         ],
                         [
-                            'header' => 'Skull Woods (excluding final dungeon entrance)',
+                            'header' => 'Skelettwald (außer der letzte Eingang)',
                             'content' => [
-                                'All entrances (including all of the holes) remain confined to the Skull Woods overworld region and are randomized with each other. Skull-entrances are randomized with skull-entrances; and holes are randomized with holes.',
+                                'All Eingänge (auch die Löcher) bleiben in der Region des Skelettwaldes und werden untereinander vermischt. Die normalen Eingänge sind mit den normalen Eingängen vermischt und die Löcher mit den anderen Löcher.',
                             ],
                         ],
                         [
-                            'header' => 'Single-Entrance Caves',
+                            'header' => 'Höhlen mit nur einem Eingang',
                             'content' => [
-                                'All entrances are grouped and randomized with each other. This does not include any of Light World Death Mountain. Example: houses.',
+                                'Alle Eingänge werden zu einer Gruppe hinzugefügt und untereinander vermischt. Dazu zählen aber nicht die Eingänge vom Todesberg in der Lichtwelt. Beispiel: Häuser',
                             ],
                         ],
                         [
-                            'header' => 'Multi-Entrance Caves',
+                            'header' => 'Höhlen mit mehreren Eingänge',
                             'content' => [
-                                'All entrances are grouped and randomized with each other. Locations that are originally spanned by two-entrance caves (e.g. Kakariko Elder’s House) will remain connected to each other via a two-entrance cave. This does not include any of Light World Death Mountain.',
+                                'Alle Eingänge werden zu einer Gruppe hinzugefügt und untereinander vermischt. Orte mit zwei Eingänge werden nur mit anderen Orten mit zwei Eingänge gemischt (z.B. das Haus der älteren Paar in Kakariko). Dazu zählt keiner der Eingänge vom Todesberg in der Lichtwelt.',
                             ],
                         ],
                         [
-                            'header' => 'Light World Death Mountain',
+                            'header' => 'Todesberg in der Lichtwelt',
                             'content' => [
-                                'All entrances remain confined to the Light World Death Mountain overworld region and are randomized with each other. Note that the entrance to Death Mountain (via the cave where the Old Man is lost) is also not randomized.',
+                                'Alle Eingänge bleiben an den Todesberg in der Lichtwelt gebunden und werden untereinander vermischt. Die Höhle wodurch man den Todesberg betritt wird nicht vermischt (die Höhle wo man den alten Mann auffindet der sich verirrt hat).',
                             ],
                         ],
                         [
-                            'header' => 'Overworld Holes (excluding those in Skull Woods)',
+                            'header' => 'Löcher in der Overworld (außer die vom Skelettwald)',
                             'content' => [
-                                'All holes are grouped and randomized with each other. Holes and their associated cave entrance remain paired together. For example falling in a hole and exiting will take you to the overworld cave associated with that hole, regardless of which interior rooms the hole led to. ',
+                                'Alle Löcher werden zu einer Gruppe hinzugefügt und untereinander vermischt. Löcher und deren zugehörigen Höhleneingang bleiben miteinander gepaart. Wenn man in ein Loch fällt und die Höhle verlässt, wird man immer zu dem Eingang gebracht zu dem das Loch gehört, egal in welchen Raum man fällt. ',
                             ],
                         ],
                     ],
@@ -322,25 +322,25 @@ return [
                 'restricted' => [
                     'header' => __('randomizer.entrance_shuffle.options.restricted'),
                     'content' => [
-                        'As in ' . __('randomizer.entrance_shuffle.options.simple') . ' except all non-dungeon entrances (including all single-entrance caves, all multi-entrance caves, and all of Light World Death Mountain) are grouped together and randomized with each other. This includes the entrance to Death Mountain.',
+                        'Wie in ' . __('randomizer.entrance_shuffle.options.simple') . ' , außer das alle Eingänge die nicht zu einem Palast gehören (alle Höhlen mit einem Eingang, alle Höhlen mit mehreren Eingänge und alle Eingänge vom Todesberg in der Lichtwelt) werden zu einer Gruppe hinzugefügt und untereinander vermischt. Dazu gehört auch der Eingang zur Höhle wo man normalerweise den Todesberg besteigt.',
                     ],
                 ],
                 'full' => [
                     'header' => __('randomizer.entrance_shuffle.options.full'),
                     'content' => [
-                        'As in ' . __('randomizer.entrance_shuffle.options.restricted') . ' except all dungeons (including single-entrance and multi-entrance) are also grouped together with all non-dungeon entrances and randomized with each other.',
+                        'Wie in ' . __('randomizer.entrance_shuffle.options.restricted') . ' , außer das alle Eingänge von Palästen  (alle mit einem Eingang und alle mit mehreren Eingänge) zu der Gruppe der Eingänge von Höhlen hinzugefügt und untereinander vermischt  werden.',
                     ],
                 ],
                 'crossed' => [
                     'header' => __('randomizer.entrance_shuffle.options.crossed'),
                     'content' => [
-                        'As in ' . __('randomizer.entrance_shuffle.options.full') . ' except caves and dungeons with multiple entrances are no longer confined to all appear within the same world. This means they can link the Light World to the Dark World.',
+                        'Wie in ' . __('randomizer.entrance_shuffle.options.full') . ' , außer das Höhlen/Paläste mit mehreren Eingänge nicht mehr an eine Welt gebunden sind. Die Eingänge können also in der Lichtwelt und Schattenwelt sein.',
                     ],
                 ],
                 'insanity' => [
                     'header' => __('randomizer.entrance_shuffle.options.insanity'),
                     'content' => [
-                        'As in ' . __('randomizer.entrance_shuffle.options.crossed') . ' except all entrances and holes are decoupled from each other (excluding single-entrance caves and the Skull Woods overworld region). This means exiting the way you entered will take you somewhere entirely different. However all single-entrance caves can still only exit to the same location from which they were entered. All overworld holes are no longer paired. All Skull Woods entrances remain confined to the Skull Woods overworld region (excluding the final dungeon entrance).',
+                        'Wie in ' . __('randomizer.entrance_shuffle.options.crossed') . ' ,außer das alle Eingänge und Löcher nicht mehr miteinander verbunden sind (außer Höhlen mit nur einem Eingang und die Region des Skelettwaldes). Das heißt, der Ausgang einer Höhle wird dich nicht zu dem selben Eingang bringen, sondern wo ganz anders hin. Nur die Höhlen mit nur einem Eingang führen noch zu dem selben Eingang. Alle Löcher in der Overworld werden nicht mehr mit dem selben Eingang gepaart. Alle Eingänge vom Skelettwald bleiben an die Region des Skelettwaldes gebunden (außer der letzte Palasteingang)..',
                     ],
                 ],
             ],
@@ -351,25 +351,25 @@ return [
                 [
                     'header' => __('randomizer.boss_shuffle.options.none'),
                     'content' => [
-                        'Bosses are not randomized. All bosses remain in their original dungeons.',
+                        'Bosse werden nicht gemischt. Alle Bosse bleiben in ihrem originalen Palast.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.boss_shuffle.options.simple'),
                     'content' => [
-                        'All original bosses (except both Agahnim’s and Ganon) are randomized including the 3 Ganon’s Tower refights. Therefore the shuffle includes two sets of Armos Knights, Lanmolas’ and Moldorm. This means Ganon’s Tower can contain 3 random bosses!',
+                        'Alle originale Bosse (außer beide Formen von Agahnim und Ganong) werden untereinander vermischt, dazu zählen auch die 3 Bosse die man erneut bekämpft in Ganon´s Turm. Somit hat der Bosspool jeweils zwei Armos Knights, Lanmolas und Moldorms. Ganon´s Turm kann also 3 zufällige Bosse haben!',
                     ],
                 ],
                 [
                     'header' => __('randomizer.boss_shuffle.options.full'),
                     'content' => [
-                        'Same as ' . __('randomizer.boss_shuffle.options.simple') . ' except the 3 bosses which appear twice are chosen randomly.',
+                        'Das selbe wie in ' . __('randomizer.boss_shuffle.options.simple') . ' , außer das die drei Bosse die zweimal auftauchen zufällig gewählt werden.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.boss_shuffle.options.random'),
                     'content' => [
-                        'All bosses are chosen entirely at random. You may see one boss multiple times and some bosses may not feature at all.',
+                        'Alle Bosse werden komplett zufällig gewählt. Du kannst also besimmte Bosse mehrmals antreffen und anderen wiederum überhaupt gar nicht.',
                     ],
                 ],
             ],
@@ -380,26 +380,26 @@ return [
                 [
                     'header' => __('randomizer.enemy_shuffle.options.none'),
                     'content' => [
-                        'Enemies are not randomized. All enemies remain in their original locations.',
+                        'Gegner werden nicht gemischt. Alle Gegner bleiben in ihrem ursprünglichen Platz.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_shuffle.options.shuffled'),
                     'content' => [
-                        'All enemies are randomized but there are some caveats to note:',
+                        'Alle Gegner werden zufällig ausgewählt, es sind jedoch einige Einschränkungen zu beachten:',
                         '<ul>'
-                            . '<li>Not all enemies can appear everywhere due to game limitations.</li>'
-                            . '<li>Rooms where killing all enemies is required will never include enemies which need specific weapons to kill (e.g. Mimics requiring Bow, etc)</li>'
-                            . '<li>Thieves’ can now be killed.</li>'
-                            . '<li>Tile rooms are not randomized.</li>'
-                            . '<li>Enemies under bushes are not randomized.</li>'
+                            . '<li>Nicht alle Gegner können überall auftauchen aufgrund Limitierungen des Spiels.</li>'
+                            . '<li>Räume wo man alle Gegner töten muss werden nie bestimmte Waffen erfordern (z.B. Mimics erfordern den Bogen, usw)</li>'
+                            . '<li>Diebe können nun getötet werden.</li>'
+                            . '<li>Räume mit fliegen Platten werden nicht gemischt.</li>'
+                            . '<li>Gegner die unter Büschen auftauchen werden nicht gemischt.</li>'
                             . '</ul>',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_shuffle.options.random'),
                     'content' => [
-                        'Same as ' . __('randomizer.enemy_shuffle.options.shuffled') . '  except enemies under bushes, as well as the percentage chance that they spawn an enemy, are also randomized. This may not seem like much of a difference but in practice it affects playability drastically. In addition tile rooms spawn tiles in random patterns and Thieves’ have a 50% chance for being killable or invincible.',
+                        'Das selbe wie ' . __('randomizer.enemy_shuffle.options.shuffled') . '  , außer das Gegner unter Büschen nun gemischt werden und die Chance das sie auftauchen ebenfalls zufällig sein kann. Die Änderung sieht zwar nach nicht viel aus, kann aber die Spielbarkeit stark beeinflussen. Zusätzlich werden die fliegende Platten in ihren Räumen nun zufällige Muster haben und die Chance das Diebe verwundbar sein werden liegt nur noch bei 50%.',
                     ],
                 ],
             ],
@@ -407,7 +407,7 @@ return [
         'hints' => [
             'header' => __('randomizer.hints.title'),
             'content' => [
-                'Enable or disable hints which can be found on the telepathic throughout the world.',
+                'Aktiviere oder deaktiviere Hinweise auf den telepatischen Platten in der Welt.',
             ],
         ],
         'difficulty' => [
@@ -425,8 +425,8 @@ return [
                 'maximum_shield' => 'Höchstes Schild',
                 'shields_store' => 'Kaufbares Schild',
                 'maximum_magic' => 'Maximale Magie Kapazität',
-                'number_silvers' => 'Maximum Bow',
-                'number_silvers_swordless' => 'Maximum Bow (Swordless)',
+                'number_silvers' => 'Höchster Bogen',
+                'number_silvers_swordless' => 'Höchster Bogen (Schwertlos)',
                 'number_bottles' => '# der Flaschen',
                 'number_lamps' => '# der Lampe',
                 'potion_magic' => 'Fülling der Magie eines Elixiers',
@@ -459,7 +459,7 @@ return [
                 'yes' => 'Ja',
                 'no' => 'Nein',
                 'tooltip' => [
-                    'silvers' => 'Swordless retains Silver Arrows but they only function in Ganon’s room.',
+                    'silvers' => 'Schwertlos hat weiterhin Silberpfeile, aber sind nur im Kampf gegen Ganon nutzbar.',
                     'bottles' => 'Wenn 4 Flaschen gesammelt wurden, werden die restlichen in Rubine umgewandelt.',
                     'potion_magic' => 'Elixiere werden 100% der Magie auffüllen in der Stachelhöhle.',
                     'potion_health' => 'Elixiere werden 20 Herzen auffüllen in der Stachelhöhle.',
@@ -472,7 +472,7 @@ return [
                 [
                     'header' => __('randomizer.weapons.options.randomized'),
                     'content' => [
-                        'All four Progressive Swords are randomly shuffled into the game. If this setting is combined with ' . __('randomizer.world_state.options.standard') . ' ' . __('randomizer.world_state.title') . ' then your Uncle will always have one of the following:',
+                        'Alle vier der progessiven Schwert sind in der Welt verteilt. Falls diese Einstellung mit ' . __('randomizer.world_state.options.standard') . ' ' . __('randomizer.world_state.title') . ' verwendet wird, wird dir dein Onkel jeweils folgendes geben können:',
                         '<ul>'
                             . '<li>Schwert Upgrade (ja, es ist immer noch möglich)</li>'
                             . '<li>Hammer</li>'
@@ -482,39 +482,39 @@ return [
                             . '<li>Somaria Stab + Volle Auffüllung der Magie</li>'
                             . '<li>Byrna Stab + Volle Auffüllung der Magie</li>'
                         . '</ul>',
-                        'If you run out of ammo or magic then a save and quit will partially refill you so that you may progress.',
+                        'Falls du keine Pfeile oder Magie mehr haben solltest, kannst du die Funktion "Save and Quit" nutzen um sie wieder teilweise aufzufüllen damit du fortfahren kannst.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.weapons.options.assured'),
                     'content' => [
-                        'Link starts with a sword already equipped! Perhaps he hid it under his pillow?',
+                        'Link startet mit einem Schwert bereits in seinem Besitz! Vielleicht hatte er es unter seinem Kissen versteckt?',
                     ],
                 ],
                 [
                     'header' => __('randomizer.weapons.options.vanilla'),
                     'content' => [
-                        'All four swords are in their original game locations. These are:',
+                        'Alle vier Schwerter sind auffindbar an ihrem originalen Ort. Dies sind:',
                         '<ul>'
-                            . '<li>Link’s Uncle</li>'
-                            . '<li>Master Sword Pedestal</li>'
-                            . '<li>Rescuing Blacksmith</li>'
-                            . '<li>Pyramid Faerie</li>'
+                            . '<li>Link’s Onkel</li>'
+                            . '<li>Master-Sword Sockel</li>'
+                            . '<li>In der Zwergenschmiede</li>'
+                            . '<li>Fee in der Pyramide</li>'
                             . '</ul>',
                     ],
                 ],
                 [
                     'header' => __('randomizer.weapons.options.swordless'),
                     'content' => [
-                        'All swords are removed from the game and replaced with 20 rupees. Multiple changes have been made for this to work:',
+                        'Alle Schwerter werden aus dem Spiel entfernt und mit 20 Rubine ersetzt. Verschiedene Änderungen wurden unternommen damit dies möglich ist:',
                         '<ul>'
-                            . '<li>Ganon can be damaged with the Hammer.</li>'
-                            . '<li>Both Progressive Bows are always in the item pool.</li>'
-                            . '<li>The bat barrier outside Aghanim’s Tower can now be broken with the Hammer.</li>'
-                            . '<li>The curtains/vines inside Skull Woods and Agahnim’s Tower are already open.</li>'
-                            . '<li>Ether and Bombos tablets require the Hammer and the Book of Mudora.</li>'
-                            . '<li>Medallions can only be used to open Misery Mire and Turtle Rock, or to progress through Ice Palace. They only work where their emblems indicate.</li>'
-                            . '<li>Swords have been replaced with copies of 20 rupees</li>'
+                            . '<li>Ganon kann durch den Hammer verletzt werden.</li>'
+                            . '<li>Beide progessive Bögen sind immer im Gegendstandspool.</li>'
+                            . '<li>Die magische Barriere außerhalb Agahnim´s Turm kann durch den Hammer zerstört werden.</li>'
+                            . '<li>Der Vorhang/Ranken in Agahnim´s Turm und Skelettwald sind bereits zerstört.</li>'
+                            . '<li>Ether und Bombos Tafel fordern den Hammer und das Buch von Mudora voraus.</li>'
+                            . '<li>Medallions können nur benutzt werden um den Wüstenseepalast und den Schildkrötenfelsen zu öffnen, oder um im Eispalast weiterzukommen. Sie funktionieren auf ihrem Zeichen auf dem Boden.</li>'
+                            . '<li>Schwerter wurden durch 20 Rubine ersetzt</li>'
                             . '</ul>',
                     ],
                 ],
@@ -526,25 +526,25 @@ return [
                 [
                     'header' => __('randomizer.enemy_health.options.default'),
                     'content' => [
-                        'The health of enemies are not randomized.',
+                        'Die Lebensanzahl von Gegner sind nicht zufällig.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_health.options.easy'),
                     'content' => [
-                        'All enemy health will be in the 1hp-4hp range (1-2 Fighter’s Sword slashes).',
+                        'Das Leben der Gegner wird im Bereich von 1-4hp bleiben (1-2 Schwerthiebe mit dem Schwert vom Onkel).',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_health.options.hard'),
                     'content' => [
-                        'All enemy health will be in the 2hp-15hp range (1-8 Fighter’s Sword slashes). Note that on average enemies will have more health than in the original.',
+                        'Das Leben der Gegner wird im Bereich von 2-15hp sein (1-8 Schwerthiebe mit dem Schwert vom Onkel). Im durchschnitt werden die Gegner mehr Leben haben als im Original.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_health.options.expert'),
                     'content' => [
-                        'All enemy health will be in the 2hp-30hp range (1-15 Fighter’s Sword slashes). Almost all enemies will have considerably more health than in the original.',
+                        'Das Leben der Gegner wird im Bereich von 2-30hp sein (1-15 Schwerthiebe mit dem Schwert vom Onkel). Fast jeder Gegner wird um einiges mehr an Leben haben als im Original.',
                     ],
                 ],
             ],
@@ -555,70 +555,70 @@ return [
                 [
                     'header' => __('randomizer.enemy_damage.options.default'),
                     'content' => [
-                        'The damage dealt by enemies are not randomized.',
+                        'Der Schaden von Gegner wird nicht zufällig sein.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_damage.options.shuffled'),
                     'content' => [
-                        'The damage dealt by enemies are randomized between enemy types. For example the damage dealt by Octoroks and Ganon might be shuffled, meaning all Octoroks deal 8 hearts and Ganon only deals just 1 heart! Mail Upgrades still work as expected to reduce damage.',
+                        'Der Schaden der Gegner wird mit den Gegnertypen gemischt. Als Beispiel könnte der Schaden von Octoroks und Ganon gemischt werden, das heißt das alle Octoroks 8 Herzen an Schaden verursachen und Ganon nur 1 Herz! Rüstungupgrades verringern wie vorgesehen den Schaden.',
                     ],
                 ],
                 [
                     'header' => __('randomizer.enemy_damage.options.random'),
                     'content' => [
-                        'The damage dealt by enemies are entirely random. A value is chosen for each Mail Upgrade so they therefore do not work to reduce damage. No mapping exists between different enemy types. All enemies could deal massive damage.',
+                        'Der Schaden der Gegner wird komplett zufällig sein. Für jedes Rüstungupgrade wird ein Wert ausgewählt, sie verringern also nicht den Schaden. Alle Gegner könnten massiven Schaden austeilen.',
                     ],
                 ],
             ],
         ],
         'post_generation' => [
-            'header' => 'Cosmetic Settings (post generation)',
+            'header' => 'Kosmetische Einstellungen (nach der Erstellung des Seeds)',
             'cards' => [
                 'heart_speed' => [
                     'header' => __('rom.settings.heart_speed'),
                     'content' => [
-                        'Change the speed of the beep when Link is low on health.',
+                        'Ändere die Geschwindigkeit des Warntons wenn Link wenig Leben hat.',
                     ],
                 ],
                 'play_as' => [
                     'header' => __('rom.settings.play_as'),
                     'content' => [
-                        'Change the sprite you play as (e.g. play as a tea cup instead of Link).',
+                        'Ändere das Aussehen vom Helden (spiele z.B. als Tetra anstatt Link).',
                     ],
                 ],
                 'menu_speed' => [
                     'header' => __('rom.settings.menu_speed'),
                     'content' => [
-                        'Change the speed of opening and closing the item menu. This is not available for race ROMS.',
+                        'Ändere die Geschwindigkeit wie schnell sich das Menü öffnet und schließt. Dies ist nicht für Rennen verfügbar.',
                     ],
                 ],
                 'heart_color' => [
                     'header' => __('rom.settings.heart_color'),
                     'content' => [
-                        'Change the color of your hearts. Choices are restricted due to game limitations.',
+                        'Ändere die Farbe deiner Herzen. Auswahl ist eingeschränkt aufgrund Limitierungen des Spiels.',
                     ],
                 ],
                 'music' => [
                     'header' => __('rom.settings.music'),
                     'content' => [
-                        'Enable or disable the original background music. You do not have to disable this if you wish to use MSU-1 packs. If left enabled and using an MSU-1 pack then the original music will act as an SPC fallback and will only play should an MSU-1 track fail (i.e. instead of silence).',
+                        'Aktiviere oder deaktiviere die originale Hintergrundmusik. Du musst es nicht deaktivieren um  MSU-1 Packs zu nutzen. Falls es aktiviert bleibt während man einen MSU-1 Pack nutzt, dient es als SPC-Fallback und spielt nur Hintergrundmusik ab, falls ein Fehler in der MSU-1 Spur vorliegt (anstatt kompletter Stille)..',
                     ],
                 ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
-                        'Allow items to be changed with the L and R buttons without opening the menu. This is not available for race ROMS (except when entrances are randomized).',
+                        'Erlaubt es den Gegendstand mit L und R zu wechseln ohne das Menü zu öffnen. Dies ist nicht für Rennen verfügbar (außer für Entrance Randomizer).',
                     ],
                 ],
                 'palette_shuffle' => [
                     'header' => __('rom.settings.palette_shuffle'),
                     'content' => [
-                        'Randomizes the colour palettes within the game. This means everything can look extremely bizarre. Enable with caution!',
+                        'Die Farbpalleten werden zufällig ausgewählt im Spiel. Dadurch könnte alles sehr bizarr aussehen. Mit Vorsicht aktivieren!',
                     ],
                 ],
             ],
         ],
-        'item_pool' => 'Item Pool',
+        'item_pool' => 'Gegendstandspool',
     ],
 ];

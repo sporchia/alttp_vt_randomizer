@@ -3,54 +3,54 @@ export default {
         "randomizer": {
             "title": "Randomizer",
             "preset": {
-                "title": "Select Preset",
-                "customize": "Customize",
+                "title": "Wähle Voreinstellungen",
+                "customize": "Customire",
                 "options": {
                     "default": "Default",
                     "beginner": "Beginner",
-                    "veetorp": "OWG (Veetorp’s Favorite)",
+                    "veetorp": "OWG (Veetorp’s Favorit)",
                     "crosskeys": "Crosskeys",
-                    "quick": "Super Quick",
-                    "nightmare": "Nightmare",
-                    "custom": "Custom"
+                    "quick": "Super Schnell",
+                    "nightmare": "Albtraum",
+                    "custom": "Benutzerdefiniert"
                 }
             },
             "placement": {
-                "title": "Item Placement"
+                "title": "Gegenstandsplatzierung"
             },
             "item_placement": {
-                "title": "Item Placement",
+                "title": "Gegenstandsplatzierung",
                 "options": {
-                    "basic": "Basic",
-                    "advanced": "Advanced"
+                    "basic": "Basis",
+                    "advanced": "Erweitert"
                 }
             },
             "dungeon_items": {
-                "title": "Dungeon Items",
+                "title": "Palastgegenstände",
                 "options": {
                     "standard": "Standard",
-                    "mc": "Maps/Compasses",
-                    "mcs": "Maps/Compasses/Small Keys",
+                    "mc": "Karten/Kompässe",
+                    "mcs": "Karten/Kompässe/kleine Schlüssel",
                     "full": "Keysanity"
                 }
             },
             "accessibility": {
-                "title": "Accessibility",
+                "title": "Zugänglichkeit",
                 "options": {
-                    "items": "100% Inventory",
-                    "locations": "100% Locations",
-                    "none": "Beatable"
+                    "items": "100% Inventar",
+                    "locations": "100% der Orte",
+                    "none": "Schaffbar"
                 }
             },
             "glitches_required": {
-                "title": "Glitches Required",
+                "title": "Vorausgesetzte Glitches",
                 "options": {
-                    "none": "None",
+                    "none": "Keine",
                     "overworld_glitches": "Overworld Glitches",
                     "major_glitches": "Major Glitches",
-                    "no_logic": "No Logic"
+                    "no_logic": "Keine Logik"
                 },
-                "glitch_warning": "These settings require knowledge of Major Glitches<sup>**</sup>"
+                "glitch_warning": "Diese Einstellung setzt Wissen von Major Glitches voraus<sup>**</sup>"
             },
             "goal": {
                 "title": "Ziel",
@@ -63,38 +63,38 @@ export default {
                 }
             },
             "tower_open": {
-                "title": "Open Tower",
+                "title": "Turm öffnen",
                 "options": {
-                    "0": "0 Crystals",
-                    "1": "1 Crystal",
-                    "2": "2 Crystals",
-                    "3": "3 Crystals",
-                    "4": "4 Crystals",
-                    "5": "5 Crystals",
-                    "6": "6 Crystals",
-                    "7": "7 Crystals",
-                    "random": "Random"
+                    "0": "0 Kristalle",
+                    "1": "1 Kristall",
+                    "2": "2 Kristalle",
+                    "3": "3 Kristalle",
+                    "4": "4 Kristalle",
+                    "5": "5 Kristalle",
+                    "6": "6 Kristalle",
+                    "7": "7 Kristalle",
+                    "random": "Zufällig"
                 }
             },
             "ganon_open": {
-                "title": "Ganon Vulnerable",
+                "title": "Ganon verwundbar machen",
                 "options": {
-                    "0": "0 Crystals",
-                    "1": "1 Crystal",
-                    "2": "2 Crystals",
-                    "3": "3 Crystals",
-                    "4": "4 Crystals",
-                    "5": "5 Crystals",
-                    "6": "6 Crystals",
-                    "7": "7 Crystals",
-                    "random": "Random"
+                    "0": "0 Kristalle",
+                    "1": "1 Kristall",
+                    "2": "2 Kristalle",
+                    "3": "3 Kristalle",
+                    "4": "4 Kristalle",
+                    "5": "5 Kristalle",
+                    "6": "6 Kristalle",
+                    "7": "7 Kristalle",
+                    "random": "Zufällig"
                 }
             },
             "gameplay": {
                 "title": "Gameplay"
             },
             "world_state": {
-                "title": "World State",
+                "title": "Zustand der Welt",
                 "options": {
                     "standard": "Standard",
                     "open": "Offen",
@@ -105,7 +105,7 @@ export default {
             "entrance_shuffle": {
                 "title": "Entrance Shuffle",
                 "options": {
-                    "none": "None",
+                    "none": "Keine",
                     "simple": "Simpel",
                     "restricted": "Beschränkt",
                     "full": "Voll",
@@ -116,32 +116,32 @@ export default {
             "boss_shuffle": {
                 "title": "Boss Shuffle",
                 "options": {
-                    "none": "None",
-                    "simple": "Simple",
-                    "full": "Full",
-                    "random": "Random"
+                    "none": "Keine",
+                    "simple": "Simpel",
+                    "full": "Voll",
+                    "random": "Zufällig"
                 }
             },
             "enemy_shuffle": {
                 "title": "Enemy Shuffle",
                 "options": {
-                    "none": "None",
-                    "shuffled": "Shuffled",
-                    "random": "Random"
+                    "none": "Keine",
+                    "shuffled": "Gemischt",
+                    "random": "Zufällig"
                 }
             },
             "hints": {
-                "title": "Hints",
+                "title": "Hinweise",
                 "options": {
-                    "on": "On",
-                    "off": "Off"
+                    "on": "An",
+                    "off": "Aus"
                 }
             },
             "weapons": {
                 "title": "Schwerter",
                 "options": {
                     "randomized": "Zufällig",
-                    "assured": "Assured",
+                    "assured": "Garantiert",
                     "vanilla": "Vanilla",
                     "swordless": "Schwertlos"
                 }
@@ -155,10 +155,10 @@ export default {
                     "expert": "Experte",
                     "crowd_control": "Crowd Control"
                 },
-                "crowd_control_warning": "<sup>*</sup> This setting is meant to be used with the Crowd Control Twitch extension. find out more: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
+                "crowd_control_warning": "<sup>*</sup> Diese Erweiterung ist für die Verwundung mit Twitches Crowd Control Erweiterung gedacht. Für mehr Info´s: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
             },
             "item_functionality": {
-                "title": "Item Functionality",
+                "title": "Gegendstands Funktionalität",
                 "options": {
                     "easy": "Einfach",
                     "normal": "Normal",
@@ -167,15 +167,15 @@ export default {
                 }
             },
             "enemy_damage": {
-                "title": "Enemy Damage",
+                "title": "Gegnerschaden",
                 "options": {
                     "default": "Default",
-                    "shuffled": "Shuffled",
-                    "random": "Random"
+                    "shuffled": "Gemischt",
+                    "random": "Zufällig"
                 }
             },
             "enemy_health": {
-                "title": "Enemy Health",
+                "title": "Gegnerleben",
                 "options": {
                     "default": "Default",
                     "easy": "Einfach",
@@ -196,10 +196,10 @@ export default {
                 "race_warning": "<span class=\"running-now\">Spoilerfrei</span>",
                 "spoiler_race": "ROM für Spoiler Rennen",
                 "casual": "Generiere ROM",
-                "back": "Change Settings",
-                "regenerate": "Generate Again",
-                "regenerate_tooltip": "Generate new game with same settings",
-                "generating": "Generating..."
+                "back": "Ändere Einstellung",
+                "regenerate": "Erneut erstellen",
+                "regenerate_tooltip": "Erstellt ein neues Spiel mit den gleichen Einstellungen",
+                "generating": "Am erstellen..."
             },
             "details": {
                 "title": "Spiel Details",
@@ -333,78 +333,78 @@ export default {
         "customizer": {
             "settings": {
                 "timers": {
-                    "off": "Off",
-                    "stopwatch": "Stopwatch",
+                    "off": "Aus",
+                    "stopwatch": "Stoppuhr",
                     "countdown-ohko": "Countdown OHKO",
-                    "countdown-continue": "Countdown Continue",
-                    "countdown-stop": "Countdown Stop"
+                    "countdown-continue": "Countdown fortführen",
+                    "countdown-stop": "Countdown stopp"
                 },
                 "dungeon_count": {
-                    "off": "Off",
-                    "on": "Always On",
-                    "pickup": "On Compass Pickup"
+                    "off": "Aus",
+                    "on": "Immer an",
+                    "pickup": "Beim aufheben des Kompass"
                 }
             },
             "glitches": {
                 "canBombJump": {
                     "title": "Bomb Jump",
-                    "description": "One may be required to Bomb jump over gaps."
+                    "description": "Es kann vorausgesetz werden, dass man mit Bomben über Abgründe springt."
                 },
                 "canBootsClip": {
                     "title": "Boots Clip",
-                    "description": "When one has the Boots, they may be required to clip through walls in the in overworld."
+                    "description": "Wenn man die Pegasusstiefel besitzt könnte es vorausgesetz werden, dass man mit ihnen durch Wände clippt in der Overworld."
                 },
                 "canBunnyRevive": {
                     "title": "Bunny Revive",
-                    "description": "One may be required to go somewhere as bunny form and abuse death/fairy revive to be Link."
+                    "description": "Es kann vorausgesetz werden, dass man die Wiederbelebungs/Feenmechanik ausnutzt um Link zu werden ohne Mondperle in der Overworld."
                 },
                 "canBunnySurf": {
                     "title": "Bunny Surf",
-                    "description": "One may be required to water walk in bunny state."
+                    "description": "Es kann vorausgesetz werden, dass man in der Hasenform auf dem Wassser läuft."
                 },
                 "canDungeonRevive": {
                     "title": "Dungeon Revive",
-                    "description": "One may be required to revive as a bunny in a dungeon to collect items as Link."
+                    "description": "Es kann vorausgesetz werden, dass man die Wiederbelebungsmechanik nutzt um Link zu werden in einem Palast um Gegenstände aufzusammeln."
                 },
                 "canFakeFlipper": {
                     "title": "Fake Flipper",
-                    "description": "One may be required to use the fake flipper glitch to collect items."
+                    "description": "Es kann vorausgesetz werden, dass man Fake Flipper nutzt um an gewissen Gegenstände zu kommen."
                 },
                 "canMirrorClip": {
                     "title": "Mirror Clip",
-                    "description": "One may be required to abuse Mirror bouce to go out of bounds."
+                    "description": "Es kann vorausgesetz werden, dass man Mirror Bounce ausnutzt um außerhalb der Spielwelt zu gelangen."
                 },
                 "canMirrorWrap": {
                     "title": "Mirror Wrap",
-                    "description": "One may be required to use Mirror to auto scroll to a different location."
+                    "description": "Es kann vorausgesetz werden, dass man den Spiegel nutzt um den Spielbildschirm zu scrollen damit man an einen anderen Ort kommt."
                 },
                 "canOneFrameClipOW": {
                     "title": "One Frame Clip (overworld)",
-                    "description": "You don’t want this. Trust me."
+                    "description": "Du willst das hier nicht! Glaub mir."
                 },
                 "canOWYBA": {
                     "title": "YBA (overworld)",
-                    "description": "May be required to use bottles in the overworld to teleport to different locations."
+                    "description": "Es kann vorausgesetz werden, dass man Flaschen in der Overworld nutzt um damit an einen Ort zu telepotieren."
                 },
                 "canSuperBunny": {
                     "title": "Super Bunny",
-                    "description": "One may be required to activate super bunny to access locations."
+                    "description": "Es kann vorausgesetz werden, dass man Super Bunny aktiviert um an gewisse Orte zu kommen."
                 },
                 "canSuperSpeed": {
                     "title": "Super Speed",
-                    "description": "One may be required to super speed clip through edges in overworld."
+                    "description": "Es kann vorausgesetz werden, dass man Super Speed nutzt um durch die Ecken der Overworld durchzulaufen."
                 },
                 "canWaterFairyRevive": {
                     "title": "Water Fairy Revive",
-                    "description": "This setup is silly and requires a bunch of items."
+                    "description": "Die vorbereitung hierfür ist einfach nur dumm und brauch viel zu viele Gegenstände."
                 },
                 "canWaterWalk": {
                     "title": "Water walk",
-                    "description": "One may be required to use boots to walk on top of water."
+                    "description": "Es kann vorausgesetz werden, dass man auf Wasser läuft."
                 },
                 "noLogic": {
                     "title": "Disable all logic checks",
-                    "description": "When this is selected all bets are off, and nothing below matters."
+                    "description": "Wenn man diese Option aktiviert werden alle unteren Optionen ignoriert."
                 }
             }
         },
@@ -416,13 +416,13 @@ export default {
             },
             "info": {
                 "spoilerwarning": "WARNUNG: Der Ersteller dieses Spiel hat den Spoiler Log angesehen.",
-                "logic": "Glitches Required",
-                "accessibility": "Accessibility",
+                "logic": "Vorausgesetzte Glitches",
+                "accessibility": "Zugänglichkeit",
                 "build": "ROM build",
                 "difficulty": "Schwierigkeitsgrad",
                 "variation": "Variation",
                 "shuffle": "Entrance Shuffle",
-                "mode": "World State",
+                "mode": "Zustand der Welt",
                 "weapons": "Schwerter",
                 "goal": "Ziel",
                 "permalink": "Permalink",
@@ -431,11 +431,11 @@ export default {
                 "generated": "Erstellt"
             },
             "settings": {
-                "heart_speed": "Herz Geschwindigkeit",
+                "heart_speed": "Geschwindigkeit des Warnungston bei wenig Leben",
                 "heart_speeds": {
                     "off": "Aus",
                     "double": "Doppelte Geschwindigkeit",
-                    "normal": "Geschwindigkeit",
+                    "normal": "Normale Geschwindigkeit",
                     "half": "Halbe Geschwindigkeit",
                     "quarter": "Viertel Geschwindigkeit"
                 },
@@ -466,11 +466,11 @@ export default {
             "429": "Auch wenn wir schätzen das du einen haufen Spiele generierst, andere Leute möchten dies aber auch. Bitte kommen später wieder wenn du mehr generieren möchtest.",
             "failed_generation": "Fehler beim erstellen :(",
             "bad_file": "Datei nicht erkannt",
-            "quota_exceeded_error": "Your local storage quota has been exceeded."
+            "quota_exceeded_error": "Lokaler Cache Speicher ist voll."
         },
         "item": {
-            "Random": "Random",
-            "BottleWithRandom": "Bottle (Random)",
+            "Random": "Zufällig",
+            "BottleWithRandom": "Flasche (Zufällig)",
             "Nothing": "Nichts",
             "UncleSword": "Progressives Schwert",
             "L1Sword": "Schwert des Onkels",
@@ -647,8 +647,8 @@ export default {
             "BigRedBomb": "Große rote Bombe",
             "DefeatAgahnim2": "Besiege Agahnim 2",
             "DefeatGanon": "Besiege Ganon",
-            "ChocoboEgg": "Chocobo Egg",
-            "NoSlipBoots": "Ice Cleats",
+            "ChocoboEgg": "Chocobo Ei",
+            "NoSlipBoots": "Winterstiefel",
             "Reindeer1": "Dasher",
             "Reindeer2": "Dancer",
             "Reindeer3": "Prancer",
@@ -657,8 +657,8 @@ export default {
             "Reindeer6": "Cupid",
             "Reindeer7": "Donner",
             "Reindeer8": "Blitzen",
-            "Coal1": "Coal",
-            "Coal2": "Coal",
+            "Coal1": "Kohle",
+            "Coal2": "Kohle",
             "Armos Knights": "Armos Knights",
             "Lanmolas": "Lanmolas",
             "Moldorm": "Moldorm",
@@ -672,7 +672,7 @@ export default {
             "Agahnim": "Agahnim",
             "Agahnim 2": "Agahnim 2",
             "Ganon": "Ganon",
-            "Test": "Testing Item"
+            "Test": "Gegenstand fürs testen"
         }
     },
     "en": {
