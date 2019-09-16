@@ -71,9 +71,10 @@ class NorthEast extends Region
         });
 
         $this->locations["Zora's Ledge"]->setRequirements(function ($locations, $items) {
-            return (($this->world->config('canWaterWalk', false) || $this->world->config('canBootsClip', false))
-                && $items->has('PegasusBoots'))
-                || $items->has('Flippers');
+            return  $items->has('Flippers')
+                || ($items->has('PegasusBoots')
+                    && ($this->world->config('canWaterWalk', false)
+                        && ($this->world->config('canFakeFlipper', false) || $this->world->config('canBootsClip', false))));
         });
 
         $this->locations["Waterfall Fairy - Left"]->setRequirements(function ($locations, $items) {

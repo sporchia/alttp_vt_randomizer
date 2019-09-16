@@ -89,15 +89,18 @@ class TurtleRock extends Region
                 || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake', $this->world)) && $items->has('Quake')))
                 && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
                 && $items->has('MoonPearl')
-                && $items->has('CaneOfSomaria') && $items->has('Hammer')
-                && ($items->canLiftDarkRocks() || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
-                && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items);
+                && $items->has('CaneOfSomaria')
+                && (($items->has('Hammer')
+                    && ($items->canLiftDarkRocks() || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
+                    && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
+                    || (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                        && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items)));
         };
 
         $middle = function ($locations, $items) {
             return (($this->world->config('canMirrorClip', false) && $items->has('MagicMirror'))
                 || (($this->world->config('canSuperSpeed', false) && $items->has('MoonPearl') && $items->canSpinSpeed())
-                    || ($this->world->config('canOWYBA', false) && $items->hasABottle())))
+                    || ($this->world->config('canOneFrameClipOW', false) && $this->world->config('canOWYBA', false) && $items->hasABottle())))
                 && ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot')
                     || !$this->world->config('region.cantTakeDamage', false)
                     && ($items->has('Cape') || $items->has('CaneOfByrna')))
@@ -105,9 +108,10 @@ class TurtleRock extends Region
         };
 
         $lower = function ($locations, $items) {
-            return $this->world->config('canMirrorWrap', false)
-                && $items->has('MagicMirror') && ($items->has('MoonPearl')
-                    || ($items->hasABottle() && $items->has('PegasusBoots')))
+            return $this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
+                && ($items->has('MoonPearl')
+                    || ($this->world->config('canOWYBA', false) && $items->hasABottle() && $this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
+                && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
                 && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
         };
 

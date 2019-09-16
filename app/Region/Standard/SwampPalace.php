@@ -152,7 +152,7 @@ class SwampPalace extends Region
         $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($main, $mire) {
             return $items->has('KeyD2')
                 && $items->has('Flippers')
-                && ($mire($locations, $items) || ($main($locations, $items) && $items->has('Hammer')))
+                && ($main($locations, $items) && ($items->has('Hammer') || $mire($locations, $items)))
                 && $items->has('Hookshot')
                 && $this->boss->canBeat($items, $locations)
                 && (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD2') || $this->locations["Swamp Palace - Boss"]->hasItem(Item::get('CompassD2', $this->world)))

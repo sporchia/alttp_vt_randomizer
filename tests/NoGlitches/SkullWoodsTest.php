@@ -83,7 +83,6 @@ class SkullWoodsTest extends TestCase
 
             ["Skull Woods - Pot Prison", true, 'BigKeyD3', [], ['BigKeyD3']],
 
-            ["Skull Woods - Pinball Room", false, 'BigKeyD3', [], ['BigKeyD3']],
             ["Skull Woods - Pinball Room", true, 'KeyD3', [], ['KeyD3']],
 
             ["Skull Woods - Boss", true, 'BigKeyD3', [], ['BigKeyD3']],

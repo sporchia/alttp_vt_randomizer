@@ -120,7 +120,7 @@ return [
                 ],
                 'quick' => [
                     'glitches_required' => 'none',
-                    'item_placement' => 'advanced',
+                    'item_placement' => 'basic',
                     'dungeon_items' => 'standard',
                     'accessibility' => 'none',
                     'goal' => 'fast_ganon',
