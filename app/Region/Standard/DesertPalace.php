@@ -119,6 +119,7 @@ class DesertPalace extends Region
             return $items->has('RescueZelda')
                 && ($items->has('BookOfMudora')
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                    || ($items->has('MagicMirror') && ($this->world->config('canOWYBA', false) && $items->hasABottle()))
                     || ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly($this->world)));
         };
 

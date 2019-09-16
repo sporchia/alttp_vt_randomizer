@@ -128,7 +128,8 @@ class South extends Region
 
         $this->locations["Checkerboard Cave"]->setRequirements(function ($locations, $items) {
             return $items->canLiftRocks()
-                && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                && ($this->world->config('canOneFrameClipOW', false)
+                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                     || ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
         });
 
@@ -144,8 +145,10 @@ class South extends Region
             return $this->world->config('canOneFrameClipOW', false)
                 || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                 || ($items->has('Flippers') && $items->has('MagicMirror')
-                    && ($items->has('MoonPearl') && ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
-                        || $this->world->getRegion('North East Dark World')->canEnter($locations, $items))));
+                    && ((($this->world->config('canBunnySurf', false) || $items->has('MoonPearl'))
+                        && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))
+                        || ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
+                            && $items->has('MoonPearl'))));
         });
 
         $this->locations["Flute Spot"]->setRequirements(function ($locations, $items) {

@@ -137,16 +137,17 @@ class NorthEast extends Region
 
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
-                && ($items->has('DefeatAgahnim')
-                    || ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
-                    || ($items->canLiftDarkRocks()
-                        && ($items->has('Flippers') || (
-                            (($this->world->config('canBootsClip', false) && $this->world->config('canFakeFlipper', false))
-                                || $this->world->config('canWaterWalk', false)) && $items->has('PegasusBoots')))
-                        && $items->has('MoonPearl'))
-                    || (($this->world->config('canSuperSpeed', false) && $this->world->config('canMirrorClip', false)
-                        && $items->has('MagicMirror') && $items->canSpinSpeed())
-                        && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
+                && (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                    || ($items->has('DefeatAgahnim')
+                        || ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
+                        || ($items->canLiftDarkRocks()
+                            && ($items->has('Flippers') || (
+                                (($this->world->config('canBootsClip', false) && $this->world->config('canFakeFlipper', false))
+                                    || $this->world->config('canWaterWalk', false)) && $items->has('PegasusBoots')))
+                            && $items->has('MoonPearl'))
+                        || (($this->world->config('canSuperSpeed', false) && $this->world->config('canMirrorClip', false)
+                            && $items->has('MagicMirror') && $items->canSpinSpeed())
+                            && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))));
         };
 
         $this->prize_location->setRequirements(function ($locations, $items) {

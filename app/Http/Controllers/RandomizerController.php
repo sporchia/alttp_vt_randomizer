@@ -82,6 +82,11 @@ class RandomizerController extends Controller
             'no_logic' => 'None',
         ][$request->input('glitches', 'none')];
 
+        // quick fix for CC and Basic
+        if ($request->input('item.pool', 'normal') === 'crowd_control') {
+            $request->merge(['item_placement' => 'advanced']);
+        }
+
         $world = World::factory($request->input('mode', 'standard'), [
             'itemPlacement' => $request->input('item_placement', 'basic'),
             'dungeonItems' => $request->input('dungeon_items', 'standard'),

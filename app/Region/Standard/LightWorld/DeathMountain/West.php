@@ -55,7 +55,8 @@ class West extends Region
 
         $this->locations["Spectacle Rock"]->setRequirements(function ($locations, $items) {
             return $items->has('MagicMirror')
-                || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'));
+                || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                || $this->world->config('canOneFrameClipOW', false);
         });
 
         $this->can_enter = function ($locations, $items) {

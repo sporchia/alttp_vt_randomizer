@@ -91,7 +91,8 @@ class East extends Region
             return $items->has('RescueZelda')
                 && (($items->canLiftDarkRocks()
                     && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
-                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots') && $items->has('MoonPearl'))
+                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')
+                        && ($items->has('MoonPearl') || $items->has('Hammer')))
                     || $this->world->config('canOneFrameClipOW', false));
         };
 

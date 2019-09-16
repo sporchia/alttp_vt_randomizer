@@ -135,8 +135,10 @@ class IcePalace extends Region
                 && ((($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false))
                     && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false))
                     && $items->canLiftDarkRocks())
-                    || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false)
+                    || ($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                         && ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                        && ($this->world->config('canOneFrameClipOW', false)
+                            || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
                         && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
         };
 

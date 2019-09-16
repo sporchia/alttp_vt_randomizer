@@ -138,7 +138,7 @@ return [
                 [
                     'header' => __('randomizer.goal.options.fast_ganon'),
                     'content' => [
-                        'This setting only requires defeating Ganon and does not require completion of Ganon’s Tower. For this to work the hole leading to Ganon has been made permanently accessible (except if entrances are randomized). The number of required crystal depends on the requirements chosen.',
+                        'This setting only requires defeating Ganon and does not require completion of Ganon’s Tower. For this to work the hole leading to Ganon has been made permanently accessible (except if entrances are randomized). The number of required crystals depends on the requirements chosen.',
                     ],
                 ],
                 [

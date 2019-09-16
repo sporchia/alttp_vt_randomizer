@@ -78,10 +78,20 @@ class NorthWest extends Region
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle()));
         });
 
+        $this->locations["C-Shaped House"]->setRequirements(function ($locations, $items) {
+            return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false);
+        });
+
+        $this->locations["Chest Game"]->setRequirements(function ($locations, $items) {
+            return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false);
+        });
+
         $this->locations["Hammer Pegs"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer')
                 && ($items->canLiftDarkRocks()
-                    || $this->world->config('canFakeFlipper', false));
+                    || ($this->world->config('canFakeFlipper', false)
+                        && ($this->world->config('canOneFrameClipOW', false)
+                            || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))));
         });
 
         $this->locations["Bumper Cave"]->setRequirements(function ($locations, $items) {

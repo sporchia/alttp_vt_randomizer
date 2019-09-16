@@ -92,9 +92,9 @@ class NorthWest extends Region
 
         $this->locations["King's Tomb"]->setRequirements(function ($locations, $items) {
             return $items->has('PegasusBoots') && ($this->world->config('canBootsClip', false)
-                    || ($items->canLiftDarkRocks()
-                        || ($items->has('MagicMirror') && $items->has('MoonPearl')
-                            && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))));
+                || ($items->canLiftDarkRocks()
+                    || ($items->has('MagicMirror') && $items->has('MoonPearl')
+                        && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))));
         });
 
         $this->locations["Pegasus Rocks"]->setRequirements(function ($locations, $items) {
@@ -105,6 +105,7 @@ class NorthWest extends Region
             return $items->has('Powder')
                 && ($items->has('Hammer')
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                    || ($this->world->getLocation('Hammer Pegs')->canAccess($items) && $items->has('MagicMirror'))
                     || ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->canLiftDarkRocks()
                         && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
         });

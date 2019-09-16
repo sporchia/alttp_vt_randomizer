@@ -80,12 +80,12 @@ class South extends Region
 
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
-                && ($items->has('MoonPearl')
-                    || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
-                && (($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && ($items->has('Hammer')
-                    || ($items->has('Hookshot') && ($items->has('Flippers') || $items->canLiftRocks()))))
-                    || ($items->has('Hammer') && $items->canLiftRocks())
-                    || $items->canLiftDarkRocks());
+                && (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                    || ($items->has('MoonPearl')
+                        && (($this->world->getRegion('North East Dark World')->canEnter($locations, $items) && ($items->has('Hammer')
+                            || ($items->has('Hookshot') && ($items->has('Flippers') || $items->canLiftRocks()))))
+                            || ($items->has('Hammer') && $items->canLiftRocks())
+                            || $items->canLiftDarkRocks())));
         };
 
         return $this;
