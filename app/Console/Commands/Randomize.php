@@ -29,7 +29,7 @@ class Randomize extends Command
         . ' {--tournament : enable tournament mode}'
         . ' {--bulk=1 : generate multiple roms}'
         . ' {--sprite= : sprite file to change links graphics [zspr format]}'
-        . ' {--no-rom : no not generate output rom}'
+        . ' {--no-rom : do not generate output rom}'
         . ' {--no-music : mute all music}'
         . ' {--menu-speed=normal : menu speed}'
         . ' {--goal=ganon : set game goal}'
