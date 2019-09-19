@@ -263,7 +263,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Map Chest"]->setRequirements(function ($locations, $items) {
-            return $items->has('Hammer') && ($items->has('PegasusBoots') || $items->has('Hookshot'))
+            return $items->has('Hammer') && ($items->has('Hookshot') || ($this->world->config('itemPlacement') !== 'basic' && $items->has('PegasusBoots')))
                 && (in_array($locations["Ganon's Tower - Map Chest"]->getItem(), [Item::get('BigKeyA2', $this->world), Item::get('KeyA2', $this->world)])
                     ? $items->has('KeyA2', 3) : $items->has('KeyA2', 4));
         })->setAlwaysAllow(function ($item, $items) {
