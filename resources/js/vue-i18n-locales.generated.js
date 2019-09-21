@@ -1402,6 +1402,10 @@ export default {
             "SomariaPlatform3": "Cane of Somaria Platform (Unused)",
             "MedallionTablet": "Medallion Tablet"
         },
+        "multiworld": {
+            "title": "Multiworld Randomizer",
+            "generate": "Generate Multiworld Data File"
+        },
         "error": {
             "title": "Error",
             "429": "While we apprecate your want to generate a lot of games, Other people would like to as well. Please come back later if you would like to generate more.",

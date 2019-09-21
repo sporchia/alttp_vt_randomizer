@@ -67,6 +67,8 @@ Route::prefix('{lang?}')->middleware('locale')->group(function () {
 
     Route::redirect('info', 'help', 301);
 
+    Route::view('multiworld', 'multiworld');
+
     Route::view('options', 'options');
 
     Route::view('races', 'races');
