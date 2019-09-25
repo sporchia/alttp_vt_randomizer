@@ -25,7 +25,7 @@ return [
         ],
     ],
     'dungeon_items' => [
-        'title' => 'Dungeon Items',
+        'title' => 'Dungeon Item Shuffle',
         'options' => [
             'standard' => 'Standard',
             'mc' => 'Maps/Compasses',
@@ -180,6 +180,14 @@ return [
             'easy' => 'Easy',
             'hard' => 'Hard',
             'expert' => 'Expert',
+        ],
+    ],
+    'spoiler' => [
+        'title' => 'Spoilers',
+        'options' => [
+            'off' => 'Disabled',
+            'on' => 'Enabled',
+            'generate' => 'Only on Generate',
         ],
     ],
     'generate' => [

@@ -143,9 +143,9 @@ class RandomizerController extends Controller
             $en->writeToRom($rom);
         }
 
-        $patch = $rom->getWriteLog();
-        $rom->setTournamentType('standard');
+        $rom->setTournamentType($request->input('spoilers', false) ? 'none' : 'standard');
         $rom->rummageTable();
+        $patch = $rom->getWriteLog();
 
         if ($world->isEnemized()) {
             $world->updateSeedRecordPatch($patch);

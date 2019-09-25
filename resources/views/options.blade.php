@@ -240,8 +240,8 @@
             </tr><tr class="table-primary">
                 <td>{{ __('options.cards.difficulty.comparison.number_silvers') }}</td>
                 <td>{{ __('options.cards.difficulty.comparison.silver') }}</td>
-                <td>{{ __('options.cards.difficulty.comparison.normal') }}<span v-tooltip="'{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span></td>
-                <td>{{ __('options.cards.difficulty.comparison.normal') }}<span v-tooltip="'{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span></td>
+                <td>{{ __('options.cards.difficulty.comparison.silver') }}<span v-tooltip="'{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span></td>
+                <td>{{ __('options.cards.difficulty.comparison.silver') }}<span v-tooltip="'{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span></td>
             </tr><tr class="table-secondary">
                 <td>{{ __('options.cards.difficulty.comparison.capacity_upgrade') }}</td>
                 <td>7</td>
@@ -356,25 +356,19 @@
                 <div class="col-md-6">
                     <ul>
                         <li>10x Big Key</li>
-                        <li>1x Blue Mail</li>
                         <li>1x Bombos</li>
                         <li>1x Book Of Mudora</li>
                         <li>1x Boomerang</li>
                         <li>4x Bottle (filled with assorted things)</li>
-                        <li>1x Bow</li>
                         <li>1x Bug Catching Net</li>
                         <li>1x Cane Of Byrna</li>
                         <li>1x Cane Of Somaria</li>
                         <li>11x Compass</li>
                         <li>12x Dungeon Map</li>
                         <li>1x Ether</li>
-                        <li>1x Fighters Shield</li>
-                        <li>1x Fighters Sword</li>
                         <li>1x Fire Rod</li>
-                        <li>1x Fire Shield</li>
                         <li>1x Flippers</li>
                         <li>1x Flute</li>
-                        <li>1x Golden Sword</li>
                         <li>1x ½ Magic</li>
                         <li>1x Hammer</li>
                         <li>11x Heart Container</li>
@@ -383,26 +377,24 @@
                         <li>28x Small Key</li>
                         <li>1x Lamp</li>
                         <li>1x Magic Cape</li>
-                    </ul>
+                        <li>1x Magic Mirror</li>
+                        <li>1x Magic Powder</li>
+                   </ul>
                 </div>
                 <div class="col-md-6">
                     <ul>
-                        <li>1x Magic Mirror</li>
-                        <li>1x Magic Powder</li>
                         <li>1x Magical Boomerang</li>
-                        <li>1x Master Sword</li>
-                        <li>1x Mirror Shield</li>
                         <li>1x Moon Pearl</li>
                         <li>1x Mushroom</li>
                         <li>1x Pegasus Boots</li>
                         <li>24x Piece Of Heart</li>
-                        <li>1x Power Glove</li>
+                        <li>2x Progressive Armor</li>
+                        <li>2x Progressive Bow</li>
+                        <li>2x Progressive Glove</li>
+                        <li>3x Progressive Shield</li>
+                        <li>4x Progressive Sword</li>
                         <li>1x Quake</li>
-                        <li>1x Red Mail</li>
                         <li>1x Shovel</li>
-                        <li>1x Silver Arrows Upgrade</li>
-                        <li>1x Tempered Sword</li>
-                        <li>1x Titans Mitt</li>
                     </ul>
                     <ul style="list-style-type:    none">
                         <li>&nbsp;</li>

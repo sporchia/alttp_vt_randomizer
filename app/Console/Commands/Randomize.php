@@ -2,6 +2,7 @@
 
 namespace ALttP\Console\Commands;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Randomizer;
 use ALttP\Rom;
@@ -42,8 +43,8 @@ class Randomize extends Command
         . ' {--dungeon_items=standard : set dungeon item placement}'
         . ' {--accessibility=item : set item/location accessibility}'
         . ' {--hints=on : set hints on or off}'
-        . ' {--item_pool=on : set item pool}'
-        . ' {--item_functionality=on : set item functionality}';
+        . ' {--item_pool=normal : set item pool}'
+        . ' {--item_functionality=normal : set item functionality}';
 
     /**
      * The console command description.
@@ -107,6 +108,8 @@ class Randomize extends Command
         $bulk = (int) ($this->option('bulk') ?? 1);
 
         for ($i = 0; $i < $bulk; $i++) {
+            Item::clearCache();
+            Boss::clearCache();
             $rom = new Rom($this->argument('input_file'));
             $hash = $hasher->encode((int) (microtime(true) * 1000));
 

@@ -242,6 +242,7 @@ var ROM = (function(blob, loaded_callback, error_callback) {
 				this.resize(data.size);
 			}
 			if (data.spoiler && data.spoiler.meta) {
+				this.accessibility = data.spoiler.meta.accessibility;
 				this.build = data.spoiler.meta.build;
 				this.goal = data.spoiler.meta.goal;
 				this.logic = data.spoiler.meta.logic;
@@ -301,9 +302,8 @@ var ROM = (function(blob, loaded_callback, error_callback) {
 
 	this.downloadFilename = function() {
 		return this.name
-			|| 'ALttP - VT_' + this.logic
+			|| 'alttpr - ' + this.logic
 			+ '-' + this.mode
-			+ (this.weapons ? '_' + this.weapons : '')
 			+ '-' + this.goal
 			+ '_' + this.hash
 			+ (this.special ? '_special' : '');

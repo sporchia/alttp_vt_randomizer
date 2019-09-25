@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="rom.spoiler.meta.spoilers_ongen==true" class="spoiler-warning">{{ $t('rom.info.spoilerwarning') }}</div>
+    <div
+      v-if="rom.spoiler.meta.spoilers_ongen==true"
+      class="spoiler-warning"
+    >{{ $t('rom.info.spoilerwarning') }}</div>
     <div v-if="rom.logic">{{ $t('rom.info.logic') }}: {{ rom.logic }}</div>
     <div v-if="rom.build">{{ $t('rom.info.build') }}: {{ rom.build }}</div>
     <div v-if="rom.difficulty">
@@ -9,11 +12,18 @@
         v-if="rom.difficulty_mode && rom.difficulty_mode.toUpperCase() != rom.difficulty.toUpperCase()"
       >({{ rom.difficulty_mode }})</span>
     </div>
+    <div
+      v-if="rom.accessibility"
+    >{{ $t('rom.info.accessibility') }}: {{ $t(`randomizer.accessibility.options.${rom.accessibility}`) }}</div>
     <div v-if="rom.variation">{{ $t('rom.info.variation') }}: {{ rom.variation }}</div>
     <div v-if="rom.shuffle">{{ $t('rom.info.shuffle') }}: {{ rom.shuffle }}</div>
-    <div v-if="rom.mode">{{ $t('rom.info.mode') }}: {{ rom.mode }}</div>
-    <div v-if="rom.weapons">{{ $t('rom.info.weapons') }}: {{ rom.weapons }}</div>
-    <div v-if="rom.goal">{{ $t('rom.info.goal') }}: {{ rom.goal }}</div>
+    <div
+      v-if="rom.mode"
+    >{{ $t('rom.info.mode') }}: {{ $t(`randomizer.world_state.options.${rom.mode}`) }}</div>
+    <div
+      v-if="rom.weapons"
+    >{{ $t('rom.info.weapons') }}: {{ $t(`randomizer.weapons.options.${rom.weapons}`) }}</div>
+    <div v-if="rom.goal">{{ $t('rom.info.goal') }}: {{ $t(`randomizer.goal.options.${rom.goal}`) }}</div>
     <div v-if="!noLink && rom.hash">
       {{ $t('rom.info.permalink') }}:
       <a :href="permalink">{{ permalink }}</a>
@@ -49,7 +59,7 @@ export default {
 
 <style scoped>
 .spoiler-warning {
-	color: red;
-  	font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 </style>

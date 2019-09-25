@@ -34,6 +34,12 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
             $crystals_ganon = $entry_crystals_ganon === 'random' ? get_random_int(0, 7) : $entry_crystals_ganon;
             $entry_crystals_tower = getWeighted('tower_open');
             $crystals_tower = $entry_crystals_tower === 'random' ? get_random_int(0, 7) : $entry_crystals_tower;
+            $logic = [
+                'none' => 'NoGlitches',
+                'overworld_glitches' => 'OverworldGlitches',
+                'major_glitches' => 'MajorGlitches',
+                'no_logic' => 'None',
+            ][getWeighted('glitches_required')];
 
             $world = World::factory(getWeighted('world_state'), [
                 'itemPlacement' => getWeighted('item_placement'),
@@ -46,7 +52,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'mode.weapons' => getWeighted('weapons'),
                 'tournament' => true,
                 'spoil.Hints' => getWeighted('hints'),
-                'logic' => getWeighted('glitches_required'),
+                'logic' => $logic,
                 'item.pool' => getWeighted('item_pool'),
                 'item.functionality' => getWeighted('item_functionality'),
                 'enemizer.bossShuffle' => getWeighted('boss_shuffle'),

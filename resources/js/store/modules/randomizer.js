@@ -93,6 +93,10 @@ export default {
       value: "default",
       name: "randomizer.enemy_health.options.default"
     },
+    spoiler: {
+      value: "off",
+      name: "randomizer.spoiler.options.off"
+    },
     options: {
       preset: [],
       glitches_required: [],
@@ -111,7 +115,21 @@ export default {
       item_pool: [],
       item_functionality: [],
       enemy_damage: [],
-      enemy_health: []
+      enemy_health: [],
+      spoiler: [
+        {
+          value: "off",
+          name: "randomizer.spoiler.options.off"
+        },
+        {
+          value: "on",
+          name: "randomizer.spoiler.options.on"
+        },
+        {
+          value: "generate",
+          name: "randomizer.spoiler.options.generate"
+        }
+      ]
     },
     preset_map: {},
     initializing: true
@@ -143,7 +161,8 @@ export default {
             dispatch("load", ["item_pool", "setItemPool"]),
             dispatch("load", ["item_functionality", "setItemFunctionality"]),
             dispatch("load", ["enemy_damage", "setEnemyDamage"]),
-            dispatch("load", ["enemy_health", "setEnemyHealth"])
+            dispatch("load", ["enemy_health", "setEnemyHealth"]),
+            dispatch("load", ["spoiler", "setSpoiler"])
           ])
         )
         .then(() => {
@@ -475,6 +494,13 @@ export default {
       }
       state.enemy_health = value;
       localforage.setItem("randomizer.enemy_health", value);
+    },
+    setSpoiler(state, value) {
+      if (typeof value === "string") {
+        value = state.options.spoiler.find(o => o.value === value);
+      }
+      state.spoiler = value;
+      localforage.setItem("randomizer.spoiler", value);
     },
     setInitalizing(state, init) {
       state.initializing = init;

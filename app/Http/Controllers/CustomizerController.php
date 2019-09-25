@@ -143,7 +143,7 @@ class CustomizerController extends Controller
             'crystals.tower' => $crystals_tower,
             'entrances' => $request->input('entrances', 'none'),
             'mode.weapons' => $request->input('weapons', 'randomized'),
-            'tournament' => $request->input('tournament', false),
+            'tournament' => $request->input('tournament', true),
             'spoilers' => $request->input('spoilers', false),
             'spoilers_ongen' => $request->input('spoilers_ongen', false),
             'spoil.Hints' => $request->input('hints', 'on'),

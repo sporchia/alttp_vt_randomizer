@@ -90,8 +90,11 @@ export default {
         lookup: rootGetters.itemLookup,
         ...data
       };
-      if (rootGetters.itemLookup[data.item]) {
-        data.item = rootGetters.itemLookup[data.item];
+      if (
+        typeof data.item === "string" &&
+        rootGetters.itemLookup[data.item.replace(/:\d+$/, "")]
+      ) {
+        data.item = rootGetters.itemLookup[data.item.replace(/:\d+$/, "")];
       }
       commit("setLocation", data);
       if (data.save) {

@@ -136,7 +136,7 @@ return [
             'off' => 'Off',
         ],
     ],
-        'weapons' => [
+    'weapons' => [
         'title' => 'Schwerter',
         'options' => [
             'randomized' => 'Zufällig',
@@ -180,6 +180,14 @@ return [
             'easy' => 'Einfach',
             'hard' => 'Schwer',
             'expert' => 'Experte',
+        ],
+    ],
+    'spoiler' => [
+        'title' => 'Spoilers',
+        'options' => [
+            'off' => 'Disabled',
+            'on' => 'Enabled',
+            'generate' => 'Nur bei Generieren',
         ],
     ],
     'generate' => [

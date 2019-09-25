@@ -63,7 +63,7 @@ return [
                 [
                     'header' => __('randomizer.item_placement.options.advanced'),
                     'content' => [
-                        'This setting is aimed at regular players and racers. The intention of this setting is to maximize glitchless item placement reach. However one exception is made to prevent navigation through dark rooms. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
+                        'This setting is aimed at experienced players. The intention of this setting is to maximize glitchless item placement reach. However one exception is made to prevent navigation through dark rooms. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
                     ],
                 ],
             ],
@@ -262,7 +262,7 @@ return [
                     . '<li>All entrances remain coupled. This means exiting one of these caves/dungeons will take you back to the entrance from which it was entered.</li>'
                     . '<li>All entrances for a given multi-entrance cave/dungeon are confined to appear within the same world (i.e. they do not connect the Light World and the Dark World).</li>'
                     . '</ul>',
-                'Link’s House and the south-facing entrance leading to the back of Kakariko bar are not randomized. However on ' . __('randomizer.world_state.options.inverted') . ' ' . __('randomizer.world_state.title') . ' note that Link’s House (in the Dark World) and the Bomb Shop (in the Light World) are both randomized.',
+                'Link’s House and the south-facing entrance leading to the back of Kakariko bar are not randomized. Note that on ' . __('randomizer.world_state.options.inverted') . ' ' . __('randomizer.world_state.title') . ' that Link’s House exits to a random overworld location (instead of at the Bomb Shop) and both Link’s House and the Bomb Shop are randomized.',
             ],
             'sections' => [
                 'none' => [
@@ -459,7 +459,7 @@ return [
                 'yes' => 'Yes',
                 'no' => 'No',
                 'tooltip' => [
-                    'silvers' => 'Swordless retains Silver Arrows but they only function in Ganon’s room.',
+                    'silvers' => 'Silver Arrows are disabled everywhere except for in Ganon’s room.',
                     'bottles' => 'Once 4 Bottles have been collected, the remaining Bottles will revert to rupees.',
                     'potion_magic' => 'Potions will fill 100% magic in Spike Cave.',
                     'potion_health' => 'Potions will fill 20 hearts in Spike Cave.',
@@ -567,7 +567,7 @@ return [
                 [
                     'header' => __('randomizer.enemy_damage.options.random'),
                     'content' => [
-                        'The damage dealt by enemies are entirely random. A value is chosen for each Mail Upgrade so they therefore do not work to reduce damage. No mapping exists between different enemy types. All enemies could deal massive damage.',
+                        'The damage dealt by enemies is chosen randomly for each Mail Upgrade. This means it’s entirely random whether Mail Upgrades increase or decrease damage received. No mapping exists between different enemy types. All enemies could deal massive damage.',
                     ],
                 ],
             ],

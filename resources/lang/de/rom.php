@@ -4,15 +4,16 @@ return [
         'title' => 'Anfangen',
         'file_select' => 'ROM Datei auswählen',
         'content' => '<ol>'
-                . '<li>Wähle die Rom Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li>'
-                . '<li>Wähle die <a href="/de/options">' . __('navigation.options') . '</a> um auszuwählen wie Zufällig dein Spiel sein soll</li>'
-                . '<li>Klicke ' . __('randomizer.generate.race') . '</li>'
-                . '<li>Dann speichere deine Rom und fang an zu spielen</li>'
+            . '<li>Wähle die Rom Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li>'
+            . '<li>Wähle die <a href="/de/options">' . __('navigation.options') . '</a> um auszuwählen wie Zufällig dein Spiel sein soll</li>'
+            . '<li>Klicke ' . __('randomizer.generate.race') . '</li>'
+            . '<li>Dann speichere deine Rom und fang an zu spielen</li>'
             . '</ol>',
     ],
     'info' => [
         'spoilerwarning' => 'WARNUNG: Der Ersteller dieses Spiel hat den Spoiler Log angesehen.',
         'logic' => __('randomizer.glitches_required.title'),
+        'accessibility' => __('randomizer.accessibility.title'),
         'build' => 'ROM build',
         'difficulty' => __('randomizer.difficulty.title'),
         'variation' => __('randomizer.variation.title'),

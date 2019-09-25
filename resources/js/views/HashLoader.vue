@@ -87,6 +87,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getSprites");
+    this.$store.dispatch("romSettings/initialize");
 
     localforage.getItem("rom").then(function(blob) {
       if (blob == null) {

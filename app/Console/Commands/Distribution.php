@@ -2,6 +2,7 @@
 
 namespace ALttP\Console\Commands;
 
+use ALttP\Boss;
 use ALttP\Item;
 use ALttP\Randomizer;
 use ALttP\Services\PlaythroughService;
@@ -16,12 +17,18 @@ class Distribution extends Command
      * @var string
      */
     protected $signature = 'alttp:distribution {type} {thing} {iterations=1}'
-        . ' {--difficulty=normal : set difficulty}'
-        . ' {--logic=NoGlitches : set logic}'
         . ' {--goal=ganon : set game goal}'
-        . ' {--variation=none : set game variation}'
         . ' {--state=standard : set game state}'
-        . ' {--tournament : enable tournament mode}'
+        . ' {--weapons=randomized : set weapons mode}'
+        . ' {--glitches=none : set glitches}'
+        . ' {--crystals_ganon=7 : set ganon crystal requirement}'
+        . ' {--crystals_tower=7 : set ganon tower crystal requirement}'
+        . ' {--item_placement=advanced : set item placement rules}'
+        . ' {--dungeon_items=standard : set dungeon item placement}'
+        . ' {--accessibility=item : set item/location accessibility}'
+        . ' {--hints=off : set hints on or off}'
+        . ' {--item_pool=normal : set item pool}'
+        . ' {--item_functionality=normal : set item functionality}'
         . ' {--csv= : file to write to}';
 
     /**
@@ -33,14 +40,8 @@ class Distribution extends Command
 
     /** @var string */
     private $state;
-    /** @var string */
-    private $difficulty;
-    /** @var string */
-    private $logic;
-    /** @var string */
-    private $goal;
-    /** @var string */
-    private $variation;
+    /** @var array */
+    private $options;
 
     /**
      * Execute the console command.
@@ -49,23 +50,34 @@ class Distribution extends Command
      */
     public function handle()
     {
-        if (
-            !is_string($this->option('difficulty'))
-            || !is_string($this->option('logic'))
-            || !is_string($this->option('goal'))
-            || !is_string($this->option('state'))
-            || !is_string($this->option('variation'))
-        ) {
-            $this->error('option not string');
 
-            return 101;
-        }
+        $logic = [
+            'none' => 'NoGlitches',
+            'overworld_glitches' => 'OverworldGlitches',
+            'major_glitches' => 'MajorGlitches',
+            'no_logic' => 'None',
+        ][$this->option('glitches')];
 
-        $this->difficulty = $this->option('difficulty');
-        $this->logic = $this->option('logic');
-        $this->goal = $this->option('goal');
-        $this->variation = $this->option('variation');
         $this->state = $this->option('state');
+        $this->options = [
+            'itemPlacement' => $this->option('item_placement'),
+            'dungeonItems' => $this->option('dungeon_items'),
+            'accessibility' => $this->option('accessibility'),
+            'goal' => $this->option('goal'),
+            'crystals.ganon' => $this->option('crystals_ganon'),
+            'crystals.tower' => $this->option('crystals_tower'),
+            'entrances' => 'none',
+            'mode.weapons' => $this->option('weapons'),
+            'tournament' => false,
+            'spoil.Hints' => $this->option('hints'),
+            'logic' => $logic,
+            'item.pool' => $this->option('item_pool'),
+            'item.functionality' => $this->option('item_functionality'),
+            'enemizer.bossShuffle' => 'none',
+            'enemizer.enemyShuffle' => 'none',
+            'enemizer.enemyDamage' => 'default',
+            'enemizer.enemyHealth' => 'default',
+        ];
 
         $locations = [];
         switch ($this->argument('type')) {
@@ -129,6 +141,8 @@ class Distribution extends Command
         }
 
         for ($i = 0; $i < $this->argument('iterations'); $i++) {
+            Item::clearCache();
+            Boss::clearCache();
             if (!is_callable($function)) {
                 continue;
             }
@@ -184,32 +198,22 @@ class Distribution extends Command
 
     private function item($item_name, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
         $item = Item::get($item_name, $world);
 
         foreach ($world->getLocationsWithItem($item) as $location) {
-            if (!isset($locations[$location->getName()])) {
-                $locations[$location->getName()] = 0;
+            if (!isset($locations[(string) $location])) {
+                $locations[(string) $location] = 0;
             }
-            $locations[$location->getName()]++;
+            $locations[(string) $location]++;
         }
     }
 
     private function location($location_name, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
@@ -229,12 +233,7 @@ class Distribution extends Command
 
     private function location_ordered($location_name, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
@@ -251,19 +250,14 @@ class Distribution extends Command
 
     private function region($region_name, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
         $region = $world->getRegion($region_name);
 
         foreach ($region->getLocations() as $location) {
-            $location_name = $location->getName();
+            $location_name = (string) $location;
             $item_name = $location->getItem()->getNiceName();
             if (!isset($locations[$location_name][$item_name])) {
                 $locations[$location_name][$item_name] = 0;
@@ -274,18 +268,13 @@ class Distribution extends Command
 
     private function required($unused, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
         $required_locations = (new PlaythroughService)->getPlayThrough($world, false);
         foreach ($required_locations as $location) {
-            $location_name = $location->getName();
+            $location_name = (string) $location;
             $item = $location->getItem();
             if (!$item) {
                 continue;
@@ -302,22 +291,17 @@ class Distribution extends Command
 
     private function required_ordered($unused, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
         $required_locations = (new PlaythroughService)->getPlayThrough($world, false);
         $required_locations_names = array_map(function ($location) {
-            return $location->getName();
+            return (string) $location;
         }, $required_locations);
 
         foreach ($world->getCollectableLocations() as $location) {
-            $location_name = $location->getName();
+            $location_name = (string) $location;
             if (!in_array($location_name, $required_locations_names) || strpos($location->getItem()->getName(), 'Key') !== false) {
                 $locations[$location_name][] = '';
                 continue;
@@ -329,17 +313,12 @@ class Distribution extends Command
 
     private function full($unused, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
         foreach ($world->getLocations() as $location) {
-            $location_name = $location->getName();
+            $location_name = (string) $location;
             $item = $location->getItem();
             if (!$item) {
                 continue;
@@ -356,17 +335,12 @@ class Distribution extends Command
 
     private function full_ordered($unused, &$locations)
     {
-        $world = World::factory($this->state, [
-            'difficulty' => $this->difficulty,
-            'logic' => $this->logic,
-            'goal' => $this->goal,
-            'variation' => $this->variation,
-        ]);
+        $world = World::factory($this->state, $this->options);
         $rand = new Randomizer([$world]);
         $rand->randomize();
 
         foreach ($world->getLocations() as $location) {
-            $location_name = $location->getName();
+            $location_name = (string) $location;
             $item = $location->getItem();
             if (!$item) {
                 continue;

@@ -167,6 +167,12 @@
                     maxlength="100"
                     storage-key="vt.custom.name"
                   >Name</vt-text>
+                  <br />
+                  <Select
+                    :value="spoiler"
+                    @input="setSpoiler"
+                    :options="optionsSpoiler"
+                  >{{ $t('randomizer.spoiler.title') }}</Select>
                 </div>
                 <div class="col-md mb-3">
                   <vt-textarea
@@ -209,13 +215,8 @@
         </div>
       </tab>
       <tab name="Game Details" v-show="gameLoaded">
-        <div
-          id="seed-details"
-          class="card border-success"
-          :class="{'border-info': choice.tournament}"
-          v-if="gameLoaded && romLoaded"
-        >
-          <div class="card-header text-white bg-success" :class="{'bg-info': choice.tournament}">
+        <div id="seed-details" class="card border-success" v-if="gameLoaded && romLoaded">
+          <div class="card-header text-white bg-success">
             <h3 class="card-title">
               {{ $t('randomizer.details.title') }}
               <span v-if="rom.name">: {{rom.name}}</span>
@@ -353,7 +354,6 @@ export default {
         name: "",
         notes: ""
       },
-      tournament: false,
       settings: {
         logics: [],
         weapons: [],
@@ -435,7 +435,8 @@ export default {
       "setWeapons",
       "setItemFunctionality",
       "setEnemyDamage",
-      "setEnemyHealth"
+      "setEnemyHealth",
+      "setSpoiler"
     ]),
     applySpoilerSeed() {
       this.endpoint = "/api/customizer";
@@ -487,8 +488,9 @@ export default {
                 pool: this.itemPool.value,
                 functionality: this.itemFunctionality.value
               },
-              tournament: this.tournament,
-              spoilers: this.spoilers,
+              tournament: this.spoiler.value !== "on",
+              spoilers: this.spoiler.value === "on",
+              spoilers_ongen: this.spoiler.value === "generate",
               lang: document.documentElement.lang,
               name: this.choice.name,
               notes: this.choice.notes,
@@ -701,7 +703,9 @@ export default {
       optionsEnemyDamage: state => state.options.enemy_damage,
       enemyDamage: state => state.enemy_damage,
       optionsEnemyHealth: state => state.options.enemy_health,
-      enemyHealth: state => state.enemy_health
+      enemyHealth: state => state.enemy_health,
+      optionsSpoiler: state => state.options.spoiler,
+      spoiler: state => state.spoiler
     }),
     ...mapState("romSettings", {
       heartSpeed: state => state.heartSpeed,
