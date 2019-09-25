@@ -81,11 +81,6 @@ class ThievesTown extends Region
 
             return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
         })->setAlwaysAllow(function ($item, $items) {
-            logger()->error(json_encode([
-                $this->world->config('accessibility'),
-                $item->getName(),
-                $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD4', $this->world) && $items->has('Hammer'),
-            ]));
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD4', $this->world) && $items->has('Hammer');
         });
 
