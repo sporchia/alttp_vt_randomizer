@@ -97,7 +97,7 @@ class LocationCollection extends Collection
                 $item = Item::get('KeyGK', $prime_location->getRegion()->getWorld());
             }
 
-            $item_name = __('hint.item.' . $item->getTarget()->getName());
+            $item_name = __('hint.item.' . $item->getTarget()->getRawName());
 
             return (is_array($item_name)) ? array_first(fy_shuffle($item_name)) : $item_name;
         });
@@ -110,7 +110,7 @@ class LocationCollection extends Collection
         }
 
 
-        $location_name = __('hint.location.' . $prime_location->getName());
+        $location_name = __('hint.location.' . (string)$prime_location);
 
         if (is_array($location_name)) {
             $location_name = array_first($location_name); // on multi-locations we want the first one

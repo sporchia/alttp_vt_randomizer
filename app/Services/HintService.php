@@ -109,7 +109,7 @@ class HintService
 
                 if (is_array($pick)) {
                     $hint = $world->getLocations()->filter(function ($location) use ($pick) {
-                        return in_array($location->getName(), $pick);
+                        return in_array((string)$location, $pick);
                     })->getHint();
                 } else {
                     $hint = $world->getLocation($pick)->getHint();
