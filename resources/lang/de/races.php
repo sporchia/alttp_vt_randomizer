@@ -30,7 +30,7 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'Plannungslose Rennen',
+                    'header' => 'Spontane Rennen',
                     'content' => [
                         'Die geplannten Rennen passen nicht in dein Zeitplan? Du suchst Rennen mit eher ungenutzen Optionen? Trete einer der ungeplannten Rennen bei! Du wirst rund um die Uhr Spieler finden die gewillt sind, ein Rennen zu machen. Trete dem #race-planning Kanal bei auf unserem <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
                     ],

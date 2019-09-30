@@ -127,15 +127,15 @@ return [
             'none' => 'Ninguno',
             'shuffled' => 'Barajado',
             'random' => 'Aleatorio',
+        ],
     ],
-],
-"hints" => [
-    'title' => 'Pistas',
-    'options' => [
-        'on' => 'On',
-        'off' => 'Off',
+    "hints" => [
+        'title' => 'Pistas',
+        'options' => [
+            'on' => 'On',
+            'off' => 'Off',
+        ],
     ],
-],
     'weapons' => [
         'title' => 'Espadas',
         'options' => [
@@ -180,6 +180,14 @@ return [
             'easy' => 'Fácil',
             'hard' => 'Difícil',
             'expert' => 'Experto',
+        ],
+    ],
+    'spoiler' => [
+        'title' => 'Spoilers',
+        'options' => [
+            'off' => 'Disabled',
+            'on' => 'Enabled',
+            'generate' => 'Solo en Generar',
         ],
     ],
     'generate' => [

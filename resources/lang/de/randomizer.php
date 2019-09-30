@@ -2,54 +2,54 @@
 return [
     'title' => 'Randomizer',
     'preset' => [
-        'title' => 'Select Preset',
-        'customize' => 'Customize',
+        'title' => 'Wähle Voreinstellungen',
+        'customize' => 'Customire',
         'options' => [
             'default' => 'Default',
             'beginner' => 'Beginner',
-            'veetorp' => 'OWG (Veetorp’s Favorite)',
+            'veetorp' => 'OWG (Veetorp’s Favorit)',
             'crosskeys' => 'Crosskeys',
-            'quick' => 'Super Quick',
-            'nightmare' => 'Nightmare',
-            'custom' => 'Custom',
+            'quick' => 'Super Schnell',
+            'nightmare' => 'Albtraum',
+            'custom' => 'Benutzerdefiniert',
         ],
     ],
     'placement' => [
-        'title' => 'Item Placement',
+        'title' => 'Gegenstandsplatzierung',
     ],
     'item_placement' => [
-        'title' => 'Item Placement',
+        'title' => 'Gegenstandsplatzierung',
         'options' => [
-            'basic' => 'Basic',
-            'advanced' => 'Advanced',
+            'basic' => 'Basis',
+            'advanced' => 'Erweitert',
         ],
     ],
     'dungeon_items' => [
-        'title' => 'Dungeon Items',
+        'title' => 'Palastgegenstände',
         'options' => [
             'standard' => 'Standard',
-            'mc' => 'Maps/Compasses',
-            'mcs' => 'Maps/Compasses/Small Keys',
+            'mc' => 'Karten/Kompässe',
+            'mcs' => 'Karten/Kompässe/kleine Schlüssel',
             'full' => 'Keysanity',
         ],
     ],
     'accessibility' => [
-        'title' => 'Accessibility',
+        'title' => 'Zugänglichkeit',
         'options' => [
-            'items' => '100% Inventory',
-            'locations' => '100% Locations',
-            'none' => 'Beatable',
+            'items' => '100% Inventar',
+            'locations' => '100% der Orte',
+            'none' => 'Schaffbar',
         ],
     ],
     'glitches_required' => [
-        'title' => 'Glitches Required',
+        'title' => 'Vorausgesetzte Glitches',
         'options' => [
-            'none' => 'None',
+            'none' => 'Keine',
             'overworld_glitches' => 'Overworld Glitches',
             'major_glitches' => 'Major Glitches',
-            'no_logic' => 'No Logic',
+            'no_logic' => 'Keine Logik',
         ],
-        'glitch_warning' => 'These settings require knowledge of Major Glitches<sup>**</sup>',
+        'glitch_warning' => 'Diese Einstellung setzt Wissen von Major Glitches voraus<sup>**</sup>',
     ],
     'goal' => [
         'title' => 'Ziel',
@@ -62,38 +62,38 @@ return [
         ],
     ],
     'tower_open' => [
-        'title' => 'Open Tower',
+        'title' => 'Turm öffnen',
         'options' => [
-            '0' => '0 Crystals',
-            '1' => '1 Crystal',
-            '2' => '2 Crystals',
-            '3' => '3 Crystals',
-            '4' => '4 Crystals',
-            '5' => '5 Crystals',
-            '6' => '6 Crystals',
-            '7' => '7 Crystals',
-            'random' => 'Random'
+            '0' => '0 Kristalle',
+            '1' => '1 Kristall',
+            '2' => '2 Kristalle',
+            '3' => '3 Kristalle',
+            '4' => '4 Kristalle',
+            '5' => '5 Kristalle',
+            '6' => '6 Kristalle',
+            '7' => '7 Kristalle',
+            'random' => 'Zufällig'
         ],
     ],
     'ganon_open' => [
-        'title' => 'Ganon Vulnerable',
+        'title' => 'Ganon verwundbar machen',
         'options' => [
-            '0' => '0 Crystals',
-            '1' => '1 Crystal',
-            '2' => '2 Crystals',
-            '3' => '3 Crystals',
-            '4' => '4 Crystals',
-            '5' => '5 Crystals',
-            '6' => '6 Crystals',
-            '7' => '7 Crystals',
-            'random' => 'Random'
+            '0' => '0 Kristalle',
+            '1' => '1 Kristall',
+            '2' => '2 Kristalle',
+            '3' => '3 Kristalle',
+            '4' => '4 Kristalle',
+            '5' => '5 Kristalle',
+            '6' => '6 Kristalle',
+            '7' => '7 Kristalle',
+            'random' => 'Zufällig'
         ],
     ],
     'gameplay' => [
         'title' => 'Gameplay',
     ],
     "world_state" => [
-        'title' => 'World State',
+        'title' => 'Zustand der Welt',
         'options' => [
             'standard' => 'Standard',
             'open' => 'Offen',
@@ -104,7 +104,7 @@ return [
     "entrance_shuffle" => [
         'title' => 'Entrance Shuffle',
         'options' => [
-            'none' => 'None',
+            'none' => 'Keine',
             'simple' => 'Simpel',
             'restricted' => 'Beschränkt',
             'full' => 'Voll',
@@ -115,32 +115,32 @@ return [
     "boss_shuffle" => [
         'title' => 'Boss Shuffle',
         'options' => [
-            'none' => 'None',
-            'simple' => 'Simple',
-            'full' => 'Full',
-            'random' => 'Random',
+            'none' => 'Keine',
+            'simple' => 'Simpel',
+            'full' => 'Voll',
+            'random' => 'Zufällig',
         ],
     ],
     "enemy_shuffle" => [
         'title' => 'Enemy Shuffle',
         'options' => [
-            'none' => 'None',
-            'shuffled' => 'Shuffled',
-            'random' => 'Random',
+            'none' => 'Keine',
+            'shuffled' => 'Gemischt',
+            'random' => 'Zufällig',
         ],
     ],
     "hints" => [
-        'title' => 'Hints',
+        'title' => 'Hinweise',
         'options' => [
-            'on' => 'On',
-            'off' => 'Off',
+            'on' => 'An',
+            'off' => 'Aus',
         ],
     ],
-        'weapons' => [
+    'weapons' => [
         'title' => 'Schwerter',
         'options' => [
             'randomized' => 'Zufällig',
-            'assured' => 'Assured',
+            'assured' => 'Garantiert',
             'vanilla' => 'Vanilla',
             'swordless' => 'Schwertlos',
         ],
@@ -154,10 +154,10 @@ return [
             'expert' => 'Experte',
             'crowd_control' => 'Crowd Control',
         ],
-        'crowd_control_warning' => '<sup>*</sup> This setting is meant to be used with the Crowd Control Twitch extension. find out more: <a href="https://crowdcontrol.live/" target="_blank" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>',
+        'crowd_control_warning' => '<sup>*</sup> Diese Erweiterung ist für die Verwundung mit Twitches Crowd Control Erweiterung gedacht. Für mehr Info´s: <a href="https://crowdcontrol.live/" target="_blank" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>',
     ],
     'item_functionality' => [
-        'title' => 'Item Functionality',
+        'title' => 'Gegendstands Funktionalität',
         'options' => [
             'easy' => 'Einfach',
             'normal' => 'Normal',
@@ -166,15 +166,15 @@ return [
         ],
     ],
     'enemy_damage' => [
-        'title' => 'Enemy Damage',
+        'title' => 'Gegnerschaden',
         'options' => [
             'default' => 'Default',
-            'shuffled' => 'Shuffled',
-            'random' => 'Random',
+            'shuffled' => 'Gemischt',
+            'random' => 'Zufällig',
         ],
     ],
     'enemy_health' => [
-        'title' => 'Enemy Health',
+        'title' => 'Gegnerleben',
         'options' => [
             'default' => 'Default',
             'easy' => 'Einfach',
@@ -182,15 +182,23 @@ return [
             'expert' => 'Experte',
         ],
     ],
+    'spoiler' => [
+        'title' => 'Spoilers',
+        'options' => [
+            'off' => 'Disabled',
+            'on' => 'Enabled',
+            'generate' => 'Nur bei Generieren',
+        ],
+    ],
     'generate' => [
         'race' => 'Generiere ROM für Rennen',
         'race_warning' => '<span class="running-now">Spoilerfrei</span>',
         'spoiler_race' => 'ROM für Spoiler Rennen',
         'casual' => 'Generiere ROM',
-        'back' => 'Change Settings',
-        'regenerate' => 'Generate Again',
-        'regenerate_tooltip' => 'Generate new game with same settings',
-        'generating' => 'Generating...',
+        'back' => 'Ändere Einstellung',
+        'regenerate' => 'Erneut erstellen',
+        'regenerate_tooltip' => 'Erstellt ein neues Spiel mit den gleichen Einstellungen',
+        'generating' => 'Am erstellen...',
     ],
     'details' => [
         'title' => 'Spiel Details',

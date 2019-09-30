@@ -13,6 +13,7 @@ return [
     'info' => [
         'spoilerwarning' => 'WARNING: The generator of this game viewed the spoiler log.',
         'logic' => __('randomizer.glitches_required.title'),
+        'accessibility' => __('randomizer.accessibility.title'),
         'build' => 'ROM build',
         'difficulty' => __('randomizer.difficulty.title'),
         'variation' => __('randomizer.variation.title'),

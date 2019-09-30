@@ -16,7 +16,7 @@
         <li>Entrance shuffle supports standard and inverted</li>
         <li>Hints can be toggled in main interface</li>
         <li>Removed Uncle Assured weapons option</li>
-        <li>Added Vanilla and Assure weapons options</li>
+        <li>Added Vanilla and Assured weapons options</li>
         <li>Difficulty split into Item Pool and Item Functionality</li>
         <li>Palette Shuffle has moved to a post-generation option</li>
         <li>Pot Shuffle has been removed (for now)</li>

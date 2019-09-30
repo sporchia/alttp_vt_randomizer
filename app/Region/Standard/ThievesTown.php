@@ -75,7 +75,8 @@ class ThievesTown extends Region
 
         $this->locations["Thieves' Town - Big Chest"]->setRequirements(function ($locations, $items) {
             if ($locations["Thieves' Town - Big Chest"]->hasItem(Item::get('KeyD4', $this->world))) {
-                return $items->has('Hammer') && $items->has('BigKeyD4');
+                return $items->has('Hammer') && $items->has('BigKeyD4')
+                    && $this->world->config('accessibility') !== 'locations';
             }
 
             return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');

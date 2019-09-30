@@ -2,7 +2,7 @@
 
 return [
     'start_playing' => 'Anfangen zu spielen',
-    'start_watching' => 'Anfangen zu schauen',
+    'start_watching' => 'Anfangen zu zuschauen',
     'generate' => 'Generiere Spiel',
     'randomizer' => 'Generiere Randomized Spiel',
     'entrance' => 'Entrance Randomizer',

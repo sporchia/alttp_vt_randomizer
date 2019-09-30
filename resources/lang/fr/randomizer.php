@@ -136,7 +136,7 @@ return [
             'off' => 'Désactivés',
         ],
     ],
-            'weapons' => [
+    'weapons' => [
         'title' => 'Épées',
         'options' => [
             'randomized' => 'Randomisées',
@@ -182,6 +182,14 @@ return [
             'expert' => 'Expert',
         ],
     ],
+    'spoiler' => [
+        'title' => 'Spoilers',
+        'options' => [
+            'off' => 'Desactivé',
+            'on' => 'Activé',
+            'generate' => 'Seulement sur Generate',
+        ],
+    ],
     'generate' => [
         'race' => 'Générer une ROM de Course',
         'race_warning' => 'Les spoilers ne seront <span class="running-now">jamais</span> disponibles pour cette option.',
@@ -199,7 +207,7 @@ return [
     // depricated
     'variation' => [
         'title' => 'Variation',
-        ],
+    ],
     'difficulty' => [
         'title' => 'Difficulté',
         'options' => [

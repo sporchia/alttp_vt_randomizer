@@ -2,78 +2,78 @@
 return [
     'settings' => [
         'timers' => [
-            'off' => 'Off',
-            'stopwatch' => 'Stopwatch',
+            'off' => 'Aus',
+            'stopwatch' => 'Stoppuhr',
             'countdown-ohko' => 'Countdown OHKO',
-            'countdown-continue' => 'Countdown Continue',
-            'countdown-stop' => 'Countdown Stop',
+            'countdown-continue' => 'Countdown fortführen',
+            'countdown-stop' => 'Countdown stopp',
         ],
         'dungeon_count' => [
-            'off' => 'Off',
-            'on' => 'Always On',
-            'pickup' => 'On Compass Pickup',
+            'off' => 'Aus',
+            'on' => 'Immer an',
+            'pickup' => 'Beim aufheben des Kompass',
         ],
     ],
     'glitches' => [
         'canBombJump' => [
             'title' => 'Bomb Jump',
-            'description' => 'One may be required to Bomb jump over gaps.',
+            'description' => 'Es kann vorausgesetz werden, dass man mit Bomben über Abgründe springt.',
         ],
         'canBootsClip' => [
             'title' => 'Boots Clip',
-            'description' => 'When one has the Boots, they may be required to clip through walls in the in overworld.',
+            'description' => 'Wenn man die Pegasusstiefel besitzt könnte es vorausgesetz werden, dass man mit ihnen durch Wände clippt in der Overworld.',
         ],
         'canBunnyRevive' => [
             'title' => 'Bunny Revive',
-            'description' => 'One may be required to go somewhere as bunny form and abuse death/fairy revive to be Link.',
+            'description' => 'Es kann vorausgesetz werden, dass man die Wiederbelebungs/Feenmechanik ausnutzt um Link zu werden ohne Mondperle in der Overworld.',
         ],
         'canBunnySurf' => [
             'title' => 'Bunny Surf',
-            'description' => 'One may be required to water walk in bunny state.',
+            'description' => 'Es kann vorausgesetz werden, dass man in der Hasenform auf dem Wassser läuft.',
         ],
         'canDungeonRevive' => [
             'title' => 'Dungeon Revive',
-            'description' => 'One may be required to revive as a bunny in a dungeon to collect items as Link.',
+            'description' => 'Es kann vorausgesetz werden, dass man die Wiederbelebungsmechanik nutzt um Link zu werden in einem Palast um Gegenstände aufzusammeln.',
         ],
         'canFakeFlipper' => [
             'title' => 'Fake Flipper',
-            'description' => 'One may be required to use the fake flipper glitch to collect items.',
+            'description' => 'Es kann vorausgesetz werden, dass man Fake Flipper nutzt um an gewissen Gegenstände zu kommen.',
         ],
         'canMirrorClip' => [
             'title' => 'Mirror Clip',
-            'description' => 'One may be required to abuse Mirror bouce to go out of bounds.',
+            'description' => 'Es kann vorausgesetz werden, dass man Mirror Bounce ausnutzt um außerhalb der Spielwelt zu gelangen.',
         ],
         'canMirrorWrap' => [
             'title' => 'Mirror Wrap',
-            'description' => 'One may be required to use Mirror to auto scroll to a different location.',
+            'description' => 'Es kann vorausgesetz werden, dass man den Spiegel nutzt um den Spielbildschirm zu scrollen damit man an einen anderen Ort kommt.',
         ],
         'canOneFrameClipOW' => [
             'title' => 'One Frame Clip (overworld)',
-            'description' => 'You don’t want this. Trust me.',
+            'description' => 'Du willst das hier nicht! Glaub mir.',
         ],
         'canOWYBA' => [
             'title' => 'YBA (overworld)',
-            'description' => 'May be required to use bottles in the overworld to teleport to different locations.',
+            'description' => 'Es kann vorausgesetz werden, dass man Flaschen in der Overworld nutzt um damit an einen Ort zu telepotieren.',
         ],
         'canSuperBunny' => [
             'title' => 'Super Bunny',
-            'description' => 'One may be required to activate super bunny to access locations.',
+            'description' => 'Es kann vorausgesetz werden, dass man Super Bunny aktiviert um an gewisse Orte zu kommen.',
         ],
         'canSuperSpeed' => [
             'title' => 'Super Speed',
-            'description' => 'One may be required to super speed clip through edges in overworld.',
+            'description' => 'Es kann vorausgesetz werden, dass man Super Speed nutzt um durch die Ecken der Overworld durchzulaufen.',
         ],
         'canWaterFairyRevive' => [
             'title' => 'Water Fairy Revive',
-            'description' => 'This setup is silly and requires a bunch of items.',
+            'description' => 'Die vorbereitung hierfür ist einfach nur dumm und brauch viel zu viele Gegenstände.',
         ],
         'canWaterWalk' => [
             'title' => 'Water walk',
-            'description' => 'One may be required to use boots to walk on top of water.',
+            'description' => 'Es kann vorausgesetz werden, dass man auf Wasser läuft.',
         ],
         'noLogic' => [
             'title' => 'Disable all logic checks',
-            'description' => 'When this is selected all bets are off, and nothing below matters.',
+            'description' => 'Wenn man diese Option aktiviert werden alle unteren Optionen ignoriert.',
         ],
     ]
 ];
