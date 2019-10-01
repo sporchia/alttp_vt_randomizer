@@ -21,7 +21,6 @@ return [
         'canMirrorClip' => true,
         'canWaterWalk' => true,
         'canBunnySurf' => true,
-        'canBunnyRevive' => true,
         'canMirrorWrap' => true,
         'canDungeonRevive' => true,
         'canOWYBA' => true,
