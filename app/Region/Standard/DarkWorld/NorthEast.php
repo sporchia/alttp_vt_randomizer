@@ -179,11 +179,10 @@ class NorthEast extends Region
                             || $this->world->config('canMirrorClip', false))
                         && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
                     || ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
-                    || (($items->canLiftDarkRocks() || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
-                        || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false)
-                            && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)))
+                    || (($items->canLiftDarkRocks() || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))
                         && $items->has('MoonPearl')
                         && ($items->has('Hammer') || $items->has('Flippers')
+                            || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false))
                             || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                             || ($this->world->config('canWaterWalk', false) && $items->has('PegasusBoots'))
                             || ($this->world->config('canFakeFlipper', false) && !$this->world->config('region.cantTakeDamage', false)))));
