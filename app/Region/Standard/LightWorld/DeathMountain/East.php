@@ -97,6 +97,6 @@ class East extends Region
                     || $items->has('Hookshot'));
         };
 
-        return $this;
+        return $this; 
     }
 }
