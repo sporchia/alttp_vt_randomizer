@@ -176,9 +176,12 @@ class PalaceOfDarkness extends Region
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasBottle()))
-                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                && ((($items->has('MoonPearl')
+                    || (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                        || ($this->world->config('canBunnyRevive', false) && $items->canSpinSpeed())))
                     && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))
-                    || ($this->world->config('canOneFrameClipUW', false) && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
+                    || ($this->world->config('canOneFrameClipUW', false) && $this->world->config('canDungeonRevive', false)
+                        && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
         };
 
         $this->prize_location->setRequirements($this->can_complete);
