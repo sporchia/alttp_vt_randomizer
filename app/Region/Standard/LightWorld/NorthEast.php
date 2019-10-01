@@ -98,6 +98,6 @@ class NorthEast extends Region
             return $items->has('RescueZelda');
         };
         
-        return $this;
+        return $this; 
     }
 }
