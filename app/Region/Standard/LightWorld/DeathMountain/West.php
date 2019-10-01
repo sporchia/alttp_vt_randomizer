@@ -69,6 +69,6 @@ class West extends Region
                     || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))));
         };
 
-        return $this;
+        return $this; 
     }
 }
