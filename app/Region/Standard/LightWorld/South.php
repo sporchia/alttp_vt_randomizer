@@ -145,16 +145,13 @@ class South extends Region
         $this->locations["Lake Hylia Island"]->setRequirements(function ($locations, $items) {
             return $this->world->config('canOneFrameClipOW', false)
                 || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                || ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)
-                    && $this->world->config('canWaterWalk', false) && $items->has('PegasusBoots')
-                    && ($items->has('MoonPearl') || $this->world->config('canOWYBA', false)))
+                || ($items->has('MagicMirror') && $this->world->config('canWaterWalk', false) && $items->has('PegasusBoots')
+                    && ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                    && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
                 || ($items->has('Flippers') && $items->has('MagicMirror')
-                    && ((($this->world->config('canBunnySurf', false)  
-                        || ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle())))
-                        && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))
-                        || ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
-                            && ($items->has('MoonPearl')
-                                || ($this->world->config('canOWYBA', false) && $items->hasABottle())))));
+                    && ($this->world->config('canBunnySurf', false)  
+                        || $items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                    && $this->world->getRegion('North East Dark World')->canEnter($locations, $items));
         });
         
         $this->locations["Flute Spot"]->setRequirements(function ($locations, $items) {
