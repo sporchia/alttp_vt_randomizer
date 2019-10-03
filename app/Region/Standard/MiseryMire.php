@@ -136,7 +136,8 @@ class MiseryMire extends Region
                     || ($items->hasABottle()
                         && (($items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false)
                             && (($items->canLiftDarkRocks() && ($items->canFly($this->world) ||
-                                  ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
+                                ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
+                                 || ($this->world->config('canOWYBA', false) && $items->has('MagicMirror'))
                                  || $this->world->config('canOneFrameClipOW', false))) 
                             || ($this->world->config('canOWYBA', false)
                                 && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) 
