@@ -88,13 +88,13 @@ class East extends Region
         
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
-                && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
                 && ($this->world->config('canOneFrameClipOW', false)
-                    || (($this->world->config('canMirrorClip', false) || $this->world->config('canMirrorWrap', false)
-                        || $items->has('Hammer')) && $items->has('MagicMirror'))
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                     || ($this->world->config('capSuperSpeed', false) && $items->canSpinSpeed())
-                    || $items->has('Hookshot'));
+                    || (((($this->world->config('canMirrorClip', false) || $this->world->config('canMirrorWrap', false))
+                        && $items->has('MagicMirror')) || $items->has('Hookshot'))
+                            && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+                    || ($items->has('Hammer') && $this->world->getRegion('Tower of Hera')->canEnter($locations, $items)));
         };
 
         return $this; 
