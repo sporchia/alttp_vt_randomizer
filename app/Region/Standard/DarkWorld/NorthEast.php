@@ -168,7 +168,7 @@ class NorthEast extends Region
                     || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false)
                         && $this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()
                         && (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
-                            || $this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                            || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                             || $this->world->config('canMirrorClip', false))
                         && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
                     || ($items->has('Hammer') && $items->canLiftRocks() && $items->has('MoonPearl'))
