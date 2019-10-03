@@ -51,6 +51,7 @@ class Mire extends Region
             return $items->has('MoonPearl')
                 || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                     && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
                         || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))));
         });
         
@@ -58,6 +59,7 @@ class Mire extends Region
             return $items->has('MoonPearl')
                 || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                     && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
                         || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))));
         });
         
@@ -65,6 +67,7 @@ class Mire extends Region
             return $items->has('MoonPearl')
                 || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                     && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
                         || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
                 || ($this->world->config('canSuperBunny', false)
                     && ($items->has('MagicMirror') || ($items->hasHealth(5) && !$this->world->config('region.cantTakeDamage', false))));
@@ -74,6 +77,7 @@ class Mire extends Region
             return $items->has('MoonPearl')
                 || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                     && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
                         || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
                 || ($this->world->config('canSuperBunny', false)
                     && ($items->has('MagicMirror') || ($items->hasHealth(5) && !$this->world->config('region.cantTakeDamage', false))));
