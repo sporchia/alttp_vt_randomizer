@@ -124,6 +124,7 @@ class IcePalace extends Region
             return $this->world->config('region.bossNormalLocation', true)
                 && ($item == Item::get('CompassD5', $this->world) || $item == Item::get('MapD5', $this->world));
         });
+        
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
@@ -132,7 +133,7 @@ class IcePalace extends Region
                 && ((($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false))
                     && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false) 
                         || ($this->world->config('canWaterWalk', false) && $items->has('PegasusBoots'))
-                        || ($this->world->config('canBunnyRevive', false) && $items->canSpinspeed()))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
                     && $items->canLiftDarkRocks())
                     || (($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                         && (($items->has('MoonPearl')
