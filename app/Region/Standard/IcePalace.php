@@ -138,8 +138,9 @@ class IcePalace extends Region
                     || (($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                         && (($items->has('MoonPearl')
                             || ($items->hasABottle() && $this->world->config('canOWYBA', false))
-                            || ($this->world->config('canBunnyRevive', false) && $items->canSpinSpeed()))
-                            && $this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                            && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))
                             || $this->world->config('canOneFrameClipOW', false))
                         && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
         };
