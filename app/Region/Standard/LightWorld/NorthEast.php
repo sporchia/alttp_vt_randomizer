@@ -85,13 +85,13 @@ class NorthEast extends Region
         $this->locations["Waterfall Fairy - Left"]->setRequirements(function ($locations, $items) {
             return $items->has('Flippers')
                 || ($this->world->config('canWaterWalk', false) && ($items->has('PegasusBoots')
-                    || ($items->has('MoonPearl') && $this->world->config('canFakeFlippers', false))))
+                    || ($items->has('MoonPearl') && $this->world->config('canFakeFlippers', false))));
         });
         
         $this->locations["Waterfall Fairy - Right"]->setRequirements(function ($locations, $items) {
             return $items->has('Flippers')
                 || ($this->world->config('canWaterWalk', false) && ($items->has('PegasusBoots')
-                    || ($items->has('MoonPearl') && $this->world->config('canFakeFlippers', false))))
+                    || ($items->has('MoonPearl') && $this->world->config('canFakeFlippers', false))));
         });
         
         $this->can_enter = function ($locations, $items) {
