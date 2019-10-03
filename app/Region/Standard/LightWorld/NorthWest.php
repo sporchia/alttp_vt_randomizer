@@ -98,7 +98,7 @@ class NorthWest extends Region
                     || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
                     || ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                         && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
-                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))));
+                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))));
         });
         
         $this->locations["Pegasus Rocks"]->setRequirements(function ($locations, $items) {
@@ -114,11 +114,11 @@ class NorthWest extends Region
                     || ($items->has('MagicMirror')
                         && (($this->world->config('canMirrorWrap', false) && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
                             || (($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
-                               || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
-                            && (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
-                                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()
-                                    && ($items->has('Flippers') || $this->world->config('canFakeFlippers', false))
-                                    && $this->world->getRegion('North East Dark World')->canEnter($locations, $items)))))));
+                                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                                && (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
+                                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()
+                                        && ($items->has('Flippers') || $this->world->config('canFakeFlippers', false))
+                                        && $this->world->getRegion('North East Dark World')->canEnter($locations, $items)))))));
         });
         
         $this->locations["Sick Kid"]->setRequirements(function ($locations, $items) {
