@@ -134,8 +134,8 @@ class NorthWest extends Region
                 || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
                 || $this->world->config('canOneFrameClipOW', false)
                 || ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)
-                        && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false)))
-                        && ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive));
+                        && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
+                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())));
         });
         
         $this->can_enter = function ($locations, $items) {
