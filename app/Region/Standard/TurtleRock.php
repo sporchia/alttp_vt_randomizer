@@ -89,7 +89,7 @@ class TurtleRock extends Region
                     || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake', $this->world)) && $items->has('Quake')))
                 && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
                 && ($items->has('MoonPearl')
-                    || ($this->world->config('canOWYBA', false) && $item->hasBottle()
+                    || ($this->world->config('canOWYBA', false) && $item->hasABottle()
                         && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                             || $this->world->config('canOneFrameClipOW', false))))
                 && $items->has('CaneOfSomaria')
