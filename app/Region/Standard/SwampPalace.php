@@ -71,6 +71,12 @@ class SwampPalace extends Region
      */
     public function initalize()
     {
+        $mire = function ($locations, $items) {
+            return $this->world->config('canOneFrameClipUW', false)
+                && $items->has('KeyD6', 3)
+                && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
+        };
+
         $main = function ($locations, $items) {
             return $items->has('MoonPearl') && $items->has('Flippers')
                 && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
@@ -80,13 +86,7 @@ class SwampPalace extends Region
                         || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
                         || $this->world->config('canOneFrameClipOW', false))));
         };
-
-        $mire = function ($locations, $items) {
-            return $this->world->config('canOneFrameClipUW', false)
-                && $items->has('KeyD6', 3)
-                && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
-        };
-
+        
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) {
             return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world);
         });
