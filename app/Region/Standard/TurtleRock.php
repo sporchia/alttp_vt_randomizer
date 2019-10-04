@@ -227,7 +227,7 @@ class TurtleRock extends Region
         $this->locations["Turtle Rock - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
                 && $items->has('KeyD7', 4)
-                && ($lower($locations, $items) || $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))
+                && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                 && $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
                 && $this->boss->canBeat($items, $locations)
                 && (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD7') || $this->locations["Turtle Rock - Boss"]->hasItem(Item::get('CompassD7', $this->world)))
