@@ -80,7 +80,10 @@ class SwampPalace extends Region
         $main = function ($locations, $items) {
             return $items->has('MoonPearl') && $items->has('Flippers')
                 && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
-                && ($items->has('MagicMirror') || ($mire($locations, $items) && $locations["Old Man"]->canAccess($items)
+                && ($items->has('MagicMirror')
+                    || (($this->world->config('canOneFrameClipUW', false)
+                        && $items->has('KeyD6', 3) && $this->world->getRegion('Misery Mire')->canEnter($locations, $items))
+                        && $locations["Old Man"]->canAccess($items)
                     && (!$this->world->config('region.wildKeys', false) || $items->has('KeyD2'))
                     && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
                         || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
