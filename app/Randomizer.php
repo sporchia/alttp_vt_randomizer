@@ -235,8 +235,14 @@ class Randomizer implements RandomizerContract
             $uncle_sword = Item::get('UncleSword', $world)->setTarget(array_pop($nice_items_swords));
             $world->getLocation("Link's Uncle")->setItem($uncle_sword);
 
-            foreach (["Pyramid Fairy - Left", "Blacksmith", "Master Sword Pedestal"] as $location) {
+            foreach (["Pyramid Fairy - Left", "Blacksmith"] as $location) {
                 $world->getLocation($location)->setItem(array_pop($nice_items_swords));
+            }
+            if (!$world->getLocation("Master Sword Pedestal")->hasItem(Item::get('Triforce', $world))) {
+                $world->getLocation($location)->setItem(array_pop($nice_items_swords));
+            } else {
+                array_pop($nice_items_swords);
+                array_push($trash_items, Item::get('TwentyRupees', $world));
             }
         } else {
             // put uncle sword back
