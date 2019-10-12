@@ -4,6 +4,7 @@ import itemLocations from "./modules/itemLocations";
 import context from "./modules/context";
 import glitches from "./modules/glitches";
 import randomizer from "./modules/randomizer";
+import randomizerSettings from "./modules/randomizerSettings";
 import romSettings from "./modules/romSettings";
 import Vuex from "vuex";
 import localforage from "localforage";
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     context,
     glitches,
     randomizer,
+    randomizerSettings,
     romSettings
   },
   getters: {
@@ -49,6 +51,9 @@ export default new Vuex.Store({
         map[obj.hash] = obj;
         return map;
       }, {});
+    },
+    presets: state => {
+      return state.randomizerSettings.preset_map;
     }
   },
   actions: {
@@ -90,9 +95,12 @@ export default new Vuex.Store({
     },
     getSettings({ commit, dispatch }) {
       commit("setLoading", true);
-      return axios.get(`/customizer/settings`).then(response => {
-        commit("updateSettings", response.data);
-        return dispatch("resetStore");
+
+      return dispatch("randomizerSettings/getItemSettings").then(() => {
+        axios.get(`/customizer/settings`).then(response => {
+          commit("updateSettings", response.data);
+          return dispatch("resetStore");
+        });
       });
     }
   },

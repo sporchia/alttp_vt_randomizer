@@ -271,6 +271,7 @@ export default {
   created() {
     this.$store.dispatch("randomizer/getItemSettings");
     this.$store.dispatch("romSettings/initialize");
+    this.$store.dispatch("getSettings");
   },
   methods: {
     ...mapActions("randomizer", [
