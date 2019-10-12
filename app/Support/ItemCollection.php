@@ -433,6 +433,16 @@ class ItemCollection extends Collection
         return $this->has('PegasusBoots')
             && ($this->hasSword() || $this->has('Hookshot'));
     }
+    
+    /**
+     * Requirements for water (bunny) revival
+     *
+     * @return bool
+     */
+    public function canBunnyRevive()
+    {
+        return $this->hasABottle() && $this->has('BugCatchingNet');
+    }
 
     /**
      * Requirements for lobbing arrows at things

@@ -100,7 +100,9 @@ class TowerOfHera extends Region
     public function initalize()
     {
         $main = function ($locations, $items) {
-            return ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+            return (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
+                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))
+                || $this->world->config('canOneFrameClipOW', false)
                 || (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
                     && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
         };
