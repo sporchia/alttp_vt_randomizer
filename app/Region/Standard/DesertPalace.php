@@ -90,6 +90,7 @@ class DesertPalace extends Region
         $this->can_complete = function ($locations, $items) {
             return $this->locations["Desert Palace - Boss"]->canAccess($items);
         };
+
         $this->locations["Desert Palace - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
                 && ($items->canLiftRocks()
@@ -115,6 +116,7 @@ class DesertPalace extends Region
             return $this->world->config('region.bossNormalLocation', true)
                 && ($item == Item::get('CompassP2', $this->world) || $item == Item::get('MapP2', $this->world));
         });
+
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($items->has('BookOfMudora')

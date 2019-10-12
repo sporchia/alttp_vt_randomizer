@@ -64,7 +64,7 @@ class East extends Region
         $this->shops["Light World Death Mountain Shop"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings();
         });
-        
+
         $this->locations["Mimic Cave"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer') && $items->has('MagicMirror')
                 && ($this->world->config('canMirrorClip', false)
@@ -75,17 +75,17 @@ class East extends Region
                     || $this->world->config('canOneFrameClipOW', false)
                     || ($items->has('KeyD7', 2) && $this->world->getRegion('Turtle Rock')->canEnter($locations, $items)));
         });
-        
+
         $this->locations["Floating Island"]->setRequirements(function ($locations, $items) {
             return ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                 || ($this->world->config('canOWYBA', false) && $items->has('Bottle'))
                 || $this->world->config('canOneFrameClipOW', false)
                 || ($items->has('MagicMirror')
-                    && (($items->has('MoonPearl') && $items->canBombThings() && $items->canLiftRocks()) 
+                    && (($items->has('MoonPearl') && $items->canBombThings() && $items->canLiftRocks())
                         || $this->world->config('canMirrorWrap', false))
                     && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items));
         });
-        
+
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($this->world->config('canOneFrameClipOW', false)
@@ -93,10 +93,10 @@ class East extends Region
                     || ($this->world->config('capSuperSpeed', false) && $items->canSpinSpeed())
                     || (((($this->world->config('canMirrorClip', false) || $this->world->config('canMirrorWrap', false))
                         && $items->has('MagicMirror')) || $items->has('Hookshot'))
-                            && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+                        && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
                     || ($items->has('Hammer') && $this->world->getRegion('Tower of Hera')->canEnter($locations, $items)));
         };
 
-        return $this; 
+        return $this;
     }
 }

@@ -84,12 +84,12 @@ class SwampPalace extends Region
                     || (($this->world->config('canOneFrameClipUW', false)
                         && $items->has('KeyD6', 3) && $this->world->getRegion('Misery Mire')->canEnter($locations, $items))
                         && $locations["Old Man"]->canAccess($items)
-                    && (!$this->world->config('region.wildKeys', false) || $items->has('KeyD2'))
-                    && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
-                        || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
-                        || $this->world->config('canOneFrameClipOW', false))));
+                        && (!$this->world->config('region.wildKeys', false) || $items->has('KeyD2'))
+                        && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
+                            || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                            || $this->world->config('canOneFrameClipOW', false))));
         };
-        
+
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) {
             return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world);
         });

@@ -100,7 +100,7 @@ class IcePalace extends Region
         $this->can_complete = function ($locations, $items) {
             return $this->locations["Ice Palace - Boss"]->canAccess($items);
         };
-        
+
         $this->locations["Ice Palace - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
                 && $items->has('Hammer') && $items->canLiftRocks()
@@ -124,14 +124,14 @@ class IcePalace extends Region
             return $this->world->config('region.bossNormalLocation', true)
                 && ($item == Item::get('CompassD5', $this->world) || $item == Item::get('MapD5', $this->world));
         });
-        
+
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword(2)) && $items->hasHealth(12) && ($items->hasBottle(2) || $items->hasArmor())))
                 && ($items->canMeltThings($this->world) || $this->world->config('canOneFrameClipUW', false))
                 && ((($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false))
-                    && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false) 
+                    && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false)
                         || ($this->world->config('canWaterWalk', false) && $items->has('PegasusBoots'))
                         || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
                     && $items->canLiftDarkRocks())

@@ -406,7 +406,7 @@ class GanonsTower extends Region
                         + $items->has('Crystal7')) >= $this->world->config('crystals.tower', 7))
                         && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))
                         || ((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                            || ($this->world->config('canSuperSpeed', false) && $items->has('PegasusBoots') 
+                            || ($this->world->config('canSuperSpeed', false) && $items->has('PegasusBoots')
                                 && $items->has('Hookshot') && $items->hasSword()))
                             && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))))
                     || ($this->world->config('canOneFrameClipOW', false)

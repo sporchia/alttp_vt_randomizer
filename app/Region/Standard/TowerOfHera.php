@@ -101,7 +101,7 @@ class TowerOfHera extends Region
     {
         $main = function ($locations, $items) {
             return (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
-                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))
+                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))
                 || $this->world->config('canOneFrameClipOW', false)
                 || (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
                     && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));

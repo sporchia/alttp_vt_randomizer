@@ -85,8 +85,8 @@ class TurtleRock extends Region
     {
         $upper = function ($locations, $items) {
             return (($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos', $this->world)) && $items->has('Bombos'))
-                    || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether', $this->world)) && $items->has('Ether'))
-                    || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake', $this->world)) && $items->has('Quake')))
+                || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether', $this->world)) && $items->has('Ether'))
+                || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake', $this->world)) && $items->has('Quake')))
                 && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
                 && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle()
@@ -98,10 +98,10 @@ class TurtleRock extends Region
                     || (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                         || $this->world->config('canOneFrameClipOW', false)));
         };
-                    
+
         $middle = function ($locations, $items) {
             return ((($this->world->config('canMirrorClip', false) && $items->has('MagicMirror'))
-                     && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false))) 
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)))
                 || (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                     && (($this->world->config('canOWYBA', false) && $items->hasABottle()) || $items->has('MoonPearl')))
                 || ($this->world->config('canSuperSpeed', false) && $items->has('MoonPearl') && $items->canSpinSpeed())
@@ -112,7 +112,7 @@ class TurtleRock extends Region
                     && ($items->has('Cape') || $items->has('CaneOfByrna')))
                 && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items);
         };
-                    
+
         $lower = function ($locations, $items) {
             return $this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                 && ($items->has('MoonPearl')

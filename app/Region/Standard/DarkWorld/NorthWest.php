@@ -74,29 +74,29 @@ class NorthWest extends Region
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
         });
-        
+
         $this->locations["Brewery"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings() && ($items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
         });
-        
+
         $this->locations["C-Shaped House"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false)
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
         });
-        
+
         $this->locations["Chest Game"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false)
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
         });
-        
+
         $this->locations["Hammer Pegs"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer') && ($items->has('MoonPearl')
-                    || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                || ($this->world->config('canOWYBA', false) && $items->hasABottle())
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
                 && ($items->canLiftDarkRocks()
                     || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false))
                     || (($this->world->config('canFakeFlipper', false) || $items->has('Flippers'))
@@ -104,7 +104,7 @@ class NorthWest extends Region
                             || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                             || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))));
         });
-        
+
         $this->locations["Bumper Cave"]->setRequirements(function ($locations, $items) {
             return $this->world->config('canOneFrameClipOW', false)
                 || (($items->has('MoonPearl')
@@ -114,41 +114,41 @@ class NorthWest extends Region
                         || (($this->world->config('itemPlacement') !== 'basic' || $items->has('Hookshot'))
                             && $items->canLiftRocks() && $items->has('Cape'))));
         });
-        
+
         $this->locations["Blacksmith"]->setRequirements(function ($locations, $items) {
             return ($this->world->config('itemPlacement') !== 'basic' || $items->has('MagicMirror'))
                 && ((($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                     || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
                     && $items->canLiftDarkRocks())
-                || (($this->world->config('canOWYBA', false) && $items->hasBottle())
-                    && ($this->world->config('canOneFrameClipOW', false)
-                        || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')
-                            && ($items->has('MoonPearl') || $items->hasBottle(2))))));
+                    || (($this->world->config('canOWYBA', false) && $items->hasBottle())
+                        && ($this->world->config('canOneFrameClipOW', false)
+                            || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')
+                                && ($items->has('MoonPearl') || $items->hasBottle(2))))));
         });
-        
+
         $this->locations["Purple Chest"]->setRequirements(function ($locations, $items) {
             return $locations["Blacksmith"]->canAccess($items)
                 && (($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false))
                     || (($items->has('MoonPearl')
                         || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                         || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
-                        && ($items->canLiftDarkRocks() 
+                        && ($items->canLiftDarkRocks()
                             || (($this->world->config('canFakeFlipper', false) || $items->has('Flippers'))
                                 && ($this->world->config('canOneFrameClipOW', false)
                                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                                     || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))))));
         });
-        
+
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($this->world->config('canOneFrameClipOW', false)
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                     || ($this->world->getRegion('West Death Mountain')->canEnter($locations, $items) && $items->has('MagicMirror')
-                         && ($this->world->config('canMirrorClip', false)
-                             || ($this->world->config('canMirrorWrap', false)
-                                 && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                                     || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())))))
+                        && ($this->world->config('canMirrorClip', false)
+                            || ($this->world->config('canMirrorWrap', false)
+                                && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())))))
                     || ($this->world->config('canBunnySurf', false) && $this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                         && $items->has('Flippers') && $items->has('DefeatAgahnim'))
                     || ($items->has('MoonPearl')

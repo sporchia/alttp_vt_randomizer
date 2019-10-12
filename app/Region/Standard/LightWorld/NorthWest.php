@@ -82,14 +82,14 @@ class NorthWest extends Region
         $this->shops["Bomb Hut"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings();
         });
-        
+
         $this->locations["Master Sword Pedestal"]->setRequirements(function ($locations, $items) {
             return ($this->world->config('itemPlacement') !== 'basic' || $items->has('BookOfMudora'))
                 && $items->has('PendantOfPower')
                 && $items->has('PendantOfWisdom')
                 && $items->has('PendantOfCourage');
         });
-        
+
         $this->locations["King's Tomb"]->setRequirements(function ($locations, $items) {
             return $items->has('PegasusBoots')
                 && ($this->world->config('canBootsClip', false)
@@ -100,11 +100,11 @@ class NorthWest extends Region
                         && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
                             || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))));
         });
-        
+
         $this->locations["Pegasus Rocks"]->setRequirements(function ($locations, $items) {
             return $items->has('PegasusBoots');
         });
-        
+
         $this->locations["Magic Bat"]->setRequirements(function ($locations, $items) {
             return $items->has('Powder')
                 && ($items->has('Hammer')
@@ -120,24 +120,24 @@ class NorthWest extends Region
                                         && ($items->has('Flippers') || $this->world->config('canFakeFlippers', false))
                                         && $this->world->getRegion('North East Dark World')->canEnter($locations, $items)))))));
         });
-        
+
         $this->locations["Sick Kid"]->setRequirements(function ($locations, $items) {
             return $items->hasABottle();
         });
-        
+
         $this->locations["Lumberjack Tree"]->setRequirements(function ($locations, $items) {
             return $items->has('DefeatAgahnim') && $items->has('PegasusBoots');
         });
-        
+
         $this->locations["Graveyard Ledge"]->setRequirements(function ($locations, $items) {
             return ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                 || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
                 || $this->world->config('canOneFrameClipOW', false)
                 || ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)
-                        && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
-                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())));
+                    && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())));
         });
-        
+
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda');
         };
