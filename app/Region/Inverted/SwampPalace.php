@@ -25,7 +25,10 @@ class SwampPalace extends Region\Standard\SwampPalace
         parent::initalize();
 
         $this->can_enter = function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('MagicMirror') && $items->has('Flippers')
+            return 
+				$items->has('MoonPearl') 
+				&& $items->has('MagicMirror') 
+				&& $items->has('Flippers')
                 && $this->world->getRegion('South Light World')->canEnter($locations, $items);
         };
 

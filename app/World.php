@@ -286,7 +286,13 @@ abstract class World
      */
     public function getGanonsTowerJunkFillRange(): array
     {
-        if (in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches', 'None'])) {
+        if (
+			$this->config['logic'] == 'None'
+			|| (
+				!$this->config['mode.state'] == 'inverted'
+				&& in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches'])
+			)
+		) {
             return [0, 0];
         }
 
