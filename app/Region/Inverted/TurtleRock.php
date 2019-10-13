@@ -275,9 +275,23 @@ class TurtleRock extends Region\Standard\TurtleRock
 
         $this->can_enter = function ($locations, $items) {
             return 
-				$this->enterTop($locations, $items)
-                || $this->enterMiddle($locations, $items)
-                || $this->enterBottom($locations, $items);
+				(
+					$this->world->config('itemPlacement') !== 'basic'
+                    || (
+						(
+							$this->world->config('mode.weapons') === 'swordless' 
+							|| $items->hasSword(2)
+						) 
+						&& $items->hasHealth(12) 
+						&& (
+							$items->hasBottle(2) 
+							|| $items->hasArmor()
+					)	)
+				) && (
+					$this->enterTop($locations, $items)
+					|| $this->enterMiddle($locations, $items)
+					|| $this->enterBottom($locations, $items)
+				);
         };
 
         $this->prize_location->setRequirements($this->can_complete);

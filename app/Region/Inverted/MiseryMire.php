@@ -26,7 +26,20 @@ class MiseryMire extends Region\Standard\MiseryMire
 
         $this->can_enter = function ($locations, $items) {
             return 
-				(	(
+				(
+					$this->world->config('itemPlacement') !== 'basic'
+                    || (
+						(
+							$this->world->config('mode.weapons') === 'swordless' 
+							|| $items->hasSword(2)
+						) 
+						&& $items->hasHealth(12) 
+						&& (
+							$items->hasBottle(2) 
+							|| $items->hasArmor()
+					)	)
+				) && (		
+					(
 						$locations["Misery Mire Medallion"]->hasItem(Item::get('Bombos', $this->world)) 
 						&& $items->has('Bombos')
 					) || (

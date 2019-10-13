@@ -745,6 +745,18 @@ class GanonsTower extends Region\Standard\GanonsTower
         $this->can_enter = function ($locations, $items) {
             return 
 				(
+					$this->world->config('itemPlacement') !== 'basic'
+                    || (
+						(
+							$this->world->config('mode.weapons') === 'swordless' 
+							|| $items->hasSword(2)
+						) 
+						&& $items->hasHealth(12) 
+						&& (
+							$items->hasBottle(2) 
+							|| $items->hasArmor()
+					)	)
+				) && (
 					$this->world->config('canDungeonRevive', false) 
 					|| (
 						$this->world->config('canSuperBunny', false) 
