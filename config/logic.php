@@ -7,9 +7,10 @@ return [
         'canFakeFlipper' => true,
         'canSuperSpeed' => true,
         'canBootsClip' => true,
-        'canMirrorClip' => true,
+        'canMirrorClip' => true, 
         'canWaterWalk' => true,
-        'canMirrorWrap' => true,
+        // 'canMirrorWrap' => true,		
+		// People generally dislike it. Flippers Wrap now beeing in Logic gets you into Ice, Laserbridge Wrap in Logic just plays weird.
         'canDungeonRevive' => true,
     ],
     'MajorGlitches' => [
