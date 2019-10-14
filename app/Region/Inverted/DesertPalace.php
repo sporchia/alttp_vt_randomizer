@@ -24,6 +24,43 @@ class DesertPalace extends Region\Standard\DesertPalace
     {
         parent::initalize();
 
+		$main = function ($locations, $items) {
+			return
+				$items->has('BookOfMudora')
+				&& $this->world->getRegion('South Light World')->canEnter($locations, $items);
+		};
+
+		$side = function ($locations, $items) {
+			return
+				$this->world->config('canOneFrameClipOW', false)
+				|| (
+					(
+						$items->has('MoonPearl')
+						|| (
+							$this->world->config('canOWYBA', false) 
+							&& $items->hasABottle()
+						) || (
+							$this->world->config('canBunnyRevive', false) 
+							&& $items->canBunnyRevive()
+						)
+					) && (
+						(	
+							$this->world->config('canBootsClip', false) 
+							&& $items->has('PegasusBoots')
+					)	)
+				) &&
+					$this->world->getRegion('South Light World')->canEnter($locations, $items);
+		};
+
+		$thieves = function ($locations, $items) {
+			return 
+				$this->world->getRegion('Thieves Town')->canEnter($locations, $items)
+				&& $items->has('KeyD4') 
+				&& $items->has('BigKeyD4')
+				&& $this->world->config('canOneFrameClipUW', false);
+		};
+
+
 
 		$this->locations["Desert Palace - Big Key Chest"]->setRequirements(function ($locations, $items) {
             return 
@@ -75,13 +112,16 @@ class DesertPalace extends Region\Standard\DesertPalace
         });
 
         // Bunny can use Book!
-        $this->can_enter = function ($locations, $items) {
+        $this->can_enter = function ($locations, $items) use ($main, $side, $thieves) {
             return 
 				(			// Do Stuff in Front
 					$this->world->config('canDungeonRevive', false) 
 					|| (
 						$this->world->config('canSuperBunny', false) 
-						&& $items->has('MagicMirror')
+						&& (
+							$items->has('MagicMirror')
+							&& $items->has('BookOfMudora')
+						)
 					) || (
 						$this->world->config('canBunnyRevive', false) 
 						&& $items->canBunnyRevive()
@@ -90,25 +130,11 @@ class DesertPalace extends Region\Standard\DesertPalace
 						&& $items->hasABottle()
 					) || 
 						$items->has('MoonPearl')
-				) && (		// Main Entrance
-					$items->has('BookOfMudora')
-							// Side Entrance
-					|| $this->world->config('canOneFrameClipOW', false)
-					|| (
-						$this->world->config('canBootsClip', false) 
-						&& $items->has('PegasusBoots')
-						&& (
-							$items->has('MoonPearl')
-							|| (
-								$this->world->config('canSuperBunny', false) 
-								&& $items->has('MagicMirror')
-							) || (
-								$this->world->config('canBunnyRevive', false) 
-								&& $items->canBunnyRevive()
-						)	)
-					)
-				) && 
-					$this->world->getRegion('South Light World')->canEnter($locations, $items);
+				) && (
+					$main($locations, $items) 
+					|| $side($locations, $items) 
+					|| $thieves($locations, $items) 
+				);
         };
 
         return $this;

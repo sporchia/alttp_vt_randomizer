@@ -269,12 +269,14 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
 					) || (
 						$this->world->config('canOWYBA', false) 
 						&& $items->hasABottle()
-					)// || 
-					// (										Invisible Ganon Fight
-					//	$this->world->config('canSuperBunny')
-					//	&& $this->world->getRegion('Ganons Tower')->canEnter($locations, $items)
-					//	&& $items->has('MagicMirror')
-					// )
+					) || (	 // Invis Ganon fight sounds fun for logic :) 
+						$this->world->config('canSuperBunny')
+						&& $this->world->config('canDungeonRevive', false) // Just so it's not in logic for everyone. Don't care, just think it's better like this.
+						&& $this->world->getRegion('Ganons Tower')->canEnter($locations, $items) //Bunny Beam Storage from GT
+						&& $items->has('CaneOfSomaria')
+						&& $items->has('MagicMirror')
+						&& $items->hasABottle() // Magic should be easily fine, but it's easy to miss when Invisible, even with lamp. FRod when Requires a bunch of Bottles anyway.
+					)
 				) && (
 					$items->has('DefeatAgahnim2') 
 					|| $this->world->config('goal') === 'fast_ganon'
@@ -330,25 +332,24 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
 				//Glitched Access from DeathMountain
 					$this->world->config('canOWYBA', false) 
 					&& (
-						$items->hasABottle() 
-						&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
-					) || (
-						$this->world->config('canSuperSpeed', false) 
-						&& $items->canSpinSpeed()
-					) && 
 						$items->hasABottle(2)
+						|| (
+							$items->hasABottle() 
+							&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+					)	) 
 				) || (
-					$items->canLiftRocks() 
-					&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
-					&& $this->world->config('canSuperSpeed', false) 
-					&& $items->canSpinSpeed()
-				) || (
-					(
-						$this->world->config('canBootsClip', false) 
-						&& $items->has('PegasusBoots')
-					) || 
-						$this->world->config('canOneFrameClipOW', false)
-				);
+					$this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+					&& $items->has('MoonPearl')
+					&& (
+						(
+							$this->world->config('canSuperSpeed', false) 
+							&& $items->canSpinSpeed()
+						) || (
+							$this->world->config('canBootsClip', false) 
+							&& $items->has('PegasusBoots')
+					)	)	
+				) || 
+						$this->world->config('canOneFrameClipOW', false);
         };
 
         return $this;
