@@ -132,9 +132,8 @@ class IcePalace extends Region
                 && ($items->canMeltThings($this->world) || $this->world->config('canOneFrameClipUW', false))
                 && ((($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false))
                     && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false))
-                    && $items->canLiftDarkRocks()) 
-					|| (
-						$this->world->getRegion('South Dark World')->canEnter($locations, $items)
+                    && $items->canLiftDarkRocks())
+                    || ($this->world->getRegion('South Dark World')->canEnter($locations, $items) 
 						&& ($items->has('MoonPearl')
 							|| ($items->hasABottle() && $this->world->config('canOWYBA', false)) 
 							|| ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())) 
@@ -144,7 +143,7 @@ class IcePalace extends Region
 									|| $this->world->config('canOneFrameClipOW', false))) 
 							|| ($items->has('Flippers') && $this->world->config('canFakeFlipper', false)
 								&& (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) 
-									|| $this->world->config('canOneFrameClipOW', false)))));
+									|| $this->world->config('canOneFrameClipOW', false))))));
 		};
 
         $this->prize_location->setRequirements($this->can_complete);
