@@ -106,8 +106,8 @@ abstract class World
         };
 
         // Handle configuration options that map to switches.
-        $free_item_text = 0x00;
-        $free_item_menu = 0x00;
+        $free_item_text = $this->config('rom.freeItemText', 0x00);
+        $free_item_menu = $this->config('rom.freeItemMenu', 0x00);
         switch ($this->config('dungeonItems')) {
             case 'full':
                 $this->config['region.wildBigKeys'] = true;
