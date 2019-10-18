@@ -483,6 +483,7 @@ export default {
                 tower: this.towerOpen.value
               },
               mode: this.worldState.value,
+              hints: this.hints.value,
               weapons: this.weapons.value,
               item: {
                 pool: this.itemPool.value,
