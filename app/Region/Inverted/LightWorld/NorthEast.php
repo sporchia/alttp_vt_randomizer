@@ -41,10 +41,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
 					&& $items->has('PegasusBoots')
 					&& (
 						$items->has('MagicMirror')
-						|| (
-							!$this->world->config('region.cantTakeDamage', false) 
-							&& $items->has('DefeatAgahnim')
-				)	)	);
+						|| !$this->world->config('region.cantTakeDamage', false) 
+				)	);
         });
 
         $this->locations["Sahasrahla's Hut - Middle"]->setRequirements(function ($locations, $items) {
@@ -56,10 +54,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
 					&& $items->has('PegasusBoots')
 					&& (
 						$items->has('MagicMirror')
-						|| (
-							!$this->world->config('region.cantTakeDamage', false) 
-							&& $items->has('DefeatAgahnim')
-				)	)	);
+						|| !$this->world->config('region.cantTakeDamage', false) 
+				)	);
         });
 
         $this->locations["Sahasrahla's Hut - Right"]->setRequirements(function ($locations, $items) {
@@ -71,10 +67,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
 					&& $items->has('PegasusBoots')
 					&& (
 						$items->has('MagicMirror')
-						|| (
-							!$this->world->config('region.cantTakeDamage', false) 
-							&& $items->has('DefeatAgahnim')
-				)	)	);
+						|| !$this->world->config('region.cantTakeDamage', false) 
+				)	);
         });
 
         $this->locations["Sahasrahla"]->setRequirements(function ($locations, $items) {
