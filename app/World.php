@@ -183,6 +183,7 @@ abstract class World
         // In swordless mode silvers are 100% required
         if ($this->config('mode.weapons') === 'swordless') {
             $this->config['region.requireBetterBow'] = true;
+            $this->config['item.overflow.count.Bow'] = 2;
         }
 
         if ($this->config('itemPlacement') === 'basic') {
