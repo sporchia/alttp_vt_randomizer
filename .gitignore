@@ -18,3 +18,7 @@
 .env.debug
 .phpunit.result.cache
 .php_cs.cache
+.vs/alttp_vt_randomizer/v15/.suo
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
