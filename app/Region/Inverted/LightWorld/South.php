@@ -235,11 +235,10 @@ class South extends Region\Standard\LightWorld\South
 						)
 					) && 
 						$items->canBombThings()
-				) || 
+				) || (
 					$items->has('BigRedBomb') 
-				&& (
-						$this->world->config('canSuperBunny', false) 
-						&& $items->has('MagicMirror')
+					&& $this->world->config('canSuperBunny', false) 
+					&& $items->has('MagicMirror')
 				);
         });
 
