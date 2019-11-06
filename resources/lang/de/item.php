@@ -193,6 +193,8 @@ return [
     'Coal1' => 'Kohle',
     'Coal2' => 'Kohle',
 
+    'GoldenTicket' => 'Golden Ticket',
+
     'Armos Knights' => 'Armos Knights',
     'Lanmolas' => 'Lanmolas',
     'Moldorm' => 'Moldorm',

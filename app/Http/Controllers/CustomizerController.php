@@ -124,6 +124,9 @@ class CustomizerController extends Controller
             $spoiler_meta['notes'] = $purifier->purify($markdowned);
         }
 
+        // Fix for hints option not working in Customizer. We overwrite any potential stale
+        // spoil.Hints value in custom data because it's not hooked up to the Hints dropdown.
+        $custom_data['spoil.Hints'] = $request->input('hints', 'on');
         $custom_data['item.require.Lamp'] = $custom_data['item.require.Lamp'] ? 0 : 1;
         if ($custom_data['rom.freeItemMenu']) {
             $custom_data['rom.freeItemMenu'] = 0x00
@@ -146,7 +149,6 @@ class CustomizerController extends Controller
             'tournament' => $request->input('tournament', true),
             'spoilers' => $request->input('spoilers', false),
             'spoilers_ongen' => $request->input('spoilers_ongen', false),
-            'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
             'item.functionality' => $request->input('item.functionality', 'normal'),
@@ -222,9 +224,14 @@ class CustomizerController extends Controller
             'difficulty' => 'custom',
         ]));
 
-        $patch = $rom->getWriteLog();
+
         $rom->setTournamentType('standard');
         $rom->rummageTable();
+        $patch = $rom->getWriteLog();
+
+        if ($save) {
+            $world->updateSeedRecordPatch($patch);
+        }
 
         return [
             'logic' => $world->config('logic'),

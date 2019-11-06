@@ -717,7 +717,7 @@ class Randomizer implements RandomizerContract
 
             $old_man->setActive(true);
             $old_man->setShopkeeper('old_man');
-            $old_man->addInventory(0, ($world->config('mode.weapons') == 'swordless') ? Item::get('ThreeHundredRupees', $world)
+            $old_man->addInventory(0, (in_array($world->config('mode.weapons'), ['swordless', 'vanilla'])) ? Item::get('ThreeHundredRupees', $world)
                 : Item::get('ProgressiveSword', $world), 0);
         }
 
