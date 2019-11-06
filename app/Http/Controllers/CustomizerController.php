@@ -224,9 +224,14 @@ class CustomizerController extends Controller
             'difficulty' => 'custom',
         ]));
 
-        $patch = $rom->getWriteLog();
+
         $rom->setTournamentType('standard');
         $rom->rummageTable();
+        $patch = $rom->getWriteLog();
+
+        if ($save) {
+            $world->updateSeedRecordPatch($patch);
+        }
 
         return [
             'logic' => $world->config('logic'),
