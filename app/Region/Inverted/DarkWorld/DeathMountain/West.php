@@ -2,12 +2,7 @@
 
 namespace ALttP\Region\Inverted\DarkWorld\DeathMountain;
 
-use ALttP\Item;
-use ALttP\Location;
 use ALttP\Region;
-use ALttP\Shop;
-use ALttP\Support\LocationCollection;
-use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -38,37 +33,23 @@ class West extends Region\Standard\DarkWorld\DeathMountain\West
     public function initalize()
     {
         $this->locations["Spike Cave"]->setRequirements(function ($locations, $items) {
-            return 
-				$items->has('Hammer') 
-				&& $items->canLiftRocks()
+            return $items->has('Hammer')
+                && $items->canLiftRocks()
                 && (
-					(
-						$items->canExtendMagic() 
-						&& $items->has('Cape')
-					) || (
-						(
-							!$this->world->config('region.cantTakeDamage', false) 
-							|| $items->canExtendMagic()
-						) && 
-							$items->has('CaneOfByrna')
-					)
-				);
+                    ($items->canExtendMagic()
+                        && $items->has('Cape')) || (
+                        (!$this->world->config('region.cantTakeDamage', false)
+                            || $items->canExtendMagic()) &&
+                        $items->has('CaneOfByrna')));
         });
 
         $this->can_enter = function ($locations, $items) {
-            return 
-				$items->canFly($this->world)
-                || (
-					$items->canLiftRocks() 
-					&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
-				) || (
-					$this->world->config('canBootsClip', false) 
-					&& $items->has('PegasusBoots')
-				) || (
-					$this->world->config('canOWYBA', false) 
-					&& $items->hasABottle()
-				) || 
-					$this->world->config('canOneFrameClipOW', false);
+            return $items->canFly($this->world)
+                || ($items->canLiftRocks()
+                    && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || ($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots')) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle()) ||
+                $this->world->config('canOneFrameClipOW', false);
         };
 
         return $this;
