@@ -2,11 +2,7 @@
 
 namespace ALttP\Region\Inverted;
 
-use ALttP\Item;
-use ALttP\Location;
 use ALttP\Region;
-use ALttP\Support\LocationCollection;
-use ALttP\World;
 
 /**
  * Hyrule Castle Tower Region and it's Locations contained within
@@ -24,8 +20,7 @@ class HyruleCastleTower extends Region\Standard\HyruleCastleTower
         parent::initalize();
 
         $this->can_enter = function ($locations, $items) {
-            return 
-				$items->canKillMostThings(8)
+            return $items->canKillMostThings(8)
                 && $this->world->getRegion('West Dark World Death Mountain')->canEnter($locations, $items);
         };
 
