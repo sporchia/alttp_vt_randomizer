@@ -37,12 +37,25 @@ class West extends Region\Standard\LightWorld\DeathMountain\West
     public function initalize()
     {
         $this->locations["Old Man"]->setRequirements(function ($locations, $items) {
-            return $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
+            return 
+				$items->has('Lamp', $this->world->config('item.require.Lamp', 1));
         });
 
         $this->can_enter = function ($locations, $items) {
-            return $items->canFly($this->world)
-                || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)));
+            return 
+				$items->canFly($this->world)
+                || (
+					$items->canLiftRocks() 
+					&& $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+				) || (
+					$this->world->config('canBootsClip', false) 
+					&& $items->has('PegasusBoots')
+				) || 
+					$this->world->config('canOneFrameClipOW', false)
+				|| (
+					$this->world->config('canOWYBA', false) 
+					&& $items->hasABottle()
+				);
         };
 
         return $this;

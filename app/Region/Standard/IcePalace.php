@@ -131,19 +131,20 @@ class IcePalace extends Region
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword(2)) && $items->hasHealth(12) && ($items->hasBottle(2) || $items->hasArmor())))
                 && ($items->canMeltThings($this->world) || $this->world->config('canOneFrameClipUW', false))
                 && ((($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false))
-                    && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false)
-                        || ($this->world->config('canWaterWalk', false) && $items->has('PegasusBoots'))
-                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false))
                     && $items->canLiftDarkRocks())
-                    || ($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
-                        && ((($items->has('MoonPearl')
-                            || ($items->hasABottle() && $this->world->config('canOWYBA', false))
-                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
-                            && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())))
-                            || $this->world->config('canOneFrameClipOW', false))
-                        && $this->world->getRegion('South Dark World')->canEnter($locations, $items)));
-        };
+                    || ($this->world->getRegion('South Dark World')->canEnter($locations, $items) 
+						&& ($items->has('MoonPearl')
+							|| ($items->hasABottle() && $this->world->config('canOWYBA', false)) 
+							|| ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())) 
+						&& (($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
+								&& (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) 
+									|| ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()) 
+									|| $this->world->config('canOneFrameClipOW', false))) 
+							|| ($items->has('Flippers') && $this->world->config('canFakeFlipper', false)
+								&& (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) 
+									|| $this->world->config('canOneFrameClipOW', false))))));
+		};
 
         $this->prize_location->setRequirements($this->can_complete);
 
