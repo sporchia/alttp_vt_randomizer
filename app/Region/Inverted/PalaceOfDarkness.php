@@ -25,7 +25,24 @@ class PalaceOfDarkness extends Region\Standard\PalaceOfDarkness
         parent::initalize();
 
         $this->can_enter = function ($locations, $items) {
-            return $this->world->getRegion('North East Dark World')->canEnter($locations, $items);
+            return 
+				(
+					$this->world->config('itemPlacement') !== 'basic'
+                    || (
+						(
+							$this->world->config('mode.weapons') === 'swordless' 
+							|| $items->hasSword()
+						) 
+						&& $items->hasHealth(7) 
+						&& $items->hasBottle()
+				)	)
+				&& (
+					$this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+					|| (
+						$this->world->config('canOneFrameClipOW')
+						&& $this->world->getRegion('West Death Mountain')
+					)
+				);
         };
 
         return $this;

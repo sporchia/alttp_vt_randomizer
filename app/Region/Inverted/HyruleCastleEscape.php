@@ -23,9 +23,94 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape
     {
         parent::initalize();
 
+		$this->locations["Secret Passage"]->setRequirements(function ($locations, $items) {
+			return 
+				(
+					(
+						$this->world->config('canMirrorClip', false)
+						&& $this->world->config('canSuperBunny', false) 
+						&& $items->has('MagicMirror')
+						&& (
+							(
+								$this->world->config('canBootsClip', false)
+								&& $items->has('PegasusBoot')
+							) || (
+								$this->world->config('canSuperSpeed', false) 
+								&& $items->canSpinSpeed() 
+							) ||
+								$this->world->config('canOneFrameClipOW', false)
+						) &&
+							$this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+					) || (
+						$this->world->config('canBunnyRevive', false) 
+						&& $items->canBunnyRevive()
+					) || (
+						$this->world->config('canOWYBA', false) 
+						&& $items->hasABottle()
+					) || 
+						$items->has('MoonPearl')
+				) && 
+					$this->world->getRegion('North East Light World')->canEnter($locations, $items);
+        })->setFillRules(function ($item, $locations, $items) {
+            return !((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
+                || (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
+                || (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
+                || (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass));
+        });
+
+        $this->locations["Link's Uncle"]->setRequirements(function ($locations, $items) {
+			return 
+				(
+					(
+						$this->world->config('canMirrorClip', false)
+						&& $items->has('MagicMirror')
+						&& (
+							(
+								$this->world->config('canBootsClip', false)
+								&& $items->has('PegasusBoot')
+							) || (
+								$this->world->config('canSuperSpeed', false) 
+								&& $items->canSpinSpeed() 
+							) ||
+								$this->world->config('canOneFrameClipOW', false)
+						) &&
+							$this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+					) || (
+						$this->world->config('canBunnyRevive', false) 
+						&& $items->canBunnyRevive()
+					) || (
+						$this->world->config('canOWYBA', false) 
+						&& $items->hasABottle()
+					) || 
+						$items->has('MoonPearl')
+				) && 
+					$this->world->getRegion('North East Light World')->canEnter($locations, $items);
+		})->setFillRules(function ($item, $locations, $items) {
+            return $this->locations["Sanctuary"]->canAccess($this->world->collectItems())
+                && !((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
+                    || (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
+                    || (!$this->world->config('region.wildMaps', false) && $item instanceof Item\Map)
+                    || (!$this->world->config('region.wildCompasses', false) && $item instanceof Item\Compass));
+        });
+
+
         $this->can_enter = function ($locations, $items) {
-            return ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl'))
-                && $this->world->getRegion('North East Light World')->canEnter($locations, $items);
+            return 
+				(
+					$this->world->config('canDungeonRevive', false) 
+					|| (
+						$this->world->config('canSuperBunny', false) 
+						&& $items->has('MagicMirror')
+					) || (
+						$this->world->config('canBunnyRevive', false) 
+						&& $items->canBunnyRevive()
+					) || (
+						$this->world->config('canOWYBA', false) 
+						&& $items->hasABottle()
+					) || 
+						$items->has('MoonPearl')
+				) && 
+					$this->world->getRegion('North East Light World')->canEnter($locations, $items);
         };
 
         return $this;

@@ -9,7 +9,6 @@ return [
         'canBootsClip' => true,
         'canMirrorClip' => true,
         'canWaterWalk' => true,
-        'canMirrorWrap' => true,
         'canDungeonRevive' => true,
     ],
     'MajorGlitches' => [

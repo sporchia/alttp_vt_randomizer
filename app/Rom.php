@@ -2165,7 +2165,6 @@ class Rom
         $this->write(snes_to_pc(0x07A943), pack('C*', 0xF0)); // ; Dark to light world mirror
         $this->write(snes_to_pc(0x07A96D), pack('C*', 0xD0)); // ; residual portal?
         $this->write(snes_to_pc(0x08D40C), pack('C*', 0xD0)); // ; morph poof
-        $this->setFixFakeWorld($enable); // ; ER's Fix fake worlds fix. Currently needed for inverted
 
         $this->write(0x15B8C, pack('C', 0x6C)); // update link's house exit to be dark world (All the other exit table values can be reused)
         $this->write(0xDBB73 + 0x00, pack('C', 0x53)); // entering links house door leads to bomb shop
