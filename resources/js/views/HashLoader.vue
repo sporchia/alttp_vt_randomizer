@@ -144,7 +144,7 @@ export default {
               this.rom.parsePatch(response.data).then(
                 function() {
                   console.log("loaded from s3 :)");
-                  if (this.rom.shuffle) {
+                  if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;
@@ -166,7 +166,7 @@ export default {
                       ) {
                         // The base rom has been updated.
                       }
-                      if (this.rom.shuffle) {
+                      if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                         this.rom.allowQuickSwap = true;
                       }
                       this.gameLoaded = true;
@@ -201,6 +201,9 @@ export default {
                 response.data.patch.current_rom_hash != this.current_rom_hash
               ) {
                 // The base rom has been updated.
+              }
+              if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+                this.rom.allowQuickSwap = true;
               }
               this.gameLoaded = true;
               EventBus.$emit("gameLoaded", this.rom);
