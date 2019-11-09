@@ -493,7 +493,7 @@ export default {
                     // The base rom has been updated.
                     window.location.reload(true);
                   }
-                  if (this.rom.shuffle) {
+                  if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;
