@@ -32,23 +32,37 @@ class RandomizerController extends Controller
             ]);
 
             if ($payload['spoiler']['meta']['tournament'] ?? false) {
-                if ($payload['spoiler']['meta']['spoilers'] ?? false) {
-                    $return_payload = array_except($return_payload, [
-                        'spoiler.playthrough'
-                    ]);
-                } elseif ($payload['spoiler']['meta']['spoilers_ongen'] ?? false) {
-                    $return_payload = array_except($return_payload, [
-                        'spoiler.playthrough',
-                    ]);
-                } else {
-                    $return_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
-                        'meta',
-                    ]), ['meta.seed']);
+                switch ($payload['spoiler']['meta']['spoilers']) {
+                    case "on":
+                        $return_payload = array_except($return_payload, [
+                            'spoiler.playthrough'
+                        ]);
+                        break;
+                    case "generate":
+                        $return_payload = array_except($return_payload, [
+                            'spoiler.playthrough',
+                        ]);
+                        break;
+                    case "mystery":
+                        $return_payload['spoiler'] = array_only($return_payload['spoiler'], ['meta']);
+                        $return_payload['spoiler']['meta'] = array_only($return_payload['spoiler']['meta'], [
+                            'logic',
+                            'build',
+                            'tournament',
+                            'spoilers',
+                            'size'
+                        ]);
+                        break;
+                    case "off":
+                    default:
+                        $return_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
+                            'meta',
+                        ]), ['meta.seed']);    
                 }
             }
 
             $cached_payload = $return_payload;
-            if ($payload['spoiler']['meta']['spoilers_ongen'] ?? false) {
+            if ($payload['spoiler']['meta']['spoilers'] === 'generate') {
                 // ensure that the cache doesn't have the spoiler, but the original return_payload still does
                 $cached_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
                     'meta',
@@ -82,6 +96,13 @@ class RandomizerController extends Controller
             'no_logic' => 'None',
         ][$request->input('glitches', 'none')];
 
+        $spoilers = $request->input('spoilers', 'off');
+        if (!$request->input('tournament', true)) {
+            $spoilers = "on";
+        } else if (!in_array($request->input('spoilers', 'off'), ["on", "off", "generate", "mystery"])) {
+            $spoilers = "off";
+        }
+
         // quick fix for CC and Basic
         if ($request->input('item.pool', 'normal') === 'crowd_control') {
             $request->merge(['item_placement' => 'advanced']);
@@ -97,8 +118,7 @@ class RandomizerController extends Controller
             'entrances' => $request->input('entrances', 'none'),
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', false),
-            'spoilers' => $request->input('spoilers', false),
-            'spoilers_ongen' => $request->input('spoilers_ongen', false),
+            'spoilers' => $spoilers,
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
@@ -143,8 +163,10 @@ class RandomizerController extends Controller
             $en->writeToRom($rom);
         }
 
-        $rom->setTournamentType($request->input('spoilers', false) ? 'none' : 'standard');
-        $rom->rummageTable();
+        if ($request->input('tournament', false)) {
+            $rom->setTournamentType('standard');
+            $rom->rummageTable();
+        }
         $patch = $rom->getWriteLog();
 
         if ($world->isEnemized()) {

@@ -255,6 +255,7 @@ var ROM = (function(blob, loaded_callback, error_callback) {
 				this.difficulty = data.spoiler.meta.difficulty;
 				this.notes = data.spoiler.meta.notes;
 				this.tournament = data.spoiler.meta.tournament;
+				this.spoilers = data.spoiler.meta.spoilers;
 				this.special = data.spoiler.meta.special;
 			}
 			if (data.patch && data.patch.length) {
@@ -301,12 +302,17 @@ var ROM = (function(blob, loaded_callback, error_callback) {
 	};
 
 	this.downloadFilename = function() {
-		return this.name
-			|| 'alttpr - ' + this.logic
-			+ '-' + this.mode
-			+ '-' + this.goal
-			+ '_' + this.hash
-			+ (this.special ? '_special' : '');
+		if (this.name) {
+			return 'alttpr - ' + this.name + '_' + this.hash
+		} else if (this.spoilers == "mystery") {
+			return 'alttpr - mystery_' + this.hash;
+		} else {
+			return 'alttpr - ' + this.logic
+				+ '-' + this.mode
+				+ '-' + this.goal
+				+ '_' + this.hash
+				+ (this.special ? '_special' : '');
+		}
 	};
 
 	this.reset = function(size) {

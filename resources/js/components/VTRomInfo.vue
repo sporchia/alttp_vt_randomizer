@@ -4,6 +4,10 @@
       v-if="rom.spoiler.meta.spoilers_ongen==true"
       class="spoiler-warning"
     >{{ $t('rom.info.spoilerwarning') }}</div>
+	  <div
+      v-if="rom.spoilers=='generate'"
+      class="spoiler-warning"
+    >{{ $t('rom.info.spoilerwarning') }}</div>
     <div v-if="rom.logic">{{ $t('rom.info.logic') }}: {{ rom.logic }}</div>
     <div v-if="rom.build">{{ $t('rom.info.build') }}: {{ rom.build }}</div>
     <div v-if="rom.difficulty">

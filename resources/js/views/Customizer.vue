@@ -489,8 +489,7 @@ export default {
                 functionality: this.itemFunctionality.value
               },
               tournament: this.spoiler.value !== "on",
-              spoilers: this.spoiler.value === "on",
-              spoilers_ongen: this.spoiler.value === "generate",
+              spoilers: this.spoiler.value,
               lang: document.documentElement.lang,
               name: this.choice.name,
               notes: this.choice.notes,
