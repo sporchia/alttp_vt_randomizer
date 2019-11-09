@@ -85,13 +85,13 @@ class TurtleRockTest extends TestCase
 
             ["Turtle Rock - Crystaroller Room", false, 'BigKeyD7', [], ['BigKeyD7']],
 
-            ["Turtle Rock - Eye Bridge - Bottom Left", true, 'BigKeyD7', [], ['BigKeyD7']],
+            ["Turtle Rock - Eye Bridge - Bottom Left", false, 'BigKeyD7', [], ['BigKeyD7']],
 
-            ["Turtle Rock - Eye Bridge - Bottom Right", true, 'BigKeyD7', [], ['BigKeyD7']],
+            ["Turtle Rock - Eye Bridge - Bottom Right", false, 'BigKeyD7', [], ['BigKeyD7']],
 
-            ["Turtle Rock - Eye Bridge - Top Left", true, 'BigKeyD7', [], ['BigKeyD7']],
+            ["Turtle Rock - Eye Bridge - Top Left", false, 'BigKeyD7', [], ['BigKeyD7']],
 
-            ["Turtle Rock - Eye Bridge - Top Right", true, 'BigKeyD7', [], ['BigKeyD7']],
+            ["Turtle Rock - Eye Bridge - Top Right", false, 'BigKeyD7', [], ['BigKeyD7']],
 
             ["Turtle Rock - Boss", false, 'BigKeyD7', [], ['BigKeyD7']],
             ["Turtle Rock - Boss", false, 'KeyD7', [], ['KeyD7']],
@@ -254,7 +254,6 @@ class TurtleRockTest extends TestCase
             ["Turtle Rock - Boss", false, [], ['CaneOfSomaria']],
             ["Turtle Rock - Boss", false, [], ['IceRod']],
             ["Turtle Rock - Boss", false, [], ['FireRod']],
-            ["Turtle Rock - Boss", false, [], ['Lamp']],
             ["Turtle Rock - Boss", false, [], ['BigKeyD7']],
             ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'UncleSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
             ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],

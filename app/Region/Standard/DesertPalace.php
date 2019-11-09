@@ -94,7 +94,10 @@ class DesertPalace extends Region
         $this->locations["Desert Palace - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
                 && ($items->canLiftRocks()
-                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
+                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                    || $this->world->config('canOneFrameClipOW', false)
+                    || ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)))
                 && $items->canLightTorches()
                 && $items->has('BigKeyP2') && $items->has('KeyP2')
                 && $this->boss->canBeat($items, $locations)
@@ -108,7 +111,6 @@ class DesertPalace extends Region
             ) {
                 return false;
             }
-
             return !in_array($item, [Item::get('KeyP2', $this->world), Item::get('BigKeyP2', $this->world)]);
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('region.bossNormalLocation', true)
@@ -119,8 +121,8 @@ class DesertPalace extends Region
             return $items->has('RescueZelda')
                 && ($items->has('BookOfMudora')
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                    || ($items->has('MagicMirror') && ($this->world->config('canOWYBA', false) && $items->hasABottle()))
-                    || ($items->has('MagicMirror') && $items->canLiftDarkRocks() && $items->canFly($this->world)));
+                    || $this->world->config('canOneFrameClipOW', false)
+                    || ($items->has('MagicMirror') && $this->world->getRegion('Mire')->canEnter($locations, $items)));
         };
 
         $this->prize_location->setRequirements($this->can_complete);

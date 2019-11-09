@@ -5,9 +5,6 @@ namespace ALttP\Region\Inverted\DarkWorld;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
-use ALttP\Shop;
-use ALttP\Support\LocationCollection;
-use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -16,7 +13,7 @@ use ALttP\World;
 class South extends Region\Standard\DarkWorld\South
 {
     /**
-     * Create a new South Dark World Region and initalize it's locations
+     * Create a new South Dark World Region and initalize it's locations.
      *
      * @param World $world World this Region is part of
      *
@@ -35,8 +32,8 @@ class South extends Region\Standard\DarkWorld\South
     }
 
     /**
-     * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-     * within for No Glitches
+     * Initalize the requirements for Entry and Completetion of the Region as
+     * well as access to all Locations contained within for No Glitches.
      *
      * @return $this
      */
@@ -47,15 +44,65 @@ class South extends Region\Standard\DarkWorld\South
         });
 
         $this->shops["Dark Lake Hylia Ledge Fairy"]->setRequirements(function ($locations, $items) {
-            return ($items->has('Flippers') || $items->canFly($this->world)) && $items->canBombThings();
+            return $items->canBombThings()
+                && ($items->has('Flippers')
+                    || $items->canFly($this->world)
+                    || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle()) || (
+                        ($this->world->config('canBootsClip', false)
+                            || $this->world->config('canWaterWalk', false))
+                        && $items->has('PegasusBoots')) ||
+                    $this->world->config('canOneFrameClipOW', false)
+                    || ($this->world->config('canFakeFlipper', false)
+                        && (
+                            ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+                                && ($items->has('Hammer')
+                                    || $items->canLiftRocks()))
+                            || ($this->World->config('canBunnyRevive', false)
+                                && $items->canBunnyRevive()))
+                        || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
+                            && $this->world->config('region.cantTakeDamage', false))));
         });
 
         $this->shops["Dark Lake Hylia Ledge Hint"]->setRequirements(function ($locations, $items) {
-            return ($items->has('Flippers') || $items->canFly($this->world)) && $items->canLiftRocks();
+            return $items->canLiftRocks()
+                && ($items->has('Flippers')
+                    || $items->canFly($this->world)
+                    || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle()) || (
+                        ($this->world->config('canBootsClip', false)
+                            || $this->world->config('canWaterWalk', false))
+                        && $items->has('PegasusBoots')) ||
+                    $this->world->config('canOneFrameClipOW', false)
+                    || ($this->world->config('canFakeFlipper', false)
+                        && (
+                            ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+                                && ($items->has('Hammer')
+                                    || $items->canLiftRocks()))
+                            || ($this->World->config('canBunnyRevive', false)
+                                && $items->canBunnyRevive()))
+                        || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
+                            && $this->world->config('region.cantTakeDamage', false))));
         });
 
         $this->shops["Dark Lake Hylia Ledge Spike Cave"]->setRequirements(function ($locations, $items) {
-            return ($items->has('Flippers') || $items->canFly($this->world)) && $items->canLiftRocks();
+            return $items->canLiftRocks()
+                && ($items->has('Flippers')
+                    || $items->canFly($this->world)
+                    || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle()) || (
+                        ($this->world->config('canBootsClip', false)
+                            || $this->world->config('canWaterWalk', false))
+                        && $items->has('PegasusBoots')) ||
+                    $this->world->config('canOneFrameClipOW', false)
+                    || ($this->world->config('canFakeFlipper', false)
+                        && (
+                            ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
+                                && ($items->has('Hammer')
+                                    || $items->canLiftRocks())) || ($this->World->config('canBunnyRevive', false)
+                                && $items->canBunnyRevive()))
+                        || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
+                            && $this->world->config('region.cantTakeDamage', false))));
         });
 
         $this->locations["Hype Cave - Top"]->setRequirements(function ($locations, $items) {

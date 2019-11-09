@@ -109,7 +109,7 @@ class Boss
                     || ($items->has('Bombos') && ($world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->canExtendMagic(2) && $items->has('FireRod')))
                     && $items->canMeltThings($world) && ($items->has('Hammer') || $items->hasSword()
                         || ($items->canExtendMagic(3) && $items->has('FireRod'))
-                        || ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos')));
+                        || ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos') && $world->config('mode.weapons') === 'swordless'));
             }),
             new static("Vitreous", "Vitreous", function ($locations, $items) use ($world) {
                 return ($world->config('itemPlacement') !== 'basic' || $items->hasSword(2) || $items->canShootArrows())

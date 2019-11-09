@@ -194,6 +194,8 @@ return [
     'Coal1' => 'Coal',
     'Coal2' => 'Coal',
 
+    'GoldenTicket' => 'Golden Ticket',
+
     'Armos Knights' => 'Armos Knights',
     'Lanmolas' => 'Lanmolas',
     'Moldorm' => 'Moldorm',

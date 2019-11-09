@@ -32,9 +32,10 @@ class HintService
         $this->advancement_items = $advancement_items;
         $this->joke_hints = cache()->rememberForever('joke_hints', function () {
             return array_filter(explode(
-                "\n-\n",
-                (string) preg_replace('/^-\n/', '', (string) file_get_contents(base_path('strings/hint.txt')))
-            ));
+                    "\n-\n",
+                    (string) preg_replace('/^-\n/', '', 
+                    (string) preg_replace('/\r\n/', "\n", (string) file_get_contents(base_path('strings/hint.txt'))))
+                ));
         });
     }
 

@@ -2,6 +2,46 @@
 
 @section('content')
 
+
+<h2>v31.0.3</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>Uncle credit updated for progressive bow</li>
+        <li>Old permalinks will work with BG music disable now</li>
+        <li>Overhaul of glitched logics</li>
+    </ul>
+</div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
+
+<h2>v31.0.2</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>Customizer spoiler toggle added</li>
+        <li>Permalink page settings not saving fixed</li>
+        <li>File name shortened</li>
+        <li>Hint updates</li>
+        <li>Daily Generation glitched logic fix</li>
+        <li>Console generation memory leak fix</li>
+        <li>Thieves’ Town 100% locations key bug fix</li>
+        <li>Quickswap fixed on spoiler generation</li>
+        <li>Daily weights adjustments</li>
+        <li>Fix Customizer bug with item placement</li>
+    </ul>
+</div>
+
+<h2>v31.0.1</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>Hint updates</li>
+        <li>Updates to Glitched logics</li>
+        <li>Customizer 2x armor bug fixed</li>
+        <li>Quickswap fixed on Entrance generation</li>
+        <li>Crowd Control and Basic placement</li>
+        <li>Allow progression in Pinball Room when not forcing key</li>
+    </ul>
+</div>
+
 <h2>v31</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -47,7 +87,6 @@
         </div>
     </div>
 </div>
-
 
 <ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 

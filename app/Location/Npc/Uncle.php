@@ -122,6 +122,7 @@ class Uncle extends Location
             case 'Bow':
             case 'BowAndArrows':
             case 'BowAndSilverArrows':
+            case 'ProgressiveBow':
                 return "your uncle, robin hood";
             case 'Boomerang':
             case 'RedBoomerang':

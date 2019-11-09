@@ -148,7 +148,9 @@ class SkullWoods extends Region
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasBottle()))
-                && ($this->world->config('canDungeonRevive') || $items->has('MoonPearl'))
+                && ($this->world->config('canDungeonRevive') || $items->has('MoonPearl')
+                    || (($items->hasABottle() && $this->world->config('canOWYBA', false))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())))
                 && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
         };
 
