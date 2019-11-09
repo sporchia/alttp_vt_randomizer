@@ -65,6 +65,7 @@ class West extends Region
                     || $this->world->config('canOneFrameClipOW', false)
                     || ($this->world->config('canOWYBA', false) &&  $items->hasABottle())
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
                     || ($items->canLiftRocks() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))));
         };
 

@@ -18,4 +18,5 @@
 .env.debug
 .phpunit.result.cache
 .php_cs.cache
-.vscode/
+/.vscode
+/.vs

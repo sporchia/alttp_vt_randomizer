@@ -179,7 +179,7 @@ return [
     'BigRedBomb' => 'Bomba Grande',
     'DefeatAgahnim2' => 'Derrota a Agahnim 2',
     'DefeatGanon' => 'Derrota a Ganon',
-    
+
     'ChocoboEgg' => 'Huevo de Chocobo',
 
     'NoSlipBoots' => 'Botas antideslizantes',
@@ -193,6 +193,8 @@ return [
     'Reindeer8' => 'Relámpago',
     'Coal1' => 'Carbón',
     'Coal2' => 'Carbón',
+
+    'GoldenTicket' => 'Golden Ticket',
 
     'Armos Knights' => 'Armos Max',
     'Lanmolas' => 'Lanmolas',

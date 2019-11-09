@@ -150,7 +150,14 @@ var ROM = (function(blob, loaded_callback, error_callback) {
 
 	this.setMusicVolume = (enable) => {
 		return new Promise(resolve => {
-			this.write(0x18021A, !enable ? 0x01 : 0x00);
+			if (this.build > '2019-08-01') {
+				this.write(0x18021A, !enable ? 0x01 : 0x00);
+			} else {
+				this.write(0x0CFE18, !enable ? 0x00 : 0x70);
+				this.write(0x0CFEC1, !enable ? 0x00 : 0xC0);
+				this.write(0x0D0000, !enable ? [0x00, 0x00] : [0xDA, 0x58]);
+				this.write(0x0D00E7, !enable ? [0xC4, 0x58] : [0xDA, 0x58]);
+			}
 
 			resolve(this);
 		});

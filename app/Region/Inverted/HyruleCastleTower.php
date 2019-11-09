@@ -2,11 +2,7 @@
 
 namespace ALttP\Region\Inverted;
 
-use ALttP\Item;
-use ALttP\Location;
 use ALttP\Region;
-use ALttP\Support\LocationCollection;
-use ALttP\World;
 
 /**
  * Hyrule Castle Tower Region and it's Locations contained within

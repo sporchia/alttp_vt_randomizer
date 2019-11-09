@@ -83,7 +83,20 @@ class RandomizerController extends Controller
         }
     }
 
-    protected function prepSeed(CreateRandomizedGame $request)
+    public function testGenerateSeed(CreateRandomizedGame $request)
+    {
+        try {
+            return json_encode(array_except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
+        } catch (Exception $exception) {
+            if (app()->bound('sentry')) {
+                app('sentry')->captureException($exception);
+            }
+
+            return response($exception->getMessage(), 409);
+        }
+    }
+
+    protected function prepSeed(CreateRandomizedGame $request, bool $save = true)
     {
         $crystals_ganon = $request->input('crystals.ganon', '7');
         $crystals_ganon = $crystals_ganon === 'random' ? get_random_int(0, 7) : $crystals_ganon;
@@ -139,7 +152,7 @@ class RandomizerController extends Controller
         }
 
         $rand->randomize();
-        $world->writeToRom($rom, true);
+        $world->writeToRom($rom, $save);
 
         // E.R. is responsible for verifying winnability of itself
         if ($world->config('entrances') === 'none') {
@@ -169,7 +182,7 @@ class RandomizerController extends Controller
         }
         $patch = $rom->getWriteLog();
 
-        if ($world->isEnemized()) {
+        if ($save) {
             $world->updateSeedRecordPatch($patch);
         }
 

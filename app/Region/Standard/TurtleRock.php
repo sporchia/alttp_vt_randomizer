@@ -84,23 +84,29 @@ class TurtleRock extends Region
     public function initalize()
     {
         $upper = function ($locations, $items) {
-            return ((($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos', $this->world)) && $items->has('Bombos'))
+            return (($locations["Turtle Rock Medallion"]->hasItem(Item::get('Bombos', $this->world)) && $items->has('Bombos'))
                 || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Ether', $this->world)) && $items->has('Ether'))
                 || ($locations["Turtle Rock Medallion"]->hasItem(Item::get('Quake', $this->world)) && $items->has('Quake')))
-                && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
-                && $items->has('MoonPearl')
+                && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
+                && ($items->has('MoonPearl')
+                    || ($this->world->config('canOWYBA', false) && $items->hasABottle()
+                        && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                            || $this->world->config('canOneFrameClipOW', false))))
                 && $items->has('CaneOfSomaria')
-                && (($items->has('Hammer')
-                    && ($items->canLiftDarkRocks() || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
+                && (($items->has('Hammer') && $items->canLiftDarkRocks()
                     && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))
                     || (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                        && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items)));
+                        || $this->world->config('canOneFrameClipOW', false)));
         };
 
         $middle = function ($locations, $items) {
-            return (($this->world->config('canMirrorClip', false) && $items->has('MagicMirror'))
-                || (($this->world->config('canSuperSpeed', false) && $items->has('MoonPearl') && $items->canSpinSpeed())
-                    || ($this->world->config('canOneFrameClipOW', false) && $this->world->config('canOWYBA', false) && $items->hasABottle())))
+            return ((($this->world->config('canMirrorClip', false) && $items->has('MagicMirror'))
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)))
+                || (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                    && (($this->world->config('canOWYBA', false) && $items->hasABottle()) || $items->has('MoonPearl')))
+                || ($this->world->config('canSuperSpeed', false) && $items->has('MoonPearl') && $items->canSpinSpeed())
+                || ($this->world->config('canOneFrameClipOW', false) && ($this->world->config('canDungeonRevive', false)
+                    || $items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))))
                 && ($items->has('PegasusBoots') || $items->has('CaneOfSomaria') || $items->has('Hookshot')
                     || !$this->world->config('region.cantTakeDamage', false)
                     && ($items->has('Cape') || $items->has('CaneOfByrna')))
@@ -110,9 +116,11 @@ class TurtleRock extends Region
         $lower = function ($locations, $items) {
             return $this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                 && ($items->has('MoonPearl')
-                    || ($this->world->config('canOWYBA', false) && $items->hasABottle() && $this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
-                && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
-                && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+                    || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                && (((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
+                    && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+                    || (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                        && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items)));
         };
 
         $this->locations["Turtle Rock - Chain Chomps"]->setRequirements(function ($locations, $items) use ($upper, $middle, $lower) {
@@ -216,11 +224,17 @@ class TurtleRock extends Region
             return $this->locations["Turtle Rock - Boss"]->canAccess($items);
         };
 
-        // @todo lamp isn't necessary if one can enter lower
         $this->locations["Turtle Rock - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
                 && $items->has('KeyD7', 4)
-                && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+                && (($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
+                    && ($items->has('MoonPearl')
+                        || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                    && (((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
+                        && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))
+                        || (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                            && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))))
+                    || $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))
                 && $items->has('BigKeyD7') && $items->has('CaneOfSomaria')
                 && $this->boss->canBeat($items, $locations)
                 && (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD7') || $this->locations["Turtle Rock - Boss"]->hasItem(Item::get('CompassD7', $this->world)))
@@ -233,7 +247,6 @@ class TurtleRock extends Region
             ) {
                 return false;
             }
-
             return true;
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('region.bossNormalLocation', true)
