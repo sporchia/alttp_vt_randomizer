@@ -1,4 +1,5 @@
 import localforage from "localforage";
+import axios from "axios";
 
 function hasValue(value, array) {
   return (
@@ -20,231 +21,240 @@ function asMulti(object, mKey) {
 export default {
   namespaced: true,
   state: {
-    preset: {
-      value: "default",
-      name: "randomizer.preset.options.default"
-    },
-    glitches_required: {
-      value: "none",
-      name: "randomizer.glitches_required.options.none"
-    },
-    item_placement: {
-      value: "advanced",
-      name: "randomizer.item_placement.options.advanced"
-    },
-    dungeon_items: {
-      value: "standard",
-      name: "randomizer.dungeon_items.options.standard"
-    },
-    accessibility: {
-      value: "items",
-      name: "randomizer.accessibility.options.items"
-    },
-    goal: {
-      value: "ganon",
-      name: "randomizer.goal.options.ganon"
-    },
-    tower_open: {
-      value: "7",
-      name: "randomizer.tower_open.options.7"
-    },
-    ganon_open: {
-      value: "7",
-      name: "randomizer.ganon_open.options.7"
-    },
-    world_state: {
-      value: "open",
-      name: "randomizer.world_state.options.open"
-    },
-    entrance_shuffle: {
-      value: "none",
-      name: "randomizer.entrance_shuffle.options.none"
-    },
-    boss_shuffle: {
-      value: "none",
-      name: "randomizer.boss_shuffle.options.none"
-    },
-    enemy_shuffle: {
-      value: "none",
-      name: "randomizer.enemy_shuffle.options.none"
-    },
-    hints: {
-      value: "on",
-      name: "randomizer.hints.options.on"
-    },
-    weapons: {
-      value: "randomized",
-      name: "randomizer.weapons.options.randomized"
-    },
-    item_pool: {
-      value: "normal",
-      name: "randomizer.item_pool.options.normal"
-    },
-    item_functionality: {
-      value: "normal",
-      name: "randomizer.item_functionality.options.normal"
-    },
-    enemy_damage: {
-      value: "default",
-      name: "randomizer.enemy_damage.options.default"
-    },
-    enemy_health: {
-      value: "default",
-      name: "randomizer.enemy_health.options.default"
-    },
-    spoiler: {
-      value: "off",
-      name: "randomizer.spoiler.options.off"
-    },
+    worlds: {},
     preset_map: {},
     initializing: true
   },
   getters: {},
   actions: {
-    setPreset({ commit, state }, preset) {
+    getItemSettings({ commit, dispatch }) {
+      return axios
+        .get(`/randomizer/settings`)
+        .then(response => {
+          commit("updateItemSettings", response.data);
+        })
+        .then(() => {
+          let loads = [];
+          for (let worldId = 0; worldId < 8; worldId++) {
+            loads = loads.concat([
+              dispatch("load", [worldId, "preset", "setPreset"]),
+              dispatch("load", [
+                worldId,
+                "glitches_required",
+                "setGlitchesRequired"
+              ]),
+              dispatch("load", [worldId, "item_placement", "setItemPlacement"]),
+              dispatch("load", [worldId, "dungeon_items", "setDungeonItems"]),
+              dispatch("load", [worldId, "accessibility", "setAccessibility"]),
+              dispatch("load", [worldId, "goal", "setGoal"]),
+              dispatch("load", [worldId, "tower_open", "setTowerOpen"]),
+              dispatch("load", [worldId, "ganon_open", "setGanonOpen"]),
+              dispatch("load", [worldId, "world_state", "setWorldState"]),
+              dispatch("load", [
+                worldId,
+                "entrance_shuffle",
+                "setEntranceShuffle"
+              ]),
+              dispatch("load", [worldId, "boss_shuffle", "setBossShuffle"]),
+              dispatch("load", [worldId, "enemy_shuffle", "setEnemyShuffle"]),
+              dispatch("load", [worldId, "hints", "setHints"]),
+              dispatch("load", [worldId, "weapons", "setWeapons"]),
+              dispatch("load", [worldId, "item_pool", "setItemPool"]),
+              dispatch("load", [
+                worldId,
+                "item_functionality",
+                "setItemFunctionality"
+              ]),
+              dispatch("load", [worldId, "enemy_damage", "setEnemyDamage"]),
+              dispatch("load", [worldId, "enemy_health", "setEnemyHealth"]),
+              dispatch("load", [worldId, "spoiler", "setSpoiler"])
+            ]);
+          }
+
+          return Promise.all(loads);
+        })
+        .then(() => {
+          commit("setInitalizing", false);
+        });
+    },
+    setPreset({ commit, state }, { worldId, preset }) {
       if (
         preset.value !== "custom" &&
         typeof state.preset_map[preset.value] !== "undefined"
       ) {
-        commit(
-          "setGlitchesRequired",
-          state.preset_map[preset.value]["glitches_required"]
-        );
-        commit(
-          "setItemPlacement",
-          state.preset_map[preset.value]["item_placement"]
-        );
-        commit(
-          "setDungeonItems",
-          state.preset_map[preset.value]["dungeon_items"]
-        );
-        commit(
-          "setAccessibility",
-          state.preset_map[preset.value]["accessibility"]
-        );
-        commit("setGoal", state.preset_map[preset.value]["goal"]);
-        commit("setTowerOpen", state.preset_map[preset.value]["tower_open"]);
-        commit("setGanonOpen", state.preset_map[preset.value]["ganon_open"]);
-        commit("setWorldState", state.preset_map[preset.value]["world_state"]);
-        commit(
-          "setEntranceShuffle",
-          state.preset_map[preset.value]["entrance_shuffle"]
-        );
-        commit(
-          "setBossShuffle",
-          state.preset_map[preset.value]["boss_shuffle"]
-        );
-        commit(
-          "setEnemyShuffle",
-          state.preset_map[preset.value]["enemy_shuffle"]
-        );
-        commit("setHints", state.preset_map[preset.value]["hints"]);
-        commit("setWeapons", state.preset_map[preset.value]["weapons"]);
-        commit("setItemPool", state.preset_map[preset.value]["item_pool"]);
-        commit(
-          "setItemFunctionality",
-          state.preset_map[preset.value]["item_functionality"]
-        );
-        commit(
-          "setEnemyDamage",
-          state.preset_map[preset.value]["enemy_damage"]
-        );
-        commit(
-          "setEnemyHealth",
-          state.preset_map[preset.value]["enemy_health"]
-        );
+        commit("setGlitchesRequired", {
+          worldId,
+          value: state.preset_map[preset.value]["glitches_required"]
+        });
+        commit("setItemPlacement", {
+          worldId,
+          value: state.preset_map[preset.value]["item_placement"]
+        });
+        commit("setDungeonItems", {
+          worldId,
+          value: state.preset_map[preset.value]["dungeon_items"]
+        });
+        commit("setAccessibility", {
+          worldId,
+          value: state.preset_map[preset.value]["accessibility"]
+        });
+        commit("setGoal", {
+          worldId,
+          value: state.preset_map[preset.value]["goal"]
+        });
+        commit("setTowerOpen", {
+          worldId,
+          value: state.preset_map[preset.value]["tower_open"]
+        });
+        commit("setGanonOpen", {
+          worldId,
+          value: state.preset_map[preset.value]["ganon_open"]
+        });
+        commit("setWorldState", {
+          worldId,
+          value: state.preset_map[preset.value]["world_state"]
+        });
+        commit("setEntranceShuffle", {
+          worldId,
+          value: state.preset_map[preset.value]["entrance_shuffle"]
+        });
+        commit("setBossShuffle", {
+          worldId,
+          value: state.preset_map[preset.value]["boss_shuffle"]
+        });
+        commit("setEnemyShuffle", {
+          worldId,
+          value: state.preset_map[preset.value]["enemy_shuffle"]
+        });
+        commit("setHints", {
+          worldId,
+          value: state.preset_map[preset.value]["hints"]
+        });
+        commit("setWeapons", {
+          worldId,
+          value: state.preset_map[preset.value]["weapons"]
+        });
+        commit("setItemPool", {
+          worldId,
+          value: state.preset_map[preset.value]["item_pool"]
+        });
+        commit("setItemFunctionality", {
+          worldId,
+          value: state.preset_map[preset.value]["item_functionality"]
+        });
+        commit("setEnemyDamage", {
+          worldId,
+          value: state.preset_map[preset.value]["enemy_damage"]
+        });
+        commit("setEnemyHealth", {
+          worldId,
+          value: state.preset_map[preset.value]["enemy_health"]
+        });
       }
 
-      commit("setPreset", preset);
+      commit("setPreset", { worldId, value: preset });
     },
-    async load({ commit, state }, [key, mutate]) {
-      const value = await localforage.getItem(`randomizer.${key}`);
+    async load({ commit, state }, [worldId, key, mutate]) {
+      const value = await localforage.getItem(`multiworld.${worldId}.${key}`);
       if (value !== null && hasValue(value, state.options[key])) {
-        commit(mutate, value);
+        commit(mutate, { worldId, value });
       }
     },
-    setGlitchesRequired({ commit, state }, value) {
-      commit("setGlitchesRequired", value);
+    setGlitchesRequired({ commit, state }, { worldId, value }) {
+      commit("setGlitchesRequired", { worldId, value });
 
       if (
-        ["none", "no_logic"].indexOf(state.glitches_required.value) === -1 &&
-        state.entrance_shuffle.value !== "none"
+        ["none", "no_logic"].indexOf(
+          state.worlds[worldId].glitches_required.value
+        ) === -1 &&
+        state.worlds[worldId].entrance_shuffle.value !== "none"
       ) {
-        commit("setEntranceShuffle", "none");
+        commit("setEntranceShuffle", { worldId, value: "none" });
       }
     },
-    setItemPlacement({ commit, state }, value) {
-      commit("setItemPlacement", value);
+    setItemPlacement({ commit, state }, { worldId, value }) {
+      commit("setItemPlacement", { worldId, value });
 
       if (
-        state.item_placement.value !== "advanced" &&
-        state.entrance_shuffle.value !== "none"
+        state.worlds[worldId].item_placement.value !== "advanced" &&
+        state.worlds[worldId].entrance_shuffle.value !== "none"
       ) {
-        commit("setEntranceShuffle", "none");
+        commit("setEntranceShuffle", { worldId, value: "none" });
       }
       if (
-        state.item_placement.value !== "advanced" &&
-        state.item_pool.value === "crowd_control"
+        state.worlds[worldId].item_placement.value !== "advanced" &&
+        state.worlds[worldId].item_pool.value === "crowd_control"
       ) {
-        commit("setItemPool", "expert");
+        commit("setItemPool", { worldId, value: "expert" });
       }
     },
-    setDungeonItems({ commit, state }, value) {
-      commit("setDungeonItems", value);
+    setDungeonItems({ commit, state }, { worldId, value }) {
+      commit("setDungeonItems", { worldId, value });
 
       if (
-        ["full", "standard"].indexOf(state.dungeon_items.value) === -1 &&
-        state.entrance_shuffle.value !== "none"
+        ["full", "standard"].indexOf(
+          state.worlds[worldId].dungeon_items.value
+        ) === -1 &&
+        state.worlds[worldId].entrance_shuffle.value !== "none"
       ) {
-        commit("setEntranceShuffle", "none");
+        commit("setEntranceShuffle", { worldId, value: "none" });
       }
     },
-    setGoal({ commit, state }, value) {
-      commit("setGoal", value);
+    setGoal({ commit, state }, { worldId, value }) {
+      commit("setGoal", { worldId, value });
 
-      if (state.goal.value === "dungeons") {
-        commit("setGanonOpen", "7");
+      if (state.worlds[worldId].goal.value === "dungeons") {
+        commit("setGanonOpen", { worldId, value: "7" });
       }
     },
-    setGanonOpen({ commit, state }, value) {
-      commit("setGanonOpen", value);
+    setGanonOpen({ commit, state }, { worldId, value }) {
+      commit("setGanonOpen", { worldId, value });
 
-      if (state.ganon_open.value !== "7" && state.goal.value === "dungeons") {
-        commit("setGoal", "ganon");
+      if (
+        state.worlds[worldId].ganon_open.value !== "7" &&
+        state.worlds[worldId].goal.value === "dungeons"
+      ) {
+        commit("setGoal", { worldId, value: "ganon" });
       }
     },
-    setWorldState({ commit }, value) {
-      commit("setWorldState", value);
+    setWorldState({ commit }, { worldId, value }) {
+      commit("setWorldState", { worldId, value });
     },
-    setEntranceShuffle({ commit, state }, value) {
-      commit("setEntranceShuffle", value);
+    setEntranceShuffle({ commit, state }, { worldId, value }) {
+      commit("setEntranceShuffle", { worldId, value });
 
       // rules when ER is enabled, hopefully we can reduce this section to be
       // completely removed in the future.
-      if (state.entrance_shuffle.value !== "none") {
+      if (state.worlds[worldId].entrance_shuffle.value !== "none") {
         if (
-          ["none", "no_logic"].indexOf(state.glitches_required.value) === -1
+          ["none", "no_logic"].indexOf(
+            state.worlds[worldId].glitches_required.value
+          ) === -1
         ) {
-          commit("setGlitchesRequired", "none");
+          commit("setGlitchesRequired", { worldId, value: "none" });
         }
 
-        if (state.item_placement.value !== "advanced") {
-          commit("setItemPlacement", "advanced");
+        if (state.worlds[worldId].item_placement.value !== "advanced") {
+          commit("setItemPlacement", { worldId, value: "advanced" });
         }
 
-        if (["full", "standard"].indexOf(state.dungeon_items.value) === -1) {
-          commit("setDungeonItems", "standard");
+        if (
+          ["full", "standard"].indexOf(
+            state.worlds[worldId].dungeon_items.value
+          ) === -1
+        ) {
+          commit("setDungeonItems", { worldId, value: "standard" });
         }
       }
     },
-    setItemPool({ commit, state }, value) {
-      commit("setItemPool", value);
+    setItemPool({ commit, state }, { worldId, value }) {
+      commit("setItemPool", { worldId, value });
 
       if (
-        state.item_pool.value === "crowd_control" &&
-        state.item_placement.value !== "advanced"
+        state.worlds[worldId].item_pool.value === "crowd_control" &&
+        state.worlds[worldId].item_placement.value !== "advanced"
       ) {
-        commit("setItemPlacement", "advanced");
+        commit("setItemPlacement", { worldId, value: "advanced" });
       }
     }
   },
@@ -301,138 +311,138 @@ export default {
       state.options.enemy_health = asMulti(enemy_health, "enemy_health");
       state.preset_map = presets;
     },
-    setPreset(state, value) {
+    setPreset(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.preset.find(o => o.value === value);
       }
-      state.preset = value;
-      localforage.setItem("randomizer.preset", value);
+      state.worlds[worldId].preset = value;
+      localforage.setItem(`multiworld.${worldId}.preset`, value);
     },
-    setGlitchesRequired(state, value) {
+    setGlitchesRequired(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.glitches_required.find(o => o.value === value);
       }
-      state.glitches_required = value;
-      localforage.setItem("randomizer.glitches_required", value);
+      state.worlds[worldId].glitches_required = value;
+      localforage.setItem(`multiworld.${worldId}.glitches_required`, value);
     },
-    setItemPlacement(state, value) {
+    setItemPlacement(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.item_placement.find(o => o.value === value);
       }
-      state.item_placement = value;
-      localforage.setItem("randomizer.item_placement", value);
+      state.worlds[worldId].item_placement = value;
+      localforage.setItem(`multiworld.${worldId}.item_placement`, value);
     },
-    setDungeonItems(state, value) {
+    setDungeonItems(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.dungeon_items.find(o => o.value === value);
       }
-      state.dungeon_items = value;
-      localforage.setItem("randomizer.dungeon_items", value);
+      state.worlds[worldId].dungeon_items = value;
+      localforage.setItem(`multiworld.${worldId}.dungeon_items`, value);
     },
-    setAccessibility(state, value) {
+    setAccessibility(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.accessibility.find(o => o.value === value);
       }
-      state.accessibility = value;
-      localforage.setItem("randomizer.accessibility", value);
+      state.worlds[worldId].accessibility = value;
+      localforage.setItem(`multiworld.${worldId}.accessibility`, value);
     },
-    setGoal(state, value) {
+    setGoal(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.goal.find(o => o.value === value);
       }
-      state.goal = value;
-      localforage.setItem("randomizer.goal", value);
+      state.worlds[worldId].goal = value;
+      localforage.setItem(`multiworld.${worldId}.goal`, value);
     },
-    setTowerOpen(state, value) {
+    setTowerOpen(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.tower_open.find(o => o.value === value);
       }
-      state.tower_open = value;
-      localforage.setItem("randomizer.tower_open", value);
+      state.worlds[worldId].tower_open = value;
+      localforage.setItem(`multiworld.${worldId}.tower_open`, value);
     },
-    setGanonOpen(state, value) {
+    setGanonOpen(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.ganon_open.find(o => o.value === value);
       }
-      state.ganon_open = value;
-      localforage.setItem("randomizer.ganon_open", value);
+      state.worlds[worldId].ganon_open = value;
+      localforage.setItem(`multiworld.${worldId}.ganon_open`, value);
     },
-    setWorldState(state, value) {
+    setWorldState(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.world_state.find(o => o.value === value);
       }
-      state.world_state = value;
-      localforage.setItem("randomizer.world_state", value);
+      state.worlds[worldId].world_state = value;
+      localforage.setItem(`multiworld.${worldId}.world_state`, value);
     },
-    setEntranceShuffle(state, value) {
+    setEntranceShuffle(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.entrance_shuffle.find(o => o.value === value);
       }
-      state.entrance_shuffle = value;
-      localforage.setItem("randomizer.entrance_shuffle", value);
+      state.worlds[worldId].entrance_shuffle = value;
+      localforage.setItem(`multiworld.${worldId}.entrance_shuffle`, value);
     },
-    setBossShuffle(state, value) {
+    setBossShuffle(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.boss_shuffle.find(o => o.value === value);
       }
-      state.boss_shuffle = value;
-      localforage.setItem("randomizer.boss_shuffle", value);
+      state.worlds[worldId].boss_shuffle = value;
+      localforage.setItem(`multiworld.${worldId}.boss_shuffle`, value);
     },
-    setEnemyShuffle(state, value) {
+    setEnemyShuffle(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.enemy_shuffle.find(o => o.value === value);
       }
-      state.enemy_shuffle = value;
-      localforage.setItem("randomizer.enemy_shuffle", value);
+      state.worlds[worldId].enemy_shuffle = value;
+      localforage.setItem(`multiworld.${worldId}.enemy_shuffle`, value);
     },
-    setHints(state, value) {
+    setHints(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.hints.find(o => o.value === value);
       }
-      state.hints = value;
-      localforage.setItem("randomizer.hints", value);
+      state.worlds[worldId].hints = value;
+      localforage.setItem(`multiworld.${worldId}.hints`, value);
     },
-    setWeapons(state, value) {
+    setWeapons(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.weapons.find(o => o.value === value);
       }
-      state.weapons = value;
-      localforage.setItem("randomizer.weapons", value);
+      state.worlds[worldId].weapons = value;
+      localforage.setItem(`multiworld.${worldId}.weapons`, value);
     },
-    setItemPool(state, value) {
+    setItemPool(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.item_pool.find(o => o.value === value);
       }
-      state.item_pool = value;
-      localforage.setItem("randomizer.item_pool", value);
+      state.worlds[worldId].item_pool = value;
+      localforage.setItem(`multiworld.${worldId}.item_pool`, value);
     },
-    setItemFunctionality(state, value) {
+    setItemFunctionality(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.item_functionality.find(o => o.value === value);
       }
-      state.item_functionality = value;
-      localforage.setItem("randomizer.item_functionality", value);
+      state.worlds[worldId].item_functionality = value;
+      localforage.setItem(`multiworld.${worldId}.item_functionality`, value);
     },
-    setEnemyDamage(state, value) {
+    setEnemyDamage(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.enemy_damage.find(o => o.value === value);
       }
-      state.enemy_damage = value;
-      localforage.setItem("randomizer.enemy_damage", value);
+      state.worlds[worldId].enemy_damage = value;
+      localforage.setItem(`multiworld.${worldId}.enemy_damage`, value);
     },
-    setEnemyHealth(state, value) {
+    setEnemyHealth(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.enemy_health.find(o => o.value === value);
       }
-      state.enemy_health = value;
-      localforage.setItem("randomizer.enemy_health", value);
+      state.worlds[worldId].enemy_health = value;
+      localforage.setItem(`multiworld.${worldId}.enemy_health`, value);
     },
-    setSpoiler(state, value) {
+    setSpoiler(state, { worldId, value }) {
       if (typeof value === "string") {
         value = state.options.spoiler.find(o => o.value === value);
       }
-      state.spoiler = value;
-      localforage.setItem("randomizer.spoiler", value);
+      state.worlds[worldId].spoiler = value;
+      localforage.setItem(`multiworld.${worldId}.spoiler`, value);
     },
     setInitalizing(state, init) {
       state.initializing = init;

@@ -4,6 +4,7 @@ import itemLocations from "./modules/itemLocations";
 import context from "./modules/context";
 import glitches from "./modules/glitches";
 import randomizer from "./modules/randomizer";
+import multiworld from "./modules/multiworld";
 import randomizerSettings from "./modules/randomizerSettings";
 import romSettings from "./modules/romSettings";
 import Vuex from "vuex";
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     context,
     glitches,
     randomizer,
+    multiworld,
     randomizerSettings,
     romSettings
   },

@@ -269,12 +269,12 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("randomizer/getItemSettings");
+    this.$store.dispatch("multiworld/getItemSettings");
     this.$store.dispatch("romSettings/initialize");
     this.$store.dispatch("getSettings");
   },
   methods: {
-    ...mapActions("randomizer", [
+    ...mapActions("multiworld", [
       "setPreset",
       "setGlitchesRequired",
       "setItemPlacement",
@@ -285,7 +285,7 @@ export default {
       "setEntranceShuffle",
       "setItemPool"
     ]),
-    ...mapMutations("randomizer", [
+    ...mapMutations("multiworld", [
       "setAccessibility",
       "setTowerOpen",
       "setHints",
@@ -307,7 +307,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("randomizer", {
+    ...mapState("multiworld", {
       optionsPreset: state => state.options.preset,
       preset: state => state.preset,
       optionsGlitchesRequired: state => state.options.glitches_required,
@@ -338,7 +338,7 @@ export default {
       itemFunctionality: state => state.item_functionality
     }),
     editable() {
-      return this.$store.state.randomizer.preset.value === "custom";
+      return this.$store.state.multiworld.preset.value === "custom";
     }
   }
 };
