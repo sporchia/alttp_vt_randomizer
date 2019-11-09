@@ -254,7 +254,6 @@ class TurtleRockTest extends TestCase
             ["Turtle Rock - Boss", false, [], ['CaneOfSomaria']],
             ["Turtle Rock - Boss", false, [], ['IceRod']],
             ["Turtle Rock - Boss", false, [], ['FireRod']],
-            ["Turtle Rock - Boss", false, [], ['Lamp']],
             ["Turtle Rock - Boss", false, [], ['BigKeyD7']],
             ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'UncleSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
             ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'MoonPearl', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],

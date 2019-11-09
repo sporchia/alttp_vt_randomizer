@@ -40,12 +40,6 @@ class NorthEastTest extends TestCase
         }
 
         $this->addCollected($items);
-        //if ($access) {
-        //	print_r(array_map(function($i) {
-        //		return $i->getName();
-        //	}, $this->collected->values()));
-        //	die;
-        //}
 
         $this->assertEquals($access, $this->world->getLocation($location)
             ->canAccess($this->collected));
@@ -62,11 +56,7 @@ class NorthEastTest extends TestCase
             ["Catfish", true, ['MoonPearl', 'PowerGlove', 'Hammer']],
             ["Catfish", true, ['MoonPearl', 'TitansMitt', 'Flippers']],
 
-            ["Pyramid", false, []],
-            ["Pyramid", true, ['DefeatAgahnim']],
-            ["Pyramid", true, ['MoonPearl', 'ProgressiveGlove', 'Hammer']],
-            ["Pyramid", true, ['MoonPearl', 'PowerGlove', 'Hammer']],
-            ["Pyramid", true, ['MoonPearl', 'TitansMitt', 'Flippers']],
+            ["Pyramid", true, []],
 
             ["Pyramid Fairy - Sword", false, []],
             ["Pyramid Fairy - Sword", false, [], ['AnySword']],

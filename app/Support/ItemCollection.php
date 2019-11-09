@@ -435,6 +435,16 @@ class ItemCollection extends Collection
     }
 
     /**
+     * Requirements for water (bunny) revival
+     *
+     * @return bool
+     */
+    public function canBunnyRevive(): bool
+    {
+        return $this->hasABottle() && $this->has('BugCatchingNet');
+    }
+
+    /**
      * Requirements for lobbing arrows at things
      *
      * @param int $min_level minimum level of bow

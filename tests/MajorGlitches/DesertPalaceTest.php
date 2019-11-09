@@ -110,10 +110,7 @@ class DesertPalaceTest extends TestCase
     public function accessPool()
     {
         return [
-            ["Desert Palace - Map Chest", false, []],
-            ["Desert Palace - Map Chest", true, ['BookOfMudora']],
-            ["Desert Palace - Map Chest", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Desert Palace - Map Chest", true, ['Flute', 'MagicMirror', 'TitansMitt']],
+            ["Desert Palace - Map Chest", true, []],
 
             ["Desert Palace - Big Chest", false, []],
             ["Desert Palace - Big Chest", true, ['BookOfMudora', 'BigKeyP2']],

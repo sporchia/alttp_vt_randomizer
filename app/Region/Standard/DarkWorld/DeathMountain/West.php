@@ -46,15 +46,25 @@ class West extends Region
     public function initalize()
     {
         $this->shops["Dark Death Mountain Fairy"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl')
-                && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+            return $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+                && $items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false) && $items->hasABottle()
+                    && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
+                        || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Spike Cave"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Hammer') && $items->canLiftRocks()
+            return $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+                && ($items->has('MoonPearl')
+                    || ($this->world->config('canOWYBA', false) && $items->hasABottle()
+                        && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
+                            || $this->world->config('canOneFrameClipOW', false))
+                        && (($items->has('Cape') && $items->canExtendMagic(3))
+                            || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic(3))
+                                && $items->has('CaneOfByrna')))))
+                && $items->has('Hammer') && $items->canLiftRocks()
                 && (($items->canExtendMagic() && $items->has('Cape'))
-                    || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic()) && $items->has('CaneOfByrna')))
-                && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items);
+                    || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic()) && $items->has('CaneOfByrna')));
         });
 
         $this->can_enter = function ($locations, $items) {

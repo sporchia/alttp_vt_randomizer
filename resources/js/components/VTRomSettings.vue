@@ -56,7 +56,7 @@
         <Toggle :value="quickswap" @input="setQuickswap">{{ $t('rom.settings.quickswap') }}</Toggle>
       </div>
     </div>
-    <div class="row mb-3">
+    <div v-if="!rom.special" class="row mb-3">
       <div class="col-md-12">
         <Toggle
           :value="paletteShuffle"

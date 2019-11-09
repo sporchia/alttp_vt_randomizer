@@ -104,7 +104,7 @@ class SouthTest extends TestCase
             ["Hype Cave - NPC", true, ['MoonPearl', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
 
             ["Stumpy", false, []],
-            ["Stumpy", false, [], ['MoonPearl']],
+            ["Stumpy", true, ['MagicMirror', 'PegasusBoots']],
             ["Stumpy", true, ['MoonPearl', 'DefeatAgahnim', 'Hammer']],
             ["Stumpy", true, ['MoonPearl', 'ProgressiveGlove', 'ProgressiveGlove']],
             ["Stumpy", true, ['MoonPearl', 'TitansMitt']],

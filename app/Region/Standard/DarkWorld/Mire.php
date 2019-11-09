@@ -48,25 +48,49 @@ class Mire extends Region
     public function initalize()
     {
         $this->shops["Dark Desert Fairy"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false);
+            return $items->has('MoonPearl')
+                || (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                    && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
+                        || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))));
         });
 
         $this->shops["Dark Desert Hint"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false);
+            return $items->has('MoonPearl')
+                || (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                    && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
+                        || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))));
         });
 
         $this->locations["Mire Shed - Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false);
+            return $items->has('MoonPearl')
+                || (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                    && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
+                        || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
+                || ($this->world->config('canSuperBunny', false)
+                    && ($items->has('MagicMirror') || ($items->hasHealth(5) && !$this->world->config('region.cantTakeDamage', false))));
         });
 
         $this->locations["Mire Shed - Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false);
+            return $items->has('MoonPearl')
+                || (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                    && ($this->world->config('canOneFrameClipOW', false) || $items->hasBottle(2)
+                        || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
+                        || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
+                || ($this->world->config('canSuperBunny', false)
+                    && ($items->has('MagicMirror') || ($items->hasHealth(5) && !$this->world->config('region.cantTakeDamage', false))));
         });
 
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
-                && (($items->canLiftDarkRocks() && ($items->canFly($this->world) || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
-                    || ($items->has('MoonPearl') && ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                && (($items->canLiftDarkRocks() && ($items->canFly($this->world)
+                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
+                    || $this->world->config('canOneFrameClipOW', false)
+                    || (((($items->has('MoonPearl') || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                        && ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
+                        || ($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')))
                         && $this->world->getRegion('South Dark World')->canEnter($locations, $items))
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle()));
         };

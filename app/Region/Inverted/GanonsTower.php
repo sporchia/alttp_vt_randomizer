@@ -26,13 +26,13 @@ class GanonsTower extends Region\Standard\GanonsTower
 
         $this->can_enter = function ($locations, $items) {
             return ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl'))
-                && $items->has('Crystal1')
-                && $items->has('Crystal2')
-                && $items->has('Crystal3')
-                && $items->has('Crystal4')
-                && $items->has('Crystal5')
-                && $items->has('Crystal6')
-                && $items->has('Crystal7')
+                && (($items->has('Crystal1')
+                   + $items->has('Crystal2')
+                   + $items->has('Crystal3')
+                   + $items->has('Crystal4')
+                   + $items->has('Crystal5')
+                   + $items->has('Crystal6')
+                   + $items->has('Crystal7')) >= $this->world->config('crystals.tower', 7))
                 && $this->world->getRegion('North East Light World')->canEnter($locations, $items);
         };
 
