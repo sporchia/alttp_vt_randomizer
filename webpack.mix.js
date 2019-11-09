@@ -21,6 +21,7 @@ mix.webpackConfig({
  */
 mix.options({
     hmrOptions: {
+		host: 'localhost',
         port: '3031'
     },
 });
