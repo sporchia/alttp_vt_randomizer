@@ -38,10 +38,6 @@ class CustomizerController extends Controller
             if ($payload['spoiler']['meta']['tournament'] ?? false) {
                 switch ($payload['spoiler']['meta']['spoilers']) {
                     case "on":
-                        $return_payload = array_except($return_payload, [
-                            'spoiler.playthrough'
-                        ]);
-                        break;
                     case "generate":
                         $return_payload = array_except($return_payload, [
                             'spoiler.playthrough',
