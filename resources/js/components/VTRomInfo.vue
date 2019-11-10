@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="rom.spoiler.meta.spoilers_ongen==true"
+      v-if="rom.spoiler.meta.spoilers_ongen==true || rom.spoilers=='generate'"
       class="spoiler-warning"
     >{{ $t('rom.info.spoilerwarning') }}</div>
     <div v-if="rom.logic">{{ $t('rom.info.logic') }}: {{ rom.logic }}</div>
