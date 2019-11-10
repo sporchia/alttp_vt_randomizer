@@ -6,9 +6,14 @@
 <h2>v31.0.3</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
+        <li>Mirror wraps removed from OWG logic ;__;</li>
         <li>Uncle credit updated for progressive bow</li>
         <li>Old permalinks will work with BG music disable now</li>
-        <li>Overhaul of glitched logics</li>
+        <li>Ginormous Overhaul of glitched logics</li>
+        <li>Fixed Silver Arrows being unavailable in Swordless games with a Hard+ Item Pool setting</li>
+        <li>Fixed hints in customizer games</li>
+        <li>API support for mystery games</li>
+        <li>API support for z3rsim</li>
     </ul>
 </div>
 

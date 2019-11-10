@@ -94,8 +94,8 @@ export default {
       name: "randomizer.enemy_health.options.default"
     },
     spoiler: {
-      value: "off",
-      name: "randomizer.spoiler.options.off"
+      value: "on",
+      name: "randomizer.spoiler.options.on"
     },
     options: {
       preset: [],
