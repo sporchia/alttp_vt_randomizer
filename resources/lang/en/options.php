@@ -63,7 +63,7 @@ return [
                 [
                     'header' => __('randomizer.item_placement.options.advanced'),
                     'content' => [
-                        'This setting is aimed at experienced players. The intention of this setting is to maximize glitchless item placement reach. However one exception is made to prevent navigation through dark rooms. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
+                        'This setting is aimed at experienced players. The intention of this setting is to maximize glitchless item placement reach. However one exception is made to prevent navigation through dark rooms, except for rooms that have torches that one may light with the Fire Rod. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
                     ],
                 ],
             ],
