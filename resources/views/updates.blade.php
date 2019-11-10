@@ -14,7 +14,7 @@
         <li>Fixed hints in customizer games</li>
         <li>Fixed issue with manually placed Triforce Pieces were not counted in customizer.</li>
         <li>Customizer players may now set what rom fixes are applied to their glitched games.</li>
-        <li>Addded Underworld One Frame Clips to customizer Logic Settings<li>
+        <li>Added Underworld One Frame Clips to customizer Logic Settings<li>
         <li>API support for mystery games</li>
         <li>API support for z3rsim</li>
         <li>Miscellaneous site content updates</li>
