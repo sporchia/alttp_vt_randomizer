@@ -63,7 +63,7 @@ return [
                 [
                     'header' => __('randomizer.item_placement.options.advanced'),
                     'content' => [
-                        'This setting is aimed at experienced players. The intention of this setting is to maximize glitchless item placement reach. However one exception is made to the prevention of navigating through dark rooms: Dark room navigation will never be required, except in rooms that contain torches which can be lit with the Fire Rod. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
+                        'This setting is aimed at experienced players. The intention of this setting it to maximize glitchless item placement.  Dark rooms with torches are considered accessible with the Fire Rod; other dark rooms still only logically accessible with Lamp. No other consideration is given to the obscurity of item placements or the level of execution required to access locations. The expectation is a player choosing this setting is decently familiar and practiced with the original game.',
                     ],
                 ],
             ],
