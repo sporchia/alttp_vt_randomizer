@@ -760,6 +760,10 @@ export default {
                 "noLogic": {
                     "title": "Disable all logic checks",
                     "description": "When this is selected all bets are off, and nothing below matters."
+                },
+                "logicMode": {
+                    "title": "Glitches Required Rom \"Fixes\"",
+                    "description": "Set the type of rom fixes applied.  Does not change item placement logic."
                 }
             }
         },
