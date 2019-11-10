@@ -13,6 +13,7 @@ export default {
       canMirrorClip: false,
       canMirrorWrap: false,
       canOneFrameClipOW: false,
+      canOneFrameClipUW: false,
       canOWYBA: false,
       canSuperBunny: false,
       canSuperSpeed: false,

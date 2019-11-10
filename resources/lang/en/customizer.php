@@ -21,11 +21,11 @@ return [
         ],
         'canBootsClip' => [
             'title' => 'Boots Clip',
-            'description' => 'When one has the Boots, they may be required to clip through walls in the in overworld.',
+            'description' => 'When one has the Boots, they may be required to clip through walls in the overworld.',
         ],
         'canBunnyRevive' => [
             'title' => 'Bunny Revive',
-            'description' => 'One may be required to go somewhere as bunny form and abuse death/fairy revive to be Link.',
+            'description' => 'One may be required to go somewhere in bunny form and abuse death/fairy revive to be Link.',
         ],
         'canBunnySurf' => [
             'title' => 'Bunny Surf',
@@ -41,7 +41,7 @@ return [
         ],
         'canMirrorClip' => [
             'title' => 'Mirror Clip',
-            'description' => 'One may be required to abuse Mirror bouce to go out of bounds.',
+            'description' => 'One may be required to abuse Mirror Portal Placements to go out of bounds.',
         ],
         'canMirrorWrap' => [
             'title' => 'Mirror Wrap',
@@ -50,6 +50,10 @@ return [
         'canOneFrameClipOW' => [
             'title' => 'One Frame Clip (overworld)',
             'description' => 'You don’t want this. Trust me.',
+        ],
+        'canOneFrameClipUW' => [
+            'title' => 'One Frame Clip (underworld)',
+            'description' => 'Use 1 Frame Movement to clip between rooms of the underworld.'
         ],
         'canOWYBA' => [
             'title' => 'YBA (overworld)',
@@ -60,8 +64,8 @@ return [
             'description' => 'One may be required to activate super bunny to access locations.',
         ],
         'canSuperSpeed' => [
-            'title' => 'Super Speed',
-            'description' => 'One may be required to super speed clip through edges in overworld.',
+            'title' => 'Super Speed Clip',
+            'description' => 'One may be required to super speed clip through edges in the overworld.',
         ],
         'canWaterFairyRevive' => [
             'title' => 'Water Fairy Revive',
