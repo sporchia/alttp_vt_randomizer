@@ -4,7 +4,6 @@ export default {
   namespaced: true,
   state: {
     settings: {
-      canBombJump: false,
       canBootsClip: false,
       canBunnyRevive: false,
       canBunnySurf: false,
@@ -17,7 +16,6 @@ export default {
       canOWYBA: false,
       canSuperBunny: false,
       canSuperSpeed: false,
-      canWaterFairyRevive: false,
       canWaterWalk: false
     },
     initializing: true
