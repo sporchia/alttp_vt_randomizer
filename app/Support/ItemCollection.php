@@ -451,7 +451,7 @@ class ItemCollection extends Collection
      *
      * @return bool
      */
-    public function canShootArrows(int $min_level = 1)
+    public function canShootArrows(World $world, int $min_level = 1)
     {
         switch ($min_level) {
             case 2:
@@ -462,7 +462,8 @@ class ItemCollection extends Collection
             case 1:
             default:
                 return (($this->has('Bow') || $this->has('ProgressiveBow')) 
-                        && ($this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
+                        && (!$world->config('rom.rupeeBow', false)
+                            || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
                     || $this->has('ProgressiveBow', 2)
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
@@ -525,13 +526,13 @@ class ItemCollection extends Collection
      *
      * @return bool
      */
-    public function canKillEscapeThings()
+    public function canKillEscapeThings(World $world)
     {
         return $this->has('UncleSword')
             || $this->has('CaneOfSomaria')
             || $this->has('TenBombs')
             || $this->has('CaneOfByrna')
-            || $this->canShootArrows()
+            || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');
     }
@@ -541,13 +542,13 @@ class ItemCollection extends Collection
      *
      * @return bool
      */
-    public function canKillMostThings($enemies = 5)
+    public function canKillMostThings(World $world, $enemies = 5)
     {
         return $this->hasSword()
             || $this->has('CaneOfSomaria')
             || ($this->has('TenBombs') && $enemies < 6)
             || ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
-            || $this->canShootArrows()
+            || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');
     }
