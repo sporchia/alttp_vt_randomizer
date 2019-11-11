@@ -462,7 +462,7 @@ class ItemCollection extends Collection
             case 1:
             default:
                 return (($this->has('Bow') || $this->has('ProgressiveBow')) 
-						&& ($this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
+                        && ($this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
                     || $this->has('ProgressiveBow', 2)
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
