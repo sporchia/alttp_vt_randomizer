@@ -51,14 +51,14 @@ class NorthWest extends Region\Standard\DarkWorld\NorthWest
         });
 
         $this->locations["Blacksmith"]->setRequirements(function ($locations, $items) {
-            return $items->canLiftDarkRocks()
+            return ($items->canLiftDarkRocks()
                 || ($items->has('MagicMirror')
                 || (
                     ($this->world->config('canOWYBA', false)
                         && $items->hasABottle()) && ($this->world->config('canOneFrameClipOW', false)
                         || ($this->world->config('canBootsClip', false)
-                            && $items->has('PegasusBoots'))))
-                && $this->world->getRegion('North West Light World')->canEnter($locations, $items));
+                            && $items->has('PegasusBoots'))))))
+                && $this->world->getRegion('North West Light World')->canEnter($locations, $items);
         });
 
         $this->locations["Purple Chest"]->setRequirements(function ($locations, $items) {
