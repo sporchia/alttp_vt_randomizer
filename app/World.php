@@ -469,13 +469,12 @@ abstract class World
         $found = new ItemCollection($this->pre_collected_items);
         $my_items = $my_items->merge($this->pre_collected_items);
         $my_items->setChecksForWorld($this->id);
-        $available_locations = $this->getCollectableLocations()->filter(function ($location) {
-            return $location->hasItem();
-        });
+        $available_locations = $this->getCollectableLocations();
 
         do {
             $search_locations = $available_locations->filter(function ($location) use ($my_items) {
-                return !($this->collected_locations[$location->getName()] ?? false) && $location->canAccess($my_items);
+                return $location->hasItem()
+                    && !($this->collected_locations[$location->getName()] ?? false) && $location->canAccess($my_items);
             });
 
             foreach ($search_locations as $location) {
