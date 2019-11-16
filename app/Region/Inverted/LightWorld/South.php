@@ -188,9 +188,9 @@ class South extends Region\Standard\LightWorld\South
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle())) || ($this->world->config('canSuperBunny', false)
-                && $items->has('MagicMirror')) &&
-                $items->has('PegasusBoots');
+                    && $items->hasABottle()) || ($this->world->config('canSuperBunny', false)
+                    && $items->has('MagicMirror'))) 
+                && $items->has('PegasusBoots');
         });
 
         $this->locations["Maze Race"]->setRequirements(function ($locations, $items) {
