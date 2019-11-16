@@ -27,7 +27,7 @@ class IcePalace extends Region\Standard\IcePalace
                     && $items->hasHealth(12)
                     && ($items->hasBottle(2)
                         || $items->hasArmor()))) && ($items->canMeltThings($this->world)
-                || $this->world->config('canOneFrameClipUW', false)) && ($items->has('Flippers')
+                || $this->world->config('canOneFrameClipUW', false)) && (($items->has('Flippers')
                 || ($this->world->config('canFakeFlipper', false)
                     && ($this->world->config('canBunnyRevive', false)
                     || ($this->world->config('region.cantTakeDamage', false)
@@ -40,7 +40,7 @@ class IcePalace extends Region\Standard\IcePalace
                 ||
                 $this->world->config('canOneFrameClipOW', false)
                 || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed());
+                    && $items->canSpinSpeed()));
         };
 
         return $this;
