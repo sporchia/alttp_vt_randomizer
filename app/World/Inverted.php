@@ -17,9 +17,6 @@ class Inverted extends World
      */
     public function __construct(int $id = 0, array $config = [])
     {
-        $config['logic'] = in_array($config['logic'], ['None', 'OverworldGlitches', 'NoGlitches'])
-            ? $config['logic']
-            : 'NoGlitches';
         $this->config = array_merge([
             'difficulty' => 'normal',
             'logic' => 'NoGlitches',

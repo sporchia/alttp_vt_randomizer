@@ -51,6 +51,10 @@ return [
             'title' => 'Clip d\Une Image (Monde extérieur)',
             'description' => 'Vous ne voulez pas faire ça. Croyez-moi..',
         ],
+        'canOneFrameClipUW' => [
+            'title' => 'One Frame Clip (underworld)',
+            'description' => 'Use 1 Frame Movement to clip between rooms of the underworld.'
+        ],
         'canOWYBA' => [
             'title' => 'YBA (Monde extérieur)',
             'description' => 'Il peut être requis d\'utiliser des Bocaux dans le monde extérieur afin de se rendre à un endroit normalement inaccessible.',

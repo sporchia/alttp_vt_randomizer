@@ -186,14 +186,7 @@ class LightWorldTest extends TestCase
 
             ["Cave 45", true, []],
 
-            ["Graveyard Ledge", false, []],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'TitansMitt']],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'ProgressiveGlove', 'Hammer']],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'PowerGlove', 'Hammer']],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Hammer', 'Hookshot']],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-            ["Graveyard Ledge", true, ['MoonPearl', 'MagicMirror', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
+            ["Graveyard Ledge", true, []],
 
             ["Checkerboard Cave", false, []],
             ["Checkerboard Cave", false, [], ['Gloves']],
@@ -214,10 +207,7 @@ class LightWorldTest extends TestCase
 
             ["Maze Race", true, []],
 
-            ["Desert Ledge", false, []],
-            ["Desert Ledge", true, ['BookOfMudora']],
-            ["Desert Ledge", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Desert Ledge", true, ['Flute', 'MagicMirror', 'TitansMitt']],
+            ["Desert Ledge", true, []],
 
             ["Lake Hylia Island", true, []],
 

@@ -88,7 +88,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'entry_crystals_ganon' => $entry_crystals_ganon,
                 'entry_crystals_tower' => $entry_crystals_tower,
                 'worlds' => 1,
-                'spoilers' => false,
+                'spoilers' => "off",
             ]);
 
             if ($world->isEnemized()) {

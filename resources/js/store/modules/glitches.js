@@ -4,7 +4,6 @@ export default {
   namespaced: true,
   state: {
     settings: {
-      canBombJump: false,
       canBootsClip: false,
       canBunnyRevive: false,
       canBunnySurf: false,
@@ -13,10 +12,10 @@ export default {
       canMirrorClip: false,
       canMirrorWrap: false,
       canOneFrameClipOW: false,
+      canOneFrameClipUW: false,
       canOWYBA: false,
       canSuperBunny: false,
       canSuperSpeed: false,
-      canWaterFairyRevive: false,
       canWaterWalk: false
     },
     initializing: true

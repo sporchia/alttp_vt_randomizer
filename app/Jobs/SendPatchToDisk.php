@@ -43,10 +43,25 @@ class SendPatchToDisk implements ShouldQueue
         ]);
 
         if ($spoiler['meta']['tournament'] ?? false) {
-            if ($spoiler['meta']['spoilers'] ?? false) {
-                $return_spoiler = array_except($spoiler, ['playthrough']);
-            } else {
-                $return_spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+            switch ($spoiler['meta']['spoilers']) {
+                case "on":
+                    $return_spoiler = array_except($spoiler, ['playthrough']);
+                    break;
+                case "mystery":
+                    $return_spoiler = array_only($spoiler, ['meta']);
+                    $return_spoiler['meta'] = array_only($spoiler['meta'], [
+                        'logic',
+                        'build',
+                        'tournament',
+                        'spoilers',
+                        'size'
+                    ]);
+                    break;
+                case "generate":
+                case "off":
+                default:
+                    $return_spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+                    break;
             }
         } else {
             $return_spoiler = $spoiler;

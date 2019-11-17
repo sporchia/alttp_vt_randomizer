@@ -54,7 +54,7 @@ return [
                     'entrance_shuffle' => 'none',
                     'boss_shuffle' => 'none',
                     'enemy_shuffle' => 'none',
-                    'hints' => 'on',
+                    'hints' => 'off',
                     'weapons' => 'assured',
                     'item_pool' => 'normal',
                     'item_functionality' => 'normal',

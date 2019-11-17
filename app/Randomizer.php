@@ -235,8 +235,14 @@ class Randomizer implements RandomizerContract
             $uncle_sword = Item::get('UncleSword', $world)->setTarget(array_pop($nice_items_swords));
             $world->getLocation("Link's Uncle")->setItem($uncle_sword);
 
-            foreach (["Pyramid Fairy - Left", "Blacksmith", "Master Sword Pedestal"] as $location) {
+            foreach (["Pyramid Fairy - Left", "Blacksmith"] as $location) {
                 $world->getLocation($location)->setItem(array_pop($nice_items_swords));
+            }
+            if (!$world->getLocation("Master Sword Pedestal")->hasItem(Item::get('Triforce', $world))) {
+                $world->getLocation($location)->setItem(array_pop($nice_items_swords));
+            } else {
+                array_pop($nice_items_swords);
+                array_push($trash_items, Item::get('TwentyRupees', $world));
             }
         } else {
             // put uncle sword back
@@ -711,7 +717,7 @@ class Randomizer implements RandomizerContract
 
             $old_man->setActive(true);
             $old_man->setShopkeeper('old_man');
-            $old_man->addInventory(0, ($world->config('mode.weapons') == 'swordless') ? Item::get('ThreeHundredRupees', $world)
+            $old_man->addInventory(0, (in_array($world->config('mode.weapons'), ['swordless', 'vanilla'])) ? Item::get('ThreeHundredRupees', $world)
                 : Item::get('ProgressiveSword', $world), 0);
         }
 
@@ -829,6 +835,18 @@ class Randomizer implements RandomizerContract
         return $this;
     }
 
+    function getTextArray(string $file)
+    {
+        return array_filter(explode(
+            "\n-\n",
+            (string) preg_replace(
+                '/^-\n/',
+                '',
+                (string) preg_replace('/\r\n/', "\n", (string) file_get_contents(base_path($file)))
+            )
+        ));
+    }
+
     /**
      * Set all texts for this randomization
      *
@@ -840,26 +858,11 @@ class Randomizer implements RandomizerContract
     {
         $strings = cache()->rememberForever('strings', function () {
             return [
-                'uncle' => array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', (string) file_get_contents(base_path('strings/uncle.txt')))
-                )),
-                'tavern_man' => array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', (string) file_get_contents(base_path('strings/tavern_man.txt')))
-                )),
-                'blind' => array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', (string) file_get_contents(base_path('strings/blind.txt')))
-                )),
-                'ganon_1' => array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', (string) file_get_contents(base_path('strings/ganon_1.txt')))
-                )),
-                'triforce' => array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', (string) file_get_contents(base_path('strings/triforce.txt')))
-                )),
+                'uncle' => $this->getTextArray('strings/uncle.txt'),
+                'tavern_man' => $this->getTextArray('strings/tavern_man.txt'),
+                'blind' => $this->getTextArray('strings/blind.txt'),
+                'ganon_1' => $this->getTextArray('strings/ganon_1.txt'),
+                'triforce' => $this->getTextArray('strings/triforce.txt'),
             ];
         });
 
@@ -928,13 +931,12 @@ class Randomizer implements RandomizerContract
         if ($progressive_bow_locations->count() > 0) {
             $first_location = $progressive_bow_locations->pop();
             $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->getRegion()->getName());
+            // Progressive Bow Alternate
+            $first_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
 
             if ($progressive_bow_locations->count() > 0) {
                 $second_location = $progressive_bow_locations->pop();
                 $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
-
-                // Progressive Bow Alternate
-                $second_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
             }
         }
 
