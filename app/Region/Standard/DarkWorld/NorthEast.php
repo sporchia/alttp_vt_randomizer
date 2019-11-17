@@ -220,7 +220,7 @@ class NorthEast extends Region
                 && (
                     ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')
                         && ($items->has('Lamp') || (
-                            items->has('FireRod') && $items->canExtendMagic(1))))
+                            $items->has('FireRod') && $items->canExtendMagic(1))))
                     || (!$this->world->config('region.requireBetterSword', false) && ($items->hasSword(2) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(3)))))
                     || ($items->hasSword(3) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(2)))));
         });
