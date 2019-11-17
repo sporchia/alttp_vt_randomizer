@@ -34,7 +34,7 @@ class MiseryMire extends Region\Standard\MiseryMire
                     && $items->has('Quake'))) && ($this->world->config('mode.weapons') == 'swordless'
                 || $items->hasSword()) && ($items->has('PegasusBoots')
                 || $items->has('Hookshot'))
-                && $items->canKillMostThings(8)
+                && $items->canKillMostThings($this->world, 8)
                 && $this->world->getRegion('Mire')->canEnter($locations, $items);
         };
 

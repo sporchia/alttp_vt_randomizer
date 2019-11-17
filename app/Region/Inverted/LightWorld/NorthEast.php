@@ -178,7 +178,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                 )) && ($items->has('DefeatAgahnim2')
                 || $this->world->config('goal') === 'fast_ganon')
                 && (!$this->world->config('region.requireBetterBow', false)
-                    || $items->canShootArrows(2)) && (
+                    || $items->canShootArrows($this->world, 2)) && (
                     ($this->world->config('mode.weapons') == 'swordless'
                         && $items->has('Hammer')) || (!$this->world->config('region.requireBetterSword', false)
                         && ($items->hasSword(2)

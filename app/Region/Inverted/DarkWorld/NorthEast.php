@@ -63,7 +63,7 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast
         });
 
         $this->locations["Pyramid Fairy - Bow"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && $items->has('BigRedBomb')
                 && $items->has('MagicMirror');
         });

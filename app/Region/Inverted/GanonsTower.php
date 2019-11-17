@@ -361,7 +361,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         });
 
         $this->locations["Ganon's Tower - Mini Helmasaur Room - Left"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && $items->canLightTorches()
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 3)
@@ -379,7 +379,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         });
 
         $this->locations["Ganon's Tower - Mini Helmasaur Room - Right"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && $items->canLightTorches()
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 3)
@@ -397,7 +397,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         });
 
         $this->locations["Ganon's Tower - Pre-Moldorm Chest"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && $items->canLightTorches()
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 3)
@@ -416,7 +416,7 @@ class GanonsTower extends Region\Standard\GanonsTower
 
         $this->locations["Ganon's Tower - Moldorm Chest"]->setRequirements(function ($locations, $items) {
             return $items->has('Hookshot')
-                && $items->canShootArrows()
+                && $items->canShootArrows($this->world)
                 && $items->canLightTorches()
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 4)

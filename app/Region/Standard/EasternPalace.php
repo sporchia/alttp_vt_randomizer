@@ -81,7 +81,7 @@ class EasternPalace extends Region
         };
 
         $this->locations["Eastern Palace - Boss"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                     || ($this->world->config('itemPlacement') === 'advanced' && $items->has('FireRod')))
                 && $items->has('BigKeyP1')
