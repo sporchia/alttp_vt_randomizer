@@ -447,6 +447,7 @@ class ItemCollection extends Collection
     /**
      * Requirements for lobbing arrows at things
      *
+     * @param \ALttP\World  $world  world to check items against
      * @param int $min_level minimum level of bow
      *
      * @return bool
@@ -524,6 +525,8 @@ class ItemCollection extends Collection
     /**
      * Requirements for killing most things
      *
+     * @param \ALttP\World  $world  world to check items against
+     *
      * @return bool
      */
     public function canKillEscapeThings(World $world)
@@ -539,6 +542,9 @@ class ItemCollection extends Collection
 
     /**
      * Requirements for killing most things
+     *
+     * @param \ALttP\World  $world  world to check items against
+     * @param mixed $enemies Amount of Damage Enemies need to be beaten
      *
      * @return bool
      */
