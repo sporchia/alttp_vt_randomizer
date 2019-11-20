@@ -90,7 +90,7 @@ class East extends Region
             return $items->has('RescueZelda')
                 && ($this->world->config('canOneFrameClipOW', false)
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                    || ($this->world->config('capSuperSpeed', false) && $items->canSpinSpeed())
+                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
                     || (((($this->world->config('canMirrorClip', false) || $this->world->config('canMirrorWrap', false))
                         && $items->has('MagicMirror')) || $items->has('Hookshot'))
                         && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))

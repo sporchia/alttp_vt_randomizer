@@ -407,7 +407,7 @@ class GanonsTower extends Region
                         && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))
                         || ((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                             || ($this->world->config('canSuperSpeed', false) && $items->has('PegasusBoots')
-                                && $items->has('Hookshot') && $items->hasSword()))
+                                && $items->has('Hookshot')))
                             && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))))
                     || ($this->world->config('canOneFrameClipOW', false)
                         && ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl')
