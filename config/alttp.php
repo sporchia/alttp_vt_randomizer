@@ -264,6 +264,11 @@ return [
                 'hard' => 'Hard',
                 'expert' => 'Expert',
             ],
+            'spoiler' => [
+                'off' => 'Off',
+                'on' => 'On',
+                'generate' => 'Generate',
+            ],
         ],
         'daily_weights' => [
             'glitches_required' => [

@@ -1,5 +1,6 @@
 import localforage from "localforage";
 import axios from "axios";
+import Defaults from "./defaults";
 
 function hasValue(value, array) {
   return (
@@ -21,7 +22,17 @@ function asMulti(object, mKey) {
 export default {
   namespaced: true,
   state: {
-    worlds: {},
+    worlds: {
+      1: JSON.parse(JSON.stringify(Defaults)),
+      2: JSON.parse(JSON.stringify(Defaults)),
+      3: JSON.parse(JSON.stringify(Defaults)),
+      4: JSON.parse(JSON.stringify(Defaults)),
+      5: JSON.parse(JSON.stringify(Defaults)),
+      6: JSON.parse(JSON.stringify(Defaults)),
+      7: JSON.parse(JSON.stringify(Defaults)),
+      8: JSON.parse(JSON.stringify(Defaults))
+    },
+    options: {},
     preset_map: {},
     initializing: true
   },
