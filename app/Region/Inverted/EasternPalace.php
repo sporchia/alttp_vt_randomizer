@@ -50,7 +50,7 @@ class EasternPalace extends Region\Standard\EasternPalace
         });
 
         $this->locations["Eastern Palace - Boss"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && ($this->world->config('canDungeonRevive', false)
                     || ($this->world->config('canBunnyRevive', false)
                         && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)

@@ -65,39 +65,39 @@ class HyruleCastleEscape extends Region
     public function initalize()
     {
         $this->locations["Sanctuary"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings() && $items->has('KeyH2');
+            return $items->canKillEscapeThings($this->world) && $items->has('KeyH2');
         });
 
         $this->locations["Sewers - Secret Room - Left"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings() && $items->has('KeyH2');
+            return $items->canKillEscapeThings($this->world) && $items->has('KeyH2');
         });
 
         $this->locations["Sewers - Secret Room - Middle"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings() && $items->has('KeyH2');
+            return $items->canKillEscapeThings($this->world) && $items->has('KeyH2');
         });
 
         $this->locations["Sewers - Secret Room - Right"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings() && $items->has('KeyH2');
+            return $items->canKillEscapeThings($this->world) && $items->has('KeyH2');
         });
 
         $this->locations["Sewers - Dark Cross"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings();
+            return $items->canKillEscapeThings($this->world);
         });
 
         $this->locations["Hyrule Castle - Boomerang Chest"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings();
+            return $items->canKillEscapeThings($this->world);
         });
 
         $this->locations["Hyrule Castle - Map Chest"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings();
+            return $items->canKillEscapeThings($this->world);
         });
 
         $this->locations["Hyrule Castle - Zelda's Cell"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings();
+            return $items->canKillEscapeThings($this->world);
         });
 
         $this->locations["Secret Passage"]->setRequirements(function ($locations, $items) {
-            return $items->canKillEscapeThings();
+            return $items->canKillEscapeThings($this->world);
         })->setFillRules(function ($item, $locations, $items) {
             return !((!$this->world->config('region.wildKeys', false) && $item instanceof Item\Key)
                 || (!$this->world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
