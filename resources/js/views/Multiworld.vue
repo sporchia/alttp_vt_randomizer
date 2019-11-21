@@ -258,6 +258,7 @@
               <button
                 class="btn btn-info w-50 text-center"
                 :disabled="generating"
+                @click="generateMultiworld"
               >{{ $t('multiworld.generate') }}</button>
             </div>
           </div>
@@ -353,15 +354,47 @@ export default {
     setItemFunctionality(value, worldId) {
       this.$store.commit("multiworld/setItemFunctionality", { value, worldId });
     },
-    applyTournamentSeed() {
-      this.tournament = true;
-      this.spoilers = false;
-      this.applySeed();
-    },
-    applyTournamentSpoilerSeed() {
-      this.tournament = false;
-      this.spoilers = true;
-      this.applySeed();
+    generateMultiworld() {
+      this.error = false;
+      this.generating = true;
+      return new Promise((resolve, reject) => {
+        this.gameLoaded = false;
+        // convert page to a useful payload
+        const payload = Object.keys(this.worlds).reduce((result, key) => {
+          // filter out unused worlds
+          if (this.worldList.indexOf(Number(key)) === -1) {
+            return result;
+          }
+          const part = { ...this.worlds[key] };
+          result[key] = Object.keys(part).reduce((result, key) => {
+            result[key] = part[key].value;
+            return result;
+          }, {});
+          return result;
+        }, {});
+        axios
+          .post(`/api/multiworld`, {
+            worlds: { ...payload },
+            lang: document.documentElement.lang
+          })
+          .catch(error => {
+            if (error.response) {
+              switch (error.response.status) {
+                case 429:
+                  this.error = this.$i18n.t("error.429");
+
+                  break;
+                default:
+                  this.error = this.$i18n.t("error.failed_generation");
+              }
+            }
+
+            reject(error);
+          })
+          .finally(() => {
+            this.generating = false;
+          });
+      });
     },
     onError(error) {
       this.error = error;

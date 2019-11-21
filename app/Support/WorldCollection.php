@@ -87,4 +87,21 @@ class WorldCollection
 
         return true;
     }
+
+    public function getSpoiler($meta = [])
+    {
+        $spoiler = [];
+        foreach ($this->worlds as $world) {
+            $spoiler[$world->id] = $world->getSpoiler(array_merge([
+                'entry_crystals_ganon' => $world->config('crystals.ganon'),
+                'entry_crystals_tower' => $world->config('crystals.tower'),
+            ], $meta));
+        }
+        return $spoiler;
+    }
+
+    public function count(): int
+    {
+        return count($this->worlds);
+    }
 }

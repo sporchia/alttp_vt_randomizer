@@ -19,6 +19,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('throttle:150,360');
 
+Route::post('multiworld', 'MultiworldController@generateSeed')->middleware('throttle:40,360');
+
 Route::post('customizer', 'CustomizerController@generateSeed')->middleware('throttle:50,360');
 
 Route::post('customizer/test', 'CustomizerController@testGenerateSeed')->middleware('throttle:200,360');
