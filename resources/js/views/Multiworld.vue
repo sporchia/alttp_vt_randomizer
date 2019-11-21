@@ -16,10 +16,17 @@
       <div class="card-header bg-success card-heading-btn">
         <h3 class="card-title text-white">{{ $t('multiworld.title') }}</h3>
       </div>
-      <tabs v-show="!$store.state.loading" class="think" nav-type="tabs" :sticky="true">
+      <tabs
+        v-show="!$store.state.loading"
+        class="think"
+        nav-type="tabs"
+        :sticky="true"
+        :actions="worldList.length < 8 ? [{name:'+ Add World'}] : []"
+        @click="onActionClick"
+      >
         <tab
           :name="'World ' + world_id"
-          v-for="world_id in [1,2]"
+          v-for="world_id in worldList"
           :key="world_id"
           :selected="selectedWorldId === world_id"
         >
@@ -41,7 +48,7 @@
                           <button
                             class="btn btn-outline-secondary"
                             type="button"
-                            @click="setPreset('custom')"
+                            @click="setPreset('custom', world_id)"
                           >{{ $t('randomizer.preset.customize')}}</button>
                         </template>
                       </Select>
@@ -50,7 +57,7 @@
                 </div>
                 <h5 class="card-title p-2 border-bottom">{{ $t('randomizer.placement.title') }}</h5>
                 <div class="card-body">
-                  <div class="row" v-if="!editable">
+                  <div class="row" v-if="!editable[world_id]">
                     <div
                       class="col-xl-3 col-lg-6 my-1"
                     >{{ $t('randomizer.glitches_required.title') }}: {{ $t(worlds[world_id].glitches_required.name) }}</div>
@@ -64,7 +71,7 @@
                       class="col-xl-3 col-lg-6 my-1"
                     >{{ $t('randomizer.accessibility.title') }}: {{ $t(worlds[world_id].accessibility.name) }}</div>
                   </div>
-                  <div class="row" v-if="editable">
+                  <div class="row" v-if="editable[world_id]">
                     <div class="col-xl-6 col-lg-6 my-1">
                       <Select
                         :sid="world_id"
@@ -104,38 +111,40 @@
                     v-html="$t('randomizer.glitches_required.glitch_warning')"
                   />
                 </div>
-                <!--
                 <h5 class="card-title p-2 border-bottom">{{ $t('randomizer.goal.title') }}</h5>
                 <div class="card-body">
-                  <div class="row" v-if="!editable">
+                  <div class="row" v-if="!editable[world_id]">
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.goal.title') }}: {{ $t(goal.name) }}</div>
+                    >{{ $t('randomizer.goal.title') }}: {{ $t(worlds[world_id].goal.name) }}</div>
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.tower_open.title') }}: {{ $t(towerOpen.name) }}</div>
+                    >{{ $t('randomizer.tower_open.title') }}: {{ $t(worlds[world_id].tower_open.name) }}</div>
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.ganon_open.title') }}: {{ $t(ganonOpen.name) }}</div>
+                    >{{ $t('randomizer.ganon_open.title') }}: {{ $t(worlds[world_id].ganon_open.name) }}</div>
                   </div>
-                  <div class="row" v-if="editable">
+                  <div class="row" v-if="editable[world_id]">
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="goal"
+                        :sid="world_id"
+                        :value="worlds[world_id].goal"
                         @input="setGoal"
                         :options="optionsGoal"
                       >{{ $t('randomizer.goal.title') }}</Select>
                     </div>
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="towerOpen"
+                        :sid="world_id"
+                        :value="worlds[world_id].tower_open"
                         @input="setTowerOpen"
                         :options="optionsTowerOpen"
                       >{{ $t('randomizer.tower_open.title') }}</Select>
                     </div>
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="ganonOpen"
+                        :sid="world_id"
+                        :value="worlds[world_id].ganon_open"
                         @input="setGanonOpen"
                         :options="optionsGanonOpen"
                       >{{ $t('randomizer.ganon_open.title') }}</Select>
@@ -143,38 +152,41 @@
                   </div>
                 </div>
                 <h5 class="card-title p-2 border-bottom">{{ $t('randomizer.gameplay.title') }}</h5>
-                <div class="card-body" v-if="!editable">
+                <div class="card-body" v-if="!editable[world_id]">
                   <div class="row">
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.world_state.title') }}: {{ $t(worldState.name) }}</div>
+                    >{{ $t('randomizer.world_state.title') }}: {{ $t(worlds[world_id].world_state.name) }}</div>
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.entrance_shuffle.title') }}: {{ $t(entranceShuffle.name) }}</div>
+                    >{{ $t('randomizer.entrance_shuffle.title') }}: {{ $t(worlds[world_id].entrance_shuffle.name) }}</div>
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.hints.title') }}: {{ $t(hints.name) }}</div>
+                    >{{ $t('randomizer.hints.title') }}: {{ $t(worlds[world_id].hints.name) }}</div>
                   </div>
                 </div>
-                <div class="card-body" v-if="editable">
+                <div class="card-body" v-if="editable[world_id]">
                   <div class="row">
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="worldState"
+                        :sid="world_id"
+                        :value="worlds[world_id].world_state"
                         @input="setWorldState"
                         :options="optionsWorldState"
                       >{{ $t('randomizer.world_state.title') }}</Select>
                     </div>
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="entranceShuffle"
+                        :sid="world_id"
+                        :value="worlds[world_id].entrance_shuffle"
                         @input="setEntranceShuffle"
                         :options="optionsEntranceShuffle"
                       >{{ $t('randomizer.entrance_shuffle.title') }}</Select>
                     </div>
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="hints"
+                        :sid="world_id"
+                        :value="worlds[world_id].hints"
                         @input="setHints"
                         :options="optionsHints"
                       >{{ $t('randomizer.hints.title') }}</Select>
@@ -183,48 +195,54 @@
                 </div>
                 <h5 class="card-title p-2 border-bottom">{{ $t('randomizer.difficulty.title') }}</h5>
                 <div class="card-body">
-                  <div class="row" v-if="!editable">
+                  <div class="row" v-if="!editable[world_id]">
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.weapons.title') }}: {{ $t(weapons.name) }}</div>
+                    >{{ $t('randomizer.weapons.title') }}: {{ $t(worlds[world_id].weapons.name) }}</div>
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.item_pool.title') }}: {{ $t(itemPool.name) }}</div>
+                    >{{ $t('randomizer.item_pool.title') }}: {{ $t(worlds[world_id].item_pool.name) }}</div>
                     <div
                       class="col-xl-4 col-lg-6 my-1"
-                    >{{ $t('randomizer.item_functionality.title') }}: {{ $t(itemFunctionality.name) }}</div>
+                    >{{ $t('randomizer.item_functionality.title') }}: {{ $t(worlds[world_id].item_functionality.name) }}</div>
                   </div>
-                  <div class="row" v-if="editable">
+                  <div class="row" v-if="editable[world_id]">
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="weapons"
+                        :sid="world_id"
+                        :value="worlds[world_id].weapons"
                         @input="setWeapons"
                         :options="optionsWeapons"
                       >{{ $t('randomizer.weapons.title') }}</Select>
                     </div>
                     <div class="col-xl-4 col-lg-6 my-1">
-                      <Select :value="itemPool" @input="setItemPool" :options="optionsItemPool">
+                      <Select
+                        :sid="world_id"
+                        :value="worlds[world_id].item_pool"
+                        @input="setItemPool"
+                        :options="optionsItemPool"
+                      >
                         {{ $t('randomizer.item_pool.title') }}
                         <sup
-                          v-if="itemPool.value === 'crowd_control'"
+                          v-if="worlds[world_id].item_pool.value === 'crowd_control'"
                         >*</sup>
                       </Select>
                     </div>
                     <div class="col-xl-4 col-lg-6 my-1">
                       <Select
-                        :value="itemFunctionality"
+                        :sid="world_id"
+                        :value="worlds[world_id].item_functionality"
                         @input="setItemFunctionality"
                         :options="optionsItemFunctionality"
                       >{{ $t('randomizer.item_functionality.title') }}</Select>
                     </div>
                   </div>
                   <div
-                    v-if="itemPool.value === 'crowd_control'"
+                    v-if="worlds[world_id].item_pool.value === 'crowd_control'"
                     class="logic-warning text-info"
                     v-html="$t('randomizer.item_pool.crowd_control_warning')"
                   />
                 </div>
-                -->
               </div>
             </div>
           </div>
@@ -267,7 +285,7 @@ import Select from "../components/Select.vue";
 import Tab from "../components/VTTab.vue";
 import Tabs from "../components/VTTabs.vue";
 import axios from "axios";
-import { mapMutations, mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -277,6 +295,7 @@ export default {
   },
   data() {
     return {
+      worldList: [1, 2],
       selectedWorldId: 1,
       error: false,
       generating: false,
@@ -287,23 +306,8 @@ export default {
   },
   created() {
     this.$store.dispatch("multiworld/getItemSettings");
-    //this.$store.dispatch("romSettings/initialize");
-    //this.$store.dispatch("getSettings");
   },
   methods: {
-    ...mapActions("multiworld", [
-      "setGoal",
-      "setGanonOpen",
-      "setWorldState",
-      "setEntranceShuffle",
-      "setItemPool"
-    ]),
-    ...mapMutations("multiworld", [
-      "setTowerOpen",
-      "setHints",
-      "setWeapons",
-      "setItemFunctionality"
-    ]),
     setPreset(value, worldId) {
       this.$store.dispatch("multiworld/setPreset", { preset: value, worldId });
     },
@@ -322,6 +326,33 @@ export default {
     setAccessibility(value, worldId) {
       this.$store.commit("multiworld/setAccessibility", { value, worldId });
     },
+    setGoal(value, worldId) {
+      this.$store.dispatch("multiworld/setGoal", { value, worldId });
+    },
+    setGanonOpen(value, worldId) {
+      this.$store.dispatch("multiworld/setGanonOpen", { value, worldId });
+    },
+    setTowerOpen(value, worldId) {
+      this.$store.commit("multiworld/setTowerOpen", { value, worldId });
+    },
+    setWorldState(value, worldId) {
+      this.$store.dispatch("multiworld/setWorldState", { value, worldId });
+    },
+    setEntranceShuffle(value, worldId) {
+      this.$store.dispatch("multiworld/setEntranceShuffle", { value, worldId });
+    },
+    setHints(value, worldId) {
+      this.$store.commit("multiworld/setHints", { value, worldId });
+    },
+    setItemPool(value, worldId) {
+      this.$store.dispatch("multiworld/setItemPool", { value, worldId });
+    },
+    setWeapons(value, worldId) {
+      this.$store.commit("multiworld/setWeapons", { value, worldId });
+    },
+    setItemFunctionality(value, worldId) {
+      this.$store.commit("multiworld/setItemFunctionality", { value, worldId });
+    },
     applyTournamentSeed() {
       this.tournament = true;
       this.spoilers = false;
@@ -334,6 +365,11 @@ export default {
     },
     onError(error) {
       this.error = error;
+    },
+    onActionClick(action) {
+      if (action.name === "+ Add World") {
+        this.worldList.push(this.worldList.length + 1);
+      }
     }
   },
   computed: {
@@ -355,7 +391,16 @@ export default {
       optionsItemFunctionality: state => state.options.item_functionality
     }),
     editable() {
-      return true; //this.$store.state.multiworld.preset.value === "custom";
+      return {
+        1: this.worlds[1].preset.value === "custom",
+        2: this.worlds[2].preset.value === "custom",
+        3: this.worlds[3].preset.value === "custom",
+        4: this.worlds[4].preset.value === "custom",
+        5: this.worlds[5].preset.value === "custom",
+        6: this.worlds[6].preset.value === "custom",
+        7: this.worlds[7].preset.value === "custom",
+        8: this.worlds[8].preset.value === "custom"
+      };
     }
   }
 };
