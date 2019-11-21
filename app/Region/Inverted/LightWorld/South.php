@@ -213,14 +213,14 @@ class South extends Region\Standard\LightWorld\South
         });
 
         $this->locations["Lake Hylia Island"]->setRequirements(function ($locations, $items) {
-            return ($items->has('MoonPearl')
+            return (($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle()) && ($items->has('Flippers')
+                    && $items->hasABottle())) && ($items->has('Flippers')
                     || ($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
-                        && $items->canSpinSpeed()))) ||
-                $this->world->config('canOneFrameClipOW', false);
+                        && $items->canSpinSpeed()))) 
+                || $this->world->config('canOneFrameClipOW', false);
         });
 
         $this->locations["Sunken Treasure"]->setRequirements(function ($locations, $items) {
