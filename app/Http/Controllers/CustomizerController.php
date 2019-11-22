@@ -125,7 +125,7 @@ class CustomizerController extends Controller
         if (
             $request->input('goal', 'ganon') === 'triforce-hunt'
             && ($custom_data['item.Goal.Required'] ?? 0)
-            > ($custom_data['item.count.TriforcePiece'] ?? 0) + ($placed_item_count['TriforcePiece'] ?? 0)
+            > ($custom_data['item.count.TriforcePiece'] ?? 0) + ($placed_item_count['TriforcePiece:1'] ?? 0)
         ) {
             throw new Exception("Not enough Triforce Pieces for the hunt");
         }

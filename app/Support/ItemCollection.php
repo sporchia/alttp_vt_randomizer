@@ -15,6 +15,7 @@ class ItemCollection extends Collection
     protected $item_counts = [];
     private $string_rep = null;
     private $checks_for_world = 0;
+    private $cached_values = [];
 
     /**
      * Create a new collection.
@@ -54,6 +55,7 @@ class ItemCollection extends Collection
             $this->item_counts[$item_name] = 0;
         }
 
+        $this->cached_values[] = $item;
         $this->item_counts[$item_name]++;
         $this->string_rep = null;
 
@@ -74,6 +76,12 @@ class ItemCollection extends Collection
         $this->item_counts[$name]--;
         if ($this->item_counts[$name] === 0) {
             $this->offsetUnset($name);
+        }
+        foreach ($this->cached_values as $key => $item) {
+            if ($item->getName() === $name) {
+                unset($this->cached_values[$key]);
+                break;
+            }
         }
 
         return $this;
@@ -102,13 +110,7 @@ class ItemCollection extends Collection
      */
     public function values()
     {
-        $values = [];
-        foreach ($this->items as $item) {
-            for ($i = 0; $i < $this->item_counts[$item->getName()]; $i++) {
-                $values[] = $item;
-            }
-        }
-        return $values;
+        return $this->cached_values;
     }
 
     /**
@@ -212,6 +214,7 @@ class ItemCollection extends Collection
         $new->items = $this->items;
         $new->item_counts = $this->item_counts;
         $new->checks_for_world = $this->checks_for_world;
+        $new->cached_values = $this->cached_values;
 
         return $new;
     }

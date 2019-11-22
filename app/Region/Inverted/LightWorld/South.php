@@ -188,9 +188,9 @@ class South extends Region\Standard\LightWorld\South
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle())) || ($this->world->config('canSuperBunny', false)
-                && $items->has('MagicMirror')) &&
-                $items->has('PegasusBoots');
+                    && $items->hasABottle()) || ($this->world->config('canSuperBunny', false)
+                    && $items->has('MagicMirror'))) 
+                && $items->has('PegasusBoots');
         });
 
         $this->locations["Maze Race"]->setRequirements(function ($locations, $items) {
@@ -213,14 +213,14 @@ class South extends Region\Standard\LightWorld\South
         });
 
         $this->locations["Lake Hylia Island"]->setRequirements(function ($locations, $items) {
-            return ($items->has('MoonPearl')
+            return (($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle()) && ($items->has('Flippers')
+                    && $items->hasABottle())) && ($items->has('Flippers')
                     || ($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
-                        && $items->canSpinSpeed()))) ||
-                $this->world->config('canOneFrameClipOW', false);
+                        && $items->canSpinSpeed()))) 
+                || $this->world->config('canOneFrameClipOW', false);
         });
 
         $this->locations["Sunken Treasure"]->setRequirements(function ($locations, $items) {

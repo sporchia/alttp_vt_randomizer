@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2019-08-26';
-    const HASH = '1907d4caccffe60fc69940cfa11b2dab';
+    const BUILD = '2019-11-15';
+    const HASH = 'ac23ab12e7c442515d51370642772c3b';
     const SIZE = 2097152;
 
     private $tmp_file;
