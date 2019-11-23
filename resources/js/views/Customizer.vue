@@ -483,14 +483,14 @@ export default {
                 tower: this.towerOpen.value
               },
               mode: this.worldState.value,
+              hints: this.hints.value,
               weapons: this.weapons.value,
               item: {
                 pool: this.itemPool.value,
                 functionality: this.itemFunctionality.value
               },
               tournament: this.spoiler.value !== "on",
-              spoilers: this.spoiler.value === "on",
-              spoilers_ongen: this.spoiler.value === "generate",
+              spoilers: this.spoiler.value,
               lang: document.documentElement.lang,
               name: this.choice.name,
               notes: this.choice.notes,

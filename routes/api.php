@@ -21,6 +21,8 @@ Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('thro
 
 Route::post('multiworld', 'MultiworldController@generateSeed')->middleware('throttle:40,360');
 
+Route::post('randomizer/spoiler', 'RandomizerController@testGenerateSeed')->middleware('throttle:300,360');
+
 Route::post('customizer', 'CustomizerController@generateSeed')->middleware('throttle:50,360');
 
 Route::post('customizer/test', 'CustomizerController@testGenerateSeed')->middleware('throttle:200,360');

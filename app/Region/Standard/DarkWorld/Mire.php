@@ -70,7 +70,7 @@ class Mire extends Region
                         || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
                         || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
                 || ($this->world->config('canSuperBunny', false)
-                    && ($items->has('MagicMirror') || ($items->hasHealth(5) && !$this->world->config('region.cantTakeDamage', false))));
+                    && $items->has('MagicMirror'));
         });
 
         $this->locations["Mire Shed - Right"]->setRequirements(function ($locations, $items) {
@@ -80,7 +80,7 @@ class Mire extends Region
                         || ($items->has('MagicMirror') && $items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false))
                         || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
                 || ($this->world->config('canSuperBunny', false)
-                    && ($items->has('MagicMirror') || ($items->hasHealth(5) && !$this->world->config('region.cantTakeDamage', false))));
+                    && $items->has('MagicMirror'));
         });
 
         $this->can_enter = function ($locations, $items) {

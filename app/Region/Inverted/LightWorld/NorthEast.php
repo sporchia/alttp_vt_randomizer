@@ -5,9 +5,6 @@ namespace ALttP\Region\Inverted\LightWorld;
 use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
-use ALttP\Shop;
-use ALttP\Support\LocationCollection;
-use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -25,23 +22,38 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         $this->prize_location->setItem(Item::get('DefeatGanon', $world));
     }
     /**
-     * Initalize the requirements for Entry and Completetion of the Region as well as access to all Locations contained
-     * within for No Glitches
+     * Initalize the requirements for Entry and Completetion of the Region as
+     * well as access to all Locations contained within for No Glitches.
      *
      * @return $this
      */
     public function initalize()
     {
         $this->locations["Sahasrahla's Hut - Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->canBombThings();
+            return $items->has('MoonPearl')
+                && $items->canBombThings()
+                || ($this->world->config('canSuperBunny', false)
+                    && $items->has('PegasusBoots')
+                    && ($items->has('MagicMirror')
+                        || !$this->world->config('region.cantTakeDamage', false)));
         });
 
         $this->locations["Sahasrahla's Hut - Middle"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->canBombThings();
+            return $items->has('MoonPearl')
+                && $items->canBombThings()
+                || ($this->world->config('canSuperBunny', false)
+                    && $items->has('PegasusBoots')
+                    && ($items->has('MagicMirror')
+                        || !$this->world->config('region.cantTakeDamage', false)));
         });
 
         $this->locations["Sahasrahla's Hut - Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->canBombThings();
+            return $items->has('MoonPearl')
+                && $items->canBombThings()
+                || ($this->world->config('canSuperBunny', false)
+                    && $items->has('PegasusBoots')
+                    && ($items->has('MagicMirror')
+                        || !$this->world->config('region.cantTakeDamage', false)));
         });
 
         $this->locations["Sahasrahla"]->setRequirements(function ($locations, $items) {
@@ -49,23 +61,76 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         });
 
         $this->locations["King Zora"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && ($items->canLiftRocks() || $items->has('Flippers'));
+            return ($items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle())) && ($items->canLiftRocks()
+                || ($this->world->config('canFakeFlipper', false)
+                    || $items->has('Flippers')) || (
+                    ($this->world->config('canBootsClip', false)
+                        || $this->world->config('canWaterWalk', false)) &&
+                    $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
+                    && $items->canSpinSpeed()
+                    && $this->world->getRegion('East Death Mountain')->canEnter($locations, $items))) ||
+                $this->world->config('canOneFrameClipOW', false);
         });
 
         $this->locations["Potion Shop"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Mushroom');
+            return ($items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle())
+                || ($this->world->config('canBunnyRevive', false)
+                    && $items->canBunnyRevive())
+                || $this->world->config('canOneFrameClipOW', false)) &&
+                $items->has('Mushroom');
         });
 
         $this->locations["Zora's Ledge"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Flippers');
+            return ($items->has('MoonPearl')
+                || ($this->world->config('canBunnyRevive', false)
+                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle())) && ($items->has('Flippers')
+                    || ($this->world->config('canFakeFlipper', false)
+                        && $this->world->config('canWaterWalk', false)
+                        && $items->has('PegasusBoots')) || ($this->world->config('canWaterWalk', false)
+                        && ($items->has('PegasusBoots')
+                            || $items->has('MoonPearl')) && ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
+                            && $items->canSpinSpeed()) ||
+                        $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Waterfall Fairy - Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Flippers');
+            return ($items->has('MoonPearl')
+                || ($this->world->config('canBunnyRevive', false)
+                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle())) && ($this->world->config('canFakeFlipper', false)
+                || ($this->world->config('canWaterWalk', false)
+                    && ($items->has('PegasusBoots')
+                        || $items->has('MoonPearl'))) ||
+                $items->has('Flippers')
+                || ($this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
+                    && (
+                        ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
+                            && $items->canSpinSpeed()) ||
+                        $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->locations["Waterfall Fairy - Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Flippers');
+            return ($items->has('MoonPearl')
+                || ($this->world->config('canBunnyRevive', false)
+                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle())) && ($this->world->config('canFakeFlipper', false)
+                || ($this->world->config('canWaterWalk', false)
+                    && ($items->has('PegasusBoots')
+                        || $items->has('MoonPearl'))) ||
+                $items->has('Flippers')
+                || ($this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
+                    && (
+                        ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
+                            && $items->canSpinSpeed()) ||
+                        $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->prize_location->setRequirements(function ($locations, $items) {
@@ -100,20 +165,55 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                 return false;
             }
 
-            return $items->has('MoonPearl')
-                && ($items->has('DefeatAgahnim2') || $this->world->config('goal') === 'fast_ganon')
-                && (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows(2))
-                && (
-                    ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
-                    || (!$this->world->config('region.requireBetterSword', false) && ($items->hasSword(2) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(3)))))
-                    || ($items->hasSword(3) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(2)))));
+            return ($items->has('MoonPearl')
+                || ($this->world->config('canBunnyRevive', false)
+                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle()) || (     // Invis Ganon fight sounds fun for logic :)
+                    $this->world->config('canSuperBunny')
+                    && $this->world->config('canDungeonRevive', false) // Just so it's not in logic for everyone. Don't care, just think it's better like this.
+                    && $this->world->getRegion('Ganons Tower')->canEnter($locations, $items) //Bunny Beam Storage from GT
+                    && $items->has('CaneOfSomaria')
+                    && $items->has('MagicMirror')
+                    && $items->hasABottle() // Magic should be easily fine, but it's easy to miss when Invisible, even with lamp. FRod when Requires a bunch of Bottles anyway.
+                )) && ($items->has('DefeatAgahnim2')
+                || $this->world->config('goal') === 'fast_ganon')
+                && (!$this->world->config('region.requireBetterBow', false)
+                    || $items->canShootArrows(2)) && (
+                    ($this->world->config('mode.weapons') == 'swordless'
+                        && $items->has('Hammer')) || (!$this->world->config('region.requireBetterSword', false)
+                        && ($items->hasSword(2)
+                            && ($items->has('Lamp')
+                                || ($items->has('FireRod')
+                                    && ($items->canExtendMagic(3)
+                                        && $items->has('MoonPearl')) ||
+                                    $items->canExtendMagic(4))))) || ($items->hasSword(3)
+                        && ($items->has('Lamp')
+                            || ($items->has('FireRod')
+                                && ($items->canExtendMagic(2)
+                                    && $items->has('MoonPearl')) ||
+                                $items->canExtendMagic(3)))));
         });
 
         $this->can_enter = function ($locations, $items) {
-            return $items->has('DefeatAgahnim')
+            return
+                $items->has('DefeatAgahnim')
                 || ($items->has('MoonPearl')
-                    && (($items->has('Hammer') && $items->canLiftRocks())
-                        || $items->canLiftDarkRocks()));
+                    && (
+                        ($items->has('Hammer')
+                            && $items->canLiftRocks()) ||
+                        $items->canLiftDarkRocks())) || (
+                    // Glitched Access from DeathMountain
+                    $this->world->config('canOWYBA', false)
+                    && ($items->hasABottle(2)
+                        || ($items->hasABottle()
+                            && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))))
+                || ($this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+                    && $items->has('MoonPearl')
+                    && (
+                        ($this->world->config('canSuperSpeed', false)
+                            && $items->canSpinSpeed()) || ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')))) ||
+                $this->world->config('canOneFrameClipOW', false);
         };
 
         return $this;

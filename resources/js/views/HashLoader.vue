@@ -1,5 +1,13 @@
 <template>
   <div id="seed-generate">
+    <div
+      v-if="rom && rom.build === '2019-10-31'"
+      class="alert alert-danger"
+      style="font-family:'Cabin',sans-serif"
+      role="alert"
+    >
+      <strong>BE ADVISED:</strong> this festive has effects, which may potentially trigger seizures for people with photosensitive epilepsy.
+    </div>
     <div v-if="error" class="alert alert-danger" role="alert">
       <button type="button" class="close" aria-label="Close">
         <img class="icon" src="/i/svg/x.svg" alt="clear" @click="error = false" />
@@ -136,7 +144,7 @@ export default {
               this.rom.parsePatch(response.data).then(
                 function() {
                   console.log("loaded from s3 :)");
-                  if (this.rom.shuffle) {
+                  if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;
@@ -158,7 +166,7 @@ export default {
                       ) {
                         // The base rom has been updated.
                       }
-                      if (this.rom.shuffle) {
+                      if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                         this.rom.allowQuickSwap = true;
                       }
                       this.gameLoaded = true;
@@ -193,6 +201,9 @@ export default {
                 response.data.patch.current_rom_hash != this.current_rom_hash
               ) {
                 // The base rom has been updated.
+              }
+              if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+                this.rom.allowQuickSwap = true;
               }
               this.gameLoaded = true;
               EventBus.$emit("gameLoaded", this.rom);

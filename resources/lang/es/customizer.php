@@ -51,6 +51,10 @@ return [
             'title' => 'Clip de un frame (superfície)',
             'description' => 'Créeme, no quieres hacer esto.',
         ],
+        'canOneFrameClipUW' => [
+            'title' => 'One Frame Clip (underworld)',
+            'description' => 'Use 1 Frame Movement to clip between rooms of the underworld.'
+        ],
         'canOWYBA' => [
             'title' => 'YBA (superfície)',
             'description' => 'Podría ser necesario usar botellas en la superfície para teletransportarse a otras localizaciones.',
