@@ -122,4 +122,44 @@ class RandomizerTest extends TestCase
             $this->world->getLocation("Tower of Hera - Prize")->getItem(),
         ]);
     }
+    
+    public function testVanillaSwordsSet()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full', 'mode.weapons' => 'vanilla']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->prepareWorld($this->world);
+        
+        $this->assertEquals([
+            Item::get('UncleSword', $this->world),
+            Item::get('Progressive Sword', $this->world),
+            Item::get('Progressive Sword', $this->world),
+            Item::get('Progressive Sword', $this->world),
+        ], [
+            $this->world->getLocation("Link's Uncle")->getItem(),
+            $this->world->getLocation("Pyramid Fairy - Left")->getItem(),
+            $this->world->getLocation("Blacksmith")->getItem(),
+            $this->world->getLocation("Master Sword Pedestal")->getItem(),
+        ]);
+    }
+    
+    public function testVanillaSwordsSetWithPedestalGoal()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full', 'mode.weapons' => 'vanilla', 'goal' => 'pedestal']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->prepareWorld($this->world);
+        
+        $this->assertEquals([
+            Item::get('UncleSword', $this->world),
+            Item::get('Progressive Sword', $this->world),
+            Item::get('Progressive Sword', $this->world),
+            Item::get('Triforce', $this->world),
+        ], [
+            $this->world->getLocation("Link's Uncle")->getItem(),
+            $this->world->getLocation("Pyramid Fairy - Left")->getItem(),
+            $this->world->getLocation("Blacksmith")->getItem(),
+            $this->world->getLocation("Master Sword Pedestal")->getItem(),
+        ]);
+    }
 }
