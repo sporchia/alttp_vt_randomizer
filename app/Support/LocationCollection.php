@@ -151,12 +151,16 @@ class LocationCollection extends Collection
      */
     public function getItems(World $world = null)
     {
-        return new ItemCollection($this->filter(function ($location) use ($world) {
+        $items = [];
+
+        foreach ($this->items as $location) {
             $item = $location->getItem();
-            return $item !== null && ($world === null || $item->getWorld()->id === $world->id);
-        })->map(function ($location) {
-            return $location->getItem();
-        }));
+            if ($item !== null && ($world === null || $item->getWorld()->id === $world->id)) {
+                $items[] = $item;
+            }
+        }
+
+        return new ItemCollection($items);
     }
 
     /**

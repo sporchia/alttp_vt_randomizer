@@ -369,7 +369,7 @@ export default {
       gameLoaded: false,
       show_spoiler: false,
       tournament: false,
-      spoilers: false
+      spoilers: "off"
     };
   },
   created() {
@@ -410,12 +410,12 @@ export default {
     ]),
     applyTournamentSeed() {
       this.tournament = true;
-      this.spoilers = false;
+      this.spoilers = "off";
       this.applySeed();
     },
     applyTournamentSpoilerSeed() {
       this.tournament = false;
-      this.spoilers = true;
+      this.spoilers = "on";
       this.applySeed();
     },
     applySeed(e, second_attempt) {
@@ -493,7 +493,7 @@ export default {
                     // The base rom has been updated.
                     window.location.reload(true);
                   }
-                  if (this.rom.shuffle) {
+                  if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;

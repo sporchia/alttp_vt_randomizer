@@ -51,6 +51,10 @@ return [
             'title' => 'One Frame Clip (overworld)',
             'description' => 'Du willst das hier nicht! Glaub mir.',
         ],
+        'canOneFrameClipUW' => [
+            'title' => 'One Frame Clip (underworld)',
+            'description' => 'Use 1 Frame Movement to clip between rooms of the underworld.'
+        ],
         'canOWYBA' => [
             'title' => 'YBA (overworld)',
             'description' => 'Es kann vorausgesetz werden, dass man Flaschen in der Overworld nutzt um damit an einen Ort zu telepotieren.',

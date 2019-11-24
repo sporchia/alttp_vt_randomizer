@@ -717,7 +717,7 @@ class Randomizer implements RandomizerContract
 
             $old_man->setActive(true);
             $old_man->setShopkeeper('old_man');
-            $old_man->addInventory(0, ($world->config('mode.weapons') == 'swordless') ? Item::get('ThreeHundredRupees', $world)
+            $old_man->addInventory(0, (in_array($world->config('mode.weapons'), ['swordless', 'vanilla'])) ? Item::get('ThreeHundredRupees', $world)
                 : Item::get('ProgressiveSword', $world), 0);
         }
 
@@ -834,14 +834,17 @@ class Randomizer implements RandomizerContract
 
         return $this;
     }
-    
-     function getTextArray(string $file)
+
+    function getTextArray(string $file)
     {
         return array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', 
-                    (string) preg_replace('/\r\n/', "\n", (string) file_get_contents(base_path($file))))
-                ));
+            "\n-\n",
+            (string) preg_replace(
+                '/^-\n/',
+                '',
+                (string) preg_replace('/\r\n/', "\n", (string) file_get_contents(base_path($file)))
+            )
+        ));
     }
 
     /**
@@ -928,13 +931,12 @@ class Randomizer implements RandomizerContract
         if ($progressive_bow_locations->count() > 0) {
             $first_location = $progressive_bow_locations->pop();
             $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->getRegion()->getName());
+            // Progressive Bow Alternate
+            $first_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
 
             if ($progressive_bow_locations->count() > 0) {
                 $second_location = $progressive_bow_locations->pop();
                 $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
-
-                // Progressive Bow Alternate
-                $second_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
             }
         }
 
