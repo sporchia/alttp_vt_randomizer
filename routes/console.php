@@ -41,8 +41,6 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'no_logic' => 'None',
             ][getWeighted('glitches_required')];
 
-            $spoilers = getWeighted('spoilers');
-
             $world = World::factory(getWeighted('world_state'), [
                 'itemPlacement' => getWeighted('item_placement'),
                 'dungeonItems' => getWeighted('dungeon_items'),
@@ -54,7 +52,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'mode.weapons' => getWeighted('weapons'),
                 'tournament' => true,
                 'spoil.Hints' => getWeighted('hints'),
-                'spoilers' => $spoilers,
+                'spoilers' => getWeighted('spoilers'),
                 'logic' => $logic,
                 'item.pool' => getWeighted('item_pool'),
                 'item.functionality' => getWeighted('item_functionality'),
