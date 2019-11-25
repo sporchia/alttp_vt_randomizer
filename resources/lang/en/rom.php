@@ -12,6 +12,7 @@ return [
     ],
     'info' => [
         'spoilerwarning' => 'WARNING: The generator of this game viewed the spoiler log.',
+        'mystery' => 'This is a mystery game.  The settings must be discovered while you play!',
         'logic' => __('randomizer.glitches_required.title'),
         'accessibility' => __('randomizer.accessibility.title'),
         'build' => 'ROM build',

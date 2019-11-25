@@ -52,6 +52,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'mode.weapons' => getWeighted('weapons'),
                 'tournament' => true,
                 'spoil.Hints' => getWeighted('hints'),
+                'spoilers' => getWeighted('spoilers'),
                 'logic' => $logic,
                 'item.pool' => getWeighted('item_pool'),
                 'item.functionality' => getWeighted('item_functionality'),
@@ -88,8 +89,33 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'entry_crystals_ganon' => $entry_crystals_ganon,
                 'entry_crystals_tower' => $entry_crystals_tower,
                 'worlds' => 1,
-                'spoilers' => "off",
             ]);
+
+            switch ($spoiler['meta']['spoilers']) {
+                case "on":
+                case "generate":
+                    $spoiler = array_except($spoiler, [
+                        'spoiler.playthrough',
+                    ]);
+                    break;
+                case "mystery":
+                    $spoiler = array_only($spoiler, ['meta']);
+                    $spoiler['meta'] = array_only($spoiler['meta'], [
+                        'name',
+                        'notes',
+                        'logic',
+                        'build',
+                        'tournament',
+                        'spoilers',
+                        'size'
+                    ]);
+                    break;
+                case "off":
+                default:
+                    $spoiler = array_except(array_only($spoiler, [
+                        'meta',
+                    ]), ['meta.seed']);    
+            }
 
             if ($world->isEnemized()) {
                 $en = new Enemizer($world, $patch);

@@ -12,6 +12,7 @@ return [
     ],
     'info' => [
         'spoilerwarning' => 'AVERTISSEMENT : La personne qui a généré cette partie a regardé le spoiler log.',
+        'mystery' => 'Ceci est une partie mystère. Les paramètres seront à découvrir pendant que vous jouez!',
         'logic' => __('randomizer.glitches_required.title'),
         'accessibility' => __('randomizer.accessibility.title'),
         'build' => 'Création de ROM',

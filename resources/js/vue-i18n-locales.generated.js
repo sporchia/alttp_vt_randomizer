@@ -634,6 +634,7 @@ export default {
             },
             "info": {
                 "spoilerwarning": "WARNUNG: Der Ersteller dieses Spiel hat den Spoiler Log angesehen.",
+                "mystery": "Dies ist ein geheimnissvolles Spiel. Die Einstellungen sind unbekannt und müssen beim Spielen herausgefunden werden!",
                 "logic": "Vorausgesetzte Glitches",
                 "accessibility": "Zugänglichkeit",
                 "build": "ROM build",
@@ -1339,6 +1340,7 @@ export default {
             },
             "info": {
                 "spoilerwarning": "WARNING: The generator of this game viewed the spoiler log.",
+                "mystery": "This is a mystery game.  The settings must be discovered while you play!",
                 "logic": "Glitches Required",
                 "accessibility": "Accessibility",
                 "build": "ROM build",
@@ -2265,6 +2267,7 @@ export default {
             },
             "info": {
                 "spoilerwarning": "ADVERTENCIA: El generador de este juego ha visto el registro de spoiler.",
+                "mystery": "Este es un juego de misterios. Debes descubrir las configuraciones mientras lo juegas!",
                 "logic": "Glitches Requeridos",
                 "accessibility": "Accesibilidad",
                 "build": "Build de la ROM",
@@ -2946,6 +2949,7 @@ export default {
             },
             "info": {
                 "spoilerwarning": "AVERTISSEMENT : La personne qui a généré cette partie a regardé le spoiler log.",
+                "mystery": "Ceci est une partie mystère. Les paramètres seront à découvrir pendant que vous jouez!",
                 "logic": "Glitchs requis",
                 "accessibility": "Accessibilité",
                 "build": "Création de ROM",
