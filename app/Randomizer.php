@@ -239,7 +239,7 @@ class Randomizer implements RandomizerContract
                 $world->getLocation($location)->setItem(array_pop($nice_items_swords));
             }
             if (!$world->getLocation("Master Sword Pedestal")->hasItem(Item::get('Triforce', $world))) {
-                $world->getLocation($location)->setItem(array_pop($nice_items_swords));
+                $world->getLocation("Master Sword Pedestal")->setItem(array_pop($nice_items_swords));
             } else {
                 array_pop($nice_items_swords);
                 array_push($trash_items, Item::get('TwentyRupees', $world));
