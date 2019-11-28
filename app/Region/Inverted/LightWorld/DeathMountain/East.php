@@ -93,7 +93,7 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
-		            || $this->world->config('canOneFrameClipOW', false)));
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Right"]->setRequirements(function ($locations, $items) {
@@ -105,7 +105,7 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
-		            || $this->world->config('canOneFrameClipOW', false)));
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Far Right"]->setRequirements(function ($locations, $items) {
@@ -117,7 +117,7 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
-		            || $this->world->config('canOneFrameClipOW', false)));
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Middle"]->setRequirements(function ($locations, $items) {
@@ -129,7 +129,7 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
-		            || $this->world->config('canOneFrameClipOW', false)));
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Upper - Left"]->setRequirements(function ($locations, $items) {
