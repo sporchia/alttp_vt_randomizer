@@ -176,7 +176,7 @@ class NorthWest extends Region\Standard\LightWorld\NorthWest
         });
 
         $this->locations["Sick Kid"]->setRequirements(function ($locations, $items) {
-            return $items->hasBottle();
+            return $items->hasABottle();
         });
 
         $this->locations["Lumberjack Tree"]->setRequirements(function ($locations, $items) {
