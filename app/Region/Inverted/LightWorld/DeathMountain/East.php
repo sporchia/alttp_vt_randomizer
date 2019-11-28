@@ -81,7 +81,7 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
-		            || $this->world->config('canOneFrameClipOW', false)));
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Left"]->setRequirements(function ($locations, $items) {
