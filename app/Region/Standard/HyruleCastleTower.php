@@ -68,7 +68,7 @@ class HyruleCastleTower extends Region
         $this->prize_location->setRequirements($this->can_complete);
 
         $this->can_enter = function ($locations, $items) {
-            return $items->canKillMostThings(8)
+            return $items->canKillMostThings($this->world, 8)
                 && $items->has('RescueZelda')
                 && ($items->has('Cape')
                     || $items->hasSword(2)

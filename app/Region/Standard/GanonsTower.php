@@ -351,7 +351,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Mini Helmasaur Room - Left"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows() && $items->canLightTorches()
+            return $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations);
         })->setFillRules(function ($item, $locations, $items) {
@@ -359,7 +359,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Mini Helmasaur Room - Right"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows() && $items->canLightTorches()
+            return $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations);
         })->setFillRules(function ($item, $locations, $items) {
@@ -367,7 +367,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Pre-Moldorm Chest"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows() && $items->canLightTorches()
+            return $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations);
         })->setFillRules(function ($item, $locations, $items) {
@@ -376,7 +376,7 @@ class GanonsTower extends Region
 
         $this->locations["Ganon's Tower - Moldorm Chest"]->setRequirements(function ($locations, $items) {
             return $items->has('Hookshot')
-                && $items->canShootArrows() && $items->canLightTorches()
+                && $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 4)
                 && $this->boss_middle->canBeat($items, $locations)
                 && $this->boss_top->canBeat($items, $locations);

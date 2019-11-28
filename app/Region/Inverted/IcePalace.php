@@ -27,20 +27,20 @@ class IcePalace extends Region\Standard\IcePalace
                     && $items->hasHealth(12)
                     && ($items->hasBottle(2)
                         || $items->hasArmor()))) && ($items->canMeltThings($this->world)
-                || $this->world->config('canOneFrameClipUW', false)) && ($items->has('Flippers')
+                || $this->world->config('canOneFrameClipUW', false)) && (($items->has('Flippers')
                 || ($this->world->config('canFakeFlipper', false)
-                    && $this->world->config('canBunnyRevive', false)
+                    && ($this->world->config('canBunnyRevive', false)
                     || ($this->world->config('region.cantTakeDamage', false)
                         && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)) ||
                     $items->canFly($this->world)
                     || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                         && ($items->has('Hammer')
-                            || $items->canLiftRocks())))) || ($this->world->config('canBootsClip', false)
+                            || $items->canLiftRocks()))))) || ($this->world->config('canBootsClip', false)
                 && $items->has('PegasusBoots'))
                 ||
                 $this->world->config('canOneFrameClipOW', false)
                 || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed());
+                    && $items->canSpinSpeed()));
         };
 
         return $this;

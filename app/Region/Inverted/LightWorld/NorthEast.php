@@ -88,7 +88,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle()) && ($items->has('Flippers')
+                    && $items->hasABottle())) && ($items->has('Flippers')
                     || ($this->world->config('canFakeFlipper', false)
                         && $this->world->config('canWaterWalk', false)
                         && $items->has('PegasusBoots')) || ($this->world->config('canWaterWalk', false)
@@ -96,7 +96,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                             || $items->has('MoonPearl')) && ($this->world->config('canBootsClip', false)
                             && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
                             && $items->canSpinSpeed()) ||
-                        $this->world->config('canOneFrameClipOW', false))));
+                        $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Waterfall Fairy - Left"]->setRequirements(function ($locations, $items) {
@@ -178,9 +178,12 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                 )) && ($items->has('DefeatAgahnim2')
                 || $this->world->config('goal') === 'fast_ganon')
                 && (!$this->world->config('region.requireBetterBow', false)
-                    || $items->canShootArrows(2)) && (
+                    || $items->canShootArrows($this->world, 2)) && (
                     ($this->world->config('mode.weapons') == 'swordless'
-                        && $items->has('Hammer')) || (!$this->world->config('region.requireBetterSword', false)
+                        && $items->has('Hammer') && ($items->has('Lamp')
+                            || ($items->has('FireRod') && ($items->canExtendMagic(1)
+                                && $items->has('MoonPearl')) || $items->canExtendMagic(4)))) 
+                    || (!$this->world->config('region.requireBetterSword', false)
                         && ($items->hasSword(2)
                             && ($items->has('Lamp')
                                 || ($items->has('FireRod')

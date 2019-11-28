@@ -15,6 +15,7 @@ class ItemCollection extends Collection
     protected $item_counts = [];
     private $string_rep = null;
     private $checks_for_world = 0;
+    private $cached_values = [];
 
     /**
      * Create a new collection.
@@ -54,6 +55,7 @@ class ItemCollection extends Collection
             $this->item_counts[$item_name] = 0;
         }
 
+        $this->cached_values[] = $item;
         $this->item_counts[$item_name]++;
         $this->string_rep = null;
 
@@ -74,6 +76,12 @@ class ItemCollection extends Collection
         $this->item_counts[$name]--;
         if ($this->item_counts[$name] === 0) {
             $this->offsetUnset($name);
+        }
+        foreach ($this->cached_values as $key => $item) {
+            if ($item->getName() === $name) {
+                unset($this->cached_values[$key]);
+                break;
+            }
         }
 
         return $this;
@@ -102,13 +110,7 @@ class ItemCollection extends Collection
      */
     public function values()
     {
-        $values = [];
-        foreach ($this->items as $item) {
-            for ($i = 0; $i < $this->item_counts[$item->getName()]; $i++) {
-                $values[] = $item;
-            }
-        }
-        return $values;
+        return $this->cached_values;
     }
 
     /**
@@ -212,6 +214,7 @@ class ItemCollection extends Collection
         $new->items = $this->items;
         $new->item_counts = $this->item_counts;
         $new->checks_for_world = $this->checks_for_world;
+        $new->cached_values = $this->cached_values;
 
         return $new;
     }
@@ -447,11 +450,12 @@ class ItemCollection extends Collection
     /**
      * Requirements for lobbing arrows at things
      *
+     * @param \ALttP\World  $world  world to check items against
      * @param int $min_level minimum level of bow
      *
      * @return bool
      */
-    public function canShootArrows(int $min_level = 1)
+    public function canShootArrows(World $world, int $min_level = 1)
     {
         switch ($min_level) {
             case 2:
@@ -461,8 +465,10 @@ class ItemCollection extends Collection
                         && ($this->has('Bow') || $this->has('BowAndArrows')));
             case 1:
             default:
-                return ($this->has('Bow') && ($this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
-                    || $this->has('ProgressiveBow')
+                return (($this->has('Bow') || $this->has('ProgressiveBow')) 
+                        && (!$world->config('rom.rupeeBow', false)
+                            || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
+                    || $this->has('ProgressiveBow', 2)
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
         }
@@ -522,15 +528,17 @@ class ItemCollection extends Collection
     /**
      * Requirements for killing most things
      *
+     * @param \ALttP\World  $world  world to check items against
+     *
      * @return bool
      */
-    public function canKillEscapeThings()
+    public function canKillEscapeThings(World $world)
     {
         return $this->has('UncleSword')
             || $this->has('CaneOfSomaria')
             || $this->has('TenBombs')
             || $this->has('CaneOfByrna')
-            || $this->canShootArrows()
+            || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');
     }
@@ -538,15 +546,18 @@ class ItemCollection extends Collection
     /**
      * Requirements for killing most things
      *
+     * @param \ALttP\World  $world  world to check items against
+     * @param mixed $enemies Amount of Damage Enemies need to be beaten
+     *
      * @return bool
      */
-    public function canKillMostThings($enemies = 5)
+    public function canKillMostThings(World $world, $enemies = 5)
     {
         return $this->hasSword()
             || $this->has('CaneOfSomaria')
             || ($this->has('TenBombs') && $enemies < 6)
             || ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
-            || $this->canShootArrows()
+            || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');
     }
