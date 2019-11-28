@@ -70,11 +70,9 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
         });
 
         $this->locations["Paradox Cave Lower - Far Left"]->setRequirements(function ($locations, $items) {
-            return (($items->has('MoonPearl')
+            return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle(2))) && ($items->has('Hookshot')
-                || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
@@ -82,11 +80,9 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
         });
 
         $this->locations["Paradox Cave Lower - Left"]->setRequirements(function ($locations, $items) {
-            return (($items->has('MoonPearl')
+            return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle(2))) && ($items->has('Hookshot')
-                || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots'))
@@ -94,11 +90,9 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
         });
 
         $this->locations["Paradox Cave Lower - Right"]->setRequirements(function ($locations, $items) {
-            return (($items->has('MoonPearl')
+            return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle(2))) && ($items->has('Hookshot')
-                || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots')) ||
@@ -106,11 +100,9 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
         });
 
         $this->locations["Paradox Cave Lower - Far Right"]->setRequirements(function ($locations, $items) {
-            return (($items->has('MoonPearl')
+            return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle(2))) && ($items->has('Hookshot')
-                || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots')) ||
@@ -118,11 +110,9 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
         });
 
         $this->locations["Paradox Cave Lower - Middle"]->setRequirements(function ($locations, $items) {
-            return (($items->has('MoonPearl')
+            return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle(2))) && ($items->has('Hookshot')
-                || ($this->world->config('canSuperSpeed', false)
-                    && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                 && $items->hasABottle()
                 && (($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots')) ||
@@ -131,28 +121,24 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
 
         $this->locations["Paradox Cave Upper - Left"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings()
-                && (($items->has('MoonPearl')
+                && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false)
-                        && $items->hasABottle(2))) && ($items->has('Hookshot')
-                    || ($this->world->config('canSuperSpeed', false)
-                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()
                     && (($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) ||
-                        $this->world->config('canOneFrameClipOW', false)));
+                        $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->locations["Paradox Cave Upper - Right"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings()
-                && (($items->has('MoonPearl')
+                && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false)
-                        && $items->hasABottle(2))) && ($items->has('Hookshot')
-                    || ($this->world->config('canSuperSpeed', false)
-                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle(2)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()
                     && (($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) ||
-                        $this->world->config('canOneFrameClipOW', false)));
+                        $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->locations["Ether Tablet"]->setRequirements(function ($locations, $items) {
