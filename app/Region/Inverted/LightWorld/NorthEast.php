@@ -211,7 +211,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                         || ($items->hasABottle()
                             && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))))
                 || ($this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
-                    && $items->has('MoonPearl')
+                    && ($items->has('MoonPearl') || $items->has('MagicMirror'))
                     && (
                         ($this->world->config('canSuperSpeed', false)
                             && $items->canSpinSpeed()) || ($this->world->config('canBootsClip', false)
