@@ -163,11 +163,11 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
                 && (($this->world->config('mode.weapons') == 'swordless'
                     && $items->has('Hammer')) ||
                     $items->hasSword(2)) && ($items->has('MoonPearl')
-                    && $items->has('Hammer')
+                    && ($items->has('Hammer')
                     || ($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
                         && $items->canSpinSpeed()) ||
-                    $this->world->config('canOneFrameClipOW', false)
+                    $this->world->config('canOneFrameClipOW', false))
                     || (
                         ($this->world->config('canOWYBA', false)
                             && $items->hasABottle()
