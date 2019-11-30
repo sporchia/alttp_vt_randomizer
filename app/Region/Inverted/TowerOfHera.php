@@ -24,18 +24,18 @@ class TowerOfHera extends Region\Standard\TowerOfHera
             return ($this->world->getRegion('East Death Mountain')->canEnter($locations, $items)
                 && $items->has('MoonPearl')
                 && $items->has('Hammer')) || ($this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
-                && ($this->world->config('canOneFrameClipOW', false)
+                && (($this->world->config('canOneFrameClipOW', false)
                     && $items->hasSword()
                     && $this->world->config('canSuperBunny', false)
-                    && $items->has('MagicMirror')) || ($items->has('MoonPearl')
+                    && $items->has('MagicMirror')) || (($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false)
-                        && $items->hasABottle(2)) || (
-                        ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle(2)) 
+                        || ((($this->world->config('canOWYBA', false)
                             && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
-                            && $items->canBunnyRevive()) && ($this->world->config('canBootsClip', false)
-                            && $items->has('PegasusBoots')))) && ($this->world->config('canSuperSpeed', false)
+                            && $items->canBunnyRevive())) && ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')))) && (($this->world->config('canSuperSpeed', false)
                     && $items->canSpinSpeed()) || ($this->world->config('canBootsClip', false)
-                    && $items->has('PegasusBoots')));
+                    && $items->has('PegasusBoots'))))));
         };
 
 
