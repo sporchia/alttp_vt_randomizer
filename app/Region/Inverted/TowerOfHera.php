@@ -38,8 +38,6 @@ class TowerOfHera extends Region\Standard\TowerOfHera
                     && $items->has('PegasusBoots'))))));
         };
 
-
-
         $mire = function ($locations, $items) {
             return $this->world->config('canOneFrameClipUW', false)
                 && (
