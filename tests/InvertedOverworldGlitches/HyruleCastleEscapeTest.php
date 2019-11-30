@@ -91,7 +91,8 @@ class HyruleCastleEscapeTest extends TestCase
     {
         return [
             ["Sanctuary", False, []],
-            ["Sanctuary", true, ['DefeatAgahnim']],
+            ["Sanctuary", true, ['MagicMirror', 'DefeatAgahnim']],
+            ["Sanctuary", true, ['Lamp', 'DefeatAgahnim', 'KeyH2']],
             ["Sanctuary", true, ['MoonPearl', 'PegasusBoots']],
             ["Sanctuary", true, ['MagicMirror', 'PegasusBoots']],
             

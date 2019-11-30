@@ -19,6 +19,18 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape
     public function initalize()
     {
         parent::initalize();
+        
+        $this->locations["Sanctuary"]->setRequirements(function ($locations, $items) {
+            return ($items->has('KeyH2') && $items->has('Lamp'))
+			    || (($items->has('MoonPearl')
+						|| ($this->world->config('canSuperBunny', false)
+							&& $items->has('MagicMirror'))
+						|| ($this->world->config('canOWYBA', false)
+							&& $items->hasABottle())
+						|| ($this->world->config('canBunnyRevive', false)
+							&& $items->canBunnyRevive()))
+				    && $this->world->getRegion('North West Light World')->canEnter($locations, $items));
+        });
 
         $this->locations["Secret Passage"]->setRequirements(function ($locations, $items) {
             return (
