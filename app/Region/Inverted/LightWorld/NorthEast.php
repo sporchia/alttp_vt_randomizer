@@ -30,8 +30,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
     public function initalize()
     {
         $this->locations["Sahasrahla's Hut - Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl')
-                && $items->canBombThings()
+            return ($items->has('MoonPearl')
+                && $items->canBombThings())
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('PegasusBoots')
                     && ($items->has('MagicMirror')
@@ -39,8 +39,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         });
 
         $this->locations["Sahasrahla's Hut - Middle"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl')
-                && $items->canBombThings()
+            return ($items->has('MoonPearl')
+                && $items->canBombThings())
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('PegasusBoots')
                     && ($items->has('MagicMirror')
@@ -48,8 +48,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         });
 
         $this->locations["Sahasrahla's Hut - Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl')
-                && $items->canBombThings()
+            return ($items->has('MoonPearl')
+                && $items->canBombThings())
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('PegasusBoots')
                     && ($items->has('MagicMirror')

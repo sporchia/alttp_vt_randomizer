@@ -62,7 +62,8 @@ class NorthWest extends Region\Standard\LightWorld\NorthWest
         $this->locations["Kakariko Tavern"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canSuperBunny', false)
-                    && $items->has('MagicMirror')) || ($this->world->config('canOWYBA', false)
+                    && ($items->has('MagicMirror') || !$this->world->config('cantTakeDamage', false))) 
+                    || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive());
         });
