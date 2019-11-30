@@ -38,6 +38,8 @@ class MultiworldController extends Controller
     {
         $worlds = [];
 
+        set_time_limit(300);
+
         foreach ($request->input('worlds') as $config) {
             $crystals_ganon = $config['crystals.ganon'] ?? '7';
             $crystals_ganon = $crystals_ganon === 'random' ? get_random_int(0, 7) : $crystals_ganon;

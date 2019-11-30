@@ -2,8 +2,9 @@
 
 namespace ALttP\Console\Commands;
 
+use ALttP\Build;
+use ALttP\Support\Flips;
 use Illuminate\Console\Command;
-use ALttP\Rom;
 
 class UpdateBuildRecord extends Command
 {
@@ -12,14 +13,14 @@ class UpdateBuildRecord extends Command
      *
      * @var string
      */
-    protected $signature = 'alttp:updatebuildrecord {file=js/base2current.json} {build?} {hash?}';
+    protected $signature = 'alttp:updatebuildrecord {file} {build?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'update the rom build in DB';
+    protected $description = 'build bps and upate the rom build in DB';
 
     /**
      * Execute the console command.
@@ -34,21 +35,24 @@ class UpdateBuildRecord extends Command
             return 101;
         }
 
-        $patch_left = $patch_right = [];
+        $flips = new Flips;
+        $base_rom_location = env('ENEMIZER_BASE', null);
 
-        if (is_readable(public_path('js/base2current.json'))) {
-            $file_contents = file_get_contents(public_path($this->argument('file')));
+        $build = Build::firstOrNew([
+            'build' => $this->argument('build') ?? date('Y-m-d'),
+        ]);
+        $build->hash =  hash_file('md5', $this->argument('file'));
+        $build->patch = '[]';
 
-            if ($file_contents === false) {
-                $this->error('could not read base2current.json');
+        $bps_data = $flips->createBpsFromFiles($base_rom_location, $this->argument('file'), [
+            'created' => $build->build,
+            'hash' => $build->hash,
+        ]);
 
-                return 1;
-            }
+        file_put_contents(public_path(sprintf('bps/%s.bps', $build->hash)), $bps_data);
 
-            $patch_left = json_decode($file_contents, true);
-        }
-
-        Rom::saveBuild(patch_merge_minify($patch_left, $patch_right), $this->argument('build'), $this->argument('hash'));
+        $build->bps = $bps_data;
+        $build->save();
 
         $this->info(sprintf('record updated'));
     }

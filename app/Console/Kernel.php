@@ -12,7 +12,6 @@ class Kernel extends ConsoleKernel
         Commands\JsonToCsv::class,
         Commands\MakeTranslation::class,
         Commands\Randomize::class,
-        Commands\UpdateBaseJson::class,
         Commands\UpdateBuildRecord::class,
     ];
 

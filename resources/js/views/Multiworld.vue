@@ -401,7 +401,9 @@ export default {
     },
     onActionClick(action) {
       if (action.name === "+ Add World") {
-        this.worldList.push(this.worldList.length + 1);
+        const newWorldId = this.worldList.length + 1;
+        this.worldList.push(newWorldId);
+        this.selectedWorldId = newWorldId;
       }
     }
   },
