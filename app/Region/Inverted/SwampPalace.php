@@ -34,6 +34,65 @@ class SwampPalace extends Region\Standard\SwampPalace
                 && $this->world->getRegion('South Light World')->canEnter($locations, $items);
         };
 
+        $this->locations["Swamp Palace - Big Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2') && $items->has('Flippers')
+                && ($mire($locations, $items) && ($items->has('BigKeyD6') || $items->has('BigKeyD2') || $items->has('BigKeyP3'))
+                    || ($main($locations, $items) && $items->has('Hammer') && $items->has('BigKeyD2')));
+        })->setAlwaysAllow(function ($item, $items) {
+            return $this->world->config('accessibility') !== 'locations' && $item == Item::get('BigKeyD2', $this->world);
+        });
+
+        $this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2')
+                && $items->has('Flippers')
+                && ($mire($locations, $items)
+                    || ($main($locations, $items) && $items->has('Hammer')));
+        });
+
+        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->canBombThings()
+                && (($items->has('KeyD2') && $main($locations, $items))
+                    || $mire($locations, $items));
+        });
+
+        $this->locations["Swamp Palace - West Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2')
+                && $items->has('Flippers')
+                && ($mire($locations, $items)
+                    || ($main($locations, $items) && $items->has('Hammer')));
+        });
+
+        $this->locations["Swamp Palace - Compass Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2')
+                && $items->has('Flippers')
+                && ($mire($locations, $items)
+                    || ($main($locations, $items) && $items->has('Hammer')));
+        });
+
+        $this->locations["Swamp Palace - Flooded Room - Left"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2')
+                && $items->has('Hookshot')
+                && $items->has('Flippers')
+                && ($mire($locations, $items)
+                    || ($main($locations, $items) && $items->has('Hammer')));
+        });
+
+        $this->locations["Swamp Palace - Flooded Room - Right"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2')
+                && $items->has('Hookshot')
+                && $items->has('Flippers')
+                && ($mire($locations, $items)
+                    || ($main($locations, $items) && $items->has('Hammer')));
+        });
+
+        $this->locations["Swamp Palace - Waterfall Room"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $items->has('KeyD2')
+                && $items->has('Hookshot')
+                && $items->has('Flippers')
+                && ($mire($locations, $items)
+                    || ($main($locations, $items) && $items->has('Hammer')));
+        });
+
         $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($main, $mire) {
             return $items->has('KeyD2')
                 && $items->has('Flippers')
