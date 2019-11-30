@@ -161,18 +161,19 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
         $this->locations["Ether Tablet"]->setRequirements(function ($locations, $items) {
             return $items->has('BookOfMudora')
                 && (($this->world->config('mode.weapons') == 'swordless'
-                    && $items->has('Hammer'))
-                    || $items->hasSword(2)) && (($items->has('MoonPearl')
+                    && $items->has('Hammer')) ||
+                    $items->hasSword(2)) && ($items->has('MoonPearl')
                     && ($items->has('Hammer')
                     || ($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
-                        && $items->canSpinSpeed())
-                            || ($this->world->config('canOWYBA', false)
-                                && $items->hasABottle()
-                                && $this->world->config('canBootsClip', false)
-                                && $items->has('PegasusBoots'))))
-				        || $this->world->config('canOneFrameClipOW', false))
-                );
+                        && $items->canSpinSpeed()) ||
+                    $this->world->config('canOneFrameClipOW', false))
+                    || (
+                        ($this->world->config('canOWYBA', false)
+                            && $items->hasABottle()
+                            && (($this->world->config('canBootsClip', false)
+                                && $items->has('PegasusBoots')) ||
+                                $this->world->config('canOneFrameClipOW', false)))));
         });
 
         $this->locations["Spectacle Rock"]->setRequirements(function ($locations, $items) {
@@ -191,15 +192,15 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
             return ($items->canLiftDarkRocks()
                 && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items)) || ($this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
                 && (
-                    (($items->has('MoonPearl')
+                    ($items->has('MoonPearl')
                         || ($this->world->config('canOWYBA', false)
                             && $items->hasABottle(2))) && ($items->has('Hookshot')
                         || ($this->world->config('canBootsClip', false)
                             && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
-                            && $items->canSpinSpeed()))) 
+                            && $items->canSpinSpeed())) ||
+                    $this->world->config('canOneFrameClipOW', false)
                     || ($this->world->config('canMirrorWrap', false)
-                        && $items->has('MagicMirror')) ||
-                    $this->world->config('canOneFrameClipOW', false)));
+                        && $items->has('MagicMirror'))));
         };
 
         return $this;
