@@ -30,7 +30,9 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
     public function initalize()
     {
         $this->locations["Sahasrahla's Hut - Left"]->setRequirements(function ($locations, $items) {
-            return ($items->has('MoonPearl')
+            return (($items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle()))
                 && $items->canBombThings())
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('PegasusBoots')
@@ -39,7 +41,9 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         });
 
         $this->locations["Sahasrahla's Hut - Middle"]->setRequirements(function ($locations, $items) {
-            return ($items->has('MoonPearl')
+            return (($items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle()))
                 && $items->canBombThings())
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('PegasusBoots')
@@ -48,7 +52,9 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         });
 
         $this->locations["Sahasrahla's Hut - Right"]->setRequirements(function ($locations, $items) {
-            return ($items->has('MoonPearl')
+            return (($items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle()))
                 && $items->canBombThings())
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('PegasusBoots')
