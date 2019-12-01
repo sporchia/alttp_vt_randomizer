@@ -22,8 +22,19 @@ class SwampPalace extends Region\Standard\SwampPalace
 
         $mire = function ($locations, $items) {
             return $this->world->config('canOneFrameClipUW', false)
-                && $items->has('KeyD6', 3)
-                && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
+                && $items->has('Flippers')
+                && (($locations->itemInLocations(Item::get('BigKeyD6', $this->world), [
+                        "Misery Mire - Compass Chest",
+                        "Misery Mire - Big Key Chest",
+                    ]) &&
+                        $items->has('KeyD6', 2)) || $items->has('KeyD6', 3)) &&
+                $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
+        };
+        
+        $hera = function ($locations, $items) {
+            return $this->world->config('canOneFrameClipUW', false)
+                && $this->world->getRegion('Tower of Hera')->canEnter($locations, $items)
+                && $items->has('BigKeyP3');
         };
 
         $main = function ($locations, $items) {
@@ -34,7 +45,7 @@ class SwampPalace extends Region\Standard\SwampPalace
                 && $this->world->getRegion('South Light World')->canEnter($locations, $items);
         };
 
-        $this->locations["Swamp Palace - Big Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Big Chest"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2') && $items->has('Flippers')
                 && ($mire($locations, $items) && ($items->has('BigKeyD6') || $items->has('BigKeyD2') || $items->has('BigKeyP3'))
                     || ($main($locations, $items) && $items->has('Hammer') && $items->has('BigKeyD2')));
@@ -42,63 +53,56 @@ class SwampPalace extends Region\Standard\SwampPalace
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('BigKeyD2', $this->world);
         });
 
-        $this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
-                && $items->has('Flippers')
                 && ($mire($locations, $items)
-                    || ($main($locations, $items) && $items->has('Hammer')));
+                    || ($main($locations, $items) && ($items->has('Hammer') || $hera($locations, $items))));
         });
 
-        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->canBombThings()
                 && (($items->has('KeyD2') && $main($locations, $items))
                     || $mire($locations, $items));
         });
 
-        $this->locations["Swamp Palace - West Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - West Chest"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
-                && $items->has('Flippers')
                 && ($mire($locations, $items)
-                    || ($main($locations, $items) && $items->has('Hammer')));
+                    || ($main($locations, $items) && ($items->has('Hammer') || $hera($locations, $items))));
         });
 
-        $this->locations["Swamp Palace - Compass Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Compass Chest"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
-                && $items->has('Flippers')
                 && ($mire($locations, $items)
-                    || ($main($locations, $items) && $items->has('Hammer')));
+                    || ($main($locations, $items) && ($items->has('Hammer') || $hera($locations, $items))));
         });
 
-        $this->locations["Swamp Palace - Flooded Room - Left"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Flooded Room - Left"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
                 && $items->has('Hookshot')
-                && $items->has('Flippers')
                 && ($mire($locations, $items)
-                    || ($main($locations, $items) && $items->has('Hammer')));
+                    || ($main($locations, $items) && ($items->has('Hammer') || $hera($locations, $items))));
         });
 
-        $this->locations["Swamp Palace - Flooded Room - Right"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Flooded Room - Right"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
                 && $items->has('Hookshot')
-                && $items->has('Flippers')
                 && ($mire($locations, $items)
-                    || ($main($locations, $items) && $items->has('Hammer')));
+                    || ($main($locations, $items) && ($items->has('Hammer') || $hera($locations, $items))));
         });
 
-        $this->locations["Swamp Palace - Waterfall Room"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Waterfall Room"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
                 && $items->has('Hookshot')
-                && $items->has('Flippers')
                 && ($mire($locations, $items)
-                    || ($main($locations, $items) && $items->has('Hammer')));
+                    || ($main($locations, $items) && ($items->has('Hammer') || $hera($locations, $items))));
         });
 
-        $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+        $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($main, $mire, $hera) {
             return $items->has('KeyD2')
-                && $items->has('Flippers')
                 && ($main($locations, $items)
                     && ($items->has('Hammer')
-                        || $mire($locations, $items)))
+                        || $mire($locations, $items) || $hera($locations, $items)))
                 && $items->has('Hookshot')
                 && $this->boss->canBeat($items, $locations)
                 && (!$this->world->config('region.wildCompasses', false)
