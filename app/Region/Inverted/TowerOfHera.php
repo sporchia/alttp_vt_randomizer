@@ -50,12 +50,11 @@ class TowerOfHera extends Region\Standard\TowerOfHera
 
         $this->locations["Tower of Hera - Big Key Chest"]->setRequirements(function ($locations, $items) use ($mire) {
             return $items->canLightTorches()
-                && $items->has('KeyP3')
-                && ($items->has('MoonPearl')
-                    || ($this->world->config('canOWYBA', false)
-                        && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
-                        && $items->canBunnyRevive()) ||
-                    $mire($locations, $items));
+                && (($items->has('KeyP3')
+                    && ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
+                    && $items->canBunnyRevive()))) || ($mire($locations, $items)
+                    && $items->has('KeyD6', 4)));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyP3', $this->world);
         });
@@ -73,14 +72,10 @@ class TowerOfHera extends Region\Standard\TowerOfHera
                     || $items->has('BigKeyD6')));
         });
 
-        $this->locations["Tower of Hera - Boss"]->setRequirements(function ($locations, $items) {
-            return $this->canEnter($locations, $items)
+        $this->locations["Tower of Hera - Boss"]->setRequirements(function ($locations, $items) use ($main, $mire){
+            return $main($locations, $items)
                 && $this->boss->canBeat($items, $locations)
-                && ($items->has('MoonPearl')
-                    || ($this->world->config('canOWYBA', false)
-                        && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
-                        && $items->canBunnyRevive())) &&
-                $items->has('BigKeyP3')
+                && ($items->has('BigKeyP3') || ($mire($locations, $items) && $items->has('BigKeyD6')))
                 && (!$this->world->config('region.wildCompasses', false)
                     || $items->has('CompassP3')
                     || $this->locations["Tower of Hera - Boss"]->hasItem(Item::get('CompassP3', $this->world))) && (!$this->world->config('region.wildMaps', false)
