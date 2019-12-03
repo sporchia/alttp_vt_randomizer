@@ -938,6 +938,16 @@ class Randomizer implements RandomizerContract
                 $second_location = $progressive_bow_locations->pop();
                 $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
             }
+            // Remove Hint in Hard+ Item Pool
+            if ($world->config('item.overflow.count.Bow') < 2) {
+                $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
+                $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows on\nPlanet Zebes?");
+                // Special No Silvers "Hint" for Crowd Control
+                if ($world->config('item.pool') == 'crowd_control') {
+                    $world->setText('ganon_phase_3_no_silvers', "Chat said no\nto Silvers.\nIt's over Hero");
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Chat said no\nto Silvers.\nIt's over Hero");
+                }
+            }
         }
 
         if ($world->config('crystals.tower') < 7) {
