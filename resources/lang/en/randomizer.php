@@ -191,9 +191,9 @@ return [
         ],
     ],
     'generate' => [
-        'race' => 'Generate ROM',
+        'race' => 'Generate Race ROM',
         'race_warning' => 'Spoilers will <span class="running-now">never</span> be available for this option.',
-        'spoiler_race' => 'Generate ROM (with spoilers)',
+        'spoiler_race' => 'Generate Normal ROM',
         'back' => 'Change Settings',
         'regenerate' => 'Generate Again',
         'regenerate_tooltip' => 'Generate new game with same settings',
