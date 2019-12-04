@@ -468,7 +468,6 @@ class ItemCollection extends Collection
                 return (($this->has('Bow') || $this->has('ProgressiveBow')) 
                         && (!$world->config('rom.rupeeBow', false)
                             || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
-                    || $this->has('ProgressiveBow', 2)
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
         }
