@@ -930,13 +930,35 @@ class Randomizer implements RandomizerContract
         $progressive_bow_locations = $world->getLocationsWithItem(Item::get('ProgressiveBow', $world))->randomCollection(2);
         if ($progressive_bow_locations->count() > 0) {
             $first_location = $progressive_bow_locations->pop();
-            $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->getRegion()->getName());
+            switch ($first_location->getRegion()->getName()) {
+                case "Ganons Tower":
+                    $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\nMy tower?");
+                    break;
+                default:
+                    $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->getRegion()->getName());
+                }
             // Progressive Bow Alternate
             $first_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
 
             if ($progressive_bow_locations->count() > 0) {
                 $second_location = $progressive_bow_locations->pop();
-                $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
+                switch ($second_location->getRegion()->getName()) {
+                    case "Ganons Tower":
+                        $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
+                    break;
+                    default:
+                        $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
+                }
+            }
+            // Remove Hint in Hard+ Item Pool
+            if ($world->config('item.overflow.count.Bow') < 2) {
+                $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
+                $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows on\nPlanet Zebes?");
+                // Special No Silvers "Hint" for Crowd Control
+                if ($world->config('item.pool') == 'crowd_control') {
+                    $world->setText('ganon_phase_3_no_silvers', "Chat said no\nto Silvers.\nIt's over Hero");
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Chat said no\nto Silvers.\nIt's over Hero");
+                }
             }
         }
 
