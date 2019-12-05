@@ -1,20 +1,20 @@
 <?php
 
-namespace MajorGlitches;
+namespace InvertedMajorGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group MajorGlitches
+ * @group InvertedMajorGlitches
  */
 class DesertPalaceTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
+        $this->world = World::factory('inverted', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
         $this->addCollected(['RescueZelda']);
         $this->collected->setChecksForWorld($this->world->id);
     }
@@ -111,7 +111,7 @@ class DesertPalaceTest extends TestCase
             ["Desert Palace - Map Chest", true, []],
 
             ["Desert Palace - Big Chest", false, []],
-            ["Desert Palace - Big Chest", true, ['BigKeyP2']],
+            ["Desert Palace - Big Chest", true, [ 'BigKeyP2']],
 
             ["Desert Palace - Torch", false, []],
             ["Desert Palace - Torch", false, [], ['PegasusBoots']],
@@ -129,7 +129,8 @@ class DesertPalaceTest extends TestCase
             ["Desert Palace - Boss", false, [], ['KeyP2']],
             ["Desert Palace - Boss", false, [], ['BigKeyP2']],
             ["Desert Palace - Boss", false, [], ['Lamp', 'FireRod']],
-            ["Desert Palace - Boss", true, ['UncleSword', 'KeyP2', 'Lamp', 'BigKeyP2']],
+            ["Desert Palace - Boss", true, ['UncleSword', 'KeyP2', 'BigKeyP2', 'Lamp']],
+            ["Desert Palace - Boss", true, ['UncleSword', 'KeyP2', 'BigKeyP2', 'FireRod']],
         ];
     }
 }

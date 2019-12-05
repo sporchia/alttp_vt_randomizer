@@ -1,20 +1,20 @@
 <?php
 
-namespace MajorGlitches;
+namespace InvertedMajorGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group MajorGlitches
+ * @group InvertedMajorGlitches
  */
 class PalaceOfDarknessTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
+        $this->world = World::factory('inverted', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
         $this->addCollected(['RescueZelda']);
         $this->collected->setChecksForWorld($this->world->id);
     }
@@ -23,6 +23,32 @@ class PalaceOfDarknessTest extends TestCase
     {
         parent::tearDown();
         unset($this->world);
+    }
+
+    /**
+     * @param bool $access
+     * @param array $items
+     * @param array $except
+     *
+     * @dataProvider entryPool
+     */
+    public function testEntry(bool $access, array $items, array $except = [])
+    {
+        if (count($except)) {
+            $this->collected = $this->allItemsExcept($except);
+        }
+
+        $this->addCollected($items);
+
+        $this->assertEquals($access, $this->world->getRegion('Palace of Darkness')
+            ->canEnter($this->world->getLocations(), $this->collected));
+    }
+
+    public function entryPool()
+    {
+        return [
+            [true, []],
+        ];
     }
 
     /**
@@ -112,7 +138,6 @@ class PalaceOfDarknessTest extends TestCase
 
             ["Palace of Darkness - The Arena - Bridge", false, []],
             ["Palace of Darkness - The Arena - Bridge", true, ['KeyD1']],
-            ["Palace of Darkness - The Arena - Bridge", true, ['BowAndArrows', 'Hammer']],
 
             ["Palace of Darkness - Big Chest", false, []],
             ["Palace of Darkness - Big Chest", false, [], ['Lamp']],
@@ -127,7 +152,6 @@ class PalaceOfDarknessTest extends TestCase
 
             ["Palace of Darkness - Stalfos Basement", false, []],
             ["Palace of Darkness - Stalfos Basement", true, ['KeyD1']],
-            ["Palace of Darkness - Stalfos Basement", true, ['BowAndArrows', 'Hammer']],
 
             ["Palace of Darkness - Dark Basement - Left", false, []],
             ["Palace of Darkness - Dark Basement - Left", false, [], ['Lamp']],
@@ -143,9 +167,11 @@ class PalaceOfDarknessTest extends TestCase
 
             ["Palace of Darkness - Dark Maze - Top", false, []],
             ["Palace of Darkness - Dark Maze - Top", false, [], ['Lamp']],
+            ["Palace of Darkness - Dark Maze - Top", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp']],
 
             ["Palace of Darkness - Dark Maze - Bottom", false, []],
             ["Palace of Darkness - Dark Maze - Bottom", false, [], ['Lamp']],
+            ["Palace of Darkness - Dark Maze - Bottom", true, ['KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'KeyD1', 'Lamp']],
 
             ["Palace of Darkness - Shooter Room", true, []],
 

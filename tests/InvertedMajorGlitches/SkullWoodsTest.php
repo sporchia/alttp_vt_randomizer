@@ -1,20 +1,20 @@
 <?php
 
-namespace MajorGlitches;
+namespace InvertedMajorGlitches;
 
 use ALttP\Item;
 use ALttP\World;
 use TestCase;
 
 /**
- * @group MajorGlitches
+ * @group InvertedMajorGlitches
  */
 class SkullWoodsTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
+        $this->world = World::factory('inverted', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
         $this->addCollected(['RescueZelda']);
         $this->collected->setChecksForWorld($this->world->id);
     }
@@ -105,8 +105,7 @@ class SkullWoodsTest extends TestCase
 
             ["Skull Woods - Bridge Room", false, []],
             ["Skull Woods - Bridge Room", false, [], ['FireRod']],
-            ["Skull Woods - Bridge Room", false, [], ['MoonPearl']],
-            ["Skull Woods - Bridge Room", true, ['FireRod', 'MoonPearl']],
+            ["Skull Woods - Bridge Room", true, ['FireRod']],
 
             ["Skull Woods - Pot Prison", true, []],
 
@@ -115,12 +114,10 @@ class SkullWoodsTest extends TestCase
             ["Skull Woods - Boss", false, []],
             ["Skull Woods - Boss", false, [], ['FireRod']],
             ["Skull Woods - Boss", false, [], ['AnySword']],
-            ["Skull Woods - Boss", false, [], ['MoonPearl']],
-            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'UncleSword']],
-            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'MasterSword']],
-            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'L3Sword']],
-            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'L4Sword']],
-            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'ProgressiveSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'UncleSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MasterSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'L3Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'L4Sword']],
         ];
     }
 }

@@ -53,8 +53,7 @@ class TowerOfHera extends Region\Standard\TowerOfHera
                 && (($items->has('KeyP3')
                     && ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()))) || ($mire($locations, $items)
-                    && $items->has('KeyD6', 4)));
+                    && $items->canBunnyRevive()))) || $mire($locations, $items));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyP3', $this->world);
         });
