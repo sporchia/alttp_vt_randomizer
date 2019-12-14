@@ -47,7 +47,7 @@ class DesertPalace extends Region\Standard\DesertPalace
 
 
         $this->locations["Desert Palace - Big Key Chest"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyP2')
+            return $items->has('KeyP2') && $items->canKillMostThings($this->world)
                 && ($items->has('MoonPearl')
                     || $this->world->config('canDungeonRevive')
                     || ($this->world->config('canBunnyRevive', false)

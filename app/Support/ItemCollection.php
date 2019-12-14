@@ -536,8 +536,10 @@ class ItemCollection extends Collection
     {
         return $this->has('UncleSword')
             || $this->has('CaneOfSomaria')
-            || $this->has('TenBombs')
-            || $this->has('CaneOfByrna')
+            || ($this->has('TenBombs')
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
+            || ($this->has('CaneOfByrna')
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
             || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');
@@ -555,8 +557,10 @@ class ItemCollection extends Collection
     {
         return $this->hasSword()
             || $this->has('CaneOfSomaria')
-            || ($this->has('TenBombs') && $enemies < 6)
-            || ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
+            || ($this->canBombThings() && $enemies < 6
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
+            || ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic())
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
             || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');

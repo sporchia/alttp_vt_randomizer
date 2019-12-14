@@ -22,15 +22,18 @@ class HyruleCastleEscape extends Region\Standard\HyruleCastleEscape
     public function initalize()
     {
         $this->locations["Sewers - Secret Room - Left"]->setRequirements(function ($locations, $items) {
-            return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
+            return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+                && $items->has('KeyH2') && $items->canKillMostThings($this->world));
         });
 
         $this->locations["Sewers - Secret Room - Middle"]->setRequirements(function ($locations, $items) {
-            return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
+            return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+                && $items->has('KeyH2') && $items->canKillMostThings($this->world));
         });
 
         $this->locations["Sewers - Secret Room - Right"]->setRequirements(function ($locations, $items) {
-            return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2'));
+            return $items->canLiftRocks() || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
+                && $items->has('KeyH2') && $items->canKillMostThings($this->world));
         });
 
         $this->locations["Sewers - Dark Cross"]->setRequirements(function ($locations, $items) {
@@ -39,11 +42,11 @@ class HyruleCastleEscape extends Region\Standard\HyruleCastleEscape
         });
 
         $this->locations["Hyrule Castle - Boomerang Chest"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyH2');
+            return $items->has('KeyH2') && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Hyrule Castle - Zelda's Cell"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyH2');
+            return $items->has('KeyH2') && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Secret Passage"]->setFillRules(function ($item, $locations, $items) {
