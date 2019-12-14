@@ -76,7 +76,7 @@ class DesertPalace extends Region
         });
 
         $this->locations["Desert Palace - Big Key Chest"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyP2');
+            return $items->has('KeyP2') && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Desert Palace - Compass Chest"]->setRequirements(function ($locations, $items) {

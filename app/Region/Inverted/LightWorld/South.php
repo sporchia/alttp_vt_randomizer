@@ -106,7 +106,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Mini Moldorm Cave - Left"]->setRequirements(function ($locations, $items) {
@@ -114,7 +114,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Mini Moldorm Cave - Right"]->setRequirements(function ($locations, $items) {
@@ -122,7 +122,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Mini Moldorm Cave - Far Right"]->setRequirements(function ($locations, $items) {
@@ -130,7 +130,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Ice Rod Cave"]->setRequirements(function ($locations, $items) {
@@ -181,7 +181,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Library"]->setRequirements(function ($locations, $items) {
