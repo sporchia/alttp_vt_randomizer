@@ -21,7 +21,7 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape
         parent::initalize();
         
         $this->locations["Sanctuary"]->setRequirements(function ($locations, $items) {
-            return ($items->has('KeyH2') && $items->has('Lamp'))
+            return ($items->has('KeyH2') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))
                 || (($items->has('MoonPearl')
                     || ($this->world->config('canSuperBunny', false)
                         && $items->has('MagicMirror'))

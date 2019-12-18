@@ -49,7 +49,7 @@ class DesertPalace extends Region\Standard\DesertPalace
         $this->locations["Desert Palace - Big Key Chest"]->setRequirements(function ($locations, $items) {
             return $items->has('KeyP2')
                 && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || ($this->world->config('canBunnyRevive', false)
                         && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                         && $items->hasABottle()));
@@ -65,7 +65,7 @@ class DesertPalace extends Region\Standard\DesertPalace
                             && $items->hasABottle())) || ($this->world->config('canOneFrameClipOW', false)
                         && $this->world->config('canDungeonRevive', false)))
                 && ($items->canLiftRocks() || ($this->world->config('canBootsClip')
-                    && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW'))
+                    && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
                 && $items->canLightTorches()
                 && $items->has('BigKeyP2')
                 && $items->has('KeyP2')
