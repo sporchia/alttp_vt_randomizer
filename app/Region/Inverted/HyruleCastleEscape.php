@@ -25,7 +25,7 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())))
                 || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2')
-                && ($this->world->config('canDungeonRevive') || $items->hasSword()
+                && ($this->world->config('canDungeonRevive', false) || $items->hasSword()
                     || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                     || $items->has('MoonPearl')));
@@ -36,7 +36,7 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())))
                 || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2')
-                && ($this->world->config('canDungeonRevive') || $items->hasSword()
+                && ($this->world->config('canDungeonRevive', false) || $items->hasSword()
                     || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                     || $items->has('MoonPearl')));
@@ -47,21 +47,21 @@ class HyruleCastleEscape extends Region\Open\HyruleCastleEscape
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())))
                 || ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('KeyH2')
-                && ($this->world->config('canDungeonRevive') || $items->hasSword()
+                && ($this->world->config('canDungeonRevive', false) || $items->hasSword()
                     || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                     || $items->has('MoonPearl')));
         });
 
         $this->locations["Hyrule Castle - Boomerang Chest"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyH2') && ($this->world->config('canDungeonRevive') || $items->hasSword()
+            return $items->has('KeyH2') && ($this->world->config('canDungeonRevive', false) || $items->hasSword()
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                 || $items->has('MoonPearl'));
         });
 
         $this->locations["Hyrule Castle - Zelda's Cell"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyH2') && ($this->world->config('canDungeonRevive') || $items->hasSword()
+            return $items->has('KeyH2') && ($this->world->config('canDungeonRevive', false) || $items->hasSword()
                 || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                 || $items->has('MoonPearl'));
