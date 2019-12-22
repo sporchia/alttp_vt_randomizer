@@ -30,10 +30,11 @@ class SwampPalace extends Region\Standard\SwampPalace
                 && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
         };
         
-        $hera = function ($locations, $items) {
+        $hera = function ($locations, $items) use ($mire) {
             return $this->world->config('canOneFrameClipUW', false)
                 && $this->world->getRegion('Tower of Hera')->canEnter($locations, $items)
-                && $items->has('BigKeyP3');
+                && ($items->has('BigKeyP3')
+                    || ($mire($locations, $items) && $items->has('BigKeyD6')));
         };
         
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) use ($mire) {
@@ -98,8 +99,7 @@ class SwampPalace extends Region\Standard\SwampPalace
 
         $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return $items->has('Hookshot')
-                && ($items->has('KeyD2')
-                    || ($mire($locations, $items) && !$this->world->config('region.wildKeys', false)))
+                && ($items->has('KeyD2') || $mire($locations, $items))
                 && ($items->has('Hammer') 
                     || $mire($locations, $items) || $hera($locations, $items))
                 && $this->boss->canBeat($items, $locations)
@@ -123,7 +123,7 @@ class SwampPalace extends Region\Standard\SwampPalace
                 && ($item == Item::get('CompassD2', $this->world) || $item == Item::get('MapD2', $this->world));
         });
 
-        $this->can_enter = function ($locations, $items) use ($hera, $mire) {
+        $this->can_enter = function ($locations, $items) use ($mire) {
             return $items->has('Flippers')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless'
@@ -131,14 +131,19 @@ class SwampPalace extends Region\Standard\SwampPalace
                     && $items->hasHealth(7)
                     && $items->hasBottle())) 
                 && (($items->has('MoonPearl') 
-                    || ($this->world->config('canYBA', false)
+                    || ($this->world->config('canOWYBA', false)
                         && $items->hasABottle())
                     || ($this->world->config('canBunnyRevive', false)
                         && canBunnyRevive()))
                     || $this->world->config('canSuperBunny', false))
                 && ($items->has('MagicMirror')
-                    || ($mire($locations, $items) && ($items->has('BigKeyD6')
-                        || ($hera($locations, $items) && $items->has('BigKeyP3')))
+                    || ($this->world->config('canOneFrameClipUW', false)
+                        && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+                        && $items->has('MoonPearl')
+                        && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
+                            || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                            || $this->world->config('canOneFrameClipOW', false))
+                        && ($items->has('BigKeyP3') || $items->has('BigKeyD6')) && $mire($locations, $items)
                         && $locations["Old Man"]->canAccess($items)
                         && (($items->has('MoonPearl')
                             && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
