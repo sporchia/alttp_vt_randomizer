@@ -37,6 +37,9 @@ class WorldCollection
 
         $found_locations = 0;
         $assumed_items = new ItemCollection;
+        foreach ($this->worlds as $world) {
+            $assumed_items = $assumed_items->merge($world->getPreCollectedItems());
+        }
         do {
             $current_locations = 0;
             foreach ($this->worlds as $collect_world) {
