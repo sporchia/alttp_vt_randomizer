@@ -267,7 +267,7 @@ class ItemCollection extends Collection
         // @TODO: this check is expensive, as this function is called A LOT, can we reduce it somehow?
         // assuming if there are ShopKey's available then we are in generic key mode, this is a really bad assumption
         // but we need to make it until we can rewrite this class
-        if (($this->item_counts['ShopKey'] ?? false) && strpos($key, 'Key') === 0) {
+        if (($this->item_counts["ShopKey:$this->checks_for_world"] ?? false) && strpos($key, 'Key') === 0) {
             return true;
         }
 
