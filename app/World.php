@@ -467,10 +467,9 @@ abstract class World
      */
     public function collectOtherItems(ItemCollection $collected): ItemCollection
     {
-        $my_items = $collected ?? new ItemCollection();
-        $found = new ItemCollection($this->pre_collected_items);
-        $my_items = $my_items->merge($this->pre_collected_items);
+        $my_items = $collected ?? new ItemCollection($this->pre_collected_items);
         $my_items->setChecksForWorld($this->id);
+        $found = new ItemCollection();
         $available_locations = $this->getCollectableLocations();
 
         do {
