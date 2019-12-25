@@ -21,5 +21,24 @@ class Retro extends Open
             'region.takeAnys' => true,
             'region.wildKeys' => true,
         ]));
+        
+        if ($this->config('difficulty') !== 'custom') {
+            switch ($this->config('item.pool')) {
+            case 'hard':
+            case 'expert':
+            case 'crowd_control':
+                $this->config['item.count.KeyD1'] = 0;
+                $this->config['item.count.KeyA2'] = 0;
+                $this->config['item.count.KeyD7'] = 0;
+                $this->config['item.count.KeyD2'] = 0;
+
+                $this->config['item.count.TwentyRupees2'] = 15 + $this->config('item.count.TwentyRupees2', 0);
+                break;
+            case 'normal':
+                $this->config['item.count.KeyD1'] = 0;
+                $this->config['item.count.KeyA2'] = 0;
+                $this->config['item.count.TwentyRupees2'] = 10 + $this->config('item.count.TwentyRupees2', 0);
+            }
+        }
     }
 }
