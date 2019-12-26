@@ -256,8 +256,13 @@ class Randomizer implements RandomizerContract
                 }
             }
 
-            // put 1 more sword back in
+            // put master sword back in
             if (count($nice_items_swords)) {
+                array_push($advancement_items, array_pop($nice_items_swords));
+            }
+            
+            // put tempered sword back in if logically required
+            if ($world->config('region.requireBetterSword', false) && count($nice_items_swords)) {
                 array_push($advancement_items, array_pop($nice_items_swords));
             }
 
