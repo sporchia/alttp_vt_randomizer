@@ -64,7 +64,7 @@ class DesertPalace extends Region\Standard\DesertPalace
                             && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                             && $items->hasABottle())) || ($this->world->config('canOneFrameClipOW', false)
                         && $this->world->config('canDungeonRevive', false)))
-                && ($items->canLiftRocks() || ($this->world->config('canBootsClip')
+                && ($items->canLiftRocks() || ($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
                 && $items->canLightTorches()
                 && $items->has('BigKeyP2')

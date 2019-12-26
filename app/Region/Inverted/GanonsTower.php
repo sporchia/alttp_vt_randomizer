@@ -23,7 +23,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         $this->locations["Ganon's Tower - DMs Room - Top Left"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer')
                 && $items->has('Hookshot')
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -36,7 +36,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         $this->locations["Ganon's Tower - DMs Room - Top Right"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer')
                 && $items->has('Hookshot')
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -49,7 +49,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         $this->locations["Ganon's Tower - DMs Room - Bottom Left"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer')
                 && $items->has('Hookshot')
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -62,7 +62,7 @@ class GanonsTower extends Region\Standard\GanonsTower
         $this->locations["Ganon's Tower - DMs Room - Bottom Right"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer')
                 && $items->has('Hookshot')
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -83,7 +83,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ])
                         && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -104,7 +104,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ])
                         && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -125,7 +125,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ])
                         && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -146,7 +146,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ])
                         && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -169,7 +169,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                         ||
                         $locations["Ganon's Tower - Firesnake Room"]->hasItem(Item::get('KeyA2', $this->world))) &&
                         $items->has('KeyA2', 2)) || $items->has('KeyA2', 3)) && ($items->has('MoonPearl')
-                        || $this->world->config('canDungeonRevive')
+                        || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -191,7 +191,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ]
                 )
                     ? $items->has('KeyA2', 3) : $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -215,7 +215,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ($items->has('Hammer')
                         && $items->has('Hookshot')) || ($items->has('FireRod')
                         && $items->has('CaneOfSomaria'))) && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -231,7 +231,7 @@ class GanonsTower extends Region\Standard\GanonsTower
             return (($items->has('Hammer')
                 && $items->has('Hookshot')) || ($items->has('FireRod')
                 && $items->has('CaneOfSomaria'))) && $items->has('KeyA2', 3)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -243,7 +243,7 @@ class GanonsTower extends Region\Standard\GanonsTower
 
         $this->locations["Ganon's Tower - Tile Room"]->setRequirements(function ($locations, $items) {
             return $items->has('CaneOfSomaria')
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -264,7 +264,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ])
                         && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                        || $this->world->config('canDungeonRevive')
+                        || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -285,7 +285,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                     ])
                         && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                        || $this->world->config('canDungeonRevive')
+                        || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -304,7 +304,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                         "Ganon's Tower - Compass Room - Top Left",
                         "Ganon's Tower - Compass Room - Bottom Right",
                     ]) && $items->has('KeyA2', 3)) || $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                        || $this->world->config('canDungeonRevive')
+                        || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -324,7 +324,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                         "Ganon's Tower - Compass Room - Bottom Left",
                     ]) && $items->has('KeyA2', 3)) ||
                     $items->has('KeyA2', 4)) && ($items->has('MoonPearl')
-                        || $this->world->config('canDungeonRevive')
+                        || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -340,7 +340,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('CaneOfSomaria'))) && $items->has('KeyA2', 3)
                 && $this->boss_bottom->canBeat($items, $locations)
                 && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -355,7 +355,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('Hookshot')) || ($items->has('FireRod')
                 && $items->has('CaneOfSomaria'))) && $items->has('KeyA2', 3)
                 && $this->boss_bottom->canBeat($items, $locations)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -370,7 +370,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('Hookshot')) || ($items->has('FireRod')
                 && $items->has('CaneOfSomaria'))) && $items->has('KeyA2', 3)
                 && $this->boss_bottom->canBeat($items, $locations)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -386,7 +386,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -404,7 +404,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -422,7 +422,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('BigKeyA2')
                 && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)
@@ -442,7 +442,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                 && $items->has('KeyA2', 4)
                 && $this->boss_middle->canBeat($items, $locations)
                 && $this->boss_top->canBeat($items, $locations)
-                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive')
+                && ($items->has('MoonPearl') || $this->world->config('canDungeonRevive', false)
                     || (
                         ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false)

@@ -177,7 +177,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) || (     // Invis Ganon fight sounds fun for logic :)
-                    $this->world->config('canSuperBunny')
+                    $this->world->config('canSuperBunny', false)
                     && $this->world->config('canDungeonRevive', false) // Just so it's not in logic for everyone. Don't care, just think it's better like this.
                     && $this->world->getRegion('Ganons Tower')->canEnter($locations, $items) //Bunny Beam Storage from GT
                     && $items->has('CaneOfSomaria')
