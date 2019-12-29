@@ -2,6 +2,7 @@
 
 namespace ALttP\Http\Controllers;
 
+use ALttP\Enemizer;
 use ALttP\Item;
 use ALttP\Jobs\SendPatchToDisk;
 use ALttP\Randomizer;
@@ -243,6 +244,12 @@ class CustomizerController extends Controller
             'difficulty' => 'custom',
         ]));
 
+        if ($world->isEnemized()) {
+            $patch = $rom->getWriteLog();
+            $en = new Enemizer($world, $patch);
+            $en->randomize();
+            $en->writeToRom($rom);
+        }
 
         if ($request->input('tournament', false)) {
             $rom->setTournamentType('standard');
