@@ -2,6 +2,29 @@
 
 @section('content')
 
+<h2>v31.0.4</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>The logic for Ganon was updated to include a fire source when playing Swordless weapons.</li>
+        <li>Minor logic fixes</li>
+        <ul>
+            <li>Open OWG/MG: Spinspeed entry into Ganon's Tower no longer requires a sword and instead can require Hookshot</li>
+            <li>Inverted: The Flippers will no longer ben placed on Lake Hylia island with No Glitches logic.</li>
+            <li>Inverted logic has new unit tests, which should ensure future Inverted logic bugs do not appear.</li>
+            <li>Fixed logic checks that involve ensuring the player can fire the bow.</li>
+            <li>Other miscellaneous glitched logic bug fixes</li>
+        </ul>
+        <li>Added additional text selections for Uncle, Blind, Ganon, and joke hints.</li>
+        <li>Vanilla swords now properly place all four Progressive Swords in the world, unless the goal is Master Sword Pedestal.</li>
+        <li>There is now a 5% chance that the daily challenge will be a mystery.</li>
+        <li>A new message will appear on the permalink for mystery games to indicate that it is a mystery game.</li>
+        <li>The hint Ganon provides for the Progressive Bow not found by the player will indicate the silvers were unobtainable.  This hint applies to Hard, Expert, and Crowd Control item pool settings.</li>
+        <li>Renamed the "Generate ROM" and "Generate ROM (with spoilers)" buttons to "Generate Race ROM" and "Generate Normal ROM" to more clearly indicate each button's purpose.</li>
+        <li>Added additional checks to ensure that the logic provides some offensive capability in enemy kill rooms if the enemy health setting is something other than "Default."</li>   
+    </ul>
+</div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.3</h2>
 <div class="card card-body bg-light mb-3">
@@ -20,8 +43,6 @@
         <li>Miscellaneous site content updates</li>
     </ul>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.2</h2>
 <div class="card card-body bg-light mb-3">
