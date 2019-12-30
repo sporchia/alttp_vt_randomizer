@@ -10,7 +10,7 @@
         <ul>
             <li>Open OWG/MG: Spinspeed entry into Ganon's Tower no longer requires a sword and instead can require Hookshot</li>
             <li>Inverted: The Flippers will no longer ben placed on Lake Hylia island with No Glitches logic.</li>
-            <li>Inverted logic has new unit tests, which should ensure future Inverted logic bugs do not appear.</li>
+            <li>Inverted logic has new unit tests, which should ensure future logic bugs do not appear.</li>
             <li>Fixed logic checks that involve ensuring the player can fire the bow.</li>
             <li>Other miscellaneous glitched logic bug fixes</li>
         </ul>
@@ -18,9 +18,11 @@
         <li>Vanilla swords now properly place all four Progressive Swords in the world, unless the goal is Master Sword Pedestal.</li>
         <li>There is now a 5% chance that the daily challenge will be a mystery.</li>
         <li>A new message will appear on the permalink for mystery games to indicate that it is a mystery game.</li>
-        <li>The hint Ganon provides for the Progressive Bow not found by the player will indicate the silvers were unobtainable.  This hint applies to Hard, Expert, and Crowd Control item pool settings.</li>
+        <li>The hint Ganon provides for the Progressive Bow not found by the player will indicate if Silver Arrows were unobtainable.  This hint applies to Hard, Expert, and Crowd Control item pool settings.</li>
         <li>Renamed the "Generate ROM" and "Generate ROM (with spoilers)" buttons to "Generate Race ROM" and "Generate Normal ROM" to more clearly indicate each button's purpose.</li>
-        <li>Added additional checks to ensure that the logic provides some offensive capability in enemy kill rooms if the enemy health setting is something other than "Default."</li>   
+        <li>Added additional checks to ensure that the logic provides some offensive capability in enemy kill rooms if the enemy health setting is something other than "Default."</li>
+        <li>Customizer: Enemizer options (boss shuffle, enemy shuffle, enemy damage, and enemy health) are now available.  Customizing boss locations is not yet supported.</li>
+        <li>Customizer: Prize pack customization may now be disabled.  When disabled, normal prize pack generation occurs.</li>
     </ul>
 </div>
 
