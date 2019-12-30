@@ -1336,7 +1336,7 @@ export default {
             "loader": {
                 "title": "Getting Started",
                 "file_select": "Select ROM File",
-                "content": "<ol><li>Select your rom file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li><li>Select the <a href=\"/en/options\">Game Options</a> for how you would like your game randomized</li><li>Click Generate Race ROM</li><li>Then Save your rom and get to playing</li></ol>"
+                "content": "<ol><li>Select your rom file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li><li>Select the <a href=\"/en/options\">Game Options</a> for how you would like your game randomized</li><li>Click Generate Normal ROM</li><li>Then Save your rom and get to playing</li></ol>"
             },
             "info": {
                 "spoilerwarning": "WARNING: The generator of this game viewed the spoiler log.",
