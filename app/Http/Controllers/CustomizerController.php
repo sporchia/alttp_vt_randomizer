@@ -176,7 +176,6 @@ class CustomizerController extends Controller
             'enemizer.enemyShuffle' => $request->input('enemizer.enemy_shuffle', 'none'),
             'enemizer.enemyDamage' => $request->input('enemizer.enemy_damage', 'default'),
             'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
-            'customPrizePacks' => true,
         ], $custom_data));
 
         $locations = $world->getLocations();
@@ -213,13 +212,15 @@ class CustomizerController extends Controller
             }
         }
 
-        foreach ($request->input('drops', []) as $pack => $items) {
-            foreach ($items as $place => $item) {
-                if ($item == 'auto_fill') {
-                    continue;
+        if ($custom_data['customPrizePacks'] ?? false) {
+            foreach ($request->input('drops', []) as $pack => $items) {
+                foreach ($items as $place => $item) {
+                    if ($item == 'auto_fill') {
+                        continue;
+                    }
+    
+                    $world->setDrop($pack, $place, Sprite::get($item));
                 }
-
-                $world->setDrop($pack, $place, Sprite::get($item));
             }
         }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="flex-input">
-    <div class="input-group" role="group">
+    <div class="input-group" :class="{disabled:disabled}" role="group">
       <div v-if="$slots.default" class="input-group-prepend">
         <span class="input-group-text">
           <slot></slot>
@@ -17,6 +17,7 @@
         :allow-empty="false"
         :custom-label="customLabel"
         :placeholder="placeholder"
+        :disabled="disabled"
         @input="onSelect"
       ></multiselect>
       <div class="input-group-append">
@@ -48,7 +49,8 @@ export default {
     defaultItem: { default: null },
     clearable: { default: false },
     sid: { default: null },
-    value: { default: null }
+    value: { default: null },
+    disabled: { default: false }
   },
   mounted() {
     EventBus.$on("gameLoaded", rom => {
@@ -90,5 +92,8 @@ export default {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.disabled {
+  color: #bcc3c9;
 }
 </style>
