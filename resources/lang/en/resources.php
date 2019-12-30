@@ -45,7 +45,7 @@ return [
                     . '<li>You are never required to navigate a dark room; the lamp will be available to light your way, so go out and find it! *</li>'
                     . '<li>Keys might not be accessible if they are not required to finish the game. For instance, the Skull Woods big key might be in the big chest.</li>'
                 . '</ul>'
-                . '* Advanced Item Placement may require limited dark room navagation using Fire Rod.',
+                . '* Advanced Item Placement may require limited dark room navigation using Fire Rod.',
             ],
         ],
         'changes' => [
