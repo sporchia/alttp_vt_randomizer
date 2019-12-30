@@ -134,16 +134,17 @@ class IcePalace extends Region
                     && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false))
                     && $items->canLiftDarkRocks())
                     || ($this->world->getRegion('South Dark World')->canEnter($locations, $items)
-                        && ($items->has('MoonPearl')
+                        && ((($items->has('MoonPearl')
                             || ($items->hasABottle() && $this->world->config('canOWYBA', false))
                             || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
                         && (($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')
                             && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
-                                || $this->world->config('canOneFrameClipOW', false)))
-                            || ($items->has('Flippers') && $this->world->config('canFakeFlipper', false)
+                                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())))
+                            || ($items->has('Flippers')
                                 && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                                    || $this->world->config('canOneFrameClipOW', false))))));
+                                    || $this->world->config('canOneFrameClipOW', false)))))
+                        || ($this->world->config('canOneFrameClipOW', false)
+                            && $this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')))));
         };
 
         $this->prize_location->setRequirements($this->can_complete);

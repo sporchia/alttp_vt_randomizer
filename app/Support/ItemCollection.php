@@ -460,15 +460,15 @@ class ItemCollection extends Collection
         switch ($min_level) {
             case 2:
                 return $this->has('BowAndSilverArrows')
-                    || $this->has('ProgressiveBow', 2)
+                    || ($this->has('ProgressiveBow', 2) 
+                        && (!$world->config('rom.rupeeBow', false) || $this->has('ShopArrow')))
                     || ($this->has('SilverArrowUpgrade')
-                        && ($this->has('Bow') || $this->has('BowAndArrows')));
+                        && ($this->has('Bow') || $this->has('BowAndArrows') || $this->has('ProgressiveBow')));
             case 1:
             default:
                 return (($this->has('Bow') || $this->has('ProgressiveBow')) 
                         && (!$world->config('rom.rupeeBow', false)
                             || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
-                    || $this->has('ProgressiveBow', 2)
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
         }
