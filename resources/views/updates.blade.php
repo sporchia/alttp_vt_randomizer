@@ -16,7 +16,7 @@
             <li>Ice Palace: Allow access to the right-side chests in Retro World State, regardless of the Big Key location.</li>
             <li>Other miscellaneous glitched logic bug fixes</li>
         </ul>
-        <li>The correct number of small keys will be removed from the item pool when choosing Retro World State.  This is based on the item pool setting (-10 keys for normal, -15 or hard, expert, or crowd_control).</li>
+        <li>The correct number of small keys will be removed from the item pool when choosing Retro World State.  This is based on the item pool setting (-10 keys for normal, -15 for hard, expert, or crowd_control).</li>
         <li>Added additional text selections for Uncle, Blind, Ganon, and joke hints.</li>
         <li>Vanilla swords now properly place all four Progressive Swords in the world, unless the goal is Master Sword Pedestal.</li>
         <li>There is now a 5% chance that the daily challenge will be a mystery.</li>
