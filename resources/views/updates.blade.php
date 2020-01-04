@@ -12,6 +12,8 @@
             <li>Inverted: The Flippers will no longer ben placed on Lake Hylia island with No Glitches logic.</li>
             <li>Inverted logic has new unit tests, which should ensure future logic bugs do not appear.</li>
             <li>Fixed logic checks that involve ensuring the player can fire the bow.</li>
+            <li>Ice Palace: Allow access to the right side chests with one Small Key if the Big Key is accessible in a right-side chest (this permits access to these locations without the Hookshot).</li>
+            <li>Ice Palace: Allow access to the right-side chests in Retro World State, regardless of the Big Key location.</li>
             <li>Other miscellaneous glitched logic bug fixes</li>
         </ul>
         <li>The correct number of small keys will be removed from the item pool when choosing Retro World State.  This is based on the item pool setting (-10 keys for normal, -15 or hard, expert, or crowd_control).</li>
