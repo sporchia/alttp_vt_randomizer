@@ -183,6 +183,8 @@ return [
     'ChocoboEgg' => 'Chocobo Egg',
 
     'NoSlipBoots' => 'Crampons de Glace',
+    'WinterCoat' => 'Manteau d’hiver',
+    'Duck' => 'Canard',
     'Reindeer1' => 'Fonceur',
     'Reindeer2' => 'Danseur',
     'Reindeer3' => 'Sauteur',
@@ -191,8 +193,17 @@ return [
     'Reindeer6' => 'Cupidonne',
     'Reindeer7' => 'Tonnerre',
     'Reindeer8' => 'Éclair',
+    'Gift1' => 'Cadeau 1',
+    'Gift2' => 'Cadeau 2',
+    'Gift3' => 'Cadeau 3',
+    'Gift4' => 'Cadeau 4',
+    'Gift5' => 'Cadeau 5',
+    'Gift6' => 'Cadeau 6',
+    'Gift7' => 'Cadeau 7',
     'Coal1' => 'Charbon',
     'Coal2' => 'Charbon',
+
+    'GoldenTicket' => 'Golden Ticket',
 
     'Armos Knights' => 'Armos Knights',
     'Lanmolas' => 'Lanmolas',
