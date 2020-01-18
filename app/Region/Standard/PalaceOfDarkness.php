@@ -181,7 +181,7 @@ class PalaceOfDarkness extends Region
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
-                    || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasBottle()))
+                    || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasABottle()))
                 && ((($items->has('MoonPearl')
                     || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                         || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())))

@@ -25,7 +25,7 @@ class ThievesTown extends Region\Standard\ThievesTown
                     ($this->world->config('mode.weapons') === 'swordless'
                         || $items->hasSword())
                     && $items->hasHealth(7)
-                    && $items->hasBottle()))
+                    && $items->hasABottle()))
                 && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
         };
 

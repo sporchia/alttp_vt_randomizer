@@ -396,7 +396,7 @@ class GanonsTower extends Region
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword(2)) && $items->hasHealth(12) && ($items->hasBottle(2) || $items->hasArmor())))
-                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasBottle()))
+                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
                     && (((($items->has('Crystal1')
                         + $items->has('Crystal2')
                         + $items->has('Crystal3')
@@ -411,7 +411,7 @@ class GanonsTower extends Region
                             && $this->world->getRegion('West Dark World Death Mountain')->canEnter($locations, $items))))
                     || ($this->world->config('canOneFrameClipOW', false)
                         && ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl')
-                            || ($this->world->config('canOWYBA', false) && $items->hasBottle()))));
+                            || ($this->world->config('canOWYBA', false) && $items->hasABottle()))));
         };
 
         return $this;

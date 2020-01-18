@@ -49,12 +49,14 @@ class MireTest extends TestCase
     {
         return [
             ["Mire Shed - Left", false, []],
-            ["Mire Shed - Left", true, ['MoonPearl', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Mire Shed - Left", true, ['MoonPearl', 'Flute', 'TitansMitt']],
+            ["Mire Shed - Left", true, ['MoonPearl', 'PegasusBoots']],
+            ["Mire Shed - Left", true, ['MagicMirror', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
+            ["Mire Shed - Left", true, ['MagicMirror', 'Flute', 'TitansMitt']],
 
             ["Mire Shed - Right", false, []],
-            ["Mire Shed - Right", true, ['MoonPearl', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Mire Shed - Right", true, ['MoonPearl', 'Flute', 'TitansMitt']],
+            ["Mire Shed - Right", true, ['MoonPearl', 'PegasusBoots']],
+            ["Mire Shed - Right", true, ['MagicMirror', 'Flute', 'ProgressiveGlove', 'ProgressiveGlove']],
+            ["Mire Shed - Right", true, ['MagicMirror', 'Flute', 'TitansMitt']],
         ];
     }
 }

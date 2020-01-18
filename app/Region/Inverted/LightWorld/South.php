@@ -202,8 +202,7 @@ class South extends Region\Standard\LightWorld\South
 
         $this->locations["Desert Ledge"]->setRequirements(function ($locations, $items) {
             return (($items->has('MoonPearl')
-                || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canSuperBunny', false)
+                || $this->world->config('canDungeonRevive', false) || ($this->world->config('canSuperBunny', false)
                     && $items->has('MagicMirror')) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) && $this->world->getRegion('Desert Palace')->canEnter($locations, $items))
                 ||
