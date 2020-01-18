@@ -16,7 +16,7 @@
             <li>Ice Palace: Allow access to the right-side chests in Retro World State, regardless of the Big Key location.</li>
             <li>Other miscellaneous glitched logic bug fixes</li>
         </ul>
-        <li>The correct number of small keys will be removed from the item pool when choosing Retro World State.  This is based on the item pool setting (-10 keys for normal, -15 for hard, expert, or crowd_control).</li>
+        <li>The correct number of small keys will be removed from the item pool when choosing Retro World State.  This is based on the item pool setting (-10 keys for Normal, -15 for Hard and Expert).</li>
         <li>Added additional text selections for Uncle, Blind, Ganon, and joke hints.</li>
         <li>Vanilla swords now properly place all four Progressive Swords in the world, unless the goal is Master Sword Pedestal.</li>
         <li>There is now a 5% chance that the daily challenge will be a mystery.</li>
@@ -25,6 +25,7 @@
         <li>Renamed the "Generate ROM" and "Generate ROM (with spoilers)" buttons to "Generate Race ROM" and "Generate Normal ROM" to more clearly indicate each button's purpose.</li>
         <li>Added additional checks to ensure that the logic provides some offensive capability in enemy kill rooms if the enemy health setting is something other than "Default."</li>
         <li>Customizer: Enemizer options (boss shuffle, enemy shuffle, enemy damage, and enemy health) are now available.  Customizing boss locations is not yet supported.</li>
+        <li>Crowd Control: Properly remove the Bug Catching Net from the Crowd Control item pool.  The armor upgrades are also available again in Crowd Control.</li>
     </ul>
 </div>
 
