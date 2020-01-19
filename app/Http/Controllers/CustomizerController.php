@@ -53,7 +53,8 @@ class CustomizerController extends Controller
                             'build',
                             'tournament',
                             'spoilers',
-                            'size'
+                            'size',
+                            'special'
                         ]);
                         break;
                     case "off":

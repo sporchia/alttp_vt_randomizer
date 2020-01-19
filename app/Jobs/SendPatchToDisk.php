@@ -54,7 +54,8 @@ class SendPatchToDisk implements ShouldQueue
                         'build',
                         'tournament',
                         'spoilers',
-                        'size'
+                        'size',
+                        'special'
                     ]);
                     break;
                 case "generate":
