@@ -26,6 +26,7 @@
         <li>Added additional checks to ensure that the logic provides some offensive capability in enemy kill rooms if the enemy health setting is something other than "Default."</li>
         <li>Customizer: Enemizer options (boss shuffle, enemy shuffle, enemy damage, and enemy health) are now available.  Customizing boss locations is not yet supported.</li>
         <li>Crowd Control: Properly remove the Bug Catching Net from the Crowd Control item pool.  Blue mail armor upgrade is also available again in Crowd Control.</li>
+        <li>Added API endpoint for retrieving the hash and day of the latest daily (/api/daily).</li>
     </ul>
 </div>
 
