@@ -153,6 +153,7 @@ abstract class World
                 break;
             case 'crowd_control':
                 $this->config['item.overflow.count.Sword'] = 4;
+                $this->config['item.overflow.count.Armor'] = 1;
                 $this->config['item.overflow.count.Shield'] = 0;
                 $this->config['item.overflow.count.Bow'] = 1;
                 $this->config['item.overflow.count.BossHeartContainer'] = 1;
