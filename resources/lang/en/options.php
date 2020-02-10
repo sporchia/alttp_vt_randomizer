@@ -179,7 +179,7 @@ return [
                 [
                     'header' => __('randomizer.world_state.options.standard'),
                     'content' => [
-                        'This setting is the closest to the original game. It retains the initial prologue of rescuing Zelda in Hyrule Castle and delivering her to the Sanctuary. This must be completed before you are free to explore Hyrule. Your uncle is guaranteed to give you an item which lets you clear the prologue (although not necessarily a sword). You are given a light cone for navigating the dark rooms of the Sewers even without the Lamp (although any future visits to dark rooms, including the Sewers, will be in total darkness until you find the Lamp).',
+                        'This setting is the closest to the original game. It retains the initial prologue of rescuing Zelda in Hyrule Castle and delivering her to the Sanctuary. This must be completed before you are free to explore Hyrule. Your uncle is guaranteed to give you an item which lets you clear the prologue (although not necessarily a sword). You are given a light cone for navigating the dark rooms of the Sewers even without the Lamp (although any future visits to other dark rooms, except for the Sewers, will be in total darkness until you find the Lamp).',
                     ],
                 ],
                 [

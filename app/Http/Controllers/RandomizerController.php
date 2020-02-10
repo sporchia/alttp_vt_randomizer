@@ -48,7 +48,8 @@ class RandomizerController extends Controller
                             'build',
                             'tournament',
                             'spoilers',
-                            'size'
+                            'size',
+                            'special'
                         ]);
                         break;
                     case "off":

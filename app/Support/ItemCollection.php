@@ -542,7 +542,8 @@ class ItemCollection extends Collection
                 && $world->config('enemizer.enemyHealth', 'default') == 'default')
             || $this->canShootArrows($world)
             || $this->has('Hammer')
-            || $this->has('FireRod');
+            || $this->has('FireRod')
+            || $world->config('ignoreCanKillEscapeThings', false);
     }
 
     /**

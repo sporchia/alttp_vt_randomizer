@@ -26,7 +26,6 @@ class Retro extends Open
             switch ($this->config('item.pool')) {
             case 'hard':
             case 'expert':
-            case 'crowd_control':
                 $this->config['item.count.KeyD1'] = 0;
                 $this->config['item.count.KeyA2'] = 0;
                 $this->config['item.count.KeyD7'] = 0;
@@ -34,6 +33,7 @@ class Retro extends Open
 
                 $this->config['item.count.TwentyRupees2'] = 15 + $this->config('item.count.TwentyRupees2', 0);
                 break;
+            case 'crowd_control':
             case 'normal':
                 $this->config['item.count.KeyD1'] = 0;
                 $this->config['item.count.KeyA2'] = 0;
