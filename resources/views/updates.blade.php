@@ -8,8 +8,8 @@
         <li>The logic for Ganon was updated to include a fire source when playing Swordless weapons.</li>
         <li>Minor logic fixes</li>
         <ul>
-            <li>Open OWG/MG: Spinspeed entry into Ganon's Tower no longer requires a sword and instead can require Hookshot</li>
-            <li>Inverted: The Flippers will no longer ben placed on Lake Hylia island with No Glitches logic.</li>
+            <li>Open OWG/MG: Spinspeed entry into Ganon's Tower no longer requires a sword</li>
+            <li>Inverted: The Flippers will no longer be placed on Lake Hylia Island with No Glitches logic.</li>
             <li>Inverted logic has new unit tests, which should ensure future logic bugs do not appear.</li>
             <li>Fixed logic checks that involve ensuring the player can fire the bow.</li>
             <li>Ice Palace: Allow access to the right side chests with one Small Key if the Big Key is accessible in a right-side chest (this permits access to these locations without the Hookshot).</li>
