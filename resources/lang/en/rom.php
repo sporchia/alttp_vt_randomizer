@@ -6,12 +6,13 @@ return [
         'content' => '<ol>'
             . '<li>Select your rom file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li>'
             . '<li>Select the <a href="/en/options">' . __('navigation.options') . '</a> for how you would like your game randomized</li>'
-            . '<li>Click ' . __('randomizer.generate.race') . '</li>'
+            . '<li>Click ' . __('randomizer.generate.spoiler_race') . '</li>'
             . '<li>Then Save your rom and get to playing</li>'
             . '</ol>',
     ],
     'info' => [
         'spoilerwarning' => 'WARNING: The generator of this game viewed the spoiler log.',
+        'mystery' => 'This is a mystery game.  The settings must be discovered while you play!',
         'logic' => __('randomizer.glitches_required.title'),
         'accessibility' => __('randomizer.accessibility.title'),
         'build' => 'ROM build',

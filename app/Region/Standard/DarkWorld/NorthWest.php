@@ -121,7 +121,7 @@ class NorthWest extends Region
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                     || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
                     && $items->canLiftDarkRocks())
-                    || (($this->world->config('canOWYBA', false) && $items->hasBottle())
+                    || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                         && ($this->world->config('canOneFrameClipOW', false)
                             || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')
                                 && ($items->has('MoonPearl') || $items->hasBottle(2))))));

@@ -144,7 +144,7 @@ class MiseryMire extends Region
                                     || $items->hasBottle(2))))))
                 && (($this->world->config('itemPlacement') !== 'basic' && $items->has('PegasusBoots'))
                     || $items->has('Hookshot'))
-                && $items->canKillMostThings(8)
+                && $items->canKillMostThings($this->world, 8)
                 && $this->world->getRegion('Mire')->canEnter($locations, $items);
         };
 

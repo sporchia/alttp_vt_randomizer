@@ -30,7 +30,7 @@ class IcePalace extends Region\Standard\IcePalace
                 || $this->world->config('canOneFrameClipUW', false)) && (($items->has('Flippers')
                 || ($this->world->config('canFakeFlipper', false)
                     && ($this->world->config('canBunnyRevive', false)
-                    || ($this->world->config('region.cantTakeDamage', false)
+                    || (!$this->world->config('region.cantTakeDamage', false)
                         && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)) ||
                     $items->canFly($this->world)
                     || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)

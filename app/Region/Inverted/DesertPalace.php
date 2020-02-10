@@ -47,12 +47,12 @@ class DesertPalace extends Region\Standard\DesertPalace
 
 
         $this->locations["Desert Palace - Big Key Chest"]->setRequirements(function ($locations, $items) {
-            return $items->has('KeyP2')
+            return $items->has('KeyP2') && $items->canKillMostThings($this->world)
                 && ($items->has('MoonPearl')
-                    || $this->world->config('canDungeonRevive')
+                    || $this->world->config('canDungeonRevive', false)
                     || ($this->world->config('canBunnyRevive', false)
                         && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                        && $items->hasABottle()));
+                        && $items->hasABottle()) || $items->hasSword());
         });
 
 
@@ -64,6 +64,8 @@ class DesertPalace extends Region\Standard\DesertPalace
                             && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                             && $items->hasABottle())) || ($this->world->config('canOneFrameClipOW', false)
                         && $this->world->config('canDungeonRevive', false)))
+                && ($items->canLiftRocks() || ($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots')) || $this->world->config('canOneFrameClipOW', false))
                 && $items->canLightTorches()
                 && $items->has('BigKeyP2')
                 && $items->has('KeyP2')
@@ -80,8 +82,7 @@ class DesertPalace extends Region\Standard\DesertPalace
         $this->can_enter = function ($locations, $items) use ($main, $side, $thieves) {
             return ($this->world->config('canDungeonRevive', false)
                 || ($this->world->config('canSuperBunny', false)
-                    && ($items->has('MagicMirror')
-                        && $items->has('BookOfMudora'))) || ($this->world->config('canBunnyRevive', false)
+                    && $items->has('MagicMirror')) || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
                 $items->has('MoonPearl')) && ($main($locations, $items)

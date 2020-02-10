@@ -46,11 +46,11 @@ class EasternPalace extends Region\Standard\EasternPalace
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
-                $items->has('MoonPearl')) && $items->has('Lamp');
+                $items->has('MoonPearl')) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
         });
 
         $this->locations["Eastern Palace - Boss"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && ($this->world->config('canDungeonRevive', false)
                     || ($this->world->config('canBunnyRevive', false)
                         && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)

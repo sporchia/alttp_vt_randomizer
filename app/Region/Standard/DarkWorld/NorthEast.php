@@ -105,7 +105,7 @@ class NorthEast extends Region
                 && (($items->has('Crystal5') && $items->has('Crystal6')
                     && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
                     && (($items->has('MoonPearl') && $items->has('Hammer'))
-                        || ($this->world->config('canOWYBA', false) && $items->hasBottle())
+                        || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                         || ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))))
                     || ($this->world->config('canMirrorClip', false) && $items->has('MagicMirror')
                         && (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
@@ -114,11 +114,11 @@ class NorthEast extends Region
         });
 
         $this->locations["Pyramid Fairy - Bow"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows()
+            return $items->canShootArrows($this->world)
                 && (($items->has('Crystal5') && $items->has('Crystal6')
                     && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
                     && (($items->has('MoonPearl') && $items->has('Hammer'))
-                        || ($this->world->config('canOWYBA', false) && $items->hasBottle())
+                        || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                         || ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))))
                     || ($this->world->config('canMirrorClip', false) && $items->has('MagicMirror')
                         && (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
@@ -132,7 +132,7 @@ class NorthEast extends Region
                 return ($items->has('Crystal5') && $items->has('Crystal6')
                     && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
                     && (($items->has('MoonPearl') && $items->has('Hammer'))
-                        || ($this->world->config('canOWYBA', false) && $items->hasBottle())
+                        || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                         || ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))))
                     || ($this->world->config('canMirrorClip', false) && $items->has('MagicMirror')
                         && (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
@@ -144,7 +144,7 @@ class NorthEast extends Region
                 return ($items->has('Crystal5') && $items->has('Crystal6')
                     && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
                     && (($items->has('MoonPearl') && $items->has('Hammer'))
-                        || ($this->world->config('canOWYBA', false) && $items->hasBottle())
+                        || ($this->world->config('canOWYBA', false) && $items->hasABottle())
                         || ($items->has('MagicMirror') && $items->has('DefeatAgahnim'))))
                     || ($this->world->config('canMirrorClip', false) && $items->has('MagicMirror')
                         && (($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
@@ -216,11 +216,13 @@ class NorthEast extends Region
 
             return $items->has('MoonPearl')
                 && ($items->has('DefeatAgahnim2') || $this->world->config('goal') === 'fast_ganon')
-                && (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows(2))
+                && (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows($this->world, 2))
                 && (
-                    ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer'))
-                    || (!$this->world->config('region.requireBetterSword', false) && ($items->hasSword(2) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(3)))))
-                    || ($items->hasSword(3) && ($items->has('Lamp') || ($items->has('FireRod') && $items->canExtendMagic(2)))));
+                    ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')
+                        && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) || (
+                            $items->has('FireRod') && $items->canExtendMagic(1))))
+                    || (!$this->world->config('region.requireBetterSword', false) && ($items->hasSword(2) && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) || ($items->has('FireRod') && $items->canExtendMagic(3)))))
+                    || ($items->hasSword(3) && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1)) || ($items->has('FireRod') && $items->canExtendMagic(2)))));
         });
 
         return $this;

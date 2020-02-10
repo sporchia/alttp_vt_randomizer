@@ -351,7 +351,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Mini Helmasaur Room - Left"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows() && $items->canLightTorches()
+            return $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations);
         })->setFillRules(function ($item, $locations, $items) {
@@ -359,7 +359,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Mini Helmasaur Room - Right"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows() && $items->canLightTorches()
+            return $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations);
         })->setFillRules(function ($item, $locations, $items) {
@@ -367,7 +367,7 @@ class GanonsTower extends Region
         });
 
         $this->locations["Ganon's Tower - Pre-Moldorm Chest"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows() && $items->canLightTorches()
+            return $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 3)
                 && $this->boss_middle->canBeat($items, $locations);
         })->setFillRules(function ($item, $locations, $items) {
@@ -376,7 +376,7 @@ class GanonsTower extends Region
 
         $this->locations["Ganon's Tower - Moldorm Chest"]->setRequirements(function ($locations, $items) {
             return $items->has('Hookshot')
-                && $items->canShootArrows() && $items->canLightTorches()
+                && $items->canShootArrows($this->world) && $items->canLightTorches()
                 && $items->has('BigKeyA2') && $items->has('KeyA2', 4)
                 && $this->boss_middle->canBeat($items, $locations)
                 && $this->boss_top->canBeat($items, $locations);
@@ -396,7 +396,7 @@ class GanonsTower extends Region
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword(2)) && $items->hasHealth(12) && ($items->hasBottle(2) || $items->hasArmor())))
-                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasBottle()))
+                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
                     && (((($items->has('Crystal1')
                         + $items->has('Crystal2')
                         + $items->has('Crystal3')
@@ -407,11 +407,11 @@ class GanonsTower extends Region
                         && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))
                         || ((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                             || ($this->world->config('canSuperSpeed', false) && $items->has('PegasusBoots')
-                                && $items->has('Hookshot') && $items->hasSword()))
-                            && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items))))
+                                && $items->has('Hookshot')))
+                            && $this->world->getRegion('West Dark World Death Mountain')->canEnter($locations, $items))))
                     || ($this->world->config('canOneFrameClipOW', false)
                         && ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl')
-                            || ($this->world->config('canOWYBA', false) && $items->hasBottle()))));
+                            || ($this->world->config('canOWYBA', false) && $items->hasABottle()))));
         };
 
         return $this;

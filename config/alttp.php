@@ -264,6 +264,12 @@ return [
                 'hard' => 'Hard',
                 'expert' => 'Expert',
             ],
+            'spoilers' => [
+                'on' => 'On',
+                'off' => 'Off',
+                'generate' => 'Generate',
+                'mystery' => 'Mystery',
+            ],
         ],
         'daily_weights' => [
             'glitches_required' => [
@@ -372,6 +378,12 @@ return [
                 'hard' => 5,
                 'expert' => 1,
             ],
+            'spoilers' => [
+                'on' => 0,
+                'off' => 95,
+                'generate' => 0,
+                'mystery' => 5
+            ]
         ],
     ],
 ];

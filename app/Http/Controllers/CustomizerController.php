@@ -2,6 +2,7 @@
 
 namespace ALttP\Http\Controllers;
 
+use ALttP\Enemizer;
 use ALttP\Item;
 use ALttP\Jobs\SendPatchToDisk;
 use ALttP\Randomizer;
@@ -46,11 +47,14 @@ class CustomizerController extends Controller
                     case "mystery":
                         $return_payload['spoiler'] = array_only($return_payload['spoiler'], ['meta']);
                         $return_payload['spoiler']['meta'] = array_only($return_payload['spoiler']['meta'], [
+                            'name',
+                            'notes',
                             'logic',
                             'build',
                             'tournament',
                             'spoilers',
-                            'size'
+                            'size',
+                            'special'
                         ]);
                         break;
                     case "off":
@@ -173,6 +177,7 @@ class CustomizerController extends Controller
             'enemizer.enemyShuffle' => $request->input('enemizer.enemy_shuffle', 'none'),
             'enemizer.enemyDamage' => $request->input('enemizer.enemy_damage', 'default'),
             'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
+            'ignoreCanKillEscapeThings' => array_key_exists(base64_encode("Link's Uncle:1"), $request->input('l')),
             'customPrizePacks' => true,
         ], $custom_data));
 
@@ -241,6 +246,12 @@ class CustomizerController extends Controller
             'difficulty' => 'custom',
         ]));
 
+        if ($world->isEnemized()) {
+            $patch = $rom->getWriteLog();
+            $en = new Enemizer($world, $patch);
+            $en->randomize();
+            $en->writeToRom($rom);
+        }
 
         if ($request->input('tournament', false)) {
             $rom->setTournamentType('standard');

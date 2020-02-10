@@ -42,11 +42,14 @@ class RandomizerController extends Controller
                     case "mystery":
                         $return_payload['spoiler'] = array_only($return_payload['spoiler'], ['meta']);
                         $return_payload['spoiler']['meta'] = array_only($return_payload['spoiler']['meta'], [
+                            'name',
+                            'notes',
                             'logic',
                             'build',
                             'tournament',
                             'spoilers',
-                            'size'
+                            'size',
+                            'special'
                         ]);
                         break;
                     case "off":
