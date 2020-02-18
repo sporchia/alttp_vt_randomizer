@@ -4,13 +4,12 @@ namespace ALttP\Http\Controllers;
 
 use ALttP\Item;
 use ALttP\Location;
-use ALttP\Randomizer;
 use ALttP\Rom;
 use ALttP\Sprite;
-use ALttP\Support\ItemCollection;
 use ALttP\World;
 use Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 class SettingsController extends Controller
@@ -22,7 +21,7 @@ class SettingsController extends Controller
     {
         $this->drops = config('item.drop');
         $this->items = [];
-        foreach (array_only(config('item'), ['advancement', 'nice', 'junk', 'dungeon']) as $group) {
+        foreach (Arr::only(config('item'), ['advancement', 'nice', 'junk', 'dungeon']) as $group) {
             foreach ($group as $item => $value) {
                 if (!($this->items[$item] ?? false)) {
                     $this->items[$item] = 0;

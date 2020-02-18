@@ -11,6 +11,7 @@ use ALttP\Support\WorldCollection;
 use ALttP\Support\Zspr;
 use ALttP\World;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 if (!function_exists('getWeighted')) {
     function getWeighted(string $category): string
@@ -94,13 +95,13 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
             switch ($spoiler['meta']['spoilers']) {
                 case "on":
                 case "generate":
-                    $spoiler = array_except($spoiler, [
+                    $spoiler = Arr::except($spoiler, [
                         'spoiler.playthrough',
                     ]);
                     break;
                 case "mystery":
-                    $spoiler = array_only($spoiler, ['meta']);
-                    $spoiler['meta'] = array_only($spoiler['meta'], [
+                    $spoiler = Arr::only($spoiler, ['meta']);
+                    $spoiler['meta'] = Arr::only($spoiler['meta'], [
                         'name',
                         'notes',
                         'logic',
@@ -112,9 +113,9 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                     break;
                 case "off":
                 default:
-                    $spoiler = array_except(array_only($spoiler, [
+                    $spoiler = Arr::except(Arr::only($spoiler, [
                         'meta',
-                    ]), ['meta.seed']);    
+                    ]), ['meta.seed']);
             }
 
             if ($world->isEnemized()) {
@@ -135,8 +136,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
             ]);
             $feature->save();
 
-            $spoiler = array_except(
-                array_only($spoiler, ['meta']),
+            $spoiler = Arr::except(
+                Arr::only($spoiler, ['meta']),
                 [
                     'meta.seed',
                     'meta.crystals_ganon',

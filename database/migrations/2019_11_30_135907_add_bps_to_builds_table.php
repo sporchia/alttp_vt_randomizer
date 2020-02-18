@@ -22,7 +22,7 @@ class AddBpsToBuildsTable extends Migration
             DB::statement('ALTER TABLE `builds` ADD COLUMN `bps` LONGBLOB NULL DEFAULT NULL AFTER `hash`;');
         } else {
             Schema::table('builds', function (Blueprint $table) {
-                $table->binary('bps')->after('hash');
+                $table->binary('bps')->nullable()->after('hash');
             });
         }
 
