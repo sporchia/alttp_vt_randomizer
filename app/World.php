@@ -129,6 +129,8 @@ abstract class World
         }
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
+        
+        $this->config['item.overflow.count.Bow'] = 2;
 
         switch ($this->config('item.pool')) {
             case 'expert':
@@ -151,12 +153,12 @@ abstract class World
                 break;
             case 'crowd_control':
                 $this->config['item.overflow.count.Sword'] = 4;
-                $this->config['item.overflow.count.Armor'] = 0;
+                $this->config['item.overflow.count.Armor'] = 1;
                 $this->config['item.overflow.count.Shield'] = 0;
                 $this->config['item.overflow.count.Bow'] = 1;
                 $this->config['item.overflow.count.BossHeartContainer'] = 1;
                 $this->config['item.overflow.count.PieceOfHeart'] = 20;
-                $this->config['item.count.BugNet'] = 0;
+                $this->config['item.count.BugCatchingNet'] = 0;
                 $this->config['item.count.HalfMagic'] = 0;
                 $this->config['item.count.CaneOfByrna'] = 0;
                 $this->config['item.count.Cape'] = 0;
@@ -465,10 +467,9 @@ abstract class World
      */
     public function collectOtherItems(ItemCollection $collected): ItemCollection
     {
-        $my_items = $collected ?? new ItemCollection();
-        $found = new ItemCollection($this->pre_collected_items);
-        $my_items = $my_items->merge($this->pre_collected_items);
+        $my_items = $collected ?? new ItemCollection($this->pre_collected_items);
         $my_items->setChecksForWorld($this->id);
+        $found = new ItemCollection();
         $available_locations = $this->getCollectableLocations();
 
         do {

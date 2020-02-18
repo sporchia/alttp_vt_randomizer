@@ -107,7 +107,6 @@ class EasternPalaceTest extends TestCase
             ["Eastern Palace - Big Key Chest", false, [], ['Lamp']],
             ["Eastern Palace - Big Key Chest", true, ['Lamp']],
 
-
             ["Eastern Palace - Boss", false, []],
             ["Eastern Palace - Boss", false, [], ['Lamp']],
             ["Eastern Palace - Boss", false, [], ['AnyBow']],

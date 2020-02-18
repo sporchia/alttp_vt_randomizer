@@ -21,7 +21,7 @@ return [
         'randomize' => [
             'header' => '3. Choose Your Game Options',
             'content' => [
-                'Head on over to <a href="/randomizer" target="_blank" rel="noopener noreferrer">' . __('navigation.randomizer') . '</a> and provide your ROM. The next screen will show a variety of game options. For your first few runs, we recommend using “' . __('randomizer.preset.options.beginner') . '” in the “' . __('randomizer.preset.title') . '” and leaving the rest of the settings as is. Then click “' . __('randomizer.generate.race') . '” and you’ll be given a newly minted randomized game!',
+                'Head on over to <a href="/randomizer" target="_blank" rel="noopener noreferrer">' . __('navigation.randomizer') . '</a> and provide your ROM. The next screen will show a variety of game options. For your first few runs, we recommend using “' . __('randomizer.preset.options.beginner') . '” in the “' . __('randomizer.preset.title') . '” and leaving the rest of the settings as is. Then click “' . __('randomizer.generate.spoiler_race') . '” and you’ll be given a newly minted randomized game!',
                 'A more in-depth guide to all the available options can be found <a href="/options">here</a>.',
             ]
         ],

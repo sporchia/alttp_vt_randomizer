@@ -79,6 +79,9 @@ class RandomAssumed extends Filler
 
             $found_locations = 0;
             $assumed_items = $starting_items->copy();
+            foreach ($this->worlds as $world) {
+                $assumed_items = $assumed_items->merge($world->getPreCollectedItems());
+            }
             do {
                 $current_locations = 0;
                 foreach ($this->worlds as $world) {

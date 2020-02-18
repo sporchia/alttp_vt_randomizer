@@ -106,7 +106,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Mini Moldorm Cave - Left"]->setRequirements(function ($locations, $items) {
@@ -114,7 +114,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Mini Moldorm Cave - Right"]->setRequirements(function ($locations, $items) {
@@ -122,7 +122,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Mini Moldorm Cave - Far Right"]->setRequirements(function ($locations, $items) {
@@ -130,7 +130,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Ice Rod Cave"]->setRequirements(function ($locations, $items) {
@@ -181,7 +181,7 @@ class South extends Region\Standard\LightWorld\South
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) &&
-                $items->canBombThings();
+                $items->canBombThings() && $items->canKillMostThings($this->world);
         });
 
         $this->locations["Library"]->setRequirements(function ($locations, $items) {
@@ -202,8 +202,7 @@ class South extends Region\Standard\LightWorld\South
 
         $this->locations["Desert Ledge"]->setRequirements(function ($locations, $items) {
             return (($items->has('MoonPearl')
-                || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canSuperBunny', false)
+                || $this->world->config('canDungeonRevive', false) || ($this->world->config('canSuperBunny', false)
                     && $items->has('MagicMirror')) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) && $this->world->getRegion('Desert Palace')->canEnter($locations, $items))
                 ||
@@ -213,14 +212,14 @@ class South extends Region\Standard\LightWorld\South
         });
 
         $this->locations["Lake Hylia Island"]->setRequirements(function ($locations, $items) {
-            return ($items->has('MoonPearl')
+            return (($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
                     && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
-                    && $items->hasABottle()) && ($items->has('Flippers')
+                    && $items->hasABottle())) && ($items->has('Flippers')
                     || ($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
-                        && $items->canSpinSpeed()))) ||
-                $this->world->config('canOneFrameClipOW', false);
+                        && $items->canSpinSpeed()))) 
+                || $this->world->config('canOneFrameClipOW', false);
         });
 
         $this->locations["Sunken Treasure"]->setRequirements(function ($locations, $items) {

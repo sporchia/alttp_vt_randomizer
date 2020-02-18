@@ -107,6 +107,26 @@ class South extends Region
         $this->locations["Aginah's Cave"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings();
         });
+        
+        $this->locations["Mini Moldorm Cave - Far Left"]->setRequirements(function ($locations, $items) {
+            return $items->canBombThings() && $items->canKillMostThings($this->world);
+        });
+        
+        $this->locations["Mini Moldorm Cave - Left"]->setRequirements(function ($locations, $items) {
+            return $items->canBombThings() && $items->canKillMostThings($this->world);
+        });
+
+        $this->locations["Mini Moldorm Cave - Right"]->setRequirements(function ($locations, $items) {
+            return $items->canBombThings() && $items->canKillMostThings($this->world);
+        });
+
+        $this->locations["Mini Moldorm Cave - Far Right"]->setRequirements(function ($locations, $items) {
+            return $items->canBombThings() && $items->canKillMostThings($this->world);
+        });
+
+        $this->locations["Mini Moldorm Cave - NPC"]->setRequirements(function ($locations, $items) {
+            return $items->canBombThings() && $items->canKillMostThings($this->world);
+        });
 
         $this->locations["Hobo"]->setRequirements(function ($locations, $items) {
             return ($this->world->config('canWaterWalk', false) && $items->has('PegasusBoots'))

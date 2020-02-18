@@ -60,14 +60,7 @@ class LightWorldTest extends TestCase
 
             ["King's Tomb", false, []],
             ["King's Tomb", false, [], ['PegasusBoots']],
-            ["King's Tomb", true, ['PegasusBoots', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["King's Tomb", true, ['PegasusBoots', 'TitansMitt']],
-            ["King's Tomb", true, ['PegasusBoots', 'ProgressiveGlove', 'Hammer', 'MoonPearl', 'MagicMirror']],
-            ["King's Tomb", true, ['PegasusBoots', 'PowerGlove', 'Hammer', 'MoonPearl', 'MagicMirror']],
-            ["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot', 'MoonPearl', 'MagicMirror']],
-            ["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'PowerGlove', 'Hookshot', 'MoonPearl', 'MagicMirror']],
-            ["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'Hammer', 'Hookshot', 'MoonPearl', 'MagicMirror']],
-            ["King's Tomb", true, ['PegasusBoots', 'DefeatAgahnim', 'Flippers', 'Hookshot', 'MoonPearl', 'MagicMirror']],
+            ["King's Tomb", true, ['PegasusBoots']],
 
             ["Floodgate Chest", true, []],
 
@@ -127,9 +120,7 @@ class LightWorldTest extends TestCase
 
             ["Magic Bat", false, []],
             ["Magic Bat", false, [], ['Powder']],
-            ["Magic Bat", true, ['Powder', 'Hammer']],
-            ["Magic Bat", true, ['Powder', 'ProgressiveGlove', 'ProgressiveGlove', 'MoonPearl', 'MagicMirror']],
-            ["Magic Bat", true, ['Powder', 'TitansMitt', 'MoonPearl', 'MagicMirror']],
+            ["Magic Bat", true, ['Powder']],
 
             ["Sick Kid", false, []],
             ["Sick Kid", false, [], ['AnyBottle']],
@@ -146,34 +137,10 @@ class LightWorldTest extends TestCase
             ["Bombos Tablet", false, []],
             ["Bombos Tablet", false, [], ['UpgradedSword']],
             ["Bombos Tablet", false, [], ['BookOfMudora']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'TitansMitt']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'TitansMitt']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'TitansMitt']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'TitansMitt']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'ProgressiveGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'ProgressiveGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'ProgressiveGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'ProgressiveGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'PowerGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'PowerGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'PowerGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'PowerGlove', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'DefeatAgahnim', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'DefeatAgahnim', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'DefeatAgahnim', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'DefeatAgahnim', 'Hammer']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'DefeatAgahnim', 'ProgressiveGlove', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'ProgressiveSword', 'ProgressiveSword', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L2Sword', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L3Sword', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
-            ["Bombos Tablet", true, ['MoonPearl', 'MagicMirror', 'BookOfMudora', 'L4Sword', 'DefeatAgahnim', 'Flippers', 'Hookshot']],
+            ["Bombos Tablet", true, ['BookOfMudora', 'ProgressiveSword', 'ProgressiveSword']],
+            ["Bombos Tablet", true, ['BookOfMudora', 'L2Sword']],
+            ["Bombos Tablet", true, ['BookOfMudora', 'L3Sword']],
+            ["Bombos Tablet", true, ['BookOfMudora', 'L4Sword']],
 
             ["King Zora", true, []],
 
@@ -190,8 +157,9 @@ class LightWorldTest extends TestCase
 
             ["Checkerboard Cave", false, []],
             ["Checkerboard Cave", false, [], ['Gloves']],
-            ["Checkerboard Cave", true, ['Flute', 'MagicMirror', 'ProgressiveGlove', 'ProgressiveGlove']],
-            ["Checkerboard Cave", true, ['Flute', 'MagicMirror', 'TitansMitt']],
+            ["Checkerboard Cave", true, ['ProgressiveGlove']],
+            ["Checkerboard Cave", true, ['PowerGlove']],
+            ["Checkerboard Cave", true, ['TitansMitt']],
 
             ["Mini Moldorm Cave - NPC", true, []],
 
@@ -212,8 +180,9 @@ class LightWorldTest extends TestCase
             ["Lake Hylia Island", true, []],
 
             ["Sunken Treasure", true, []],
-
+            
             ["Zora's Ledge", false, []],
+            ["Zora's Ledge", false, [], ['Flippers', 'PegasusBoots']],
             ["Zora's Ledge", true, ['Flippers']],
             ["Zora's Ledge", true, ['PegasusBoots']],
 
@@ -222,11 +191,13 @@ class LightWorldTest extends TestCase
             ["Flute Spot", true, ['Shovel']],
 
             ["Waterfall Fairy - Left", false, []],
+            ["Waterfall Fairy - Left", false, [], ['Flippers', 'MoonPearl', 'PegasusBoots']],
             ["Waterfall Fairy - Left", true, ['Flippers']],
             ["Waterfall Fairy - Left", true, ['MoonPearl']],
             ["Waterfall Fairy - Left", true, ['PegasusBoots']],
 
             ["Waterfall Fairy - Right", false, []],
+            ["Waterfall Fairy - Right", false, [], ['Flippers', 'MoonPearl', 'PegasusBoots']],
             ["Waterfall Fairy - Right", true, ['Flippers']],
             ["Waterfall Fairy - Right", true, ['MoonPearl']],
             ["Waterfall Fairy - Right", true, ['PegasusBoots']],

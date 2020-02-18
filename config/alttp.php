@@ -264,10 +264,11 @@ return [
                 'hard' => 'Hard',
                 'expert' => 'Expert',
             ],
-            'spoiler' => [
-                'off' => 'Off',
+            'spoilers' => [
                 'on' => 'On',
+                'off' => 'Off',
                 'generate' => 'Generate',
+                'mystery' => 'Mystery',
             ],
         ],
         'daily_weights' => [
@@ -377,6 +378,12 @@ return [
                 'hard' => 5,
                 'expert' => 1,
             ],
+            'spoilers' => [
+                'on' => 0,
+                'off' => 95,
+                'generate' => 0,
+                'mystery' => 5
+            ]
         ],
     ],
 ];

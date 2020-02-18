@@ -2,6 +2,36 @@
 
 @section('content')
 
+<h2>v31.0.4</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>The logic for Ganon was updated to include a fire source when playing Swordless weapons.</li>
+        <li>Minor logic fixes</li>
+        <ul>
+            <li>Open OWG/MG: Spinspeed entry into Ganon's Tower no longer requires a sword</li>
+            <li>Inverted: The Flippers will no longer be placed on Lake Hylia Island with No Glitches logic.</li>
+            <li>Inverted logic has new unit tests, which should ensure future logic bugs do not appear.</li>
+            <li>Fixed logic checks that involve ensuring the player can fire the bow.</li>
+            <li>Ice Palace: Allow access to the right side chests with one Small Key if the Big Key is accessible in a right-side chest (this permits access to these locations without the Hookshot).</li>
+            <li>Ice Palace: Allow access to the right-side chests in Retro World State, regardless of the Big Key location.</li>
+            <li>Other miscellaneous glitched logic bug fixes</li>
+        </ul>
+        <li>The correct number of small keys will be removed from the item pool when choosing Retro World State.  This is based on the item pool setting (-10 keys for Normal, -15 for Hard and Expert).</li>
+        <li>Added additional text selections for Uncle, Blind, Ganon, and joke hints.</li>
+        <li>Vanilla swords now properly place all four Progressive Swords in the world, unless the goal is Master Sword Pedestal.</li>
+        <li>There is now a 5% chance that the daily challenge will be a mystery.</li>
+        <li>A new message will appear on the permalink for mystery games to indicate that it is a mystery game.</li>
+        <li>The hint Ganon provides for the Progressive Bow not found by the player will indicate if Silver Arrows were unobtainable.  This hint applies to Hard, Expert, and Crowd Control item pool settings.</li>
+        <li>Renamed the "Generate ROM" and "Generate ROM (with spoilers)" buttons to "Generate Race ROM" and "Generate Normal ROM" to more clearly indicate each button's purpose.</li>
+        <li>Added additional checks to ensure that the logic provides some offensive capability in enemy kill rooms if the enemy health setting is something other than "Default."</li>
+        <li>Customizer: Enemizer options (boss shuffle, enemy shuffle, enemy damage, and enemy health) are now available.  Customizing boss locations is not yet supported.</li>
+        <li>Customizer: It is now possible to manually place Uncle's item when choosing Standard state and randomized swords.</li>
+        <li>Crowd Control: Properly remove the Bug Catching Net from the Crowd Control item pool.  Blue mail armor upgrade is also available again in Crowd Control.</li>
+        <li>Added API endpoint for retrieving the hash and day of the latest daily (/api/daily).</li>
+    </ul>
+</div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.3</h2>
 <div class="card card-body bg-light mb-3">
@@ -20,8 +50,6 @@
         <li>Miscellaneous site content updates</li>
     </ul>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.2</h2>
 <div class="card card-body bg-light mb-3">

@@ -20,7 +20,7 @@ return [
         'randomize' => [
             'header' => '3. Choisissez Vos Options de Jeu',
             'content' => [
-                'Rendez-vous sur <a href="/randomizer" target="_blank" rel="noopener noreferrer">' . __('navigation.randomizer') . '</a> et fournissez votre ROM. L’écran suivant affichera une variété d’options de jeu. Pour vos premiers essais, nous vous recommandons de remplacer «' . __('randomizer.difficulty.title') . '» par «' . __('randomizer.difficulty.options.easy') . '» et de laisser les autres paramètres tels quels. Cliquez ensuite sur «' . __('randomizer.generate.race') . '» et vous recevrez un nouveau jeu aléatoire!',
+                'Rendez-vous sur <a href="/randomizer" target="_blank" rel="noopener noreferrer">' . __('navigation.randomizer') . '</a> et fournissez votre ROM. L’écran suivant affichera une variété d’options de jeu. Pour vos premiers essais, nous vous recommandons de remplacer «' . __('randomizer.difficulty.title') . '» par «' . __('randomizer.difficulty.options.easy') . '» et de laisser les autres paramètres tels quels. Cliquez ensuite sur «' . __('randomizer.generate.spoiler_race') . '» et vous recevrez un nouveau jeu aléatoire!',
                 'Vous trouverez un guide plus détaillé de toutes les options disponibles <a href="/options">ici</a>.',
             ]
         ],

@@ -12,6 +12,7 @@ return [
     ],
     'info' => [
         'spoilerwarning' => 'ADVERTENCIA: El generador de este juego ha visto el registro de spoiler.',
+        'mystery' => 'Este es un juego de misterios. Debes descubrir las configuraciones mientras lo juegas!',
         'logic' => __('randomizer.glitches_required.title'),
         'accessibility' => __('randomizer.accessibility.title'),
         'build' => 'Build de la ROM',

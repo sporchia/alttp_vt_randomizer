@@ -267,7 +267,7 @@ class ItemCollection extends Collection
         // @TODO: this check is expensive, as this function is called A LOT, can we reduce it somehow?
         // assuming if there are ShopKey's available then we are in generic key mode, this is a really bad assumption
         // but we need to make it until we can rewrite this class
-        if (($this->item_counts['ShopKey'] ?? false) && strpos($key, 'Key') === 0) {
+        if (($this->item_counts["ShopKey:$this->checks_for_world"] ?? false) && strpos($key, 'Key') === 0) {
             return true;
         }
 
@@ -450,22 +450,25 @@ class ItemCollection extends Collection
     /**
      * Requirements for lobbing arrows at things
      *
+     * @param \ALttP\World  $world  world to check items against
      * @param int $min_level minimum level of bow
      *
      * @return bool
      */
-    public function canShootArrows(int $min_level = 1)
+    public function canShootArrows(World $world, int $min_level = 1)
     {
         switch ($min_level) {
             case 2:
                 return $this->has('BowAndSilverArrows')
-                    || $this->has('ProgressiveBow', 2)
+                    || ($this->has('ProgressiveBow', 2) 
+                        && (!$world->config('rom.rupeeBow', false) || $this->has('ShopArrow')))
                     || ($this->has('SilverArrowUpgrade')
-                        && ($this->has('Bow') || $this->has('BowAndArrows')));
+                        && ($this->has('Bow') || $this->has('BowAndArrows') || $this->has('ProgressiveBow')));
             case 1:
             default:
-                return ($this->has('Bow') && ($this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
-                    || $this->has('ProgressiveBow')
+                return (($this->has('Bow') || $this->has('ProgressiveBow')) 
+                        && (!$world->config('rom.rupeeBow', false)
+                            || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
         }
@@ -525,31 +528,41 @@ class ItemCollection extends Collection
     /**
      * Requirements for killing most things
      *
+     * @param \ALttP\World  $world  world to check items against
+     *
      * @return bool
      */
-    public function canKillEscapeThings()
+    public function canKillEscapeThings(World $world)
     {
         return $this->has('UncleSword')
             || $this->has('CaneOfSomaria')
-            || $this->has('TenBombs')
-            || $this->has('CaneOfByrna')
-            || $this->canShootArrows()
+            || ($this->has('TenBombs')
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
+            || ($this->has('CaneOfByrna')
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
+            || $this->canShootArrows($world)
             || $this->has('Hammer')
-            || $this->has('FireRod');
+            || $this->has('FireRod')
+            || $world->config('ignoreCanKillEscapeThings', false);
     }
 
     /**
      * Requirements for killing most things
      *
+     * @param \ALttP\World  $world  world to check items against
+     * @param mixed $enemies Amount of Damage Enemies need to be beaten
+     *
      * @return bool
      */
-    public function canKillMostThings($enemies = 5)
+    public function canKillMostThings(World $world, $enemies = 5)
     {
         return $this->hasSword()
             || $this->has('CaneOfSomaria')
-            || ($this->has('TenBombs') && $enemies < 6)
-            || ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic()))
-            || $this->canShootArrows()
+            || ($this->canBombThings() && $enemies < 6
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
+            || ($this->has('CaneOfByrna') && ($enemies < 6 || $this->canExtendMagic())
+                && $world->config('enemizer.enemyHealth', 'default') == 'default')
+            || $this->canShootArrows($world)
             || $this->has('Hammer')
             || $this->has('FireRod');
     }
