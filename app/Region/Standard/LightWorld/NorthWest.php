@@ -91,10 +91,14 @@ class NorthWest extends Region
         });
 
         $this->locations["King's Tomb"]->setRequirements(function ($locations, $items) {
-            return $items->has('PegasusBoots') && ($this->world->config('canBootsClip', false)
-                || ($items->canLiftDarkRocks()
-                    || ($items->has('MagicMirror') && $items->has('MoonPearl')
-                        && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))));
+            return $items->has('PegasusBoots')
+                && ($this->world->config('canBootsClip', false)
+                    || $items->canLiftDarkRocks()
+                    || $this->world->config('canOneFrameClipOW', false)
+                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                    || ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)
+                        && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
+                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))));
         });
 
         $this->locations["Pegasus Rocks"]->setRequirements(function ($locations, $items) {
@@ -104,10 +108,17 @@ class NorthWest extends Region
         $this->locations["Magic Bat"]->setRequirements(function ($locations, $items) {
             return $items->has('Powder')
                 && ($items->has('Hammer')
-                    || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                    || ($this->world->getLocation('Hammer Pegs')->canAccess($items) && $items->has('MagicMirror'))
-                    || ($items->has('MoonPearl') && $items->has('MagicMirror') && $items->canLiftDarkRocks()
-                        && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)));
+                    || ((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                        || $this->world->config('canOneFrameClipOW', false))
+                        && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false)))
+                    || ($items->has('MagicMirror')
+                        && (($this->world->config('canMirrorWrap', false) && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
+                            || (($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
+                                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                                && (($items->canLiftDarkRocks() && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
+                                    || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()
+                                        && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false))
+                                        && $this->world->getRegion('North East Dark World')->canEnter($locations, $items)))))));
         });
 
         $this->locations["Sick Kid"]->setRequirements(function ($locations, $items) {
@@ -120,8 +131,11 @@ class NorthWest extends Region
 
         $this->locations["Graveyard Ledge"]->setRequirements(function ($locations, $items) {
             return ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                || ($items->has('MagicMirror') && $items->has('MoonPearl')
-                    && $this->world->getRegion('North West Dark World')->canEnter($locations, $items));
+                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed())
+                || $this->world->config('canOneFrameClipOW', false)
+                || ($items->has('MagicMirror') && $this->world->getRegion('North West Dark World')->canEnter($locations, $items)
+                    && ($items->has('MoonPearl') || ($items->hasABottle() && $this->world->config('canOWYBA', false))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())));
         });
 
         $this->can_enter = function ($locations, $items) {

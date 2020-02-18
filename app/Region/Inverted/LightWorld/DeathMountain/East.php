@@ -2,12 +2,8 @@
 
 namespace ALttP\Region\Inverted\LightWorld\DeathMountain;
 
-use ALttP\Item;
 use ALttP\Location;
 use ALttP\Region;
-use ALttP\Shop;
-use ALttP\Support\LocationCollection;
-use ALttP\Support\ShopCollection;
 use ALttP\World;
 
 /**
@@ -39,59 +35,171 @@ class East extends Region\Standard\LightWorld\DeathMountain\East
     public function initalize()
     {
         $this->shops["Light World Death Mountain Shop"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->canBombThings();
+            return (($items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2))) && ($items->has('Hookshot')
+                || ($this->world->config('canSuperSpeed', false)
+                    && $items->canSpinSpeed())) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && ((($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots')) ||
+                    $this->world->config('canOneFrameClipOW', false)))))
+                && $items->canBombThings();
         });
 
-        // Allow Super Bunny?
+
         $this->locations["Spiral Cave"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl');
+            return ($items->has('MoonPearl')) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle(2) && ($items->has('Hookshot') 
+                    || $this->world->config('canSuperSpeed', false)
+                    && $items->canSpinSpeed())) 
+                || ($this->world->config('canSuperBunny', false) && $items->has('MagicMirror')
+                && $items->hasSword()) 
+                || (($this->world->config('canOWYBA', false)
+                    && $items->hasABottle())
+                && (($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots')) 
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Mimic Cave"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Hammer');
+            return $items->has('Hammer')
+                && ($items->has('MoonPearl')
+                    || (($this->world->config('canOWYBA', false)
+                        && $items->hasABottle()) && (
+                        ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')) ||
+                        $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->locations["Paradox Cave Lower - Far Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl');
+            return $items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2) && ($items->has('Hookshot')
+                        || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && (($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots'))
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl');
+            return $items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2) && ($items->has('Hookshot')
+                        || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && (($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots'))
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl');
+            return $items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2) && ($items->has('Hookshot')
+                        || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && (($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots'))
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Far Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl');
+            return $items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2) && ($items->has('Hookshot')
+                        || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && (($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots'))
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Lower - Middle"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl');
+            return $items->has('MoonPearl')
+                || ($this->world->config('canOWYBA', false)
+                    && $items->hasABottle(2) && ($items->has('Hookshot')
+                        || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed()))) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && (($this->world->config('canBootsClip', false)
+                    && $items->has('PegasusBoots'))
+                    || $this->world->config('canOneFrameClipOW', false)));
         });
 
         $this->locations["Paradox Cave Upper - Left"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->canBombThings();
+            return $items->canBombThings()
+                && ($items->has('MoonPearl')
+                    || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle(2) && ($items->has('Hookshot')
+                            || ($this->world->config('canSuperSpeed', false)
+                                && $items->canSpinSpeed())))
+                    || ($this->world->config('canOWYBA', false) && $items->hasABottle()
+                    && (($this->world->config('canBootsClip', false)
+                        && $items->has('PegasusBoots'))
+                        || $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->locations["Paradox Cave Upper - Right"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->canBombThings();
+            return $items->canBombThings()
+                && ($items->has('MoonPearl')
+                    || ($this->world->config('canOWYBA', false)
+                        && $items->hasABottle(2) && ($items->has('Hookshot')
+                            || ($this->world->config('canSuperSpeed', false)
+                                && $items->canSpinSpeed())))
+                    || ($this->world->config('canOWYBA', false) && $items->hasABottle()
+                    && (($this->world->config('canBootsClip', false)
+                        && $items->has('PegasusBoots'))
+                        || $this->world->config('canOneFrameClipOW', false))));
         });
 
         $this->locations["Ether Tablet"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('BookOfMudora') && $items->has('Hammer')
-                && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword(2));
+            return $items->has('BookOfMudora')
+                && (($this->world->config('mode.weapons') == 'swordless'
+                    && $items->has('Hammer'))
+                    || $items->hasSword(2)) && (($items->has('MoonPearl')
+                    && ($items->has('Hammer')
+                    || ($this->world->config('canBootsClip', false)
+                        && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed())
+                        || ($this->world->config('canOWYBA', false)
+                            && $items->hasABottle()
+                            && $this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots'))))
+                    || $this->world->config('canOneFrameClipOW', false)
+                );
         });
 
         $this->locations["Spectacle Rock"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('Hammer');
+            return ($items->has('MoonPearl')
+                && ($items->has('Hammer')
+                    || ($this->world->config('canSuperSpeed', false)
+                        && $items->canSpinSpeed()) || ($this->world->config('canBootsClip', false)
+                        && $items->has('PegasusBoots')))) || ($this->world->config('canOWYBA', false)
+                && $items->hasABottle()
+                && $this->world->config('canBootsClip', false)
+                && $items->has('PegasusBoots')) ||
+                $this->world->config('canOneFrameClipOW', false);
         });
 
         $this->can_enter = function ($locations, $items) {
-            return ($items->canLiftDarkRocks() && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))
-                || ($items->has('MoonPearl') && $items->has('Hookshot')
-                    && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
+            return ($items->canLiftDarkRocks()
+                && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items)) || ($this->world->getRegion('West Death Mountain')->canEnter($locations, $items)
+                && (
+                    (($items->has('MoonPearl')
+                        || ($this->world->config('canOWYBA', false)
+                            && $items->hasABottle(2))) && ($items->has('Hookshot')
+                        || ($this->world->config('canBootsClip', false)
+                            && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
+                            && $items->canSpinSpeed()))) 
+                    || ($this->world->config('canMirrorWrap', false)
+                        && $items->has('MagicMirror')) ||
+                    $this->world->config('canOneFrameClipOW', false)));
         };
 
         return $this;

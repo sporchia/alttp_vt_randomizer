@@ -106,8 +106,8 @@ abstract class World
         };
 
         // Handle configuration options that map to switches.
-        $free_item_text = 0x00;
-        $free_item_menu = 0x00;
+        $free_item_text = $this->config('rom.freeItemText', 0x00);
+        $free_item_menu = $this->config('rom.freeItemMenu', 0x00);
         switch ($this->config('dungeonItems')) {
             case 'full':
                 $this->config['region.wildBigKeys'] = true;
@@ -129,6 +129,8 @@ abstract class World
         }
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
+        
+        $this->config['item.overflow.count.Bow'] = 2;
 
         switch ($this->config('item.pool')) {
             case 'expert':
@@ -151,12 +153,12 @@ abstract class World
                 break;
             case 'crowd_control':
                 $this->config['item.overflow.count.Sword'] = 4;
-                $this->config['item.overflow.count.Armor'] = 0;
+                $this->config['item.overflow.count.Armor'] = 1;
                 $this->config['item.overflow.count.Shield'] = 0;
                 $this->config['item.overflow.count.Bow'] = 1;
                 $this->config['item.overflow.count.BossHeartContainer'] = 1;
                 $this->config['item.overflow.count.PieceOfHeart'] = 20;
-                $this->config['item.count.BugNet'] = 0;
+                $this->config['item.count.BugCatchingNet'] = 0;
                 $this->config['item.count.HalfMagic'] = 0;
                 $this->config['item.count.CaneOfByrna'] = 0;
                 $this->config['item.count.Cape'] = 0;
@@ -183,6 +185,7 @@ abstract class World
         // In swordless mode silvers are 100% required
         if ($this->config('mode.weapons') === 'swordless') {
             $this->config['region.requireBetterBow'] = true;
+            $this->config['item.overflow.count.Bow'] = 2;
         }
 
         if ($this->config('itemPlacement') === 'basic') {
@@ -286,7 +289,11 @@ abstract class World
      */
     public function getGanonsTowerJunkFillRange(): array
     {
-        if (in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches', 'None'])) {
+        if (
+            $this->config['logic'] === 'None'
+            || ($this->config['mode.state'] !== 'inverted'
+                && in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches']))
+        ) {
             return [0, 0];
         }
 
@@ -460,17 +467,15 @@ abstract class World
      */
     public function collectOtherItems(ItemCollection $collected): ItemCollection
     {
-        $my_items = $collected ?? new ItemCollection();
-        $found = new ItemCollection($this->pre_collected_items);
-        $my_items = $my_items->merge($this->pre_collected_items);
+        $my_items = $collected ?? new ItemCollection($this->pre_collected_items);
         $my_items->setChecksForWorld($this->id);
-        $available_locations = $this->getCollectableLocations()->filter(function ($location) {
-            return $location->hasItem();
-        });
+        $found = new ItemCollection();
+        $available_locations = $this->getCollectableLocations();
 
         do {
             $search_locations = $available_locations->filter(function ($location) use ($my_items) {
-                return !($this->collected_locations[$location->getName()] ?? false) && $location->canAccess($my_items);
+                return $location->hasItem()
+                    && !($this->collected_locations[$location->getName()] ?? false) && $location->canAccess($my_items);
             });
 
             foreach ($search_locations as $location) {
@@ -881,8 +886,7 @@ abstract class World
             'tournament' => $this->config('tournament', false),
             'size' => $this->isEnemized() ? 4 : 2,
             'hints' => $this->config('spoil.Hints'),
-            'spoilers' => $this->config('spoilers', false),
-            'spoilers_ongen' => $this->config('spoilers_ongen', false),
+            'spoilers' => $this->config('spoilers', 'off'),
             'enemizer.boss_shuffle' => $this->config('enemizer.bossShuffle'),
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),

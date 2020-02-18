@@ -9,8 +9,6 @@ return [
         'canBootsClip' => true,
         'canMirrorClip' => true,
         'canWaterWalk' => true,
-        'canBunnySurf' => true,
-        'canMirrorWrap' => true,
         'canDungeonRevive' => true,
     ],
     'MajorGlitches' => [
@@ -20,8 +18,6 @@ return [
         'canBootsClip' => true,
         'canMirrorClip' => true,
         'canWaterWalk' => true,
-        'canBunnySurf' => true,
-        'canBunnyRevive' => true,
         'canMirrorWrap' => true,
         'canDungeonRevive' => true,
         'canOWYBA' => true,

@@ -42,9 +42,10 @@ return [
                     . '<li>Sahasrahla gives you his item when you speak to him with the Pendant of Courage.</li>'
                     . '<li>The Super Bomb spawns when you have acquired crystals 5 and 6.</li>'
                     . '<li>The Smith and the Purple Chest will stay following you through Save and Quit.</li>'
-                    . '<li>You are never required to navigate a dark room; the lamp will be available to light your way, so go out and find it!</li>'
+                    . '<li>You are never required to navigate a dark room; the lamp will be available to light your way, so go out and find it! *</li>'
                     . '<li>Keys might not be accessible if they are not required to finish the game. For instance, the Skull Woods big key might be in the big chest.</li>'
-                . '</ul>',
+                . '</ul>'
+                . '* Advanced Item Placement may require limited dark room navigation using Fire Rod.',
             ],
         ],
         'changes' => [

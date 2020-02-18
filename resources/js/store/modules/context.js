@@ -26,8 +26,8 @@ export default {
       "rom.timerStart": "",
       "rom.rupeeBow": false,
       "rom.genericKeys": false,
-      "spoil.BootsLocation": false,
-      "spoil.Hints": true
+      "rom.logicMode": "NoGlitches",
+      "spoil.BootsLocation": false
     },
     initializing: true
   },

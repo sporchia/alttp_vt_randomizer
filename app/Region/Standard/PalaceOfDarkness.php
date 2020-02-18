@@ -76,7 +76,7 @@ class PalaceOfDarkness extends Region
     public function initalize()
     {
         $this->locations["Palace of Darkness - The Arena - Ledge"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows();
+            return $items->canShootArrows($this->world);
         });
 
         $this->locations["Palace of Darkness - Big Key Chest"]->setRequirements(function ($locations, $items) {
@@ -84,7 +84,7 @@ class PalaceOfDarkness extends Region
                 return $items->has('KeyD1');
             }
 
-            return (($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+            return ((($items->has('Hammer') && $items->canShootArrows($this->world) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD1', $this->world) && $items->has('KeyD1', 5);
         })->setFillRules(function ($item, $locations, $items) {
@@ -93,24 +93,26 @@ class PalaceOfDarkness extends Region
 
         $this->locations["Palace of Darkness - The Arena - Bridge"]->setRequirements(function ($locations, $items) {
             return $items->has('KeyD1')
-                || ($items->canShootArrows() && $items->has('Hammer'));
+                || ($items->canShootArrows($this->world) && $items->has('Hammer'));
         });
 
         $this->locations["Palace of Darkness - Big Chest"]->setRequirements(function ($locations, $items) {
             return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->has('BigKeyD1')
-                && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+                && ((($items->has('Hammer') && $items->canShootArrows($this->world)) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+        })->setFillRules(function ($item, $locations, $items) {
+            return $item != Item::get('KeyD1', $this->world);
         });
 
         $this->locations["Palace of Darkness - Compass Chest"]->setRequirements(function ($locations, $items) {
-            return ($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3);
+            return (($items->has('Hammer') && $items->canShootArrows($this->world) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3);
         });
 
         $this->locations["Palace of Darkness - Harmless Hellway"]->setRequirements(function ($locations, $items) {
             if ($locations["Palace of Darkness - Harmless Hellway"]->hasItem(Item::get('KeyD1', $this->world))) {
-                return ($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3);
+                return (($items->has('Hammer') && $items->canShootArrows($this->world) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3);
             }
 
-            return (($items->has('Hammer') && $items->canShootArrows() && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+            return ((($items->has('Hammer') && $items->canShootArrows($this->world) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD1', $this->world) && $items->has('KeyD1', 5);
         })->setFillRules(function ($item, $locations, $items) {
@@ -119,31 +121,35 @@ class PalaceOfDarkness extends Region
 
         $this->locations["Palace of Darkness - Stalfos Basement"]->setRequirements(function ($locations, $items) {
             return $items->has('KeyD1')
-                || ($items->canShootArrows() && $items->has('Hammer'));
+                || ($items->canShootArrows($this->world) && $items->has('Hammer'));
         });
 
         $this->locations["Palace of Darkness - Dark Basement - Left"]->setRequirements(function ($locations, $items) {
             return ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                 || ($this->world->config('itemPlacement') === 'advanced' && $items->has('FireRod')))
-                && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
+                && ((($items->has('Hammer') && $items->canShootArrows($this->world) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
         });
 
         $this->locations["Palace of Darkness - Dark Basement - Right"]->setRequirements(function ($locations, $items) {
             return ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                 || ($this->world->config('itemPlacement') === 'advanced' && $items->has('FireRod')))
-                && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
+                && ((($items->has('Hammer') && $items->canShootArrows($this->world) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1))) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 4) : $items->has('KeyD1', 3));
         });
 
         $this->locations["Palace of Darkness - Map Chest"]->setRequirements(function ($locations, $items) {
-            return $items->canShootArrows();
+            return $items->canShootArrows($this->world);
         });
 
         $this->locations["Palace of Darkness - Dark Maze - Top"]->setRequirements(function ($locations, $items) {
-            return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+            return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && ((($items->has('Hammer') && $items->canShootArrows($this->world)) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+        })->setFillRules(function ($item, $locations, $items) {
+            return $item != Item::get('KeyD1', $this->world);
         });
 
         $this->locations["Palace of Darkness - Dark Maze - Bottom"]->setRequirements(function ($locations, $items) {
-            return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && (($items->has('Hammer') && $items->canShootArrows()) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+            return $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && ((($items->has('Hammer') && $items->canShootArrows($this->world)) || $this->world->config('region.wildKeys', false)) ? $items->has('KeyD1', 6) : $items->has('KeyD1', 5));
+        })->setFillRules(function ($item, $locations, $items) {
+            return $item != Item::get('KeyD1', $this->world);
         });
 
         $this->can_complete = function ($locations, $items) {
@@ -153,7 +159,7 @@ class PalaceOfDarkness extends Region
         $this->locations["Palace of Darkness - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
                 && $this->boss->canBeat($items, $locations)
-                && $items->has('Hammer') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->canShootArrows()
+                && $items->has('Hammer') && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)) && $items->canShootArrows($this->world)
                 && $items->has('BigKeyD1') && $items->has('KeyD1', 6)
                 && (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD1') || $this->locations["Palace of Darkness - Boss"]->hasItem(Item::get('CompassD1', $this->world)))
                 && (!$this->world->config('region.wildMaps', false) || $items->has('MapD1') || $this->locations["Palace of Darkness - Boss"]->hasItem(Item::get('MapD1', $this->world)));
@@ -175,10 +181,13 @@ class PalaceOfDarkness extends Region
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && ($this->world->config('itemPlacement') !== 'basic'
-                    || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasBottle()))
-                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                    || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasABottle()))
+                && ((($items->has('MoonPearl')
+                    || (($this->world->config('canOWYBA', false) && $items->hasABottle())
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())))
                     && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))
-                    || ($this->world->config('canOneFrameClipUW', false) && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
+                    || ($this->world->config('canOneFrameClipUW', false) && $this->world->config('canDungeonRevive', false)
+                        && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
         };
 
         $this->prize_location->setRequirements($this->can_complete);

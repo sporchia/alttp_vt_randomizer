@@ -131,6 +131,22 @@
                   >{{ $t('randomizer.hints.title') }}</Select>
                 </div>
               </div>
+              <div class="row">
+              <div class="col-xl-4 col-lg-6 my-1">
+                <Select
+                  :value="bossShuffle"
+                  @input="setBossShuffle"
+                  :options="optionsBossShuffle"
+                >{{ $t('randomizer.boss_shuffle.title') }}</Select>
+              </div>
+              <div class="col-xl-4 col-lg-6 my-1">
+                <Select
+                  :value="enemyShuffle"
+                  @input="setEnemyShuffle"
+                  :options="optionsEnemyShuffle"
+                >{{ $t('randomizer.enemy_shuffle.title') }}</Select>
+              </div>
+              </div>
             </div>
             <h5 class="card-title p-2 border-bottom">{{ $t('randomizer.difficulty.title') }}</h5>
             <div class="card-body">
@@ -155,6 +171,20 @@
                     @input="setItemFunctionality"
                     :options="optionsItemFunctionality"
                   >{{ $t('randomizer.item_functionality.title') }}</Select>
+                </div>
+                <div class="col-xl-4 col-lg-6 my-1">
+                  <Select
+                    :value="enemyDamage"
+                    @input="setEnemyDamage"
+                    :options="optionsEnemyDamage"
+                  >{{ $t('randomizer.enemy_damage.title') }}</Select>
+                </div>
+                <div class="col-xl-4 col-lg-6 my-1">
+                  <Select
+                    :value="enemyHealth"
+                    @input="setEnemyHealth"
+                    :options="optionsEnemyHealth"
+                  >{{ $t('randomizer.enemy_health.title') }}</Select>
                 </div>
               </div>
             </div>
@@ -380,9 +410,13 @@ export default {
         "randomizer.ganon_open",
         "randomizer.world_state",
         "randomizer.hints",
+        "randomizer.boss_shuffle",
+        "randomizer.enemy_shuffle",
         "randomizer.weapons",
         "randomizer.item_pool",
-        "randomizer.item_functionality"
+        "randomizer.item_functionality",
+        "randomizer.enemy_damage",
+        "randomizer.enemy_health"
       ],
       restore_lookup: {
         "randomizer.glitches_required": "setGlitchesRequired",
@@ -394,9 +428,13 @@ export default {
         "randomizer.ganon_open": "setGanonOpen",
         "randomizer.world_state": "setWorldState",
         "randomizer.hints": "setHints",
+        "randomizer.boss_shuffle": "setBossShuffle",
+        "randomizer.enemy_shuffle": "setEnemyShuffle",
         "randomizer.weapons": "setWeapons",
         "randomizer.item_pool": "setItemPool",
-        "randomizer.item_functionality": "setItemFunctionality"
+        "randomizer.item_functionality": "setItemFunctionality",
+        "randomizer.enemy_damage": "setEnemyDamage",
+        "randomizer.enemy_health": "setEnemyHealth"
       }
     };
   },
@@ -483,15 +521,21 @@ export default {
                 tower: this.towerOpen.value
               },
               mode: this.worldState.value,
+              hints: this.hints.value,
               weapons: this.weapons.value,
               item: {
                 pool: this.itemPool.value,
                 functionality: this.itemFunctionality.value
               },
               tournament: this.spoiler.value !== "on",
-              spoilers: this.spoiler.value === "on",
-              spoilers_ongen: this.spoiler.value === "generate",
+              spoilers: this.spoiler.value,
               lang: document.documentElement.lang,
+              enemizer: {
+                boss_shuffle: this.bossShuffle.value,
+                enemy_shuffle: this.enemyShuffle.value,
+                enemy_damage: this.enemyDamage.value,
+                enemy_health: this.enemyHealth.value
+              },
               name: this.choice.name,
               notes: this.choice.notes,
               l: this.locations,
@@ -659,6 +703,10 @@ export default {
         localforage.removeItem("randomizer.weapons"),
         localforage.removeItem("randomizer.item_pool"),
         localforage.removeItem("randomizer.item_functionality"),
+        localforage.removeItem("randomizer.enemy_health"),
+        localforage.removeItem("randomizer.enemy_damage"),
+        localforage.removeItem("randomizer.enemy_shuffle"),
+        localforage.removeItem("randomizer.boss_shuffle"),
         this.$store.dispatch("nukeStore")
       ];
       Promise.all(promises).then(() => {

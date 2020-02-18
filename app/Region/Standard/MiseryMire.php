@@ -132,10 +132,19 @@ class MiseryMire extends Region
                     || ($locations["Misery Mire Medallion"]->hasItem(Item::get('Ether', $this->world)) && $items->has('Ether'))
                     || ($locations["Misery Mire Medallion"]->hasItem(Item::get('Quake', $this->world)) && $items->has('Quake')))
                     && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword()))
-                && $items->has('MoonPearl') && (
-                    ($this->world->config('itemPlacement') !== 'basic' && $items->has('PegasusBoots'))
+                && ($items->has('MoonPearl')
+                    || ($items->hasABottle()
+                        && (($items->has('BugCatchingNet') && $this->world->config('canBunnyRevive', false)
+                            && (($items->canLiftDarkRocks() && ($items->canFly($this->world) || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
+                                || ($this->world->config('canOWYBA', false) && $items->has('MagicMirror'))
+                                || $this->world->config('canOneFrameClipOW', false)))
+                            || ($this->world->config('canOWYBA', false)
+                                && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+                                    || $this->world->config('canOneFrameClipOW', false)
+                                    || $items->hasBottle(2))))))
+                && (($this->world->config('itemPlacement') !== 'basic' && $items->has('PegasusBoots'))
                     || $items->has('Hookshot'))
-                && $items->canKillMostThings(8)
+                && $items->canKillMostThings($this->world, 8)
                 && $this->world->getRegion('Mire')->canEnter($locations, $items);
         };
 

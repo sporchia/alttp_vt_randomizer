@@ -240,9 +240,14 @@
             </tr><tr class="table-primary">
                 <td>{{ __('options.cards.difficulty.comparison.number_silvers') }}</td>
                 <td>{{ __('options.cards.difficulty.comparison.silver') }}</td>
-                <td>{{ __('options.cards.difficulty.comparison.silver') }}<span v-tooltip="'{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span></td>
-                <td>{{ __('options.cards.difficulty.comparison.silver') }}<span v-tooltip="'{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}'"><img class="icon" src="/i/svg/question-mark.svg" alt="tooltip"></span></td>
+                <td>{{ __('options.cards.difficulty.comparison.normal') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.normal') }}</td>
             </tr><tr class="table-secondary">
+                <td>{{ __('options.cards.difficulty.comparison.number_silvers_swordless') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.silver') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.silver') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.silver') }}</td>
+            </tr><tr class="table-primary">
                 <td>{{ __('options.cards.difficulty.comparison.capacity_upgrade') }}</td>
                 <td>7</td>
                 <td>0</td>
@@ -301,6 +306,11 @@
                 <td>{{ __('options.cards.difficulty.comparison.yes') }}</td>
                 <td>{{ __('options.cards.difficulty.comparison.yes') }}</td>
                 <td>{{ __('options.cards.difficulty.comparison.no') }}</td>
+            </tr><tr class="table-primary">
+                <td>{{ __('options.cards.difficulty.comparison.tooltip.silvers') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.no') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.yes') }}</td>
+                <td>{{ __('options.cards.difficulty.comparison.yes') }}</td>
             </tr></tbody>
             </table>
 

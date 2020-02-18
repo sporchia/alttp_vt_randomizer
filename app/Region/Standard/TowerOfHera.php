@@ -100,7 +100,9 @@ class TowerOfHera extends Region
     public function initalize()
     {
         $main = function ($locations, $items) {
-            return ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
+            return (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
+                || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()))
+                || $this->world->config('canOneFrameClipOW', false)
                 || (($items->has('MagicMirror') || ($items->has('Hookshot') && $items->has('Hammer')))
                     && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items));
         };
@@ -135,10 +137,10 @@ class TowerOfHera extends Region
             return $this->locations["Tower of Hera - Boss"]->canAccess($items);
         };
 
-        $this->locations["Tower of Hera - Boss"]->setRequirements(function ($locations, $items) {
-            return $this->canEnter($locations, $items)
+        $this->locations["Tower of Hera - Boss"]->setRequirements(function ($locations, $items) use ($main, $mire) {
+            return $main($locations, $items)
                 && $this->boss->canBeat($items, $locations)
-                && $items->has('BigKeyP3')
+                && ($items->has('BigKeyP3') || ($mire($locations, $items) && $items->has('BigKeyD6')))
                 && (!$this->world->config('region.wildCompasses', false) || $items->has('CompassP3') || $this->locations["Tower of Hera - Boss"]->hasItem(Item::get('CompassP3', $this->world)))
                 && (!$this->world->config('region.wildMaps', false) || $items->has('MapP3') || $this->locations["Tower of Hera - Boss"]->hasItem(Item::get('MapP3', $this->world)));
         })->setFillRules(function ($item, $locations, $items) {
