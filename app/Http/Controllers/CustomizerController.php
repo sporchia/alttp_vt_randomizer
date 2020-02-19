@@ -157,6 +157,13 @@ class CustomizerController extends Controller
                 | ($custom_data['region.wildBigKeys'] << 1)
                 | $custom_data['region.wildKeys'];
         }
+        if ($custom_data['rom.freeItemText']) {
+            $custom_data['rom.freeItemText'] = 0x10
+                | ($custom_data['region.wildBigKeys'] << 3)
+                | ($custom_data['region.wildMaps'] << 2)
+                | ($custom_data['region.wildCompasses'] << 1)
+                | $custom_data['region.wildKeys'];
+        }
 
         $world = World::factory($request->input('mode', 'standard'), array_merge([
             'difficulty' => 'custom',

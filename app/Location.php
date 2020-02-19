@@ -240,15 +240,22 @@ class Location
 
         $item = $this->item;
 
-        if (
-            $item instanceof Item\Key && $this->region->isRegionItem($item)
-            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('KeyH2', $this->region->getWorld()))
-        ) { // special key-sanity case
+        if ($item instanceof Item\Key && $this->region->isRegionItem($item)
+            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('KeyH2', $this->region->getWorld()))) { // special key-sanity case
             $item = Item::get('Key', $this->region->getWorld());
         }
 
         if ($item instanceof Item\BigKey && $this->region->isRegionItem($item)) {
             $item = Item::get('BigKey', $this->region->getWorld());
+        }
+
+        if ($item instanceof Item\Map && $this->region->isRegionItem($item)
+            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('MapH2', $this->region->getWorld()))) { // special key-sanity case
+            $item = Item::get('Map', $this->region->getWorld());
+        }
+
+        if ($item instanceof Item\Compass && $this->region->isRegionItem($item)) {
+            $item = Item::get('Compass', $this->region->getWorld());
         }
 
         if ($this->region->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
