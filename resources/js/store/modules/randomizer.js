@@ -231,7 +231,7 @@ export default {
         item_functionality,
         enemy_damage,
         enemy_health,
-        spoiler
+        spoilers
       }
     ) {
       state.options.preset = asMulti(presets, "preset");
@@ -261,7 +261,7 @@ export default {
       );
       state.options.enemy_damage = asMulti(enemy_damage, "enemy_damage");
       state.options.enemy_health = asMulti(enemy_health, "enemy_health");
-      state.options.spoiler = asMulti(spoiler, "spoiler");
+      state.options.spoiler = asMulti(spoilers, "spoiler");
       state.preset_map = presets;
     },
     setPreset(state, value) {
