@@ -1,6 +1,5 @@
 <?php
 
-use ALttP\Console\Commands\Distribution;
 use ALttP\Enemizer;
 use ALttP\EntranceRandomizer;
 use ALttP\Jobs\SendPatchToDisk;
@@ -198,13 +197,6 @@ Artisan::command('alttp:decompressgfx {input} {output}', function ($input, $outp
     $this->info(sprintf('Decompressed: `%s` to `%s`', $input, $output));
 });
 
-Artisan::command('alttp:romtospr {rom} {output}', function ($rom, $output) {
-    if (filesize($rom) == 1048576 || filesize($rom) == 2097152) {
-        file_put_contents($output, file_get_contents($rom, false, null, 0x80000, 0x7000)
-            . file_get_contents($rom, false, null, 0xDD308, 120));
-    }
-});
-
 Artisan::command('alttp:sprtopng {sprites}', function ($sprites) {
     if (is_dir($sprites)) {
         $sprites = array_map(function ($filename) use ($sprites) {
@@ -327,7 +319,7 @@ Artisan::command('alttp:sprpub', function () {
         if (preg_match('/\.gitignore$/', $file)) {
             continue;
         }
-        if (Storage::disk('images')->has($file)) {
+        if (Storage::disk('images')->exists($file)) {
             continue;
         }
 
@@ -338,87 +330,5 @@ Artisan::command('alttp:sprpub', function () {
                 'Access-Control-Allow-Origin' => '*',
             ]
         ]);
-    }
-});
-
-// this is a dirty hack to get some stats fast
-// @TODO: make this a proper command, and clean it up
-Artisan::command('alttp:ss {dir} {outdir}', function ($dir, $outdir) {
-    $files = scandir($dir);
-    $out = [
-        'items' => [
-            'spheres' => [],
-            'full' => [],
-            'required' => [],
-        ],
-        'locations' => [
-            'spheres' => [],
-            'full' => [],
-            'required' => [],
-        ],
-    ];
-    foreach ($files as $file) {
-        $data = json_decode(file_get_contents("$dir/$file"), true);
-        if (!$data) {
-            continue;
-        }
-        foreach ($data as $section => $sdata) {
-            if (in_array($section, ['playthrough', 'meta', 'Special', 'Shops'])) {
-                continue;
-            }
-            foreach ($sdata as $location => $item) {
-                if (strpos($item, 'Bottle') === 0) {
-                    $item = 'Bottle';
-                }
-                if (!isset($out['items']['full'][$item][$location])) {
-                    $out['items']['full'][$item][$location] = 0;
-                }
-                if (!isset($out['locations']['full'][$location][$item])) {
-                    $out['locations']['full'][$location][$item] = 0;
-                }
-                ++$out['items']['full'][$item][$location];
-                ++$out['locations']['full'][$location][$item];
-            }
-        }
-        foreach ($data['playthrough'] as $key => $sphere) {
-            if (!is_numeric($key)) {
-                continue;
-            }
-            foreach (array_collapse($sphere) as $location => $item) {
-                if (strpos($item, 'Bottle') === 0) {
-                    $item = 'Bottle';
-                }
-                if (!isset($out['items']['spheres'][$item][$key])) {
-                    $out['items']['spheres'][$item][$key] = 0;
-                }
-                if (!isset($out['locations']['spheres'][$location][$key])) {
-                    $out['locations']['spheres'][$location][$key] = 0;
-                }
-                ++$out['items']['spheres'][$item][$key];
-                ++$out['locations']['spheres'][$location][$key];
-                if (!isset($out['items']['required'][$item][$location])) {
-                    $out['items']['required'][$item][$location] = 0;
-                }
-                if (!isset($out['locations']['required'][$location][$item])) {
-                    $out['locations']['required'][$location][$item] = 0;
-                }
-                ++$out['items']['required'][$item][$location];
-                ++$out['locations']['required'][$location][$item];
-            }
-        }
-    }
-
-    foreach ($out as $key => $section) {
-        foreach ($section as $type => $data) {
-            $mdata = Distribution::_assureColumnsExist($data);
-            ksortr($mdata);
-
-            $csv = fopen(sprintf("%s/%s_%s.csv", $outdir, $key, $type), 'w');
-            fputcsv($csv, array_merge(['item'], array_keys(reset($mdata))));
-            foreach ($mdata as $name => $item) {
-                fputcsv($csv, array_merge([$name], $item));
-            }
-            fclose($csv);
-        }
     }
 });
