@@ -28,7 +28,7 @@ class AddBpsToBuildsTable extends Migration
 
         // add bps data to DB
         $flips = new Flips;
-        $base_rom_location = env('ENEMIZER_BASE', null);
+        $base_rom_location = config('alttp.base_rom');
         Build::each(function ($build) use ($base_rom_location, $flips) {
             $tmp_file = tempnam(sys_get_temp_dir(), "base-{$build->id}-");
 

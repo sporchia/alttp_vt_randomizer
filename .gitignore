@@ -1,5 +1,5 @@
 /node_modules
-/bin
+/bin/enemizer
 /public/hot
 /public/fonts/vendor
 /public/mix-*.json

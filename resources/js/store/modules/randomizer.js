@@ -55,7 +55,7 @@ export default {
             dispatch("load", ["item_functionality", "setItemFunctionality"]),
             dispatch("load", ["enemy_damage", "setEnemyDamage"]),
             dispatch("load", ["enemy_health", "setEnemyHealth"]),
-            dispatch("load", ["spoiler", "setSpoiler"])
+            dispatch("load", ["spoilers", "setSpoiler"])
           ])
         )
         .then(() => {

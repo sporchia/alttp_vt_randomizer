@@ -143,8 +143,8 @@ class RandomizerController extends Controller
             'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
         ]);
 
-        $rom = new Rom(env('ENEMIZER_BASE', null));
-        $rom->applyPatchFile(public_path('js/base2current.json'));
+        $rom = new Rom(config('alttp.base_rom'));
+        $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
         if ($world->config('entrances') !== 'none') {
             $rand = new EntranceRandomizer([$world]);

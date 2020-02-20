@@ -12,6 +12,15 @@ use ALttP\Support\Zspr;
 use ALttP\World;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+
+/**
+ * This file is for one off console commands. Ideally all of these should be
+ * properly coded into real commands if they stick around for a while.
+ *
+ * @todo convert all current commands here to classes
+ */
 
 if (!function_exists('getWeighted')) {
     function getWeighted(string $category): string
@@ -63,8 +72,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'enemizer.enemyHealth' => getWeighted('enemy_health'),
             ]);
 
-            $rom = new Rom(env('ENEMIZER_BASE', null));
-            $rom->applyPatchFile(public_path('js/base2current.json'));
+            $rom = new Rom(config('alttp.base_rom'));
+            $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
             if ($world->config('entrances') !== 'none') {
                 $rand = new EntranceRandomizer([$world]);

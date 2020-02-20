@@ -233,8 +233,8 @@ class CustomizerController extends Controller
             }
         }
 
-        $rom = new Rom(env('ENEMIZER_BASE', null));
-        $rom->applyPatchFile(public_path('js/base2current.json'));
+        $rom = new Rom(config('alttp.base_rom'));
+        $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
         $rand = new Randomizer([$world]);
 
