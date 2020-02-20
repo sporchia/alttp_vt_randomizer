@@ -97,7 +97,8 @@
       "phpunit --colors=always --coverage-clover=./report/coverage.clover --coverage-html=./report"
     ],
     "coverage": [
-      "phpdbg -qrr ./vendor/bin/phpunit --colors=always --coverage-clover=./report/coverage.clover --coverage-html=./report"
+      "Composer\\Config::disableProcessTimeout",
+      "phpdbg -qrr ./vendor/bin/phpunit --colors=always --coverage-clover=./report/php.coverage.clover --coverage-html=./coverage/php"
     ],
     "cloc": [
       "cloc --exclude-dir=node_modules,vendor,report,storage,bin,public --not-match-f=\"(lock|generated)\" ."
