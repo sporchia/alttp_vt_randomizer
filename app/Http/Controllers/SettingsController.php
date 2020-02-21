@@ -197,10 +197,9 @@ class SettingsController extends Controller
      */
     public function rom(): array
     {
-        // @todo this needs fixed!
         return [
             'rom_hash' => Rom::HASH,
-            // 'base_file' => $base instanceof HtmlString ? $base->toHtml() : $base,
+            'base_file' => sprintf('/bps/%s.bps', Rom::HASH),
         ];
     }
 

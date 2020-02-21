@@ -34,6 +34,18 @@ mix.webpackConfig({
       "Access-Control-Allow-Headers":
         "X-Requested-With, content-type, Authorization, X-CSRF-TOKEN"
     }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
   }
 });
 

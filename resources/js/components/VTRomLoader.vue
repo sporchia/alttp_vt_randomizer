@@ -2,17 +2,13 @@
   <div>
     <div v-if="!loading" id="rom-select" class="card border-info">
       <div class="card-header bg-info">
-        <h4 class="card-title">{{ $t('rom.loader.title') }}</h4>
+        <h4 class="card-title">{{ $t("rom.loader.title") }}</h4>
       </div>
       <div class="card-body">
         <p>
           <label class="btn btn-outline-primary btn-file">
-            {{ $t('rom.loader.file_select') }}
-            <input
-              type="file"
-              accept=".sfc, .smc"
-              @change="loadBlob"
-            />
+            {{ $t("rom.loader.file_select") }}
+            <input type="file" accept=".sfc, .smc" @change="loadBlob" />
           </label>
         </p>
         <p v-html="$t('rom.loader.content')" />
@@ -68,7 +64,7 @@ export default {
       new ROM(
         blob,
         rom => {
-          this.patchRomFromJSON(rom)
+          this.patchRomFromBPS(rom)
             .then(rom => {
               if (rom.checkMD5() != this.current_rom_hash) {
                 this.$emit("error", this.$i18n.t("error.bad_file"));
@@ -116,62 +112,55 @@ export default {
         }
       );
     },
-    patchRomFromJSON(rom) {
+    handleXHRError(error) {
+      if (error === "QuotaExceededError") {
+        this.$emit("error", this.$i18n.t("error.quota_exceeded_error"));
+        return;
+      }
+      throw error;
+    },
+    patchRomFromBPS(rom) {
       return new Promise((resolve, reject) => {
         if (typeof this.basePatch !== "undefined") {
           if (!Array.isArray(this.basePatch)) {
+            console.log(this.basePatch);
             return reject("base patch corrupt");
           }
-          return rom.parsePatch({ patch: this.basePatch }).then(rom => {
+          return rom.parseBaseBPS({ patch: this.basePatch }).then(rom => {
             rom.setBasePatch(this.basePatch);
             resolve(rom);
           });
         }
         localforage.getItem("vt.stored_base").then(stored_base_file => {
           if (this.current_base_file == stored_base_file) {
-            localforage.getItem("vt.base_json").then(patch => {
-              if (!Array.isArray(patch)) {
-                return reject("base patch corrupt");
-              }
-              rom.parsePatch({ patch: patch }).then(rom => {
-                rom.setBasePatch(patch);
-                resolve(rom);
+            localforage.getItem("vt.base_bps").then(patch => {
+              rom.parseBaseBPS({ patch }).then(rom => {
+                console.log("rom", rom);
+                //rom.setBasePatch(patch);
+                //resolve(rom);
               });
             });
           } else {
-            axios.get(this.current_base_file).then(response => {
-              localforage
-                .setItem("vt.stored_base", this.current_base_file)
-                .then(() => {
-                  localforage
-                    .setItem("vt.base_json", response.data)
-                    .then(
-                      this.patchRomFromJSON(rom).then(() => {
-                        return resolve(rom);
-                      })
-                    )
-                    .catch(error => {
-                      if (error === "QuotaExceededError") {
-                        this.$emit(
-                          "error",
-                          this.$i18n.t("error.quota_exceeded_error")
-                        );
-                        return;
-                      }
-                      throw error;
-                    });
-                })
-                .catch(error => {
-                  if (error === "QuotaExceededError") {
-                    this.$emit(
-                      "error",
-                      this.$i18n.t("error.quota_exceeded_error")
-                    );
-                    return;
-                  }
-                  throw error;
-                });
-            });
+            axios
+              .get(this.current_base_file, {
+                responseType: "arraybuffer"
+              })
+              .then(response => {
+                console.log(response);
+                localforage
+                  .setItem("vt.stored_base", this.current_base_file)
+                  .then(() => {
+                    localforage
+                      .setItem("vt.base_bps", response.data)
+                      .then(
+                        this.patchRomFromBPS(rom).then(() => {
+                          return resolve(rom);
+                        })
+                      )
+                      .catch(this.handleXHRError);
+                  })
+                  .catch(this.handleXHRError);
+              });
           }
         });
       });

@@ -38,6 +38,7 @@
 		"sass-loader": "^8.0.2",
 		"spark-md5": "^3.0.0",
 		"ts-jest": "^25.2.0",
+		"ts-loader": "^6.2.1",
 		"typescript": "^3.7.5",
 		"v-tooltip": "^2.0.3",
 		"vue": "^2.6.11",
