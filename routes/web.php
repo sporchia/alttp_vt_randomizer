@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
 Route::get('base_rom/settings', 'SettingsController@rom');
 
 Route::get('customizer/settings', 'SettingsController@customizer');

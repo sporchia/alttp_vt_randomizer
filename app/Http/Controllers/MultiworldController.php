@@ -24,7 +24,8 @@ class MultiworldController extends Controller
             //$payload['seed']->save();
             //SendPatchToDisk::dispatch($payload['seed']);
 
-            return $payload;
+            return response($payload, 200)
+                ->header('Content-Type', 'application/octet-stream');
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -77,6 +78,7 @@ class MultiworldController extends Controller
                 'enemizer.enemyShuffle' => 'none',
                 'enemizer.enemyDamage' => 'default',
                 'enemizer.enemyHealth' => 'default',
+                'multiworld' => true,
             ]);
         }
 
@@ -102,10 +104,17 @@ class MultiworldController extends Controller
             'worlds' => $worlds->count(),
         ]);
 
-        //$world->updateSeedRecordPatch($patch);
+        foreach ($spoiler as $worldId => $worldSpoiler) {
+            $rom = new Rom(config('alttp.base_rom'));
+            $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
-        return [
-            'spoiler' => $spoiler,
-        ];
+            $worlds->get($worldId)->writeToRom($rom, false);
+
+            $writeLog = patch_merge_minify($rom->getWriteLog());
+            $spoiler[$worldId]['writeData'] = $writeLog;
+        }
+
+        // the .mw file
+        return gzdeflate(json_encode($spoiler));
     }
 }

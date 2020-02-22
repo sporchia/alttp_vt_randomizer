@@ -15,13 +15,15 @@ class WorldCollection
     /**
      * Create a new world service.
      *
-     * @param array  $worlds             worlds to create hints for
+     * @param array  $worlds  worlds to create hints for
      *
      * @return void
      */
     public function __construct(array $worlds)
     {
-        $this->worlds = $worlds;
+        foreach ($worlds as $world) {
+            $this->worlds[$world->id] = $world;
+        }
     }
 
     /**
@@ -73,6 +75,21 @@ class WorldCollection
     }
 
     /**
+     * Get by world id.
+     * 
+     * @throws \OutOfBoundsException
+     * 
+     * @param int  $worldId  the world id we are looking for
+     * 
+     * @return \ALttP\World
+     */
+    public function get(int $worldId): World
+    {
+        return $this->worlds[$worldId];
+    }
+
+
+    /**
      * Takes an ItemCollection and calls checkWinCondition on each world, until
      * one returns false, or we run out.
      *
@@ -91,7 +108,12 @@ class WorldCollection
         return true;
     }
 
-    public function getSpoiler($meta = [])
+    /**
+     * This gets the spoiler data for all the worlds.
+     * 
+     * @return array
+     */
+    public function getSpoiler($meta = []): array
     {
         $spoiler = [];
         foreach ($this->worlds as $world) {

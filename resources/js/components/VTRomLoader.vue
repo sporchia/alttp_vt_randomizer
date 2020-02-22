@@ -29,7 +29,7 @@ import ROM from "../rom";
 
 export default {
   props: {
-    currentRomHash: { type: String, required: true },
+    currentRomHash: { type: String, default: null },
     overrideBaseBps: { type: String, default: null }
   },
   data() {
@@ -41,7 +41,7 @@ export default {
     };
   },
   created() {
-    if (typeof this.currentRomHash !== "undefined") {
+    if (this.currentRomHash !== null) {
       this.current_rom_hash = this.currentRomHash;
       this.settings_loaded = true;
       return;

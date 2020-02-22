@@ -286,6 +286,7 @@ import Select from "../components/Select.vue";
 import Tab from "../components/VTTab.vue";
 import Tabs from "../components/VTTabs.vue";
 import axios from "axios";
+import SparkMD5 from "spark-md5";
 import { mapState } from "vuex";
 
 export default {
@@ -376,6 +377,12 @@ export default {
           .post(`/api/multiworld`, {
             worlds: { ...payload },
             lang: document.documentElement.lang
+          })
+          .then(response => {
+            return FileSaver.saveAs(
+              new Blob([response.data]),
+              SparkMD5.hash(response.data) + ".mw"
+            );
           })
           .catch(error => {
             if (error.response) {
