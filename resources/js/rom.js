@@ -328,13 +328,13 @@ export default class ROM {
       patcher.setSource(this.originalData);
 
       this.arrayBuffer = patcher.applyPatch();
-      console.log(this.arrayBuffer);
-      //resolve(this);
+
+      resolve(this);
     });
   }
 
-  setBasePatch(patch) {
-    this.base_patch = patch;
+  setBaseBPS(patch) {
+    this.baseBPS = patch;
   }
 
   resizeUint8(baseArrayBuffer, newByteSize) {
@@ -392,10 +392,10 @@ export default class ROM {
       // always reset to 2mb so we can verify MD5 later
       this.resize(2);
 
-      if (!this.base_patch) {
+      if (!this.baseBPS) {
         reject("base patch not set");
       }
-      this.parsePatch({ patch: this.base_patch })
+      this.parseBaseBPS(this.baseBPS)
         .then(rom => {
           resolve(rom);
         })

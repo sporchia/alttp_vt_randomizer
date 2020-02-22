@@ -49,6 +49,12 @@ export default class BPS {
   setPatch(file: ArrayBuffer) {
     this.patchFile = new Uint8Array(file);
 
+    // Check BPS1 at beginning of patch file
+    const checkHeader = new Uint32Array(file.slice(0, 4))[0];
+    if (checkHeader !== 827543618) {
+      throw new Error("Not a valid patch file");
+    }
+
     let seek = 4; // skip BPS1
     const decodedSourceSize = this.decodeBPS(this.patchFile, seek);
     this.sourceSize = decodedSourceSize.number;
