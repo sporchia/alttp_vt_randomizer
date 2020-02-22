@@ -68,24 +68,16 @@ export default {
       new ROM(blob, rom => {
         this.patchRomFromBPS(rom)
           .then(rom => {
-            if (rom.checkMD5() != this.current_rom_hash) {
+            if (rom.checkMD5() !== this.current_rom_hash) {
               this.$emit("error", this.$i18n.t("error.bad_file"));
               this.loading = false;
+
               return;
             } else {
               localforage
                 .setItem("rom", rom.getOriginalArrayBuffer())
-                .catch(error => {
-                  if (error === "QuotaExceededError") {
-                    this.$emit(
-                      "error",
-                      this.$i18n.t("error.quota_exceeded_error")
-                    );
-                    this.loading = false;
-                    return;
-                  }
-                  throw error;
-                });
+                .catch(this.handleXHRError);
+
               this.$emit("update", rom, this.current_rom_hash);
               EventBus.$emit("applyHash", rom);
               this.loading = false;
@@ -93,17 +85,8 @@ export default {
           })
           .catch(error => {
             if (error == "base patch corrupt") {
-              localforage.setItem("vt.stored_base").catch(error => {
-                if (error === "QuotaExceededError") {
-                  this.$emit(
-                    "error",
-                    this.$i18n.t("error.quota_exceeded_error")
-                  );
-                  this.loading = false;
-                  return;
-                }
-                throw error;
-              });
+              localforage.setItem("vt.stored_base").catch(this.handleXHRError);
+
               this.loadBlob(change);
             }
           });
@@ -112,6 +95,8 @@ export default {
     handleXHRError(error) {
       if (error === "QuotaExceededError") {
         this.$emit("error", this.$i18n.t("error.quota_exceeded_error"));
+        this.loading = false;
+
         return;
       }
       throw error;
@@ -120,21 +105,20 @@ export default {
       return new Promise(resolve => {
         if (typeof this.basePatch !== "undefined") {
           if (!Array.isArray(this.basePatch)) {
-            console.log(this.basePatch);
             throw new Error("base patch corrupt");
           }
           return rom.parseBaseBPS(this.basePatch).then(function(rom) {
             rom.setBaseBPS(this.basePatch);
 
-            return rom;
+            resolve(rom);
           });
         }
         localforage.getItem("vt.stored_base").then(stored_base_file => {
           if (this.current_base_file == stored_base_file) {
             localforage.getItem("vt.base_bps").then(patch => {
               rom.parseBaseBPS(patch).then(rom => {
-                console.log("rom", rom);
                 rom.setBaseBPS(patch);
+
                 resolve(rom);
               });
             });
@@ -152,7 +136,7 @@ export default {
                       .setItem("vt.base_bps", response.data)
                       .then(
                         this.patchRomFromBPS(rom).then(() => {
-                          return rom;
+                          resolve(rom);
                         })
                       )
                       .catch(this.handleXHRError);
