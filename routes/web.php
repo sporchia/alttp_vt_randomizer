@@ -102,7 +102,10 @@ Route::prefix('{lang?}')->middleware('locale')->group(function () {
             return view('daily', [
                 'hash' => $seed->hash,
                 'md5' => $build->hash,
-                'patch' => $build->patch,
+                'bpsLocation' => sprintf(
+                    '/bps/%s.bps',
+                    $build->hash
+                ),
                 'daily' => $featured->day,
             ]);
         }
@@ -119,8 +122,11 @@ Route::prefix('{lang?}')->middleware('locale')->group(function () {
             return view('patch_from_hash', [
                 'hash' => $hash,
                 'md5' => $build->hash,
-                'patch' => $build->patch,
                 'seed' => $seed,
+                'bpsLocation' => sprintf(
+                    '/bps/%s.bps',
+                    $build->hash
+                ),
                 'spoiler' => json_decode($seed->spoiler),
             ]);
         }

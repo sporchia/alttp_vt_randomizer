@@ -7,6 +7,8 @@ use ALttP\Rom;
 use ALttP\Support\Flips;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Process\Process;
 
 class UpdateBuildRecord extends Command
 {
@@ -15,7 +17,7 @@ class UpdateBuildRecord extends Command
      *
      * @var string
      */
-    protected $signature = 'alttp:updatebuildrecord {file} {build?}';
+    protected $signature = 'alttp:updatebuildrecord {file?} {build?}';
 
     /**
      * The console command description.
@@ -31,19 +33,56 @@ class UpdateBuildRecord extends Command
      */
     public function handle()
     {
-        if (!is_string($this->argument('file'))) {
+        $romFile = $this->argument('file');
+
+        if (!is_string($romFile) && $romFile !== null) {
             $this->error('argument not string');
 
             return 101;
         }
 
+        if ($romFile === null) {
+            $romFile = tempnam(sys_get_temp_dir(), __CLASS__);
+
+            if ($romFile === false) {
+                throw new \Exception('could not make temp file');
+            }
+
+            // cp vendor/alttp.2mb.sfc build/working.sfc
+            copy(config('alttp.base_rom'), $romFile);
+            // asar --fix-checksum=off LTTP_RND_GeneralBugfixes.asm build/working.sfc
+            $system = php_uname('s') == 'Darwin' ? 'macos' : 'linux';
+
+            $proc = new Process([
+                base_path("bin/asar/$system/asar"),
+                '--fix-checksum=off',
+                base_path('vendor/z3/randomizer/LTTP_RND_GeneralBugfixes.asm'),
+                $romFile,
+            ], base_path("vendor/z3/randomizer"));
+
+            Log::debug($proc->getCommandLine());
+
+            $proc->run(function ($type, $buffer) {
+                Log::debug((Process::ERR === $type) ? "ERR > $buffer" : "OUT > $buffer");
+            });
+
+            if (!$proc->isSuccessful()) {
+                $this->error($proc->getErrorOutput());
+
+                $this->error("Unable to generate");
+
+                return 301;
+            }
+        }
+
+
         $build = Build::firstOrNew([
             'build' => $this->argument('build') ?? date('Y-m-d'),
         ]);
-        $build->hash =  hash_file('md5', $this->argument('file'));
+        $build->hash =  hash_file('md5', $romFile);
         $build->patch = '[]';
 
-        $bps_data = resolve(Flips::class)->createBpsFromFiles(config('alttp.base_rom'), $this->argument('file'), [
+        $bps_data = resolve(Flips::class)->createBpsFromFiles(config('alttp.base_rom'), $romFile, [
             'created' => $build->build,
             'hash' => $build->hash,
         ]);
@@ -54,7 +93,7 @@ class UpdateBuildRecord extends Command
         $build->save();
 
         try {
-            $this->makeJsonPatch($build->hash, $this->argument('file'));
+            $this->makeJsonPatch($build->hash, $romFile);
         } catch (Exception $e) {
             $this->error($e->getMessage());
 

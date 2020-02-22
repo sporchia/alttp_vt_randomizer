@@ -4,7 +4,7 @@
 <ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <div id="root">
-    <Hashloader version="{!! ALttP\Randomizer::LOGIC !!}" id="seed-generate" current_rom_hash="{{ $md5 }}" :base-patch="{{ $patch }}" hash="{{ $hash }}"></Hashloader>
+    <Hashloader current_rom_hash="{{ $md5 }}" override-base-bps="{{ $bpsLocation }}" hash="{{ $hash }}"></Hashloader>
 </div>
 
 <script>

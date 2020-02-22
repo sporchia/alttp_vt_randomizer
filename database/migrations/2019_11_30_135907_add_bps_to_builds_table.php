@@ -42,6 +42,8 @@ class AddBpsToBuildsTable extends Migration
                 'hash' => $build->hash,
             ]);
 
+            file_put_contents(public_path(sprintf('bps/%s.bps', $build->hash)), $bps_data);
+
             $build->bps = $bps_data;
             $build->save();
         });

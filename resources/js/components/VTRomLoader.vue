@@ -28,7 +28,10 @@ import localforage from "localforage";
 import ROM from "../rom";
 
 export default {
-  props: { currentRomHash: String, basePatch: Array },
+  props: {
+    currentRomHash: { type: String, required: true },
+    overrideBaseBps: { type: String, default: null }
+  },
   data() {
     return {
       current_rom_hash: "",
@@ -103,15 +106,19 @@ export default {
     },
     patchRomFromBPS(rom) {
       return new Promise(resolve => {
-        if (typeof this.basePatch !== "undefined") {
-          if (!Array.isArray(this.basePatch)) {
-            throw new Error("base patch corrupt");
-          }
-          return rom.parseBaseBPS(this.basePatch).then(function(rom) {
-            rom.setBaseBPS(this.basePatch);
+        if (this.overrideBaseBps !== null) {
+          axios
+            .get(this.overrideBaseBps, {
+              responseType: "arraybuffer"
+            })
+            .then(response => {
+              rom.parseBaseBPS(response.data).then(rom => {
+                rom.setBaseBPS(response.data);
 
-            resolve(rom);
-          });
+                resolve(rom);
+              });
+            });
+          return;
         }
         localforage.getItem("vt.stored_base").then(stored_base_file => {
           if (this.current_base_file == stored_base_file) {
@@ -128,7 +135,6 @@ export default {
                 responseType: "arraybuffer"
               })
               .then(response => {
-                console.log(response);
                 localforage
                   .setItem("vt.stored_base", this.current_base_file)
                   .then(() => {

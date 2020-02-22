@@ -28,7 +28,8 @@
     "sentry/sentry": "^2.0",
     "sentry/sentry-laravel": "^1.0",
     "z3/enemizer": "6.0.29",
-    "z3/entrancerandomizer": "^0.6.3"
+    "z3/entrancerandomizer": "^0.6.3",
+    "z3/randomizer": "^31.1"
   },
   "require-dev": {
     "facade/ignition": "^1.4",
@@ -41,6 +42,18 @@
     "phpunit/phpunit": "^8.1"
   },
   "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "z3/randomizer",
+        "version": "31.1",
+        "source": {
+          "url": "https://github.com/KatDevsGames/z3randomizer",
+          "type": "git",
+          "reference": "asar"
+        }
+      }
+    },
     {
       "type": "package",
       "package": {
