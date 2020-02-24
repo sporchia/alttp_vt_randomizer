@@ -115,6 +115,6 @@ class MultiworldController extends Controller
         }
 
         // the .mw file
-        return gzdeflate(json_encode($spoiler));
+        return gzencode(json_encode($spoiler));
     }
 }
