@@ -878,10 +878,10 @@ class Randomizer implements RandomizerContract
                 Log::info('Boots revealed');
                 $uncleBootsText = "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName();
                 switch ($boots_location->getName()) {
-                    case "Link's House":
+                    case "Link's House:" . $world->id:
                         $uncleBootsText = "Lonk!\nYou'll never\nfind the boots";
                         break;
-                    case "Maze Race":
+                    case "Maze Race:" . $world->id:
                         $uncleBootsText = "Boots at race?\nSeed confirmed\nimpossible.";
                         break;
                 }
