@@ -871,22 +871,25 @@ class Randomizer implements RandomizerContract
             ];
         });
 
-        $boots_location = $world->getLocationsWithItem(Item::get('PegasusBoots', $world))->first();
+        if ($world instanceof World\Standard) {
+            $boots_location = $world->getLocationsWithItem(Item::get('PegasusBoots', $world))->first();
 
-        if ($world->config('spoil.BootsLocation', false) && $boots_location) {
-            Log::info('Boots revealed');
-            switch ($boots_location->getName()) {
-                case "Link's House":
-                    $world->setText('uncle_leaving_text', "Lonk!\nYou'll never\nfind the boots");
-                    break;
-                case "Maze Race":
-                    $world->setText('uncle_leaving_text', "Boots at race?\nSeed confirmed\nimpossible.");
-                    break;
-                default:
-                    $world->setText('uncle_leaving_text', "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
+            if ($world->config('spoil.BootsLocation', false) && $boots_location) {
+                Log::info('Boots revealed');
+                $uncleBootsText = "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName();
+                switch ($boots_location->getName()) {
+                    case "Link's House":
+                        $uncleBootsText = "Lonk!\nYou'll never\nfind the boots";
+                        break;
+                    case "Maze Race":
+                        $uncleBootsText = "Boots at race?\nSeed confirmed\nimpossible.";
+                        break;
+                }
+                $world->setText('uncle_leaving_text', $uncleBootsText);
+                $world->setText('sign_east_of_links_house', $uncleBootsText);
+            } else {
+                $world->setText('uncle_leaving_text', array_first(fy_shuffle($strings['uncle'])));
             }
-        } else {
-            $world->setText('uncle_leaving_text', array_first(fy_shuffle($strings['uncle'])));
         }
 
         $green_pendant_location = $world->getLocationsWithItem(Item::get('PendantOfCourage', $world))->first();
