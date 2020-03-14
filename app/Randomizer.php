@@ -873,18 +873,24 @@ class Randomizer implements RandomizerContract
 
         $boots_location = $world->getLocationsWithItem(Item::get('PegasusBoots', $world))->first();
 
-        if ($world->config('spoil.BootsLocation', false) && $boots_location) {
+        if ($world->config('spoil.BootsLocation', false)) {
             Log::info('Boots revealed');
-            switch ($boots_location->getName()) {
-                case "Link's House":
-                    $world->setText('uncle_leaving_text', "Lonk!\nYou'll never\nfind the boots");
-                    break;
-                case "Maze Race":
-                    $world->setText('uncle_leaving_text', "Boots at race?\nSeed confirmed\nimpossible.");
-                    break;
-                default:
-                    $world->setText('uncle_leaving_text', "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
-            }
+            if ($world->getPreCollectedItems()->has('PegasusBoots')) {
+                $world->setText('uncle_leaving_text', "I couldn't\nfind my Boots\ntoday. RIP me.");
+            } else if (!$boots_location) {
+                $world->setText('uncle_leaving_text', "Ganon offered\nme the Boots.\nTime to run!");
+            } else {
+                switch ($boots_location->getName()) {
+                    case "Link's House":
+                        $world->setText('uncle_leaving_text', "Lonk!\nYou'll never\nfind the boots");
+                        break;
+                    case "Maze Race":
+                        $world->setText('uncle_leaving_text', "Boots at race?\nSeed confirmed\nimpossible.");
+                        break;
+                    default:
+                        $world->setText('uncle_leaving_text', "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
+                }
+           }
         } else {
             $world->setText('uncle_leaving_text', array_first(fy_shuffle($strings['uncle'])));
         }
