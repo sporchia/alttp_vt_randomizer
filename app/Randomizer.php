@@ -877,18 +877,20 @@ class Randomizer implements RandomizerContract
             if ($world->config('spoil.BootsLocation', false)) {
                 Log::info('Boots revealed');
                 if ($world->getPreCollectedItems()->has('PegasusBoots')) {
-                    $uncleBootsText = "I couldn't\nfind my Boots\ntoday. RIP me.";
+                    $uncleBootsText = "Lonk! Boots\nare on\nyour feet.";
                 } else if (!$boots_location) {
-                    $uncleBootsText = "Ganon offered\nme the Boots.\nTime to run!";
+                    $uncleBootsText = "I couldn't\nfind the Boots\ntoday.\nRIP me.";
                 } else {
                     $uncleBootsText = "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName();
-                
                     switch ($boots_location->getName()) {
                         case "Link's House:" . $world->id:
-                            $uncleBootsText = "Lonk!\nYou'll never\nfind the boots";
+                            $uncleBootsText = "Lonk!\nYou'll never\nfind the boots.";
                             break;
                         case "Maze Race:" . $world->id:
                             $uncleBootsText = "Boots at race?\nSeed confirmed\nimpossible.";
+                            break;
+                        case "Link's Uncle:" . $world->id:
+                            $uncleBootsText = "Ganon offered\nme the Boots.\nTime to run!";
                             break;
                     }
                 }
