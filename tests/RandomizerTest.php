@@ -162,4 +162,184 @@ class RandomizerTest extends TestCase
             $this->world->getLocation("Master Sword Pedestal")->getItem(),
         ]);
     }
+    
+    public function testSimpleBossShuffle()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'simple']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->placeBosses($this->world);
+        
+        $bosses = array_count_values ([ 
+                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+        
+        $this->assertEquals([2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
+        [
+            $bosses['Armos'],
+            $bosses['Lanmola'],
+            $bosses['Moldorm'],
+            $bosses['Helmasaur'],
+            $bosses['Arrghus'],
+            $bosses['Mothula'],
+            $bosses['Blind'],
+            $bosses['Kholdstare'],
+            $bosses['Vitreous'],
+            $bosses['Trinexx']
+        ]);
+    }
+    
+    public function testFullBossShuffle()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'full']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->placeBosses($this->world);
+        
+        $bosses = array_count_values ([ 
+                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+        
+        $this->assertGreaterThanOrEqual(1, $bosses['Armos']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Lanmola']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Moldorm']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Helmasaur']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Arrghus']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Mothula']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Blind']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Kholdstare']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Vitreous']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Trinexx']);
+    }
+    
+    public function testNoBossShuffle()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'none']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->placeBosses($this->world);
+        
+        $this->assertEquals([ 
+            'Armos', 
+            'Lanmola', 
+            'Moldorm', 
+            'Helmasaur', 
+            'Arrghus', 
+            'Mothula', 
+            'Blind', 
+            'Kholdstare', 
+            'Vitreous', 
+            'Trinexx', 
+            'Armos', 
+            'Lanmola', 
+            'Moldorm'
+          ], [ 
+            $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+            $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
+            $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+            $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+            $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+            $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
+            $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
+            $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
+            $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
+            $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+            $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+            $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+            $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()
+          ]);
+    }
+    
+    public function testSwordlessSimpleBossShuffle()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'simple', 'mode.weapons' => 'swordless']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->placeBosses($this->world);
+        
+        $bosses = array_count_values ([ 
+                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+        
+        $this->assertEquals([2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
+        [
+            $bosses['Armos'],
+            $bosses['Lanmola'],
+            $bosses['Moldorm'],
+            $bosses['Helmasaur'],
+            $bosses['Arrghus'],
+            $bosses['Mothula'],
+            $bosses['Blind'],
+            $bosses['Kholdstare'],
+            $bosses['Vitreous'],
+            $bosses['Trinexx']
+        ]);
+    }
+    
+    public function testSwordlessFullBossShuffle()
+    {
+        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'full', 'mode.weapons' => 'swordless']);
+        $this->randomizer = new Randomizer([$this->world]);
+        
+        $this->randomizer->placeBosses($this->world);
+        
+        $bosses = array_count_values ([ 
+                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+        
+        $this->assertGreaterThanOrEqual(1, $bosses['Armos']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Lanmola']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Moldorm']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Helmasaur']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Arrghus']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Mothula']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Blind']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Kholdstare']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Vitreous']);
+        $this->assertGreaterThanOrEqual(1, $bosses['Trinexx']);
+    }
 }
