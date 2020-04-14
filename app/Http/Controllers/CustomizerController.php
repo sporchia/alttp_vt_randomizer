@@ -152,8 +152,8 @@ class CustomizerController extends Controller
         $custom_data['item.require.Lamp'] = $custom_data['item.require.Lamp'] ? 0 : 1;
         if ($custom_data['rom.freeItemMenu']) {
             $custom_data['rom.freeItemMenu'] = 0x00
-                | ($custom_data['region.wildMaps'] << 3)
-                | ($custom_data['region.wildCompasses'] << 2)
+                | ($custom_data['region.wildCompasses'] << 3)
+                | ($custom_data['region.wildMaps'] << 2)
                 | ($custom_data['region.wildBigKeys'] << 1)
                 | $custom_data['region.wildKeys'];
         }
