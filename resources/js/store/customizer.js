@@ -13,6 +13,7 @@ import localforage from "localforage";
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== "production",
   state: {
+    theme: "light",
     settings: {
       droppables: [],
       items: [],

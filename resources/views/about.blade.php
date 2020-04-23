@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<img src="/i/logo-large.png" style="margin:-11% 0 -10% 0;width:100%" />
+<img :src="$store.state.theme === 'dark' ? '/i/logo-large-dm.png' : '/i/logo-large.png'" style="margin:-11% 0 -10% 0;width:100%" />
 <div class="btn-wrapper">
 <div class="btn-cta"><a
     class="btn btn-primary btn-lg"

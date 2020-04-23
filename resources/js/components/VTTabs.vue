@@ -41,7 +41,7 @@ export default {
     navType: { default: "pills" },
     sticky: { default: false },
     defaultTab: { default: null },
-    actions: { default: [] }
+    actions: { default: () => [] }
   },
   data() {
     return {
