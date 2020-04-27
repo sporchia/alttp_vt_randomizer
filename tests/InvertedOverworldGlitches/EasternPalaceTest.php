@@ -92,9 +92,9 @@ class EasternPalaceTest extends TestCase
             ["Eastern Palace - Compass Chest", true, ['DefeatAgahnim']],
 
             ["Eastern Palace - Cannonball Chest", false, []],
-            ["Eastern Palace - Compass Chest", true, ['MoonPearl', 'PegasusBoots']],
-            ["Eastern Palace - Compass Chest", true, ['MagicMirror', 'PegasusBoots']],
-            ["Eastern Palace - Compass Chest", true, ['DefeatAgahnim']],
+            ["Eastern Palace - Cannonball Chest", true, ['MoonPearl', 'PegasusBoots']],
+            ["Eastern Palace - Cannonball Chest", true, ['MagicMirror', 'PegasusBoots']],
+            ["Eastern Palace - Cannonball Chest", true, ['DefeatAgahnim']],
 
             ["Eastern Palace - Big Chest", false, []],
             ["Eastern Palace - Big Chest", false, [], ['BigKeyP1']],
@@ -103,9 +103,9 @@ class EasternPalaceTest extends TestCase
             ["Eastern Palace - Big Chest", true, ['BigKeyP1', 'DefeatAgahnim']],
 
             ["Eastern Palace - Map Chest", false, []],
-            ["Eastern Palace - Compass Chest", true, ['MoonPearl', 'PegasusBoots']],
-            ["Eastern Palace - Compass Chest", true, ['MagicMirror', 'PegasusBoots']],
-            ["Eastern Palace - Compass Chest", true, ['DefeatAgahnim']],
+            ["Eastern Palace - Map Chest", true, ['MoonPearl', 'PegasusBoots']],
+            ["Eastern Palace - Map Chest", true, ['MagicMirror', 'PegasusBoots']],
+            ["Eastern Palace - Map Chest", true, ['DefeatAgahnim']],
 
             ["Eastern Palace - Big Key Chest", false, []],
             ["Eastern Palace - Big Key Chest", false, [], ['Lamp']],
