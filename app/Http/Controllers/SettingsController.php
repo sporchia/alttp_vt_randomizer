@@ -115,6 +115,10 @@ class SettingsController extends Controller
                                 'ProgressiveBowAlternate',
                                 'BombUpgrade50',
                                 'ArrowUpgrade70',
+                                'KeyH1',
+                                'BigKeyH1',
+                                'CompassH1',
+                                'MapH1',
                             ])
                             || $item == Item::get('Triforce', $world);
                     })->map(function ($item) {
