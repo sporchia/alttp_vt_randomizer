@@ -302,7 +302,7 @@ Artisan::command('alttp:sprconf {sprites}', function ($sprites) {
             'name' => $spr->getDisplayText(),
             'author' => $spr->getAuthor(),
         ];
-        $this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 236)/ 235) 0}", str_replace([' ', ')', '(', '.', "'"], '', $spr->getDisplayText()), ++$i));
+        $this->info(sprintf(".icon-custom-%s {background-position: percentage((%d - 285)/ 284) 0}", str_replace([' ', ')', '(', '.', "'"], '', $spr->getDisplayText()), ++$i));
     }
     file_put_contents(config_path('sprites.php'), preg_replace(
         '/  /',
