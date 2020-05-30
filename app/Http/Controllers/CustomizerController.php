@@ -56,7 +56,8 @@ class CustomizerController extends Controller
                             'tournament',
                             'spoilers',
                             'size',
-                            'special'
+                            'special',
+                            'allow_quickswap'
                         ]);
                         break;
                     case "off":
