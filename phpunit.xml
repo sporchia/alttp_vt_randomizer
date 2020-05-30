@@ -19,7 +19,7 @@
         </whitelist>
     </filter>
     <php>
-        <ini name="memory_limit" value="1024M"/>
+        <ini name="memory_limit" value="4096M"/>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>

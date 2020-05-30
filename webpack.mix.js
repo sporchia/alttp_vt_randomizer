@@ -34,16 +34,27 @@ mix.webpackConfig({
       "Access-Control-Allow-Headers":
         "X-Requested-With, content-type, Authorization, X-CSRF-TOKEN"
     }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
   }
 });
 
-mix.js("resources/js/app.js", "public/js").sourceMaps();
-mix.sass("resources/sass/app.scss", "public/css");
+mix
+  .js("resources/js/app.js", "public/js")
+  .sass("resources/sass/app.scss", "public/css")
+  .sourceMaps();
+
 mix.copy("node_modules/open-iconic/svg", "public/i/svg");
 if (mix.inProduction()) {
-  mix.version([
-    "public/css/app.css",
-    "public/js/app.js",
-    "public/js/base2current.json"
-  ]);
+  mix.version(["public/css/app.css", "public/js/app.js"]);
 }

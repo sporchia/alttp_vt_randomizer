@@ -58,7 +58,7 @@ class South extends Region\Standard\DarkWorld\South
                             ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
                                 && ($items->has('Hammer')
                                     || $items->canLiftRocks()))
-                            || ($this->World->config('canBunnyRevive', false)
+                            || ($this->world->config('canBunnyRevive', false)
                                 && $items->canBunnyRevive()))
                         || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                             && $this->world->config('region.cantTakeDamage', false))));
@@ -79,7 +79,7 @@ class South extends Region\Standard\DarkWorld\South
                             ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
                                 && ($items->has('Hammer')
                                     || $items->canLiftRocks()))
-                            || ($this->World->config('canBunnyRevive', false)
+                            || ($this->world->config('canBunnyRevive', false)
                                 && $items->canBunnyRevive()))
                         || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                             && $this->world->config('region.cantTakeDamage', false))));
@@ -99,7 +99,7 @@ class South extends Region\Standard\DarkWorld\South
                         && (
                             ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
                                 && ($items->has('Hammer')
-                                    || $items->canLiftRocks())) || ($this->World->config('canBunnyRevive', false)
+                                    || $items->canLiftRocks())) || ($this->world->config('canBunnyRevive', false)
                                 && $items->canBunnyRevive()))
                         || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                             && $this->world->config('region.cantTakeDamage', false))));

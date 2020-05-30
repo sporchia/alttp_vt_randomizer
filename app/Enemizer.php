@@ -73,7 +73,7 @@ class Enemizer
             '--seed',
             $this->rng_seed,
             '--base',
-            public_path('js/base2current.json'),
+            Rom::getJsonPatchLocation(),
             '--randomizer',
             $this->randomizer_patch,
             '--enemizer',

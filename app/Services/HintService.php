@@ -4,6 +4,7 @@ namespace ALttP\Services;
 
 use ALttP\Item;
 use ALttP\Location;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -32,10 +33,13 @@ class HintService
         $this->advancement_items = $advancement_items;
         $this->joke_hints = cache()->rememberForever('joke_hints', function () {
             return array_filter(explode(
-                    "\n-\n",
-                    (string) preg_replace('/^-\n/', '', 
-                    (string) preg_replace('/\r\n/', "\n", (string) file_get_contents(base_path('strings/hint.txt'))))
-                ));
+                "\n-\n",
+                (string) preg_replace(
+                    '/^-\n/',
+                    '',
+                    (string) preg_replace('/\r\n/', "\n", (string) file_get_contents(base_path('strings/hint.txt')))
+                )
+            ));
         });
     }
 
@@ -174,7 +178,7 @@ class HintService
 
             foreach ($tiles as $tile) {
                 $hint = $hint_locations->pop();
-                $hint_text = ($hint ? $hint->getHint() : null) ?? array_first(fy_shuffle($this->joke_hints));
+                $hint_text = ($hint ? $hint->getHint() : null) ?? Arr::first(fy_shuffle($this->joke_hints));
 
                 Log::debug(str_replace("\n", " ", "$tile: $hint_text"));
                 $world->setText($tile, $hint_text);

@@ -2,7 +2,7 @@
 
 namespace ALttP;
 
-use ALttP\Support\LocationCollection;
+use Illuminate\Support\Arr;
 
 /**
  * A Location is any place an Item can be found in game
@@ -205,13 +205,13 @@ class Location
         $item_name = __('hint.item.' . $item->getTarget()->getRawName());
 
         if (is_array($item_name)) {
-            $item_name = array_first(fy_shuffle($item_name));
+            $item_name = Arr::first(fy_shuffle($item_name));
         }
 
         $location_name = __('hint.location.' . $this->name);
 
         if (is_array($location_name)) {
-            $location_name = array_first(fy_shuffle($location_name));
+            $location_name = Arr::first(fy_shuffle($location_name));
         }
 
         return "$item_name $location_name";

@@ -7,7 +7,7 @@ use ALttP\Item;
 use ALttP\Support\ItemCollection;
 use ALttP\Support\LocationCollection;
 use ALttP\Support\WorldCollection;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class RandomAssumed extends Filler
 {
@@ -20,9 +20,9 @@ class RandomAssumed extends Filler
      * @param array $nice items that would be nice to have placed
      * @param array $extra items that don't matter if they get placed
      *
-     * @return null
+     * @return void
      */
-    public function fill(array $dungeon, array $required, array $nice, array $extra)
+    public function fill(array $dungeon, array $required, array $nice, array $extra): void
     {
         $all_locations = new LocationCollection;
         foreach ($this->worlds as $world) {

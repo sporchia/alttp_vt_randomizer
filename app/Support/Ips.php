@@ -2,6 +2,8 @@
 
 namespace ALttP\Support;
 
+use Illuminate\Support\Arr;
+
 /**
  * Class to convert our byte array data to IPS format and vice versus.
  */
@@ -35,8 +37,8 @@ class Ips
 
         $output = [];
         while (!empty($data)) {
-            $address = array_first(unpack('N', pack('C', 0x00) . substr($data, 0, 3)));
-            $length = (int) array_first(unpack('n', substr($data, 3, 2)));
+            $address = Arr::first(unpack('N', pack('C', 0x00) . substr($data, 0, 3)));
+            $length = (int) Arr::first(unpack('n', substr($data, 3, 2)));
 
             $output[$address] = array_values(unpack('C*', substr($data, 5, $length)));
 

@@ -13,13 +13,45 @@ return [
         'name' => 'Abigail',
         'author' => 'Fish_waffle64',
     ],
+    'adol.1.zspr' => [
+        'name' => 'Adol',
+        'author' => 'Yuushia',
+    ],
+    'aggretsuko.1.zspr' => [
+        'name' => 'Aggretsuko',
+        'author' => 'skovacs1',
+    ],
     'alice.1.zspr' => [
         'name' => 'Alice',
         'author' => 'Artheau',
     ],
+    'angry-video-game-nerd.1.zspr' => [
+        'name' => 'Angry Video Game Nerd',
+        'author' => 'ABOhiccups',
+    ],
+    'arcane.1.zspr' => [
+        'name' => 'Arcane',
+        'author' => 'MM102',
+    ],
+    'ark.1.zspr' => [
+        'name' => 'Ark',
+        'author' => 'wzl',
+    ],
     'arrghus.2.zspr' => [
         'name' => 'Arrghus',
         'author' => 'fatmanspanda',
+    ],
+    'astronaut.1.zspr' => [
+        'name' => 'Astronaut',
+        'author' => 'Malmo',
+    ],
+    'badeline.1.zspr' => [
+        'name' => 'Badeline',
+        'author' => 'Jam',
+    ],
+    'bananas-in-pyjamas.1.zspr' => [
+        'name' => 'Bananas In Pyjamas',
+        'author' => 'codemann8',
     ],
     'bandit.1.zspr' => [
         'name' => 'Bandit',
@@ -85,6 +117,10 @@ return [
         'name' => 'Branch',
         'author' => 'cbass601',
     ],
+    'brian.1.zspr' => [
+        'name' => 'Brian',
+        'author' => 'Herowho',
+    ],
     'broccoli.1.zspr' => [
         'name' => 'Broccoli',
         'author' => 'fatmanspanda',
@@ -121,6 +157,10 @@ return [
         'name' => 'Cadence',
         'author' => 'Fish_waffle64',
     ],
+    'carlsagan42.1.zspr' => [
+        'name' => 'CarlSagan42',
+        'author' => 'FedoraFriday',
+    ],
     'casual-zelda.1.zspr' => [
         'name' => 'Casual Zelda',
         'author' => 'Fish_waffle64',
@@ -140,6 +180,10 @@ return [
     'celes.1.zspr' => [
         'name' => 'Celes',
         'author' => 'Deagans',
+    ],
+    'charizard.1.zspr' => [
+        'name' => 'Charizard',
+        'author' => 'Charmander106',
     ],
     'cheepcheep.1.zspr' => [
         'name' => 'Cheep Cheep',
@@ -165,9 +209,13 @@ return [
         'name' => 'Conker',
         'author' => 'Charmander106/SePH',
     ],
+    'cornelius.1.zspr' => [
+        'name' => 'Cornelius',
+        'author' => 'Lori',
+    ],
     'corona.1.zspr' => [
-        'name' => 'Corona',
-        'author' => 'Herowho',
+        'name' => 'Untitled',
+        'author' => 'Unknown',
     ],
     'cucco.1.zspr' => [
         'name' => 'Cucco',
@@ -180,6 +228,10 @@ return [
     'd_owls.1.zspr' => [
         'name' => 'D.Owls',
         'author' => 'D.Owls',
+    ],
+    'dark-panda.1.zspr' => [
+        'name' => 'Dark Panda',
+        'author' => 'MM102',
     ],
     'darkboy.1.zspr' => [
         'name' => 'Dark Boy',
@@ -208,6 +260,14 @@ return [
     'darkzora.2.zspr' => [
         'name' => 'Dark Zora',
         'author' => 'iBazly',
+    ],
+    'deadpool-mythic.1.zspr' => [
+        'name' => 'Deadpool (Mythic)',
+        'author' => 'Mythic',
+    ],
+    'deadpool.1.zspr' => [
+        'name' => 'Deadpool (SirCzah)',
+        'author' => 'SirCzah',
     ],
     'deadrock.1.zspr' => [
         'name' => 'Deadrock',
@@ -241,6 +301,10 @@ return [
         'name' => 'Ezlo',
         'author' => 'cbass601',
     ],
+    'fierce-deity-link.1.zspr' => [
+        'name' => 'Fierce Deity Link',
+        'author' => 'Jeffreygriggs2',
+    ],
     'finn.1.zspr' => [
         'name' => 'Finn Merten',
         'author' => 'Devan2002',
@@ -269,7 +333,7 @@ return [
         'name' => 'Frog Link',
         'author' => 'Mike Trethewey',
     ],
-    'fujin.1.zspr' => [
+    'fujin.2.zspr' => [
         'name' => 'Fujin',
         'author' => 'FujinAkari',
     ],
@@ -280,6 +344,10 @@ return [
     'gamer.1.zspr' => [
         'name' => 'Gamer',
         'author' => 'Unknown',
+    ],
+    'ganon.1.zspr' => [
+        'name' => 'Mini Ganon',
+        'author' => 'atth3h3art0fwinter',
     ],
     'ganondorf.1.zspr' => [
         'name' => 'Ganondorf',
@@ -297,6 +365,14 @@ return [
         'name' => 'Garo Master',
         'author' => 'Herowho',
     ],
+    'gbc-link.1.zspr' => [
+        'name' => 'GBC Link',
+        'author' => 'skovacs1',
+    ],
+    'geno.1.zspr' => [
+        'name' => 'Geno',
+        'author' => 'FedoraFriday',
+    ],
     'gobli.1.zspr' => [
         'name' => 'Gobli',
         'author' => 'Lantis',
@@ -304,6 +380,10 @@ return [
     'goomba.1.zspr' => [
         'name' => 'Goomba',
         'author' => 'SirCzah',
+    ],
+    'goose.1.zspr' => [
+        'name' => 'Goose',
+        'author' => 'Jam',
     ],
     'grandpoobear.2.zspr' => [
         'name' => 'GrandPOOBear',
@@ -317,6 +397,10 @@ return [
         'name' => 'Hardhat Beetle',
         'author' => 'Artheau',
     ],
+    'hat-kid.1.zspr' => [
+        'name' => 'Hat Kid',
+        'author' => 'skovacs1',
+    ],
     'headlesslink.1.zspr' => [
         'name' => 'Headless Link',
         'author' => 'fatmanspanda',
@@ -325,9 +409,17 @@ return [
         'name' => 'Hello Kitty',
         'author' => 'qeeen',
     ],
+    'hidari.1.zspr' => [
+        'name' => 'Hidari',
+        'author' => 'Hidari',
+    ],
     'hint_tile.1.zspr' => [
         'name' => 'Hint Tile',
         'author' => 'PlaguedOne',
+    ],
+    'hitsuyan.1.zspr' => [
+        'name' => 'Hitsuyan1337',
+        'author' => 'BOtheMighty',
     ],
     'hoarder-bush.1.zspr' => [
         'name' => 'Hoarder (Bush)',
@@ -369,13 +461,25 @@ return [
         'name' => 'Invisible Link',
         'author' => 'Mike Trethewey',
     ],
+    'jack-frost.zspr' => [
+        'name' => 'Jack Frost',
+        'author' => 'xypotion',
+    ],
     'jason_frudnick.1.zspr' => [
         'name' => 'Jason Frudnick',
         'author' => 'Artheau',
     ],
+    'jasp.1.zspr' => [
+        'name' => 'Jasp',
+        'author' => 'Chonixtu',
+    ],
     'jogurt.1.zspr' => [
         'name' => 'Jogurt',
         'author' => 'Nakuri',
+    ],
+    'katsura.1.zspr' => [
+        'name' => 'Katsura',
+        'author' => 'atth3h3art0fwinter',
     ],
     'kecleon.1.zspr' => [
         'name' => 'Kecleon',
@@ -394,7 +498,7 @@ return [
         'author' => 'kickpixel',
     ],
     'king_graham.1.zspr' => [
-        'name' => 'King Graham',
+        'name' => 'King Graham v1.1',
         'author' => 'MisterKerr',
     ],
     'kirby-meta.1.zspr' => [
@@ -409,6 +513,10 @@ return [
         'name' => 'Lakitu',
         'author' => 'SirCzah',
     ],
+    'lapras.1.zspr' => [
+        'name' => 'Lapras',
+        'author' => 'Fish_waffle64',
+    ],
     'lest.1.zspr' => [
         'name' => 'Lest',
         'author' => 'PrideToRuleEarth',
@@ -416,6 +524,10 @@ return [
     'lily.1.zspr' => [
         'name' => 'Lily',
         'author' => 'ScatlinkSean',
+    ],
+    'linja.1.zspr' => [
+        'name' => 'Linja',
+        'author' => 'Razhagal',
     ],
     'linkhatcolor.1.zspr' => [
         'name' => 'Hat Color Link',
@@ -441,6 +553,10 @@ return [
         'name' => 'Luigi',
         'author' => 'Achy',
     ],
+    'madeline.1.zspr' => [
+        'name' => 'Madeline',
+        'author' => 'Jam',
+    ],
     'magus.1.zspr' => [
         'name' => 'Magus',
         'author' => 'PlaguedOne',
@@ -448,6 +564,10 @@ return [
     'maiden.1.zspr' => [
         'name' => 'Maiden',
         'author' => 'Plan',
+    ],
+    'mallow-cat.1.zspr' => [
+        'name' => 'Mallow (Cat)',
+        'author' => 'FedoraFriday',
     ],
     'mangalink.1.zspr' => [
         'name' => 'Manga Link',
@@ -457,7 +577,7 @@ return [
         'name' => 'Maple Queen',
         'author' => 'Zarby89',
     ],
-    'marin.1.zspr' => [
+    'marin.2.zspr' => [
         'name' => 'Marin',
         'author' => 'Nocturnesthesia',
     ],
@@ -497,6 +617,10 @@ return [
         'name' => 'Megaman X',
         'author' => 'PlaguedOne',
     ],
+    'metroid.1.zspr' => [
+        'name' => 'Baby Metroid',
+        'author' => 'Jam',
+    ],
     'mew.1.zspr' => [
         'name' => 'MewLp',
         'author' => 'MewLp',
@@ -525,6 +649,10 @@ return [
         'name' => 'Mog',
         'author' => 'Krelbel',
     ],
+    'momiji.1.zspr' => [
+        'name' => 'Momiji Inubashiri',
+        'author' => 'Ardaceus',
+    ],
     'moosh.1.zspr' => [
         'name' => 'Moosh',
         'author' => 'PlaguedOne',
@@ -532,6 +660,10 @@ return [
     'mouse.1.zspr' => [
         'name' => 'Mouse',
         'author' => 'Malthaez',
+    ],
+    'ms-paintdog.1.zspr' => [
+        'name' => 'Ms. Paint Dog',
+        'author' => 'TehRealSalt',
     ],
     'mushy.1.zspr' => [
         'name' => 'Power Up with Pride Mushroom',
@@ -549,6 +681,10 @@ return [
         'name' => 'Negative Link',
         'author' => 'iBazly',
     ],
+    'neosad.1.zspr' => [
+        'name' => 'Neosad',
+        'author' => 'Andrew Copple',
+    ],
     'neslink.1.zspr' => [
         'name' => ' NES Link',
         'author' => 'MikeTrethewey/Fatmanspanda',
@@ -561,11 +697,15 @@ return [
         'name' => 'Nia',
         'author' => 'Mojonbo',
     ],
+    'niko.1.zspr' => [
+        'name' => 'Niko',
+        'author' => 'ScatlinkSean',
+    ],
     'oldman.2.zspr' => [
         'name' => 'Old Man',
         'author' => 'Zarby89',
     ],
-    'ori.1.zspr' => [
+    'ori.2.zspr' => [
         'name' => 'Ori',
         'author' => 'Phant',
     ],
@@ -625,6 +765,10 @@ return [
         'name' => 'Poppy',
         'author' => 'cbass601',
     ],
+    'porg_knight.1.zspr' => [
+        'name' => 'Porg Knight',
+        'author' => 'PorgCollector',
+    ],
     'powerpuff_girl.1.zspr' => [
         'name' => 'Powerpuff Girl',
         'author' => 'Jenichi',
@@ -637,7 +781,11 @@ return [
         'name' => 'Primm',
         'author' => 'Artheau',
     ],
-    'psyduck.1.zspr' => [
+    'princess_bubblegum.1.zspr' => [
+        'name' => 'Princess Bubblegum',
+        'author' => 'Devan2002',
+    ],
+    'psyduck.2.zspr' => [
         'name' => 'Psyduck',
         'author' => 'skovacs1',
     ],
@@ -649,9 +797,17 @@ return [
         'name' => 'Purple Chest',
         'author' => 'Mike Trethewey',
     ],
+    'pyro.1.zspr' => [
+        'name' => 'Pyro',
+        'author' => 'malmo',
+    ],
     'rainbowlink.1.zspr' => [
         'name' => 'Rainbow Link',
         'author' => 'fatmanspanda',
+    ],
+    'remeer.1.zspr' => [
+        'name' => 'Remeer',
+        'author' => 'Herowho',
     ],
     'rick.1.zspr' => [
         'name' => 'Rick (Redacted)',
@@ -689,6 +845,14 @@ return [
         'name' => 'Sailor Moon',
         'author' => 'Jenichi',
     ],
+    'saitama.1.zspr' => [
+        'name' => 'Saitama',
+        'author' => 'Dabeanjelly/Ath3h3art0fwinter',
+    ],
+    'samus-sm.1.zspr' => [
+        'name' => 'Samus (Super Metroid)',
+        'author' => 'Ben G',
+    ],
     'samus.2.zspr' => [
         'name' => 'Samus',
         'author' => 'Fish_waffle64',
@@ -704,6 +868,10 @@ return [
     'scholar.1.zspr' => [
         'name' => 'Scholar',
         'author' => 'Damon',
+    ],
+    'selan.1.zspr' => [
+        'name' => 'Selan',
+        'author' => 'atth3h3art0fwinter',
     ],
     'sevens1ns.1.zspr' => [
         'name' => 'SevenS1ns',
@@ -761,6 +929,14 @@ return [
         'name' => 'Sora (KH1)',
         'author' => 'ScatlinkSean',
     ],
+    'squall.1.zspr' => [
+        'name' => 'Squall',
+        'author' => 'Maessan',
+    ],
+    'squirrel.1.zspr' => [
+        'name' => 'Squirrel',
+        'author' => 'Fish_waffle64',
+    ],
     'squirtle.1.zspr' => [
         'name' => 'Squirtle',
         'author' => 'Numberplay',
@@ -768,6 +944,10 @@ return [
     'stalfos.1.zspr' => [
         'name' => 'Stalfos',
         'author' => 'Artheau',
+    ],
+    'stan.1.zspr' => [
+        'name' => 'Stan',
+        'author' => 'Kan',
     ],
     'staticlink.1.zspr' => [
         'name' => 'Static Link',
@@ -793,6 +973,10 @@ return [
         'name' => 'Swatchy',
         'author' => 'Mike Trethewey',
     ],
+    'tasbot.1.zspr' => [
+        'name' => 'TASBot',
+        'author' => 'GenoCL',
+    ],
     'teatime.1.zspr' => [
         'name' => 'Tea Time',
         'author' => 'SirCzah',
@@ -802,7 +986,7 @@ return [
         'author' => 'All-in-one Mighty',
     ],
     'tetra.1.zspr' => [
-        'name' => 'Tetra',
+        'name' => 'Tetra Sheet',
         'author' => 'Ferelheart',
     ],
     'tgh.1.zspr' => [
@@ -812,6 +996,10 @@ return [
     'thief.1.zspr' => [
         'name' => 'Thief',
         'author' => 'Devan2002',
+    ],
+    'thomcrow.1.zspr' => [
+        'name' => 'Thomcrow',
+        'author' => 'Thom',
     ],
     'tile.2.zspr' => [
         'name' => 'Tile',
@@ -877,6 +1065,10 @@ return [
         'name' => 'Vegeta',
         'author' => 'Merciter',
     ],
+    'vera.1.zspr' => [
+        'name' => 'Vera',
+        'author' => 'aitchFactor',
+    ],
     'vitreous.1.zspr' => [
         'name' => 'Vitreous',
         'author' => 'Glan',
@@ -928,6 +1120,10 @@ return [
     'zebraunicorn.1.zspr' => [
         'name' => 'Zebra Unicorn',
         'author' => 'Brass Man',
+    ],
+    'zeck.1.zspr' => [
+        'name' => 'Zeckemyro',
+        'author' => 'aitchFactor',
     ],
     'zelda.1.zspr' => [
         'name' => 'Zelda',

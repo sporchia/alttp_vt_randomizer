@@ -2,6 +2,19 @@
 
 @section('content')
 
+<h2>v31.0.5</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>Use BPS for patching.</li>
+        <li>Minor logic fixes.</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
+
 <h2>v31.0.4</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -30,8 +43,6 @@
         <li>Added API endpoint for retrieving the hash and day of the latest daily (/api/daily).</li>
     </ul>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.3</h2>
 <div class="card card-body bg-light mb-3">

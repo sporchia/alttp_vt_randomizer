@@ -28,6 +28,7 @@ return [
         'enemizer',
         'entrance',
         'error',
+        'multiworld',
         'randomizer',
         'rom',
         'item',
