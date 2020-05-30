@@ -15,6 +15,8 @@ class MultiworldController extends Controller
 {
     public function generateSeed(Request $request)
     {
+        return response('not implemented', 404);
+
         if ($request->has('lang')) {
             app()->setLocale($request->input('lang'));
         }
