@@ -118,6 +118,9 @@
     ]
   },
   "config": {
+    "platform": {
+      "php": "7.2.18"
+    },
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "sort-packages": true
