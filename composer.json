@@ -50,7 +50,7 @@
         "source": {
           "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
-          "reference": "dev-master"
+          "reference": "master"
         }
       }
     },
