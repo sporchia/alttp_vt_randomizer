@@ -887,6 +887,7 @@ abstract class World
             'size' => $this->isEnemized() ? 4 : 2,
             'hints' => $this->config('spoil.Hints'),
             'spoilers' => $this->config('spoilers', 'off'),
+            'allow_quickswap' => $this->config('allow_quickswap'),
             'enemizer.boss_shuffle' => $this->config('enemizer.bossShuffle'),
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),
@@ -1140,7 +1141,11 @@ abstract class World
 
         $rom->setGanonsTowerOpen($this->config('crystals.tower') === 0);
 
-        $rom->setGameType('item');
+        if ($this->config('allow_quickswap', false)) {
+            $rom->setGameType('entrance');
+        } else {
+            $rom->setGameType('item');
+        }
 
         $rom->writeCredits();
         $rom->writeText();

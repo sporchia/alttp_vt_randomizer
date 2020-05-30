@@ -131,6 +131,7 @@ class RandomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', false),
             'spoilers' => $spoilers,
+            'allow_quickswap' => $request->input('allow_quickswap', false),
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),

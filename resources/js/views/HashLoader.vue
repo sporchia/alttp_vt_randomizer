@@ -144,7 +144,7 @@ export default {
               this.rom.parsePatch(response.data).then(
                 function() {
                   console.log("loaded from s3 :)");
-                  if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+                  if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;
@@ -166,7 +166,7 @@ export default {
                       ) {
                         // The base rom has been updated.
                       }
-                      if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+                      if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
                         this.rom.allowQuickSwap = true;
                       }
                       this.gameLoaded = true;
@@ -202,7 +202,7 @@ export default {
               ) {
                 // The base rom has been updated.
               }
-              if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+              if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
                 this.rom.allowQuickSwap = true;
               }
               this.gameLoaded = true;
