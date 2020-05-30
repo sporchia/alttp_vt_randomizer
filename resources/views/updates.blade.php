@@ -7,6 +7,7 @@
     <ul>
         <li>Use BPS for patching.</li>
         <li>Minor logic fixes.</li>
+        <li>API support for permitting quickswap in item randomizer race roms.</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
