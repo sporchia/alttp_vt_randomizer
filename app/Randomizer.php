@@ -795,7 +795,7 @@ class Randomizer implements RandomizerContract
             "sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
             "schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
             "sharshalah", "shahabadoo", "sassafrass", "saddlebags", "sandalwood", "shagadelic", "sandcastle",
-            "saltpeters", "shabbiness", "shlrshlrsh", "sassyralph", "sallyacorn",
+            "saltpeters", "shabbiness", "shlrshlrsh", "sassyralph", "sallyacorn", "sahasrahbot"
         ]));
         $world->setCredit('kakariko', "$name's homecoming");
 
