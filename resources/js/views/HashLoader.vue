@@ -20,8 +20,8 @@
       v-if="!romLoaded"
       @update="updateRom"
       @error="onError"
-      :base-patch="basePatch"
       :current-rom-hash="current_rom_hash"
+      :override-base-bps="overrideBaseBps"
     ></rom-loader>
 
     <div id="seed-details" class="card border-success" v-if="gameLoaded && romLoaded">
@@ -78,11 +78,22 @@ export default {
     RomLoader
   },
   props: {
-    basePatch: Array,
-    version: {},
-    current_rom_hash: {},
-    hash: {},
-    noLink: { default: true }
+    current_rom_hash: {
+      type: String,
+      required: true
+    },
+    overrideBaseBps: {
+      type: String,
+      required: true
+    },
+    hash: {
+      type: String,
+      required: true
+    },
+    noLink: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -112,9 +123,7 @@ export default {
     applyHash(e, second_attempt) {
       if (this.rom.checkMD5() != this.current_rom_hash) {
         if (second_attempt) {
-          return new Promise(function(resolve, reject) {
-            reject(this.rom);
-          });
+          return new Promise.reject(this.rom);
         }
         return this.rom
           .reset()
@@ -127,81 +136,40 @@ export default {
             console.log(error);
           });
       }
-      if (window.s3_prefix) {
-        return new Promise((resolve, reject) => {
-          this.gameLoaded = false;
-          // try to load from S3.
-          axios
-            .get(window.s3_prefix + "/" + this.hash + ".json", {
-              transformRequest: [
-                (data, headers) => {
-                  delete headers.common;
-                  return data;
-                }
-              ]
-            })
-            .then(response => {
-              this.rom.parsePatch(response.data).then(
-                function() {
-                  console.log("loaded from s3 :)");
-                  if (this.rom.shuffle || this.rom.spoilers == "mystery") {
-                    this.rom.allowQuickSwap = true;
-                  }
-                  this.gameLoaded = true;
-                  EventBus.$emit("gameLoaded", this.rom);
-                  resolve({ rom: this.rom, patch: response.data.patch });
-                }.bind(this)
-              );
-            })
-            .catch(() => {
-              axios
-                .post(`/hash/` + this.hash)
-                .then(response => {
-                  this.rom.parsePatch(response.data).then(
-                    function() {
-                      if (
-                        response.data.patch.current_rom_hash &&
-                        response.data.patch.current_rom_hash !=
-                          this.current_rom_hash
-                      ) {
-                        // The base rom has been updated.
-                      }
-                      if (this.rom.shuffle || this.rom.spoilers == "mystery") {
-                        this.rom.allowQuickSwap = true;
-                      }
-                      this.gameLoaded = true;
-                      EventBus.$emit("gameLoaded", this.rom);
-                      resolve({ rom: this.rom, patch: response.data.patch });
-                    }.bind(this)
-                  );
-                })
-                .catch(error => {
-                  if (error.response) {
-                    switch (error.response.status) {
-                      case 429:
-                        this.error = this.$i18n.t("error.429");
-                        break;
-                      default:
-                        this.error = this.$i18n.t("error.failed_generation");
-                    }
-                  }
-                  reject(error);
-                });
-            });
+      this.gameLoaded = false;
+      return this.applyPatch();
+    },
+    applyPatchFromServer() {
+      return new Promise(resolve => {
+        axios.post(`/hash/` + this.hash).then(response => {
+          this.rom.parsePatch(response.data).then(() => {
+            if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+              this.rom.allowQuickSwap = true;
+            }
+            this.gameLoaded = true;
+            EventBus.$emit("gameLoaded", this.rom);
+            resolve({ rom: this.rom, patch: response.data.patch });
+          });
         });
+      });
+    },
+    applyPatch() {
+      if (!window.s3_prefix) {
+        return this.applyPatchFromServer();
       }
-      return new Promise((resolve, reject) => {
-        this.gameLoaded = false;
+      return new Promise(resolve => {
         axios
-          .post(`/hash/` + this.hash)
+          .get(window.s3_prefix + "/" + this.hash + ".json", {
+            transformRequest: [
+              (data, headers) => {
+                delete headers.common;
+                return data;
+              }
+            ]
+          })
           .then(response => {
             this.rom.parsePatch(response.data).then(() => {
-              if (
-                response.data.patch.current_rom_hash &&
-                response.data.patch.current_rom_hash != this.current_rom_hash
-              ) {
-                // The base rom has been updated.
-              }
+              console.log("loaded from s3 :)");
               if (this.rom.shuffle || this.rom.spoilers == "mystery") {
                 this.rom.allowQuickSwap = true;
               }
@@ -210,20 +178,7 @@ export default {
               resolve({ rom: this.rom, patch: response.data.patch });
             });
           })
-          .catch(error => {
-            if (error.response) {
-              switch (error.response.status) {
-                case 429:
-                  this.error =
-                    "While we apprecate your want to generate a lot of games, Other people would like" +
-                    " to as well. Please come back later if you would like to generate more.";
-                  break;
-                default:
-                  this.error = "Failed Creating Seed :(";
-              }
-            }
-            reject(error);
-          });
+          .catch(this.applyPatchFromServer);
       });
     },
     saveRom() {

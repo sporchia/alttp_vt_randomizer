@@ -11,6 +11,8 @@ use ALttP\Rom;
 use ALttP\Support\WorldCollection;
 use ALttP\World;
 use Exception;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 
 class RandomizerController extends Controller
 {
@@ -25,7 +27,7 @@ class RandomizerController extends Controller
             $payload['seed']->save();
             SendPatchToDisk::dispatch($payload['seed']);
 
-            $return_payload = array_except($payload, [
+            $return_payload = Arr::except($payload, [
                 'seed',
                 'spoiler.meta.crystals_ganon',
                 'spoiler.meta.crystals_tower',
@@ -35,13 +37,13 @@ class RandomizerController extends Controller
                 switch ($payload['spoiler']['meta']['spoilers']) {
                     case "on":
                     case "generate":
-                        $return_payload = array_except($return_payload, [
+                        $return_payload = Arr::except($return_payload, [
                             'spoiler.playthrough',
                         ]);
                         break;
                     case "mystery":
-                        $return_payload['spoiler'] = array_only($return_payload['spoiler'], ['meta']);
-                        $return_payload['spoiler']['meta'] = array_only($return_payload['spoiler']['meta'], [
+                        $return_payload['spoiler'] = Arr::only($return_payload['spoiler'], ['meta']);
+                        $return_payload['spoiler']['meta'] = Arr::only($return_payload['spoiler']['meta'], [
                             'name',
                             'notes',
                             'logic',
@@ -54,23 +56,23 @@ class RandomizerController extends Controller
                         break;
                     case "off":
                     default:
-                        $return_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
+                        $return_payload['spoiler'] = Arr::except(Arr::only($return_payload['spoiler'], [
                             'meta',
-                        ]), ['meta.seed']);    
+                        ]), ['meta.seed']);
                 }
             }
 
             $cached_payload = $return_payload;
             if ($payload['spoiler']['meta']['spoilers'] === 'generate') {
                 // ensure that the cache doesn't have the spoiler, but the original return_payload still does
-                $cached_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
+                $cached_payload['spoiler'] = Arr::except(Arr::only($return_payload['spoiler'], [
                     'meta',
                 ]), ['meta.seed']);
             }
-            $save_data = json_encode(array_except($cached_payload, [
+            $save_data = json_encode(Arr::except($cached_payload, [
                 'current_rom_hash',
             ]));
-            cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
+            Cache::put('hash.' . $payload['hash'], $save_data, now()->addDays(7));
 
             return json_encode($return_payload);
         } catch (Exception $exception) {
@@ -85,7 +87,7 @@ class RandomizerController extends Controller
     public function testGenerateSeed(CreateRandomizedGame $request)
     {
         try {
-            return json_encode(array_except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
+            return json_encode(Arr::except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -141,8 +143,8 @@ class RandomizerController extends Controller
             'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
         ]);
 
-        $rom = new Rom(env('ENEMIZER_BASE', null));
-        $rom->applyPatchFile(public_path('js/base2current.json'));
+        $rom = new Rom(config('alttp.base_rom'));
+        $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
         if ($world->config('entrances') !== 'none') {
             $rand = new EntranceRandomizer([$world]);

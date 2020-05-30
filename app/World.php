@@ -129,7 +129,7 @@ abstract class World
         }
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
-        
+
         $this->config['item.overflow.count.Bow'] = 2;
 
         switch ($this->config('item.pool')) {
@@ -969,15 +969,17 @@ abstract class World
             $rom->setCredit($key, $value);
         }
 
-        foreach ($this->getRegions() as $name => $region) {
-            $region->getLocations()->getNonEmptyLocations()->each(function ($location) use ($rom) {
-                $location->writeItem($rom);
-            });
-            // Clear out remaining locations if the pool was smaller than number of locations
-            $region->getLocations()->getEmptyLocations()->each(function ($location) use ($rom) {
-                $location->setItem(Item::get('Nothing', $this));
-                $location->writeItem($rom);
-            });
+        if (!$this->config('multiworld', false)) {
+            foreach ($this->getRegions() as $region) {
+                $region->getLocations()->getNonEmptyLocations()->each(function ($location) use ($rom) {
+                    $location->writeItem($rom);
+                });
+                // Clear out remaining locations if the pool was smaller than number of locations
+                $region->getLocations()->getEmptyLocations()->each(function ($location) use ($rom) {
+                    $location->setItem(Item::get('Nothing', $this));
+                    $location->writeItem($rom);
+                });
+            }
         }
 
         $rom->setGoalRequiredCount($this->config('item.Goal.Required', 0) ?: 0);
@@ -1111,7 +1113,6 @@ abstract class World
         switch ($this->config('rom.logicMode', $this->config['logic'])) {
             case 'MajorGlitches':
             case 'None':
-                $type_flag = 'G';
                 $rom->setSwampWaterLevel(false);
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
                 $rom->setSaveAndQuitFromBossRoom(true);
@@ -1121,7 +1122,6 @@ abstract class World
                 $rom->setPODEGfix(false);
                 break;
             case 'OverworldGlitches':
-                $type_flag = 'S';
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
                 $rom->setSaveAndQuitFromBossRoom(true);
                 $rom->setWorldOnAgahnimDeath(true);
@@ -1131,7 +1131,6 @@ abstract class World
                 break;
             case 'NoGlitches':
             default:
-                $type_flag = 'C';
                 $rom->setSaveAndQuitFromBossRoom(true);
                 $rom->setWorldOnAgahnimDeath(true);
                 $rom->setPODEGfix(true);

@@ -74,9 +74,9 @@ class SwampPalace extends Region
         $mire = function ($locations, $items) {
             return $this->world->config('canOneFrameClipUW', false)
                 && (($locations->itemInLocations(Item::get('BigKeyD6', $this->world), [
-                        "Misery Mire - Compass Chest",
-                        "Misery Mire - Big Key Chest",
-                    ])
+                    "Misery Mire - Compass Chest",
+                    "Misery Mire - Big Key Chest",
+                ])
                     && $items->has('KeyD6', 2))
                     || $items->has('KeyD6', 3))
                 && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
@@ -87,7 +87,7 @@ class SwampPalace extends Region
                 && $this->world->getRegion('Tower of Hera')->canEnter($locations, $items)
                 && $items->has('BigKeyP3');
         };
-        
+
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) use ($mire) {
             return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world)
                 || $mire($locations, $items);
@@ -110,7 +110,7 @@ class SwampPalace extends Region
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
-        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
+        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($mire) {
             return $items->canBombThings()
                 && ($items->has('KeyD2') || $mire($locations, $items));
         });
@@ -147,7 +147,7 @@ class SwampPalace extends Region
                 && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
-        
+
         $this->can_complete = function ($locations, $items) {
             return $this->locations["Swamp Palace - Boss"]->canAccess($items);
         };
@@ -155,7 +155,7 @@ class SwampPalace extends Region
         $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return $items->has('Hookshot')
                 && ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items))
                 && $this->boss->canBeat($items, $locations)
                 && (!$this->world->config('region.wildCompasses', false) || $items->has('CompassD2') || $this->locations["Swamp Palace - Boss"]->hasItem(Item::get('CompassD2', $this->world)))
@@ -182,7 +182,7 @@ class SwampPalace extends Region
                 && $items->has('Flippers')
                 && $this->world->getRegion('South Dark World')->canEnter($locations, $items)
                 && (($items->has('MoonPearl')
-                        && $items->has('MagicMirror'))
+                    && $items->has('MagicMirror'))
                     || ($this->world->config('canOneFrameClipUW', false)
                         && ($items->has('BigKeyP3') || $items->has('BigKeyD6')) && $mire($locations, $items)
                         && $locations["Old Man"]->canAccess($items)

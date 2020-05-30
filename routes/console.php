@@ -1,6 +1,5 @@
 <?php
 
-use ALttP\Console\Commands\Distribution;
 use ALttP\Enemizer;
 use ALttP\EntranceRandomizer;
 use ALttP\Jobs\SendPatchToDisk;
@@ -11,6 +10,16 @@ use ALttP\Support\WorldCollection;
 use ALttP\Support\Zspr;
 use ALttP\World;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+
+/**
+ * This file is for one off console commands. Ideally all of these should be
+ * properly coded into real commands if they stick around for a while.
+ *
+ * @todo convert all current commands here to classes
+ */
 
 if (!function_exists('getWeighted')) {
     function getWeighted(string $category): string
@@ -62,8 +71,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'enemizer.enemyHealth' => getWeighted('enemy_health'),
             ]);
 
-            $rom = new Rom(env('ENEMIZER_BASE', null));
-            $rom->applyPatchFile(public_path('js/base2current.json'));
+            $rom = new Rom(config('alttp.base_rom'));
+            $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
             if ($world->config('entrances') !== 'none') {
                 $rand = new EntranceRandomizer([$world]);
@@ -94,13 +103,13 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
             switch ($spoiler['meta']['spoilers']) {
                 case "on":
                 case "generate":
-                    $spoiler = array_except($spoiler, [
+                    $spoiler = Arr::except($spoiler, [
                         'spoiler.playthrough',
                     ]);
                     break;
                 case "mystery":
-                    $spoiler = array_only($spoiler, ['meta']);
-                    $spoiler['meta'] = array_only($spoiler['meta'], [
+                    $spoiler = Arr::only($spoiler, ['meta']);
+                    $spoiler['meta'] = Arr::only($spoiler['meta'], [
                         'name',
                         'notes',
                         'logic',
@@ -112,9 +121,9 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                     break;
                 case "off":
                 default:
-                    $spoiler = array_except(array_only($spoiler, [
+                    $spoiler = Arr::except(Arr::only($spoiler, [
                         'meta',
-                    ]), ['meta.seed']);    
+                    ]), ['meta.seed']);
             }
 
             if ($world->isEnemized()) {
@@ -135,8 +144,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
             ]);
             $feature->save();
 
-            $spoiler = array_except(
-                array_only($spoiler, ['meta']),
+            $spoiler = Arr::except(
+                Arr::only($spoiler, ['meta']),
                 [
                     'meta.seed',
                     'meta.crystals_ganon',
@@ -186,13 +195,6 @@ Artisan::command('alttp:decompressgfx {input} {output}', function ($input, $outp
     file_put_contents($output, pack('C*', ...$lz2->decompress(array_values(unpack("C*", file_get_contents($input))))));
 
     $this->info(sprintf('Decompressed: `%s` to `%s`', $input, $output));
-});
-
-Artisan::command('alttp:romtospr {rom} {output}', function ($rom, $output) {
-    if (filesize($rom) == 1048576 || filesize($rom) == 2097152) {
-        file_put_contents($output, file_get_contents($rom, false, null, 0x80000, 0x7000)
-            . file_get_contents($rom, false, null, 0xDD308, 120));
-    }
 });
 
 Artisan::command('alttp:sprtopng {sprites}', function ($sprites) {
@@ -317,7 +319,7 @@ Artisan::command('alttp:sprpub', function () {
         if (preg_match('/\.gitignore$/', $file)) {
             continue;
         }
-        if (Storage::disk('images')->has($file)) {
+        if (Storage::disk('images')->exists($file)) {
             continue;
         }
 
@@ -328,87 +330,5 @@ Artisan::command('alttp:sprpub', function () {
                 'Access-Control-Allow-Origin' => '*',
             ]
         ]);
-    }
-});
-
-// this is a dirty hack to get some stats fast
-// @TODO: make this a proper command, and clean it up
-Artisan::command('alttp:ss {dir} {outdir}', function ($dir, $outdir) {
-    $files = scandir($dir);
-    $out = [
-        'items' => [
-            'spheres' => [],
-            'full' => [],
-            'required' => [],
-        ],
-        'locations' => [
-            'spheres' => [],
-            'full' => [],
-            'required' => [],
-        ],
-    ];
-    foreach ($files as $file) {
-        $data = json_decode(file_get_contents("$dir/$file"), true);
-        if (!$data) {
-            continue;
-        }
-        foreach ($data as $section => $sdata) {
-            if (in_array($section, ['playthrough', 'meta', 'Special', 'Shops'])) {
-                continue;
-            }
-            foreach ($sdata as $location => $item) {
-                if (strpos($item, 'Bottle') === 0) {
-                    $item = 'Bottle';
-                }
-                if (!isset($out['items']['full'][$item][$location])) {
-                    $out['items']['full'][$item][$location] = 0;
-                }
-                if (!isset($out['locations']['full'][$location][$item])) {
-                    $out['locations']['full'][$location][$item] = 0;
-                }
-                ++$out['items']['full'][$item][$location];
-                ++$out['locations']['full'][$location][$item];
-            }
-        }
-        foreach ($data['playthrough'] as $key => $sphere) {
-            if (!is_numeric($key)) {
-                continue;
-            }
-            foreach (array_collapse($sphere) as $location => $item) {
-                if (strpos($item, 'Bottle') === 0) {
-                    $item = 'Bottle';
-                }
-                if (!isset($out['items']['spheres'][$item][$key])) {
-                    $out['items']['spheres'][$item][$key] = 0;
-                }
-                if (!isset($out['locations']['spheres'][$location][$key])) {
-                    $out['locations']['spheres'][$location][$key] = 0;
-                }
-                ++$out['items']['spheres'][$item][$key];
-                ++$out['locations']['spheres'][$location][$key];
-                if (!isset($out['items']['required'][$item][$location])) {
-                    $out['items']['required'][$item][$location] = 0;
-                }
-                if (!isset($out['locations']['required'][$location][$item])) {
-                    $out['locations']['required'][$location][$item] = 0;
-                }
-                ++$out['items']['required'][$item][$location];
-                ++$out['locations']['required'][$location][$item];
-            }
-        }
-    }
-
-    foreach ($out as $key => $section) {
-        foreach ($section as $type => $data) {
-            $mdata = Distribution::_assureColumnsExist($data);
-            ksortr($mdata);
-
-            $csv = fopen(sprintf("%s/%s_%s.csv", $outdir, $key, $type), 'w');
-            fputcsv($csv, array_merge(['item'], array_keys(reset($mdata))));
-            foreach ($mdata as $name => $item) {
-                fputcsv($csv, array_merge([$name], $item));
-            }
-            fclose($csv);
-        }
     }
 });

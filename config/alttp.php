@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'base_rom' => env('ENEMIZER_BASE', null),
     'custom' => [
         'prize' => [
             'crossWorld' => false,

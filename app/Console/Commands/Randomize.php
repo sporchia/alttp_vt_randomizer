@@ -226,8 +226,8 @@ class Randomize extends Command
             return $this->reset_patch;
         }
 
-        if (is_readable(public_path('js/base2current.json'))) {
-            $file_contents = file_get_contents(public_path('js/base2current.json'));
+        if (is_readable(Rom::getJsonPatchLocation())) {
+            $file_contents = file_get_contents(Rom::getJsonPatchLocation());
 
             if ($file_contents === false) {
                 throw new \Exception('base patch not readable');

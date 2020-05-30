@@ -2,7 +2,7 @@
   <div>
     <div class="tabs" :class="{'nav-tabs-sticky': sticky}">
       <ul class="nav" :class="'nav-' + navType">
-        <li class="nav-item" v-for="tab in tabs">
+        <li class="nav-item" v-for="tab in tabs" :key="tab.href">
           <a
             class="nav-link"
             :class="{ 'active': tab.isActive }"
@@ -14,6 +14,15 @@
               v-if="tab.count"
               class="badge badge-pill badge-secondary"
             >{{ tab.count }}</span>
+          </a>
+        </li>
+        <li class="nav-item" v-for="action in actions" :key="action.name">
+          <a class="nav-link" @click="$emit('click', action)">
+            {{ action.name }}
+            <span
+              v-if="action.count"
+              class="badge badge-pill badge-secondary"
+            >{{ action.count }}</span>
           </a>
         </li>
       </ul>
@@ -31,7 +40,8 @@ export default {
   props: {
     navType: { default: "pills" },
     sticky: { default: false },
-    defaultTab: { default: null }
+    defaultTab: { default: null },
+    actions: { default: () => [] }
   },
   data() {
     return {
@@ -76,5 +86,8 @@ export default {
 <style scoped>
 .nav-tabs-sticky {
   background-color: #eeeeee;
+}
+.nav-link {
+  cursor: pointer;
 }
 </style>

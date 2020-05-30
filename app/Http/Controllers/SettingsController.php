@@ -4,25 +4,34 @@ namespace ALttP\Http\Controllers;
 
 use ALttP\Item;
 use ALttP\Location;
-use ALttP\Randomizer;
 use ALttP\Rom;
 use ALttP\Sprite;
-use ALttP\Support\ItemCollection;
 use ALttP\World;
-use Cache;
-use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\HtmlString;
 
+/**
+ * Controller to handle all requests for front end configs. Basically this
+ * informs the front end what the back end expects.
+ */
 class SettingsController extends Controller
 {
+    /** @var array */
     protected $items = [];
+    /** @var array */
     protected $drops = [];
 
+    /**
+     * Create a new controller class.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->drops = config('item.drop');
         $this->items = [];
-        foreach (array_only(config('item'), ['advancement', 'nice', 'junk', 'dungeon']) as $group) {
+        foreach (Arr::only(config('item'), ['advancement', 'nice', 'junk', 'dungeon']) as $group) {
             foreach ($group as $item => $value) {
                 if (!($this->items[$item] ?? false)) {
                     $this->items[$item] = 0;
@@ -32,12 +41,24 @@ class SettingsController extends Controller
         }
     }
 
-    public function item(Request $request)
+    /**
+     * Get item randomizer settings.
+     *
+     * @return array
+     */
+    public function item(): array
     {
         return config('alttp.randomizer.item');
     }
 
-    public function customizer(Request $request)
+    /**
+     * Get all customizer options (cached).
+     *
+     * @todo refactor this into smaller functions
+     *
+     * @return array
+     */
+    public function customizer(): array
     {
         return Cache::rememberForever('customizer_settings', function () {
             $world = World::factory();
@@ -169,25 +190,32 @@ class SettingsController extends Controller
         });
     }
 
-    public function rom(Request $request)
+    /**
+     * Get information on the current rom patch.
+     *
+     * @return array
+     */
+    public function rom(): array
     {
-        $base = mix('js/base2current.json');
         return [
             'rom_hash' => Rom::HASH,
-            'base_file' => $base instanceof HtmlString ? $base->toHtml() : $base,
+            'base_file' => sprintf('/bps/%s.bps', Rom::HASH),
         ];
     }
 
-    public function sprites(Request $request)
+    /**
+     * Get all current Link sprite options.
+     *
+     * @return array
+     */
+    public function sprites(): array
     {
-        $sprites =  [];
-        foreach (config('sprites') as $file => $info) {
-            $sprites[] = [
+        return collect(config('sprites'))->map(function ($info, $file) {
+            return [
                 'name' => $info['name'],
                 'author' => $info['author'],
                 'file' => 'https://alttpr.s3.us-east-2.amazonaws.com/' . $file,
             ];
-        }
-        return $sprites;
+        })->values()->all();
     }
 }
