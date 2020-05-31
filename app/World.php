@@ -953,6 +953,16 @@ abstract class World
                 }
             }
 
+            // Workaround for a json-ordering issue in Python 3.5 and earlier.
+            // Remove this once Python is upgraded to 3.6 or later.
+            if ($this->config('mode.weapons') === 'swordless') {
+                $rom->setLimitProgressiveBow(
+                    2,
+                    Item::get($this->config('item.overflow.replacement.Bow', 'TwentyRupees2'), $this)->getBytes()[0]
+                );
+            }
+            // End of workaround
+
             if ($save) {
                 $this->saveSeedRecord();
 
