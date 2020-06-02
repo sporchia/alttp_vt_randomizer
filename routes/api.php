@@ -42,3 +42,22 @@ Route::get('daily', static function () {
     }
     abort(404);
 });
+
+Route::get('h/{hash}', static function ($hash) {
+    $seed = ALttP\Seed::where('hash', $hash)->first();
+    if ($seed) {
+        $build = ALttP\Build::where('build', $seed->build)->first();
+        if (!$build) {
+            abort(404);
+        }
+        return [
+            'hash' => $hash,
+            'md5' => $build->hash,
+            'bpsLocation' => sprintf(
+                '/bps/%s.bps',
+                $build->hash
+            ),
+        ];
+    }
+    abort(404);
+});
