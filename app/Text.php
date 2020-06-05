@@ -449,7 +449,7 @@ class Text
 
             'desert_entry_translated' => $converter->convertDialogCompressed("Kneel before this stone, and magic will move around you."),
 
-            'telepathic_tile_under_ganon' => $converter->convertDialogCompressed("Secondary tournament winners\n{HARP}\n  ~~~2017~~~\nA: Zaen"),
+            'telepathic_tile_under_ganon' => $converter->convertDialogCompressed("Secondary tournament winners\n{HARP}\n  ~~~2019~~~\ndragonstrike\n  ~~~2018~~~\Chisame\n  ~~~2017~~~\nA: Zaen"),
 
             'telepathic_tile_palace_of_darkness' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a funny looking Enemizer."),
             // 0xC0
@@ -467,7 +467,7 @@ class Text
 
             'telepathic_tile_tower_of_hera_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a bad place, with a guy who will make you fall…\n\n\na lot."),
 
-            'houlihan_room' => $converter->convertDialogCompressed("Randomizer tournament winners\n{HARP}\n  ~~~2018~~~\nS: Andy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
+            'houlihan_room' => $converter->convertDialogCompressed("Randomizer tournament winners\n{HARP}\n  ~~~2019~~~\nJet082\n  ~~~2018~~~\nS: Andy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
 
             'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
 
