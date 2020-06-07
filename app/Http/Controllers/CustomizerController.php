@@ -56,7 +56,8 @@ class CustomizerController extends Controller
                             'tournament',
                             'spoilers',
                             'size',
-                            'special'
+                            'special',
+                            'allow_quickswap'
                         ]);
                         break;
                     case "off":
@@ -172,6 +173,7 @@ class CustomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', true),
             'spoilers' => $spoilers,
+            'allow_quickswap' => $request->input('allow_quickswap', false),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
             'item.functionality' => $request->input('item.functionality', 'normal'),

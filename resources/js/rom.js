@@ -303,6 +303,7 @@ export default class ROM {
         this.notes = data.spoiler.meta.notes;
         this.tournament = data.spoiler.meta.tournament;
         this.spoilers = data.spoiler.meta.spoilers;
+        this.allow_quickswap = data.spoiler.meta.allow_quickswap;
         this.special = data.spoiler.meta.special;
       }
 

@@ -143,7 +143,7 @@ export default {
       return new Promise(resolve => {
         axios.post(`/hash/` + this.hash).then(response => {
           this.rom.parsePatch(response.data).then(() => {
-            if (this.rom.shuffle || this.rom.spoilers == "mystery") {
+            if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
               this.rom.allowQuickSwap = true;
             }
             this.gameLoaded = true;

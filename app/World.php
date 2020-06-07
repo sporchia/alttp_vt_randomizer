@@ -887,6 +887,7 @@ abstract class World
             'size' => $this->isEnemized() ? 4 : 2,
             'hints' => $this->config('spoil.Hints'),
             'spoilers' => $this->config('spoilers', 'off'),
+            'allow_quickswap' => $this->config('allow_quickswap'),
             'enemizer.boss_shuffle' => $this->config('enemizer.bossShuffle'),
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),
@@ -951,6 +952,16 @@ abstract class World
                     $rom->write($address, pack('C*', ...$bytes));
                 }
             }
+
+            // Workaround for a json-ordering issue in Python 3.5 and earlier.
+            // Remove this once Python is upgraded to 3.6 or later.
+            if ($this->config('mode.weapons') === 'swordless') {
+                $rom->setLimitProgressiveBow(
+                    2,
+                    Item::get($this->config('item.overflow.replacement.Bow', 'TwentyRupees2'), $this)->getBytes()[0]
+                );
+            }
+            // End of workaround
 
             if ($save) {
                 $this->saveSeedRecord();
@@ -1139,7 +1150,11 @@ abstract class World
 
         $rom->setGanonsTowerOpen($this->config('crystals.tower') === 0);
 
-        $rom->setGameType('item');
+        if ($this->config('allow_quickswap', false)) {
+            $rom->setGameType('entrance');
+        } else {
+            $rom->setGameType('item');
+        }
 
         $rom->writeCredits();
         $rom->writeText();

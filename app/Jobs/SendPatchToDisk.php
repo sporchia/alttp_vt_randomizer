@@ -56,7 +56,8 @@ class SendPatchToDisk implements ShouldQueue
                         'tournament',
                         'spoilers',
                         'size',
-                        'special'
+                        'special',
+                        'allow_quickswap'
                     ]);
                     break;
                 case "generate":
