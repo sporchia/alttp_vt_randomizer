@@ -879,7 +879,7 @@ class Text
 
             'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
             // 0x190
-            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("OWG tournament winners\n{HARP}\n  ~~~2019~~~\nGlan\n\n  ~~~2018~~~\nChristosOwen"),
+            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("OWG tournament winners\n\n{HARP}\n  ~~~2019~~~\nGlan\n\n  ~~~2018~~~\nChristosOwen\nthe numpty"),
 
             'fish_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 
