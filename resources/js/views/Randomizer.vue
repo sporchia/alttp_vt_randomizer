@@ -493,7 +493,11 @@ export default {
                     // The base rom has been updated.
                     window.location.reload(true);
                   }
-                  if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
+                  if (
+                    this.rom.shuffle ||
+                    this.rom.spoilers == "mystery" ||
+                    this.rom.allow_quickswap
+                  ) {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;
@@ -522,6 +526,12 @@ export default {
       );
     },
     saveRom() {
+      // track the sprite choice for usage statistics
+      localforage.getItem("rom.sprite-gfx").then(value => {
+        ga("event", "save", {
+          dimension1: value
+        });
+      });
       return this.rom.save(this.rom.downloadFilename() + ".sfc", {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,
