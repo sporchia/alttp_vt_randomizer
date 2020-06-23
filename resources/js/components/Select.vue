@@ -55,9 +55,6 @@ export default {
       this.applyRomFunctions(this, rom);
     });
   },
-  data() {
-    return {};
-  },
   methods: {
     customLabel(option) {
       return this.$i18n.t(option.name);

@@ -22,7 +22,7 @@ class MovePatchesToSeperateTable extends Migration
 
         if (DB::getDriverName() == 'mysql') {
             DB::statement("INSERT IGNORE INTO patches (sha1, patch, created_at, updated_at)
-				SELECT SHA1(patch) AS sha1, patch, created_at, updated_at FROM seeds;");
+                SELECT SHA1(patch) AS sha1, patch, created_at, updated_at FROM seeds;");
         }
 
         Schema::table('seeds', function (Blueprint $table) {

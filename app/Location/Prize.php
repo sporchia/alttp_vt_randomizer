@@ -7,6 +7,7 @@ use ALttP\Item\Crystal;
 use ALttP\Item\Pendant;
 use ALttP\Location;
 use ALttP\Rom;
+use Illuminate\Support\Arr;
 
 /**
  * Prize for completing a dungeon. These have the added benefit of being placed on the map.
@@ -44,7 +45,7 @@ class Prize extends Location
 
         if (isset($this->region->music_addresses) && is_array($this->region->music_addresses)) {
             if ($this->region->getWorld()->config('rom.mapOnPickup', false)) {
-                $music = array_first(fy_shuffle([0x11, 0x16]));
+                $music = Arr::first(fy_shuffle([0x11, 0x16]));
             } else {
                 $item = $this->getItem();
                 $music = $item instanceof Pendant ? 0x11 : 0x16;

@@ -2,6 +2,26 @@
 
 @section('content')
 
+<h2>v31.0.5</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>The website now uses BPS for patching.</li>
+        <li>Minor logic fixes.</li>
+        <li>Miscellaneous music-related crashes have been fixed.</li>
+        <li>The title screen delay introduced in v31.0.3 has been restored to vanilla behavior.</li>
+        <li>Items found in a dark room (without Lamp) will now always appear.</li>
+        <li>Bunny Link is now literate and can read signposts.</li>
+        <li>Silver Arrows will now always be available in Entrance Randomizer when playing Swordless on a hard/expert item pool setting.</li>
+        <li>Fixed silver arrows being intially equipped on aquisition in Hard/Expert item functionality, even when they should only be available for Ganon.</li>
+        <li>API support for allowing quickswap usage in item randomizer race roms.  The default behavior for item randomizer races will still be to disallow quickswap.</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
+
 <h2>v31.0.4</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -30,8 +50,6 @@
         <li>Added API endpoint for retrieving the hash and day of the latest daily (/api/daily).</li>
     </ul>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.3</h2>
 <div class="card card-body bg-light mb-3">

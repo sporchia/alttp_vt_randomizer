@@ -5,6 +5,7 @@ namespace ALttP\Support;
 use ALttP\Location;
 use ALttP\Item;
 use ALttP\World;
+use Illuminate\Support\Arr;
 
 /**
  * Collection of Locations to place Items
@@ -99,7 +100,7 @@ class LocationCollection extends Collection
 
             $item_name = __('hint.item.' . $item->getTarget()->getName());
 
-            return (is_array($item_name)) ? array_first(fy_shuffle($item_name)) : $item_name;
+            return (is_array($item_name)) ? Arr::first(fy_shuffle($item_name)) : $item_name;
         });
 
         switch (count($items)) {
@@ -113,7 +114,7 @@ class LocationCollection extends Collection
         $location_name = __('hint.location.' . $prime_location->getName());
 
         if (is_array($location_name)) {
-            $location_name = array_first($location_name); // on multi-locations we want the first one
+            $location_name = Arr::first($location_name); // on multi-locations we want the first one
         }
 
         $last_item = array_pop($items);

@@ -1,5 +1,6 @@
 import localforage from "localforage";
 import axios from "axios";
+import Defaults from "./defaults";
 
 function hasValue(value, array) {
   return (
@@ -21,116 +22,8 @@ function asMulti(object, mKey) {
 export default {
   namespaced: true,
   state: {
-    preset: {
-      value: "default",
-      name: "randomizer.preset.options.default"
-    },
-    glitches_required: {
-      value: "none",
-      name: "randomizer.glitches_required.options.none"
-    },
-    item_placement: {
-      value: "advanced",
-      name: "randomizer.item_placement.options.advanced"
-    },
-    dungeon_items: {
-      value: "standard",
-      name: "randomizer.dungeon_items.options.standard"
-    },
-    accessibility: {
-      value: "items",
-      name: "randomizer.accessibility.options.items"
-    },
-    goal: {
-      value: "ganon",
-      name: "randomizer.goal.options.ganon"
-    },
-    tower_open: {
-      value: "7",
-      name: "randomizer.tower_open.options.7"
-    },
-    ganon_open: {
-      value: "7",
-      name: "randomizer.ganon_open.options.7"
-    },
-    world_state: {
-      value: "open",
-      name: "randomizer.world_state.options.open"
-    },
-    entrance_shuffle: {
-      value: "none",
-      name: "randomizer.entrance_shuffle.options.none"
-    },
-    boss_shuffle: {
-      value: "none",
-      name: "randomizer.boss_shuffle.options.none"
-    },
-    enemy_shuffle: {
-      value: "none",
-      name: "randomizer.enemy_shuffle.options.none"
-    },
-    hints: {
-      value: "on",
-      name: "randomizer.hints.options.on"
-    },
-    weapons: {
-      value: "randomized",
-      name: "randomizer.weapons.options.randomized"
-    },
-    item_pool: {
-      value: "normal",
-      name: "randomizer.item_pool.options.normal"
-    },
-    item_functionality: {
-      value: "normal",
-      name: "randomizer.item_functionality.options.normal"
-    },
-    enemy_damage: {
-      value: "default",
-      name: "randomizer.enemy_damage.options.default"
-    },
-    enemy_health: {
-      value: "default",
-      name: "randomizer.enemy_health.options.default"
-    },
-    spoiler: {
-      value: "on",
-      name: "randomizer.spoiler.options.on"
-    },
-    options: {
-      preset: [],
-      glitches_required: [],
-      item_placement: [],
-      dungeon_items: [],
-      accessibility: [],
-      goal: [],
-      tower_open: [],
-      ganon_open: [],
-      world_state: [],
-      entrance_shuffle: [],
-      boss_shuffle: [],
-      enemy_shuffle: [],
-      hints: [],
-      weapons: [],
-      item_pool: [],
-      item_functionality: [],
-      enemy_damage: [],
-      enemy_health: [],
-      spoiler: [
-        {
-          value: "off",
-          name: "randomizer.spoiler.options.off"
-        },
-        {
-          value: "on",
-          name: "randomizer.spoiler.options.on"
-        },
-        {
-          value: "generate",
-          name: "randomizer.spoiler.options.generate"
-        }
-      ]
-    },
+    ...Defaults,
+    options: {},
     preset_map: {},
     initializing: true
   },
@@ -162,7 +55,7 @@ export default {
             dispatch("load", ["item_functionality", "setItemFunctionality"]),
             dispatch("load", ["enemy_damage", "setEnemyDamage"]),
             dispatch("load", ["enemy_health", "setEnemyHealth"]),
-            dispatch("load", ["spoiler", "setSpoiler"])
+            dispatch("load", ["spoilers", "setSpoiler"])
           ])
         )
         .then(() => {
@@ -337,7 +230,8 @@ export default {
         item_pool,
         item_functionality,
         enemy_damage,
-        enemy_health
+        enemy_health,
+        spoilers
       }
     ) {
       state.options.preset = asMulti(presets, "preset");
@@ -367,6 +261,7 @@ export default {
       );
       state.options.enemy_damage = asMulti(enemy_damage, "enemy_damage");
       state.options.enemy_health = asMulti(enemy_health, "enemy_health");
+      state.options.spoiler = asMulti(spoilers, "spoiler");
       state.preset_map = presets;
     },
     setPreset(state, value) {

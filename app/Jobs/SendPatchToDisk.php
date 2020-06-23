@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Storage;
 
@@ -37,7 +38,7 @@ class SendPatchToDisk implements ShouldQueue
             return;
         }
 
-        $spoiler = array_except(json_decode($this->seed->spoiler, true), [
+        $spoiler = Arr::except(json_decode($this->seed->spoiler, true), [
             'meta.crystals_ganon',
             'meta.crystals_tower',
         ]);
@@ -45,23 +46,24 @@ class SendPatchToDisk implements ShouldQueue
         if ($spoiler['meta']['tournament'] ?? false) {
             switch ($spoiler['meta']['spoilers']) {
                 case "on":
-                    $return_spoiler = array_except($spoiler, ['playthrough']);
+                    $return_spoiler = Arr::except($spoiler, ['playthrough']);
                     break;
                 case "mystery":
-                    $return_spoiler = array_only($spoiler, ['meta']);
-                    $return_spoiler['meta'] = array_only($spoiler['meta'], [
+                    $return_spoiler = Arr::only($spoiler, ['meta']);
+                    $return_spoiler['meta'] = Arr::only($spoiler['meta'], [
                         'logic',
                         'build',
                         'tournament',
                         'spoilers',
                         'size',
-                        'special'
+                        'special',
+                        'allow_quickswap'
                     ]);
                     break;
                 case "generate":
                 case "off":
                 default:
-                    $return_spoiler = array_except(array_only($spoiler, ['meta']), ['meta.seed']);
+                    $return_spoiler = Arr::except(Arr::only($spoiler, ['meta']), ['meta.seed']);
                     break;
             }
         } else {

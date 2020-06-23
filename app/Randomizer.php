@@ -5,6 +5,7 @@ namespace ALttP;
 use ALttP\Contracts\Randomizer as RandomizerContract;
 use ALttP\Services\HintService;
 use ALttP\Support\ItemCollection;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -260,7 +261,7 @@ class Randomizer implements RandomizerContract
             if (count($nice_items_swords)) {
                 array_push($advancement_items, array_pop($nice_items_swords));
             }
-            
+
             // put tempered sword back in if logically required
             if ($world->config('region.requireBetterSword', false) && count($nice_items_swords)) {
                 array_push($advancement_items, array_pop($nice_items_swords));
@@ -774,31 +775,31 @@ class Randomizer implements RandomizerContract
      */
     public function randomizeCredits(World $world)
     {
-        $world->setCredit('castle', array_first(fy_shuffle([
+        $world->setCredit('castle', Arr::first(fy_shuffle([
             "the return of the king",
             "fellowship of the ring",
             "the two towers",
         ])));
 
-        $world->setCredit('sanctuary', array_first(fy_shuffle([
+        $world->setCredit('sanctuary', Arr::first(fy_shuffle([
             "the loyal priest",
             "read a book",
             "sits in own pew",
             "heal plz",
         ])));
 
-        $name = array_first(fy_shuffle([
+        $name = Arr::first(fy_shuffle([
             "sahasralah", "sabotaging", "sacahuista", "sacahuiste", "saccharase", "saccharide", "saccharify",
             "saccharine", "saccharins", "sacerdotal", "sackcloths", "salmonella", "saltarelli", "saltarello",
             "saltations", "saltbushes", "saltcellar", "saltshaker", "salubrious", "sandgrouse", "sandlotter",
             "sandstorms", "sandwiched", "sauerkraut", "schipperke", "schismatic", "schizocarp", "schmalzier",
             "schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
             "sharshalah", "shahabadoo", "sassafrass", "saddlebags", "sandalwood", "shagadelic", "sandcastle",
-            "saltpeters", "shabbiness", "shlrshlrsh", "sassyralph", "sallyacorn",
+            "saltpeters", "shabbiness", "shlrshlrsh", "sassyralph", "sallyacorn", "sahasrahbot"
         ]));
         $world->setCredit('kakariko', "$name's homecoming");
 
-        $world->setCredit('lumberjacks', array_first(fy_shuffle([
+        $world->setCredit('lumberjacks', Arr::first(fy_shuffle([
             "twin lumberjacks",
             "fresh flapjacks",
             "two woodchoppers",
@@ -814,19 +815,19 @@ class Randomizer implements RandomizerContract
                 break;
         }
 
-        $world->setCredit('bridge', array_first(fy_shuffle([
+        $world->setCredit('bridge', Arr::first(fy_shuffle([
             "the lost old man",
             "gary the old man",
             "Your ad here",
         ])));
 
-        $world->setCredit('woods', array_first(fy_shuffle([
+        $world->setCredit('woods', Arr::first(fy_shuffle([
             "the forest thief",
             "dancing pickles",
             "flying vultures",
         ])));
 
-        $world->setCredit('well', array_first(fy_shuffle([
+        $world->setCredit('well', Arr::first(fy_shuffle([
             "venus. queen of faeries",
             "Venus was her name",
             "I'm your Venus",
@@ -886,7 +887,7 @@ class Randomizer implements RandomizerContract
                     $world->setText('uncle_leaving_text', "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
             }
         } else {
-            $world->setText('uncle_leaving_text', array_first(fy_shuffle($strings['uncle'])));
+            $world->setText('uncle_leaving_text', Arr::first(fy_shuffle($strings['uncle'])));
         }
 
         $green_pendant_location = $world->getLocationsWithItem(Item::get('PendantOfCourage', $world))->first();
@@ -904,11 +905,11 @@ class Randomizer implements RandomizerContract
             . $crystal6_location->getRegion()->getName()
             . "\nso I can make\na big bomb!");
 
-        $world->setText('blind_by_the_light', array_first(fy_shuffle($strings['blind'])));
+        $world->setText('blind_by_the_light', Arr::first(fy_shuffle($strings['blind'])));
 
-        $world->setText('kakariko_tavern_fisherman', array_first(fy_shuffle($strings['tavern_man'])));
+        $world->setText('kakariko_tavern_fisherman', Arr::first(fy_shuffle($strings['tavern_man'])));
 
-        $world->setText('ganon_fall_in', array_first(fy_shuffle($strings['ganon_1'])));
+        $world->setText('ganon_fall_in', Arr::first(fy_shuffle($strings['ganon_1'])));
 
         $world->setText('ganon_phase_3_alt', "Got wax in\nyour ears?\nI cannot die!");
 
@@ -941,7 +942,7 @@ class Randomizer implements RandomizerContract
                     break;
                 default:
                     $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->getRegion()->getName());
-                }
+            }
             // Progressive Bow Alternate
             $first_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
 
@@ -950,7 +951,7 @@ class Randomizer implements RandomizerContract
                 switch ($second_location->getRegion()->getName()) {
                     case "Ganons Tower":
                         $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
-                    break;
+                        break;
                     default:
                         $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
                 }
@@ -998,7 +999,7 @@ class Randomizer implements RandomizerContract
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
         }
 
-        $world->setText('end_triforce', "{NOBORDER}\n" . array_first(fy_shuffle($strings['triforce'])));
+        $world->setText('end_triforce', "{NOBORDER}\n" . Arr::first(fy_shuffle($strings['triforce'])));
 
         return $this;
     }
@@ -1029,7 +1030,11 @@ class Randomizer implements RandomizerContract
                 }
 
                 for ($i = 0; $i < 8; $i++) {
-                    $world->setDrop($key, $i, Sprite::get($random_vanilla_packs[$key][$i]));
+                    $drop = Sprite::get($random_vanilla_packs[$key][$i]);
+
+                    if ($drop instanceof \ALttP\Sprite\Droppable) {
+                        $world->setDrop($key, $i, $drop);
+                    }
                 }
             }
         }

@@ -127,7 +127,7 @@ export default {
               reject("cannot find sprite file");
             });
         });
-      }).then(rom.parseSprGfx);
+      }).then(rom.parseSprGfx.bind(rom));
     }
   },
   computed: {

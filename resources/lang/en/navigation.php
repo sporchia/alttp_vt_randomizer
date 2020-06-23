@@ -8,6 +8,7 @@ return [
     'entrance' => 'Entrance Randomizer',
     'daily' => 'Daily Challenge',
     'customizer' => 'Create Custom Game',
+    'multiworld' => 'Multiworld Generator',
 
     'calendar' => 'Events Calendar',
 
