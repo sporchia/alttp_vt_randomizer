@@ -6,7 +6,7 @@
 <div class="card card-body bg-light mb-3">
     <ul>
         <li>This release contains several logic and bug fixes for Entrance Randomizer.</li>
-        <li>Entrance Randomizer now fully uses cryptographically secure pseudo-random number generator.</li>
+        <li>Entrance Randomizer now fully uses a cryptographically secure pseudo-random number generator.</li>
         <li>Logic updates for Entrance Randomizer:</li>
         <ul>
             <li>Updated Ganon's Tower Firesnake room key requirements (two keys if it contains a key).</li>
