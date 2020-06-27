@@ -2,6 +2,62 @@
 
 @section('content')
 
+<h2>v31.0.6</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>This release contains several logic and bug fixes for Entrance Randomizer.</li>
+        <li>Entrance Randomizer now fully uses a cryptographically secure pseudo-random number generator for all RNG operations.</li>
+        <li>Logic updates for Entrance Randomizer:</li>
+        <ul>
+            <li>Updated Ganon's Tower Firesnake room key requirements (two keys if it contains a key).</li>
+            <li>Fixes logic checks for Half Magic.</li>
+            <li>Keysanity - Castle Tower chests now require a weapon.</li>
+            <li>Inverted - Zora can be accessed with Flippers, but no glove upgrade.</li>
+            <li>Inverted - Allows access to Lake Hylia Island.</li>
+            <li>Standard - Added ten bombs as a possible uncle weapon.</li>
+            <li>Inverted - Update Big Bomb Rules (fixes some entrances being in the wrong list or having no routing logic applied).</li>
+            <li>Armos - Can be defeated with the bow.</li>
+            <li>Lanmolas - Can be defeated with Cane of Somaria or Byrna.</li>
+            <li>Helmasaur - Can't be killed with only Hammer. Now requires a sword or bow for stage 2.</li>
+            <li>Trinexx - Requires extended magic for a Master Sword-only fight.</li>
+        </ul>
+        <li>Bug fixes for Entrance Randomizer:</li>
+        <ul>
+            <li>Expand mandatory connections logic to account for conditionally accessible entrances, instead of just Turtle Rock ledge and Desert ledge.</li>
+            <li>Fixed Ganon Silvers hint pointing to the wrong bow.</li>
+            <li>Retro - Always require the shop arrow to shoot arrows (progressive silvers don't bypass that requirement).</li>
+            <li>Retro - Remove arrow capacity upgrades from the upgrade shop.</li>
+            <li>Inverted - Fixed rule for the Old Man starting point.  Previously, this was in sphere 0 and could cause an unbeatable game.</li>
+            <li>Inverted - Prevent bomb shop from appearing on Desert East, and Spectacle Rock ledges</li>
+            <li>Inverted - Allow taking the Blacksmith into Link's House for simple shuffle.</li>
+            <li>Keysanity - show dungeon item text boxes for all dungeon items that are inside their own dungeon.</li>
+        </ul>
+        <li>Bug fixes for customizer.</li>
+        <li>The daily randomizer game will always have the tournament flag set.</li>
+        <li>Advanced item placement may now require killing Helmasuar King with just Fighter Sword, instead of requiring Master Sword.  Master Sword is still logically required when using Basic item placement.</li>
+    </ul>
+</div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
+
+<h2>v31.0.5</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>The website now uses BPS for patching.</li>
+        <li>Minor logic fixes.</li>
+        <li>Miscellaneous music-related crashes have been fixed.</li>
+        <li>The title screen delay introduced in v31.0.3 has been restored to vanilla behavior.</li>
+        <li>Items found in a dark room (without Lamp) will now always appear.</li>
+        <li>Bunny Link is now literate and can read signposts.</li>
+        <li>Silver Arrows will now always be available in Entrance Randomizer when playing Swordless on a hard/expert item pool setting.</li>
+        <li>Fixed silver arrows being intially equipped on aquisition in Hard/Expert item functionality, even when they should only be available for Ganon.</li>
+        <li>API support for allowing quickswap usage in item randomizer race roms.  The default behavior for item randomizer races will still be to disallow quickswap.</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
 <h2>v31.0.4</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -30,8 +86,6 @@
         <li>Added API endpoint for retrieving the hash and day of the latest daily (/api/daily).</li>
     </ul>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v31.0.3</h2>
 <div class="card card-body bg-light mb-3">

@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2019-11-15';
-    const HASH = 'ac23ab12e7c442515d51370642772c3b';
+    const BUILD = '2020-06-27';
+    const HASH = '11f68a2420b7ca44de97878582e6aa05';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -39,6 +39,16 @@ class Rom
         $build->save();
 
         return $build;
+    }
+
+    /**
+     * Get the location of the current json patch.
+     *
+     * @return string
+     */
+    public static function getJsonPatchLocation(): string
+    {
+        return storage_path(sprintf('patches/%s.json', self::HASH));
     }
 
     /**

@@ -426,12 +426,4 @@
         </div>
     </div>
 </div>
-
-<script>
-new Vue({
-    el: '#options',
-    i18n: i18n,
-    store: cStore,
-});
-</script>
 @overwrite

@@ -12,10 +12,12 @@ use ALttP\Support\ItemCollection;
 use ALttP\Support\WorldCollection;
 use ALttP\World;
 use Exception;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use HTMLPurifier_Config;
 use HTMLPurifier;
 use Illuminate\Http\Request;
-use Markdown;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 
 class CustomizerController extends Controller
 {
@@ -30,7 +32,7 @@ class CustomizerController extends Controller
             $payload['seed']->save();
             SendPatchToDisk::dispatch($payload['seed']);
 
-            $return_payload = array_except($payload, [
+            $return_payload = Arr::except($payload, [
                 'seed',
                 'spoiler.meta.crystals_ganon',
                 'spoiler.meta.crystals_tower',
@@ -40,13 +42,13 @@ class CustomizerController extends Controller
                 switch ($payload['spoiler']['meta']['spoilers']) {
                     case "on":
                     case "generate":
-                        $return_payload = array_except($return_payload, [
+                        $return_payload = Arr::except($return_payload, [
                             'spoiler.playthrough',
                         ]);
                         break;
                     case "mystery":
-                        $return_payload['spoiler'] = array_only($return_payload['spoiler'], ['meta']);
-                        $return_payload['spoiler']['meta'] = array_only($return_payload['spoiler']['meta'], [
+                        $return_payload['spoiler'] = Arr::only($return_payload['spoiler'], ['meta']);
+                        $return_payload['spoiler']['meta'] = Arr::only($return_payload['spoiler']['meta'], [
                             'name',
                             'notes',
                             'logic',
@@ -54,28 +56,29 @@ class CustomizerController extends Controller
                             'tournament',
                             'spoilers',
                             'size',
-                            'special'
+                            'special',
+                            'allow_quickswap'
                         ]);
                         break;
                     case "off":
                     default:
-                        $return_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
+                        $return_payload['spoiler'] = Arr::except(Arr::only($return_payload['spoiler'], [
                             'meta',
-                        ]), ['meta.seed']);    
+                        ]), ['meta.seed']);
                 }
             }
 
             $cached_payload = $return_payload;
             if ($payload['spoiler']['meta']['spoilers'] === 'generate') {
                 // ensure that the cache doesn't have the spoiler, but the original return_payload still does
-                $cached_payload['spoiler'] = array_except(array_only($return_payload['spoiler'], [
+                $cached_payload['spoiler'] = Arr::except(Arr::only($return_payload['spoiler'], [
                     'meta',
                 ]), ['meta.seed']);
             }
-            $save_data = json_encode(array_except($cached_payload, [
+            $save_data = json_encode(Arr::except($cached_payload, [
                 'current_rom_hash',
             ]));
-            cache(['hash.' . $payload['hash'] => $save_data], now()->addDays(7));
+            Cache::put('hash.' . $payload['hash'], $save_data, now()->addDays(7));
 
             return json_encode($return_payload);
         } catch (Exception $exception) {
@@ -90,7 +93,7 @@ class CustomizerController extends Controller
     public function testGenerateSeed(Request $request)
     {
         try {
-            return json_encode(array_except($this->prepSeed($request), ['patch', 'seed', 'hash']));
+            return json_encode(Arr::except($this->prepSeed($request), ['patch', 'seed', 'hash']));
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -122,7 +125,7 @@ class CustomizerController extends Controller
 
         $spoiler_meta = [];
 
-        $custom_data = array_dot($request->input('custom'));
+        $custom_data = Arr::dot($request->input('custom'));
         $placed_item_count = array_count_values($request->input('l', []));
         // some simple validation
         // @TODO: move to validator type classes later
@@ -152,9 +155,16 @@ class CustomizerController extends Controller
         $custom_data['item.require.Lamp'] = $custom_data['item.require.Lamp'] ? 0 : 1;
         if ($custom_data['rom.freeItemMenu']) {
             $custom_data['rom.freeItemMenu'] = 0x00
-                | ($custom_data['region.wildMaps'] << 3)
-                | ($custom_data['region.wildCompasses'] << 2)
+                | ($custom_data['region.wildCompasses'] << 3)
+                | ($custom_data['region.wildMaps'] << 2)
                 | ($custom_data['region.wildBigKeys'] << 1)
+                | $custom_data['region.wildKeys'];
+        }
+        if ($custom_data['rom.freeItemText']) {
+            $custom_data['rom.freeItemText'] = 0x10
+                | ($custom_data['region.wildBigKeys'] << 3)
+                | ($custom_data['region.wildMaps'] << 2)
+                | ($custom_data['region.wildCompasses'] << 1)
                 | $custom_data['region.wildKeys'];
         }
 
@@ -170,6 +180,7 @@ class CustomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', true),
             'spoilers' => $spoilers,
+            'allow_quickswap' => $request->input('allow_quickswap', false),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
             'item.functionality' => $request->input('item.functionality', 'normal'),
@@ -221,12 +232,18 @@ class CustomizerController extends Controller
                     continue;
                 }
 
-                $world->setDrop($pack, $place, Sprite::get($item));
+                $drop = Sprite::get($item);
+
+                if (!$drop instanceof \ALttP\Sprite\Droppable) {
+                    continue;
+                }
+
+                $world->setDrop($pack, $place, $drop);
             }
         }
 
-        $rom = new Rom(env('ENEMIZER_BASE', null));
-        $rom->applyPatchFile(public_path('js/base2current.json'));
+        $rom = new Rom(config('alttp.base_rom'));
+        $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
         $rand = new Randomizer([$world]);
 

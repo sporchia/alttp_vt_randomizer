@@ -23,28 +23,28 @@ class SwampPalace extends Region\Standard\SwampPalace
         $mire = function ($locations, $items) {
             return $this->world->config('canOneFrameClipUW', false)
                 && (($locations->itemInLocations(Item::get('BigKeyD6', $this->world), [
-                        "Misery Mire - Compass Chest",
-                        "Misery Mire - Big Key Chest",
-                    ]) &&
-                        $items->has('KeyD6', 2)) || $items->has('KeyD6', 3))
+                    "Misery Mire - Compass Chest",
+                    "Misery Mire - Big Key Chest",
+                ]) &&
+                    $items->has('KeyD6', 2)) || $items->has('KeyD6', 3))
                 && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
         };
-        
+
         $hera = function ($locations, $items) use ($mire) {
             return $this->world->config('canOneFrameClipUW', false)
                 && $this->world->getRegion('Tower of Hera')->canEnter($locations, $items)
                 && ($items->has('BigKeyP3')
                     || ($mire($locations, $items) && $items->has('BigKeyD6')));
         };
-        
+
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) use ($mire) {
-            return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world) 
+            return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world)
                 || $mire($locations, $items);
         });
 
         $this->locations["Swamp Palace - Big Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items))
                 && ($items->has('BigKeyD2')
                     || ($mire($locations, $items) && $items->has('BigKeyD6'))
@@ -55,52 +55,52 @@ class SwampPalace extends Region\Standard\SwampPalace
 
         $this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
-        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
+        $this->locations["Swamp Palace - Map Chest"]->setRequirements(function ($locations, $items) use ($mire) {
             return $items->canBombThings()
                 && ($items->has('KeyD2') || $mire($locations, $items));
         });
 
         $this->locations["Swamp Palace - West Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
-            return ($items->has('KeyD2')|| $mire($locations, $items))
-                && ($items->has('Hammer') 
+            return ($items->has('KeyD2') || $mire($locations, $items))
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
         $this->locations["Swamp Palace - Compass Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
         $this->locations["Swamp Palace - Flooded Room - Left"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return $items->has('Hookshot')
-                && ($items->has('KeyD2')|| $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('KeyD2') || $mire($locations, $items))
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
         $this->locations["Swamp Palace - Flooded Room - Right"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return $items->has('Hookshot')
                 && ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
         $this->locations["Swamp Palace - Waterfall Room"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return $items->has('Hookshot')
                 && ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items));
         });
 
         $this->locations["Swamp Palace - Boss"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
             return $items->has('Hookshot')
                 && ($items->has('KeyD2') || $mire($locations, $items))
-                && ($items->has('Hammer') 
+                && ($items->has('Hammer')
                     || $mire($locations, $items) || $hera($locations, $items))
                 && $this->boss->canBeat($items, $locations)
                 && (!$this->world->config('region.wildCompasses', false)
@@ -123,19 +123,23 @@ class SwampPalace extends Region\Standard\SwampPalace
                 && ($item == Item::get('CompassD2', $this->world) || $item == Item::get('MapD2', $this->world));
         });
 
+        /**
+         * @param \ALttP\Support\LocationCollection $locations
+         * @param \ALttP\Support\ItemCollection $items
+         */
         $this->can_enter = function ($locations, $items) use ($mire) {
             return $items->has('Flippers')
                 && ($this->world->config('itemPlacement') !== 'basic'
                     || (($this->world->config('mode.weapons') === 'swordless'
                         || $items->hasSword())
-                    && $items->hasHealth(7)
-                    && $items->hasBottle())) 
-                && (($items->has('MoonPearl') 
+                        && $items->hasHealth(7)
+                        && $items->hasBottle()))
+                && (($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false)
                         && $items->hasABottle())
                     || ($this->world->config('canBunnyRevive', false)
-                        && canBunnyRevive()))
-                    || ($this->world->config('canSuperBunny', false) 
+                        && $items->canBunnyRevive()))
+                    || ($this->world->config('canSuperBunny', false)
                         && $items->has('MagicMirror')))
                 && ($items->has('MagicMirror')
                     || ($this->world->config('canOneFrameClipUW', false)

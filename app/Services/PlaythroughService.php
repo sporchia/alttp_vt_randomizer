@@ -6,6 +6,7 @@ use ALttP\Item;
 use ALttP\Location;
 use ALttP\Support\LocationCollection;
 use ALttP\World;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -70,7 +71,7 @@ class PlaythroughService
         });
 
         $location_sphere = $shadow_world->getLocationSpheres();
-        $collectable_locations = new LocationCollection(array_flatten(array_map(function ($collection) {
+        $collectable_locations = new LocationCollection(Arr::flatten(array_map(function ($collection) {
             return $collection->values();
         }, $location_sphere)));
         $required_locations = new LocationCollection;

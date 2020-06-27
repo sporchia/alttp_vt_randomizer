@@ -2,7 +2,7 @@
 
 namespace ALttP;
 
-use ALttP\Support\LocationCollection;
+use Illuminate\Support\Arr;
 
 /**
  * A Location is any place an Item can be found in game
@@ -205,13 +205,13 @@ class Location
         $item_name = __('hint.item.' . $item->getTarget()->getRawName());
 
         if (is_array($item_name)) {
-            $item_name = array_first(fy_shuffle($item_name));
+            $item_name = Arr::first(fy_shuffle($item_name));
         }
 
         $location_name = __('hint.location.' . $this->name);
 
         if (is_array($location_name)) {
-            $location_name = array_first(fy_shuffle($location_name));
+            $location_name = Arr::first(fy_shuffle($location_name));
         }
 
         return "$item_name $location_name";
@@ -240,15 +240,22 @@ class Location
 
         $item = $this->item;
 
-        if (
-            $item instanceof Item\Key && $this->region->isRegionItem($item)
-            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('KeyH2', $this->region->getWorld()))
-        ) { // special key-sanity case
+        if ($item instanceof Item\Key && $this->region->isRegionItem($item)
+            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('KeyH2', $this->region->getWorld()))) { // special key-sanity case
             $item = Item::get('Key', $this->region->getWorld());
         }
 
         if ($item instanceof Item\BigKey && $this->region->isRegionItem($item)) {
             $item = Item::get('BigKey', $this->region->getWorld());
+        }
+
+        if ($item instanceof Item\Map && $this->region->isRegionItem($item)
+            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('MapH2', $this->region->getWorld()))) { // special key-sanity case
+            $item = Item::get('Map', $this->region->getWorld());
+        }
+
+        if ($item instanceof Item\Compass && $this->region->isRegionItem($item)) {
+            $item = Item::get('Compass', $this->region->getWorld());
         }
 
         if ($this->region->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
