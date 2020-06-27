@@ -898,7 +898,7 @@ class Randomizer implements RandomizerContract
                 $world->setText('uncle_leaving_text', $uncleBootsText);
                 $world->setText('sign_east_of_links_house', $uncleBootsText);
             } else {
-                $world->setText('uncle_leaving_text', array_first(fy_shuffle($strings['uncle'])));
+                $world->setText('uncle_leaving_text', Arr::first(fy_shuffle($strings['uncle'])));
             }
         } else {
             $world->setText('uncle_leaving_text', Arr::first(fy_shuffle($strings['uncle'])));
