@@ -105,29 +105,43 @@ export default {
       throw error;
     },
     patchRomFromBPS(rom) {
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         if (this.overrideBaseBps !== null) {
           axios
             .get(this.overrideBaseBps, {
               responseType: "arraybuffer"
             })
             .then(response => {
-              rom.parseBaseBPS(response.data).then(rom => {
-                rom.setBaseBPS(response.data);
+              rom
+                .parseBaseBPS(response.data)
+                .then(rom => {
+                  rom.setBaseBPS(response.data);
 
-                resolve(rom);
-              });
+                  resolve(rom);
+                })
+                .catch(error => {
+                  this.loading = false;
+                  this.$emit("error", this.$i18n.t("error.bad_file"));
+                  reject(error);
+                });
             });
           return;
         }
         localforage.getItem("vt.stored_base").then(stored_base_file => {
           if (this.current_base_file == stored_base_file) {
             localforage.getItem("vt.base_bps").then(patch => {
-              rom.parseBaseBPS(patch).then(rom => {
-                rom.setBaseBPS(patch);
+              rom
+                .parseBaseBPS(patch)
+                .then(rom => {
+                  rom.setBaseBPS(patch);
 
-                resolve(rom);
-              });
+                  resolve(rom);
+                })
+                .catch(error => {
+                  this.loading = false;
+                  this.$emit("error", this.$i18n.t("error.bad_file"));
+                  reject(error);
+                });
             });
           } else {
             axios
@@ -141,9 +155,13 @@ export default {
                     localforage
                       .setItem("vt.base_bps", response.data)
                       .then(
-                        this.patchRomFromBPS(rom).then(() => {
-                          resolve(rom);
-                        })
+                        this.patchRomFromBPS(rom)
+                          .then(() => {
+                            resolve(rom);
+                          })
+                          .catch(error => {
+                            console.error(error);
+                          })
                       )
                       .catch(this.handleXHRError);
                   })
