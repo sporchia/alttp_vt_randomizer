@@ -92,6 +92,8 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 }
             }
 
+            $rom->setTournamentType('standard');
+
             $patch = $rom->getWriteLog();
             $spoiler = $world->getSpoiler([
                 'name' => 'Daily Challenge: ' . $date->toFormattedDateString(),
