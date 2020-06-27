@@ -63,9 +63,6 @@ class EntranceRandomizer implements RandomizerContract
 	 */
 	public function randomize(): void
 	{
-		// cryptographic pRNG for seeding
-		$rng_seed = random_int(1, 999999999);
-
 		$flags = [];
 		if ($this->world->config('dungeonItems') === 'full') {
 			$flags[] = '--keysanity';
@@ -127,8 +124,7 @@ class EntranceRandomizer implements RandomizerContract
 				$this->world->config('crystals.ganon'),
 				'--crystals_gt',
 				$this->world->config('crystals.tower'),
-				'--seed',
-				$rng_seed,
+				'--securerandom',
 				'--jsonout',
 				'--loglevel',
 				'error',
