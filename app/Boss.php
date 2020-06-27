@@ -85,7 +85,8 @@ class Boss
             }),
             new static("Helmasaur King", "Helmasaur", function ($locations, $items) use ($world) {
                 return ($items->canBombThings() || $items->has('Hammer'))
-                    && ($items->hasSword(2) || $items->canShootArrows($world));
+                    && ($items->hasSword(2) || $items->canShootArrows($world)
+                        || ($world->config('itemPlacement') !== 'basic' && $items->hasSword()));
             }),
             new static("Arrghus", "Arrghus", function ($locations, $items) use ($world) {
                 return ($world->config('itemPlacement') !== 'basic' || $world->config('mode.weapons') === 'swordless' || $items->hasSword(2))
