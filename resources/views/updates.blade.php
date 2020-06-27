@@ -6,7 +6,7 @@
 <div class="card card-body bg-light mb-3">
     <ul>
         <li>This release contains several logic and bug fixes for Entrance Randomizer.</li>
-        <li>Entrance Randomizer now fully uses a cryptographically secure pseudo-random number generator.</li>
+        <li>Entrance Randomizer now fully uses a cryptographically secure pseudo-random number generator for all RNG operations.</li>
         <li>Logic updates for Entrance Randomizer:</li>
         <ul>
             <li>Updated Ganon's Tower Firesnake room key requirements (two keys if it contains a key).</li>
@@ -16,7 +16,7 @@
             <li>Inverted - Allows access to Lake Hylia Island.</li>
             <li>Standard - Added ten bombs as a possible uncle weapon.</li>
             <li>Inverted - Update Big Bomb Rules (fixes some entrances being in the wrong list or having no routing logic applied).</li>
-            <li>Armos - Can be beaten with Cane of Somaria or Byrna.</li>
+            <li>Armos - Can be defeated with the bow.</li>
             <li>Lanmolas - Can be defeated with Cane of Somaria or Byrna.</li>
             <li>Helmasaur - Can't be killed with only Hammer. Now requires a sword or bow for stage 2.</li>
             <li>Trinexx - Requires extended magic for a Master Sword-only fight.</li>
