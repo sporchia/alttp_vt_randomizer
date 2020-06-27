@@ -294,6 +294,8 @@ class RandomizerTest extends TestCase
                     $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
                     $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
         
+        $this->assertEquals('Kholdstare', $this->world->getRegion('Ice Palace')->getBoss('')->getEName());
+        
         $this->assertEquals([2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
         [
             $bosses['Armos'],
@@ -331,6 +333,8 @@ class RandomizerTest extends TestCase
                     $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
                     $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
         
+        $this->assertEquals('Kholdstare', $this->world->getRegion('Ice Palace')->getBoss('')->getEName());
+        
         $this->assertGreaterThanOrEqual(1, $bosses['Armos']);
         $this->assertGreaterThanOrEqual(1, $bosses['Lanmola']);
         $this->assertGreaterThanOrEqual(1, $bosses['Moldorm']);
@@ -338,7 +342,7 @@ class RandomizerTest extends TestCase
         $this->assertGreaterThanOrEqual(1, $bosses['Arrghus']);
         $this->assertGreaterThanOrEqual(1, $bosses['Mothula']);
         $this->assertGreaterThanOrEqual(1, $bosses['Blind']);
-        $this->assertGreaterThanOrEqual(1, $bosses['Kholdstare']);
+        $this->assertEquals(1, $bosses['Kholdstare']);
         $this->assertGreaterThanOrEqual(1, $bosses['Vitreous']);
         $this->assertGreaterThanOrEqual(1, $bosses['Trinexx']);
     }

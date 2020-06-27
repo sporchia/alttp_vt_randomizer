@@ -370,7 +370,7 @@ class Randomizer implements RandomizerContract
         ];
 
         if ($world->config('mode.weapons') == 'swordless') {
-            array_splice($boss_locations, 8, 1); // remove Ice Palace
+            array_splice($boss_locations, 9, 1); // remove Ice Palace
             $world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare", $world));
         }
 
