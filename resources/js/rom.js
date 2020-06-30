@@ -91,7 +91,7 @@ export default class ROM {
     this.setMusicVolume(musicOn);
 
     this.updateChecksum().then(() => {
-      FileSaver.saveAs(new Blob([this.u_array]), filename);
+      FileSaver.saveAs(new Blob([this.u_array], {type: 'application/octet-stream'}), filename);
 
       // undo any presave processing we did.
       this.arrayBuffer = preProcess;
