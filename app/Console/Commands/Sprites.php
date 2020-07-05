@@ -42,7 +42,7 @@ class Sprites extends Command
 
         $meta_data = collect(json_decode(file_get_contents("$sprite_dir/sprites.json"), true))->sortBy('file');
 
-        if ($meta_data === null) {
+        if ($meta_data === null || json_last_error() !== 0) {
             $this->error('json file is garbo');
 
             return 102;
@@ -55,15 +55,26 @@ class Sprites extends Command
         $files = collect(scandir($sprite_dir));
 
         $meta_data->groupBy('vtversion')->each(function ($sprites, $version) use ($sprite_dir, $files) {
-            if ($version == 0) {
-                return;
-            }
             $sprite_class = $sprites->pluck('file')->map(function ($val) {
                 return "$val.lg.png";
             });
 
             $found_files = $files->intersect($sprite_class);
+
             if ($found_files->isEmpty()) {
+                return;
+            }
+
+            if ($version == 0) {
+                // cleanup
+                foreach ($found_files as $file) {
+                    try {
+                        $this->info("remove: $file");
+                        unlink("$sprite_dir/$file");
+                    } catch (Exception $ignore) {
+                        // ignore
+                    }
+                }
                 return;
             }
 
@@ -91,6 +102,16 @@ class Sprites extends Command
                 $this->error("Unable to montage");
 
                 return 301;
+            }
+
+            // cleanup
+            foreach ($found_files as $file) {
+                try {
+                    $this->info("remove: $file");
+                    unlink("$sprite_dir/$file");
+                } catch (Exception $ignore) {
+                    // ignore
+                }
             }
         });
 
@@ -130,6 +151,16 @@ class Sprites extends Command
             $this->error("Unable to montage");
 
             return 301;
+        }
+
+        // cleanup
+        foreach ($found_files as $file) {
+            try {
+                $this->info("remove: $file");
+                unlink("$sprite_dir/$file");
+            } catch (Exception $ignore) {
+                // ignore
+            }
         }
 
         // deal with config file and scss

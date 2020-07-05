@@ -35,6 +35,9 @@
         <li>Bug fixes for customizer.</li>
         <li>The daily randomizer game will always have the tournament flag set.</li>
         <li>Advanced item placement may now require killing Helmasuar King with just Fighter Sword, instead of requiring Master Sword.  Master Sword is still logically required when using Basic item placement.</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.6.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -133,6 +136,8 @@
     </ul>
 </div>
 
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
+
 <h2>v31</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -179,8 +184,6 @@
     </div>
 </div>
 
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
-
 <h2>v30.5</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -212,6 +215,8 @@
         <li>Fixed Skull Woods Customizer extra key</li>
     </ul>
 </div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v30.3</h2>
 <div class="card card-body bg-light mb-3">
@@ -433,7 +438,7 @@
             <li>Better error messages when generation fails</li>
         </ul></li>
         <li>Added new player options<br />
-            <img src="https://08b3693090b88cc23068-781cc7889ba8761758717cf14b1800b4.ssl.cf2.rackcdn.com/sprites.28.lg.png"
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.28.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -455,7 +460,7 @@
         <li>Cleaned up the spoiler section of the site to assist in finding things</li>
         <li>Complete overhaul of the custom section, see the new <a href="/customizer">customizer</a></li>
         <li>Added many new player options<br />
-            <img src="https://08b3693090b88cc23068-781cc7889ba8761758717cf14b1800b4.ssl.cf2.rackcdn.com/sprites.27.lg.png"
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.27.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -468,13 +473,15 @@
     </div>
 </div>
 
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
+
 <h2>VT8.26.2</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
         <li>Turtle Rock small key fix</li>
         <li>Skull Woods small key fix</li>
         <li>Added a few new player options<br />
-            <img src="https://08b3693090b88cc23068-781cc7889ba8761758717cf14b1800b4.ssl.cf2.rackcdn.com/sprites.4.lg.png"
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.26.2.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -502,7 +509,7 @@
         <li>Entrance Randomizer integration (thanks LLCoolDave)</li>
         <li>Two new chests have been added to Waterfall fairy</li>
         <li>Added many new player options (and updated a few)<br />
-            <img src="https://08b3693090b88cc23068-781cc7889ba8761758717cf14b1800b4.ssl.cf2.rackcdn.com/sprites.3.lg.png"
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.26.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -538,7 +545,7 @@
         <li>Skull Woods spike trap room chest set back to Key all the time</li>
         <li>New Fill algorithm that maximizes item randomization</li>
         <li>Added many new player options<br />
-            <img src="https://08b3693090b88cc23068-781cc7889ba8761758717cf14b1800b4.ssl.cf2.rackcdn.com/sprites.2.lg.png"
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.25.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -604,6 +611,8 @@
         </div>
     </div>
 </div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>VT8.22</h2>
 <div class="card card-body bg-light mb-3">
@@ -777,6 +786,8 @@
         </ul>
     </div>
 </div>
+
+<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>V7 Updates</h2>
 <div class="card card-body bg-light mb-3">

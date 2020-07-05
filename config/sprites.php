@@ -18,7 +18,7 @@ return [
         'author' => 'Mike Trethewey',
         'file' => '4slink-armors.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -30,7 +30,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'abigail.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
         ],
@@ -40,8 +40,10 @@ return [
         'author' => 'Yuushia',
         'file' => 'adol.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Ys',
+            1 => 'Male',
         ],
     ],
     'aggretsuko.1.zspr' => [
@@ -49,8 +51,11 @@ return [
         'author' => 'skovacs1',
         'file' => 'aggretsuko.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Cartoon',
+            1 => 'Animal',
+            2 => 'Female',
         ],
     ],
     'alice.1.zspr' => [
@@ -58,7 +63,7 @@ return [
         'author' => 'Artheau',
         'file' => 'alice.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
         ],
@@ -68,7 +73,7 @@ return [
         'author' => 'ABOhiccups',
         'file' => 'angry-video-game-nerd.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Personality',
             1 => 'Male',
@@ -79,17 +84,20 @@ return [
         'author' => 'MM102',
         'file' => 'arcane.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
-    'ark.1.zspr' => [
+    'ark.2.zspr' => [
         'name' => 'Ark',
         'author' => 'wzl',
-        'file' => 'ark.1.zspr',
-        'version' => 1,
-        'vtversion' => '1',
+        'file' => 'ark.2.zspr',
+        'version' => 2,
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Terranigma',
+            1 => 'Male',
         ],
     ],
     'arrghus.2.zspr' => [
@@ -97,7 +105,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'arrghus.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Male',
             1 => 'Legend of Zelda',
@@ -110,8 +118,9 @@ return [
         'author' => 'Malmo',
         'file' => 'astronaut.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'IRL',
         ],
     ],
     'badeline.1.zspr' => [
@@ -119,7 +128,7 @@ return [
         'author' => 'Jam',
         'file' => 'badeline.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Celeste',
             1 => 'Female',
@@ -130,9 +139,9 @@ return [
         'author' => 'codemann8',
         'file' => 'bananas-in-pyjamas.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
-            0 => 'Streamer',
+            0 => 'Cartoon',
         ],
     ],
     'bandit.1.zspr' => [
@@ -140,7 +149,7 @@ return [
         'author' => 'Fenrika',
         'file' => 'bandit.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Mario',
         ],
@@ -150,7 +159,7 @@ return [
         'author' => 'Ninjakauz',
         'file' => 'batman.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Superhero',
             1 => 'Male',
@@ -162,7 +171,7 @@ return [
         'author' => 'Achy',
         'file' => 'beau.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Animal Crossing',
             1 => 'Male',
@@ -174,30 +183,33 @@ return [
         'author' => 'Valechec',
         'file' => 'bewp.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Animal',
+            1 => 'Streamer',
+            2 => 'Personality',
         ],
     ],
     'bigkey.1.zspr' => [
         'name' => 'Big Key',
-        'author' => 'Fouton',
+        'author' => 'Kan',
         'file' => 'bigkey.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Legend of Zelda',
         ],
     ],
     'birb.1.zspr' => [
         'name' => 'Birb',
-        'author' => 'Andrew Copple',
+        'author' => 'Dr. Deadrewski',
         'file' => 'birb.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Bird',
             1 => 'Animal',
+            2 => 'Streamer',
         ],
     ],
     'birdo.1.zspr' => [
@@ -205,7 +217,7 @@ return [
         'author' => 'BlackTycoon',
         'file' => 'birdo.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Female',
             1 => 'Mario',
@@ -216,8 +228,9 @@ return [
         'author' => 'TheRedMage',
         'file' => 'blackmage.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Final Fantasy',
         ],
     ],
     'blacksmithlink.1.zspr' => [
@@ -225,7 +238,7 @@ return [
         'author' => 'Glan',
         'file' => 'blacksmithlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -238,7 +251,7 @@ return [
         'author' => 'Artheau',
         'file' => 'blossom.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Powerpuff Girls',
@@ -251,7 +264,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'bob.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Randomizer',
             1 => 'ALTTP NPC',
@@ -263,7 +276,7 @@ return [
         'author' => 'Achy',
         'file' => 'boo-two.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Mario',
             1 => 'Ghost',
@@ -274,7 +287,7 @@ return [
         'author' => 'Zarby89',
         'file' => 'boo.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Mario',
             1 => 'Ghost',
@@ -285,7 +298,17 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'bottle_o_goo.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
+        'tags' => [
+            0 => 'Legend of Zelda',
+        ],
+    ],
+    'botw-zelda.1.zspr' => [
+        'name' => 'BotW Zelda',
+        'author' => 'Roo',
+        'file' => 'botw-zelda.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Legend of Zelda',
         ],
@@ -295,7 +318,7 @@ return [
         'author' => 'Artheau',
         'file' => 'bowser.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Male',
             1 => 'Mario',
@@ -307,8 +330,10 @@ return [
         'author' => 'cbass601',
         'file' => 'branch.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Trolls',
+            1 => 'Male',
         ],
     ],
     'brian.1.zspr' => [
@@ -316,8 +341,10 @@ return [
         'author' => 'Herowho',
         'file' => 'brian.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Quest',
+            1 => 'Male',
         ],
     ],
     'broccoli.1.zspr' => [
@@ -325,7 +352,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'broccoli.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -336,7 +363,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'bronzor.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -346,7 +373,7 @@ return [
         'author' => 'InTheBeef',
         'file' => 'bsboy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -358,7 +385,7 @@ return [
         'author' => 'InTheBeef',
         'file' => 'bsgirl.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Link',
             1 => 'Female',
@@ -370,7 +397,7 @@ return [
         'author' => 'Artheau',
         'file' => 'bubbles.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Superhero',
@@ -383,7 +410,7 @@ return [
         'author' => 'Artheau',
         'file' => 'bullet_bill.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Mario',
         ],
@@ -393,7 +420,7 @@ return [
         'author' => 'Artheau',
         'file' => 'buttercup.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Superhero',
@@ -406,7 +433,7 @@ return [
         'author' => 'RyuTech',
         'file' => 'cactuar.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Final Fantasy',
         ],
@@ -416,8 +443,11 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'cadence.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Crypt of the Necrodancer',
+            1 => 'Cadence of Hyrule',
+            2 => 'Female',
         ],
     ],
     'carlsagan42.1.zspr' => [
@@ -425,7 +455,7 @@ return [
         'author' => 'FedoraFriday',
         'file' => 'carlsagan42.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Personality',
             1 => 'Mario',
@@ -437,7 +467,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'casual-zelda.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Female',
             1 => 'Legend of Zelda',
@@ -448,7 +478,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'cat.3.zspr',
         'version' => 3,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Personality',
             1 => 'Animal',
@@ -473,7 +503,7 @@ return [
         'author' => 'SnipSlum',
         'file' => 'cdilink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -485,7 +515,7 @@ return [
         'author' => 'Deagans',
         'file' => 'celes.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Final Fantasy',
             1 => 'Female',
@@ -496,7 +526,7 @@ return [
         'author' => 'Charmander106',
         'file' => 'charizard.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -506,7 +536,7 @@ return [
         'author' => 'Faw',
         'file' => 'cheepcheep.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Mario',
             1 => 'Fish',
@@ -517,8 +547,9 @@ return [
         'author' => 'Ecyro',
         'file' => 'chibity.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'cirno.1.zspr' => [
@@ -526,7 +557,7 @@ return [
         'author' => 'Achy',
         'file' => 'cirno.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26.2',
         'tags' => [
             0 => 'Touhou Project',
             1 => 'Female',
@@ -537,7 +568,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'clifford.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Animal',
             1 => 'Dog',
@@ -548,7 +579,7 @@ return [
         'author' => 'Artheau',
         'file' => 'clyde.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Pac-man',
             1 => 'Namco',
@@ -560,7 +591,7 @@ return [
         'author' => 'Charmander106/SePH',
         'file' => 'conker.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Rare',
             1 => 'Animal',
@@ -571,17 +602,21 @@ return [
         'author' => 'Lori',
         'file' => 'cornelius.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Odin Sphere',
+            1 => 'Male',
         ],
     ],
     'corona.1.zspr' => [
         'name' => 'Corona',
-        'author' => 'Unknown',
+        'author' => 'Herowho',
         'file' => 'corona.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'King\'s Quest',
+            1 => 'Male',
         ],
     ],
     'cucco.1.zspr' => [
@@ -589,7 +624,7 @@ return [
         'author' => 'MikeTrethewey',
         'file' => 'cucco.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -601,7 +636,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'cursor.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Personality',
         ],
@@ -611,8 +646,10 @@ return [
         'author' => 'D.Owls',
         'file' => 'd_owls.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Male',
         ],
     ],
     'dark-panda.1.zspr' => [
@@ -620,8 +657,9 @@ return [
         'author' => 'MM102',
         'file' => 'dark-panda.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'darkboy.1.zspr' => [
@@ -629,7 +667,7 @@ return [
         'author' => 'iBazly',
         'file' => 'darkboy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -641,7 +679,7 @@ return [
         'author' => 'iBazly',
         'file' => 'darkgirl.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Female',
@@ -653,7 +691,7 @@ return [
         'author' => 'Damon',
         'file' => 'darklink-tunic.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -665,7 +703,7 @@ return [
         'author' => 'iBazly',
         'file' => 'darklink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -677,7 +715,7 @@ return [
         'author' => 'Mike Trethewey',
         'file' => 'darkswatchy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -689,7 +727,7 @@ return [
         'author' => 'iBazly',
         'file' => 'darkzelda.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Female',
             1 => 'Legend of Zelda',
@@ -700,7 +738,7 @@ return [
         'author' => 'iBazly',
         'file' => 'darkzora.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -711,7 +749,7 @@ return [
         'author' => 'Mythic',
         'file' => 'deadpool-mythic.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Superhero',
             1 => 'Marvel',
@@ -723,7 +761,7 @@ return [
         'author' => 'SirCzah',
         'file' => 'deadpool.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Superhero',
             1 => 'Marvel',
@@ -735,7 +773,7 @@ return [
         'author' => 'Glan',
         'file' => 'deadrock.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -746,7 +784,7 @@ return [
         'author' => 'Achy',
         'file' => 'decidueye.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Pokemon',
             1 => 'Bird',
@@ -757,7 +795,7 @@ return [
         'author' => 'Krelbel',
         'file' => 'demonlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -769,7 +807,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'dragonite.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -779,8 +817,10 @@ return [
         'author' => 'No Body The Dragon',
         'file' => 'drake.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Male',
         ],
     ],
     'eggplant.1.zspr' => [
@@ -788,7 +828,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'eggplant.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Emoji',
         ],
@@ -798,7 +838,7 @@ return [
         'author' => 'Achy',
         'file' => 'emosaru.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Personality',
             1 => 'Streamer',
@@ -809,7 +849,7 @@ return [
         'author' => 'cbass601',
         'file' => 'ezlo.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'Male',
@@ -820,17 +860,19 @@ return [
         'author' => 'Jeffreygriggs2',
         'file' => 'fierce-deity-link.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Link',
+            1 => 'Legend of Zelda',
+            2 => 'Male',
         ],
     ],
-    'finn.1.zspr' => [
+    'finn.3.zspr' => [
         'name' => 'Finn Merten',
         'author' => 'Devan2002',
-        'file' => 'finn.1.zspr',
-        'version' => 1,
-        'vtversion' => '1',
+        'file' => 'finn.3.zspr',
+        'version' => 3,
+        'vtversion' => '31',
         'tags' => [
             0 => 'Cartoon Network',
             1 => 'Male',
@@ -841,9 +883,10 @@ return [
         'author' => 'skovacs1',
         'file' => 'finny_bear.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Animal',
+            1 => 'Personality',
         ],
     ],
     'fish_floodgate.1.zspr' => [
@@ -851,7 +894,7 @@ return [
         'author' => 'Delphi1024',
         'file' => 'fish_floodgate.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -863,7 +906,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'flavor_guy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Personality',
             1 => 'Male',
@@ -874,18 +917,29 @@ return [
         'author' => 'InTheBeef',
         'file' => 'foxlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Link',
             1 => 'Animal',
         ],
     ],
+    'freya.1.zspr' => [
+        'name' => 'Freya Crescent',
+        'author' => 'Demoncraze',
+        'file' => 'freya.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.6',
+        'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Female',
+        ],
+    ],
     'frisk.1.zspr' => [
         'name' => 'Frisk',
-        'author' => 'Original by Toby Fox, sprite edit by MisterKerr',
+        'author' => 'TobyFox/MisterKerr',
         'file' => 'frisk.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Undertale',
         ],
@@ -895,7 +949,7 @@ return [
         'author' => 'Mike Trethewey',
         'file' => 'froglink.3.zspr',
         'version' => 3,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Link',
             1 => 'Animal',
@@ -906,8 +960,9 @@ return [
         'author' => 'FujinAkari',
         'file' => 'fujin.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Final Fantasy',
         ],
     ],
     'future_trunks.1.zspr' => [
@@ -915,8 +970,10 @@ return [
         'author' => 'Merciter',
         'file' => 'future_trunks.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Dragonball',
+            1 => 'Male',
         ],
     ],
     'gamer.1.zspr' => [
@@ -924,7 +981,7 @@ return [
         'author' => 'Unknown',
         'file' => 'gamer.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -935,7 +992,7 @@ return [
         'author' => 'atth3h3art0fwinter',
         'file' => 'ganon.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Villain',
             1 => 'ALTTP NPC',
@@ -949,7 +1006,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'ganondorf.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Villain',
             1 => 'ALTTP NPC',
@@ -963,7 +1020,7 @@ return [
         'author' => 'Fwiller',
         'file' => 'garfield.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Male',
             1 => 'Animal',
@@ -974,7 +1031,7 @@ return [
         'author' => 'Artheau',
         'file' => 'garnet.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Cartoon Network',
@@ -985,8 +1042,9 @@ return [
         'author' => 'Herowho',
         'file' => 'garomaster.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Legend of Zelda',
         ],
     ],
     'gbc-link.1.zspr' => [
@@ -994,7 +1052,7 @@ return [
         'author' => 'skovacs1',
         'file' => 'gbc-link.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1006,7 +1064,7 @@ return [
         'author' => 'FedoraFriday',
         'file' => 'geno.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Mario',
             1 => 'Male',
@@ -1017,8 +1075,9 @@ return [
         'author' => 'Lantis',
         'file' => 'gobli.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Male',
         ],
     ],
     'goomba.1.zspr' => [
@@ -1026,7 +1085,7 @@ return [
         'author' => 'SirCzah',
         'file' => 'goomba.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Mario',
         ],
@@ -1036,7 +1095,7 @@ return [
         'author' => 'Jam',
         'file' => 'goose.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Bird',
             1 => 'Animal',
@@ -1047,7 +1106,7 @@ return [
         'author' => 'proximitysound',
         'file' => 'grandpoobear.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Personality',
             1 => 'Streamer',
@@ -1060,10 +1119,22 @@ return [
         'author' => 'SirCzah',
         'file' => 'grunclestan.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Disney',
             1 => 'Male',
+        ],
+    ],
+    'guiz.1.zspr' => [
+        'name' => 'Guiz',
+        'author' => 'GuizDP',
+        'file' => 'guiz.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.6',
+        'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Male',
         ],
     ],
     'hardhat_beetle.1.zspr' => [
@@ -1071,7 +1142,7 @@ return [
         'author' => 'Artheau',
         'file' => 'hardhat_beetle.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -1082,8 +1153,10 @@ return [
         'author' => 'skovacs1',
         'file' => 'hat-kid.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Female',
+            1 => 'A Hat in Time',
         ],
     ],
     'headlesslink.1.zspr' => [
@@ -1091,7 +1164,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'headlesslink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1103,7 +1176,7 @@ return [
         'author' => 'qeeen',
         'file' => 'hello_kitty.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Cat',
@@ -1115,7 +1188,7 @@ return [
         'author' => 'Hidari',
         'file' => 'hidari.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -1126,8 +1199,9 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'hint_tile.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'ALTTP NPC',
         ],
     ],
     'hitsuyan.1.zspr' => [
@@ -1135,8 +1209,11 @@ return [
         'author' => 'BOtheMighty',
         'file' => 'hitsuyan.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Male',
         ],
     ],
     'hoarder-bush.1.zspr' => [
@@ -1144,7 +1221,7 @@ return [
         'author' => 'Restomak',
         'file' => 'hoarder-bush.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -1155,7 +1232,7 @@ return [
         'author' => 'Restomak',
         'file' => 'hoarder-pot.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -1166,18 +1243,18 @@ return [
         'author' => 'Restomak',
         'file' => 'hoarder-rock.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
         ],
     ],
-    'homer.zspr' => [
+    'homer.1.zspr' => [
         'name' => 'Homer Simpson',
         'author' => 'Fwiller',
-        'file' => 'homer.zspr',
+        'file' => 'homer.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Simpsons',
             1 => 'Male',
@@ -1188,7 +1265,7 @@ return [
         'author' => 'InTheBeef',
         'file' => 'hyruleknight.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -1199,7 +1276,7 @@ return [
         'author' => 'Achy',
         'file' => 'ibazly.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Personality',
             1 => 'Streamer',
@@ -1211,7 +1288,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'ignignokt.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Male',
             1 => 'Alien',
@@ -1224,7 +1301,7 @@ return [
         'author' => 'Herowho',
         'file' => 'informant_woman.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Female',
@@ -1236,7 +1313,7 @@ return [
         'author' => 'RyuTech',
         'file' => 'inkling.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Splatoon',
         ],
@@ -1246,16 +1323,19 @@ return [
         'author' => 'Mike Trethewey',
         'file' => 'invisibleman.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
+            0 => 'Link',
+            1 => 'Male',
+            2 => 'Legend of Zelda',
         ],
     ],
-    'jack-frost.zspr' => [
+    'jack-frost.1.zspr' => [
         'name' => 'Jack Frost',
         'author' => 'xypotion',
-        'file' => 'jack-frost.zspr',
+        'file' => 'jack-frost.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Shin Megami Tensei',
         ],
@@ -1265,8 +1345,10 @@ return [
         'author' => 'Artheau',
         'file' => 'jason_frudnick.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Blast Master',
+            1 => 'Male',
         ],
     ],
     'jasp.1.zspr' => [
@@ -1274,8 +1356,9 @@ return [
         'author' => 'Chonixtu',
         'file' => 'jasp.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'jogurt.1.zspr' => [
@@ -1283,8 +1366,9 @@ return [
         'author' => 'Nakuri',
         'file' => 'jogurt.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'katsura.1.zspr' => [
@@ -1292,8 +1376,11 @@ return [
         'author' => 'atth3h3art0fwinter',
         'file' => 'katsura.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Gintama',
+            1 => 'Cartoon',
+            2 => 'Male',
         ],
     ],
     'kecleon.1.zspr' => [
@@ -1301,7 +1388,7 @@ return [
         'author' => 'Gylergin',
         'file' => 'kecleon.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -1311,10 +1398,21 @@ return [
         'author' => 'Artheau',
         'file' => 'kenny_mccormick.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'South Park',
             1 => 'Male',
+        ],
+    ],
+    'ketchup.1.zspr' => [
+        'name' => 'Ketchup',
+        'author' => 't0uchan',
+        'file' => 'ketchup.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.6',
+        'tags' => [
+            0 => 'Tasty',
+            1 => 'IRL',
         ],
     ],
     'kholdstare.1.zspr' => [
@@ -1322,7 +1420,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'kholdstare.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -1334,17 +1432,22 @@ return [
         'author' => 'kickpixel',
         'file' => 'king_gothalion.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Streamer',
+            1 => 'Personality',
+            2 => 'Male',
         ],
     ],
     'king_graham.1.zspr' => [
-        'name' => 'King Graham v1.1',
+        'name' => 'King Graham',
         'author' => 'MisterKerr',
         'file' => 'king_graham.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'King\'s Quest',
+            1 => 'Male',
         ],
     ],
     'kirby-meta.1.zspr' => [
@@ -1352,7 +1455,7 @@ return [
         'author' => 'KHRoxas',
         'file' => 'kirby-meta.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Male',
             1 => 'Kirby',
@@ -1363,8 +1466,9 @@ return [
         'author' => 'Skewer',
         'file' => 'kore8.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'lakitu.1.zspr' => [
@@ -1372,7 +1476,7 @@ return [
         'author' => 'SirCzah',
         'file' => 'lakitu.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Mario',
         ],
@@ -1382,7 +1486,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'lapras.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -1392,8 +1496,9 @@ return [
         'author' => 'PrideToRuleEarth',
         'file' => 'lest.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Final Fantasy',
         ],
     ],
     'lily.1.zspr' => [
@@ -1401,8 +1506,10 @@ return [
         'author' => 'ScatlinkSean',
         'file' => 'lily.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Blossom Tales',
+            1 => 'Female',
         ],
     ],
     'linja.1.zspr' => [
@@ -1410,8 +1517,11 @@ return [
         'author' => 'Razhagal',
         'file' => 'linja.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Link',
+            1 => 'Male',
+            2 => 'Legend of Zelda',
         ],
     ],
     'linkhatcolor.1.zspr' => [
@@ -1419,7 +1529,7 @@ return [
         'author' => 'Damon',
         'file' => 'linkhatcolor.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1431,7 +1541,7 @@ return [
         'author' => 'Damon',
         'file' => 'linktuniccolor.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1443,7 +1553,7 @@ return [
         'author' => 'Botchos',
         'file' => 'littlepony.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'My Little Pony',
             1 => 'Female',
@@ -1455,8 +1565,10 @@ return [
         'author' => 'Artheau',
         'file' => 'locke_merchant.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Male',
         ],
     ],
     'lucario.1.zspr' => [
@@ -1464,7 +1576,7 @@ return [
         'author' => 'Achy',
         'file' => 'lucario.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -1474,7 +1586,7 @@ return [
         'author' => 'Achy',
         'file' => 'luigi.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26.2',
         'tags' => [
             0 => 'Male',
             1 => 'Mario',
@@ -1486,7 +1598,7 @@ return [
         'author' => 'Jam',
         'file' => 'madeline.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Female',
             1 => 'Celeste',
@@ -1497,7 +1609,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'magus.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Chrono Trigger',
             1 => 'Villain',
@@ -1509,7 +1621,7 @@ return [
         'author' => 'Plan',
         'file' => 'maiden.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Female',
@@ -1521,10 +1633,11 @@ return [
         'author' => 'FedoraFriday',
         'file' => 'mallow-cat.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Cat',
             1 => 'Animal',
+            2 => 'Streamer',
         ],
     ],
     'mangalink.1.zspr' => [
@@ -1532,7 +1645,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'mangalink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1544,7 +1657,7 @@ return [
         'author' => 'Zarby89',
         'file' => 'maplequeen.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Female',
         ],
@@ -1554,8 +1667,10 @@ return [
         'author' => 'Nocturnesthesia',
         'file' => 'marin.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'Female',
         ],
     ],
     'mario-classic.2.zspr' => [
@@ -1563,7 +1678,7 @@ return [
         'author' => 'Damon',
         'file' => 'mario-classic.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Mario',
             1 => 'Male',
@@ -1574,7 +1689,7 @@ return [
         'author' => 'Nocturnesthesia',
         'file' => 'mario_tanooki.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Mario',
             1 => 'Male',
@@ -1585,7 +1700,7 @@ return [
         'author' => 'Damon',
         'file' => 'mariocappy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Mario',
             1 => 'Male',
@@ -1596,7 +1711,7 @@ return [
         'author' => 'Achy',
         'file' => 'marisa.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Touhou Project',
             1 => 'Female',
@@ -1607,8 +1722,12 @@ return [
         'author' => 'Marcus Bolduc',
         'file' => 'matthias.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Redwall',
+            1 => 'Male',
+            2 => 'Cartoon',
+            3 => 'Book',
         ],
     ],
     'meatwad.1.zspr' => [
@@ -1616,7 +1735,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'meatwad.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Male',
             1 => 'Aqua Teen Hunger Force',
@@ -1628,7 +1747,7 @@ return [
         'author' => 'Mike Trethewey',
         'file' => 'medallions.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -1639,8 +1758,11 @@ return [
         'author' => 'Kzinssie',
         'file' => 'medli.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'Female',
+            2 => 'Bird',
         ],
     ],
     'megaman-x.2.zspr' => [
@@ -1648,7 +1770,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'megaman-x.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Male',
             1 => 'Megaman',
@@ -1659,7 +1781,7 @@ return [
         'author' => 'Jam',
         'file' => 'metroid.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Metroid',
             1 => 'Alien',
@@ -1670,7 +1792,7 @@ return [
         'author' => 'MewLp',
         'file' => 'mew.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -1680,8 +1802,10 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'mike-jones.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
+            0 => 'StarTropics',
+            1 => 'Male',
         ],
     ],
     'minish_link.1.zspr' => [
@@ -1689,7 +1813,7 @@ return [
         'author' => 'Artheau',
         'file' => 'minish_link.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1701,7 +1825,7 @@ return [
         'author' => 'InTheBeef',
         'file' => 'minishcaplink.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1710,10 +1834,10 @@ return [
     ],
     'missingno.1.zspr' => [
         'name' => 'missingno',
-        'author' => '',
+        'author' => 'AAhbxsujd',
         'file' => 'missingno.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -1723,7 +1847,7 @@ return [
         'author' => 'RyuTech',
         'file' => 'modernlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1735,7 +1859,7 @@ return [
         'author' => 'Krelbel',
         'file' => 'mog.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Final Fantasy',
         ],
@@ -1745,7 +1869,7 @@ return [
         'author' => 'Ardaceus',
         'file' => 'momiji.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Touhou Project',
             1 => 'Female',
@@ -1756,7 +1880,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'moosh.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1769,7 +1893,7 @@ return [
         'author' => 'Malthaez',
         'file' => 'mouse.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Link',
             1 => 'Animal',
@@ -1780,7 +1904,7 @@ return [
         'author' => 'TehRealSalt',
         'file' => 'ms-paintdog.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Animal',
         ],
@@ -1790,7 +1914,7 @@ return [
         'author' => 'Achy',
         'file' => 'mushy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Pride',
         ],
@@ -1800,7 +1924,7 @@ return [
         'author' => 'iBazly',
         'file' => 'naturelink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1812,10 +1936,32 @@ return [
         'author' => 'qwertymodo',
         'file' => 'navi.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Female',
             1 => 'Legend of Zelda',
+        ],
+    ],
+    'navirou.1.zspr' => [
+        'name' => 'Navirou',
+        'author' => 'Lori',
+        'file' => 'navirou.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.6',
+        'tags' => [
+            0 => 'Monster Hunter',
+        ],
+    ],
+    'ned-flanders.1.zspr' => [
+        'name' => 'Ned Flanders',
+        'author' => 'JJ0033LL',
+        'file' => 'ned-flanders.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.6',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Cartoon',
+            2 => 'Simpsons',
         ],
     ],
     'negativelink.1.zspr' => [
@@ -1823,7 +1969,7 @@ return [
         'author' => 'iBazly',
         'file' => 'negativelink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1832,19 +1978,21 @@ return [
     ],
     'neosad.1.zspr' => [
         'name' => 'Neosad',
-        'author' => 'Andrew Copple',
+        'author' => 'Dr. Deadrewski',
         'file' => 'neosad.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
         ],
     ],
     'neslink.1.zspr' => [
-        'name' => ' NES Link',
+        'name' => 'NES Link',
         'author' => 'MikeTrethewey/Fatmanspanda',
         'file' => 'neslink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1852,11 +2000,11 @@ return [
         ],
     ],
     'ness.1.zspr' => [
-        'name' => 'Ness (Earthbound)',
+        'name' => 'Ness',
         'author' => 'Lantis',
         'file' => 'ness.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Male',
             1 => 'Earthbound',
@@ -1867,8 +2015,10 @@ return [
         'author' => 'Mojonbo',
         'file' => 'nia.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Xenoblade',
+            1 => 'Female',
         ],
     ],
     'niko.1.zspr' => [
@@ -1876,8 +2026,10 @@ return [
         'author' => 'ScatlinkSean',
         'file' => 'niko.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'OneShot',
+            1 => 'Cat',
         ],
     ],
     'oldman.2.zspr' => [
@@ -1885,7 +2037,7 @@ return [
         'author' => 'Zarby89',
         'file' => 'oldman.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Male',
@@ -1897,8 +2049,10 @@ return [
         'author' => 'Phant',
         'file' => 'ori.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
+            0 => 'Ori',
+            1 => 'Male',
         ],
     ],
     'outlinelink.1.zspr' => [
@@ -1906,7 +2060,7 @@ return [
         'author' => 'VT',
         'file' => 'outlinelink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26.2',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1918,7 +2072,7 @@ return [
         'author' => 'SePH/InTheBeef',
         'file' => 'parallelworldslink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -1930,7 +2084,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'paula.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Earthbound',
             1 => 'Female',
@@ -1941,10 +2095,11 @@ return [
         'author' => 'RoPan',
         'file' => 'peach.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Mario',
             1 => 'Princess',
+            2 => 'Female',
         ],
     ],
     'penguinlink.1.zspr' => [
@@ -1952,20 +2107,21 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'penguinlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Link',
             1 => 'Animal',
         ],
     ],
     'pete.1.zspr' => [
-        'name' => 'Pete (Harvest Moon)',
+        'name' => 'Pete',
         'author' => 'Lantis',
         'file' => 'pete.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Male',
+            1 => 'Harvest Moon',
         ],
     ],
     'phoenix-wright.1.zspr' => [
@@ -1973,9 +2129,10 @@ return [
         'author' => 'SnipSlum',
         'file' => 'phoenix-wright.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Male',
+            1 => 'Ace Attorney',
         ],
     ],
     'pikachu.1.zspr' => [
@@ -1983,7 +2140,7 @@ return [
         'author' => 'toucansham',
         'file' => 'pikachu.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -1993,7 +2150,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'pinkribbonlink.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2005,9 +2162,10 @@ return [
         'author' => 'lecremateur',
         'file' => 'piranha_plant.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Mario',
+            1 => 'Villain',
         ],
     ],
     'plagueknight.1.zspr' => [
@@ -2015,8 +2173,10 @@ return [
         'author' => 'Jenichi',
         'file' => 'plagueknight.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
+            0 => 'Shovel Knight',
+            1 => 'Male',
         ],
     ],
     'pokey.1.zspr' => [
@@ -2024,7 +2184,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'pokey.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2035,8 +2195,10 @@ return [
         'author' => 'ItsSupercar',
         'file' => 'popoi.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
+            0 => 'Secret of Mana',
+            1 => 'Male',
         ],
     ],
     'poppy.1.zspr' => [
@@ -2044,8 +2206,10 @@ return [
         'author' => 'cbass601',
         'file' => 'poppy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Trolls',
+            1 => 'Female',
         ],
     ],
     'porg_knight.1.zspr' => [
@@ -2053,8 +2217,9 @@ return [
         'author' => 'PorgCollector',
         'file' => 'porg_knight.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Star Wars',
         ],
     ],
     'powerpuff_girl.1.zspr' => [
@@ -2062,7 +2227,7 @@ return [
         'author' => 'Jenichi',
         'file' => 'powerpuff_girl.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Superhero',
@@ -2075,7 +2240,7 @@ return [
         'author' => 'proximitysound',
         'file' => 'pridelink.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2088,8 +2253,10 @@ return [
         'author' => 'Artheau',
         'file' => 'primm.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Secret of Mana',
+            1 => 'Female',
         ],
     ],
     'princess_bubblegum.1.zspr' => [
@@ -2097,7 +2264,7 @@ return [
         'author' => 'Devan2002',
         'file' => 'princess_bubblegum.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Female',
             1 => 'Cartoon Network',
@@ -2108,7 +2275,7 @@ return [
         'author' => 'skovacs1',
         'file' => 'psyduck.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -2118,8 +2285,12 @@ return [
         'author' => 'Achy',
         'file' => 'pug.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26.2',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Animal',
+            2 => 'Streamer',
+            3 => 'Male',
         ],
     ],
     'purplechest-bottle.1.zspr' => [
@@ -2127,7 +2298,7 @@ return [
         'author' => 'Mike Trethewey',
         'file' => 'purplechest-bottle.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2138,8 +2309,10 @@ return [
         'author' => 'malmo',
         'file' => 'pyro.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Team Fortress',
+            1 => 'Male',
         ],
     ],
     'rainbowlink.1.zspr' => [
@@ -2147,7 +2320,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'rainbowlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2159,16 +2332,18 @@ return [
         'author' => 'Herowho',
         'file' => 'remeer.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Brain Lord',
+            1 => 'Male',
         ],
     ],
     'rick.1.zspr' => [
-        'name' => 'Rick (Redacted)',
+        'name' => 'Rick',
         'author' => 'Eric the Terrible/Devan 2002',
         'file' => 'rick.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Male',
             1 => 'Cartoon Network',
@@ -2179,7 +2354,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'robotlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2191,7 +2366,7 @@ return [
         'author' => 'toucansham',
         'file' => 'rocko.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Male',
             1 => 'Nickelodeon',
@@ -2202,8 +2377,9 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'rottytops.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Cartoon',
         ],
     ],
     'roykoopa.1.zspr' => [
@@ -2211,7 +2387,7 @@ return [
         'author' => 'Achy',
         'file' => 'roykoopa.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Male',
             1 => 'Mario',
@@ -2222,7 +2398,7 @@ return [
         'author' => 'Achy',
         'file' => 'rumia.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Touhou Project',
             1 => 'Female',
@@ -2233,8 +2409,10 @@ return [
         'author' => 'Sho',
         'file' => 'rydia.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Female',
         ],
     ],
     'ryu.1.zspr' => [
@@ -2242,9 +2420,10 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'ryu.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Male',
+            1 => 'Street Fighter',
         ],
     ],
     'sailormoon.1.zspr' => [
@@ -2252,8 +2431,11 @@ return [
         'author' => 'Jenichi',
         'file' => 'sailormoon.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
+            0 => 'Sailor Moon',
+            1 => 'Female',
+            2 => 'Cartoon',
         ],
     ],
     'saitama.1.zspr' => [
@@ -2261,7 +2443,7 @@ return [
         'author' => 'Dabeanjelly/Ath3h3art0fwinter',
         'file' => 'saitama.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Male',
             1 => 'Superhero',
@@ -2272,7 +2454,7 @@ return [
         'author' => 'Ben G',
         'file' => 'samus-sm.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Metroid',
             1 => 'Female',
@@ -2283,7 +2465,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'samus.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Metroid',
             1 => 'Female',
@@ -2294,7 +2476,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'samus_classic.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Metroid',
             1 => 'Female',
@@ -2305,7 +2487,7 @@ return [
         'author' => 'HOHOHO',
         'file' => 'santalink.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2318,7 +2500,7 @@ return [
         'author' => 'Damon',
         'file' => 'scholar.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2329,8 +2511,10 @@ return [
         'author' => 'atth3h3art0fwinter',
         'file' => 'selan.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Lufia',
+            1 => 'Female',
         ],
     ],
     'sevens1ns.1.zspr' => [
@@ -2338,8 +2522,11 @@ return [
         'author' => 'Hroun',
         'file' => 'sevens1ns.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Male',
         ],
     ],
     'shadow.1.zspr' => [
@@ -2347,8 +2534,10 @@ return [
         'author' => 'CGG Zayik',
         'file' => 'shadow.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Male',
         ],
     ],
     'shadowsaku.2.zspr' => [
@@ -2356,8 +2545,11 @@ return [
         'author' => 'iBazly',
         'file' => 'shadowsaku.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Female',
         ],
     ],
     'shantae.1.zspr' => [
@@ -2365,8 +2557,10 @@ return [
         'author' => 'skovacs1',
         'file' => 'shantae.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
+            0 => 'Shantae',
+            1 => 'Female',
         ],
     ],
     'shuppet.1.zspr' => [
@@ -2374,10 +2568,21 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'shuppet.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Pokemon',
             1 => 'Ghost',
+        ],
+    ],
+    'shy-gal.1.zspr' => [
+        'name' => 'Shy Gal',
+        'author' => 'FedoraFriday',
+        'file' => 'shy-gal.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.6',
+        'tags' => [
+            0 => 'Mario',
+            1 => 'Female',
         ],
     ],
     'shy-guy.1.zspr' => [
@@ -2385,7 +2590,7 @@ return [
         'author' => 'skovacs1',
         'file' => 'shy-guy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Mario',
         ],
@@ -2395,8 +2600,9 @@ return [
         'author' => 'GenoCL',
         'file' => 'sighn_waive.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'snes-controller.1.zspr' => [
@@ -2404,8 +2610,9 @@ return [
         'author' => 'Cbass601',
         'file' => 'snes-controller.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
+            0 => 'SNES',
         ],
     ],
     'sodacan.1.zspr' => [
@@ -2413,8 +2620,11 @@ return [
         'author' => 'Zarby89',
         'file' => 'sodacan.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
+            0 => 'Sprite',
+            1 => 'Tasty',
+            2 => 'IRL',
         ],
     ],
     'solaire.1.zspr' => [
@@ -2422,8 +2632,10 @@ return [
         'author' => 'Knilip',
         'file' => 'solaire.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Dark Souls',
+            1 => 'Male',
         ],
     ],
     'soldiersprite.1.zspr' => [
@@ -2431,7 +2643,7 @@ return [
         'author' => 'InTheBeef',
         'file' => 'soldiersprite.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'ALTTP NPC',
@@ -2442,9 +2654,10 @@ return [
         'author' => 'Osaka',
         'file' => 'sonic.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Male',
+            1 => 'Sonic the Hedgehog',
         ],
     ],
     'sora.1.zspr' => [
@@ -2452,7 +2665,7 @@ return [
         'author' => 'roxas232',
         'file' => 'sora.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Male',
             1 => 'Kingdom Hearts',
@@ -2463,7 +2676,7 @@ return [
         'author' => 'ScatlinkSean',
         'file' => 'sora_kh1.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Male',
             1 => 'Kingdom Hearts',
@@ -2474,7 +2687,7 @@ return [
         'author' => 'Maessan',
         'file' => 'squall.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Male',
             1 => 'Final Fantasy',
@@ -2485,9 +2698,11 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'squirrel.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Animal',
+            1 => 'Personality',
+            2 => 'Streamer',
         ],
     ],
     'squirtle.1.zspr' => [
@@ -2495,7 +2710,7 @@ return [
         'author' => 'Numberplay',
         'file' => 'squirtle.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -2505,7 +2720,7 @@ return [
         'author' => 'Artheau',
         'file' => 'stalfos.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2516,7 +2731,7 @@ return [
         'author' => 'Kan',
         'file' => 'stan.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Male',
             1 => 'Okage: Shadow King',
@@ -2527,7 +2742,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'staticlink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2540,8 +2755,9 @@ return [
         'author' => 'skovacs1',
         'file' => 'stick_man.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'superbomb.1.zspr' => [
@@ -2549,7 +2765,7 @@ return [
         'author' => 'Ninjakauz',
         'file' => 'superbomb.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2572,7 +2788,7 @@ return [
         'author' => 'Achy',
         'file' => 'supermeatboy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Male',
             1 => 'Meat Boy',
@@ -2583,7 +2799,7 @@ return [
         'author' => 'Mike Trethewey',
         'file' => 'swatchy.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2595,7 +2811,7 @@ return [
         'author' => 'GenoCL',
         'file' => 'tasbot.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Personality',
         ],
@@ -2605,7 +2821,7 @@ return [
         'author' => 'SirCzah',
         'file' => 'teatime.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Personality',
             1 => 'Streamer',
@@ -2616,17 +2832,21 @@ return [
         'author' => 'All-in-one Mighty',
         'file' => 'terra.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Female',
         ],
     ],
     'tetra.1.zspr' => [
-        'name' => 'Tetra Sheet',
+        'name' => 'Tetra',
         'author' => 'Ferelheart',
         'file' => 'tetra.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'Female',
         ],
     ],
     'tgh.1.zspr' => [
@@ -2634,7 +2854,7 @@ return [
         'author' => 'Drew Wise, pizza_for_free',
         'file' => 'tgh.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Personality',
             1 => 'Streamer',
@@ -2646,7 +2866,7 @@ return [
         'author' => 'Devan2002',
         'file' => 'thief.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Male',
@@ -2658,8 +2878,12 @@ return [
         'author' => 'Thom',
         'file' => 'thomcrow.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Male',
+            3 => 'Bird',
         ],
     ],
     'tile.2.zspr' => [
@@ -2667,7 +2891,7 @@ return [
         'author' => 'fatmanspanda',
         'file' => 'tile.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2678,7 +2902,7 @@ return [
         'author' => 'Xenobond',
         'file' => 'tingle.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'Male',
@@ -2689,10 +2913,11 @@ return [
         'author' => 'SirCzah',
         'file' => 'tmnt.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Animal',
             1 => 'Male',
+            2 => 'Cartoon',
         ],
     ],
     'toad.2.zspr' => [
@@ -2700,7 +2925,7 @@ return [
         'author' => 'Zarby89',
         'file' => 'toad.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'Male',
             1 => 'Mario',
@@ -2711,7 +2936,7 @@ return [
         'author' => 'Devan2002',
         'file' => 'toadette.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Female',
             1 => 'Mario',
@@ -2722,7 +2947,7 @@ return [
         'author' => 'Devan2002',
         'file' => 'toadette_captain.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
             1 => 'Mario',
@@ -2733,7 +2958,7 @@ return [
         'author' => 'Yotohan',
         'file' => 'totem-links.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2745,7 +2970,7 @@ return [
         'author' => 'MikeTrethewey/Spanda',
         'file' => 'trogdor.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Male',
         ],
@@ -2755,7 +2980,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'twilightprincesszelda.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '28',
         'tags' => [
             0 => 'Legend of Zelda',
             1 => 'Female',
@@ -2766,8 +2991,9 @@ return [
         'author' => 'Devan2002',
         'file' => 'two_faced.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'ty.1.zspr' => [
@@ -2775,9 +3001,10 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'ty.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Animal',
+            1 => 'Ty the Tasmanian Tiger',
         ],
     ],
     'ultros.1.zspr' => [
@@ -2785,7 +3012,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'ultros.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Final Fantasy',
         ],
@@ -2795,7 +3022,7 @@ return [
         'author' => 'Glan',
         'file' => 'valeera.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Warcraft',
             1 => 'Female',
@@ -2806,7 +3033,7 @@ return [
         'author' => 'Jenichi',
         'file' => 'vanillalink.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2818,7 +3045,7 @@ return [
         'author' => 'Aquana',
         'file' => 'vaporeon.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Pokemon',
         ],
@@ -2828,7 +3055,7 @@ return [
         'author' => 'Merciter',
         'file' => 'vegeta.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Male',
             1 => 'Dragonball',
@@ -2839,8 +3066,9 @@ return [
         'author' => 'aitchFactor',
         'file' => 'vera.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'vitreous.1.zspr' => [
@@ -2848,7 +3076,7 @@ return [
         'author' => 'Glan',
         'file' => 'vitreous.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2860,8 +3088,10 @@ return [
         'author' => 'RyuTech',
         'file' => 'vivi.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Male',
         ],
     ],
     'vivian.1.zspr' => [
@@ -2869,11 +3099,10 @@ return [
         'author' => 'SirCzah',
         'file' => 'vivian.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Mario',
             1 => 'Female',
-            2 => 'Trans',
         ],
     ],
     'wario.1.zspr' => [
@@ -2881,7 +3110,7 @@ return [
         'author' => 'Deagans',
         'file' => 'wario.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Male',
             1 => 'Mario',
@@ -2893,8 +3122,10 @@ return [
         'author' => 'Xenobond',
         'file' => 'will.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
+            0 => 'Illusion of Gaia',
+            1 => 'Male',
         ],
     ],
     'wizzrobe.2.zspr' => [
@@ -2902,7 +3133,7 @@ return [
         'author' => 'iBazly',
         'file' => 'wizzrobe.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
@@ -2913,7 +3144,7 @@ return [
         'author' => 'Fish/Beef-Chan',
         'file' => 'wolf_link.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2927,7 +3158,7 @@ return [
         'author' => 'Gfish59',
         'file' => 'wolf_link_tp.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -2940,7 +3171,7 @@ return [
         'author' => 'Yotohan',
         'file' => 'yoshi.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Mario',
         ],
@@ -2950,9 +3181,10 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'yunica.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '27',
         'tags' => [
             0 => 'Female',
+            1 => 'Ys',
         ],
     ],
     'zandra.1.zspr' => [
@@ -2960,8 +3192,11 @@ return [
         'author' => 'ZandraVandra',
         'file' => 'zandra.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Female',
         ],
     ],
     'zebraunicorn.1.zspr' => [
@@ -2969,7 +3204,7 @@ return [
         'author' => 'Brass Man',
         'file' => 'zebraunicorn.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Animal',
             1 => 'Personlity',
@@ -2981,8 +3216,9 @@ return [
         'author' => 'aitchFactor',
         'file' => 'zeck.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '31.0.5',
         'tags' => [
+            0 => 'Personality',
         ],
     ],
     'zelda.1.zspr' => [
@@ -2990,7 +3226,7 @@ return [
         'author' => 'Myriachan',
         'file' => 'zelda.1.zspr',
         'version' => 1,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Female',
@@ -3002,7 +3238,7 @@ return [
         'author' => 'Fish_waffle64',
         'file' => 'zerosuitsamus.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Metroid',
             1 => 'Female',
@@ -3013,7 +3249,7 @@ return [
         'author' => 'Zarby, InTheBeef',
         'file' => 'zora.2.zspr',
         'version' => 2,
-        'vtversion' => '1',
+        'vtversion' => '25',
         'tags' => [
             0 => 'ALTTP NPC',
             1 => 'Legend of Zelda',
