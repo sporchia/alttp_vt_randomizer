@@ -371,7 +371,7 @@ class Randomizer implements RandomizerContract
         ];
 
         if ($world->config('mode.weapons') == 'swordless') {
-            array_splice($boss_locations, 8, 1); // remove Ice Palace
+            array_splice($boss_locations, 9, 1); // remove Ice Palace
             $world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare", $world));
         }
 
@@ -872,19 +872,33 @@ class Randomizer implements RandomizerContract
             ];
         });
 
-        $boots_location = $world->getLocationsWithItem(Item::get('PegasusBoots', $world))->first();
+        if ($world instanceof World\Standard) {
+            $boots_location = $world->getLocationsWithItem(Item::get('PegasusBoots', $world))->first();
 
-        if ($world->config('spoil.BootsLocation', false) && $boots_location) {
-            Log::info('Boots revealed');
-            switch ($boots_location->getName()) {
-                case "Link's House":
-                    $world->setText('uncle_leaving_text', "Lonk!\nYou'll never\nfind the boots");
-                    break;
-                case "Maze Race":
-                    $world->setText('uncle_leaving_text', "Boots at race?\nSeed confirmed\nimpossible.");
-                    break;
-                default:
-                    $world->setText('uncle_leaving_text', "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName());
+            if ($world->config('spoil.BootsLocation', false)) {
+                Log::info('Boots revealed');
+                if ($world->getPreCollectedItems()->has('PegasusBoots')) {
+                    $uncleBootsText = "Lonk! Boots\nare on\nyour feet.";
+                } else if (!$boots_location) {
+                    $uncleBootsText = "I couldn't\nfind the Boots\ntoday.\nRIP me.";
+                } else {
+                    $uncleBootsText = "Lonk! Boots\nare in the\n" . $boots_location->getRegion()->getName();
+                    switch ($boots_location->getName()) {
+                        case "Link's House:" . $world->id:
+                            $uncleBootsText = "Lonk!\nYou'll never\nfind the boots.";
+                            break;
+                        case "Maze Race:" . $world->id:
+                            $uncleBootsText = "Boots at race?\nSeed confirmed\nimpossible.";
+                            break;
+                        case "Link's Uncle:" . $world->id:
+                            $uncleBootsText = "Ganon offered\nme the Boots.\nTime to run!";
+                            break;
+                    }
+                }
+                $world->setText('uncle_leaving_text', $uncleBootsText);
+                $world->setText('sign_east_of_links_house', $uncleBootsText);
+            } else {
+                $world->setText('uncle_leaving_text', Arr::first(fy_shuffle($strings['uncle'])));
             }
         } else {
             $world->setText('uncle_leaving_text', Arr::first(fy_shuffle($strings['uncle'])));

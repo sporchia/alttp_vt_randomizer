@@ -91,7 +91,7 @@ export default class ROM {
     this.setMusicVolume(musicOn);
 
     this.updateChecksum().then(() => {
-      FileSaver.saveAs(new Blob([this.u_array]), filename);
+      FileSaver.saveAs(new Blob([this.u_array], {type: 'application/octet-stream'}), filename);
 
       // undo any presave processing we did.
       this.arrayBuffer = preProcess;
@@ -322,13 +322,17 @@ export default class ROM {
   }
 
   parseBaseBPS(bps) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const patcher = new BPS();
 
       patcher.setPatch(bps);
       patcher.setSource(this.originalData);
 
-      this.arrayBuffer = patcher.applyPatch();
+      try {
+        this.arrayBuffer = patcher.applyPatch();
+      } catch (error) {
+        reject(error);
+      }
 
       resolve(this);
     });

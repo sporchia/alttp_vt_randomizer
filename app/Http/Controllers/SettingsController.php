@@ -214,7 +214,9 @@ class SettingsController extends Controller
             return [
                 'name' => $info['name'],
                 'author' => $info['author'],
+                'version' => $info['version'],
                 'file' => 'https://alttpr.s3.us-east-2.amazonaws.com/' . $file,
+                'tags' => $info['tags'] ?? [],
             ];
         })->values()->all();
     }

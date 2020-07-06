@@ -20,3 +20,5 @@
 .php_cs.cache
 /.vscode
 /.vs
+*.sfc
+*.smc
