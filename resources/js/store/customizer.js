@@ -93,6 +93,11 @@ export default new Vuex.Store({
           file: null,
           name: "Random"
         });
+        sprites.push({
+          author: "none",
+          file: null,
+          name: "Load Custom Sprite"
+        });
         commit("updateSprites", sprites);
       });
     },
