@@ -892,6 +892,7 @@ abstract class World
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),
             'enemizer.enemy_health' => $this->config('enemizer.enemyHealth'),
+            'enemizer.pot_shuffle' => $this->config('enemizer.potShuffle'),
         ]);
 
         $this->spoiler['Bosses'] = [
@@ -1299,6 +1300,7 @@ abstract class World
         return $this->config('enemizer.bossShuffle') != 'none'
             || $this->config('enemizer.enemyShuffle') != 'none'
             || $this->config('enemizer.enemyDamage') != 'default'
-            || $this->config('enemizer.enemyHealth') != 'default';
+            || $this->config('enemizer.enemyHealth') != 'default'
+            || $this->config('enemizer.potShuffle') != 'off';
     }
 }

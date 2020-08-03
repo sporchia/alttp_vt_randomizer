@@ -233,6 +233,10 @@ return [
                 'shuffled' => 'Shuffled',
                 'random' => 'Random',
             ],
+            'pot_shuffle' => [
+                'on' => 'On',
+                'off' => 'Off',
+            ],
             'hints' => [
                 'on' => 'On',
                 'off' => 'Off',

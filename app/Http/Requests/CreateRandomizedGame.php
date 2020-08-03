@@ -64,6 +64,9 @@ class CreateRandomizedGame extends FormRequest
             'enemizer.enemy_shuffle' => [
                 Rule::in($valid_settings['enemy_shuffle']),
             ],
+            'enemizer.pot_shuffle' => [
+                Rule::in($valid_settings['pot_shuffle']),
+            ],
             'hints' => [
                 Rule::in($valid_settings['hints']),
             ],

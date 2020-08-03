@@ -80,6 +80,7 @@ class MultiworldController extends Controller
                 'enemizer.enemyShuffle' => 'none',
                 'enemizer.enemyDamage' => 'default',
                 'enemizer.enemyHealth' => 'default',
+                'enemizer.potShuffle' => 'off',
                 'multiworld' => true,
             ]);
         }

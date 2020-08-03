@@ -143,6 +143,7 @@ class RandomizerController extends Controller
             'enemizer.enemyShuffle' => $request->input('enemizer.enemy_shuffle', 'none'),
             'enemizer.enemyDamage' => $request->input('enemizer.enemy_damage', 'default'),
             'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
+            'enemizer.potShuffle' => $request->input('enemizer.pot_shuffle', 'off'),
         ]);
 
         $rom = new Rom(config('alttp.base_rom'));

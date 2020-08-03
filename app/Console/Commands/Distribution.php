@@ -77,6 +77,7 @@ class Distribution extends Command
             'enemizer.enemyShuffle' => 'none',
             'enemizer.enemyDamage' => 'default',
             'enemizer.enemyHealth' => 'default',
+            'enemizer.potShuffle' => 'off',
         ];
 
         $locations = [];
