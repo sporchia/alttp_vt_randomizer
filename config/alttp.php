@@ -2,6 +2,7 @@
 
 return [
     'base_rom' => env('ENEMIZER_BASE', null),
+    'api_throttle_whitelist' => explode(',', env('API_THROTTLE_WHITELIST', '')),
     'custom' => [
         'prize' => [
             'crossWorld' => false,

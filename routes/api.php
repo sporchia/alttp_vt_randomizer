@@ -17,15 +17,15 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('throttle:150,360');
+Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('throttleIp:150,360');
 
-Route::post('multiworld', 'MultiworldController@generateSeed')->middleware('throttle:40,360');
+Route::post('multiworld', 'MultiworldController@generateSeed')->middleware('throttleIp:40,360');
 
-Route::post('randomizer/spoiler', 'RandomizerController@testGenerateSeed')->middleware('throttle:300,360');
+Route::post('randomizer/spoiler', 'RandomizerController@testGenerateSeed')->middleware('throttleIp:300,360');
 
-Route::post('customizer', 'CustomizerController@generateSeed')->middleware('throttle:50,360');
+Route::post('customizer', 'CustomizerController@generateSeed')->middleware('throttleIp:50,360');
 
-Route::post('customizer/test', 'CustomizerController@testGenerateSeed')->middleware('throttle:200,360');
+Route::post('customizer/test', 'CustomizerController@testGenerateSeed')->middleware('throttleIp:200,360');
 
 Route::get('daily', static function () {
     $featured = ALttP\FeaturedGame::today();

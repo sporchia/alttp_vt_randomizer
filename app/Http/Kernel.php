@@ -29,7 +29,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+            'throttleIp:60,1',
             'bindings',
         ],
     ];
@@ -47,5 +47,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \ALttP\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'throttleIp' => \ALttP\Http\Middleware\ThrottleRequestsWithIp::class,
     ];
 }
