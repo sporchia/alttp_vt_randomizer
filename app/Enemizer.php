@@ -247,8 +247,6 @@ class Enemizer
             ]);
         }
 
-        Log::debug($options);
-
         file_put_contents($this->options_file, json_encode($options));
     }
 
