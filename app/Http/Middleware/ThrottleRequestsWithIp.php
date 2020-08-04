@@ -3,7 +3,6 @@
 namespace ALttP\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Log;
 
 class ThrottleRequestsWithIp extends \Illuminate\Routing\Middleware\ThrottleRequests
 {
