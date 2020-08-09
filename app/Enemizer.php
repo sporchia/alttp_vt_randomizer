@@ -194,7 +194,7 @@ class Enemizer
             "GrayscaleMode" => false,
             "GenerateSpoilers" => false,
             "RandomizeLinkSpritePalette" => false,
-            "RandomizePots" => false,
+            "RandomizePots" => $this->world->config('enemizer.potShuffle') === 'on',
             "ShuffleMusic" => false,
             "BootlegMagic" => true,
             "CustomBosses" => false,

@@ -166,6 +166,7 @@ class Randomize extends Command
                 'enemizer.enemyShuffle' => 'none',
                 'enemizer.enemyDamage' => 'default',
                 'enemizer.enemyHealth' => 'default',
+                'enemizer.potShuffle' => 'off',
             ]);
 
             $rand = new Randomizer([$world]);

@@ -12,7 +12,7 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2020-06-27';
+    const BUILD = '2020-08-03';
     const HASH = '11f68a2420b7ca44de97878582e6aa05';
     const SIZE = 2097152;
 

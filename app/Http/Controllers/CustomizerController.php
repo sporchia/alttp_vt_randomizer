@@ -188,6 +188,7 @@ class CustomizerController extends Controller
             'enemizer.enemyShuffle' => $request->input('enemizer.enemy_shuffle', 'none'),
             'enemizer.enemyDamage' => $request->input('enemizer.enemy_damage', 'default'),
             'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
+            'enemizer.potShuffle' => $request->input('enemizer.pot_shuffle', 'off'),
             'ignoreCanKillEscapeThings' => array_key_exists(base64_encode("Link's Uncle:1"), $request->input('l')),
             'customPrizePacks' => true,
         ], $custom_data));

@@ -2,6 +2,7 @@
 
 return [
     'base_rom' => env('ENEMIZER_BASE', null),
+    'api_throttle_whitelist' => explode(',', env('API_THROTTLE_WHITELIST', '')),
     'custom' => [
         'prize' => [
             'crossWorld' => false,
@@ -232,6 +233,10 @@ return [
                 'none' => 'None',
                 'shuffled' => 'Shuffled',
                 'random' => 'Random',
+            ],
+            'pot_shuffle' => [
+                'on' => 'On',
+                'off' => 'Off',
             ],
             'hints' => [
                 'on' => 'On',
