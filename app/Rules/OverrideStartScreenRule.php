@@ -17,9 +17,8 @@ class OverrideStartScreenRule implements Rule
     {
         if (is_array($value)) {
             return count($value) === 5 && min($value) >= 0x00 && max($value) <= 0x1F;
-        } else if ($value === false) {
-            return true;
         }
+
         return false;
     }
 
