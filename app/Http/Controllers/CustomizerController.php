@@ -181,6 +181,7 @@ class CustomizerController extends Controller
             'tournament' => $request->input('tournament', true),
             'spoilers' => $spoilers,
             'allow_quickswap' => $request->input('allow_quickswap', false),
+            'override_start_screen' => $request->input('override_start_screen', false),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
             'item.functionality' => $request->input('item.functionality', 'normal'),

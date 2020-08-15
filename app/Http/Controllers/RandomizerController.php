@@ -135,6 +135,7 @@ class RandomizerController extends Controller
             'tournament' => $request->input('tournament', false),
             'spoilers' => $spoilers,
             'allow_quickswap' => $request->input('allow_quickswap', false),
+            'override_start_screen' => $request->input('override_start_screen', false),
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
