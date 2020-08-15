@@ -947,12 +947,6 @@ abstract class World
      */
     public function writeToRom(Rom $rom, bool $save = false): Rom
     {
-        if ($override_start_screen = $this->config('override_start_screen', false)) {
-            if (!(count($override_start_screen) === 5 && min($override_start_screen) >= 0x00 && max($override_start_screen) <= 0x1F)) {
-                throw new \Exception('Start screen array must be a 5 integer array between 0 and 31!');
-            }
-        }
-
         if ($this->override_patch !== null) {
             foreach ($this->override_patch as $writes) {
                 foreach ($writes as $address => $bytes) {
@@ -965,7 +959,7 @@ abstract class World
 
                 $rom->setSeedString(str_pad(sprintf("VT %s", $hash), 21, ' '));
 
-                $rom->setStartScreenHash($override_start_screen ?: $this->seed->hashArray());
+                $rom->setStartScreenHash($this->config('override_start_screen', false) ?: $this->seed->hashArray());
 
                 $this->seed->patch = json_encode($rom->getWriteLog());
                 $this->seed->save();
@@ -1165,7 +1159,7 @@ abstract class World
 
             $rom->setSeedString(str_pad(sprintf("VT %s", $hash), 21, ' '));
 
-            $rom->setStartScreenHash($override_start_screen ?: $this->seed->hashArray());
+            $rom->setStartScreenHash($this->config('override_start_screen', false) ?: $this->seed->hashArray());
 
             $this->seed->patch = json_encode($rom->getWriteLog());
             $this->seed->save();
