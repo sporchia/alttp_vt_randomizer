@@ -4,6 +4,7 @@ namespace ALttP\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use ALttP\Rules\OverrideStartScreenRule;
 
 class CreateRandomizedGame extends FormRequest
 {
@@ -85,6 +86,9 @@ class CreateRandomizedGame extends FormRequest
             'enemizer.enemy_health' => [
                 Rule::in($valid_settings['enemy_health']),
             ],
+            'override_start_screen' => [
+                new OverrideStartScreenRule
+            ]
         ];
     }
 }

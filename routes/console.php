@@ -67,7 +67,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'enemizer.enemyShuffle' => getWeighted('enemy_shuffle'),
                 'enemizer.enemyDamage' => getWeighted('enemy_damage'),
                 'enemizer.enemyHealth' => getWeighted('enemy_health'),
-                'enemizer.potShuffle' => false,
+                'enemizer.potShuffle' => 'off',
             ]);
 
             $rom = new Rom(config('alttp.base_rom'));

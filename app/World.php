@@ -955,7 +955,11 @@ abstract class World
             }
 
             if ($save) {
-                $this->saveSeedRecord();
+                $hash = $this->saveSeedRecord();
+
+                $rom->setSeedString(str_pad(sprintf("VT %s", $hash), 21, ' '));
+
+                $rom->setStartScreenHash($this->config('override_start_screen', false) ?: $this->seed->hashArray());
 
                 $this->seed->patch = json_encode($rom->getWriteLog());
                 $this->seed->save();
@@ -1155,7 +1159,7 @@ abstract class World
 
             $rom->setSeedString(str_pad(sprintf("VT %s", $hash), 21, ' '));
 
-            $rom->setStartScreenHash($this->seed->hashArray());
+            $rom->setStartScreenHash($this->config('override_start_screen', false) ?: $this->seed->hashArray());
 
             $this->seed->patch = json_encode($rom->getWriteLog());
             $this->seed->save();
