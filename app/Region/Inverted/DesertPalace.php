@@ -31,7 +31,7 @@ class DesertPalace extends Region\Standard\DesertPalace
                     ($items->has('MoonPearl')
                         || ($this->world->config('canOWYBA', false)
                             && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
-                            && $items->canBunnyRevive())) && (
+                            && $items->canBunnyRevive($this->world))) && (
                         ($this->world->config('canBootsClip', false)
                             && $items->has('PegasusBoots')))) &&
                 $this->world->getRegion('South Light World')->canEnter($locations, $items);
@@ -51,7 +51,7 @@ class DesertPalace extends Region\Standard\DesertPalace
                 && ($items->has('MoonPearl')
                     || $this->world->config('canDungeonRevive', false)
                     || ($this->world->config('canBunnyRevive', false)
-                        && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                        && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                         && $items->hasABottle()) || $items->hasSword());
         });
 
@@ -61,7 +61,7 @@ class DesertPalace extends Region\Standard\DesertPalace
                 && (
                     ($items->has('MoonPearl')
                         || ($this->world->config('canBunnyRevive', false)
-                            && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                            && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                             && $items->hasABottle())) || ($this->world->config('canOneFrameClipOW', false)
                         && $this->world->config('canDungeonRevive', false)))
                 && ($items->canLiftRocks() || ($this->world->config('canBootsClip', false)
@@ -83,7 +83,7 @@ class DesertPalace extends Region\Standard\DesertPalace
             return ($this->world->config('canDungeonRevive', false)
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('MagicMirror')) || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
                 $items->has('MoonPearl')) && ($main($locations, $items)
                 || $side($locations, $items)

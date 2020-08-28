@@ -72,31 +72,31 @@ class NorthWest extends Region
         $this->shops["Dark World Outcasts Shop"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer') && ($items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)));
         });
 
         $this->locations["Brewery"]->setRequirements(function ($locations, $items) {
             return $items->canBombThings() && ($items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)));
         });
 
         $this->locations["C-Shaped House"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false)
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Chest Game"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl') || $this->world->config('canSuperBunny', false)
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Hammer Pegs"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer') && ($items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                 && ($items->canLiftDarkRocks()
                     || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false))
                     || (($this->world->config('canFakeFlipper', false) || $items->has('Flippers'))
@@ -109,7 +109,7 @@ class NorthWest extends Region
             return $this->world->config('canOneFrameClipOW', false)
                 || (($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                     && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                         || (($this->world->config('itemPlacement') !== 'basic' || $items->has('Hookshot'))
                             && $items->canLiftRocks() && $items->has('Cape'))));
@@ -119,7 +119,7 @@ class NorthWest extends Region
             return ($this->world->config('itemPlacement') !== 'basic' || $items->has('MagicMirror'))
                 && ((($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                     && $items->canLiftDarkRocks())
                     || (($this->world->config('canOWYBA', false) && $items->hasABottle())
                         && ($this->world->config('canOneFrameClipOW', false)
@@ -132,7 +132,7 @@ class NorthWest extends Region
                 && (($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false))
                     || (($items->has('MoonPearl')
                         || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                         && ($items->canLiftDarkRocks()
                             || (($this->world->config('canFakeFlipper', false) || $items->has('Flippers'))
                                 && ($this->world->config('canOneFrameClipOW', false)
@@ -156,7 +156,7 @@ class NorthWest extends Region
                             && (($items->has('Hookshot') || ($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')))
                                 && ($items->canLiftRocks() || $items->has('Hammer')
                                     || ($items->has('Flippers')
-                                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())))))
+                                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world))))))
                             || ($items->has('Hammer') && $items->canLiftRocks())
                             || $items->canLiftDarkRocks()
                             || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))

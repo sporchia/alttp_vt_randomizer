@@ -85,7 +85,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                 || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive())
+                    && $items->canBunnyRevive($this->world))
                 || $this->world->config('canOneFrameClipOW', false)) &&
                 $items->has('Mushroom');
         });
@@ -93,7 +93,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         $this->locations["Zora's Ledge"]->setRequirements(function ($locations, $items) {
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) && ($items->has('Flippers')
                     || ($this->world->config('canWaterWalk', false)
                         && (($this->world->config('canFakeFlipper', false)
@@ -110,7 +110,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         $this->locations["Waterfall Fairy - Left"]->setRequirements(function ($locations, $items) {
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) && ($this->world->config('canFakeFlipper', false)
                 || ($this->world->config('canWaterWalk', false)
                     && ($items->has('PegasusBoots')
@@ -127,7 +127,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         $this->locations["Waterfall Fairy - Right"]->setRequirements(function ($locations, $items) {
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle())) && ($this->world->config('canFakeFlipper', false)
                 || ($this->world->config('canWaterWalk', false)
                     && ($items->has('PegasusBoots')
@@ -175,7 +175,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
 
             return ($items->has('MoonPearl')
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) || (     // Invis Ganon fight sounds fun for logic :)
                     $this->world->config('canSuperBunny', false)
                     && $this->world->config('canDungeonRevive', false) // Just so it's not in logic for everyone. Don't care, just think it's better like this.

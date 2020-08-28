@@ -150,7 +150,7 @@ class SkullWoods extends Region
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasABottle()))
                 && ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl')
                     || (($items->hasABottle() && $this->world->config('canOWYBA', false))
-                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world))))
                 && $this->world->getRegion('North West Dark World')->canEnter($locations, $items);
         };
 
