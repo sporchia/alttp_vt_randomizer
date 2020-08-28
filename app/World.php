@@ -1307,5 +1307,4 @@ abstract class World
             || $this->config('enemizer.enemyHealth') != 'default'
             || $this->config('enemizer.potShuffle') != 'off';
     }
-
 }

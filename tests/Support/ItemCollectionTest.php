@@ -227,15 +227,7 @@ class ItemCollectionTest extends TestCase
      */
     public function testCanExtendMagic($items, $difficultySetting, $magicBars, $expectedResult)
     {
-        $this->world = null;
-        if ($difficultySetting !== null)
-        {
-            $this->world = World::factory('standard', ['item.functionality' => $difficultySetting]);
-        }
-        else
-        {
-            $this->world = World::factory();
-        }
+        $this->world = World::factory('standard', ['item.functionality' => $difficultySetting]);
 
         $this->collected->setChecksForWorld($this->world->id);
 

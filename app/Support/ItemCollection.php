@@ -442,12 +442,9 @@ class ItemCollection extends Collection
      */
     public function canAcquireFairy($world = null)
     {
-        if ($world !== null)
+        if ($world !== null && $world->config('rom.HardMode') >= 1)
         {
-            if ($world->config('rom.HardMode') >= 1)
-            {
-                return False;
-            }
+            return False;
         }
         return True;
     }
@@ -507,7 +504,7 @@ class ItemCollection extends Collection
             || $this->has('ProgressiveShield', 3);
     }
 
-   /**
+    /**
      * Requirements for magic usage
      *
      * @param float $bars number of magic bars
@@ -519,7 +516,6 @@ class ItemCollection extends Collection
         $magicModifier = 1.0;
         if ($world !== null)
         {
-
             $difficultyLevel = $world->config('rom.HardMode');
             if ($difficultyLevel === 1) {
                 $magicModifier = 0.5;
