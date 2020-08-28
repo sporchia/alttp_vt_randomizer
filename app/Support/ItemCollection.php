@@ -438,15 +438,37 @@ class ItemCollection extends Collection
     }
 
     /**
+     * Requirements for acquiring a fairy
+     */
+    public function canAcquireFairy($world = null)
+    {
+        if ($world !== null)
+        {
+            if ($world->config('rom.HardMode') >= 1)
+            {
+                return False;
+            }
+        }
+        return True;
+    }
+
+    /**
      * Requirements for water (bunny) revival
      *
      * @return bool
      */
-    public function canBunnyRevive(): bool
+    public function canBunnyRevive($world = null): bool
     {
-        return $this->hasABottle() && $this->has('BugCatchingNet');
-    }
+        $canBunnyRevive = $this->hasABottle() && $this->has('BugCatchingNet');
 
+        if ($world !== null)
+        {
+            $canBunnyRevive = $canBunnyRevive && $this->canAcquireFairy($world);
+        }
+
+        return $canBunnyRevive;
+    }   
+    
     /**
      * Requirements for lobbing arrows at things
      *
@@ -485,17 +507,30 @@ class ItemCollection extends Collection
             || $this->has('ProgressiveShield', 3);
     }
 
-    /**
+   /**
      * Requirements for magic usage
      *
      * @param float $bars number of magic bars
      *
      * @return bool
      */
-    public function canExtendMagic($bars = 2.0)
+    public function canExtendMagic($world = null, $bars = 2.0)
     {
-        return ($this->has('QuarterMagic') ? 4 : ($this->has('HalfMagic') ? 2 : 1))
-            * ($this->bottleCount() + 1) >= $bars;
+        $magicModifier = 1.0;
+        if ($world !== null)
+        {
+
+            $difficultyLevel = $world->config('rom.HardMode');
+            if ($difficultyLevel === 1) {
+                $magicModifier = 0.5;
+            }
+            else if ($difficultyLevel === 2) {
+                $magicModifier = 0.25;
+            }
+        }
+        $baseMagic = ($this->has('QuarterMagic') ? 4 : ($this->has('HalfMagic') ? 2 : 1))
+            * ($this->bottleCount() + 1);
+        return ($baseMagic * $magicModifier) >= $bars;
     }
 
     /**

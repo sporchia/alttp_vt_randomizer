@@ -155,6 +155,95 @@ class ItemCollectionTest extends TestCase
         ], $this->collection->values());
     }
 
+    public function canBunnyReviveDataProvider()
+    {
+        return [
+            [[], 'normal', False],
+            [['Bottle'], 'normal', False],
+            [['Bottle', 'BugCatchingNet'], 'normal', True],
+            [['BottleWithFairy', 'BugCatchingNet'], 'normal', True],
+            [['Bottle', 'BugCatchingNet'], 'hard', False],
+            [['Bottle', 'BugCatchingNet'], 'expert', False],
+        ];
+    }
+
+    /**
+     * @dataProvider canBunnyReviveDataProvider
+     */
+    public function testCanBunnyRevive($items, $difficultySetting, $expectedResult)
+    {
+        $this->world = World::factory('standard', ['item.functionality' => $difficultySetting]);
+        $this->collected->setChecksForWorld($this->world->id);
+
+        $this->addCollected($items);
+
+        $this->assertEquals($expectedResult, $this->collected->canBunnyRevive($this->world));
+    }
+
+    public function canAcquireFairyDataProvider()
+    {
+        return [
+            ["easy", True],
+            ["normal", True],
+            ["hard", False],
+            ["expert", False],
+            [null, True]
+        ];
+    }
+
+    /**
+     * @dataProvider canAcquireFairyDataProvider
+     */
+    public function testCanAcquireFairy($difficultySetting, $expectedResult)
+    {
+        $world = null;
+        if ($difficultySetting !== null)
+        {
+            $world = World::factory('standard', ['item.functionality' => $difficultySetting]);
+        }
+        else
+        {
+            $world = World::factory();
+        }
+        $this->assertEquals($expectedResult, $this->collection->canAcquireFairy($world));
+    }
+
+    public function canExtendMagicDataProvider()
+    {
+        return [
+            [['Bottle'], 'normal', 2, True],
+            [['Bottle'], 'normal', 3, False],
+            [['Bottle', 'HalfMagic'], 'normal', 4, True],
+            [['Bottle', 'HalfMagic'], 'normal', 5, False],
+            [['Bottle', 'HalfMagic'], 'hard', 2, True],
+            [['Bottle', 'HalfMagic'], 'hard', 3, False],
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 'expert', 5, True],
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 'expert', 6, False],
+        ];
+    }
+
+    /**
+     * @dataProvider canExtendMagicDataProvider
+     */
+    public function testCanExtendMagic($items, $difficultySetting, $magicBars, $expectedResult)
+    {
+        $this->world = null;
+        if ($difficultySetting !== null)
+        {
+            $this->world = World::factory('standard', ['item.functionality' => $difficultySetting]);
+        }
+        else
+        {
+            $this->world = World::factory();
+        }
+
+        $this->collected->setChecksForWorld($this->world->id);
+
+        $this->addCollected($items);
+
+        $this->assertEquals($expectedResult, $this->collected->canExtendMagic($this->world, $magicBars));
+    }
+
     /**
      * @dataProvider bottlesPool
      */

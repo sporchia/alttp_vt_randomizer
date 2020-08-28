@@ -57,12 +57,12 @@ class West extends Region
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle()
                         && (($items->has('PegasusBoots') && $this->world->config('canBootsClip', false))
                             || $this->world->config('canOneFrameClipOW', false))
-                        && (($items->has('Cape') && $items->canExtendMagic(3))
-                            || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic(3))
+                        && (($items->has('Cape') && $items->canExtendMagic($this->world, 3))
+                            || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic($this->world, 3))
                                 && $items->has('CaneOfByrna')))))
                 && $items->has('Hammer') && $items->canLiftRocks()
-                && (($items->canExtendMagic() && $items->has('Cape'))
-                    || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic()) && $items->has('CaneOfByrna')));
+                && (($items->canExtendMagic($this->world) && $items->has('Cape'))
+                    || ((!$this->world->config('region.cantTakeDamage', false) || $items->canExtendMagic($this->world)) && $items->has('CaneOfByrna')));
         });
 
         $this->can_enter = function ($locations, $items) {
