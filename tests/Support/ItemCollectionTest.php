@@ -211,14 +211,18 @@ class ItemCollectionTest extends TestCase
     public function canExtendMagicDataProvider()
     {
         return [
-            [['Bottle'], 'normal', 2, True],
-            [['Bottle'], 'normal', 3, False],
-            [['Bottle', 'HalfMagic'], 'normal', 4, True],
-            [['Bottle', 'HalfMagic'], 'normal', 5, False],
-            [['Bottle', 'HalfMagic'], 'hard', 2, True],
-            [['Bottle', 'HalfMagic'], 'hard', 3, False],
-            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 'expert', 5, True],
-            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 'expert', 6, False],
+            [[], 0, 1, True],
+            [[], 3, 2, False],
+            [['Bottle'], 0, 2, True],
+            [['Bottle'], 0, 3, False],
+            [['Bottle', 'HalfMagic'], 0, 4, True],
+            [['Bottle', 'HalfMagic'], 0, 5, False],
+            [['Bottle', 'HalfMagic'], 1, 3, True],
+            [['Bottle', 'HalfMagic'], 1, 4, False],
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 2, 8, True],
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 2, 9, False],
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 3, 4, True],
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], 3, 5, False],
         ];
     }
 
@@ -227,7 +231,7 @@ class ItemCollectionTest extends TestCase
      */
     public function testCanExtendMagic($items, $difficultySetting, $magicBars, $expectedResult)
     {
-        $this->world = World::factory('standard', ['item.functionality' => $difficultySetting]);
+        $this->world = World::factory('standard', ['rom.HardMode' => $difficultySetting]);
 
         $this->collected->setChecksForWorld($this->world->id);
 

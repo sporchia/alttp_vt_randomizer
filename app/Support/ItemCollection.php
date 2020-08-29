@@ -517,16 +517,25 @@ class ItemCollection extends Collection
         if ($world !== null)
         {
             $difficultyLevel = $world->config('rom.HardMode');
-            if ($difficultyLevel === 1) {
-                $magicModifier = 0.5;
-            }
-            else if ($difficultyLevel === 2) {
-                $magicModifier = 0.25;
+            switch ($difficultyLevel)
+            {
+                case 1:
+                    $magicModifier = 0.5;
+                    break;
+                case 2:
+                    $magicModifier = 0.25;
+                    break;
+                case 3:
+                    $magicModifier = 0.0;
+                    break;
+                default:
+                    break;
             }
         }
-        $baseMagic = ($this->has('QuarterMagic') ? 4 : ($this->has('HalfMagic') ? 2 : 1))
-            * ($this->bottleCount() + 1);
-        return ($baseMagic * $magicModifier) >= $bars;
+
+        $baseMagic = ($this->has('QuarterMagic') ? 4 : ($this->has('HalfMagic') ? 2 : 1));
+        $bottleMagic = $baseMagic * $this->bottleCount() * $magicModifier;
+        return ($baseMagic + $bottleMagic) >= $bars;
     }
 
     /**
