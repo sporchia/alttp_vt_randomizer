@@ -160,11 +160,7 @@ export default {
   },
   methods: {
     loadCustomSprite(e) {
-      if (e) {
-        this.showLoadCustomSprite = true;
-      } else {
-        this.showLoadCustomSprite = false;
-      }
+      this.showLoadCustomSprite = Boolean(e);
     },
     ...mapMutations("romSettings", [
       "setHeartSpeed",
