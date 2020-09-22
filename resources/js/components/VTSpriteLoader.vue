@@ -28,6 +28,7 @@ export default {
     };
   },
   created() {
+    this.$emit('disallow-save-rom', true);
     localforage.getItem("rom.custom-sprite-gfx").then(value => {
       if (value === null) return;
       this.file = value;
@@ -85,10 +86,14 @@ export default {
               reject("Could not save sprite to local storage: " + fileName);
             });
 
+          this.$emit('disallow-save-rom', false);
           this.fileNameText = "Loaded: " + fileName;
 
         }).then(this.rom.parseSprGfx.bind(this.rom),
-                (reason) => { this.fileNameText = reason });
+                (reason) => {
+          this.$emit('disallow-save-rom', true);
+          this.fileNameText = reason;
+        });
       };
 
       fileReader.readAsArrayBuffer(this.file);

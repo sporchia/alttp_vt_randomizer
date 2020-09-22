@@ -29,6 +29,7 @@
           id="sprite-loader"
           :rom="rom"
           storage-key="rom.custom-sprite-gfx"
+          @disallow-save-rom="disallowSaveRom"
         ></vt-sprite-loader>
       </div>
     </div>
@@ -161,6 +162,10 @@ export default {
   methods: {
     loadCustomSprite(e) {
       this.showLoadCustomSprite = Boolean(e);
+      this.$emit('disallow-save-rom', Boolean(e));
+    },
+    disallowSaveRom(e) {
+      this.$emit('disallow-save-rom', Boolean(e));
     },
     ...mapMutations("romSettings", [
       "setHeartSpeed",
