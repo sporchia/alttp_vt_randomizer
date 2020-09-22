@@ -18,17 +18,30 @@
 export default {
   props: {
     rom: { default: null },
+    storageKey: { default: null }
   },
   data() {
     return {
       fileSelected: false,
-      fileNameText: ""
+      fileNameText: "",
+      file: null
     };
+  },
+  created() {
+    localforage.getItem("rom.custom-sprite-gfx").then(value => {
+      if (value === null) return;
+      this.file = value;
+      this.loadFile()
+    });
   },
   methods: {
     loadBlob(change) {
       let blob = change.target.files[0];
-      const fileName = change.target.files[0].name;
+      this.file = blob;
+      this.loadFile();
+    },
+    loadFile() {
+      const fileName = this.file.name;
       const fileReader = new FileReader();
 
       fileReader.onload = event => {
@@ -78,7 +91,8 @@ export default {
                 (reason) => { this.fileNameText = reason });
       };
 
-      fileReader.readAsArrayBuffer(blob);
+      fileReader.readAsArrayBuffer(this.file);
+      localforage.setItem(this.storageKey, this.file);
     }
   }
 };

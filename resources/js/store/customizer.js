@@ -95,7 +95,8 @@ export default new Vuex.Store({
         });
         sprites.push({
           author: "none",
-          file: null,
+          // Fake filename for statistics/remembering user preference
+          file: "UserCustomSprite",
           name: "Load Custom Sprite"
         });
         commit("updateSprites", sprites);
