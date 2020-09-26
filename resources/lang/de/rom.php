@@ -51,6 +51,7 @@ return [
             'yellow' => 'Gelb',
         ],
         'play_as' => 'Spiele als',
+        'sprite_file_select' => '.zspr Datei auswählen',
         'music' => 'Hintergrundmusik',
         'music_info' => '(setze zu "Keine" für <a href="https://alttprlinks.page.link/SjiP" target="_blank" rel="noopener noreferrer">MSU-1 Support</a>)',
         'quickswap' => 'Gegenstand Schnellwechsel',

@@ -275,13 +275,18 @@
                     >
                       <button
                         class="btn btn-success text-center"
+                        :disabled="disableSaveRomButton"
                         @click="saveRom"
                       >{{ $t('randomizer.details.save_rom') }}</button>
                     </div>
                   </div>
                 </div>
                 <div v-if="this.endpoint == '/api/customizer'" class="row">
-                  <vt-rom-settings class="col-12" :rom="rom"></vt-rom-settings>
+                  <vt-rom-settings
+                    class="col-12"
+                    :rom="rom"
+                    @disallow-save-rom="disallowSaveRom"
+                  ></vt-rom-settings>
                 </div>
               </div>
             </div>
@@ -379,6 +384,7 @@ export default {
       romLoaded: false,
       current_rom_hash: "",
       gameLoaded: false,
+      disableSaveRomButton: false,
       endpoint: "/api/customizer",
       choice: {
         name: "",
@@ -453,6 +459,9 @@ export default {
     });
   },
   methods: {
+    disallowSaveRom(e) {
+      this.disableSaveRomButton = Boolean(e);
+    },
     ...mapActions("randomizer", [
       "setPreset",
       "setGlitchesRequired",

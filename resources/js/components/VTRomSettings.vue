@@ -19,7 +19,18 @@
           :rom="rom"
           storage-key="rom.sprite-gfx"
           :title="$t('rom.settings.play_as')"
+          @load-custom-sprite="loadCustomSprite"
         ></vt-sprite-select>
+      </div>
+    </div>
+    <div v-if="showLoadCustomSprite" class="row mb-3">
+      <div class="col-md-12">
+        <vt-sprite-loader
+          id="sprite-loader"
+          :rom="rom"
+          storage-key="rom.custom-sprite-gfx"
+          @disallow-save-rom="disallowSaveRom"
+        ></vt-sprite-loader>
       </div>
     </div>
     <div v-if="!rom.tournament" class="row mb-3">
@@ -78,6 +89,7 @@ export default {
   props: ["rom"],
   data() {
     return {
+      showLoadCustomSprite: false,
       settings: {
         heartSpeeds: [
           { value: "off", name: this.$i18n.t("rom.settings.heart_speeds.off") },
@@ -148,6 +160,13 @@ export default {
     };
   },
   methods: {
+    loadCustomSprite(e) {
+      this.showLoadCustomSprite = Boolean(e);
+      this.$emit('disallow-save-rom', Boolean(e));
+    },
+    disallowSaveRom(e) {
+      this.$emit('disallow-save-rom', Boolean(e));
+    },
     ...mapMutations("romSettings", [
       "setHeartSpeed",
       "setMenuSpeed",

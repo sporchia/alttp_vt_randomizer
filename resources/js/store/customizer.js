@@ -93,6 +93,12 @@ export default new Vuex.Store({
           file: null,
           name: "Random"
         });
+        sprites.push({
+          author: "none",
+          // Fake filename for statistics/remembering user preference
+          file: "UserCustomSprite",
+          name: "Load Custom Sprite"
+        });
         commit("updateSprites", sprites);
       });
     },

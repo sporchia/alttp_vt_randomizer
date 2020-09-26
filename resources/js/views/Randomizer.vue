@@ -329,13 +329,18 @@
                 <div class="btn-group btn-flex" role="group" v-if="this.rom">
                   <button
                     class="btn btn-success text-center"
+                    :disabled="disableSaveRomButton"
                     @click="saveRom"
                   >{{ $t('randomizer.details.save_rom') }}</button>
                 </div>
               </div>
             </div>
             <div class="row">
-              <vt-rom-settings class="col-12" :rom="rom"></vt-rom-settings>
+              <vt-rom-settings
+                class="col-12"
+                :rom="rom"
+                @disallow-save-rom="disallowSaveRom"
+              ></vt-rom-settings>
             </div>
           </div>
         </div>
@@ -369,6 +374,7 @@ export default {
       gameLoaded: false,
       show_spoiler: false,
       tournament: false,
+      disableSaveRomButton: false,
       spoilers: "off"
     };
   },
@@ -408,6 +414,9 @@ export default {
       "setEnemyDamage",
       "setEnemyHealth"
     ]),
+    disallowSaveRom(e) {
+      this.disableSaveRomButton = Boolean(e);
+    },
     applyTournamentSeed() {
       this.tournament = true;
       this.spoilers = "off";

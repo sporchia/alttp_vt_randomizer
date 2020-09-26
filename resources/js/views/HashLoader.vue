@@ -49,13 +49,18 @@
                 <div class="btn-group btn-flex" role="group">
                   <button
                     class="btn btn-success text-center"
+                    :disabled="disableSaveRomButton"
                     @click="saveRom"
                   >{{ $t('randomizer.details.save_rom') }}</button>
                 </div>
               </div>
             </div>
             <div class="row">
-              <vt-rom-settings class="col-12" :rom="rom"></vt-rom-settings>
+              <vt-rom-settings
+                class="col-12"
+                :rom="rom"
+                @disallow-save-rom="disallowSaveRom"
+              ></vt-rom-settings>
             </div>
           </div>
         </div>
@@ -101,6 +106,7 @@ export default {
       error: false,
       generating: false,
       romLoaded: false,
+      disableSaveRomButton: false,
       gameLoaded: false
     };
   },
@@ -120,6 +126,9 @@ export default {
     EventBus.$on("applyHash", this.applyHash);
   },
   methods: {
+    disallowSaveRom(e) {
+      this.disableSaveRomButton = Boolean(e);
+    },
     applyHash(e, second_attempt) {
       if (this.rom.checkMD5() != this.current_rom_hash) {
         if (second_attempt) {
