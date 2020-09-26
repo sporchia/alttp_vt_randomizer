@@ -884,7 +884,7 @@ abstract class World
             'crystals_ganon' => $this->config('crystals.ganon'),
             'crystals_tower' => $this->config('crystals.tower'),
             'tournament' => $this->config('tournament', false),
-            'size' => $this->isEnemized() ? 4 : 2,
+            'size' => 2,
             'hints' => $this->config('spoil.Hints'),
             'spoilers' => $this->config('spoilers', 'off'),
             'allow_quickswap' => $this->config('allow_quickswap'),
