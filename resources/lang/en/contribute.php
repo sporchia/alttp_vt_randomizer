@@ -6,7 +6,7 @@ return [
         'sprite' => [
             'header' => 'Sprite Development',
             'content' => [
-                'Want to see your own custom sprite take Link’s place? Checkout <a href="https://github.com/fatmanspanda/ALttPNG/wiki" target="_blank" rel="noopener noreferrer">fatmanspanda’s documentation!</a>',
+                'Want to see your own custom sprite take Link’s place? Checkout <a href="https://github.com/spannerisms/ALttPNG/wiki" target="_blank" rel="noopener noreferrer">spannerisms’s documentation!</a>',
                 'For more information on sprite creation and getting a custom sprite into ALttP:R, check in with #sprite-dev on <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
             ]
         ],
