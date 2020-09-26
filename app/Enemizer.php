@@ -67,7 +67,7 @@ class Enemizer
         $system = php_uname('s') == 'Darwin' ? 'osx' : 'linux';
 
         $proc = new Process([
-            base_path("bin/enemizer/$system/EnemizerCLI.Core"),
+            base_path("vendor/z3/enemizer_$system/EnemizerCLI.Core"),
             '--rom',
             config('enemizer.base'),
             '--seed',
@@ -80,7 +80,7 @@ class Enemizer
             $this->options_file,
             '--output',
             $this->patch_file,
-        ], base_path("bin/enemizer/$system"));
+        ], base_path("vendor/z3/enemizer_$system"));
 
         Log::debug($proc->getCommandLine());
 
@@ -94,7 +94,7 @@ class Enemizer
             throw new \Exception("Unable to generate");
         }
 
-        $file_contents = file_get_contents(base_path("bin/enemizer/$system/enemizerBasePatch.json"));
+        $file_contents = file_get_contents(base_path("vendor/z3/enemizer_$system/enemizerBasePatch.json"));
 
         if ($file_contents === false) {
             Log::error('enemizer base not readable');

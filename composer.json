@@ -27,7 +27,8 @@
     "martinlindhe/laravel-vue-i18n-generator": "^0.1.35",
     "sentry/sentry": "^2.0",
     "sentry/sentry-laravel": "^1.0",
-    "z3/enemizer": "6.0.29",
+    "z3/enemizer_linux": "6.1.0.180",
+    "z3/enemizer_osx": "6.1.0.180",
     "z3/entrancerandomizer": "^0.6.3",
     "z3/randomizer": "^31.0"
   },
@@ -57,12 +58,22 @@
     {
       "type": "package",
       "package": {
-        "name": "z3/enemizer",
-        "version": "6.0.29",
-        "source": {
-          "url": "https://github.com/Zarby89/Enemizer",
-          "type": "git",
-          "reference": "tags/6.0.29"
+        "name": "z3/enemizer_linux",
+        "version": "6.1.0.180",
+        "dist": {
+          "url": "https://github.com/tcprescott/Enimizer/releases/download/2mb-rom/ubuntu.16.04-x64.tar.gz",
+          "type": "tar"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "z3/enemizer_osx",
+        "version": "6.1.0.180",
+        "dist": {
+          "url": "https://github.com/tcprescott/Enimizer/releases/download/2mb-rom/osx.10.12-x64.tar.gz",
+          "type": "tar"
         }
       }
     },
