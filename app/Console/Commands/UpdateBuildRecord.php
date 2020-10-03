@@ -77,9 +77,13 @@ class UpdateBuildRecord extends Command
 
         $build_date = $this->argument('build');
 
-        if (!$this->argument('build')) {
-            $git_log = new Process(['git', 'log', '-1','--format=%cd', '--date=short'], base_path("vendor/z3/randomizer"));
+        if (!$build_date) {
+            $git_log = new Process(
+                ['git', 'log', '-1','--format=%cd', '--date=short'],
+                base_path("vendor/z3/randomizer"));
+
             $git_log->run();
+
             if (!$git_log->isSuccessful()) {
                 $this->error($proc->getErrorOutput());
 
