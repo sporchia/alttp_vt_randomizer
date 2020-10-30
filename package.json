@@ -50,6 +50,7 @@
 		"webpack-bundle-analyzer": "^3.8.0"
 	},
 	"dependencies": {
+		"@maseya/z3pr": "^1.0.0",
 		"@sentry/browser": "^5.18.1",
 		"@stardazed/zlib": "^1.0.1",
 		"ajv": "^6.12.2",
