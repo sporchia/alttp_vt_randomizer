@@ -59,8 +59,6 @@
         </div>
     </div>
 
-    <ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
-
     <div class="card border-info mt-4">
         <a class="anchor" id="goal"></a>
         <div class="card-header bg-info">

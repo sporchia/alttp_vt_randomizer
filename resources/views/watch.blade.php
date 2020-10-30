@@ -17,8 +17,6 @@
         </div>
     </div>
 
-    <ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
-
     <div class="card border-info mt-4">
         <div class="card-header bg-info">
             <h3 class="card-title text-white">{{ __('watch.cards.youtube.header') }}</h3>

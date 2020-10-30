@@ -35,15 +35,5 @@
         store: cStore,
     });
     </script>
-    @if (App::environment() == 'production' || env('AD_TEST'))
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll('ins.adsbygoogle').forEach(function() {
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            });
-        });
-    </script>
-    @endif
 </body>
 </html>

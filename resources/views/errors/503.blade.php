@@ -46,13 +46,6 @@
                 <img src="/i/logo-large.png" class="logo" />
                 <div class="title">Be right back.</div>
             </div>
-            <ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
         </div>
-        @if (App::environment() == 'production' || env('AD_TEST'))
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        @endif
     </body>
 </html>

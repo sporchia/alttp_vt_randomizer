@@ -41,8 +41,6 @@
     </ul>
 </div>
 
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
-
 <h2>v31.0.5</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -136,8 +134,6 @@
     </ul>
 </div>
 
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
-
 <h2>v31</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -215,8 +211,6 @@
         <li>Fixed Skull Woods Customizer extra key</li>
     </ul>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>v30.3</h2>
 <div class="card card-body bg-light mb-3">
@@ -356,8 +350,6 @@
     </div>
 </div>
 
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
-
 <h2>VT8.29</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -472,8 +464,6 @@
         </div>
     </div>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>VT8.26.2</h2>
 <div class="card card-body bg-light mb-3">
@@ -611,8 +601,6 @@
         </div>
     </div>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>VT8.22</h2>
 <div class="card card-body bg-light mb-3">
@@ -786,8 +774,6 @@
         </ul>
     </div>
 </div>
-
-<ins class="adsbygoogle" style="display:inline-block;width:100%;height:90px" data-ad-client="ca-pub-5161309967767506" data-ad-slot="9849787408"></ins>
 
 <h2>V7 Updates</h2>
 <div class="card card-body bg-light mb-3">
