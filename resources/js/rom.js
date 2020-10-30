@@ -2,7 +2,7 @@ import SparkMD5 from "spark-md5";
 import FileSaver from "file-saver";
 import Prando from "prando";
 import BPS from "./bps";
-import { randomize as palette_randomize } from "@maseya/z3pr";
+import * as Z3PR from "@maseya/z3pr";
 
 export default class ROM {
   constructor(blob, loadedCallback) {
@@ -278,7 +278,7 @@ export default class ROM {
   }
 
   randomizePalettes() {
-    palette_randomize(this.u_array, {
+    Z3PR.randomize(this.u_array, {
       mode: 'maseya',
       randomize_overworld: true,
       randomize_dungeon: true
