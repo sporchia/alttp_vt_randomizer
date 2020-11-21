@@ -75,9 +75,28 @@ class UpdateBuildRecord extends Command
             }
         }
 
+        $build_date = $this->argument('build');
+
+        if (!$build_date) {
+            $git_log = new Process(
+                ['git', 'log', '-1','--format=%cd', '--date=short'],
+                base_path("vendor/z3/randomizer"));
+
+            $git_log->run();
+
+            if (!$git_log->isSuccessful()) {
+                $this->error($proc->getErrorOutput());
+
+                $this->error("Unable to retrieve last commit date.");
+
+                return 301;
+            }
+            
+            $build_date = trim($git_log->getOutput());
+        }
 
         $build = Build::firstOrNew([
-            'build' => $this->argument('build') ?? date('Y-m-d'),
+            'build' => $build_date,
         ]);
         $build->hash =  hash_file('md5', $romFile);
         $build->patch = '[]';
