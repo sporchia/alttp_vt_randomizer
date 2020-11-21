@@ -2670,6 +2670,8 @@ class Rom
      * spoilers is set to "mystery".  This text is currently what is used by
      * the entrance randomizer.
      *
+     * @param bool $enable switch on or off
+     *
      * @return $this
      */
     public function setMysteryMasking(bool $enable = true): self
