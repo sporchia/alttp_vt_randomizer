@@ -1151,6 +1151,8 @@ abstract class World
             $rom->setGameType('item');
         }
 
+        $rom->setMysteryMasking($this->config('spoilers', 'on') === 'mystery');
+
         $rom->writeCredits();
         $rom->writeText();
 

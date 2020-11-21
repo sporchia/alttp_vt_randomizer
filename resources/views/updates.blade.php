@@ -10,7 +10,7 @@
             <li>Indoor music will now properly fade to half volume. (Patch by qwertymodo)</li>
             <li>Fixes a rare issue with specific SNES consoles and custom shops causing VRAM corruption or crashes.</li>
             <li>Fixes a very rare issue where the game may crash on a Save and Quit.</li>
-            <li>Fixes an issue where dying in the high stakes chest game in the Lost Woods results in respawning at the pyramid, 
+            <li>Fixes an issue where dying in the high stakes chest game in the Lost Woods results in respawning at the pyramid,
                 regardless of the status of Agahnim 1 or the Magic Mirror. (Thank you Catobat for the report and fix).</li>
             <li>The Village of Outcasts chest game is no longer incrementing the checked locations counter on subsequent plays of the game. (Patch by CaitSith2)</li>
             <li>New chest key counters exist in the SRAM that may be read by auto-trackers. (Patch by Aerinon)</li>
@@ -23,7 +23,12 @@
             <li>Fixed weird behavior when engaging Aghanim 2.</li>
             <li>Enemizer no longer adds "EN 6.0.32" to the file select screen.</li>
         </ul>
+        <li>When spoilers is set to "mystery", the intro text will always be the same text, regardless of game settings.</li>
+        <li>New Maseya-based pallete shuffle algorithm.  This new palette shuffle will also shuffle the map's colors!  (Patch by SWR)</li>
         <li>A new "Load Custom Sprite" option is available to let you use your own .zspr file.  This allows you to use any Link Sprite you wish for racing.  Thank you Krelbel for the patch!</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
