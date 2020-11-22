@@ -314,6 +314,17 @@ return [
             1 => 'Personality',
         ],
     ],
+    'boco.1.zspr' => [
+        'name' => 'Boco the Chocobo',
+        'author' => 'Tar Thoron',
+        'file' => 'boco.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Animal',
+        ],
+    ],
     'boo-two.1.zspr' => [
         'name' => 'Boo 2',
         'author' => 'Achy',
