@@ -5,13 +5,13 @@
 <h2>v31.0.7</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
-        <li>This release contains serveral ROM fixes.</li>
+        <li>This release contains several ROM fixes.</li>
         <ul>
             <li>Indoor music will now properly fade to half volume. (Patch by qwertymodo)</li>
             <li>Fixes a rare issue with specific SNES consoles and custom shops causing VRAM corruption or crashes. Thank you Bonta for identifying the cause of this issue.</li>
             <li>Fixes a very rare issue where the game may crash on a Save and Quit.</li>
             <li>Fixes an issue where dying in the high stakes chest game in the Lost Woods results in respawning at the pyramid, regardless of the status of Agahnim 1 or the Magic Mirror. (Thank you Catobat for the report and fix).</li>
-            <li>The Village of Outcasts chest game is no longer incrementing the checked locations counter on subsequent plays of the game. (Patch by CaitSith2)</li>
+            <li>The Village of Outcasts chest game no longer increments the checked locations counter on subsequent plays of the game after receiving the game's item. (Patch by CaitSith2)</li>
             <li>New chest key counters exist in the SRAM that may be read by auto-trackers. (Patch by Aerinon)</li>
             <li>The left side of Swamp Palace will now remain flooded if the key has been collected. (Patch by CaitSith2)</li>
             <li>Fixes fake world when fluting to pyramid twice.  (Patch by compiling)</li>
