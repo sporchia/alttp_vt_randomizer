@@ -281,8 +281,10 @@ export default class ROM {
     Z3PR.randomize(this.u_array, {
       mode: 'maseya',
       randomize_overworld: true,
-      randomize_dungeon: true
+      randomize_dungeon: true,
+      seed: this.rand.nextInt(0, 4294967295)
     });
+    this.rand.reset()
   }
 
   parsePatch(data, progressCallback) {
