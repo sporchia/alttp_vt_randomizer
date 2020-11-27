@@ -13,7 +13,6 @@
 	"devDependencies": {
 		"@babel/core": "^7.10.3",
 		"@babel/preset-env": "^7.10.3",
-		"@stardazed/crc32": "^1.0.0",
 		"@types/jest": "^25.2.3",
 		"@vue/test-utils": "^1.0.3",
 		"axios": "^0.19.2",
@@ -51,7 +50,9 @@
 		"webpack-bundle-analyzer": "^3.8.0"
 	},
 	"dependencies": {
+		"@maseya/z3pr": "^1.0.0",
 		"@sentry/browser": "^5.18.1",
+		"@stardazed/zlib": "^1.0.1",
 		"ajv": "^6.12.2",
 		"es6-promise": "^4.2.8",
 		"file-saver": "^2.0.2",
