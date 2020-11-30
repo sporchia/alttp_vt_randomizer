@@ -57,6 +57,7 @@ Vue.component(
   "vt-sprite-select",
   require("./components/VTSpriteSelect.vue").default
 );
+Vue.component("vt-sprite-loader", require("./components/VTSpriteLoader.vue").default);
 Vue.component("vt-text", require("./components/VTText.vue").default);
 //Vue.component("Streams", require("./components/Streams").default);
 

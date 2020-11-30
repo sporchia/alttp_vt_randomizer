@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2020-08-03';
-    const HASH = '11f68a2420b7ca44de97878582e6aa05';
+    const BUILD = '2020-09-25';
+    const HASH = '251976ea7cdaadf16742c4f86c571732';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -2660,6 +2660,31 @@ class Rom
     public function setMirrorlessSaveAndQuitToLightWorld(bool $enable = true): self
     {
         $this->write(0x1800A0, pack('C*', $enable ? 0x01 : 0x00));
+
+        return $this;
+    }
+
+    /**
+     * Sets intro text and, in the future, other game elements to mask settings
+     * visible to the player prior to the start of a run.  This is used when
+     * spoilers is set to "mystery".  This text is currently what is used by
+     * the entrance randomizer.
+     *
+     * @param bool $enable switch on or off
+     *
+     * @return $this
+     */
+    public function setMysteryMasking(bool $enable = true): self
+    {
+        if ($enable) {
+            $this->text->setString('intro_main', "{INTRO}\n Episode  III\n{PAUSE3}\n A Link to\n   the Past\n"
+            . "{PAUSE3}\n  Randomizer\n{PAUSE3}\nAfter mostly disregarding what happened in the first two games.\n"
+            . "{PAUSE3}\nLink awakens to his uncle leaving the house.\n{PAUSE3}\nHe just runs out the door,\n"
+            . "{PAUSE3}\ninto the rainy night.\n{PAUSE3}\n{CHANGEPIC}\nGanon has moved around all the items in Hyrule.\n"
+            . "{PAUSE7}\nYou will have to find all the items necessary to beat Ganon.\n"
+            . "{PAUSE7}\nThis is your chance to be a hero.\n{PAUSE3}\n{CHANGEPIC}\n"
+            . "You must get the 7 crystals to beat Ganon.\n{PAUSE9}\n{CHANGEPIC}", false);
+        }
 
         return $this;
     }

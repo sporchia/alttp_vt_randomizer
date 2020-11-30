@@ -1,4 +1,4 @@
-import { crc32 } from "@stardazed/crc32";
+import { crc32 } from "@stardazed/zlib";
 
 /**
  * Class to apply and create BPS's.

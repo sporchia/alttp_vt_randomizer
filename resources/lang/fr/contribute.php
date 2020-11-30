@@ -6,7 +6,7 @@ return [
         'sprite' => [
             'header' => 'Infographie',
             'content' => [
-                'Vous voulez ajouter votre propre héros en remplacement de Link ? Commencez par consulter la <a href="https://github.com/fatmanspanda/ALttPNG/wiki" target="_blank" rel="noopener noreferrer">documentation de fatmanspanda!</a> à ce propos.',
+                'Vous voulez ajouter votre propre héros en remplacement de Link ? Commencez par consulter la <a href="https://github.com/spannerisms/ALttPNG/wiki" target="_blank" rel="noopener noreferrer">documentation de spannerisms!</a> à ce propos.',
                 'Pour plus d’informations, rejoignez le serveur <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> et faites un tour sur le canal #sprite-dev !',
             ]
         ],
