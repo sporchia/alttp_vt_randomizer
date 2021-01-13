@@ -680,9 +680,8 @@ abstract class World
     {
         $items = [];
 
-        $max_items = 216 - array_sum($this->config('item.advancement'));
         foreach ($this->config('item.advancement') as $item_name => $count) {
-            $loop = min($this->config('item.count.' . $item_name, $count), $max_items);
+            $loop = min($this->config('item.count.' . $item_name, $count), 216);
             for ($i = 0; $i < $loop; ++$i) {
                 $items[] = $item_name == 'BottleWithRandom' ? $this->getBottle() : Item::get($item_name, $this);
             }
