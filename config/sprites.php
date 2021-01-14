@@ -2449,7 +2449,7 @@ return [
     ],
     'pikachu.2.zspr' => [
         'name' => 'Pikachu',
-        'author' => 't0ucan',
+        'author' => 't0uchan',
         'file' => 'pikachu.2.zspr',
         'version' => 2,
         'vtversion' => '29',
