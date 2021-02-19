@@ -12,6 +12,7 @@ export default {
                     "crosskeys": "Crosskeys",
                     "quick": "Super Schnell",
                     "nightmare": "Albtraum",
+                    "tournament": "Turnier",
                     "custom": "Benutzerdefiniert"
                 }
             },
@@ -704,6 +705,7 @@ export default {
                     "crosskeys": "Crosskeys",
                     "quick": "Super Quick",
                     "nightmare": "Nightmare",
+                    "tournament": "Tournament",
                     "custom": "Custom"
                 }
             },
@@ -1670,6 +1672,7 @@ export default {
                     "crosskeys": "Crosskeys",
                     "quick": "Súper Rápido",
                     "nightmare": "Pesadilla",
+                    "tournament": "Torneo",
                     "custom": "Personalizado"
                 }
             },
@@ -2361,6 +2364,7 @@ export default {
                     "crosskeys": "Clésordre et Entrées",
                     "quick": "Super Rapide",
                     "nightmare": "Cauchemars",
+                    "tournament": "Tournoi",
                     "custom": "Personnalisé"
                 }
             },
