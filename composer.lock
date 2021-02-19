@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3873287d2c27ab513896bcda6d0f58f",
+    "content-hash": "2268de925931aa84d190c3d6866854e5",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -152,12 +152,12 @@
             "version": "v1.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-stream-filter.git",
+                "url": "https://github.com/clue/stream-filter.git",
                 "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
+                "url": "https://api.github.com/repos/clue/stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
                 "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
                 "shasum": ""
             },
@@ -6981,11 +6981,11 @@
         },
         {
             "name": "z3/randomizer",
-            "version": "31.0.7",
+            "version": "31.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KatDevsGames/z3randomizer",
-                "reference": "76f35b878696eea8ac869ef7c148a65e4e7825b5"
+                "reference": "37f7125198db2971fe2fbb84792cbb111a689749"
             },
             "type": "library"
         }

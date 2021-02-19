@@ -2,6 +2,24 @@
 
 @section('content')
 
+<h2>v31.0.8</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>Fixed label of the "Generate ROM" button in the Customizer.</li>
+        <li>This release contains a few more ROM fixes submitted by the community.</li>
+        <ul>
+            <li>Fixes an off-by-one error with the Aghanim's Tower chest counter.  Thanks CaitSith2</li>
+            <li>Ensures the key in the Tower of Hera basement cage is counted in autotrackers when that item is a Tower of Hera small key.  Thank you Aerinon!</li>
+            <li>Memory values such as prize pack drops are now properly cleared from memory when a new file is created on the same ROM.  Thanks Catobat!</li>
+            <li>The prize drop sequences are now reset on Save & Quit, which is consistant with vanilla ALTTP behavior. Also thank you Catobat!</li>
+            <li>All starting equipment will now appear on new file creation. Previously, some items that shared a slot would not appear until after the first Save & Quit.  Yea, Catobat did this too.</li>
+        </ul>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
 <h2>v31.0.7</h2>
 <div class="card card-body bg-light mb-3">
     <ul>

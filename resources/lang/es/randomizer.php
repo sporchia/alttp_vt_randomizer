@@ -195,6 +195,7 @@ return [
         'race' => 'Generar ROM para carreras',
         'race_warning' => '<span class="running-now">sin spoilers</span>',
         'spoiler_race' => 'Generar ROM para carreras (con spoilers)',
+        'casual' => 'Generar ROM',
         'back' => 'Cambiar ajustes',
         'regenerate' => 'Generar otra vez',
         'regenerate_tooltip' => 'Generar otra partida con las mismas opciones',

@@ -195,6 +195,7 @@ return [
         'race' => 'Générer une ROM de Course',
         'race_warning' => 'Les spoilers ne seront <span class="running-now">jamais</span> disponibles pour cette option.',
         'spoiler_race' => 'Générer une ROM avec Spoiler',
+        'casual' => 'Générer une ROM',
         'back' => 'Changer les Paramètres',
         'regenerate' => 'Générer à nouveau',
         'regenerate_tooltip' => 'Générer à nouveau avec les mêmes paramètres',
