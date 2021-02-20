@@ -81,11 +81,11 @@
       "type": "package",
       "package": {
         "name": "z3/entrancerandomizer",
-        "version": "0.6.3",
+        "version": "0.6.3.10",
         "source": {
           "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
           "type": "git",
-          "reference": "tags/0.6.3-pre9"
+          "reference": "tags/0.6.3-pre10"
         }
       }
     }

@@ -5,6 +5,9 @@
 <h2>v31.0.8</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
+        <li>The Ganon requirement signpost will now indicate if Aghanim 2 is required.</li>
+        <li>Entrance Randomizer: Fixes some unwinnable scenarios with Inverted world state.</li>
+        <li>Entrance Randomizer: Silvers are now appropriately available at all times when choosing Swordless and Normal Item Functionality</li>
         <li>Fixed label of the "Generate ROM" button in the Customizer.</li>
         <li>This release contains a few more ROM fixes submitted by the community.</li>
         <ul>
