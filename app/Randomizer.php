@@ -982,16 +982,6 @@ class Randomizer implements RandomizerContract
             }
         }
 
-        switch ($world->config('goal')) {
-            case 'ganon':
-                $ganon_crystals_singular = 'You need %d crystal to beat Ganon and defeat his minion at the top of his tower.';
-                $ganon_crystals_plural = 'You need %d crystals to beat Ganon and defeat his minion at the top of his tower.';
-                break;
-            default;
-                $ganon_crystals_singular = 'You need %d crystal to beat Ganon.';
-                $ganon_crystals_plural = 'You need %d crystals to beat Ganon.';
-        }
-
         if ($world->config('crystals.tower') < 7) {
             $tower_string = $world->config('crystals.tower') == 1 ? 'You need %d crystal to enter.' : 'You need %d crystals to enter.';
             $tower_require = sprintf($tower_string, $world->config('crystals.tower'));
