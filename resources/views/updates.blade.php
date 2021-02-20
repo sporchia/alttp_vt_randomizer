@@ -15,7 +15,7 @@
             <li>All starting equipment will now appear on new file creation. Previously, some items that shared a slot would not appear until after the first Save & Quit.  Yea, Catobat did this too.</li>
         </ul>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.8.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
