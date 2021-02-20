@@ -11,7 +11,7 @@
         <li>Fixed label of the "Generate ROM" button in the Customizer.</li>
         <li>This release contains a few more ROM fixes submitted by the community.</li>
         <ul>
-            <li>Fixes an off-by-one error with the Aghanim's Tower chest counter.  Thanks CaitSith2</li>
+            <li>Fixes an off-by-one error with the Aghanim's Tower chest counter.  Thanks CaitSith2 for the fix!</li>
             <li>Ensures the key in the Tower of Hera basement cage is counted in autotrackers when that item is a Tower of Hera small key.  Thank you Aerinon!</li>
             <li>Memory values such as prize pack drops are now properly cleared from memory when a new file is created on the same ROM.  Thanks Catobat!</li>
             <li>The prize drop sequences are now reset on Save & Quit, which is consistant with vanilla ALTTP behavior. Also thank you Catobat!</li>

@@ -4287,7 +4287,7 @@ return [
         'author' => 'CD-Mestay',
         'file' => 'terry.1.zspr',
         'version' => 1,
-        'vtversion' => '31.0.7',
+        'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Male',
             1 => 'Contact DS',
