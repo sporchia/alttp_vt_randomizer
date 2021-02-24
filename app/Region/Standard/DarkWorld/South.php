@@ -65,51 +65,51 @@ class South extends Region
         $this->locations["Hype Cave - Top"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Hype Cave - Middle Right"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Hype Cave - Middle Left"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Hype Cave - Bottom"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Hype Cave - NPC"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->locations["Stumpy"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world))
                 || ($items->has('MagicMirror') && $this->world->config('canMirrorWrap', false));
         });
 
         $this->locations["Digging Game"]->setRequirements(function ($locations, $items) {
             return $items->has('MoonPearl')
                 || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive());
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world));
         });
 
         $this->shops["Bonk Fairy (Dark)"]->setRequirements(function ($locations, $items) {
             return $items->has('PegasusBoots')
                 && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)));
         });
 
         $this->shops["Dark Lake Hylia Ledge Fairy"]->setRequirements(function ($locations, $items) {
@@ -117,20 +117,20 @@ class South extends Region
                 && ($items->has('Flippers')
                     || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                         && $this->world->config('canFakeFlipper', false) && (!$this->world->config('region.cantTakeDamage', false)))
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                 && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)));
         });
 
         $this->shops["Dark Lake Hylia Ledge Hint"]->setRequirements(function ($locations, $items) {
             return ($items->has('Flippers')
                 || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                     && $this->world->config('canFakeFlipper', false) && (!$this->world->config('region.cantTakeDamage', false)))
-                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                 && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)));
         });
 
         $this->shops["Dark Lake Hylia Ledge Spike Cave"]->setRequirements(function ($locations, $items) {
@@ -138,16 +138,16 @@ class South extends Region
                 && ($items->has('Flippers')
                     || ($this->world->getRegion('North West Dark World')->canEnter($locations, $items)
                         && $this->world->config('canFakeFlipper', false) && (!$this->world->config('region.cantTakeDamage', false)))
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                 && ($items->has('MoonPearl')
                     || ($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()));
+                    || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)));
         });
 
         $this->can_enter = function ($locations, $items) {
             return $items->has('RescueZelda')
                 && (($this->world->config('canOWYBA', false) && $items->hasABottle())
-                    || (($items->has('MoonPearl') || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    || (($items->has('MoonPearl') || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                         && ($this->world->getRegion('North East Dark World')->canEnter($locations, $items)
                             && ($items->has('Hammer')
                                 || ($this->world->config('canSuperSpeed', false) && $items->canSpinSpeed()

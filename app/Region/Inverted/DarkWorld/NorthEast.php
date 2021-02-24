@@ -45,7 +45,7 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast
                     || ( //Quirn-Jump
                         !$this->world->config('region.cantTakeDamage', false)
                         && $this->world->config('canFakeFlipper', false)) || ($this->world->config('canBunnyRevive', false)
-                        && $items->canBunnyRevive())) || ($this->world->config('canWaterWalk', false)
+                        && $items->canBunnyRevive($this->world))) || ($this->world->config('canWaterWalk', false)
                     && $items->has('PegasusBoots'));
         });
 
@@ -92,7 +92,7 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast
                     && $items->has('PegasusBoots')) || ($this->world->config('canSuperSpeed', false)
                     && $items->canSpinSpeed()) || (!$this->world->config('region.cantTakeDamage', false)
                     && $this->world->config('canFakeFlipper', false)) || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) ||
+                    && $items->canBunnyRevive($this->world)) ||
                 $this->world->config('canOneFrameClipOW', false);
         };
 

@@ -88,7 +88,7 @@ class Mire extends Region
                 && (($items->canLiftDarkRocks() && ($items->canFly($this->world)
                     || ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))))
                     || $this->world->config('canOneFrameClipOW', false)
-                    || (((($items->has('MoonPearl') || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                    || (((($items->has('MoonPearl') || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                         && ($this->world->config('canBootsClip', false) && $items->has('PegasusBoots')))
                         || ($this->world->config('canMirrorWrap', false) && $items->has('MagicMirror')))
                         && $this->world->getRegion('South Dark World')->canEnter($locations, $items))

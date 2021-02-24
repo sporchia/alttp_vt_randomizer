@@ -138,7 +138,7 @@ class SwampPalace extends Region\Standard\SwampPalace
                     || ($this->world->config('canOWYBA', false)
                         && $items->hasABottle())
                     || ($this->world->config('canBunnyRevive', false)
-                        && $items->canBunnyRevive()))
+                        && $items->canBunnyRevive($this->world)))
                     || ($this->world->config('canSuperBunny', false)
                         && $items->has('MagicMirror')))
                 && ($items->has('MagicMirror')

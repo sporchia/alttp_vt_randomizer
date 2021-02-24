@@ -27,7 +27,7 @@ class TowerOfHera extends Region\Standard\TowerOfHera
                     && ((($items->has('MoonPearl')
                         || ($this->world->config('canOWYBA', false) && $items->hasBottle(2))
                             || ((($this->world->config('canOWYBA', false) && $items->hasABottle())
-                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive()))
+                            || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world)))
                                 && (($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                                     || $this->world->config('canOneFrameClipOW', false))))
                             && ($this->world->config('canOneFrameClipOW', false)
@@ -54,7 +54,7 @@ class TowerOfHera extends Region\Standard\TowerOfHera
                 && (($items->has('KeyP3')
                     && ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()))) || $mire($locations, $items));
+                    && $items->canBunnyRevive($this->world)))) || $mire($locations, $items));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyP3', $this->world);
         });

@@ -184,7 +184,7 @@ class PalaceOfDarkness extends Region
                     || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->hasHealth(7) && $items->hasABottle()))
                 && ((($items->has('MoonPearl')
                     || (($this->world->config('canOWYBA', false) && $items->hasABottle())
-                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive())))
+                        || ($this->world->config('canBunnyRevive', false) && $items->canBunnyRevive($this->world))))
                     && $this->world->getRegion('North East Dark World')->canEnter($locations, $items))
                     || ($this->world->config('canOneFrameClipUW', false) && $this->world->config('canDungeonRevive', false)
                         && $this->world->getRegion('West Death Mountain')->canEnter($locations, $items)));
