@@ -154,14 +154,14 @@ class Sprites extends Command
         }
 
         // cleanup
-        foreach ($found_files as $file) {
-            try {
-                $this->info("remove: $file");
-                unlink("$sprite_dir/$file");
-            } catch (Exception $ignore) {
-                // ignore
-            }
-        }
+        // foreach ($found_files as $file) {
+        //     try {
+        //         $this->info("remove: $file");
+        //         unlink("$sprite_dir/$file");
+        //     } catch (Exception $ignore) {
+        //         // ignore
+        //     }
+        // }
 
         // deal with config file and scss
         $top = $meta_data->count();
