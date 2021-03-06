@@ -11,6 +11,7 @@
         <li>Fixed label of the "Generate ROM" button in the Customizer.</li>
         <li>Fixes "List is empty" issue affecting users of the Customizer.  Thanks compiling!</li>
         <li>Boss shuffle should now be accounted for in the playthrough.  Thanks compliling for the fix.</li>
+        <li>Even more Ganon, Blind, and Uncle text from the community.</li>
         <li>This release contains a few more ROM fixes submitted by the community.</li>
         <ul>
             <li>Fixes an off-by-one error with the Aghanim's Tower chest counter.  Thanks CaitSith2 for the fix!</li>
