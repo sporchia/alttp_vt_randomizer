@@ -23,7 +23,27 @@ export default {
   namespaced: true,
   state: {
     ...Defaults,
-    options: {},
+    options: {
+      preset: [],
+      glitches_required: [],
+      item_placement: [],
+      dungeon_items: [],
+      accessibility: [],
+      goal: [],
+      tower_open: [],
+      ganon_open: [],
+      world_state: [],
+      entrance_shuffle: [],
+      boss_shuffle: [],
+      enemy_shuffle: [],
+      hints: [],
+      weapons: [],
+      item_pool: [],
+      item_functionality: [],
+      enemy_damage: [],
+      enemy_health: [],
+      spoiler: []
+    },
     preset_map: {},
     initializing: true
   },
