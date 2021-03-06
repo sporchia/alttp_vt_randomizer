@@ -274,6 +274,24 @@ abstract class World
         }
         foreach ($this->shops as $name => $shop) {
             $copy->shops[$name] = $shop->copy();
+	}
+	$boss_locations = [
+            ['Eastern Palace', ''],
+            ['Desert Palace', ''],
+            ['Tower of Hera', ''],
+            ['Palace of Darkness', ''],
+            ['Swamp Palace', ''],
+            ['Skull Woods', ''],
+            ['Thieves Town', ''],
+            ['Ice Palace', ''],
+            ['Misery Mire', ''],
+            ['Turtle Rock', ''],
+            ['Ganons Tower', 'bottom'],
+            ['Ganons Tower', 'middle'],
+            ['Ganons Tower', 'top'],
+        ];
+        foreach ($boss_locations as $location) {
+            $copy->getRegion($location[0])->setBoss($this->getRegion($location[0])->getBoss($location[1]), $location[1]);
         }
 
         $copy->setPreCollectedItems($this->pre_collected_items->copy());
