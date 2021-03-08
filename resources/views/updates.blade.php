@@ -10,7 +10,7 @@
         <li>Entrance Randomizer: Silvers are now appropriately available at all times when choosing Swordless and Normal Item Functionality</li>
         <li>Fixed label of the "Generate ROM" button in the Customizer.</li>
         <li>Fixes "List is empty" issue affecting users of the Customizer.  Thanks compiling!</li>
-        <li>Boss shuffle should now be accounted for in the playthrough.  Thanks compliling for the fix.</li>
+        <li>Boss shuffle should now be accounted for in the playthrough.  Thanks compiling for the fix.</li>
         <li>Even more Ganon, Blind, and Uncle text from the community.</li>
         <li>This release contains a few more ROM fixes submitted by the community.</li>
         <ul>
