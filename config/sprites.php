@@ -794,7 +794,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'smz3',
+            0 => 'commercial',
+            1 => 'smz3',
         ],
     ],
     'charizard.1.zspr' => [
@@ -4822,7 +4823,8 @@ return [
             2 => 'Villain',
         ],
         'usage' => [
-            0 => 'smz3',
+            0 => 'commercial',
+            1 => 'smz3',
         ],
     ],
     'whitemage.1.zspr' => [
