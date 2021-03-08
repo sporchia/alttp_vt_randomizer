@@ -11,6 +11,7 @@ return [
             'crosskeys' => 'Crosskeys',
             'quick' => 'Super Quick',
             'nightmare' => 'Nightmare',
+            'tournament' => 'Tournament',
             'custom' => 'Custom',
         ],
     ],
@@ -188,12 +189,14 @@ return [
             'off' => 'Disabled',
             'on' => 'Enabled',
             'generate' => 'Only on Generate',
+            'mystery' => 'Mystery (settings hidden)'
         ],
     ],
     'generate' => [
         'race' => 'Generate Race ROM',
         'race_warning' => 'Spoilers will <span class="running-now">never</span> be available for this option.',
         'spoiler_race' => 'Generate Normal ROM',
+        'casual' => 'Generate ROM',
         'back' => 'Change Settings',
         'regenerate' => 'Generate Again',
         'regenerate_tooltip' => 'Generate new game with same settings',

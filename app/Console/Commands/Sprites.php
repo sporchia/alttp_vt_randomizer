@@ -154,14 +154,14 @@ class Sprites extends Command
         }
 
         // cleanup
-        foreach ($found_files as $file) {
-            try {
-                $this->info("remove: $file");
-                unlink("$sprite_dir/$file");
-            } catch (Exception $ignore) {
-                // ignore
-            }
-        }
+        // foreach ($found_files as $file) {
+        //     try {
+        //         $this->info("remove: $file");
+        //         unlink("$sprite_dir/$file");
+        //     } catch (Exception $ignore) {
+        //         // ignore
+        //     }
+        // }
 
         // deal with config file and scss
         $top = $meta_data->count();
@@ -171,7 +171,7 @@ class Sprites extends Command
         $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n";
         $i = 0;
         foreach ($meta_data as $sprite) {
-            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage((%d - $next)/ $top) 0;\n}\n", str_replace([' ', ')', '(', '.', "'"], '', $sprite['name']), ++$i);
+            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage((%d - $next)/ $top) 0;\n}\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
         }
         file_put_contents(resource_path('sass/_sprites.scss'), $scss_file);
 
@@ -189,7 +189,7 @@ class Sprites extends Command
                 return "$sprites/$filename";
             }, scandir($sprites));
             $sprites = array_filter($sprites, function ($file) {
-                return is_readable($file) && !in_array($file, ['.', '..']);
+                return is_readable($file) && !in_array($file, ['.', '..', '.git']);
             });
         } else {
             if (!is_readable($sprites)) {

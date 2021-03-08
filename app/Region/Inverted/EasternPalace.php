@@ -24,7 +24,7 @@ class EasternPalace extends Region\Standard\EasternPalace
             return $items->hasSword()
                 || $this->world->config('canDungeonRevive', false)
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
                 $items->has('MoonPearl');
         });
@@ -33,7 +33,7 @@ class EasternPalace extends Region\Standard\EasternPalace
             return ($items->hasSword()
                 || $this->world->config('canDungeonRevive', false)
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
                 $items->has('MoonPearl')) &&
                 $items->has('BigKeyP1');
@@ -44,7 +44,7 @@ class EasternPalace extends Region\Standard\EasternPalace
                 ||
                 $this->world->config('canDungeonRevive', false)
                 || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
                 $items->has('MoonPearl')) && $items->has('Lamp', $this->world->config('item.require.Lamp', 1));
         });
@@ -53,7 +53,7 @@ class EasternPalace extends Region\Standard\EasternPalace
             return $items->canShootArrows($this->world)
                 && ($this->world->config('canDungeonRevive', false)
                     || ($this->world->config('canBunnyRevive', false)
-                        && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                        && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                         && $items->hasABottle()) ||
                     $items->has('MoonPearl')) && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                     || ($this->world->config('itemPlacement') === 'advanced'
@@ -70,7 +70,7 @@ class EasternPalace extends Region\Standard\EasternPalace
             return ($this->world->config('canDungeonRevive', false)
                 || ($this->world->config('canSuperBunny', false)
                     && $items->has('MagicMirror')) || ($this->world->config('canBunnyRevive', false)
-                    && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                    && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                     && $items->hasABottle()) ||
                 $items->has('MoonPearl')) &&
                 $this->world->getRegion('North East Light World')->canEnter($locations, $items);

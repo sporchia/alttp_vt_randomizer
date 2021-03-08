@@ -12,6 +12,7 @@ export default {
                     "crosskeys": "Crosskeys",
                     "quick": "Super Schnell",
                     "nightmare": "Albtraum",
+                    "tournament": "Turnier",
                     "custom": "Benutzerdefiniert"
                 }
             },
@@ -704,6 +705,7 @@ export default {
                     "crosskeys": "Crosskeys",
                     "quick": "Super Quick",
                     "nightmare": "Nightmare",
+                    "tournament": "Tournament",
                     "custom": "Custom"
                 }
             },
@@ -880,13 +882,15 @@ export default {
                 "options": {
                     "off": "Disabled",
                     "on": "Enabled",
-                    "generate": "Only on Generate"
+                    "generate": "Only on Generate",
+                    "mystery": "Mystery (settings hidden)"
                 }
             },
             "generate": {
                 "race": "Generate Race ROM",
                 "race_warning": "Spoilers will <span class=\"running-now\">never</span> be available for this option.",
                 "spoiler_race": "Generate Normal ROM",
+                "casual": "Generate ROM",
                 "back": "Change Settings",
                 "regenerate": "Generate Again",
                 "regenerate_tooltip": "Generate new game with same settings",
@@ -1670,6 +1674,7 @@ export default {
                     "crosskeys": "Crosskeys",
                     "quick": "Súper Rápido",
                     "nightmare": "Pesadilla",
+                    "tournament": "Torneo",
                     "custom": "Personalizado"
                 }
             },
@@ -1853,6 +1858,7 @@ export default {
                 "race": "Generar ROM para carreras",
                 "race_warning": "<span class=\"running-now\">sin spoilers</span>",
                 "spoiler_race": "Generar ROM para carreras (con spoilers)",
+                "casual": "Generar ROM",
                 "back": "Cambiar ajustes",
                 "regenerate": "Generar otra vez",
                 "regenerate_tooltip": "Generar otra partida con las mismas opciones",
@@ -2361,6 +2367,7 @@ export default {
                     "crosskeys": "Clésordre et Entrées",
                     "quick": "Super Rapide",
                     "nightmare": "Cauchemars",
+                    "tournament": "Tournoi",
                     "custom": "Personnalisé"
                 }
             },
@@ -2544,6 +2551,7 @@ export default {
                 "race": "Générer une ROM de Course",
                 "race_warning": "Les spoilers ne seront <span class=\"running-now\">jamais</span> disponibles pour cette option.",
                 "spoiler_race": "Générer une ROM avec Spoiler",
+                "casual": "Générer une ROM",
                 "back": "Changer les Paramètres",
                 "regenerate": "Générer à nouveau",
                 "regenerate_tooltip": "Générer à nouveau avec les mêmes paramètres",

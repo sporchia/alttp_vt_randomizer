@@ -223,7 +223,7 @@
                     :disabled="generating"
                     class="btn btn-success"
                     @click="applySpoilerSeed"
-                  >{{ $t('randomizer.generate.race') }}</button>
+                  >{{ $t('randomizer.generate.casual') }}</button>
                 </div>
               </div>
               <div class="col-md">

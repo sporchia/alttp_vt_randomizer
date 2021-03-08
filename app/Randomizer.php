@@ -987,13 +987,33 @@ class Randomizer implements RandomizerContract
             $tower_require = sprintf($tower_string, $world->config('crystals.tower'));
             $world->setText('sign_ganons_tower', $tower_require);
         }
-        if ($world->config('crystals.ganon') < 7) {
-            $ganon_string = $world->config('crystals.ganon') == 1 ? 'You need %d crystal to beat Ganon.' : 'You need %d crystals to beat Ganon.';
-            $ganon_require = sprintf($ganon_string, $world->config('crystals.ganon'));
-            $world->setText('sign_ganon', $ganon_require);
-        }
 
         switch ($world->config('goal')) {
+            case 'ganon':
+                $ganon_crystals_singular = 'To beat Ganon you must collect %d crystal and defeat his minion at the top of his tower.';
+                $ganon_crystals_plural = 'To beat Ganon you must collect %d crystals and defeat his minion at the top of his tower.';
+                break;
+            default:
+                $ganon_crystals_singular = 'You need %d crystal to beat Ganon.';
+                $ganon_crystals_plural = 'You need %d crystals to beat Ganon.';
+                break;
+        }
+
+        $ganon_string = $world->config('crystals.ganon') == 1 ? $ganon_crystals_singular : $ganon_crystals_plural;
+
+        switch ($world->config('goal')) {
+            case 'ganon':
+                $ganon_require = sprintf($ganon_string, $world->config('crystals.ganon'));
+                $world->setText('sign_ganon', $ganon_require);
+                $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
+
+                break;
+            case 'fast_ganon':
+                $ganon_require = sprintf($ganon_string, $world->config('crystals.ganon'));
+                $world->setText('sign_ganon', $ganon_require);
+                $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
+
+                break;
             case 'pedestal':
                 $world->setText('ganon_fall_in_alt', "You cannot\nkill me. You\nshould go for\nyour real goal\nIt's on the\npedestal.\n\nYou dingus!\n");
                 $world->setText('sign_ganon', "You need to get to the pedestal... Dingus!");

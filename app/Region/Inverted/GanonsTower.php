@@ -29,7 +29,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -42,7 +42,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -55,7 +55,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -68,7 +68,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -89,7 +89,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -110,7 +110,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -131,7 +131,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -152,7 +152,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -175,7 +175,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -197,7 +197,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations'
@@ -221,7 +221,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         })->setFillRules(function ($item, $locations, $items) {
             return $item != Item::get('BigKeyA2', $this->world);
@@ -237,7 +237,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -249,7 +249,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -270,7 +270,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -291,7 +291,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -310,7 +310,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -330,7 +330,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -346,7 +346,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -361,7 +361,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -376,7 +376,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         });
 
@@ -392,7 +392,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         })->setFillRules(function ($item, $locations, $items) {
             return $item != Item::get('BigKeyA2', $this->world);
@@ -410,7 +410,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         })->setFillRules(function ($item, $locations, $items) {
             return $item != Item::get('BigKeyA2', $this->world);
@@ -428,7 +428,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         })->setFillRules(function ($item, $locations, $items) {
             return $item != Item::get('BigKeyA2', $this->world);
@@ -448,7 +448,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                             || ($this->world->config('canBootsClip', false)
                                 && $items->has('PegasusBoots'))) && (
                             ($this->world->config('canBunnyRevive', false)
-                                && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                                && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                                 && $items->hasABottle()))));
         })->setFillRules(function ($item, $locations, $items) {
             return $item != Item::get('KeyA2', $this->world)
@@ -479,7 +479,7 @@ class GanonsTower extends Region\Standard\GanonsTower
                         || ($this->world->config('canBootsClip', false)
                             && $items->has('PegasusBoots'))) && (
                         ($this->world->config('canBunnyRevive', false)
-                            && $items->canBunnyRevive()) || ($this->world->config('canOWYBA', false)
+                            && $items->canBunnyRevive($this->world)) || ($this->world->config('canOWYBA', false)
                             && $items->hasABottle())))) && ($items->has('Crystal1')
                 + $items->has('Crystal2')
                 + $items->has('Crystal3')

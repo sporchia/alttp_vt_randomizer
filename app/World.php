@@ -274,6 +274,24 @@ abstract class World
         }
         foreach ($this->shops as $name => $shop) {
             $copy->shops[$name] = $shop->copy();
+	}
+	$boss_locations = [
+            ['Eastern Palace', ''],
+            ['Desert Palace', ''],
+            ['Tower of Hera', ''],
+            ['Palace of Darkness', ''],
+            ['Swamp Palace', ''],
+            ['Skull Woods', ''],
+            ['Thieves Town', ''],
+            ['Ice Palace', ''],
+            ['Misery Mire', ''],
+            ['Turtle Rock', ''],
+            ['Ganons Tower', 'bottom'],
+            ['Ganons Tower', 'middle'],
+            ['Ganons Tower', 'top'],
+        ];
+        foreach ($boss_locations as $location) {
+            $copy->getRegion($location[0])->setBoss($this->getRegion($location[0])->getBoss($location[1]), $location[1]);
         }
 
         $copy->setPreCollectedItems($this->pre_collected_items->copy());
@@ -680,9 +698,8 @@ abstract class World
     {
         $items = [];
 
-        $max_items = 216 - array_sum($this->config('item.advancement'));
         foreach ($this->config('item.advancement') as $item_name => $count) {
-            $loop = min($this->config('item.count.' . $item_name, $count), $max_items);
+            $loop = min($this->config('item.count.' . $item_name, $count), 216);
             for ($i = 0; $i < $loop; ++$i) {
                 $items[] = $item_name == 'BottleWithRandom' ? $this->getBottle() : Item::get($item_name, $this);
             }
