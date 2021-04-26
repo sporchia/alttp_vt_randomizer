@@ -206,6 +206,9 @@ Artisan::command('alttp:sprpub', function () {
         if (preg_match('/\.gitignore$/', $file)) {
             continue;
         }
+        if (preg_match('/link\.1\.zspr$/', $file)) {
+            continue;
+        }
         if (Storage::disk('images')->exists($file)) {
             continue;
         }
