@@ -41,7 +41,7 @@ export default {
       }).length;
     },
     sprites() {
-      return this.$store.state.sprites.filter(sprite => sprite.file);
+      return this.$store.state.sprites.filter(sprite => sprite.file && sprite.author !== 'Nintendo');
     }
   }
 };
