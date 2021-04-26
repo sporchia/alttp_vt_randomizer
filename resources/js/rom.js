@@ -268,8 +268,10 @@ export default class ROM {
       }
 
       // GFX
-      for (let i = 0; i < 0x7000; i++) {
-        this.u_array[0x80000 + i] = zspr[gfx_offset + i];
+      if (gfx_offset !== 0xFFFFFFFF) {
+        for (let i = 0; i < 0x7000; i++) {
+          this.u_array[0x80000 + i] = zspr[gfx_offset + i];
+        }
       }
 
       // Palettes

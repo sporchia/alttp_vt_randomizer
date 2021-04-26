@@ -431,4 +431,17 @@ strong {
   margin-bottom: 0.5rem;
 }
 
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgb(193, 243, 243);
+  padding: 20px;
+  text-align: center;
+
+  &__agree {
+    margin-left: 10px;
+  }
+}
+
 @import "dark-theme";

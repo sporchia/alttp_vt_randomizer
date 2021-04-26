@@ -2,6 +2,7 @@
 
 namespace ALttP\Console\Commands;
 
+use ALttP\Rom;
 use ALttP\Sprite;
 use ALttP\Support\Zspr;
 use Exception;
@@ -205,6 +206,10 @@ class Sprites extends Command
             }
 
             $sprite = $spr->getPixelBytes();
+            if (empty($sprite)) {
+                $rom = new Rom(config('alttp.base_rom'));
+                $sprite = $rom->read(0x80000, 0x7000);
+            }
             $palette = array_map(function ($bytes) {
                 return $bytes[0] + ($bytes[1] << 8);
             }, array_chunk(array_slice($spr->getPaletteBytes(), 0, 30), 2));

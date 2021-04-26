@@ -27,6 +27,7 @@
     "martinlindhe/laravel-vue-i18n-generator": "^0.1.35",
     "sentry/sentry": "^2.0",
     "sentry/sentry-laravel": "^1.0",
+    "spatie/laravel-cookie-consent": "^2.12",
     "z3/enemizer_linux": "6.1.0.180",
     "z3/enemizer_osx": "6.1.0.180",
     "z3/entrancerandomizer": "^0.6.3",
