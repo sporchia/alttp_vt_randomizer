@@ -3,6 +3,7 @@ import FileSaver from "file-saver";
 import Prando from "prando";
 import BPS from "./bps";
 import * as Z3PR from "@maseya/z3pr";
+import localforage from "localforage";
 
 export default class ROM {
   constructor(blob, loadedCallback) {
@@ -33,6 +34,42 @@ export default class ROM {
       this.resize(this.size);
 
       this.u_array = new Uint8Array(this.arrayBuffer);
+
+      localforage.getItem("vt_sprites.001.link.1.zspr").then(spr => {
+        if (spr) {
+          return;
+        }
+        const source = new Uint8Array(this.originalData);
+        const orginal = new ArrayBuffer(0x70BE);
+        const u_original = new Uint8Array(orginal);
+        const header = [
+          0x5A, 0x53, 0x50, 0x52, 0x01, 0x07, 0xB1, 0xF8,
+          0x4E, 0x42, 0x00, 0x00, 0x00, 0x00, 0x70, 0x42,
+          0x70, 0x00, 0x00, 0x7C, 0x00, 0x01, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0x00, 0x00, 0x4C, 0x00, 0x69,
+          0x00, 0x6E, 0x00, 0x6B, 0x00, 0x00, 0x00, 0x4E,
+          0x00, 0x69, 0x00, 0x6E, 0x00, 0x74, 0x00, 0x65,
+          0x00, 0x6E, 0x00, 0x64, 0x00, 0x6F, 0x00, 0x00,
+          0x00, 0x4E, 0x69, 0x6E, 0x74, 0x65, 0x6E, 0x64,
+          0x6F, 0x00,
+        ];
+        header.forEach((v, i) => {
+          u_original[i] = v;
+        });
+        for (let i = 0; i < 0x7000; i++) {
+          u_original[0x42 + i] = source[0x80000 + i];
+        }
+        for (let i = 0; i < 120; i++) {
+          u_original[0x7042 + i] = source[0xdd308 + i];
+        }
+        for (let i = 0; i < 4; ++i) {
+          u_original[0x7042 + 120 + i] = source[0xdedf5 + i];
+        }
+
+        localforage.setItem("vt_sprites.001.link.1.zspr", u_original)
+      });
+
+
 
       if (loadedCallback) loadedCallback(this);
     };
