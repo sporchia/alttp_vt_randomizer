@@ -17,6 +17,7 @@ export default {
     quickswap: false,
     musicOn: true,
     paletteShuffle: false,
+    reduceFlashing: false,
     options: {
       heartSpeed: [
         { value: "off", name: "rom.settings.heart_speeds.off" },
@@ -49,7 +50,8 @@ export default {
         dispatch("load", ["heart_colors", "setHeartColor"]),
         dispatch("load", ["quickswap", "setQuickswap"]),
         dispatch("load", ["music_on", "setMusicOn"]),
-        dispatch("load", ["palette_shuffle", "setPaletteShuffle"])
+        dispatch("load", ["palette_shuffle", "setPaletteShuffle"]),
+        dispatch("load", ["reduce_flashing", "setReduceFlashing"]),
       ]).then(() => {
         commit("setInitalizing", false);
       });
@@ -88,6 +90,10 @@ export default {
     setPaletteShuffle(state, paletteShuffle) {
       state.paletteShuffle = paletteShuffle;
       localforage.setItem("rom.palette_shuffle", paletteShuffle);
+    },
+    setReduceFlashing(state, reduceFlashing) {
+      state.reduceFlashing = reduceFlashing;
+      localforage.setItem("rom.reduce_flashing", reduceFlashing);
     },
     setInitalizing(state, init) {
       state.initializing = init;
