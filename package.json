@@ -54,6 +54,7 @@
 		"@sentry/browser": "^5.18.1",
 		"@stardazed/zlib": "^1.0.1",
 		"ajv": "^6.12.2",
+		"center-align": "^1.0.1",
 		"es6-promise": "^4.2.8",
 		"file-saver": "^2.0.2",
 		"localforage": "^1.7.4",
