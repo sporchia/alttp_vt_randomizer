@@ -115,7 +115,7 @@ export default class ROM {
     });
   }
 
-  save(filename, { paletteShuffle, quickswap, musicOn }) {
+  save(filename, { paletteShuffle, quickswap, musicOn, reduceFlashing }) {
     let preProcess = this.arrayBuffer.slice(0);
 
     if (paletteShuffle) {
@@ -127,6 +127,8 @@ export default class ROM {
       this.setQuickswap(false);
     }
     this.setMusicVolume(musicOn);
+
+    this.setReduceFlashing(reduceFlashing);
 
     this.updateChecksum().then(() => {
       FileSaver.saveAs(new Blob([this.u_array], {type: 'application/octet-stream'}), filename);
@@ -322,6 +324,16 @@ export default class ROM {
       seed: this.rand.nextInt(0, 4294967295)
     });
     this.rand.reset()
+  }
+
+  setReduceFlashing(enable) {
+    return new Promise(resolve => {
+      if (this.build > "2021-05-03") {
+        this.write(0x18017f, enable ? 0x01 : 0x00);
+      }
+
+      resolve(this);
+    });
   }
 
   parsePatch(data, progressCallback) {

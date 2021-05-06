@@ -1295,7 +1295,9 @@ export default {
                 "music_info": "(set to \"No\" for <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 support</a>)",
                 "quickswap": "Item Quickswap",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Does not work in Race Roms"
+                "race_warning": "Does not work in Race Roms",
+                "reduce_flashing": "Reduce Flashing",
+                "reduce_flashing_warning": "This option only reduces the effects of flashing, individual photosensitivity to effects may still vary."
             }
         },
         "entrance": {
