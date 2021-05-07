@@ -2,6 +2,22 @@
 
 @section('content')
 
+<h2>v31.0.9</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>New post-generation option called "Reduce Flashing" has been added.  Thanks Cassidymoen!</li>
+        <li>The credits have been updated to include additional individuals we want to recognize for their contributions to this project.</li>
+        <li>The author of the sprite you're using will now appear in the end credits.</li>
+        <li>When underworld clips are enabled, a new line will appear in the menu indicating what bosses have been defeated.</li>
+        <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.</li>
+        <li>Finding a map in Hyrule Castle will now properly show the map on your item menu while in the Sewers section of Hyrule Castle.</li>
+        <li>Enemizer: Firebars will now only damage the player if the firebar is on the same layer as Link.</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
 <h2>v31.0.8</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
