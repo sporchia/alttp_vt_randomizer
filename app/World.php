@@ -127,6 +127,11 @@ abstract class World
                 $free_item_text |= 0x16;
                 $free_item_menu |= 0x0C;
         }
+
+        if (in_array($this->config('logic'), ['MajorGlitches', 'None']) || $this->config('canOneFrameClipUW', false)) {
+            $free_item_menu |= 0x10;
+        }
+
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
 
