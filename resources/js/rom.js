@@ -196,7 +196,7 @@ export default class ROM {
 
       var formatted_sprite_author = center(sprite_author_short.substring(0, 28), 28).toUpperCase();
       if (formatted_sprite_author.length == 27) {
-        formatted_sprite_author = " " + formatted_sprite_author;
+        formatted_sprite_author = formatted_sprite_author + " ";
       }
 
       const sprite_author = formatted_sprite_author.split("").map(item => {
