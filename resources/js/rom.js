@@ -249,7 +249,7 @@ export default class ROM {
 
       // Do not write sprite author to older rom builds, or the game will crash.
       // This checks for the line header bytes are what we expect, so we're not
-      // inavertently writing over executable code that was relocated from it's
+      // inadvertently writing over executable code that was relocated from it's
       // vanilla location.
       if (this.u_array[0x118000] === 0x02
           && this.u_array[0x118001] === 0x37
