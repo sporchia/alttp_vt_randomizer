@@ -67,7 +67,7 @@ export default {
           name: "randomizer.glitches_required.options.major_glitches"
         },
         {
-          value: "None",
+          value: "NoLogic",
           name: "randomizer.glitches_required.options.no_logic"
         }
       ]

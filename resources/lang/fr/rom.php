@@ -57,5 +57,7 @@ return [
         'quickswap' => 'Changement rapide d’objets',
         'palette_shuffle' => 'Mélange des Couleurs de Palettes',
         'race_warning' => 'Ne fonctionne pas dans les ROMs de course',
+        "reduce_flashing" => "Réduit le clignotement",
+        "reduce_flashing_warning" => "Cette option réduit l'effet de clignotement. Votre sensibilité aux effets de clignotement peut varier."
     ],
 ];

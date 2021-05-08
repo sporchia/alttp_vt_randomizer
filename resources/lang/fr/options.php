@@ -617,6 +617,12 @@ return [
                         'Randomise les palettes de couleurs du jeu. Ceci signifie que toute peut avoir l\'air extrêmement bizarre. Utilisez avec précaution!',
                     ],
                 ],
+                'reduce_flashing' => [
+                    'header' => __('rom.settings.reduce_flashing'),
+                    'content' => [
+                        'Réduit drastiquement les effets de clignotement du jeu, ou les désactive. Svp, faire attention, votre sensibilité aux effets de clignotement peut varier.',
+                    ],
+                ],
             ],
         ],
         'item_pool' => 'Groupe d’objets',

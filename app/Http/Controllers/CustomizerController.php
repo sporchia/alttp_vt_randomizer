@@ -113,7 +113,7 @@ class CustomizerController extends Controller
             'none' => 'NoGlitches',
             'overworld_glitches' => 'OverworldGlitches',
             'major_glitches' => 'MajorGlitches',
-            'no_logic' => 'None',
+            'no_logic' => 'NoLogic',
         ][$request->input('glitches', 'none')];
 
         $spoilers = $request->input('spoilers', 'off');
@@ -180,7 +180,7 @@ class CustomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', true),
             'spoilers' => $spoilers,
-            'allow_quickswap' => $request->input('allow_quickswap', false),
+            'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),

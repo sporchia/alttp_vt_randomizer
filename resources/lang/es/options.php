@@ -617,6 +617,12 @@ return [
                         'Randomiza las paletas de color del juego. Esto significa que todo podria verse muy extraño. ¡Actívalo con cuidado!',
                     ],
                 ],
+                'reduce_flashing' => [
+                    'header' => __('rom.settings.reduce_flashing'),
+                    'content' => [
+                        'Reduce severamente la intensidad de efectos del juego que parpadeen, o directamente los desactiva. Tener cuidado, tu sensibilidad a los efectos aun puede variar.',
+                    ],
+                ],
             ],
         ],
         'item_pool' => 'Reserva de Objetos',

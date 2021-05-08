@@ -108,7 +108,7 @@ class RandomizerController extends Controller
             'none' => 'NoGlitches',
             'overworld_glitches' => 'OverworldGlitches',
             'major_glitches' => 'MajorGlitches',
-            'no_logic' => 'None',
+            'no_logic' => 'NoLogic',
         ][$request->input('glitches', 'none')];
 
         $spoilers = $request->input('spoilers', 'off');
@@ -134,7 +134,7 @@ class RandomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', false),
             'spoilers' => $spoilers,
-            'allow_quickswap' => $request->input('allow_quickswap', false),
+            'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
