@@ -572,7 +572,9 @@ export default {
                 "music_info": "(setze zu \"Keine\" für <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 Support</a>)",
                 "quickswap": "Gegenstand Schnellwechsel",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Funktioniert nicht in einer Rom für Rennen"
+                "race_warning": "Funktioniert nicht in einer Rom für Rennen",
+                "reduce_flashing": "Blitzeffekte reduzieren",
+                "reduce_flashing_warning": "Diese Option reduziert die Intensität von Blitzeffekten. Individuelle Lichtempfindlichkeitsreaktionen sind nicht ganz ausgeschlossen."
             }
         },
         "entrance": {
@@ -1297,7 +1299,7 @@ export default {
                 "palette_shuffle": "Palette Shuffle",
                 "race_warning": "Does not work in Race Roms",
                 "reduce_flashing": "Reduce Flashing",
-                "reduce_flashing_warning": "This option only reduces the effects of flashing, individual photosensitivity to effects may still vary."
+                "reduce_flashing_warning": "This option only reduces the effects of flashing. Individual photosensitivity to effects may still vary."
             }
         },
         "entrance": {
@@ -2236,7 +2238,9 @@ export default {
                 "music_info": "(poner en \"No\" para <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">soporte con MSU-1</a>)",
                 "quickswap": "Cambio Rápido de Objetos",
                 "palette_shuffle": "Paletas aleatorias",
-                "race_warning": "No funciona en ROMs para carreras"
+                "race_warning": "No funciona en ROMs para carreras",
+                "reduce_flashing": "Reducir Parpadeos intermitentes",
+                "reduce_flashing_warning": "Esta opcion solo reduce el efecto del parpadeo, tu sensibilidad a estos efectos aun puede variar."
             }
         },
         "entrance": {
@@ -2930,7 +2934,9 @@ export default {
                 "music_info": "(définie sur \"Non\" pour <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">le support MSU-1</a>)",
                 "quickswap": "Changement rapide d’objets",
                 "palette_shuffle": "Mélange des Couleurs de Palettes",
-                "race_warning": "Ne fonctionne pas dans les ROMs de course"
+                "race_warning": "Ne fonctionne pas dans les ROMs de course",
+                "reduce_flashing": "Réduit le clignotement",
+                "reduce_flashing_warning": "Cette option réduit l'effet de clignotement. Votre sensibilité aux effets de clignotement peut varier."
             }
         },
         "entrance": {

@@ -90,7 +90,7 @@ abstract class World
         // Initialize the Logic and Prizes for each Region that has them and
         // fill our LocationsCollection
         foreach ($this->regions as $region) {
-            if ($this->config('logic') !== 'None') {
+            if ($this->config('logic') !== 'NoLogic') {
                 $region->initalize();
             }
             $this->locations = $this->locations->merge($region->getLocations());
@@ -128,7 +128,7 @@ abstract class World
                 $free_item_menu |= 0x0C;
         }
 
-        if (in_array($this->config('logic'), ['MajorGlitches', 'None']) || $this->config('canOneFrameClipUW', false)) {
+        if (in_array($this->config('logic'), ['MajorGlitches', 'NoLogic']) || $this->config('canOneFrameClipUW', false)) {
             $free_item_menu |= 0x10;
         }
 
@@ -313,7 +313,7 @@ abstract class World
     public function getGanonsTowerJunkFillRange(): array
     {
         if (
-            $this->config['logic'] === 'None'
+            $this->config['logic'] === 'NoLogic'
             || ($this->config['mode.state'] !== 'inverted'
                 && in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches']))
         ) {
@@ -909,7 +909,7 @@ abstract class World
             'size' => 2,
             'hints' => $this->config('spoil.Hints'),
             'spoilers' => $this->config('spoilers', 'off'),
-            'allow_quickswap' => $this->config('allow_quickswap'),
+            'allow_quickswap' => $this->config('allow_quickswap', true),
             'enemizer.boss_shuffle' => $this->config('enemizer.bossShuffle'),
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),
@@ -1140,7 +1140,7 @@ abstract class World
 
         switch ($this->config('rom.logicMode', $this->config['logic'])) {
             case 'MajorGlitches':
-            case 'None':
+            case 'NoLogic':
                 $rom->setSwampWaterLevel(false);
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
                 $rom->setSaveAndQuitFromBossRoom(true);
@@ -1167,11 +1167,7 @@ abstract class World
 
         $rom->setGanonsTowerOpen($this->config('crystals.tower') === 0);
 
-        if ($this->config('allow_quickswap', false)) {
-            $rom->setGameType('entrance');
-        } else {
-            $rom->setGameType('item');
-        }
+        $rom->setGameType('item');
 
         $rom->setMysteryMasking($this->config('spoilers', 'on') === 'mystery');
 

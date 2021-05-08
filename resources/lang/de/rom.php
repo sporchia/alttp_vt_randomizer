@@ -57,5 +57,7 @@ return [
         'quickswap' => 'Gegenstand Schnellwechsel',
         'palette_shuffle' => 'Palette Shuffle',
         'race_warning' => 'Funktioniert nicht in einer Rom für Rennen',
+        "reduce_flashing" => "Blitzeffekte reduzieren",
+        "reduce_flashing_warning" => "Diese Option reduziert die Intensität von Blitzeffekten. Individuelle Lichtempfindlichkeitsreaktionen sind nicht ganz ausgeschlossen."
     ],
 ];

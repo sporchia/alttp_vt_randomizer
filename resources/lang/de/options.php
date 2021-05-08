@@ -617,6 +617,12 @@ return [
                         'Die Farbpalleten werden zufällig ausgewählt im Spiel. Dadurch könnte alles sehr bizarr aussehen. Mit Vorsicht aktivieren!',
                     ],
                 ],
+                'reduce_flashing' => [
+                    'header' => __('rom.settings.reduce_flashing'),
+                    'content' => [
+                        'Die Intensität von Blitzeffekten im Spiel wird deutlich reduziert oder sie werden ganz ausgeschaltet.  Vorsicht: Deine Lichtempfindlichkeit kann möglicherweise dennoch auf manche Effekte reagieren.',
+                    ],
+                ],
             ],
         ],
         'item_pool' => 'Gegendstandspool',

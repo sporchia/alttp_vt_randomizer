@@ -113,7 +113,7 @@ class Randomizer implements RandomizerContract
         $trash_items = $world->getItemPool();
 
         // @todo check a flag instead of logic here, as well as difficulty
-        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'None']) && $world->config('difficulty') !== 'custom') {
+        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'NoLogic']) && $world->config('difficulty') !== 'custom') {
             $world->addPreCollectedItem(Item::get('PegasusBoots', $world));
             foreach ($advancement_items as $key => $item) {
                 if ($item == Item::get('PegasusBoots', $world)) {
