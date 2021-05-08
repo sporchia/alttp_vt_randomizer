@@ -175,155 +175,89 @@ export default class ROM {
       const palette_offset =
         (zspr[18] << 24) | (zspr[17] << 16) | (zspr[16] << 8) | zspr[15];
 
-      // Metadata
-      // Array raw_metadata = zspr.slice(0x1D, gfx_offset);
-      var metadata_index = 0x1D
+      // ZSPR Metadata
+      var metadata_index = 0x1D;
 
-      var sprite_name = ""
-      var sprite_author = ""
-      var sprite_author_short = ""
+      var sprite_author_short = "";
 
-      while (metadata_index < gfx_offset) {
-        var raw_chars = zspr.slice(metadata_index, metadata_index + 2)
-        var char_val = (raw_chars[1] << 8 | raw_chars[0])
-        if (char_val == 0x00) {
-          metadata_index = metadata_index + 2;
-          break;
+      // skip past unicode title and author
+      let junk = 2;
+      while (metadata_index < gfx_offset && junk > 0) {
+        if (zspr[metadata_index + 1] === 0 && zspr[metadata_index] === 0) {
+          junk--;
         }
-        sprite_name += String.fromCharCode(char_val);
         metadata_index = metadata_index + 2;
       }
 
-      while (metadata_index < gfx_offset) {
-        var raw_chars = zspr.slice(metadata_index, metadata_index + 2)
-        var char_val = (raw_chars[1] << 8 | raw_chars[0])
-        if (char_val == 0x00) {
-          metadata_index = metadata_index + 2;
-          break;
-        }
-        sprite_author += String.fromCharCode(char_val);
-        metadata_index = metadata_index + 2;
+      while (metadata_index < gfx_offset && zspr[metadata_index] !== 0x00) {
+        sprite_author_short += String.fromCharCode(zspr[metadata_index]);
+        metadata_index++;
       }
 
-      while (metadata_index < gfx_offset) {
-        var raw_chars = zspr.slice(metadata_index, metadata_index + 1)
-        var char_val = raw_chars[0]
-        if (char_val == 0x00) {
-          metadata_index = metadata_index + 1;
-          break;
-        }
-        sprite_author_short += String.fromCharCode(char_val);
-        metadata_index = metadata_index + 1;
+      var formatted_sprite_author = center(sprite_author_short.substring(0, 28), 28).toUpperCase();
+      if (formatted_sprite_author.length == 27) {
+        formatted_sprite_author = " " + formatted_sprite_author;
       }
 
-      const formatted_sprite_author = center(sprite_author_short.substring(0, 28), 28).toUpperCase();
-
-      const sprite_author_hi = formatted_sprite_author.split("").map(item => {
-        switch(item) {
-          case " ": return 0x9F
-          case "0": return 0x53
-          case "1": return 0x54
-          case "2": return 0x55
-          case "3": return 0x56
-          case "4": return 0x57
-          case "5": return 0x58
-          case "6": return 0x59
-          case "7": return 0x5A
-          case "8": return 0x5B
-          case "9": return 0x5C
-          case "A": return 0x5D
-          case "B": return 0x5E
-          case "C": return 0x5F
-          case "D": return 0x60
-          case "E": return 0x61
-          case "F": return 0x62
-          case "G": return 0x63
-          case "H": return 0x64
-          case "I": return 0x65
-          case "J": return 0x66
-          case "K": return 0x67
-          case "L": return 0x68
-          case "M": return 0x69
-          case "N": return 0x6A
-          case "O": return 0x6B
-          case "P": return 0x6C
-          case "Q": return 0x6D
-          case "R": return 0x6E
-          case "S": return 0x6F
-          case "T": return 0x70
-          case "U": return 0x71
-          case "V": return 0x72
-          case "W": return 0x73
-          case "X": return 0x74
-          case "Y": return 0x75
-          case "Z": return 0x76
-          case "'": return 0x77
-          case ".": return 0xA0
-          case "/": return 0xA2
-          case ":": return 0xA3
-          case "_": return 0xA6
-          default: return 0x9F
-        }
-      })
-
-      const sprite_author_lo = formatted_sprite_author.split("").map(item => {
-        switch(item) {
-          case " ": return 0x9F
-          case "0": return 0x79
-          case "1": return 0x7A
-          case "2": return 0x7B
-          case "3": return 0x7C
-          case "4": return 0x7D
-          case "5": return 0x7E
-          case "6": return 0x7F
-          case "7": return 0x80
-          case "8": return 0x81
-          case "9": return 0x82
-          case "A": return 0x83
-          case "B": return 0x84
-          case "C": return 0x85
-          case "D": return 0x86
-          case "E": return 0x87
-          case "F": return 0x88
-          case "G": return 0x89
-          case "H": return 0x8A
-          case "I": return 0x8B
-          case "J": return 0x8C
-          case "K": return 0x8D
-          case "L": return 0x8E
-          case "M": return 0x8F
-          case "N": return 0x90
-          case "O": return 0x91
-          case "P": return 0x92
-          case "Q": return 0x93
-          case "R": return 0x94
-          case "S": return 0x95
-          case "T": return 0x96
-          case "U": return 0x97
-          case "V": return 0x98
-          case "W": return 0x99
-          case "X": return 0x9A
-          case "Y": return 0x9B
-          case "Z": return 0x9C
-          case "'": return 0x9d
-          case ".": return 0xC0
-          case "/": return 0xC2
-          case ":": return 0xC3
-          case "_": return 0xC6
-          default: return 0x9F
-        }
-      })
+      const sprite_author = formatted_sprite_author.split("").map(item => {
+          switch (item) {
+              case " ": return [0x9F, 0x9F];
+              case "0": return [0x53, 0x79];
+              case "1": return [0x54, 0x7A];
+              case "2": return [0x55, 0x7B];
+              case "3": return [0x56, 0x7C];
+              case "4": return [0x57, 0x7D];
+              case "5": return [0x58, 0x7E];
+              case "6": return [0x59, 0x7F];
+              case "7": return [0x5A, 0x80];
+              case "8": return [0x5B, 0x81];
+              case "9": return [0x5C, 0x82];
+              case "A": return [0x5D, 0x83];
+              case "B": return [0x5E, 0x84];
+              case "C": return [0x5F, 0x85];
+              case "D": return [0x60, 0x86];
+              case "E": return [0x61, 0x87];
+              case "F": return [0x62, 0x88];
+              case "G": return [0x63, 0x89];
+              case "H": return [0x64, 0x8A];
+              case "I": return [0x65, 0x8B];
+              case "J": return [0x66, 0x8C];
+              case "K": return [0x67, 0x8D];
+              case "L": return [0x68, 0x8E];
+              case "M": return [0x69, 0x8F];
+              case "N": return [0x6A, 0x90];
+              case "O": return [0x6B, 0x91];
+              case "P": return [0x6C, 0x92];
+              case "Q": return [0x6D, 0x93];
+              case "R": return [0x6E, 0x94];
+              case "S": return [0x6F, 0x95];
+              case "T": return [0x70, 0x96];
+              case "U": return [0x71, 0x97];
+              case "V": return [0x72, 0x98];
+              case "W": return [0x73, 0x99];
+              case "X": return [0x74, 0x9A];
+              case "Y": return [0x75, 0x9B];
+              case "Z": return [0x76, 0x9C];
+              case "'": return [0x77, 0x9d];
+              case ".": return [0xA0, 0xC0];
+              case "/": return [0xA2, 0xC2];
+              case ":": return [0xA3, 0xC3];
+              case "_": return [0xA6, 0xC6];
+              default: return [0x9F, 0x9F];
+          }
+      });
 
       // Do not write sprite author to older rom builds, or the game will crash.
-      if (this.build >= "2021-05-04") {
-        // Top part of sprite author
+      // This checks for the line header bytes are what we expect, so we're not
+      // inavertently writing over executable code that was relocated from it's
+      // vanilla location.
+      if (this.u_array[0x118000] === 0x02
+          && this.u_array[0x118001] === 0x37
+          && this.u_array[0x11801E] === 0x02
+          && this.u_array[0x11801F] === 0x37) {
         for (let i = 0; i < 28; i++) {
-          this.u_array[0x118002 + i] = sprite_author_hi[i];
-        }
-
-        // Bottom part of sprite author
-        for (let i = 0; i < 28; i++) {
-          this.u_array[0x118020 + i] = sprite_author_lo[i];
+          this.u_array[0x118002 + i] = sprite_author[i][0];
+          this.u_array[0x118020 + i] = sprite_author[i][1];
         }
       }
 
@@ -481,7 +415,7 @@ export default class ROM {
 
   setReduceFlashing(enable) {
     return new Promise(resolve => {
-      if (this.build > "2021-05-03") {
+      if (this.build >= "2021-05-04") {
         this.write(0x18017f, enable ? 0x01 : 0x00);
       }
 
