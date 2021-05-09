@@ -30,5 +30,19 @@
             @endforeach
         </div>
     </div>
+
+    <div class="card border-info mt-4">
+        <div class="card-header bg-info">
+            <h3 class="card-title text-white">{{ __('races.cards.language_tournament.header') }}</h3>
+        </div>
+        <div class="card-body">
+            @foreach (__('races.cards.language_tournament.sections') as $section)
+            <h4>{{ $section['header'] }}</h4>
+                @foreach ($section['content'] as $block)
+                    <p>{!! $block !!}</p>
+                @endforeach
+            @endforeach
+        </div>
+    </div>
 </div>
 @overwrite
