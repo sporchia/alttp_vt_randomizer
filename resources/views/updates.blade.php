@@ -14,6 +14,7 @@
         <li>Finding a map in Hyrule Castle will now properly show the map on your item menu while in the Sewers section of Hyrule Castle.</li>
         <li>Enemizer: Firebars will now only damage the player if the firebar is on the same layer as Link.</li>
         <li>Customizer: Will now default to enabling spoilers on generated games.  This can still be set to Disabled, On Generate, or Mystery as needed.</li>
+        <li>Miscellaneous website updates.</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
