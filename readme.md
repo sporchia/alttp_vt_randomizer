@@ -62,6 +62,8 @@ $ php artisan migrate
 
 In you .env file, update `ENEMIZER_BASE=` to the **absolute path** of an unheadered Japanese 1.0 ROM of A Link to the Past.
 
+Then, in the command line run this to create the base patch.
+
 ```
 php artisan alttp:updatebuildrecord
 ```
