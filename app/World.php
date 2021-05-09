@@ -1058,8 +1058,8 @@ abstract class World
             0x51, 0x06, 0x52, 0xFF, // 6 +5 bomb upgrades -> +10 bomb upgrade
             0x53, 0x06, 0x54, 0xFF, // 6 +5 arrow upgrades -> +10 arrow upgrade
             0x58, 0x01, $this->config('rom.rupeeBow', false) ? 0x36 : 0x43, 0xFF, // silver arrows -> 1 arrow
-            0x3E, $this->config('item.overflow.count.BossHeartContainer', 10), 0x47, 0xFF, // boss heart -> 20 rupees
-            0x17, $this->config('item.overflow.count.PieceOfHeart', 24), 0x47, 0xFF, // piece of heart -> 20 rupees
+            0x3E, $this->config('item.overflow.count.BossHeartContainer', 10), Item::get($this->config('item.overflow.replacement.BossHeartContainer', 'TwentyRupees2'), $this)->getBytes()[0], 0xFF, // boss heart -> 20 rupees
+            0x17, $this->config('item.overflow.count.PieceOfHeart', 24), Item::get($this->config('item.overflow.replacement.PieceOfHeart', 'TwentyRupees2'), $this)->getBytes()[0], 0xFF, // piece of heart -> 20 rupees
         ]);
 
         switch ($this->config['goal']) {
