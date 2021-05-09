@@ -24,6 +24,12 @@ return [
                     ],
                 ],
                 [
+                    'header' => 'Overworld Glitches Weekly',
+                    'content' => [
+                        'The Overworld Glitches Weekly runs at 10:30pm Eastern every Wednesday on <a href="https://racetime.gg/" target="_blank">RaceTime.gg</a>.',
+                    ],
+                ],
+                [
                     'header' => 'Pickup Races',
                     'content' => [
                         'Scheduled races not fitting in with your schedule? Looking to race with some more uncommon options? Join a pickup race! You’ll find willing players at all hours of the day. Join the #race-planning channel in our <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a>!',
