@@ -2,30 +2,28 @@
 
 # ALttP VT Randomizer
 
-## First and foremost, big thanks to Dessyreqt, Christos, Smallhacker, and Karkat for their work.
+## First and foremost, big thanks to Dessyreqt, Christos, Smallhacker, and KatDevsGames for their work.
 ### Without their work none of this would even be remotely possible.
 
-## Installing dependencies
+## Local Setup
+
+### System Setup
+This assumes you're running Ubuntu 20.04 (either natively, or via Windows Subsystem for Linux).
+Native Windows is not currently supported.
+Users of other Linux distributions will need to install the appropriate packages for their distribution.
+
+This version of the randomizer requires version 7.4 of PHP.
+
+```
+sudo apt-get install php7.4 php7.4-bcmath php7.4-dom php7.4-mbstring php7.4-curl -y
+```
+
+### Installing PHP dependencies
 You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following
 
 ```
 $ composer install
 ```
-
-## Running from the command line
-To generate a game one simply runs the command:
-
-```
-$ php artisan alttp:randomize {input_file.sfc} {output_directory}
-```
-
-For help (and all the options):
-
-```
-$ php artisan alttp:randomize -h
-```
-
-## Running the Web Interface
 
 ### Database setup
 Create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
@@ -59,6 +57,29 @@ Now run the db migration command:
 ```
 $ php artisan migrate
 ```
+
+### Generate a base patch
+
+In you .env file, update `ENEMIZER_BASE=` to the **absolute path** of an unheadered Japanese 1.0 ROM of A Link to the Past.
+
+```
+php artisan alttp:updatebuildrecord
+```
+
+## Running from the command line
+To generate a game one simply runs the command:
+
+```
+$ php artisan alttp:randomize {input_file.sfc} {output_directory}
+```
+
+For help (and all the options):
+
+```
+$ php artisan alttp:randomize -h
+```
+
+## Running the Web Interface
 
 ### Web server setup
 You will need to build assets the first time (you will need [NPM](https://www.npmjs.com/get-npm) to install the javascript dependencies).
