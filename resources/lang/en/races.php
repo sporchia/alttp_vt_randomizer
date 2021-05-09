@@ -3,7 +3,7 @@ return [
     'header' => 'Organized Play',
     'cards' => [
         'races' => [
-            'header' => 'Daily Races',
+            'header' => 'Daily and Weekly Races',
             'sections' => [
                 [
                     'header' => '',
