@@ -25,13 +25,15 @@ You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. O
 $ composer install
 ```
 
-### Database setup
-Create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
+## Database setup
 
 Run the following command to create a new config for the app
 ```
 $ cp .env.example .env
 ```
+
+### MySQL
+Create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
 
 Then modify .env with appropriate username, password, and database name. Change the db connection to mysql
 Example:
@@ -44,8 +46,17 @@ DB_USERNAME=foo
 DB_PASSWORD=bar
 ```
 
+### SQLite
+SQLite can also be used too, this might be a better option for a quick setup.
+
+```
+DB_CONNECTION=sqlite
+DB_DATABASE=/absolute/path/to/existing/folder/db.sqlite
+```
+
 Then run the following commands to setup the app configuration
 
+### Last steps on DB setup
 ```
 $ php artisan key:generate
 $ php artisan config:cache
@@ -58,13 +69,14 @@ Now run the db migration command:
 $ php artisan migrate
 ```
 
-### Generate a base patch
+## Generate a base patch
 
 In you .env file, update `ENEMIZER_BASE=` to the **absolute path** of an unheadered Japanese 1.0 ROM of A Link to the Past.
 
 Then, in the command line run this to create the base patch.
 
 ```
+php artisan config:cache
 php artisan alttp:updatebuildrecord
 ```
 
