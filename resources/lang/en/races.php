@@ -80,7 +80,7 @@ return [
                 [
                     'header' => 'ALTTPR Spoiler Tournament',
                     'content' => [
-                        'The <a href="https://discord.gg/Jg34MuE" target="_blank">ALTTPR Spolier Tournament</a> is a yearly tournament that gives the player the spoiler log to study before the race!  This tournament is a test of execution and design making abilities!',
+                        'The <a href="https://discord.gg/Jg34MuE" target="_blank">ALTTPR Spolier Tournament</a> is a yearly tournament that gives the player the spoiler log to study before the race!  This tournament is a test of execution and decision making abilities!',
                     ],
                 ],
                 [
