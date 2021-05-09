@@ -19,17 +19,6 @@
 
     <div class="card border-info mt-4">
         <div class="card-header bg-info">
-            <h3 class="card-title text-white">{{ __('races.cards.network.header') }}</h3>
-        </div>
-        <div class="card-body">
-            @foreach (__('races.cards.network.content') as $block)
-                <p>{!! $block !!}</p>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="card border-info mt-4">
-        <div class="card-header bg-info">
             <h3 class="card-title text-white">{{ __('races.cards.tournament.header') }}</h3>
         </div>
         <div class="card-body">

@@ -18,15 +18,4 @@
         <p>{!! $block !!}</p>
     @endforeach
 </div>
-
-<div class="card card-body bg-light">
-    <iframe class="mx-auto"
-        allow="encrypted-media"
-        allowfullscreen
-        frameborder="0"
-        gesture="media"
-        height="315"
-        src="https://www.youtube.com/embed/YaEypVa3kx4?rel=0"
-        width="560"></iframe>
-</div>
 @overwrite
