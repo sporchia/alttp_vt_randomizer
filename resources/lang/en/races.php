@@ -97,5 +97,22 @@ return [
                 ],
             ],
         ],
+        'language_tournament' => [
+            'header' => 'Language-specific Tournaments',
+            'sections' => [
+                [
+                    'header' => '',
+                    'content' => [
+                        'There are several non-English communities operate their own language-specific tournaments!',
+                    ],
+                ],
+                [
+                    'header' => 'Placeholder Tournament',
+                    'content' => [
+                        'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn\'t actually exist, except in our hearts.',
+                    ],
+                ],
+            ],
+        ],
     ],
 ];
