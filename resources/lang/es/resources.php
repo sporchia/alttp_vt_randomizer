@@ -24,7 +24,7 @@ return [
                     . '<li><a href="https://alttprlinks.page.link/3vXm" target="_blank" rel="noopener noreferrer">Glosario general de ayuda</a></li>'
                     . '<li><a href="https://alttprlinks.page.link/HVFx" target="_blank" rel="noopener noreferrer">Recursos sobre glitches</a></li>'
                     . '<li><a href="https://alttprlinks.page.link/on1o" target="_blank" rel="noopener noreferrer"><i>Trackers</i> / HUDs</a></li>'
-                    . '<li><a href="http://alttp.mymm1.com/srl/" target="_blank" rel="noopener noreferrer">Empezar en SRL</a></li>'
+                    . '<li><a href="https://racetime.gg/about/help" target="_blank" rel="noopener noreferrer">Empezar en RaceTime.gg</a></li>'
                 . '</ul>',
             ],
         ],
