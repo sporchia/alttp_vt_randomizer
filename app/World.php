@@ -135,8 +135,6 @@ abstract class World
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
 
-        $this->config['item.overflow.count.Bow'] = 2;
-
         switch ($this->config('item.pool')) {
             case 'expert':
                 $this->config['item.overflow.count.Sword'] = 2;
