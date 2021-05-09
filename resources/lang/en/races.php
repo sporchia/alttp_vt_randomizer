@@ -92,7 +92,7 @@ return [
                 [
                     'header' => 'ALTTPR Crossworld Keysanity Tournament',
                     'content' => [
-                        'The <a href="https://discord.gg/umCCQgr" target="_blank">ALTTPR Crossworld Keysanity Tournament</a> is a Crossworld Keysanity (aka "Crosskeys") tournament where players put their note taking and memory to the test to be the top player of this mind-bending mode!',
+                        'The <a href="https://discord.gg/umCCQgr" target="_blank">ALTTPR Crossworld Keysanity Tournament</a> is a tournament that uses Crossworld entrance shuffle, plus keysanity, (aka "Crosskeys").  Players put their note taking and memory to the test to be the top player of this mind-bending mode!',
                     ],
                 ],
             ],
