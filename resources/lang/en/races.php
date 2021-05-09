@@ -50,7 +50,7 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        'Join us for exciting tournament action with expert commentary alongside elite play!  Tournaments are operating all the time, oin <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> to stay up to date!',
+                        'Join us for exciting tournament action with expert commentary alongside elite play!  Tournaments are operating all the time, join <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> to stay up to date!',
                     ],
                 ],
                 [
@@ -60,15 +60,15 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'ALTTPR League',
-                    'content' => [
-                        'The <a href="https://alttprleague.com/" target="_blank">ALTTPR League</a> is a yearly team-based ALTTPR Tournament.  Players form teams of three to complete head to head with other teams using various game settings.',
-                    ],
-                ],
-                [
                     'header' => 'Challenge Cup',
                     'content' => [
                         'The <a href="https://discord.gg/982W72p" target="_blank">Challenge Cup</a> is an overflow tournament for those who did not qualify for the main tournament.',
+                    ],
+                ],
+                [
+                    'header' => 'ALTTPR League',
+                    'content' => [
+                        'The <a href="https://alttprleague.com/" target="_blank">ALTTPR League</a> is a yearly team-based ALTTPR Tournament.  Players form teams of three to complete head to head with other teams using various game settings.',
                     ],
                 ],
                 [
