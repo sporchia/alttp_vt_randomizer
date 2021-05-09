@@ -602,13 +602,13 @@ return [
                 'music' => [
                     'header' => __('rom.settings.music'),
                     'content' => [
-                        'Activa o desactiva la música de fondo original. No tienes que desactivar esto si deseas usar paquetes MSU-1. Si se deja activado y se está usando un paquete MSU-1, entonces la música originals se usará como una reserva y solo sonará si hay un error de carga del MSU-1 (en lugar de silencio).',
+                        'Activa o desactiva la música de fondo original.',
                     ],
                 ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
-                        'Permite que el objeto equipado se cambie usando los botones L y R sin abrir el menú. No está disponible para ROMs de carreras (excepto cuando las entradas estén randomizadas).',
+                        'Permite que el objeto equipado se cambie usando los botones L y R sin abrir el menú.',
                     ],
                 ],
                 'palette_shuffle' => [
