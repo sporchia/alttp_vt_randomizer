@@ -602,13 +602,13 @@ return [
                 'music' => [
                     'header' => __('rom.settings.music'),
                     'content' => [
-                        'Active ou désactive la musique originale du jeu. Vous ne devez pas désactiver ceci si vous souhaitez utiliser les packs de musique MSU-1. Si laissé activé avec un pack MSU-1, la musique originale ne jouera que en cas d\'échec du pack MSU-1 (au lieu de silence).',
+                        'Active ou désactive la musique originale du jeu.',
                     ],
                 ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
-                        'Autorise les objets à être changés avec les boutons L ou R sans ouvrir le menu. Ceci n\'est pas disponible pour les ROMs de course (sauf lorsque les entrées sont aléatoires).',
+                        'Autorise les objets à être changés avec les boutons L ou R sans ouvrir le menu.',
                     ],
                 ],
                 'palette_shuffle' => [
