@@ -10,7 +10,7 @@
 ### System Setup
 This assumes you're running Ubuntu 20.04 (either natively, or via Windows Subsystem for Linux).
 Native Windows is not currently supported.
-Users of other Linux distributions will need to install the appropriate packages for their distribution.
+Users of either Mac OS or other Linux distributions will need to install the appropriate packages for their system.
 
 This version of the randomizer requires version 7.4 of PHP.
 
