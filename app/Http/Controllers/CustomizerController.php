@@ -250,6 +250,11 @@ class CustomizerController extends Controller
         $rand = new Randomizer([$world]);
 
         $rand->randomize();
+
+        foreach ($request->input('texts', []) as $key => $value) {
+            $world->setText($key, $value);
+        }
+
         $world->writeToRom($rom, $save);
 
         $worlds = new WorldCollection($rand->getWorlds());
