@@ -75,7 +75,7 @@ class RandomizerController extends Controller
             ]));
             Cache::put('hash.' . $payload['hash'], $save_data, now()->addDays(7));
 
-            return json_encode($return_payload);
+            return response()->json($return_payload);
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -88,7 +88,7 @@ class RandomizerController extends Controller
     public function testGenerateSeed(CreateRandomizedGame $request)
     {
         try {
-            return json_encode(Arr::except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
+            return response()->json(Arr::except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
