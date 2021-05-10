@@ -1150,7 +1150,7 @@ abstract class World
             case 'OverworldGlitches':
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
                 $rom->setSaveAndQuitFromBossRoom(true);
-                $rom->setWorldOnAgahnimDeath(true);
+                $rom->setWorldOnAgahnimDeath(false);
                 $rom->setRandomizerSeedType('OverworldGlitches');
                 $rom->setWarningFlags(bindec('01000000'));
                 $rom->setPODEGfix(false);
