@@ -8,7 +8,8 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        'Most races are done through <a href="https://racetime.gg/" target="_blank">RaceTime.gg</a>. Be sure to check them out for more info on how to get in on the action!',
+                        'Most races are done through <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. Be sure to check them out for more info on how to get in on the action!',
+                        'Before starting you should familiarize yourself with the <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">ALTTPR Racing Council\'s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure your in the clear!',
                     ],
                 ],
                 [
@@ -20,13 +21,13 @@ return [
                 [
                     'header' => 'SpeedGaming Daily Racing Series',
                     'content' => [
-                        '<a href="https://speedgaming.org/" target="_blank">SpeedGaming</a> operates a daily race series, which are ran on <a href="https://racetime.gg/" target="_blank">RaceTime.gg</a>.  Check out <a href="http://speedgaming.org/alttprdaily/" target="_blank">their upcoming schedule of dailies.</a>',
+                        '<a href="https://speedgaming.org/" target="_blank">SpeedGaming</a> operates a daily race series, which are ran on <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>.  Check out <a href="http://speedgaming.org/alttprdaily/" target="_blank">their upcoming schedule of dailies.</a>',
                     ],
                 ],
                 [
                     'header' => 'Overworld Glitches Weekly',
                     'content' => [
-                        'The Overworld Glitches Weekly runs at 10:30pm Eastern every Wednesday on <a href="https://racetime.gg/" target="_blank">RaceTime.gg</a>.',
+                        'The Overworld Glitches Weekly runs at 10:30pm Eastern every Wednesday on <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>.',
                     ],
                 ],
                 [
