@@ -29,11 +29,11 @@ return [
         ],
         'canBunnySurf' => [
             'title' => 'Lapin Surfeur',
-            'description' => 'Il peut être requis de marcher sur l\'eau en tant que Lapin.',
+            'description' => 'Il peut être requis de marcher sur l’eau en tant que Lapin.',
         ],
         'canDungeonRevive' => [
             'title' => 'Résurrection en Donjon',
-            'description' => 'Il peut être requis d\'entrer dans un donjon en Lapin, et de mourir, afin de redevenir Link pour collecter des objets.',
+            'description' => 'Il peut être requis d’entrer dans un donjon en Lapin, et de mourir, afin de redevenir Link pour collecter des objets.',
         ],
         'canFakeFlipper' => [
             'title' => 'Fausses Palmes',
@@ -41,11 +41,11 @@ return [
         ],
         'canMirrorClip' => [
             'title' => 'Clip au Miroir',
-            'description' => 'Il peut être requis d\'utiliser des rebonds avec le Miroir pour se transporter hors des limites du jeu.',
+            'description' => 'Il peut être requis d’utiliser des rebonds avec le Miroir pour se transporter hors des limites du jeu.',
         ],
         'canMirrorWrap' => [
             'title' => 'Wrap au Miroir',
-            'description' => 'Il peut être requis d\utiliser le Miroir afin de défiler l\'écran à un endroit normalement inaccessible.',
+            'description' => 'Il peut être requis d\utiliser le Miroir afin de défiler l’écran à un endroit normalement inaccessible.',
         ],
         'canOneFrameClipOW' => [
             'title' => 'Clip d\Une Image (Monde extérieur)',
@@ -57,27 +57,27 @@ return [
         ],
         'canOWYBA' => [
             'title' => 'YBA (Monde extérieur)',
-            'description' => 'Il peut être requis d\'utiliser des Bocaux dans le monde extérieur afin de se rendre à un endroit normalement inaccessible.',
+            'description' => 'Il peut être requis d’utiliser des Bocaux dans le monde extérieur afin de se rendre à un endroit normalement inaccessible.',
         ],
         'canSuperBunny' => [
             'title' => 'Super Lapin',
-            'description' => 'Il peut être requis d\'activer la technique du Super Lapin pour accéder à certains endroits et objets.',
+            'description' => 'Il peut être requis d’activer la technique du Super Lapin pour accéder à certains endroits et objets.',
         ],
         'canSuperSpeed' => [
             'title' => 'Super Vitesse',
-            'description' => 'Il peut être requis d\'utiliser la Super Vitesse afin de passer à travers une barrière dans le monde extérieur.',
+            'description' => 'Il peut être requis d’utiliser la Super Vitesse afin de passer à travers une barrière dans le monde extérieur.',
         ],
         'canWaterFairyRevive' => [
-            'title' => 'Résurrection par une Fée dans l\'Eau',
-            'description' => 'Cette technique est ridicule et requiert un grand nombre d\'objets.',
+            'title' => 'Résurrection par une Fée dans l’Eau',
+            'description' => 'Cette technique est ridicule et requiert un grand nombre d’objets.',
         ],
         'canWaterWalk' => [
-            'title' => 'Marche sur l\'Eau',
-            'description' => 'Il peut être requis d\'utiliser les Bottes pour marcher sur l\eau.',
+            'title' => 'Marche sur l’Eau',
+            'description' => 'Il peut être requis d’utiliser les Bottes pour marcher sur l\eau.',
         ],
         'noLogic' => [
             'title' => 'Désactiver la Logique',
-            'description' => 'Quand ceci est activé, les dés en sont jetés, et rien d\'autre n\'importe..',
+            'description' => 'Quand ceci est activé, les dés en sont jetés, et rien d’autre n’importe..',
         ],
     ]
 ];

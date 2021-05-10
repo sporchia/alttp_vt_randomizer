@@ -9,7 +9,7 @@ return [
                     'header' => '',
                     'content' => [
                         'Most races are done through <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. Be sure to check them out for more info on how to get in on the action!',
-                        'Before starting you should familiarize yourself with the <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">ALTTPR Racing Council\'s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure you\'re in the clear!',
+                        'Before starting you should familiarize yourself with the <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">ALTTPR Racing Council’s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure you’re in the clear!',
                     ],
                 ],
                 [
@@ -104,19 +104,43 @@ return [
                 ],
             ],
         ],
-        'language_tournament' => [
-            'header' => 'Language-specific Tournaments',
-            'sections' => [
+        'foreign_language' => [
+            'header' => 'Language-specific Tournaments and Events',
+            'languages' => [
                 [
-                    'header' => '',
-                    'content' => [
-                        'There are several non-English communities operate their own language-specific tournaments!',
+                    'header' => 'Francophone',
+                    'description' => 'Something about the community here.',
+                    'sections' => [
+                        [
+                            'header' => 'Placeholder Tournament',
+                            'content' => [
+                                'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn’t actually exist, except in our hearts.',
+                            ],
+                        ],
                     ],
                 ],
                 [
-                    'header' => 'Placeholder Tournament',
-                    'content' => [
-                        'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn\'t actually exist, except in our hearts.',
+                    'header' => 'German',
+                    'description' => 'Something about the community here.',
+                    'sections' => [
+                        [
+                            'header' => 'Placeholder Tournament',
+                            'content' => [
+                                'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn’t actually exist, except in our hearts.',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'header' => 'Spanish',
+                    'description' => 'Something about the community here.',
+                    'sections' => [
+                        [
+                            'header' => 'Placeholder Tournament',
+                            'content' => [
+                                'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn’t actually exist, except in our hearts.',
+                            ],
+                        ],
                     ],
                 ],
             ],
