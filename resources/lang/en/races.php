@@ -9,7 +9,7 @@ return [
                     'header' => '',
                     'content' => [
                         'Most races are done through <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. Be sure to check them out for more info on how to get in on the action!',
-                        'Before starting you should familiarize yourself with the <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">ALTTPR Racing Council\'s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure your in the clear!',
+                        'Before starting you should familiarize yourself with the <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">ALTTPR Racing Council\'s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure you\'re in the clear!',
                     ],
                 ],
                 [
