@@ -109,12 +109,12 @@ return [
             'languages' => [
                 [
                     'header' => 'Francophone',
-                    'description' => 'Something about the community here.',
+                    'description' => 'Si vous cherchez des passionnées francophone de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
                     'sections' => [
                         [
-                            'header' => 'Placeholder Tournament',
+                            'header' => 'Tournoi Francophone',
                             'content' => [
-                                'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn’t actually exist, except in our hearts.',
+                                'Nous organisons habituellement un gros tournoi par année, ainsi qu’un micro tournoi à l’occasion. Surveillez le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a> pour être au courant des développements',
                             ],
                         ],
                     ],
