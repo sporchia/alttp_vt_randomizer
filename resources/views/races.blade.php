@@ -38,7 +38,7 @@
         <div class="card-body">
             @foreach (__('races.cards.foreign_language.languages') as $language)
                 <h3>{{ $language['header'] }}</h3>
-                <p>{{!! $language['description'] !!}}</p>
+                <p>{!! $language['description'] !!}</p>
                 @foreach ($language['sections'] as $section)
                 <h4>{{ $section['header'] }}</h4>
                     @foreach ($section['content'] as $block)
