@@ -109,12 +109,18 @@ return [
             'languages' => [
                 [
                     'header' => 'Francophone',
-                    'description' => 'Si vous cherchez des passionnées francophone de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
+                    'description' => 'Si vous cherchez des passionnées francophones de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
                     'sections' => [
                         [
                             'header' => 'Tournoi Francophone',
                             'content' => [
                                 'Nous organisons habituellement un gros tournoi par année, ainsi qu’un micro tournoi à l’occasion. Surveillez le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a> pour être au courant des développements',
+                            ],
+                        ],
+						[
+                            'header' => 'Hebdomadaire Francophone',
+                            'content' => [
+                                'Chaque semaine, une course hebdomadaire entre francophones à lieu. L’horaire est voté par les joueurs sur le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord de la communauté francophone</a> puis annoncé, au plaisir de tous!',
                             ],
                         ],
                     ],

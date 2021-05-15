@@ -9,13 +9,13 @@ return [
                     'header' => '',
                     'content' => [
                         'La plupart des courses se font à l’aide de la plate-forme <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. Vous pouvez vous créer un compte, et vous connecter sur le site pour plus d’information sur le fonctionnement de la plate-forme!',
-                        'Avant de commencer à faire des courses, vous devriez vous familiariser avec les <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">règles de course de ALTTPR</a>. Veuillez noter que certains tounois ou évènements peuvent utiliser des règles différentes. Validez avec les organisateurs pour savoir s’il y a des variations!',
+                        'Avant de commencer à faire des courses, vous devriez vous familiariser avec les <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">règles de course d’ALTTPR</a>. Veuillez noter que certains tounois ou évènements peuvent utiliser des règles différentes. Validez avec les organisateurs pour savoir s’il y a des variations!',
                     ],
                 ],
                 [
                     'header' => 'Ladder ALTTPR',
                     'content' => [
-                        'Le <a href="https://alttprladder.com/" target="_blank">Ladder de ALTTPR</a> est une ligue de ALTTPR qui fonctionne selon l’échelle Elo. Les courses se font entièrement sur un serveur Discord. Plusieurs courses se déroulent chaque jour, en rotation, et en utilisant différents paramètres du randomiseur. Le système de pointage fonctionne selon le standard Elo 32k.',
+                        'Le <a href="https://alttprladder.com/" target="_blank">Ladder ALTTPR</a> est une ligue d’ALTTPR qui fonctionne selon l’échelle Elo. Les courses se font entièrement sur un serveur Discord. Plusieurs courses se déroulent chaque jour, en rotation, et en utilisant différents paramètres du randomiseur. Le système de pointage fonctionne selon le standard Elo 32k.',
                     ],
                 ],
                 [
@@ -33,7 +33,7 @@ return [
                 [
                     'header' => 'Votre propre course',
                     'content' => [
-                        'Les courses organisées ne fonctionnent pas avec votre horaire ? Vous voulez faire une course avec des paramètres plus exotiques ? Organisez votre propre course! Vous trouverez des joueurs prêts à jouer à toute heure du jour ou de la nuit. Visitez #race-planning dans le <a href="https://discord.gg/alttprandomizer" target="_blank">discord principal de ALTTPR.</a>!',
+                        'Les courses organisées ne fonctionnent pas avec votre horaire? Vous voulez faire une course avec des paramètres plus exotiques? Organisez votre propre course! Vous trouverez des joueurs prêts à jouer à toute heure du jour ou de la nuit. Visitez #race-planning dans le <a href="https://discord.gg/alttprandomizer" target="_blank">Discord principal d’ALTTPR.</a>!',
                     ],
                 ],
             ],
@@ -57,11 +57,11 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        'Vous voulez voir des courses de tournoi commentées, et courus par des joueurs de haut niveau ? Des tournois ont souvent lieu au cours de l’année. Joignez notre <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> pour être au courant du calendrier!',
+                        'Vous voulez voir des courses de tournoi commentées, et courues par des joueurs de haut niveau ? Des tournois ont souvent lieu au cours de l’année. Joignez notre <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> pour être au courant du calendrier!',
                     ],
                 ],
                 [
-                    'header' => 'Tournoi principal de ALTTP Randomizer',
+                    'header' => 'Tournoi principal d’ALTTP Randomizer',
                     'content' => [
                         'Voyez les meilleurs joueurs compétitionner pour le trophée et la chance d’avoir leur nom sur la tuile télépathique de la salle Houlihan! Vous croyez avoir ce qu’il faut pour vous mesurer aux meilleurs ? Joignez le <a href="https://discord.gg/B2kGXxTD6g" target="_blank">Discord du tournoi ALTTPR</a> et surveillez les courses de qualification!',
                     ],
@@ -69,13 +69,13 @@ return [
                 [
                     'header' => 'Challenge Cup',
                     'content' => [
-                        'The <a href="https://discord.gg/982W72p" target="_blank">Challenge Cup</a> is an overflow tournament for those who did not qualify for the main tournament.',
+                        'La <a href="https://discord.gg/982W72p" target="_blank">Challenge Cup</a> est un tournoi destiné aux joueurs qui n’ont pas pu se qualifier dans le tournoi principal.',
                     ],
                 ],
                 [
                     'header' => 'Ligue ALTTPR',
                     'content' => [
-                        'La <a href="https://alttprleague.com/" target="_blank">Lighe de ALTTPR</a> est un tournoi annuel en équipe. Les joueurs forment des équipes de trois personnes, et s’affrontent en solo ou en équipe dans des courses avec des modes variés.',
+                        'La <a href="https://alttprleague.com/" target="_blank">Ligue ALTTPR</a> est un tournoi annuel en équipe. Les joueurs forment des équipes de trois personnes, et s’affrontent en solo ou en équipe dans des courses avec des modes variés.',
                     ],
                 ],
                 [
@@ -93,13 +93,13 @@ return [
                 [
                     'header' => 'Tournois ALTTPR avec des Glitches',
                     'content' => [
-                        'Les <a href="https://discord.gg/adac5FG" target="_blank">tournois de ALTTPR Glitchés</a> impliquent l’utilisation de glitches majeurs pour briser et battre le jeu, souvent de manière innatendue.',
+                        'Les <a href="https://discord.gg/adac5FG" target="_blank">tournois de ALTTPR Glitchés</a> impliquent l’utilisation de glitchs majeurs pour briser et battre le jeu, souvent de manière inattendue.',
                     ],
                 ],
                 [
-                    'header' => 'Le tournois Croise-clés ALTTPR',
+                    'header' => 'Tournoi croise-clés ALTTPR',
                     'content' => [
-                        'Le <a href="https://discord.gg/umCCQgr" target="_blank">tournoi de croise-clés de ALTTPR</a>, communément appelé "Crosskeys" est un tournoi qui teste la capacité des joueurs à naviguer le monde d’Hyrule avec les entrées et les clés mélangées. Les joueurs devront faire appel à leur mémoire et leurs notes pour trouver la solution de ce mode renversant!',
+                        'Le <a href="https://discord.gg/umCCQgr" target="_blank">tournoi croise-clés d’ALTTPR</a>, communément appelé "Crosskeys" est un tournoi qui teste la capacité des joueurs à naviguer le monde d’Hyrule avec les entrées et les clés mélangées. Les joueurs devront faire appel à leur mémoire et leurs notes pour trouver la solution de ce mode renversant!',
                     ],
                 ],
             ],
@@ -109,12 +109,18 @@ return [
             'languages' => [
                 [
                     'header' => 'Francophone',
-                    'description' => 'Si vous cherchez des passionnées francophone de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
+                    'description' => 'Si vous cherchez des passionnées francophones de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
                     'sections' => [
                         [
                             'header' => 'Tournoi Francophone',
                             'content' => [
                                 'Nous organisons habituellement un gros tournoi par année, ainsi qu’un micro tournoi à l’occasion. Surveillez le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a> pour être au courant des développements',
+                            ],
+                        ],
+						[
+                            'header' => 'Hebdomadaire Francophone',
+                            'content' => [
+                                'Chaque semaine, une course hebdomadaire entre francophones à lieu. L’horaire est voté par les joueurs sur le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord de la communauté francophone</a> puis annoncé, au plaisir de tous!',
                             ],
                         ],
                     ],
