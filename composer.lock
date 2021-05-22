@@ -7031,7 +7031,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KatDevsGames/z3randomizer",
-                "reference": "feb3105c5a5700d72ebf5b49a116133eb429d9cf"
+                "reference": "1bbf359198beb74746e6b2779c3fff0698c1b77a"
             },
             "type": "library"
         }
