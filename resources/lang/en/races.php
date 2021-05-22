@@ -126,13 +126,19 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'German',
-                    'description' => 'Something about the community here.',
+                    'header' => 'Deutsch',
+                    'description' => 'Auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Discord der deutschsprachigen ALTTPR-Community</a> gibt es alles, von Anfängertipps über freundschaftliche Rennen bis hin zu Turnieren.',
                     'sections' => [
                         [
-                            'header' => 'Placeholder Tournament',
+                            'header' => 'Deutsche ALTTPR-Turniere',
                             'content' => [
-                                'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn’t actually exist, except in our hearts.',
+                                'Es wird ca. einmal im Jahr ein großes Turnier für neue und erfahrene Spieler organisiert. Dazwischen gibt es unregelmäßig kleinere und ausgefallenere Turniere. Ankündigungen und alle Informationen gibt es auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Community-Discord</a>.',
+                            ],
+                        ],
+                        [
+                            'header' => 'Deutsches ALTTPR-Weekly',
+                            'content' => [
+                                'Jede Woche findet ein größeres Rennen statt, in dem man sich gegen andere Spieler aus der Community messen kann. Neben Open werden auch andere Modi gespielt, die immer durchwechseln. Auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Discord</a> gibt es alle Informationen zu den nächsten Rennen und zur Teilnahme.',
                             ],
                         ],
                     ],

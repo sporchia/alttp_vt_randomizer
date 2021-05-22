@@ -1,38 +1,39 @@
 <?php
 return [
-    'header' => 'Organisierte Spiele',
+    'header' => 'Organisiertes Spielen',
     'cards' => [
         'races' => [
-            'header' => 'Rennen',
+            'header' => 'Tägliche und wöchentliche Rennen',
             'sections' => [
                 [
                     'header' => '',
                     'content' => [
-                        'Die meisten Rennen werden auf <a href="https://speedracing.tv/" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> oder <a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a> ausgetragen. Gehe sicher beide Seiten anzusehen um mehr Informationen zu erhalten wie du bei der Aktion mitmachen kannst!',
+                        'Die meisten Rennen werden auf <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a> geführt. Macht euch am besten im Vorfeld mit der Seite vertraut, damit später dem Rennen nichts im Weg steht.',
+                        'Bevor ihr mit den Rennen anfangt, lest euch die <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">allgemeinen Regeln für Rennen des ALTTPR Racing Councils</a> durch. Bedenkt, dass die Regeln einzelner Turniere abweichen können. Im Zweifel fragt im Vorfeld nach den geltenden Regeln.',
                     ],
                 ],
                 [
-                    'header' => 'Wöchentliches Rennen des Standard Modus, Samstags um 15:00 Uhr (3pm) EST/EDT bzw. 21:00 Uhr (9pm) CET/CEST',
+                    'header' => 'ALTTPR Ladder',
                     'content' => [
-                        'Das führende Community Event, das wöchentliche Rennen hat viele Teilnehmer!',
+                        'Die <a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> ist eine 1v1 Elo-Rangliste, eine "A Link To the Past Randomizer"-Liga, welche komplett über Discord läuft. In diesem System werden mehere 1v1-Rennen über den Tag organisiert und gespielt. Die Rangliste basiert auf dem System der Standard Elo 32k-Gewichtung.',
                     ],
                 ],
                 [
-                    'header' => 'Wöchentliches Rennen des Offen Modus, Sonntags um 17:00 UHR (5pm) EST/EDT bzw. 23:00 Uhr (11pm) CET/CEST',
+                    'header' => 'SpeedGaming Daily Racing Series',
                     'content' => [
-                        'Trete uns Sonntag bei für ein anderes beliebtes Community Event.',
+                        '<a href="https://speedgaming.org/" target="_blank">SpeedGaming</a> veranstaltet eine Reihe von täglichen Rennen, welche auf <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a> stattfinden. Wirf einen Blick in den <a href="http://speedgaming.org/alttprdaily/" target="_blank">Zeitplan der kommenden täglichen Rennen</a>.',
                     ],
                 ],
                 [
-                    'header' => 'Das nächtliche Community Rennen, 22:00 Uhr (10pm) EST/EDT bzw. 04:00 Uhr (2am) CET/CEST',
+                    'header' => 'Overworld Glitches Weekly',
                     'content' => [
-                        'Wir haben sogar ein nächtliches Rennen für jeden, der jeden Tag spielen möchte',
+                        'Das wöchentliche Rennen mit Overworld Glitches findet jede Woche in der Nacht von Mittwoch auf Donnerstag um 04:30 Uhr Mitteleuropäischer Zeit (MEZ)  auf <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a> statt.',
                     ],
                 ],
                 [
                     'header' => 'Spontane Rennen',
                     'content' => [
-                        'Die geplannten Rennen passen nicht in dein Zeitplan? Du suchst Rennen mit eher ungenutzen Optionen? Trete einer der ungeplannten Rennen bei! Du wirst rund um die Uhr Spieler finden die gewillt sind, ein Rennen zu machen. Trete dem #race-planning Kanal bei auf unserem <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
+                        'Die ganzen geplanten Rennen passen nicht in euren Zeitplan oder ihr sucht nach einem Rennen mit ungewöhnlichen Einstellungen? Tretet einfach einem spontanen Rennen bei! Es gibt viele motivierte Mitspieler zu allen Tageszeiten. Werft einen Blick auf den #race-planning Kanal im <a href="https://discord.gg/alttprandomizer" target="_blank">internationalen Discord</a>!',
                     ],
                 ],
             ],
@@ -40,14 +41,14 @@ return [
         'watch' => [
             'header' => 'Zuschauen',
             'content' => [
-                'Mit so vielen Sachen am laufen, wird es immer ein Rennen zum schauen geben! Folge diese Netzwerken und vermisse niemals ein Rennen!',
+                'Es ist so viel los, dass es immer was zu schauen gibt! Folge diesen Netzwerken, um kein Spiel zu verpassen!',
             ],
         ],
         'network' => [
-            'header' => 'Netzwerke für Rennen',
+            'header' => 'Racing-Netzwerke',
             'content' => [
-                'Im normalfall werden Rennen auf einem Netzwerk für Rennen ausgetragen. Diese Seiten erleichtern das organisieren von Rennen, fügen eine offiziele Zeitanzeige hinzu, und erleichtern das finden von Rennen für Teilnehmer und Zuschauer.',
-                'Besuche beide Seiten <a href="http://speedrunslive.com" target="_blank" rel="noopener noreferrer">SpeedRunsLive.com</a> und <a href="http://speedracing.tv" target="_blank" rel="noopener noreferrer">SpeedRacing.tv</a> für mehr Informationen!',
+                'Rennen werden in der Regel über sogenannte Racing-Netzwerke organisiert. Diese Seiten zeigen auch einen offiziellen Timer an und machen es für Spieler und Zuschauer leichter, Rennen zu finden.',
+                'Statte auf jeden Fall <a href="http://racetime.gg" target="_blank">RaceTime.gg</a> einen Besuch ab!',
             ],
         ],
         'tournament' => [
@@ -56,15 +57,72 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        'Trete uns bei für aufregende Turniere mit großartigen Kommentar und exzellente Spielzüge!',
+                        'Tretet einem der großen Turniere bei und erlebt spannende Rennen zusammen mit den besten Spielern und erfahrenen Kommentatoren! Turniere finden das ganze Jahr über statt, auf <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> gibt es die neuesten Informationen.',
                     ],
                 ],
                 [
-                    'header' => 'Halbjährliches geschlossenes Turnier',
+                    'header' => 'ALTTP Randomizer Main Tournament',
                     'content' => [
-                        'Werde Zeuge wenn die besten Spieler um die Trophäe kämpfen! Du denkst du hast das Zeug mit den Besten Schritt zu halten? Trede dem <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a> bei und halte Ausschau für die Qualifikationsrennen!',
-                        'Das Spring Invitational findet statt von März bis Juni.',
-                        'Das Fall Invitational findet statt von September bis Dezember.',
+                        'Erlebt hautnah, wie die besten Spieler weltweit antreten und um den Sieg des Turniers (und somit auf eine Verewigung im Spiel selbst im Houlihan-Raum) kämpfen. Seid ihr Herausforderung gewachsen, euch mit den stärksten Gegnern zu messen? Dann tretet dem <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Turnier-Discord</a> bei und haltet nach Qualifikationsspielen Ausschau!',
+                    ],
+                ],
+                [
+                    'header' => 'Challenge Cup',
+                    'content' => [
+                        'Der <a href="https://discord.gg/982W72p" target="_blank">Challenge Cup</a> ist ein Nebenturnier des Main Tournaments für alle, welche die Qualifikation für das Hauptturnier nicht geschafft haben.',
+                    ],
+                ],
+                [
+                    'header' => 'ALTTPR League',
+                    'content' => [
+                        'Die <a href="https://alttprleague.com/" target="_blank">ALTTPR-Liga</a> ist ein teambasiertes ALTTPR-Turnier. Spieler schließen sich zu dritt zu einem Team zusammen und messen sich mit anderen Teams in verschiedenen Spiel-Einstellungen.',
+                    ],
+                ],
+                [
+                    'header' => 'Go Mode Podcast Mentor Tournament',
+                    'content' => [
+                        '<a href="https://gomodepodcast.com/" target="_blank">Go Mode Podcast</a> veranstaltet jährlich ein Turnier für Neulinge. Dabei werden die Mitspieler von einem Mentor betreut, welcher durch die Rennen begleitet. Die perfekte Vorbereitung für weitere große oder kleine Turniere.',
+                    ],
+                ],
+                [
+                    'header' => 'ALTTPR Spoiler Tournament',
+                    'content' => [
+                        'Das <a href="https://discord.gg/Jg34MuE" target="_blank">ALTTPR Spoiler-Turnier</a> findet jährlich statt und gibt den Teilnehmern vor jedem Rennen den kompletten Spoiler Log zur Vorbereitung. Hier werden besonders Spielstärke und Entscheidungsfindung gefordert!',
+                    ],
+                ],
+                [
+                    'header' => 'ALTTPR Glitched Tournaments',
+                    'content' => [
+                        'Das <a href="https://discord.gg/adac5FG" target="_blank">ALTTPR Glitched Turnier</a> richtet sich an erfahrene Spieler, welche durch "major glitches" das Spiel auf interessante und ungewöhnliche Art und Weise beenden können.',
+                    ],
+                ],
+                [
+                    'header' => 'ALTTPR Crossworld Keysanity Tournament',
+                    'content' => [
+                        'Im <a href="https://discord.gg/umCCQgr" target="_blank">ALTTPR Crossworld Keysanity Tournament</a> erwartet euch eine Mischung der Modi "Crossworld entrance shuffle" gepaart mit "Keysanity". Mit Notizen oder guten Erinnerungen werden die Spieler stark gefordert, um in diesem Gehirnjogging zu den Besten gehören zu können.',
+                    ],
+                ],
+            ],
+        ],
+        'foreign_language' => [
+            'header' => 'Language-specific Tournaments and Events',
+            'languages' => [
+                [
+                    'header' => 'Deutsch',
+                    'description' => 'Auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Discord der deutschsprachigen ALTTPR-Community</a> gibt es alles, von Anfängertipps über freundschaftliche Rennen bis hin zu Turnieren.',
+                    'sections' => [
+                        [
+                            'header' => 'Deutsche ALTTPR-Turniere',
+                            'content' => [
+                                'Es wird ca. einmal im Jahr ein großes Turnier für neue und erfahrene Spieler organisiert. Dazwischen gibt es unregelmäßig kleinere und ausgefallenere Turniere. Ankündigungen und alle Informationen gibt es auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Community-Discord</a>.',
+                            ],
+                        ],
+                        [
+                            'header' => 'Deutsches ALTTPR-Weekly',
+                            'content' => [
+                                'Jede Woche findet ein größeres Rennen statt, in dem man sich gegen andere Spieler aus der Community messen kann. Neben Open werden auch andere Modi gespielt, die immer durchwechseln. Auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Discord</a> gibt es alle Informationen zu den nächsten Rennen und zur Teilnahme.',
+                            ],
+                        ],
                     ],
                 ],
             ],
