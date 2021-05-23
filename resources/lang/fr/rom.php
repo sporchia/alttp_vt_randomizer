@@ -49,6 +49,7 @@ return [
             'green' => 'Vert',
             'red' => 'Rouge',
             'yellow' => 'Jaune',
+            'random' => 'Aléatoire',
         ],
         'play_as' => 'Jouer en tant que',
         'sprite_file_select' => 'Sélectionnez le fichier .zspr',
