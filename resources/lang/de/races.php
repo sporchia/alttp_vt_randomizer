@@ -50,7 +50,7 @@ return [
                 [
                     'header' => 'ALTTP Randomizer Main Tournament',
                     'content' => [
-                        'Erlebt hautnah, wie die besten Spieler weltweit antreten und um den Sieg des Turniers (und somit auf eine Verewigung im Spiel selbst im Houlihan-Raum) kämpfen. Seid ihr Herausforderung gewachsen, euch mit den stärksten Gegnern zu messen? Dann tretet dem <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Turnier-Discord</a> bei und haltet nach Qualifikationsspielen Ausschau!',
+                        'Erlebt hautnah, wie die besten Spieler weltweit antreten und um den Sieg des Turniers (und somit auf eine Verewigung im Spiel selbst im Houlihan-Raum) kämpfen. Seid ihr der Herausforderung gewachsen, euch mit den stärksten Gegnern zu messen? Dann tretet dem <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Turnier-Discord</a> bei und haltet nach Qualifikationsspielen Ausschau!',
                     ],
                 ],
                 [
