@@ -38,19 +38,6 @@ return [
                 ],
             ],
         ],
-        'watch' => [
-            'header' => 'Zuschauen',
-            'content' => [
-                'Es ist so viel los, dass es immer was zu schauen gibt! Folge diesen Netzwerken, um kein Spiel zu verpassen!',
-            ],
-        ],
-        'network' => [
-            'header' => 'Racing-Netzwerke',
-            'content' => [
-                'Rennen werden in der Regel über sogenannte Racing-Netzwerke organisiert. Diese Seiten zeigen auch einen offiziellen Timer an und machen es für Spieler und Zuschauer leichter, Rennen zu finden.',
-                'Statte auf jeden Fall <a href="http://racetime.gg" target="_blank">RaceTime.gg</a> einen Besuch ab!',
-            ],
-        ],
         'tournament' => [
             'header' => 'Turniere',
             'sections' => [

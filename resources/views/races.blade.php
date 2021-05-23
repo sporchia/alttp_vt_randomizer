@@ -31,22 +31,21 @@
         </div>
     </div>
 
+    @foreach (__('races.cards.foreign_language.languages') as $language)
     <div class="card border-info mt-4">
         <div class="card-header bg-info">
-            <h3 class="card-title text-white">{{ __('races.cards.foreign_language.header') }}</h3>
+            <h3 class="card-title text-white">{{ $language['header'] }}</h3>
         </div>
         <div class="card-body">
-            @foreach (__('races.cards.foreign_language.languages') as $language)
-                <h3>{{ $language['header'] }}</h3>
-                <p>{!! $language['description'] !!}</p>
-                @foreach ($language['sections'] as $section)
+            <p>{!! $language['description'] !!}</p>
+            @foreach ($language['sections'] as $section)
                 <h4>{{ $section['header'] }}</h4>
                     @foreach ($section['content'] as $block)
                         <p>{!! $block !!}</p>
                     @endforeach
-                @endforeach
             @endforeach
         </div>
     </div>
+    @endforeach
 </div>
 @overwrite

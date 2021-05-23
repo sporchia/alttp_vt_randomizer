@@ -38,19 +38,6 @@ return [
                 ],
             ],
         ],
-        'watch' => [
-            'header' => 'Regarder',
-            'content' => [
-                'Il y a toujours une course à regarder! Suivez ces serveurs et ne manquez jamais un match',
-            ],
-        ],
-        'network' => [
-            'header' => 'Serveur de course',
-            'content' => [
-                'Les courses se font typiquement sur une plate-forme de course qui permet d’organiser des courses officielles ou non officielles, et d’avoir un chonomètre commun. Il est ainsi plus facile pour les coureurs et spectateurs de trouver des courses.',
-                'Visitez <a href="http://racetime.gg" target="_blank">RaceTime.gg</a> pour plus de détails!',
-            ],
-        ],
         'tournament' => [
             'header' => 'Tournois',
             'sections' => [

@@ -38,19 +38,6 @@ return [
                 ],
             ],
         ],
-        'watch' => [
-            'header' => 'Watch',
-            'content' => [
-                'With so much going on, there’s always a race to watch! Follow these networks and never miss a match!',
-            ],
-        ],
-        'network' => [
-            'header' => 'Racing Networks',
-            'content' => [
-                'Racing is typically done on a racing network. These sites facilitate in organizing races, adding an official timer, and making it easier for both racers and viewers to find races.',
-                'Be sure to check out <a href="http://racetime.gg" target="_blank">RaceTime.gg</a>!',
-            ],
-        ],
         'tournament' => [
             'header' => 'Tournaments',
             'sections' => [
