@@ -250,6 +250,11 @@ export default class ROM {
       let byte = 0x24;
       let file_byte = 0x05;
 
+      if (color_on === "random") {
+        const colorOptions = ["blue", "green", "yellow", "red"];
+        color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+      };
+
       switch (color_on) {
         case "blue":
           byte = 0x2c;
