@@ -95,42 +95,6 @@ return [
             'header' => 'Language-specific Tournaments and Events',
             'languages' => [
                 [
-                    'header' => 'Francophone',
-                    'description' => 'Si vous cherchez des passionnées francophones de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
-                    'sections' => [
-                        [
-                            'header' => 'Tournoi Francophone',
-                            'content' => [
-                                'Nous organisons habituellement un gros tournoi par année, ainsi qu’un micro tournoi à l’occasion. Surveillez le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a> pour être au courant des développements',
-                            ],
-                        ],
-						[
-                            'header' => 'Hebdomadaire Francophone',
-                            'content' => [
-                                'Chaque semaine, une course hebdomadaire entre francophones à lieu. L’horaire est voté par les joueurs sur le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord de la communauté francophone</a> puis annoncé, au plaisir de tous!',
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'header' => 'Deutsch',
-                    'description' => 'Auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Discord der deutschsprachigen ALTTPR-Community</a> gibt es alles, von Anfängertipps über freundschaftliche Rennen bis hin zu Turnieren.',
-                    'sections' => [
-                        [
-                            'header' => 'Deutsche ALTTPR-Turniere',
-                            'content' => [
-                                'Es wird ca. einmal im Jahr ein großes Turnier für neue und erfahrene Spieler organisiert. Dazwischen gibt es unregelmäßig kleinere und ausgefallenere Turniere. Ankündigungen und alle Informationen gibt es auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Community-Discord</a>.',
-                            ],
-                        ],
-                        [
-                            'header' => 'Deutsches ALTTPR-Weekly',
-                            'content' => [
-                                'Jede Woche findet ein größeres Rennen statt, in dem man sich gegen andere Spieler aus der Community messen kann. Neben Open werden auch andere Modi gespielt, die immer durchwechseln. Auf dem <a href="https://discord.gg/5zuANcS" target="_blank">Discord</a> gibt es alle Informationen zu den nächsten Rennen und zur Teilnahme.',
-                            ],
-                        ],
-                    ],
-                ],
-                [
                     'header' => 'Spanish',
                     'description' => 'Something about the community here.',
                     'sections' => [
