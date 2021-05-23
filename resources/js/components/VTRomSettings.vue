@@ -134,11 +134,18 @@ export default {
             value: "green",
             name: this.$i18n.t("rom.settings.heart_colors.green")
           },
-          { value: "red", name: this.$i18n.t("rom.settings.heart_colors.red") },
+          {
+            value: "red",
+            name: this.$i18n.t("rom.settings.heart_colors.red")
+          },
           {
             value: "yellow",
             name: this.$i18n.t("rom.settings.heart_colors.yellow")
-          }
+          },
+          {
+            value: "random",
+            name: this.$i18n.t("rom.settings.heart_colors.random")
+          },
         ]
       },
       defaults: {

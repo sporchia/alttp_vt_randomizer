@@ -35,7 +35,8 @@ export default {
         { value: "blue", name: "rom.settings.heart_colors.blue" },
         { value: "green", name: "rom.settings.heart_colors.green" },
         { value: "red", name: "rom.settings.heart_colors.red" },
-        { value: "yellow", name: "rom.settings.heart_colors.yellow" }
+        { value: "yellow", name: "rom.settings.heart_colors.yellow" },
+        { value: "random", name: "rom.settings.heart_colors.random" }
       ]
     },
     initializing: true
