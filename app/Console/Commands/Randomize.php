@@ -26,6 +26,7 @@ class Randomize extends Command
         . ' {--unrandomized : do not apply randomization to the rom}'
         . ' {--spoiler : generate a spoiler file}'
         . ' {--heartbeep=half : set heart beep speed}'
+        . ' {--heartcolor=red : set heart color}'
         . ' {--skip-md5 : do not validate md5 of base rom}'
         . ' {--tournament : enable tournament mode}'
         . ' {--bulk=1 : generate multiple roms}'
@@ -122,6 +123,10 @@ class Randomize extends Command
             if (!$this->option('skip-md5') && !$rom->checkMD5()) {
                 $this->error('MD5 check failed :(');
                 return 3;
+            }
+
+            if (is_string($this->option('heartcolor'))) {
+                $rom->setHeartColors($this->option('heartcolor'));
             }
 
             if (is_string($this->option('heartbeep'))) {
