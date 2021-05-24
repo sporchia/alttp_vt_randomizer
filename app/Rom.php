@@ -1139,7 +1139,7 @@ class Rom
      */
     public function setHeartColors(string $color): self
     {
-        if($color === 'random') {
+        if ($color === 'random') {
           $colorOptions = ['blue', 'green', 'yellow', 'red'];
           $color = $colorOptions[mt_rand(0, 3)];
         }
