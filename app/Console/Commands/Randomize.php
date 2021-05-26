@@ -126,7 +126,13 @@ class Randomize extends Command
             }
 
             if (is_string($this->option('heartcolor'))) {
-                $rom->setHeartColors($this->option('heartcolor'));
+                // TODO: Unit Test!
+                $heartColorToUse = $this->option('heartcolor');
+                if ($heartColorToUse === 'random') {
+                  $colorOptions = ['blue', 'green', 'yellow', 'red'];
+                  $heartColorToUse = $colorOptions[get_random_int(0, 3)];
+                }
+                $rom->setHeartColors($heartColorToUse);
             }
 
             if (is_string($this->option('heartbeep'))) {

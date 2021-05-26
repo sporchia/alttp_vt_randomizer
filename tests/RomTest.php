@@ -670,7 +670,6 @@ class RomTest extends TestCase
         $this->assertEquals([2, 23], $this->rom->read(0x180098, 2));
     }
 
-
     public function testSetGanonInvincibleCrystals()
     {
         $this->rom->setGanonInvincible('crystals');
@@ -738,25 +737,6 @@ class RomTest extends TestCase
     {
         $this->rom->setHeartColors('some invalid string value');
 
-        $this->assertHeartColorSetting('red');
-    }
-
-    public function testSetHeartColorsRandom()
-    {
-        mt_srand(0); // mt_rand(0, 3) will return 0
-        $this->rom->setHeartColors('random');
-        $this->assertHeartColorSetting('blue');
-
-        mt_srand(1); // mt_rand(0, 3) will return 1
-        $this->rom->setHeartColors('random');
-        $this->assertHeartColorSetting('green');
-
-        mt_srand(3); // mt_rand(0, 3) will return 2
-        $this->rom->setHeartColors('random');
-        $this->assertHeartColorSetting('yellow');
-
-        mt_srand(5); // mt_rand(0, 3) will return 3
-        $this->rom->setHeartColors('random');
         $this->assertHeartColorSetting('red');
     }
 
