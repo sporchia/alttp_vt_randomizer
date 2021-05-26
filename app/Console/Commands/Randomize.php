@@ -126,7 +126,6 @@ class Randomize extends Command
             }
 
             if (is_string($this->option('heartcolor'))) {
-                // TODO: Unit Test!
                 $heartColorToUse = $this->option('heartcolor');
                 if ($heartColorToUse === 'random') {
                   $colorOptions = ['blue', 'green', 'yellow', 'red'];
