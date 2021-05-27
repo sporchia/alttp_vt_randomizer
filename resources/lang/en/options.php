@@ -590,7 +590,7 @@ return [
                 'menu_speed' => [
                     'header' => __('rom.settings.menu_speed'),
                     'content' => [
-                        'Change the speed of opening and closing the item menu. This is not available for race ROMS.',
+                        'Change the speed of opening and closing the item menu. This is not available for race ROMs.',
                     ],
                 ],
                 'heart_color' => [
@@ -608,7 +608,7 @@ return [
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
-                        'Allow items to be changed with the L and R buttons without opening the menu. This is not available for race ROMS (except when entrances are randomized).',
+                        'Allow items to be changed with the L and R buttons without opening the menu. This is not available for race ROMs (except when entrances are randomized).',
                     ],
                 ],
                 'palette_shuffle' => [

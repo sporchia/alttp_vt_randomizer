@@ -107,7 +107,7 @@
         <li>Bunny Link is now literate and can read signposts.</li>
         <li>Silver Arrows will now always be available in Entrance Randomizer when playing Swordless on a hard/expert item pool setting.</li>
         <li>Fixed silver arrows being intially equipped on aquisition in Hard/Expert item functionality, even when they should only be available for Ganon.</li>
-        <li>API support for allowing quickswap usage in item randomizer race roms.  The default behavior for item randomizer races will still be to disallow quickswap.</li>
+        <li>API support for allowing quickswap usage in item randomizer race ROMs. The default behavior for item randomizer races will still be to disallow quickswap.</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
@@ -281,7 +281,7 @@
             <li>A text box has been added to tell you if you have insufficient rupees</li>
         </ul></li>
         <li>Fixed a bug in Inverted where some enemies in Agahnim’s Tower and Old Man Cave had DW properties</li>
-        <li>Added a “loading animation” when ROMS are being generated so people know things are happening!</li>
+        <li>Added a “loading animation” when ROMs are being generated so people know things are happening!</li>
         <li>Fixed a bug where Crystals sometimes wouldn’t drop in boss rooms in extremely rare situations</li>
         <li>Updated Pedestal/Tablets texts to reference generic keys in Retro and not specific keys</li>
         <li>Updated ER permalinks to include Quick Swap</li>

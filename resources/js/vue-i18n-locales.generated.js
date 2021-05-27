@@ -1411,7 +1411,7 @@ export default {
                 "music_info": "(set to \"No\" for <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 support</a>)",
                 "quickswap": "Item Quickswap",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Does not work in Race Roms"
+                "race_warning": "Does not work in Race ROMs"
             }
         },
         "sprite": {
