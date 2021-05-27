@@ -475,7 +475,7 @@
         <li>Updated Entrance Randomizer to v0.5.2.1 (has many more options, thanks KevinCathcart)</li>
         <li>Some Grammar fixes (thanks spannerisms)</li>
         <li>Ganon's Tower Big Key logic fix (thanks pancelor)</li>
-        <li>Rom checksum fix (thanks qwertymodo)</li>
+        <li>ROM checksum fix (thanks qwertymodo)</li>
         <li>Added API endpoints to allow integrations with sprites/settings (thanks roxas232)</li>
         <li>Redesign of the site to be easier to locate information and look nicer (thanks walking_eye)</li>
         <li>Customizer fixes based on feedback<ul>
@@ -496,7 +496,7 @@
         <li>Easy difficulty will always have dungeon counts in HUD enabled</li>
         <li>Added + to golden bee bottle in menu</li>
         <li>Added letter to signify bottle contents for potions in menu</li>
-        <li>Added "fast menu" under Rom options, not available in Race Roms</li>
+        <li>Added "fast menu" under ROM options, not available in Race ROMs</li>
         <li>Hard/Expert/Insane has default magic usage for Blind/Ice Palace spike room/Turtle Rock laser bridge</li>
         <li>Added key-sanity</li>
         <li>Updated ending sequence to allow better tag lines</li>

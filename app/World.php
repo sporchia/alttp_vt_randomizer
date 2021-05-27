@@ -954,10 +954,10 @@ abstract class World
     }
 
     /**
-     * write the current generated data to the Rom. If an override patch is set
+     * write the current generated data to the ROM. If an override patch is set
      * it will use that instead.
      *
-     * @param \ALttP\Rom   $rom   Rom to write data to
+     * @param \ALttP\Rom   $rom   ROM to write data to
      * @param bool         $save  save seed record
      *
      * @return \ALttP\Rom
@@ -1191,7 +1191,7 @@ abstract class World
      * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.
      * this now also handles prize pull trees.
      *
-     * @param \ALttP\Rom  $rom  Rom to write data to
+     * @param \ALttP\Rom  $rom  ROM to write data to
      *
      * @return void
      */

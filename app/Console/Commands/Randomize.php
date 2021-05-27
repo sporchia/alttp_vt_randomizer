@@ -132,7 +132,7 @@ class Randomize extends Command
             if ($this->option('unrandomized')) {
                 $output_file = sprintf('%s/alttp-%s.sfc', $this->argument('output_directory'), Rom::BUILD);
                 $rom->save($output_file);
-                $this->info(sprintf('Rom Saved: %s', $output_file));
+                $this->info(sprintf('ROM Saved: %s', $output_file));
 
                 return 0;
             }
@@ -202,7 +202,7 @@ class Randomize extends Command
                 $rom->updateChecksum();
                 $rom->save($output_file);
 
-                $this->info(sprintf('Rom Saved: %s', $output_file));
+                $this->info(sprintf('ROM Saved: %s', $output_file));
             }
 
             if ($this->option('spoiler')) {

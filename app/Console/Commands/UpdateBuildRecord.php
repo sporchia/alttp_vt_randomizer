@@ -125,7 +125,7 @@ class UpdateBuildRecord extends Command
     }
 
     /**
-     * Update the constants in Rom class.
+     * Update the constants in ROM class.
      *
      * @param \ALttP\Build  $build  Build to update to
      *
@@ -144,7 +144,7 @@ class UpdateBuildRecord extends Command
      * Create a json patch for internal services.
      *
      * @param string  $hash  hash to save file with
-     * @param string  $rom  patched rom to make patch from
+     * @param string  $rom  patched ROM to make patch from
      *
      * @throws \Exception  if any filesystem issues arrise
      *

@@ -251,9 +251,9 @@ class Enemizer
     }
 
     /**
-     * write the current generated data to the Rom
+     * write the current generated data to the ROM
      *
-     * @param Rom $rom Rom to write data to
+     * @param Rom $rom ROM to write data to
      *
      * @return Rom
      */
