@@ -21,16 +21,16 @@ class Randomize extends Command
      *
      * @var string
      */
-    protected $signature = 'alttp:randomize {input_file : base rom to randomize}'
-        . ' {output_directory : where to place randomized rom}'
-        . ' {--unrandomized : do not apply randomization to the rom}'
+    protected $signature = 'alttp:randomize {input_file : base ROM to randomize}'
+        . ' {output_directory : where to place randomized ROM}'
+        . ' {--unrandomized : do not apply randomization to the ROM}'
         . ' {--spoiler : generate a spoiler file}'
         . ' {--heartbeep=half : set heart beep speed}'
-        . ' {--skip-md5 : do not validate md5 of base rom}'
+        . ' {--skip-md5 : do not validate md5 of base ROM}'
         . ' {--tournament : enable tournament mode}'
-        . ' {--bulk=1 : generate multiple roms}'
+        . ' {--bulk=1 : generate multiple ROMs}'
         . ' {--sprite= : sprite file to change links graphics [zspr format]}'
-        . ' {--no-rom : do not generate output rom}'
+        . ' {--no-rom : do not generate output ROM}'
         . ' {--no-music : mute all music}'
         . ' {--menu-speed=normal : menu speed}'
         . ' {--goal=ganon : set game goal}'
@@ -51,7 +51,7 @@ class Randomize extends Command
      *
      * @var string
      */
-    protected $description = 'Generate a randomized rom.';
+    protected $description = 'Generate a randomized ROM.';
 
     /** @var array */
     protected $reset_patch;
@@ -215,7 +215,7 @@ class Randomize extends Command
     }
 
     /**
-     * Apply base patch to rom file.
+     * Apply base patch to ROM file.
      *
      * @throws \Exception when base patch has no content.
      *

@@ -12,9 +12,9 @@ use ALttP\Rom;
 class BugCatchingKid extends Npc
 {
     /**
-     * Write item to rom.
+     * Write item to ROM.
      *
-     * @param \ALttP\Rom  $rom  rom to write to
+     * @param \ALttP\Rom  $rom  ROM to write to
      * @param \ALttP\Item $item item to write
      *
      * @return \ALttP\Location

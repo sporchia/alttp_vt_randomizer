@@ -941,7 +941,7 @@ abstract class World
     }
 
     /**
-     * Set an override patch to write to the rom, in case randomization was done
+     * Set an override patch to write to the ROM, in case randomization was done
      * in an alternate fashion.
      *
      * @param array  $patch  patch data to overwrite with

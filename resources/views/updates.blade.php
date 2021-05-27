@@ -153,7 +153,7 @@
         <li>Fixed Silver Arrows being unavailable in Swordless games with a Hard+ Item Pool setting</li>
         <li>Fixed hints in customizer games</li>
         <li>Fixed issue with manually placed Triforce Pieces were not counted in customizer.</li>
-        <li>Customizer players may now set what rom fixes are applied to their glitched games.</li>
+        <li>Customizer players may now set what ROM fixes are applied to their glitched games.</li>
         <li>Added Underworld One Frame Clips to customizer Logic Settings<li>
         <li>API support for mystery games</li>
         <li>API support for z3rsim</li>
@@ -445,7 +445,7 @@
         <li>Flute time in credits fixed</li>
         <li>Better boss logic for future fun</li>
         <li>Added quick swap functionality</li>
-        <li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
+        <li>If you use a headered ROM, the site will try to strip that header out before use (thanks Myramong)</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.29.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
@@ -537,7 +537,7 @@
         <li>updated timed-OHKO for different difficulties</li>
         <li>Boots are no longer guaranteed in Sanctuary for Major Glitches</li>
         <li>Hammer can now activate tablets in swordless</li>
-        <li>Numerous rom related bugs fixed</li>
+        <li>Numerous ROM related bugs fixed</li>
         <li>Added some descriptions to the ER shuffle modes from docs</li>
         <li>Waterfall fairy no longer upgrades shield/boomerang</li>
         <li>Added Triforce Hunt goal/variation</li>

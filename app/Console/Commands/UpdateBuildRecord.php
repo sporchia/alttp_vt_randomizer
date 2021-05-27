@@ -24,7 +24,7 @@ class UpdateBuildRecord extends Command
      *
      * @var string
      */
-    protected $description = 'build bps, json patch, and upate the rom build in DB';
+    protected $description = 'build bps, json patch, and upate the ROM build in DB';
 
     /**
      * Execute the console command.
@@ -170,7 +170,7 @@ class UpdateBuildRecord extends Command
         $updated_rom = fopen($rom, "r");
 
         if ($updated_rom === false) {
-            throw new Exception('Could not open updated rom');
+            throw new Exception('Could not open updated ROM');
         }
 
         $i = 0;
