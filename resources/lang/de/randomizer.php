@@ -197,6 +197,7 @@ return [
         'spoiler_race' => 'ROM für Spoiler Rennen',
         'casual' => 'Generiere ROM',
         'back' => 'Ändere Einstellung',
+        'forward' => 'View Generated Game TODO German',
         'regenerate' => 'Erneut erstellen',
         'regenerate_tooltip' => 'Erstellt ein neues Spiel mit den gleichen Einstellungen',
         'generating' => 'Am erstellen...',
