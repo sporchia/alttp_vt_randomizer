@@ -1,3 +1,4 @@
+
 <?php
 return [
     'header' => 'Partidas Organizadas',
@@ -8,32 +9,32 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        'La Mayoría de las carreras seran en <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. ¡Asegurate de pasarte por ahi para tener mas informacion de como pasar a la acción!',
-                        'Antes de empezar deberias familiarizarte con las <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">Reglas Generales de Carrera del Consejo de ALTTPR</a>, sin embargo, cada torneo o carreras puede tener reglas que varíen. however individual tournaments or races may have rules that vary. ¡Comprueba con cada competición primero para asegurarte que todo esta bien!',
+                        'La mayoría de las carreras se realizan a través de <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. ¡Asegúrate de visitar la página para tener más informacion de cómo unirse a la acción!',
+                        'Antes de empezar, deberías familiarizarte con las <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">Reglas Generales de Carrera del Consejo de ALTTPR</a>. Sin embargo, ten en cuenta que las reglas quedan sujetas siempre a modificaciones y actualizaciones posteriores. Además, cada torneo o carrera particular puede que aplique sus propias variaciones de la normativa, ¡así que comprueba las reglas de cada competición con antelación para asegurarte de que todo está en orden!',
                     ],
                 ],
                 [
                     'header' => 'ALTTPR Ladder',
                     'content' => [
-                        '<a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> es un sistema de Ladder o Escalera por Elo 1v1, una liga de "A Link To the Past Randomizer", que funciona completamente por Discord. El sistema esta diseñado para que ocurran varias carreras 1v1 a lo largo del día, y los rankings se basan en pesos estandar de Elo 32K.',
+                        '<a href="https://alttprladder.com/" target="_blank">La Ladder de ALTTPR </a> es un sistema competitivo rankeado que utiliza el sistema de puntuación Elo. Funciona completamente por Discord. Para participar, has de unirte a la cola antes de la hora de inicio, al modo de partida que decidas y que esté disponible. Entonces serás emparejado con un rival de manera anónima en una partida 1v1. Dispondrás de un tiempo para bajarte la seed correspondiente y completarla, y al acabar marcar que has finalizado. Según ganes o pierdas, ganarás o perderás más puntos según cuál sea la diferencia de puntos entre tu oponente y tú. El sistema esta diseñado para que ocurran varias carreras 1v1 a lo largo del día, ofrenciendo una gran variedad de horas a las que poder jugar. Los rankings, una vez finalice el tiempo establecido de la temporada de la ladder, se basan en pesos estandar de Elo 32K.',
                     ],
                 ],
                 [
-                    'header' => 'SpeedGaming Carreras Diarias',
+                    'header' => 'Carreras Diarias de SpeedGaming',
                     'content' => [
-                        '<a href="https://speedgaming.org/" target="_blank">SpeedGaming</a> opera carreras diarias, que funcionan en  <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>.  En <a href="http://speedgaming.org/alttprdaily/" target="_blank"> podrás encontrar cuando es la siguiente carrera diaria.</a>',
+                        '<a href="https://speedgaming.org/" target="_blank">SpeedGaming</a> realiza una carrera diaria oficial, en horas preestablecidas con antelación, que funcionan a través de <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. La normativa y ajustes de la seed varían con cada carrera, y lo único necesario para participar es unirse, como mínimo, unos minutos antes de que empiece la carrera al racetime.gg correspondiente.  <a href="http://speedgaming.org/alttprdaily/" target="_blank"> Aquí </a> podrás encontrar los horarios de las inminentes carreras diarias.',
                     ],
                 ],
                 [
-                    'header' => 'Overworld Glitches Semanal',
+                    'header' => 'Semanal de Overworld Glitches',
                     'content' => [
-                        'La semanal de  Overworld Glitches Weekly o Glitches de Mundo Abierto es a las 10:30pm EDT cada Miercoles en <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>.',
+                        'La semanal de Overworld, o Glitches de Mundo Abierto, se lleva a cabo a las 10:30pm EDT cada miércoles en <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>.',
                     ],
                 ],
                 [
                     'header' => 'Carreras Improvisadas',
                     'content' => [
-                        '¿Las Carreras Planeadas no encajan en tu agenda? ¿Buscas alguien contra quien correr opciones menos comunes? ¡Unete a una carrera improvisada! Encontraras jugadores dispuesto a cualquier hora del dia. Unete al canal #race-planning en nuestro <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a>!',
+                        '¿Las carreras ya planeadas no encajan en tu agenda? ¿O buscas a alguien contra quien correr con opciones o ajustes menos comunes? ¡Únete a una carrera improvisada! Encontrarás jugadores dispuestos a jugar a cualquier hora del día. Comprueba el canal #race-planning en nuestro <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> para saber qué se está organizando.',
                     ],
                 ],
             ],
@@ -44,49 +45,49 @@ return [
                 [
                     'header' => '',
                     'content' => [
-                        '¡Unete a nosotros en emocionante accion de torneo con comentario experto y jugadores de elite! Hay torneos operando todo el tiempo, ¡unete a <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> para estar al dia!',
+                        '¡Únete a otros jugadores en la emocionante experiencia de participar en un torneo de ALTTPR, con comentaristas expertos y jugadores de élite! Hay torneos operando todo el tiempo: únete a <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a> para estar al día.',
                     ],
                 ],
                 [
                     'header' => 'ALTTP Randomizer Torneo Principal',
                     'content' => [
-                        '¡Se testigo de los mejores corredores compitiendo por el trofeo y ganar para si mismos el preciado sitio en la Baldosa Telepatica de Houlihan! ¿Crees que tienes lo que hace falta para competir con los mejoreS? Unete a <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Tournaments Discord</a> y estate atento a carreras clasificatorias!',
+                        '¡Sé testigo y partícipe de cómo los mejores corredores compiten en el torneo más importante del año por el trofeo, la gloria y llegar a ganar un puesto en la Baldosa Telepatica de Houlihan! ¿Crees que tienes lo que hace falta para competir con los mejores? Únete a <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Tournaments Discord</a> y estate atento a carreras clasificatorias!',
                     ],
                 ],
                 [
-                    'header' => 'Copa Desafio',
+                    'header' => 'Copa Desafío',
                     'content' => [
-                        'La <a href="https://discord.gg/982W72p" target="_blank">Copa Desafio</a> es un torneo complementario para aquellos que no se clasifican para el torneo principal.',
+                        'La <a href="https://discord.gg/982W72p" target="_blank">Copa Desafío</a> es un torneo complementario para aquellos que no logran clasificarse para la fase de grupos del torneo principal, tras las clasificatorias. Con un menor nivel, resulta ideal para aquellos que acaban de empezar o que tienen menor habilidad y experiencia. Eso sí, las partidas son igual de emocionantes que en el torneo principal, ¡no te las pierdas!',
                     ],
                 ],
                 [
                     'header' => 'Liga ALTTPR',
                     'content' => [
-                        'La <a href="https://alttprleague.com/" target="_blank">Liga ALTTPR</a> es un torneo de ALTTPR por equipos anual. Los jugadores formaran equipos de 3 y competiran otros equipos en diferentes modos de juego.',
+                        'La <a href="https://alttprleague.com/" target="_blank">Liga ALTTPR</a> es un torneo de ALTTPR por equipos anual. Los jugadores forman equipos de 3 y compiten con otros equipos en diferentes modos de juego.',
                     ],
                 ],
                 [
-                    'header' => 'Go Mode Podcast Torneo de Mentores',
+                    'header' => 'Torneo de Mentores del Go Mode Podcast',
                     'content' => [
-                        '<a href="https://gomodepodcast.com/" target="_blank">Go Mode Podcast</a> opera un torneo anual diseñado para jugadores noveles. Los jugadores tienen un mentor que ayudaran con algunas de sus carreras, con la intencion de preparar a los jugadores para torneos grandes o pequeños.',
+                        '<a href="https://gomodepodcast.com/" target="_blank">Go Mode Podcast</a> habilita un torneo anual diseñado para jugadores noveles. A cada jugador se le asigna un mentor, que ayudará y ensenará al principante los diferentes conceptos, estrategias y trucos para afrontar las carreras de la mejor manera posible, con la intencion de preparar a los jugadores para otros torneos futuros, grandes o pequeños.',
                     ],
                 ],
                 [
-                    'header' => 'ALTTPR Torneo Spoiler',
+                    'header' => 'Torneo Spoiler de ALTTPR',
                     'content' => [
-                        'El <a href="https://discord.gg/Jg34MuE" target="_blank">ALTTPR Torneo Spoiler</a> es un torneo anual que da a los jugadores el Spoiler Log para estudiar antes de la carrera. Este torneo es una prueba de ejecucion y toma de decisiones.',
+                        'El <a href="https://discord.gg/Jg34MuE" target="_blank">Torneo Spoiler de ALTTPR</a> es un torneo anual que da a los jugadores el Spoiler Log para que puedan estudiarlo antes de la carrera. Este torneo es una prueba de ejecución y toma de decisiones, pues saber elaborar la mejor ruta para obtener los objetos necesarios es la clave de la victoria.',
                     ],
                 ],
                 [
-                    'header' => 'ALTTPR Torneo con Glitches',
+                    'header' => 'Torneo ALTTPR con Glitches',
                     'content' => [
-                        '<a href="https://discord.gg/adac5FG" target="_blank">ALTTPR Glitched Tournaments</a> se centra en torneos que implican el uso de "glitches mayores" para terminar el juego en formas tan divertidas como inusuales.',
+                        '<a href="https://discord.gg/adac5FG" target="_blank">El Torneo de ALTTPR con Glitches</a> se centra en modalidades que implican el uso de "glitches mayores" para terminar el juego en formas tan divertidas como inusuales.',
                     ],
                 ],
                 [
-                    'header' => 'ALTTPR Torneo Crossworld Keysanity',
+                    'header' => 'Torneo ALTTPR Crossworld Keysanity ',
                     'content' => [
-                        'El <a href="https://discord.gg/umCCQgr" target="_blank">Torneo ALTTPR Crossworld Keysanity</a> es un torneo de Entradas Aleatorias de un mundo a otro, con Keysanity (aka"Crosskeys"). ¡Los jugadores tendran su memoria y habilidad de tomar notas puestas a prueba para ser el mejor en este alocado modo!',
+                        'El <a href="https://discord.gg/umCCQgr" target="_blank">Torneo ALTTPR Crossworld Keysanity</a> es un torneo de con entradas aleatorizadas de un mundo a otro, con Keysanity (modalidad también conocida como "Crosskeys"). Los jugadores tendrán su memoria y su habilidad de poder tomar notas puestas a prueba para ser el mejor en este alocado modo, en el que no perderse y explorar resulta decisivo.',
                     ],
                 ],
             ],
@@ -96,7 +97,7 @@ return [
             'languages' => [
                 [
                     'header' => 'Spanish',
-                    'description' => 'Something about the community here.',
+                    'description' => 'Join the Spanish Speak.',
                     'sections' => [
                         [
                             'header' => 'Placeholder Tournament',
