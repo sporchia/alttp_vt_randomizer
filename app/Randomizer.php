@@ -868,6 +868,7 @@ class Randomizer implements RandomizerContract
                 'tavern_man' => $this->getTextArray('strings/tavern_man.txt'),
                 'blind' => $this->getTextArray('strings/blind.txt'),
                 'ganon_1' => $this->getTextArray('strings/ganon_1.txt'),
+                'ganon_phase_3_no_silvers' => $this->getTextArray('strings/ganon_phase_3_no_silvers.txt'),
                 'triforce' => $this->getTextArray('strings/triforce.txt'),
             ];
         });
@@ -933,7 +934,7 @@ class Randomizer implements RandomizerContract
         }
 
         if (!$silver_arrows_location) {
-            $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
+            $world->setText('ganon_phase_3_no_silvers', Arr::first(fy_shuffle($strings['ganon_phase_3_no_silvers'])));
         } else {
             switch ($silver_arrows_location->getRegion()->getName()) {
                 case "Ganons Tower":
