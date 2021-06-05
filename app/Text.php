@@ -3,6 +3,7 @@
 namespace ALttP;
 
 use ALttP\Support\Dialog;
+use Exception;
 use Log;
 
 /**
@@ -35,6 +36,10 @@ class Text
      */
     public function setString(string $id, string $value, ...$flags)
     {
+        if (!array_key_exists($id, $this->text_array)) {
+            throw new Exception("Attempted to update a non-existant text id ($id).");
+        }
+
         $this->text_array[$id] = $this->converter->convertDialogCompressed($value, ...$flags);
     }
 
