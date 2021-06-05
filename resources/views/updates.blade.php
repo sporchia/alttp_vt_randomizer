@@ -14,6 +14,10 @@
         <li>Finding a map in Hyrule Castle will now properly show the map on your item menu while in the Sewers section of Hyrule Castle.</li>
         <li>Enemizer: Firebars will now only damage the player if the firebar is on the same layer as Link.</li>
         <li>Customizer: Will now default to enabling spoilers on generated games.  This can still be set to Disabled, On Generate, or Mystery as needed.</li>
+        <li>Overworld YBA now puts Moon Pearl-less access to Ganon in logic</li>
+        <li>Bot authors may now specify a game name and notes in API requests to /api/randomizer</li>
+        <li>A new "Random" option was added for the heart color.  Thanks Doctor Blue!</li>
+        <li>Ganon will now say something New and Unique™ when Silver Arrows are unavailable.</li>
         <li>Miscellaneous website updates.</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
