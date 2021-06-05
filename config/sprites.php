@@ -194,7 +194,7 @@ return [
         'author' => 'Malmo',
         'file' => 'astronaut.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'IRL',
         ],
@@ -814,7 +814,7 @@ return [
         'author' => 'Hidari',
         'file' => 'catgirl-hidari.1.zspr',
         'version' => 1,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Personality',
         ],
@@ -929,7 +929,7 @@ return [
         'author' => 'norskmatty',
         'file' => 'cinna.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Personality',
         ],
@@ -958,7 +958,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'clifford.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Animal',
             1 => 'Dog',
@@ -1087,7 +1087,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'cursor.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Personality',
         ],
@@ -1784,7 +1784,7 @@ return [
         'author' => 'Lougaroc',
         'file' => 'gooey.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Kirby',
         ],
@@ -1902,7 +1902,7 @@ return [
         'author' => 'Maya-Neko',
         'file' => 'hanna.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.7',
         'tags' => [
             0 => 'Female',
             1 => 'Personality',
@@ -2294,7 +2294,7 @@ return [
         'author' => 'Chew Terr',
         'file' => 'kain.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Final Fantasy',
             1 => 'Male',
@@ -2338,7 +2338,7 @@ return [
         'author' => 'Chew Terr',
         'file' => 'kefka.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Final Fantasy',
             1 => 'Male',
@@ -2593,7 +2593,7 @@ return [
         'author' => 'Spiffy',
         'file' => 'link-redrawn.3.zspr',
         'version' => 3,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.7',
         'tags' => [
             0 => 'Link',
             1 => 'ALTTP',
@@ -2847,7 +2847,7 @@ return [
         'author' => 'kan',
         'file' => 'mangalink.3.zspr',
         'version' => 3,
-        'vtversion' => '31.0.9',
+        'vtversion' => '29',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -3418,7 +3418,7 @@ return [
         'author' => 'Jakebob',
         'file' => 'niddraig.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '31.0.7',
         'tags' => [
             0 => 'Final Fantasy',
             1 => 'Personality',
@@ -4017,7 +4017,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'rottytops.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '30.5',
         'tags' => [
             0 => 'Cartoon',
         ],
@@ -4091,7 +4091,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'ryu.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Male',
             1 => 'Street Fighter',
@@ -4193,7 +4193,7 @@ return [
         'author' => 'HOHOHO',
         'file' => 'santalink.3.zspr',
         'version' => 3,
-        'vtversion' => '31.0.9',
+        'vtversion' => '26',
         'tags' => [
             0 => 'Link',
             1 => 'Male',
@@ -5023,7 +5023,7 @@ return [
         'author' => 'PlaguedOne',
         'file' => 'ultros.2.zspr',
         'version' => 2,
-        'vtversion' => '31.0.9',
+        'vtversion' => '30',
         'tags' => [
             0 => 'Final Fantasy',
         ],
