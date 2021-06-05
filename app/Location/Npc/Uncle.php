@@ -14,7 +14,7 @@ class Uncle extends Location
     /**
      * Sets the item for this location. We need to check mode to determine fills/assit.
      *
-     * @param \ALttP\Rom  $rom  rom to write to
+     * @param \ALttP\Rom  $rom  ROM to write to
      * @param \ALttP\Item $item item to write
      *
      * @return \ALttP\Location

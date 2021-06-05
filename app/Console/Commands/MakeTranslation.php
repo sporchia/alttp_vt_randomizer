@@ -14,8 +14,8 @@ class MakeTranslation extends Command
      * @var string
      */
     protected $signature = 'alttp:i18n'
-        . ' {output_file : where to write translated rom}'
-        . ' {--i|input_file= : rom to translate}';
+        . ' {output_file : where to write translated ROM}'
+        . ' {--i|input_file= : ROM to translate}';
 
     /**
      * The console command description.
