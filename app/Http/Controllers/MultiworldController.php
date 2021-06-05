@@ -52,12 +52,13 @@ class MultiworldController extends Controller
                 'none' => 'NoGlitches',
                 'overworld_glitches' => 'OverworldGlitches',
                 'major_glitches' => 'MajorGlitches',
-                'no_logic' => 'None',
+                'no_logic' => 'NoLogic',
             ][$config['glitches'] ?? 'none'];
 
-            // quick fix for CC and Basic
+            // quick fix for CC and Basic/Entrance
             if (($config['item.pool'] ?? 'normal') === 'crowd_control') {
                 $request->merge(['item_placement' => 'advanced']);
+                $request->merge(['entrances' => 'none']);
             }
 
             $worlds[] = World::factory($config['mode'] ?? 'standard', [

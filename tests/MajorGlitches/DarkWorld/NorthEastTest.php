@@ -124,7 +124,6 @@ class NorthEastTest extends TestCase
             ["Pyramid Fairy - Right", true, ['Crystal5', 'Crystal6', 'BottleWithGoldBee']],
 
             ["Ganon", false, []],
-            ["Ganon", false, [], ['MoonPearl']],
             ["Ganon", false, [], ['DefeatAgahnim2']],
         ];
     }

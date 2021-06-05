@@ -216,6 +216,9 @@ export default {
         if (["full", "standard"].indexOf(state.dungeon_items.value) === -1) {
           commit("setDungeonItems", "standard");
         }
+        if (state.item_pool.value === "crowd_control") {
+          commit("setItemPool", "expert");
+        }
       }
     },
     setItemPool({ commit, state }, value) {
@@ -226,6 +229,12 @@ export default {
         state.item_placement.value !== "advanced"
       ) {
         commit("setItemPlacement", "advanced");
+      }
+      if (
+        state.item_pool.value === "crowd_control" &&
+        state.entrance_shuffle.value !== "none"
+      ) {
+        commit("setEntranceShuffle", "none");
       }
     }
   },

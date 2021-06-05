@@ -537,7 +537,8 @@ export default {
       return this.rom.save(this.rom.downloadFilename() + ".sfc", {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,
-        musicOn: this.musicOn
+        musicOn: this.musicOn,
+        reduceFlashing: this.reduceFlashing
       });
     },
     saveSpoiler() {
@@ -605,7 +606,8 @@ export default {
       heartColor: state => state.heartColor,
       quickswap: state => state.quickswap,
       musicOn: state => state.musicOn,
-      paletteShuffle: state => state.paletteShuffle
+      paletteShuffle: state => state.paletteShuffle,
+      reduceFlashing: state => state.reduceFlashing
     }),
     editable() {
       return this.$store.state.randomizer.preset.value === "custom";

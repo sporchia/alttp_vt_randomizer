@@ -602,19 +602,25 @@ return [
                 'music' => [
                     'header' => __('rom.settings.music'),
                     'content' => [
-                        'Aktiviere oder deaktiviere die originale Hintergrundmusik. Du musst es nicht deaktivieren um  MSU-1 Packs zu nutzen. Falls es aktiviert bleibt während man einen MSU-1 Pack nutzt, dient es als SPC-Fallback und spielt nur Hintergrundmusik ab, falls ein Fehler in der MSU-1 Spur vorliegt (anstatt kompletter Stille)..',
+                        'Aktiviere oder deaktiviere die originale Hintergrundmusik.',
                     ],
                 ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
-                        'Erlaubt es den Gegendstand mit L und R zu wechseln ohne das Menü zu öffnen. Dies ist nicht für Rennen verfügbar (außer für Entrance Randomizer).',
+                        'Erlaubt es den Gegendstand mit L und R zu wechseln ohne das Menü zu öffnen.',
                     ],
                 ],
                 'palette_shuffle' => [
                     'header' => __('rom.settings.palette_shuffle'),
                     'content' => [
                         'Die Farbpalleten werden zufällig ausgewählt im Spiel. Dadurch könnte alles sehr bizarr aussehen. Mit Vorsicht aktivieren!',
+                    ],
+                ],
+                'reduce_flashing' => [
+                    'header' => __('rom.settings.reduce_flashing'),
+                    'content' => [
+                        'Die Intensität von Blitzeffekten im Spiel wird deutlich reduziert oder sie werden ganz ausgeschaltet.  Vorsicht: Deine Lichtempfindlichkeit kann möglicherweise dennoch auf manche Effekte reagieren.',
                     ],
                 ],
             ],

@@ -602,19 +602,25 @@ return [
                 'music' => [
                     'header' => __('rom.settings.music'),
                     'content' => [
-                        'Enable or disable the original background music. You do not have to disable this if you wish to use MSU-1 packs. If left enabled and using an MSU-1 pack then the original music will act as an SPC fallback and will only play should an MSU-1 track fail (i.e. instead of silence).',
+                        'Enable or disable the background music, including MSU-1 playback.  MSU-1 users should leave this enabled.',
                     ],
                 ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
-                        'Allow items to be changed with the L and R buttons without opening the menu. This is not available for race ROMs (except when entrances are randomized).',
+                        'Allow items to be changed with the L and R buttons without opening the menu.',
                     ],
                 ],
                 'palette_shuffle' => [
                     'header' => __('rom.settings.palette_shuffle'),
                     'content' => [
                         'Randomizes the colour palettes within the game. This means everything can look extremely bizarre. Enable with caution!',
+                    ],
+                ],
+                'reduce_flashing' => [
+                    'header' => __('rom.settings.reduce_flashing'),
+                    'content' => [
+                        'Severely reduces the intensity of in-game flashing effects, or outright disables them.  Please use caution, your photosensitivity to effects may still vary.',
                     ],
                 ],
             ],

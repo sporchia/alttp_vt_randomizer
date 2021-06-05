@@ -211,11 +211,23 @@ class SettingsController extends Controller
     public function sprites(): array
     {
         return collect(config('sprites'))->map(function ($info, $file) {
+            if ($file === '001.link.1.zspr') {
+                return [
+                    'name' => $info['name'],
+                    'author' => $info['author'],
+                    'version' => $info['version'],
+                    'file' => null,
+                    'preview' => null,
+                    'tags' => $info['tags'] ?? [],
+                    'usage' => $info['usage'] ?? []
+                ];
+            }
             return [
                 'name' => $info['name'],
                 'author' => $info['author'],
                 'version' => $info['version'],
                 'file' => 'https://alttpr.s3.us-east-2.amazonaws.com/' . $file,
+                'preview' => 'https://alttpr.s3.us-east-2.amazonaws.com/' . $file . '.png',
                 'tags' => $info['tags'] ?? [],
                 'usage' => $info['usage'] ?? []
             ];

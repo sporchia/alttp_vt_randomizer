@@ -19,17 +19,6 @@
 
     <div class="card border-info mt-4">
         <div class="card-header bg-info">
-            <h3 class="card-title text-white">{{ __('races.cards.network.header') }}</h3>
-        </div>
-        <div class="card-body">
-            @foreach (__('races.cards.network.content') as $block)
-                <p>{!! $block !!}</p>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="card border-info mt-4">
-        <div class="card-header bg-info">
             <h3 class="card-title text-white">{{ __('races.cards.tournament.header') }}</h3>
         </div>
         <div class="card-body">
@@ -41,5 +30,22 @@
             @endforeach
         </div>
     </div>
+
+    @foreach (__('races.cards.foreign_language.languages') as $language)
+    <div class="card border-info mt-4">
+        <div class="card-header bg-info">
+            <h3 class="card-title text-white">{{ $language['header'] }}</h3>
+        </div>
+        <div class="card-body">
+            <p>{!! $language['description'] !!}</p>
+            @foreach ($language['sections'] as $section)
+                <h4>{{ $section['header'] }}</h4>
+                    @foreach ($section['content'] as $block)
+                        <p>{!! $block !!}</p>
+                    @endforeach
+            @endforeach
+        </div>
+    </div>
+    @endforeach
 </div>
 @overwrite
