@@ -1218,7 +1218,7 @@ abstract class World
 			$rom->setMantleSpawnRefills(0, 0, 0);
 		} elseif ($uncle_items->has('FireRod')
 			|| $uncle_items->has('CaneOfSomaria')
-			|| $uncle_items->has('CaneOfByrna')) {
+			|| ($uncle_items->has('CaneOfByrna') && $this->config('enemizer.enemyHealth', 'default') == 'default')) {
 			$rom->setEscapeFills(0b00000100);
 			$rom->setUncleSpawnRefills(0x80, 0, 0);
 			$rom->setZeldaSpawnRefills(0x20, 0, 0);
