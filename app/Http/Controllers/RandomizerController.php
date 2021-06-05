@@ -11,6 +11,9 @@ use ALttP\Rom;
 use ALttP\Support\WorldCollection;
 use ALttP\World;
 use Exception;
+use GrahamCampbell\Markdown\Facades\Markdown;
+use HTMLPurifier_Config;
+use HTMLPurifier;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
@@ -75,7 +78,7 @@ class RandomizerController extends Controller
             ]));
             Cache::put('hash.' . $payload['hash'], $save_data, now()->addDays(7));
 
-            return json_encode($return_payload);
+            return response()->json($return_payload);
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -88,7 +91,7 @@ class RandomizerController extends Controller
     public function testGenerateSeed(CreateRandomizedGame $request)
     {
         try {
-            return json_encode(Arr::except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
+            return response()->json(Arr::except($this->prepSeed($request, false), ['patch', 'seed', 'hash']));
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -108,7 +111,7 @@ class RandomizerController extends Controller
             'none' => 'NoGlitches',
             'overworld_glitches' => 'OverworldGlitches',
             'major_glitches' => 'MajorGlitches',
-            'no_logic' => 'None',
+            'no_logic' => 'NoLogic',
         ][$request->input('glitches', 'none')];
 
         $spoilers = $request->input('spoilers', 'off');
@@ -123,6 +126,20 @@ class RandomizerController extends Controller
             $request->merge(['item_placement' => 'advanced']);
         }
 
+        $spoiler_meta = [];
+
+        $purifier_settings = HTMLPurifier_Config::create(config("purifier.default"));
+        $purifier_settings->loadArray(config("purifier.default"));
+        $purifier = new HTMLPurifier($purifier_settings);
+        if ($request->filled('name')) {
+            $markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
+            $spoiler_meta['name'] = strip_tags($purifier->purify($markdowned));
+        }
+        if ($request->filled('notes')) {
+            $markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
+            $spoiler_meta['notes'] = $purifier->purify($markdowned);
+        }
+
         $world = World::factory($request->input('mode', 'standard'), [
             'itemPlacement' => $request->input('item_placement', 'basic'),
             'dungeonItems' => $request->input('dungeon_items', 'standard'),
@@ -134,7 +151,7 @@ class RandomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', false),
             'spoilers' => $spoilers,
-            'allow_quickswap' => $request->input('allow_quickswap', false),
+            'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
@@ -168,11 +185,11 @@ class RandomizerController extends Controller
             }
         }
 
-        $spoiler = $world->getSpoiler([
+        $spoiler = $world->getSpoiler(array_merge($spoiler_meta, [
             'entry_crystals_ganon' => $request->input('crystals.ganon', '7'),
             'entry_crystals_tower' => $request->input('crystals.tower', '7'),
             'worlds' => 1,
-        ]);
+        ]));
 
         if ($world->isEnemized()) {
             $patch = $rom->getWriteLog();

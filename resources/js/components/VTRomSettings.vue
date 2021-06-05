@@ -75,6 +75,22 @@
         >{{ $t('rom.settings.palette_shuffle') }}</Toggle>
       </div>
     </div>
+    <div v-if="rom.build >= '2021-05-04'" class="row mb-3">
+      <div class="col-md-12">
+        <Toggle
+          :value="reduceFlashing"
+          @input="setReduceFlashing"
+        >{{ $t('rom.settings.reduce_flashing') }}
+        <sup
+          v-if="reduceFlashing"
+        >*</sup></Toggle>
+      </div>
+      <div
+        v-if="reduceFlashing"
+        class="logic-warning text-info"
+        v-html="'* ' + $t('rom.settings.reduce_flashing_warning')"
+      />
+    </div>
   </div>
 </template>
 
@@ -134,11 +150,18 @@ export default {
             value: "green",
             name: this.$i18n.t("rom.settings.heart_colors.green")
           },
-          { value: "red", name: this.$i18n.t("rom.settings.heart_colors.red") },
+          {
+            value: "red",
+            name: this.$i18n.t("rom.settings.heart_colors.red")
+          },
           {
             value: "yellow",
             name: this.$i18n.t("rom.settings.heart_colors.yellow")
-          }
+          },
+          {
+            value: "random",
+            name: this.$i18n.t("rom.settings.heart_colors.random")
+          },
         ]
       },
       defaults: {
@@ -173,7 +196,8 @@ export default {
       "setHeartColor",
       "setQuickswap",
       "setMusicOn",
-      "setPaletteShuffle"
+      "setPaletteShuffle",
+      "setReduceFlashing"
     ])
   },
   computed: {
@@ -186,7 +210,8 @@ export default {
       heartColor: state => state.heartColor,
       quickswap: state => state.quickswap,
       musicOn: state => state.musicOn,
-      paletteShuffle: state => state.paletteShuffle
+      paletteShuffle: state => state.paletteShuffle,
+      reduceFlashing: state => state.reduceFlashing
     })
   }
 };

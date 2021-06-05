@@ -113,7 +113,7 @@ class Randomizer implements RandomizerContract
         $trash_items = $world->getItemPool();
 
         // @todo check a flag instead of logic here, as well as difficulty
-        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'None']) && $world->config('difficulty') !== 'custom') {
+        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'NoLogic']) && $world->config('difficulty') !== 'custom') {
             $world->addPreCollectedItem(Item::get('PegasusBoots', $world));
             foreach ($advancement_items as $key => $item) {
                 if ($item == Item::get('PegasusBoots', $world)) {
@@ -868,6 +868,7 @@ class Randomizer implements RandomizerContract
                 'tavern_man' => $this->getTextArray('strings/tavern_man.txt'),
                 'blind' => $this->getTextArray('strings/blind.txt'),
                 'ganon_1' => $this->getTextArray('strings/ganon_1.txt'),
+                'ganon_phase_3_no_silvers' => $this->getTextArray('strings/ganon_phase_3_no_silvers.txt'),
                 'triforce' => $this->getTextArray('strings/triforce.txt'),
             ];
         });
@@ -933,7 +934,7 @@ class Randomizer implements RandomizerContract
         }
 
         if (!$silver_arrows_location) {
-            $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
+            $world->setText('ganon_phase_3_no_silvers', Arr::first(fy_shuffle($strings['ganon_phase_3_no_silvers'])));
         } else {
             switch ($silver_arrows_location->getRegion()->getName()) {
                 case "Ganons Tower":
@@ -946,7 +947,7 @@ class Randomizer implements RandomizerContract
 
         // progressive bow hint and handling
         // @todo this swap of item really shouldn't happen here, we don't know
-        // for sure that the items haven't already been written to the rom.
+        // for sure that the items haven't already been written to the ROM.
         $progressive_bow_locations = $world->getLocationsWithItem(Item::get('ProgressiveBow', $world))->randomCollection(2);
         if ($progressive_bow_locations->count() > 0) {
             $first_location = $progressive_bow_locations->pop();

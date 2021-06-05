@@ -207,7 +207,7 @@ return [
         'save_spoiler' => 'Guardar spoiler',
         'save_rom' => 'Guardar ROM',
     ],
-    // depricated
+    // deprecated
     'variation' => [
         'title' => 'Variación',
     ],

@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2021-02-18';
-    const HASH = 'daefb54a0ad81808f8d8790eeeb4d3e6';
+    const BUILD = '2021-05-22';
+    const HASH = '78520fa865249324c1a0e9d13c56665e';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -1189,7 +1189,7 @@ class Rom
     }
 
     /**
-     * Commit the text table to rom
+     * Commit the text table to ROM
      *
      * @return $this
      */
@@ -1685,7 +1685,7 @@ class Rom
     /**
      * Quick and dirty shop setting code.
      *
-     * @param \ALttP\Support\ShopCollection $shops shops to write to rom
+     * @param \ALttP\Support\ShopCollection $shops shops to write to ROM
      *
      * @return $this
      */
@@ -3029,7 +3029,7 @@ class Rom
     }
 
     /**
-     * Get the array of bytes written in the order they were written to the rom
+     * Get the array of bytes written in the order they were written to the ROM
      *
      * @return array
      */

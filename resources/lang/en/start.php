@@ -14,7 +14,7 @@ return [
             'header' => '2. Get the ROM',
             'content' => [
                 'You’ll need the base ROM. This should be a <span class="font-weight-bold">Zelda no Densetsu: Kamigami no Triforce v1.0</span> ROM. Don’t worry if you can’t read Japanese; the patching process provides English text while keeping the glitches unique to the original version intact.',
-                'One can verify they have the correct rom on this <a href="http://alttp.mymm1.com/game/checkcrc/" target="_blank" rel="noopener noreferrer">site</a>.',
+                'One can verify they have the correct ROM on this <a href="http://alttp.mymm1.com/game/checkcrc/" target="_blank" rel="noopener noreferrer">site</a>.',
                 'If you run into trouble, ask in <a href="https://discord.gg/alttprandomizer" target="_blank" rel="noopener noreferrer">Discord</a>!',
             ]
         ],

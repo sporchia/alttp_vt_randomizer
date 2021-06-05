@@ -32,7 +32,7 @@ class Enemizer
      * Create a new Enemizer
      *
      * @param \ALttP\World  $world  world to enemize
-     * @param array  $rom_patch  the current rom patch
+     * @param array  $rom_patch  the current ROM patch
      *
      * @return void
      */
@@ -251,9 +251,9 @@ class Enemizer
     }
 
     /**
-     * write the current generated data to the Rom
+     * write the current generated data to the ROM
      *
-     * @param Rom $rom Rom to write data to
+     * @param Rom $rom ROM to write data to
      *
      * @return Rom
      */

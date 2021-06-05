@@ -9,6 +9,7 @@
 /public/images/vendor
 /storage/*.key
 /resources/assets/js/*.generated.js
+/resources/js/*.generated.js
 /vendor
 /coverage
 /docs
