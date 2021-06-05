@@ -19,7 +19,7 @@ it("is a Vue instance", () => {
   expect(wrapper.isVueInstance()).toBeTruthy();
 });
 
-it("sets settings_loaded to true when a current rom hash is passed in", () => {
+it("sets settings_loaded to true when a current ROM hash is passed in", () => {
   const wrapper = shallowMount(VTRomLoader, {
     propsData: {
       currentRomHash: "testing"

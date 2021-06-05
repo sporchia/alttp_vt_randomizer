@@ -188,7 +188,7 @@ export default {
             "details": {
                 "title": "Spiele Details",
                 "save_spoiler": "Speichere Spoiler",
-                "save_rom": "Speichere Rom"
+                "save_rom": "Speichere ROM"
             }
         },
         "error": {
@@ -619,7 +619,7 @@ export default {
             "details": {
                 "title": "Spiel Details",
                 "save_spoiler": "Speichere Spoiler",
-                "save_rom": "Speichere Rom"
+                "save_rom": "Speichere ROM"
             },
             "variation": {
                 "title": "Variation"
@@ -640,7 +640,7 @@ export default {
             "loader": {
                 "title": "Anfangen",
                 "file_select": "ROM Datei auswählen",
-                "content": "<ol><li>Wähle die Rom Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li><li>Wähle die <a href=\"/de/options\">Spieloptionen</a> um auszuwählen wie Zufällig dein Spiel sein soll</li><li>Klicke Generiere ROM für Rennen</li><li>Dann speichere deine Rom und fang an zu spielen</li></ol>"
+                "content": "<ol><li>Wähle die ROM Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li><li>Wähle die <a href=\"/de/options\">Spieloptionen</a> um auszuwählen wie Zufällig dein Spiel sein soll</li><li>Klicke Generiere ROM für Rennen</li><li>Dann speichere deine ROM und fang an zu spielen</li></ol>"
             },
             "info": {
                 "spoilerwarning": "WARNUNG: Der Ersteller dieses Spiel hat den Spoiler Log angesehen.",
@@ -689,7 +689,7 @@ export default {
                 "music_info": "(setze zu \"Keine\" für <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 Support</a>)",
                 "quickswap": "Gegenstand Schnellwechsel",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Funktioniert nicht in einer Rom für Rennen"
+                "race_warning": "Funktioniert nicht in einer ROM für Rennen"
             }
         }
     },
@@ -775,9 +775,118 @@ export default {
                     "description": "When this is selected all bets are off, and nothing below matters."
                 },
                 "logicMode": {
-                    "title": "Glitches Required Rom \"Fixes\"",
-                    "description": "Set the type of rom fixes applied.  Does not change item placement logic."
+                    "title": "Glitches Required ROM \"Fixes\"",
+                    "description": "Set the type of ROM fixes applied.  Does not change item placement logic."
                 }
+            }
+        },
+        "enemizer": {
+            "title": "Enemizer",
+            "enable": "Enable Enemizer",
+            "disable": "Disable Enemizer",
+            "enemy_health": {
+                "title": "Enemy Health",
+                "options": [
+                    "Default",
+                    "Easy (1-4 hp)",
+                    "Normal (2-15 hp)",
+                    "Hard (2-30 hp)",
+                    "Brick Wall (4-50 hp)"
+                ]
+            },
+            "enemy_damage": {
+                "title": "Enemy Damage",
+                "options": {
+                    "off": "Default",
+                    "shuffle": "Shuffled",
+                    "chaos": "Chaos"
+                }
+            },
+            "bosses": {
+                "title": "Boss Shuffle",
+                "options": {
+                    "off": "Off",
+                    "basic": "Simple",
+                    "normal": "Full",
+                    "chaos": "Chaos"
+                }
+            },
+            "palette_shuffle": "Palette Shuffle",
+            "pot_shuffle": "Pot Shuffle",
+            "enemy_shuffle": "Enemy Shuffle"
+        },
+        "entrance": {
+            "title": "Entrance Randomizer",
+            "switch": {
+                "item": "Switch to Item Randomizer"
+            },
+            "rom": {
+                "options": "ROM Options"
+            },
+            "difficulty": {
+                "title": "Difficulty",
+                "options": {
+                    "easy": "Easy",
+                    "normal": "Normal",
+                    "hard": "Hard",
+                    "expert": "Expert",
+                    "insane": "Insane"
+                }
+            },
+            "goal": {
+                "title": "Goal",
+                "options": {
+                    "ganon": "Defeat Ganon",
+                    "crystals": "Crystals",
+                    "dungeons": "All Dungeons",
+                    "pedestal": "Master Sword Pedestal",
+                    "triforcehunt": "Triforce Pieces"
+                }
+            },
+            "logic": {
+                "title": "Logic",
+                "options": {
+                    "NoGlitches": "No Glitches"
+                }
+            },
+            "mode": {
+                "title": "State",
+                "options": {
+                    "swordless": "Swordless",
+                    "open": "Open"
+                }
+            },
+            "shuffle": {
+                "title": "Shuffle",
+                "options": {
+                    "simple": "Simple",
+                    "restricted": "Restricted",
+                    "full": "Full",
+                    "crossed": "Crossed",
+                    "insanity": "Insanity"
+                }
+            },
+            "variation": {
+                "title": "Variation",
+                "options": {
+                    "none": "None",
+                    "timed-race": "Timed Race",
+                    "timed-ohko": "Timed OHKO",
+                    "ohko": "OHKO",
+                    "triforce-hunt": "Triforce Piece Hunt",
+                    "key-sanity": "Keysanity",
+                    "retro": "Retro"
+                }
+            },
+            "generate": {
+                "race": "Generate Race ROM",
+                "spoiler_race": "Spoiler Race ROM",
+                "casual": "Generate ROM"
+            },
+            "details": {
+                "title": "Game Details",
+                "save_spoiler": "Save Spoiler",
+                "save_rom": "Save ROM"
             }
         },
         "enemizer": {
@@ -1413,7 +1522,7 @@ export default {
                 "music_info": "(set to \"No\" for <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 support</a>)",
                 "quickswap": "Item Quickswap",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Does not work in Race Roms"
+                "race_warning": "Does not work in Race ROMs"
             }
         },
         "sprite": {
@@ -2999,7 +3108,7 @@ export default {
             "loader": {
                 "title": "Pour commencer",
                 "file_select": "Sélectionnez le fichier ROM",
-                "content": "<ol><li>Sélectionnez votre fichier ROM et chargez-le dans le navigateur (utilisez une ROM <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> avec une extension .smc ou .sfc)</li><li>Sélectionnez les <a href=\"/fr/options\">Options de Jeu</a> pour déterminer de quelle façon le jeu sera randomisé</li><li>Cliquez sur Générer une ROM de Course</li><li>Ensuite, sauvegardez votre rom et commencez à jouer</li></ol>"
+                "content": "<ol><li>Sélectionnez votre fichier ROM et chargez-le dans le navigateur (utilisez une ROM <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> avec une extension .smc ou .sfc)</li><li>Sélectionnez les <a href=\"/fr/options\">Options de Jeu</a> pour déterminer de quelle façon le jeu sera randomisé</li><li>Cliquez sur Générer une ROM de Course</li><li>Ensuite, sauvegardez votre ROM et commencez à jouer</li></ol>"
             },
             "info": {
                 "spoilerwarning": "AVERTISSEMENT : La personne qui a généré cette partie a regardé le spoiler log.",
