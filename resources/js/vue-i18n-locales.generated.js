@@ -680,7 +680,8 @@ export default {
                     "blue": "Blau",
                     "green": "Grün",
                     "red": "Rot",
-                    "yellow": "Gelb"
+                    "yellow": "Gelb",
+                    "random": "Zufällig"
                 },
                 "play_as": "Spiele als",
                 "sprite_file_select": ".zspr Datei auswählen",
@@ -886,6 +887,115 @@ export default {
                 "title": "Game Details",
                 "save_spoiler": "Save Spoiler",
                 "save_rom": "Save ROM"
+            }
+        },
+        "enemizer": {
+            "title": "Enemizer",
+            "enable": "Enable Enemizer",
+            "disable": "Disable Enemizer",
+            "enemy_health": {
+                "title": "Enemy Health",
+                "options": [
+                    "Default",
+                    "Easy (1-4 hp)",
+                    "Normal (2-15 hp)",
+                    "Hard (2-30 hp)",
+                    "Brick Wall (4-50 hp)"
+                ]
+            },
+            "enemy_damage": {
+                "title": "Enemy Damage",
+                "options": {
+                    "off": "Default",
+                    "shuffle": "Shuffled",
+                    "chaos": "Chaos"
+                }
+            },
+            "bosses": {
+                "title": "Boss Shuffle",
+                "options": {
+                    "off": "Off",
+                    "basic": "Simple",
+                    "normal": "Full",
+                    "chaos": "Chaos"
+                }
+            },
+            "palette_shuffle": "Palette Shuffle",
+            "pot_shuffle": "Pot Shuffle",
+            "enemy_shuffle": "Enemy Shuffle"
+        },
+        "entrance": {
+            "title": "Entrance Randomizer",
+            "switch": {
+                "item": "Switch to Item Randomizer"
+            },
+            "rom": {
+                "options": "ROM Options"
+            },
+            "difficulty": {
+                "title": "Difficulty",
+                "options": {
+                    "easy": "Easy",
+                    "normal": "Normal",
+                    "hard": "Hard",
+                    "expert": "Expert",
+                    "insane": "Insane"
+                }
+            },
+            "goal": {
+                "title": "Goal",
+                "options": {
+                    "ganon": "Defeat Ganon",
+                    "crystals": "Crystals",
+                    "dungeons": "All Dungeons",
+                    "pedestal": "Master Sword Pedestal",
+                    "triforcehunt": "Triforce Pieces"
+                }
+            },
+            "logic": {
+                "title": "Logic",
+                "options": {
+                    "NoGlitches": "No Glitches"
+                }
+            },
+            "mode": {
+                "title": "State",
+                "options": {
+                    "swordless": "Swordless",
+                    "open": "Open"
+                }
+            },
+            "shuffle": {
+                "title": "Shuffle",
+                "options": {
+                    "simple": "Simple",
+                    "restricted": "Restricted",
+                    "full": "Full",
+                    "crossed": "Crossed",
+                    "insanity": "Insanity"
+                }
+            },
+            "variation": {
+                "title": "Variation",
+                "options": {
+                    "none": "None",
+                    "timed-race": "Timed Race",
+                    "timed-ohko": "Timed OHKO",
+                    "ohko": "OHKO",
+                    "triforce-hunt": "Triforce Piece Hunt",
+                    "key-sanity": "Keysanity",
+                    "retro": "Retro"
+                }
+            },
+            "generate": {
+                "race": "Generate Race ROM",
+                "spoiler_race": "Spoiler Race ROM",
+                "casual": "Generate ROM"
+            },
+            "details": {
+                "title": "Game Details",
+                "save_spoiler": "Save Spoiler",
+                "save_rom": "Save Rom"
             }
         },
         "error": {
@@ -1322,7 +1432,7 @@ export default {
             "details": {
                 "title": "Game Details",
                 "save_spoiler": "Save Spoiler",
-                "save_rom": "Save ROM"
+                "save_rom": "Save Rom"
             },
             "variation": {
                 "title": "Variation"
@@ -1363,7 +1473,7 @@ export default {
             "loader": {
                 "title": "Getting Started",
                 "file_select": "Select ROM File",
-                "content": "<ol><li>Select your ROM file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li><li>Select the <a href=\"/en/options\">Game Options</a> for how you would like your game randomized</li><li>Click Generate Normal ROM</li><li>Then Save your ROM and get to playing</li></ol>"
+                "content": "<ol><li>Select your rom file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li><li>Select the <a href=\"/en/options\">Game Options</a> for how you would like your game randomized</li><li>Click Generate Normal ROM</li><li>Then Save your rom and get to playing</li></ol>"
             },
             "info": {
                 "spoilerwarning": "WARNING: The generator of this game viewed the spoiler log.",
@@ -1403,7 +1513,8 @@ export default {
                     "blue": "Blue",
                     "green": "Green",
                     "red": "Red",
-                    "yellow": "Yellow"
+                    "yellow": "Yellow",
+                    "random": "Random"
                 },
                 "play_as": "Play As",
                 "sprite_file_select": "Select .zspr File",
@@ -2342,7 +2453,8 @@ export default {
                     "blue": "Azul",
                     "green": "Verde",
                     "red": "Rojo",
-                    "yellow": "Amarillo"
+                    "yellow": "Amarillo",
+                    "random": "Aleatorio"
                 },
                 "play_as": "Jugar Como",
                 "sprite_file_select": "Selecciona archivo .zspr",
@@ -3036,7 +3148,8 @@ export default {
                     "blue": "Bleu",
                     "green": "Vert",
                     "red": "Rouge",
-                    "yellow": "Jaune"
+                    "yellow": "Jaune",
+                    "random": "Aléatoire"
                 },
                 "play_as": "Jouer en tant que",
                 "sprite_file_select": "Sélectionnez le fichier .zspr",
