@@ -90,7 +90,7 @@ abstract class World
         // Initialize the Logic and Prizes for each Region that has them and
         // fill our LocationsCollection
         foreach ($this->regions as $region) {
-            if ($this->config('logic') !== 'None') {
+            if ($this->config('logic') !== 'NoLogic') {
                 $region->initalize();
             }
             $this->locations = $this->locations->merge($region->getLocations());
@@ -127,10 +127,13 @@ abstract class World
                 $free_item_text |= 0x16;
                 $free_item_menu |= 0x0C;
         }
+
+        if (in_array($this->config('logic'), ['MajorGlitches', 'NoLogic']) || $this->config('canOneFrameClipUW', false)) {
+            $free_item_menu |= 0x10;
+        }
+
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
-
-        $this->config['item.overflow.count.Bow'] = 2;
 
         switch ($this->config('item.pool')) {
             case 'expert':
@@ -308,7 +311,7 @@ abstract class World
     public function getGanonsTowerJunkFillRange(): array
     {
         if (
-            $this->config['logic'] === 'None'
+            $this->config['logic'] === 'NoLogic'
             || ($this->config['mode.state'] !== 'inverted'
                 && in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches']))
         ) {
@@ -904,7 +907,7 @@ abstract class World
             'size' => 2,
             'hints' => $this->config('spoil.Hints'),
             'spoilers' => $this->config('spoilers', 'off'),
-            'allow_quickswap' => $this->config('allow_quickswap'),
+            'allow_quickswap' => $this->config('allow_quickswap', true),
             'enemizer.boss_shuffle' => $this->config('enemizer.bossShuffle'),
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),
@@ -1053,8 +1056,8 @@ abstract class World
             0x51, 0x06, 0x52, 0xFF, // 6 +5 bomb upgrades -> +10 bomb upgrade
             0x53, 0x06, 0x54, 0xFF, // 6 +5 arrow upgrades -> +10 arrow upgrade
             0x58, 0x01, $this->config('rom.rupeeBow', false) ? 0x36 : 0x43, 0xFF, // silver arrows -> 1 arrow
-            0x3E, $this->config('item.overflow.count.BossHeartContainer', 10), 0x47, 0xFF, // boss heart -> 20 rupees
-            0x17, $this->config('item.overflow.count.PieceOfHeart', 24), 0x47, 0xFF, // piece of heart -> 20 rupees
+            0x3E, $this->config('item.overflow.count.BossHeartContainer', 10), Item::get($this->config('item.overflow.replacement.BossHeartContainer', 'TwentyRupees2'), $this)->getBytes()[0], 0xFF, // boss heart -> 20 rupees
+            0x17, $this->config('item.overflow.count.PieceOfHeart', 24), Item::get($this->config('item.overflow.replacement.PieceOfHeart', 'TwentyRupees2'), $this)->getBytes()[0], 0xFF, // piece of heart -> 20 rupees
         ]);
 
         switch ($this->config['goal']) {
@@ -1135,7 +1138,7 @@ abstract class World
 
         switch ($this->config('rom.logicMode', $this->config['logic'])) {
             case 'MajorGlitches':
-            case 'None':
+            case 'NoLogic':
                 $rom->setSwampWaterLevel(false);
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
                 $rom->setSaveAndQuitFromBossRoom(true);
@@ -1147,7 +1150,7 @@ abstract class World
             case 'OverworldGlitches':
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
                 $rom->setSaveAndQuitFromBossRoom(true);
-                $rom->setWorldOnAgahnimDeath(true);
+                $rom->setWorldOnAgahnimDeath(false);
                 $rom->setRandomizerSeedType('OverworldGlitches');
                 $rom->setWarningFlags(bindec('01000000'));
                 $rom->setPODEGfix(false);
@@ -1162,11 +1165,7 @@ abstract class World
 
         $rom->setGanonsTowerOpen($this->config('crystals.tower') === 0);
 
-        if ($this->config('allow_quickswap', false)) {
-            $rom->setGameType('entrance');
-        } else {
-            $rom->setGameType('item');
-        }
+        $rom->setGameType('item');
 
         $rom->setMysteryMasking($this->config('spoilers', 'on') === 'mystery');
 

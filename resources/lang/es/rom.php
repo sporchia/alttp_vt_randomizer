@@ -58,5 +58,7 @@ return [
         'quickswap' => 'Cambio Rápido de Objetos',
         'palette_shuffle' => 'Paletas aleatorias',
         'race_warning' => 'No funciona en ROMs para carreras',
+        'reduce_flashing' => 'Reducir Parpadeos intermitentes',
+        'reduce_flashing_warning' => 'Esta opcion solo reduce el efecto del parpadeo, tu sensibilidad a estos efectos aun puede variar.',
     ],
 ];

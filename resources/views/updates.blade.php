@@ -2,6 +2,29 @@
 
 @section('content')
 
+<h2>v31.0.9</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>New post-generation option called "Reduce Flashing" has been added.  Thanks Cassidymoen!</li>
+        <li>The credits have been updated to include additional individuals we want to recognize for their contributions to this project.</li>
+        <li>The author of the sprite you're using will now appear in the end credits.</li>
+        <li>When underworld clips are enabled, a new line will appear in the menu indicating what bosses have been defeated.</li>
+        <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.</li>
+        <li>The website will now, by default, generate games where Quickswap is allowed.  This can still be disabled via the API.</li>
+        <li>Finding a map in Hyrule Castle will now properly show the map on your item menu while in the Sewers section of Hyrule Castle.</li>
+        <li>Enemizer: Firebars will now only damage the player if the firebar is on the same layer as Link.</li>
+        <li>Customizer: Will now default to enabling spoilers on generated games.  This can still be set to Disabled, On Generate, or Mystery as needed.</li>
+        <li>Overworld YBA now puts Moon Pearl-less access to Ganon in logic</li>
+        <li>Bot authors may now specify a game name and notes in API requests to /api/randomizer</li>
+        <li>A new "Random" option was added for the heart color.  Thanks Doctor Blue!</li>
+        <li>Ganon will now say something New and Unique™ when Silver Arrows are unavailable.</li>
+        <li>Miscellaneous website updates.</li>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
 <h2>v31.0.8</h2>
 <div class="card card-body bg-light mb-3">
     <ul>

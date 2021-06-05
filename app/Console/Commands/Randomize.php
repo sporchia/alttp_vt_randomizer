@@ -155,7 +155,7 @@ class Randomize extends Command
                 'none' => 'NoGlitches',
                 'overworld_glitches' => 'OverworldGlitches',
                 'major_glitches' => 'MajorGlitches',
-                'no_logic' => 'None',
+                'no_logic' => 'NoLogic',
             ][$this->option('glitches')];
 
             $world = World::factory($this->option('state'), [

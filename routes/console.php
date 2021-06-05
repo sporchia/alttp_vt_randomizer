@@ -45,7 +45,7 @@ Artisan::command('alttp:dailies {days=7}', function ($days) {
                 'none' => 'NoGlitches',
                 'overworld_glitches' => 'OverworldGlitches',
                 'major_glitches' => 'MajorGlitches',
-                'no_logic' => 'None',
+                'no_logic' => 'NoLogic',
             ][getWeighted('glitches_required')];
 
             $world = World::factory(getWeighted('world_state'), [

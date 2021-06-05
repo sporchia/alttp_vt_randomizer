@@ -29,8 +29,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'abigail.1.zspr' => [
@@ -57,8 +57,21 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'adventure-2600.1.zspr' => [
+        'name' => 'Adventure 2600',
+        'author' => 'Purple Peak',
+        'file' => 'adventure-2600.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Atari',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'aggretsuko.1.zspr' => [
@@ -100,8 +113,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'arcane.1.zspr' => [
@@ -112,6 +125,20 @@ return [
         'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'aria.1.zspr' => [
+        'name' => 'Aria',
+        'author' => 'Maya Neko Comics',
+        'file' => 'aria.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Female',
+            1 => 'Personality',
         ],
         'usage' => [
             0 => 'smz3',
@@ -128,8 +155,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ark.1.zspr' => [
@@ -162,18 +189,18 @@ return [
             0 => 'smz3',
         ],
     ],
-    'astronaut.1.zspr' => [
+    'astronaut.2.zspr' => [
         'name' => 'Astronaut',
         'author' => 'Malmo',
-        'file' => 'astronaut.1.zspr',
-        'version' => 1,
+        'file' => 'astronaut.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.5',
         'tags' => [
             0 => 'IRL',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'asuna.2.zspr' => [
@@ -187,8 +214,8 @@ return [
             1 => 'Sword Art Online',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'badeline.1.zspr' => [
@@ -202,8 +229,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'bananas-in-pyjamas.1.zspr' => [
@@ -216,8 +243,8 @@ return [
             0 => 'Cartoon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'bandit.1.zspr' => [
@@ -230,8 +257,8 @@ return [
             0 => 'Mario',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'batman.1.zspr' => [
@@ -246,8 +273,8 @@ return [
             2 => 'DC Comics',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'beau.1.zspr' => [
@@ -262,8 +289,23 @@ return [
             2 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'bee.1.zspr' => [
+        'name' => 'Bee',
+        'author' => 'TarThoron',
+        'file' => 'bee.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'ALTTP',
+            1 => 'NPC',
+            2 => 'Animal',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'bewp.1.zspr' => [
@@ -306,8 +348,8 @@ return [
             2 => 'Streamer',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'birdo.1.zspr' => [
@@ -350,8 +392,8 @@ return [
             3 => 'ALTTP NPC',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'blazer.1.zspr' => [
@@ -364,8 +406,8 @@ return [
             0 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'blossom.1.zspr' => [
@@ -410,8 +452,8 @@ return [
             1 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'boco.2.zspr' => [
@@ -425,8 +467,8 @@ return [
             1 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'boo-two.1.zspr' => [
@@ -440,8 +482,8 @@ return [
             1 => 'Ghost',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'boo.2.zspr' => [
@@ -455,8 +497,8 @@ return [
             1 => 'Ghost',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'bottle_o_goo.1.zspr' => [
@@ -483,8 +525,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'botw-zelda.1.zspr' => [
@@ -557,8 +599,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'brian.1.zspr' => [
@@ -572,8 +614,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'broccoli.2.zspr' => [
@@ -763,8 +805,21 @@ return [
             2 => 'Cat',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'catgirl-hidari.1.zspr' => [
+        'name' => 'Catgirl (Hidari)',
+        'author' => 'Hidari',
+        'file' => 'catgirl-hidari.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.5',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'cdilink.1.zspr' => [
@@ -779,8 +834,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'celes.1.zspr' => [
@@ -794,8 +849,22 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'centaur-enos.1.zspr' => [
+        'name' => 'Centaur Enos',
+        'author' => 'Ziusudra',
+        'file' => 'centaur-enos.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'charizard.1.zspr' => [
@@ -822,8 +891,8 @@ return [
             1 => 'Fish',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'chibity.1.zspr' => [
@@ -836,8 +905,8 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'chrizzz.1.zspr' => [
@@ -851,22 +920,22 @@ return [
             1 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'cinna.1.zspr' => [
+    'cinna.2.zspr' => [
         'name' => 'Cinna',
         'author' => 'norskmatty',
-        'file' => 'cinna.1.zspr',
-        'version' => 1,
+        'file' => 'cinna.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'cirno.1.zspr' => [
@@ -880,19 +949,46 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'clifford.1.zspr' => [
+    'clifford.2.zspr' => [
         'name' => 'Clifford',
         'author' => 'PlaguedOne',
-        'file' => 'clifford.1.zspr',
-        'version' => 1,
+        'file' => 'clifford.2.zspr',
+        'version' => 2,
         'vtversion' => '30',
         'tags' => [
             0 => 'Animal',
             1 => 'Dog',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'clippy.1.zspr' => [
+        'name' => 'Clippy',
+        'author' => 'PlaguedOne',
+        'file' => 'clippy.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'cloud.1.zspr' => [
+        'name' => 'Cloud',
+        'author' => 'FedoraFriday',
+        'file' => 'cloud.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Final Fantasy',
         ],
         'usage' => [
             0 => 'smz3',
@@ -938,8 +1034,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'corona.2.zspr' => [
@@ -953,8 +1049,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'crewmate.2.zspr' => [
@@ -982,15 +1078,15 @@ return [
             2 => 'Bird',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'cursor.1.zspr' => [
+    'cursor.2.zspr' => [
         'name' => 'Cursor',
         'author' => 'PlaguedOne',
-        'file' => 'cursor.1.zspr',
-        'version' => 1,
+        'file' => 'cursor.2.zspr',
+        'version' => 2,
         'vtversion' => '29',
         'tags' => [
             0 => 'Personality',
@@ -1068,8 +1164,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'darklink.1.zspr' => [
@@ -1099,8 +1195,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'darkzelda.1.zspr' => [
@@ -1128,8 +1224,8 @@ return [
             1 => 'ALTTP NPC',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'deadpool-mythic.1.zspr' => [
@@ -1173,8 +1269,8 @@ return [
             1 => 'ALTTP NPC',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'decidueye.1.zspr' => [
@@ -1188,8 +1284,8 @@ return [
             1 => 'Bird',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'dekar.1.zspr' => [
@@ -1218,8 +1314,35 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'dennsen86.1.zspr' => [
+        'name' => 'Dennsen86',
+        'author' => 'Bonzaibier',
+        'file' => 'dennsen86.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'digdug.1.zspr' => [
+        'name' => 'Dig Dug',
+        'author' => 'kan',
+        'file' => 'digdug.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Dig Dug',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'dipper.1.zspr' => [
@@ -1230,6 +1353,20 @@ return [
         'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Gravity Falls',
+            1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'discord-mlp.1.zspr' => [
+        'name' => 'Discord',
+        'author' => 'JerryEris',
+        'file' => 'discord-mlp.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'My Little Pony',
             1 => 'Male',
         ],
         'usage' => [
@@ -1314,8 +1451,23 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'fi.1.zspr' => [
+        'name' => 'Fi',
+        'author' => 'Lougaroc',
+        'file' => 'fi.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'female',
+            2 => 'Skyward Sword',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'fierce-deity-link.3.zspr' => [
@@ -1373,8 +1525,8 @@ return [
             2 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'flavor_guy.1.zspr' => [
@@ -1402,8 +1554,8 @@ return [
             1 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'freya.1.zspr' => [
@@ -1430,8 +1582,8 @@ return [
             0 => 'Undertale',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'froglink.3.zspr' => [
@@ -1445,8 +1597,8 @@ return [
             1 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'fujin.2.zspr' => [
@@ -1487,8 +1639,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ganon.2.zspr' => [
@@ -1505,8 +1657,8 @@ return [
             4 => 'Boss',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ganondorf.2.zspr' => [
@@ -1537,8 +1689,8 @@ return [
             1 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'garnet.1.zspr' => [
@@ -1565,8 +1717,8 @@ return [
             0 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'gbc-link.1.zspr' => [
@@ -1595,8 +1747,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'gliitchwiitch.1.zspr' => [
@@ -1627,18 +1779,18 @@ return [
             0 => 'smz3',
         ],
     ],
-    'gooey.1.zspr' => [
+    'gooey.2.zspr' => [
         'name' => 'Gooey',
         'author' => 'Lougaroc',
-        'file' => 'gooey.1.zspr',
-        'version' => 1,
+        'file' => 'gooey.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Kirby',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'goomba.1.zspr' => [
@@ -1665,8 +1817,22 @@ return [
             1 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'graalian-noob.1.zspr' => [
+        'name' => 'Graalian Noob',
+        'author' => 'EGamer2',
+        'file' => 'graalian-noob.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Graal',
+            1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'grandpoobear.2.zspr' => [
@@ -1697,8 +1863,8 @@ return [
             2 => 'Streamer',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'grunclestan.1.zspr' => [
@@ -1727,23 +1893,23 @@ return [
             2 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'hanna.1.zspr' => [
+    'hanna.2.zspr' => [
         'name' => 'Hanna',
         'author' => 'Maya-Neko',
-        'file' => 'hanna.1.zspr',
-        'version' => 1,
+        'file' => 'hanna.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.7',
         'tags' => [
             0 => 'Female',
             1 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'hardhat_beetle.1.zspr' => [
@@ -1769,6 +1935,21 @@ return [
         'tags' => [
             0 => 'Female',
             1 => 'A Hat in Time',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'head-link.1.zspr' => [
+        'name' => 'Head Link',
+        'author' => 'TarThoron',
+        'file' => 'head-link.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'ALTTP',
+            1 => 'Link',
+            2 => 'Male',
         ],
         'usage' => [
             0 => 'smz3',
@@ -1801,8 +1982,8 @@ return [
             2 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'hero-of-awakening.1.zspr' => [
@@ -1816,8 +1997,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'hero-of-hyrule.1.zspr' => [
@@ -1831,23 +2012,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
-        ],
-    ],
-    'hidari.1.zspr' => [
-        'name' => 'Hidari',
-        'author' => 'Hidari',
-        'file' => 'hidari.1.zspr',
-        'version' => 1,
-        'vtversion' => '31.0.5',
-        'tags' => [
-            0 => 'Legend of Zelda',
-            1 => 'ALTTP NPC',
-        ],
-        'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'hint_tile.1.zspr' => [
@@ -1915,8 +2081,8 @@ return [
             0 => 'Hollow Knight',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'hollow-knight.2.zspr' => [
@@ -1929,8 +2095,8 @@ return [
             0 => 'Hollow Knight',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'homer.1.zspr' => [
@@ -1944,8 +2110,22 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'hornet.1.zspr' => [
+        'name' => 'Hornet',
+        'author' => 'Spiffy',
+        'file' => 'hornet.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Hollow Knight',
+            1 => 'Female',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'hotdog.1.zspr' => [
@@ -1973,8 +2153,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ibazly.1.zspr' => [
@@ -2020,8 +2200,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'inkling.1.zspr' => [
@@ -2049,8 +2229,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'jack-frost.1.zspr' => [
@@ -2063,8 +2243,8 @@ return [
             0 => 'Shin Megami Tensei',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'jason_frudnick.1.zspr' => [
@@ -2091,8 +2271,8 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'jogurt.1.zspr' => [
@@ -2105,23 +2285,23 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'kain.1.zspr' => [
+    'kain.2.zspr' => [
         'name' => 'Kain',
         'author' => 'Chew Terr',
-        'file' => 'kain.1.zspr',
-        'version' => 1,
+        'file' => 'kain.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Final Fantasy',
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'katsura.2.zspr' => [
@@ -2136,8 +2316,8 @@ return [
             2 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kecleon.1.zspr' => [
@@ -2153,11 +2333,11 @@ return [
             0 => 'smz3',
         ],
     ],
-    'kefka.1.zspr' => [
+    'kefka.2.zspr' => [
         'name' => 'Kefka',
         'author' => 'Chew Terr',
-        'file' => 'kefka.1.zspr',
-        'version' => 1,
+        'file' => 'kefka.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.8',
         'tags' => [
             0 => 'Final Fantasy',
@@ -2165,8 +2345,8 @@ return [
             2 => 'Villain',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kenny_mccormick.1.zspr' => [
@@ -2194,8 +2374,8 @@ return [
             1 => 'IRL',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kholdstare.2.zspr' => [
@@ -2239,8 +2419,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kinu.1.zspr' => [
@@ -2253,8 +2433,8 @@ return [
             0 => 'Temtem',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kirby-d3.1.zspr' => [
@@ -2267,8 +2447,8 @@ return [
             0 => 'Kirby',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kirby-meta.1.zspr' => [
@@ -2282,8 +2462,8 @@ return [
             1 => 'Kirby',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kore8.1.zspr' => [
@@ -2311,8 +2491,8 @@ return [
             2 => 'NPC',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'kriv.1.zspr' => [
@@ -2364,6 +2544,20 @@ return [
             0 => 'smz3',
         ],
     ],
+    'lestat.1.zspr' => [
+        'name' => 'Lestat',
+        'author' => 'Ziusudra',
+        'file' => 'lestat.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Bahamut Lagoon',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'lily.1.zspr' => [
         'name' => 'Lily',
         'author' => 'ScatlinkSean',
@@ -2375,8 +2569,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'linja.1.zspr' => [
@@ -2394,11 +2588,11 @@ return [
             0 => 'smz3',
         ],
     ],
-    'link-redrawn.1.zspr' => [
+    'link-redrawn.3.zspr' => [
         'name' => 'Link Redrawn',
         'author' => 'Spiffy',
-        'file' => 'link-redrawn.1.zspr',
-        'version' => 1,
+        'file' => 'link-redrawn.3.zspr',
+        'version' => 3,
         'vtversion' => '31.0.7',
         'tags' => [
             0 => 'Link',
@@ -2421,8 +2615,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'linktuniccolor.1.zspr' => [
@@ -2508,8 +2702,8 @@ return [
             0 => 'Pokemon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'luffy.2.zspr' => [
@@ -2539,8 +2733,8 @@ return [
             2 => 'Superhero',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'luna-maindo.1.zspr' => [
@@ -2568,8 +2762,8 @@ return [
             1 => 'Villain',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'madeline.1.zspr' => [
@@ -2583,8 +2777,8 @@ return [
             1 => 'Celeste',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'magus.1.zspr' => [
@@ -2617,6 +2811,21 @@ return [
             0 => 'smz3',
         ],
     ],
+    'majora.1.zspr' => [
+        'name' => 'Majora\'s Mask',
+        'author' => 'Dawn',
+        'file' => 'majora.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'Majora\'s Mask',
+            2 => 'villain',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'mallow-cat.1.zspr' => [
         'name' => 'Mallow (Cat)',
         'author' => 'FedoraFriday',
@@ -2629,15 +2838,15 @@ return [
             2 => 'Streamer',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'mangalink.2.zspr' => [
+    'mangalink.3.zspr' => [
         'name' => 'Manga Link',
         'author' => 'kan',
-        'file' => 'mangalink.2.zspr',
-        'version' => 2,
+        'file' => 'mangalink.3.zspr',
+        'version' => 3,
         'vtversion' => '29',
         'tags' => [
             0 => 'Link',
@@ -2658,8 +2867,8 @@ return [
             0 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'marin.2.zspr' => [
@@ -2687,8 +2896,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'mario_tanooki.2.zspr' => [
@@ -2716,8 +2925,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'marisa.1.zspr' => [
@@ -2731,8 +2940,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'matthias.1.zspr' => [
@@ -2777,8 +2986,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'medli.1.zspr' => [
@@ -2793,8 +3002,8 @@ return [
             2 => 'Bird',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'megaman-x.2.zspr' => [
@@ -2803,6 +3012,34 @@ return [
         'file' => 'megaman-x.2.zspr',
         'version' => 2,
         'vtversion' => '28',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Megaman',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'megaman-x2.1.zspr' => [
+        'name' => 'Megaman X2',
+        'author' => 'PlaguedOne',
+        'file' => 'megaman-x2.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Megaman',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'megaman.1.zspr' => [
+        'name' => 'Mega Man (Classic)',
+        'author' => 'CrebleStar',
+        'file' => 'megaman.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
         'tags' => [
             0 => 'Male',
             1 => 'Megaman',
@@ -2822,8 +3059,8 @@ return [
             1 => 'Alien',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'mew.1.zspr' => [
@@ -2848,6 +3085,20 @@ return [
         'tags' => [
             0 => 'StarTropics',
             1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'mimic.1.zspr' => [
+        'name' => 'Mimic',
+        'author' => 'Chew Terr',
+        'file' => 'mimic.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Villain',
+            1 => 'Dragon Quest',
         ],
         'usage' => [
             0 => 'smz3',
@@ -2880,8 +3131,23 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'mipha.1.zspr' => [
+        'name' => 'Mipha',
+        'author' => 'RippedSnorlax',
+        'file' => 'mipha.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'Breath of the Wild',
+            2 => 'female',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'missingno.2.zspr' => [
@@ -2894,8 +3160,8 @@ return [
             0 => 'Pokemon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'moblin.2.zspr' => [
@@ -2909,8 +3175,8 @@ return [
             1 => 'ALTTP',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'modernlink.1.zspr' => [
@@ -2938,8 +3204,8 @@ return [
             0 => 'Final Fantasy',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'momiji.1.zspr' => [
@@ -2953,8 +3219,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'moosh.1.zspr' => [
@@ -3039,8 +3305,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'navirou.3.zspr' => [
@@ -3053,8 +3319,8 @@ return [
             0 => 'Monster Hunter',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ned-flanders.1.zspr' => [
@@ -3069,8 +3335,8 @@ return [
             2 => 'Simpsons',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'negativelink.1.zspr' => [
@@ -3099,8 +3365,8 @@ return [
             1 => 'Streamer',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'neslink.2.zspr' => [
@@ -3115,8 +3381,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ness.2.zspr' => [
@@ -3147,19 +3413,19 @@ return [
             0 => 'smz3',
         ],
     ],
-    'niddraig.1.zspr' => [
+    'niddraig.2.zspr' => [
         'name' => 'Niddraig',
         'author' => 'Jakebob',
-        'file' => 'niddraig.1.zspr',
-        'version' => 1,
+        'file' => 'niddraig.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.7',
         'tags' => [
             0 => 'Final Fantasy',
             1 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'niko.1.zspr' => [
@@ -3173,8 +3439,8 @@ return [
             1 => 'Cat',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'oldman.2.zspr' => [
@@ -3189,8 +3455,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'ori.2.zspr' => [
@@ -3204,8 +3470,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'outlinelink.1.zspr' => [
@@ -3220,8 +3486,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'parallelworldslink.1.zspr' => [
@@ -3236,8 +3502,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'paula.1.zspr' => [
@@ -3308,8 +3574,8 @@ return [
             1 => 'Ace Attorney',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'pikachu.2.zspr' => [
@@ -3322,8 +3588,8 @@ return [
             0 => 'Pokemon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'pinkribbonlink.3.zspr' => [
@@ -3352,8 +3618,8 @@ return [
             1 => 'Villain',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'plagueknight.1.zspr' => [
@@ -3365,6 +3631,33 @@ return [
         'tags' => [
             0 => 'Shovel Knight',
             1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'plouni.1.zspr' => [
+        'name' => 'Plouni',
+        'author' => 'Plouni',
+        'file' => 'plouni.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'pokey-subtle.1.zspr' => [
+        'name' => 'Pokey (subtle)',
+        'author' => 'kan',
+        'file' => 'pokey-subtle.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'ALTTP NPC',
+            1 => 'Legend of Zelda',
         ],
         'usage' => [
             0 => 'smz3',
@@ -3395,8 +3688,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'poppy.1.zspr' => [
@@ -3410,8 +3703,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'porg_knight.1.zspr' => [
@@ -3424,8 +3717,8 @@ return [
             0 => 'Star Wars',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'power-ranger.1.zspr' => [
@@ -3438,8 +3731,8 @@ return [
             0 => 'Power Ranger',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'powerpuff_girl.1.zspr' => [
@@ -3502,6 +3795,19 @@ return [
             0 => 'smz3',
         ],
     ],
+    'prof-renderer-grizzleton.1.zspr' => [
+        'name' => 'Prof. Renderer Grizzleton',
+        'author' => 'Professor Renderer',
+        'file' => 'prof-renderer-grizzleton.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'professor.1.zspr' => [
         'name' => 'The Professor',
         'author' => 'PlaguedOne',
@@ -3543,8 +3849,8 @@ return [
             3 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'purplechest-bottle.1.zspr' => [
@@ -3558,8 +3864,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'pyro.1.zspr' => [
@@ -3573,8 +3879,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'quadbanger.1.zspr' => [
@@ -3617,8 +3923,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'red-mage.1.zspr' => [
@@ -3645,8 +3951,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'remus-ruldufus-black.1.zspr' => [
@@ -3702,15 +4008,15 @@ return [
             1 => 'Nickelodeon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'rottytops.1.zspr' => [
+    'rottytops.2.zspr' => [
         'name' => 'Rottytops',
         'author' => 'PlaguedOne',
-        'file' => 'rottytops.1.zspr',
-        'version' => 1,
+        'file' => 'rottytops.2.zspr',
+        'version' => 2,
         'vtversion' => '30.5',
         'tags' => [
             0 => 'Cartoon',
@@ -3731,8 +4037,8 @@ return [
             2 => 'Cat',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'roykoopa.1.zspr' => [
@@ -3746,8 +4052,8 @@ return [
             1 => 'Mario',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'rumia.1.zspr' => [
@@ -3761,8 +4067,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'rydia.1.zspr' => [
@@ -3776,15 +4082,15 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'ryu.1.zspr' => [
+    'ryu.2.zspr' => [
         'name' => 'Ryu',
         'author' => 'PlaguedOne',
-        'file' => 'ryu.1.zspr',
-        'version' => 1,
+        'file' => 'ryu.2.zspr',
+        'version' => 2,
         'vtversion' => '30',
         'tags' => [
             0 => 'Male',
@@ -3820,8 +4126,8 @@ return [
             1 => 'Superhero',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'samus-sm.1.zspr' => [
@@ -3835,8 +4141,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'samus.2.zspr' => [
@@ -3878,15 +4184,15 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
-    'santalink.2.zspr' => [
+    'santalink.3.zspr' => [
         'name' => 'Santa Link',
         'author' => 'HOHOHO',
-        'file' => 'santalink.2.zspr',
-        'version' => 2,
+        'file' => 'santalink.3.zspr',
+        'version' => 3,
         'vtversion' => '26',
         'tags' => [
             0 => 'Link',
@@ -3895,8 +4201,8 @@ return [
             3 => 'Festive',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'scholar.1.zspr' => [
@@ -3910,8 +4216,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'selan.2.zspr' => [
@@ -3925,8 +4231,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'sevens1ns.1.zspr' => [
@@ -4012,8 +4318,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'shy-guy.1.zspr' => [
@@ -4039,8 +4345,8 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'skunk.1.zspr' => [
@@ -4053,8 +4359,8 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'slime.1.zspr' => [
@@ -4067,8 +4373,8 @@ return [
             0 => 'Dragon Quest',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'slowpoke.2.zspr' => [
@@ -4081,8 +4387,8 @@ return [
             0 => 'Pokemon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'snes-controller.2.zspr' => [
@@ -4095,8 +4401,8 @@ return [
             0 => 'SNES',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'sodacan.1.zspr' => [
@@ -4111,8 +4417,8 @@ return [
             2 => 'IRL',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'solaire.1.zspr' => [
@@ -4140,8 +4446,8 @@ return [
             1 => 'ALTTP NPC',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'sonic.1.zspr' => [
@@ -4155,8 +4461,8 @@ return [
             1 => 'Sonic the Hedgehog',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'sora.1.zspr' => [
@@ -4170,8 +4476,8 @@ return [
             1 => 'Kingdom Hearts',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'sora_kh1.1.zspr' => [
@@ -4185,8 +4491,22 @@ return [
             1 => 'Kingdom Hearts',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'spikedroller.1.zspr' => [
+        'name' => 'Spiked Roller',
+        'author' => 'PlaguedOne',
+        'file' => 'spikedroller.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'ALTTP',
+            1 => 'NPC',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'spongebob.1.zspr' => [
@@ -4200,8 +4520,8 @@ return [
             1 => 'Spongebob Squarepants',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'squall.1.zspr' => [
@@ -4243,8 +4563,8 @@ return [
             0 => 'Pokemon',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'stalfos.1.zspr' => [
@@ -4329,8 +4649,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'superbunny.2.zspr' => [
@@ -4345,8 +4665,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'supermeatboy.1.zspr' => [
@@ -4360,8 +4680,8 @@ return [
             1 => 'Meat Boy',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'susie.1.zspr' => [
@@ -4391,8 +4711,23 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
+    'swiper.1.zspr' => [
+        'name' => 'Swiper',
+        'author' => 'Purple Peak',
+        'file' => 'swiper.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Villain',
+            2 => 'Dora the Explorer',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'tasbot.1.zspr' => [
@@ -4476,8 +4811,8 @@ return [
             2 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'thief.1.zspr' => [
@@ -4522,8 +4857,8 @@ return [
             3 => 'Bird',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'tile.3.zspr' => [
@@ -4551,8 +4886,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'tmnt.1.zspr' => [
@@ -4581,8 +4916,8 @@ return [
             1 => 'Mario',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'toadette.2.zspr' => [
@@ -4638,8 +4973,8 @@ return [
             0 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'twilightprincesszelda.2.zspr' => [
@@ -4683,11 +5018,11 @@ return [
             0 => 'smz3',
         ],
     ],
-    'ultros.1.zspr' => [
+    'ultros.2.zspr' => [
         'name' => 'Ultros',
         'author' => 'PlaguedOne',
-        'file' => 'ultros.1.zspr',
-        'version' => 1,
+        'file' => 'ultros.2.zspr',
+        'version' => 2,
         'vtversion' => '30',
         'tags' => [
             0 => 'Final Fantasy',
@@ -4707,8 +5042,8 @@ return [
             1 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'vanillalink.1.zspr' => [
@@ -4763,8 +5098,8 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'vitreous.1.zspr' => [
@@ -4779,8 +5114,8 @@ return [
             2 => 'Boss',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'vivi.1.zspr' => [
@@ -4823,8 +5158,8 @@ return [
             2 => 'Villain',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'whitemage.1.zspr' => [
@@ -4851,8 +5186,8 @@ return [
             1 => 'Male',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'wizzrobe.2.zspr' => [
@@ -4899,8 +5234,8 @@ return [
             3 => 'Animal',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'yoshi.1.zspr' => [
@@ -4942,8 +5277,8 @@ return [
             2 => 'Female',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'zebraunicorn.1.zspr' => [
@@ -4971,8 +5306,8 @@ return [
             0 => 'Personality',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'zelda.1.zspr' => [
@@ -4987,8 +5322,8 @@ return [
             2 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'zerosuitsamus.2.zspr' => [
@@ -5016,8 +5351,8 @@ return [
             1 => 'Legend of Zelda',
         ],
         'usage' => [
-            0 => 'commercial',
-            1 => 'smz3',
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
 ];

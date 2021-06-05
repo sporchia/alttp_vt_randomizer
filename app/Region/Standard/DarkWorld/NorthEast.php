@@ -214,7 +214,7 @@ class NorthEast extends Region
                 return false;
             }
 
-            return $items->has('MoonPearl')
+            return ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
                 && ($items->has('DefeatAgahnim2') || $this->world->config('goal') === 'fast_ganon')
                 && (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows($this->world, 2))
                 && (

@@ -414,11 +414,73 @@ export default {
             "Ganon": "Ganon",
             "Test": "Gegenstand fürs testen"
         },
-        "randomizer": {
-            "title": "Randomizer",
-            "preset": {
-                "title": "Wähle Voreinstellungen",
-                "customize": "Customire",
+        "rom": {
+            "loader": {
+                "title": "Anfangen",
+                "file_select": "ROM Datei auswählen",
+                "content": "<ol><li>Wähle die Rom Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li><li>Wähle die <a href=\"/de/options\">Spieloptionen</a> um auszuwählen wie Zufällig dein Spiel sein soll</li><li>Klicke Generiere ROM für Rennen</li><li>Dann speichere deine Rom und fang an zu spielen</li></ol>"
+            },
+            "info": {
+                "spoilerwarning": "WARNUNG: Der Ersteller dieses Spiel hat den Spoiler Log angesehen.",
+                "mystery": "Dies ist ein geheimnissvolles Spiel. Die Einstellungen sind unbekannt und müssen beim Spielen herausgefunden werden!",
+                "logic": "Vorausgesetzte Glitches",
+                "accessibility": "Zugänglichkeit",
+                "build": "ROM build",
+                "difficulty": "Schwierigkeitsgrad",
+                "variation": "Variation",
+                "shuffle": "Entrance Shuffle",
+                "mode": "Zustand der Welt",
+                "weapons": "Schwerter",
+                "goal": "Ziel",
+                "permalink": "Permalink",
+                "special": "Spezial",
+                "notes": "Notizen",
+                "generated": "Erstellt"
+            },
+            "settings": {
+                "heart_speed": "Geschwindigkeit des Warnungston bei wenig Leben",
+                "heart_speeds": {
+                    "off": "Aus",
+                    "double": "Doppelte Geschwindigkeit",
+                    "normal": "Normale Geschwindigkeit",
+                    "half": "Halbe Geschwindigkeit",
+                    "quarter": "Viertel Geschwindigkeit"
+                },
+                "menu_speed": "Menü Geschwindigkeit",
+                "menu_speeds": {
+                    "instant": "Instant",
+                    "fast": "Schnell",
+                    "normal": "Normal",
+                    "slow": "Langsam"
+                },
+                "heart_color": "Farbe der Herzen",
+                "heart_colors": {
+                    "blue": "Blau",
+                    "green": "Grün",
+                    "red": "Rot",
+                    "yellow": "Gelb"
+                },
+                "play_as": "Spiele als",
+                "sprite_file_select": ".zspr Datei auswählen",
+                "music": "Hintergrundmusik",
+                "music_info": "(setze zu \"Keine\" für <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 Support</a>)",
+                "quickswap": "Gegenstand Schnellwechsel",
+                "palette_shuffle": "Palette Shuffle",
+                "race_warning": "Funktioniert nicht in einer Rom für Rennen",
+                "reduce_flashing": "Blitzeffekte reduzieren",
+                "reduce_flashing_warning": "Diese Option reduziert die Intensität von Blitzeffekten. Individuelle Lichtempfindlichkeitsreaktionen sind nicht ganz ausgeschlossen."
+            }
+        },
+        "entrance": {
+            "title": "Entrance Randomizer",
+            "switch": {
+                "item": "Wechsele zum Item Randomizer"
+            },
+            "rom": {
+                "options": "ROM Optionen"
+            },
+            "difficulty": {
+                "title": "Schwierigkeit",
                 "options": {
                     "default": "Default",
                     "beginner": "Beginner",
@@ -806,14 +868,35 @@ export default {
                 "title": "Boss Shuffle",
                 "options": {
                     "off": "Off",
-                    "basic": "Simple",
-                    "normal": "Full",
-                    "chaos": "Chaos"
-                }
-            },
-            "palette_shuffle": "Palette Shuffle",
-            "pot_shuffle": "Pot Shuffle",
-            "enemy_shuffle": "Enemy Shuffle"
+                    "double": "Double Speed",
+                    "normal": "Normal Speed",
+                    "half": "Half Speed",
+                    "quarter": "Quarter Speed"
+                },
+                "menu_speed": "Menu Speed",
+                "menu_speeds": {
+                    "instant": "Instant",
+                    "fast": "Fast",
+                    "normal": "Normal",
+                    "slow": "Slow"
+                },
+                "heart_color": "Heart Color",
+                "heart_colors": {
+                    "blue": "Blue",
+                    "green": "Green",
+                    "red": "Red",
+                    "yellow": "Yellow"
+                },
+                "play_as": "Play As",
+                "sprite_file_select": "Select .zspr File",
+                "music": "Background Music",
+                "music_info": "(set to \"No\" for <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 support</a>)",
+                "quickswap": "Item Quickswap",
+                "palette_shuffle": "Palette Shuffle",
+                "race_warning": "Does not work in Race Roms",
+                "reduce_flashing": "Reduce Flashing",
+                "reduce_flashing_warning": "This option only reduces the effects of flashing. Individual photosensitivity to effects may still vary."
+            }
         },
         "entrance": {
             "title": "Entrance Randomizer",
@@ -2187,6 +2270,172 @@ export default {
             "Agahnim 2": "Agahnim 2",
             "Ganon": "Ganon"
         },
+        "rom": {
+            "loader": {
+                "title": "Empezar a Jugar",
+                "file_select": "Selecciona archivo ROM",
+                "content": "<ol><li>Selecciona tu archivo ROM y cárgalo en tu navegador (Por favor, usa una ROM <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> con extensión .smc o .sfc)</li><li>Selecciona las <a href=\"/en/options\">Opciones de Juego</a> para cómo quieres que tu juego sea randomizado</li><li>Haz click en Generar ROM para carreras</li><li>Guarda tu ROM y ponte a jugar</li></ol>"
+            },
+            "info": {
+                "spoilerwarning": "ADVERTENCIA: El generador de este juego ha visto el registro de spoiler.",
+                "mystery": "Este es un juego de misterios. Debes descubrir las configuraciones mientras lo juegas!",
+                "logic": "Glitches Requeridos",
+                "accessibility": "Accesibilidad",
+                "build": "Build de la ROM",
+                "difficulty": "Dificultad",
+                "variation": "Variación",
+                "shuffle": "Randomizer de entradas",
+                "mode": "Estado del mundo",
+                "weapons": "Espadas",
+                "goal": "Objetivo",
+                "permalink": "Enlace permanente",
+                "special": "Especial",
+                "notes": "Notas",
+                "generated": "Creada"
+            },
+            "settings": {
+                "heart_speed": "Velocidad de Corazones",
+                "heart_speeds": {
+                    "off": "Desactivado",
+                    "double": "Velocidad Doble",
+                    "normal": "Velocidad Normal",
+                    "half": "Media Velocidad",
+                    "quarter": "Cuarto de Velocidad"
+                },
+                "menu_speed": "Velocidad de Menú",
+                "menu_speeds": {
+                    "instant": "Instantáneo",
+                    "fast": "Rápido",
+                    "normal": "Normal",
+                    "slow": "Lento"
+                },
+                "heart_color": "Color de Corazones",
+                "heart_colors": {
+                    "blue": "Azul",
+                    "green": "Verde",
+                    "red": "Rojo",
+                    "yellow": "Amarillo"
+                },
+                "play_as": "Jugar Como",
+                "sprite_file_select": "Selecciona archivo .zspr",
+                "music": "Música de fondo",
+                "music_info": "(poner en \"No\" para <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">soporte con MSU-1</a>)",
+                "quickswap": "Cambio Rápido de Objetos",
+                "palette_shuffle": "Paletas aleatorias",
+                "race_warning": "No funciona en ROMs para carreras",
+                "reduce_flashing": "Reducir Parpadeos intermitentes",
+                "reduce_flashing_warning": "Esta opcion solo reduce el efecto del parpadeo, tu sensibilidad a estos efectos aun puede variar."
+            }
+        },
+        "entrance": {
+            "title": "Randomizer de Entradas",
+            "switch": {
+                "item": "Cambiar a randomizer de objetos"
+            },
+            "rom": {
+                "options": "Opciones de ROM"
+            },
+            "difficulty": {
+                "title": "Dificultad",
+                "options": {
+                    "easy": "Fácil",
+                    "normal": "Normal",
+                    "hard": "Difícil",
+                    "expert": "Experto",
+                    "insane": "Locura"
+                }
+            },
+            "goal": {
+                "title": "Objetivo",
+                "options": {
+                    "ganon": "Derrotar a Ganon",
+                    "crystals": "Cristales",
+                    "dungeons": "Todas las mazmorras",
+                    "pedestal": "Pedestal de la Espada Maestra",
+                    "triforcehunt": "Piezas de la Trifuerza"
+                }
+            },
+            "logic": {
+                "title": "Lógica",
+                "options": {
+                    "NoGlitches": "Sin Glitches"
+                }
+            },
+            "mode": {
+                "title": "Tipo",
+                "options": {
+                    "swordless": "Sin espadas",
+                    "open": "Abierto"
+                }
+            },
+            "shuffle": {
+                "title": "Orden",
+                "options": {
+                    "simple": "Simple",
+                    "restricted": "Restringido",
+                    "full": "Completo",
+                    "crossed": "Cruzado",
+                    "insanity": "Locura"
+                }
+            },
+            "variation": {
+                "title": "Variación",
+                "options": {
+                    "none": "Ninguna",
+                    "timed-race": "Carrera cronometrada",
+                    "timed-ohko": "Muerte Súbita cronometrada",
+                    "ohko": "Muerte Súbita",
+                    "triforce-hunt": "Caza de la Trifuerza",
+                    "key-sanity": "Keysanity",
+                    "retro": "Retro"
+                }
+            },
+            "generate": {
+                "race": "Generar ROM para carreras",
+                "spoiler_race": "Generar ROM para carreras",
+                "casual": "Generar ROM"
+            },
+            "details": {
+                "title": "Detalles del juego",
+                "save_spoiler": "Guardar spoiler",
+                "save_rom": "Guardar ROM"
+            }
+        },
+        "enemizer": {
+            "title": "Randomizer de enemigos (Enemizer)",
+            "enable": "Activar Enemizer",
+            "disable": "Desactivar Enemizer",
+            "enemy_health": {
+                "title": "Vida de enemigos",
+                "options": [
+                    "Normal",
+                    "Fácil (1-4 hp)",
+                    "Medio (2-15 hp)",
+                    "Difícil (2-30 hp)",
+                    "Locura (4-50 hp)"
+                ]
+            },
+            "enemy_damage": {
+                "title": "Daño de enemigos",
+                "options": {
+                    "off": "Normal",
+                    "shuffle": "Aleatorio",
+                    "chaos": "Caos"
+                }
+            },
+            "bosses": {
+                "title": "Jefes",
+                "options": {
+                    "off": "Normal",
+                    "basic": "Básico",
+                    "normal": "Normal",
+                    "chaos": "Caos"
+                }
+            },
+            "palette_shuffle": "Paleta aleatoria",
+            "pot_shuffle": "Vasijas aleatorias",
+            "enemy_shuffle": "Enemigos aleatorios"
+        },
         "randomizer": {
             "title": "Randomizer",
             "preset": {
@@ -2291,7 +2540,7 @@ export default {
                 }
             },
             "entrance_shuffle": {
-                "title": "Randomizer de entradas",
+                "title": "Mélangeur d’Entrées",
                 "options": {
                     "none": "Ninguno",
                     "simple": "Simple",
@@ -2311,7 +2560,7 @@ export default {
                 }
             },
             "enemy_shuffle": {
-                "title": "Randomizer de Enemigos",
+                "title": "Mélangeur d’Ennemis",
                 "options": {
                     "none": "Ninguno",
                     "shuffled": "Barajado",
@@ -2343,7 +2592,7 @@ export default {
                     "expert": "Experto",
                     "crowd_control": "Crowd Control"
                 },
-                "crowd_control_warning": "<sup>*</sup> Esta opción está hecha para jugarse con la extensión de Twitch de <i>Crowd Control</i>. Para saber más: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
+                "crowd_control_warning": "<sup>*</sup> Ce paramètre est prévu pour être utilisé avec l’extension Twitch Crowd Control. En savoir plus: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
             },
             "item_functionality": {
                 "title": "Funcionalidad de Objetos",
@@ -2497,11 +2746,11 @@ export default {
                 },
                 "canBunnySurf": {
                     "title": "Lapin Surfeur",
-                    "description": "Il peut être requis de marcher sur l'eau en tant que Lapin."
+                    "description": "Il peut être requis de marcher sur l’eau en tant que Lapin."
                 },
                 "canDungeonRevive": {
                     "title": "Résurrection en Donjon",
-                    "description": "Il peut être requis d'entrer dans un donjon en Lapin, et de mourir, afin de redevenir Link pour collecter des objets."
+                    "description": "Il peut être requis d’entrer dans un donjon en Lapin, et de mourir, afin de redevenir Link pour collecter des objets."
                 },
                 "canFakeFlipper": {
                     "title": "Fausses Palmes",
@@ -2509,11 +2758,11 @@ export default {
                 },
                 "canMirrorClip": {
                     "title": "Clip au Miroir",
-                    "description": "Il peut être requis d'utiliser des rebonds avec le Miroir pour se transporter hors des limites du jeu."
+                    "description": "Il peut être requis d’utiliser des rebonds avec le Miroir pour se transporter hors des limites du jeu."
                 },
                 "canMirrorWrap": {
                     "title": "Wrap au Miroir",
-                    "description": "Il peut être requis d\\utiliser le Miroir afin de défiler l'écran à un endroit normalement inaccessible."
+                    "description": "Il peut être requis d\\utiliser le Miroir afin de défiler l’écran à un endroit normalement inaccessible."
                 },
                 "canOneFrameClipOW": {
                     "title": "Clip d\\Une Image (Monde extérieur)",
@@ -2525,27 +2774,27 @@ export default {
                 },
                 "canOWYBA": {
                     "title": "YBA (Monde extérieur)",
-                    "description": "Il peut être requis d'utiliser des Bocaux dans le monde extérieur afin de se rendre à un endroit normalement inaccessible."
+                    "description": "Il peut être requis d’utiliser des Bocaux dans le monde extérieur afin de se rendre à un endroit normalement inaccessible."
                 },
                 "canSuperBunny": {
                     "title": "Super Lapin",
-                    "description": "Il peut être requis d'activer la technique du Super Lapin pour accéder à certains endroits et objets."
+                    "description": "Il peut être requis d’activer la technique du Super Lapin pour accéder à certains endroits et objets."
                 },
                 "canSuperSpeed": {
                     "title": "Super Vitesse",
-                    "description": "Il peut être requis d'utiliser la Super Vitesse afin de passer à travers une barrière dans le monde extérieur."
+                    "description": "Il peut être requis d’utiliser la Super Vitesse afin de passer à travers une barrière dans le monde extérieur."
                 },
                 "canWaterFairyRevive": {
-                    "title": "Résurrection par une Fée dans l'Eau",
-                    "description": "Cette technique est ridicule et requiert un grand nombre d'objets."
+                    "title": "Résurrection par une Fée dans l’Eau",
+                    "description": "Cette technique est ridicule et requiert un grand nombre d’objets."
                 },
                 "canWaterWalk": {
-                    "title": "Marche sur l'Eau",
-                    "description": "Il peut être requis d'utiliser les Bottes pour marcher sur l\\eau."
+                    "title": "Marche sur l’Eau",
+                    "description": "Il peut être requis d’utiliser les Bottes pour marcher sur l\\eau."
                 },
                 "noLogic": {
                     "title": "Désactiver la Logique",
-                    "description": "Quand ceci est activé, les dés en sont jetés, et rien d'autre n'importe.."
+                    "description": "Quand ceci est activé, les dés en sont jetés, et rien d’autre n’importe.."
                 }
             }
         },
@@ -3118,7 +3367,7 @@ export default {
                 "build": "Création de ROM",
                 "difficulty": "Difficulté",
                 "variation": "Variation",
-                "shuffle": "Mélangeur d'Entrées",
+                "shuffle": "Mélangeur d’Entrées",
                 "mode": "État du Monde",
                 "weapons": "Épées",
                 "goal": "Objectif",
@@ -3157,7 +3406,9 @@ export default {
                 "music_info": "(définie sur \"Non\" pour <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">le support MSU-1</a>)",
                 "quickswap": "Changement rapide d’objets",
                 "palette_shuffle": "Mélange des Couleurs de Palettes",
-                "race_warning": "Ne fonctionne pas dans les ROMs de course"
+                "race_warning": "Ne fonctionne pas dans les ROMs de course",
+                "reduce_flashing": "Réduit le clignotement",
+                "reduce_flashing_warning": "Cette option réduit l'effet de clignotement. Votre sensibilité aux effets de clignotement peut varier."
             }
         }
     }
