@@ -1189,7 +1189,7 @@ class Rom
     }
 
     /**
-     * Commit the text table to rom
+     * Commit the text table to ROM
      *
      * @return $this
      */
@@ -1685,7 +1685,7 @@ class Rom
     /**
      * Quick and dirty shop setting code.
      *
-     * @param \ALttP\Support\ShopCollection $shops shops to write to rom
+     * @param \ALttP\Support\ShopCollection $shops shops to write to ROM
      *
      * @return $this
      */
@@ -3029,7 +3029,7 @@ class Rom
     }
 
     /**
-     * Get the array of bytes written in the order they were written to the rom
+     * Get the array of bytes written in the order they were written to the ROM
      *
      * @return array
      */

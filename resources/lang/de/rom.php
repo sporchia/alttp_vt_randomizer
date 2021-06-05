@@ -4,10 +4,10 @@ return [
         'title' => 'Anfangen',
         'file_select' => 'ROM Datei auswählen',
         'content' => '<ol>'
-            . '<li>Wähle die Rom Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li>'
+            . '<li>Wähle die ROM Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li>'
             . '<li>Wähle die <a href="/de/options">' . __('navigation.options') . '</a> um auszuwählen wie Zufällig dein Spiel sein soll</li>'
             . '<li>Klicke ' . __('randomizer.generate.race') . '</li>'
-            . '<li>Dann speichere deine Rom und fang an zu spielen</li>'
+            . '<li>Dann speichere deine ROM und fang an zu spielen</li>'
             . '</ol>',
     ],
     'info' => [
@@ -49,6 +49,7 @@ return [
             'green' => 'Grün',
             'red' => 'Rot',
             'yellow' => 'Gelb',
+            'random' => 'Zufällig',
         ],
         'play_as' => 'Spiele als',
         'sprite_file_select' => '.zspr Datei auswählen',
@@ -56,6 +57,6 @@ return [
         'music_info' => '(setze zu "Keine" für <a href="https://alttprlinks.page.link/SjiP" target="_blank" rel="noopener noreferrer">MSU-1 Support</a>)',
         'quickswap' => 'Gegenstand Schnellwechsel',
         'palette_shuffle' => 'Palette Shuffle',
-        'race_warning' => 'Funktioniert nicht in einer Rom für Rennen',
+        'race_warning' => 'Funktioniert nicht in einer ROM für Rennen',
     ],
 ];

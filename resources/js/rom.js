@@ -22,7 +22,7 @@ export default class ROM {
       if (typeof this.arrayBuffer === "undefined") {
         throw new Error("Could not read this.arrayBuffer");
       }
-      // Check rom for header and cut it out
+      // Check ROM for header and cut it out
       if (this.arrayBuffer.byteLength % 0x400 == 0x200) {
         this.arrayBuffer = this.arrayBuffer.slice(
           0x200,
@@ -129,7 +129,7 @@ export default class ROM {
     this.setMusicVolume(musicOn);
 
     this.updateChecksum().then(() => {
-      FileSaver.saveAs(new Blob([this.u_array], {type: 'application/octet-stream'}), filename);
+      FileSaver.saveAs(new Blob([this.u_array], { type: 'application/octet-stream' }), filename);
 
       // undo any presave processing we did.
       this.arrayBuffer = preProcess;
@@ -249,6 +249,11 @@ export default class ROM {
     return new Promise(resolve => {
       let byte = 0x24;
       let file_byte = 0x05;
+
+      if (color_on === "random") {
+        const colorOptions = ["blue", "green", "yellow", "red"];
+        color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+      };
 
       switch (color_on) {
         case "blue":

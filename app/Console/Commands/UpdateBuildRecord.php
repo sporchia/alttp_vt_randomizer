@@ -24,7 +24,7 @@ class UpdateBuildRecord extends Command
      *
      * @var string
      */
-    protected $description = 'build bps, json patch, and upate the rom build in DB';
+    protected $description = 'build bps, json patch, and upate the ROM build in DB';
 
     /**
      * Execute the console command.
@@ -125,7 +125,7 @@ class UpdateBuildRecord extends Command
     }
 
     /**
-     * Update the constants in Rom class.
+     * Update the constants in ROM class.
      *
      * @param \ALttP\Build  $build  Build to update to
      *
@@ -144,7 +144,7 @@ class UpdateBuildRecord extends Command
      * Create a json patch for internal services.
      *
      * @param string  $hash  hash to save file with
-     * @param string  $rom  patched rom to make patch from
+     * @param string  $rom  patched ROM to make patch from
      *
      * @throws \Exception  if any filesystem issues arrise
      *
@@ -170,7 +170,7 @@ class UpdateBuildRecord extends Command
         $updated_rom = fopen($rom, "r");
 
         if ($updated_rom === false) {
-            throw new Exception('Could not open updated rom');
+            throw new Exception('Could not open updated ROM');
         }
 
         $i = 0;

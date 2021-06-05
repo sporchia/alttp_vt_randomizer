@@ -80,8 +80,8 @@ return [
             'description' => 'When this is selected all bets are off, and nothing below matters.',
         ],
         'logicMode' => [
-            'title' => 'Glitches Required Rom "Fixes"',
-            'description' => 'Set the type of rom fixes applied.  Does not change item placement logic.'
+            'title' => 'Glitches Required ROM "Fixes"',
+            'description' => 'Set the type of ROM fixes applied.  Does not change item placement logic.'
         ]
     ]
 ];
