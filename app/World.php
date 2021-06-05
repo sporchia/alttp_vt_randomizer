@@ -1004,6 +1004,10 @@ abstract class World
                 });
             }
         }
+		
+		if ($this->config('mode.state') == 'standard') {
+			$this->setEscapeFills($rom);
+		}
 
         $rom->setGoalRequiredCount($this->config('item.Goal.Required', 0) ?: 0);
         $rom->setGoalIcon($this->config('item.Goal.Icon', 'triforce'));
@@ -1186,6 +1190,61 @@ abstract class World
 
         return $rom;
     }
+	
+    /**
+     * Set the ammo given for escape, based on available weapons
+     *
+     * @param \ALttP\Rom   $rom   Rom to write data to
+     *
+     * @return void
+     */
+    public function setEscapeFills(Rom $rom) {
+        $uncle_items = new ItemCollection;
+		$uncle_items->setChecksForWorld($this->id);
+		$uncle_items = $uncle_items->addItem($this->getLocation("Link's Uncle")->getItem());
+		
+		// Add starting items if uncle doesn't have a weapon.  Temporarily disable ignoreCanKillEscapeThings for this check
+		$ignoreCanKillEscapeThings = $this->config('ignoreCanKillEscapeThings', false);
+		$this->config['ignoreCanKillEscapeThings'] = false;
+		if (!$uncle_items->canKillEscapeThings($this)) {
+			$uncle_items = $uncle_items->merge($this->getPreCollectedItems());
+		}
+		$this->config['ignoreCanKillEscapeThings'] = $ignoreCanKillEscapeThings;
+		
+		if ($uncle_items->hasSword() || $uncle_items->has('Hammer')) {
+			$rom->setEscapeFills(0b00000000);
+			$rom->setUncleSpawnRefills(0, 0, 0);
+			$rom->setZeldaSpawnRefills(0, 0, 0);
+			$rom->setMantleSpawnRefills(0, 0, 0);
+		} elseif ($uncle_items->has('FireRod')
+			|| $uncle_items->has('CaneOfSomaria')
+			|| $uncle_items->has('CaneOfByrna')) {
+			$rom->setEscapeFills(0b00000100);
+			$rom->setUncleSpawnRefills(0x80, 0, 0);
+			$rom->setZeldaSpawnRefills(0x20, 0, 0);
+			$rom->setMantleSpawnRefills(0x20, 0, 0);
+            if ($this->config('rom.HardMode') == -1) {
+				$rom->setEscapeAssist(0b00000100);
+			}
+		} elseif ($uncle_items->canShootArrows($this)) {
+			$rom->setEscapeFills(0b00000001);
+			$rom->setUncleSpawnRefills(0, 0, 70);
+			$rom->setZeldaSpawnRefills(0, 0, 10);
+			$rom->setMantleSpawnRefills(0, 0, 10);
+            if ($this->config('rom.HardMode') == -1) {
+				$rom->setEscapeAssist(0b00000001);
+			}
+		} elseif ($uncle_items->has('TenBombs') || $this->config('logic') !== 'None') {
+			// TenBombs, or give player bombs if uncle was plando'd to not have a weapon.
+			$rom->setEscapeFills(0b00000010);
+			$rom->setUncleSpawnRefills(0, 50, 0);
+			$rom->setZeldaSpawnRefills(0, 3, 0);
+			$rom->setMantleSpawnRefills(0, 3, 0);
+            if ($this->config('rom.HardMode') == -1) {
+				$rom->setEscapeAssist(0b00000010);
+			}
+		}
+	}
 
     /**
      * This is a quick hack to get prizes shuffled, will adjust later when we model sprites.

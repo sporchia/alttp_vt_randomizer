@@ -22,64 +22,7 @@ class Uncle extends Location
     public function writeItem(Rom $rom, Item $item = null)
     {
         parent::writeItem($rom, $item);
-        $item = $this->getItem();
-
-        $world = $this->region->getWorld();
-
-        if ($world->config('mode.state') == 'standard') {
-            if ($item instanceof Item\Bow) {
-                $rom->setEscapeFills(0b00000001);
-                $rom->setUncleSpawnRefills(0, 0, 70);
-                $rom->setZeldaSpawnRefills(0, 0, 10);
-                $rom->setMantleSpawnRefills(0, 0, 10);
-            } elseif ($item == Item::get('TenBombs', $world)) {
-                $rom->setEscapeFills(0b00000010);
-                $rom->setUncleSpawnRefills(0, 50, 0);
-                $rom->setZeldaSpawnRefills(0, 3, 0);
-                $rom->setMantleSpawnRefills(0, 3, 0);
-            } elseif (
-                $item == Item::get('FireRod', $world)
-                || $item == Item::get('CaneOfSomaria', $world)
-                || $item == Item::get('CaneOfByrna', $world)
-            ) {
-                $rom->setEscapeFills(0b00000100);
-                $rom->setUncleSpawnRefills(0x80, 0, 0);
-                $rom->setZeldaSpawnRefills(0x20, 0, 0);
-                $rom->setMantleSpawnRefills(0x20, 0, 0);
-            } else {
-                $rom->setEscapeFills(0b00000000);
-                $rom->setUncleSpawnRefills(0, 0, 0);
-                $rom->setZeldaSpawnRefills(0, 0, 0);
-                $rom->setMantleSpawnRefills(0, 0, 0);
-            }
-
-            if ($world->config('rom.HardMode') == -1) {
-                if ($item instanceof Item\Bow) {
-                    $rom->setEscapeAssist(0b00000001);
-                } elseif ($item == Item::get('TenBombs', $world)) {
-                    $rom->setEscapeAssist(0b00000010);
-                } elseif (
-                    $item == Item::get('FireRod', $world)
-                    || $item == Item::get('CaneOfSomaria', $world)
-                    || $item == Item::get('CaneOfByrna', $world)
-                ) {
-                    $rom->setEscapeAssist(0b00000100);
-                } else {
-                    $rom->setEscapeAssist(0b00000000);
-                }
-            } else {
-                $rom->setEscapeAssist(0b00000000);
-            }
-        } else {
-            $rom->setEscapeFills(0b00000000);
-            $rom->setUncleSpawnRefills(0, 0, 0);
-            $rom->setZeldaSpawnRefills(0, 0, 0);
-            $rom->setMantleSpawnRefills(0, 0, 0);
-            $rom->setEscapeAssist(0b00000000);
-        }
-
         $rom->setCredit('house', $this->getItemCreditsText());
-
         return $this;
     }
 
