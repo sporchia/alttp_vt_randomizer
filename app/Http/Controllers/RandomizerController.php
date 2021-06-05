@@ -11,6 +11,9 @@ use ALttP\Rom;
 use ALttP\Support\WorldCollection;
 use ALttP\World;
 use Exception;
+use GrahamCampbell\Markdown\Facades\Markdown;
+use HTMLPurifier_Config;
+use HTMLPurifier;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
@@ -123,6 +126,20 @@ class RandomizerController extends Controller
             $request->merge(['item_placement' => 'advanced']);
         }
 
+        $spoiler_meta = [];
+
+        $purifier_settings = HTMLPurifier_Config::create(config("purifier.default"));
+        $purifier_settings->loadArray(config("purifier.default"));
+        $purifier = new HTMLPurifier($purifier_settings);
+        if ($request->filled('name')) {
+            $markdowned = Markdown::convertToHtml(substr($request->input('name'), 0, 100));
+            $spoiler_meta['name'] = strip_tags($purifier->purify($markdowned));
+        }
+        if ($request->filled('notes')) {
+            $markdowned = Markdown::convertToHtml(substr($request->input('notes'), 0, 300));
+            $spoiler_meta['notes'] = $purifier->purify($markdowned);
+        }
+
         $world = World::factory($request->input('mode', 'standard'), [
             'itemPlacement' => $request->input('item_placement', 'basic'),
             'dungeonItems' => $request->input('dungeon_items', 'standard'),
@@ -168,11 +185,11 @@ class RandomizerController extends Controller
             }
         }
 
-        $spoiler = $world->getSpoiler([
+        $spoiler = $world->getSpoiler(array_merge($spoiler_meta, [
             'entry_crystals_ganon' => $request->input('crystals.ganon', '7'),
             'entry_crystals_tower' => $request->input('crystals.tower', '7'),
             'worlds' => 1,
-        ]);
+        ]));
 
         if ($world->isEnemized()) {
             $patch = $rom->getWriteLog();
