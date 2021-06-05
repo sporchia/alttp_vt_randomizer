@@ -1,5 +1,227 @@
 export default {
     "de": {
+        "randomizer": {
+            "title": "Randomizer",
+            "preset": {
+                "title": "Wähle Voreinstellungen",
+                "customize": "Customire",
+                "options": {
+                    "default": "Default",
+                    "beginner": "Beginner",
+                    "veetorp": "OWG (Veetorp’s Favorit)",
+                    "crosskeys": "Crosskeys",
+                    "quick": "Super Schnell",
+                    "nightmare": "Albtraum",
+                    "tournament": "Turnier",
+                    "custom": "Benutzerdefiniert"
+                }
+            },
+            "placement": {
+                "title": "Gegenstandsplatzierung"
+            },
+            "item_placement": {
+                "title": "Gegenstandsplatzierung",
+                "options": {
+                    "basic": "Basis",
+                    "advanced": "Erweitert"
+                }
+            },
+            "dungeon_items": {
+                "title": "Palastgegenstände",
+                "options": {
+                    "standard": "Standard",
+                    "mc": "Karten/Kompässe",
+                    "mcs": "Karten/Kompässe/kleine Schlüssel",
+                    "full": "Keysanity"
+                }
+            },
+            "accessibility": {
+                "title": "Zugänglichkeit",
+                "options": {
+                    "items": "100% Inventar",
+                    "locations": "100% der Orte",
+                    "none": "Schaffbar"
+                }
+            },
+            "glitches_required": {
+                "title": "Vorausgesetzte Glitches",
+                "options": {
+                    "none": "Keine",
+                    "overworld_glitches": "Overworld Glitches",
+                    "major_glitches": "Major Glitches",
+                    "no_logic": "Keine Logik"
+                },
+                "glitch_warning": "Diese Einstellung setzt Wissen von Major Glitches voraus<sup>**</sup>"
+            },
+            "goal": {
+                "title": "Ziel",
+                "options": {
+                    "ganon": "Besiege Ganon",
+                    "fast_ganon": "Fast Ganon",
+                    "dungeons": "Alle Dungeons",
+                    "pedestal": "Master-Schwert Sockel",
+                    "triforce-hunt": "Triforce-Splitter"
+                }
+            },
+            "tower_open": {
+                "title": "Turm öffnen",
+                "options": {
+                    "0": "0 Kristalle",
+                    "1": "1 Kristall",
+                    "2": "2 Kristalle",
+                    "3": "3 Kristalle",
+                    "4": "4 Kristalle",
+                    "5": "5 Kristalle",
+                    "6": "6 Kristalle",
+                    "7": "7 Kristalle",
+                    "random": "Zufällig"
+                }
+            },
+            "ganon_open": {
+                "title": "Ganon verwundbar machen",
+                "options": {
+                    "0": "0 Kristalle",
+                    "1": "1 Kristall",
+                    "2": "2 Kristalle",
+                    "3": "3 Kristalle",
+                    "4": "4 Kristalle",
+                    "5": "5 Kristalle",
+                    "6": "6 Kristalle",
+                    "7": "7 Kristalle",
+                    "random": "Zufällig"
+                }
+            },
+            "gameplay": {
+                "title": "Gameplay"
+            },
+            "world_state": {
+                "title": "Zustand der Welt",
+                "options": {
+                    "standard": "Standard",
+                    "open": "Offen",
+                    "inverted": "Invertiert",
+                    "retro": "Retro"
+                }
+            },
+            "entrance_shuffle": {
+                "title": "Entrance Shuffle",
+                "options": {
+                    "none": "Keine",
+                    "simple": "Simpel",
+                    "restricted": "Beschränkt",
+                    "full": "Voll",
+                    "crossed": "Gekreuzt",
+                    "insanity": "Wahnsinn"
+                }
+            },
+            "boss_shuffle": {
+                "title": "Boss Shuffle",
+                "options": {
+                    "none": "Keine",
+                    "simple": "Simpel",
+                    "full": "Voll",
+                    "random": "Zufällig"
+                }
+            },
+            "enemy_shuffle": {
+                "title": "Enemy Shuffle",
+                "options": {
+                    "none": "Keine",
+                    "shuffled": "Gemischt",
+                    "random": "Zufällig"
+                }
+            },
+            "hints": {
+                "title": "Hinweise",
+                "options": {
+                    "on": "An",
+                    "off": "Aus"
+                }
+            },
+            "weapons": {
+                "title": "Schwerter",
+                "options": {
+                    "randomized": "Zufällig",
+                    "assured": "Garantiert",
+                    "vanilla": "Vanilla",
+                    "swordless": "Schwertlos"
+                }
+            },
+            "item_pool": {
+                "title": "Item Pool",
+                "options": {
+                    "easy": "Einfach",
+                    "normal": "Normal",
+                    "hard": "Schwer",
+                    "expert": "Experte",
+                    "crowd_control": "Crowd Control"
+                },
+                "crowd_control_warning": "<sup>*</sup> Diese Erweiterung ist für die Verwundung mit Twitches Crowd Control Erweiterung gedacht. Für mehr Info´s: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
+            },
+            "item_functionality": {
+                "title": "Gegendstands Funktionalität",
+                "options": {
+                    "easy": "Einfach",
+                    "normal": "Normal",
+                    "hard": "Schwer",
+                    "expert": "Experte"
+                }
+            },
+            "enemy_damage": {
+                "title": "Gegnerschaden",
+                "options": {
+                    "default": "Default",
+                    "shuffled": "Gemischt",
+                    "random": "Zufällig"
+                }
+            },
+            "enemy_health": {
+                "title": "Gegnerleben",
+                "options": {
+                    "default": "Default",
+                    "easy": "Einfach",
+                    "hard": "Schwer",
+                    "expert": "Experte"
+                }
+            },
+            "spoiler": {
+                "title": "Spoilers",
+                "options": {
+                    "off": "Disabled",
+                    "on": "Enabled",
+                    "generate": "Nur bei Generieren"
+                }
+            },
+            "generate": {
+                "race": "Generiere ROM für Rennen",
+                "race_warning": "<span class=\"running-now\">Spoilerfrei</span>",
+                "spoiler_race": "ROM für Spoiler Rennen",
+                "casual": "Generiere ROM",
+                "back": "Ändere Einstellung",
+                "regenerate": "Erneut erstellen",
+                "regenerate_tooltip": "Erstellt ein neues Spiel mit den gleichen Einstellungen",
+                "generating": "Am erstellen..."
+            },
+            "details": {
+                "title": "Spiel Details",
+                "save_spoiler": "Speichere Spoiler",
+                "save_rom": "Speichere ROM"
+            },
+            "variation": {
+                "title": "Variation"
+            },
+            "difficulty": {
+                "title": "Schwierigkeitsgrad",
+                "options": {
+                    "easy": "Einfach",
+                    "normal": "Normal",
+                    "hard": "Schwer",
+                    "expert": "Experte",
+                    "insane": "Wahnsinnig",
+                    "crowdControl": "Crowd Control"
+                }
+            }
+        },
         "customizer": {
             "settings": {
                 "timers": {
@@ -81,122 +303,6 @@ export default {
                     "description": "Wenn man diese Option aktiviert werden alle unteren Optionen ignoriert."
                 }
             }
-        },
-        "enemizer": {
-            "title": "Enemizer",
-            "enable": "Aktiviere Enemizer",
-            "disable": "Deaktiviere Enemizer",
-            "enemy_health": {
-                "title": "Gegner Leben",
-                "options": [
-                    "Regulär",
-                    "Einfach (1-4 hp)",
-                    "Mittel (2-15 hp)",
-                    "Schwer (2-30 hp)",
-                    "Wahnsinnig (4-50 hp)"
-                ]
-            },
-            "enemy_damage": {
-                "title": "Gegner Schaden",
-                "options": {
-                    "off": "Regulär",
-                    "shuffle": "Durcheinander",
-                    "chaos": "Chaos"
-                }
-            },
-            "bosses": {
-                "title": "Bosse",
-                "options": {
-                    "off": "Regulär",
-                    "basic": "Basis",
-                    "normal": "Normal",
-                    "chaos": "Chaos"
-                }
-            },
-            "palette_shuffle": "Palettenmischung",
-            "pot_shuffle": "Topf mischen",
-            "enemy_shuffle": "Gegner mischen"
-        },
-        "entrance": {
-            "title": "Entrance Randomizer",
-            "switch": {
-                "item": "Wechsele zum Item Randomizer"
-            },
-            "rom": {
-                "options": "ROM Optionen"
-            },
-            "difficulty": {
-                "title": "Schwierigkeit",
-                "options": {
-                    "easy": "Einfach",
-                    "normal": "Mittel",
-                    "hard": "Schwer",
-                    "expert": "Experte",
-                    "insane": "Wahnsinnig"
-                }
-            },
-            "goal": {
-                "title": "Ziel",
-                "options": {
-                    "ganon": "Besiege Ganon",
-                    "crystals": "Kristalle",
-                    "dungeons": "Alle Dungeons",
-                    "pedestal": "Master-Schwert Sockel",
-                    "triforcehunt": "Triforce Teile"
-                }
-            },
-            "logic": {
-                "title": "Logik",
-                "options": {
-                    "NoGlitches": "Keine Glitches"
-                }
-            },
-            "mode": {
-                "title": "Zustand",
-                "options": {
-                    "swordless": "Schwertlos",
-                    "open": "Offen"
-                }
-            },
-            "shuffle": {
-                "title": "Mischung",
-                "options": {
-                    "simple": "Simpel",
-                    "restricted": "Beschränkt",
-                    "full": "Voll",
-                    "crossed": "Gekreuzt",
-                    "insanity": "Wahnsinn"
-                }
-            },
-            "variation": {
-                "title": "Variation",
-                "options": {
-                    "none": "Keine",
-                    "timed-race": "Zeitrennen",
-                    "timed-ohko": "Zeitlimit bis OHKO",
-                    "ohko": "OHKO",
-                    "triforce-hunt": "Triforce-Splitter Jagd",
-                    "key-sanity": "Keysanity",
-                    "retro": "Retro"
-                }
-            },
-            "generate": {
-                "race": "Generiere ROM für Rennen",
-                "spoiler_race": "ROM für Spoiler Rennen",
-                "casual": "Generiere ROM"
-            },
-            "details": {
-                "title": "Spiele Details",
-                "save_spoiler": "Speichere Spoiler",
-                "save_rom": "Speichere ROM"
-            }
-        },
-        "error": {
-            "title": "Fehler",
-            "429": "Auch wenn wir schätzen das du einen haufen Spiele generierst, andere Leute möchten dies aber auch. Bitte kommen später wieder wenn du mehr generieren möchtest.",
-            "failed_generation": "Fehler beim erstellen :(",
-            "bad_file": "Datei nicht erkannt",
-            "quota_exceeded_error": "Lokaler Cache Speicher ist voll."
         },
         "item": {
             "Random": "Zufällig",
@@ -418,290 +524,6 @@ export default {
             "loader": {
                 "title": "Anfangen",
                 "file_select": "ROM Datei auswählen",
-                "content": "<ol><li>Wähle die Rom Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li><li>Wähle die <a href=\"/de/options\">Spieloptionen</a> um auszuwählen wie Zufällig dein Spiel sein soll</li><li>Klicke Generiere ROM für Rennen</li><li>Dann speichere deine Rom und fang an zu spielen</li></ol>"
-            },
-            "info": {
-                "spoilerwarning": "WARNUNG: Der Ersteller dieses Spiel hat den Spoiler Log angesehen.",
-                "mystery": "Dies ist ein geheimnissvolles Spiel. Die Einstellungen sind unbekannt und müssen beim Spielen herausgefunden werden!",
-                "logic": "Vorausgesetzte Glitches",
-                "accessibility": "Zugänglichkeit",
-                "build": "ROM build",
-                "difficulty": "Schwierigkeitsgrad",
-                "variation": "Variation",
-                "shuffle": "Entrance Shuffle",
-                "mode": "Zustand der Welt",
-                "weapons": "Schwerter",
-                "goal": "Ziel",
-                "permalink": "Permalink",
-                "special": "Spezial",
-                "notes": "Notizen",
-                "generated": "Erstellt"
-            },
-            "settings": {
-                "heart_speed": "Geschwindigkeit des Warnungston bei wenig Leben",
-                "heart_speeds": {
-                    "off": "Aus",
-                    "double": "Doppelte Geschwindigkeit",
-                    "normal": "Normale Geschwindigkeit",
-                    "half": "Halbe Geschwindigkeit",
-                    "quarter": "Viertel Geschwindigkeit"
-                },
-                "menu_speed": "Menü Geschwindigkeit",
-                "menu_speeds": {
-                    "instant": "Instant",
-                    "fast": "Schnell",
-                    "normal": "Normal",
-                    "slow": "Langsam"
-                },
-                "heart_color": "Farbe der Herzen",
-                "heart_colors": {
-                    "blue": "Blau",
-                    "green": "Grün",
-                    "red": "Rot",
-                    "yellow": "Gelb"
-                },
-                "play_as": "Spiele als",
-                "sprite_file_select": ".zspr Datei auswählen",
-                "music": "Hintergrundmusik",
-                "music_info": "(setze zu \"Keine\" für <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 Support</a>)",
-                "quickswap": "Gegenstand Schnellwechsel",
-                "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Funktioniert nicht in einer Rom für Rennen",
-                "reduce_flashing": "Blitzeffekte reduzieren",
-                "reduce_flashing_warning": "Diese Option reduziert die Intensität von Blitzeffekten. Individuelle Lichtempfindlichkeitsreaktionen sind nicht ganz ausgeschlossen."
-            }
-        },
-        "entrance": {
-            "title": "Entrance Randomizer",
-            "switch": {
-                "item": "Wechsele zum Item Randomizer"
-            },
-            "rom": {
-                "options": "ROM Optionen"
-            },
-            "difficulty": {
-                "title": "Schwierigkeit",
-                "options": {
-                    "default": "Default",
-                    "beginner": "Beginner",
-                    "veetorp": "OWG (Veetorp’s Favorit)",
-                    "crosskeys": "Crosskeys",
-                    "quick": "Super Schnell",
-                    "nightmare": "Albtraum",
-                    "tournament": "Turnier",
-                    "custom": "Benutzerdefiniert"
-                }
-            },
-            "placement": {
-                "title": "Gegenstandsplatzierung"
-            },
-            "item_placement": {
-                "title": "Gegenstandsplatzierung",
-                "options": {
-                    "basic": "Basis",
-                    "advanced": "Erweitert"
-                }
-            },
-            "dungeon_items": {
-                "title": "Palastgegenstände",
-                "options": {
-                    "standard": "Standard",
-                    "mc": "Karten/Kompässe",
-                    "mcs": "Karten/Kompässe/kleine Schlüssel",
-                    "full": "Keysanity"
-                }
-            },
-            "accessibility": {
-                "title": "Zugänglichkeit",
-                "options": {
-                    "items": "100% Inventar",
-                    "locations": "100% der Orte",
-                    "none": "Schaffbar"
-                }
-            },
-            "glitches_required": {
-                "title": "Vorausgesetzte Glitches",
-                "options": {
-                    "none": "Keine",
-                    "overworld_glitches": "Overworld Glitches",
-                    "major_glitches": "Major Glitches",
-                    "no_logic": "Keine Logik"
-                },
-                "glitch_warning": "Diese Einstellung setzt Wissen von Major Glitches voraus<sup>**</sup>"
-            },
-            "goal": {
-                "title": "Ziel",
-                "options": {
-                    "ganon": "Besiege Ganon",
-                    "fast_ganon": "Fast Ganon",
-                    "dungeons": "Alle Dungeons",
-                    "pedestal": "Master-Schwert Sockel",
-                    "triforce-hunt": "Triforce-Splitter"
-                }
-            },
-            "tower_open": {
-                "title": "Turm öffnen",
-                "options": {
-                    "0": "0 Kristalle",
-                    "1": "1 Kristall",
-                    "2": "2 Kristalle",
-                    "3": "3 Kristalle",
-                    "4": "4 Kristalle",
-                    "5": "5 Kristalle",
-                    "6": "6 Kristalle",
-                    "7": "7 Kristalle",
-                    "random": "Zufällig"
-                }
-            },
-            "ganon_open": {
-                "title": "Ganon verwundbar machen",
-                "options": {
-                    "0": "0 Kristalle",
-                    "1": "1 Kristall",
-                    "2": "2 Kristalle",
-                    "3": "3 Kristalle",
-                    "4": "4 Kristalle",
-                    "5": "5 Kristalle",
-                    "6": "6 Kristalle",
-                    "7": "7 Kristalle",
-                    "random": "Zufällig"
-                }
-            },
-            "gameplay": {
-                "title": "Gameplay"
-            },
-            "world_state": {
-                "title": "Zustand der Welt",
-                "options": {
-                    "standard": "Standard",
-                    "open": "Offen",
-                    "inverted": "Invertiert",
-                    "retro": "Retro"
-                }
-            },
-            "entrance_shuffle": {
-                "title": "Entrance Shuffle",
-                "options": {
-                    "none": "Keine",
-                    "simple": "Simpel",
-                    "restricted": "Beschränkt",
-                    "full": "Voll",
-                    "crossed": "Gekreuzt",
-                    "insanity": "Wahnsinn"
-                }
-            },
-            "boss_shuffle": {
-                "title": "Boss Shuffle",
-                "options": {
-                    "none": "Keine",
-                    "simple": "Simpel",
-                    "full": "Voll",
-                    "random": "Zufällig"
-                }
-            },
-            "enemy_shuffle": {
-                "title": "Enemy Shuffle",
-                "options": {
-                    "none": "Keine",
-                    "shuffled": "Gemischt",
-                    "random": "Zufällig"
-                }
-            },
-            "hints": {
-                "title": "Hinweise",
-                "options": {
-                    "on": "An",
-                    "off": "Aus"
-                }
-            },
-            "weapons": {
-                "title": "Schwerter",
-                "options": {
-                    "randomized": "Zufällig",
-                    "assured": "Garantiert",
-                    "vanilla": "Vanilla",
-                    "swordless": "Schwertlos"
-                }
-            },
-            "item_pool": {
-                "title": "Item Pool",
-                "options": {
-                    "easy": "Einfach",
-                    "normal": "Normal",
-                    "hard": "Schwer",
-                    "expert": "Experte",
-                    "crowd_control": "Crowd Control"
-                },
-                "crowd_control_warning": "<sup>*</sup> Diese Erweiterung ist für die Verwundung mit Twitches Crowd Control Erweiterung gedacht. Für mehr Info´s: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
-            },
-            "item_functionality": {
-                "title": "Gegendstands Funktionalität",
-                "options": {
-                    "easy": "Einfach",
-                    "normal": "Normal",
-                    "hard": "Schwer",
-                    "expert": "Experte"
-                }
-            },
-            "enemy_damage": {
-                "title": "Gegnerschaden",
-                "options": {
-                    "default": "Default",
-                    "shuffled": "Gemischt",
-                    "random": "Zufällig"
-                }
-            },
-            "enemy_health": {
-                "title": "Gegnerleben",
-                "options": {
-                    "default": "Default",
-                    "easy": "Einfach",
-                    "hard": "Schwer",
-                    "expert": "Experte"
-                }
-            },
-            "spoiler": {
-                "title": "Spoilers",
-                "options": {
-                    "off": "Disabled",
-                    "on": "Enabled",
-                    "generate": "Nur bei Generieren"
-                }
-            },
-            "generate": {
-                "race": "Generiere ROM für Rennen",
-                "race_warning": "<span class=\"running-now\">Spoilerfrei</span>",
-                "spoiler_race": "ROM für Spoiler Rennen",
-                "casual": "Generiere ROM",
-                "back": "Ändere Einstellung",
-                "regenerate": "Erneut erstellen",
-                "regenerate_tooltip": "Erstellt ein neues Spiel mit den gleichen Einstellungen",
-                "generating": "Am erstellen..."
-            },
-            "details": {
-                "title": "Spiel Details",
-                "save_spoiler": "Speichere Spoiler",
-                "save_rom": "Speichere ROM"
-            },
-            "variation": {
-                "title": "Variation"
-            },
-            "difficulty": {
-                "title": "Schwierigkeitsgrad",
-                "options": {
-                    "easy": "Einfach",
-                    "normal": "Normal",
-                    "hard": "Schwer",
-                    "expert": "Experte",
-                    "insane": "Wahnsinnig",
-                    "crowdControl": "Crowd Control"
-                }
-            }
-        },
-        "rom": {
-            "loader": {
-                "title": "Anfangen",
-                "file_select": "ROM Datei auswählen",
                 "content": "<ol><li>Wähle die ROM Datei und lade sie ihn den Browser (Bitte nutze die <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM mit einer .smc oder .sfc Endung)</li><li>Wähle die <a href=\"/de/options\">Spieloptionen</a> um auszuwählen wie Zufällig dein Spiel sein soll</li><li>Klicke Generiere ROM für Rennen</li><li>Dann speichere deine ROM und fang an zu spielen</li></ol>"
             },
             "info": {
@@ -751,11 +573,372 @@ export default {
                 "music_info": "(setze zu \"Keine\" für <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 Support</a>)",
                 "quickswap": "Gegenstand Schnellwechsel",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Funktioniert nicht in einer ROM für Rennen"
+                "race_warning": "Funktioniert nicht in einer ROM für Rennen",
+                "reduce_flashing": "Blitzeffekte reduzieren",
+                "reduce_flashing_warning": "Diese Option reduziert die Intensität von Blitzeffekten. Individuelle Lichtempfindlichkeitsreaktionen sind nicht ganz ausgeschlossen."
             }
+        },
+        "entrance": {
+            "title": "Entrance Randomizer",
+            "switch": {
+                "item": "Wechsele zum Item Randomizer"
+            },
+            "rom": {
+                "options": "ROM Optionen"
+            },
+            "difficulty": {
+                "title": "Schwierigkeit",
+                "options": {
+                    "easy": "Einfach",
+                    "normal": "Mittel",
+                    "hard": "Schwer",
+                    "expert": "Experte",
+                    "insane": "Wahnsinnig"
+                }
+            },
+            "goal": {
+                "title": "Ziel",
+                "options": {
+                    "ganon": "Besiege Ganon",
+                    "crystals": "Kristalle",
+                    "dungeons": "Alle Dungeons",
+                    "pedestal": "Master-Schwert Sockel",
+                    "triforcehunt": "Triforce Teile"
+                }
+            },
+            "logic": {
+                "title": "Logik",
+                "options": {
+                    "NoGlitches": "Keine Glitches"
+                }
+            },
+            "mode": {
+                "title": "Zustand",
+                "options": {
+                    "swordless": "Schwertlos",
+                    "open": "Offen"
+                }
+            },
+            "shuffle": {
+                "title": "Mischung",
+                "options": {
+                    "simple": "Simpel",
+                    "restricted": "Beschränkt",
+                    "full": "Voll",
+                    "crossed": "Gekreuzt",
+                    "insanity": "Wahnsinn"
+                }
+            },
+            "variation": {
+                "title": "Variation",
+                "options": {
+                    "none": "Keine",
+                    "timed-race": "Zeitrennen",
+                    "timed-ohko": "Zeitlimit bis OHKO",
+                    "ohko": "OHKO",
+                    "triforce-hunt": "Triforce-Splitter Jagd",
+                    "key-sanity": "Keysanity",
+                    "retro": "Retro"
+                }
+            },
+            "generate": {
+                "race": "Generiere ROM für Rennen",
+                "spoiler_race": "ROM für Spoiler Rennen",
+                "casual": "Generiere ROM"
+            },
+            "details": {
+                "title": "Spiele Details",
+                "save_spoiler": "Speichere Spoiler",
+                "save_rom": "Speichere ROM"
+            }
+        },
+        "enemizer": {
+            "title": "Enemizer",
+            "enable": "Aktiviere Enemizer",
+            "disable": "Deaktiviere Enemizer",
+            "enemy_health": {
+                "title": "Gegner Leben",
+                "options": [
+                    "Regulär",
+                    "Einfach (1-4 hp)",
+                    "Mittel (2-15 hp)",
+                    "Schwer (2-30 hp)",
+                    "Wahnsinnig (4-50 hp)"
+                ]
+            },
+            "enemy_damage": {
+                "title": "Gegner Schaden",
+                "options": {
+                    "off": "Regulär",
+                    "shuffle": "Durcheinander",
+                    "chaos": "Chaos"
+                }
+            },
+            "bosses": {
+                "title": "Bosse",
+                "options": {
+                    "off": "Regulär",
+                    "basic": "Basis",
+                    "normal": "Normal",
+                    "chaos": "Chaos"
+                }
+            },
+            "palette_shuffle": "Palettenmischung",
+            "pot_shuffle": "Topf mischen",
+            "enemy_shuffle": "Gegner mischen"
+        },
+        "error": {
+            "title": "Fehler",
+            "429": "Auch wenn wir schätzen das du einen haufen Spiele generierst, andere Leute möchten dies aber auch. Bitte kommen später wieder wenn du mehr generieren möchtest.",
+            "failed_generation": "Fehler beim erstellen :(",
+            "bad_file": "Datei nicht erkannt",
+            "quota_exceeded_error": "Lokaler Cache Speicher ist voll."
         }
     },
     "en": {
+        "randomizer": {
+            "title": "Randomizer",
+            "preset": {
+                "title": "Select Preset",
+                "customize": "Customize",
+                "options": {
+                    "default": "Default",
+                    "beginner": "Beginner",
+                    "veetorp": "OWG (Veetorp’s Favorite)",
+                    "crosskeys": "Crosskeys",
+                    "quick": "Super Quick",
+                    "nightmare": "Nightmare",
+                    "tournament": "Tournament",
+                    "custom": "Custom"
+                }
+            },
+            "placement": {
+                "title": "Item Placement"
+            },
+            "item_placement": {
+                "title": "Item Placement",
+                "options": {
+                    "basic": "Basic",
+                    "advanced": "Advanced"
+                }
+            },
+            "dungeon_items": {
+                "title": "Dungeon Item Shuffle",
+                "options": {
+                    "standard": "Standard",
+                    "mc": "Maps/Compasses",
+                    "mcs": "Maps/Compasses/Small Keys",
+                    "full": "Keysanity"
+                }
+            },
+            "accessibility": {
+                "title": "Accessibility",
+                "options": {
+                    "items": "100% Inventory",
+                    "locations": "100% Locations",
+                    "none": "Beatable"
+                }
+            },
+            "glitches_required": {
+                "title": "Glitches Required",
+                "options": {
+                    "none": "None",
+                    "overworld_glitches": "Overworld Glitches",
+                    "major_glitches": "Major Glitches",
+                    "no_logic": "No Logic"
+                },
+                "glitch_warning": "These settings require knowledge of Major Glitches<sup>**</sup>"
+            },
+            "goal": {
+                "title": "Goal",
+                "options": {
+                    "ganon": "Defeat Ganon",
+                    "fast_ganon": "Fast Ganon",
+                    "dungeons": "All Dungeons",
+                    "pedestal": "Master Sword Pedestal",
+                    "triforce-hunt": "Triforce Pieces"
+                }
+            },
+            "tower_open": {
+                "title": "Open Tower",
+                "options": {
+                    "0": "0 Crystals",
+                    "1": "1 Crystal",
+                    "2": "2 Crystals",
+                    "3": "3 Crystals",
+                    "4": "4 Crystals",
+                    "5": "5 Crystals",
+                    "6": "6 Crystals",
+                    "7": "7 Crystals",
+                    "random": "Random"
+                }
+            },
+            "ganon_open": {
+                "title": "Ganon Vulnerable",
+                "options": {
+                    "0": "0 Crystals",
+                    "1": "1 Crystal",
+                    "2": "2 Crystals",
+                    "3": "3 Crystals",
+                    "4": "4 Crystals",
+                    "5": "5 Crystals",
+                    "6": "6 Crystals",
+                    "7": "7 Crystals",
+                    "random": "Random"
+                }
+            },
+            "gameplay": {
+                "title": "Gameplay"
+            },
+            "world_state": {
+                "title": "World State",
+                "options": {
+                    "standard": "Standard",
+                    "open": "Open",
+                    "inverted": "Inverted",
+                    "retro": "Retro"
+                }
+            },
+            "entrance_shuffle": {
+                "title": "Entrance Shuffle",
+                "options": {
+                    "none": "None",
+                    "simple": "Simple",
+                    "restricted": "Restricted",
+                    "full": "Full",
+                    "crossed": "Crossed",
+                    "insanity": "Insanity"
+                }
+            },
+            "boss_shuffle": {
+                "title": "Boss Shuffle",
+                "options": {
+                    "none": "None",
+                    "simple": "Simple",
+                    "full": "Full",
+                    "random": "Random"
+                }
+            },
+            "enemy_shuffle": {
+                "title": "Enemy Shuffle",
+                "options": {
+                    "none": "None",
+                    "shuffled": "Shuffled",
+                    "random": "Random"
+                }
+            },
+            "hints": {
+                "title": "Hints",
+                "options": {
+                    "on": "On",
+                    "off": "Off"
+                }
+            },
+            "weapons": {
+                "title": "Swords",
+                "options": {
+                    "randomized": "Randomized",
+                    "assured": "Assured",
+                    "vanilla": "Vanilla",
+                    "swordless": "Swordless"
+                }
+            },
+            "item_pool": {
+                "title": "Item Pool",
+                "options": {
+                    "easy": "Easy",
+                    "normal": "Normal",
+                    "hard": "Hard",
+                    "expert": "Expert",
+                    "crowd_control": "Crowd Control"
+                },
+                "crowd_control_warning": "<sup>*</sup> This setting is meant to be used with the Crowd Control Twitch extension. find out more: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
+            },
+            "item_functionality": {
+                "title": "Item Functionality",
+                "options": {
+                    "easy": "Easy",
+                    "normal": "Normal",
+                    "hard": "Hard",
+                    "expert": "Expert"
+                }
+            },
+            "enemy_damage": {
+                "title": "Enemy Damage",
+                "options": {
+                    "default": "Default",
+                    "shuffled": "Shuffled",
+                    "random": "Random"
+                }
+            },
+            "enemy_health": {
+                "title": "Enemy Health",
+                "options": {
+                    "default": "Default",
+                    "easy": "Easy",
+                    "hard": "Hard",
+                    "expert": "Expert"
+                }
+            },
+            "spoiler": {
+                "title": "Spoilers",
+                "options": {
+                    "off": "Disabled",
+                    "on": "Enabled",
+                    "generate": "Only on Generate",
+                    "mystery": "Mystery (settings hidden)"
+                }
+            },
+            "generate": {
+                "race": "Generate Race ROM",
+                "race_warning": "Spoilers will <span class=\"running-now\">never</span> be available for this option.",
+                "spoiler_race": "Generate Normal ROM",
+                "casual": "Generate ROM",
+                "back": "Change Settings",
+                "regenerate": "Generate Again",
+                "regenerate_tooltip": "Generate new game with same settings",
+                "generating": "Generating..."
+            },
+            "details": {
+                "title": "Game Details",
+                "save_spoiler": "Save Spoiler",
+                "save_rom": "Save ROM"
+            },
+            "variation": {
+                "title": "Variation"
+            },
+            "difficulty": {
+                "title": "Difficulty",
+                "options": {
+                    "easy": "Easy",
+                    "normal": "Normal",
+                    "hard": "Hard",
+                    "expert": "Expert",
+                    "insane": "Insane",
+                    "crowdControl": "Crowd Control"
+                }
+            }
+        },
+        "region": {
+            "all": "All Regions",
+            "Light World": "Light World",
+            "Hyrule Castle": "Hyrule Castle",
+            "Eastern Palace": "Eastern Palace",
+            "Desert Palace": "Desert Palace",
+            "Death Mountain": "Death Mountain",
+            "Tower Of Hera": "Tower Of Hera",
+            "Castle Tower": "Castle Tower",
+            "Dark World": "Dark World",
+            "Dark Palace": "Dark Palace",
+            "Swamp Palace": "Swamp Palace",
+            "Skull Woods": "Skull Woods",
+            "Thieves Town": "Thieves Town",
+            "Ice Palace": "Ice Palace",
+            "Misery Mire": "Misery Mire",
+            "Turtle Rock": "Turtle Rock",
+            "Ganons Tower": "Ganons Tower",
+            "Special": "Special"
+        },
         "customizer": {
             "settings": {
                 "timers": {
@@ -841,252 +1024,6 @@ export default {
                     "description": "Set the type of ROM fixes applied.  Does not change item placement logic."
                 }
             }
-        },
-        "enemizer": {
-            "title": "Enemizer",
-            "enable": "Enable Enemizer",
-            "disable": "Disable Enemizer",
-            "enemy_health": {
-                "title": "Enemy Health",
-                "options": [
-                    "Default",
-                    "Easy (1-4 hp)",
-                    "Normal (2-15 hp)",
-                    "Hard (2-30 hp)",
-                    "Brick Wall (4-50 hp)"
-                ]
-            },
-            "enemy_damage": {
-                "title": "Enemy Damage",
-                "options": {
-                    "off": "Default",
-                    "shuffle": "Shuffled",
-                    "chaos": "Chaos"
-                }
-            },
-            "bosses": {
-                "title": "Boss Shuffle",
-                "options": {
-                    "off": "Off",
-                    "double": "Double Speed",
-                    "normal": "Normal Speed",
-                    "half": "Half Speed",
-                    "quarter": "Quarter Speed"
-                },
-                "menu_speed": "Menu Speed",
-                "menu_speeds": {
-                    "instant": "Instant",
-                    "fast": "Fast",
-                    "normal": "Normal",
-                    "slow": "Slow"
-                },
-                "heart_color": "Heart Color",
-                "heart_colors": {
-                    "blue": "Blue",
-                    "green": "Green",
-                    "red": "Red",
-                    "yellow": "Yellow"
-                },
-                "play_as": "Play As",
-                "sprite_file_select": "Select .zspr File",
-                "music": "Background Music",
-                "music_info": "(set to \"No\" for <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 support</a>)",
-                "quickswap": "Item Quickswap",
-                "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Does not work in Race Roms",
-                "reduce_flashing": "Reduce Flashing",
-                "reduce_flashing_warning": "This option only reduces the effects of flashing. Individual photosensitivity to effects may still vary."
-            }
-        },
-        "entrance": {
-            "title": "Entrance Randomizer",
-            "switch": {
-                "item": "Switch to Item Randomizer"
-            },
-            "rom": {
-                "options": "ROM Options"
-            },
-            "difficulty": {
-                "title": "Difficulty",
-                "options": {
-                    "easy": "Easy",
-                    "normal": "Normal",
-                    "hard": "Hard",
-                    "expert": "Expert",
-                    "insane": "Insane"
-                }
-            },
-            "goal": {
-                "title": "Goal",
-                "options": {
-                    "ganon": "Defeat Ganon",
-                    "crystals": "Crystals",
-                    "dungeons": "All Dungeons",
-                    "pedestal": "Master Sword Pedestal",
-                    "triforcehunt": "Triforce Pieces"
-                }
-            },
-            "logic": {
-                "title": "Logic",
-                "options": {
-                    "NoGlitches": "No Glitches"
-                }
-            },
-            "mode": {
-                "title": "State",
-                "options": {
-                    "swordless": "Swordless",
-                    "open": "Open"
-                }
-            },
-            "shuffle": {
-                "title": "Shuffle",
-                "options": {
-                    "simple": "Simple",
-                    "restricted": "Restricted",
-                    "full": "Full",
-                    "crossed": "Crossed",
-                    "insanity": "Insanity"
-                }
-            },
-            "variation": {
-                "title": "Variation",
-                "options": {
-                    "none": "None",
-                    "timed-race": "Timed Race",
-                    "timed-ohko": "Timed OHKO",
-                    "ohko": "OHKO",
-                    "triforce-hunt": "Triforce Piece Hunt",
-                    "key-sanity": "Keysanity",
-                    "retro": "Retro"
-                }
-            },
-            "generate": {
-                "race": "Generate Race ROM",
-                "spoiler_race": "Spoiler Race ROM",
-                "casual": "Generate ROM"
-            },
-            "details": {
-                "title": "Game Details",
-                "save_spoiler": "Save Spoiler",
-                "save_rom": "Save ROM"
-            }
-        },
-        "enemizer": {
-            "title": "Enemizer",
-            "enable": "Enable Enemizer",
-            "disable": "Disable Enemizer",
-            "enemy_health": {
-                "title": "Enemy Health",
-                "options": [
-                    "Default",
-                    "Easy (1-4 hp)",
-                    "Normal (2-15 hp)",
-                    "Hard (2-30 hp)",
-                    "Brick Wall (4-50 hp)"
-                ]
-            },
-            "enemy_damage": {
-                "title": "Enemy Damage",
-                "options": {
-                    "off": "Default",
-                    "shuffle": "Shuffled",
-                    "chaos": "Chaos"
-                }
-            },
-            "bosses": {
-                "title": "Boss Shuffle",
-                "options": {
-                    "off": "Off",
-                    "basic": "Simple",
-                    "normal": "Full",
-                    "chaos": "Chaos"
-                }
-            },
-            "palette_shuffle": "Palette Shuffle",
-            "pot_shuffle": "Pot Shuffle",
-            "enemy_shuffle": "Enemy Shuffle"
-        },
-        "entrance": {
-            "title": "Entrance Randomizer",
-            "switch": {
-                "item": "Switch to Item Randomizer"
-            },
-            "rom": {
-                "options": "ROM Options"
-            },
-            "difficulty": {
-                "title": "Difficulty",
-                "options": {
-                    "easy": "Easy",
-                    "normal": "Normal",
-                    "hard": "Hard",
-                    "expert": "Expert",
-                    "insane": "Insane"
-                }
-            },
-            "goal": {
-                "title": "Goal",
-                "options": {
-                    "ganon": "Defeat Ganon",
-                    "crystals": "Crystals",
-                    "dungeons": "All Dungeons",
-                    "pedestal": "Master Sword Pedestal",
-                    "triforcehunt": "Triforce Pieces"
-                }
-            },
-            "logic": {
-                "title": "Logic",
-                "options": {
-                    "NoGlitches": "No Glitches"
-                }
-            },
-            "mode": {
-                "title": "State",
-                "options": {
-                    "swordless": "Swordless",
-                    "open": "Open"
-                }
-            },
-            "shuffle": {
-                "title": "Shuffle",
-                "options": {
-                    "simple": "Simple",
-                    "restricted": "Restricted",
-                    "full": "Full",
-                    "crossed": "Crossed",
-                    "insanity": "Insanity"
-                }
-            },
-            "variation": {
-                "title": "Variation",
-                "options": {
-                    "none": "None",
-                    "timed-race": "Timed Race",
-                    "timed-ohko": "Timed OHKO",
-                    "ohko": "OHKO",
-                    "triforce-hunt": "Triforce Piece Hunt",
-                    "key-sanity": "Keysanity",
-                    "retro": "Retro"
-                }
-            },
-            "generate": {
-                "race": "Generate Race ROM",
-                "spoiler_race": "Spoiler Race ROM",
-                "casual": "Generate ROM"
-            },
-            "details": {
-                "title": "Game Details",
-                "save_spoiler": "Save Spoiler",
-                "save_rom": "Save Rom"
-            }
-        },
-        "error": {
-            "title": "Error",
-            "429": "While we apprecate your want to generate a lot of games, Other people would like to as well. Please come back later if you would like to generate more.",
-            "failed_generation": "Failed Creating Game :(",
-            "bad_file": "File not recognized",
-            "quota_exceeded_error": "Your local storage quota has been exceeded."
         },
         "item": {
             "Random": "Random",
@@ -1309,254 +1246,11 @@ export default {
             "title": "Multiworld Randomizer",
             "generate": "Generate Multiworld Data File"
         },
-        "randomizer": {
-            "title": "Randomizer",
-            "preset": {
-                "title": "Select Preset",
-                "customize": "Customize",
-                "options": {
-                    "default": "Default",
-                    "beginner": "Beginner",
-                    "veetorp": "OWG (Veetorp’s Favorite)",
-                    "crosskeys": "Crosskeys",
-                    "quick": "Super Quick",
-                    "nightmare": "Nightmare",
-                    "tournament": "Tournament",
-                    "custom": "Custom"
-                }
-            },
-            "placement": {
-                "title": "Item Placement"
-            },
-            "item_placement": {
-                "title": "Item Placement",
-                "options": {
-                    "basic": "Basic",
-                    "advanced": "Advanced"
-                }
-            },
-            "dungeon_items": {
-                "title": "Dungeon Item Shuffle",
-                "options": {
-                    "standard": "Standard",
-                    "mc": "Maps/Compasses",
-                    "mcs": "Maps/Compasses/Small Keys",
-                    "full": "Keysanity"
-                }
-            },
-            "accessibility": {
-                "title": "Accessibility",
-                "options": {
-                    "items": "100% Inventory",
-                    "locations": "100% Locations",
-                    "none": "Beatable"
-                }
-            },
-            "glitches_required": {
-                "title": "Glitches Required",
-                "options": {
-                    "none": "None",
-                    "overworld_glitches": "Overworld Glitches",
-                    "major_glitches": "Major Glitches",
-                    "no_logic": "No Logic"
-                },
-                "glitch_warning": "These settings require knowledge of Major Glitches<sup>**</sup>"
-            },
-            "goal": {
-                "title": "Goal",
-                "options": {
-                    "ganon": "Defeat Ganon",
-                    "fast_ganon": "Fast Ganon",
-                    "dungeons": "All Dungeons",
-                    "pedestal": "Master Sword Pedestal",
-                    "triforce-hunt": "Triforce Pieces"
-                }
-            },
-            "tower_open": {
-                "title": "Open Tower",
-                "options": {
-                    "0": "0 Crystals",
-                    "1": "1 Crystal",
-                    "2": "2 Crystals",
-                    "3": "3 Crystals",
-                    "4": "4 Crystals",
-                    "5": "5 Crystals",
-                    "6": "6 Crystals",
-                    "7": "7 Crystals",
-                    "random": "Random"
-                }
-            },
-            "ganon_open": {
-                "title": "Ganon Vulnerable",
-                "options": {
-                    "0": "0 Crystals",
-                    "1": "1 Crystal",
-                    "2": "2 Crystals",
-                    "3": "3 Crystals",
-                    "4": "4 Crystals",
-                    "5": "5 Crystals",
-                    "6": "6 Crystals",
-                    "7": "7 Crystals",
-                    "random": "Random"
-                }
-            },
-            "gameplay": {
-                "title": "Gameplay"
-            },
-            "world_state": {
-                "title": "World State",
-                "options": {
-                    "standard": "Standard",
-                    "open": "Open",
-                    "inverted": "Inverted",
-                    "retro": "Retro"
-                }
-            },
-            "entrance_shuffle": {
-                "title": "Entrance Shuffle",
-                "options": {
-                    "none": "None",
-                    "simple": "Simple",
-                    "restricted": "Restricted",
-                    "full": "Full",
-                    "crossed": "Crossed",
-                    "insanity": "Insanity"
-                }
-            },
-            "boss_shuffle": {
-                "title": "Boss Shuffle",
-                "options": {
-                    "none": "None",
-                    "simple": "Simple",
-                    "full": "Full",
-                    "random": "Random"
-                }
-            },
-            "enemy_shuffle": {
-                "title": "Enemy Shuffle",
-                "options": {
-                    "none": "None",
-                    "shuffled": "Shuffled",
-                    "random": "Random"
-                }
-            },
-            "hints": {
-                "title": "Hints",
-                "options": {
-                    "on": "On",
-                    "off": "Off"
-                }
-            },
-            "weapons": {
-                "title": "Swords",
-                "options": {
-                    "randomized": "Randomized",
-                    "assured": "Assured",
-                    "vanilla": "Vanilla",
-                    "swordless": "Swordless"
-                }
-            },
-            "item_pool": {
-                "title": "Item Pool",
-                "options": {
-                    "easy": "Easy",
-                    "normal": "Normal",
-                    "hard": "Hard",
-                    "expert": "Expert",
-                    "crowd_control": "Crowd Control"
-                },
-                "crowd_control_warning": "<sup>*</sup> This setting is meant to be used with the Crowd Control Twitch extension. find out more: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
-            },
-            "item_functionality": {
-                "title": "Item Functionality",
-                "options": {
-                    "easy": "Easy",
-                    "normal": "Normal",
-                    "hard": "Hard",
-                    "expert": "Expert"
-                }
-            },
-            "enemy_damage": {
-                "title": "Enemy Damage",
-                "options": {
-                    "default": "Default",
-                    "shuffled": "Shuffled",
-                    "random": "Random"
-                }
-            },
-            "enemy_health": {
-                "title": "Enemy Health",
-                "options": {
-                    "default": "Default",
-                    "easy": "Easy",
-                    "hard": "Hard",
-                    "expert": "Expert"
-                }
-            },
-            "spoiler": {
-                "title": "Spoilers",
-                "options": {
-                    "off": "Disabled",
-                    "on": "Enabled",
-                    "generate": "Only on Generate",
-                    "mystery": "Mystery (settings hidden)"
-                }
-            },
-            "generate": {
-                "race": "Generate Race ROM",
-                "race_warning": "Spoilers will <span class=\"running-now\">never</span> be available for this option.",
-                "spoiler_race": "Generate Normal ROM",
-                "casual": "Generate ROM",
-                "back": "Change Settings",
-                "regenerate": "Generate Again",
-                "regenerate_tooltip": "Generate new game with same settings",
-                "generating": "Generating..."
-            },
-            "details": {
-                "title": "Game Details",
-                "save_spoiler": "Save Spoiler",
-                "save_rom": "Save Rom"
-            },
-            "variation": {
-                "title": "Variation"
-            },
-            "difficulty": {
-                "title": "Difficulty",
-                "options": {
-                    "easy": "Easy",
-                    "normal": "Normal",
-                    "hard": "Hard",
-                    "expert": "Expert",
-                    "insane": "Insane",
-                    "crowdControl": "Crowd Control"
-                }
-            }
-        },
-        "region": {
-            "all": "All Regions",
-            "Light World": "Light World",
-            "Hyrule Castle": "Hyrule Castle",
-            "Eastern Palace": "Eastern Palace",
-            "Desert Palace": "Desert Palace",
-            "Death Mountain": "Death Mountain",
-            "Tower Of Hera": "Tower Of Hera",
-            "Castle Tower": "Castle Tower",
-            "Dark World": "Dark World",
-            "Dark Palace": "Dark Palace",
-            "Swamp Palace": "Swamp Palace",
-            "Skull Woods": "Skull Woods",
-            "Thieves Town": "Thieves Town",
-            "Ice Palace": "Ice Palace",
-            "Misery Mire": "Misery Mire",
-            "Turtle Rock": "Turtle Rock",
-            "Ganons Tower": "Ganons Tower",
-            "Special": "Special"
-        },
         "rom": {
             "loader": {
                 "title": "Getting Started",
                 "file_select": "Select ROM File",
-                "content": "<ol><li>Select your rom file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li><li>Select the <a href=\"/en/options\">Game Options</a> for how you would like your game randomized</li><li>Click Generate Normal ROM</li><li>Then Save your rom and get to playing</li></ol>"
+                "content": "<ol><li>Select your ROM file and load it into the browser (Please use a <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> ROM with an .smc or .sfc extension)</li><li>Select the <a href=\"/en/options\">Game Options</a> for how you would like your game randomized</li><li>Click Generate Normal ROM</li><li>Then Save your ROM and get to playing</li></ol>"
             },
             "info": {
                 "spoilerwarning": "WARNING: The generator of this game viewed the spoiler log.",
@@ -1605,8 +1299,126 @@ export default {
                 "music_info": "(set to \"No\" for <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">MSU-1 support</a>)",
                 "quickswap": "Item Quickswap",
                 "palette_shuffle": "Palette Shuffle",
-                "race_warning": "Does not work in Race ROMs"
+                "race_warning": "Does not work in Race ROMs",
+                "reduce_flashing": "Reduce Flashing",
+                "reduce_flashing_warning": "This option only reduces the effects of flashing. Individual photosensitivity to effects may still vary."
             }
+        },
+        "entrance": {
+            "title": "Entrance Randomizer",
+            "switch": {
+                "item": "Switch to Item Randomizer"
+            },
+            "rom": {
+                "options": "ROM Options"
+            },
+            "difficulty": {
+                "title": "Difficulty",
+                "options": {
+                    "easy": "Easy",
+                    "normal": "Normal",
+                    "hard": "Hard",
+                    "expert": "Expert",
+                    "insane": "Insane"
+                }
+            },
+            "goal": {
+                "title": "Goal",
+                "options": {
+                    "ganon": "Defeat Ganon",
+                    "crystals": "Crystals",
+                    "dungeons": "All Dungeons",
+                    "pedestal": "Master Sword Pedestal",
+                    "triforcehunt": "Triforce Pieces"
+                }
+            },
+            "logic": {
+                "title": "Logic",
+                "options": {
+                    "NoGlitches": "No Glitches"
+                }
+            },
+            "mode": {
+                "title": "State",
+                "options": {
+                    "swordless": "Swordless",
+                    "open": "Open"
+                }
+            },
+            "shuffle": {
+                "title": "Shuffle",
+                "options": {
+                    "simple": "Simple",
+                    "restricted": "Restricted",
+                    "full": "Full",
+                    "crossed": "Crossed",
+                    "insanity": "Insanity"
+                }
+            },
+            "variation": {
+                "title": "Variation",
+                "options": {
+                    "none": "None",
+                    "timed-race": "Timed Race",
+                    "timed-ohko": "Timed OHKO",
+                    "ohko": "OHKO",
+                    "triforce-hunt": "Triforce Piece Hunt",
+                    "key-sanity": "Keysanity",
+                    "retro": "Retro"
+                }
+            },
+            "generate": {
+                "race": "Generate Race ROM",
+                "spoiler_race": "Spoiler Race ROM",
+                "casual": "Generate ROM"
+            },
+            "details": {
+                "title": "Game Details",
+                "save_spoiler": "Save Spoiler",
+                "save_rom": "Save ROM"
+            }
+        },
+        "enemizer": {
+            "title": "Enemizer",
+            "enable": "Enable Enemizer",
+            "disable": "Disable Enemizer",
+            "enemy_health": {
+                "title": "Enemy Health",
+                "options": [
+                    "Default",
+                    "Easy (1-4 hp)",
+                    "Normal (2-15 hp)",
+                    "Hard (2-30 hp)",
+                    "Brick Wall (4-50 hp)"
+                ]
+            },
+            "enemy_damage": {
+                "title": "Enemy Damage",
+                "options": {
+                    "off": "Default",
+                    "shuffle": "Shuffled",
+                    "chaos": "Chaos"
+                }
+            },
+            "bosses": {
+                "title": "Boss Shuffle",
+                "options": {
+                    "off": "Off",
+                    "basic": "Simple",
+                    "normal": "Full",
+                    "chaos": "Chaos"
+                }
+            },
+            "palette_shuffle": "Palette Shuffle",
+            "pot_shuffle": "Pot Shuffle",
+            "enemy_shuffle": "Enemy Shuffle"
+        },
+        "error": {
+            "title": "Error",
+            "429": "While we apprecate your want to generate a lot of games, Other people would like to as well. Please come back later if you would like to generate more.",
+            "failed_generation": "Failed Creating Game :(",
+            "bad_file": "File not recognized",
+            "quota_exceeded_error": "Your local storage quota has been exceeded."
         },
         "sprite": {
             "Raven": "Raven",
@@ -1856,6 +1668,228 @@ export default {
         }
     },
     "es": {
+        "randomizer": {
+            "title": "Randomizer",
+            "preset": {
+                "title": "Seleccionar plantilla",
+                "customize": "Customizar",
+                "options": {
+                    "default": "Por Defecto",
+                    "beginner": "Principiante",
+                    "veetorp": "Glitches de Superfície (el favorito de Veetorp)",
+                    "crosskeys": "Crosskeys",
+                    "quick": "Súper Rápido",
+                    "nightmare": "Pesadilla",
+                    "tournament": "Torneo",
+                    "custom": "Personalizado"
+                }
+            },
+            "placement": {
+                "title": "Colocación de Objetos"
+            },
+            "item_placement": {
+                "title": "Colocación de Objetos",
+                "options": {
+                    "basic": "Básica",
+                    "advanced": "Avanzada"
+                }
+            },
+            "dungeon_items": {
+                "title": "Objetos de Mazmorras",
+                "options": {
+                    "standard": "Normal",
+                    "mc": "Mapas/Brújulas",
+                    "mcs": "Mapas/Brújulas/Llaves pequeñas",
+                    "full": "Keysanity"
+                }
+            },
+            "accessibility": {
+                "title": "Accesibilidad",
+                "options": {
+                    "items": "100% inventario",
+                    "locations": "100% localizaciones",
+                    "none": "Completable"
+                }
+            },
+            "glitches_required": {
+                "title": "Glitches Requeridos",
+                "options": {
+                    "none": "Ninguno",
+                    "overworld_glitches": "Glitches de la Superfície",
+                    "major_glitches": "Glitches Mayores",
+                    "no_logic": "Sin lógica"
+                },
+                "glitch_warning": "Esta Lógica require conocimiento de Glithes Mayores<sup>**</sup>"
+            },
+            "goal": {
+                "title": "Objetivo",
+                "options": {
+                    "ganon": "Derrotar a Ganon",
+                    "fast_ganon": "Ganon Rápido",
+                    "dungeons": "Todas las mazmorras",
+                    "pedestal": "Pedestal de la Espada Maestra",
+                    "triforce-hunt": "Piezas de la Trifuerza"
+                }
+            },
+            "tower_open": {
+                "title": "Torre Abierta",
+                "options": {
+                    "0": "0 Cristales",
+                    "1": "1 Cristal",
+                    "2": "2 Cristales",
+                    "3": "3 Cristales",
+                    "4": "4 Cristales",
+                    "5": "5 Cristales",
+                    "6": "6 Cristales",
+                    "7": "7 Cristales",
+                    "random": "Aleatorio"
+                }
+            },
+            "ganon_open": {
+                "title": "Ganon Vulnerable",
+                "options": {
+                    "0": "0 Cristales",
+                    "1": "1 Cristal",
+                    "2": "2 Cristales",
+                    "3": "3 Cristales",
+                    "4": "4 Cristales",
+                    "5": "5 Cristales",
+                    "6": "6 Cristales",
+                    "7": "7 Cristales",
+                    "random": "Aleatorio"
+                }
+            },
+            "gameplay": {
+                "title": "Gameplay"
+            },
+            "world_state": {
+                "title": "Estado del mundo",
+                "options": {
+                    "standard": "Estándar",
+                    "open": "Abierto",
+                    "inverted": "Inverso",
+                    "retro": "Retro"
+                }
+            },
+            "entrance_shuffle": {
+                "title": "Randomizer de entradas",
+                "options": {
+                    "none": "Ninguno",
+                    "simple": "Simple",
+                    "restricted": "Restringido",
+                    "full": "Completo",
+                    "crossed": "Cruzado",
+                    "insanity": "Locura"
+                }
+            },
+            "boss_shuffle": {
+                "title": "Randomizer de Jefes",
+                "options": {
+                    "none": "Ninguno",
+                    "simple": "Simple",
+                    "full": "Completo",
+                    "random": "Aleatorio"
+                }
+            },
+            "enemy_shuffle": {
+                "title": "Randomizer de Enemigos",
+                "options": {
+                    "none": "Ninguno",
+                    "shuffled": "Barajado",
+                    "random": "Aleatorio"
+                }
+            },
+            "hints": {
+                "title": "Pistas",
+                "options": {
+                    "on": "On",
+                    "off": "Off"
+                }
+            },
+            "weapons": {
+                "title": "Espadas",
+                "options": {
+                    "randomized": "Randomizadas",
+                    "assured": "Aseguradas",
+                    "vanilla": "Vanilla",
+                    "swordless": "Sin Espadas"
+                }
+            },
+            "item_pool": {
+                "title": "Reserva de Objetos",
+                "options": {
+                    "easy": "Fácil",
+                    "normal": "Normal",
+                    "hard": "Difícil",
+                    "expert": "Experto",
+                    "crowd_control": "Crowd Control"
+                },
+                "crowd_control_warning": "<sup>*</sup> Esta opción está hecha para jugarse con la extensión de Twitch de <i>Crowd Control</i>. Para saber más: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
+            },
+            "item_functionality": {
+                "title": "Funcionalidad de Objetos",
+                "options": {
+                    "easy": "Fácil",
+                    "normal": "Normal",
+                    "hard": "Difícil",
+                    "expert": "Experto"
+                }
+            },
+            "enemy_damage": {
+                "title": "Daño de Enemigos",
+                "options": {
+                    "default": "Por Defecto",
+                    "shuffled": "Barajado",
+                    "random": "Aleatorio"
+                }
+            },
+            "enemy_health": {
+                "title": "Vida de Enemigos",
+                "options": {
+                    "default": "Por Defecto",
+                    "easy": "Fácil",
+                    "hard": "Difícil",
+                    "expert": "Experto"
+                }
+            },
+            "spoiler": {
+                "title": "Spoilers",
+                "options": {
+                    "off": "Disabled",
+                    "on": "Enabled",
+                    "generate": "Solo en Generar"
+                }
+            },
+            "generate": {
+                "race": "Generar ROM para carreras",
+                "race_warning": "<span class=\"running-now\">sin spoilers</span>",
+                "spoiler_race": "Generar ROM para carreras (con spoilers)",
+                "casual": "Generar ROM",
+                "back": "Cambiar ajustes",
+                "regenerate": "Generar otra vez",
+                "regenerate_tooltip": "Generar otra partida con las mismas opciones",
+                "generating": "Generando..."
+            },
+            "details": {
+                "title": "Detalles del juego",
+                "save_spoiler": "Guardar spoiler",
+                "save_rom": "Guardar ROM"
+            },
+            "variation": {
+                "title": "Variación"
+            },
+            "difficulty": {
+                "title": "Dificultad",
+                "options": {
+                    "easy": "Fácil",
+                    "normal": "Normal",
+                    "hard": "Difícil",
+                    "expert": "Experto",
+                    "insane": "Locura",
+                    "crowdControl": "Crowd Control"
+                }
+            }
+        },
         "customizer": {
             "settings": {
                 "timers": {
@@ -1937,122 +1971,6 @@ export default {
                     "description": "Cuando esto está activado, todas las garantías desaparecen, y nada de lo que hay aquí importa."
                 }
             }
-        },
-        "enemizer": {
-            "title": "Randomizer de enemigos (Enemizer)",
-            "enable": "Activar Enemizer",
-            "disable": "Desactivar Enemizer",
-            "enemy_health": {
-                "title": "Vida de enemigos",
-                "options": [
-                    "Normal",
-                    "Fácil (1-4 hp)",
-                    "Medio (2-15 hp)",
-                    "Difícil (2-30 hp)",
-                    "Locura (4-50 hp)"
-                ]
-            },
-            "enemy_damage": {
-                "title": "Daño de enemigos",
-                "options": {
-                    "off": "Normal",
-                    "shuffle": "Aleatorio",
-                    "chaos": "Caos"
-                }
-            },
-            "bosses": {
-                "title": "Jefes",
-                "options": {
-                    "off": "Normal",
-                    "basic": "Básico",
-                    "normal": "Normal",
-                    "chaos": "Caos"
-                }
-            },
-            "palette_shuffle": "Paleta aleatoria",
-            "pot_shuffle": "Vasijas aleatorias",
-            "enemy_shuffle": "Enemigos aleatorios"
-        },
-        "entrance": {
-            "title": "Randomizer de Entradas",
-            "switch": {
-                "item": "Cambiar a randomizer de objetos"
-            },
-            "rom": {
-                "options": "Opciones de ROM"
-            },
-            "difficulty": {
-                "title": "Dificultad",
-                "options": {
-                    "easy": "Fácil",
-                    "normal": "Normal",
-                    "hard": "Difícil",
-                    "expert": "Experto",
-                    "insane": "Locura"
-                }
-            },
-            "goal": {
-                "title": "Objetivo",
-                "options": {
-                    "ganon": "Derrotar a Ganon",
-                    "crystals": "Cristales",
-                    "dungeons": "Todas las mazmorras",
-                    "pedestal": "Pedestal de la Espada Maestra",
-                    "triforcehunt": "Piezas de la Trifuerza"
-                }
-            },
-            "logic": {
-                "title": "Lógica",
-                "options": {
-                    "NoGlitches": "Sin Glitches"
-                }
-            },
-            "mode": {
-                "title": "Tipo",
-                "options": {
-                    "swordless": "Sin espadas",
-                    "open": "Abierto"
-                }
-            },
-            "shuffle": {
-                "title": "Orden",
-                "options": {
-                    "simple": "Simple",
-                    "restricted": "Restringido",
-                    "full": "Completo",
-                    "crossed": "Cruzado",
-                    "insanity": "Locura"
-                }
-            },
-            "variation": {
-                "title": "Variación",
-                "options": {
-                    "none": "Ninguna",
-                    "timed-race": "Carrera cronometrada",
-                    "timed-ohko": "Muerte Súbita cronometrada",
-                    "ohko": "Muerte Súbita",
-                    "triforce-hunt": "Caza de la Trifuerza",
-                    "key-sanity": "Keysanity",
-                    "retro": "Retro"
-                }
-            },
-            "generate": {
-                "race": "Generar ROM para carreras",
-                "spoiler_race": "Generar ROM para carreras",
-                "casual": "Generar ROM"
-            },
-            "details": {
-                "title": "Detalles del juego",
-                "save_spoiler": "Guardar spoiler",
-                "save_rom": "Guardar ROM"
-            }
-        },
-        "error": {
-            "title": "Error",
-            "429": "Aunque apreciamos que quieras generar un montón de partidas, otras personas quieren hacerlo también. Por favor, vuelve más tarde si quieres generar más.",
-            "failed_generation": "Error creando la semilla :(",
-            "bad_file": "Archivo no reconocido",
-            "quota_exceeded_error": "Has sobrepasado tu cuota de almacenamiento local."
         },
         "item": {
             "Random": "Aleatorio",
@@ -2314,7 +2232,8 @@ export default {
                     "blue": "Azul",
                     "green": "Verde",
                     "red": "Rojo",
-                    "yellow": "Amarillo"
+                    "yellow": "Amarillo",
+                    "random": "Aleatorio"
                 },
                 "play_as": "Jugar Como",
                 "sprite_file_select": "Selecciona archivo .zspr",
@@ -2436,286 +2355,237 @@ export default {
             "pot_shuffle": "Vasijas aleatorias",
             "enemy_shuffle": "Enemigos aleatorios"
         },
+        "error": {
+            "title": "Error",
+            "429": "Aunque apreciamos que quieras generar un montón de partidas, otras personas quieren hacerlo también. Por favor, vuelve más tarde si quieres generar más.",
+            "failed_generation": "Error creando la semilla :(",
+            "bad_file": "Archivo no reconocido",
+            "quota_exceeded_error": "Has sobrepasado tu cuota de almacenamiento local."
+        }
+    },
+    "fr": {
         "randomizer": {
-            "title": "Randomizer",
+            "title": "Randomiseur",
             "preset": {
-                "title": "Seleccionar plantilla",
-                "customize": "Customizar",
+                "title": "Choisissez vos Paramètres",
+                "customize": "Customisation",
                 "options": {
-                    "default": "Por Defecto",
-                    "beginner": "Principiante",
-                    "veetorp": "Glitches de Superfície (el favorito de Veetorp)",
-                    "crosskeys": "Crosskeys",
-                    "quick": "Súper Rápido",
-                    "nightmare": "Pesadilla",
-                    "tournament": "Torneo",
-                    "custom": "Personalizado"
+                    "default": "Par défaut",
+                    "beginner": "Débutant",
+                    "veetorp": "OWG (La préférée de Veetorp!)",
+                    "crosskeys": "Clésordre et Entrées",
+                    "quick": "Super Rapide",
+                    "nightmare": "Cauchemars",
+                    "tournament": "Tournoi",
+                    "custom": "Personnalisé"
                 }
             },
             "placement": {
-                "title": "Colocación de Objetos"
+                "title": "Placement des objets"
             },
             "item_placement": {
-                "title": "Colocación de Objetos",
+                "title": "Placement des objets",
                 "options": {
-                    "basic": "Básica",
-                    "advanced": "Avanzada"
+                    "basic": "Basique",
+                    "advanced": "Avancé"
                 }
             },
             "dungeon_items": {
-                "title": "Objetos de Mazmorras",
+                "title": "Objets des Donjons",
                 "options": {
-                    "standard": "Normal",
-                    "mc": "Mapas/Brújulas",
-                    "mcs": "Mapas/Brújulas/Llaves pequeñas",
-                    "full": "Keysanity"
+                    "standard": "Standard",
+                    "mc": "Cartes et Boussoles",
+                    "mcs": "Cartes, Boussoles et Petites Clefs",
+                    "full": "Clésordre"
                 }
             },
             "accessibility": {
-                "title": "Accesibilidad",
+                "title": "Accessibilité",
                 "options": {
-                    "items": "100% inventario",
-                    "locations": "100% localizaciones",
-                    "none": "Completable"
+                    "items": "100% Inventaire",
+                    "locations": "100% Accessible",
+                    "none": "Achevable"
                 }
             },
             "glitches_required": {
-                "title": "Glitches Requeridos",
+                "title": "Glitchs requis",
                 "options": {
-                    "none": "Ninguno",
-                    "overworld_glitches": "Glitches de la Superfície",
-                    "major_glitches": "Glitches Mayores",
-                    "no_logic": "Sin lógica"
+                    "none": "Aucun",
+                    "overworld_glitches": "Glitchs Monde Extérieur",
+                    "major_glitches": "Glitchs Majeurs",
+                    "no_logic": "Sans Logique"
                 },
-                "glitch_warning": "Esta Lógica require conocimiento de Glithes Mayores<sup>**</sup>"
+                "glitch_warning": "Cette logique nécessite la connaissance de glitchs majeurs<sup>**</sup>"
             },
             "goal": {
-                "title": "Objetivo",
+                "title": "Objectif",
                 "options": {
-                    "ganon": "Derrotar a Ganon",
-                    "fast_ganon": "Ganon Rápido",
-                    "dungeons": "Todas las mazmorras",
-                    "pedestal": "Pedestal de la Espada Maestra",
-                    "triforce-hunt": "Piezas de la Trifuerza"
+                    "ganon": "Vaincre Ganon",
+                    "fast_ganon": "Rapide Ganon",
+                    "dungeons": "Tous les Donjons",
+                    "pedestal": "Piédestal de la Master Sword",
+                    "triforce-hunt": "Morceaux de Triforce "
                 }
             },
             "tower_open": {
-                "title": "Torre Abierta",
+                "title": "Ouvrir la Tour",
                 "options": {
-                    "0": "0 Cristales",
+                    "0": "0 Cristaux",
                     "1": "1 Cristal",
-                    "2": "2 Cristales",
-                    "3": "3 Cristales",
-                    "4": "4 Cristales",
-                    "5": "5 Cristales",
-                    "6": "6 Cristales",
-                    "7": "7 Cristales",
-                    "random": "Aleatorio"
+                    "2": "2 Cristaux",
+                    "3": "3 Cristaux",
+                    "4": "4 Cristaux",
+                    "5": "5 Cristaux",
+                    "6": "6 Cristaux",
+                    "7": "7 Cristaux",
+                    "random": "Aléatoire"
                 }
             },
             "ganon_open": {
-                "title": "Ganon Vulnerable",
+                "title": "Vulnérabilité de Ganon",
                 "options": {
-                    "0": "0 Cristales",
+                    "0": "0 Cristaux",
                     "1": "1 Cristal",
-                    "2": "2 Cristales",
-                    "3": "3 Cristales",
-                    "4": "4 Cristales",
-                    "5": "5 Cristales",
-                    "6": "6 Cristales",
-                    "7": "7 Cristales",
-                    "random": "Aleatorio"
+                    "2": "2 Cristaux",
+                    "3": "3 Cristaux",
+                    "4": "4 Cristaux",
+                    "5": "5 Cristaux",
+                    "6": "6 Cristaux",
+                    "7": "7 Cristaux",
+                    "random": "Aléatoire"
                 }
             },
             "gameplay": {
                 "title": "Gameplay"
             },
             "world_state": {
-                "title": "Estado del mundo",
+                "title": "État du Monde",
                 "options": {
-                    "standard": "Estándar",
-                    "open": "Abierto",
-                    "inverted": "Inverso",
-                    "retro": "Retro"
+                    "standard": "Standard",
+                    "open": "Ouvert",
+                    "inverted": "Inversé",
+                    "retro": "Rétro"
                 }
             },
             "entrance_shuffle": {
                 "title": "Mélangeur d’Entrées",
                 "options": {
-                    "none": "Ninguno",
+                    "none": "Désactivé",
                     "simple": "Simple",
-                    "restricted": "Restringido",
-                    "full": "Completo",
-                    "crossed": "Cruzado",
-                    "insanity": "Locura"
+                    "restricted": "Restreint",
+                    "full": "Complet",
+                    "crossed": "Croisé",
+                    "insanity": "Insensé"
                 }
             },
             "boss_shuffle": {
-                "title": "Randomizer de Jefes",
+                "title": "Mélangeur de Boss",
                 "options": {
-                    "none": "Ninguno",
+                    "none": "Désactivé",
                     "simple": "Simple",
-                    "full": "Completo",
-                    "random": "Aleatorio"
+                    "full": "Complet",
+                    "random": "Aléatoire"
                 }
             },
             "enemy_shuffle": {
                 "title": "Mélangeur d’Ennemis",
                 "options": {
-                    "none": "Ninguno",
-                    "shuffled": "Barajado",
-                    "random": "Aleatorio"
+                    "none": "Désactivé",
+                    "shuffled": "Intervertis",
+                    "random": "Aléatoires"
                 }
             },
             "hints": {
-                "title": "Pistas",
+                "title": "Indices",
                 "options": {
-                    "on": "On",
-                    "off": "Off"
+                    "on": "Activés",
+                    "off": "Désactivés"
                 }
             },
             "weapons": {
-                "title": "Espadas",
+                "title": "Épées",
                 "options": {
-                    "randomized": "Randomizadas",
-                    "assured": "Aseguradas",
-                    "vanilla": "Vanilla",
-                    "swordless": "Sin Espadas"
+                    "randomized": "Randomisées",
+                    "assured": "Assurée",
+                    "vanilla": "Originales",
+                    "swordless": "Sans Épée"
                 }
             },
             "item_pool": {
-                "title": "Reserva de Objetos",
+                "title": "Objets disponibles",
                 "options": {
-                    "easy": "Fácil",
+                    "easy": "Facile",
                     "normal": "Normal",
-                    "hard": "Difícil",
-                    "expert": "Experto",
+                    "hard": "Difficile",
+                    "expert": "Expert",
                     "crowd_control": "Crowd Control"
                 },
                 "crowd_control_warning": "<sup>*</sup> Ce paramètre est prévu pour être utilisé avec l’extension Twitch Crowd Control. En savoir plus: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
             },
             "item_functionality": {
-                "title": "Funcionalidad de Objetos",
+                "title": "Fonctionnalité des Objets",
                 "options": {
-                    "easy": "Fácil",
+                    "easy": "Facile",
                     "normal": "Normal",
-                    "hard": "Difícil",
-                    "expert": "Experto"
+                    "hard": "Difficile",
+                    "expert": "Expert"
                 }
             },
             "enemy_damage": {
-                "title": "Daño de Enemigos",
+                "title": "Dégâts des Ennemis",
                 "options": {
-                    "default": "Por Defecto",
-                    "shuffled": "Barajado",
-                    "random": "Aleatorio"
+                    "default": "Par défaut",
+                    "shuffled": "Intervertis",
+                    "random": "Aléatoire"
                 }
             },
             "enemy_health": {
-                "title": "Vida de Enemigos",
+                "title": "Vie des Ennemis",
                 "options": {
-                    "default": "Por Defecto",
-                    "easy": "Fácil",
-                    "hard": "Difícil",
-                    "expert": "Experto"
+                    "default": "Par défaut",
+                    "easy": "Facile",
+                    "hard": "Difficile",
+                    "expert": "Expert"
                 }
             },
             "spoiler": {
                 "title": "Spoilers",
                 "options": {
-                    "off": "Disabled",
-                    "on": "Enabled",
-                    "generate": "Solo en Generar"
+                    "off": "Desactivé",
+                    "on": "Activé",
+                    "generate": "Seulement sur Generate"
                 }
             },
             "generate": {
-                "race": "Generar ROM para carreras",
-                "race_warning": "<span class=\"running-now\">sin spoilers</span>",
-                "spoiler_race": "Generar ROM para carreras (con spoilers)",
-                "casual": "Generar ROM",
-                "back": "Cambiar ajustes",
-                "regenerate": "Generar otra vez",
-                "regenerate_tooltip": "Generar otra partida con las mismas opciones",
-                "generating": "Generando..."
+                "race": "Générer une ROM de Course",
+                "race_warning": "Les spoilers ne seront <span class=\"running-now\">jamais</span> disponibles pour cette option.",
+                "spoiler_race": "Générer une ROM avec Spoiler",
+                "casual": "Générer une ROM",
+                "back": "Changer les Paramètres",
+                "regenerate": "Générer à nouveau",
+                "regenerate_tooltip": "Générer à nouveau avec les mêmes paramètres",
+                "generating": "Génération..."
             },
             "details": {
-                "title": "Detalles del juego",
-                "save_spoiler": "Guardar spoiler",
-                "save_rom": "Guardar ROM"
+                "title": "Détails du jeu",
+                "save_spoiler": "Enregistrer la spoiler",
+                "save_rom": "Sauvegarder la ROM"
             },
             "variation": {
-                "title": "Variación"
+                "title": "Variation"
             },
             "difficulty": {
-                "title": "Dificultad",
+                "title": "Difficulté",
                 "options": {
-                    "easy": "Fácil",
+                    "easy": "Easy",
                     "normal": "Normal",
-                    "hard": "Difícil",
-                    "expert": "Experto",
-                    "insane": "Locura",
+                    "hard": "Difficile",
+                    "expert": "Expert",
+                    "insane": "Insensé",
                     "crowdControl": "Crowd Control"
                 }
             }
         },
-        "rom": {
-            "loader": {
-                "title": "Empezar a Jugar",
-                "file_select": "Selecciona archivo ROM",
-                "content": "<ol><li>Selecciona tu archivo ROM y cárgalo en tu navegador (Por favor, usa una ROM <strong>Zelda no Densetsu: Kamigami no Triforce v1.0</strong> con extensión .smc o .sfc)</li><li>Selecciona las <a href=\"/en/options\">Opciones de Juego</a> para cómo quieres que tu juego sea randomizado</li><li>Haz click en Generar ROM para carreras</li><li>Guarda tu ROM y ponte a jugar</li></ol>"
-            },
-            "info": {
-                "spoilerwarning": "ADVERTENCIA: El generador de este juego ha visto el registro de spoiler.",
-                "mystery": "Este es un juego de misterios. Debes descubrir las configuraciones mientras lo juegas!",
-                "logic": "Glitches Requeridos",
-                "accessibility": "Accesibilidad",
-                "build": "Build de la ROM",
-                "difficulty": "Dificultad",
-                "variation": "Variación",
-                "shuffle": "Randomizer de entradas",
-                "mode": "Estado del mundo",
-                "weapons": "Espadas",
-                "goal": "Objetivo",
-                "permalink": "Enlace permanente",
-                "special": "Especial",
-                "notes": "Notas",
-                "generated": "Creada"
-            },
-            "settings": {
-                "heart_speed": "Velocidad de Corazones",
-                "heart_speeds": {
-                    "off": "Desactivado",
-                    "double": "Velocidad Doble",
-                    "normal": "Velocidad Normal",
-                    "half": "Media Velocidad",
-                    "quarter": "Cuarto de Velocidad"
-                },
-                "menu_speed": "Velocidad de Menú",
-                "menu_speeds": {
-                    "instant": "Instantáneo",
-                    "fast": "Rápido",
-                    "normal": "Normal",
-                    "slow": "Lento"
-                },
-                "heart_color": "Color de Corazones",
-                "heart_colors": {
-                    "blue": "Azul",
-                    "green": "Verde",
-                    "red": "Rojo",
-                    "yellow": "Amarillo",
-                    "random": "Aleatorio"
-                },
-                "play_as": "Jugar Como",
-                "sprite_file_select": "Selecciona archivo .zspr",
-                "music": "Música de fondo",
-                "music_info": "(poner en \"No\" para <a href=\"https://alttprlinks.page.link/SjiP\" target=\"_blank\" rel=\"noopener noreferrer\">soporte con MSU-1</a>)",
-                "quickswap": "Cambio Rápido de Objetos",
-                "palette_shuffle": "Paletas aleatorias",
-                "race_warning": "No funciona en ROMs para carreras"
-            }
-        }
-    },
-    "fr": {
         "customizer": {
             "settings": {
                 "timers": {
@@ -2797,122 +2667,6 @@ export default {
                     "description": "Quand ceci est activé, les dés en sont jetés, et rien d’autre n’importe.."
                 }
             }
-        },
-        "enemizer": {
-            "title": "Enemizer",
-            "enable": "Activer l’Ennemiseur",
-            "disable": "Désactiver l’Ennemiseur",
-            "enemy_health": {
-                "title": "Santé Ennemis",
-                "options": [
-                    "Ordinaire",
-                    "Facile (1-4 hp)",
-                    "Moyen (2-15 hp)",
-                    "Difficile (2-30 hp)",
-                    "Insensé (4-50 hp)"
-                ]
-            },
-            "enemy_damage": {
-                "title": "Dégâts des Ennemis",
-                "options": {
-                    "off": "Ordinaire",
-                    "shuffle": "Mélangé",
-                    "chaos": "Chaos"
-                }
-            },
-            "bosses": {
-                "title": "Bosses",
-                "options": {
-                    "off": "Ordinaire",
-                    "basic": "De base",
-                    "normal": "Commun",
-                    "chaos": "Chaos"
-                }
-            },
-            "palette_shuffle": "Mélange les Palettes",
-            "pot_shuffle": "Mélange les Pots",
-            "enemy_shuffle": "Mélanger les Ennemis"
-        },
-        "entrance": {
-            "title": "Randomizer de portes",
-            "switch": {
-                "item": "Passer au Randomizer d’objets"
-            },
-            "rom": {
-                "options": "Options de ROM"
-            },
-            "difficulty": {
-                "title": "Difficulté",
-                "options": {
-                    "easy": "Facile",
-                    "normal": "Normal",
-                    "hard": "Difficile",
-                    "expert": "Expert",
-                    "insane": "Insensé"
-                }
-            },
-            "goal": {
-                "title": "Objectif",
-                "options": {
-                    "ganon": "Vaincre Ganon",
-                    "crystals": "Cristaux",
-                    "dungeons": "Tous les Donjons",
-                    "pedestal": "Piédestal de la Master Sword",
-                    "triforcehunt": "Pièces de Triforce"
-                }
-            },
-            "logic": {
-                "title": "Logique",
-                "options": {
-                    "NoGlitches": "Sans Glitches"
-                }
-            },
-            "mode": {
-                "title": "Réglage",
-                "options": {
-                    "swordless": "Sans Épée",
-                    "open": "Ouvert"
-                }
-            },
-            "shuffle": {
-                "title": "Mélanger",
-                "options": {
-                    "simple": "Simple",
-                    "restricted": "Restreint",
-                    "full": "Complet",
-                    "crossed": "Croisé",
-                    "insanity": "Insensé"
-                }
-            },
-            "variation": {
-                "title": "Variation",
-                "options": {
-                    "none": "Aucun",
-                    "timed-race": "Chronométrée",
-                    "timed-ohko": "Décompte Final",
-                    "ohko": "Zéro Coeurs",
-                    "triforce-hunt": "Chasse aux morceaux de Triforce",
-                    "key-sanity": "Clé-sordre",
-                    "retro": "Rétro"
-                }
-            },
-            "generate": {
-                "race": "Générer une ROM de course",
-                "spoiler_race": "Spoiler de la ROM de Course",
-                "casual": "Générer une ROM"
-            },
-            "details": {
-                "title": "Détails du jeu",
-                "save_spoiler": "Enregistrer le spoiler",
-                "save_rom": "Sauvegarder la ROM"
-            }
-        },
-        "error": {
-            "title": "Erreur",
-            "429": "Bien que nous appréciions que vous souhaitiez générer beaucoup de jeux, d’autres personnes aimeraient également le faire. Veuillez revenir plus tard si vous souhaitez continuer à générer.",
-            "failed_generation": "Échec de la création de jeu :(",
-            "bad_file": "Fichier non reconnu",
-            "quota_exceeded_error": "Vous avez atteint la limite de stockage local."
         },
         "item": {
             "Random": "Random",
@@ -3131,228 +2885,6 @@ export default {
             "Ganon": "Ganon",
             "Test": "Testing Item"
         },
-        "randomizer": {
-            "title": "Randomiseur",
-            "preset": {
-                "title": "Choisissez vos Paramètres",
-                "customize": "Customisation",
-                "options": {
-                    "default": "Par défaut",
-                    "beginner": "Débutant",
-                    "veetorp": "OWG (La préférée de Veetorp!)",
-                    "crosskeys": "Clésordre et Entrées",
-                    "quick": "Super Rapide",
-                    "nightmare": "Cauchemars",
-                    "tournament": "Tournoi",
-                    "custom": "Personnalisé"
-                }
-            },
-            "placement": {
-                "title": "Placement des objets"
-            },
-            "item_placement": {
-                "title": "Placement des objets",
-                "options": {
-                    "basic": "Basique",
-                    "advanced": "Avancé"
-                }
-            },
-            "dungeon_items": {
-                "title": "Objets des Donjons",
-                "options": {
-                    "standard": "Standard",
-                    "mc": "Cartes et Boussoles",
-                    "mcs": "Cartes, Boussoles et Petites Clefs",
-                    "full": "Clésordre"
-                }
-            },
-            "accessibility": {
-                "title": "Accessibilité",
-                "options": {
-                    "items": "100% Inventaire",
-                    "locations": "100% Accessible",
-                    "none": "Achevable"
-                }
-            },
-            "glitches_required": {
-                "title": "Glitchs requis",
-                "options": {
-                    "none": "Aucun",
-                    "overworld_glitches": "Glitchs Monde Extérieur",
-                    "major_glitches": "Glitchs Majeurs",
-                    "no_logic": "Sans Logique"
-                },
-                "glitch_warning": "Cette logique nécessite la connaissance de glitchs majeurs<sup>**</sup>"
-            },
-            "goal": {
-                "title": "Objectif",
-                "options": {
-                    "ganon": "Vaincre Ganon",
-                    "fast_ganon": "Rapide Ganon",
-                    "dungeons": "Tous les Donjons",
-                    "pedestal": "Piédestal de la Master Sword",
-                    "triforce-hunt": "Morceaux de Triforce "
-                }
-            },
-            "tower_open": {
-                "title": "Ouvrir la Tour",
-                "options": {
-                    "0": "0 Cristaux",
-                    "1": "1 Cristal",
-                    "2": "2 Cristaux",
-                    "3": "3 Cristaux",
-                    "4": "4 Cristaux",
-                    "5": "5 Cristaux",
-                    "6": "6 Cristaux",
-                    "7": "7 Cristaux",
-                    "random": "Aléatoire"
-                }
-            },
-            "ganon_open": {
-                "title": "Vulnérabilité de Ganon",
-                "options": {
-                    "0": "0 Cristaux",
-                    "1": "1 Cristal",
-                    "2": "2 Cristaux",
-                    "3": "3 Cristaux",
-                    "4": "4 Cristaux",
-                    "5": "5 Cristaux",
-                    "6": "6 Cristaux",
-                    "7": "7 Cristaux",
-                    "random": "Aléatoire"
-                }
-            },
-            "gameplay": {
-                "title": "Gameplay"
-            },
-            "world_state": {
-                "title": "État du Monde",
-                "options": {
-                    "standard": "Standard",
-                    "open": "Ouvert",
-                    "inverted": "Inversé",
-                    "retro": "Rétro"
-                }
-            },
-            "entrance_shuffle": {
-                "title": "Mélangeur d'Entrées",
-                "options": {
-                    "none": "Désactivé",
-                    "simple": "Simple",
-                    "restricted": "Restreint",
-                    "full": "Complet",
-                    "crossed": "Croisé",
-                    "insanity": "Insensé"
-                }
-            },
-            "boss_shuffle": {
-                "title": "Mélangeur de Boss",
-                "options": {
-                    "none": "Désactivé",
-                    "simple": "Simple",
-                    "full": "Complet",
-                    "random": "Aléatoire"
-                }
-            },
-            "enemy_shuffle": {
-                "title": "Mélangeur d'Ennemis",
-                "options": {
-                    "none": "Désactivé",
-                    "shuffled": "Intervertis",
-                    "random": "Aléatoires"
-                }
-            },
-            "hints": {
-                "title": "Indices",
-                "options": {
-                    "on": "Activés",
-                    "off": "Désactivés"
-                }
-            },
-            "weapons": {
-                "title": "Épées",
-                "options": {
-                    "randomized": "Randomisées",
-                    "assured": "Assurée",
-                    "vanilla": "Originales",
-                    "swordless": "Sans Épée"
-                }
-            },
-            "item_pool": {
-                "title": "Objets disponibles",
-                "options": {
-                    "easy": "Facile",
-                    "normal": "Normal",
-                    "hard": "Difficile",
-                    "expert": "Expert",
-                    "crowd_control": "Crowd Control"
-                },
-                "crowd_control_warning": "<sup>*</sup> Ce paramètre est prévu pour être utilisé avec l'extension Twitch Crowd Control. En savoir plus: <a href=\"https://crowdcontrol.live/\" target=\"_blank\" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>"
-            },
-            "item_functionality": {
-                "title": "Fonctionnalité des Objets",
-                "options": {
-                    "easy": "Facile",
-                    "normal": "Normal",
-                    "hard": "Difficile",
-                    "expert": "Expert"
-                }
-            },
-            "enemy_damage": {
-                "title": "Dégâts des Ennemis",
-                "options": {
-                    "default": "Par défaut",
-                    "shuffled": "Intervertis",
-                    "random": "Aléatoire"
-                }
-            },
-            "enemy_health": {
-                "title": "Vie des Ennemis",
-                "options": {
-                    "default": "Par défaut",
-                    "easy": "Facile",
-                    "hard": "Difficile",
-                    "expert": "Expert"
-                }
-            },
-            "spoiler": {
-                "title": "Spoilers",
-                "options": {
-                    "off": "Desactivé",
-                    "on": "Activé",
-                    "generate": "Seulement sur Generate"
-                }
-            },
-            "generate": {
-                "race": "Générer une ROM de Course",
-                "race_warning": "Les spoilers ne seront <span class=\"running-now\">jamais</span> disponibles pour cette option.",
-                "spoiler_race": "Générer une ROM avec Spoiler",
-                "casual": "Générer une ROM",
-                "back": "Changer les Paramètres",
-                "regenerate": "Générer à nouveau",
-                "regenerate_tooltip": "Générer à nouveau avec les mêmes paramètres",
-                "generating": "Génération..."
-            },
-            "details": {
-                "title": "Détails du jeu",
-                "save_spoiler": "Enregistrer la spoiler",
-                "save_rom": "Sauvegarder la ROM"
-            },
-            "variation": {
-                "title": "Variation"
-            },
-            "difficulty": {
-                "title": "Difficulté",
-                "options": {
-                    "easy": "Easy",
-                    "normal": "Normal",
-                    "hard": "Difficile",
-                    "expert": "Expert",
-                    "insane": "Insensé",
-                    "crowdControl": "Crowd Control"
-                }
-            }
-        },
         "rom": {
             "loader": {
                 "title": "Pour commencer",
@@ -3410,6 +2942,122 @@ export default {
                 "reduce_flashing": "Réduit le clignotement",
                 "reduce_flashing_warning": "Cette option réduit l'effet de clignotement. Votre sensibilité aux effets de clignotement peut varier."
             }
+        },
+        "entrance": {
+            "title": "Randomizer de portes",
+            "switch": {
+                "item": "Passer au Randomizer d’objets"
+            },
+            "rom": {
+                "options": "Options de ROM"
+            },
+            "difficulty": {
+                "title": "Difficulté",
+                "options": {
+                    "easy": "Facile",
+                    "normal": "Normal",
+                    "hard": "Difficile",
+                    "expert": "Expert",
+                    "insane": "Insensé"
+                }
+            },
+            "goal": {
+                "title": "Objectif",
+                "options": {
+                    "ganon": "Vaincre Ganon",
+                    "crystals": "Cristaux",
+                    "dungeons": "Tous les Donjons",
+                    "pedestal": "Piédestal de la Master Sword",
+                    "triforcehunt": "Pièces de Triforce"
+                }
+            },
+            "logic": {
+                "title": "Logique",
+                "options": {
+                    "NoGlitches": "Sans Glitches"
+                }
+            },
+            "mode": {
+                "title": "Réglage",
+                "options": {
+                    "swordless": "Sans Épée",
+                    "open": "Ouvert"
+                }
+            },
+            "shuffle": {
+                "title": "Mélanger",
+                "options": {
+                    "simple": "Simple",
+                    "restricted": "Restreint",
+                    "full": "Complet",
+                    "crossed": "Croisé",
+                    "insanity": "Insensé"
+                }
+            },
+            "variation": {
+                "title": "Variation",
+                "options": {
+                    "none": "Aucun",
+                    "timed-race": "Chronométrée",
+                    "timed-ohko": "Décompte Final",
+                    "ohko": "Zéro Coeurs",
+                    "triforce-hunt": "Chasse aux morceaux de Triforce",
+                    "key-sanity": "Clé-sordre",
+                    "retro": "Rétro"
+                }
+            },
+            "generate": {
+                "race": "Générer une ROM de course",
+                "spoiler_race": "Spoiler de la ROM de Course",
+                "casual": "Générer une ROM"
+            },
+            "details": {
+                "title": "Détails du jeu",
+                "save_spoiler": "Enregistrer le spoiler",
+                "save_rom": "Sauvegarder la ROM"
+            }
+        },
+        "enemizer": {
+            "title": "Enemizer",
+            "enable": "Activer l’Ennemiseur",
+            "disable": "Désactiver l’Ennemiseur",
+            "enemy_health": {
+                "title": "Santé Ennemis",
+                "options": [
+                    "Ordinaire",
+                    "Facile (1-4 hp)",
+                    "Moyen (2-15 hp)",
+                    "Difficile (2-30 hp)",
+                    "Insensé (4-50 hp)"
+                ]
+            },
+            "enemy_damage": {
+                "title": "Dégâts des Ennemis",
+                "options": {
+                    "off": "Ordinaire",
+                    "shuffle": "Mélangé",
+                    "chaos": "Chaos"
+                }
+            },
+            "bosses": {
+                "title": "Bosses",
+                "options": {
+                    "off": "Ordinaire",
+                    "basic": "De base",
+                    "normal": "Commun",
+                    "chaos": "Chaos"
+                }
+            },
+            "palette_shuffle": "Mélange les Palettes",
+            "pot_shuffle": "Mélange les Pots",
+            "enemy_shuffle": "Mélanger les Ennemis"
+        },
+        "error": {
+            "title": "Erreur",
+            "429": "Bien que nous appréciions que vous souhaitiez générer beaucoup de jeux, d’autres personnes aimeraient également le faire. Veuillez revenir plus tard si vous souhaitez continuer à générer.",
+            "failed_generation": "Échec de la création de jeu :(",
+            "bad_file": "Fichier non reconnu",
+            "quota_exceeded_error": "Vous avez atteint la limite de stockage local."
         }
     }
 }
