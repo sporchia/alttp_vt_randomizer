@@ -1005,7 +1005,7 @@ abstract class World
             }
         }
         
-        if ($this->config('mode.state') == 'standard') {
+        if ($this->config('mode.state') === 'standard') {
             $this->setEscapeFills($rom);
         }
 
