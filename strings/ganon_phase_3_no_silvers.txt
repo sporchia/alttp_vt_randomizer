@@ -17,7 +17,7 @@ The Moon?
 -
 Did you find
 The arrows
-In /dev/null?
+In dev null?
 -
 I have sold
 The arrows for
@@ -27,7 +27,7 @@ Did you find
 The arrows in
 Count Dracula?
 -
-Error 404:
+Error 404
 Silver arrows
 not found.
 -
@@ -47,17 +47,9 @@ Did you find
 the arrows in
 Jabu's belly?
 -
-Did you find
-the arrows in
-you, all along
--
 Silver is not
 an appropriate
 arrow material
--
-Did you find
-the arrows on
-Thor's throne?
 -
 Did you find
 the arrows in
@@ -69,11 +61,7 @@ To win?
 -
 DID YOU FIND
 THE ARROWS IN
-KEFKAS TOWER
--
-Did you find
-the arrows in
-shadow realm?
+KEFKA'S TOWER
 -
 Did you find
 the arrows in
@@ -95,23 +83,13 @@ Did you find
 The arrows in
 *mumblemumble*
 -
+
 Spin To Win!
--
-did you find
-the arrows on
-the ladder?
+
 -
 did you find
 the arrows in
 the hourglass?
--
-DID YOU FIND
-THE ARROWS ON
-THE MOON?
--
-DID YOU FIND
-THE ARROWS IN
-LEVEL 9?
 -
 Silver Arrows
 are so v30
@@ -128,10 +106,6 @@ Did you find
 the arrows in
 World 4-2?
 -
-Did you find
-The arrows in
-Another pool?
--
 You Spin Me
 Right Round
 Like A Record
@@ -139,4 +113,8 @@ Like A Record
 SILLY HERO,
 SILVER IS FOR
 WEREWOLVES!
+-
+Did you find
+the silvers in
+ganti's ears
 -
