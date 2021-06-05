@@ -947,7 +947,7 @@ class Randomizer implements RandomizerContract
 
         // progressive bow hint and handling
         // @todo this swap of item really shouldn't happen here, we don't know
-        // for sure that the items haven't already been written to the rom.
+        // for sure that the items haven't already been written to the ROM.
         $progressive_bow_locations = $world->getLocationsWithItem(Item::get('ProgressiveBow', $world))->randomCollection(2);
         if ($progressive_bow_locations->count() > 0) {
             $first_location = $progressive_bow_locations->pop();

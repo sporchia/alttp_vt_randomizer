@@ -670,7 +670,6 @@ class RomTest extends TestCase
         $this->assertEquals([2, 23], $this->rom->read(0x180098, 2));
     }
 
-
     public function testSetGanonInvincibleCrystals()
     {
         $this->rom->setGanonInvincible('crystals');
@@ -710,68 +709,73 @@ class RomTest extends TestCase
     {
         $this->rom->setHeartColors('blue');
 
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA1E));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA20));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA22));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA24));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA26));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA28));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA2A));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA2C));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA2E));
-        $this->assertEquals(0x2C, $this->rom->read(0x6FA30));
-        $this->assertEquals(0x0D, $this->rom->read(0x65561));
+        $this->assertHeartColorSetting('blue');
     }
 
     public function testSetHeartColorsGreen()
     {
         $this->rom->setHeartColors('green');
 
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA1E));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA20));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA22));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA24));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA26));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA28));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA2A));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA2C));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA2E));
-        $this->assertEquals(0x3C, $this->rom->read(0x6FA30));
-        $this->assertEquals(0x19, $this->rom->read(0x65561));
+        $this->assertHeartColorSetting('green');
     }
 
     public function testSetHeartColorsYellow()
     {
         $this->rom->setHeartColors('yellow');
 
-        $this->assertEquals(0x28, $this->rom->read(0x6FA1E));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA20));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA22));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA24));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA26));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA28));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA2A));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA2C));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA2E));
-        $this->assertEquals(0x28, $this->rom->read(0x6FA30));
-        $this->assertEquals(0x09, $this->rom->read(0x65561));
+        $this->assertHeartColorSetting('yellow');
     }
 
     public function testSetHeartColorsRed()
     {
         $this->rom->setHeartColors('red');
 
-        $this->assertEquals(0x24, $this->rom->read(0x6FA1E));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA20));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA22));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA24));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA26));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA28));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA2A));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA2C));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA2E));
-        $this->assertEquals(0x24, $this->rom->read(0x6FA30));
-        $this->assertEquals(0x05, $this->rom->read(0x65561));
+        $this->assertHeartColorSetting('red');
+    }
+
+    public function testSetHeartColorsDefault()
+    {
+        $this->rom->setHeartColors('some invalid string value');
+
+        $this->assertHeartColorSetting('red');
+    }
+
+    private function assertHeartColorSetting($expectedColor)
+    {
+        switch ($expectedColor) {
+            case 'blue':
+                $expectedByte = 0x2C;
+                $expectedFileByte = 0x0D;
+                break;
+            case 'green':
+                $expectedByte = 0x3C;
+                $expectedFileByte = 0x19;
+                break;
+            case 'yellow':
+                $expectedByte = 0x28;
+                $expectedFileByte = 0x09;
+                break;
+            case 'red':
+                $expectedByte = 0x24;
+                $expectedFileByte = 0x05;
+                break;
+            default:
+                $expectedByte = 0x00;
+                $expectedFileByte = 0x00;
+        }
+
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA1E));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA20));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA22));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA24));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA26));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA28));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA2A));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA2C));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA2E));
+        $this->assertEquals($expectedByte, $this->rom->read(0x6FA30));
+        
+        $this->assertEquals($expectedFileByte, $this->rom->read(0x65561));
     }
 
     public function testSetText()

@@ -74,7 +74,7 @@ return [
                 [
                     'header' => 'Was änderte sich vom originalen Spiel?',
                     'content' => [
-                        'Es gibt einige Änderungen vom originalen Spiel um das Spielerlebniss zu verbessern und um zu verhindet das man feststeckt. Die Japanische 1.0 Rom wird benutzt da es einige Glitches mehr erlaubt die für fortgeschrittene Spielmodi benutzt werden.',
+                        'Es gibt einige Änderungen vom originalen Spiel um das Spielerlebniss zu verbessern und um zu verhindet das man feststeckt. Die Japanische 1.0 ROM wird benutzt da es einige Glitches mehr erlaubt die für fortgeschrittene Spielmodi benutzt werden.',
                         '<ul>'
                             . '<li>Du brauchst nicht länger die Lampe im Prolog um das Bücherregal zu verschieben.</li>'
                             . '<li>Du kannst nun in dunklen Räumen sehen ohne die Lampe (außer im Offen Modus).</li>'

@@ -590,7 +590,7 @@ return [
                 'menu_speed' => [
                     'header' => __('rom.settings.menu_speed'),
                     'content' => [
-                        'Change the speed of opening and closing the item menu. This is not available for race ROMS.',
+                        'Change the speed of opening and closing the item menu. This is not available for race ROMs.',
                     ],
                 ],
                 'heart_color' => [

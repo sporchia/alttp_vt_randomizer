@@ -191,7 +191,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * Get information on the current rom patch.
+     * Get information on the current ROM patch.
      *
      * @return array
      */

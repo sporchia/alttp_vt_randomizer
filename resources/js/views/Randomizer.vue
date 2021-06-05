@@ -492,7 +492,7 @@ export default {
                     response.data.current_rom_hash &&
                     response.data.current_rom_hash != this.current_rom_hash
                   ) {
-                    // The base rom has been updated.
+                    // The base ROM has been updated.
                     window.location.reload(true);
                   }
                   if (

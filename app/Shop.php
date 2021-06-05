@@ -65,11 +65,11 @@ class Shop
     }
 
     /**
-     * Write extra data into the rom for this location. Generally, this is used for take-anys that will essentually
+     * Write extra data into the ROM for this location. Generally, this is used for take-anys that will essentually
      * hijack another cave/house and place themselves in there. Usually it's done by wiriting the type ID into
      * the table starting at 0xDBB73 offset by the entrance ID.
      *
-     * @param \ALttP\Rom $rom Rom to write data to
+     * @param \ALttP\Rom $rom ROM to write data to
      *
      * @return $this
      */
