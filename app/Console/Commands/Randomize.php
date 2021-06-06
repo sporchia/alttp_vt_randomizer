@@ -30,6 +30,7 @@ class Randomize extends Command
         . ' {--skip-md5 : do not validate md5 of base ROM}'
         . ' {--tournament : enable tournament mode}'
         . ' {--bulk=1 : generate multiple ROMs}'
+        . ' {--seed=* : set seed/hash (can specify multiple)}'
         . ' {--sprite= : sprite file to change links graphics [zspr format]}'
         . ' {--no-rom : do not generate output ROM}'
         . ' {--no-music : mute all music}'
@@ -100,8 +101,8 @@ class Randomize extends Command
             return 2;
         }
 
-        if (is_array($this->option('bulk'))) {
-            $this->error('`bulk` cannot be an array');
+        if (!is_numeric($this->option('bulk'))) {
+            $this->error('`bulk` must be a number');
 
             return 101;
         }
@@ -111,8 +112,13 @@ class Randomize extends Command
         for ($i = 0; $i < $bulk; $i++) {
             Item::clearCache();
             Boss::clearCache();
+
             $rom = new Rom($this->argument('input_file'));
-            $hash = $hasher->encode((int) (microtime(true) * 1000));
+            if (array_key_exists($i, $this->option('seed')) && is_string($this->option('seed')[$i])) {
+              $hash = $this->option('seed')[$i];
+            } else {
+              $hash = $hasher->encode((int) (microtime(true) * 1000));
+            }
 
             if (!$this->option('skip-md5') && !$rom->checkMD5()) {
                 $rom->resize();
