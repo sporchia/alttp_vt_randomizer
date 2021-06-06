@@ -112,7 +112,6 @@ class Randomize extends Command
         for ($i = 0; $i < $bulk; $i++) {
             Item::clearCache();
             Boss::clearCache();
-
             $rom = new Rom($this->argument('input_file'));
             if (array_key_exists($i, $this->option('seed')) && is_string($this->option('seed')[$i])) {
               $hash = $this->option('seed')[$i];
