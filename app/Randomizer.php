@@ -972,7 +972,7 @@ class Randomizer implements RandomizerContract
                 }
             }
             // Remove Hint in Hard+ Item Pool
-            if ($world->config('item.overflow.count.Bow') < 2) {
+            if ($world->config('item.overflow.count.Bow', 2) < 2) {
                 $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
                 $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows on\nPlanet Zebes?");
                 // Special No Silvers "Hint" for Crowd Control
