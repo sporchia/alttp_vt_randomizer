@@ -950,15 +950,13 @@ class Randomizer implements RandomizerContract
             // Progressive Bow Alternate
             $first_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
 
-            if ($progressive_bow_locations->count() > 0) {
-                $second_location = $progressive_bow_locations->pop();
-                switch ($second_location->getRegion()->getName()) {
-                    case "Ganons Tower":
-                        $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
-                        break;
-                    default:
-                        $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
-                }
+            $second_location = $progressive_bow_locations->pop();
+            switch ($second_location->getRegion()->getName()) {
+                case "Ganons Tower":
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
+                    break;
+                default:
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
             }
         } elseif ($silver_arrows_location) {
             switch ($silver_arrows_location->getRegion()->getName()) {
