@@ -960,7 +960,6 @@ class Randomizer implements RandomizerContract
                         $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
                 }
             }
-            Log::info("progresisve silvers hint");
         } elseif ($silver_arrows_location) {
             switch ($silver_arrows_location->getRegion()->getName()) {
                 case "Ganons Tower":
@@ -971,7 +970,6 @@ class Randomizer implements RandomizerContract
                     $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
                     $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
             }
-            Log::info("normal silvers hint");
         } else {
             $fake_silvers_hint = Arr::first(fy_shuffle($strings['ganon_phase_3_no_silvers']));
             if ($world->config('item.pool', 'normal') === 'crowd_control') {
@@ -980,7 +978,6 @@ class Randomizer implements RandomizerContract
 
             $world->setText('ganon_phase_3_no_silvers', $fake_silvers_hint);
             $world->setText('ganon_phase_3_no_silvers_alt', $fake_silvers_hint);
-            Log::info("fake silvers hint: $fake_silvers_hint");
         }
 
         if ($world->config('crystals.tower') < 7) {
