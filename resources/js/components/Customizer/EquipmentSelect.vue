@@ -231,6 +231,7 @@
             <div class="cell w-100">
               <vue-slider
                 ref="slider"
+                @click.native="saveEquipment"
                 @drag-end="saveEquipment"
                 :min="1"
                 :max="20"
