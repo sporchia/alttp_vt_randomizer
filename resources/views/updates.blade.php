@@ -7,6 +7,7 @@
     <ul>
         <li>New post-generation option called "Reduce Flashing" has been added.  Thanks Cassidymoen!</li>
         <li>The credits have been updated to include additional individuals we want to recognize for their contributions to this project.</li>
+        <li>The speed of the epilogue and credits can be increased to four times normal by pressing and holding X.</li>
         <li>The author of the sprite you're using will now appear in the end credits.</li>
         <li>When underworld clips are enabled, a new line will appear in the menu indicating what bosses have been defeated.</li>
         <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.</li>
@@ -18,6 +19,9 @@
         <li>Bot authors may now specify a game name and notes in API requests to /api/randomizer</li>
         <li>A new "Random" option was added for the heart color.  Thanks Doctor Blue!</li>
         <li>Ganon will now say something New and Unique™ when Silver Arrows are unavailable.</li>
+        <li>MSU-1: The track playing in the overworld will now resume where it left off when returning to the overworld, assuming the same track is playing.  Thanks Bonta!</li>
+        <li>Customizer: Fixes a bug that prevented a change in starting hearts to be saved if you click on the slider instead of dragging the slider.</li>
+        <li>Low health beeping will no longer occur if your max health is 1 or 2 hearts.  Once you have at least three hearts, the normal beeping behavior will occur.</li>
         <li>Miscellaneous website updates.</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
