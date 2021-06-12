@@ -131,13 +131,31 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'Spanish',
-                    'description' => 'Something about the community here.',
+                    'header' => 'Español',
+                    'description' => 'Unete la comunidad Hispano-Hablante.',
                     'sections' => [
                         [
-                            'header' => 'Placeholder Tournament',
+                            'header' => 'Unete al Discord',
                             'content' => [
-                                'The <a href="https://example.com" target="_blank">Placeholder Tournament</a> is one I hope doesn’t actually exist, except in our hearts.',
+                                'Unete al <a href="https://discord.gg/xyHxAFJ" target="_blank">Discord de Alttpr-ES</a> donde podras seguir todo lo referente a esta comunidad, o encontrar alguien para jugar una carrera en cualquier momento.',
+                            ],
+                        ],
+                        [
+                            'header' => 'Torneo Comunidad Hispano-Hablante',
+                            'content' => [
+                                'Unete a nuestro torneo anual de la comunidad hispano-hablante, un buen momento para jugar, comentar o pasar un buen rato haciendo amigos.',
+                            ],
+                        ],
+                        [
+                            'header' => 'Carreras Semanales',
+                            'content' => [
+                                'Participa en nuestras carreras semanales en colaboración con SpeedgamingEspañol. El sitio perfecto para iniciarte en retransmisión de carreras ya sea jugando, comentando, trackeando o en el chat entre amigos.',
+                            ],
+                        ],
+                        [
+                            'header' => 'Carreras Asíncronas',
+                            'content' => [
+                                'En nuestro Discord también podras encontrar carreras Semanales Asíncronas que puedes hacer como y cuando quieras, pudiendo así compararte con miembros de la comunidad, la mejor forma de empezar a correr Randomizer con otra gente.',
                             ],
                         ],
                     ],
