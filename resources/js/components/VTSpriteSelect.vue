@@ -96,7 +96,7 @@ export default {
       }
       vm.$emit('load-custom-sprite', false);
 
-      while (pickedSprite.name === "Random") {
+      while (pickedSprite.file === null) {
         pickedSprite =
           vm.sprites[Math.floor(Math.random() * vm.sprites.length)];
       }
@@ -108,32 +108,30 @@ export default {
             resolve(spr);
             return;
           }
-          if (pickedSprite.name !== "Link") {
-            axios
-              .get(pickedSprite.file, {
-                transformRequest: [
-                  (data, headers) => {
-                    delete headers.common;
-                    return data;
-                  }
-                ],
-                responseType: "arraybuffer"
-              })
-              .then(response => {
-                var spr_array = new Uint8Array(response.data);
-                localforage
-                  .setItem("vt_sprites." + sprite_name, spr_array)
-                  .then(function(spr) {
-                    resolve(spr);
-                  })
-                  .catch(function() {
-                    reject("could not save sprite to local storage");
-                  });
-              })
-              .catch(function() {
-                reject("cannot find sprite file");
-              });
-          }
+          axios
+            .get(pickedSprite.file, {
+              transformRequest: [
+                (data, headers) => {
+                  delete headers.common;
+                  return data;
+                }
+              ],
+              responseType: "arraybuffer"
+            })
+            .then(response => {
+              var spr_array = new Uint8Array(response.data);
+              localforage
+                .setItem("vt_sprites." + sprite_name, spr_array)
+                .then(function(spr) {
+                  resolve(spr);
+                })
+                .catch(function() {
+                  reject("could not save sprite to local storage");
+                });
+            })
+            .catch(function() {
+              reject("cannot find sprite file");
+            });
         });
       }).then(rom.parseSprGfx.bind(rom));
     }
