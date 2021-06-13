@@ -45,7 +45,8 @@ class Randomize extends Command
         . ' {--accessibility=item : set item/location accessibility}'
         . ' {--hints=on : set hints on or off}'
         . ' {--item_pool=normal : set item pool}'
-        . ' {--item_functionality=normal : set item functionality}';
+        . ' {--item_functionality=normal : set item functionality}'
+        . ' {--quickswap=false : set quickswap}';
 
     /**
      * The console command description.
@@ -136,6 +137,10 @@ class Randomize extends Command
 
             if (is_string($this->option('heartbeep'))) {
                 $rom->setHeartBeepSpeed($this->option('heartbeep'));
+            }
+
+            if(is_string($this->option('quickswap'))) {
+                $rom->setQuickSwap(strtolower($this->option('quickswap')) === 'true');
             }
 
             // break out for unrandomized base game
