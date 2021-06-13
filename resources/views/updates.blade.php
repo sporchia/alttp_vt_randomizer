@@ -9,20 +9,20 @@
         <ul>
             <li>New post-generation option called "Reduce Flashing" has been added.  Thanks Cassidymoen!</li>
             <li>The credits have been updated to include additional individuals we want to recognize for their contributions to this project.</li>
-            <li>The speed of the epilogue and credits can be increased to four times normal by pressing and holding X.</li>
+            <li>The speed of the epilogue and credits can be increased 4x the normal speed by pressing and holding X.</li>
             <ul>
                 <li>You may experience some minor graphical glitches when using this feature.  This is a known issue due to technical limitations.</li>
                 <li>Music will play at normal speed, and sprites will still move at normal speed.  This feature only increases the speed of camera scrolling.</li>
             </ul>
             <li>The author of the sprite you're using will now appear in the end credits.</li>
             <li>When underworld clips are enabled, a new line will appear in the menu indicating what bosses have been defeated.</li>
-            <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.</li>
+            <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.  Thanks kedNalatacId!</li>
             <li>Bot authors may now specify a game name and notes in API requests to /api/randomizer</li>
             <li>A new "Random" option was added for the heart color.  Thanks Doctor Blue!</li>
             <li>Ganon will now say something Original and Funny™ when Silver Arrows are unavailable.</li>
             <li>The MSU-1 track playing in the overworld will now resume where it left off when returning to the overworld, assuming the same track is playing.  Thanks Bonta!</li>
             <ul>
-                <li>Not every platform will support this feature.  This feature is known to work on the latest sd2snes/Fxpak firmware, the latest version of Snes9X (and any emulator frontends that use Snes9X).  Revision 2 of MSU-1 is required.</li>
+                <li>Not every platform will support this feature.  This feature is known to work on the latest sd2snes/Fxpak, Snes9X, and bsnes/higan.  Revision 2 of MSU-1 is required.</li>
             </ul>
         </ul>
         <li>Bug Fixes</li>
@@ -42,6 +42,7 @@
         <ul>
             <li>Overhauled the <a href="/races">Organized Play</a> page to include better information on all major competitive play.</li>
             <li>Fixed item pool information on the <a href="/options#item_pool">Game Options</a> page.</li>
+            <li>Removed or replaced other out of date community information still present on the site.</li>
         </ul>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
