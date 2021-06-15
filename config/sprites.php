@@ -1009,6 +1009,20 @@ return [
             0 => 'smz3',
         ],
     ],
+    'conker-neo.1.zspr' => [
+        'name' => 'Conker Neo',
+        'author' => 'Erock Kerberos Chew',
+        'file' => 'conker-neo.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.9',
+        'tags' => [
+            0 => 'Rare',
+            1 => 'Animal',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'conker.1.zspr' => [
         'name' => 'Conker',
         'author' => 'Charmander106/SePH',
@@ -3795,11 +3809,11 @@ return [
             0 => 'smz3',
         ],
     ],
-    'prof-renderer-grizzleton.1.zspr' => [
+    'prof-renderer-grizzleton.2.zspr' => [
         'name' => 'Prof. Renderer Grizzleton',
         'author' => 'Professor Renderer',
-        'file' => 'prof-renderer-grizzleton.1.zspr',
-        'version' => 1,
+        'file' => 'prof-renderer-grizzleton.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.9',
         'tags' => [
             0 => 'Personality',
