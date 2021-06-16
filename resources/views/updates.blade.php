@@ -19,7 +19,7 @@
             <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.  Thanks kedNalatacId!</li>
             <li>Bot authors may now specify a game name and notes in API requests to /api/randomizer</li>
             <li>A new "Random" option was added for the heart color.  Thanks Doctor Blue!</li>
-            <li>Ganon will now say something Original and Funny™ when Silver Arrows are unavailable.</li>
+            <li>Ganon will now say something Funny and Original™ when Silver Arrows are unavailable.</li>
             <li>The MSU-1 track playing in the overworld will now resume where it left off when returning to the overworld, assuming the same track is playing.  Thanks Bonta!</li>
             <ul>
                 <li>Not every platform will support this feature.  This feature is known to work on the latest sd2snes/Fxpak, Snes9X, and bsnes/higan.  Revision 2 of MSU-1 is required.</li>
