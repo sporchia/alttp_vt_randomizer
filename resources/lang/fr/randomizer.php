@@ -103,7 +103,7 @@ return [
         ],
     ],
     "entrance_shuffle" => [
-        'title' => 'Mélangeur d\'Entrées',
+        'title' => 'Mélangeur d’Entrées',
         'options' => [
             'none' => 'Désactivé',
             'simple' => 'Simple',
@@ -123,7 +123,7 @@ return [
         ],
     ],
     "enemy_shuffle" => [
-        'title' => 'Mélangeur d\'Ennemis',
+        'title' => 'Mélangeur d’Ennemis',
         'options' => [
             'none' => 'Désactivé',
             'shuffled' => 'Intervertis',
@@ -155,7 +155,7 @@ return [
             'expert' => 'Expert',
             'crowd_control' => 'Crowd Control',
         ],
-        'crowd_control_warning' => '<sup>*</sup> Ce paramètre est prévu pour être utilisé avec l\'extension Twitch Crowd Control. En savoir plus: <a href="https://crowdcontrol.live/" target="_blank" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>',
+        'crowd_control_warning' => '<sup>*</sup> Ce paramètre est prévu pour être utilisé avec l’extension Twitch Crowd Control. En savoir plus: <a href="https://crowdcontrol.live/" target="_blank" rel=”noopener noreferrer”>https://crowdcontrol.live/</a>',
     ],
     'item_functionality' => [
         'title' => 'Fonctionnalité des Objets',
@@ -206,7 +206,7 @@ return [
         'save_spoiler' => 'Enregistrer la spoiler',
         'save_rom' => 'Sauvegarder la ROM',
     ],
-    // depricated
+    // deprecated
     'variation' => [
         'title' => 'Variation',
     ],

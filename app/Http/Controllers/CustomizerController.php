@@ -80,7 +80,7 @@ class CustomizerController extends Controller
             ]));
             Cache::put('hash.' . $payload['hash'], $save_data, now()->addDays(7));
 
-            return json_encode($return_payload);
+            return response()->json($return_payload);
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -93,7 +93,7 @@ class CustomizerController extends Controller
     public function testGenerateSeed(Request $request)
     {
         try {
-            return json_encode(Arr::except($this->prepSeed($request), ['patch', 'seed', 'hash']));
+            return response()->json(Arr::except($this->prepSeed($request), ['patch', 'seed', 'hash']));
         } catch (Exception $exception) {
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
@@ -113,7 +113,7 @@ class CustomizerController extends Controller
             'none' => 'NoGlitches',
             'overworld_glitches' => 'OverworldGlitches',
             'major_glitches' => 'MajorGlitches',
-            'no_logic' => 'None',
+            'no_logic' => 'NoLogic',
         ][$request->input('glitches', 'none')];
 
         $spoilers = $request->input('spoilers', 'off');
@@ -180,7 +180,7 @@ class CustomizerController extends Controller
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', true),
             'spoilers' => $spoilers,
-            'allow_quickswap' => $request->input('allow_quickswap', false),
+            'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
@@ -250,6 +250,11 @@ class CustomizerController extends Controller
         $rand = new Randomizer([$world]);
 
         $rand->randomize();
+
+        foreach ($request->input('texts', []) as $key => $value) {
+            $world->setText($key, $value);
+        }
+
         $world->writeToRom($rom, $save);
 
         $worlds = new WorldCollection($rand->getWorlds());

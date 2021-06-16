@@ -70,6 +70,6 @@ return [
     'details' => [
         'title' => 'Game Details',
         'save_spoiler' => 'Save Spoiler',
-        'save_rom' => 'Save Rom',
+        'save_rom' => 'Save ROM',
     ],
 ];

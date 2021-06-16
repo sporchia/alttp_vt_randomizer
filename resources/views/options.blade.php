@@ -363,7 +363,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <ul>
-                        <li>10x Big Key</li>
+                        <li>11x Big Key</li>
                         <li>1x Bombos</li>
                         <li>1x Book Of Mudora</li>
                         <li>1x Boomerang</li>
@@ -382,7 +382,7 @@
                         <li>11x Heart Container</li>
                         <li>1x Hookshot</li>
                         <li>1x Ice Rod</li>
-                        <li>28x Small Key</li>
+                        <li>29x Small Key</li>
                         <li>1x Lamp</li>
                         <li>1x Magic Cape</li>
                         <li>1x Magic Mirror</li>

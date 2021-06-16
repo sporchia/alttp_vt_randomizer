@@ -2,6 +2,54 @@
 
 @section('content')
 
+<h2>v31.0.9</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>New Features</li>
+        <ul>
+            <li>New post-generation option called "Reduce Flashing" has been added.  Thanks Cassidymoen!</li>
+            <li>The credits have been updated to include additional individuals we want to recognize for their contributions to this project.</li>
+            <li>The speed of the epilogue and credits can be increased 4x the normal speed by pressing and holding X.</li>
+            <ul>
+                <li>You may experience some minor graphical glitches when using this feature.  This is a known issue due to technical limitations.</li>
+                <li>Music will play at normal speed, and sprites will still move at normal speed.  This feature only increases the speed of camera scrolling.</li>
+            </ul>
+            <li>The author of the sprite you're using will now appear in the end credits.</li>
+            <li>When underworld clips are enabled, a new line will appear in the menu indicating what bosses have been defeated.</li>
+            <li>The bottles now work like other items that share an inventory space when using Quickswap.  Press L+R to swap bottles.  Thanks kedNalatacId!</li>
+            <li>Bot authors may now specify a game name and notes in API requests to /api/randomizer</li>
+            <li>A new "Random" option was added for the heart color.  Thanks Doctor Blue!</li>
+            <li>Ganon will now say something Funny and Original™ when Silver Arrows are unavailable.</li>
+            <li>The MSU-1 track playing in the overworld will now resume where it left off when returning to the overworld, assuming the same track is playing.  Thanks Bonta!</li>
+            <ul>
+                <li>Not every platform will support this feature.  This feature is known to work on the latest sd2snes/Fxpak, Snes9X, and bsnes/higan.  Revision 2 of MSU-1 is required.</li>
+            </ul>
+        </ul>
+        <li>Bug Fixes</li>
+        <ul>
+            <li>Finding a map in Hyrule Castle will now properly show the map on your item menu while in the Sewers section of Hyrule Castle.</li>
+            <li>Enemizer: Firebars will now only damage the player if the firebar is on the same layer as Link.</li>
+            <li>Customizer: Fixes a bug that prevented a change in starting hearts to be saved if you click on the slider instead of dragging the slider.  Thanks Dr. Blue!</li>
+            <li>Low health beeping will no longer occur if your max health is 1 or 2 hearts.  Once you have at least three hearts, the normal beeping behavior will occur.</li>
+        </ul>
+        <li>Other changes</li>
+        <ul>
+            <li>The website will now, by default, generate games where Quickswap is allowed.  This can still be disabled via the API.</li>
+            <li>Customizer: Will now default to enabling spoilers on generated games.  This can still be set to Disabled, On Generate, or Mystery as needed.</li>
+            <li>Overworld YBA now puts Moon Pearl-less access to Ganon in logic</li>
+        </ul>
+        <li>Website content updates</li>
+        <ul>
+            <li>Overhauled the <a href="/races">Organized Play</a> page to include better information on all major competitive play.</li>
+            <li>Fixed item pool information on the <a href="/options#item_pool">Game Options</a> page.</li>
+            <li>Removed or replaced other out of date community information still present on the site.</li>
+        </ul>
+        <li>Added new player options<br />
+            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
+                alt="Link sprite options" style="width:50%" /></li>
+    </ul>
+</div>
+
 <h2>v31.0.8</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
@@ -107,7 +155,7 @@
         <li>Bunny Link is now literate and can read signposts.</li>
         <li>Silver Arrows will now always be available in Entrance Randomizer when playing Swordless on a hard/expert item pool setting.</li>
         <li>Fixed silver arrows being intially equipped on aquisition in Hard/Expert item functionality, even when they should only be available for Ganon.</li>
-        <li>API support for allowing quickswap usage in item randomizer race roms.  The default behavior for item randomizer races will still be to disallow quickswap.</li>
+        <li>API support for allowing quickswap usage in item randomizer race ROMs. The default behavior for item randomizer races will still be to disallow quickswap.</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
@@ -153,7 +201,7 @@
         <li>Fixed Silver Arrows being unavailable in Swordless games with a Hard+ Item Pool setting</li>
         <li>Fixed hints in customizer games</li>
         <li>Fixed issue with manually placed Triforce Pieces were not counted in customizer.</li>
-        <li>Customizer players may now set what rom fixes are applied to their glitched games.</li>
+        <li>Customizer players may now set what ROM fixes are applied to their glitched games.</li>
         <li>Added Underworld One Frame Clips to customizer Logic Settings<li>
         <li>API support for mystery games</li>
         <li>API support for z3rsim</li>
@@ -281,7 +329,7 @@
             <li>A text box has been added to tell you if you have insufficient rupees</li>
         </ul></li>
         <li>Fixed a bug in Inverted where some enemies in Agahnim’s Tower and Old Man Cave had DW properties</li>
-        <li>Added a “loading animation” when ROMS are being generated so people know things are happening!</li>
+        <li>Added a “loading animation” when ROMs are being generated so people know things are happening!</li>
         <li>Fixed a bug where Crystals sometimes wouldn’t drop in boss rooms in extremely rare situations</li>
         <li>Updated Pedestal/Tablets texts to reference generic keys in Retro and not specific keys</li>
         <li>Updated ER permalinks to include Quick Swap</li>
@@ -445,7 +493,7 @@
         <li>Flute time in credits fixed</li>
         <li>Better boss logic for future fun</li>
         <li>Added quick swap functionality</li>
-        <li>If you use a headered rom, the site will try to strip that header out before use (thanks Myramong)</li>
+        <li>If you use a headered ROM, the site will try to strip that header out before use (thanks Myramong)</li>
         <li>Added new player options<br />
             <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.29.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
@@ -475,7 +523,7 @@
         <li>Updated Entrance Randomizer to v0.5.2.1 (has many more options, thanks KevinCathcart)</li>
         <li>Some Grammar fixes (thanks spannerisms)</li>
         <li>Ganon's Tower Big Key logic fix (thanks pancelor)</li>
-        <li>Rom checksum fix (thanks qwertymodo)</li>
+        <li>ROM checksum fix (thanks qwertymodo)</li>
         <li>Added API endpoints to allow integrations with sprites/settings (thanks roxas232)</li>
         <li>Redesign of the site to be easier to locate information and look nicer (thanks walking_eye)</li>
         <li>Customizer fixes based on feedback<ul>
@@ -496,7 +544,7 @@
         <li>Easy difficulty will always have dungeon counts in HUD enabled</li>
         <li>Added + to golden bee bottle in menu</li>
         <li>Added letter to signify bottle contents for potions in menu</li>
-        <li>Added "fast menu" under Rom options, not available in Race Roms</li>
+        <li>Added "fast menu" under ROM options, not available in Race ROMs</li>
         <li>Hard/Expert/Insane has default magic usage for Blind/Ice Palace spike room/Turtle Rock laser bridge</li>
         <li>Added key-sanity</li>
         <li>Updated ending sequence to allow better tag lines</li>
@@ -537,7 +585,7 @@
         <li>updated timed-OHKO for different difficulties</li>
         <li>Boots are no longer guaranteed in Sanctuary for Major Glitches</li>
         <li>Hammer can now activate tablets in swordless</li>
-        <li>Numerous rom related bugs fixed</li>
+        <li>Numerous ROM related bugs fixed</li>
         <li>Added some descriptions to the ER shuffle modes from docs</li>
         <li>Waterfall fairy no longer upgrades shield/boomerang</li>
         <li>Added Triforce Hunt goal/variation</li>

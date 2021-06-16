@@ -113,7 +113,7 @@ class Randomizer implements RandomizerContract
         $trash_items = $world->getItemPool();
 
         // @todo check a flag instead of logic here, as well as difficulty
-        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'None']) && $world->config('difficulty') !== 'custom') {
+        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'NoLogic']) && $world->config('difficulty') !== 'custom') {
             $world->addPreCollectedItem(Item::get('PegasusBoots', $world));
             foreach ($advancement_items as $key => $item) {
                 if ($item == Item::get('PegasusBoots', $world)) {
@@ -868,6 +868,7 @@ class Randomizer implements RandomizerContract
                 'tavern_man' => $this->getTextArray('strings/tavern_man.txt'),
                 'blind' => $this->getTextArray('strings/blind.txt'),
                 'ganon_1' => $this->getTextArray('strings/ganon_1.txt'),
+                'ganon_phase_3_no_silvers' => $this->getTextArray('strings/ganon_phase_3_no_silvers.txt'),
                 'triforce' => $this->getTextArray('strings/triforce.txt'),
             ];
         });
@@ -927,28 +928,17 @@ class Randomizer implements RandomizerContract
 
         $world->setText('ganon_phase_3_alt', "Got wax in\nyour ears?\nI cannot die!");
 
+        // bow hint and handling
+        // @todo this swap of item really shouldn't happen here, we don't know
+        // for sure that the items haven't already been written to the ROM.
         $silver_arrows_location = $world->getLocationsWithItem(Item::get('SilverArrowUpgrade', $world))->first();
         if (!$silver_arrows_location) {
             $silver_arrows_location = $world->getLocationsWithItem(Item::get('BowAndSilverArrows', $world))->first();
         }
 
-        if (!$silver_arrows_location) {
-            $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
-        } else {
-            switch ($silver_arrows_location->getRegion()->getName()) {
-                case "Ganons Tower":
-                    $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\nMy tower?");
-                    break;
-                default:
-                    $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
-            }
-        }
-
-        // progressive bow hint and handling
-        // @todo this swap of item really shouldn't happen here, we don't know
-        // for sure that the items haven't already been written to the rom.
         $progressive_bow_locations = $world->getLocationsWithItem(Item::get('ProgressiveBow', $world))->randomCollection(2);
-        if ($progressive_bow_locations->count() > 0) {
+
+        if ($progressive_bow_locations->count() >= 2 && $world->config('item.overflow.count.Bow', 2) >= 2) {
             $first_location = $progressive_bow_locations->pop();
             switch ($first_location->getRegion()->getName()) {
                 case "Ganons Tower":
@@ -960,26 +950,32 @@ class Randomizer implements RandomizerContract
             // Progressive Bow Alternate
             $first_location->setItem(new Item\Bow('ProgressiveBow', [0x65], $world));
 
-            if ($progressive_bow_locations->count() > 0) {
-                $second_location = $progressive_bow_locations->pop();
-                switch ($second_location->getRegion()->getName()) {
-                    case "Ganons Tower":
-                        $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
-                        break;
-                    default:
-                        $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
-                }
+            $second_location = $progressive_bow_locations->pop();
+            switch ($second_location->getRegion()->getName()) {
+                case "Ganons Tower":
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
+                    break;
+                default:
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getRegion()->getName());
             }
-            // Remove Hint in Hard+ Item Pool
-            if ($world->config('item.overflow.count.Bow') < 2) {
-                $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
-                $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows on\nPlanet Zebes?");
-                // Special No Silvers "Hint" for Crowd Control
-                if ($world->config('item.pool') == 'crowd_control') {
-                    $world->setText('ganon_phase_3_no_silvers', "Chat said no\nto Silvers.\nIt's over Hero");
-                    $world->setText('ganon_phase_3_no_silvers_alt', "Chat said no\nto Silvers.\nIt's over Hero");
-                }
+        } elseif ($silver_arrows_location) {
+            switch ($silver_arrows_location->getRegion()->getName()) {
+                case "Ganons Tower":
+                    $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\nMy tower?");
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
+                    break;
+                default:
+                    $world->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
+                    $world->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $silver_arrows_location->getRegion()->getName());
             }
+        } else {
+            $fake_silvers_hint = Arr::first(fy_shuffle($strings['ganon_phase_3_no_silvers']));
+            if ($world->config('item.pool', 'normal') === 'crowd_control') {
+                $fake_silvers_hint = "Chat said no\nto Silvers.\nIt's over Hero";
+            }
+
+            $world->setText('ganon_phase_3_no_silvers', $fake_silvers_hint);
+            $world->setText('ganon_phase_3_no_silvers_alt', $fake_silvers_hint);
         }
 
         if ($world->config('crystals.tower') < 7) {

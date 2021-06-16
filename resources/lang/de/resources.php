@@ -24,7 +24,7 @@ return [
                     . '<li><a href="https://alttprlinks.page.link/3vXm" target="_blank" rel="noopener noreferrer">Glossar für hilfreiche Sachen</a></li>'
                     . '<li><a href="https://alttprlinks.page.link/HVFx" target="_blank" rel="noopener noreferrer">Glitch Ressourcen</a></li>'
                     . '<li><a href="https://alttprlinks.page.link/on1o" target="_blank" rel="noopener noreferrer">Trackers / HUDs</a></li>'
-                    . '<li><a href="http://alttp.mymm1.com/srl/" target="_blank" rel="noopener noreferrer">Wie man durchstartet auf SRL</a></li>'
+                    . '<li><a href="https://racetime.gg/about/help" target="_blank" rel="noopener noreferrer">Wie man durchstartet auf RaceTime.gg</a></li>'
                 . '</ul>',
             ],
         ],
@@ -74,7 +74,7 @@ return [
                 [
                     'header' => 'Was änderte sich vom originalen Spiel?',
                     'content' => [
-                        'Es gibt einige Änderungen vom originalen Spiel um das Spielerlebniss zu verbessern und um zu verhindet das man feststeckt. Die Japanische 1.0 Rom wird benutzt da es einige Glitches mehr erlaubt die für fortgeschrittene Spielmodi benutzt werden.',
+                        'Es gibt einige Änderungen vom originalen Spiel um das Spielerlebniss zu verbessern und um zu verhindet das man feststeckt. Die Japanische 1.0 ROM wird benutzt da es einige Glitches mehr erlaubt die für fortgeschrittene Spielmodi benutzt werden.',
                         '<ul>'
                             . '<li>Du brauchst nicht länger die Lampe im Prolog um das Bücherregal zu verschieben.</li>'
                             . '<li>Du kannst nun in dunklen Räumen sehen ohne die Lampe (außer im Offen Modus).</li>'

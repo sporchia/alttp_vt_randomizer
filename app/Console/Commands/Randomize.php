@@ -21,16 +21,17 @@ class Randomize extends Command
      *
      * @var string
      */
-    protected $signature = 'alttp:randomize {input_file : base rom to randomize}'
-        . ' {output_directory : where to place randomized rom}'
-        . ' {--unrandomized : do not apply randomization to the rom}'
+    protected $signature = 'alttp:randomize {input_file : base ROM to randomize}'
+        . ' {output_directory : where to place randomized ROM}'
+        . ' {--unrandomized : do not apply randomization to the ROM}'
         . ' {--spoiler : generate a spoiler file}'
         . ' {--heartbeep=half : set heart beep speed}'
-        . ' {--skip-md5 : do not validate md5 of base rom}'
+        . ' {--heartcolor=red : set heart color}'
+        . ' {--skip-md5 : do not validate md5 of base ROM}'
         . ' {--tournament : enable tournament mode}'
-        . ' {--bulk=1 : generate multiple roms}'
+        . ' {--bulk=1 : generate multiple ROMs}'
         . ' {--sprite= : sprite file to change links graphics [zspr format]}'
-        . ' {--no-rom : do not generate output rom}'
+        . ' {--no-rom : do not generate output ROM}'
         . ' {--no-music : mute all music}'
         . ' {--menu-speed=normal : menu speed}'
         . ' {--goal=ganon : set game goal}'
@@ -44,14 +45,15 @@ class Randomize extends Command
         . ' {--accessibility=item : set item/location accessibility}'
         . ' {--hints=on : set hints on or off}'
         . ' {--item_pool=normal : set item pool}'
-        . ' {--item_functionality=normal : set item functionality}';
+        . ' {--item_functionality=normal : set item functionality}'
+        . ' {--quickswap=false : set quickswap}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate a randomized rom.';
+    protected $description = 'Generate a randomized ROM.';
 
     /** @var array */
     protected $reset_patch;
@@ -124,15 +126,28 @@ class Randomize extends Command
                 return 3;
             }
 
+            if (is_string($this->option('heartcolor'))) {
+                $heartColorToUse = $this->option('heartcolor');
+                if ($heartColorToUse === 'random') {
+                  $colorOptions = ['blue', 'green', 'yellow', 'red'];
+                  $heartColorToUse = $colorOptions[get_random_int(0, 3)];
+                }
+                $rom->setHeartColors($heartColorToUse);
+            }
+
             if (is_string($this->option('heartbeep'))) {
                 $rom->setHeartBeepSpeed($this->option('heartbeep'));
+            }
+
+            if(is_string($this->option('quickswap'))) {
+                $rom->setQuickSwap(strtolower($this->option('quickswap')) === 'true');
             }
 
             // break out for unrandomized base game
             if ($this->option('unrandomized')) {
                 $output_file = sprintf('%s/alttp-%s.sfc', $this->argument('output_directory'), Rom::BUILD);
                 $rom->save($output_file);
-                $this->info(sprintf('Rom Saved: %s', $output_file));
+                $this->info(sprintf('ROM Saved: %s', $output_file));
 
                 return 0;
             }
@@ -145,7 +160,7 @@ class Randomize extends Command
                 'none' => 'NoGlitches',
                 'overworld_glitches' => 'OverworldGlitches',
                 'major_glitches' => 'MajorGlitches',
-                'no_logic' => 'None',
+                'no_logic' => 'NoLogic',
             ][$this->option('glitches')];
 
             $world = World::factory($this->option('state'), [
@@ -202,7 +217,7 @@ class Randomize extends Command
                 $rom->updateChecksum();
                 $rom->save($output_file);
 
-                $this->info(sprintf('Rom Saved: %s', $output_file));
+                $this->info(sprintf('ROM Saved: %s', $output_file));
             }
 
             if ($this->option('spoiler')) {
@@ -215,7 +230,7 @@ class Randomize extends Command
     }
 
     /**
-     * Apply base patch to rom file.
+     * Apply base patch to ROM file.
      *
      * @throws \Exception when base patch has no content.
      *

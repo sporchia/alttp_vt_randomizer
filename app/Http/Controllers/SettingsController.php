@@ -191,7 +191,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * Get information on the current rom patch.
+     * Get information on the current ROM patch.
      *
      * @return array
      */
@@ -216,6 +216,7 @@ class SettingsController extends Controller
                 'author' => $info['author'],
                 'version' => $info['version'],
                 'file' => 'https://alttpr.s3.us-east-2.amazonaws.com/' . $file,
+                'preview' => 'https://alttpr.s3.us-east-2.amazonaws.com/' . $file . '.png',
                 'tags' => $info['tags'] ?? [],
                 'usage' => $info['usage'] ?? []
             ];
