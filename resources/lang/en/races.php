@@ -15,7 +15,7 @@ return [
                 [
                     'header' => 'ALTTPR Ladder',
                     'content' => [
-                        'The <a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> is a 1v1 Elo Ladder, "A Link To the Past Randomizer" league, running completely on Discord.  The system is designed to do several 1v1 races throughout the day, and rankings will be based on standard Elo 32k weights.',
+                        'The <a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> is a 1v1 Elo Ladder, "ALTTP Randomizer" league, running completely on Discord.  The system is designed to do several 1v1 races throughout the day, and rankings will be based on standard Elo 32k weights.',
                     ],
                 ],
                 [
