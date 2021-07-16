@@ -1,5 +1,5 @@
 @extends('layouts.default', ['title' => __('randomizer.title') . ' - '])
 
 @section('content')
-    <Randomizer></Rndomizer>
+    <Randomizer></Randomizer>
 @overwrite
