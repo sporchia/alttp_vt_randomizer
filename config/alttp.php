@@ -20,7 +20,6 @@ return [
             'wildCompasses' => false,
         ],
         'rom' => [
-            'HardMode' => 0,
             'genericKeys' => false,
         ],
         'spoil' => [
