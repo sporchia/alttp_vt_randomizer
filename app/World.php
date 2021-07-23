@@ -201,8 +201,8 @@ abstract class World
                 $this->config['rom.CapeMagicUsage.Quarter'] = 0x08;
                 $this->config['rom.CaneOfByrnaInvulnerability'] = false;
                 $this->config['rom.PowderedSpriteFairyPrize'] = 0xD8; // 1 heart
-                $this->config['rom.BottleFill.Health'] = 0x20; // 7 hearts, 1/2 magic refills
-                $this->config['rom.BottleFill.Magic'] = 0x20; // 7 hearts, 1/2 magic refills
+                $this->config['rom.BottleFill.Health'] = 0x20; // 4 hearts
+                $this->config['rom.BottleFill.Magic'] = 0x20; // 1/4 magic refills
                 $this->config['rom.CatchableFairies'] = false;
                 $this->config['rom.CatchableBees'] = true;
                 $this->config['rom.StunItems'] = 0x00;
@@ -215,8 +215,8 @@ abstract class World
                 $this->config['rom.CapeMagicUsage.Quarter'] = 0x08;
                 $this->config['rom.CaneOfByrnaInvulnerability'] = false;
                 $this->config['rom.PowderedSpriteFairyPrize'] = 0xD8; // 1 heart
-                $this->config['rom.BottleFill.Health'] = 0x38; // 4 heart, 1/4 magic refills
-                $this->config['rom.BottleFill.Magic'] = 0x40; // 4 heart, 1/4 magic refills
+                $this->config['rom.BottleFill.Health'] = 0x38; // 7 hearts
+                $this->config['rom.BottleFill.Magic'] = 0x40; // 1/2 magic refills
                 $this->config['rom.CatchableFairies'] = false;
                 $this->config['rom.CatchableBees'] = true;
                 $this->config['rom.StunItems'] = 0x02;

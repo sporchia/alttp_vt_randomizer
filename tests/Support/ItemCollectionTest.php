@@ -217,10 +217,10 @@ class ItemCollectionTest extends TestCase
             [['Bottle'], "normal", 3, False],
             [['Bottle', 'HalfMagic'], "normal", 4, True],
             [['Bottle', 'HalfMagic'], "normal", 5, False],
-            [['Bottle', 'HalfMagic'], "hard", 3, True], # failing
+            [['Bottle', 'HalfMagic'], "hard", 3, True],
             [['Bottle', 'HalfMagic'], "hard", 4, False],
             [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], "expert", 8, True],
-            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], "expert", 9, False], # failing
+            [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], "expert", 9, False],
             [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], "superexpert", 4, True],
             [['Bottle', 'Bottle', 'Bottle', 'Bottle', 'QuarterMagic'], "superexpert", 5, False],
         ];
