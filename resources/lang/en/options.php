@@ -605,6 +605,12 @@ return [
                         'Enable or disable the background music, including MSU-1 playback.  MSU-1 users should leave this enabled.',
                     ],
                 ],
+                'shuffle_sfx' => [
+                	'header' => __('rom.settings.shuffle_sfx'),
+                	'content' => [
+						'Randomizes the sound effects within the game. This means everything can sound like anything else. Enable with caution!',
+					],
+				]
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [

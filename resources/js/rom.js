@@ -5,6 +5,7 @@ import BPS from "./bps";
 import * as Z3PR from "@maseya/z3pr";
 import localforage from "localforage";
 import center from "center-align";
+import SFX from "./sfx";
 
 export default class ROM {
   constructor(blob, loadedCallback) {
@@ -116,7 +117,7 @@ export default class ROM {
     });
   }
 
-  save(filename, { paletteShuffle, quickswap, musicOn, reduceFlashing }) {
+  save(filename, { paletteShuffle, quickswap, musicOn, reduceFlashing, shuffleSfx }) {
     let preProcess = this.arrayBuffer.slice(0);
 
     if (paletteShuffle) {
@@ -130,6 +131,10 @@ export default class ROM {
     this.setMusicVolume(musicOn);
 
     this.setReduceFlashing(reduceFlashing);
+
+    if (shuffleSfx) {
+    	this.randomizeSfx();
+    }
 
     this.updateChecksum().then(() => {
       FileSaver.saveAs(new Blob([this.u_array], { type: 'application/octet-stream' }), filename);
@@ -415,7 +420,7 @@ export default class ROM {
       randomize_dungeon: true,
       seed: this.rand.nextInt(0, 4294967295)
     });
-    this.rand.reset()
+    this.rand.reset();
   }
 
   setReduceFlashing(enable) {
@@ -426,6 +431,11 @@ export default class ROM {
 
       resolve(this);
     });
+  }
+
+  randomizeSfx(enable) {
+  	new SFX(this.rand.nextInt(0, 4294967295)).randomize_sfx(this);
+	this.rand.reset();
   }
 
   parsePatch(data, progressCallback) {
