@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f3cc7720e7fb557a57da221582a747e",
+    "content-hash": "6b2399d5c454bc77ef58ba24c1302efa",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -6961,11 +6961,11 @@
         },
         {
             "name": "z3/randomizer",
-            "version": "31.0.9",
+            "version": "31.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KatDevsGames/z3randomizer",
-                "reference": "d0fbd11d0f6c5b2a45ee20deb0a87a925592c93a"
+                "reference": "8da0dcf3e0af4ee01f781af774d3eaa9182d31be"
             },
             "type": "library"
         }
@@ -10209,6 +10209,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
+            "abandoned": true,
             "time": "2018-10-04T04:07:39+00:00"
         },
         {

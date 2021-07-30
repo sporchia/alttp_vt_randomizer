@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2021-06-14';
-    const HASH = 'ecca7473031de4b4e1d9994874a3e80c';
+    const BUILD = '2021-07-18';
+    const HASH = '91bd3ceeda53fd3c529d28ec7521ab5b';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -793,6 +793,22 @@ class Rom
     public function setCapeSpikeCaveUsage(int $normal = 0x04, int $half = 0x08, int $quarter = 0x10): self
     {
         $this->write(0x18016E, pack('C*', $normal, $half, $quarter));
+
+        return $this;
+    }
+
+    /**
+     * Set regular Cape Magic Usage
+     *
+     * @param int $normal normal magic usage
+     * @param int $half half magic usage
+     * @param int $quarter quarter magic usage
+     *
+     * @return $this
+     */
+    public function setCapeRegularMagicUsage(int $normal = 0x04, int $half = 0x08, int $quarter = 0x10): self
+    {
+        $this->write(0x3ADA7, pack('C*', $normal, $half, $quarter));
 
         return $this;
     }
@@ -1607,77 +1623,6 @@ class Rom
     public function setOverworldDigPrizes(array $prizes = []): self
     {
         $this->write(0x180100, pack('C*', ...$prizes));
-
-        return $this;
-    }
-
-    /**
-     * Adjust some settings for hard mode
-     *
-     * @param int $level how hard to make it, higher should be harder
-     *
-     * @throws \Exception if an unknown hard mode is selected
-     *
-     * @return $this
-     */
-    public function setHardMode(int $level = 0): self
-    {
-        $this->setCaneOfByrnaSpikeCaveUsage();
-        $this->setCapeSpikeCaveUsage();
-        $this->setByrnaCaveSpikeDamage(0x08);
-        // Bryna magic amount used per "cycle"
-        $this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
-
-        switch ($level) {
-            case -1:
-            case 0:
-                // Cape magic
-                $this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-                $this->setCaneOfByrnaInvulnerability(true);
-                $this->setPowderedSpriteFairyPrize(0xE3);
-                $this->setBottleFills([0xA0, 0x80]);
-                $this->setCatchableFairies(true);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x03);
-                $this->setSilversOnlyAtGanon(false);
-
-                break;
-            case 1:
-                $this->write(0x3ADA7, pack('C*', 0x02, 0x04, 0x08));
-                $this->setCaneOfByrnaInvulnerability(false);
-                $this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-                $this->setBottleFills([0x38, 0x40]); // 7 hearts, 1/2 magic refills
-                $this->setCatchableFairies(false);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x02);
-                $this->setSilversOnlyAtGanon(true);
-
-                break;
-            case 2:
-                $this->write(0x3ADA7, pack('C*', 0x02, 0x04, 0x08));
-                $this->setCaneOfByrnaInvulnerability(false);
-                $this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-                $this->setBottleFills([0x20, 0x20]); // 4 heart, 1/4 magic refills
-                $this->setCatchableFairies(false);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x00);
-                $this->setSilversOnlyAtGanon(true);
-
-                break;
-            case 3:
-                $this->write(0x3ADA7, pack('C*', 0x01, 0x02, 0x04));
-                $this->setCaneOfByrnaInvulnerability(false);
-                $this->setPowderedSpriteFairyPrize(0x79); // Bees
-                $this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills
-                $this->setCatchableFairies(false);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x00);
-                $this->setSilversOnlyAtGanon(true);
-
-                break;
-            default:
-                throw new \Exception("Trying to set hard mode that doesn't exist");
-        }
 
         return $this;
     }

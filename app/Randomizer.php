@@ -684,18 +684,13 @@ class Randomizer implements RandomizerContract
         });
 
         // handle hardmode shops
-        switch ($world->config('rom.HardMode', 0)) {
-            case 1:
-            case 2:
-            case 3:
-                $world->getShop("Capacity Upgrade")->clearInventory();
-                $world->getShop("Dark World Potion Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-                $world->getShop("Dark World Forest Shop")->addInventory(0, Item::get('Nothing', $world), 0);
-                $world->getShop("Dark World Lumberjack Hut Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-                $world->getShop("Dark World Outcasts Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-                $world->getShop("Dark World Lake Hylia Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-
-                break;
+        if ($world->config('shops.HardMode', false)) {
+            $world->getShop("Capacity Upgrade")->clearInventory();
+            $world->getShop("Dark World Potion Shop")->addInventory(1, Item::get('Nothing', $world), 0);
+            $world->getShop("Dark World Forest Shop")->addInventory(0, Item::get('Nothing', $world), 0);
+            $world->getShop("Dark World Lumberjack Hut Shop")->addInventory(1, Item::get('Nothing', $world), 0);
+            $world->getShop("Dark World Outcasts Shop")->addInventory(1, Item::get('Nothing', $world), 0);
+            $world->getShop("Dark World Lake Hylia Shop")->addInventory(1, Item::get('Nothing', $world), 0);
         }
 
         if (
@@ -752,16 +747,11 @@ class Randomizer implements RandomizerContract
                 }
             }
 
-            switch ($world->config('rom.HardMode', 0)) {
-                case 1:
-                case 2:
-                case 3:
-                    $world->getShop("Capacity Upgrade")->clearInventory();
-
-                    break;
-                default:
-                    $world->getShop("Capacity Upgrade")->clearInventory()
-                        ->addInventory(0, Item::get('BombUpgrade5', $world), 100, 7);
+            if ($world->config('shops.HardMode', false)) {
+                $world->getShop("Capacity Upgrade")->clearInventory();
+            } else {
+                $world->getShop("Capacity Upgrade")->clearInventory()
+                    ->addInventory(0, Item::get('BombUpgrade5', $world), 100, 7);
             }
         }
     }
