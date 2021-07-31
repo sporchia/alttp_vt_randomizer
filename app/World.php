@@ -136,6 +136,16 @@ abstract class World
         $this->config['rom.freeItemMenu'] = $free_item_menu;
 
         switch ($this->config('item.pool')) {
+            case 'superexpert':
+                $this->config['item.overflow.count.Sword'] = 2;
+                $this->config['item.overflow.count.Armor'] = 0;
+                $this->config['item.overflow.count.Shield'] = 0;
+                $this->config['item.overflow.count.Bow'] = 1;
+                $this->config['item.overflow.count.BossHeartContainer'] = 0;
+                $this->config['item.overflow.count.PieceOfHeart'] = 0;
+                $this->config['shops.HardMode'] = true;
+
+                break;
             case 'expert':
                 $this->config['item.overflow.count.Sword'] = 2;
                 $this->config['item.overflow.count.Armor'] = 0;
@@ -143,6 +153,7 @@ abstract class World
                 $this->config['item.overflow.count.Bow'] = 1;
                 $this->config['item.overflow.count.BossHeartContainer'] = 2;
                 $this->config['item.overflow.count.PieceOfHeart'] = 8;
+                $this->config['shops.HardMode'] = true;
 
                 break;
             case 'hard':
@@ -152,6 +163,7 @@ abstract class World
                 $this->config['item.overflow.count.Bow'] = 1;
                 $this->config['item.overflow.count.BossHeartContainer'] = 6;
                 $this->config['item.overflow.count.PieceOfHeart'] = 16;
+                $this->config['shops.HardMode'] = true;
 
                 break;
             case 'crowd_control':
@@ -168,21 +180,57 @@ abstract class World
                 $this->config['item.count.TwentyRupees2'] = 4;
         }
 
+        switch ($this->config('item.functionality')) {
+            case 'superexpert':
+                $this->config['rom.CapeMagicUsage.Normal'] = 0x01;
+                $this->config['rom.CapeMagicUsage.Half'] = 0x02;
+                $this->config['rom.CapeMagicUsage.Quarter'] = 0x02;
+                $this->config['rom.CaneOfByrnaInvulnerability'] = false;
+                $this->config['rom.PowderedSpriteFairyPrize'] = 0x79; // bees
+                $this->config['rom.BottleFill.Health'] = 0x00; // nothing
+                $this->config['rom.BottleFill.Magic'] = 0x00; // nothing
+                $this->config['rom.CatchableFairies'] = false;
+                $this->config['rom.CatchableBees'] = true;
+                $this->config['rom.StunItems'] = 0x00;
+                $this->config['rom.SilversOnlyAtGanon'] = true;
+                $this->config['rom.NoFarieDrops'] = true;
+                break;
+            case 'expert':
+                $this->config['rom.CapeMagicUsage.Normal'] = 0x02;
+                $this->config['rom.CapeMagicUsage.Half'] = 0x04;
+                $this->config['rom.CapeMagicUsage.Quarter'] = 0x08;
+                $this->config['rom.CaneOfByrnaInvulnerability'] = false;
+                $this->config['rom.PowderedSpriteFairyPrize'] = 0xD8; // 1 heart
+                $this->config['rom.BottleFill.Health'] = 0x20; // 4 hearts
+                $this->config['rom.BottleFill.Magic'] = 0x20; // 1/4 magic refills
+                $this->config['rom.CatchableFairies'] = false;
+                $this->config['rom.CatchableBees'] = true;
+                $this->config['rom.StunItems'] = 0x00;
+                $this->config['rom.SilversOnlyAtGanon'] = true;
+                $this->config['rom.NoFarieDrops'] = true;
+                break;
+            case 'hard':
+                $this->config['rom.CapeMagicUsage.Normal'] = 0x02;
+                $this->config['rom.CapeMagicUsage.Half'] = 0x04;
+                $this->config['rom.CapeMagicUsage.Quarter'] = 0x08;
+                $this->config['rom.CaneOfByrnaInvulnerability'] = false;
+                $this->config['rom.PowderedSpriteFairyPrize'] = 0xD8; // 1 heart
+                $this->config['rom.BottleFill.Health'] = 0x38; // 7 hearts
+                $this->config['rom.BottleFill.Magic'] = 0x40; // 1/2 magic refills
+                $this->config['rom.CatchableFairies'] = false;
+                $this->config['rom.CatchableBees'] = true;
+                $this->config['rom.StunItems'] = 0x02;
+                $this->config['rom.SilversOnlyAtGanon'] = true;
+                $this->config['rom.NoFarieDrops'] = true;
+                break;
+        }
+
         $this->config['region.requireBetterBow'] = false;
         $this->config['region.requireBetterSword'] = false;
 
         if ($this->config('itemPlacement') === 'basic') {
             $this->config['region.requireBetterBow'] = true;
             $this->config['region.requireBetterSword'] = true;
-        }
-
-        switch ($this->config('item.functionality')) {
-            case 'expert':
-                $this->config['rom.HardMode'] = 2;
-
-                break;
-            case 'hard':
-                $this->config['rom.HardMode'] = 1;
         }
 
         // In swordless mode silvers are 100% required
@@ -277,8 +325,8 @@ abstract class World
         }
         foreach ($this->shops as $name => $shop) {
             $copy->shops[$name] = $shop->copy();
-    }
-    $boss_locations = [
+        }
+        $boss_locations = [
             ['Eastern Palace', ''],
             ['Desert Palace', ''],
             ['Tower of Hera', ''],
@@ -807,7 +855,7 @@ abstract class World
             Item::get('BottleWithFairy', $this),
         ];
 
-        return $bottles[get_random_int($filled ? 1 : 0, count($bottles) - (($this->config('rom.HardMode', 0) > 0) ? 2 : 1))];
+        return $bottles[get_random_int($filled ? 1 : 0, count($bottles) - (($this->config('rom.CatchableFairies', true)) ? 1 : 2))];
     }
 
     /**
@@ -934,10 +982,6 @@ abstract class World
             "Ganon" => "Ganon"
         ];
 
-        if ($this->config('rom.HardMode') !== null) {
-            $this->spoiler['meta']['difficulty_mode'] = $this->config('rom.HardMode', 0);
-        }
-
         $this->seed->spoiler = json_encode($this->spoiler);
 
         return $this->spoiler;
@@ -1007,7 +1051,7 @@ abstract class World
                 });
             }
         }
-        
+
         if ($this->config('mode.state') === 'standard') {
             $this->setEscapeFills($rom);
         }
@@ -1015,7 +1059,25 @@ abstract class World
         $rom->setGoalRequiredCount($this->config('item.Goal.Required', 0) ?: 0);
         $rom->setGoalIcon($this->config('item.Goal.Icon', 'triforce'));
 
-        $rom->setHardMode($this->config('rom.HardMode', 0));
+        // Set item functionality settings
+        $rom->setCaneOfByrnaSpikeCaveUsage();
+        $rom->setCapeSpikeCaveUsage();
+        $rom->setByrnaCaveSpikeDamage(0x08);
+        // Bryna magic amount used per "cycle"
+        $rom->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
+
+        $rom->setCapeRegularMagicUsage(
+            $this->config('rom.CapeMagicUsage.Normal', 0x04),
+            $this->config('rom.CapeMagicUsage.Half', 0x08),
+            $this->config('rom.CapeMagicUsage.Quarter', 0x10),
+        );
+        $rom->setCaneOfByrnaInvulnerability($this->config('rom.CaneOfByrnaInvulnerability', true));
+        $rom->setPowderedSpriteFairyPrize($this->config('rom.PowderedSpriteFairyPrize', 0xE3));
+        $rom->setBottleFills([$this->config('rom.BottleFill.Health', 0xA0), $this->config('rom.BottleFill.Magic', 0x80)]);
+        $rom->setCatchableFairies($this->config('rom.CatchableFairies', true));
+        $rom->setCatchableBees($this->config('rom.CatchableBees', true));
+        $rom->setStunItems($this->config('rom.StunItems', 0x03));
+        $rom->setSilversOnlyAtGanon($this->config('rom.SilversOnlyAtGanon', false));
 
         $rom->setRupoorValue($this->config('item.value.Rupoor', 0) ?: 0);
 
@@ -1189,7 +1251,7 @@ abstract class World
 
         return $rom;
     }
-    
+
     /**
      * Set the ammo given for escape, based on available weapons
      *
@@ -1201,7 +1263,7 @@ abstract class World
         $uncle_items = new ItemCollection;
         $uncle_items->setChecksForWorld($this->id);
         $uncle_items = $uncle_items->addItem($this->getLocation("Link's Uncle")->getItem());
-        
+
         // Add starting items if uncle doesn't have a weapon.  Temporarily disable ignoreCanKillEscapeThings for this check
         $ignoreCanKillEscapeThings = $this->config('ignoreCanKillEscapeThings', false);
         $this->config['ignoreCanKillEscapeThings'] = false;
@@ -1209,7 +1271,7 @@ abstract class World
             $uncle_items = $uncle_items->merge($this->getPreCollectedItems());
         }
         $this->config['ignoreCanKillEscapeThings'] = $ignoreCanKillEscapeThings;
-        
+
         if ($uncle_items->hasSword() || $uncle_items->has('Hammer')) {
             $rom->setEscapeFills(0b00000000);
             $rom->setUncleSpawnRefills(0, 0, 0);
@@ -1219,27 +1281,63 @@ abstract class World
             || $uncle_items->has('CaneOfSomaria')
             || ($uncle_items->has('CaneOfByrna') && $this->config('enemizer.enemyHealth', 'default') == 'default')) {
             $rom->setEscapeFills(0b00000100);
-            $rom->setUncleSpawnRefills(0x80, 0, 0);
-            $rom->setZeldaSpawnRefills(0x20, 0, 0);
-            $rom->setMantleSpawnRefills(0x20, 0, 0);
-            if ($this->config('rom.HardMode') == -1) {
+            $rom->setUncleSpawnRefills(
+                $this->config('rom.EscapeRefills.Uncle.Magic', 0x80),
+                0,
+                0
+            );
+            $rom->setZeldaSpawnRefills(
+                $this->config('rom.EscapeRefills.Zelda.Magic', 0x20),
+                0,
+                0
+            );
+            $rom->setMantleSpawnRefills(
+                $this->config('rom.EscapeRefills.Mantle.Magic', 0x20),
+                0,
+                0
+            );
+            if ($this->config('rom.EscapeAssist', false)) {
                 $rom->setEscapeAssist(0b00000100);
             }
         } elseif ($uncle_items->canShootArrows($this)) {
             $rom->setEscapeFills(0b00000001);
-            $rom->setUncleSpawnRefills(0, 0, 70);
-            $rom->setZeldaSpawnRefills(0, 0, 10);
-            $rom->setMantleSpawnRefills(0, 0, 10);
-            if ($this->config('rom.HardMode') == -1) {
+            $rom->setUncleSpawnRefills(
+                0,
+                0,
+                $this->config('rom.EscapeRefills.Uncle.Arrows', 70)
+            );
+            $rom->setZeldaSpawnRefills(
+                0,
+                0,
+                $this->config('rom.EscapeRefills.Zelda.Arrows', 10)
+            );
+            $rom->setMantleSpawnRefills(
+                0,
+                0,
+                $this->config('rom.EscapeRefills.Mantle.Arrows', 10)
+            );
+            if ($this->config('rom.EscapeAssist', false)) {
                 $rom->setEscapeAssist(0b00000001);
             }
         } elseif ($uncle_items->has('TenBombs') || $this->config('logic') !== 'None') {
             // TenBombs, or give player bombs if uncle was plando'd to not have a weapon.
             $rom->setEscapeFills(0b00000010);
-            $rom->setUncleSpawnRefills(0, 50, 0);
-            $rom->setZeldaSpawnRefills(0, 3, 0);
-            $rom->setMantleSpawnRefills(0, 3, 0);
-            if ($this->config('rom.HardMode') == -1) {
+            $rom->setUncleSpawnRefills(
+                0,
+                $this->config('rom.EscapeRefills.Uncle.Bombs', 50),
+                0
+            );
+            $rom->setZeldaSpawnRefills(
+                0,
+                $this->config('rom.EscapeRefills.Zelda.Bombs', 3),
+                0
+            );
+            $rom->setMantleSpawnRefills(
+                0,
+                $this->config('rom.EscapeRefills.Mantle.Bombs', 3),
+                0
+            );
+            if ($this->config('rom.EscapeAssist', false)) {
                 $rom->setEscapeAssist(0b00000010);
             }
         }
@@ -1268,7 +1366,7 @@ abstract class World
         }, $this->getAllDrops());
 
         // hard+ does not allow fairies/full magics
-        if ($this->config('rom.HardMode', 0) >= 2) {
+        if ($this->config('rom.NoFarieDrops', false)) {
             $drop_bytes = str_replace([0xE0, 0xE3], [0xDF, 0xD8], $drop_bytes);
         }
 

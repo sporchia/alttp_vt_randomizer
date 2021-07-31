@@ -442,7 +442,7 @@ class ItemCollection extends Collection
      */
     public function canAcquireFairy($world = null)
     {
-        if ($world !== null && $world->config('rom.HardMode') >= 1)
+        if ($world !== null && !$world->config('rom.CatchableFairies', true))
         {
             return False;
         }
@@ -514,22 +514,10 @@ class ItemCollection extends Collection
     public function canExtendMagic($world = null, $bars = 2.0)
     {
         $magicModifier = 1.0;
-        if ($world !== null)
-        {
-            $difficultyLevel = $world->config('rom.HardMode');
-            switch ($difficultyLevel)
-            {
-                case 1:
-                    $magicModifier = 0.5;
-                    break;
-                case 2:
-                    $magicModifier = 0.25;
-                    break;
-                case 3:
-                    $magicModifier = 0.0;
-                    break;
-                default:
-                    break;
+        if ($world !== null) {
+            $magicModifier = $world->config('rom.BottleFill.Magic', 0x80) / 0x80;
+            if ($magicModifier > 1) {
+                $magicModifier = 1.0;
             }
         }
 
