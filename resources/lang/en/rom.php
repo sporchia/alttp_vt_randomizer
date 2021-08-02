@@ -60,5 +60,6 @@ return [
         'race_warning' => 'Does not work in Race ROMs',
         'reduce_flashing' => 'Reduce Flashing',
         'reduce_flashing_warning' => 'This option only reduces the effects of flashing. Individual photosensitivity to effects may still vary.',
+        'shuffle_sfx' => 'Shuffle SFX',
     ],
 ];

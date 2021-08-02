@@ -550,7 +550,8 @@ export default {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,
         musicOn: this.musicOn,
-        reduceFlashing: this.reduceFlashing
+        reduceFlashing: this.reduceFlashing,
+        shuffleSfx: this.shuffleSfx
       });
     },
     saveSpoiler() {
@@ -619,7 +620,8 @@ export default {
       quickswap: state => state.quickswap,
       musicOn: state => state.musicOn,
       paletteShuffle: state => state.paletteShuffle,
-      reduceFlashing: state => state.reduceFlashing
+      reduceFlashing: state => state.reduceFlashing,
+      shuffleSfx: state => state.shuffleSfx
     }),
     editable() {
       return this.$store.state.randomizer.preset.value === "custom";
