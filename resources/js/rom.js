@@ -133,7 +133,7 @@ export default class ROM {
     this.setReduceFlashing(reduceFlashing);
 
     if (shuffleSfx) {
-    	this.randomizeSfx();
+      this.randomizeSfx();
     }
 
     this.updateChecksum().then(() => {
@@ -433,9 +433,9 @@ export default class ROM {
     });
   }
 
-  randomizeSfx(enable) {
-  	new SFX(this.rand.nextInt(0, 4294967295)).randomize_sfx(this);
-	this.rand.reset();
+  randomizeSfx() {
+    new SFX(this.rand.nextInt(0, 4294967295)).randomize_sfx(this);
+    this.rand.reset();
   }
 
   parsePatch(data, progressCallback) {
