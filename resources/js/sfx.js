@@ -6,6 +6,16 @@ export default class SFX {
     this.rand = new Prando(seed);
   }
 
+  /**
+   * Create a sfx object
+   * @param name - human readable name - arbitrarily assigned
+   * @param sfx_set - which sfx set this original belongs to 2 or 3 (1 exists but we are not shuffling it)
+   * @param orig_id - the original id of the sfx
+   * @param addr - the address where to write the randomized values
+   * @param chain the sfx that will play after this one (point to all accompaniments
+   * @param accomp whether this sfxis purely to accompany another
+   * @return an sfx object
+   */
   static create_sfx(name, sfx_set, orig_id, addr, chain, accomp = false) {
     return {
       name: name,
@@ -15,9 +25,9 @@ export default class SFX {
       chain: chain,
       accomp: accomp,
 
-      target_set: undefined,
-      target_id: undefined,
-      target_chain: undefined,
+      target_set: undefined,  //what set this sfx has been randomized to
+      target_id: undefined, //what id this sfx has been randomized to
+      target_chain: undefined, //where the chained sfx have been randomized to
     };
   }
 
@@ -34,13 +44,7 @@ export default class SFX {
       SFX.create_sfx("Boomerang whooshing", 0x02, 0x09, 0x25ad, []),
       SFX.create_sfx("Hookshot", 0x02, 0x0a, 0x25c7, []),
       SFX.create_sfx("Placing bomb", 0x02, 0x0b, 0x2478, []),
-      SFX.create_sfx(
-        "Bomb exploding/Quake/Bombos/Exploding wall",
-        0x02,
-        0x0c,
-        0x269c,
-        []
-      ),
+      SFX.create_sfx("Bomb exploding/Quake/Bombos/Exploding wall",0x02,0x0c,0x269c,[]),
       SFX.create_sfx("Powder", 0x02, 0x0d, 0x2414, [0x3f]),
       SFX.create_sfx("Fire rod shot", 0x02, 0x0e, 0x2404, []),
       SFX.create_sfx("Ice rod shot", 0x02, 0x0f, 0x24c3, []),
@@ -61,13 +65,7 @@ export default class SFX {
       SFX.create_sfx("Cutting grass", 0x02, 0x1e, 0x2577, []),
       SFX.create_sfx("Item breaking", 0x02, 0x1f, 0x22e9, []),
       SFX.create_sfx("Item falling in pit", 0x02, 0x20, 0x22da, []),
-      SFX.create_sfx(
-        "Bomb hitting ground/General bang",
-        0x02,
-        0x21,
-        0x22cf,
-        []
-      ),
+      SFX.create_sfx("Bomb hitting ground/General bang", 0x02, 0x21, 0x22cf, []),
       SFX.create_sfx("Pushing object/Armos bounce", 0x02, 0x22, 0x2107, []),
       SFX.create_sfx("Boots dust", 0x02, 0x23, 0x22b1, []),
       SFX.create_sfx("Splashing", 0x02, 0x24, 0x22a5, [0x3d]),
@@ -76,13 +74,7 @@ export default class SFX {
       SFX.create_sfx("Fainting", 0x02, 0x27, 0x2252, []),
       SFX.create_sfx("Item splash", 0x02, 0x28, 0x2287, []),
       SFX.create_sfx("Rupee refill", 0x02, 0x29, 0x243f, [0x3b]),
-      SFX.create_sfx(
-        "Fire rod shot hitting wall/Bombos spell",
-        0x02,
-        0x2a,
-        0x2033,
-        []
-      ),
+      SFX.create_sfx( "Fire rod shot hitting wall/Bombos spell", 0x02, 0x2a, 0x2033, []),
       SFX.create_sfx("Heart beep/Text box", 0x02, 0x2b, 0x1ff2, []),
       SFX.create_sfx("Sword up", 0x02, 0x2c, 0x1fd9, [0x3a]),
       SFX.create_sfx("Magic drain", 0x02, 0x2d, 0x20a6, []),
@@ -93,21 +85,8 @@ export default class SFX {
       SFX.create_sfx("Bug net", 0x02, 0x32, 0x1d47, []),
       SFX.create_sfx("Teleport2", 0x02, 0x33, 0x1cdc, [], true),
       SFX.create_sfx("Teleport1", 0x02, 0x34, 0x1f6f, [0x33]),
-      SFX.create_sfx(
-        "Quake/Vitreous/Zora king/Armos/Pyramid/Lanmo",
-        0x02,
-        0x35,
-        0x1c67,
-        [0x36]
-      ),
-      SFX.create_sfx(
-        "Mire entrance (extends above)",
-        0x02,
-        0x36,
-        0x1c64,
-        [],
-        true
-      ),
+      SFX.create_sfx("Quake/Vitreous/Zora king/Armos/Pyramid/Lanmo", 0x02, 0x35, 0x1c67, [0x36]),
+      SFX.create_sfx( "Mire entrance (extends above)", 0x02, 0x36, 0x1c64, [], true),
       SFX.create_sfx("Spin charged", 0x02, 0x37, 0x1a43, []),
       SFX.create_sfx("Water sound", 0x02, 0x38, 0x1f6f, [], true),
       SFX.create_sfx("GT opening thunder", 0x02, 0x39, 0x1f9c, [], true),
@@ -123,237 +102,69 @@ export default class SFX {
       SFX.create_sfx("Pyramid hole", 0x03, 0x03, 0x224a, []),
       SFX.create_sfx("Angry soldier", 0x03, 0x04, 0x220e, []),
       SFX.create_sfx("Lynel shot/Javelin toss", 0x03, 0x05, 0x25b7, []),
-      SFX.create_sfx(
-        "BNC swing/Phantom ganon/Helma tail/Arrghus swoosh",
-        0x03, 0x06, 0x21f5, []
-      ),
+      SFX.create_sfx( "BNC swing/Phantom ganon/Helma tail/Arrghus swoosh", 0x03, 0x06, 0x21f5, []),
       SFX.create_sfx("Cannon fire", 0x03, 0x07, 0x223d, []),
       SFX.create_sfx("Damage to enemy; $0BEX.4=1", 0x03, 0x08, 0x21e6, []),
       SFX.create_sfx("Enemy death", 0x03, 0x09, 0x21c1, []),
       SFX.create_sfx("Collecting rupee", 0x03, 0x0a, 0x21a9, []),
       SFX.create_sfx("Collecting heart", 0x03, 0x0b, 0x2198, []),
       SFX.create_sfx("Non-blank text character", 0x03, 0x0c, 0x218e, []),
-      SFX.create_sfx(
-        "HUD heart (used explicitly by sanc heart?)",
-        0x03,
-        0x0d,
-        0x21b5,
-        []
-      ),
+      SFX.create_sfx( "HUD heart (used explicitly by sanc heart?)", 0x03, 0x0d, 0x21b5, []),
       SFX.create_sfx("Opening chest", 0x03, 0x0e, 0x2182, []),
-      SFX.create_sfx("♪Do do do doooooo♫", 0x03, 0x0f, 0x24b9, [
-        0x3c,
-        0x3d,
-        0x3e,
-        0x3f,
-      ]),
-      SFX.create_sfx("Opening/Closing map (paired)", 0x03, 0x10, 0x216d, [
-        0x3b,
-      ]),
-      SFX.create_sfx(
-        "Opening item menu/Bomb shop guy breathing",
-        0x03,
-        0x11,
-        0x214f,
-        []
-      ),
-      SFX.create_sfx(
-        "Closing item menu/Bomb shop guy breathing",
-        0x03,
-        0x12,
-        0x215e,
-        []
-      ),
-      SFX.create_sfx(
-        "Throwing object (sprites use it as well)/Stalfos jump",
-        0x03,
-        0x13,
-        0x213b,
-        []
-      ),
-      SFX.create_sfx(
-        "Key door/Trinecks/Dash key landing/Stalfos Knight collapse",
-        0x03,
-        0x14,
-        0x246c,
-        []
-      ),
-      SFX.create_sfx(
-        "Door closing/OW door opening/Chest opening (w/ $29 in $012E)",
-        0x03,
-        0x15,
-        0x212f,
-        []
-      ),
+      SFX.create_sfx("♪Do do do doooooo♫", 0x03, 0x0f, 0x24b9, [ 0x3c, 0x3d, 0x3e, 0x3f,]),
+      SFX.create_sfx("Opening/Closing map (paired)", 0x03, 0x10, 0x216d, [ 0x3b,]),
+      SFX.create_sfx( "Opening item menu/Bomb shop guy breathing", 0x03, 0x11, 0x214f, []),
+      SFX.create_sfx( "Closing item menu/Bomb shop guy breathing", 0x03, 0x12, 0x215e, []),
+      SFX.create_sfx( "Throwing object (sprites use it as well)/Stalfos jump", 0x03, 0x13, 0x213b, []),
+      SFX.create_sfx( "Key door/Trinecks/Dash key landing/Stalfos Knight collapse", 0x03, 0x14, 0x246c, []),
+      SFX.create_sfx( "Door closing/OW door opening/Chest opening (w/ $29 in $012E)", 0x03, 0x15, 0x212f, []),
       SFX.create_sfx("Armos Knight thud", 0x03, 0x16, 0x2123, []),
       SFX.create_sfx("Rat squeak", 0x03, 0x17, 0x25a6, []),
       SFX.create_sfx("Dragging/Mantle moving", 0x03, 0x18, 0x20dd, []),
-      SFX.create_sfx(
-        "Fireball/Laser shot; Somehow used by Trinexx???",
-        0x03,
-        0x19,
-        0x250a,
-        []
-      ),
+      SFX.create_sfx( "Fireball/Laser shot; Somehow used by Trinexx???", 0x03, 0x19, 0x250a, []),
       SFX.create_sfx("Chest reveal jingle ", 0x03, 0x1a, 0x1e8a, [0x38]),
       SFX.create_sfx("Puzzle jingle", 0x03, 0x1b, 0x20b6, [0x3a]),
       SFX.create_sfx("Damage to enemy", 0x03, 0x1c, 0x1a62, []),
       SFX.create_sfx("Potion refill/Magic drain", 0x03, 0x1d, 0x20a6, []),
-      SFX.create_sfx(
-        "Flapping (Duck/Cucco swarm/Ganon bats/Keese/Raven/Vulture)",
-        0x03,
-        0x1e,
-        0x2091,
-        []
-      ),
+      SFX.create_sfx( "Flapping (Duck/Cucco swarm/Ganon bats/Keese/Raven/Vulture)", 0x03, 0x1e, 0x2091, []),
       SFX.create_sfx("Link falling", 0x03, 0x1f, 0x204b, []),
       SFX.create_sfx("Menu/Text cursor moved", 0x03, 0x20, 0x276c, []),
       SFX.create_sfx("Damage to boss", 0x03, 0x21, 0x27e2, []),
       SFX.create_sfx("Boss dying/Deleting file", 0x03, 0x22, 0x26cf, []),
-      SFX.create_sfx("Spin attack/Medallion swoosh", 0x03, 0x23, 0x2001, [
-        0x39,
-      ]),
+      SFX.create_sfx("Spin attack/Medallion swoosh", 0x03, 0x23, 0x2001, [ 0x39,]),
       SFX.create_sfx("OW map perspective change", 0x03, 0x24, 0x2043, []),
       SFX.create_sfx("Pressure switch", 0x03, 0x25, 0x1e9d, []),
-      SFX.create_sfx(
-        "Lightning/Game over/Laser/Ganon bat/Trinexx lunge",
-        0x03,
-        0x26,
-        0x1e7b,
-        []
-      ),
+      SFX.create_sfx( "Lightning/Game over/Laser/Ganon bat/Trinexx lunge", 0x03, 0x26, 0x1e7b, []),
       SFX.create_sfx("Agahnim charge", 0x03, 0x27, 0x1e40, []),
       SFX.create_sfx("Agahnim/Ganon teleport", 0x03, 0x28, 0x26f7, []),
       SFX.create_sfx("Agahnim shot", 0x03, 0x29, 0x1e21, []),
-      SFX.create_sfx(
-        "Somaria/Byrna/Ether spell/Helma fire ball",
-        0x03,
-        0x2a,
-        0x1e12,
-        []
-      ),
+      SFX.create_sfx( "Somaria/Byrna/Ether spell/Helma fire ball", 0x03, 0x2a, 0x1e12, []),
       SFX.create_sfx("Electrocution", 0x03, 0x2b, 0x1df3, []),
       SFX.create_sfx("Bees", 0x03, 0x2c, 0x1dc0, []),
       SFX.create_sfx("Milestone, also via text", 0x03, 0x2d, 0x1da9, [0x37]),
-      SFX.create_sfx("Collecting heart container", 0x03, 0x2e, 0x1d5d, [
-        0x35,
-        0x34,
-      ]),
+      SFX.create_sfx("Collecting heart container", 0x03, 0x2e, 0x1d5d, [ 0x35, 0x34,]),
       SFX.create_sfx("Collecting absorbable key", 0x03, 0x2f, 0x1d80, [0x33]),
-      SFX.create_sfx(
-        "Byrna spark/Item plop/Magic bat zap/Blob emerge",
-        0x03,
-        0x30,
-        0x1b53,
-        []
-      ),
+      SFX.create_sfx( "Byrna spark/Item plop/Magic bat zap/Blob emerge", 0x03, 0x30, 0x1b53, []),
       SFX.create_sfx("Sprite falling/Moldorm shuffle", 0x03, 0x31, 0x1aca, []),
-      SFX.create_sfx(
-        "Bumper boing/Somaria punt/Blob transmutation/Sprite boings",
-        0x03,
-        0x32,
-        0x1a78,
-        []
-      ),
+      SFX.create_sfx( "Bumper boing/Somaria punt/Blob transmutation/Sprite boings", 0x03, 0x32, 0x1a78, []),
       SFX.create_sfx("Jingle (paired $2F→$33)", 0x03, 0x33, 0x1d93, [], true),
-      SFX.create_sfx(
-        "Depressing jingle (paired $2E→$35→$34)",
-        0x03,
-        0x34,
-        0x1d66,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Ugly jingle (paired $2E→$35→$34)",
-        0x03,
-        0x35,
-        0x1d73,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Wizzrobe shot/Helma fireball split/Mothula beam/Blue balls",
-        0x03,
-        0x36,
-        0x1aa7,
-        []
-      ),
-      SFX.create_sfx(
-        "Dinky jingle (paired $2D→$37)",
-        0x03,
-        0x37,
-        0x1db4,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Apathetic jingle (paired $1A→$38)",
-        0x03,
-        0x38,
-        0x1e93,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Quiet swish (paired $23→$39)",
-        0x03,
-        0x39,
-        0x2017,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Defective jingle (paired $1B→$3A)",
-        0x03,
-        0x3a,
-        0x20c0,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Petulant jingle (paired $10→$3B)",
-        0x03,
-        0x3b,
-        0x2176,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Triumphant jingle (paired $0F→$3C→$3D→$3E→$3F)",
-        0x03,
-        0x3c,
-        0x248a,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        "Less triumphant jingle ($0F→$3C→$3D→$3E→$3F)",
-        0x03,
-        0x3d,
-        0x2494,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        '"You tried, I guess" jingle (paired $0F→$3C→$3D→$3E→$3F)',
-        0x03,
-        0x3e,
-        0x249e,
-        [],
-        true
-      ),
-      SFX.create_sfx(
-        '"You didn\'t really try" jingle (paired $0F→$3C→$3D→$3E→$3F)',
-        0x03,
-        0x3f,
-        0x2480,
-        [],
-        true
-      ),
+      SFX.create_sfx( "Depressing jingle (paired $2E→$35→$34)", 0x03, 0x34, 0x1d66, [], true),
+      SFX.create_sfx( "Ugly jingle (paired $2E→$35→$34)", 0x03, 0x35, 0x1d73, [], true),
+      SFX.create_sfx( "Wizzrobe shot/Helma fireball split/Mothula beam/Blue balls", 0x03, 0x36, 0x1aa7, []),
+      SFX.create_sfx( "Dinky jingle (paired $2D→$37)", 0x03, 0x37, 0x1db4, [], true),
+      SFX.create_sfx( "Apathetic jingle (paired $1A→$38)", 0x03, 0x38, 0x1e93, [], true),
+      SFX.create_sfx( "Quiet swish (paired $23→$39)", 0x03, 0x39, 0x2017, [], true),
+      SFX.create_sfx( "Defective jingle (paired $1B→$3A)", 0x03, 0x3a, 0x20c0, [], true),
+      SFX.create_sfx( "Petulant jingle (paired $10→$3B)", 0x03, 0x3b, 0x2176, [], true),
+      SFX.create_sfx( "Triumphant jingle (paired $0F→$3C→$3D→$3E→$3F)", 0x03, 0x3c, 0x248a, [], true),
+      SFX.create_sfx( "Less triumphant jingle ($0F→$3C→$3D→$3E→$3F)", 0x03, 0x3d, 0x2494, [], true),
+      SFX.create_sfx( '"You tried, I guess" jingle (paired $0F→$3C→$3D→$3E→$3F)', 0x03, 0x3e, 0x249e, [], true),
+      SFX.create_sfx( '"You didn\'t really try" jingle (paired $0F→$3C→$3D→$3E→$3F)', 0x03, 0x3f, 0x2480, [], true),
     ];
   }
 
+  //There are 3 sound effects tables, but only 2 of them should be randomized.
+  // The first table is mostly sounds that don't lend well to being played randomly due to specially programmed looping in set 1.
   shuffle_sfx_data() {
     let sfx_pool = SFX.init_sfx_data();  //data structure for randomizing
     let sfx_map = { 2: {}, 3: {} };  // data structure for writing to the rom

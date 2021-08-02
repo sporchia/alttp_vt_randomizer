@@ -13,6 +13,5 @@ export function fy_shuffle(array, rand) {
 
 // reverse bytes to proper endianness
 export function int16_as_bytes(value) {
-  value = value & 0xffff;
   return [value & 0xff, (value >> 8) & 0xff];
 }
