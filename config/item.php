@@ -2,6 +2,7 @@
 return [
     'advancement' => [
         'L1Sword' => 0,
+        //'L1SwordAndShield' => 0,  // This still downgrades your sword - don't allow it as a random item unless that's fixed
         'MasterSword' => 0,
         'ProgressiveSword' => 4,
         'BossHeartContainer' => 10,
@@ -15,6 +16,7 @@ return [
         'BottleWithFairy' => 0,
         'Bombos' => 1,
         'BookOfMudora' => 1,
+        'Bow' => 0,
         'BowAndArrows' => 0,
         'CaneOfSomaria' => 1,
         'Cape' => 1,
@@ -40,6 +42,7 @@ return [
         'SilverArrowUpgrade' => 0,
         'ProgressiveGlove' => 2,
         'ProgressiveBow' => 2,
+        'Triforce' => 0,
         'TriforcePiece' => 0,
         'PowerStar' => 0,
         'BugCatchingNet' => 1,
