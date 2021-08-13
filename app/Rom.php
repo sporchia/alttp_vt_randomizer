@@ -518,10 +518,8 @@ class Rom
                     $equipment[0x369] |= 0b00100000;
                     break;
                 case 'MapH1':
-                    $equipment[0x369] |= 0b01000000;
-                    break;
                 case 'MapH2':
-                    $equipment[0x369] |= 0b10000000;
+                    $equipment[0x369] |= 0b11000000;
                     break;
                 case 'CompassA2':
                     $equipment[0x364] |= 0b00000100;
@@ -560,10 +558,8 @@ class Rom
                     $equipment[0x365] |= 0b00100000;
                     break;
                 case 'CompassH1':
-                    $equipment[0x365] |= 0b01000000;
-                    break;
                 case 'CompassH2':
-                    $equipment[0x365] |= 0b10000000;
+                    $equipment[0x365] |= 0b11000000;
                     break;
                 case 'BigKeyA2':
                     $equipment[0x366] |= 0b00000100;
@@ -602,15 +598,12 @@ class Rom
                     $equipment[0x367] |= 0b00100000;
                     break;
                 case 'BigKeyH1':
-                    $equipment[0x367] |= 0b01000000;
-                    break;
                 case 'BigKeyH2':
-                    $equipment[0x367] |= 0b10000000;
-                    break;
-                case 'KeyH2':
-                    $equipment[0x37C] += 1;
+                    $equipment[0x367] |= 0b11000000;
                     break;
                 case 'KeyH1':
+                case 'KeyH2':
+                    $equipment[0x37C] += 1;
                     $equipment[0x37D] += 1;
                     break;
                 case 'KeyP1':
