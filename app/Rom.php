@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2021-07-30';
-    const HASH = '1942a3af7a5ec9e8af602b2e65a5ac9a';
+    const BUILD = '2021-08-21';
+    const HASH = '1d61cc5a4cf0dabaa9f23afc8a7470d3';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -2684,15 +2684,29 @@ class Rom
     }
 
     /**
-     * Enable/Disable PoD EG correction
+     * Enable/Disable PoD / S&Q EG correction
      *
      * @param bool $enable switch on or off
      *
      * @return $this
      */
-    public function setPODEGfix(bool $enable = true): self
+    public function setSQEGFix(bool $enable = true): self
     {
         $this->write(0x1800A4, pack('C*', $enable ? 0x01 : 0x00));
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Allow Accidental Major Glitch
+     *
+     * @param bool $enable switch on or off
+     *
+     * @return $this
+     */
+    public function setAllowAccidentalMajorGlitch(bool $enable = true): self
+    {
+        $this->write(0x180358, pack('C*', $enable ? 0x01 : 0x00));
 
         return $this;
     }
