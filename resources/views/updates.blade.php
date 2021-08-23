@@ -33,6 +33,11 @@
                 <li>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.</li>
             </ul>
         </ul>
+        <li>Other changes</li>
+        <ul>
+            <li>The "OWG Landbridge" sign has been updated to add the winner of the Hybrid Major Glitches 2021 Tournament</li>
+            <li>The Houlihan sign has been updated to add the winner of the 2021 Main Tournament.</li>
+        </ul>
     </ul>
 </div>
 
