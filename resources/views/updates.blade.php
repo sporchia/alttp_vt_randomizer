@@ -28,7 +28,7 @@
         <ul>
             <li>These apply to No Glitches games only.  Glitched games (OWG, MG, No Logic) are not affected.  Thank you kan for the fixes.</li>
             <ul>
-                <li>Jumping down a ledge during a S&Q will no longer arm EG, similar to the fix already in place in Palace of Darkness.</li>
+                <li>The disarming of Exploration Glitch has been expanded from Palace of Darkness to all Save & Quits.</li>
                 <li>"Jingle Glitch", which can cause sprite despawns in Ganon's Tower and Ice Palace, has been fixed.</li>
                 <li>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.</li>
             </ul>
