@@ -1211,7 +1211,7 @@ abstract class World
                 $rom->setWorldOnAgahnimDeath(false);
                 $rom->setRandomizerSeedType('MajorGlitches');
                 $rom->setWarningFlags(bindec('01100000'));
-                $rom->setAllowAccidentalMajorGlitch(false);
+                $rom->setAllowAccidentalMajorGlitch(true);
                 $rom->setSQEGFix(false);
                 break;
             case 'OverworldGlitches':
@@ -1220,14 +1220,14 @@ abstract class World
                 $rom->setWorldOnAgahnimDeath(false);
                 $rom->setRandomizerSeedType('OverworldGlitches');
                 $rom->setWarningFlags(bindec('01000000'));
-                $rom->setAllowAccidentalMajorGlitch(false);
+                $rom->setAllowAccidentalMajorGlitch(true);
                 $rom->setSQEGFix(false);
                 break;
             case 'NoGlitches':
             default:
                 $rom->setSaveAndQuitFromBossRoom(true);
                 $rom->setWorldOnAgahnimDeath(true);
-                $rom->setAllowAccidentalMajorGlitch(true);
+                $rom->setAllowAccidentalMajorGlitch(false);
                 $rom->setSQEGFix(true);
                 break;
         }
