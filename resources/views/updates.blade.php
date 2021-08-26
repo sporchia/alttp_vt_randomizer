@@ -84,7 +84,7 @@
             <li>Removed or replaced other out of date community information still present on the site.</li>
         </ul>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -108,7 +108,7 @@
             <li>All starting equipment will now appear on new file creation. Previously, some items that shared a slot would not appear until after the first Save & Quit.  Yea, Catobat did this too.</li>
         </ul>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.8.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.8.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -137,7 +137,7 @@
         <li>New Maseya-based pallete shuffle algorithm.  This new palette shuffle will also shuffle the map's colors!  Thank you SWR!</li>
         <li>A new "Load Custom Sprite" option is available to let you use your own .zspr file.  This allows you to use any Link Sprite you wish for racing.  Thank you Krelbel for the patch!</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -178,7 +178,7 @@
         <li>The daily randomizer game will always have the tournament flag set.</li>
         <li>Advanced item placement may now require killing Helmasuar King with just Fighter Sword, instead of requiring Master Sword.  Master Sword is still logically required when using Basic item placement.</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.6.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.6.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -196,7 +196,7 @@
         <li>Fixed silver arrows being intially equipped on aquisition in Hard/Expert item functionality, even when they should only be available for Ganon.</li>
         <li>API support for allowing quickswap usage in item randomizer race ROMs. The default behavior for item randomizer races will still be to disallow quickswap.</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -309,7 +309,7 @@
         <li>Music logic is fixed in inverted mode</li>
         <li>Myramong's wallmaster fix</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.31.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -327,7 +327,7 @@
     <ul>
         <li>Updated Entrance Randomizer to v0.6.2 (now with more hints).</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.30.5.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.30.5.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -479,7 +479,7 @@
         <li>Customizer got prize pack editing</li>
         <li>Great fairy bottle refills are completely automated and only have 1 text box now, so faster fills</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.30.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.30.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -534,7 +534,7 @@
         <li>Added quick swap functionality</li>
         <li>If you use a headered ROM, the site will try to strip that header out before use (thanks Myramong)</li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.29.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.29.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -572,7 +572,7 @@
             <li>Better error messages when generation fails</li>
         </ul></li>
         <li>Added new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.28.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.28.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -594,7 +594,7 @@
         <li>Cleaned up the spoiler section of the site to assist in finding things</li>
         <li>Complete overhaul of the custom section, see the new <a href="/customizer">customizer</a></li>
         <li>Added many new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.27.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.27.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -613,7 +613,7 @@
         <li>Turtle Rock small key fix</li>
         <li>Skull Woods small key fix</li>
         <li>Added a few new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.26.2.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.26.2.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
 </div>
@@ -641,7 +641,7 @@
         <li>Entrance Randomizer integration (thanks LLCoolDave)</li>
         <li>Two new chests have been added to Waterfall fairy</li>
         <li>Added many new player options (and updated a few)<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.26.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.26.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
@@ -677,7 +677,7 @@
         <li>Skull Woods spike trap room chest set back to Key all the time</li>
         <li>New Fill algorithm that maximizes item randomization</li>
         <li>Added many new player options<br />
-            <img src="https://alttpr.s3.us-east-2.amazonaws.com/sprites.25.lg.png"
+            <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.25.lg.png"
                 alt="Link sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
