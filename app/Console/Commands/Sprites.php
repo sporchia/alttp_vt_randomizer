@@ -167,7 +167,7 @@ class Sprites extends Command
         $top = $meta_data->count();
         $next = $top + 1;
 
-        $scss_file = "[class^=\"icon-custom-\"],\n[class*=\" icon-custom-\"] {\n  width: 16px;\n  height: 24px;\n  vertical-align: bottom;\n  background-image: url(\"https://alttpr.s3.us-east-2.amazonaws.com/$sprite_sheet\");\n}\n\n";
+        $scss_file = "[class^=\"icon-custom-\"],\n[class*=\" icon-custom-\"] {\n  width: 16px;\n  height: 24px;\n  vertical-align: bottom;\n  background-image: url(\"https://alttpr-assets.s3.us-east-2.amazonaws.com/$sprite_sheet\");\n}\n\n";
         $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n";
         $i = 0;
         foreach ($meta_data as $sprite) {
