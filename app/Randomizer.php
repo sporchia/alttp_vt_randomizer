@@ -315,7 +315,8 @@ class Randomizer implements RandomizerContract
         }
         if ($world->config('region.wildKeys', false)) {
             foreach ($dungeon_items as $key => $item) {
-                if ($item instanceof Item\Key && ($world->config('mode.state') != 'standard' || $item != Item::get('KeyH2', $world))) {
+                if ($item instanceof Item\Key && ($world->config('mode.state') !== 'standard' || $item != Item::get('KeyH2', $world)
+                    || $world->config('logic') === 'NoLogic')) {
                     unset($dungeon_items[$key]);
                     $advancement_items[] = $item;
                 }
