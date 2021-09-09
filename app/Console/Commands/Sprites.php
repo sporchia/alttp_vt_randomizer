@@ -48,7 +48,7 @@ class Sprites extends Command
             return 102;
         }
 
-        $sprite_sheet = 'sprites.' . $meta_data->max('vtversion') . '.png';
+        $sprite_sheet = 'sprites.31.0.10.png';
 
         $this->sprToPng($sprite_dir);
 

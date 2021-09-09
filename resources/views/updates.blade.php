@@ -39,6 +39,9 @@
             <li>The Houlihan sign has been updated to add the winner of the 2021 Main Tournament.</li>
         </ul>
     </ul>
+    <li>Added new player options<br />
+        <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.10.lg.png"
+            alt="Link sprite options" style="width:50%" /></li>
 </div>
 
 <h2>v31.0.9</h2>
