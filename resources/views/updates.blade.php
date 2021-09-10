@@ -8,13 +8,14 @@
         <li>New Features</li>
         <ul>
             <li>Magic used, and damage taken, are now statistics that are tracked and shown in the credits.   Thanks kan!</li>
-            <li>Boss icons will now appear on the dungeon map, indicating the dungeon's boss.  This only appears if the player has the compass for that dungeon.  Thanks kan!</li>
+            <li>Boss icons will now appear on the dungeon map, indicating the dungeon's boss.  This only appears if the player has the compass for that dungeon.  Thanks kan for the code; _aitchFactor, vortexofdoom, and PlaguedOne for the art!</li>
             <li>The dungeon prize (Crystals and Pendants) will now appear as a "C" or "P" indicator on the HUD while in a dungeon.  Thanks kan!</li>
             <ul>
                 <li>This only appears when maps are not shuffled in the wild (Dungeon Item Shuffles other than Standard), or you have the map for the dungeon.</li>
             </ul>
             <li>Sound effect rando!  There is now an option to randomize your game's sound effects.  Thanks Aerinon!</li>
             <li>Item drop RNG during the escape sequence while playing Standard World State is now the same for all players of the same seed.  Thanks Cassidymoen!</li>
+            <li>MSU-1 Resume, introduced in v31.0.9, may now be disabled.</li>
         </ul>
         <li>Bug Fixes</li>
         <ul>
