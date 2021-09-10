@@ -16,6 +16,7 @@ export default {
     heartColor: { value: "red", name: "rom.settings.heart_colors.red" },
     quickswap: false,
     musicOn: true,
+    msu1Resume: true,
     paletteShuffle: false,
     reduceFlashing: false,
     shuffleSfx: false,
@@ -52,6 +53,7 @@ export default {
         dispatch("load", ["heart_colors", "setHeartColor"]),
         dispatch("load", ["quickswap", "setQuickswap"]),
         dispatch("load", ["music_on", "setMusicOn"]),
+        dispatch("load", ["msu1_resume", "setMSU1Resume"]),
         dispatch("load", ["palette_shuffle", "setPaletteShuffle"]),
         dispatch("load", ["reduce_flashing", "setReduceFlashing"]),
         dispatch("load", ["shuffle_sfx", "setShuffleSfx"]),
@@ -89,6 +91,10 @@ export default {
     setMusicOn(state, musicOn) {
       state.musicOn = musicOn;
       localforage.setItem("rom.music_on", musicOn);
+    },
+    setMSU1Resume(state, msu1Resume) {
+      state.msu1Resume = msu1Resume;
+      localforage.setItem("rom.msu1_resume", msu1Resume);
     },
     setPaletteShuffle(state, paletteShuffle) {
       state.paletteShuffle = paletteShuffle;

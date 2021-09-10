@@ -550,6 +550,7 @@ export default {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,
         musicOn: this.musicOn,
+        msu1Resume: this.msu1Resume,
         reduceFlashing: this.reduceFlashing,
         shuffleSfx: this.shuffleSfx
       });
@@ -619,6 +620,7 @@ export default {
       heartColor: state => state.heartColor,
       quickswap: state => state.quickswap,
       musicOn: state => state.musicOn,
+      msu1Resume: state => state.msu1Resume,
       paletteShuffle: state => state.paletteShuffle,
       reduceFlashing: state => state.reduceFlashing,
       shuffleSfx: state => state.shuffleSfx

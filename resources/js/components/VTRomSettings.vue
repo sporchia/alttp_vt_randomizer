@@ -58,30 +58,18 @@
       </div>
     </div>
     <div v-if="!rom.music" class="row mb-3">
-      <div class="col-md-12">
+      <div class="col">
         <Toggle :value="musicOn" @input="setMusicOn">{{ $t('rom.settings.music') }}</Toggle>
       </div>
+      <div class="col">
+        <Toggle :value="msu1Resume" @input="setMSU1Resume">{{ $t('rom.settings.msu1resume') }}</Toggle>
+      </div>
     </div>
-    <div v-if="!rom.music" class="row mb-3">
-	  <div class="col-md-12">
-		<Toggle :value="shuffleSfx" @input="setShuffleSfx">{{ $t('rom.settings.shuffle_sfx') }}</Toggle>
-	  </div>
-	</div>
-    <div v-if="!rom.tournament || rom.allowQuickSwap" class="row mb-3">
-      <div class="col-md-12">
+    <div class="row mb-3">
+      <div v-if="!rom.tournament || rom.allowQuickSwap" class="col">
         <Toggle :value="quickswap" @input="setQuickswap">{{ $t('rom.settings.quickswap') }}</Toggle>
       </div>
-    </div>
-    <div v-if="!rom.special" class="row mb-3">
-      <div class="col-md-12">
-        <Toggle
-          :value="paletteShuffle"
-          @input="setPaletteShuffle"
-        >{{ $t('rom.settings.palette_shuffle') }}</Toggle>
-      </div>
-    </div>
-    <div v-if="rom.build >= '2021-05-04'" class="row mb-3">
-      <div class="col-md-12">
+      <div v-if="rom.build >= '2021-05-04'" class="col">
         <Toggle
           :value="reduceFlashing"
           @input="setReduceFlashing"
@@ -90,12 +78,25 @@
           v-if="reduceFlashing"
         >*</sup></Toggle>
       </div>
-      <div
-        v-if="reduceFlashing"
-        class="logic-warning text-info"
-        v-html="'* ' + $t('rom.settings.reduce_flashing_warning')"
-      />
     </div>
+    <div class="row mb-3">
+      <div v-if="!rom.special" class="col">
+        <Toggle
+          :value="paletteShuffle"
+          @input="setPaletteShuffle"
+        >{{ $t('rom.settings.palette_shuffle') }}</Toggle>
+      </div>
+      <div v-if="!rom.music" class="col">
+        <Toggle :value="shuffleSfx" @input="setShuffleSfx">{{ $t('rom.settings.shuffle_sfx') }}</Toggle>
+      </div>
+    </div>
+    <div class="row mb-3">
+    </div>
+    <div
+      v-if="reduceFlashing"
+      class="logic-warning text-info"
+      v-html="'* ' + $t('rom.settings.reduce_flashing_warning')"
+    />
   </div>
 </template>
 
@@ -201,6 +202,7 @@ export default {
       "setHeartColor",
       "setQuickswap",
       "setMusicOn",
+      "setMSU1Resume",
       "setPaletteShuffle",
       "setReduceFlashing",
       "setShuffleSfx",
@@ -216,6 +218,7 @@ export default {
       heartColor: state => state.heartColor,
       quickswap: state => state.quickswap,
       musicOn: state => state.musicOn,
+      msu1Resume: state => state.msu1Resume,
       paletteShuffle: state => state.paletteShuffle,
       reduceFlashing: state => state.reduceFlashing,
       shuffleSfx: state => state.shuffleSfx
