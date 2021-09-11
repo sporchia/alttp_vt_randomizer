@@ -606,13 +606,13 @@ return [
                     ],
                 ],
                 'msu1resume' => [
-                    'header' => __('rom.settings.music'),
+                    'header' => __('rom.settings.msu1resume'),
                     'content' => [
                         'Activa la función continuar música MSU-1. Esta función permite que cada pista de música continúe por donde estaba al volver a entrar al Mundo Abierto.',
                     ],
                 ],
                 'shuffle_sfx' => [
-                    'header' => __('rom.settings.music'),
+                    'header' => __('rom.settings.shuffle_sfx'),
                     'content' => [
                         'Mezcla todos los efectos de sonido en el juego. Esto quiere decir que cualquier cosa puede sonar como cualquier otra. ¡Activar con precaución!',
                     ],
