@@ -605,6 +605,18 @@ return [
                         'Aktiviere oder deaktiviere die originale Hintergrundmusik.',
                     ],
                 ],
+                'msu1resume' => [
+                    'header' => __('rom.settings.msu1resume'),
+                    'content' => [
+                        'Aktiviert die Fortsetzung von MSU-1 Musikstücken. Diese Funktion lässt das Oberwelt-Musikstück an der Stelle fortsetzen, an der es unterbrochen wurde, wenn die Oberwelt erneut betreten wird.',
+                    ],
+                ],
+                'shuffle_sfx' => [
+                    'header' => __('rom.settings.shuffle_sfx'),
+                    'content' => [
+                        'Vertauscht alle Soundeffekte des Spiels. Das bedeutet, dass alles wie alles mögliche andere klingen kann. Mit Vorsicht zu verwenden!',
+                    ],
+                ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
