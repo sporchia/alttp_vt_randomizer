@@ -605,6 +605,18 @@ return [
                         'Enable or disable the background music, including MSU-1 playback.  MSU-1 users should leave this enabled.',
                     ],
                 ],
+                'msu1resume' => [
+                    'header' => __('rom.settings.msu1resume'),
+                    'content' => [
+                        'Enables the MSU-1 music resume feature.  This feature allows the track that was playing to resume where it left off when re-entering the overworld.',
+                    ],
+                ],
+                'shuffle_sfx' => [
+                	'header' => __('rom.settings.shuffle_sfx'),
+                	'content' => [
+						'Randomizes the sound effects within the game. This means everything can sound like anything else. Enable with caution!',
+					],
+				],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [

@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2021-06-14';
-    const HASH = 'ecca7473031de4b4e1d9994874a3e80c';
+    const BUILD = '2021-09-04';
+    const HASH = 'e8447cbbe510754a1c572061d30c00f6';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -518,10 +518,8 @@ class Rom
                     $equipment[0x369] |= 0b00100000;
                     break;
                 case 'MapH1':
-                    $equipment[0x369] |= 0b01000000;
-                    break;
                 case 'MapH2':
-                    $equipment[0x369] |= 0b10000000;
+                    $equipment[0x369] |= 0b11000000;
                     break;
                 case 'CompassA2':
                     $equipment[0x364] |= 0b00000100;
@@ -560,10 +558,8 @@ class Rom
                     $equipment[0x365] |= 0b00100000;
                     break;
                 case 'CompassH1':
-                    $equipment[0x365] |= 0b01000000;
-                    break;
                 case 'CompassH2':
-                    $equipment[0x365] |= 0b10000000;
+                    $equipment[0x365] |= 0b11000000;
                     break;
                 case 'BigKeyA2':
                     $equipment[0x366] |= 0b00000100;
@@ -602,15 +598,12 @@ class Rom
                     $equipment[0x367] |= 0b00100000;
                     break;
                 case 'BigKeyH1':
-                    $equipment[0x367] |= 0b01000000;
-                    break;
                 case 'BigKeyH2':
-                    $equipment[0x367] |= 0b10000000;
-                    break;
-                case 'KeyH2':
-                    $equipment[0x37C] += 1;
+                    $equipment[0x367] |= 0b11000000;
                     break;
                 case 'KeyH1':
+                case 'KeyH2':
+                    $equipment[0x37C] += 1;
                     $equipment[0x37D] += 1;
                     break;
                 case 'KeyP1':
@@ -793,6 +786,22 @@ class Rom
     public function setCapeSpikeCaveUsage(int $normal = 0x04, int $half = 0x08, int $quarter = 0x10): self
     {
         $this->write(0x18016E, pack('C*', $normal, $half, $quarter));
+
+        return $this;
+    }
+
+    /**
+     * Set regular Cape Magic Usage
+     *
+     * @param int $normal normal magic usage
+     * @param int $half half magic usage
+     * @param int $quarter quarter magic usage
+     *
+     * @return $this
+     */
+    public function setCapeRegularMagicUsage(int $normal = 0x04, int $half = 0x08, int $quarter = 0x10): self
+    {
+        $this->write(0x3ADA7, pack('C*', $normal, $half, $quarter));
 
         return $this;
     }
@@ -1607,77 +1616,6 @@ class Rom
     public function setOverworldDigPrizes(array $prizes = []): self
     {
         $this->write(0x180100, pack('C*', ...$prizes));
-
-        return $this;
-    }
-
-    /**
-     * Adjust some settings for hard mode
-     *
-     * @param int $level how hard to make it, higher should be harder
-     *
-     * @throws \Exception if an unknown hard mode is selected
-     *
-     * @return $this
-     */
-    public function setHardMode(int $level = 0): self
-    {
-        $this->setCaneOfByrnaSpikeCaveUsage();
-        $this->setCapeSpikeCaveUsage();
-        $this->setByrnaCaveSpikeDamage(0x08);
-        // Bryna magic amount used per "cycle"
-        $this->write(0x45C42, pack('C*', 0x04, 0x02, 0x01));
-
-        switch ($level) {
-            case -1:
-            case 0:
-                // Cape magic
-                $this->write(0x3ADA7, pack('C*', 0x04, 0x08, 0x10));
-                $this->setCaneOfByrnaInvulnerability(true);
-                $this->setPowderedSpriteFairyPrize(0xE3);
-                $this->setBottleFills([0xA0, 0x80]);
-                $this->setCatchableFairies(true);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x03);
-                $this->setSilversOnlyAtGanon(false);
-
-                break;
-            case 1:
-                $this->write(0x3ADA7, pack('C*', 0x02, 0x04, 0x08));
-                $this->setCaneOfByrnaInvulnerability(false);
-                $this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-                $this->setBottleFills([0x38, 0x40]); // 7 hearts, 1/2 magic refills
-                $this->setCatchableFairies(false);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x02);
-                $this->setSilversOnlyAtGanon(true);
-
-                break;
-            case 2:
-                $this->write(0x3ADA7, pack('C*', 0x02, 0x04, 0x08));
-                $this->setCaneOfByrnaInvulnerability(false);
-                $this->setPowderedSpriteFairyPrize(0xD8); // 1 heart
-                $this->setBottleFills([0x20, 0x20]); // 4 heart, 1/4 magic refills
-                $this->setCatchableFairies(false);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x00);
-                $this->setSilversOnlyAtGanon(true);
-
-                break;
-            case 3:
-                $this->write(0x3ADA7, pack('C*', 0x01, 0x02, 0x04));
-                $this->setCaneOfByrnaInvulnerability(false);
-                $this->setPowderedSpriteFairyPrize(0x79); // Bees
-                $this->setBottleFills([0x00, 0x00]); // 0 hearts, 0 magic refills
-                $this->setCatchableFairies(false);
-                $this->setCatchableBees(true);
-                $this->setStunItems(0x00);
-                $this->setSilversOnlyAtGanon(true);
-
-                break;
-            default:
-                throw new \Exception("Trying to set hard mode that doesn't exist");
-        }
 
         return $this;
     }
@@ -2746,15 +2684,29 @@ class Rom
     }
 
     /**
-     * Enable/Disable PoD EG correction
+     * Enable/Disable PoD / S&Q EG correction
      *
      * @param bool $enable switch on or off
      *
      * @return $this
      */
-    public function setPODEGfix(bool $enable = true): self
+    public function setSQEGFix(bool $enable = true): self
     {
         $this->write(0x1800A4, pack('C*', $enable ? 0x01 : 0x00));
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Allow Accidental Major Glitch
+     *
+     * @param bool $enable switch on or off
+     *
+     * @return $this
+     */
+    public function setAllowAccidentalMajorGlitch(bool $enable = true): self
+    {
+        $this->write(0x180358, pack('C*', $enable ? 0x01 : 0x00));
 
         return $this;
     }

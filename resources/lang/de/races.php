@@ -15,7 +15,7 @@ return [
                 [
                     'header' => 'ALTTPR Ladder',
                     'content' => [
-                        'Die <a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> ist eine 1v1 Elo-Rangliste, eine "A Link To the Past Randomizer"-Liga, welche komplett über Discord läuft. In diesem System werden mehere 1v1-Rennen über den Tag organisiert und gespielt. Die Rangliste basiert auf dem System der Standard Elo 32k-Gewichtung.',
+                        'Die <a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> ist eine 1v1 Elo-Rangliste, eine "ALTTP Randomizer"-Liga, welche komplett über Discord läuft. In diesem System werden mehere 1v1-Rennen über den Tag organisiert und gespielt. Die Rangliste basiert auf dem System der Standard Elo 32k-Gewichtung.',
                     ],
                 ],
                 [

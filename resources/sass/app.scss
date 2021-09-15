@@ -67,6 +67,14 @@ a.anchor {
   padding: 0;
 }
 
+.info-banner {
+  text-align: center;
+}
+
+.info-banner p {
+  margin: 0;
+}
+
 .no-resize {
   resize: none;
 }
@@ -421,6 +429,19 @@ strong {
 #options p {
   margin-left: 1.25rem;
   margin-bottom: 0.5rem;
+}
+
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgb(193, 243, 243);
+  padding: 20px;
+  text-align: center;
+
+  &__agree {
+    margin-left: 10px;
+  }
 }
 
 @import "dark-theme";

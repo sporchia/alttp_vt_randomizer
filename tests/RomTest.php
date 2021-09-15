@@ -1056,58 +1056,51 @@ class RomTest extends TestCase
         $this->assertEquals(0x05, $this->rom->read(0x180100));
     }
 
-    public function testSetHardModeUnknownValueThrowsException()
-    {
-        $this->expectException(\Exception::class);
-
-        $this->rom->setHardMode(1000000);
-    }
-
     public function testSetHardMode2ChangesCapeMagicUsage()
     {
-        $this->rom->setHardMode(2);
+        $this->rom->setCapeRegularMagicUsage(0x02, 0x04, 0x08);
 
         $this->assertEquals([0x02, 0x04, 0x08], $this->rom->read(0x3ADA7, 3));
     }
 
     public function testSetHardMode1ChangesCapeMagicUsage()
     {
-        $this->rom->setHardMode(1);
+        $this->rom->setCapeRegularMagicUsage(0x02, 0x04, 0x08);
 
         $this->assertEquals([0x02, 0x04, 0x08], $this->rom->read(0x3ADA7, 3));
     }
 
     public function testSetHardMode0ChangesCapeMagicUsage()
     {
-        $this->rom->setHardMode(0);
+        $this->rom->setCapeRegularMagicUsage(0x04, 0x08, 0x10);
 
         $this->assertEquals([0x04, 0x08, 0x10], $this->rom->read(0x3ADA7, 3));
     }
 
     public function testSetHardMode3ChangesBubbleTransform()
     {
-        $this->rom->setHardMode(3);
+        $this->rom->setPowderedSpriteFairyPrize(0x79);
 
         $this->assertEquals(0x79, $this->rom->read(0x36DD0));
     }
 
     public function testSetHardMode2ChangesBubbleTransform()
     {
-        $this->rom->setHardMode(2);
+        $this->rom->setPowderedSpriteFairyPrize(0xD8);
 
         $this->assertEquals(0xD8, $this->rom->read(0x36DD0));
     }
 
     public function testSetHardMode1ChangesBubbleTransform()
     {
-        $this->rom->setHardMode(1);
+        $this->rom->setPowderedSpriteFairyPrize(0xD8);
 
         $this->assertEquals(0xD8, $this->rom->read(0x36DD0));
     }
 
     public function testSetHardMode0ChangesBubbleTransform()
     {
-        $this->rom->setHardMode(0);
+        $this->rom->setPowderedSpriteFairyPrize(0xE3);
 
         $this->assertEquals(0xE3, $this->rom->read(0x36DD0));
     }

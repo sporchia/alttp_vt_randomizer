@@ -9,20 +9,13 @@ use Log;
  */
 class Zspr
 {
-    /** @var string */
-    private $data;
-    /** @var string */
-    private $display_text = '';
-    /** @var string */
-    private $author = '';
-    /** @var string */
-    private $author_rom = '';
-    /** @var int */
-    private $sprite_data_offset;
-    /** @var int */
-    private $palette_data_offset;
-    /** @var array */
-    private $bytes = [];
+    private string $data;
+    private string $display_text = '';
+    private string $author = '';
+    private string $author_rom = '';
+    private int $sprite_data_offset;
+    private int $palette_data_offset;
+    private array $bytes = [];
 
     /**
      * Create a new wrapper
@@ -81,30 +74,34 @@ class Zspr
         }
     }
 
-    public function getVersion()
+    public function getVersion(): int
     {
         return $this->bytes[4];
     }
 
-    public function checksum()
+    public function checksum(): bool
     {
         return (array_sum($this->bytes) & 0xFFFF) == ($this->bytes[6] << 8 | $this->bytes[5]);
     }
 
-    public function getPixelData()
+    public function getPixelData(): string
     {
+        if ($this->sprite_data_offset === 0xFFFFFFFF) {
+            return '';
+        }
+
         $length = $this->bytes[14] << 8 | $this->bytes[13];
 
         return substr($this->data, $this->sprite_data_offset, $length);
     }
 
     // we have faster access through the internal bytes array, but dirty quick for release here
-    public function getPixelBytes()
+    public function getPixelBytes(): array
     {
         return array_values(unpack('C*', $this->getPixelData()));
     }
 
-    public function getPaletteData()
+    public function getPaletteData(): string
     {
         $length = $this->bytes[20] << 8 | $this->bytes[19];
 
@@ -112,12 +109,12 @@ class Zspr
     }
 
     // @TODO: use internal bytes array instead *derp*
-    public function getPaletteBytes()
+    public function getPaletteBytes(): array
     {
         return array_values(unpack('C*', $this->getPaletteData()));
     }
 
-    public function getType()
+    public function getType(): string
     {
         switch ($this->bytes[22] << 8 | $this->bytes[21]) {
             case 1:
@@ -127,20 +124,21 @@ class Zspr
         }
     }
 
-    public function getDisplayText()
+    public function getDisplayText(): string
     {
         return $this->display_text;
     }
 
-    public function getAuthor()
+    public function getAuthor(): string
     {
         return $this->author;
     }
 
-    public function getAuthorRomDisplay()
+    public function getAuthorRomDisplay(): string
     {
         return $this->author_rom;
     }
+
     protected function unichr($u)
     {
         return mb_convert_encoding('&#' . intval($u) . ';', 'UTF-8', 'HTML-ENTITIES');

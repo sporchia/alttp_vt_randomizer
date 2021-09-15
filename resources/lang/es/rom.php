@@ -53,6 +53,8 @@ return [
         ],
         'play_as' => 'Jugar Como',
         'sprite_file_select' => 'Selecciona archivo .zspr',
+        'msu1resume' => 'MSU-1 Continuar',
+        'shuffle_sfx' => 'Mezcla SFX',
         'music' => 'Música de fondo',
         'music_info' => '(poner en "No" para <a href="https://alttprlinks.page.link/SjiP" target="_blank" rel="noopener noreferrer">soporte con MSU-1</a>)',
         'quickswap' => 'Cambio Rápido de Objetos',

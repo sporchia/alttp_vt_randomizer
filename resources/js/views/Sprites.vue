@@ -71,6 +71,7 @@ export default {
   height: 96px;
   background-size: auto 96px;
   image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 .sprite-name {
   position: absolute;

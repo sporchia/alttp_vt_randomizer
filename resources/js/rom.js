@@ -5,6 +5,7 @@ import BPS from "./bps";
 import * as Z3PR from "@maseya/z3pr";
 import localforage from "localforage";
 import center from "center-align";
+import SFX from "./sfx";
 
 export default class ROM {
   constructor(blob, loadedCallback) {
@@ -116,7 +117,7 @@ export default class ROM {
     });
   }
 
-  save(filename, { paletteShuffle, quickswap, musicOn, reduceFlashing }) {
+  save(filename, { paletteShuffle, quickswap, musicOn, reduceFlashing, shuffleSfx, msu1Resume }) {
     let preProcess = this.arrayBuffer.slice(0);
 
     if (paletteShuffle) {
@@ -128,8 +129,13 @@ export default class ROM {
       this.setQuickswap(false);
     }
     this.setMusicVolume(musicOn);
+    this.setMSU1Resume(msu1Resume);
 
     this.setReduceFlashing(reduceFlashing);
+
+    if (shuffleSfx) {
+      this.randomizeSfx();
+    }
 
     this.updateChecksum().then(() => {
       FileSaver.saveAs(new Blob([this.u_array], { type: 'application/octet-stream' }), filename);
@@ -262,8 +268,10 @@ export default class ROM {
       }
 
       // GFX
-      for (let i = 0; i < 0x7000; i++) {
-        this.u_array[0x80000 + i] = zspr[gfx_offset + i];
+      if (gfx_offset !== 0xFFFFFFFF) {
+        for (let i = 0; i < 0x7000; i++) {
+          this.u_array[0x80000 + i] = zspr[gfx_offset + i];
+        }
       }
 
       // Palettes
@@ -297,6 +305,17 @@ export default class ROM {
         this.write(0x0cfec1, !enable ? 0x00 : 0xc0);
         this.write(0x0d0000, !enable ? [0x00, 0x00] : [0xda, 0x58]);
         this.write(0x0d00e7, !enable ? [0xc4, 0x58] : [0xda, 0x58]);
+      }
+
+      resolve(this);
+    });
+  }
+
+  setMSU1Resume(enable) {
+    return new Promise(resolve => {
+      if (this.build >= "2021-05-04" && !enable) {
+        this.write(0x18021D, 0x00);
+        this.write(0x18021E, 0x00);
       }
 
       resolve(this);
@@ -415,7 +434,7 @@ export default class ROM {
       randomize_dungeon: true,
       seed: this.rand.nextInt(0, 4294967295)
     });
-    this.rand.reset()
+    this.rand.reset();
   }
 
   setReduceFlashing(enable) {
@@ -426,6 +445,11 @@ export default class ROM {
 
       resolve(this);
     });
+  }
+
+  randomizeSfx() {
+    new SFX(this.rand.nextInt(0, 4294967295)).randomize_sfx(this);
+    this.rand.reset();
   }
 
   parsePatch(data, progressCallback) {

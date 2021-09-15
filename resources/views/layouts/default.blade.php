@@ -51,6 +51,9 @@
     </nav>
     <div class="clearfix" style="padding-top:70px"></div>
     <div class="container">
+    @if (config('alttp.banner'))
+    <div class="info-banner alert alert-warning">@markdown(config('alttp.banner'))</div>
+    @endif
     @yield('content')
     </div>
 @overwrite

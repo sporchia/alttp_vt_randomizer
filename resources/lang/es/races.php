@@ -16,7 +16,7 @@ return [
                 [
                     'header' => 'ALTTPR Ladder',
                     'content' => [
-                        '<a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> es un sistema de Ladder o Escalera por Elo 1v1, una liga de "A Link To the Past Randomizer", que funciona completamente por Discord. El sistema esta diseñado para que ocurran varias carreras 1v1 a lo largo del día, y los rankings se basan en pesos estandar de Elo 32K.',
+                        '<a href="https://alttprladder.com/" target="_blank">ALTTPR Ladder</a> es un sistema de Ladder o Escalera por Elo 1v1, una liga de "ALTTP Randomizer", que funciona completamente por Discord. El sistema esta diseñado para que ocurran varias carreras 1v1 a lo largo del día, y los rankings se basan en pesos estandar de Elo 32K.',
                     ],
                 ],
                 [

@@ -2,6 +2,49 @@
 
 @section('content')
 
+<h2>v31.0.10</h2>
+<div class="card card-body bg-light mb-3">
+    <ul>
+        <li>New Features</li>
+        <ul>
+            <li>Magic used, and damage taken, are now statistics that are tracked and shown in the credits.   Thanks kan!</li>
+            <li>Boss icons will now appear on the dungeon map, indicating the dungeon's boss.  This only appears if the player has the compass for that dungeon.  Thanks kan for the code; _aitchFactor, vortexofdoom, and PlaguedOne for the art!</li>
+            <li>The dungeon prize (Crystals and Pendants) will now appear as a "C" or "P" indicator on the HUD while in a dungeon.  Thanks kan!</li>
+            <ul>
+                <li>This only appears when maps are not shuffled in the wild (Dungeon Item Shuffles other than Standard), or you have the map for the dungeon.</li>
+            </ul>
+            <li>Sound effect rando!  There is now an option to randomize your game's sound effects.  Thanks Aerinon!</li>
+            <li>Item drop RNG during the escape sequence while playing Standard World State is now the same for all players of the same seed.  Thanks Cassidymoen!</li>
+            <li>MSU-1 Resume, introduced in v31.0.9, may now be disabled.</li>
+        </ul>
+        <li>Bug Fixes</li>
+        <ul>
+            <li>Fixed a situation that could cause players to hardlock when dropping down to a boss fight, such as Mothula and Kholdstare.  Thanks Qwertymodo!</li>
+            <li>The proper sprite will now be drawn when a progressive bow appears in an open location.  Thank you Bonta.</li>
+            <li>Consecutive special quickswaps (such as switching between bottles) will now be properly handled.  Thank you Bonta.</li>
+            <li>Inverted: It is no longer possible to bypass the Ganon's Tower opening animation when opening the entrance to GT at Hyrule Castle.  Thanks kan!</li>
+            <li>Customizer: Triforce and Bow are now properly labeled as advancement items, which allows them to be placed randomly.  Thank you compiling.</li>
+        </ul>
+        <li>Vanilla bug fixes</li>
+        <ul>
+            <li>These apply to No Glitches games only.  Glitched games (OWG, MG, No Logic) are not affected.  Thank you kan for the fixes.</li>
+            <ul>
+                <li>The disarming of Exploration Glitch has been expanded from Palace of Darkness to all Save & Quits.</li>
+                <li>"Jingle Glitch", which can cause sprite despawns in Ganon's Tower and Ice Palace, has been fixed.</li>
+                <li>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.</li>
+            </ul>
+        </ul>
+        <li>Other changes</li>
+        <ul>
+            <li>The "OWG Landbridge" sign has been updated to add the winner of the Hybrid Major Glitches 2021 Tournament</li>
+            <li>The Houlihan sign has been updated to add the winner of the 2021 Main Tournament.</li>
+        </ul>
+    </ul>
+    <li>Added new player options<br />
+        <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.10.lg.png"
+            alt="Link sprite options" style="width:50%" /></li>
+</div>
+
 <h2>v31.0.9</h2>
 <div class="card card-body bg-light mb-3">
     <ul>

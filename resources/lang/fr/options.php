@@ -605,6 +605,18 @@ return [
                         'Active ou désactive la musique originale du jeu.',
                     ],
                 ],
+                'msu1resume' => [
+                    'header' => __('rom.settings.msu1resume'),
+                    'content' => [
+                        'Active la fonction de reprise de musique MSU-1. Cette fonction permet à la piste de reprendre là où elle s’est arrêtée quand on revient dans l’overworld.',
+                    ],
+                ],
+                'shuffle_sfx' => [
+                    'header' => __('rom.settings.shuffle_sfx'),
+                    'content' => [
+                        'Mélange les effets sonores du jeu. Cela veut dire que tout peut sonner comme n’importe quoi d’autre. À activer avec précaution!',
+                    ],
+                ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [

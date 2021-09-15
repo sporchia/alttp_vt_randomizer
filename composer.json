@@ -27,6 +27,7 @@
     "martinlindhe/laravel-vue-i18n-generator": "^0.1.35",
     "sentry/sentry": "^2.0",
     "sentry/sentry-laravel": "^1.0",
+    "spatie/laravel-cookie-consent": "^2.12",
     "z3/enemizer_linux": "6.1.0.180",
     "z3/enemizer_osx": "6.1.0.180",
     "z3/entrancerandomizer": "^0.6.3",
@@ -47,11 +48,11 @@
       "type": "package",
       "package": {
         "name": "z3/randomizer",
-        "version": "31.0.9",
+        "version": "31.0.10",
         "source": {
           "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
-          "reference": "d0fbd11d0f6c5b2a45ee20deb0a87a925592c93a"
+          "reference": "0a93c3fa002fbc4073cf41aaef4a0bbeab15ce85"
         }
       }
     },

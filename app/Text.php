@@ -472,7 +472,7 @@ class Text
 
             'telepathic_tile_tower_of_hera_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a bad place, with a guy who will make you fall…\n\n\na lot."),
 
-            'houlihan_room' => $converter->convertDialogCompressed("Randomizer tournament winners\n{HARP}\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nS: Andy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
+            'houlihan_room' => $converter->convertDialogCompressed("Randomizer tournament winners\n{HARP}\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
 
             'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
 
@@ -884,7 +884,7 @@ class Text
 
             'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
             // 0x190
-            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("OWG tournament winners\n\n{HARP}\n  ~~~2019~~~\nGlan\n\n  ~~~2018~~~\nChristosOwen\nthe numpty"),
+            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("Glitched\ntournament\nwinners\n{HARP}\n~~~HMG 2021~~~\nKrithel\n\n~~~OWG 2019~~~\nGlan\n\n~~~OWG 2018~~~\nChristosOwen\nthe numpty"),
 
             'fish_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 

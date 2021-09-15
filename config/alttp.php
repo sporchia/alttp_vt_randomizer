@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'banner' => env('BANNER_TEXT', null),
     'base_rom' => env('ENEMIZER_BASE', null),
     'api_throttle_whitelist' => explode(',', env('API_THROTTLE_WHITELIST', '')),
     'custom' => [
@@ -20,7 +21,6 @@ return [
             'wildCompasses' => false,
         ],
         'rom' => [
-            'HardMode' => 0,
             'genericKeys' => false,
         ],
         'spoil' => [

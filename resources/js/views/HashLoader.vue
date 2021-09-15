@@ -33,7 +33,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md mb-3">
-            <vt-rom-info :no-link="noLink" :rom="rom"></vt-rom-info>
+            <vt-rom-info :rom="rom"></vt-rom-info>
           </div>
           <div class="col-md mb-3">
             <div class="row">
@@ -94,10 +94,6 @@ export default {
     hash: {
       type: String,
       required: true
-    },
-    noLink: {
-      type: Boolean,
-      default: true
     }
   },
   data() {
@@ -195,7 +191,9 @@ export default {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,
         musicOn: this.musicOn,
-        reduceFlashing: this.reduceFlashing
+        msu1Resume: this.msu1Resume,
+        reduceFlashing: this.reduceFlashing,
+        shuffleSfx: this.shuffleSfx
       });
     },
     saveSpoiler() {
@@ -224,8 +222,10 @@ export default {
       heartColor: state => state.heartColor,
       quickswap: state => state.quickswap,
       musicOn: state => state.musicOn,
+      msu1Resume: state => state.msu1Resume,
       paletteShuffle: state => state.paletteShuffle,
-      reduceFlashing: state => state.reduceFlashing
+      reduceFlashing: state => state.reduceFlashing,
+      shuffleSfx: state => state.shuffleSfx
     })
   }
 };

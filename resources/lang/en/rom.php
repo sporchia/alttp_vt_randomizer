@@ -53,6 +53,8 @@ return [
         ],
         'play_as' => 'Play As',
         'sprite_file_select' => 'Select .zspr File',
+        'msu1resume' => 'MSU-1 Resume',
+        'shuffle_sfx' => 'SFX Shuffle',
         'music' => 'Background Music',
         'music_info' => '(set to "No" for <a href="https://alttprlinks.page.link/SjiP" target="_blank" rel="noopener noreferrer">MSU-1 support</a>)',
         'quickswap' => 'Item Quickswap',
@@ -60,5 +62,6 @@ return [
         'race_warning' => 'Does not work in Race ROMs',
         'reduce_flashing' => 'Reduce Flashing',
         'reduce_flashing_warning' => 'This option only reduces the effects of flashing. Individual photosensitivity to effects may still vary.',
+        'shuffle_sfx' => 'Shuffle SFX',
     ],
 ];

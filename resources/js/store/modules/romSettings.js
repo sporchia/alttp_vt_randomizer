@@ -16,8 +16,10 @@ export default {
     heartColor: { value: "red", name: "rom.settings.heart_colors.red" },
     quickswap: false,
     musicOn: true,
+    msu1Resume: true,
     paletteShuffle: false,
     reduceFlashing: false,
+    shuffleSfx: false,
     options: {
       heartSpeed: [
         { value: "off", name: "rom.settings.heart_speeds.off" },
@@ -51,8 +53,10 @@ export default {
         dispatch("load", ["heart_colors", "setHeartColor"]),
         dispatch("load", ["quickswap", "setQuickswap"]),
         dispatch("load", ["music_on", "setMusicOn"]),
+        dispatch("load", ["msu1_resume", "setMSU1Resume"]),
         dispatch("load", ["palette_shuffle", "setPaletteShuffle"]),
         dispatch("load", ["reduce_flashing", "setReduceFlashing"]),
+        dispatch("load", ["shuffle_sfx", "setShuffleSfx"]),
       ]).then(() => {
         commit("setInitalizing", false);
       });
@@ -88,6 +92,10 @@ export default {
       state.musicOn = musicOn;
       localforage.setItem("rom.music_on", musicOn);
     },
+    setMSU1Resume(state, msu1Resume) {
+      state.msu1Resume = msu1Resume;
+      localforage.setItem("rom.msu1_resume", msu1Resume);
+    },
     setPaletteShuffle(state, paletteShuffle) {
       state.paletteShuffle = paletteShuffle;
       localforage.setItem("rom.palette_shuffle", paletteShuffle);
@@ -95,6 +103,10 @@ export default {
     setReduceFlashing(state, reduceFlashing) {
       state.reduceFlashing = reduceFlashing;
       localforage.setItem("rom.reduce_flashing", reduceFlashing);
+    },
+    setShuffleSfx(state, shuffleSfx) {
+      state.shuffleSfx = shuffleSfx;
+      localforage.setItem("rom.shuffle_sfx", shuffleSfx);
     },
     setInitalizing(state, init) {
       state.initializing = init;

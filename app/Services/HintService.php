@@ -140,18 +140,7 @@ class HintService
                     && !in_array($item->getRawName(), ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
             });
 
-            switch ($world->config('rom.HardMode', 0)) {
-                case -1:
-                    $hints = array_slice(fy_shuffle($hintables ?? []), 0, count($tiles));
-
-                    break;
-                case 0:
-                    $hints = array_slice(fy_shuffle($hintables ?? []), 0, min(4, count($tiles)));
-
-                    break;
-                default:
-                    $hints = [];
-            }
+            $hints = array_slice(fy_shuffle($hintables ?? []), 0, min(4, count($tiles)));
 
             $hints = array_filter(array_map(function ($item) use ($world) {
                 return $world->getLocationsWithItem($item)->filter(function ($location) {

@@ -91,6 +91,8 @@ Route::prefix('{lang?}')->middleware('locale')->group(function () {
 
     Route::view('watch', 'watch');
 
+    Route::view('cookies', 'cookie');
+
     Route::get('daily', static function () {
         $featured = ALttP\FeaturedGame::today();
         if (!$featured) {

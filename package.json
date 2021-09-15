@@ -9,6 +9,7 @@
 		"hot": "npm run i18n & cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"prod": "npm run production",
 		"production": "npm run i18n & cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+		"lowmem": "NODE_OPTIONS=--max_old_space_size=1024 npm run production",
 		"i18n": "php artisan vue-i18n:generate"
 	},
 	"devDependencies": {
