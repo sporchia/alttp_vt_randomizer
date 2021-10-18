@@ -2115,6 +2115,14 @@ class Rom
         $this->write(snes_to_pc(0x08D40C), pack('C*', 0xD0)); // ; morph poof
         $this->setFixFakeWorld($enable); // ; ER's Fix fake worlds fix. Currently needed for inverted
 
+        // remove diggable light world portals
+        $this->write(snes_to_pc(0x1BC428), pack('C*', 0x00));
+        $this->write(snes_to_pc(0x1BC43A), pack('C*', 0x00));
+        $this->write(snes_to_pc(0x1BC590), pack('C*', 0x00));
+        $this->write(snes_to_pc(0x1BC5A1), pack('C*', 0x00));
+        $this->write(snes_to_pc(0x1BC5B1), pack('C*', 0x00));
+        $this->write(snes_to_pc(0x1BC5C7), pack('C*', 0x00));
+
         $this->write(0x15B8C, pack('C', 0x6C)); // update link's house exit to be dark world (All the other exit table values can be reused)
         $this->write(0xDBB73 + 0x00, pack('C', 0x53)); // entering links house door leads to bomb shop
         $this->write(0xDBB73 + 0x52, pack('C', 0x01)); // entering bomb shop leads to links house
