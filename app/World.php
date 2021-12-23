@@ -1090,7 +1090,6 @@ abstract class World
         $rom->setGenericKeys($this->config('rom.genericKeys', false));
         $rom->setupCustomShops($this->getShops());
         $rom->setRupeeArrow($this->config('rom.rupeeBow', false));
-        $rom->setLockAgahnimDoorInEscape(true);
         $rom->setWishingWellChests(true);
         $rom->setWishingWellUpgrade(false);
         $rom->setHyliaFairyShop(true);
@@ -1175,6 +1174,19 @@ abstract class World
 
         $rom->setGameState($this->config('mode.state'));
         $rom->setSwordlessMode($this->config('mode.weapons') === 'swordless');
+        if ($this->config('mode.state') !== 'inverted') {
+            switch ($this->config('rom.logicMode', $this->config['logic'])) {
+                case 'MajorGlitches':
+                case 'NoLogic':
+                case 'OverworldGlitches':
+                    $rom->setLockAgahnimDoorInEscape(false);
+                    break;
+                case 'NoGlitches':
+                default:
+                    $rom->setLockAgahnimDoorInEscape(true);
+                    break;
+            }
+        }
 
         if (!$this->getLocation("Link's Uncle")->getItem() instanceof Item\Sword) {
             $rom->removeUnclesSword();
