@@ -63,7 +63,7 @@
             <ul>
                 <li>The disarming of Exploration Glitch has been expanded from Palace of Darkness to all Save & Quits.</li>
                 <li>"Jingle Glitch", which can cause sprite despawns in Ganon's Tower and Ice Palace, has been fixed.</li>
-                <li><del>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.<del> This change was reverted.</li>
+                <li><del>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.</del> This change was reverted.</li>
             </ul>
         </ul>
         <li>Other changes</li>
