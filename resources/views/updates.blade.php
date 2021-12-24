@@ -26,7 +26,7 @@
     </ul>
     <li>Miscellaneous changes</li>
     <ul>
-        <li>To reduce the patch's size, the "Don't Use ZSNES" image was removed from the ROM.  The check will still occur, and the game will refuse to start if using ZSNES or other incompletable emulators.</li>
+        <li>To reduce the patch's size, the "Don't Use ZSNES" image was removed from the ROM.  The check will still occur, and the game will refuse to start if using ZSNES or other incompatible emulators.</li>
         <li>The sound engine was moved back to it's vanilla location.  Thanks kan!</li>
     </ul>
     <li>Added new player options</li>
