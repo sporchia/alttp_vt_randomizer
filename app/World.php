@@ -1322,7 +1322,7 @@ abstract class World
             if ($this->config('rom.EscapeAssist', false)) {
                 $rom->setEscapeAssist(0b00000001);
             }
-        } elseif ($uncle_items->has('TenBombs') || $this->config('logic') !== 'None') {
+        } elseif ($uncle_items->has('TenBombs') || $this->config('logic') !== 'NoLogic') {
             // TenBombs, or give player bombs if uncle was plando'd to not have a weapon.
             $rom->setEscapeFills(0b00000010);
             $rom->setUncleSpawnRefills(

@@ -234,7 +234,7 @@ class Region
         $from_world = $item->getWorld();
         if (((!$from_world->config('region.wildKeys', false) && $item instanceof Item\Key)
                 || (!$from_world->config('region.wildBigKeys', false) && $item instanceof Item\BigKey)
-                || ($item == Item::get('KeyH2', $from_world) && $from_world->config('mode.state') == 'standard') // Sewers Key cannot leave
+                || ($item == Item::get('KeyH2', $from_world) && $from_world->config('mode.state') == 'standard' && $from_world->config('logic') !== 'NoLogic') // Sewers Key cannot leave
                 || (!$from_world->config('region.wildMaps', false) && $item instanceof Item\Map)
                 || (!$from_world->config('region.wildCompasses', false) && $item instanceof Item\Compass))
             && !in_array($item, $this->region_items)
