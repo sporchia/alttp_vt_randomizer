@@ -61,7 +61,7 @@
       <div class="col">
         <Toggle :value="musicOn" @input="setMusicOn">{{ $t('rom.settings.music') }}</Toggle>
       </div>
-      <div class="col">
+      <div v-if="rom.build >= '2021-05-04'" class="col">
         <Toggle :value="msu1Resume" @input="setMSU1Resume">{{ $t('rom.settings.msu1resume') }}</Toggle>
       </div>
     </div>
