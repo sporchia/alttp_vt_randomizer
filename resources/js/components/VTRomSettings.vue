@@ -86,14 +86,14 @@
           @input="setPaletteShuffle"
         >{{ $t('rom.settings.palette_shuffle') }}</Toggle>
       </div>
-      <div v-if="!rom.music" class="col">
+      <div v-if="!rom.music || rom.build >= '2021-12-21'" class="col">
         <Toggle :value="shuffleSfx" @input="setShuffleSfx">{{ $t('rom.settings.shuffle_sfx') }}</Toggle>
       </div>
     </div>
     <div class="row mb-3">
     </div>
     <div
-      v-if="reduceFlashing"
+      v-if="reduceFlashing && rom.build >= '2021-05-04'"
       class="logic-warning text-info"
       v-html="'* ' + $t('rom.settings.reduce_flashing_warning')"
     />

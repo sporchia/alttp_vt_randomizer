@@ -19,6 +19,7 @@
         <li>Removed the remaining logic when playing No Logic and Standard world state.</li>
         <li>Diggable portal locations will no longer appear in the Light World when playing Inverted world state.  Thanks cassidymoen.</li>
         <li>Fixed a logic bug involving Inverted Hammer Pegs</li>
+        <li>Fixed a crash involving invalid dungeon IDs for glitched modes.</li>
     </ul>
     <li>Vanilla bug fixes</li>
     <ul>
