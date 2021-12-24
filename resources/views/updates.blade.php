@@ -18,6 +18,7 @@
         <li>Changed the Exploration Glitch fix to be appropriately applied to No Glitches, instead of glitched games.  Thanks kan!</li>
         <li>Removed the remaining logic when playing No Logic and Standard world state.</li>
         <li>Diggable portal locations will no longer appear in the Light World when playing Inverted world state.  Thanks cassidymoen.</li>
+        <li>Fixed a logic bug involving Inverted Hammer Pegs</li>
     </ul>
     <li>Vanilla bug fixes</li>
     <ul>
