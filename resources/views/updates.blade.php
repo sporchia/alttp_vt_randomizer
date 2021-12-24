@@ -2,7 +2,39 @@
 
 @section('content')
 
-<h2>v31.0.10</h2>
+<h2>v31.0.11 (January 2022)</h2>
+<div class="card card-body bg-light mb-3">
+    <li>New Features</li>
+        <ul>
+        <li>Failing a Fake Flippers by taking a hit will now work like it does in the original game, except the player will be locked in place preventing the softlock.  The player may then Save & Quit normally.
+            <br/><i>* Dev note: This new change will cover more cases where the player could get softlocked, such as in Enemizer when taking a 0-hp hit.</i></li>
+        <li>Item shops will now properly account for Hard item pool and prevent purchasing of shields accordingly.  Thanks compiling.</li>
+        <li>More Blind Puns!  Thanks PuzzleSecretary</li>
+        <li>When playing glitched modes, Agahnim's Tower door will always be unlocked during the Standard world state escape sequence.</li>
+        </ul>
+    <li>Bug Fixes</li>
+    <ul>
+        <li>Item sprites that are "narrow" (8x16) will now properly render when replacing a shield or progressive bow. Thanks cassidymoen!</li>
+        <li>Changed the Exploration Glitch fix to be appropriately applied to No Glitches, instead of glitched games.  Thanks kan!</li>
+        <li>Removed the remaining logic when playing No Logic and Standard world state.</li>
+        <li>Diggable portal locations will no longer appear in the Light World when playing Inverted world state.  Thanks cassidymoen.</li>
+    </ul>
+    <li>Vanilla bug fixes</li>
+    <ul>
+        <li>Reverted quadrant glitch fix (as it was not working as intended).  This was changed mid-release in Sept 2021.</li>
+        <li>"Death hole", a vanilla bug that could cause memory corruption and incompletable games, is now fixed in No Glitches games.  Thanks kan!</li>
+    </ul>
+    <li>Miscellaneous changes</li>
+    <ul>
+        <li>To reduce the patch's size, the "Don't Use ZSNES" image was removed from the ROM.  The check will still occur, and the game will refuse to start if using ZSNES or other incompletable emulators.</li>
+        <li>The sound engine was moved back to it's vanilla location.  Thanks kan!</li>
+    </ul>
+    <li>Added new player options</li>
+    <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.11.lg.png"
+        alt="Player sprite options" style="width:50%" /></li>
+</div>
+
+<h2>v31.0.10 (September 2021)</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
         <li>New Features</li>
@@ -31,7 +63,7 @@
             <ul>
                 <li>The disarming of Exploration Glitch has been expanded from Palace of Darkness to all Save & Quits.</li>
                 <li>"Jingle Glitch", which can cause sprite despawns in Ganon's Tower and Ice Palace, has been fixed.</li>
-                <li>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.</li>
+                <li><del>"Quadrant Glitch", which can cause camera related issues when performing a sword spin under certain circumstances, has also been fixed.<del> This change was reverted.</li>
             </ul>
         </ul>
         <li>Other changes</li>
@@ -42,7 +74,7 @@
     </ul>
     <li>Added new player options<br />
         <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.10.lg.png"
-            alt="Link sprite options" style="width:50%" /></li>
+            alt="Player sprite options" style="width:50%" /></li>
 </div>
 
 <h2>v31.0.9</h2>
@@ -89,7 +121,7 @@
         </ul>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.9.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -113,7 +145,7 @@
         </ul>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.8.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -142,7 +174,7 @@
         <li>A new "Load Custom Sprite" option is available to let you use your own .zspr file.  This allows you to use any Link Sprite you wish for racing.  Thank you Krelbel for the patch!</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -183,7 +215,7 @@
         <li>Advanced item placement may now require killing Helmasuar King with just Fighter Sword, instead of requiring Master Sword.  Master Sword is still logically required when using Basic item placement.</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.6.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -201,7 +233,7 @@
         <li>API support for allowing quickswap usage in item randomizer race ROMs. The default behavior for item randomizer races will still be to disallow quickswap.</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.5.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -314,7 +346,7 @@
         <li>Myramong's wallmaster fix</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
         <div class="card-header bg-info text-white">View updates</div>
@@ -332,7 +364,7 @@
         <li>Updated Entrance Randomizer to v0.6.2 (now with more hints).</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.30.5.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -484,7 +516,7 @@
         <li>Great fairy bottle refills are completely automated and only have 1 text box now, so faster fills</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.30.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
         <div class="card-header bg-info text-white">View updates</div>
@@ -539,7 +571,7 @@
         <li>If you use a headered ROM, the site will try to strip that header out before use (thanks Myramong)</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.29.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
         <div class="card-header bg-info text-white">View updates</div>
@@ -577,7 +609,7 @@
         </ul></li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.28.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -599,7 +631,7 @@
         <li>Complete overhaul of the custom section, see the new <a href="/customizer">customizer</a></li>
         <li>Added many new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.27.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
         <div class="card-header bg-info text-white">View updates</div>
@@ -618,7 +650,7 @@
         <li>Skull Woods small key fix</li>
         <li>Added a few new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.26.2.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
 </div>
 
@@ -646,7 +678,7 @@
         <li>Two new chests have been added to Waterfall fairy</li>
         <li>Added many new player options (and updated a few)<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.26.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
         <div class="card-header bg-info text-white">View updates</div>
@@ -682,7 +714,7 @@
         <li>New Fill algorithm that maximizes item randomization</li>
         <li>Added many new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.25.lg.png"
-                alt="Link sprite options" style="width:50%" /></li>
+                alt="Player sprite options" style="width:50%" /></li>
     </ul>
     <div class="card border-info mt-4">
         <div class="card-header bg-info text-white">View updates</div>
