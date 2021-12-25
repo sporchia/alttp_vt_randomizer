@@ -32,8 +32,9 @@
         <li>The sound engine was moved back to it's vanilla location.  Thanks kan!</li>
     </ul>
     <li>Added new player options</li>
-    <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.11.lg.png"
-        alt="Player sprite options" style="width:50%" /></li>
+    <!-- <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.11.lg.png"
+        alt="Player sprite options" style="width:50%" /> -->
+    </li>
 </div>
 
 <h2>v31.0.10 (September 2021)</h2>
