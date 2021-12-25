@@ -1018,6 +1018,17 @@ abstract class World
                 }
             }
 
+            // misc patches for inverted ER until we can update ER
+            if ($this->config('mode.state') === 'inverted') {
+                // remove diggable light world portals
+                $rom->write(snes_to_pc(0x1BC428), pack('C*', 0x00));
+                $rom->write(snes_to_pc(0x1BC43A), pack('C*', 0x00));
+                $rom->write(snes_to_pc(0x1BC590), pack('C*', 0x00));
+                $rom->write(snes_to_pc(0x1BC5A1), pack('C*', 0x00));
+                $rom->write(snes_to_pc(0x1BC5B1), pack('C*', 0x00));
+                $rom->write(snes_to_pc(0x1BC5C7), pack('C*', 0x00));
+            }
+
             if ($save) {
                 $hash = $this->saveSeedRecord();
 
