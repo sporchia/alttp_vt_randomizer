@@ -5,13 +5,14 @@
 <h2>v31.0.11 (January 2022)</h2>
 <div class="card card-body bg-light mb-3">
     <li>New Features</li>
-        <ul>
+    <ul>
         <li>Failing a Fake Flippers by taking a hit will now work like it does in the original game, except the player will be locked in place preventing the softlock.  The player may then Save & Quit normally.
             <br/><i>* Dev note: This new change will cover more cases where the player could get softlocked, such as in Enemizer when taking a 0-hp hit.</i></li>
         <li>Item shops will now properly account for Hard item pool and prevent purchasing of shields accordingly.  Thanks compiling.</li>
         <li>More Blind Puns!  Thanks PuzzleSecretary</li>
         <li>When playing glitched modes, Agahnim's Tower door will always be unlocked during the Standard world state escape sequence.</li>
-        </ul>
+        <li>Added API support for enabling "Pseudo Boots".</li>
+    </ul>
     <li>Bug Fixes</li>
     <ul>
         <li>Item sprites that are "narrow" (8x16) will now properly render when replacing a shield or progressive bow. Thanks cassidymoen!</li>

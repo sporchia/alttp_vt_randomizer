@@ -956,6 +956,7 @@ abstract class World
             'hints' => $this->config('spoil.Hints'),
             'spoilers' => $this->config('spoilers', 'off'),
             'allow_quickswap' => $this->config('allow_quickswap', true),
+            'pseudoboots' => $this->config('pseudoboots', false),
             'enemizer.boss_shuffle' => $this->config('enemizer.bossShuffle'),
             'enemizer.enemy_shuffle' => $this->config('enemizer.enemyShuffle'),
             'enemizer.enemy_damage' => $this->config('enemizer.enemyDamage'),
@@ -1028,6 +1029,8 @@ abstract class World
                 $rom->write(snes_to_pc(0x1BC5B1), pack('C*', 0x00));
                 $rom->write(snes_to_pc(0x1BC5C7), pack('C*', 0x00));
             }
+
+            $rom->setPseudoBoots($this->config('pseudoboots', false));
 
             if ($save) {
                 $hash = $this->saveSeedRecord();
@@ -1260,6 +1263,8 @@ abstract class World
         $rom->setGameType('item');
 
         $rom->setMysteryMasking($this->config('spoilers', 'on') === 'mystery');
+
+        $rom->setPseudoBoots($this->config('pseudoboots', false));
 
         $rom->writeCredits();
         $rom->writeText();

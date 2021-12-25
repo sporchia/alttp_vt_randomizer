@@ -2829,6 +2829,20 @@ class Rom
     }
 
     /**
+     * Set starting with Pseudo Boots.
+     *
+     * @param bool $enable
+     *
+     * @return $this
+     */
+    public function setPseudoBoots(bool $enable = false): self
+    {
+        $this->write(0x18008E, pack('C*', $enable ? 0x01 : 0x00));
+
+        return $this;
+    }
+
+    /**
      * Write the seed identifier
      *
      * @param string $seed identifier for this seed
