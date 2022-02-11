@@ -55,7 +55,7 @@
 		"@maseya/z3pr": "^1.0.1",
 		"@sentry/browser": "^5.18.1",
 		"@stardazed/zlib": "^1.0.1",
-		"ajv": "^6.12.2",
+		"ajv": "^6.12.3",
 		"center-align": "^1.0.1",
 		"es6-promise": "^4.2.8",
 		"file-saver": "^2.0.2",
