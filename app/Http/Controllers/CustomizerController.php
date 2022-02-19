@@ -209,13 +209,6 @@ class CustomizerController extends Controller
                 $locations[$decoded_location]->setItem($place_item);
             }
         }
-        // force starting bomb and quiver capacities
-        $world->setPreCollectedItems(new ItemCollection([
-            Item::get('BombUpgrade10', $world),
-            Item::get('ArrowUpgrade10', $world),
-            Item::get('ArrowUpgrade10', $world),
-            Item::get('ArrowUpgrade10', $world),
-        ]));
         foreach ($request->input('eq', []) as $item) {
             try {
                 $place_item = Item::get($item, $world);

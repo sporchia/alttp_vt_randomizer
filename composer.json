@@ -50,9 +50,9 @@
         "name": "z3/randomizer",
         "version": "31.0.10",
         "source": {
-          "url": "https://github.com/KatDevsGames/z3randomizer",
+          "url": "https://github.com/cassidoxa/z3randomizer",
           "type": "git",
-          "reference": "0a93c3fa002fbc4073cf41aaef4a0bbeab15ce85"
+          "reference": "838d4e9bf8603b4f7be1ec76872dfa0c0feafc16"
         }
       }
     },

@@ -48,10 +48,6 @@ class Randomizer implements RandomizerContract
                     Item::get('BossHeartContainer', $world),
                     Item::get('BossHeartContainer', $world),
                     Item::get('BossHeartContainer', $world),
-                    Item::get('BombUpgrade10', $world),
-                    Item::get('ArrowUpgrade10', $world),
-                    Item::get('ArrowUpgrade10', $world),
-                    Item::get('ArrowUpgrade10', $world),
                 ]));
             }
         }
