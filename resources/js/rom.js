@@ -448,8 +448,10 @@ export default class ROM {
   }
 
   randomizeSfx() {
-    new SFX(this.rand.nextInt(0, 4294967295)).randomize_sfx(this);
-    this.rand.reset();
+    if (this.build >= "2021-12-21") {
+      new SFX(this.rand.nextInt(0, 4294967295)).randomize_sfx(this);
+      this.rand.reset();
+    }
   }
 
   parsePatch(data, progressCallback) {

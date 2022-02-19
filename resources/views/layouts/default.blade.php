@@ -24,6 +24,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- <Streams></Streams> -->
+                <li class="nav-item"><a class="nav-link" href="https://patreon.com/alttpr" target="_blank" rel="noopener noreferrer"><img src="/i/patreon-small.png" /> {{ __('navigation.patreon_support') }}</a></li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{!! __('navigation.language') !!} <span class="caret"></span></a>
                     <div class="dropdown-menu">

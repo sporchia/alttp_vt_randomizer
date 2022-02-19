@@ -228,13 +228,13 @@ export default class SFX {
 
   randomize_sfx(rom) {
     const sfx_table = {
-      2: 0x1a8c29,
-      3: 0x1a8d25,
+      2: 0x1A8BD0,
+      3: 0x1A8CCC,
     };
 
     const sfx_accompaniment_table = {
-      2: 0x1a8ca7,
-      3: 0x1a8da3,
+      2: 0x1A8C4E,
+      3: 0x1A8D4A,
     };
 
     // shuffle the data structure first

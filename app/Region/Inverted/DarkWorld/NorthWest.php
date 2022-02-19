@@ -32,8 +32,8 @@ class NorthWest extends Region\Standard\DarkWorld\NorthWest
                         && $this->world->getRegion('North West Light World')->canEnter($locations, $items))
                     || ($this->world->config('canBootsClip', false)
                         && $items->has('PegasusBoots')) || (
-                        ($this->world->config('canFakeFlipper', false)
-                            || $items->has('Flippers')
+                        (($this->world->config('canFakeFlipper', false)
+                            || $items->has('Flippers'))
                             && (($this->world->config('canSuperSpeed', false)
                                 && $items->canSpinSpeed())
                                 || $this->world->config('canOneFrameClipOW', false)))));
