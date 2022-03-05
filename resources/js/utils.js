@@ -15,3 +15,8 @@ export function fy_shuffle(array, rand) {
 export function int16_as_bytes(value) {
   return [value & 0xff, (value >> 8) & 0xff];
 }
+
+export function snes_to_pc(value) {
+    return ((value & 0x7F0000) >> 1) | (value & 0x7FFF);
+}
+
