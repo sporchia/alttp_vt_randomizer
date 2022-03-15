@@ -686,6 +686,25 @@ class InitialSram
         $this->setValue($this::ROOM_DATA + 0x61, 0x80);
         $this->setValue($this::ROOM_DATA + 0x93, 0x80);
     }
+
+    /**
+     * Set instant post-aga world state
+     *
+     * param string $state world state
+     */
+    public function setInstantPostAga(string $state) {
+        switch ($state) {
+            case 'standard':
+                $this->setValue(0x3C5, 0x80);
+                break;
+            case 'open':
+            case 'retro':
+            case 'inverted':
+            default:
+                $this->setValue(0x3C5, 0x03);
+                break;
+        }
+    }
     
     /**
      * Gets final initial SRAM table.
