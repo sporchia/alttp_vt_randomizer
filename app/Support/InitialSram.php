@@ -73,13 +73,6 @@ class InitialSram
     // Overworld data
 
     /**
-     * Pre-opens Lumberjack Tree
-     */
-    public function preOpenLumberjack() {
-        $this->setValue($this::OVERWORLD_DATA + 0x02, 0x20);
-    }
-
-    /**
      * Pre-opens Hyrule Castle Gate
      */
     public function preOpenCastleGate() {
@@ -702,6 +695,7 @@ class InitialSram
             case 'inverted':
             default:
                 $this->setValue(0x3C5, 0x03);
+                $this->setValue($this::OVERWORLD_DATA + 0x02, 0x20);
                 break;
         }
     }
