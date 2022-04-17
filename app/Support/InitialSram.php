@@ -689,6 +689,7 @@ class InitialSram
         switch ($state) {
             case 'standard':
                 $this->setValue(0x3C5, 0x80);
+                $this->setValue($this::OVERWORLD_DATA + 0x02, 0x20);
                 break;
             case 'open':
             case 'retro':
