@@ -109,7 +109,7 @@ class NorthWest extends Region
             return $items->has('Powder')
                 && ($items->has('Hammer')
                     || ((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
-                        || $this->world->config('canOneFrameClipOW', false))
+                        || $this->world->config('canOneFrameClipOW', false)) && $this->world->config('canMirrorWrap', false)
                         && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false)))
                     || ($items->has('MagicMirror')
                         && (($this->world->config('canMirrorWrap', false) && $this->world->getRegion('North West Dark World')->canEnter($locations, $items))
