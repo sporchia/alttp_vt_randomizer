@@ -14,7 +14,6 @@
   "require": {
     "php": ">=8.1",
     "ext-bcmath": "*",
-    "doctrine/dbal": "^2.5",
     "ezyang/htmlpurifier": "^4.9",
     "graham-campbell/markdown": "^14.0",
     "hashids/hashids": "^4.0",
@@ -22,7 +21,7 @@
     "laravel/horizon": "^5.0",
     "laravel/passport": "^10.0",
     "laravel/tinker": "^2.2",
-    "laravel/ui": "^3.0",
+    "laravel/ui": "^4.0",
     "league/flysystem-aws-s3-v3": "^3.0",
     "laraeast/laravel-vue-i18n-generator": "^2.0",
     "sentry/sentry": "^3.7",
@@ -35,7 +34,7 @@
   },
   "require-dev": {
     "spatie/laravel-ignition": "^1.0",
-    "fzaninotto/faker": "^1.9.1",
+    "fakerphp/faker": "^1.9.1",
     "mockery/mockery": "^1.2",
     "mohammedmanssour/form-request-tester": "dev-master",
     "nunomaduro/collision": "^6.1",
