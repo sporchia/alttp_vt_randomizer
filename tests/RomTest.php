@@ -101,8 +101,11 @@ class RomTest extends TestCase
         }, $items);
 
         $item_collection = new ItemCollection($object_items);
+        $config = $world->getConfig();
+        $config['rom.rupeeBow'] = false;
 
-        $this->rom->setStartingEquipment($item_collection);
+        $this->rom->initial_sram->setStartingEquipment($item_collection, $config);
+        $this->rom->writeInitialSram();
 
         foreach ($result as $offset => $bytes) {
             $this->assertEquals($bytes, $this->rom->read($offset));
@@ -113,297 +116,296 @@ class RomTest extends TestCase
     {
         return [
             [
-                [0x183019 => 0x01, 0x271BF => 0x01],
+                [0x183359 => 0x01, 0x183417 => 0x01],
                 ['L1Sword'],
             ],
             [
                 [
-                    0x183019 => 0x01, 0x271BF => 0x01,
-                    0x18301A => 0x01, 0x271C0 => 0x01,
+                    0x183359 => 0x01, 0x183417 => 0x01,
+                    0x18335A => 0x01, 0x183422 => 0x01
                 ],
                 ['L1SwordAndShield'],
             ],
             [
-                [0x183019 => 0x02, 0x271BF => 0x02],
+                [0x183359 => 0x02, 0x183417 => 0x02],
                 ['L2Sword'],
             ],
             [
-                [0x183019 => 0x02, 0x271BF => 0x02],
+                [0x183359 => 0x02, 0x183417 => 0x02],
                 ['MasterSword'],
             ],
             [
-                [0x183019 => 0x03, 0x271BF => 0x03],
+                [0x183359 => 0x03, 0x183417 => 0x03],
                 ['L3Sword'],
             ],
             [
-                [0x183019 => 0x04, 0x271BF => 0x04],
+                [0x183359 => 0x04, 0x183417 => 0x04],
                 ['L4Sword'],
             ],
             [
-                [0x18301A => 0x01, 0x271C0 => 0x01],
+                [0x18335A => 0x01, 0x183422 => 0x01],
                 ['BlueShield'],
             ],
             [
-                [0x18301A => 0x02, 0x271C0 => 0x02],
+                [0x18335A => 0x02, 0x183422 => 0x02],
                 ['RedShield'],
             ],
             [
-                [0x18301A => 0x03, 0x271C0 => 0x03],
+                [0x18335A => 0x03, 0x183422 => 0x03],
                 ['MirrorShield'],
             ],
             [
-                [0x183005 => 0x01, 0x271AB => 0x01],
+                [0x183345 => 0x01],
                 ['FireRod'],
             ],
             [
-                [0x183006 => 0x01, 0x271AC => 0x01],
+                [0x183346 => 0x01],
                 ['IceRod'],
             ],
             [
-                [0x18300B => 0x01, 0x271B1 => 0x01],
+                [0x18334B => 0x01],
                 ['Hammer'],
             ],
             [
-                [0x183002 => 0x01, 0x271A8 => 0x01],
+                [0x183342 => 0x01],
                 ['Hookshot'],
             ],
             [
-                [0x183000 => 0x01, 0x271A6 => 0x01, 0x18304E => 0x80],
+                [0x183340 => 0x01, 0x18338E => 0x80],
                 ['Bow'],
             ],
             [
-                [0x183000 => 0x02, 0x271A6 => 0x02, 0x18304E => 0x80],
+                [0x183340 => 0x02, 0x18338E => 0x80],
                 ['BowAndArrows'],
             ],
             [
-                [0x18304E => 0x40],
+                [0x18338E => 0x40],
                 ['SilverArrowUpgrade'],
             ],
             [
-                [0x183000 => 0x04, 0x271A6 => 0x04, 0x18304E => 0xC0],
+                [0x183340 => 0x04, 0x18338E => 0xC0],
                 ['BowAndSilverArrows'],
             ],
             [
-                [0x183000 => 0x01, 0x271A6 => 0x01, 0x18304E => 0xC0],
+                [0x183340 => 0x01, 0x18338E => 0xC0],
                 ['Bow', 'SilverArrowUpgrade'],
             ],
             [
-                [0x183001 => 0x01, 0x271A7 => 0x01, 0x18304C => 0x80],
+                [0x183341 => 0x01, 0x18338C => 0x80],
                 ['Boomerang'],
             ],
             [
-                [0x183001 => 0x02, 0x271A7 => 0x02, 0x18304C => 0x40],
+                [0x183341 => 0x02, 0x18338C => 0x40],
                 ['RedBoomerang'],
             ],
             [
-                [0x183001 => 0x02, 0x271A7 => 0x02, 0x18304C => 0xC0],
+                [0x183341 => 0x02, 0x18338C => 0xC0],
                 ['Boomerang', 'RedBoomerang'],
             ],
             [
-                [0x183004 => 0x01, 0x271AA => 0x01, 0x18304C => 0x28],
+                [0x183344 => 0x01, 0x18338C => 0x28],
                 ['Mushroom'],
             ],
             [
-                [0x183004 => 0x02, 0x271AA => 0x02, 0x18304C => 0x10],
+                [0x183344 => 0x02, 0x18338C => 0x10],
                 ['Powder'],
             ],
             [
-                [0x183004 => 0x02, 0x271AA => 0x02, 0x18304C => 0x38],
+                [0x183344 => 0x02, 0x18338C => 0x38],
                 ['Mushroom', 'Powder'],
             ],
             [
-                [0x183007 => 0x01, 0x271AD => 0x01],
+                [0x183347 => 0x01],
                 ['Bombos'],
             ],
             [
-                [0x183008 => 0x01, 0x271AE => 0x01],
+                [0x183348 => 0x01],
                 ['Ether'],
             ],
             [
-                [0x183009 => 0x01, 0x271AF => 0x01],
+                [0x183349 => 0x01],
                 ['Quake'],
             ],
             [
-                [0x18300A => 0x01, 0x271B0 => 0x01],
+                [0x18334A => 0x01],
                 ['Lamp'],
             ],
             [
-                [0x18300C => 0x01, 0x271B2 => 0x01, 0x18304C => 0x04],
+                [0x18334C => 0x01, 0x18338C => 0x04],
                 ['Shovel'],
             ],
             [
-                [0x18300C => 0x02, 0x271B2 => 0x02, 0x18304C => 0x02],
+                [0x18334C => 0x02, 0x18338C => 0x02],
                 ['OcarinaInactive'],
             ],
             [
-                [0x18300C => 0x03, 0x271B2 => 0x03, 0x18304C => 0x01],
+                [0x18334C => 0x03, 0x18338C => 0x01],
                 ['OcarinaActive'],
             ],
             [
-                [0x18300C => 0x02, 0x271B2 => 0x02, 0x18304C => 0x06],
+                [0x18334C => 0x02, 0x18338C => 0x06],
                 ['Shovel', 'OcarinaInactive'],
             ],
             [
-                [0x183010 => 0x01, 0x271B6 => 0x01],
+                [0x183350 => 0x01],
                 ['CaneOfSomaria'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x02, 0x271C2 => 0x02,
+                    0x18334F => 0x01,
+                    0x18335C => 0x02,
                 ],
                 ['Bottle'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x03, 0x271C2 => 0x03,
+                    0x18335C => 0x03,
                 ],
                 ['BottleWithRedPotion'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x04, 0x271C2 => 0x04,
+                    0x18334F => 0x01,
+                    0x18335C => 0x04,
                 ],
                 ['BottleWithGreenPotion'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x05, 0x271C2 => 0x05,
+                    0x18334F => 0x01,
+                    0x18335C => 0x05,
                 ],
                 ['BottleWithBluePotion'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x07, 0x271C2 => 0x07,
+                    0x18334F => 0x01,
+                    0x18335C => 0x07,
                 ],
                 ['BottleWithBee'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x06, 0x271C2 => 0x06,
+                    0x18334F => 0x01,
+                    0x18335C => 0x06,
                 ],
                 ['BottleWithFairy'],
             ],
             [
                 [
-                    0x18300F => 0x01, 0x271B5 => 0x01,
-                    0x18301C => 0x08, 0x271C2 => 0x08,
+                    0x18334F => 0x01,
+                    0x18335C => 0x08,
                 ],
                 ['BottleWithGoldBee'],
             ],
             [
                 [
-                    0x18300F => 0x02, 0x271B5 => 0x02,
-                    0x18301C => 0x02, 0x271C2 => 0x02,
-                    0x18301D => 0x03, 0x271C3 => 0x03,
+                    0x18334F => 0x02,
+                    0x18335C => 0x02,
+                    0x18335D => 0x03,
                 ],
                 ['Bottle', 'BottleWithRedPotion'],
             ],
             [
                 [
-                    0x18300F => 0x04, 0x271B5 => 0x04,
-                    0x18301C => 0x02, 0x271C2 => 0x02,
-                    0x18301D => 0x03, 0x271C3 => 0x03,
-                    0x18301E => 0x04, 0x271C4 => 0x04,
-                    0x18301F => 0x04, 0x271C5 => 0x04,
+                    0x18334F => 0x04,
+                    0x18335C => 0x02,
+                    0x18335D => 0x03,
+                    0x18335E => 0x04,
+                    0x18335F => 0x04,
                 ],
                 ['Bottle', 'BottleWithRedPotion', 'BottleWithGreenPotion', 'BottleWithGreenPotion', 'BottleWithBee'],
             ],
             [
-                [0x183011 => 0x01, 0x271B7 => 0x01],
+                [0x183351 => 0x01],
                 ['CaneOfByrna'],
             ],
             [
-                [0x183012 => 0x01, 0x271B8 => 0x01],
+                [0x183352 => 0x01],
                 ['Cape'],
             ],
             [
-                [0x183013 => 0x02, 0x271B9 => 0x02],
+                [0x183353 => 0x02],
                 ['MagicMirror'],
             ],
             [
-                [0x183014 => 0x01, 0x271BA => 0x01],
+                [0x183354 => 0x01],
                 ['PowerGlove'],
             ],
             [
-                [0x183014 => 0x02, 0x271BA => 0x02],
+                [0x183354 => 0x02],
                 ['TitansMitt'],
             ],
             [
-                [0x18300E => 0x01, 0x271B4 => 0x01],
+                [0x18334E => 0x01],
                 ['BookOfMudora'],
             ],
             [
-                [0x183016 => 0x01, 0x271BC => 0x01, 0x183039 => 0x6A],
+                [0x183356 => 0x01, 0x183379 => 0x6A],
                 ['Flippers'],
             ],
             [
-                [0x183017 => 0x01, 0x271BD => 0x01],
+                [0x183357 => 0x01],
                 ['MoonPearl'],
             ],
             [
-                [0x18300D => 0x01, 0x271B3 => 0x01],
+                [0x18334D => 0x01],
                 ['BugCatchingNet'],
             ],
             [
-                [0x18301B => 0x01, 0x271C1 => 0x01],
+                [0x18335B => 0x01, 0x18346E => 0x01],
                 ['BlueMail'],
             ],
             [
-                [0x18301B => 0x02, 0x271C1 => 0x02],
+                [0x18335B => 0x02, 0x18346E => 0x02],
                 ['RedMail'],
             ],
             [
-                [0x183003 => 0x01, 0x271A9 => 0x01],
+                [0x183343 => 0x01],
                 ['Bomb'],
             ],
             [
-                [0x183003 => 0x03, 0x271A9 => 0x03],
+                [0x183343 => 0x03],
                 ['ThreeBombs'],
             ],
             [
-                [0x183003 => 0x0A, 0x271A9 => 0x0A],
+                [0x183343 => 0x0A],
                 ['TenBombs'],
             ],
             [
-                [0x183003 => 0x63, 0x271A9 => 0x63],
+                [0x183343 => 0x63],
                 ['TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs'],
             ],
             [
-                [0x18303A => 0x02, 0x271E0 => 0x02],
+                [0x18337A => 0x02, 0x183471 => 0x01],
                 ['Crystal1'],
             ],
             [
-                [0x18303A => 0x10, 0x271E0 => 0x10],
+                [0x18337A => 0x10, 0x183471 => 0x01],
                 ['Crystal2'],
             ],
             [
-                [0x18303A => 0x40, 0x271E0 => 0x40],
+                [0x18337A => 0x40, 0x183471 => 0x01],
                 ['Crystal3'],
             ],
             [
-                [0x18303A => 0x20, 0x271E0 => 0x20],
+                [0x18337A => 0x20, 0x183471 => 0x01],
                 ['Crystal4'],
             ],
             [
-                [0x18303A => 0x04, 0x271E0 => 0x04],
+                [0x18337A => 0x04, 0x183471 => 0x01],
                 ['Crystal5'],
             ],
             [
-                [0x18303A => 0x01, 0x271E0 => 0x01],
+                [0x18337A => 0x01, 0x183471 => 0x01],
                 ['Crystal6'],
             ],
             [
-                [0x18303A => 0x08, 0x271E0 => 0x08],
+                [0x18337A => 0x08, 0x183471 => 0x01],
                 ['Crystal7'],
             ],
             [
-                [0x18303A => 0x12, 0x271E0 => 0x12],
+                [0x18337A => 0x12, 0x183471 => 0x02],
                 ['Crystal1', 'Crystal2'],
             ],
         ];
@@ -469,14 +471,14 @@ class RomTest extends TestCase
     {
         $this->rom->setByrnaCaveSpikeDamage();
 
-        $this->assertEquals(0x08, $this->rom->read(0x180168));
+        $this->assertEquals(0x08, $this->rom->read(0x180195));
     }
 
     public function testSetByrnaCaveSpikeDamage()
     {
         $this->rom->setByrnaCaveSpikeDamage(0x02);
 
-        $this->assertEquals(0x02, $this->rom->read(0x180168));
+        $this->assertEquals(0x02, $this->rom->read(0x180195));
     }
 
     public function testSetClockModeDefault()
@@ -1136,15 +1138,39 @@ class RomTest extends TestCase
     public function testSetOpenModeOn()
     {
         $this->rom->setOpenMode(true);
+        $this->rom->writeInitialSram();
 
-        $this->assertEquals(0x01, $this->rom->read(0x180032));
+        $this->assertEquals(0x00, $this->rom->read(0x180038));
+        $this->assertEquals(0xF0, $this->rom->read(0x18320D));
+        $this->assertEquals(0xF0, $this->rom->read(0x18320F));
+        $this->assertEquals(0x20, $this->rom->read(0x18329B));
+        $this->assertEquals(0x68, $this->rom->read(0x183379));
+        $this->assertEquals(0x02, $this->rom->read(0x1833C5));
+        $this->assertEquals(0x14, $this->rom->read(0x1833C6));
+        $this->assertEquals(0x01, $this->rom->read(0x1833C8));
     }
 
     public function testSetOpenModeOff()
     {
         $this->rom->setOpenMode(false);
+        $this->rom->writeInitialSram();
 
-        $this->assertEquals(0x00, $this->rom->read(0x180032));
+        $this->assertEquals(0x01, $this->rom->read(0x180038));
+    }
+
+    public function testSetStandardMode()
+    {
+        $this->rom->setStandardMode();
+        $this->rom->writeInitialSram();
+
+        $this->assertEquals(0x01, $this->rom->read(0x180038));
+        $this->assertEquals(0xF0, $this->rom->read(0x18320D));
+        $this->assertEquals(0xF0, $this->rom->read(0x18320F));
+        $this->assertEquals(0x00, $this->rom->read(0x18329B));
+        $this->assertEquals(0x68, $this->rom->read(0x183379));
+        $this->assertEquals(0x00, $this->rom->read(0x1833C5));
+        $this->assertEquals(0x00, $this->rom->read(0x1833C6));
+        $this->assertEquals(0x00, $this->rom->read(0x1833C8));
     }
 
     public function testSetSewersLampConeOn()

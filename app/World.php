@@ -351,6 +351,16 @@ abstract class World
     }
 
     /**
+     * Get a copy of config array for this world (for testing.)
+     *
+     * @return array
+     */
+    public function getConfig(): array {
+        $config_copy = $this->config;
+        return $config_copy;
+    }
+
+    /**
      * Determine the junk fill range of Ganon's Tower for this world. This
      * accounts for the number of crystals needed to enter.
      *
@@ -1145,15 +1155,13 @@ abstract class World
 
                 // no break
             case 'pedestal':
-                $rom->setPyramidHoleOpen(false);
                 $rom->setGanonInvincible('yes');
                 break;
             case 'dungeons':
-                $rom->setPyramidHoleOpen(false);
                 $rom->setGanonInvincible('dungeons');
                 break;
             case 'fast_ganon':
-                $rom->setPyramidHoleOpen(true);
+                $rom->initial_sram->preOpenPyramid();
 
                 // no break
             default:
@@ -1173,6 +1181,7 @@ abstract class World
 
         $rom->setMapMode($this->config('rom.mapOnPickup', false));
         $rom->setCompassMode($this->config('rom.dungeonCount', 'off'));
+        $rom->setCompassCountTotals();
         $rom->setFreeItemTextMode($this->config('rom.freeItemText', 0x00));
         $rom->setFreeItemMenu($this->config('rom.freeItemMenu', 0x00));
         $rom->setDiggingGameRng(get_random_int(1, 30));
@@ -1212,7 +1221,10 @@ abstract class World
             $rom->removeUnclesShield();
         }
 
-        $rom->setStartingEquipment($this->pre_collected_items);
+        $rom->initial_sram->setStartingEquipment($this->pre_collected_items, $this->config);
+        $rom->setMaxArrows();
+        $rom->setMaxBombs();
+        $rom->setBallNChainDungeon(0x02);
         $rom->setCapacityUpgradeFills([
             $this->config('item.value.BombUpgrade5', 50),
             $this->config('item.value.BombUpgrade10', 50),
@@ -1226,7 +1238,7 @@ abstract class World
         $rom->setBlueClock($this->config('item.value.BlueClock', 0) ?: 0);
         $rom->setRedClock($this->config('item.value.RedClock', 0) ?: 0);
         $rom->setGreenClock($this->config('item.value.GreenClock', 0) ?: 0);
-        $rom->setStartingTime($this->config('rom.timerStart', 0) ?: 0);
+        $rom->initial_sram->setStartingTimer($this->config('rom.timerStart', 0) ?: 0);
 
         switch ($this->config('rom.logicMode', $this->config['logic'])) {
             case 'MajorGlitches':
@@ -1258,7 +1270,9 @@ abstract class World
                 break;
         }
 
-        $rom->setGanonsTowerOpen($this->config('crystals.tower') === 0);
+        if ($this->config('crystals.tower') === 0) {
+            $rom->initial_sram->preOpenGanonsTower();
+        }
 
         $rom->setGameType('item');
 
@@ -1268,6 +1282,7 @@ abstract class World
 
         $rom->writeCredits();
         $rom->writeText();
+        $rom->writeInitialSram();
 
         if ($save) {
             $hash = $this->saveSeedRecord();

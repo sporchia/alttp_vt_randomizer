@@ -36,3 +36,19 @@ function snes_to_pc(int $address)
 {
     return (($address & 0x7F0000) >> 1) | ($address & 0x7FFF);
 }
+
+/**
+ * Count set bits in an integer
+ *
+ * @param int $value
+ *
+ * @return int
+ */
+function count_set_bits(int $value)
+{
+    if ($value == 0) {
+        return 0;
+    } else {
+        return ($value & 1) + count_set_bits($value >> 1);
+    }
+}
