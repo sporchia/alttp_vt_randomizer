@@ -47,6 +47,10 @@ return [
             'title' => 'Mirror Wrap',
             'description' => 'One may be required to use Mirror to auto scroll to a different location.',
         ],
+        'canTransitionWrapped' => [
+            'title' => 'Screenwrap Transition',
+            'description' => 'One may be required to hit a transition from outside the current overworld screen to get an auto scroll.',
+        ],
         'canOneFrameClipOW' => [
             'title' => 'One Frame Clip (overworld)',
             'description' => 'You don’t want this. Trust me.',

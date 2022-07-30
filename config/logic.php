@@ -23,5 +23,6 @@ return [
         'canOWYBA' => true,
         'canOneFrameClipOW' => true,
         'canOneFrameClipUW' => true,
+        'canTransitionWrapped' => true,
     ],
 ];

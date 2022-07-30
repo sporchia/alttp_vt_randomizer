@@ -47,6 +47,10 @@ return [
             'title' => 'Mirror Wrap',
             'description' => 'Es kann vorausgesetz werden, dass man den Spiegel nutzt um den Spielbildschirm zu scrollen damit man an einen anderen Ort kommt.',
         ],
+        'canTransitionWrapped' => [
+            'title' => 'Screenwrap Transition',
+            'description' => 'Es kann vorausgesetz werden, dass man einen Oberwelt Szenen Übergang trifft, während man außerhalb der aktuellen Oberwelt Szene ist, um den Spielbildschirm zu scrollen.',
+        ],
         'canOneFrameClipOW' => [
             'title' => 'One Frame Clip (overworld)',
             'description' => 'Du willst das hier nicht! Glaub mir.',
