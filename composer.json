@@ -12,21 +12,22 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.1",
     "ext-bcmath": "*",
     "doctrine/dbal": "^2.5",
     "ezyang/htmlpurifier": "^4.9",
-    "graham-campbell/markdown": "^11.0",
+    "graham-campbell/markdown": "^14.0",
     "hashids/hashids": "^4.0",
-    "laravel/framework": "^7.0",
-    "laravel/horizon": "^4.0",
-    "laravel/passport": "^9.0",
+    "laravel/framework": "^8.0",
+    "laravel/horizon": "^5.0",
+    "laravel/passport": "^10.0",
     "laravel/tinker": "^2.2",
+    "laravel/ui": "^3.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/flysystem-cached-adapter": "^1.0",
-    "martinlindhe/laravel-vue-i18n-generator": "^0.1.35",
-    "sentry/sentry": "^2.0",
-    "sentry/sentry-laravel": "^1.0",
+    "librenms/laravel-vue-i18n-generator": "^0.1.47",
+    "sentry/sentry": "^3.7",
+    "sentry/sentry-laravel": "^2.0",
     "spatie/laravel-cookie-consent": "^2.12",
     "z3/enemizer_linux": "6.1.0.180",
     "z3/enemizer_osx": "6.1.0.180",
@@ -34,12 +35,12 @@
     "z3/randomizer": "^31.0"
   },
   "require-dev": {
-    "facade/ignition": "^2.0",
+    "facade/ignition": "^2.3.6",
     "fzaninotto/faker": "^1.9.1",
     "mockery/mockery": "^1.2",
     "mohammedmanssour/form-request-tester": "dev-master",
-    "nunomaduro/collision": "^4.1",
-    "phpunit/phpunit": "^8.5"
+    "nunomaduro/collision": "^5.0",
+    "phpunit/phpunit": "^9.0"
   },
   "repositories": [
     {
@@ -129,7 +130,7 @@
   },
   "config": {
     "platform": {
-      "php": "7.4"
+      "php": "8.1"
     },
     "optimize-autoloader": true,
     "preferred-install": "dist",
