@@ -53,7 +53,12 @@ class NorthEast extends Region\Standard\DarkWorld\NorthEast
             return $items->canLiftRocks()
                 || ($this->world->config('canBootsClip', false)
                     && $items->has('PegasusBoots')) ||
-                $this->world->config('canOneFrameClipOW', false);
+                $this->world->config('canOneFrameClipOW', false)
+                || ($items->has('MagicMirror') && $this->world->getRegion('South Light World')->canEnter($locations, $items)
+                    && ($items->has('MoonPearl') || 
+                        ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+                    && ($items->has('Flippers') || $this->world->config('canFakeFlipper', false)
+                        || ($this->world->config('canWaterWalk', false) && $items->has('PegasusBoots'))));
         });
 
         $this->locations["Pyramid Fairy - Sword"]->setRequirements(function ($locations, $items) {

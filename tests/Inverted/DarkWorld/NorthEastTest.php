@@ -49,13 +49,16 @@ class NorthEastTest extends TestCase
     {
         return [
             ["Catfish", false, []],
-            ["Catfish", false, [], ['Gloves']],
+            ["Catfish", false, [], ['Gloves', 'Flippers']],
+            ["Catfish", false, [], ['Gloves', 'MagicMirror']],
+            ["Catfish", false, [], ['Gloves', 'MagicMirror']],
             ["Catfish", true, ['DefeatAgahnim', 'MagicMirror', 'ProgressiveGlove']],
             ["Catfish", true, ['DefeatAgahnim', 'MagicMirror',  'PowerGlove']],
             ["Catfish", true, ['DefeatAgahnim', 'MagicMirror',  'TitansMitt']],
             ["Catfish", true, ['ProgressiveGlove', 'Hammer']],
             ["Catfish", true, ['ProgressiveGlove', 'Flippers']],
             ["Catfish", true, ['ProgressiveGlove', 'ProgressiveGlove', 'MagicMirror', 'MoonPearl']],
+            ["Catfish", true, ['MagicMirror', 'Flippers', 'DefeatAgahnim', 'MoonPearl']],
 
             ["Pyramid", false, []],
             ["Pyramid", true, ['DefeatAgahnim', 'MagicMirror']],
