@@ -188,7 +188,7 @@ class Sprites extends Command
         $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n";
         $i = 0;
         foreach ($meta_data as $sprite) {
-            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage((%d - $next)/ $top) 0;\n}\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
+            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage(calc((%d - $next)/ $top)) 0;\n}\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
         }
         file_put_contents(resource_path('sass/_sprites.scss'), $scss_file);
 

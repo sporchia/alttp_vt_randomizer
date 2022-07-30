@@ -150,13 +150,13 @@ export default {
   font-size: 1.1rem;
   padding-top: 0.2rem;
 }
-.sprite-selector >>> .multiselect__single {
+.sprite-selector :deep(.multiselect__single) {
   margin-bottom: 5px;
 }
-.sprite-selector >>> .multiselect__option {
+.sprite-selector :deep(.multiselect__option) {
   line-height: 24px;
 }
-.sprite-selector >>> .multiselect__tags {
+.sprite-selector :deep(.multiselect__tags) {
   border: none;
   padding-top: 7px;
 }

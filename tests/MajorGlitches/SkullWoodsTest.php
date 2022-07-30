@@ -105,7 +105,7 @@ class SkullWoodsTest extends TestCase
 
             ["Skull Woods - Bridge Room", false, []],
             ["Skull Woods - Bridge Room", false, [], ['FireRod']],
-            ["Skull Woods - Bridge Room", false, [], ['MoonPearl']],
+            ["Skull Woods - Bridge Room", false, [], ['MoonPearl', 'MagicMirror', 'AnyBottle']],
             ["Skull Woods - Bridge Room", true, ['FireRod', 'MoonPearl']],
 
             ["Skull Woods - Pot Prison", true, []],
@@ -115,12 +115,22 @@ class SkullWoodsTest extends TestCase
             ["Skull Woods - Boss", false, []],
             ["Skull Woods - Boss", false, [], ['FireRod']],
             ["Skull Woods - Boss", false, [], ['AnySword']],
-            ["Skull Woods - Boss", false, [], ['MoonPearl']],
+            ["Skull Woods - Boss", false, [], ['MoonPearl', 'MagicMirror', 'AnyBottle']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'UncleSword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'MasterSword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'L3Sword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'L4Sword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MoonPearl', 'ProgressiveSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MagicMirror', 'UncleSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MagicMirror', 'MasterSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MagicMirror', 'L3Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MagicMirror', 'L4Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'MagicMirror', 'ProgressiveSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'Bottle', 'UncleSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'Bottle', 'MasterSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'Bottle', 'L3Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'Bottle', 'L4Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'FireRod', 'Bottle', 'ProgressiveSword']],
         ];
     }
 }

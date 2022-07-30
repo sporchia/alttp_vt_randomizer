@@ -157,7 +157,7 @@ export default {
   z-index: 990;
   background-color: white;
 }
->>> .multiselect__input::placeholder {
+:deep(.multiselect__input)::placeholder {
   color: #dcdcdc;
 }
 </style>

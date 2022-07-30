@@ -11,6 +11,7 @@ export default {
       canFakeFlipper: false,
       canMirrorClip: false,
       canMirrorWrap: false,
+      canTransitionWrapped: false,
       canOneFrameClipOW: false,
       canOneFrameClipUW: false,
       canOWYBA: false,

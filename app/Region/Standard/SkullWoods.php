@@ -113,7 +113,9 @@ class SkullWoods extends Region
         });
 
         $this->locations["Skull Woods - Bridge Room"]->setRequirements(function ($locations, $items) {
-            return $items->has('MoonPearl') && $items->has('FireRod');
+            return $items->has('FireRod') && ($items->has('MoonPearl')
+                || ($this->world->config('canDungeonRevive')
+                    && ($items->has('MagicMirror') || $items->hasABottle())));
         });
 
         $this->can_complete = function ($locations, $items) {
@@ -122,7 +124,8 @@ class SkullWoods extends Region
 
         $this->locations["Skull Woods - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
-                && $items->has('MoonPearl')
+                && ($items->has('MoonPearl') || ($this->world->config('canDungeonRevive')
+                    && ($items->has('MagicMirror') || $items->hasABottle())))
                 && $items->has('FireRod')
                 && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
                 && $items->has('KeyD3', 3)

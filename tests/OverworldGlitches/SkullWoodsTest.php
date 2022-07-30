@@ -111,9 +111,10 @@ class SkullWoodsTest extends TestCase
             ["Skull Woods - Map Chest", true, ['MoonPearl', 'PegasusBoots']],
 
             ["Skull Woods - Bridge Room", false, []],
-            ["Skull Woods - Bridge Room", false, [], ['MoonPearl']],
+            ["Skull Woods - Bridge Room", false, [], ['MoonPearl', 'MagicMirror']],
             ["Skull Woods - Bridge Room", false, [], ['FireRod']],
             ["Skull Woods - Bridge Room", true, ['MoonPearl', 'PegasusBoots', 'FireRod']],
+            ["Skull Woods - Bridge Room", true, ['MagicMirror', 'PegasusBoots', 'FireRod']],
 
             ["Skull Woods - Pot Prison", false, []],
             ["Skull Woods - Pot Prison", true, ['MagicMirror', 'PegasusBoots']],
@@ -124,7 +125,7 @@ class SkullWoodsTest extends TestCase
             ["Skull Woods - Pinball Room", true, ['MoonPearl', 'PegasusBoots']],
 
             ["Skull Woods - Boss", false, []],
-            ["Skull Woods - Boss", false, [], ['MoonPearl']],
+            ["Skull Woods - Boss", false, [], ['MoonPearl', 'MagicMirror']],
             ["Skull Woods - Boss", false, [], ['FireRod']],
             ["Skull Woods - Boss", false, [], ['AnySword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MoonPearl', 'PegasusBoots', 'FireRod', 'UncleSword']],
@@ -132,6 +133,11 @@ class SkullWoodsTest extends TestCase
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MoonPearl', 'PegasusBoots', 'FireRod', 'L3Sword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MoonPearl', 'PegasusBoots', 'FireRod', 'L4Sword']],
             ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MoonPearl', 'PegasusBoots', 'FireRod', 'ProgressiveSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MagicMirror', 'PegasusBoots', 'FireRod', 'UncleSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MagicMirror', 'PegasusBoots', 'FireRod', 'MasterSword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MagicMirror', 'PegasusBoots', 'FireRod', 'L3Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MagicMirror', 'PegasusBoots', 'FireRod', 'L4Sword']],
+            ["Skull Woods - Boss", true, ['KeyD3', 'KeyD3', 'KeyD3', 'MagicMirror', 'PegasusBoots', 'FireRod', 'ProgressiveSword']],
         ];
     }
 }
