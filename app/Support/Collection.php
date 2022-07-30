@@ -363,7 +363,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->items[$offset]);
     }
