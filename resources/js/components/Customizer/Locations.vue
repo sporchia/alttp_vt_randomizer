@@ -166,18 +166,18 @@ export default {
 .region-searcher {
   width: 200px;
 }
-.region-searcher >>> .input-group {
+.region-searcher :deep(.input-group) {
   width: 190px !important;
 }
-.region-searcher >>> .multiselect {
+.region-searcher :deep(.multiselect) {
   min-height: 34px !important;
 }
-.region-searcher >>> .multiselect__tags {
+.region-searcher :deep(.multiselect__tags) {
   min-height: 34px;
   padding-top: 7px;
 }
-.region-searcher >>> .multiselect__content,
-.region-searcher >>> .multiselect__content-wrapper {
+.region-searcher :deep(.multiselect__content),
+.region-searcher :deep(.multiselect__content-wrapper) {
   z-index: 995;
 }
 .items-filter {
@@ -189,7 +189,7 @@ export default {
   z-index: 990;
   background-color: white;
 }
-.card >>> .multiselect__input::placeholder {
+.card :deep(.multiselect__input)::placeholder {
   color: #dcdcdc;
 }
 .icon {
