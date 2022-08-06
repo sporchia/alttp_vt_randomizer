@@ -1,16 +1,21 @@
 <?php
 
-namespace ALttP\Console\Commands;
+declare(strict_types=1);
 
-use ALttP\Build;
-use ALttP\Rom;
-use ALttP\Support\Flips;
+namespace App\Console\Commands;
+
+use App\Models\Build;
+use App\Rom;
+use App\Support\Flips;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Process\Process;
 
-class UpdateBuildRecord extends Command
+/**
+ * Handle upstream rom updates.
+ */
+final class UpdateBuildRecord extends Command
 {
     /**
      * The name and signature of the console command.
@@ -48,11 +53,8 @@ class UpdateBuildRecord extends Command
                 throw new \Exception('could not make temp file');
             }
 
-            // cp vendor/alttp.2mb.sfc build/working.sfc
             copy(config('alttp.base_rom'), $romFile);
-            // asar --fix-checksum=off LTTP_RND_GeneralBugfixes.asm build/working.sfc
             $system = php_uname('s') == 'Darwin' ? 'macos' : 'linux';
-
             $proc = new Process([
                 base_path("bin/asar/$system/asar"),
                 '--fix-checksum=off',
@@ -79,8 +81,9 @@ class UpdateBuildRecord extends Command
 
         if (!$build_date) {
             $git_log = new Process(
-                ['git', 'log', '-1','--format=%cd', '--date=short'],
-                base_path("vendor/z3/randomizer"));
+                ['git', 'log', '-1', '--format=%cd', '--date=short'],
+                base_path("vendor/z3/randomizer")
+            );
 
             $git_log->run();
 
@@ -91,7 +94,7 @@ class UpdateBuildRecord extends Command
 
                 return 301;
             }
-            
+
             $build_date = trim($git_log->getOutput());
         }
 
@@ -127,9 +130,7 @@ class UpdateBuildRecord extends Command
     /**
      * Update the constants in ROM class.
      *
-     * @param \ALttP\Build  $build  Build to update to
-     *
-     * @return void
+     * @param Build $build Build to update to
      */
     private function updateRomClassFile(Build $build): void
     {
@@ -146,9 +147,7 @@ class UpdateBuildRecord extends Command
      * @param string  $hash  hash to save file with
      * @param string  $rom  patched ROM to make patch from
      *
-     * @throws \Exception  if any filesystem issues arrise
-     *
-     * @return void
+     * @throws Exception  if any filesystem issues arrise
      */
     private function makeJsonPatch(string $hash, string $rom): void
     {
@@ -196,7 +195,7 @@ class UpdateBuildRecord extends Command
         }
         $forwards = array_reverse($backwards, true);
 
-        array_walk($forwards, function (&$write, $address) {
+        array_walk($forwards, static function (&$write, $address) {
             $write = [$address => $write];
         });
 

@@ -12,42 +12,25 @@
       <span class="caret"></span>
     </a>
     <div class="dropdown-menu">
-      <a v-for="stream in streams" class="dropdown-item" :href="stream.href">
-        <img :src="stream.img" />
-        {{ stream.name }}
+      <a v-for="stream in streams" :key="stream.name" class="dropdown-item" :href="stream.href">
+        <img :src="stream.imgs[64]" />
+        <div class="info">
+          <span class="name">{{ stream.name }}</span>
+          {{ stream.title | truncate(30) }}
+        </div>
       </a>
     </div>
   </li>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       streams: [],
-      interval: null,
-      twitchBites: {
-        60822872: {
-          href: "https://www.twitch.tv/veetorp",
-          name: "Veetorp"
-        },
-        21361989: {
-          href: "https://www.twitch.tv/christosowen",
-          name: "ChristosOwen"
-        },
-        31157663: {
-          href: "https://www.twitch.tv/mmxbass",
-          name: "Karkat"
-        },
-        51443649: {
-          href: "https://www.twitch.tv/zarby89",
-          name: "Zarby"
-        },
-        28393030: {
-          href: "https://www.twitch.tv/myramong",
-          name: "Myramong"
-        }
-      }
+      interval: null
     };
   },
   beforeDestroy() {
@@ -55,35 +38,35 @@ export default {
   },
   created() {
     this.updateStreams();
-    this.interval = setInterval(this.updateStreams, 300000);
+    this.interval = setInterval(this.updateStreams, 60000);
   },
   methods: {
     updateStreams() {
       axios
-        .get(
-          `https://api.twitch.tv/helix/streams?user_login=veetorp&user_login=christosowen&user_login=mmxbass&user_login=zarby89&user_login=myramong`,
-          { headers: { "Client-ID": "ba12ilssnn7m9fz3fa0cwnbwr9rjrf" } }
-        )
+        .get(`/api/streams`)
         .then(response => {
-          let streams = [];
-          response.data.data.forEach(stream => {
-            if (!this.twitchBites[stream.user_id]) {
-              return;
-            }
-            streams.push({
-              href: this.twitchBites[stream.user_id].href,
-              img: stream.thumbnail_url
-                .replace("{width}", 64)
-                .replace("{height}", 36),
-              name: this.twitchBites[stream.user_id].name
-            });
-          });
-          this.streams = streams;
+          this.streams = response.data.dev_streams;
         })
-        .catch(error => {
+        .catch(() => {
           this.streams = [];
         });
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.dropdown-item {
+  display: flex;
+  img {
+    padding-right: 10px;
+  }
+  .name {
+    display: block;
+    font-weight: bold;
+  }
+  .info {
+    flex: 1 1 auto;
+  }
+}
+</style>

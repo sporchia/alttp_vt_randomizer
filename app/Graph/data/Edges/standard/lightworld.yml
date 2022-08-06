@@ -1,0 +1,29 @@
+fixed:
+  directed:
+    - ["Rain - Hyrule Castle - Wall Walk", "Rain - Hyrule Castle - Courtyard"]
+    - ["Rain - Hyrule Castle - Courtyard", "Secret Passage Stairs - In"]
+    - ["Secret Passage Stairs - Out", "Rain - Hyrule Castle - Courtyard"]
+    - ["Rain - Hyrule Castle - Courtyard", "Hyrule Castle - Main Entrance - In"]
+    - ["Rain - Hyrule Castle - Wall Walk", "Hyrule Castle - East Entrance - In"]
+    - ["Rain - Hyrule Castle - Wall Walk", "Hyrule Castle - West Entrance - In"]
+    - ["Hyrule Castle - Main Entrance - Out", "Rain - Hyrule Castle - Courtyard"]
+    - ["Hyrule Castle - East Entrance - Out", "Rain - Hyrule Castle - Wall Walk"]
+    - ["Hyrule Castle - West Entrance - Out", "Rain - Hyrule Castle - Wall Walk"]
+  undirected:
+    - ["Rain - Link's House", "Rain - Hyrule Castle - Outer Court"]
+RescueZelda:
+  directed:
+    - ["Rain - Link's House", "Link's House - Bedroom"]
+    - ["Hyrule Castle - Courtyard NE Nook", "Secret Passage Stairs - In"]
+    - ["Secret Passage Stairs - Out", "Hyrule Castle - Courtyard NE Nook"]
+    - ["Hyrule Castle - Courtyard", "Hyrule Castle - Main Entrance - In"]
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - East Entrance - In"]
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - West Entrance - In"]
+    - ["Hyrule Castle - Main Entrance - Out", "Hyrule Castle - Courtyard"]
+    - ["Hyrule Castle - East Entrance - Out", "Hyrule Castle - Wall Walk"]
+    - ["Hyrule Castle - West Entrance - Out", "Hyrule Castle - Wall Walk"]    
+  undirected: []
+LiftBush:
+  directed:
+    - ["Rain - Hyrule Castle - Outer Court", "Secret Passage Uncle - Hole"]
+  undirected: []

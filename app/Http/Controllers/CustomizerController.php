@@ -1,16 +1,15 @@
 <?php
 
-namespace ALttP\Http\Controllers;
+namespace App\Http\Controllers;
 
-use ALttP\Enemizer;
-use ALttP\Item;
-use ALttP\Jobs\SendPatchToDisk;
-use ALttP\Randomizer;
-use ALttP\Rom;
-use ALttP\Sprite;
-use ALttP\Support\ItemCollection;
-use ALttP\Support\WorldCollection;
-use ALttP\World;
+use App\Graph\Item;
+use App\Jobs\SendPatchToDisk;
+use App\Graph\Randomizer;
+use App\Models\Seed;
+use App\Rom;
+use App\Services\RomWriterService;
+use App\Services\SpoilerService;
+use App\Sprite;
 use Exception;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use HTMLPurifier_Config;
@@ -109,12 +108,12 @@ class CustomizerController extends Controller
         $crystals_ganon = $crystals_ganon === 'random' ? get_random_int(0, 7) : $crystals_ganon;
         $crystals_tower = $request->input('crystals.tower', '7');
         $crystals_tower = $crystals_tower === 'random' ? get_random_int(0, 7) : $crystals_tower;
-        $logic = [
-            'none' => 'NoGlitches',
-            'overworld_glitches' => 'OverworldGlitches',
-            'major_glitches' => 'MajorGlitches',
-            'no_logic' => 'NoLogic',
-        ][$request->input('glitches', 'none')];
+        $tech = match ($request->input('glitches', 'none')) {
+            'none' => [],
+            'overworld_glitches' => config('logic.overworld_glitches'),
+            'major_glitches' => config('logic.major_glitches'),
+            'no_logic' => ['*'],
+        };
 
         $spoilers = $request->input('spoilers', 'off');
         if (!$request->input('tournament', true)) {
@@ -168,57 +167,45 @@ class CustomizerController extends Controller
                 | $custom_data['region.wildKeys'];
         }
 
-        $world = World::factory($request->input('mode', 'standard'), array_merge([
-            'difficulty' => 'custom',
-            'itemPlacement' => $request->input('item_placement', 'basic'),
-            'dungeonItems' => $request->input('dungeon_items', 'standard'),
-            'accessibility' => $request->input('accessibility', 'items'),
-            'goal' => $request->input('goal', 'ganon'),
-            'crystals.ganon' => $crystals_ganon,
-            'crystals.tower' => $crystals_tower,
-            'entrances' => $request->input('entrances', 'none'),
-            'mode.weapons' => $request->input('weapons', 'randomized'),
-            'tournament' => $request->input('tournament', true),
-            'spoilers' => $spoilers,
-            'allow_quickswap' => $request->input('allow_quickswap', true),
-            'override_start_screen' => $request->input('override_start_screen', false),
-            'pseudoboots' => $request->input('pseudoboots', false),
-            'logic' => $logic,
-            'item.pool' => $request->input('item.pool', 'normal'),
-            'item.functionality' => $request->input('item.functionality', 'normal'),
-            'enemizer.bossShuffle' => $request->input('enemizer.boss_shuffle', 'none'),
-            'enemizer.enemyShuffle' => $request->input('enemizer.enemy_shuffle', 'none'),
-            'enemizer.enemyDamage' => $request->input('enemizer.enemy_damage', 'default'),
-            'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
-            'enemizer.potShuffle' => $request->input('enemizer.pot_shuffle', 'off'),
-            'ignoreCanKillEscapeThings' => array_key_exists(base64_encode("Link's Uncle:1"), $request->input('l')),
-            'customPrizePacks' => true,
-        ], $custom_data));
+        $rand = new Randomizer([
+            array_merge([
+                'mode.state' => $request->input('mode', 'standard'),
+                'itemPlacement' => $request->input('item_placement', 'basic'),
+                'dungeonItems' => $request->input('dungeon_items', 'standard'),
+                'accessibility' => $request->input('accessibility', 'items'),
+                'goal' => $request->input('goal', 'ganon'),
+                'crystals.ganon' => $crystals_ganon,
+                'crystals.tower' => $crystals_tower,
+                'entrances' => $request->input('entrances', 'none'),
+                'mode.weapons' => $request->input('weapons', 'randomized'),
+                'tournament' => $request->input('tournament', false),
+                'spoilers' => $spoilers,
+                'allow_quickswap' => $request->input('allow_quickswap', false),
+                'spoil.Hints' => $request->input('hints', 'off'),
+                'tech' => $tech,
+                'item.pool' => $request->input('item.pool', 'normal'),
+                'item.functionality' => $request->input('item.functionality', 'normal'),
+                'entrances' => $request->input('entrances', 'none'),
+                'enemizer.bossShuffle' => $request->input('enemizer.boss_shuffle', 'none'),
+                'enemizer.enemyShuffle' => $request->input('enemizer.enemy_shuffle', 'none'),
+                'enemizer.enemyDamage' => $request->input('enemizer.enemy_damage', 'default'),
+                'enemizer.enemyHealth' => $request->input('enemizer.enemy_health', 'default'),
+                'enemizer.potShuffle' => $request->input('enemizer.pot_shuffle', 'off'),
+                'ignoreCanKillEscapeThings' => array_key_exists("Link's Uncle:0", $request->input('l')),
+                'customPrizePacks' => true,
+                'equipment' => array_map(fn ($item) => "$item:0", $request->input('eq')),
+            ], $custom_data)
+        ]);
 
-        $locations = $world->getLocations();
-        foreach ($request->input('l', []) as $location => $item) {
-            $decoded_location = base64_decode($location);
-            if (isset($locations[$decoded_location])) {
+        foreach ($request->input('l', []) as $location_name => $item) {
+            $location = $rand->getLocation($location_name);
+            if ($location) {
                 if ($item === 'BottleWithRandom') {
-                    $place_item = $world->getBottle();
+                    $place_item = Item::get('Bottle', 0);
                 } else {
-                    $place_item = Item::get(preg_replace('/:\d+$/', '', $item), $world);
+                    $place_item = Item::get(preg_replace('/:\d+$/', '', $item), 0);
                 }
-                if ($world->config('mode.weapons') === 'swordless' && $place_item instanceof Item\Sword) {
-                    $place_item = Item::get('TwentyRupees2', $world);
-                }
-                $locations[$decoded_location]->setItem($place_item);
-            }
-        }
-        foreach ($request->input('eq', []) as $item) {
-            try {
-                $place_item = Item::get($item, $world);
-                if ($world->config('mode.weapons') === 'swordless' && $place_item instanceof Item\Sword) {
-                    $place_item = Item::get('TwentyRupees2', $world);
-                }
-                $world->addPreCollectedItem($place_item);
-            } catch (Exception $e) {
-                // continue regardless of error
+                $location->setAttribute('item', $place_item);
             }
         }
 
@@ -230,46 +217,33 @@ class CustomizerController extends Controller
 
                 $drop = Sprite::get($item);
 
-                if (!$drop instanceof \ALttP\Sprite\Droppable) {
+                if (!$drop instanceof \App\Sprite\Droppable) {
                     continue;
                 }
 
-                $world->setDrop($pack, $place, $drop);
+                $rand->getWorld(0)->setDrop($pack, $place, $drop);
             }
         }
 
         $rom = new Rom(config('alttp.base_rom'));
         $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
-        $rand = new Randomizer([$world]);
-
         $rand->randomize();
+        $world = $rand->getWorld(0);
+        $writer = new RomWriterService();
+        $writer->writeWorldToRom($world, $rom);
 
-        foreach ($request->input('texts', []) as $key => $value) {
-            $world->setText($key, $value);
-        }
-
-        $world->writeToRom($rom, $save);
-
-        $worlds = new WorldCollection($rand->getWorlds());
-
-        if (!$worlds->isWinnable()) {
+        if (!$rand->collectItems()->has("Triforce:0")) {
             throw new Exception('Game Unwinnable');
         }
 
-        $spoiler = $world->getSpoiler(array_merge($spoiler_meta, [
+        $spoilerService = new SpoilerService();
+        $spoiler = $spoilerService->getSpoiler($rand, array_merge([
             'entry_crystals_ganon' => $request->input('crystals.ganon', '7'),
             'entry_crystals_tower' => $request->input('crystals.tower', '7'),
             'worlds' => 1,
             'difficulty' => 'custom',
-        ]));
-
-        if ($world->isEnemized()) {
-            $patch = $rom->getWriteLog();
-            $en = new Enemizer($world, $patch);
-            $en->randomize();
-            $en->writeToRom($rom);
-        }
+        ], $spoiler_meta));
 
         if ($request->input('tournament', false)) {
             $rom->setTournamentType('standard');
@@ -277,18 +251,23 @@ class CustomizerController extends Controller
         }
         $patch = $rom->getWriteLog();
 
+        $seed = new Seed();
+        $seed->logic = 32;
+        $seed->game_mode = $request->input('glitches', 'none');
+        $seed->build = Rom::BUILD;
         if ($save) {
-            $world->updateSeedRecordPatch($patch);
+            $seed->patch = json_encode($patch);
+            $seed->save();
         }
 
         return [
             'logic' => $world->config('logic'),
             'patch' => patch_merge_minify($patch),
             'spoiler' => $spoiler,
-            'hash' => $world->getSeedRecord()->hash,
-            'generated' => $world->getSeedRecord()->created_at ? $world->getSeedRecord()->created_at->toIso8601String() : now()->toIso8601String(),
-            'seed' => $world->getSeedRecord(),
-            'size' => $spoiler['meta']['size'] ?? 2,
+            'hash' => $seed->hash,
+            'generated' => ($seed->created_at ?? now())->toIso8601String(),
+            'seed' => $seed,
+            'size' => 2,
             'current_rom_hash' => Rom::HASH,
         ];
     }

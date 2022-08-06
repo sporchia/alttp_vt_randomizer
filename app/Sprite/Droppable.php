@@ -1,11 +1,12 @@
 <?php
 
-namespace ALttP\Sprite;
+namespace App\Sprite;
 
-use ALttP\Sprite;
+use App\Sprite;
 
 /**
  * Droppable type Sprite
  */
 class Droppable extends Sprite
-{ }
+{
+}

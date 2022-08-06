@@ -1,13 +1,17 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
+
+namespace App\Support;
+
+use Exception;
 
 /**
  * Class to compress and decompress LZ2. Which is used in GFX for ALttP.
  *
  * Usage (decompress):
  *
- * <samp>
+ * ```php
  * $lz2 = new Lz2();
  *
  * $data = array_values(unpack("C*", file_get_contents('newitems.gfx')));
@@ -15,11 +19,11 @@ namespace ALttP\Support;
  * $uncompressed  = $lz2->decompress($data);
  *
  * file_put_contents('newitems.bin', pack('C*', ...$uncompressed));
- * </samp>
+ * ```
  *
  * compress:
  *
- * <samp>
+ * ```php
  * $lz2 = new Lz2();
  *
  * $data = array_values(unpack("C*", file_get_contents('newitems.bin')));
@@ -27,11 +31,11 @@ namespace ALttP\Support;
  * $compressed  = $lz2->compress($data);
  *
  * file_put_contents('newitems.gfx', pack('C*', ...$compressed));
- * </samp>
+ * ```
  *
  * Thank you to Smallhacker for the base (C#) code on this.
  */
-class Lz2
+final class Lz2
 {
     const DIRECT_COPY = 0;
     const BYTE_FILL = 1;
@@ -65,18 +69,16 @@ class Lz2
     }
 
     /**
-     * compress array of bytes;
+     * Get compressed array of bytes.
      *
      * @param array $data array of byte data to compress
      *
-     * @throws \Exception if invoked on empty data
-     *
-     * @return array compressed byte array
+     * @throws Exception if invoked on empty data
      */
-    public function compress(array $data)
+    public function compress(array $data): array
     {
         if (empty($data)) {
-            throw new \Exception("Data is null.");
+            throw new Exception("Data is null.");
         }
 
         $output = [];
@@ -229,19 +231,19 @@ class Lz2
     }
 
     /**
-     * Decompress LZ2 byte array. Confidence that this works properly, 99%.
+     * Get Decompressed LZ2 byte array.
+     *
+     * Confidence that this works properly, 99%.
      *
      * @param array $compressedData array of bytes
      * @param int $start starting point in array
      *
-     * @throws \Exception if encounters an unknown decompress command or invoked on empty data
-     *
-     * @return array decompressed bytes in array
+     * @throws Exception if encounters an unknown decompress command or invoked on empty data
      */
-    public function decompress(array $compressedData, int $start = 0)
+    public function decompress(array $compressedData, int $start = 0): array
     {
         if (empty($compressedData)) {
-            throw new \Exception("Compressed data is null.");
+            throw new Exception("Compressed data is null.");
         }
 
         $output = [];
@@ -301,7 +303,7 @@ class Lz2
                     }
                     break;
                 default:
-                    throw new \Exception("Invalid Lz2 command: " . $command);
+                    throw new Exception("Invalid Lz2 command: " . $command);
             }
         }
 
@@ -314,10 +316,8 @@ class Lz2
      * @param int $command command to be added to byte array
      * @param int $length number of bytes this command is related to
      * @param array $output reference array we are adding the command to
-     *
-     * @return void
      */
-    private function outputCommand(int $command, int $length, array &$output)
+    private function outputCommand(int $command, int $length, array &$output): void
     {
         if ($length > 32) {
             // Long command

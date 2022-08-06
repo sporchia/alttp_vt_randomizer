@@ -1,0 +1,343 @@
+# special logical connections
+fixed:
+  directed:
+    - ["Meta", "Turtle Rock - Entry"]
+    - ["Meta", "Misery Mire - Entry"]
+  undirected: []
+Bombos:
+  directed:
+    - ["L1Sword", "ActiveBombos"]
+  undirected: []
+Ether:
+  directed:
+    - ["L1Sword", "ActiveEther"]
+  undirected: []
+Quake:
+  directed:
+    - ["L1Sword", "ActiveQuake"]
+  undirected: []
+MireEntryBombos:
+  directed:
+    - ["ActiveBombos", "MireEntry"]
+  undirected: []
+MireEntryEther:
+  directed:
+    - ["ActiveEther", "MireEntry"]
+  undirected: []
+MireEntryQuake:
+  directed:
+    - ["ActiveQuake", "MireEntry"]
+  undirected: []
+TurtleRockEntryBombos:
+  directed:
+    - ["ActiveBombos", "TurtleRockOpen"]
+  undirected: []
+TurtleRockEntryEther:
+  directed:
+    - ["ActiveEther", "TurtleRockOpen"]
+  undirected: []
+TurtleRockEntryQuake:
+  directed:
+    - ["ActiveQuake", "TurtleRockOpen"]
+  undirected: []
+TurtleRockOpen:
+  directed:
+    - ["Turtle Peak Shellback", "TurtleRockEntry"]
+  undirected: []
+BookOfMudora:
+  directed:
+    - ["MasterSword", "ActiveBookOfMudora"]
+  undirected: []
+OcarinaActive:
+  directed:
+    - ["Meta", "Duck Airlines"]
+  undirected: []
+L1Sword:
+  directed:
+    - ["Meta", "DefeatArmos"]
+    - ["Meta", "DefeatLanmolas"]
+    - ["Meta", "DefeatMoldorm"]
+    - ["Meta", "DefeatAgahnim"]
+    - ["Meta", "DefeatHelmasaur"]
+    - ["ArrghusPullPuffs", "DefeatArrghus"]
+    - ["Meta", "DefeatMothula"]
+    - ["Meta", "DefeatBlind"]
+    - ["Meta", "DefeatVitreous"]
+  undirected: []
+UncleSword:
+  directed:
+    - ["Meta", "L1Sword"]
+  undirected: []
+L2Sword:
+  directed:
+    - ["Meta", "L1Sword"]
+    - ["Meta", "MasterSword"]
+    - ["KholdstareShellMelt", "DefeatKholdstare"]
+    - ["Meta", "TrinexxMainHead"]
+  undirected: []
+ProgressiveSword:
+  directed:
+    - ["Meta", "L1Sword"]
+  undirected: []
+ProgressiveSword|2:
+  directed:
+    - ["Meta", "MasterSword"]
+  undirected: []
+MasterSword:
+  directed:
+    - ["Meta", "MasterSword"]
+  undirected: []
+L3Sword:
+  directed:
+    - ["Meta", "MasterSword"]
+    - ["Meta", "TrinexxMagic"]
+  undirected: []
+L4Sword:
+  directed:
+    - ["Meta", "L3Sword"]
+  undirected: []
+ProgressiveGlove:
+  directed:
+    - ["Meta", "PowerGlove"]
+  undirected: []
+ProgressiveGlove|2:
+  directed:
+    - ["Meta", "TitansMitt"]
+  undirected: []
+TitansMitt:
+  directed:
+    - ["Meta", "PowerGlove"]
+  undirected: []
+ProgressiveShield|3:
+  directed:
+    - ["Meta", "MirrorShield"]
+  undirected: []
+ProgressiveBow:
+  directed:
+    - ["Meta", "BowAndArrows"]
+  undirected: []
+ProgressiveBow|2:
+  directed:
+    - ["Meta", "BowAndSilverArrows"]
+  undirected: []
+Boomerang:
+  directed:
+    - ["Meta", "DefeatArmos"]
+  undirected: []
+RedBoomerang:
+  directed:
+    - ["Meta", "DefeatArmos"]
+  undirected: []
+Hammer:
+  directed:
+    - ["Meta", "DefeatArmos"]
+    - ["Meta", "DefeatLanmolas"]
+    - ["Meta", "DefeatMoldorm"]
+    - ["Meta", "DefeatAgahnim"]
+    - ["Meta", "DefeatHelmasaur"]
+    - ["ArrghusPullPuffs", "DefeatArrghus"]
+    - ["Meta", "DefeatMothula"]
+    - ["Meta", "DefeatBlind"]
+    - ["KholdstareShellMelt", "DefeatKholdstare"]
+    - ["Meta", "DefeatVitreous"]
+    - ["Meta", "TrinexxMainHead"]
+  undirected: []
+TrinexxHead|3:
+  directed:
+    - ["Meta", "DefeatTrinexx"]
+  undirected: []
+LogicalBottle:
+  directed:
+    - ["Meta", "BottleMagicBar1"]
+  undirected: []
+LogicalBottle|2:
+  directed:
+    - ["Meta", "BottleMagicBar2"]
+  undirected: []
+LogicalBottle|3:
+  directed:
+    - ["Meta", "BottleMagicBar3"]
+  undirected: []
+LogicalBottle|4:
+  directed:
+    - ["Meta", "BottleMagicBar4"]
+  undirected: []
+HalfMagic:
+  directed:
+    - ["Meta", "HalfMagicBar"]
+    - ["BottleMagicBar1", "HalfMagicBar1"]
+    - ["BottleMagicBar2", "HalfMagicBar2"]
+    - ["BottleMagicBar3", "HalfMagicBar3"]
+    - ["BottleMagicBar4", "HalfMagicBar4"]
+  undirected: []
+MagicBar|4:
+  directed:
+    - ["Meta", "TrinexxMagic"]
+  undirected: []
+BowAndArrows:
+  directed:
+    - ["Meta", "DefeatArmos"]
+    - ["Meta", "DefeatLanmolas"]
+  undirected: []
+Hookshot:
+  directed:
+    - ["Meta", "ArrghusPullPuffs"]
+  undirected: []
+ActiveBombos:
+  directed:
+    - ["Meta", "KholdstareShellMelt"]
+  undirected: []
+FireRod:
+  directed:
+    - ["Meta", "KholdstareShellMelt"]
+    - ["Meta", "DefeatLanmolas"]
+    - ["TrinexxMagic", "TrinexxIceHead"]
+  undirected: []
+IceRod:
+  directed:
+    - ["Meta", "DefeatLanmolas"]
+    - ["TrinexxMagic", "TrinexxFireHead"]
+  undirected: []
+CaneOfSomaria:
+  directed:
+    - ["Meta", "DefeatBlind"]
+  undirected: []
+CaneOfByrna:
+  directed:
+    - ["Meta", "DefeatBlind"]
+  undirected: []
+BugCatchingNet:
+  directed:
+    - ["Meta", "DefeatAgahnim"]
+  undirected: []
+PendantOfCourage:
+  directed:
+    - ["Meta", "1 Pendant C"]
+    - ["1 Pendant W", "2 Pendant CW"]
+    - ["1 Pendant P", "2 Pendant CP"]
+    - ["2 Pendant PW", "All Pendants"]
+  undirected: []
+PendantOfWisdom:
+  directed:
+    - ["Meta", "1 Pendant W"]
+    - ["1 Pendant P", "2 Pendant PW"]
+    - ["1 Pendant C", "2 Pendant CW"]
+    - ["2 Pendant CP", "All Pendants"]
+  undirected: []
+PendantOfPower:
+  directed:
+    - ["Meta", "1 Pendant P"]
+    - ["1 Pendant W", "2 Pendant PW"]
+    - ["1 Pendant C", "2 Pendant CP"]
+    - ["2 Pendant CW", "All Pendants"]
+  undirected: []
+Crystal1:
+  directed:
+    - ["Meta", "Crystal1"]
+  undirected: []
+Crystal2:
+  directed:
+    - ["Meta", "Crystal2"]
+  undirected: []
+Crystal3:
+  directed:
+    - ["Meta", "Crystal3"]
+  undirected: []
+Crystal4:
+  directed:
+    - ["Meta", "Crystal4"]
+  undirected: []
+Crystal5:
+  directed:
+    - ["Meta", "Crystal5"]
+    - ["Crystal6", "Red Crystals"]
+  undirected: []
+Crystal6:
+  directed:
+    - ["Meta", "Crystal6"]
+    - ["Crystal5", "Red Crystals"]
+  undirected: []
+Crystal7:
+  directed:
+    - ["Meta", "Crystal7"]
+  undirected: []
+HeartPiece|4:
+  directed:
+    - ["Meta", "PHeart1"]
+  undirected: []
+HeartPiece|8:
+  directed:
+    - ["Meta", "PHeart2"]
+  undirected: []
+HeartPiece|12:
+  directed:
+    - ["Meta", "PHeart3"]
+  undirected: []
+HeartPiece|16:
+  directed:
+    - ["Meta", "PHeart4"]
+  undirected: []
+HeartPiece|20:
+  directed:
+    - ["Meta", "PHeart5"]
+  undirected: []
+HeartPiece|24:
+  directed:
+    - ["Meta", "PHeart6"]
+  undirected: []
+HeartPiece|28:
+  directed:
+    - ["Meta", "PHeart7"]
+  undirected: []
+HeartPiece|32:
+  directed:
+    - ["Meta", "PHeart8"]
+  undirected: []
+HeartPiece|36:
+  directed:
+    - ["Meta", "PHeart9"]
+  undirected: []
+HeartPiece|40:
+  directed:
+    - ["Meta", "PHeart10"]
+  undirected: []
+HeartPiece|44:
+  directed:
+    - ["Meta", "PHeart11"]
+  undirected: []
+HeartPiece|48:
+  directed:
+    - ["Meta", "PHeart12"]
+  undirected: []
+HeartPiece|52:
+  directed:
+    - ["Meta", "PHeart13"]
+  undirected: []
+HeartPiece|56:
+  directed:
+    - ["Meta", "PHeart14"]
+  undirected: []
+HeartPiece|60:
+  directed:
+    - ["Meta", "PHeart15"]
+  undirected: []
+HeartPiece|64:
+  directed:
+    - ["Meta", "PHeart16"]
+  undirected: []
+HeartPiece|68:
+  directed:
+    - ["Meta", "PHeart17"]
+  undirected: []
+HeartPiece|72:
+  directed:
+    - ["Meta", "PHeart18"]
+  undirected: []
+HeartPiece|76:
+  directed:
+    - ["Meta", "PHeart19"]
+  undirected: []
+HeartPiece|80:
+  directed:
+    - ["Meta", "PHeart20"]
+  undirected: []

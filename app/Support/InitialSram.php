@@ -1,8 +1,10 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
 
-use ALttp\Support\ItemCollection;
+namespace App\Support;
+
+use App\Graph\Inventory;
 
 /**
  * Wrapper class around an array holding an initial SRAM table which
@@ -10,7 +12,7 @@ use ALttp\Support\ItemCollection;
  * methods to alter the initial SRAM state and a get_initial_sram method which
  * produces an array of ints with values 0-255 and a length the size of SRAM_SIZE.
  */
-class InitialSram
+final class InitialSram
 {
     const SRAM_SIZE = 0x500;
     const ROOM_DATA = 0x000;
@@ -21,7 +23,8 @@ class InitialSram
      * Constructor that fills the array with zeroes, pre-opens Kakariko bomb
      * hut and brewery, and sets default ability flags.
      */
-    function __construct() {
+    function __construct()
+    {
         $this->initial_sram_bytes = array_fill(0, $this::SRAM_SIZE, 0);
         $this->initial_sram_bytes[$this::ROOM_DATA + 0x20D] = 0xF0;
         $this->initial_sram_bytes[$this::ROOM_DATA + 0x20F] = 0xF0;
@@ -36,7 +39,8 @@ class InitialSram
      * @throws \Exception if the index is greater than SRAM_SIZE or the value
      * is less than zero or greater than 255
      */
-    function setValue(int $idx, int $val) {
+    function setValue(int $idx, int $val)
+    {
         if ($idx > $this::SRAM_SIZE) {
             throw new \Exception("Initial SRAM index out of bounds: " . $idx);
         }
@@ -50,7 +54,8 @@ class InitialSram
     /**
      * Gets a value
      */
-    function getValue(int $idx) {
+    function getValue(int $idx)
+    {
         return $this->initial_sram_bytes[$idx];
     }
 
@@ -59,14 +64,16 @@ class InitialSram
     /**
      * Pre-opens Aga Tower curtains
      */
-    public function preOpenAgaCurtains() {
+    public function preOpenAgaCurtains()
+    {
         $this->setValue($this::ROOM_DATA + 0x61, 0x80);
     }
 
     /**
      * Pre-opens Skull Woods curtains
      */
-    public function preOpenSkullWoodsCurtains() {
+    public function preOpenSkullWoodsCurtains()
+    {
         $this->setValue($this::ROOM_DATA + 0x93, 0x80);
     }
 
@@ -75,7 +82,8 @@ class InitialSram
     /**
      * Pre-opens Hyrule Castle Gate
      */
-    public function preOpenCastleGate() {
+    public function preOpenCastleGate()
+    {
         $this->setValue($this::OVERWORLD_DATA + 0x1B, 0x20);
     }
 
@@ -83,25 +91,26 @@ class InitialSram
      * Pre-opens Ganon's Tower
      */
 
-    public function preOpenGanonsTower() {
+    public function preOpenGanonsTower()
+    {
         $this->setValue($this::OVERWORLD_DATA + 0x43, 0x20);
     }
 
     /**
      * Pre-opens pyramid hole
      */
-    public function preOpenPyramid() {
+    public function preOpenPyramid()
+    {
         $this->setValue($this::OVERWORLD_DATA + 0x5B, 0x20);
     }
 
     /**
      * set the items passed in as Link's starting equipment
      *
-     * @param ItemCollection $items items to equip Link with
-     *
+     * @param Inventory $items items to equip Link with
      * @param array $config 
      */
-    public function setStartingEquipment(ItemCollection $items, $config)
+    public function setStartingEquipment(Inventory $items, $config)
     {
         $starting_rupees = 0;
         $starting_arrow_capacity_upgrades = 0;
@@ -112,8 +121,8 @@ class InitialSram
             $this->initial_sram_bytes[0x36D] = 0x18;
         }
 
-        foreach ($items as $item) {
-            switch ($item->getTarget()->getRawName()) {
+        foreach ($items->all() as $item) {
+            switch (explode(':', $item)[0]) {
                 case 'L1Sword':
                     $this->initial_sram_bytes[0x359] = 0x01;
                     $this->initial_sram_bytes[0x417] = 0x01;
@@ -635,7 +644,8 @@ class InitialSram
      * @param int $indicator set to 0x00 for standard, 0x02 for open. See sram.asm
      * for further documentation.
      */
-    public function setProgressIndicator(int $indicator) {
+    public function setProgressIndicator(int $indicator)
+    {
         $this->setValue(0x3C5, $indicator);
     }
 
@@ -645,7 +655,8 @@ class InitialSram
      * @param int $flags set to 0x00 for standard, 0x14 for open. See sram.asm for
      * further documentation.
      */
-    public function setProgressFlags(int $flags) {
+    public function setProgressFlags(int $flags)
+    {
         $this->setValue(0x3C6, $flags);
     }
 
@@ -655,7 +666,8 @@ class InitialSram
      * @param int $entrance set to 0x00 for standard, 0x01 for open. See sram.asm for
      * further documentation.
      */
-    public function setStartingEntrance(int $entrance) {
+    public function setStartingEntrance(int $entrance)
+    {
         $this->setValue(0x3C8, $entrance);
     }
 
@@ -664,7 +676,8 @@ class InitialSram
      *
      * @param int $seconds
      */
-    public function setStartingTimer(int $seconds) {
+    public function setStartingTimer(int $seconds)
+    {
         $bytes = unpack("C*", pack("V", $seconds * 60));
         $this->initial_sram_bytes[0x454] = $bytes[1];
         $this->initial_sram_bytes[0x455] = $bytes[2];
@@ -675,7 +688,8 @@ class InitialSram
     /**
      * Set swordless mode. Removes curtains and sets starting sword to 0xFF.
      */
-    public function setSwordlessCurtains() {
+    public function setSwordlessCurtains()
+    {
         $this->setValue($this::ROOM_DATA + 0x61, 0x80);
         $this->setValue($this::ROOM_DATA + 0x93, 0x80);
     }
@@ -685,7 +699,8 @@ class InitialSram
      *
      * param string $state world state
      */
-    public function setInstantPostAga(string $state) {
+    public function setInstantPostAga(string $state)
+    {
         switch ($state) {
             case 'standard':
                 $this->setValue(0x3C5, 0x80);
@@ -700,7 +715,7 @@ class InitialSram
                 break;
         }
     }
-    
+
     /**
      * Gets final initial SRAM table.
      *
@@ -708,7 +723,8 @@ class InitialSram
      *
      * @return array
      */
-    function getInitialSram() {
+    function getInitialSram()
+    {
         $table_size = count($this->initial_sram_bytes);
         if ($table_size !== $this::SRAM_SIZE) {
             throw new \Exception("Initial SRAM table exceeds size limit: " . $table_size);

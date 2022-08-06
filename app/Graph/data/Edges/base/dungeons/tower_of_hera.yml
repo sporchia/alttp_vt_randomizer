@@ -1,0 +1,48 @@
+fixed:
+  directed:
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Exit"]
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Map Chest"]
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Basement Door"]
+    - ["Tower Of Hera - Tile Room", "Tower Of Hera - Entrance"]
+    - ["Tower Of Hera - Tile Room", "Tower Of Hera - Basement Corner"]
+    - ["Tower Of Hera - Moldorm Cage", "Tower Of Hera - Basement Cage"]
+    - ["Tower Of Hera - Beetle Gate", "Tower Of Hera - Beetle Gate - Shutter Door"]
+    - ["Tower Of Hera - Beetle Trap", "Tower Of Hera - Beetle Gate"]
+    - ["Tower Of Hera - Petting Zoo", "Tower Of Hera - Compass Chest"]
+    - ["Tower Of Hera - Bumper Room", "Tower Of Hera - Fairy Refill"]
+    - ["Tower Of Hera - Fairy Refill", "Tower Of Hera - Bumper Room"]
+    - ["Tower Of Hera - Bumper Room", "Tower Of Hera - Petting Zoo - Ledge"]
+    - ["Tower Of Hera - Petting Zoo - Ledge", "Tower Of Hera - Petting Zoo"]
+    - ["Tower Of Hera - Boss", "Tower Of Hera - Prize"]
+  undirected:
+    - ["Tower Of Hera - Basement Corner", "Tower Of Hera - Hidden Chest"]
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Moldorm Cage"]
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Beetle Gate"]
+    - ["Tower Of Hera - Maze", "Tower Of Hera - Petting Zoo"]
+    - ["Tower Of Hera - Petting Zoo", "Tower Of Hera - Bumper Room"]
+    - ["Tower Of Hera - Bumper Room", "Tower Of Hera - Boss Room"]
+Lamp:
+  directed:
+    - ["Tower Of Hera - Hidden Chest", "Tower Of Hera - Big Key Chest"]
+  undirected: []
+FireRod:
+  directed:
+    - ["Tower Of Hera - Hidden Chest", "Tower Of Hera - Big Key Chest"]
+  undirected: []
+BigKeyP3:
+  directed:
+    - ["Tower Of Hera - Beetle Trap", "Tower Of Hera - Maze"]
+    - ["Tower Of Hera - Petting Zoo - Ledge", "Tower Of Hera - Big Chest"]
+  undirected: []
+KeyP3:
+  directed:
+    - ["Tower Of Hera - Basement Door", "Tower Of Hera - Tile Room"]
+  undirected: []
+KeyForKey:
+  directed:
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Tile Room"]
+  undirected: []
+TowerOfHeraBeetleGateTrophy|3:
+  directed:
+    - ["Tower Of Hera - Beetle Gate - Shutter Door", "Tower Of Hera - Beetle Trap"]
+  undirected: []

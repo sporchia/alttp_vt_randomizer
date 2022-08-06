@@ -1,0 +1,1023 @@
+DefeatLandmine:
+  - fixed
+DefeatMedusa:
+  - fixed
+DefeatSpikeTrap:
+  - fixed
+DefeatBigSpikeTrap:
+  - fixed
+DefeatBeamos:
+  - fixed
+DefeatTileRoom:
+  - fixed
+DefeatYomoMedusa:
+  - fixed
+DefeatAntifairyCircle:
+  - fixed
+DefeatStatue:
+  - fixed
+DefeatFloppingFish:
+  - fixed
+DefeatFireBarCW:
+  - fixed
+DefeatFireBarCCW:
+  - fixed
+DefeatFireSnake:
+  - fixed
+DefeatRabbit:
+  - fixed
+DefeatSparkCCW:
+  - fixed
+DefeatRaven:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+DefeatVulture:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+DefeatFlyingStalfosHead:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+DefeatOctorok1:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatOctorok4:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatOctorokStone:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatBuzzblob:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+DefeatSnapdragon:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatOctoballoon:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatOctobaby:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatHinox:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatMoblin:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatMiniHelmasaur:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatAntifairy:
+  - Powder
+DefeatBushHoarder:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatMiniMoldorm:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatPoe:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatSluggula:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatRopa:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatRedBari:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatBlueBari:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatHardhatBeetle:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndSilverArrows
+  - ActiveBombos
+DefeatDeadrock:
+  - Powder
+  - ActiveQuake
+DefeatRockHoarder:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatBlueSwordGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatGreenSwordGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatRedSpearGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatAssaultSwordGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatFastRedSpearGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatBlueArcher:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatGreenArcher:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatRedJavelinGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatRedJavelinGuard2:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatRedBombGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatGreenGuardRecruit:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatGeldman:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatPopo:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatPopo2:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatArmos:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+DefeatFireballZora:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatWalkingZora:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatCrab:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatDevalantBlue:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatDevalantRed:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatBallNChainTrooper:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatCannonGuard:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatRat:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatRope:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatKeese:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+DefeatLeever:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+DefeatBee:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatGreenStalfos:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+DefeatInvisibleStalfos:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+DefeatHover:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatEyegoreGreen:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+DefeatEyegoreRed:
+  - BowAndArrows
+  - BowAndSilverArrows
+DefeatStalfosYellow:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatKodongo:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatGibdo:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+DefeatTerrorpin:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+DefeatZol:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatWallmaster:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatStalfosKnight:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+DefeatPirogisu:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+DefeatPengator:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatKyameron:
+  - fixed
+DefeatWizzrobe:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatZoro:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatBabasu:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatFreezor:
+  - FireRod
+  - ActiveBombos
+DefeatZazakBlue:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+DefeatZazakRed:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+DefeatStalfos:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatZirroGreen:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatZirroBlue:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveQuake
+DefeatPikit:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+DefeatBeeGood:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatDialogueTester:
+  - BowAndArrows
+  - BowAndSilverArrows
+DefeatGibo:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+DefeatThief:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+DefeatPokey:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+DefeatTektite:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatSwamola:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - Hookshot
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatLynel:
+  - L2Sword
+  - Hammer
+  - BowAndSilverArrows
+DefeatBunnyBeam:
+  - Powder
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake
+DefeatStal:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - Powder
+  - FireRod
+  - IceRod
+  - ActiveBombos
+  - ActiveEther
+  - ActiveQuake

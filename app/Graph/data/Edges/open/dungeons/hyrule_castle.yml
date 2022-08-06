@@ -1,0 +1,7 @@
+fixed:
+  directed:
+    - ["Hyrule Castle - Lobby", "Hyrule Castle - Lobby - Exit"]
+    - ["Hyrule Castle - East", "Hyrule Castle - East - Exit"]
+    - ["Hyrule Castle - West", "Hyrule Castle - West - Exit"]
+    - ["Hyrule Castle - Throne Room", "Hyrule Castle - Mantle"]
+  undirected: []

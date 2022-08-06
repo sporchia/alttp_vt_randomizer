@@ -16,6 +16,17 @@
 
     <div class="card border-info mt-4">
         <div class="card-header bg-info">
+            <h3 class="card-title text-white">{{ __('resources.cards.learn.header') }}</h3>
+        </div>
+        <div class="card-body">
+            @foreach (__('resources.cards.learn.content') as $block)
+                <p>{!! $block !!}</p>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="card border-info mt-4">
+        <div class="card-header bg-info">
             <h3 class="card-title text-white">{{ __('resources.cards.external.header') }}</h3>
         </div>
         <div class="card-body">

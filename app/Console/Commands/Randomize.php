@@ -1,20 +1,23 @@
 <?php
 
-namespace ALttP\Console\Commands;
+declare(strict_types=1);
 
-use ALttP\Boss;
-use ALttP\Item;
-use ALttP\Randomizer;
-use ALttP\Rom;
-use ALttP\Support\Zspr;
-use ALttP\World;
+namespace App\Console\Commands;
+
+use App\Graph\Randomizer;
+use App\Rom;
+use App\Services\RomWriterService;
+use App\Services\SpoilerService;
+use App\Support\Zspr;
+use Exception;
 use Hashids\Hashids;
 use Illuminate\Console\Command;
+use Throwable;
 
 /**
  * Run randomizer as command.
  */
-class Randomize extends Command
+final class Randomize extends Command
 {
     /**
      * The name and signature of the console command.
@@ -55,8 +58,7 @@ class Randomize extends Command
      */
     protected $description = 'Generate a randomized ROM.';
 
-    /** @var array */
-    protected $reset_patch;
+    private array $reset_patch;
 
     /**
      * Execute the console command.
@@ -65,7 +67,7 @@ class Randomize extends Command
      */
     public function handle()
     {
-        ini_set('memory_limit', '512M');
+        ini_set('memory_limit', '2G');
         $hasher = new Hashids('local', 15);
 
         if (
@@ -110,8 +112,6 @@ class Randomize extends Command
         $bulk = (int) ($this->option('bulk') ?? 1);
 
         for ($i = 0; $i < $bulk; $i++) {
-            Item::clearCache();
-            Boss::clearCache();
             $rom = new Rom($this->argument('input_file'));
             $hash = $hasher->encode((int) (microtime(true) * 1000));
 
@@ -129,8 +129,8 @@ class Randomize extends Command
             if (is_string($this->option('heartcolor'))) {
                 $heartColorToUse = $this->option('heartcolor');
                 if ($heartColorToUse === 'random') {
-                  $colorOptions = ['blue', 'green', 'yellow', 'red'];
-                  $heartColorToUse = $colorOptions[get_random_int(0, 3)];
+                    $colorOptions = ['blue', 'green', 'yellow', 'red'];
+                    $heartColorToUse = $colorOptions[get_random_int(0, 3)];
                 }
                 $rom->setHeartColors($heartColorToUse);
             }
@@ -139,7 +139,7 @@ class Randomize extends Command
                 $rom->setHeartBeepSpeed($this->option('heartbeep'));
             }
 
-            if(is_string($this->option('quickswap'))) {
+            if (is_string($this->option('quickswap'))) {
                 $rom->setQuickSwap(strtolower($this->option('quickswap')) === 'true');
             }
 
@@ -163,31 +163,73 @@ class Randomize extends Command
                 'no_logic' => 'NoLogic',
             ][$this->option('glitches')];
 
-            $world = World::factory($this->option('state'), [
-                'itemPlacement' => $this->option('item_placement'),
-                'dungeonItems' => $this->option('dungeon_items'),
-                'accessibility' => $this->option('accessibility'),
-                'goal' => $this->option('goal'),
-                'crystals.ganon' => $crystals_ganon,
-                'crystals.tower' => $crystals_tower,
-                'entrances' => 'none',
-                'mode.weapons' => $this->option('weapons'),
-                'tournament' => $this->option('tournament'),
-                'spoil.Hints' => $this->option('hints'),
-                'logic' => $logic,
-                'item.pool' => $this->option('item_pool'),
-                'item.functionality' => $this->option('item_functionality'),
-                'enemizer.bossShuffle' => 'none',
-                'enemizer.enemyShuffle' => 'none',
-                'enemizer.enemyDamage' => 'default',
-                'enemizer.enemyHealth' => 'default',
-                'enemizer.potShuffle' => 'off',
+            $randomizer = new Randomizer([
+                [
+                    'mode.state' => $this->option('state'),
+                    'itemPlacement' => $this->option('item_placement'),
+                    'dungeonItems' => $this->option('dungeon_items'),
+                    'accessibility' => $this->option('accessibility'),
+                    'goal' => $this->option('goal'),
+                    'crystals.ganon' => $crystals_ganon,
+                    'crystals.tower' => $crystals_tower,
+                    'entrances' => 'none',
+                    'mode.weapons' => $this->option('weapons'),
+                    'tournament' => $this->option('tournament'),
+                    'spoil.Hints' => $this->option('hints'),
+                    'logic' => $logic,
+                    'item.pool' => $this->option('item_pool'),
+                    'item.functionality' => $this->option('item_functionality'),
+                    'enemizer.bossShuffle' => 'random',
+                    'enemizer.enemyShuffle' => 'none',
+                    'enemizer.enemyDamage' => 'default',
+                    'enemizer.enemyHealth' => 'default',
+                    'enemizer.potShuffle' => 'off',
+                    'equipment' => [
+                        // for testing
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'BossHeartContainer:0',
+                        'ThreeHundredRupees:0',
+                        'ThreeHundredRupees:0',
+                        'PegasusBoots:0',
+                        'BowAndArrows:0',
+                        'ProgressiveSword:0',
+                        'ProgressiveSword:0',
+                        'ProgressiveSword:0',
+                        'ProgressiveGlove:0',
+                        'ProgressiveGlove:0',
+                        'Lamp:0',
+                        'OcarinaActive:0',
+                        'CaneOfSomaria:0',
+                        'FireRod:0',
+                        'MagicMirror:0',
+                        'Flippers:0',
+                        'MoonPearl:0',
+                        'Hookshot:0',
+                        'Hammer:0',
+                    ],
+                ],
             ]);
+            try {
+                $randomizer->randomize();
+            } catch (Throwable $e) {
+                //(new Graphviz($randomizer->graph->newFromSearch($randomizer->start), 'svg'))->display();
+                throw $e;
+            }
 
-            $rand = new Randomizer([$world]);
-            $rand->randomize();
+            if (!$randomizer->collectItems()->has("Triforce:0")) {
+                throw new Exception('Game Unwinnable');
+            }
+            $writer = new RomWriterService();
+            $writer->writeWorldToRom($randomizer->getWorld(0), $rom);
 
-            $world->writeToRom($rom);
             $rom->muteMusic((bool) $this->option('no-music') ?? false);
             $rom->setMenuSpeed($this->option('menu-speed'));
 
@@ -221,24 +263,26 @@ class Randomize extends Command
             }
 
             if ($this->option('spoiler')) {
+                $spoilerService = new SpoilerService();
+                $spoiler = $spoilerService->getSpoiler($randomizer);
+
                 $spoiler_file = sprintf($filename, $hash, 'json');
 
-                file_put_contents($spoiler_file, json_encode($world->getSpoiler(), JSON_PRETTY_PRINT));
+                file_put_contents($spoiler_file, json_encode($spoiler, JSON_PRETTY_PRINT));
                 $this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
             }
         }
+        $this->info(memory_get_peak_usage(true));
     }
 
     /**
      * Apply base patch to ROM file.
      *
-     * @throws \Exception when base patch has no content.
-     *
-     * @return array
+     * @throws Exception when base patch has no content.
      */
-    protected function resetPatch()
+    private function resetPatch(): array
     {
-        if ($this->reset_patch) {
+        if (isset($this->reset_patch)) {
             return $this->reset_patch;
         }
 
@@ -246,7 +290,7 @@ class Randomize extends Command
             $file_contents = file_get_contents(Rom::getJsonPatchLocation());
 
             if ($file_contents === false) {
-                throw new \Exception('base patch not readable');
+                throw new Exception('base patch not readable');
             }
 
             $patch_left = json_decode($file_contents, true);

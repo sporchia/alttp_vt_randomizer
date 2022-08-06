@@ -1,6 +1,6 @@
 <?php
 
-namespace ALttP\Drops;
+namespace App\Drops;
 
 /**
  * A Prize Pack is a set of droppable sprites that can drop from killed enemies
@@ -9,7 +9,7 @@ namespace ALttP\Drops;
 class PrizePack
 {
     protected $drops = [];
-    protected $name;
+    public $name;
 
     /**
      * Constructor for PrizePack class.

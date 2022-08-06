@@ -1,0 +1,124 @@
+fixed:
+  directed:
+    - ["Palace of Darkness - Arena North", "Palace of Darkness - Arena North Door"]
+    - ["Palace of Darkness - Basement Ledge", "Palace of Darkness - Basement Ledge Door"]
+    - ["Palace of Darkness - Basement Ledge", "Palace of Darkness - Stalfos Basement"]
+    - ["Palace of Darkness - Big Key Chest", "Palace of Darkness - Basement Ledge Door"]
+    - ["Palace of Darkness - Big Key Chest", "Palace of Darkness - Stalfos Basement"]
+    - ["Palace of Darkness - Boss", "Palace of Darkness - Prize"]
+    - ["Palace of Darkness - Bow Statue", "Palace of Darkness - Mimics 2"]
+    - ["Palace of Darkness - Callback", "Palace of Darkness - Dark Alley"]
+    - ["Palace of Darkness - Callback", "Palace of Darkness - Turtle Party"]
+    - ["Palace of Darkness - Compass Room", "Palace of Darkness - Compass Chest"]
+    - ["Palace of Darkness - Compass Room", "Palace of Darkness - Compass Room Door"]
+    - ["Palace of Darkness - Conveyor", "Palace of Darkness - Mimics 1"]
+    - ["Palace of Darkness - Dark Alley", "Palace of Darkness - Boss Door"]
+    - ["Palace of Darkness - Dark Basement", "Palace of Darkness - Dark Basement - Left"]
+    - ["Palace of Darkness - Dark Basement", "Palace of Darkness - Dark Basement - Right"]
+    - ["Palace of Darkness - Dark Maze", "Palace of Darkness - Dark Maze - Bottom"]
+    - ["Palace of Darkness - Dark Maze", "Palace of Darkness - Dark Maze - Top"]
+    - ["Palace of Darkness - Dark Maze", "Palace of Darkness - Falling Bridge Door"]
+    - ["Palace of Darkness - Dark Pegs", "Palace of Darkness - Dark Pegs Door"]
+    - ["Palace of Darkness - Falling Bridge Ledge", "Palace of Darkness - Arena North Door"]
+    - ["Palace of Darkness - Falling Bridge Top", "Palace of Darkness - Falling Bridge Door"]
+    - ["Palace of Darkness - Harmless Hellway", "Palace of Darkness - Arena North"]
+    - ["Palace of Darkness - Harmless Hellway", "Palace of Darkness - Compass Room Door"]
+    - ["Palace of Darkness - Harmless Hellway", "Palace of Darkness - Harmless Hellway Chest"]
+    - ["Palace of Darkness - Lonely Turtle", "Palace of Darkness - Dark Pegs Door"]
+    - ["Palace of Darkness - Middle Cage", "Palace of Darkness - Middle Cage Door"]
+    - ["Palace of Darkness - Mimics 2", "Palace of Darkness - Mimics 2 - Shutter Door"]
+    - ["Palace of Darkness - Mimics 2", "Palace of Darkness - Sexy Statue"]
+    - ["Palace of Darkness - Pit Room", "Palace of Darkness - Middle Cage Door"]
+    - ["Palace of Darkness - Pit Room", "Palace of Darkness - Stalfos Basement"]
+    - ["Palace of Darkness - The Arena - Bridge", "Palace of Darkness - Arena Main"]
+    - ["Palace of Darkness - Turtle Party", "Palace of Darkness - Turtle Party - Shutter Door"]
+    - ["Palace of Darkness - Lonely Turtle", "Palace of Darkness - Turtle Party"]
+    - ["Palace of Darkness - Warp Hint", "Palace of Darkness - Warp Room"]
+    - ["Palace of Darkness - Warp Room", "Palace of Darkness - Warp Hint"]
+    - ["Palace of Darkness - Dark Basement", "Palace of Darkness - Compass Room"]
+    - ["Palace of Darkness - Compass Room", "Palace of Darkness - Dark Basement darkness"]
+    - ["Palace of Darkness - Mimics 1", "Palace of Darkness - Mimics 1 - Shutter Door"]
+  undirected:
+    - ["Palace of Darkness - Arena North", "Palace of Darkness - Arena Main"]
+    - ["Palace of Darkness - Conveyor", "Palace of Darkness - Map Chest"]
+    - ["Palace of Darkness - Falling Bridge Top", "Palace of Darkness - Compass Room"]
+    - ["Palace of Darkness - Left Cage", "Palace of Darkness - Shooter Room"]
+    - ["Palace of Darkness - Lobby", "Palace of Darkness - Left Cage"]
+    - ["Palace of Darkness - Lobby", "Palace of Darkness - Middle Cage"]
+    - ["Palace of Darkness - Middle Cage", "Palace of Darkness - Warp Room"]
+    - ["Palace of Darkness - Pit Room", "Palace of Darkness - Arena Main"]
+    - ["Palace of Darkness - Pit Room", "Palace of Darkness - The Arena - Bridge"]
+    - ["Palace of Darkness - Sexy Statue", "Palace of Darkness - Arena Main"]
+BigKeyD1:
+  directed:
+    - ["Palace of Darkness - Big Chest Balcony", "Palace of Darkness - Big Chest"]
+    - ["Palace of Darkness - Boss Door", "Palace of Darkness - Boss Room"]
+  undirected: []
+UseBomb:
+  directed:
+    - ["Palace of Darkness - Pit Room", "Palace of Darkness - Basement Ledge"]
+    - ["Palace of Darkness - Dark Maze", "Palace of Darkness - Big Chest Balcony"]
+    - ["Palace of Darkness - Big Chest Balcony", "Palace of Darkness - Dark Maze darkness"]
+  undirected:
+    - ["Palace of Darkness - Warp Hint", "Palace of Darkness - Jelly Hall"]
+    - ["Palace of Darkness - Mimics 1", "Palace of Darkness - Jelly Hall"]
+    - ["Palace of Darkness - Map Chest", "Palace of Darkness - The Arena - Ledge"]
+    - ["Palace of Darkness - Map Chest", "Palace of Darkness - Fairies"]
+Hammer:
+  directed:
+    - ["Palace of Darkness - Map Chest", "Palace of Darkness - Sexy Statue"]
+  undirected:
+    - ["Palace of Darkness - Dark Pegs", "Palace of Darkness - Dark Pegs Landing"]
+Lamp:
+  directed:
+    - ["Palace of Darkness - Dark Maze darkness", "Palace of Darkness - Dark Maze"]
+    - ["Palace of Darkness - Dark Pegs darkness", "Palace of Darkness - Dark Pegs Landing"]
+    - ["Palace of Darkness - Dark Alley darkness", "Palace of Darkness - Dark Alley"]
+    - ["Palace of Darkness - Dark Basement darkness", "Palace of Darkness - Dark Basement"]
+  undirected: []
+BowAndArrows:
+  directed:
+    - ["Palace of Darkness - Bow Statue", "Palace of Darkness - Dark Pegs darkness"]
+  undirected: []
+LiftPot:
+  directed:
+    - ["Palace of Darkness - Shooter Room", "Palace of Darkness - Shooter Room Chest"]
+    - ["Palace of Darkness - Stalfos Basement", "Palace of Darkness - Stalfos Basement Chest"]
+    - ["Palace of Darkness - Sexy Statue", "Palace of Darkness - Mimics 2"]
+  undirected:
+    - ["Palace of Darkness - Falling Bridge Ledge", "Palace of Darkness - Falling Bridge"]
+    - ["Palace of Darkness - Falling Bridge Top", "Palace of Darkness - Falling Bridge"]
+KeyD1:
+  directed:
+    - ["Palace of Darkness - Middle Cage Door", "Palace of Darkness - Middle Cage"]
+    - ["Palace of Darkness - Middle Cage Door", "Palace of Darkness - Pit Room"]
+    - ["Palace of Darkness - Basement Ledge Door", "Palace of Darkness - Big Key Chest"]
+    - ["Palace of Darkness - Basement Ledge Door", "Palace of Darkness - Basement Ledge"]
+    - ["Palace of Darkness - Falling Bridge Door", "Palace of Darkness - Falling Bridge Top"]
+    - ["Palace of Darkness - Falling Bridge Door", "Palace of Darkness - Dark Maze darkness"]
+    - ["Palace of Darkness - Compass Room Door", "Palace of Darkness - Compass Room"]
+    - ["Palace of Darkness - Compass Room Door", "Palace of Darkness - Harmless Hellway"]
+    - ["Palace of Darkness - Arena North Door", "Palace of Darkness - Arena North"]
+    - ["Palace of Darkness - Arena North Door", "Palace of Darkness - Falling Bridge Ledge"]
+    - ["Palace of Darkness - Dark Pegs Door", "Palace of Darkness - Dark Pegs"]
+    - ["Palace of Darkness - Dark Pegs Door", "Palace of Darkness - Lonely Turtle"]
+  undirected: []
+# these need to connect vertices around the door to work properly
+KeyForKey:
+  directed:
+    - ["Palace of Darkness - Compass Room", "Palace of Darkness - Harmless Hellway"]
+    - ["Palace of Darkness - Basement Ledge", "Palace of Darkness - Big Key Chest"]
+  undirected: []
+PalaceOfDarknessMimicsOneTrophy|3:
+  directed:
+    - ["Palace of Darkness - Mimics 1 - Shutter Door", "Palace of Darkness - Conveyor"]
+  undirected: []
+PalaceOfDarknessMimicsTwoTrophy|3:
+  directed:
+    - ["Palace of Darkness - Mimics 2 - Shutter Door", "Palace of Darkness - Bow Statue"]
+  undirected: []
+PalaceOfDarknessTurtlePartyTrophy|6:
+  directed:
+    - ["Palace of Darkness - Turtle Party - Shutter Door", "Palace of Darkness - Callback"]
+    - ["Palace of Darkness - Turtle Party - Shutter Door", "Palace of Darkness - Lonely Turtle"]
+  undirected: []

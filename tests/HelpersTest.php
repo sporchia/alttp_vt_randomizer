@@ -1,6 +1,13 @@
 <?php
 
-class HelpersTest extends TestCase
+declare(strict_types=1);
+
+namespace Tests;
+
+/**
+ * @group graph
+ */
+final class HelpersTest extends TestCase
 {
     // it's highly unlikely that this will fail
     public function testMtShuffleDifferentReturn()

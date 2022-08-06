@@ -67,10 +67,7 @@ export default class BPS {
 
     seek += decodedMetaDataLength.length;
     if (decodedMetaDataLength.number) {
-      const metaArray = this.patchFile.slice(
-        seek,
-        seek + decodedMetaDataLength.number
-      );
+      const metaArray = this.patchFile.slice(seek, seek + decodedMetaDataLength.number);
       for (let i = 0; i < metaArray.byteLength; ++i) {
         this.metaDataString += String.fromCharCode(metaArray[i]);
       }
@@ -86,10 +83,7 @@ export default class BPS {
     this.patchTargetChecksum = buf32[1];
     this.patchChecksum = buf32[2];
 
-    if (
-      this.patchChecksum !==
-      crc32(this.patchFile.slice(0, this.patchFile.byteLength - 4))
-    ) {
+    if (this.patchChecksum !== crc32(this.patchFile.slice(0, this.patchFile.byteLength - 4))) {
       throw new Error("Patch checksum incorrect");
     }
 
@@ -134,7 +128,7 @@ export default class BPS {
       let data = this.decodeBPS(this.patchFile, seek);
       let action = {
         type: data.number & 3,
-        length: (data.number >> 2) + 1
+        length: (data.number >> 2) + 1,
       };
 
       seek += data.length;
@@ -167,7 +161,7 @@ export default class BPS {
       let data2;
       const action = {
         type: data.number & 3,
-        length: (data.number >> 2) + 1
+        length: (data.number >> 2) + 1,
       };
 
       seek += data.length;
@@ -189,8 +183,7 @@ export default class BPS {
         case BPS.ACTION_SOURCE_COPY:
           data2 = this.decodeBPS(this.patchFile, seek);
           seek += data2.length;
-          sourceRelativeOffset +=
-            (data2.number & 1 ? -1 : 1) * (data2.number >> 1);
+          sourceRelativeOffset += (data2.number & 1 ? -1 : 1) * (data2.number >> 1);
           while (action.length--) {
             tempFileView[outputOffset] = this.sourceFile[sourceRelativeOffset];
             outputOffset++;
@@ -200,8 +193,7 @@ export default class BPS {
         case BPS.ACTION_TARGET_COPY:
           data2 = this.decodeBPS(this.patchFile, seek);
           seek += data2.length;
-          targetRelativeOffset +=
-            (data2.number & 1 ? -1 : 1) * (data2.number >> 1);
+          targetRelativeOffset += (data2.number & 1 ? -1 : 1) * (data2.number >> 1);
           while (action.length--) {
             tempFileView[outputOffset] = tempFileView[targetRelativeOffset];
             outputOffset++;
@@ -253,7 +245,7 @@ export default class BPS {
     }
     return {
       number: number,
-      length: len
+      length: len,
     };
   }
 

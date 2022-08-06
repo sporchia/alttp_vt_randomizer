@@ -1,0 +1,22 @@
+UseBomb:
+  directed:
+    - ["Spectacle Rock Cave Middle", "Spectacle Rock Cave Top"]
+    - ["Palace of Darkness - Falling Bridge", "Palace of Darkness - Big Chest Balcony"]
+    - ["Misery Mire - Drop Chest Room", "Misery Mire - Drop Chest Overlook"]
+    - ["Turtle Rock - Big Chest Entrance", "Turtle Rock - Big Chest Overlook"]
+    - ["Turtle Rock - Big Chest Entrance", "Turtle Rock - Big Chest Platform"]
+    - ["Ganon's Tower - Moldorm - Kill Zone", "Ganon's Tower - Moldorm - Top Left Platform"]
+  undirected:
+    - ["Tower Of Hera - Petting Zoo", "Tower Of Hera - Petting Zoo - Ledge"]
+    - ["Paradox Cave - Middle Ledge", "Paradox Cave Lower - Middle"]
+    - ["Ice Palace - Freezor Room", "Ice Palace - Freezor Room Ledge"]
+    - ["Ice Palace - Bari Pit left", "Ice Palace - Bari Pit right"]
+    - ["Ice Palace - IPBJ - blue top", "Ice Palace - IPBJ - blue right"]
+    - ["Skull Woods - Main Entrance", "Skull Woods - Big Chest Ledge"]
+    - ["Skull Woods - Dumb Switches Top", "Skull Woods - Dumb Switches Bottom"]
+    - ["Dark Lake Hylia Ice Palace Island", "Dark Lake Hylia Northeast Ledge"]
+    - ["Ganon's Tower - Bonk Pits - Top", "Ganon's Tower - Bonk Pits - Middle"]
+    - ["Ganon's Tower - Bonk Pits - Middle", "Ganon's Tower - Bonk Pits - Bottom Upper - Orange"]
+    - ["Ganon's Tower - Bonk Pits - Middle", "Ganon's Tower - Bonk Pits - Bottom - Blue"]
+    - ["Ganon's Tower - Fire Snakes Left", "Ganon's Tower - Fire Snakes Right"]
+    - ["Ganon's Tower - Cannonball Z", "Ganon's Tower - Cannonball Z ledge"]

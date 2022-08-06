@@ -1,0 +1,88 @@
+fixed:
+  directed:
+    - ["Skull Woods - Main Entrance", "Skull Woods Southeast Branch"]
+    - ["Skull Woods - Statue Puzzle", "Skull Woods Southeast Branch"]
+    - ["Skull Woods - Bumper Buddy", "Skull Woods Back"]
+    - ["Skull Woods - Bridge Room", "Skull Woods Back"]
+    - ["Skull Woods - Hourglass Top", "Skull Woods - Hourglass Bottom"]
+    - ["Skull Woods - Lever Room", "Skull Woods - Big Chest Ledge"]
+    - ["Skull Woods - Hourglass Bottom", "Skull Woods - Map Chest"]
+    - ["Skull Woods - Main Entrance", "Skull Woods - Main Entrance Door"]
+    - ["Skull Woods - Pot Prison Room", "Skull Woods - Main Entrance Door"]
+    - ["Skull Woods - Hourglass Bottom", "Skull Woods - Pinball Door"]
+    - ["Skull Woods - Pinball Room", "Skull Woods - Pinball Door"]
+    - ["Skull Woods - Trap Chest Room", "Skull Woods - Compass Chest"]
+    - ["Skull Woods - Trap Chest Room", "Skull Woods - Pinball Room"]
+    - ["Skull Woods - Big Key Room", "Skull Woods - Statue Puzzle"]
+    - ["Skull Woods - Big Key Room", "Skull Woods - Big Key Chest"]
+    - ["Skull Woods - Bumper Buddy", "Skull Woods - Useless Door"]
+    - ["Skull Woods - Falling Floor", "Skull Woods - Useless Door"]
+    - ["Skull Woods - Dumb Switches Top", "Skull Woods - Dumb Switches Bottom"]
+    - ["Skull Woods - Bridge Room Alcove", "Skull Woods - Bridge Room Chest"]
+    - ["Skull Woods - Bridge Room", "Skull Woods - Bridge Door"]
+    - ["Skull Woods - Bari Pits", "Skull Woods - Bridge Door"]
+    - ["Skull Woods - Vine Door Room", "Skull Woods - Torch Room"]
+    - ["Skull Woods - Play Pen", "Skull Woods - Play Pen - Gibdo Key"]
+    - ["Skull Woods - Play Pen", "Skull Woods - Play Pen Door"]
+    - ["Skull Woods - Boss Drop", "Skull Woods - Play Pen Door"]
+    - ["Skull Woods - Boss Drop", "Skull Woods - Boss Room"]
+    - ["Skull Woods - Boss", "Skull Woods - Prize"]
+  undirected:
+    - ["Skull Woods - Main Entrance", "Skull Woods - Hourglass Bottom"]
+    - ["Skull Woods - Pot Prison Room", "Skull Woods - Trap Chest Room"]
+    - ["Skull Woods - Trap Chest Room", "Skull Woods - Firebar Pits"]
+    - ["Skull Woods - Statue Puzzle", "Skull Woods - Dumb Switches Bottom"]
+    - ["Skull Woods - Dumb Switches Bottom", "Skull Woods - Bumper Buddy"]
+    - ["Skull Woods - Bridge Room", "Skull Woods - Gibdo Bridge Room"]
+    - ["Skull Woods - Bridge Room Alcove", "Skull Woods - Gibdo Bridge Room"]
+    - ["Skull Woods - Bari Pits", "Skull Woods - Torch Room"]
+PegasusBoots:
+  directed:
+    - ["Skull Woods - Big Chest Ledge", "Skull Woods - Main Entrance"]
+  undirected: []
+Hookshot:
+  directed:
+    - ["Skull Woods - Big Chest Ledge", "Skull Woods - Main Entrance"]
+    - ["Skull Woods - Hourglass Bottom", "Skull Woods - Hourglass Top"]
+  undirected: []
+FireRod:
+  directed:
+    - ["Skull Woods - Torch Room", "Skull Woods - Vine Door Room"]
+  undirected: []
+L1Sword:
+  directed:
+    - ["Skull Woods - Vine Door Room", "Skull Woods - Play Pen"]
+  undirected: []
+LiftPot:
+  directed:
+    - ["Skull Woods - Pot Prison Room", "Skull Woods - Pot Prison"]
+    - ["Skull Woods - Pinball Room", "Skull Woods - Pinball Chest"]
+    - ["Skull Woods - Statue Puzzle", "Skull Woods - Big Key Room"]
+    - ["Skull Woods - Bumper Buddy", "Skull Woods - Bumper Buddy - TL Pot"]
+  undirected: []
+UseBomb:
+  directed: []
+  undirected:
+    - ["Skull Woods - Hourglass Top", "Skull Woods - Lever Room"]
+    - ["Skull Woods - Big Key Room", "Skull Woods - Magic Refill"]
+BigKeyD3:
+  directed:
+    - ["Skull Woods - Big Chest Ledge", "Skull Woods - Big Chest"]
+  undirected: []
+KeyD3:
+  directed:
+    - ["Skull Woods - Main Entrance Door", "Skull Woods - Main Entrance"]
+    - ["Skull Woods - Main Entrance Door", "Skull Woods - Pot Prison Room"]
+    - ["Skull Woods - Pinball Door", "Skull Woods - Hourglass Bottom"]
+    - ["Skull Woods - Pinball Door", "Skull Woods - Pinball Room"]
+    - ["Skull Woods - Useless Door", "Skull Woods - Bumper Buddy"]
+    - ["Skull Woods - Useless Door", "Skull Woods - Falling Floor"]
+    - ["Skull Woods - Bridge Door", "Skull Woods - Bridge Room"]
+    - ["Skull Woods - Bridge Door", "Skull Woods - Bari Pits"]
+    - ["Skull Woods - Play Pen Door", "Skull Woods - Play Pen"]
+    - ["Skull Woods - Play Pen Door", "Skull Woods - Boss Drop"]
+  undirected: []
+KeyForKey:
+  directed:
+    - ["Skull Woods - Big Chest Ledge", "Skull Woods - Big Chest"]
+  undirected: []

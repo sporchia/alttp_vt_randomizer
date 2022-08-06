@@ -1,0 +1,143 @@
+.room_id ; OW outlet
+#_02DAF0: dw $0012 ; 0x01
+#_02DAF2: dw $0060 ; 0x02
+#_02DAF4: dw $0061 ; 0x03
+#_02DAF6: dw $0062 ; 0x04
+#_02DAF8: dw $FFFF ; 0x05
+#_02DAFA: dw $0020 ; 0x06
+#_02DAFE: dw $00F1 ; 0x08
+#_02DB00: dw $00C9 ; 0x09
+#_02DB02: dw $0084 ; 0x0A
+#_02DB04: dw $0085 ; 0x0B
+#_02DB06: dw $0083 ; 0x0C
+#_02DB08: dw $0063 ; 0x0D
+#_02DB0A: dw $00F2 ; 0x0E
+#_02DB0C: dw $00F3 ; 0x0F
+#_02DB0E: dw $00F4 ; 0x10
+#_02DB10: dw $00F5 ; 0x11
+#_02DB12: dw $00E3 ; 0x12
+#_02DB16: dw $00F8 ; 0x14
+#_02DB18: dw $00E8 ; 0x15
+#_02DB1A: dw $0023 ; 0x16
+#_02DB1C: dw $00FB ; 0x17
+#_02DB1E: dw $00EB ; 0x18
+#_02DB20: dw $00D5 ; 0x19
+#_02DB22: dw $0024 ; 0x1A
+#_02DB24: dw $00FD ; 0x1B
+#_02DB26: dw $00ED ; 0x1C
+#_02DB28: dw $00FE ; 0x1D
+#_02DB2A: dw $00EE ; 0x1E
+#_02DB2C: dw $00FF ; 0x1F
+#_02DB2E: dw $00EF ; 0x20
+#_02DB30: dw $00DF ; 0x21
+#_02DB32: dw $00F9 ; 0x22
+#_02DB34: dw $00FA ; 0x23
+#_02DB36: dw $00EA ; 0x24
+#_02DB38: dw $00E0 ; 0x25
+#_02DB3A: dw $0028 ; 0x26
+#_02DB3C: dw $004A ; 0x27
+#_02DB3E: dw $0098 ; 0x28
+#_02DB40: dw $0056 ; 0x29
+#_02DB42: dw $0057 ; 0x2A
+#_02DB44: dw $0058 ; 0x2B
+#_02DB46: dw $0059 ; 0x2C
+#_02DB48: dw $0077 ; 0x2D
+#_02DB4A: dw $000E ; 0x2E
+#_02DB4E: dw $00E7 ; 0x30
+#_02DB50: dw $00E4 ; 0x31
+#_02DB52: dw $00E5 ; 0x32
+#_02DB54: dw $0055 ; 0x33
+#_02DB56: dw $00D6 ; 0x34
+#_02DB58: dw $00DB ; 0x35
+#_02DB5C: dw $0010 ; 0x37
+#_02DB5E: dw $000C ; 0x38
+#_02DB60: dw $0008 ; 0x39
+#_02DB62: dw $002F ; 0x3A
+#_02DB64: dw $003C ; 0x3B
+#_02DB66: dw $002C ; 0x3C
+#_02DB68: dw $0003 ; 0x3D
+#_02DB6A: dw $1000 ; 0x3E
+#_02DB6C: dw $1002 ; 0x3F
+#_02DB6E: dw $1004 ; 0x40
+#_02DB70: dw $1006 ; 0x41
+#_02DB72: dw $1008 ; 0x42
+#_02DB74: dw $100A ; 0x43
+#_02DB76: dw $100C ; 0x44
+#_02DB78: dw $100E ; 0x45
+#_02DB7A: dw $1010 ; 0x46
+#_02DB7C: dw $1012 ; 0x47
+#_02DB7E: dw $1014 ; 0x48
+#_02DB80: dw $1016 ; 0x49
+#_02DB82: dw $1018 ; 0x4A
+#_02DB84: dw $0180 ; 0x4B
+#_02DB86: dw $0181 ; 0x4C
+#_02DB88: dw $0182 ; 0x4D
+#_02DB8A: dw $0189 ; 0x4E
+
+
+; Lost Woods Gamble                 ; 0x4F
+; Snitch Lady (West)                ; 0x50
+; Snitch Lady (East)                ; 0x51
+; Sick Kids House                   ; 0x52
+; Tavern North                      ; 0x53
+; Tavern (Front)                    ; 0x54
+; Bush Covered House                ; 0x55
+; Sahasrahlas Hut                   ; 0x56
+; Chest Game                        ; 0x57
+; Brewery                           ; 0x58
+; Library                           ; 0x59
+; Light World Bomb Hut              ; 0x5A
+; Potion Shop                       ; 0x5B
+; Aginahs Cave                      ; 0x5C
+; Mimic Cave                        ; 0x5D
+; Hookshot Fairy                    ; 0x5E
+; Mire Shed                         ; 0x5F
+; East Dark World Hint              ; 0x60
+; Dark Lake Hylia Ledge Hint        ; 0x61
+; Dark World Lumberjack Shop        ; 0x62
+; Dark World Potion Shop            ; 0x63
+; Dark World Shop                   ; 0x64
+; Dark Lake Hylia Shop              ; 0x65
+; Red Shield Shop                   ; 0x66
+; Archery Game                      ; 0x67
+; Dark Sanctuary Hint               ; 0x68
+; Cave Shop (Lake Hylia)            ; 0x69
+; Cave Shop (Dark Death Mountain)   ; 0x6A
+; Kings Grave                       ; 0x6B
+; Waterfall of Wishing              ; 0x6C
+; Dark Desert Hint                  ; 0x6D
+; Capacity Upgrade                  ; 0x6E
+; Lake Hylia Fairy                  ; 0x6F
+; Desert Fairy                      ; 0x70
+; Light Hype Fairy                  ; 0x71
+; Dark Death Mountain Fairy         ; 0x72
+; Dark Lake Hylia Fairy             ; 0x73
+; Dark Desert Fairy                 ; 0x74
+; Dark Lake Hylia Ledge Fairy       ; 0x75
+; Pyramid Fairy                     ; 0x76
+; Spike Cave                        ; 0x77
+; Kakariko Gamble Game              ; 0x78
+; Blinds Hideout                    ; 0x79
+; Palace of Darkness Hint           ; 0x7A
+; Cave 45                           ; 0x7B
+; Graveyard Cave                    ; 0x7C
+; Big Bomb Shop                     ; 0x7D
+; Long Fairy Cave                   ; 0x7E
+; Hype Cave                         ; 0x7F
+; Lumberjack House                  ; 0x80
+; Kakariko Shop                     ; 0x81
+; Ice Rod Cave                      ; 0x82
+; Good Bee Cave                     ; 0x83
+; Blacksmiths Hut                   ; 0x84
+; Fortune Teller (Light)            ; 0x85
+; Lake Hylia Fortune Teller         ; 0x86
+; Fortune Teller (Dark)             ; 0x87
+; Mini Moldorm Cave                 ; 0x88
+; 50 Rupee Cave                     ; 0x89
+; Bonk Rock Cave                    ; 0x8A
+; 20 Rupee Cave                     ; 0x8B
+; Dark Lake Hylia Ledge Spike Cave  ; 0x8C
+; Bonk Fairy (Light)                ; 0x8D
+; Bonk Fairy (Dark)                 ; 0x8E
+; Checkerboard Cave                 ; 0x8F
+; Dark World Hammer Peg Cave        ; 0x90

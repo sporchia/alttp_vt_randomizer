@@ -1,0 +1,154 @@
+fixed:
+  directed:
+    - ["Ice Palace - Bari Key", "Ice Palace - Bari Key - Shutter Door"]
+    - ["Ice Palace - Entrance", "Ice Palace - Entrance - Shutter Door"]
+    - ["Ice Palace - Bari Key", "Ice Palace - Bari Key - Bottom Bari"]
+    - ["Ice Palace - Blob Ambush", "Ice Palace - Bari Key"]
+    - ["Ice Palace - Bari Key", "Ice Palace - Bari Key Door"]
+    - ["Ice Palace - Cross Puzzle - Left", "Ice Palace - Penguin Chest"]
+    - ["Ice Palace - Penguin Chest", "Ice Palace - Compass Chest"]
+    - ["Ice Palace - Cross Puzzle - Bottom", "Ice Palace - Blob Ambush"]
+    - ["Ice Palace - Cross Puzzle - Bottom", "Ice Palace - Penguin Switch"]
+    - ["Ice Palace - Cross Puzzle - Right", "Ice Palace - Penguin Chest"]
+    - ["Ice Palace - Cross Puzzle - Right", "Ice Palace - Bomb Switch"]
+    - ["Ice Palace - Cross Puzzle - Top", "Ice Palace - Penguin Switch"]
+    - ["Ice Palace - Cross Puzzle - Top", "Ice Palace - Blob Ambush"]
+    - ["Ice Palace - Stalfos Ambush", "Ice Palace - Stalfos Ambush - Shutter Door"]
+    - ["Ice Palace - Conveyor", "Ice Palace - Conveyor - Bari Key"]
+    - ["Ice Palace - Penguin Line Up", "Ice Palace - Penguin Line Up - Shutter Door"]
+    - ["Ice Palace - Big Spike Cross", "Ice Palace - Penguin Line Up"]
+    - ["Ice Palace - Big Spike Cross", "Ice Palace - Big Spike Cross Door"]
+    - ["Ice Palace - Big Spike Cross", "Ice Palace - Pit Trap"]
+    - ["Ice Palace - Ice Clock", "Ice Palace - Pottery Barn"]
+    - ["Ice Palace - Pit Trap", "Ice Palace - Vanilla Ice"]
+    - ["Ice Palace - Vanilla Ice", "Ice Palace - Bari Pit left"]
+    - ["Ice Palace - Vanilla Ice", "Ice Palace - Vanilla Ice Key Door"]
+    - ["Ice Palace - Slime Party", "Ice Palace - Vanilla Ice Key Door"]
+    - ["Ice Palace - Freezor Room Ledge", "Ice Palace - Big Chest Room - right"]
+    - ["Ice Palace - Bari University", "Ice Palace - Big Spike Cross Door"]
+    - ["Ice Palace - Bari University", "Ice Palace - Spike Room"]
+    - ["Ice Palace - Freezor Room", "Ice Palace - Big Chest Room - right"]
+    - ["Ice Palace - Big Chest Room - left", "Ice Palace - Big Chest Room - right"]
+    - ["Ice Palace - Block Drop - orange", "Ice Palace - Pottery Barn"]
+    - ["Ice Palace - Block Drop - right blue", "Ice Palace - Pottery Barn"]
+    - ["Ice Palace - H Room left", "Ice Palace - P Room"]
+    - ["Ice Palace - P Room", "Ice Palace - H Room right"]
+    - ["Ice Palace - Conveyor", "Ice Palace - Conveyor Door"]
+    - ["Ice Palace - IPBJ - orange", "Ice Palace - Conveyor Door"]
+    - ["Ice Palace - IPBJ - blue top", "Ice Palace - Conveyor Door"]
+    - ["Ice Palace - Lone Antifairy", "Ice Palace - Fairy Drop - orange"]
+    - ["Ice Palace - Lone Antifairy", "Ice Palace - Fairy Drop - blue"]
+    - ["Ice Palace - Fairy Drop - orange", "Ice Palace - Fairy Drop Door"]
+    - ["Ice Palace - Fairy Drop - blue", "Ice Palace - Fairy Drop Door"]
+    - ["Ice Palace - Block Switch", "Ice Palace - Restock Room Door"]
+    - ["Ice Palace - Restock Room", "Ice Palace - Restock Room Door"]
+    - ["Ice Palace - Fairy Drop - orange", "Ice Palace - Block Drop - orange"]
+    - ["Ice Palace - Fairy Drop - blue", "Ice Palace - Block Drop - right blue"]
+    - ["Ice Palace - Block Drop - left blue", "Ice Palace - Block Switch"]
+    - ["Ice Palace - Block Drop - left blue", "Ice Palace - Block Switch - block"]
+    - ["Ice Palace - Block Switch - block", "Ice Palace - Over Boss - top"]
+    - ["Ice Palace - Boss", "Ice Palace - Prize"]
+  undirected:
+    - ["Ice Palace - Blob Ambush", "Ice Palace - Cross Puzzle - Left"]
+    - ["Ice Palace - Penguin Chest", "Ice Palace - Cross Puzzle - Bottom"]
+    - ["Ice Palace - Penguin Switch", "Ice Palace - Cross Puzzle - Right"]
+    - ["Ice Palace - Penguin Switch", "Ice Palace - Big Key View"]
+    - ["Ice Palace - Bomb Switch", "Ice Palace - Cross Puzzle - Top"]
+    - ["Ice Palace - IPBJ - orange", "Ice Palace - Blob Alley"]
+    - ["Ice Palace - IPBJ - blue right", "Ice Palace - Blob Alley"]
+    - ["Ice Palace - Penguin Line Up", "Ice Palace - Blob Alley"]
+    - ["Ice Palace - Lonely Firebar", "Ice Palace - Big Spike Cross"]
+    - ["Ice Palace - Lonely Firebar", "Ice Palace - Freezor Room"]
+    - ["Ice Palace - Big Chest Room - right", "Ice Palace - Block Drop - orange"]
+    - ["Ice Palace - Big Chest Room - right", "Ice Palace - Block Drop - left blue"]
+    - ["Ice Palace - Ice Clock", "Ice Palace - Ice T"]
+    - ["Ice Palace - Slime Party", "Ice Palace - Ice T"]
+    - ["Ice Palace - Big Spikes", "Ice Palace - Bari Pit right"]
+    - ["Ice Palace - Big Spikes", "Ice Palace - Bari University"]
+    - ["Ice Palace - H Room right", "Ice Palace - Bari University"]
+    - ["Ice Palace - P Room", "Ice Palace - Big Key right"]
+    - ["Ice Palace - Lone Antifairy", "Ice Palace - Block Switch"]
+UseBomb:
+  directed:
+    - ["Ice Palace - Bomb Switch", "Ice Palace - Stalfos Ambush"]
+    - ["Ice Palace - Freezor Room", "Ice Palace - Big Chest Room - left"]
+    #- ["Ice Palace - IPBJ - blue top", "Ice Palace - IPBJ - blue right"] # IPBJ
+  undirected: []
+ActiveBombos:
+  directed:
+    - ["Ice Palace - Freezor Room", "Ice Palace - Freezor Chest"]
+  undirected: []
+FireRod:
+  directed:
+    - ["Ice Palace - Freezor Room", "Ice Palace - Freezor Chest"]
+  undirected: []
+Hammer:
+  directed:
+    - ["Ice Palace - Over Boss - top", "Ice Palace - Over Boss - pit"]
+  undirected:
+    - ["Ice Palace - H Room right", "Ice Palace - H Room center right"]
+    - ["Ice Palace - H Room left", "Ice Palace - H Room center left"]
+CaneOfSomaria:
+  directed:
+    - ["Ice Palace - Block Switch", "Ice Palace - Over Boss - top"]
+    # - ["Ice Palace - Big Key View", "Ice Palace - Big Key right"] # Ice Breaker
+  undirected: []
+Hookshot:
+  directed: []
+  undirected:
+    - ["Ice Palace - Bari Pit left", "Ice Palace - Bari Pit right"]
+PowerGlove:
+  directed:
+    - ["Ice Palace - H Room center left", "Ice Palace - H Room - Key"]
+    - ["Ice Palace - H Room center right", "Ice Palace - H Room - Key"]
+    - ["Ice Palace - Over Boss - pit", "Ice Palace - Boss Room"]
+  undirected:
+    - ["Ice Palace - H Room center left", "Ice Palace - H Room center right"]
+LiftPot:
+  directed:
+    - ["Ice Palace - Pottery Barn", "Ice Palace - Pottery Barn Key"]
+    - ["Ice Palace - Pottery Barn", "Ice Palace - Block Drop - orange"]
+    - ["Ice Palace - Pottery Barn", "Ice Palace - Block Drop - right blue"]
+    - ["Ice Palace - Pottery Barn", "Ice Palace - Ice Clock"]
+    - ["Ice Palace - Ice T", "Ice Palace - Iced T Room"]
+    - ["Ice Palace - H Room left", "Ice Palace - Map Chest"]
+    - ["Ice Palace - Big Key right", "Ice Palace - Big Key Chest"]
+    - ["Ice Palace - Big Key right", "Ice Palace - Big Key View"]
+    - ["Ice Palace - Vanilla Ice", "Ice Palace - Freezor Room Ledge"]
+  undirected: []
+BigKeyD5:
+  directed:
+    - ["Ice Palace - Big Chest Room - left", "Ice Palace - Big Chest"]
+    - ["Ice Palace - Block Drop - orange", "Ice Palace - Fairy Drop - orange"]
+    - ["Ice Palace - Block Drop - right blue", "Ice Palace - Fairy Drop - blue"]
+  undirected: []
+KeyD5:
+  directed:
+    - ["Ice Palace - Bari Key Door", "Ice Palace - Blob Ambush"]
+    - ["Ice Palace - Big Spike Cross Door", "Ice Palace - Big Spike Cross"]
+    - ["Ice Palace - Big Spike Cross Door", "Ice Palace - Bari University"]
+    - ["Ice Palace - Vanilla Ice Key Door", "Ice Palace - Vanilla Ice"]
+    - ["Ice Palace - Vanilla Ice Key Door", "Ice Palace - Slime Party"]
+    - ["Ice Palace - Conveyor Door", "Ice Palace - Conveyor"]
+    - ["Ice Palace - Conveyor Door", "Ice Palace - IPBJ - orange"]
+    - ["Ice Palace - Conveyor Door", "Ice Palace - IPBJ - blue top"]
+    - ["Ice Palace - Fairy Drop Door", "Ice Palace - Lone Antifairy"]
+    - ["Ice Palace - Restock Room Door", "Ice Palace - Block Switch"]
+    - ["Ice Palace - Restock Room Door", "Ice Palace - Restock Room"]
+  undirected: []
+IcePalaceBariKeyTrophy|3:
+  directed:
+    - ["Ice Palace - Bari Key - Shutter Door", "Ice Palace - Entrance"]
+  undirected: []
+IcePalaceEntranceTrophy:
+  directed:
+    - ["Ice Palace - Entrance - Shutter Door", "Ice Palace - Bari Key"]
+  undirected: []
+IcePalacePenguinTrophy|5:
+  directed:
+    - ["Ice Palace - Penguin Line Up - Shutter Door", "Ice Palace - Big Spike Cross"]
+  undirected: []
+IcePalaceStalfosAmbushTrophy|2:
+  directed:
+    - ["Ice Palace - Stalfos Ambush - Shutter Door", "Ice Palace - Conveyor"]
+  undirected: []

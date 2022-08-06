@@ -1,0 +1,8 @@
+MagicMirror:
+  directed:
+    - ["Paradox Cave - Bottom Entrance", "Paradox Cave - Bottom"]
+  undirected: []
+Hookshot:
+  directed:
+    - ["Ice Palace - Big Chest Room - right", "Ice Palace - Big Chest Room - left"]
+  undirected: []

@@ -1,0 +1,13 @@
+PegasusBoots:
+  directed:
+    - ["Haunted Grove Entrance", "Cave 45 Ledge"]
+    - ["Hobo Bridge", "Lake Hylia Small Island"]
+    - ["Zora's Domain", "Zora's Domain Ledge"]
+    - ["South Kakariko", "Checkerboard Ledge"]
+    - ["Race Game", "Desert Ledge"]
+    - ["Race Game", "Desert Ledge - Part 2"]
+    - ["Desert", "Bombos Tablet Ledge West"]
+    - ["Northwest Pond", "West Death Mountain"]
+    - ["West Death Mountain", "Graveyard Ledge"]
+    - ["East Dark Death Mountain Summit", "Turtle Rock - Eye Bridge"]
+  undirected: []

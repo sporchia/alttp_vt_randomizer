@@ -1,0 +1,17 @@
+fixed:
+  directed:
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - Courtyard"]
+    - ["Hyrule Castle - Courtyard NE Nook", "Secret Passage Stairs - In"]
+    - ["Secret Passage Stairs - Out", "Hyrule Castle - Courtyard NE Nook"]
+    - ["Hyrule Castle - Courtyard", "Hyrule Castle - Main Entrance - In"]
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - East Entrance - In"]
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - West Entrance - In"]
+    - ["Hyrule Castle - Main Entrance - Out", "Hyrule Castle - Courtyard"]
+    - ["Hyrule Castle - East Entrance - Out", "Hyrule Castle - Wall Walk"]
+    - ["Hyrule Castle - West Entrance - Out", "Hyrule Castle - Wall Walk"]
+  undirected:
+    - ["Link's House", "Hyrule Castle - Outer Court"]
+LiftBush:
+  directed:
+    - ["Hyrule Castle - Outer Court", "Secret Passage Uncle - Hole"]
+  undirected: []

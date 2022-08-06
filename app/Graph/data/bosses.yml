@@ -1,0 +1,92 @@
+# this file is unused at the moment, bosses dmg is coded in other data files (this is just for completeness)
+DefeatMoldorm:
+  - L1Sword
+  - Hammer
+DefeatArmosKnight:
+  - Boomerang
+  - RedBoomerang
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+DefeatLanmolas:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+DefeatMothula:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+  - FireRod
+DefeatArrghus:
+  - L1Sword
+  - Hammer
+  - BowAndArrows
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+DefeatArrghusSpawn:
+  - L1Sword
+  - Hammer
+  - UseBomb
+  - BowAndSilverArrows
+  - FireRod
+  - IceRod
+DefeatHelmasaur:
+  - L1Sword
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+DefeatKholdstare:
+  - L1Sword
+  - Hammer
+  - FireRod
+DefeatKholdstareShell:
+  - FireRod
+  - ActiveBombos
+DefeatVitreous:
+  - L1Sword
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+DefeatVitreousSmallEyeball:
+  - L1Sword
+  - Hammer
+  - BowAndArrows
+  - UseBomb
+  - BowAndSilverArrows
+DefeatTrinexx:
+  - L1Sword
+  - Hammer
+DefeatTrinexxHeadFire:
+  - L1Sword
+  - Hammer
+  - IceRod
+DefeatTrinexxHeadIce:
+  - L1Sword
+  - Hammer
+  - FireRod
+DefeatBlind:
+  - L1Sword
+  - CaneOfSomaria
+  - CaneOfByrna
+  - Hammer
+DefeatGanon:
+  - L2Sword
+  - Hammer
+DefeatGanonInvisible:
+  - BowAndSilverArrows

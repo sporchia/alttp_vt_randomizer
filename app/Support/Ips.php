@@ -1,13 +1,15 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
+
+namespace App\Support;
 
 use Illuminate\Support\Arr;
 
 /**
  * Class to convert our byte array data to IPS format and vice versus.
  */
-class Ips
+final class Ips
 {
     public function patchToIps(array $patch): string
     {

@@ -1,8 +1,8 @@
 <?php
 
-use ALttP\Build;
-use ALttP\Rom;
-use ALttP\Support\Flips;
+use App\Models\Build;
+use App\Rom;
+use App\Support\Flips;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;

@@ -1,0 +1,45 @@
+fixed:
+  directed:
+    - ["Hyrule Castle - Courtyard NE Nook", "Secret Passage Stairs - In"]
+    - ["Secret Passage Stairs - Out", "Hyrule Castle - Courtyard NE Nook"]
+
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - Courtyard"]
+
+    - ["Hyrule Castle - Courtyard", "Hyrule Castle - Main Entrance - In"]
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - East Entrance - In"]
+    - ["Hyrule Castle - Wall Walk", "Hyrule Castle - West Entrance - In"]
+
+    - ["Hyrule Castle - Main Entrance - Out", "Hyrule Castle - Courtyard"]
+    - ["Hyrule Castle - East Entrance - Out", "Hyrule Castle - Wall Walk"]
+    - ["Hyrule Castle - West Entrance - Out", "Hyrule Castle - Wall Walk"]
+
+    - ["Link's House", "Bomb Shoppe Lobby"]
+    - ["Death Mountain Foot Cave Entrance", "Bumper Cave Bottom"]
+    - ["Death Mountain Foot Descent Ledge", "Bumper Cave Top Exit"]
+    - ["West Dark Death Mountain", "West Death Mountain"]
+    - ["East Death Mountain Summit", "East Death Mountain Mimic Balcony"]
+    - ["East Death Mountain Mimic Balcony", "East Death Mountain Running Man"]
+    - ["Desert Pass", "Bombos Tablet Ledge East"]
+    - ["Haunted Grove Entrance", "Cave 45 Ledge"]
+    - ["Graveyard Northern Nook", "Graveyard Ledge"]
+    - ["Desert", "Checkerboard Ledge"]
+  undirected:
+    - ["Link's House", "Hyrule Castle - Outer Court"]
+
+    - ["West Death Mountain Spectacle Peak", "West Death Mountain Summit"]
+TowerEntry:
+  directed:
+    - ["Hyrule Castle - Wall Walk", "Ganon's Tower - Lobby"]
+  undirected: []
+Hammer:
+  directed:
+    - ["East Death Mountain Peg Portal Top", "East Death Mountain Peg Portal"]
+  undirected: []
+LiftBush:
+  directed:
+    - ["Hyrule Castle - Outer Court", "Secret Passage Uncle"]
+  undirected: []
+Flippers:
+  directed:
+    - ["Lake Hylia", "Lake Hylia Island"]
+  undirected: []

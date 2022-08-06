@@ -1,8 +1,10 @@
 <?php
 
-namespace ALttP\Jobs;
+declare(strict_types=1);
 
-use ALttP\Seed;
+namespace App\Jobs;
+
+use App\Models\Seed;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -10,19 +12,18 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
-class SendPatchToDisk implements ShouldQueue
+/**
+ * Move patches from server to different accessable location.
+ */
+final class SendPatchToDisk implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $seed;
-    protected $clear_record;
-
-    public function __construct(Seed $seed, bool $clear_record = true)
+    public function __construct(private Seed $seed, private bool $clear_record = true)
     {
-        $this->seed = $seed;
-        $this->clear_record = $clear_record;
+        //
     }
 
     /**

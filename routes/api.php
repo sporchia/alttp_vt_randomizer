@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('throttleIp:150,360');
+Route::get('streams', 'StreamsController@streams')->middleware('throttle:20,1');
+
+Route::post('randomizer', 'RandomizerController@generateSeed')->middleware('throttle:150,360');
 
 Route::post('multiworld', 'MultiworldController@generateSeed')->middleware('throttleIp:40,360');
 
@@ -28,10 +32,10 @@ Route::post('customizer', 'CustomizerController@generateSeed')->middleware('thro
 Route::post('customizer/test', 'CustomizerController@testGenerateSeed')->middleware('throttleIp:200,360');
 
 Route::get('daily', static function () {
-    $featured = ALttP\FeaturedGame::today();
+    $featured = App\Models\FeaturedGame::today();
     if (!$featured) {
         $exitCode = Artisan::call('alttp:dailies', ['days' => 1]);
-        $featured = ALttP\FeaturedGame::today();
+        $featured = App\Models\FeaturedGame::today();
     }
     $seed = $featured->seed;
     if ($seed) {
@@ -44,9 +48,9 @@ Route::get('daily', static function () {
 });
 
 Route::get('h/{hash}', static function ($hash) {
-    $seed = ALttP\Seed::where('hash', $hash)->first();
+    $seed = App\Models\Seed::where('hash', $hash)->first();
     if ($seed) {
-        $build = ALttP\Build::where('build', $seed->build)->first();
+        $build = App\Models\Build::where('build', $seed->build)->first();
         if (!$build) {
             abort(404);
         }

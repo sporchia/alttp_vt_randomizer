@@ -16,8 +16,9 @@ export default {
     flatItemPool: state => {
       return state.pool.items.reduce((map, obj) => {
         if (obj.value == "auto_fill") return map;
-        let value =
-          obj.value.indexOf(":") !== -1 ? obj.value.split(":")[0] : obj.value;
+        let value = obj.value.indexOf(":") !== -1
+            ? obj.value.split(":")[0]
+            : obj.value;
         map[value] = Number(obj.count);
         return map;
       }, {});

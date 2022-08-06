@@ -1,0 +1,9 @@
+fixed:
+  directed:
+    - ["Link's House - Bedroom", "Bomb Shoppe"]
+    - ["Old Man Cave Ledge", "Bumper Cave Entrance"]
+    - ["Old Man Maze", "West Dark Death Mountain"]
+    - ["Bomb Shoppe Lobby", "Link's House"]
+    - ["Bumper Cave Bottom", "Death Mountain Foot Cave Entrance"]
+    - ["Bumper Cave Top Exit", "Death Mountain Foot Descent Ledge"]
+  undirected: []

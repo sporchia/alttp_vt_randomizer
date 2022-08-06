@@ -161,8 +161,19 @@ return [
     'ark-dorana.2.zspr' => [
         'name' => 'Ark (No Cape)',
         'author' => 'Dorana',
-        'file' => 'ark-dorana.2.zspr',
-        'version' => 2,
+        'file' => 'ark-dorana.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.5',
+        'tags' => [
+            0 => 'Terranigma',
+            1 => 'Male',
+        ],
+    ],
+    'ark.1.zspr' => [
+        'name' => 'Ark (Cape)',
+        'author' => 'wzl',
+        'file' => 'ark.1.zspr',
+        'version' => 1,
         'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Terranigma',
@@ -574,6 +585,17 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'bobross.1.zspr' => [
+        'name' => 'Bob Ross',
+        'author' => 'CaptainApathy',
+        'file' => 'bobross.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Personality',
         ],
     ],
     'boo-two.1.zspr' => [
@@ -1230,7 +1252,17 @@ return [
             0 => 'smz3',
         ],
     ],
-    'cucco.2.zspr' => [
+    'crewmate.1.zspr' => [
+        'name' => 'Crewmate',
+        'author' => 'Fish_waffle64',
+        'file' => 'crewmate.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Among Us',
+        ],
+    ],
+    'cucco.1.zspr' => [
         'name' => 'Cucco',
         'author' => 'Mike Trethewey',
         'file' => 'cucco.2.zspr',
@@ -1482,6 +1514,17 @@ return [
             0 => 'smz3',
         ],
     ],
+    'dekar.1.zspr' => [
+        'name' => 'Dekar',
+        'author' => 'The3X',
+        'file' => 'dekar.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Lufia',
+        ],
+    ],
     'demonlink.1.zspr' => [
         'name' => 'Demon Link',
         'author' => 'Krelbel',
@@ -1676,8 +1719,7 @@ return [
             0 => 'Personality',
             1 => 'Streamer',
         ],
-        'usage' => [
-        ],
+        'usage' => [],
     ],
     'espeon.1.zspr' => [
         'name' => 'Espeon',
@@ -1708,26 +1750,11 @@ return [
             1 => 'commercial',
         ],
     ],
-    'fi.1.zspr' => [
-        'name' => 'Fi',
-        'author' => 'Lougaroc',
-        'file' => 'fi.1.zspr',
-        'version' => 1,
-        'vtversion' => '31.0.9',
-        'tags' => [
-            0 => 'Legend of Zelda',
-            1 => 'female',
-            2 => 'Skyward Sword',
-        ],
-        'usage' => [
-            0 => 'smz3',
-        ],
-    ],
-    'fierce-deity-link.3.zspr' => [
+    'fierce-deity-link.2.zspr' => [
         'name' => 'Fierce Deity Link',
         'author' => 'Jeffreygriggs2',
-        'file' => 'fierce-deity-link.3.zspr',
-        'version' => 3,
+        'file' => 'fierce-deity-link.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.5',
         'tags' => [
             0 => 'Link',
@@ -2195,6 +2222,17 @@ return [
             1 => 'commercial',
         ],
     ],
+    'hanna.1.zspr' => [
+        'name' => 'Hanna',
+        'author' => 'Maya-Neko',
+        'file' => 'hanna.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Female',
+            1 => 'Personality',
+        ],
+    ],
     'hardhat_beetle.1.zspr' => [
         'name' => 'Hardhat Beetle',
         'author' => 'Artheau',
@@ -2321,9 +2359,6 @@ return [
         'vtversion' => '30.5',
         'tags' => [
             0 => 'ALTTP NPC',
-        ],
-        'usage' => [
-            0 => 'smz3',
         ],
     ],
     'hoarder-bush.1.zspr' => [
@@ -3069,6 +3104,18 @@ return [
             0 => 'smz3',
         ],
     ],
+    'little-hylian.1.zspr' => [
+        'name' => 'Little Hylian',
+        'author' => 'MM102',
+        'file' => 'little-hylian.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Personality',
+            2 => 'Pokemon',
+        ],
+    ],
     'littlepony.1.zspr' => [
         'name' => 'Pony',
         'author' => 'Botchos',
@@ -3139,6 +3186,18 @@ return [
         ],
         'usage' => [
             0 => 'smz3',
+        ],
+    ],
+    'luffy.1.zspr' => [
+        'name' => 'Luffy',
+        'author' => 'BOtheMighty',
+        'file' => 'luffy.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.5',
+        'tags' => [
+            0 => 'Personality',
+            1 => 'Streamer',
+            2 => 'Male',
         ],
     ],
     'luigi.1.zspr' => [
@@ -3613,6 +3672,17 @@ return [
             1 => 'commercial',
         ],
     ],
+    'moblin.1.zspr' => [
+        'name' => 'Moblin',
+        'author' => 'Noctai_',
+        'file' => 'moblin.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Legend of Zelda',
+            1 => 'ALTTP',
+        ],
+    ],
     'modernlink.1.zspr' => [
         'name' => 'Modern Link',
         'author' => 'RyuTech',
@@ -3743,11 +3813,11 @@ return [
             1 => 'commercial',
         ],
     ],
-    'navirou.3.zspr' => [
+    'navirou.2.zspr' => [
         'name' => 'Navirou',
         'author' => 'Lori',
-        'file' => 'navirou.3.zspr',
-        'version' => 3,
+        'file' => 'navirou.2.zspr',
+        'version' => 2,
         'vtversion' => '31.0.6',
         'tags' => [
             0 => 'Monster Hunter',
@@ -3874,6 +3944,17 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'niddraig.1.zspr' => [
+        'name' => 'Niddraig',
+        'author' => 'Jakebob',
+        'file' => 'niddraig.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Personality',
         ],
     ],
     'niko.1.zspr' => [
@@ -4582,6 +4663,18 @@ return [
             1 => 'commercial',
         ],
     ],
+    'rover.1.zspr' => [
+        'name' => 'Rover',
+        'author' => 'NO Body the Dragon',
+        'file' => 'rover.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Male',
+            1 => 'Animal Crossing',
+            2 => 'Cat',
+        ],
+    ],
     'roykoopa.1.zspr' => [
         'name' => 'Roy Koopa',
         'author' => 'Achy',
@@ -4979,24 +5072,20 @@ return [
             1 => 'commercial',
         ],
     ],
-    'skunk.1.zspr' => [
-        'name' => 'Skunk',
-        'author' => 'Hiveul',
-        'file' => 'skunk.1.zspr',
+    'slowpoke.1.zspr' => [
+        'name' => 'Slowpoke',
+        'author' => 'Joey_Rat',
+        'file' => 'slowpoke.1.zspr',
         'version' => 1,
-        'vtversion' => '31.0.8',
+        'vtversion' => '31.0.7',
         'tags' => [
-            0 => 'Personality',
-        ],
-        'usage' => [
-            0 => 'smz3',
-            1 => 'commercial',
+            0 => 'Pokemon',
         ],
     ],
-    'slime.1.zspr' => [
-        'name' => 'Slime',
-        'author' => 'KamenRideDecade',
-        'file' => 'slime.1.zspr',
+    'snes-controller.1.zspr' => [
+        'name' => 'SNES Controller',
+        'author' => 'Cbass601',
+        'file' => 'snes-controller.1.zspr',
         'version' => 1,
         'vtversion' => '31.0.7',
         'tags' => [
@@ -5298,6 +5387,17 @@ return [
             0 => 'smz3',
         ],
     ],
+    'steamedhams.1.zspr' => [
+        'name' => 'Steamed Hams',
+        'author' => 'AFewGoodTaters',
+        'file' => 'steamedhams.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Link',
+            1 => 'Cartoon',
+        ],
+    ],
     'stick_man.1.zspr' => [
         'name' => 'Stick Man',
         'author' => 'skovacs1',
@@ -5370,6 +5470,18 @@ return [
         ],
         'usage' => [
             0 => 'smz3',
+        ],
+    ],
+    'susie.1.zspr' => [
+        'name' => 'Susie',
+        'author' => 'Zandra',
+        'file' => 'susie.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.0.7',
+        'tags' => [
+            0 => 'Female',
+            1 => 'Undertale',
+            2 => 'Deltarune',
         ],
     ],
     'swatchy.1.zspr' => [

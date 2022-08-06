@@ -1,8 +1,8 @@
 <?php
 
-namespace ALttP\Drops;
+namespace App\Drops;
 
-use ALttP\Sprite\Droppable;
+use App\Sprite\Droppable;
 
 /**
  * A Prize Pack slot is a slot that can be filled with a drop

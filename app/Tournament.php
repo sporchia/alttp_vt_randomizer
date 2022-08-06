@@ -1,7 +1,13 @@
-<?php namespace ALttP;
+<?php
 
-class Tournament {
-	public static function apply(Rom $rom) {
+declare(strict_types=1);
+
+namespace App;
+
+final class Tournament
+{
+	public static function apply(Rom $rom)
+	{
 		return $rom;
 	}
 }

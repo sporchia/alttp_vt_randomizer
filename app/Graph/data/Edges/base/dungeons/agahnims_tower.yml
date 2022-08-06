@@ -1,0 +1,78 @@
+fixed:
+  directed:
+    - ["Agahnims Tower - Entrance", "Agahnims Tower - Chain Guards"]
+    - ["Agahnims Tower - Chain Guards", "Agahnims Tower - Chain Guards - Shutter Door"]
+    - ["Agahnims Tower - Knife Guards", "Agahnims Tower - Knife Guards - Shutter Chest"]
+    - ["Agahnims Tower - Knife Guards", "Agahnims Tower - First Door"]
+    - ["Agahnims Tower - Keese Statue", "Agahnims Tower - Knife Guards"]
+    - ["Agahnims Tower - Keese Statue", "Agahnims Tower - Dark Maze"]
+    - ["Agahnims Tower - Dark Maze", "Agahnims Tower - Second Chest"]
+    - ["Agahnims Tower - Dark Maze", "Agahnims Tower - Second Door"]
+    - ["Agahnims Tower - Dark Knife Guards", "Agahnims Tower - Second Door"]
+    - ["Agahnims Tower - Dark Corner", "Agahnims Tower - Dark Bridge"]
+    - ["Agahnims Tower - Dark Bridge", "Agahnims Tower - Dark Key Guards"]
+    - ["Agahnims Tower - Dark Key Guards", "Agahnims Tower - Dark Key Guards - Shutter Door"]
+    - ["Agahnims Tower - Dark Key Guards", "Agahnims Tower - Third Door"]
+    - ["Agahnims Tower - Throwing Guards", "Agahnims Tower - Dark Key Guards darkness"]
+    - ["Agahnims Tower - Throwing Guards", "Agahnims Tower - Throwing Guards - Shutter Door"]
+    - ["Agahnims Tower - Guards", "Agahnims Tower - Guards - Shutter Door"]
+    - ["Agahnims Tower - Circle of Pots", "Agahnims Tower - Circle of Pots - Shutter Door"]
+    - ["Agahnims Tower - Circle of Pots", "Agahnims Tower - Fourth Door"]
+    - ["Agahnims Tower - Guard Mix", "Agahnims Tower - Fourth Door"]
+    - ["Agahnims Tower - Antichamber", "Agahnims Tower - Bedroom"]
+    - ["Agahnims Tower - Boss", "Pyramid"]
+  undirected:
+    - ["Agahnims Tower - Dark Knife Guards", "Agahnims Tower - Dark Corner"]
+    - ["Agahnims Tower - Guard Mix", "Agahnims Tower - Push Statue"]
+    - ["Agahnims Tower - Push Statue", "Agahnims Tower - Bridge"]
+    - ["Agahnims Tower - Bridge", "Agahnims Tower - Antichamber"]
+Lamp:
+  directed:
+    - ["Agahnims Tower - Keese Statue darkness", "Agahnims Tower - Keese Statue"]
+    - ["Agahnims Tower - Dark Key Guards darkness", "Agahnims Tower - Dark Key Guards"]
+  undirected: []
+L1Sword:
+  directed:
+    - ["Agahnims Tower - Bedroom", "Agahnims Tower - Boss Room"]
+  undirected: []
+LiftPot:
+  directed: []
+  undirected: []
+KeyA1:
+  directed:
+    - ["Agahnims Tower - First Door", "Agahnims Tower - Keese Statue darkness"]
+    - ["Agahnims Tower - Second Door", "Agahnims Tower - Dark Maze"]
+    - ["Agahnims Tower - Second Door", "Agahnims Tower - Dark Knife Guards"]
+    - ["Agahnims Tower - Third Door", "Agahnims Tower - Throwing Guards"]
+    - ["Agahnims Tower - Fourth Door", "Agahnims Tower - Circle of Pots"]
+    - ["Agahnims Tower - Fourth Door", "Agahnims Tower - Guard Mix"]
+  undirected: []
+DefeatAgahnim:
+  directed:
+    - ["Agahnims Tower - Boss Room", "Agahnims Tower - Boss"]
+  undirected: []
+AgahnimsTowerKeyGuardsTrophy|3:
+  directed:
+    - ["Agahnims Tower - Dark Key Guards - Shutter Door", "Agahnims Tower - Dark Bridge"]
+  undirected: []
+AgahnimsTowerChainTrophy|2:
+  directed:
+    - ["Agahnims Tower - Chain Guards - Shutter Door", "Agahnims Tower - Knife Guards"]
+  undirected: []
+AgahnimsTowerCircleOfPotsTrophy|4:
+  directed:
+    - ["Agahnims Tower - Circle of Pots - Shutter Door", "Agahnims Tower - Guards"]
+  undirected: []
+AgahnimsTowerGuardsTrophy|2:
+  directed:
+    - ["Agahnims Tower - Guards - Shutter Door", "Agahnims Tower - Circle of Pots"]
+    - ["Agahnims Tower - Guards - Shutter Door", "Agahnims Tower - Throwing Guards"]
+  undirected: []
+AgahnimsTowerKnifeTrophy|2:
+  directed:
+    - ["Agahnims Tower - Knife Guards - Shutter Chest", "Agahnims Tower - First Chest"]
+  undirected: []
+AgahnimsTowerThrowingGuardsTrophy|4:
+  directed:
+    - ["Agahnims Tower - Throwing Guards - Shutter Door", "Agahnims Tower - Guards"]
+  undirected: []

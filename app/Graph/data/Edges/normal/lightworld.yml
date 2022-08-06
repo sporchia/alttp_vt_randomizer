@@ -1,0 +1,41 @@
+fixed:
+  directed:
+    - ["Duck Airlines", "West Death Mountain"]
+    - ["Duck Airlines", "Witch's Hut"]
+    - ["Duck Airlines", "Kakariko Village"]
+    - ["Duck Airlines", "Link's House"]
+    - ["Duck Airlines", "Eastern Ruins Portal"]
+    - ["Duck Airlines", "Desert Rocks Ledge"]
+    - ["Duck Airlines", "Wetlands Dam"]
+    - ["Duck Airlines", "South Shore Falls"]
+    - ["Link's House", "Link's House - Bedroom"]
+    - ["Death Mountain Foot Cave Entrance", "Old Man Cave Ledge darkness"]
+    - ["West Death Mountain", "Old Man Maze - In"]
+    - ["West Death Mountain", "West Dark Death Mountain"]
+    - ["East Death Mountain Peg Portal Top", "East Death Mountain Peg Portal"]
+  undirected: []
+AgahnimDefeated:
+  directed:
+    - ["Hyrule Castle - Outer Court", "Pyramid"]
+    - ["Hyrule Castle - Courtyard", "Pyramid"]
+  undirected: []
+PowerGlove:
+  directed:
+    - ["Lost Woods Alcove Portal", "Skull Woods Alcove Portal Nook"]
+    - ["Wetlands Portal Warp", "Swamplands Portal Nook"]
+  undirected: []
+TitansMitt:
+  directed:
+    - ["East Death Mountain Peg Portal", "East Death Mountain Peg Portal Top"]
+    - ["Lake Hylia Fairy Island", "Dark Lake Hylia Ice Palace Entrance"]
+    - ["Desert Rocks Ledge", "Mire Warp Ledge"]
+    - ["East Death Mountain Running Man", "East Dark Death Mountain Running Man"]
+  undirected: []
+L2Sword:
+  directed:
+    - ["Hyrule Castle - Wall Walk", "Agahnims Tower - Entrance"]
+  undirected: []
+Cape:
+  directed:
+    - ["Hyrule Castle - Wall Walk", "Agahnims Tower - Entrance"]
+  undirected: []

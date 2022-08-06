@@ -1,16 +1,14 @@
 <?php
 
-namespace ALttP\Http\Controllers;
+namespace App\Http\Controllers;
 
-use ALttP\EntranceRandomizer;
 use Illuminate\Http\Request;
-use ALttP\Jobs\SendPatchToDisk;
-use ALttP\Randomizer;
-use ALttP\Rom;
-use ALttP\Support\WorldCollection;
-use ALttP\World;
+use App\Rom;
 use Exception;
 
+/**
+ * @todo this needs v32 love
+ */
 class MultiworldController extends Controller
 {
     public function generateSeed(Request $request)

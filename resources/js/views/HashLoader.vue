@@ -148,7 +148,11 @@ export default {
       return new Promise(resolve => {
         axios.post(`/hash/` + this.hash).then(response => {
           this.rom.parsePatch(response.data).then(() => {
-            if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
+            if (
+              this.rom.shuffle ||
+              this.rom.spoilers == "mystery" ||
+              this.rom.allow_quickswap
+            ) {
               this.rom.allowQuickSwap = true;
             }
             this.gameLoaded = true;
@@ -175,7 +179,11 @@ export default {
           .then(response => {
             this.rom.parsePatch(response.data).then(() => {
               console.log("loaded from s3 :)");
-              if (this.rom.shuffle || this.rom.spoilers == "mystery" || this.rom.allow_quickswap) {
+              if (
+                this.rom.shuffle ||
+                this.rom.spoilers == "mystery" ||
+                this.rom.allow_quickswap
+              ) {
                 this.rom.allowQuickSwap = true;
               }
               this.gameLoaded = true;
@@ -187,6 +195,12 @@ export default {
       });
     },
     saveRom() {
+      // track the sprite choice for usage statistics
+      localforage.getItem("rom.sprite-gfx").then(value => {
+        ga("send", "event", "save", {
+          dimension1: value
+        });
+      });
       return this.rom.save(this.rom.downloadFilename() + ".sfc", {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,

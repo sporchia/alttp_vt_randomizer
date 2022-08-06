@@ -1,0 +1,243 @@
+fixed:
+  directed:
+    - ["Ganon's Tower - DMs Room", "Ganon's Tower - DMs Room - Top Left"]
+    - ["Ganon's Tower - DMs Room", "Ganon's Tower - DMs Room - Top Right"]
+    - ["Ganon's Tower - DMs Room", "Ganon's Tower - DMs Room - Bottom Left"]
+    - ["Ganon's Tower - DMs Room", "Ganon's Tower - DMs Room - Bottom Right"]
+    - ["Ganon's Tower - Map Room", "Ganon's Tower - Map Chest"]
+    - ["Ganon's Tower - Randomizer Room", "Ganon's Tower - Randomizer Room - Top Left"]
+    - ["Ganon's Tower - Randomizer Room", "Ganon's Tower - Randomizer Room - Top Right"]
+    - ["Ganon's Tower - Randomizer Room", "Ganon's Tower - Randomizer Room - Bottom Left"]
+    - ["Ganon's Tower - Randomizer Room", "Ganon's Tower - Randomizer Room - Bottom Right"]
+    - ["Ganon's Tower - Bob's Room", "Ganon's Tower - Bob's Chest"]
+    - ["Ganon's Tower - Hope Room", "Ganon's Tower - Hope Room - Left"]
+    - ["Ganon's Tower - Hope Room", "Ganon's Tower - Hope Room - Right"]
+    - ["Ganon's Tower - Tile Room", "Ganon's Tower - Tile Room - Shutter Chest"]
+    - ["Ganon's Tower - Compass Room", "Ganon's Tower - Compass Room - Top Left"]
+    - ["Ganon's Tower - Compass Room", "Ganon's Tower - Compass Room - Top Right"]
+    - ["Ganon's Tower - Compass Room", "Ganon's Tower - Compass Room - Bottom Left"]
+    - ["Ganon's Tower - Compass Room", "Ganon's Tower - Compass Room - Bottom Right"]
+    - ["Ganon's Tower - Big Key Room", "Ganon's Tower - Big Key Chest"]
+    - ["Ganon's Tower - Big Key Room", "Ganon's Tower - Big Key Room - Left"]
+    - ["Ganon's Tower - Big Key Room", "Ganon's Tower - Big Key Room - Right"]
+    - ["Ganon's Tower - Mini Helmasaur Room", "Ganon's Tower - Mini Helmasaur Room - Left"]
+    - ["Ganon's Tower - Mini Helmasaur Room", "Ganon's Tower - Mini Helmasaur Room - Right"]
+    - ["Ganon's Tower - Pre-Moldorm", "Ganon's Tower - Pre-Moldorm Chest"]
+    - ["Ganon's Tower - Moldorm Chest", "Ganon's Tower - Moldorm - Chest Platform"]
+
+    - ["Ganon's Tower - Lobby", "Ganon's Tower - Torch Room"]
+    - ["Ganon's Tower - Lobby", "Ganon's Tower - Hope Room"]
+    - ["Ganon's Tower - Torch Room", "Ganon's Tower - Useless Door"]
+    - ["Ganon's Tower - Hope Room", "Ganon's Tower - Useless Door"]
+    - ["Ganon's Tower - Bonk Pits - Middle", "Ganon's Tower - Whackamole"]
+    - ["Ganon's Tower - Bonk Pits - Top", "Ganon's Tower - DMs Room"]
+    - ["Ganon's Tower - DMs Room", "Ganon's Tower - Bonk Pits - Top"]
+    - ["Ganon's Tower - Bonk Pits - Bottom - Blue", "Ganon's Tower - Map Door"]
+    - ["Ganon's Tower - Bonk Pits - Bottom Upper - Orange", "Ganon's Tower - Map Door"]
+    - ["Ganon's Tower - Map Room", "Ganon's Tower - Map Door"]
+    - ["Ganon's Tower - Twin Switches Right - Orange", "Ganon's Tower - Twin Switches Door"]
+    - ["Ganon's Tower - Twin Switches Right - Blue", "Ganon's Tower - Twin Switches Door"]
+    - ["Ganon's Tower - Spike Switch", "Ganon's Tower - Twin Switches Door"]
+    - ["Ganon's Tower - Spike Switch", "Ganon's Tower - Fire Snakes Right"]
+    - ["Ganon's Tower - Firesnake Room", "Ganon's Tower - Fire Snakes Left"]
+    - ["Ganon's Tower - Fire Snakes Left", "Ganon's Tower - Firesnake Door"]
+    - ["Ganon's Tower - Teleports", "Ganon's Tower - Beetle Pits Left"]
+    - ["Ganon's Tower - Beetle Pits Left", "Ganon's Tower - The Zoo - You"]
+    - ["Ganon's Tower - The Zoo - You", "Ganon's Tower - Beetle Pits Right"]
+    - ["Ganon's Tower - Big Chest Room - Upper Corner", "Ganon's Tower - Big Chest Room"]
+    - ["Ganon's Tower - Big Chest Room", "Ganon's Tower - Torch Room"]
+    - ["Ganon's Tower - Tile Room", "Ganon's Tower - Hope Room"]
+    - ["Ganon's Tower - Tile Room", "Ganon's Tower - Tile Room Door"]
+    - ["Ganon's Tower - Long Torch Puzzle", "Ganon's Tower - Tile Room Door"]
+    - ["Ganon's Tower - Long Torch Puzzle", "Ganon's Tower - The Zoo"]
+    - ["Ganon's Tower - The Zoo", "Ganon's Tower - Long Torch Puzzle"]
+    - ["Ganon's Tower - Gibdo Airlock", "Ganon's Tower - Long Torch Puzzle"]
+    - ["Ganon's Tower - Compass Room", "Ganon's Tower - Bari Corridor"]
+    - ["Ganon's Tower - Bari Corridor", "Ganon's Tower - Bari Corridor Door"]
+    - ["Ganon's Tower - Firebar Falling Bridge", "Ganon's Tower - Bari Corridor Door"]
+    - ["Ganon's Tower - Beetle Island", "Ganon's Tower - Invisible, E"]
+    - ["Ganon's Tower - Invisible, E", "Ganon's Tower - Invisible Floor Maze"]
+    - ["Ganon's Tower - Ice Armos", "Ganon's Tower - Big Key Room"]
+    - ["Ganon's Tower - Big Key Room", "Ganon's Tower - Ice Room"]
+    - ["Ganon's Tower - Ice Room", "Ganon's Tower - Empty Torch Room"]
+    - ["Ganon's Tower - Spike Switches", "Ganon's Tower - Mimics 1"]
+    - ["Ganon's Tower - Mimics 1", "Ganon's Tower - Spike Switches"]
+    - ["Ganon's Tower - Dragmire Statues", "Ganon's Tower - Mimics 2"]
+    - ["Ganon's Tower - Spike Alley", "Ganon's Tower - Cannonball Z"]
+    - ["Ganon's Tower - Cannonball Z", "Ganon's Tower - Spike Alley"]
+    - ["Ganon's Tower - Gauntlet 1", "Ganon's Tower - Gauntlet 1 - Shutter Door"]
+    - ["Ganon's Tower - Gauntlet 2", "Ganon's Tower - Gauntlet 2 - Shutter Door"]
+    - ["Ganon's Tower - Gauntlet 3", "Ganon's Tower - Gauntlet 3 - Shutter Door"]
+    - ["Ganon's Tower - Gauntlet 4", "Ganon's Tower - Gauntlet 4 - Shutter Door"]
+    - ["Ganon's Tower - Gauntlet 5", "Ganon's Tower - Gauntlet 5 - Shutter Door"]
+    - ["Ganon's Tower - Gauntlet Refill", "Ganon's Tower - Gauntlet 5"]
+    - ["Ganon's Tower - Lanmolas", "Ganon's Tower - Gauntlet Refill"]
+    - ["Ganon's Tower - Lanmolas", "Ganon's Tower - Lame Refill"]
+    - ["Ganon's Tower - Wizzrobes 1", "Ganon's Tower - Wizzrobes 1 - Shutter Door"]
+    - ["Ganon's Tower - Laser Bridge", "Ganon's Tower - Wizzrobes 1"]
+    - ["Ganon's Tower - Laser Bridge", "Ganon's Tower - Wizzrobes 2"]
+    - ["Ganon's Tower - Wizzrobes 2", "Ganon's Tower - Wizzrobes 2 - Shutter Door"]
+    - ["Ganon's Tower - Conveyer Falling Bridge", "Ganon's Tower - Wizzrobes 2"]
+    - ["Ganon's Tower - Laser Restock", "Ganon's Tower - Torches 1"]
+    - ["Ganon's Tower - Mini Helmasaur Room", "Ganon's Tower - Torches 2"]
+    - ["Ganon's Tower - Mini Helmasaur Room", "Ganon's Tower - Mini Helmasaur Key - Left"]
+    - ["Ganon's Tower - Mini Helmasaur Room", "Ganon's Tower - Mini Helmasaur Door"]
+    - ["Ganon's Tower - Conveyor Spikes", "Ganon's Tower - Mini Helmasaur Door"]
+    - ["Ganon's Tower - Pre-Moldorm", "Ganon's Tower - Moldorm Door"]
+    - ["Ganon's Tower - Moldorm - Top Left Platform", "Ganon's Tower - Moldorm Door"]
+    - ["Ganon's Tower - Moldorm - Top Left Platform", "Ganon's Tower - Moldorm - Kill Zone"]
+    - ["Ganon's Tower - Moldorm - Top Right Platform", "Ganon's Tower - Moldorm - Kill Zone"]
+    - ["Ganon's Tower - Moldorm - Kill Zone", "Ganon's Tower - Below Moldorm"]
+    - ["Ganon's Tower - Below Moldorm", "Ganon's Tower - Moldorm - Top Right Platform"]
+    - ["Ganon's Tower - Moldorm - Chest Platform", "Ganon's Tower - Moldorm - Exit"]
+    - ["Ganon's Tower - Moldorm - Exit", "Ganon's Tower - Mini Helmasaur Dash"]
+    - ["Ganon's Tower - Mimics 1", "Ganon's Tower - Mimics 1 - Shutter Door"]
+    - ["Ganon's Tower - Mimics 2", "Ganon's Tower - Mimics 2 - Shutter Door"]
+  undirected:
+    - ["Ganon's Tower - Torch Room", "Ganon's Tower - Whackamole"]
+    - ["Ganon's Tower - Twin Switches Left - Orange", "Ganon's Tower - Bonk Pits - Bottom Lower - Orange"]
+    - ["Ganon's Tower - Twin Switches Top - Blue", "Ganon's Tower - Bonk Pits - Bottom - Blue"]
+    - ["Ganon's Tower - Beetle Pits Right", "Ganon's Tower - Invisible Floor Maze"]
+    - ["Ganon's Tower - Invisible Floor Maze", "Ganon's Tower - Big Chest Room"]
+    - ["Ganon's Tower - Invisible Floor Maze", "Ganon's Tower - Bob's Room"]
+    - ["Ganon's Tower - Long Torch Puzzle", "Ganon's Tower - Block Puzzle"]
+    - ["Ganon's Tower - Gibdo Airlock", "Ganon's Tower - Compass Room"]
+    - ["Ganon's Tower - Firebar Falling Bridge", "Ganon's Tower - Beetle Island"]
+    - ["Ganon's Tower - Empty Torch Room", "Ganon's Tower - Big Chest Room - Upper Corner"]
+    - ["Ganon's Tower - Lobby", "Ganon's Tower - Spike Switches"]
+    - ["Ganon's Tower - Cannonball Z", "Ganon's Tower - Gauntlet 1"]
+    - ["Ganon's Tower - Lame Refill", "Ganon's Tower - Wizzrobes 1"]
+    - ["Ganon's Tower - Conveyer Falling Bridge", "Ganon's Tower - Torches 1"]
+    - ["Ganon's Tower - Laser Restock", "Ganon's Tower - Torches 2"]
+    - ["Ganon's Tower - Mini Helmasaur Dash", "Ganon's Tower - Agahnim's Antichamber"]
+PegasusBoots:
+  directed:
+    - ["Ganon's Tower - Torch Room", "Ganon's Tower - Bob's Torch"]
+  undirected:
+    - ["Ganon's Tower - Bonk Pits - Middle", "Ganon's Tower - Bonk Pits - Bottom Upper - Orange"]
+    - ["Ganon's Tower - Bonk Pits - Middle", "Ganon's Tower - Bonk Pits - Bottom - Blue"]
+    - ["Ganon's Tower - Empty Torch Room", "Ganon's Tower - Fairy Pit"]
+    - ["Ganon's Tower - Cannonball Z", "Ganon's Tower - Cannonball Z ledge"]
+UseBomb:
+  directed:
+    - ["Ganon's Tower - Bonk Pits - Bottom Upper - Orange", "Ganon's Tower - Bonk Pits - Bottom Lower - Orange"]
+    - ["Ganon's Tower - Twin Switches Left - Orange", "Ganon's Tower - Twin Switches Right - Orange"]
+    - ["Ganon's Tower - Bob's Room", "Ganon's Tower - Ice Armos"]
+  undirected:
+    - ["Ganon's Tower - Teleports", "Ganon's Tower - Randomizer Room"]
+    - ["Ganon's Tower - Empty Torch Room", "Ganon's Tower - Fairy Pit"]
+    - ["Ganon's Tower - Cannonball Z ledge", "Ganon's Tower - Refill Room"]
+    - ["Ganon's Tower - Conveyor Spikes", "Ganon's Tower - Pre-Moldorm"]
+Hammer:
+  directed:
+    - ["Ganon's Tower - Whackamole", "Ganon's Tower - Bonk Pits - Middle"]
+  undirected: []
+CaneOfSomaria:
+  directed:
+    - ["Ganon's Tower - Bonk Pits - Bottom Upper - Orange", "Ganon's Tower - Bonk Pits - Bottom Lower - Orange"]
+    - ["Ganon's Tower - Twin Switches Left - Orange", "Ganon's Tower - Twin Switches Right - Orange"]
+    - ["Ganon's Tower - Hope Room", "Ganon's Tower - Tile Room"]
+  undirected: []
+Hookshot:
+  directed:
+    - ["Ganon's Tower - Fire Snakes Right", "Ganon's Tower - Firesnake Room"]
+    - ["Ganon's Tower - Cannonball Z ledge", "Ganon's Tower - Cannonball Z"]
+    - ["Ganon's Tower - Moldorm", "Ganon's Tower - Moldorm Chest"]
+  undirected:
+    - ["Ganon's Tower - Bonk Pits - Top", "Ganon's Tower - Bonk Pits - Middle"]
+    - ["Ganon's Tower - Bonk Pits - Bottom Upper - Orange", "Ganon's Tower - Bonk Pits - Middle"]
+    - ["Ganon's Tower - Bonk Pits - Bottom - Blue", "Ganon's Tower - Bonk Pits - Middle"]
+FireRod:
+  directed:
+    - ["Ganon's Tower - Long Torch Puzzle", "Ganon's Tower - Gibdo Airlock"]
+    - ["Ganon's Tower - Torches 1", "Ganon's Tower - Laser Restock"]
+    - ["Ganon's Tower - Torches 2", "Ganon's Tower - Mini Helmasaur Room"]
+  undirected: []
+Lamp:
+  directed:
+    - ["Ganon's Tower - Torches 1", "Ganon's Tower - Laser Restock"]
+    - ["Ganon's Tower - Torches 2", "Ganon's Tower - Mini Helmasaur Room"]
+  undirected: []
+LiftPot:
+  directed:
+    - ["Ganon's Tower - Whackamole", "Ganon's Tower - Whackamole Pot BR"]
+    - ["Ganon's Tower - Twin Switches Left - Orange", "Ganon's Tower - Twin Switches Pot BR"]
+    - ["Ganon's Tower - Twin Switches Right - Blue", "Ganon's Tower - Twin Switches Pot BR"]
+    - ["Ganon's Tower - Bari Corridor", "Ganon's Tower - Bari Corridor Pot TR"]
+  undirected: []
+DefeatAgahnim:
+  directed:
+    - ["Ganon's Tower - Boss Room", "Ganon's Tower - Boss"]
+  undirected: []
+BigKeyA2:
+  directed:
+    - ["Ganon's Tower - Big Chest Room", "Ganon's Tower - Big Chest"]
+    - ["Ganon's Tower - Dragmire Statues", "Ganon's Tower - Spike Alley"]
+    - ["Ganon's Tower - Agahnim's Antichamber", "Ganon's Tower - Boss Room"]
+  undirected: []
+KeyA2:
+  directed:
+    - ["Ganon's Tower - Useless Door", "Ganon's Tower - Torch Room"]
+    - ["Ganon's Tower - Useless Door", "Ganon's Tower - Hope Room"]
+    - ["Ganon's Tower - Map Door", "Ganon's Tower - Bonk Pits - Bottom - Blue"]
+    - ["Ganon's Tower - Map Door", "Ganon's Tower - Bonk Pits - Bottom Upper - Orange"]
+    - ["Ganon's Tower - Map Door", "Ganon's Tower - Map Room"]
+    - ["Ganon's Tower - Twin Switches Door", "Ganon's Tower - Twin Switches Right - Orange"]
+    - ["Ganon's Tower - Twin Switches Door", "Ganon's Tower - Twin Switches Right - Blue"]
+    - ["Ganon's Tower - Twin Switches Door", "Ganon's Tower - Spike Switch"]
+    - ["Ganon's Tower - Firesnake Door", "Ganon's Tower - Teleports"]
+    - ["Ganon's Tower - Tile Room Door", "Ganon's Tower - Tile Room"]
+    - ["Ganon's Tower - Tile Room Door", "Ganon's Tower - Long Torch Puzzle"]
+    - ["Ganon's Tower - Bari Corridor Door", "Ganon's Tower - Bari Corridor"]
+    - ["Ganon's Tower - Bari Corridor Door", "Ganon's Tower - Firebar Falling Bridge"]
+    - ["Ganon's Tower - Mini Helmasaur Door", "Ganon's Tower - Mini Helmasaur Room"]
+    - ["Ganon's Tower - Mini Helmasaur Door", "Ganon's Tower - Conveyor Spikes"]
+    - ["Ganon's Tower - Moldorm Door", "Ganon's Tower - Pre-Moldorm"]
+    - ["Ganon's Tower - Moldorm Door", "Ganon's Tower - Moldorm - Top Left Platform"]
+  undirected: []
+GanonsTowerGauntletOneTrophy|4:
+  directed:
+    - ["Ganon's Tower - Gauntlet 1 - Shutter Door", "Ganon's Tower - Gauntlet 2"]
+  undirected: []
+GanonsTowerGauntletTwoTrophy|4:
+  directed:
+    - ["Ganon's Tower - Gauntlet 2 - Shutter Door", "Ganon's Tower - Gauntlet 1"]
+    - ["Ganon's Tower - Gauntlet 2 - Shutter Door", "Ganon's Tower - Gauntlet 3"]
+  undirected: []
+GanonsTowerGauntletThreeTrophy|5:
+  directed:
+    - ["Ganon's Tower - Gauntlet 3 - Shutter Door", "Ganon's Tower - Gauntlet 2"]
+    - ["Ganon's Tower - Gauntlet 3 - Shutter Door", "Ganon's Tower - Gauntlet 4"]
+  undirected: []
+GanonsTowerGauntletFourTrophy|4:
+  directed:
+    - ["Ganon's Tower - Gauntlet 4 - Shutter Door", "Ganon's Tower - Gauntlet 3"]
+    - ["Ganon's Tower - Gauntlet 4 - Shutter Door", "Ganon's Tower - Gauntlet 5"]
+  undirected: []
+GanonsTowerGauntletFiveTrophy|5:
+  directed:
+    - ["Ganon's Tower - Gauntlet 5 - Shutter Door", "Ganon's Tower - Gauntlet 4"]
+    - ["Ganon's Tower - Gauntlet 5 - Shutter Door", "Ganon's Tower - Gauntlet Refill"]
+  undirected: []
+GanonsTowerMimicsOneTrophy|5:
+  directed:
+    - ["Ganon's Tower - Mimics 1 - Shutter Door", "Ganon's Tower - Mimics 2"]
+  undirected: []
+GanonsTowerMimicsTwoTrophy|4:
+  directed:
+    - ["Ganon's Tower - Mimics 2 - Shutter Door", "Ganon's Tower - Mimics 1"]
+    - ["Ganon's Tower - Mimics 2 - Shutter Door", "Ganon's Tower - Dragmire Statues"]
+  undirected: []
+GanonsTowerTileRoomTrophy|6:
+  directed:
+    - ["Ganon's Tower - Tile Room - Shutter Chest", "Ganon's Tower - Tile Room Chest"]
+  undirected: []
+GanonsTowerWizzrobesOneTrophy|3:
+  directed:
+    - ["Ganon's Tower - Wizzrobes 1 - Shutter Door", "Ganon's Tower - Laser Bridge"]
+  undirected: []
+GanonsTowerWizzrobesTwoTrophy|5:
+  directed:
+    - ["Ganon's Tower - Wizzrobes 2 - Shutter Door", "Ganon's Tower - Laser Bridge"]
+    - ["Ganon's Tower - Wizzrobes 2 - Shutter Door", "Ganon's Tower - Conveyer Falling Bridge"]
+  undirected: []

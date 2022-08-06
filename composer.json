@@ -17,39 +17,45 @@
     "ezyang/htmlpurifier": "^4.9",
     "graham-campbell/markdown": "^14.0",
     "hashids/hashids": "^4.0",
+    "laraeast/laravel-vue-i18n-generator": "^2.0",
     "laravel/framework": "^9.0",
     "laravel/horizon": "^5.0",
     "laravel/passport": "^10.0",
     "laravel/tinker": "^2.2",
     "laravel/ui": "^4.0",
     "league/flysystem-aws-s3-v3": "^3.0",
-    "laraeast/laravel-vue-i18n-generator": "^2.0",
+    "predis/predis": "^2.0",
+    "romanzipp/laravel-twitch": "^4.4",
     "sentry/sentry": "^3.7",
     "sentry/sentry-laravel": "^2.0",
     "spatie/laravel-cookie-consent": "^3.2.2",
+    "symfony/yaml": "^6.0",
     "z3/enemizer_linux": "6.1.0.180",
     "z3/enemizer_osx": "6.1.0.180",
-    "z3/entrancerandomizer": "^0.6.3",
-    "z3/randomizer": "^31.0"
+    "z3/randomizer": "dev-v32.0"
   },
   "require-dev": {
-    "spatie/laravel-ignition": "^1.0",
     "fakerphp/faker": "^1.9.1",
-    "mockery/mockery": "^1.2",
+    "brianium/paratest": "^6.3",
+    "laravel/telescope": "^4.0",
+    "mockery/mockery": "^1.4.2",
     "mohammedmanssour/form-request-tester": "dev-master",
     "nunomaduro/collision": "^6.1",
-    "phpunit/phpunit": "^9.0"
+    "nunomaduro/larastan": "^2.1",
+    "phpunit/phpunit": "^9.3.3",
+    "sempro/phpunit-pretty-print": "^1.4",
+    "spatie/laravel-ignition": "^1.0"
   },
   "repositories": [
     {
       "type": "package",
       "package": {
         "name": "z3/randomizer",
-        "version": "31.0.11",
+        "version": "dev-v32.0",
         "source": {
           "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
-          "reference": "c6adf11a0dd64ceef5f08196a83e416907bcc07a"
+          "reference": "origin/v32.0"
         }
       }
     },
@@ -74,32 +80,16 @@
           "type": "tar"
         }
       }
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "z3/entrancerandomizer",
-        "version": "0.6.3.10",
-        "source": {
-          "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
-          "type": "git",
-          "reference": "tags/0.6.3-pre10"
-        }
-      }
     }
   ],
   "autoload": {
-    "classmap": [
-      "database"
-    ],
     "psr-4": {
-      "ALttP\\": "app/"
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
     }
   },
   "autoload-dev": {
-    "classmap": [
-      "tests/TestCase.php"
-    ],
     "psr-4": {
       "Tests\\": "tests/"
     }
@@ -116,14 +106,14 @@
       "@php artisan package:discover"
     ],
     "test": [
-      "phpunit --colors=always --coverage-clover=./report/coverage.clover --coverage-html=./report"
+      "phpunit --colors=always --path-coverage --coverage-clover=./report/coverage.clover --coverage-html=./report"
     ],
     "coverage": [
       "Composer\\Config::disableProcessTimeout",
       "phpdbg -qrr ./vendor/bin/phpunit --colors=always --coverage-clover=./report/php.coverage.clover --coverage-html=./coverage/php"
     ],
     "cloc": [
-      "cloc --exclude-dir=node_modules,vendor,report,storage,bin,public --not-match-f=\"(lock|generated)\" ."
+      "cloc --exclude-dir=node_modules,vendor,report,storage,bin,public,docs,coverage --not-match-f=\"(lock|generated)\" ."
     ]
   },
   "config": {
@@ -132,6 +122,9 @@
     },
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }

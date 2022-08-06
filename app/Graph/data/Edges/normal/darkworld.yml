@@ -1,0 +1,10 @@
+fixed:
+  directed:
+    - ["Bomb Shoppe", "Bomb Shoppe Lobby"]
+    - ["Bumper Cave Entrance", "Bumper Cave Bottom"]
+    - ["Bumper Cave Ledge", "Bumper Cave Top Exit"]
+  undirected: []
+TowerEntry:
+  directed:
+    - ["West Dark Death Mountain Summit", "Ganon's Tower - Lobby"]
+  undirected: []

@@ -1,0 +1,29 @@
+MagicMirror:
+  directed:
+    - ["Eastern Ruins", "East Dark World Maze"]
+    - ["Desert Rocks Ledge", "Mire Warp Ledge"]
+    - ["Desert Ledge", "Mire"]
+    - ["Desert Ledge - Part 2", "Mire"]
+    - ["Desert", "Mire"]
+    - ["Link's House", "Bomb Shoppe"]
+    - ["Smith's House", "Village Peg Puzzle East"]
+    - ["Death Mountain Foot Descent Ledge", "Bumper Cave Ledge"]
+    - ["South Kakariko", "South of Outcasts Frog Prison"]
+    # it might be as easy as just reversing all these?
+    # - ["West Dark Death Mountain Summit", "West Death Mountain Summit"]
+    # - ["West Dark Death Mountain", "West Death Mountain Spectacle Peak"]
+    # - ["West Dark Death Mountain", "West Death Mountain"]
+    # - ["Dark Graveyard King's Bonk Rocks", "Graveyard King's Tomb"]
+    # - ["Village Peg Puzzle East", "Smith's House Bat Ledge"]
+    # - ["Dark Graveyard North Nook", "Graveyard Ledge"]
+    # - ["Dark Graveyard North Nook", "Graveyard Northern Nook"]
+    # - ["Stumpy Grove Entrance", "Cave 45 Ledge"]
+    # - ["Stumpy Grove Entrance Circle of Bushes", "Cave 45 Ledge"]
+    # - ["Dark Lake Hylia", "Lake Hylia Small Island"]
+    # - ["West of Swamplands", "Bombos Tablet Ledge East"]
+    # - ["Turtle Rock Outside Bridge", "East Death Mountain Spiral Cave Balcony"]
+    # - ["Turtle Rock Outside Bridge", "East Death Mountain Mimic Balcony"]
+    # - ["East Dark Death Mountain Floating Island", "East Death Mountain FLoating Island"]
+    # special case for filling swamp
+    - ["Wetlands Dam", "FillSwamp"] # disable this in entrance
+  undirected: []

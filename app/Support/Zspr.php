@@ -1,13 +1,17 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
 
-use Log;
+namespace App\Support;
+
+use Exception;
 
 /**
- * Wrapper for Zspr file
+ * Wrapper for Zspr files.
+ *
+ * @todo better documentation.
  */
-class Zspr
+final class Zspr
 {
     private string $data;
     private string $display_text = '';
@@ -22,24 +26,26 @@ class Zspr
      *
      * @param string $source_location location of source Zspr
      *
+     * @throws Exception
+     *
      * @return void
      */
     public function __construct(string $source_location)
     {
         if (!is_readable($source_location)) {
-            throw new \Exception('Source Zspr not readable');
+            throw new Exception('Source Zspr not readable');
         }
 
         $data = file_get_contents($source_location);
 
         if ($data === false) {
-            throw new \Exception('Source Zspr not readable');
+            throw new Exception('Source Zspr not readable');
         }
 
         $this->data = $data;
 
         if (substr($this->data, 0, 4) !== 'ZSPR') {
-            throw new \Exception('Source not valid Zspr file');
+            throw new Exception('Source not valid Zspr file');
         }
 
         $this->bytes = array_values(unpack('C*', $this->data));

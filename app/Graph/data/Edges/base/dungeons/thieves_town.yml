@@ -1,0 +1,99 @@
+fixed:
+  directed:
+    - ["Thieves' Town - Grand Room SW", "Thieves' Town - Map Chest"]
+    - ["Thieves' Town - Grand Room NW", "Thieves' Town - Ambush Chest"]
+    - ["Thieves' Town - Grand Room NE Catwalk", "Thieves' Town - Grand Room NE"]
+    - ["Thieves' Town - Grand Room SE", "Thieves' Town - Compass Chest"]
+    - ["Thieves' Town - Grand Room SE", "Thieves' Town - Grand Room SW"]
+    - ["Thieves' Town - Grand Room SW Pocket", "Thieves' Town - Big Key Chest"]
+    - ["Thieves' Town - Torch Hallway", "Thieves' Town - Torch Hallway Door"]
+    - ["Thieves' Town - Firesnake Room", "Thieves' Town - Torch Hallway Door"]
+    - ["Thieves' Town - Spike Dodge", "Thieves' Town - Spike Dodge Door"]
+    - ["Thieves' Town - Attic Gate - orange", "Thieves' Town - Spike Dodge"]
+    - ["Thieves' Town - Attic Gate - blue", "Thieves' Town - Spike Dodge"]
+    - ["Thieves' Town - Attic Window", "Thieves' Town - Attic"]
+    - ["Thieves' Town - Cell 3", "Thieves' Town - Cell 3 - Blind"]
+    - ["Thieves' Town - Cell 3", "Thieves' Town - Blind's Cell"]
+    - ["Thieves' Town - Basement Block Totems", "Thieves' Town - Basement Block Totems - Shutter Door"]
+    - ["Thieves' Town - Conveyer Bridge", "Thieves' Town - Basement Block Totems"]
+    - ["Thieves' Town - Conveyer Bridge", "Thieves' Town - Big Chest Door"]
+    - ["Thieves' Town - Mole Room", "Thieves' Town - Big Chest Door"]
+    - ["Thieves' Town - Boss", "Thieves' Town - Prize"]
+  undirected:
+    - ["Thieves' Town - Grand Room SW", "Thieves' Town - Grand Room NW"]
+    - ["Thieves' Town - Grand Room NE", "Thieves' Town - Grand Room NW"]
+    - ["Thieves' Town - Grand Room NE", "Thieves' Town - Grand Room SE"]
+    - ["Thieves' Town - Grand Room SE", "Thieves' Town - Grand Room SW Pocket"]
+    - ["Thieves' Town - Firesnake Room", "Thieves' Town - Spikeveyer"]
+    - ["Thieves' Town - Spikeveyer", "Thieves' Town - Hellway - orange"]
+    - ["Thieves' Town - Spikeveyer", "Thieves' Town - Hellway right - blue"]
+    - ["Thieves' Town - Spikeveyer", "Thieves' Town - Pegblock bottom - orange"]
+    - ["Thieves' Town - Spikeveyer", "Thieves' Town - Pegblock - blue"]
+    - ["Thieves' Town - Hellway - orange", "Thieves' Town - Spike Dodge"]
+    - ["Thieves' Town - Hellway - blue", "Thieves' Town - Spike Dodge"]
+    - ["Thieves' Town - Pegblock left - orange", "Thieves' Town - Hellway right - orange"]
+    - ["Thieves' Town - Hellway - blue", "Thieves' Town - Pegblock - blue"]
+    - ["Thieves' Town - Attic Gate - orange", "Thieves' Town - Attic Hall Left"]
+    - ["Thieves' Town - Attic Gate - blue", "Thieves' Town - Attic Hall Left"]
+    - ["Thieves' Town - Attic Hall Left", "Thieves' Town - Attic Hall Right"]
+    - ["Thieves' Town - Attic Hall Right", "Thieves' Town - Attic Window"]
+    - ["Thieves' Town - Pegblock right - orange", "Thieves' Town - Toilet"]
+    - ["Thieves' Town - Pegblock - blue", "Thieves' Town - Toilet"]
+    - ["Thieves' Town - Firesnake Room Top", "Thieves' Town - Toilet"]
+    - ["Thieves' Town - Basement Block Totems", "Thieves' Town - Toilet"]
+    - ["Thieves' Town - Basement Block Totems Bottom", "Thieves' Town - Conveyer Pot"]
+    - ["Thieves' Town - Conveyer Pot", "Thieves' Town - Cells"]
+    - ["Thieves' Town - Conveyer Pot", "Thieves' Town - Conveyer Bridge"]
+UseBomb:
+  directed: []
+  undirected:
+    - ["Thieves' Town - Grand Room NW", "Thieves' Town - Grand Room NE Catwalk"]
+    - ["Thieves' Town - Firesnake Room Bottom", "Thieves' Town - Grand Room NE Catwalk"]
+Hammer:
+  directed:
+    - ["Thieves' Town - Mole Room", "Thieves' Town - Mole Room Platform"]
+  undirected: []
+PowerGlove:
+  directed: []
+  undirected:
+    - ["Thieves' Town - Basement Block Totems", "Thieves' Town - Basement Block Totems Bottom"]
+    - ["Thieves' Town - Conveyer Bridge", "Thieves' Town - Joke Room"]
+LiftPot:
+  directed:
+    - ["Thieves' Town - Torch Hallway", "Thieves' Town - Torch Hallway Pot Key"]
+    - ["Thieves' Town - Spike Dodge", "Thieves' Town - Spike Dodge Pot Key"]
+    - ["Thieves' Town - Toilet", "Thieves' Town - Torch Hallway"]
+  undirected: []
+LightHole:
+  directed:
+    - ["Thieves' Town - Torch Hallway", "Thieves' Town - Boss Room Blinded"]
+  undirected: []
+LostBlind:
+  directed:
+    - ["Thieves' Town - Boss Room Blinded", "Thieves' Town - Boss Room"]
+  undirected: []
+BigKeyD4:
+  directed:
+    - ["Thieves' Town - Grand Room NE", "Thieves' Town - Torch Hallway"]
+    - ["Thieves' Town - Cells", "Thieves' Town - Cell 1"]
+    - ["Thieves' Town - Cell 1", "Thieves' Town - Cell 2"]
+    - ["Thieves' Town - Cell 2", "Thieves' Town - Cell 3"]
+    - ["Thieves' Town - Mole Room Platform", "Thieves' Town - Big Chest"]
+  undirected: []
+KeyD4:
+  directed:
+    - ["Thieves' Town - Torch Hallway Door", "Thieves' Town - Torch Hallway"]
+    - ["Thieves' Town - Torch Hallway Door", "Thieves' Town - Firesnake Room"]
+    - ["Thieves' Town - Spike Dodge Door", "Thieves' Town - Attic Gate - orange"]
+    - ["Thieves' Town - Spike Dodge Door", "Thieves' Town - Attic Gate - blue"]
+    - ["Thieves' Town - Big Chest Door", "Thieves' Town - Conveyer Bridge"]
+    - ["Thieves' Town - Big Chest Door", "Thieves' Town - Mole Room"]
+  undirected: []
+KeyForKey:
+  directed:
+    - ["Thieves' Town - Conveyer Bridge", "Thieves' Town - Mole Room"]
+  undirected: []
+ThievesTownBlockTotemTrophy|3:
+  directed:
+    - ["Thieves' Town - Basement Block Totems - Shutter Door", "Thieves' Town - Conveyer Bridge"]
+  undirected: []

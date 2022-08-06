@@ -1,0 +1,88 @@
+fixed:
+  directed:
+    - ["Desert Palace - Bridge", "Desert Palace - Popo Genocide"]
+    - ["Desert Palace - Bridge", "Desert Palace - Tiles 1"]
+    - ["Desert Palace - Compass Room", "Desert Palace - Compass Room Door"]
+    - ["Desert Palace - Compass Room", "Desert Palace - Compass Room - Shutter Door"]
+    - ["Desert Palace - Popo Genocide", "Desert Palace - Popo Genocide - Shutter Door"]
+    - ["Desert Palace - Popo Genocide", "Desert Palace - Popo Genocide - Shutter Door"]
+    - ["Desert Palace - Popo Hallway Bottom", "Desert Palace - Popo Genocide"]
+    - ["Desert Palace - Popo Hallway Top", "Desert Palace - Popo Hallway Door"]
+    - ["Desert Palace - Right Hallway", "Desert Palace - Compass Room Door"]
+    - ["Desert Palace - Sliding Wall", "Desert Palace - Tiles 2 Door"]
+    - ["Desert Palace - Tiles 1", "Desert Palace - Tiles 1 Door"]
+    - ["Desert Palace - Tiles 2", "Desert Palace - Popo Hallway Door"]
+    - ["Desert Palace - Tiles 2", "Desert Palace - Tiles 2 Door"]
+    - ["Desert Palace - Boss", "Desert Palace - Prize"]
+    - ["Desert Palace - Lobby - Entrance", "Desert Palace - Main Room - Center"]
+    - ["Desert Palace - Main Room - Center", "Desert Palace - Lobby - Exit"]
+    - ["Desert Palace - Right Hallway", "Desert Palace - East - Exit"]
+    - ["Desert Palace - East - Entrance", "Desert Palace - Right Hallway"]
+    - ["Desert Palace - Beemos Torches", "Desert Palace - West - Exit"]
+    - ["Desert Palace - West - Entrance", "Desert Palace - Beemos Torches"]
+    - ["Desert Palace - Back - Entrance", "Desert Palace - Beemos 2"]
+    - ["Desert Palace - Beemos 2", "Desert Palace - Back - Exit"]
+
+  undirected:  
+    - ["Desert Palace - Beemos Torches", "Desert Palace - Fairies"]
+    - ["Desert Palace - Beemos Torches", "Desert Palace - Left Hallway"]
+    - ["Desert Palace - Compass Room", "Desert Palace - Compass Chest"]
+    - ["Desert Palace - Main Room - Left", "Desert Palace - North Hallway"]
+    - ["Desert Palace - Main Room - Right", "Desert Palace - North Hallway"]
+    - ["Desert Palace - Main Room - Right", "Desert Palace - Right Hallway"]
+    - ["Desert Palace - Map Chest", "Desert Palace - North Hallway"]
+    - ["Desert Palace - Northeast Corner", "Desert Palace - North Hallway"]
+    - ["Desert Palace - Northeast Corner", "Desert Palace - Right Hallway"]
+    - ["Desert Palace - Northeast Corner", "Desert Palace - Trap Room"]
+    - ["Desert Palace - Northwest Corner", "Desert Palace - Beemos Room"]
+    - ["Desert Palace - Northwest Corner", "Desert Palace - Left Hallway"]
+    - ["Desert Palace - Northwest Corner", "Desert Palace - North Hallway"]
+    - ["Desert Palace - Northwest Corner", "Desert Palace - Torch Room"]
+    - ["Desert Palace - Tiles 1", "Desert Palace - Beemos 2"]
+PegasusBoots:
+  directed:
+    - ["Desert Palace - Torch Room", "Desert Palace - Torch"]
+  undirected: []
+Lamp:
+  directed:
+    - ["Desert Palace - Sliding Wall", "Desert Palace - Sliding Wall Door"]
+  undirected: []
+FireRod:
+  directed:
+    - ["Desert Palace - Sliding Wall", "Desert Palace - Sliding Wall Door"]
+  undirected: []
+LiftPot:
+  directed: []
+  undirected:
+    - ["Desert Palace - Main Room - Center", "Desert Palace - Main Room - Left"]
+    - ["Desert Palace - Main Room - Center", "Desert Palace - Main Room - Right"]
+    - ["Desert Palace - Beemos Room", "Desert Palace - Big Chest Room"]
+    - ["Desert Palace - Tiles 1", "Desert Palace - Tiles 1 - BL Pot"]
+    - ["Desert Palace - Popo Hallway Bottom", "Desert Palace - Popo Hallway Top"]
+    - ["Desert Palace - Popo Hallway Bottom", "Desert Palace - Popo Hallway - Pot"]
+    - ["Desert Palace - Popo Hallway - Pot", "Desert Palace - Popo Hallway Top"]
+    - ["Desert Palace - Tiles 2", "Desert Palace - Tiles 2 - TR Pot"]
+BigKeyP2:
+  directed:
+    - ["Desert Palace - Big Chest Room", "Desert Palace - Big Chest"]
+    - ["Desert Palace - Sliding Wall Door", "Desert Palace - Boss Room"]
+  undirected: []
+KeyP2:
+  directed:
+    - ["Desert Palace - Compass Room Door", "Desert Palace - Compass Room"]
+    - ["Desert Palace - Compass Room Door", "Desert Palace - Right Hallway"]
+    - ["Desert Palace - Tiles 1 Door", "Desert Palace - Bridge"]
+    - ["Desert Palace - Popo Hallway Door", "Desert Palace - Tiles 2"]
+    - ["Desert Palace - Popo Hallway Door", "Desert Palace - Popo Hallway Top"]
+    - ["Desert Palace - Tiles 2 Door", "Desert Palace - Sliding Wall"]
+    - ["Desert Palace - Tiles 2 Door", "Desert Palace - Tiles 2"]
+  undirected: []
+DesertPalaceCompassTrophy|4:
+  directed:
+    - ["Desert Palace - Compass Room - Shutter Door", "Desert Palace - Big Key Chest"]
+  undirected: []
+DesertPalacePopoGenocideTrophy|5:
+  directed:
+    - ["Desert Palace - Popo Genocide - Shutter Door", "Desert Palace - Bridge"]
+    - ["Desert Palace - Popo Genocide - Shutter Door", "Desert Palace - Popo Hallway Bottom"]
+  undirected: []

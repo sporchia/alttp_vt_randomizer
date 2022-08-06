@@ -1,0 +1,103 @@
+fixed:
+  directed:
+    - ["Secret Passage Uncle", "Link's Uncle"]
+    - ["Secret Passage Stairs", "Secret Passage"]
+    - ["Secret Passage Stairs", "Secret Passage Stairs - Exit"]
+    - ["Hyrule Castle - Lobby", "Hyrule Castle - Lobby - Exit"]
+    - ["Hyrule Castle - East", "Hyrule Castle - East - Exit"]
+    - ["Hyrule Castle - West", "Hyrule Castle - West - Exit"]
+    - ["Hyrule Castle - Basement Statue", "Hyrule Castle - Basement Statue - Guard Key"]
+    - ["Hyrule Castle - Basement Statue", "Hyrule Castle - Basement Statue Door"]
+    - ["Hyrule Castle - Basement Lonely Blue Guard", "Hyrule Castle - Basement Statue Door"]
+    - ["Hyrule Castle - Basement Lonely Blue Guard Overlook", "Hyrule Castle - Basement Lonely Blue Guard"]
+    - ["Hyrule Castle - Basement Hallways", "Hyrule Castle - Basement Trap"]
+    - ["Hyrule Castle - Basement Trap", "Hyrule Castle - Basement Trap - Shutter Door"]
+    - ["Hyrule Castle - Basement Trap", "Hyrule Castle - Basement Trap Door"]
+    - ["Hyrule Castle - Basement Post Trap", "Hyrule Castle - Basement Trap Door"]
+    - ["Hyrule Castle - Basement Statue Trap", "Hyrule Castle - Basement Statue Trap - Guard Key"]
+    - ["Hyrule Castle - Basement Statue Trap", "Hyrule Castle - Basement Statue Trap - Shutter Door"]
+    - ["Hyrule Castle - Basement Cells", "Hyrule Castle - Basement Cells - Ball N Chain Key"]
+    - ["Hyrule Castle - Basement Locked Cell", "Hyrule Castle - Basement Cells - Zelda"]
+    - ["Hyrule Castle - Mantle", "Sewers - Dark Cactus darkness"]
+    - ["Sewers - Dark Cross", "Sewers - Dark Cross Door"]
+    - ["Sewers - Dark Three Islands", "Sewers - Dark Cross Door"]
+    - ["Sewers - Dark U", "Sewers - Dark U - Left Mouse"]
+    - ["Sewers - Dark U", "Sewers - Last Door"]
+    - ["Sewers - Block Puzzle", "Sewers - Last Door"]
+    - ["Sewers - Block Puzzle", "Sewers - Block Puzzle Top"]
+    - ["Sewers - Switch Puzzle", "Sanctuary - Princess Dropoff"]
+    - ["Sanctuary Hall", "Sanctuary Hall - Exit"]
+  undirected:
+    - ["Secret Passage Uncle", "Secret Passage Stairs"]
+    - ["Hyrule Castle - Lobby", "Hyrule Castle - East"]
+    - ["Hyrule Castle - East", "Hyrule Castle - North East Passage"]
+    - ["Hyrule Castle - North East Passage", "Hyrule Castle - Back Passage"]
+    - ["Hyrule Castle - Lobby", "Hyrule Castle - West"]
+    - ["Hyrule Castle - East", "Hyrule Castle - North West Passage"]
+    - ["Hyrule Castle - North West Passage", "Hyrule Castle - Back Passage"]
+    - ["Hyrule Castle - Lobby", "Hyrule Castle - Throne Room"]
+    - ["Hyrule Castle - Back Passage", "Hyrule Castle - Basement Statue"]
+    - ["Hyrule Castle - Basement Lonely Blue Guard", "Hyrule Castle - Basement Playpit"]
+    - ["Hyrule Castle - Basement Lonely Blue Guard Overlook", "Hyrule Castle - Basement Playpit Overlook"]
+    - ["Hyrule Castle - Basement Playpit", "Hyrule Castle - Basement Hallways"]
+    - ["Hyrule Castle - Basement Post Trap", "Hyrule Castle - Basement Cell Hall"]
+    - ["Hyrule Castle - Basement Cell Hall", "Hyrule Castle - Basement Cells"]
+    - ["Sewers - Dark Cactus", "Sewers - Dark Rope Corridor"]
+    - ["Sewers - Dark Rope Corridor", "Sewers - Dark Cross"]
+    - ["Sewers - Dark Three Islands", "Sewers - Dark Aquabats"]
+    - ["Sewers - Dark Aquabats", "Sewers - Dark U"]
+    - ["Sewers - Block Puzzle Top", "Sewers - Rat Pots"]
+    - ["Sewers - Rat Pots", "Sewers - Switch Puzzle"]
+OpenChest:
+  directed:
+    - ["Hyrule Castle - Basement Statue", "Hyrule Castle - Map Chest"]
+    - ["Hyrule Castle - Basement Statue Trap", "Hyrule Castle - Boomerang Chest"]
+    - ["Hyrule Castle - Basement Locked Cell", "Hyrule Castle - Zelda's Cell"]
+    - ["Sewers - Dark Cross", "Sewers - Dark Cross Chest"]
+    - ["Sewers - Secret Room", "Sewers - Secret Room - Left"]
+    - ["Sewers - Secret Room", "Sewers - Secret Room - Middle"]
+    - ["Sewers - Secret Room", "Sewers - Secret Room - Right"]
+    - ["Sanctuary Hall", "Sanctuary Chest"]
+  undirected: []
+EscapeLamp:
+  directed:
+    - ["Sewers - Dark Cactus darkness", "Sewers - Dark Cactus"]
+    - ["Sewers - Dark U darkness", "Sewers - Dark U"]
+  undirected: []
+Lamp:
+  directed:
+    - ["Sewers - Dark Cactus darkness", "Sewers - Dark Cactus"]
+    - ["Sewers - Dark U darkness", "Sewers - Dark U"]
+  undirected: []
+PegasusBoots:
+  directed: []
+  undirected:
+    - ["Sewers - Block Puzzle", "Sewers - Secret Room"]
+UseBomb:
+  directed: []
+  undirected:
+    - ["Sewers - Block Puzzle", "Sewers - Secret Room"]
+KeyH2:
+  directed:
+    - ["Hyrule Castle - Basement Statue Door", "Hyrule Castle - Basement Statue"]
+    - ["Hyrule Castle - Basement Statue Door", "Hyrule Castle - Basement Lonely Blue Guard"]
+    - ["Hyrule Castle - Basement Trap Door", "Hyrule Castle - Basement Trap"]
+    - ["Hyrule Castle - Basement Trap Door", "Hyrule Castle - Basement Post Trap"]
+    - ["Sewers - Dark Cross Door", "Sewers - Dark Cross"]
+    - ["Sewers - Dark Cross Door", "Sewers - Dark Three Islands"]
+    - ["Sewers - Last Door", "Sewers - Dark U darkness"]
+    - ["Sewers - Last Door", "Sewers - Block Puzzle"]
+  undirected: []
+BigKeyH2:
+  directed:
+    - ["Hyrule Castle - Basement Cells", "Hyrule Castle - Basement Locked Cell"]
+  undirected: []
+HyruleCastleBasementStatueTrapTrophy:
+  directed:
+    - ["Hyrule Castle - Basement Statue Trap - Shutter Door", "Hyrule Castle - Basement Trap"]
+  undirected: []
+HyruleCastleBasementTrapTrophy:
+  directed:
+    - ["Hyrule Castle - Basement Trap - Shutter Door", "Hyrule Castle - Basement Hallways"]
+    - ["Hyrule Castle - Basement Trap - Shutter Door", "Hyrule Castle - Basement Statue Trap"]
+  undirected: []

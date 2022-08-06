@@ -1,0 +1,19 @@
+{
+  "printWidth": 120,
+  "overrides": [
+    {
+      "files": "*.yml",
+      "options": {
+        "printWidth": 200
+      }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "options": {
+        "printWidth": 240
+      }
+    }
+  ]
+}

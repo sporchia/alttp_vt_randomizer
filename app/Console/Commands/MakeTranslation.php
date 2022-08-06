@@ -1,12 +1,18 @@
 <?php
 
-namespace ALttP\Console\Commands;
+declare(strict_types=1);
+
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use ALttP\Rom;
-use ALttP\Text;
+use App\Rom;
+use App\Text;
 
-class MakeTranslation extends Command
+/**
+ * Create a translation binary file, or patch an existing ROM with text from
+ * randomizer.
+ */
+final class MakeTranslation extends Command
 {
     /**
      * The name and signature of the console command.

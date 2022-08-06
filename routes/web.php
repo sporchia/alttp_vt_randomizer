@@ -94,14 +94,14 @@ Route::prefix('{lang?}')->middleware('locale')->group(function () {
     Route::view('cookies', 'cookie');
 
     Route::get('daily', static function () {
-        $featured = ALttP\FeaturedGame::today();
+        $featured = App\Models\FeaturedGame::today();
         if (!$featured) {
-            $exitCode = Artisan::call('alttp:dailies', ['days' => 1]);
-            $featured = ALttP\FeaturedGame::today();
+            Artisan::call('alttp:dailies', ['days' => 1]);
+            $featured = App\Models\FeaturedGame::today();
         }
         $seed = $featured->seed;
         if ($seed) {
-            $build = ALttP\Build::where('build', $seed->build)->first();
+            $build = App\Models\Build::where('build', $seed->build)->first();
             if (!$build) {
                 abort(404);
             }
@@ -119,9 +119,9 @@ Route::prefix('{lang?}')->middleware('locale')->group(function () {
     });
 
     Route::get('h/{hash}', static function ($lang, $hash) {
-        $seed = ALttP\Seed::where('hash', $hash)->first();
+        $seed = App\Models\Seed::where('hash', $hash)->first();
         if ($seed) {
-            $build = ALttP\Build::where('build', $seed->build)->first();
+            $build = App\Models\Build::where('build', $seed->build)->first();
             if (!$build) {
                 abort(404);
             }

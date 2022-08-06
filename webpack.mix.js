@@ -46,13 +46,15 @@ mix.webpackConfig({
   },
   resolve: {
     extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
-  }
+  },
+  devtool: 'inline-source-map'
 });
 
 mix
   .js("resources/js/app.js", "public/js")
   .sass("resources/sass/app.scss", "public/css")
-  .sourceMaps();
+  .sourceMaps()
+  .vue();
 
 mix.copy("node_modules/open-iconic/svg", "public/i/svg");
 if (mix.inProduction()) {

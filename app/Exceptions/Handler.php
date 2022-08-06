@@ -1,6 +1,6 @@
 <?php
 
-namespace ALttP\Exceptions;
+namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
      * @param  \Illuminate\Http\Request	 $request
      * @param  \Throwable  $exception
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {

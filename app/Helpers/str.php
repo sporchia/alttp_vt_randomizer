@@ -8,10 +8,8 @@
  * @param string $pad_string
  * @param int $pad_type
  * @param string $encoding
- *
- * @return string
  */
-function mb_str_pad($input, $pad_length, $pad_string = ' ', $pad_type = STR_PAD_RIGHT, $encoding = null)
+function mb_str_pad($input, $pad_length, $pad_string = ' ', $pad_type = STR_PAD_RIGHT, $encoding = null): string
 {
     if (!$encoding) {
         $diff = strlen($input) - mb_strlen($input);
@@ -28,8 +26,6 @@ function mb_str_pad($input, $pad_length, $pad_string = ' ', $pad_type = STR_PAD_
  * @param int $width
  * @param string $break
  * @param bool $cut
- *
- * @return string
  */
 function mb_wordwrap(string $str, int $width = 75, string $break = "\n", bool $cut = false): string
 {

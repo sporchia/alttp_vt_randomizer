@@ -1,21 +1,21 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
+
+namespace App\Support;
 
 /**
- * Dialog Conversion
+ * Dialog Conversion.
  */
-class Dialog
+final class Dialog
 {
     /**
      * Convert string to byte array for Dialog Box that can be written to ROM
      *
      * @param string $string string to convert
      * @param int $max_bytes maximum bytes to return
-     *
-     * @return array
      */
-    public function convertDialog(string $string, $max_bytes = 256)
+    public function convertDialog(string $string, $max_bytes = 256): array
     {
         $new_string = [];
         $lines = explode("\n", mb_strtoupper($string));
@@ -34,7 +34,7 @@ class Dialog
                     break;
             }
 
-            $line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
+            $line_chars = preg_split('//u', mb_substr($line, 0, 14), -1, PREG_SPLIT_NO_EMPTY);
 
             if ($line_chars === false) {
                 continue;
@@ -72,10 +72,8 @@ class Dialog
      * @param bool $pause whether to pause for input
      * @param int $max_bytes maximum bytes to return
      * @param int $wrap if greater than 0 wrap lines to this value
-     *
-     * @return array
      */
-    public function convertDialogCompressed(string $string, $pause = true, $max_bytes = 2046, $wrap = 14)
+    public function convertDialogCompressed(string $string, $pause = true, $max_bytes = 2046, $wrap = 14): array
     {
         $pad_out = false;
         $new_string = [0xFB];
@@ -91,7 +89,7 @@ class Dialog
         $i = 0;
         $line_count = (substr((string) end($lines), 0, 1) == '{') ? count($lines) - 1 : count($lines);
         foreach ($lines as $line) {
-            $line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
+            $line_chars = preg_split('//u', mb_substr($line, 0, 14), -1, PREG_SPLIT_NO_EMPTY);
             if ($line_chars === false) {
                 continue;
             }
@@ -411,8 +409,6 @@ class Dialog
      * Convert character to byte for ROM
      *
      * @param string $char character to convert
-     *
-     * @return array
      */
     private function charToHex(string $char): array
     {

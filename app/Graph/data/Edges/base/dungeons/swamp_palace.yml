@@ -1,0 +1,146 @@
+fixed:
+  directed:
+    - ["Swamp Palace - Entrance Ledge", "Swamp Palace - Entrance Ledge - Shutter Chest"]
+    - ["Swamp Palace - Entrance Ledge", "Swamp Palace - Entrance Door"]
+    - ["Swamp Palace - Long Hall", "Swamp Palace - Entrance Ledge"]
+    - ["Swamp Palace - Hammer Switch overlook", "Swamp Palace - Map Chest"]
+    - ["Swamp Palace - Long Hall", "Swamp Palace - Long Hall Door"]
+    - ["Swamp Palace - Hammer Switch South Drained", "Swamp Palace - Long Hall Door"]
+    - ["Swamp Palace - Hammer Switch South Filled", "Swamp Palace - Long Hall Door"]
+    - ["Swamp Palace - Hammer Switch South Drained", "Swamp Palace - Hammer Switch Door"]
+    - ["Swamp Palace - Hammer Switch South Filled Top Ledge", "Swamp Palace - Hammer Switch Door"]
+    - ["Swamp Palace - Hammer Switch", "Swamp Palace - Hammer Switch Door"]
+    - ["Swamp Palace - Hammer Switch South Drained Ledge", "Swamp Palace - Hammer Switch South Drained"]
+    - ["Swamp Palace - Lobby North Ledge", "Swamp Palace - Lobby"]
+    - ["Swamp Palace - Lobby", "Swamp Palace - Lobby North West Door"]
+    - ["Swamp Palace - West Lever", "Swamp Palace - Lobby North West Door"]
+    - ["Swamp Palace - Lobby North Ledge", "Swamp Palace - Lobby North Ledge Door"]
+    - ["Swamp Palace - Statue Puzzle", "Swamp Palace - Lobby North Ledge Door"]
+    - ["Swamp Palace - Big O Top Left", "Swamp Palace - Big O Top"]
+    - ["Swamp Palace - Big O Top Left", "Swamp Palace - Compass Chest"]
+    - ["Swamp Palace - West Wing Attic", "Swamp Palace - West Wing Left Ledge"]
+    - ["Swamp Palace - West Wing Attic", "Swamp Palace - West Wing Right Ledge - orange"]
+    - ["Swamp Palace - West Wing Attic", "Swamp Palace - West Wing Right Ledge - blue"]
+    - ["Swamp Palace - West Wing Left Ledge", "Swamp Palace - West Chest"]
+    - ["Swamp Palace - Money Ledge", "Swamp Palace - Big Key Chest"]
+    - ["Swamp Palace - Forgotten Room", "Swamp Palace - Statue Puzzle"]
+    - ["Swamp Palace - Flooded Room", "Swamp Palace - Flooded Room - Left"]
+    - ["Swamp Palace - Flooded Room", "Swamp Palace - Flooded Room - Right"]
+    - ["Swamp Palace - Waterfall Room", "Swamp Palace - Waterfall Room Chest"]
+    - ["Swamp Palace - Pool Left Ledge", "Swamp Palace - Pool Door"]
+    - ["Swamp Palace - Tic Room T", "Swamp Palace - Pool Door"]
+    - ["Swamp Palace - Tic Room T", "Swamp Palace - Boss Room"]
+    - ["Swamp Palace - Boss", "Swamp Palace - Prize"]
+  undirected:
+    - ["Swamp Palace - Hammer Switch South Drained", "Swamp Palace - Hammer Switch Ditch"]
+    - ["Swamp Palace - Hammer Switch South Filled Ledge", "Swamp Palace - Lobby"]
+    - ["Swamp Palace - Hammer Switch South Drained Ledge", "Swamp Palace - Lobby"]
+    - ["Swamp Palace - Lobby", "Swamp Palace - West Moat - orange"]
+    - ["Swamp Palace - West Lever Ditch", "Swamp Palace - West Moat - orange"]
+    - ["Swamp Palace - West Lever Ditch", "Swamp Palace - West Moat Bottom - blue"]
+    - ["Swamp Palace - Lobby", "Swamp Palace - West Moat Bottom - blue"]
+    - ["Swamp Palace - Lobby", "Swamp Palace - Big O Top"]
+    - ["Swamp Palace - Big O Top", "Swamp Palace - Big O Bottom"]
+    - ["Swamp Palace - Big O Bottom", "Swamp Palace - Big O Top Left"]
+    - ["Swamp Palace - West Lever", "Swamp Palace - West Moat Top - blue"]
+    - ["Swamp Palace - West Moat Bottom Left", "Swamp Palace - West Wing"]
+    - ["Swamp Palace - West Wing", "Swamp Palace - West Wing Attic"]
+    - ["Swamp Palace - West Wing Right Ledge - orange", "Swamp Palace - Money Ledge"]
+    - ["Swamp Palace - Forgotten Room", "Swamp Palace - Little Spoon"]
+    - ["Swamp Palace - Statue Puzzle", "Swamp Palace - Flooded Room Top"]
+    - ["Swamp Palace - Little Spoon", "Swamp Palace - Toilet Left"]
+    - ["Swamp Palace - Big Spoon", "Swamp Palace - Toilet Right"]
+    - ["Swamp Palace - Toilet Bowl", "Swamp Palace - Thin Hallway"]
+    - ["Swamp Palace - Thin Hallway", "Swamp Palace - Flooded Room"]
+    - ["Swamp Palace - Waterfall Room", "Swamp Palace - Thin Hallway"]
+    - ["Swamp Palace - Waterfall Room", "Swamp Palace - Waterfall Joke"]
+    - ["Swamp Palace - Waterfall Room", "Swamp Palace - Waterfall Exit"]
+    - ["Swamp Palace - Waterfall Exit", "Swamp Palace - Tic Room C"]
+    - ["Swamp Palace - Pool Right Ledge", "Swamp Palace - Tic Room C"]
+SwampWater1:
+  directed:
+    - ["Swamp Palace - Hammer Switch South Filled", "Swamp Palace - Water 1"]
+    - ["Swamp Palace - Hammer Switch South Filled Top Ledge", "Swamp Palace - Water 1"]
+    - ["Swamp Palace - Hammer Switch South Filled Ledge", "Swamp Palace - Water 1"]
+  undirected: []
+SwampWater2:
+  directed:
+    - ["Swamp Palace - West Moat Bottom - blue", "Swamp Palace - Water 2"]
+    - ["Swamp Palace - West Moat - orange", "Swamp Palace - Water 2"]
+    - ["Swamp Palace - West Moat Bottom Left", "Swamp Palace - Water 2"]
+  undirected: []
+SwampWater3:
+  directed:
+    - ["Swamp Palace - Toilet Right", "Swamp Palace - Toilet Left"]
+    - ["Swamp Palace - Flooded Room Top", "Swamp Palace - Flooded Room"]
+    - ["Swamp Palace - Toilet Left", "Swamp Palace - Toilet Bowl"]
+  undirected: []
+Flippers:
+  directed:
+    - ["Swamp Palace - Water 1", "Swamp Palace - Hammer Switch South Filled"]
+    - ["Swamp Palace - Water 1", "Swamp Palace - Hammer Switch South Filled Top Ledge"]
+    - ["Swamp Palace - Water 1", "Swamp Palace - Hammer Switch South Filled Ledge"]
+    - ["Swamp Palace - Water 2", "Swamp Palace - West Moat Bottom - blue"]
+    - ["Swamp Palace - Water 2", "Swamp Palace - West Moat - orange"]
+    - ["Swamp Palace - Water 2", "Swamp Palace - West Moat Bottom Left"]
+  undirected:
+    - ["Swamp Palace - Entrance Filled", "Swamp Palace - Entrance Ledge"]
+    - ["Swamp Palace - Pool", "Swamp Palace - Pool Right Ledge"]
+    - ["Swamp Palace - Pool", "Swamp Palace - Pool Left Ledge"]
+    - ["Swamp Palace - Pool", "Swamp Palace - Pool Center Ledge"]
+    - ["Swamp Palace - Pool", "Swamp Palace - Pool Key Ledge"]
+UseBomb:
+  directed:
+    - ["Swamp Palace - Pool Center Ledge", "Swamp Palace - Tic Room I"]
+  undirected:
+    - ["Swamp Palace - Long Hall", "Swamp Palace - Hammer Switch overlook"]
+    - ["Swamp Palace - Hammer Switch", "Swamp Palace - Lobby Joke Ledge"]
+Hammer:
+  directed: []
+  undirected:
+    - ["Swamp Palace - Hammer Switch", "Swamp Palace - Hammer Switch Lever"]
+Hookshot:
+  directed:
+    - ["Swamp Palace - Lobby", "Swamp Palace - Lobby Key Ledge"]
+    - ["Swamp Palace - Lobby", "Swamp Palace - Lobby North Ledge"]
+  undirected:
+    - ["Swamp Palace - West Wing Left Ledge", "Swamp Palace - West Wing Right Ledge - orange"]
+    - ["Swamp Palace - West Wing Left Ledge", "Swamp Palace - West Wing Right Ledge - blue"]
+LiftPot:
+  directed:
+    - ["Swamp Palace - Long Hall", "Swamp Palace - Long Hall Key"]
+    - ["Swamp Palace - Hammer Switch Ditch", "Swamp Palace - Hammer Switch Ditch Key"]
+    - ["Swamp Palace - Lobby Key Ledge", "Swamp Palace - Lobby Key Ledge Key"]
+    - ["Swamp Palace - West Lever Ditch", "Swamp Palace - West Lever Key"]
+    - ["Swamp Palace - Statue Puzzle", "Swamp Palace - Forgotten Room"]
+    - ["Swamp Palace - Statue Puzzle", "Swamp Palace - Big Spoon"]
+    - ["Swamp Palace - Pool Key Ledge", "Swamp Palace - Pool Key Ledge Key"]
+  undirected: []
+BigKeyD2:
+  directed:
+    - ["Swamp Palace - Lobby", "Swamp Palace - Big Chest"]
+  undirected: []
+KeyD2:
+  directed:
+    - ["Swamp Palace - Entrance Door", "Swamp Palace - Long Hall"]
+    - ["Swamp Palace - Long Hall Door", "Swamp Palace - Long Hall"]
+    - ["Swamp Palace - Long Hall Door", "Swamp Palace - Hammer Switch South Drained"]
+    - ["Swamp Palace - Long Hall Door", "Swamp Palace - Hammer Switch South Filled"]
+    - ["Swamp Palace - Hammer Switch Door", "Swamp Palace - Hammer Switch South Drained"]
+    - ["Swamp Palace - Hammer Switch Door", "Swamp Palace - Hammer Switch South Filled Top Ledge"]
+    - ["Swamp Palace - Hammer Switch Door", "Swamp Palace - Hammer Switch"]
+    - ["Swamp Palace - Lobby North West Door", "Swamp Palace - Lobby"]
+    - ["Swamp Palace - Lobby North West Door", "Swamp Palace - West Lever"]
+    - ["Swamp Palace - Lobby North Ledge Door", "Swamp Palace - Lobby North Ledge"]
+    - ["Swamp Palace - Lobby North Ledge Door", "Swamp Palace - Statue Puzzle"]
+    - ["Swamp Palace - Pool Door", "Swamp Palace - Pool Left Ledge"]
+    - ["Swamp Palace - Pool Door", "Swamp Palace - Tic Room T"]
+  undirected: []
+KeyForKey:
+  directed:
+    - ["Swamp Palace - Lobby", "Swamp Palace - Big Chest"]
+  undirected: []
+SwampPalaceEntranceTrophy|5:
+  directed:
+    - ["Swamp Palace - Entrance Ledge - Shutter Chest", "Swamp Palace - Entrance Chest"]
+  undirected: []

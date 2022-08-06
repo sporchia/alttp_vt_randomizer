@@ -1,10 +1,12 @@
 <?php
 
-namespace ALttP;
+declare(strict_types=1);
 
-use ALttP\Support\Dialog;
+namespace App;
+
+use App\Support\Dialog;
 use Exception;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Overwrite all the text in the main portion of the ROM
@@ -14,7 +16,7 @@ use Log;
  * 394 required things in table
  * but extended a bit by the randomizer
  */
-class Text
+final class Text
 {
     protected $text_array;
     protected $converter;
@@ -26,8 +28,7 @@ class Text
     }
 
     /**
-     * Updates a specific string in the table, including
-     * encoding the string.
+     * Updates a specific string in the table, including encoding the string.
      *
      * @param string $id The ID of the string to update
      * @param string $value the string to add to the table
@@ -44,27 +45,31 @@ class Text
     }
 
     /**
-     * Updates a specific string in the table, given the
-     * raw bytes
+     * Updates a specific string in the table, given the raw bytes.
      *
      * @param string $id The ID of the string to update
      * @param array $rawvalue The raw bytes to add to the table
-     *
-     * @return void
      */
-    public function setStringRaw(string $id, array $rawvalue)
+    public function setStringRaw(string $id, array $rawvalue): void
     {
         $this->text_array[$id] = $rawvalue;
     }
 
-    public function getByteArray(bool $pad = false)
+    /**
+     * Get array of bytes to write to rom.
+     *
+     * @param bool $pad pad out to full table space
+     *
+     * @throws Exception if set data exceeds total space available in rom.
+     */
+    public function getByteArray(bool $pad = false): array
     {
         $data = array_merge(...array_values($this->text_array));
 
         Log::debug(sprintf('Localization free space: %s', 0x7355 - count($data)));
 
         if (count($data) > 0x7355) {
-            throw new \Exception("Too BIG", 1);
+            throw new Exception("Too BIG", 1);
         }
         if ($pad) {
             return array_pad($data, 0x7355, 0xFF);
@@ -442,7 +447,7 @@ class Text
 
             'mastersword_pedestal_translated' => $converter->convertDialogCompressed("A test of strength: If you have 3 pendants, I'm yours."),
 
-            'telepathic_tile_spectacle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nUse the Mirror, or the Hookshot and Hammer, to get to Tower of Hera!"),
+            'telepathic_tile_spectacle_rock' => $converter->convertDialogCompressed("{NOBORDER}\nUse the Mirror, or the Hookshot and Hammer, to get to Tower Of Hera!"),
 
             'telepathic_tile_swamp_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nDrain the floodgate to raise the water here!"),
 
@@ -908,10 +913,10 @@ class Text
     }
 
     /**
-     * Removing the various string that we don't want to actually
-     * appear in the randomizer.
+     * Removing the various string that we don't want to actually appear in the
+     * randomizer.
      */
-    public function removeUnwanted()
+    public function removeUnwanted(): void
     {
         $messages_to_zero = [
             // escort Messages

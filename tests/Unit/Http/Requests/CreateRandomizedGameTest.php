@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Http\Requests;
 
-use ALttP\Http\Requests\CreateRandomizedGame;
+use App\Http\Requests\CreateRandomizedGame;
 use MohammedManssour\FormRequestTester\TestsFormRequests;
-use TestCase;
+use Tests\TestCase;
 
 /**
  * Assure our validation rules are correct for input.
  */
-class CreateRandomizedGameTest extends TestCase
+final class CreateRandomizedGameTest extends TestCase
 {
     use TestsFormRequests;
 
@@ -17,8 +19,6 @@ class CreateRandomizedGameTest extends TestCase
      * @dataProvider badPostData
      *
      * @param array  $post_data  Input data that should fail
-     *
-     * @return void
      */
     public function testFailingOnBadInput(array $post_data): void
     {
@@ -27,9 +27,6 @@ class CreateRandomizedGameTest extends TestCase
             ->assertValidationFailed();
     }
 
-    /**
-     * @return array
-     */
     public function badPostData(): array
     {
         return [

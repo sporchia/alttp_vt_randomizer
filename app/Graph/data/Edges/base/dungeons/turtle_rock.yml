@@ -1,0 +1,155 @@
+fixed:
+  directed:
+    - ["Turtle Rock - Chain Chomps Room", "Turtle Rock - Chain Chomps"]
+    - ["Turtle Rock - Spike Room", "Turtle Rock - Compass Chest"]
+    - ["Turtle Rock - Roller Room", "Turtle Rock - Roller Room - Left"]
+    - ["Turtle Rock - Roller Room", "Turtle Rock - Roller Room - Right"]
+    - ["Turtle Rock - Lobby NNW", "Turtle Rock - Lobby Door"]
+    - ["Turtle Rock - Pokey Ambush", "Turtle Rock - Lobby Door"]
+    - ["Turtle Rock - Chain Chomps Room", "Turtle Rock - Pokey Door"]
+    - ["Turtle Rock - Pokey Ambush", "Turtle Rock - Pokey Door"]
+    - ["Turtle Rock - Cold Tubes", "Turtle Rock - Chain Chomps Room"]
+    - ["Turtle Rock - Chain Chomps Room", "Turtle Rock - Chain Chomps Door"]
+
+    - ["Turtle Rock - Crystaroller Room", "Turtle Rock - Crystaroller Room Chest"]
+    - ["Turtle Rock - Boss", "Turtle Rock - Prize"]
+
+    - ["Turtle Rock - Tile Room", "Turtle Rock - Refill Room"]
+    - ["Turtle Rock - Refill Room", "Turtle Rock - Tile Room"]
+    - ["Turtle Rock - Pokey Ambush", "Turtle Rock - Pokey Ambush - Pokey Key"]
+    - ["Turtle Rock - Pokey C", "Turtle Rock - Pokey C - Pokey Key"]
+    - ["Turtle Rock - Pokey C", "Turtle Rock - Pokey C Door"]
+    - ["Turtle Rock - Lava Tubes 2", "Turtle Rock - Pokey C Door"]
+    - ["Turtle Rock - Lava Tubes 2", "Turtle Rock - Cold Tubes Exit Only"]
+    - ["Turtle Rock - Lava Tubes 2", "Turtle Rock - Big Key Chest"]
+    - ["Turtle Rock - Cold Tubes Exit Only", "Turtle Rock - Cold Tubes"]
+    - ["Turtle Rock - Pokeys 2", "Turtle Rock - Pokeys 2 - Shutter Door"]
+    - ["Turtle Rock - Medusa Roller", "Turtle Rock - Pokeys 2"]
+    - ["Turtle Rock - Pokeys 2", "Turtle Rock - Pokeys 2 - Shutter Door"]
+    - ["Turtle Rock - Balcony Junction", "Turtle Rock - Pokeys 2"]
+    - ["Turtle Rock - Laser Entrance", "Turtle Rock Outside Bridge"]
+    - ["Turtle Rock - Big Chest Entrance", "Turtle Rock Outside Bridge"]
+    - ["Turtle Rock - Big Chest Platform", "Turtle Rock - Medusa Roller"]
+    - ["Turtle Rock - Lava Tubes 3", "Turtle Rock - Medusa Roller"]
+    - ["Turtle Rock - Bomb Ambush", "Turtle Rock - Bomb Ambush - Shutter Door"]
+    - ["Turtle Rock - Big Money", "Turtle Rock - Bomb Ambush"]
+    - ["Turtle Rock - Crystaroller Room", "Turtle Rock - Crystaroller Door"]
+    - ["Turtle Rock - Dark Maze Top", "Turtle Rock - Crystaroller Room"]
+    - ["Turtle Rock - Catwalk", "Turtle Rock - Dark Maze Bottom darkness"]
+    - ["Turtle Rock - Dark Maze Bottom", "Turtle Rock - Catwalk"]
+    - ["Turtle Rock - Catwalk", "Turtle Rock - Catwalk Door"]
+    - ["Turtle Rock - Switch Block Puzzle", "Turtle Rock - Catwalk Door"]
+    - ["Turtle Rock - Eye Bridge", "Dark East Death Mountain Lonely Ledge"]
+    - ["Turtle Rock - Chasm Top", "Turtle Rock - Boss Room"]
+  undirected:
+    - ["Turtle Rock - Entrance Platform", "Turtle Rock - Lobby SSE"]
+    - ["Turtle Rock - Spike Room", "Turtle Rock - Lobby SSW"]
+    - ["Turtle Rock - Torch Puzzle Overlook", "Turtle Rock - Lobby ESE"]
+    - ["Turtle Rock - Torch Puzzle", "Turtle Rock - Lobby ENE"]
+    - ["Turtle Rock - Tile Room", "Turtle Rock - Lobby NNE"]
+    - ["Turtle Rock - Cold Tubes", "Turtle Rock - Lava Tubes 1"]
+    - ["Turtle Rock - Lava Tubes 1", "Turtle Rock - Pokey C"]
+    - ["Turtle Rock - Lava Tubes 1", "Turtle Rock - Pokeys 2"]
+    - ["Turtle Rock - Balcony Junction", "Turtle Rock - Big Chest Overlook"]
+    - ["Turtle Rock - Balcony Junction", "Turtle Rock - Laser Entrance Top"]
+    - ["Turtle Rock - Lava Tubes 3", "Turtle Rock - Pokeys Choice"]
+    - ["Turtle Rock - Lava Tubes 3", "Turtle Rock - Pokeys Choice"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Catwalk"]
+    - ["Turtle Rock - Switch Block Puzzle", "Turtle Rock - Chasm Bottom"]
+CaneOfSomaria:
+  directed:
+    - ["Turtle Rock - Torch Puzzle", "Turtle Rock - Torch Puzzle track"]
+  undirected:
+    - ["Turtle Rock - Entrance", "Turtle Rock - Entrance Platform"]
+    - ["Turtle Rock - Lobby SSE", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby SSW", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby WSW", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby WNW", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby NNW", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby NNE", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby ENE", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Lobby ESE", "Turtle Rock - Lobby track"]
+    - ["Turtle Rock - Big Chest Entrance", "Turtle Rock - Big Chest Platform"]
+    - ["Turtle Rock - Dark Maze Top", "Turtle Rock - Dark Maze track"]
+    - ["Turtle Rock - Dark Maze Bottom", "Turtle Rock - Dark Maze track"]
+    - ["Turtle Rock - Chasm Top", "Turtle Rock - Chasm Bottom"]
+FireRod:
+  directed:
+    - ["Turtle Rock - Torch Puzzle track", "Turtle Rock - Roller Room"]
+  undirected: []
+Hookshot:
+  directed:
+    - ["Turtle Rock - Big Chest Entrance", "Turtle Rock - Big Chest Platform"]
+  undirected: []
+PegasusBoots:
+  directed:
+    - ["Turtle Rock - Big Chest Platform", "Turtle Rock - Big Chest Entrance"]
+  undirected:
+    - ["Turtle Rock - Pokeys Choice", "Turtle Rock - Crystaroller Room"]
+    - ["Turtle Rock - Pokeys Choice", "Turtle Rock - Bomb Ambush"]
+Lamp:
+  directed:
+    - ["Turtle Rock - Dark Maze Top darkness", "Turtle Rock - Dark Maze Top"]
+    - ["Turtle Rock - Dark Maze Bottom darkness", "Turtle Rock - Dark Maze Bottom"]
+  undirected: []
+Cape:
+  directed:
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Bottom Left"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Bottom Right"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Top Left"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Top Right"]
+  undirected: []
+CaneOfByrna:
+  directed:
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Bottom Left"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Bottom Right"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Top Left"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Top Right"]
+  undirected: []
+MirrorShield:
+  directed:
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Bottom Left"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Bottom Right"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Top Left"]
+    - ["Turtle Rock - Eye Bridge", "Turtle Rock - Eye Bridge - Top Right"]
+  undirected: []
+UseBomb:
+  directed: []
+  undirected:
+    - ["Turtle Rock - Pokeys Choice", "Turtle Rock - Crystaroller Room"]
+    - ["Turtle Rock - Pokeys Choice", "Turtle Rock - Bomb Ambush"]
+LiftPot:
+  directed: []
+  undirected:
+    - ["Turtle Rock - Laser Entrance Top", "Turtle Rock - Laser Entrance"]
+KeyD7:
+  directed:
+    - ["Turtle Rock - Lobby Door", "Turtle Rock - Lobby NNW"]
+    - ["Turtle Rock - Lobby Door", "Turtle Rock - Pokey Ambush"]
+    - ["Turtle Rock - Pokey Door", "Turtle Rock - Chain Chomps Room"]
+    - ["Turtle Rock - Pokey Door", "Turtle Rock - Pokey Ambush"]
+    - ["Turtle Rock - Chain Chomps Door", "Turtle Rock - Cold Tubes"]
+    - ["Turtle Rock - Pokey C Door", "Turtle Rock - Pokey C"]
+    - ["Turtle Rock - Pokey C Door", "Turtle Rock - Lava Tubes 2"]
+    - ["Turtle Rock - Crystaroller Door", "Turtle Rock - Dark Maze Top darkness"]
+    - ["Turtle Rock - Catwalk Door", "Turtle Rock - Catwalk"]
+    - ["Turtle Rock - Catwalk Door", "Turtle Rock - Switch Block Puzzle"]
+  undirected: []
+BigKeyD7:
+  directed:
+    - ["Turtle Rock - Big Chest Platform", "Turtle Rock - Big Chest"]
+    - ["Turtle Rock - Medusa Roller", "Turtle Rock - Lava Tubes 3"]
+  undirected: []
+KeyForKey:
+  directed:
+    - ["Turtle Rock - Pokey C", "Turtle Rock - Lava Tubes 2"]
+  undirected: []
+TurtleRockBombAmbushTrophy|3:
+  directed:
+    - ["Turtle Rock - Bomb Ambush - Shutter Door", "Turtle Rock - Big Money"]
+  undirected: []
+TurtleRockPokeysTrophy|3:
+  directed:
+    - ["Turtle Rock - Pokeys 2 - Shutter Door", "Turtle Rock - Medusa Roller"]
+    - ["Turtle Rock - Pokeys 2 - Shutter Door", "Turtle Rock - Balcony Junction"]
+  undirected: []

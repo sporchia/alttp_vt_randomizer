@@ -145,9 +145,6 @@
               <div
                 class="col-xl-4 col-lg-6 my-1"
               >{{ $t('randomizer.enemy_shuffle.title') }}: {{ $t(enemyShuffle.name) }}</div>
-              <div
-                class="col-xl-4 col-lg-6 my-1"
-              >{{ $t('randomizer.hints.title') }}: {{ $t(hints.name) }}</div>
             </div>
           </div>
           <div class="card-body" v-if="editable">
@@ -179,13 +176,6 @@
                   @input="setEnemyShuffle"
                   :options="optionsEnemyShuffle"
                 >{{ $t('randomizer.enemy_shuffle.title') }}</Select>
-              </div>
-              <div class="col-xl-4 col-lg-6 my-1">
-                <Select
-                  :value="hints"
-                  @input="setHints"
-                  :options="optionsHints"
-                >{{ $t('randomizer.hints.title') }}</Select>
               </div>
             </div>
           </div>
@@ -412,7 +402,6 @@ export default {
       "setTowerOpen",
       "setBossShuffle",
       "setEnemyShuffle",
-      "setHints",
       "setWeapons",
       "setItemFunctionality",
       "setEnemyDamage",
@@ -467,7 +456,6 @@ export default {
               },
               mode: this.worldState.value,
               entrances: this.entranceShuffle.value,
-              hints: this.hints.value,
               weapons: this.weapons.value,
               item: {
                 pool: this.itemPool.value,
@@ -542,7 +530,7 @@ export default {
     saveRom() {
       // track the sprite choice for usage statistics
       localforage.getItem("rom.sprite-gfx").then(value => {
-        ga("event", "save", {
+        ga("send", "event", "save", {
           dimension1: value
         });
       });
@@ -601,8 +589,6 @@ export default {
       bossShuffle: state => state.boss_shuffle,
       optionsEnemyShuffle: state => state.options.enemy_shuffle,
       enemyShuffle: state => state.enemy_shuffle,
-      optionsHints: state => state.options.hints,
-      hints: state => state.hints,
       optionsWeapons: state => state.options.weapons,
       weapons: state => state.weapons,
       optionsItemPool: state => state.options.item_pool,

@@ -136,13 +136,10 @@
         <li>Entrance Randomizer: Fixes some unwinnable scenarios with Inverted world state.</li>
         <li>Entrance Randomizer: Silvers are now appropriately available at all times when choosing Swordless and Normal Item Functionality</li>
         <li>Fixed label of the "Generate ROM" button in the Customizer.</li>
-        <li>Fixes "List is empty" issue affecting users of the Customizer.  Thanks compiling!</li>
-        <li>Boss shuffle should now be accounted for in the playthrough.  Thanks compiling for the fix.</li>
-        <li>Even more Ganon, Blind, and Uncle text from the community.</li>
         <li>This release contains a few more ROM fixes submitted by the community.</li>
         <ul>
-            <li>Fixes an off-by-one error with the Aghanim's Tower chest counter.  Thanks CaitSith2 for the fix!</li>
-            <li>Ensures the key in the Tower of Hera basement cage is counted in autotrackers when that item is a Tower of Hera small key.  Thank you Aerinon!</li>
+            <li>Fixes an off-by-one error with the Aghanim's Tower chest counter.  Thanks CaitSith2</li>
+            <li>Ensures the key in the Tower Of Hera basement cage is counted in autotrackers when that item is a Tower Of Hera small key.  Thank you Aerinon!</li>
             <li>Memory values such as prize pack drops are now properly cleared from memory when a new file is created on the same ROM.  Thanks Catobat!</li>
             <li>The prize drop sequences are now reset on Save & Quit, which is consistant with vanilla ALTTP behavior. Also thank you Catobat!</li>
             <li>All starting equipment will now appear on new file creation. Previously, some items that shared a slot would not appear until after the first Save & Quit.  Yea, Catobat did this too.</li>
@@ -156,13 +153,14 @@
 <h2>v31.0.7</h2>
 <div class="card card-body bg-light mb-3">
     <ul>
-        <li>This release contains several ROM fixes.</li>
+        <li>This release contains serveral ROM fixes.</li>
         <ul>
             <li>Indoor music will now properly fade to half volume. (Patch by qwertymodo)</li>
-            <li>Fixes a rare issue with specific SNES consoles and custom shops causing VRAM corruption or crashes. Thank you Bonta for identifying the cause of this issue.</li>
+            <li>Fixes a rare issue with specific SNES consoles and custom shops causing VRAM corruption or crashes.</li>
             <li>Fixes a very rare issue where the game may crash on a Save and Quit.</li>
-            <li>Fixes an issue where dying in the high stakes chest game in the Lost Woods results in respawning at the pyramid, regardless of the status of Agahnim 1 or the Magic Mirror. (Thank you Catobat for the report and fix).</li>
-            <li>The Village of Outcasts chest game no longer increments the checked locations counter on subsequent plays of the game after receiving the game's item. (Patch by CaitSith2)</li>
+            <li>Fixes an issue where dying in the high stakes chest game in the Lost Woods results in respawning at the pyramid,
+                regardless of the status of Agahnim 1 or the Magic Mirror. (Thank you Catobat for the report and fix).</li>
+            <li>The Village of Outcasts chest game is no longer incrementing the checked locations counter on subsequent plays of the game. (Patch by CaitSith2)</li>
             <li>New chest key counters exist in the SRAM that may be read by auto-trackers. (Patch by Aerinon)</li>
             <li>The left side of Swamp Palace will now remain flooded if the key has been collected. (Patch by CaitSith2)</li>
             <li>Fixes fake world when fluting to pyramid twice.  (Patch by compiling)</li>
@@ -174,7 +172,7 @@
             <li>Enemizer no longer adds "EN 6.0.32" to the file select screen.</li>
         </ul>
         <li>When spoilers is set to "mystery", the intro text will always be the same text, regardless of game settings.</li>
-        <li>New Maseya-based pallete shuffle algorithm.  This new palette shuffle will also shuffle the map's colors!  Thank you SWR!</li>
+        <li>New Maseya-based pallete shuffle algorithm.  This new palette shuffle will also shuffle the map's colors!  (Patch by SWR)</li>
         <li>A new "Load Custom Sprite" option is available to let you use your own .zspr file.  This allows you to use any Link Sprite you wish for racing.  Thank you Krelbel for the patch!</li>
         <li>Added new player options<br />
             <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.0.7.lg.png"
@@ -931,7 +929,7 @@
             <li>Swords, shields and mails are progressive (e.g. Master → Tempered → Gold)</li>
             <li>Bosses can drop dungeon items (map, compasses, small keys and big keys) where the logic allows</li>
             <li>The bonk keys in Desert Palace and Ganon’s Tower are now regular item locations</li>
-            <li>The freestanding small key in Tower of Hera is now a regular item location</li>
+            <li>The freestanding small key in Tower Of Hera is now a regular item location</li>
             <li>Re-added the key doors in Misery Mire and Ganon’s Tower</li>
             <li>Silver Arrows are part of the regular prize pool as an upgrade only (not a second copy of the bow)</li>
             <li>Pull prize packs (3 prizes)  and enemy prize packs (56 prizes) have been merged into one larger pool</li>

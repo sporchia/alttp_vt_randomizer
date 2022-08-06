@@ -1,0 +1,13 @@
+fixed:
+  directed:
+    - ["South Shore Falls", "Lake Hylia"]
+  undirected: []
+MoonPearl:
+  directed:
+    - ["Zora's Falls Pool", "Waterfall Fairy"]
+  undirected: []
+UseBomb:
+  directed:
+    - ["Dark Hylia River Bend West", "Dark Hylia River Bend"]
+    - ["Dark Lake Hylia Ice Palace Island", "Dark Lake Hylia Waterfall Brook"]
+  undirected: []

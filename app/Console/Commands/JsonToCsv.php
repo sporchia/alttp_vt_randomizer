@@ -1,16 +1,15 @@
 <?php
 
-namespace ALttP\Console\Commands;
+declare(strict_types=1);
+
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use ALttP\Item;
-use ALttP\Randomizer;
-use ALttP\World;
 
 /**
  * This converts json files to csv.
  */
-class JsonToCsv extends Command
+final class JsonToCsv extends Command
 {
     /**
      * The name and signature of the console command.
@@ -64,7 +63,26 @@ class JsonToCsv extends Command
         fclose($out);
     }
 
-    private function _assureColumnsExist($array): array
+    /**
+     * Take a sparse multidimentional array with unique keys, and fill in all
+     * missing entiries with `0`.
+     * 
+     * ```
+     * input:
+     * [
+     *  [ 'a' => 1, 'b' => 2, 'd' => 2],
+     *  [ 'b' => 1, 'c' => 1, 'd' => 4],
+     * ]
+     * output:
+     * [
+     *  [ 'a' => 1, 'b' => 2, 'c'=> 0, 'd' => 2],
+     *  [ 'a' => 0, 'b' => 1, 'c' => 1, 'd' => 4],
+     * ]
+     * ```
+     * 
+     * @param array $array sparse multidimentional array
+     */
+    private function _assureColumnsExist(array $array): array
     {
         $keys = [];
         foreach ($array as $part) {
@@ -78,6 +96,7 @@ class JsonToCsv extends Command
                 }
             }
         }
+
         return $array;
     }
 }

@@ -1,9 +1,8 @@
 <?php
 
-namespace ALttP\Services;
+namespace App\Services;
 
-use ALttP\Item;
-use ALttP\Location;
+use App\Graph\Item;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
@@ -12,26 +11,21 @@ use Illuminate\Support\Facades\Log;
  */
 class HintService
 {
-    /** @var array */
-    protected $worlds;
-    /** @var array */
-    protected $advancement_items;
-    /** @var array */
-    protected $joke_hints;
+    protected array $joke_hints;
 
     /**
      * Create a new hint service.
      *
-     * @param array  $worlds             worlds to create hints for
-     * @param array  $advancement_items  items considered for advancment
+     * @param array $worlds worlds to create hints for
+     * @param array $advancement_items items considered for advancment
      *
      * @return void
      */
-    public function __construct(array $worlds, array $advancement_items)
-    {
-        $this->worlds = $worlds;
-        $this->advancement_items = $advancement_items;
-        $this->joke_hints = cache()->rememberForever('joke_hints', function () {
+    public function __construct(
+        protected array $worlds,
+        protected array $advancement_items
+    ) {
+        $this->joke_hints = cache()->rememberForever('joke_hints', static function () {
             return array_filter(explode(
                 "\n-\n",
                 (string) preg_replace(
@@ -44,15 +38,13 @@ class HintService
     }
 
     /**
-     * Add hints to worlds
-     *
-     * @return void
+     * Add hints to worlds.
      */
     public function applyHints(): void
     {
         foreach ($this->worlds as $world) {
             if ($world->config('spoil.Hints') !== 'on') {
-                $world->setText('sign_north_of_links_house', "Randomizer v31\n\n>    -veetorp");
+                $world->setText('sign_north_of_links_house', "Randomizer v32\n\n>    -veetorp");
                 continue;
             }
 
@@ -74,12 +66,12 @@ class HintService
                 'telepathic_tile_south_east_darkworld_cave',
             ]);
             $locations = fy_shuffle([
-                "Sahasrahla",
+                "Sahasrahla's Hut - Sahasrahla",
                 "Mimic Cave",
                 "Catfish",
                 "Graveyard Ledge",
                 "Purple Chest",
-                "Tower of Hera - Big Key Chest",
+                "Tower Of Hera - Big Key Chest",
                 "Swamp Palace - Big Chest",
                 ["Misery Mire - Big Key Chest", "Misery Mire - Compass Chest"],
                 ["Swamp Palace - Big Key Chest", "Swamp Palace - West Chest"],
@@ -114,7 +106,7 @@ class HintService
 
                 if (is_array($pick)) {
                     $hint = $world->getLocations()->filter(function ($location) use ($pick) {
-                        return in_array($location->getName(), $pick);
+                        return in_array($location->name, $pick);
                     })->getHint();
                 } else {
                     $hint = $world->getLocation($pick)->getHint();
@@ -137,7 +129,7 @@ class HintService
                     && ($world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey)
                     && !$item instanceof Item\Bottle
                     && !$item instanceof Item\Sword
-                    && !in_array($item->getRawName(), ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
+                    && !in_array($item->raw_name, ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
             });
 
             $hints = array_slice(fy_shuffle($hintables ?? []), 0, min(4, count($tiles)));

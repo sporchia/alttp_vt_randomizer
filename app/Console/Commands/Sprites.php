@@ -1,16 +1,20 @@
 <?php
 
-namespace ALttP\Console\Commands;
+declare(strict_types=1);
 
-use ALttP\Rom;
-use ALttP\Sprite;
-use ALttP\Support\Zspr;
+namespace App\Console\Commands;
+
+use App\Sprite;
+use App\Support\Zspr;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Process\Process;
 
-class Sprites extends Command
+/**
+ * Handle sprite releasing operations.
+ */
+final class Sprites extends Command
 {
     /**
      * The name and signature of the console command.
@@ -28,8 +32,6 @@ class Sprites extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -43,7 +45,7 @@ class Sprites extends Command
 
         $meta_data = collect(json_decode(file_get_contents("$sprite_dir/sprites.json"), true))->sortBy('file');
 
-        if ($meta_data === null || json_last_error() !== 0) {
+        if ($meta_data->isEmpty() || json_last_error() !== 0) {
             $this->error('json file is garbo');
 
             return 102;
@@ -199,15 +201,16 @@ class Sprites extends Command
         ));
     }
 
-    private function sprToPng($sprites)
+    /**
+     * Convert sprite files to preview PNGs.
+     * 
+     * @param string $sprites directory or single file to use
+     */
+    private function sprToPng(string $sprites)
     {
         if (is_dir($sprites)) {
-            $sprites = array_map(function ($filename) use ($sprites) {
-                return "$sprites/$filename";
-            }, scandir($sprites));
-            $sprites = array_filter($sprites, function ($file) {
-                return is_readable($file) && !in_array($file, ['.', '..', '.git']);
-            });
+            $sprites = array_map(fn ($filename) => "$sprites/$filename", scandir($sprites));
+            $sprites = array_filter($sprites, fn ($file) => is_readable($file) && !in_array($file, ['.', '..', '.git']));
         } else {
             if (!is_readable($sprites)) {
                 return;

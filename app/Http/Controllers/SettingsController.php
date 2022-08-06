@@ -1,15 +1,13 @@
 <?php
 
-namespace ALttP\Http\Controllers;
+namespace App\Http\Controllers;
 
-use ALttP\Item;
-use ALttP\Location;
-use ALttP\Rom;
-use ALttP\Sprite;
-use ALttP\World;
+use App\Graph\Item;
+use App\Graph\Randomizer;
+use App\Rom;
+use App\Sprite;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\HtmlString;
 
 /**
  * Controller to handle all requests for front end configs. Basically this
@@ -30,10 +28,9 @@ class SettingsController extends Controller
     public function __construct()
     {
         $this->drops = config('item.drop');
-        $this->items = [];
         foreach (Arr::only(config('item'), ['advancement', 'nice', 'junk', 'dungeon']) as $group) {
             foreach ($group as $item => $value) {
-                if (!($this->items[$item] ?? false)) {
+                if (!isset($this->items[$item])) {
                     $this->items[$item] = 0;
                 }
                 $this->items[$item] += $value;
@@ -61,41 +58,35 @@ class SettingsController extends Controller
     public function customizer(): array
     {
         return Cache::rememberForever('customizer_settings', function () {
-            $world = World::factory();
-            $items = Item::all($world);
+            $rand = new Randomizer();
+            $world = $rand->getWorld(0);
+            $items = collect(Item::all(0));
             $sprites = Sprite::all();
             return [
-                'locations' => array_values($world->getLocations()->filter(function ($location) {
-                    return !$location instanceof Location\Prize\Event
-                        && !$location instanceof Location\Trade;
-                })->map(function ($location) {
+                'locations' => array_values($world->getWritableVertices()->map(function ($location) {
                     return [
-                        'hash' => base64_encode($location->getName()),
-                        'name' => $location->getName(),
-                        'region' => $location->getRegion()->getName(),
-                        'class' => $location instanceof Location\Fountain ? 'bottles'
-                            : ($location instanceof Location\Medallion ? 'medallions'
-                                : ($location instanceof Location\Prize ? 'prizes' : 'items')),
+                        'hash' => $location->getAttribute('name'),
+                        'name' => $location->getAttribute('name'),
+                        'region' => 'Unknown',
+                        'class' => $location->getAttribute('type') === 'refill' ? 'bottles'
+                            : ($location->getAttribute('type') === 'medallion' ? 'medallions'
+                                : ($location->getAttribute('type') === 'prize' ? 'prizes' : 'items')),
                     ];
-                })),
+                })->toArray()),
                 'prizepacks' => array_values(array_map(function ($pack) {
                     return [
-                        'name' => $pack->getName(),
+                        'name' => $pack->name,
                         'slots' => count($pack->getDrops()),
                     ];
                 }, $world->getPrizePacks())),
-                'items' => array_merge(
+                'items' => array_values(array_merge(
                     [
                         ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
                         ['value' => 'BottleWithRandom', 'name' => 'item.BottleWithRandom', 'count' => 4, 'placed' => 0],
                     ],
-                    $items->filter(function ($item) use ($world) {
-                        return !$item instanceof Item\Pendant
-                            && !$item instanceof Item\Crystal
-                            && !$item instanceof Item\Event
-                            && !$item instanceof Item\Programmable
-                            && !$item instanceof Item\BottleContents
-                            && !in_array($item->getRawName(), [
+                    $items->filter(function ($item) {
+                        return !$item->meta
+                            && !in_array($item->raw_name, [
                                 'BigKey',
                                 'Compass',
                                 'Key',
@@ -120,76 +111,72 @@ class SettingsController extends Controller
                                 'BombUpgrade50',
                                 'ArrowUpgrade70',
                             ])
-                            || $item == Item::get('Triforce', $world);
+                            || $item == Item::get('Triforce', 0);
                     })->map(function ($item) {
                         return [
-                            'value' => $item->getName(),
-                            'name' => $item->getI18nName(),
-                            'count' => $this->items[$item->getRawName()] ?? 0,
+                            'value' => $item->name,
+                            'name' => $item->i18n_name,
+                            'count' => $this->items[$item->raw_name] ?? 0,
                             'placed' => 0,
                         ];
-                    })
-                ),
-                'prizes' => array_merge(
+                    })->toArray()
+                )),
+                'prizes' => array_values(array_merge(
                     [
                         ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
                     ],
                     $items->filter(function ($item) {
-                        return $item instanceof Item\Pendant
-                            || $item instanceof Item\Crystal;
+                        return strpos($item->name, 'Pendant') !== false
+                            || strpos($item->name, 'Crystal') !== false;
                     })->map(function ($item) {
                         return [
-                            'value' => $item->getName(),
-                            'name' => $item->getI18nName(),
+                            'value' => $item->name,
+                            'name' => $item->i18n_name,
                             'count' => 0,
                             'placed' => 0,
                         ];
-                    })
-                ),
+                    })->toArray()
+                )),
                 'medallions' => array_merge(
                     [
                         ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
                     ],
                     $items->filter(function ($item) {
-                        return $item instanceof Item\Medallion;
+                        return strpos($item->name, 'Medallion') !== false;
                     })->map(function ($item) {
                         return [
-                            'value' => $item->getName(),
-                            'name' => $item->getI18nName(),
+                            'value' => $item->name,
+                            'name' => $item->i18n_name,
                             'count' => 0,
                             'placed' => 0,
                         ];
-                    })
+                    })->toArray()
                 ),
-                'bottles' => array_merge(
+                'bottles' => [
+                    ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
+                    ['value' => 'Bottle:0', 'name' => 'item.Bottle', 'count' => 0, 'placed' => 0],
+                    ['value' => 'BottleWithRedPotion:0', 'name' => 'item.BottleWithRedPotion', 'count' => 0, 'placed' => 0],
+                    ['value' => 'BottleWithGreenPotion:0', 'name' => 'item.BottleWithGreenPotion', 'count' => 0, 'placed' => 0],
+                    ['value' => 'BottleWithBluePotion:0', 'name' => 'item.BottleWithBluePotion', 'count' => 0, 'placed' => 0],
+                    ['value' => 'BottleWithBee:0', 'name' => 'item.BottleWithBee', 'count' => 0, 'placed' => 0],
+                    ['value' => 'BottleWithGoldBee:0', 'name' => 'item.BottleWithGoldBee', 'count' => 0, 'placed' => 0],
+                    ['value' => 'BottleWithFairy:0', 'name' => 'item.BottleWithFairy', 'count' => 0, 'placed' => 0],
+                ],
+                'droppables' => array_merge(
                     [
                         ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
                     ],
-                    $items->filter(function ($item) {
-                        return $item instanceof Item\Bottle;
-                    })->map(function ($item) {
-                        return [
-                            'value' => $item->getName(),
-                            'name' => $item->getI18nName(),
-                            'count' => 0,
-                            'placed' => 0,
-                        ];
-                    })
-                ),
-                'droppables' => array_merge([
-                    ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
-                ], array_values(
                     $sprites->filter(function ($sprite) {
                         return $sprite instanceof Sprite\Droppable;
                     })->map(function ($item) {
                         return [
-                            'value' => $item->getName(),
-                            'name' => $item->getI18nName(),
-                            'count' => $this->drops[$item->getName()] ?? 0,
+                            'value' => $item->name,
+                            'name' => $item->nice_name,
+                            'count' => $this->drops[$item->name] ?? 0,
                             'placed' => 0,
                         ];
-                    })
-                )),
+                    })->values()->toArray()
+                ),
             ];
         });
     }

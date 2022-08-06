@@ -1,0 +1,33 @@
+fixed:
+  directed:
+    - ["Duck Airlines", "West Dark Death Mountain"]
+    - ["Duck Airlines", "Dark World Northeast Shop"]
+    - ["Duck Airlines", "Village of Outcasts"]
+    - ["Duck Airlines", "Bomb Shoppe"]
+    - ["Duck Airlines", "East Dark World Portal Way"]
+    - ["Duck Airlines", "Mire Warp Ledge"]
+    - ["Duck Airlines", "Swamplands Palace Entrance"]
+    - ["Duck Airlines", "Dark Lake Hylia Waterfall"]
+    - ["West Dark Death Mountain Summit", "Agahnims Tower - Entrance"]
+    - ["Bumper Cave Entrance", "Old Man Cave Ledge darkness"]
+    - ["West Dark Death Mountain", "Old Man Maze darkness"]
+    - ["West Dark Death Mountain", "West Death Mountain"]
+    - ["Turtle Peak", "Turtle Peak Shellback"]
+  undirected:
+    - ["West Dark Death Mountain", "West Dark Death Mountain Summit"]
+    - ["Dark Lake Hylia Ice Palace Entrance", "Dark Lake Hylia Ice Palace Island"]
+AgahnimDefeated:
+  directed:
+    - ["Pyramid Southern Ledge", "Hyrule Castle - Outer Court"]
+  undirected: []
+PowerGlove:
+  directed:
+    - ["Skull Woods Alcove Portal Nook", "Lost Woods Alcove Portal"]
+    - ["Swamplands Portal Nook", "Wetlands Portal Warp"]
+  undirected: []
+TitansMitt:
+  directed:
+    - ["Turtle Peak Shellback", "East Death Mountain Peg Portal Top"]
+    - ["Dark Lake Hylia Ice Palace Entrance", "Lake Hylia Fairy Island"]
+    - ["East Dark Death Mountain Running Man", "East Death Mountain Running Man"]
+  undirected: []

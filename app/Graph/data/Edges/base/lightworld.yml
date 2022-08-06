@@ -1,0 +1,333 @@
+fixed:
+  directed:
+    - ["Desert Rocks Ledge", "Desert"]
+    - ["Bombos Tablet Ledge East", "Desert Pass"]
+    - ["Bombos Tablet Ledge West", "Desert"]
+    - ["Hylia River North Bend West", "Drop Great Fairy Exit"]
+    - ["Witch's Hut", "Witch's Hut - In"]
+    - ["Zora's Domain", "King Zora"]
+    - ["Zora's Domain Ledge", "Zora's Domain Ledge Item"]
+    - ["Graveyard Ledge", "Graveyard Northern Nook"]
+    - ["Graveyard Ledge", "Graveyard Cave - In"]
+    - ["Sanctuary", "Sanctuary Hall - In"]
+    - ["Sanctuary Bonk Rocks", "Sanctuary"]
+    - ["Death Mountain Foot Descent Ledge", "Death Mountain Foot"]
+    - ["Death Mountain Foot Descent Ledge", "Death Mountain Descent Cave Left darkness"]
+    - ["Lumberjacks", "Lumberjacks Cave"]
+    - ["Lumberjacks", "Lumberjacks House"]
+    - ["Lost Woods Main Arbor", "Thief Hideout"]
+    - ["Lost Woods Mushroom Niche", "Mushroom"]
+    - ["West Death Mountain Spectacle Peak", "West Death Mountain"]
+    - ["West Death Mountain Spectacle Peak", "West Death Mountain Summit"]
+    - ["West Death Mountain Spectacle Peak", "Spectacle Rock"]
+    - ["West Death Mountain Summit", "West Death Mountain"]
+    - ["West Death Mountain Summit", "Tower Of Hera - Entrance - In"]
+    - ["Tower Of Hera - Entrance - Out", "West Death Mountain Summit"]
+    - ["East Death Mountain Center Balcony", "East Death Mountain Running Man's Tail"]
+    - ["East Death Mountain Running Man's Tail", "East Death Mountain Running Man"]
+    - ["East Death Mountain Running Man", "Paradox Cave - Bottom Entrance - In"]
+    - ["East Death Mountain Running Man", "Paradox Cave - Middle - In"]
+    - ["East Death Mountain Summit", "Paradox Cave - Top - In"]
+    - ["Paradox Cave - Bottom Entrance - Out", "East Death Mountain Running Man"]
+    - ["Paradox Cave - Middle - Out", "East Death Mountain Running Man"]
+    - ["Paradox Cave - Top - Out", "East Death Mountain Summit"]
+    - ["East Death Mountain Summit", "East Death Mountain Spiral Cave Balcony"]
+    - ["East Death Mountain Summit", "East Death Mountain Center Balcony"]
+    - ["Kakariko Fortune Teller", "Kakariko Fortune Teller Niche Next to the Psychic"]
+    - ["Kakariko Village", "Blind's Hideout Upstairs - In"]
+    - ["Blind's Hideout Upstairs - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Grandma's House Right - In"]
+    - ["Grandma's House Right - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Grandma's House Left - In"]
+    - ["Grandma's House Left - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Bottle Merchant"]
+
+    - ["East Death Mountain Spiral Cave Balcony", "Sprial Cave Top"]
+    - ["East Death Mountain Running Man", "Sprial Cave Exit"]
+    - ["West Death Mountain", "Spectacle Rock Cave Top - In"]
+    - ["West Death Mountain", "Spectacle Rock Cave Middle - In"]
+    - ["West Death Mountain", "Spectacle Rock Cave Exit - In"]
+    - ["Spectacle Rock Cave Top - Out", "West Death Mountain"]
+    - ["Spectacle Rock Cave Middle - Out", "West Death Mountain"]
+    - ["Spectacle Rock Cave Exit - Out", "West Death Mountain"]
+    - ["Lake Hylia Small Island", "Lake Hylia Island"]
+    - ["East Death Mountain Mimic Balcony", "Mimic Cave Entrance"]
+    - ["East Death Mountain FLoating Island", "Floating Island"]
+
+    # new 
+
+    - ["Kakariko Village", "West Snitch House - In"]
+    - ["West Snitch House - Out", "Kakariko Village"]
+    - ["Kakariko Village", "East Snitch House - In"]
+    - ["East Snitch House - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Chicken Hut - In"]
+    - ["Chicken Hut - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Kakariko Well - In"]
+    - ["Kakariko Well - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Sick Kid's House - In"]
+    - ["Sick Kid's House - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Kakariko Shop - In"]
+    - ["Kakariko Shop - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Tavern Back - In"]
+    - ["Tavern Back - Out", "Kakariko Village"]
+    - ["Kakariko Village", "Tavern Front - In"]
+    - ["Tavern Front - Out", "Kakariko Village"]
+
+    - ["Kakariko Village Bomb Hut", "Kakariko Village Bomb Hut - In"]
+    - ["Kakariko Village Bomb Hut - Out", "Kakariko Village Bomb Hut"]
+
+    - ["Kakariko Village Bush House", "Kakariko Village Bush House - In"]
+    - ["Kakariko Village Bush House - Out", "Kakariko Village Bush House"]
+
+    - ["Lake Hylia Fairy Island", "Pond of Happiness - In"]
+    - ["Lake Hylia North West Shore", "Lake Hylia Shop - In"]
+    - ["Lake Hylia North West Shore", "Lake Hylia Fortune Teller - In"]
+    - ["Mini Moldorm Cave - Out", "Lake Hylia South Shore"]
+    - ["Wetlands Dam", "Floodgate - In"]
+    - ["Desert Pass", "Desert Big Fairy - In"]
+    - ["Desert Big Fairy - Out", "Desert Pass"]
+    - ["Desert Thief Hideout - Out", "Desert Pass"]
+
+    - ["Desert", "Aginah's Cave - In"]
+    - ["Aginah's Cave - Out", "Desert"]
+    - ["Checkerboard Cave - Out", "Checkerboard Ledge"]
+    - ["Desert Ledge - Part 2", "Desert Palace - Back - In"]
+    - ["Desert Palace - Back - Out", "Desert Ledge - Part 2"]
+    - ["Desert Ledge - Right", "Desert Palace - East - In"]
+    - ["Desert Palace - East - Out", "Desert Ledge - Right"]
+    - ["Desert Ledge", "Desert Palace - West - In"]
+    - ["Desert Palace - West - Out", "Desert Ledge"]
+    # TODO: Is this correct? - ["Desert Palace - Lobby - Out", "Desert"]
+
+    - ["Ice Cave Region", "Ice Cave - East - In"]
+    - ["Ice Cave Region", "Ice Cave Thief Hideout - In"]
+    - ["Eastern Ruins Portal", "Eastern Ruins Fairy Cave - In"]
+    - ["Eastern Ruins Fairy Cave - Out", "Eastern Ruins Portal"]
+    - ["Cave 45 Ledge", "Cave 45 - In"]
+    - ["Cave 45 - Out", "Cave 45 Ledge"]
+    - ["South of Ruins", "South of Ruins Big Fairy - In"]
+    - ["South Kakariko", "Library - In"]
+    - ["South Kakariko", "Money Making Game Library - In"]
+
+    - ["Brothers House Left", "Brothers House Left - Exit"]
+    - ["Brothers House Right", "Brothers House Right - Exit"]
+
+    - ["South Kakariko", "Brothers House Right - In"]
+    - ["Brothers House Right - Out", "South Kakariko"]
+
+    - ["Maze Race Start", "Brothers House Left - In"]
+    - ["Brothers House Left - Out", "Maze Race Start"]
+
+    - ["Eastern Ruins", "Eastern Palace - In"]
+    - ["Eastern Palace - Out", "Eastern Ruins"]
+
+    - ["Eastern Ruins", "Sahasrahla's Hut - In"]
+    - ["Sahasrahla's Hut - Out", "Eastern Ruins"]
+
+    - ["Smith's House", "Blacksmith House - In"]
+    - ["Smith's House", "Magic Bat - In"]
+    - ["Magic Bat - Out", "Smith's House"]
+    - ["Smith's House Bat Ledge", "Magic Bat - Hole"]
+
+
+    # water
+    - ["Zora's Falls Pool", "Zora's Falls"]
+  undirected:
+    - ["Bombos Tablet Ledge West", "Bombos Tablet Ledge East"]
+    - ["Hylia River Peninsula", "Octorok Field"]
+    - ["Octorok Field", "Hobo Bridge"]
+    - ["Octorok Field", "Hyrule Castle - Outer Court East"]
+    - ["Octorok Field", "South of Ruins"]
+    - ["Desert Ledge", "Desert Ledge - Item"]
+    - ["Desert Pass", "Desert"]
+    - ["Haunted Grove Entrance", "Wetlands Portal West"]
+    - ["Haunted Grove", "Haunted Grove Entrance"]
+    - ["Hobo Bridge", "Link's House"]
+    - ["Ice Cave Region", "South Shore Falls"]
+    - ["Lake Hylia North West Shore", "Hobo Bridge"]
+    - ["Lake Hylia South Shore", "South Shore Falls"]
+    - ["Lake Hylia South Shore", "Wetlands Ravine"]
+    - ["South of Ruins", "Lake Hylia North East Shore"]
+    - ["Race Game", "South Kakariko"]
+    - ["South Kakariko", "Haunted Grove Entrance"]
+    - ["Wetlands Dam", "Desert Pass"]
+    - ["Wetlands Dam", "Wetlands Portal East"]
+    - ["Wetlands Dam", "Wetlands Ravine"]
+    - ["Wetlands Totems", "Link's House"]
+    - ["Wetlands Totems", "Wetlands Portal East"]
+    - ["Wetlands Totems", "Wetlands Ravine"]
+    - ["Hylia River North Bend East", "Witch's Hut"]
+    - ["Hylia River North Bend West", "Hylia River Peninsula"]
+    - ["Hylia River North Bend East", "Hylia River Peninsula Northeast Niche"]
+    - ["South of Ruins", "Eastern Ruins"]
+    - ["Eastern Ruins", "Eastern Ruins Portal"]
+    - ["Witch's Hut Northeast Nook", "Octorok Pit"]
+    - ["Octorok Pit", "Zora's Falls"]
+    - ["Zora's Falls", "Zora's Domain"]
+    - ["Sanctuary", "Graveyard"]
+    - ["Graveyard", "Hylia River North Bend West"]
+    - ["Death Mountain Foot", "Northwest Pond"]
+    - ["Kakariko Fortune Teller", "Northwest Pond"]
+    - ["Northwest Pond", "Sanctuary Bonk Rocks"]
+    - ["Northwest Pond", "Sanctuary"]
+    - ["Northwest Pond", "Castle Forest"]
+    - ["Castle Forest", "Hyrule Castle - Outer Court"]
+    - ["Link's House", "Hyrule Castle - Outer Court"]
+    - ["Link's House", "Link's House West Woods"]
+    - ["Lumberjacks", "Death Mountain Foot"]
+    - ["Lost Woods Main Arbor", "Lumberjacks"]
+    - ["Lost Woods Alcove West", "Lost Woods West Logs"]
+    - ["West Death Mountain", "East Death Mountain Hookshot Bridge"]
+    - ["East Death Mountain Hammer Bridge", "West Death Mountain Summit"]
+    - ["Lost Woods West Logs", "Master Sword Grove"]
+    - ["Kakariko Fortune Teller", "Lost Woods Main Arbor"]
+    - ["Eastern Ruins Portal", "Eastern Ruins Portal Peg Circle"]
+    - ["Kakariko Village", "Lost Woods Alcove West"]
+    - ["Kakariko Village", "Lost Woods Alcove Southeast"]
+    - ["Kakariko Village", "Kakariko Fortune Teller"]
+    - ["Kakariko Village", "Smith's House"]
+    - ["Lake Hylia whirlpool", "Zora's Falls whirlpool"]
+    - ["South Shore Falls whirlpool", "Northwest Pond whirlpool"]
+    - ["Lost Woods Alcove Northeast", "Lost Woods West Logs"]
+    - ["Link's House West Woods", "Wetlands Portal West"]
+    - ["East Death Mountain Summit", "East Death Mountain Peg Portal"]
+    # water
+    - ["Lake Hylia", "Lake Hylia River Bend"]
+    - ["Hobo Bridge River", "Lake Hylia River Bend"]
+    - ["Hobo Bridge River", "Hobo"]
+    - ["Hylia River North Bend", "Witch's Hut River"]
+    - ["Hylia River Peninsula North River", "Hylia River North Bend"]
+    - ["Hylia River Peninsula", "Hylia River Peninsula South River"]
+    - ["Witch's Hut River", "Octorok Pit River"]
+    - ["Zora's Falls Pool", "Zora's Falls whirlpool"]
+    - ["Northwest Pond", "Northwest Pond whirlpool"]
+    - ["Lake Hylia", "Lake Hylia whirlpool"]
+    - ["Lake Hylia Fairy Island", "Lake Hylia"]
+    - ["South Shore Falls Waters", "South Shore Falls whirlpool"]
+    - ["Maze Race Start", "Maze Race"]
+OpenChest:
+  directed:
+    - ["Floodgate", "Floodgate Chest"]
+    - ["Wetlands Dam", "Sunken Treasure"]
+  undirected: []
+ActiveBookOfMudora:
+  directed:
+    - ["Bombos Tablet Ledge West", "Bombos Tablet"]
+    - ["West Death Mountain Summit", "Ether Tablet"]
+  undirected: []
+BookOfMudora:
+  directed:
+    - ["Desert", "Desert Palace - Lobby - In"]
+  undirected: []
+UseBomb:
+  directed: []
+  undirected:
+    - ["Brothers House Left", "Brothers House Right"]
+    - ["Lake Hylia South Shore", "Mini Moldorm Cave - In"]
+    - ["Ice Cave Region", "Ice Cave - West - In"]
+    - ["Wetlands Totems", "Wetlands Big Fairy - In"]
+Flippers:
+  directed:
+    - ["Hylia River Peninsula", "Hylia River Peninsula North River"]
+    - ["Hylia River Peninsula Northeast Niche", "Hylia River Peninsula North River"]
+    - ["Witch's Hut", "Witch's Hut River"]
+    - ["Witch's Hut Northeast Nook", "Witch's Hut River"]
+    - ["Octorok Pit", "Octorok Pit River"]
+    - ["Zora's Domain", "Zora's Domain Ledge"]
+    - ["Zora's Domain Ledge", "Zora's Domain"]
+    - ["Zora's Falls Pool", "Waterfall Fairy"]
+    - ["Zora's Falls", "Zora's Falls Pool"]
+    - ["Lake Hylia North East Shore", "Lake Hylia"]
+    - ["Lake Hylia North West Shore", "Lake Hylia"]
+    - ["Lake Hylia South Shore", "Lake Hylia"]
+    - ["Lake Hylia Small Island", "Lake Hylia"]
+    - ["South Shore Falls", "South Shore Falls Waters"]
+    - ["Hylia River North Bend West", "Hylia River North Bend"]
+    - ["Hylia River North Bend East", "Hylia River North Bend"]
+  undirected: []
+Mushroom:
+  directed:
+    - ["Witch's Hut", "Witch's Hut Witch"]
+  undirected: []
+PegasusBoots:
+  directed:
+    - ["Graveyard King's Tomb", "King's Tomb - In"]
+    - ["Sanctuary Bonk Rocks", "Sanctuary Bonk Rocks - In"]
+    - ["Lumberjacks Tree", "Lumberjacks Tree - Hole"]
+    - ["Link's House West Woods", "West Woods Fairy Pond - In"]
+  undirected:
+    - ["Brothers House Left", "Brothers House Right"]
+    - ["Library - Entrance", "Library"]
+PowerGlove:
+  directed:
+    - ["Graveyard", "Sewers - Block Puzzle - Hole"]
+    - ["Checkerboard Ledge", "Checkerboard Cave - In"]
+    - ["Desert Pass", "Desert Thief Hideout - In"]
+  undirected:
+    - ["Witch's Hut", "Witch's Hut Northeast Nook"]
+    - ["Graveyard", "Graveyard Northwest Niche"]
+    - ["Hyrule Castle - Outer Court East", "Hyrule Castle - Outer Court"]
+    - ["Death Mountain Foot Cave Entrance", "Death Mountain Foot"]
+    - ["Desert Ledge", "Desert Ledge - Part 2"]
+    - ["Wetlands Portal East", "Wetlands Portal West"]
+Shovel:
+  directed:
+    - ["Haunted Grove", "Flute Spot"]
+  undirected: []
+TitansMitt:
+  directed:
+    - ["East Death Mountain Running Man", "East Death Mountain Running Man's Tail"]
+  undirected:
+    - ["Graveyard", "Graveyard King's Tomb"]
+    - ["Lost Woods Alcove Southeast", "Lost Woods Alcove Portal"]
+Hammer:
+  directed:
+    - ["East Death Mountain Peg Portal Top", "Turtle Peak Shellback"]
+  undirected:
+    - ["East Death Mountain Summit", "East Death Mountain Hammer Bridge"]
+    - ["Smith's House", "Smith's House Bat Ledge"]
+    - ["Lost Woods Alcove Northeast", "Lost Woods Alcove Portal"]
+    - ["Wetlands Portal East", "Wetlands Portal Warp"]
+Hookshot:
+  directed: []
+  undirected:
+    - ["East Death Mountain Hookshot Bridge", "East Death Mountain Running Man"]
+LiftBush:
+  directed:
+    - ["Hylia River North Bend West", "Drop Great Fairy Antechamber"]
+    - ["Lost Woods Main Arbor", "Thief Hideout - Ledge"]
+  undirected:
+    - ["Hylia River Peninsula", "Hylia River Peninsula Northeast Niche"]
+    - ["Graveyard", "Graveyard Northern Nook"]
+    - ["Graveyard Northern Nook", "Graveyard Four Square Niche"]
+    - ["Graveyard Northwest Niche", "Graveyard Four Square Niche"]
+    - ["Graveyard Northwest Niche", "Graveyard Northern Nook"]
+    - ["Lost Woods Main Arbor", "Lost Woods Mushroom Niche"]
+    - ["Lost Woods Mushroom Niche", "Lost Woods West Logs"]
+    - ["Kakariko Fortune Teller", "Kakariko Fortune Teller Southwest Tree Niche"]
+    - ["Kakariko Fortune Teller", "Kakariko Fortune Teller Niche Next to the Psychic"]
+    - ["Hyrule Castle - Courtyard", "Hyrule Castle - Courtyard NE Nook"]
+AgahnimDefeated:
+  directed:
+    - ["Lumberjacks", "Lumberjacks Tree"]
+  undirected: []
+OcarinaInactive:
+  directed:
+    - ["Kakariko Village", "Kakariko Village - Weathervane"]
+  undirected: []
+OldManLost:
+  directed:
+    - ["West Death Mountain", "Old Man Found"]
+  undirected: []
+OldManFound:
+  directed:
+    - ["West Death Mountain", "Old Man"]
+  undirected: []
+AllPendants:
+  directed:
+    - ["Master Sword Grove", "Master Sword Pedestal"]
+  undirected: []
+LostPurpleChest:
+  directed:
+    - ["Desert Pass", "Purple Chest"]
+  undirected: []

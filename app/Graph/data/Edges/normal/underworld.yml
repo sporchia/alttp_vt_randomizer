@@ -1,0 +1,8 @@
+fixed:
+  directed:
+    - ["Link's House - Bedroom", "Link's House"]
+    - ["Old Man Cave Ledge", "Death Mountain Foot Cave Entrance"]
+    - ["Bomb Shoppe Lobby", "Bomb Shoppe"]
+    - ["Bumper Cave Bottom", "Bumper Cave Entrance"]
+    - ["Bumper Cave Top Exit", "Bumper Cave Ledge"]
+  undirected: []

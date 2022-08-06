@@ -1,0 +1,85 @@
+fixed:
+  directed:
+    - ["Eastern Palace - Entrance", "Eastern Palace - Exit"]
+    - ["Eastern Palace - Popo Switch", "Eastern Palace - Entrance"]
+    - ["Eastern Palace - Cannonball Room", "Eastern Palace - Cannonball Chest"]
+    - ["Eastern Palace - East Wing - Top", "Eastern Palace - Main Room - Balcony"]
+    - ["Eastern Palace - West Wing - Top", "Eastern Palace - Main Room - Balcony"]
+    - ["Eastern Palace - East Wing - Gap Right", "Eastern Palace - East Wing - Switch"]
+    - ["Eastern Palace - East Wing - Gap Right", "Eastern Palace - Map Chest"]
+    - ["Eastern Palace - East Wing - Gap Right", "Eastern Palace - East Wing - Gap Left"]
+    - ["Eastern Palace - West Wing - Top", "Eastern Palace - West Wing - Stalfos Ambush"]
+    - ["Eastern Palace - West Wing - Stalfos Ambush", "Eastern Palace - West Wing - Stalfos Ambush - Shutter Door"]
+    - ["Eastern Palace - West Wing - Corner", "Eastern Palace - Compass Chest"]
+    - ["Eastern Palace - Dark Antifairy Circle", "Eastern Palace - Bridge Door"]
+    - ["Eastern Palace - Cannonball Bridge", "Eastern Palace - Bridge Door"]
+    - ["Eastern Palace - West Wing - Bottom", "Eastern Palace - West Wing - Bottom Tile"]
+    - ["Eastern Palace - Dark Popos", "Eastern Palace - Eyegore Key - Right Eyegore"]
+    - ["Eastern Palace - Antifairy Playground", "Eastern Palace - Dark Popos darkness"]
+    - ["Eastern Palace - Dark Popos", "Eastern Palace - Stairs Door"]
+    - ["Eastern Palace - Eyegore Switches", "Eastern Palace - Antifairy Playground"]
+    - ["Eastern Palace - Dodgeball", "Eastern Palace - Kill Room 1"]
+    - ["Eastern Palace - Kill Room 1", "Eastern Palace - Kill Room 1 - Shutter Door"]
+    - ["Eastern Palace - Kill Room 2", "Eastern Palace - Kill Room 2 - Shutter Door"]
+    - ["Eastern Palace - Boss", "Eastern Palace - Prize"]
+    - ["Eastern Palace - Main Room", "Eastern Palace - Main Room Door"]
+    - ["Eastern Palace - East Wing - Bottom", "Eastern Palace - Dark Antifairy Circle darkness"]
+    - ["Eastern Palace - Dark Antifairy Circle", "Eastern Palace - East Wing - Bottom"]
+  undirected:
+    - ["Eastern Palace - Popo Switch", "Eastern Palace - Cannonball Room"]
+    - ["Eastern Palace - Cannonball Room", "Eastern Palace - Main Room - Balcony"]
+    - ["Eastern Palace - East Wing - Top", "Eastern Palace - East Wing - Switch"]
+    - ["Eastern Palace - East Wing - Top", "Eastern Palace - East Wing - Gap Left"]
+    - ["Eastern Palace - West Wing - Corner", "Eastern Palace - West Wing - Bottom Tile"]
+    - ["Eastern Palace - West Wing - Bottom Tile", "Eastern Palace - Main Room"]
+    - ["Eastern Palace - Main Room", "Eastern Palace - East Wing - Bottom"]
+    - ["Eastern Palace - Cannonball Bridge", "Eastern Palace - Antifairy Circle"]
+    - ["Eastern Palace - Dark Popos", "Eastern Palace - Dark Cash"]
+    - ["Eastern Palace - Eyegore Switches", "Eastern Palace - Dodgeball"]
+    - ["Eastern Palace - Dark Stalfos", "Eastern Palace - Dark Antifairy Circle"]
+BigKeyP1:
+  directed:
+    - ["Eastern Palace - Main Room", "Eastern Palace - Big Chest"]
+    - ["Eastern Palace - Antifairy Circle", "Eastern Palace - West Wing - Bottom"]
+    - ["Eastern Palace - Main Room Door", "Eastern Palace - Dark Popos darkness"]
+  undirected: []
+Hookshot:
+  directed:
+    - ["Eastern Palace - East Wing - Gap Left", "Eastern Palace - East Wing - Gap Right"]
+  undirected: []
+Lamp:
+  directed:
+    - ["Eastern Palace - Dark Popos darkness", "Eastern Palace - Dark Popos"]
+    - ["Eastern Palace - Dark Antifairy Circle darkness", "Eastern Palace - Dark Antifairy Circle"]
+  undirected: []
+LiftPot:
+  directed:
+    - ["Eastern Palace - Entrance", "Eastern Palace - Popo Switch"]
+    - ["Eastern Palace - Main Room - Balcony", "Eastern Palace - East Wing - Top"]
+    - ["Eastern Palace - Main Room - Balcony", "Eastern Palace - West Wing - Top"]
+    - ["Eastern Palace - East Wing - Switch", "Eastern Palace - East Wing - Gap Right"]
+    - ["Eastern Palace - Dark Stalfos", "Eastern Palace - Dark Stalfos - TR Pot"]
+    - ["Eastern Palace - Antifairy Circle", "Eastern Palace - Big Key Chest"]
+    - ["Eastern Palace - Antifairy Playground", "Eastern Palace - Eyegore Switches"]
+  undirected: []
+KeyP1:
+  directed:
+    - ["Eastern Palace - Bridge Door", "Eastern Palace - Dark Antifairy Circle darkness"]
+    - ["Eastern Palace - Bridge Door", "Eastern Palace - Cannonball Bridge"]
+    - ["Eastern Palace - Stairs Door", "Eastern Palace - Antifairy Playground"]
+  undirected: []
+EasternPalaceKillRoomOneTrophy|3:
+  directed:
+    - ["Eastern Palace - Kill Room 1 - Shutter Door", "Eastern Palace - Dodgeball"]
+    - ["Eastern Palace - Kill Room 1 - Shutter Door", "Eastern Palace - Kill Room 2"]
+  undirected: []
+EasternPalaceKillRoomTwoTrophy|8:
+  directed:
+    - ["Eastern Palace - Kill Room 2 - Shutter Door", "Eastern Palace - Kill Room 1"]
+    - ["Eastern Palace - Kill Room 2 - Shutter Door", "Eastern Palace - Boss Room"]
+  undirected: []
+EasternPalaceWestWingTrophy:
+  directed:
+    - ["Eastern Palace - West Wing - Stalfos Ambush - Shutter Door", "Eastern Palace - West Wing - Top"]
+    - ["Eastern Palace - West Wing - Stalfos Ambush - Shutter Door", "Eastern Palace - West Wing - Corner"]
+  undirected: []

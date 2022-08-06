@@ -9,7 +9,6 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item{!! (request()->path() == 'start') ? ' active' : '' !!}"><a class="nav-link" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/start">{{ __('navigation.start_playing') }}</a></li>
-                <li class="nav-item{!! (request()->path() == 'watch') ? ' active' : '' !!}"><a class="nav-link" href="{{ app()->isLocale('en') ? '' : '/' . app()->getLocale() }}/watch">{{ __('navigation.start_watching') }}</a></li>
                 <li class="nav-item dropdown{!! (in_array(request()->path(), ['randomizer', 'entrance/randomizer', 'daily', 'customizer'])) ? ' active' : '' !!}">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ __('navigation.generate') }}<span class="caret"></span></a>
                     <div class="dropdown-menu">

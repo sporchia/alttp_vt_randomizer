@@ -361,7 +361,7 @@ export default class ROM {
       if (color_on === "random") {
         const colorOptions = ["blue", "green", "yellow", "red"];
         color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-      };
+      }
 
       switch (color_on) {
         case "blue":

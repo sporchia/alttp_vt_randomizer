@@ -18,6 +18,17 @@
 
     <div class="card border-info mt-4">
         <div class="card-header bg-info">
+            <h3 class="card-title text-white">{{ __('contribute.cards.live.header') }}</h3>
+        </div>
+        <div class="card-body">
+            @foreach (__('contribute.cards.live.content') as $block)
+                <p>{!! $block !!}</p>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="card border-info mt-4">
+        <div class="card-header bg-info">
             <h3 class="card-title text-white">{{ __('contribute.cards.other.header') }}</h3>
         </div>
         <div class="card-body">

@@ -1,0 +1,37 @@
+# undirected should be sorted alphabetically ascending, and left to right
+fixed:
+  directed:
+    - ["Cave 45 Ledge", "Haunted Grove Entrance"]
+    - ["Checkerboard Ledge", "Desert"]
+    - ["Desert Ledge - Right", "Desert"]
+    - ["Desert Ledge", "Desert"]
+  undirected:
+    - ["East Dark Death Mountain Summit", "West Dark Death Mountain Summit"]
+    - ["Swamplands Portal West", "West of Bomb Shoppe"]
+    - ["West of Bomb Shoppe", "Pyramid Southern Ledge"]
+    - ["Pyramid Southern Ledge", "Bomb Shoppe"]
+    - ["West of Bomb Shoppe", "Bomb Shoppe"]
+    - ["Hammer Bridge River", "Dark Lake Hylia River Bend"]
+    - ["Swamplands Totems", "Swamplands Ravine"]
+    - ["Swamplands Palace Entrance", "Swamplands Ravine"]
+    - ["Swamplands Ravine", "Dark Lake Hylia Southwest Ledge"]
+LiftBush:
+  directed:
+    []
+    #- ["Outcasts Orchard Shop Yard", "Outcasts Orchard Shop Yard Nook"]
+  undirected:
+    - ["Kakariko Village", "Kakariko Village Bomb Hut"]
+    - ["Kakariko Village", "Kakariko Village Bush House"]
+    - ["East Dark Death Mountain Running Man", "East Dark Death Mountain Running Man's Tail"]
+    - ["Outcasts Orchard", "Outcasts Orchard Northeast Tree Niche"]
+    - ["Village of Outcasts", "Village of Outcasts Broken Hut"]
+    - ["Digging Game Ledge", "Digging Game Bush Niche"]
+Flippers:
+  directed:
+    - ["Dark Lake Hylia Waterfall The Falls", "Dark Lake Hylia Waterfall Brook"]
+    - ["Lake Hylia Island", "Lake Hylia"]
+  undirected:
+    - ["Hammer Bridge North", "Hammer Bridge River"]
+    - ["Hammer Bridge River", "Hammer Bridge Shallow Splotch"]
+    - ["Dark Lake Hylia Waterfall", "Dark Lake Hylia Waterfall Brook"]
+    - ["Dark Lake Hylia Waterfall The Falls", "Dark Lake Hylia River End Brook"]

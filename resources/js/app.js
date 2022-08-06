@@ -12,15 +12,15 @@ if (process.env.MIX_SENTRY_DSN_PUBLIC) {
       // Firefox extensions
       /^moz-extension:\/\//i,
       // AdSense
-      /pagead2\.googlesyndication\.com/i
-    ]
+      /pagead2\.googlesyndication\.com/i,
+    ],
   });
 }
 
 require("./polyfill");
 require("./bootstrap");
 
-const Vue = require("vue");
+const Vue = require("vue").default;
 window.Vue = Vue;
 window.cStore = require("./store/customizer").default;
 
@@ -34,7 +34,7 @@ window.i18n = new VueInternationalization({
   fallbackLocale: "en",
   silentFallbackWarn: true,
   silentTranslationWarn: true,
-  messages: Locale
+  messages: Locale,
 });
 
 Vue.use(VTooltip);
@@ -43,8 +43,8 @@ Vue.use(VueTimeago, {
   locales: {
     fr: require("date-fns/locale/fr"),
     de: require("date-fns/locale/de"),
-    es: require("date-fns/locale/es")
-  }
+    es: require("date-fns/locale/es"),
+  },
 });
 Vue.component("vt-rom-info", require("./components/VTRomInfo.vue").default);
 Vue.component(
@@ -59,7 +59,11 @@ Vue.component(
 );
 Vue.component("vt-sprite-loader", require("./components/VTSpriteLoader.vue").default);
 Vue.component("vt-text", require("./components/VTText.vue").default);
-//Vue.component("Streams", require("./components/Streams").default);
+Vue.component("Streams", require("./components/Streams.vue").default);
+Vue.component(
+  "alttpr-streams",
+  require("./components/AlttprStreams.vue").default
+);
 
 // Views
 Vue.component("Multiworld", require("./views/Multiworld.vue").default);
@@ -67,6 +71,11 @@ Vue.component("Customizer", require("./views/Customizer.vue").default);
 Vue.component("Hashloader", require("./views/HashLoader.vue").default);
 Vue.component("Randomizer", require("./views/Randomizer.vue").default);
 Vue.component("Sprites", require("./views/Sprites.vue").default);
+
+// Filters
+Vue.filter("truncate", (text, stop, clamp) => {
+  return text.slice(0, stop) + (stop < text.length ? clamp || "..." : "");
+});
 
 // ignore adsense
 Vue.config.ignoredElements = ["ins"];

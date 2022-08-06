@@ -1,12 +1,18 @@
 <?php
 
-use ALttP\Item;
-use ALttP\Rom;
-use ALttP\World;
-use ALttP\Support\ItemCollection;
+declare(strict_types=1);
+
+namespace Tests;
+
+use App\Graph\Inventory;
+use App\Graph\Item;
+use App\Rom;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RomTest extends TestCase
+/**
+ * @group graph
+ */
+final class RomTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -95,16 +101,15 @@ class RomTest extends TestCase
      */
     public function testSetStartingEquipment(array $result, array $items)
     {
-        $world = World::factory();
-        $object_items = array_map(function ($item_name) use ($world) {
-            return Item::get($item_name, $world);
+        $object_items = array_map(function ($item_name) {
+            return Item::get($item_name, 0);
         }, $items);
 
-        $item_collection = new ItemCollection($object_items);
-        $config = $world->getConfig();
-        $config['rom.rupeeBow'] = false;
+        $item_collection = new Inventory($object_items);
 
-        $this->rom->initial_sram->setStartingEquipment($item_collection, $config);
+        $this->rom->initial_sram->setStartingEquipment($item_collection, [
+            'rom.rupeeBow' => false,
+        ]);
         $this->rom->writeInitialSram();
 
         foreach ($result as $offset => $bytes) {
@@ -776,7 +781,7 @@ class RomTest extends TestCase
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA2C));
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA2E));
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA30));
-        
+
         $this->assertEquals($expectedFileByte, $this->rom->read(0x65561));
     }
 

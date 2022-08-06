@@ -1,0 +1,9 @@
+CaneOfSomaria:
+  directed:
+    - ["Ice Palace - Big Key View", "Ice Palace - Big Key right"]
+  undirected: []
+PegasusBoots:
+  directed:
+    - ["Misery Mire - Main Lobby North - orange", "Misery Mire - Main Lobby - orange"]
+    - ["Misery Mire - Main Lobby - orange", "Misery Mire - Main Lobby North East - orange"]
+  undirected: []

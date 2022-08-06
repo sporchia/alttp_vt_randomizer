@@ -1,30 +1,13 @@
 <?php
 
-/**
- * Shuffle the contents of an array using VT Shuffle
- *
- * @param array $array array to shuffle
- *
- * @return array
- */
-function mt_shuffle(array $array)
-{
-    $new_array = [];
-    while (count($array)) {
-        $pull_key = get_random_int(0, count($array) - 1);
-        $new_array = array_merge($new_array, array_splice($array, $pull_key, 1));
-    }
-    return $new_array;
-}
+declare(strict_types=1);
 
 /**
- * Shuffle the contents of an array using Fisher-Yates shuffle
+ * Shuffle the contents of an array using Fisher-Yates shuffle.
  *
  * @param array $array array to shuffle
- *
- * @return array
  */
-function fy_shuffle(array $array)
+function fy_shuffle(array $array): array
 {
     $new_array = array_values($array);
     $count = count($array);
@@ -38,15 +21,41 @@ function fy_shuffle(array $array)
 }
 
 /**
- * Random weighted select from array using mt_rand and weights
+ * Pull random element from array.
+ * 
+ * @param array $array array to get element from
+ * 
+ * @return mixed
+ */
+function get_random_element(array $array)
+{
+    $new_array = array_values($array);
+
+    return $new_array[get_random_int(0, count($new_array) - 1)];
+}
+
+/**
+ * Pull random element from array.
+ * 
+ * @param array $array array to get element from
+ * 
+ * @return mixed
+ */
+function get_random_key(array $array)
+{
+    $new_array = array_keys($array);
+
+    return $new_array[get_random_int(0, count($new_array) - 1)];
+}
+
+/**
+ * Random weighted select from array using mt_rand and weights.
  *
  * @param array $array array to pick from
  * @param array $weights weights of array to pick from
  * @param int $pick number of items to pick
- *
- * @return array
  */
-function weighted_random_pick(array $array, array $weights, int $pick = 1)
+function weighted_random_pick(array $array, array $weights, int $pick = 1): array
 {
     $picked = [];
     $total_weight = (int) array_sum($weights);
@@ -65,15 +74,13 @@ function weighted_random_pick(array $array, array $weights, int $pick = 1)
 }
 
 /**
- * Sort array by key recursively (this is basically an extension of ksort)
+ * Sort array by key recursively (this is basically an extension of ksort).
  * @see http://php.net/manual/en/function.ksort.php
  *
  * @param array $array array to sort
  * @param int $sort_flags optional sort flags see PHP's sort() function for details
- *
- * @return bool
  */
-function ksortr(array &$array, int $sort_flags = SORT_REGULAR)
+function ksortr(array &$array, int $sort_flags = SORT_REGULAR): bool
 {
     if (!is_array($array)) {
         return false;
@@ -90,56 +97,11 @@ function ksortr(array &$array, int $sort_flags = SORT_REGULAR)
 }
 
 /**
- * Second order sort of array
- *
- * @param array $array array to sort
- * @param mixed $index second order index to sort on
- * @param string $order diretion of sort
- * @param bool $natsort flag for natural sort
- * @param bool $case_sensitive flag for case sensitivity
- *
- * @return array
+ * Get a hashed array for rom code on start screen.
+ * 
+ * @param int $id id to hash
  */
-function sabsi(array $array, $index, string $order = 'asc', bool $natsort = false, bool $case_sensitive = false)
-{
-    if (!count($array)) {
-        return $array;
-    }
-
-    $temp = [];
-    $sorted = [];
-
-    foreach (array_keys($array) as $key) {
-        $temp[$key] = $array[$key][$index];
-    }
-
-    if ($natsort) {
-        if ($case_sensitive) {
-            natsort($temp);
-        } else {
-            natcasesort($temp);
-        }
-        if ($order != 'asc') {
-            $temp = array_reverse($temp, true);
-        }
-    } else {
-        if ($order == 'asc') {
-            asort($temp);
-        } else {
-            arsort($temp);
-        }
-    }
-    foreach (array_keys($temp) as $key) {
-        if (is_numeric($key)) {
-            $sorted[] = $array[$key];
-        } else {
-            $sorted[$key] = $array[$key];
-        }
-    }
-    return $sorted;
-}
-
-function hash_array($id)
+function hash_array(int $id): array
 {
     $ret = 0;
     $id = ($id * 99371) % 33554431;
@@ -157,14 +119,12 @@ function hash_array($id)
 }
 
 /**
- * Take our patch format and merge it down to a more compact version
+ * Take our patch format and merge it down to a more compact version.
  *
  * @param array $patch_left Left side of patch
  * @param array $patch_right patch to add to left side
- *
- * @return array
  */
-function patch_merge_minify(array $patch_left, array $patch_right = [])
+function patch_merge_minify(array $patch_left, array $patch_right = []): array
 {
     $write_array = [];
     // decompose left

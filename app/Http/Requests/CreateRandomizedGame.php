@@ -1,10 +1,10 @@
 <?php
 
-namespace ALttP\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use ALttP\Rules\OverrideStartScreenRule;
+use App\Rules\OverrideStartScreenRule;
 
 class CreateRandomizedGame extends FormRequest
 {

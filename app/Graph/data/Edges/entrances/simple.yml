@@ -1,0 +1,36 @@
+# This setting uses the highest number of entrance type groupings. This restricts how thoroughly different entrances are randomized with the intention of keeping things simple.
+#
+# Skull Woods (excluding final dungeon entrance)
+# All entrances (including all of the holes) remain confined to the Skull Woods overworld region and are randomized with each other. Skull-entrances are randomized with skull-entrances; and holes are randomized with holes.
+#
+# Single-Entrance Caves
+# All entrances are grouped and randomized with each other. This does not include any of Light World Death Mountain. Example: houses.
+#
+# Multi-Entrance Caves
+# All entrances are grouped and randomized with each other. Locations that are originally spanned by two-entrance caves (e.g. Kakariko Elder’s House) will remain connected to each other via a two-entrance cave. This does not include any of Light World Death Mountain.
+#
+# Light World Death Mountain
+# All entrances remain confined to the Light World Death Mountain overworld region and are randomized with each other. Note that the entrance to Death Mountain (via the cave where the Old Man is lost) is also not randomized.
+#
+# Overworld Holes (excluding those in Skull Woods)
+# All holes are grouped and randomized with each other. Holes and their associated cave entrance remain paired together. For example falling in a hole and exiting will take you to the overworld cave associated with that hole, regardless of which interior rooms the hole led to.
+fixed: []
+connectons:
+  - # Single-Entrance Dungeons
+    # All entrances are grouped and randomized with each other. This includes the
+    # final section of Skull Woods (leading to the boss) but does not include any
+    # other Skull Woods entrances.
+    in:
+      - ["Tower Of Hera - Entrance - In", "Tower Of Hera - Exit"]
+    out:
+      - ["Tower Of Hera - Entrance", "Tower Of Hera - Entrance - Out"]
+  - # Multi-Entrance Dungeons (excluding Skull Woods)
+    # Each of the 4 entrances of Hyrule Castle, Desert Palace and Turtle Rock
+    # remain grouped together. Each group of 4 are randomized with each other
+    # using a static mapping. For example if Hyrule Castle and Desert Palace are
+    # randomized with each other, the main entrance of Desert Palace will lead to
+    # the main entrance of Hyrule Castle, the left entrance of Desert Palace will
+    # lead to the left entrance of Hyrule Castle, and so on. However Hyrule Castle
+    # is not randomized on Standard World State.
+    in: []
+    out: []

@@ -1,0 +1,125 @@
+UW ; OW
+
+#_1BBB73: db $01 ; 00 Link's house
+#_1BBB74: db $02 ; 01 Sanctuary
+#_1BBB75: db $03 ; 02 Castle west wing
+#_1BBB76: db $04 ; 03 Castle lobby
+#_1BBB77: db $05 ; 04 Castle east wing
+#_1BBB79: db $07 ; 06 Old man cave east
+#_1BBB7A: db $08 ; 07 Eastern Palace
+#_1BBB7B: db $09 ; 08 Desert Palace lobby
+#_1BBB7C: db $0A ; 09 Desert Palace east
+#_1BBB7D: db $0B ; 0A Desert Palace west
+#_1BBB7E: db $0C ; 0B Desert Palace back
+#_1BBB7F: db $0D ; 0C Sahasrahla's house west
+#_1BBB80: db $0E ; 0D Sahasrahla's house east
+#_1BBB81: db $0F ; 0E Angry bro west
+#_1BBB82: db $10 ; 0F Angry bro east
+#_1BBB83: db $11 ; 10 Magic bat
+#_1BBB85: db $13 ; 12 Super bunny bottom
+#_1BBB86: db $14 ; 13 Super bunny top
+#_1BBB87: db $15 ; 14 Turtle Rock laser pots
+#_1BBB88: db $16 ; 15 Bumper cave bottom
+#_1BBB89: db $17 ; 16 Bumper cave top
+#_1BBB8A: db $18 ; 17 Turtle Rock laser bridge
+#_1BBB8B: db $19 ; 18 Turtle Rock big chest
+#_1BBB8C: db $1A ; 19 East Death Mountain useless bottom
+#_1BBB8D: db $1B ; 1A East Death Mountain useless top
+#_1BBB8E: db $1C ; 1B Spiral cave exit
+#_1BBB8F: db $1D ; 1C Spiral cave top
+#_1BBB90: db $1E ; 1D Paradox cave bottom
+#_1BBB91: db $1F ; 1E Paradox cave middle
+#_1BBB92: db $20 ; 1F Paradox cave top
+#_1BBB93: db $21 ; 20 Kiki cave west
+#_1BBB94: db $22 ; 21 Kiki cave east
+#_1BBB95: db $23 ; 22 Spectacle rock
+#_1BBB96: db $24 ; 23 Agahnim's Tower
+#_1BBB97: db $25 ; 24 Swamp Palace
+#_1BBB98: db $26 ; 25 Palace of Darkness
+#_1BBB99: db $27 ; 26 Misery Mire
+#_1BBB9A: db $28 ; 27 Skull Woods west
+#_1BBB9B: db $29 ; 28 Skull Woods mummy statue
+#_1BBB9C: db $2A ; 29 Skull Woods big chest
+#_1BBB9D: db $2B ; 2A Skull Woods back
+#_1BBB9F: db $2D ; 2C Ice Palace
+#_1BBBA1: db $2F ; 2E Death Mountain exit from summit
+#_1BBBA2: db $30 ; 2F Old man home cave west
+#_1BBBA3: db $31 ; 30 Old man home cave east
+#_1BBBA4: db $32 ; 31 Hyrule Castle secret entrance
+#_1BBBA5: db $33 ; 32 Tower of Hera
+#_1BBBA6: db $34 ; 33 Thieves' Town
+#_1BBBA7: db $35 ; 34 Turtle Rock
+#_1BBBA8: db $36 ; 35 Pyramid drop
+#_1BBBA9: db $37 ; 36 Ganon's Tower
+#_1BBBAA: db $38 ; 37 Graveyard fairy
+#_1BBBAB: db $39 ; 38 Kakariko well
+#_1BBBAC: db $3A ; 39 Hookshot cave bottom
+#_1BBBAD: db $3B ; 3A Hookshot cave top
+#_1BBBAF: db $3D ; 3C Swamp thief cave hideout
+#_1BBBB0: db $3E ; 3D Eastern snitch house
+#_1BBBB1: db $3F ; 3E Cucco easter egg
+#_1BBBB2: db $40 ; 3F Sick kid
+#_1BBBB3: db $41 ; 40 Spike cave
+#_1BBBB4: db $42 ; 41 Tavern front
+#_1BBBB5: db $43 ; 42 Tavern back
+#_1BBBB6: db $44 ; 43 Kakariko Inn
+#_1BBBB7: db $45 ; 44 Sahasrahla's hideout
+#_1BBBB8: db $46 ; 45 Kakariko shop
+#_1BBBB9: db $47 ; 46 Village of Outcasts chest game
+#_1BBBBA: db $48 ; 47 Village of Outcasts bombable hut
+#_1BBBBB: db $49 ; 48 Library
+#_1BBBBC: db $4A ; 49 Kakariko bombable hut
+#_1BBBBD: db $4B ; 4A Chicken hut
+#_1BBBBE: db $4C ; 4B Potion shop
+#_1BBBBF: db $4D ; 4C Aginah's cave
+#_1BBBC0: db $4E ; 4D Dam
+#_1BBBC1: db $4F ; 4E Mimic cave
+#_1BBBC2: db $50 ; 4F East Death Mountain fairy pond cave
+#_1BBBC3: db $51 ; 50 Circle of bushes heart piece cave
+#_1BBBC4: db $52 ; 51 Graveyard ledge heart piece cave
+#_1BBBC5: db $53 ; 52 Bomb shop
+#_1BBBC6: db $54 ; 53 C-shaped house
+#_1BBBC7: db $55 ; 54 Southeast of Eastern Ruins fairy cave
+#_1BBBC8: db $5E ; 55 Mire big fairy
+#_1BBBC9: db $60 ; 56 Dark World lumberjacks shop
+#_1BBBCA: db $58 ; 57 Lake Hylia shop
+#_1BBBCB: db $59 ; 58 Arrow game
+#_1BBBCC: db $5A ; 59 Dark World sanctuary cave
+#_1BBBCD: db $5B ; 5A King's tomb
+#_1BBBCE: db $5C ; 5B Waterfall of Wishing
+#_1BBBCF: db $5D ; 5C Pond of Happiness
+#_1BBBD0: db $5E ; 5D Big fairy (Eastern Ruins)
+#_1BBBD1: db $5F ; 5E Mire shed
+#_1BBBD2: db $60 ; 5F Village of Outcasts shop
+#_1BBBD3: db $61 ; 60 Blind's hut
+#_1BBBD4: db $62 ; 61 Watto's cave
+#_1BBBD5: db $63 ; 62 Fat Fairy
+#_1BBBD6: db $64 ; 63 Smithy's house
+#_1BBBD7: db $65 ; 64 Light World fortune teller (Kakariko)
+#_1BBBD8: db $66 ; 65 Dark World fortune teller
+#_1BBBD9: db $67 ; 66 South of Kakariko chest game
+#_1BBBDA: db $68 ; 67 Broccoli's house
+#_1BBBDB: db $69 ; 68 Bird hint NPC cave
+#_1BBBDC: db $6A ; 69 Hamburger Helper's cave
+#_1BBBDD: db $56 ; 6A Ice rod cave golden bee
+#_1BBBDE: db $5E ; 6B Big fairy (South of Link's house)
+#_1BBBDF: db $5E ; 6C Big fairy (South of Kiki)
+#_1BBBE0: db $58 ; 6D Dark Death Mountain shop
+#_1BBBE1: db $60 ; 6E Dark World witch shop
+#_1BBBE2: db $5E ; 6F Dark West Death Mountain Big fairy
+#_1BBBE3: db $4D ; 70 Aginah's cave
+#_1BBBE4: db $5E ; 71 Desert big fairy
+#_1BBBE5: db $65 ; 72 Light World fortune teller (Lake Hylia)
+#_1BBBE6: db $60 ; 73 Dark Lake Hylia shop
+#_1BBBE7: db $57 ; 74 East of Village of Outcasts shop
+#_1BBBE9: db $71 ; 76 Link's house bonk rocks fairy pond
+#_1BBBEA: db $71 ; 77 Bomb shop bonk rocks fairy pond
+#_1BBBEB: db $6D ; 78 Desert thief hideout
+#_1BBBEC: db $6E ; 79 Bonk rocks heart piece cave
+#_1BBBED: db $6F ; 7A Lake Hylia falls thief hideout
+#_1BBBEE: db $70 ; 7B Dark Lake Hylia falls dev cave
+#_1BBBEF: db $6C ; 7C Minimoldorm cave
+#_1BBBF0: db $72 ; 7D Checkerboard cave heart piece
+#_1BBBF1: db $83 ; 7E Stake puzzle heart piece cave
+#_1BBBF2: db $84 ; 7F Ice rod cave
+#_1BBBF3: db $5E ; 80 Dark ice rod big fairy

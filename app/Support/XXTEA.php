@@ -1,17 +1,21 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
+
+namespace App\Support;
+
+use Exception;
 
 /**
  * XXTEA encryption algorithm library for PHP.
  */
-class XXTEA
+final class XXTEA
 {
     const DELTA = 0x9E3779B9;
-    protected $key;
+    protected array $key;
 
     /**
-     * Create encryptor
+     * Create encryptor.
      *
      *	@param array $key 16 byte (max) key to use for encryption/decryption
      */
@@ -21,16 +25,16 @@ class XXTEA
     }
 
     /**
-     * encrypt the byte array
+     * Get encrypted the byte array.
      *
      * @param array $unencrypted data array to encrypt
      *
-     * @return array
+     * @throws Exception
      */
-    public function encrypt(array $unencrypted)
+    public function encrypt(array $unencrypted): array
     {
         if (count($unencrypted) < 8) {
-            throw new \Exception('Data to encrypt must be at least 8 bytes long');
+            throw new Exception('Data to encrypt must be at least 8 bytes long');
         }
 
         $unencrypted = array_values(unpack('L*', pack('C*', ...array_slice(array_merge($unencrypted, array_fill(0, 4, 0)), 0, (int) ceil(count($unencrypted) / 4) * 4))));
@@ -55,20 +59,18 @@ class XXTEA
     }
 
     /**
-     * encrypt the byte array
+     * Get decrypted the byte array.
      *
      * @param array $encrypted data array to encrypt
-     *
-     * @return array
      */
-    public function decrypt(array $encrypted)
+    public function decrypt(array $encrypted): array
     {
         $encrypted = array_values(unpack('L*', pack('C*', ...$encrypted)));
         $unencrypted = $encrypted;
 
         $n = count($encrypted) - 1;
         $y = $encrypted[0];
-        $q = floor(6 + 52 / ($n + 1));
+        $q = (int) floor(6 + 52 / ($n + 1));
 
         $sum = $this->int32($q * self::DELTA);
         while ($sum != 0) {
@@ -84,12 +86,29 @@ class XXTEA
         return array_values(unpack('C*', pack('L*', ...$unencrypted)));
     }
 
-    private function mx($sum, $y, $z, $p, $e, $k)
+    /**
+     * Do things, like `mx`...
+     *
+     * @todo actually describe what this function is doing.
+     *
+     * @param int $sum
+     * @param int $y
+     * @param int $z
+     * @param int $p
+     * @param int $e
+     * @param int $k
+     */
+    private function mx($sum, $y, $z, $p, $e, $k): int
     {
         return ((($z >> 5 & 0x07FFFFFF) ^ $y << 2) + (($y >> 3 & 0x1FFFFFFF) ^ $z << 4)) ^ (($sum ^ $y) + ($k[$p & 3 ^ $e] ^ $z));
     }
 
-    private function int32($n)
+    /**
+     * Reduce value to 32-bit integer.
+     *
+     * @param int $n integer to mask
+     */
+    private function int32(int $n): int
     {
         return ($n & 0xFFFFFFFF);
     }

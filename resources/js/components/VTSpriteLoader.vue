@@ -18,31 +18,17 @@
 export default {
   props: {
     rom: { default: null },
-    storageKey: { default: null }
   },
   data() {
     return {
       fileSelected: false,
-      fileNameText: "",
-      file: null
+      fileNameText: ""
     };
-  },
-  created() {
-    this.$emit('disallow-save-rom', true);
-    localforage.getItem("rom.custom-sprite-gfx").then(value => {
-      if (value === null) return;
-      this.file = value;
-      this.loadFile()
-    });
   },
   methods: {
     loadBlob(change) {
       let blob = change.target.files[0];
-      this.file = blob;
-      this.loadFile();
-    },
-    loadFile() {
-      const fileName = this.file.name;
+      const fileName = change.target.files[0].name;
       const fileReader = new FileReader();
 
       fileReader.onload = event => {
@@ -86,18 +72,13 @@ export default {
               reject("Could not save sprite to local storage: " + fileName);
             });
 
-          this.$emit('disallow-save-rom', false);
           this.fileNameText = "Loaded: " + fileName;
 
         }).then(this.rom.parseSprGfx.bind(this.rom),
-                (reason) => {
-          this.$emit('disallow-save-rom', true);
-          this.fileNameText = reason;
-        });
+                (reason) => { this.fileNameText = reason });
       };
 
-      fileReader.readAsArrayBuffer(this.file);
-      localforage.setItem(this.storageKey, this.file);
+      fileReader.readAsArrayBuffer(blob);
     }
   }
 };

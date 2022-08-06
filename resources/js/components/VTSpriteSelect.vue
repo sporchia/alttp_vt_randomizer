@@ -36,8 +36,10 @@
 </template>
 
 <script>
+import axios from "axios";
 import Multiselect from "vue-multiselect";
-import * as path from "path";
+import localforage from "localforage";
+import * as path from "path-browserify";
 
 export default {
   components: {
@@ -70,8 +72,8 @@ export default {
     customLabel(option) {
       return `${option.name}`;
     },
-    customClass(option) {
-      return `"icon-custom-" + option.name.replace(/[ \)\(\.\']/g, '')`;
+    customClass() {
+      return `"icon-custom-" + option.name.replace(/[ )(.']/g, '')`;
     },
     onSelect(option) {
       this.value = option;
@@ -93,8 +95,9 @@ export default {
       if (pickedSprite.name === "Load Custom Sprite") {
         vm.$emit('load-custom-sprite', true);
         return;
+      } else {
+        vm.$emit('load-custom-sprite', false);
       }
-      vm.$emit('load-custom-sprite', false);
 
       while (pickedSprite.file === null) {
         pickedSprite =

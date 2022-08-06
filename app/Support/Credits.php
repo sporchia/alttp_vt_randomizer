@@ -1,11 +1,15 @@
 <?php
 
-namespace ALttP\Support;
+declare(strict_types=1);
+
+namespace App\Support;
+
+use OutOfBoundsException;
 
 /**
- * Class to handle Credits Sequence
+ * Class to handle Credits Sequence.
  */
-class Credits
+final class Credits
 {
     private $scenes = [
         'castle' => [
@@ -75,10 +79,20 @@ class Credits
         ],
     ];
 
-    public function updateCreditLine(string $scene, int $line, string $text, string $align = 'center')
+    /**
+     * Write a credit line.
+     *
+     * @param string $scene Scene name to place credit line
+     * @param int $line line number on screen
+     * @param string $text the text to write
+     * @param string $alignment one of `center`, `left`, or `right`
+     *
+     * @throws Exception if out of bounds line number is passed.
+     */
+    public function updateCreditLine(string $scene, int $line, string $text, string $align = 'center'): void
     {
         if (!isset($this->scenes[$scene][$line])) {
-            return false;
+            throw new OutOfBoundsException('Unknown Line for Scene');
         }
 
         $text = substr($text, 0, 32);
@@ -99,6 +113,9 @@ class Credits
         }
     }
 
+    /**
+     * Get the binary representation of data to apply to rom.
+     */
     public function getBinaryData(): array
     {
         $pointers = [];
@@ -128,7 +145,7 @@ class Credits
     }
 
     // @TODO: consider making the records a proper type
-    protected function getSmallConverted(array $record)
+    private function getSmallConverted(array $record)
     {
         $data = [];
 
@@ -155,14 +172,14 @@ class Credits
         return $data;
     }
 
-    protected function getSmallAltConverted(array $record)
+    private function getSmallAltConverted(array $record)
     {
         $converted_text = $this->convertAltCredits($record['text']);
         $header = $this->getHeader($record['x'], $record['y'], count($converted_text));
         return array_merge($header, $converted_text);
     }
 
-    protected function getlargeConverted(array $record)
+    private function getlargeConverted(array $record)
     {
         $data = [];
 
@@ -177,7 +194,14 @@ class Credits
         return $data;
     }
 
-    protected function getHeader($x, $y, $length)
+    /**
+     * Get header bytes for line write.
+     *
+     * @param int $x horizontal postion
+     * @param int $y vertical position
+     * @param int $lengh length of tiles in data
+     */
+    private function getHeader(int $x, int $y, int $length): array
     {
         return unpack('C*', pack('N', (0x6000
             | ($y >> 5 << 11) | (($y & 0x1F) << 5)
@@ -189,8 +213,6 @@ class Credits
      * Convert string to byte array for Credits that can be written to ROM
      *
      * @param string $string string to convert
-     *
-     * @return array
      */
     public function convertLargeCreditsTop(string $string): array
     {
@@ -221,8 +243,6 @@ class Credits
      * Convert string to byte array for Credits that can be written to ROM
      *
      * @param string $string string to convert
-     *
-     * @return array
      */
     public function convertLargeCreditsBottom(string $string): array
     {
@@ -253,8 +273,6 @@ class Credits
      * Convert string to byte array for Credits that can be written to ROM
      *
      * @param string $string string to convert
-     *
-     * @return array
      */
     public function convertAltCredits(string $string): array
     {
@@ -270,14 +288,13 @@ class Credits
      * Convert character to byte for ROM in Credits Sequence
      *
      * @param string $char character to convert
-     *
-     * @return int
      */
     private function charToAltCreditsHex(string $char): int
     {
         if (preg_match('/[a-z]/', $char)) {
             return ord($char) - 0x29;
         }
+
         switch ($char) {
             case '.':
                 return 0x52;
@@ -290,8 +307,6 @@ class Credits
      * Convert string to byte array for Credits that can be written to ROM
      *
      * @param string $string string to convert
-     *
-     * @return array
      */
     public function convertCredits(string $string): array
     {
@@ -307,14 +322,13 @@ class Credits
      * Convert character to byte for ROM in Credits Sequence
      *
      * @param string $char character to convert
-     *
-     * @return int
      */
     private function charToCreditsHex(string $char): int
     {
         if (preg_match('/[a-z]/', $char)) {
             return ord($char) - 0x47;
         }
+
         switch ($char) {
             case ' ':
                 return 0x9F;

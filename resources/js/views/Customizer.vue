@@ -57,7 +57,7 @@
           <div class="card-header bg-success card-heading-btn">
             <h3
               class="card-title text-white float-left"
-            >Customizer (v5): Just because you can, doesn't mean you should</h3>
+            >Customizer (v{{ VERSION }}): Just because you can, doesn't mean you should</h3>
             <div class="btn-toolbar float-right"></div>
           </div>
           <div class="card-body">
@@ -132,20 +132,20 @@
                 </div>
               </div>
               <div class="row">
-              <div class="col-xl-4 col-lg-6 my-1">
-                <Select
-                  :value="bossShuffle"
-                  @input="setBossShuffle"
-                  :options="optionsBossShuffle"
-                >{{ $t('randomizer.boss_shuffle.title') }}</Select>
-              </div>
-              <div class="col-xl-4 col-lg-6 my-1">
-                <Select
-                  :value="enemyShuffle"
-                  @input="setEnemyShuffle"
-                  :options="optionsEnemyShuffle"
-                >{{ $t('randomizer.enemy_shuffle.title') }}</Select>
-              </div>
+                <div class="col-xl-4 col-lg-6 my-1">
+                  <Select
+                    :value="bossShuffle"
+                    @input="setBossShuffle"
+                    :options="optionsBossShuffle"
+                  >{{ $t('randomizer.boss_shuffle.title') }}</Select>
+                </div>
+                <div class="col-xl-4 col-lg-6 my-1">
+                  <Select
+                    :value="enemyShuffle"
+                    @input="setEnemyShuffle"
+                    :options="optionsEnemyShuffle"
+                  >{{ $t('randomizer.enemy_shuffle.title') }}</Select>
+                </div>
               </div>
             </div>
             <h5 class="card-title p-2 border-bottom">{{ $t('randomizer.difficulty.title') }}</h5>
@@ -441,10 +441,15 @@ export default {
         "randomizer.item_functionality": "setItemFunctionality",
         "randomizer.enemy_damage": "setEnemyDamage",
         "randomizer.enemy_health": "setEnemyHealth"
-      }
+      },
+      'VERSION': 6,
     };
   },
-  created() {
+  async created() {
+    const currentVersion = await localforage.getItem("vt.custom.version");
+    if (currentVersion !== this.VERSION) {
+      this.iveDoneMessedUp();
+    }
     this.$store.dispatch("getSprites");
     this.$store.dispatch("getSettings");
     this.$store.dispatch("randomizer/getItemSettings");
@@ -603,6 +608,12 @@ export default {
       );
     },
     saveRom() {
+      // track the sprite choice for usage statistics
+      localforage.getItem("rom.sprite-gfx").then(value => {
+        ga("send", "event", "save", {
+          dimension1: value
+        });
+      });
       return this.rom.save(this.rom.downloadFilename() + ".sfc", {
         quickswap: this.quickswap,
         paletteShuffle: this.paletteShuffle,
@@ -636,7 +647,9 @@ export default {
         promises.push(localforage.getItem(this.save_restore_settings[i]));
       }
       Promise.all(promises).then(values => {
-        var save = {};
+        var save = {
+          VERSION: this.VERSION,
+        };
         for (var i = 0; i < this.save_restore_settings.length; ++i) {
           if (values[i] && values[i].value) {
             save[this.save_restore_settings[i]] = values[i].value;
@@ -658,6 +671,9 @@ export default {
       fileReader.onload = () => {
         try {
           var settings = JSON.parse(fileReader.result);
+          if (settings.VERSION !== this.VERSION) {
+            throw Error('config file version mismatch');
+          }
         } catch (e) {
           this.error = e;
           return;
@@ -719,6 +735,7 @@ export default {
         localforage.removeItem("randomizer.enemy_damage"),
         localforage.removeItem("randomizer.enemy_shuffle"),
         localforage.removeItem("randomizer.boss_shuffle"),
+        localforage.setItem("vt.custom.version", this.VERSION),
         this.$store.dispatch("nukeStore")
       ];
       Promise.all(promises).then(() => {
