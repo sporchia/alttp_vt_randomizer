@@ -573,26 +573,12 @@ class RomTest extends TestCase
         $this->assertEquals([0x50, 0x46, 0x00, 0x00], $this->rom->read(0x180208, 4));
     }
 
-    public function testSetMaxArrows()
-    {
-        $this->rom->setMaxArrows(40);
-
-        $this->assertEquals(40, $this->rom->read(0x180035));
-    }
-
     public function testSetDiggingGameRng()
     {
         $this->rom->setDiggingGameRng(40);
 
         $this->assertEquals(40, $this->rom->read(0x180020));
         $this->assertEquals(40, $this->rom->read(0xEFD95));
-    }
-
-    public function testSetMaxBombs()
-    {
-        $this->rom->setMaxBombs(40);
-
-        $this->assertEquals(40, $this->rom->read(0x180034));
     }
 
     public function testSetCapacityUpgradeFills()
