@@ -21,6 +21,7 @@ class RomTextWriterService
         'tablet_ether_book' => "Ether Tablet",
     ];
 
+    /** @var Collection<array> */
     public Collection $strings;
 
     public function __construct()
@@ -58,7 +59,7 @@ class RomTextWriterService
             $rom->setText($key, $this->strings['items'][$item->raw_name][$location]);
         }
 
-        $rom->setText('uncle_leaving_text', Arr::first(fy_shuffle($this->strings['uncle']->toArray())));
+        $rom->setText('uncle_leaving_text', Arr::first(fy_shuffle($this->strings['uncle'])));
 
         if ($world->config('spoil.BootsLocation', false)) {
             $boots_location = $world->getLocationsWithItem(Item::get('PegasusBoots', $world->id))->first();
@@ -100,11 +101,11 @@ class RomTextWriterService
             . ($this->strings['locations'][preg_replace('/:\d*/', '', $crystal6_location->getAttribute('name'))]['region'] ?? 'I forget?')
             . "\nso I can make\na big bomb!");
 
-        $rom->setText('blind_by_the_light', Arr::first(fy_shuffle($this->strings['blind']->toArray())));
+        $rom->setText('blind_by_the_light', Arr::first(fy_shuffle($this->strings['blind'])));
 
-        $rom->setText('kakariko_tavern_fisherman', Arr::first(fy_shuffle($this->strings['tavern_man']->toArray())));
+        $rom->setText('kakariko_tavern_fisherman', Arr::first(fy_shuffle($this->strings['tavern_man'])));
 
-        $rom->setText('ganon_fall_in', Arr::first(fy_shuffle($this->strings['ganon_1']->toArray())));
+        $rom->setText('ganon_fall_in', Arr::first(fy_shuffle($this->strings['ganon_1'])));
 
         $rom->setText('ganon_phase_3_alt', "Got wax in\nyour ears?\nI cannot die!");
 
@@ -194,7 +195,7 @@ class RomTextWriterService
                 $rom->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
         }
 
-        $rom->setText('end_triforce', "{NOBORDER}\n" . Arr::first(fy_shuffle($this->strings['triforce']->toArray())));
+        $rom->setText('end_triforce', "{NOBORDER}\n" . Arr::first(fy_shuffle($this->strings['triforce'])));
 
         $rom->writeText();
     }
