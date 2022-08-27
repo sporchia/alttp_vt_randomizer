@@ -905,51 +905,6 @@ final class Rom
     }
 
     /**
-     * Quick and dirty shop setting code.
-     *
-     * @param \App\Support\ShopCollection $shops shops to write to rom
-     */
-    public function setupCustomShops($shops): void
-    {
-        $shops = $shops->filter(function ($shop) {
-            return $shop->getActive();
-        });
-
-        $shop_data = [];
-        $items_data = [];
-        $shop_id = 0x00;
-        $sram_offset = 0x00;
-        foreach ($shops as $shop) {
-            if ($shop_id == $shops->count() - 1) {
-                $shop_id = 0xFF;
-            }
-            $shop->writeExtraData($this);
-            // @TODO: make this clever and reuse when inv is the exact same. (except take any's)
-            $shop_data = array_merge($shop_data, [$shop_id], $shop->getBytes($sram_offset));
-            $sram_offset += count($shop->getInventory());
-
-            if ($sram_offset > 36) {
-                throw new \Exception("Exceeded SRAM indexing for shops");
-            }
-
-            foreach ($shop->getInventory() as $item) {
-                $items_data = array_merge(
-                    $items_data,
-                    [$shop_id, $item['id']],
-                    array_values(unpack('C*', pack('S', $item['price'] ?? 0))),
-                    [$item['max'] ?? 0, $item['replace_id'] ?? 0xFF],
-                    array_values(unpack('C*', pack('S', $item['replace_price'] ?? 0)))
-                );
-            }
-            ++$shop_id;
-        }
-        $this->write(0x184800, pack('C*', ...$shop_data));
-
-        $items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
-        $this->write(0x184900, pack('C*', ...$items_data));
-    }
-
-    /**
      * Set Rupee Arrow mode.
      *
      * @param bool $enable switch on or off

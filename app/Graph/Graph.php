@@ -118,6 +118,11 @@ final class Graph
         return Arr::first($this->adjency_matrix[$vertex->id]);
     }
 
+    public function getTargets(Vertex $vertex): array
+    {
+        return $this->adjency_matrix[$vertex->id] ?? [];
+    }
+
     /**
      * Create a new Directed Edge in the graph.
      * 

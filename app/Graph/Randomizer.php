@@ -28,6 +28,7 @@ final class Randomizer
         'npc',
         //'mob', // enabling this will allow enemies for major items
         'pot',
+        'shopitem',
         'standing',
         'prize',
         'pedestal',
@@ -92,6 +93,9 @@ final class Randomizer
         foreach ($configs as $config) {
             $this->worlds[$i] = new World($i, $config);
             $this->collected_items = $this->collected_items->merge($this->worlds[$i]->collected_items);
+
+            $shop_filler = new ShopFiller($this->worlds[$i]);
+            $shop_filler->adjustEdges();
 
             $entrance_shuffler = new EntranceShuffler($this->worlds[$i]);
             $entrance_shuffler->adjustEdges();

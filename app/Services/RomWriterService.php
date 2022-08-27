@@ -74,7 +74,7 @@ class RomWriterService
         $rom->setGanonCrystalRequirement($world->config('crystals.ganon', 7));
 
         $rom->setGenericKeys($world->config('rom.genericKeys', false));
-        //$rom->setupCustomShops($world->getShops());
+        $this->writeShops($world, $rom);
         $rom->setRupeeArrow($world->config('rom.rupeeBow', false));
         $rom->setLockAgahnimDoorInEscape(true);
         $rom->setWishingWellChests(true);
@@ -555,5 +555,60 @@ class RomWriterService
                 $rom->write($entrances_holes_address + $entranceid, pack('C', $target->getAttribute('inletid')));
             }
         }
+    }
+
+    private function writeShops(World $world, Rom $rom): void
+    {
+        /** @var Collection<Vertex> $shops */
+        $shops = $world->getLocationsOfType('shop');
+
+        $shop_data = [];
+        $items_data = [];
+        $shop_id = 0x00;
+        $sram_offset = 0x00;
+        foreach ($shops as $shop) {
+            if ($shop_id == $shops->count() - 1) {
+                $shop_id = 0xFF;
+            }
+
+            $inventory = array_filter(
+                $world->graph->getTargets($shop),
+                fn ($target) => $target->type === 'shopitem' && $target->item !== null
+            );
+            // @TODO: make this clever and reuse when inv is the exact same. (except take any's)
+            $shop_data = array_merge(
+                $shop_data,
+                [$shop_id],
+                array_values(unpack('C*', pack('S', $shop->getAttribute('roomid') ?? 0))),
+                [
+                    $shop->getAttribute('inletid'),
+                    0x00,
+                    ($shop->getAttribute('shopstyle') & 0xFC) + count($inventory),
+                    $shop->getAttribute('shopkeeper'),
+                    $sram_offset,
+                ]
+            );
+            $sram_offset += count($inventory);
+
+            if ($sram_offset > 36) {
+                throw new \Exception("Exceeded SRAM indexing for shops");
+            }
+
+            foreach ($inventory as $slot) {
+                $items_data = array_merge(
+                    $items_data,
+                    [$shop_id],
+                    $slot->item->bytes,
+                    array_values(unpack('C*', pack('S', $slot->getAttribute('cost') ?? 0))),
+                    [$slot->getAttribute('max') ?? 0, 0xFF],
+                    [0x00, 0x00]
+                );
+            }
+            ++$shop_id;
+        }
+        $rom->write(0x184800, pack('C*', ...$shop_data));
+
+        $items_data = array_merge($items_data, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
+        $rom->write(0x184900, pack('C*', ...$items_data));
     }
 }

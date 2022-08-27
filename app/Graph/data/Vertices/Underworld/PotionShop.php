@@ -4,7 +4,9 @@ return [
     [
         'name' => "Potion Shop",
         'roomid' => 0x0109,
-        'type' => 'region',
+        'type' => 'shop',
+        'shopkeeper' => 0xA0,
+        'shopstyle' => 0x83, // TODO incorrect fix later
         'inletid' => 0x4c,
     ],
     [
@@ -20,7 +22,7 @@ return [
         'type' => 'shopitem',
         'item' => 'RedPotion',
         'cost' => 120,
-        'itemset' => ['lw'],
+        'itemset' => ['lw', 'shop'],
     ],
     [
         'name' => "Potion Shop - Middle",
@@ -28,7 +30,7 @@ return [
         'type' => 'shopitem',
         'item' => 'GreenPotion',
         'cost' => 60,
-        'itemset' => ['lw'],
+        'itemset' => ['lw', 'shop'],
     ],
     [
         'name' => "Potion Shop - Right",
@@ -36,6 +38,6 @@ return [
         'type' => 'shopitem',
         'item' => 'BluePotion',
         'cost' => 160,
-        'itemset' => ['lw'],
+        'itemset' => ['lw', 'shop'],
     ],
 ];
