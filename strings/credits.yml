@@ -5,6 +5,7 @@ Nothing:
   Sick Kid: "nothing-having kid"
   Flute Spot: "empty boy does nothing again"
   Link's Uncle: "your uncle does nothing"
+  Blacksmith: "the voidsmiths"
 L1Sword:
   King Zora: "sword for sale"
   Potion Shop: "fungus for slasher"
@@ -12,6 +13,7 @@ L1Sword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven swordsmiths"
 L1SwordAndShield:
   King Zora: "sword for sale"
   Potion Shop: "fungus for slasher"
@@ -19,6 +21,7 @@ L1SwordAndShield:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven swordsmiths"
 L2Sword:
   King Zora: "glow sword for sale"
   Potion Shop: "fungus for blue slasher"
@@ -26,6 +29,7 @@ L2Sword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven swordsmiths"
 MasterSword:
   King Zora: "glow sword for sale"
   Potion Shop: "fungus for blue slasher"
@@ -33,6 +37,7 @@ MasterSword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven swordsmiths"
 L3Sword:
   King Zora: "flame sword for sale"
   Potion Shop: "fungus for red slasher"
@@ -40,6 +45,7 @@ L3Sword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven swordsmiths"
 L4Sword:
   King Zora: "butter for sale"
   Potion Shop: "cap churned to butter"
@@ -47,6 +53,7 @@ L4Sword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven swordsmiths"
 BlueShield:
   King Zora: "bad defense for sale"
   Potion Shop: "fungus for shield"
@@ -54,6 +61,7 @@ BlueShield:
   Sick Kid: "shield-wielding kid"
   Flute Spot: "shield boy defends again"
   Link's Uncle: "your uncle protects"
+  Blacksmith: "the shieldsmiths"
 RedShield:
   King Zora: "red shield for sale"
   Potion Shop: "fungus for fire shield"
@@ -61,6 +69,7 @@ RedShield:
   Sick Kid: "shield-wielding kid"
   Flute Spot: "shield boy defends again"
   Link's Uncle: "your uncle protects"
+  Blacksmith: "the shieldsmiths"
 MirrorShield:
   King Zora: "face shield for sale"
   Potion Shop: "fungus for shiny shield"
@@ -68,6 +77,7 @@ MirrorShield:
   Sick Kid: "shield-wielding kid"
   Flute Spot: "shield boy defends again"
   Link's Uncle: "your uncle protects"
+  Blacksmith: "the shieldsmiths"
 FireRod:
   King Zora: "rage rod for sale"
   Potion Shop: "fungus for rage-rod"
@@ -75,6 +85,7 @@ FireRod:
   Sick Kid: "fire-starting kid"
   Flute Spot: "firestarter boy burns again"
   Link's Uncle: "your uncle starts fires"
+  Blacksmith: "accessories to arson"
 IceRod:
   King Zora: "ice cream for sale"
   Potion Shop: "fungus for ice-rod"
@@ -82,6 +93,7 @@ IceRod:
   Sick Kid: "the ice-bending kid"
   Flute Spot: "ice-cube boy freezes again"
   Link's Uncle: "your uncle is cold as ice"
+  Blacksmith: "the ice packers"
 Hammer:
   King Zora: "m c hammer for sale"
   Potion Shop: "stop...   hammer time"
@@ -89,6 +101,7 @@ Hammer:
   Sick Kid: "hammer-smashing kid"
   Flute Spot: "stop, hammer time"
   Link's Uncle: "stop...   hammer time"
+  Blacksmith: "sharing spare tools"
 Hookshot:
   King Zora: "tickle beam for sale"
   Potion Shop: "witch and tickle boy"
@@ -96,6 +109,7 @@ Hookshot:
   Sick Kid: "tickle-monster kid"
   Flute Spot: "beam boy tickles again"
   Link's Uncle: "your uncle is BOING"
+  Blacksmith: "the boingsmiths"
 Bow:
   King Zora: "arrow sling for sale"
   Potion Shop: "witch and robin hood"
@@ -103,6 +117,7 @@ Bow:
   Sick Kid: "arrow-slinging kid"
   Flute Spot: "archer boy shoots again"
   Link's Uncle: "your uncle, robin hood"
+  Blacksmith: "the bowyers"
 Boomerang:
   King Zora: "bent stick for sale"
   Potion Shop: "fungus for puma-stick"
@@ -110,6 +125,7 @@ Boomerang:
   Sick Kid: "the bat-throwing kid"
   Flute Spot: "throwing boy plays fetch again"
   Link's Uncle: "your uncle is stunning"
+  Blacksmith: "down under... ground"
 Powder:
   King Zora: "sack for sale"
   Potion Shop: "the witch and assistant"
@@ -117,13 +133,15 @@ Powder:
   Sick Kid: "the sack-holding kid"
   Flute Spot: "magic boy plays marbles again"
   Link's Uncle: "your uncle and his sack"
+  Blacksmith: "the millers"
 Bee:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "mad friend for sale"
+  Potion Shop: "insects for trade"
+  Master Sword Pedestal: "and the mad friend"
+  Sick Kid: "the bug-caught kid"
+  Flute Spot: "bottle boy has mad bee again"
+  Link's Uncle: "your uncle likes arthropods"
+  Blacksmith: "the beekeepers"
 Bombos:
   King Zora: "swirly coin for sale"
   Potion Shop: "shrooms for swirly-coin"
@@ -131,6 +149,7 @@ Bombos:
   Sick Kid: "coin-collecting kid"
   Flute Spot: "medallion boy melts room again"
   Link's Uncle: "your uncle collects coins"
+  Blacksmith: "the mint"
 Ether:
   King Zora: "bolt coin for sale"
   Potion Shop: "shrooms for bolt-coin"
@@ -138,6 +157,7 @@ Ether:
   Sick Kid: "coin-collecting kid"
   Flute Spot: "medallion boy sees floor again"
   Link's Uncle: "your uncle collects coins"
+  Blacksmith: "the mint"
 Quake:
   King Zora: "wavy coin for sale"
   Potion Shop: "shrooms for wavy-coin"
@@ -145,6 +165,7 @@ Quake:
   Sick Kid: "coin-collecting kid"
   Flute Spot: "medallion boy shakes dirt again"
   Link's Uncle: "your uncle collects coins"
+  Blacksmith: "the mint"
 Lamp:
   King Zora: "candle for sale"
   Potion Shop: "fungus for illumination"
@@ -152,6 +173,7 @@ Lamp:
   Sick Kid: "light-shining kid"
   Flute Spot: "illuminated boy can see again"
   Link's Uncle: "your uncle has night vision"
+  Blacksmith: "the candlemakers"
 Shovel:
   King Zora: "dirt spade for sale"
   Potion Shop: "can you dig it"
@@ -159,6 +181,7 @@ Shovel:
   Sick Kid: "archaeologist kid"
   Flute Spot: "shovel boy digs again"
   Link's Uncle: "your uncle digs it"
+  Blacksmith: "diggy diggy hole"
 OcarinaInactive:
   King Zora: "duck call for sale"
   Potion Shop: "duck-calls for trade"
@@ -166,6 +189,7 @@ OcarinaInactive:
   Sick Kid: "the duck-call kid"
   Flute Spot: "ocarina boy plays again"
   Link's Uncle: "your uncle trains ducks"
+  Blacksmith: "the clayworkers"
 CaneOfSomaria:
   King Zora: "block stick for sale"
   Potion Shop: "twizzle-stick for trade"
@@ -173,6 +197,7 @@ CaneOfSomaria:
   Sick Kid: "the block-making kid"
   Flute Spot: "cane boy makes blocks again"
   Link's Uncle: "your uncle makes blocks"
+  Blacksmith: "the woodcarvers"
 Bottle:
   King Zora: "terrarium for sale"
   Potion Shop: "first taste is not free"
@@ -180,6 +205,7 @@ Bottle:
   Sick Kid: "the terrarium kid"
   Flute Spot: "bottle boy has terrarium again"
   Link's Uncle: "your uncle likes turtles"
+  Blacksmith: "the glassblowers"
 PieceOfHeart:
   King Zora: "little love for sale"
   Potion Shop: "fungus for life"
@@ -187,6 +213,7 @@ PieceOfHeart:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels some love again"
   Link's Uncle: "your uncle is healthy"
+  Blacksmith: "the breadsmiths"
 CaneOfByrna:
   King Zora: "shiny stick for sale"
   Potion Shop: "spark-stick for trade"
@@ -194,6 +221,7 @@ CaneOfByrna:
   Sick Kid: "the spark-making kid"
   Flute Spot: "cane boy encircles again"
   Link's Uncle: "your uncle sparks"
+  Blacksmith: "the woodcarvers"
 Cape:
   King Zora: "red hood for sale"
   Potion Shop: "hood from a hood"
@@ -201,6 +229,7 @@ Cape:
   Sick Kid: "red riding-hood kid"
   Flute Spot: "dapper boy hides again"
   Link's Uncle: "your uncle can hide"
+  Blacksmith: "the tailors"
 MagicMirror:
   King Zora: "your face for sale"
   Potion Shop: "trades looking-glass"
@@ -208,6 +237,7 @@ MagicMirror:
   Sick Kid: "the narcissistic kid"
   Flute Spot: "narcissistic boy is happy again"
   Link's Uncle: "your uncle is vain"
+  Blacksmith: "the silversmiths"
 PowerGlove:
   King Zora: "lift glove for sale"
   Potion Shop: "fungus for gloves"
@@ -215,6 +245,7 @@ PowerGlove:
   Sick Kid: "body-building kid"
   Flute Spot: "body-building boy lifts again"
   Link's Uncle: "your uncle goes back to the gym"
+  Blacksmith: "the gym equipment smiths"
 TitansMitt:
   King Zora: "carry glove for sale"
   Potion Shop: "fungus for bling-gloves"
@@ -222,6 +253,7 @@ TitansMitt:
   Sick Kid: "body-building kid"
   Flute Spot: "body-building boy has gold again"
   Link's Uncle: "your uncle goes back to the gym"
+  Blacksmith: "the gym equipment smiths"
 BookOfMudora:
   King Zora: "moon runes for sale"
   Potion Shop: "drugs for literacy"
@@ -229,6 +261,7 @@ BookOfMudora:
   Sick Kid: "the scholarly kid"
   Flute Spot: "book-worm boy can read again"
   Link's Uncle: "your uncle can read"
+  Blacksmith: "the bookbinders"
 Flippers:
   King Zora: "finger webs for sale"
   Potion Shop: "shrooms let you swim"
@@ -236,6 +269,7 @@ Flippers:
   Sick Kid: "the swimming kid"
   Flute Spot: "swimming boy swims again"
   Link's Uncle: "your uncle swims"
+  Blacksmith: "the scuba gear smiths"
 MoonPearl:
   King Zora: "lunar orb for sale"
   Potion Shop: "shrooms for moon rock"
@@ -243,6 +277,7 @@ MoonPearl:
   Sick Kid: "fortune-telling kid"
   Flute Spot: "moon boy plays ball again"
   Link's Uncle: "your uncle shoots marbles"
+  Blacksmith: "the oyster farmers"
 BugCatchingNet:
   King Zora: "stick web for sale"
   Potion Shop: "fungus for butterflies"
@@ -250,6 +285,7 @@ BugCatchingNet:
   Sick Kid: "the bug-catching kid"
   Flute Spot: "wrong boy catches bees again"
   Link's Uncle: "your uncle catches bees"
+  Blacksmith: "the netting weavers"
 BlueMail:
   King Zora: "banana hat for sale"
   Potion Shop: "the clothing store"
@@ -257,6 +293,7 @@ BlueMail:
   Sick Kid: "the protected kid"
   Flute Spot: "tailor boy banana hatted again"
   Link's Uncle: "your uncle tailors"
+  Blacksmith: "the armorsmiths"
 RedMail:
   King Zora: "purple hat for sale"
   Potion Shop: "the nice clothing store"
@@ -264,6 +301,7 @@ RedMail:
   Sick Kid: "well-protected kid"
   Flute Spot: "tailor boy fears nothing again"
   Link's Uncle: "your uncle tailors"
+  Blacksmith: "the armorsmiths"
 Key:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -271,6 +309,7 @@ Key:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 Compass:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -278,6 +317,7 @@ Compass:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 HeartContainerNoAnimation:
   King Zora: "love for sale"
   Potion Shop: "fungus for life"
@@ -285,6 +325,7 @@ HeartContainerNoAnimation:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels love again"
   Link's Uncle: "your uncle is healthy"
+  Blacksmith: "the breadsmiths"
 Bomb:
   King Zora: "firecracker for sale"
   Potion Shop: "blend fungus into bombs"
@@ -292,6 +333,7 @@ Bomb:
   Sick Kid: "the bomb-holding kid"
   Flute Spot: "'splosion boy explodes again"
   Link's Uncle: "your uncle believes"
+  Blacksmith: "the demolitionists"
 ThreeBombs:
   King Zora: "fireworks for sale"
   Potion Shop: "blend fungus into bombs"
@@ -299,6 +341,7 @@ ThreeBombs:
   Sick Kid: "the bomb-holding kid"
   Flute Spot: "'splosion boy explodes again"
   Link's Uncle: "your uncle believes"
+  Blacksmith: "the demolitionists"
 Mushroom:
   King Zora: "legal drugs for sale"
   Potion Shop: "my name is error"
@@ -306,6 +349,7 @@ Mushroom:
   Sick Kid: "the drug-dealing kid"
   Flute Spot: "shroom boy sells drugs again"
   Link's Uncle: "your uncle deals drugs"
+  Blacksmith: "the mushroom farmers"
 RedBoomerang:
   King Zora: "air foil for sale"
   Potion Shop: "fungus for return-stick"
@@ -313,6 +357,7 @@ RedBoomerang:
   Sick Kid: "the bat-throwing kid"
   Flute Spot: "magical boy plays fetch again"
   Link's Uncle: "your uncle is stunning"
+  Blacksmith: "down under... ground"
 BottleWithRedPotion:
   King Zora: "red goo for sale"
   Potion Shop: "free samples"
@@ -320,6 +365,7 @@ BottleWithRedPotion:
   Sick Kid: "potion-slinging kid"
   Flute Spot: "bottle boy has red goo again"
   Link's Uncle: "your uncle helps out"
+  Blacksmith: "the brewers"
 BottleWithGreenPotion:
   King Zora: "green goo for sale"
   Potion Shop: "free samples"
@@ -327,6 +373,7 @@ BottleWithGreenPotion:
   Sick Kid: "potion-slinging kid"
   Flute Spot: "bottle boy has green goo again"
   Link's Uncle: "your uncle helps out"
+  Blacksmith: "the brewers"
 BottleWithBluePotion:
   King Zora: "blue goo for sale"
   Potion Shop: "free samples"
@@ -334,27 +381,31 @@ BottleWithBluePotion:
   Sick Kid: "potion-slinging kid"
   Flute Spot: "bottle boy has blue goo again"
   Link's Uncle: "your uncle helps out"
+  Blacksmith: "the brewers"
 RedPotion:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "red goo for sale"
+  Potion Shop: "free samples"
+  Master Sword Pedestal: "and the red goo"
+  Sick Kid: "potion-slinging kid"
+  Flute Spot: "bottle boy has red goo again"
+  Link's Uncle: "your uncle helps out"
+  Blacksmith: "the brewers"
 GreenPotion:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "green goo for sale"
+  Potion Shop: "free samples"
+  Master Sword Pedestal: "and the green goo"
+  Sick Kid: "potion-slinging kid"
+  Flute Spot: "bottle boy has green goo again"
+  Link's Uncle: "your uncle helps out"
+  Blacksmith: "the brewers"
 BluePotion:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "blue goo for sale"
+  Potion Shop: "free samples"
+  Master Sword Pedestal: "and the blue goo"
+  Sick Kid: "potion-slinging kid"
+  Flute Spot: "bottle boy has blue goo again"
+  Link's Uncle: "your uncle helps out"
+  Blacksmith: "the brewers"
 TenBombs:
   King Zora: "boom boom for sale"
   Potion Shop: "blend fungus into bombs"
@@ -362,6 +413,7 @@ TenBombs:
   Sick Kid: "the bomb-holding kid"
   Flute Spot: "'splosion boy explodes again"
   Link's Uncle: "your uncle believes"
+  Blacksmith: "the demolitionists"
 BigKey:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -369,6 +421,7 @@ BigKey:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 Map:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -376,6 +429,7 @@ Map:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 OneRupee:
   King Zora: "life lesson for sale"
   Potion Shop: "buying cheap drugs"
@@ -383,6 +437,7 @@ OneRupee:
   Sick Kid: "poverty-struck kid"
   Flute Spot: "destitute boy has lunch again"
   Link's Uncle: "your uncle is cheap"
+  Blacksmith: "the counterfeiters"
 FiveRupees:
   King Zora: "life lesson for sale"
   Potion Shop: "buying cheap drugs"
@@ -390,6 +445,7 @@ FiveRupees:
   Sick Kid: "poverty-struck kid"
   Flute Spot: "destitute boy has lunch again"
   Link's Uncle: "your uncle is cheap"
+  Blacksmith: "the counterfeiters"
 TwentyRupees:
   King Zora: "life lesson for sale"
   Potion Shop: "the witch buying drugs"
@@ -397,27 +453,31 @@ TwentyRupees:
   Sick Kid: "the piggy-bank kid"
   Flute Spot: "destitute boy has lunch again"
   Link's Uncle: "your uncle likes cash"
+  Blacksmith: "the rupeesmiths"
 PendantOfCourage:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "valor for sale"
+  Potion Shop: "mushrooms prove courage"
+  Master Sword Pedestal: "the wind necklace"
+  Sick Kid: "courage-judging kid"
+  Flute Spot: "courage boy roars again"
+  Link's Uncle: "your uncle is brave"
+  Blacksmith: "the medalsmiths"
 PendantOfWisdom:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "brains for sale"
+  Potion Shop: "mushrooms prove wisdom"
+  Master Sword Pedestal: "the love necklace"
+  Sick Kid: "wisdom-judging kid"
+  Flute Spot: "wisdom boy scares crows again"
+  Link's Uncle: "your uncle is wise"
+  Blacksmith: "the medalsmiths"
 PendantOfPower:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "potency for sale"
+  Potion Shop: "mushrooms prove power"
+  Master Sword Pedestal: "the fire necklace"
+  Sick Kid: "power-judging kid"
+  Flute Spot: "power boy chops trees again"
+  Link's Uncle: "your uncle is strong"
+  Blacksmith: "the medalsmiths"
 BowAndArrows:
   King Zora: "point stick for sale"
   Potion Shop: "witch and robin hood"
@@ -425,6 +485,7 @@ BowAndArrows:
   Sick Kid: "arrow-slinging kid"
   Flute Spot: "archer boy shoots again"
   Link's Uncle: "your uncle, robin hood"
+  Blacksmith: "the bowyers"
 BowAndSilverArrows:
   King Zora: "you got lucky"
   Potion Shop: "witch and robin hood"
@@ -432,6 +493,7 @@ BowAndSilverArrows:
   Sick Kid: "arrow-slinging kid"
   Flute Spot: "archer boy shoots again"
   Link's Uncle: "your uncle, robin hood"
+  Blacksmith: "the electroplating bowyers"
 BottleWithBee:
   King Zora: "mad friend for sale"
   Potion Shop: "insects for trade"
@@ -439,6 +501,7 @@ BottleWithBee:
   Sick Kid: "the bug-caught kid"
   Flute Spot: "bottle boy has mad bee again"
   Link's Uncle: "your uncle likes arthropods"
+  Blacksmith: "the beekeepers"
 BottleWithFairy:
   King Zora: "friend for sale"
   Potion Shop: "shrooms for friends"
@@ -446,6 +509,7 @@ BottleWithFairy:
   Sick Kid: "fairy-catching kid"
   Flute Spot: "bottle boy has friend again"
   Link's Uncle: "your uncle has a friend"
+  Blacksmith: "don't ask"
 BossHeartContainer:
   King Zora: "love for sale"
   Potion Shop: "fungus for life"
@@ -453,6 +517,7 @@ BossHeartContainer:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels love again"
   Link's Uncle: "your uncle is healthy"
+  Blacksmith: "the breadsmiths"
 HeartContainer:
   King Zora: "love for sale"
   Potion Shop: "fungus for life"
@@ -460,6 +525,7 @@ HeartContainer:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels love again"
   Link's Uncle: "your uncle is healthy"
+  Blacksmith: "the breadsmiths"
 OneHundredRupees:
   King Zora: "fair trade for sale"
   Potion Shop: "buying good drugs"
@@ -467,6 +533,7 @@ OneHundredRupees:
   Sick Kid: "the kind-of-rich kid"
   Flute Spot: "affluent boy goes drinking again"
   Link's Uncle: "your uncle is rich"
+  Blacksmith: "the rupeesmiths"
 FiftyRupees:
   King Zora: "life lesson for sale"
   Potion Shop: "the witch buying drugs"
@@ -474,6 +541,7 @@ FiftyRupees:
   Sick Kid: "the piggy-bank kid"
   Flute Spot: "destitute boy has lunch again"
   Link's Uncle: "your uncle likes cash"
+  Blacksmith: "the rupeesmiths"
 Heart:
   King Zora: "affection for sale"
   Potion Shop: "trading for transplant"
@@ -481,6 +549,7 @@ Heart:
   Sick Kid: "affection-giving kid"
   Flute Spot: "loving boy has affection again"
   Link's Uncle: "your uncle is creepy"
+  Blacksmith: "the breadsmiths"
 Arrow:
   King Zora: "sewing needle for sale"
   Potion Shop: "fungus for arrow"
@@ -488,6 +557,7 @@ Arrow:
   Sick Kid: "stick-collecting kid"
   Flute Spot: "archer boy sews again"
   Link's Uncle: "your uncle believes in you"
+  Blacksmith: "the lazy fletchers"
 TenArrows:
   King Zora: "sewing kit for sale"
   Potion Shop: "fungus for arrows"
@@ -495,6 +565,7 @@ TenArrows:
   Sick Kid: "stick-collecting kid"
   Flute Spot: "archer boy sews again"
   Link's Uncle: "your uncle sews"
+  Blacksmith: "the fletchers"
 SmallMagic:
   King Zora: "alchemy for sale"
   Potion Shop: "fungus for magic"
@@ -502,6 +573,7 @@ SmallMagic:
   Sick Kid: "magic-slinging kid"
   Flute Spot: "magic boy summons again"
   Link's Uncle: "your uncle is magic"
+  Blacksmith: "the alchemists"
 ThreeHundredRupees:
   King Zora: "good return for sale"
   Potion Shop: "buying the best drugs"
@@ -509,6 +581,7 @@ ThreeHundredRupees:
   Sick Kid: "the really-rich kid"
   Flute Spot: "fat-cat boy is rich again"
   Link's Uncle: "your uncle is rich"
+  Blacksmith: "the rupeesmiths"
 TwentyRupees2:
   King Zora: "life lesson for sale"
   Potion Shop: "the witch buying drugs"
@@ -516,6 +589,7 @@ TwentyRupees2:
   Sick Kid: "the piggy-bank kid"
   Flute Spot: "destitute boy has lunch again"
   Link's Uncle: "your uncle likes cash"
+  Blacksmith: "the rupeesmiths"
 BottleWithGoldBee:
   King Zora: "beetor for sale"
   Potion Shop: "insects for trade"
@@ -523,6 +597,7 @@ BottleWithGoldBee:
   Sick Kid: "the bug-caught kid"
   Flute Spot: "bottle boy has beetor again"
   Link's Uncle: "your uncle has beetor"
+  Blacksmith: "the beekeepers"
 OcarinaActive:
   King Zora: "duck call for sale"
   Potion Shop: "duck-calls for trade"
@@ -530,6 +605,7 @@ OcarinaActive:
   Sick Kid: "the duck-call kid"
   Flute Spot: "ocarina boy plays again"
   Link's Uncle: "your uncle trains ducks"
+  Blacksmith: "the clayworkers"
 PegasusBoots:
   King Zora: "sprint shoe for sale"
   Potion Shop: "shrooms for speed"
@@ -537,6 +613,7 @@ PegasusBoots:
   Sick Kid: "the running-man kid"
   Flute Spot: "gotta-go-fast boy runs again"
   Link's Uncle: "your uncle goes fast"
+  Blacksmith: "the cobblers"
 BombUpgrade5:
   King Zora: "bomb boost for sale"
   Potion Shop: "the shroom goes boom"
@@ -544,6 +621,7 @@ BombUpgrade5:
   Sick Kid: "boom-enlarging kid"
   Flute Spot: "upgrade boy explodes more again"
   Link's Uncle: "your uncle has the bomb bag"
+  Blacksmith: "the bagmakers"
 BombUpgrade10:
   King Zora: "bomb boost for sale"
   Potion Shop: "the shroom goes boom"
@@ -551,6 +629,7 @@ BombUpgrade10:
   Sick Kid: "boom-enlarging kid"
   Flute Spot: "upgrade boy explodes more again"
   Link's Uncle: "your uncle has the bomb bag"
+  Blacksmith: "the bagmakers"
 BombUpgrade50:
   King Zora: "bomb boost for sale"
   Potion Shop: "the shroom goes boom"
@@ -558,6 +637,7 @@ BombUpgrade50:
   Sick Kid: "boom-enlarging kid"
   Flute Spot: "upgrade boy explodes more again"
   Link's Uncle: "your uncle has the bomb bag"
+  Blacksmith: "the bagmakers"
 ArrowUpgrade5:
   King Zora: "arrow boost for sale"
   Potion Shop: "witch and more arrows"
@@ -565,6 +645,7 @@ ArrowUpgrade5:
   Sick Kid: "quiver-enlarging kid"
   Flute Spot: "upgrade boy sews more again"
   Link's Uncle: "your uncle has the quiver"
+  Blacksmith: "the quivermakers"
 ArrowUpgrade10:
   King Zora: "arrow boost for sale"
   Potion Shop: "witch and more arrows"
@@ -572,6 +653,7 @@ ArrowUpgrade10:
   Sick Kid: "quiver-enlarging kid"
   Flute Spot: "upgrade boy sews more again"
   Link's Uncle: "your uncle has the quiver"
+  Blacksmith: "the quivermakers"
 ArrowUpgrade70:
   King Zora: "arrow boost for sale"
   Potion Shop: "witch and more arrows"
@@ -579,6 +661,7 @@ ArrowUpgrade70:
   Sick Kid: "quiver-enlarging kid"
   Flute Spot: "upgrade boy sews more again"
   Link's Uncle: "your uncle has the quiver"
+  Blacksmith: "the quivermakers"
 HalfMagic:
   King Zora: "wizardry for sale"
   Potion Shop: "mekalekahi mekahiney ho"
@@ -586,6 +669,7 @@ HalfMagic:
   Sick Kid: "the magic-saving kid"
   Flute Spot: "magic boy saves magic again"
   Link's Uncle: "your uncle is magical"
+  Blacksmith: "thunder twins"
 QuarterMagic:
   King Zora: "wizardry for sale"
   Potion Shop: "mekalekahi mekahiney ho"
@@ -593,27 +677,31 @@ QuarterMagic:
   Sick Kid: "the magic-saving kid"
   Flute Spot: "magic boy saves magic again"
   Link's Uncle: "your uncle is magical"
+  Blacksmith: "thunder twins"
 Programmable1:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "empty string for sale"
+  Potion Shop: "mushroom is a broken pointer"
+  Master Sword Pedestal: "insert item"
+  Sick Kid: "string-forgetting kid"
+  Flute Spot: "coder boy pushes beta again"
+  Link's Uncle: "your uncle forgets details"
+  Blacksmith: "the beta testers"
 Programmable2:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "empty string for sale"
+  Potion Shop: "mushroom is a broken pointer"
+  Master Sword Pedestal: "insert item"
+  Sick Kid: "string-forgetting kid"
+  Flute Spot: "coder boy pushes beta again"
+  Link's Uncle: "your uncle forgets details"
+  Blacksmith: "the beta testers"
 Programmable3:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "empty string for sale"
+  Potion Shop: "mushroom is a broken pointer"
+  Master Sword Pedestal: "insert item"
+  Sick Kid: "string-forgetting kid"
+  Flute Spot: "coder boy pushes beta again"
+  Link's Uncle: "your uncle forgets details"
+  Blacksmith: "the beta testers"
 SilverArrowUpgrade:
   King Zora: "sharp arrow for sale"
   Potion Shop: "arrow-honing service"
@@ -621,6 +709,7 @@ SilverArrowUpgrade:
   Sick Kid: "arrow-sharpening kid"
   Flute Spot: "archer boy shines again"
   Link's Uncle: "your uncle shaves"
+  Blacksmith: "the electroplaters"
 Rupoor:
   King Zora: "double loss for sale"
   Potion Shop: "witch stole your rupees"
@@ -628,6 +717,7 @@ Rupoor:
   Sick Kid: "the toll-booth kid"
   Flute Spot: "affluent boy steals rupees"
   Link's Uncle: "your uncle collects"
+  Blacksmith: "the loan sharks"
 RedClock:
   King Zora: "ruby clock for sale"
   Potion Shop: "shrooms for ruby time"
@@ -635,6 +725,7 @@ RedClock:
   Sick Kid: "the ruby-time kid"
   Flute Spot: "moment boy travels time again"
   Link's Uncle: "your uncle keeps time"
+  Blacksmith: "the clockmakers"
 BlueClock:
   King Zora: "blue clock for sale"
   Potion Shop: "fungus for blue time"
@@ -642,6 +733,7 @@ BlueClock:
   Sick Kid: "the indigo-time kid"
   Flute Spot: "moment boy time travels again"
   Link's Uncle: "your uncle keeps time"
+  Blacksmith: "the clockmakers"
 GreenClock:
   King Zora: "green clock for sale"
   Potion Shop: "shrooms for green time"
@@ -649,6 +741,7 @@ GreenClock:
   Sick Kid: "the emerald-time kid"
   Flute Spot: "moment boy adjusts time again"
   Link's Uncle: "your uncle keeps time"
+  Blacksmith: "the clockmakers"
 ProgressiveSword:
   King Zora: "some sword for sale"
   Potion Shop: "fungus for some slasher"
@@ -656,6 +749,7 @@ ProgressiveSword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven breadsmiths"
 ProgressiveShield:
   King Zora: "some shield for sale"
   Potion Shop: "fungus for some shield"
@@ -663,6 +757,7 @@ ProgressiveShield:
   Sick Kid: "shield-wielding kid"
   Flute Spot: "shield boy defends again"
   Link's Uncle: "your uncle protects"
+  Blacksmith: "the shieldsmiths"
 ProgressiveArmor:
   King Zora: "unknown hat for sale"
   Potion Shop: "the clothing store"
@@ -670,6 +765,7 @@ ProgressiveArmor:
   Sick Kid: "the protected kid"
   Flute Spot: "tailor boy has threads again"
   Link's Uncle: "your uncle tailors"
+  Blacksmith: "the armorsmiths"
 ProgressiveGlove:
   King Zora: "some glove for sale"
   Potion Shop: "fungus for gloves"
@@ -677,6 +773,7 @@ ProgressiveGlove:
   Sick Kid: "body-building kid"
   Flute Spot: "body-building boy lifts again"
   Link's Uncle: "your uncle goes back to the gym"
+  Blacksmith: "the gym equipment smiths"
 singleRNG:
   King Zora: "some item for sale"
   Potion Shop: "fungus for something"
@@ -684,6 +781,7 @@ singleRNG:
   Sick Kid: "the something kid"
   Flute Spot: "unknown boy somethings again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the quantum smiths"
 multiRNG:
   King Zora: "some item for sale"
   Potion Shop: "fungus for something"
@@ -691,6 +789,7 @@ multiRNG:
   Sick Kid: "the something kid"
   Flute Spot: "unknown boy somethings again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the quantum smiths"
 ProgressiveBow:
   King Zora: "arrow sling for sale"
   Potion Shop: "witch and robin hood"
@@ -698,13 +797,15 @@ ProgressiveBow:
   Sick Kid: "arrow-slinging kid"
   Flute Spot: "archer boy shoots again"
   Link's Uncle: "your uncle, robin hood"
+  Blacksmith: "the bowyers"
 ProgressiveBowAlternate:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "arrow sling for sale"
+  Potion Shop: "witch and robin hood"
+  Master Sword Pedestal: "the stick and twine"
+  Sick Kid: "arrow-slinging kid"
+  Flute Spot: "archer boy shoots again"
+  Link's Uncle: "your uncle, robin hood"
+  Blacksmith: "the bowyers"
 Triforce:
   King Zora: "game win for sale"
   Potion Shop: "mushrooms win the game"
@@ -712,6 +813,7 @@ Triforce:
   Sick Kid: "the game-winning kid"
   Flute Spot: "greedy boy wins game again"
   Link's Uncle: "your uncle wins the game"
+  Blacksmith: "smiths of the gods"
 PowerStar:
   King Zora: "power star for sale"
   Potion Shop: "the powder or the stars"
@@ -719,6 +821,7 @@ PowerStar:
   Sick Kid: "the starry-eyed kid"
   Flute Spot: "mario powers up again"
   Link's Uncle: "your uncle is important"
+  Blacksmith: "the glamoursmiths"
 TriforcePiece:
   King Zora: "triangle for sale"
   Potion Shop: "hoarding for ganon"
@@ -726,6 +829,7 @@ TriforcePiece:
   Sick Kid: "triforce-holding kid"
   Flute Spot: "wise boy has triangle again"
   Link's Uncle: "your uncle is important"
+  Blacksmith: "relic repair shop"
 MapLW:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -733,6 +837,7 @@ MapLW:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapDW:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -740,6 +845,7 @@ MapDW:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapA2:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -747,6 +853,7 @@ MapA2:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD7:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -754,6 +861,7 @@ MapD7:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD4:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -761,6 +869,7 @@ MapD4:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapP3:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -768,6 +877,7 @@ MapP3:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD5:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -775,6 +885,7 @@ MapD5:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD3:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -782,6 +893,7 @@ MapD3:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD6:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -789,6 +901,7 @@ MapD6:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD1:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -796,6 +909,7 @@ MapD1:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapD2:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -803,6 +917,7 @@ MapD2:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapA1:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -810,6 +925,7 @@ MapA1:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapP2:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -817,6 +933,7 @@ MapP2:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapP1:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -824,6 +941,7 @@ MapP1:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapH1:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -831,6 +949,7 @@ MapH1:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 MapH2:
   King Zora: "the world for sale"
   Potion Shop: "shrooms find secrets"
@@ -838,6 +957,7 @@ MapH2:
   Sick Kid: "the cartographer kid"
   Flute Spot: "map boy navigates again"
   Link's Uncle: "your uncle finds treasure"
+  Blacksmith: "the cartographers"
 CompassA2:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -845,6 +965,7 @@ CompassA2:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD7:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -852,6 +973,7 @@ CompassD7:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD4:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -859,6 +981,7 @@ CompassD4:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassP3:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -866,6 +989,7 @@ CompassP3:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD5:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -873,6 +997,7 @@ CompassD5:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD3:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -880,6 +1005,7 @@ CompassD3:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD6:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -887,6 +1013,7 @@ CompassD6:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD1:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -894,6 +1021,7 @@ CompassD1:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassD2:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -901,6 +1029,7 @@ CompassD2:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassA1:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -908,6 +1037,7 @@ CompassA1:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassP2:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -915,6 +1045,7 @@ CompassP2:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassP1:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -922,6 +1053,7 @@ CompassP1:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassH1:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -929,6 +1061,7 @@ CompassH1:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 CompassH2:
   King Zora: "bearings for sale"
   Potion Shop: "shrooms for navigation"
@@ -936,6 +1069,7 @@ CompassH2:
   Sick Kid: "the navigating kid"
   Flute Spot: "compass boy finds boss again"
   Link's Uncle: "your uncle navigates"
+  Blacksmith: "the magnetizers"
 BigKeyA2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -943,6 +1077,7 @@ BigKeyA2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD7:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -950,6 +1085,7 @@ BigKeyD7:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD4:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -957,6 +1093,7 @@ BigKeyD4:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyP3:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -964,6 +1101,7 @@ BigKeyP3:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD5:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -971,6 +1109,7 @@ BigKeyD5:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD3:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -978,6 +1117,7 @@ BigKeyD3:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD6:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -985,6 +1125,7 @@ BigKeyD6:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -992,6 +1133,7 @@ BigKeyD1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyD2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -999,6 +1141,7 @@ BigKeyD2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyA1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1006,6 +1149,7 @@ BigKeyA1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyP2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1013,6 +1157,7 @@ BigKeyP2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyP1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1020,6 +1165,7 @@ BigKeyP1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyH1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1027,6 +1173,7 @@ BigKeyH1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 BigKeyH2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1034,6 +1181,7 @@ BigKeyH2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the master locksmiths"
 KeyH2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1041,6 +1189,7 @@ KeyH2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyH1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1048,6 +1197,7 @@ KeyH1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyP1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1055,6 +1205,7 @@ KeyP1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyP2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1062,6 +1213,7 @@ KeyP2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyA1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1069,6 +1221,7 @@ KeyA1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1076,6 +1229,7 @@ KeyD2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD1:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1083,6 +1237,7 @@ KeyD1:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD6:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1090,6 +1245,7 @@ KeyD6:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD3:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1097,6 +1253,7 @@ KeyD3:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD5:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1104,6 +1261,7 @@ KeyD5:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyP3:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1111,6 +1269,7 @@ KeyP3:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD4:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1118,6 +1277,7 @@ KeyD4:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyD7:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1125,6 +1285,7 @@ KeyD7:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyA2:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1132,6 +1293,7 @@ KeyA2:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 KeyGK:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1139,90 +1301,103 @@ KeyGK:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 Crystal1:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 Crystal2:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 Crystal3:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 Crystal4:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 Crystal5:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 Crystal6:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 Crystal7:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "hostage for sale"
+  Potion Shop: "mushrooms for maidens"
+  Master Sword Pedestal: "the descendant"
+  Sick Kid: "rock-collecting kid"
+  Flute Spot: "crystal boy traps girl again"
+  Link's Uncle: "your uncle rescued a girl"
+  Blacksmith: "the lapidaries"
 RescueZelda:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "jailbreak for sale"
+  Potion Shop: "ransomed for mushrooms"
+  Master Sword Pedestal: "and the cliche"
+  Sick Kid: "princess-rescuing kid"
+  Flute Spot: "hero boy rescues again"
+  Link's Uncle: "your uncle is a savior"
+  Blacksmith: "don't ask"
 DefeatAgahnim:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "inquisition for sale"
+  Potion Shop: "mushrooms slay wizards"
+  Master Sword Pedestal: "the mage masher"
+  Sick Kid: "wizard-slaying kid"
+  Flute Spot: "tennis boy reflects again"
+  Link's Uncle: "your uncle did his job"
+  Blacksmith: "the portalsmiths"
 BigRedBomb:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "danger orb for sale"
+  Potion Shop: "mushrooms are volatile"
+  Master Sword Pedestal: "the ordinance"
+  Sick Kid: "fate-tempting kid"
+  Flute Spot: "tnt boy opens pyramid again"
+  Link's Uncle: "your uncle loves overkill"
+  Blacksmith: "the master demolitionists"
 DefeatAgahnim2:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "inquisition for sale"
+  Potion Shop: "mushrooms slay wizards"
+  Master Sword Pedestal: "the mage masher"
+  Sick Kid: "wizard-slaying kid"
+  Flute Spot: "tennis boy reflects again"
+  Link's Uncle: "your uncle did his job"
+  Blacksmith: "the batmen"
 DefeatGanon:
-  King Zora: "Nothing, so stupid"
-  Potion Shop: "mushrooms go poof"
-  Master Sword Pedestal: "and nothing"
-  Sick Kid: "nothing-having kid"
-  Flute Spot: "empty boy does nothing again"
-  Link's Uncle: "your uncle does nothing"
+  King Zora: "anticlimax for sale"
+  Potion Shop: "mushrooms save hyrule"
+  Master Sword Pedestal: "pig mortality"
+  Sick Kid: "pig-slaying kid"
+  Flute Spot: "butcher boy cures ham again"
+  Link's Uncle: "your uncle saved hyrule"
+  Blacksmith: "the mercenaries"
 UncleSword:
   King Zora: "some sword for sale"
   Potion Shop: "fungus for some slasher"
@@ -1230,6 +1405,7 @@ UncleSword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
+  Blacksmith: "the dwarven blacksmiths"
 ShopKey:
   King Zora: "advancement for sale"
   Potion Shop: "keys, keys, keys"
@@ -1237,6 +1413,7 @@ ShopKey:
   Sick Kid: "the key-holding kid"
   Flute Spot: "key boy picks locks again"
   Link's Uncle: "your uncle picks locks"
+  Blacksmith: "the locksmiths"
 ShopArrow:
   King Zora: "sewing needle for sale"
   Potion Shop: "fungus for arrow"
@@ -1244,3 +1421,4 @@ ShopArrow:
   Sick Kid: "stick-collecting kid"
   Flute Spot: "archer boy sews again"
   Link's Uncle: "your uncle believes in you"
+  Blacksmith: "the lazy fletchers"
