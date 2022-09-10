@@ -82,6 +82,8 @@ fixed:
   - ["Bush House - Exit", "Kakariko Village Bush House - Out"]
   - ["Kakariko Shop - In", "Kakariko Shop"]
   - ["Kakariko Shop - Exit", "Kakariko Shop - Out"]
+  - ["Lumberjack Shop - In", "Lumberjack Shop"]
+  - ["Lumberjack Shop - Exit", "Lumberjack Shop - Out"]
   - ["Tavern Back - In", "Tavern Back"]
   - ["Tavern Back - Exit", "Tavern Back - Out"]
   - ["Tavern Front - In", "Tavern Front"]

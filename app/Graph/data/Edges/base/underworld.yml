@@ -31,6 +31,7 @@ fixed:
     - ["Tavern Back", "Tavern Back - Exit"]
     - ["Bush House", "Bush House - Exit"]
     - ["Kakariko Shop", "Kakariko Shop - Exit"]
+    - ["Lumberjack Shop", "Lumberjack Shop - Exit"]
     - ["Blind's Hideout Upstairs", "Blind's Hideout Upstairs - Exit"]
     - ["Chicken Hut", "Chicken Hut - Exit"]
     - ["Bomb Hut", "Bomb Hut - Exit"]
@@ -186,6 +187,12 @@ BuyItem:
     - ["Kakariko Shop", "Kakariko Shop - Left"]
     - ["Kakariko Shop", "Kakariko Shop - Middle"]
     - ["Kakariko Shop", "Kakariko Shop - Right"]
+    - ["Paradox Cave - Shop", "Paradox Cave - Shop - Left"]
+    - ["Paradox Cave - Shop", "Paradox Cave - Shop - Middle"]
+    - ["Paradox Cave - Shop", "Paradox Cave - Shop - Right"]
+    - ["Lumberjack Shop", "Lumberjack Shop - Left"]
+    - ["Lumberjack Shop", "Lumberjack Shop - Middle"]
+    - ["Lumberjack Shop", "Lumberjack Shop - Right"]
   undirected: []
 LogicalBottle:
   directed:

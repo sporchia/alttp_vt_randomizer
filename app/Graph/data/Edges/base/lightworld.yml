@@ -54,7 +54,7 @@ fixed:
     - ["East Death Mountain Mimic Balcony", "Mimic Cave Entrance"]
     - ["East Death Mountain FLoating Island", "Floating Island"]
 
-    # new 
+    # new
 
     - ["Kakariko Village", "West Snitch House - In"]
     - ["West Snitch House - Out", "Kakariko Village"]
@@ -68,6 +68,8 @@ fixed:
     - ["Sick Kid's House - Out", "Kakariko Village"]
     - ["Kakariko Village", "Kakariko Shop - In"]
     - ["Kakariko Shop - Out", "Kakariko Village"]
+    - ["Dark Lumber Shop", "Lumberjack Shop - In"]
+    - ["Lumberjack Shop - Out", "Dark Lumber Shop"]
     - ["Kakariko Village", "Tavern Back - In"]
     - ["Tavern Back - Out", "Kakariko Village"]
     - ["Kakariko Village", "Tavern Front - In"]
@@ -128,7 +130,6 @@ fixed:
     - ["Smith's House", "Magic Bat - In"]
     - ["Magic Bat - Out", "Smith's House"]
     - ["Smith's House Bat Ledge", "Magic Bat - Hole"]
-
 
     # water
     - ["Zora's Falls Pool", "Zora's Falls"]

@@ -184,7 +184,7 @@ final class Randomize extends Command
                     'enemizer.enemyDamage' => 'default',
                     'enemizer.enemyHealth' => 'default',
                     'enemizer.potShuffle' => 'off',
-                    //'region.shopSupply' => 'shuffled',
+                    'region.shopSupply' => 'shuffled',
                     'equipment' => [
                         // for testing
                         'BossHeartContainer:0',

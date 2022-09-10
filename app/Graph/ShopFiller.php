@@ -22,6 +22,10 @@ final class ShopFiller
 
         if ($world->config('region.shopSupply') === 'shuffled') {
             foreach ($shops as $shop) {
+                // Potion shop canot be modified at this time.
+                if ($shop->name === "Potion Shop:$world->id") {
+                    continue;
+                }
                 $inventory = array_filter($graph->getTargets($shop), fn ($target) => $target->type === 'shopitem');
                 foreach ($inventory as $shop_item) {
                     $shop_item->item = null;
