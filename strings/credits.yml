@@ -5,7 +5,7 @@ Nothing:
   Sick Kid: "nothing-having kid"
   Flute Spot: "empty boy does nothing again"
   Link's Uncle: "your uncle does nothing"
-  Blacksmith: "the voidsmiths"
+  Blacksmith: "the dwarven voidsmiths"
 L1Sword:
   King Zora: "sword for sale"
   Potion Shop: "fungus for slasher"
@@ -213,7 +213,7 @@ PieceOfHeart:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels some love again"
   Link's Uncle: "your uncle is healthy"
-  Blacksmith: "the breadsmiths"
+  Blacksmith: "the dawrven breadsmiths"
 CaneOfByrna:
   King Zora: "shiny stick for sale"
   Potion Shop: "spark-stick for trade"
@@ -325,7 +325,7 @@ HeartContainerNoAnimation:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels love again"
   Link's Uncle: "your uncle is healthy"
-  Blacksmith: "the breadsmiths"
+  Blacksmith: "the dwarven breadsmiths"
 Bomb:
   King Zora: "firecracker for sale"
   Potion Shop: "blend fungus into bombs"
@@ -333,7 +333,7 @@ Bomb:
   Sick Kid: "the bomb-holding kid"
   Flute Spot: "'splosion boy explodes again"
   Link's Uncle: "your uncle believes"
-  Blacksmith: "the demolitionists"
+  Blacksmith: "the lazy demolitionists"
 ThreeBombs:
   King Zora: "fireworks for sale"
   Potion Shop: "blend fungus into bombs"
@@ -517,7 +517,7 @@ BossHeartContainer:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels love again"
   Link's Uncle: "your uncle is healthy"
-  Blacksmith: "the breadsmiths"
+  Blacksmith: "the dwarven breadsmiths"
 HeartContainer:
   King Zora: "love for sale"
   Potion Shop: "fungus for life"
@@ -525,7 +525,7 @@ HeartContainer:
   Sick Kid: "the life-giving kid"
   Flute Spot: "life boy feels love again"
   Link's Uncle: "your uncle is healthy"
-  Blacksmith: "the breadsmiths"
+  Blacksmith: "the dwarven breadsmiths"
 OneHundredRupees:
   King Zora: "fair trade for sale"
   Potion Shop: "buying good drugs"
@@ -549,7 +549,7 @@ Heart:
   Sick Kid: "affection-giving kid"
   Flute Spot: "loving boy has affection again"
   Link's Uncle: "your uncle is creepy"
-  Blacksmith: "the breadsmiths"
+  Blacksmith: "the dwarven breadsmiths"
 Arrow:
   King Zora: "sewing needle for sale"
   Potion Shop: "fungus for arrow"
@@ -749,7 +749,7 @@ ProgressiveSword:
   Sick Kid: "sword-wielding kid"
   Flute Spot: "sword boy fights again"
   Link's Uncle: "your uncle recovers"
-  Blacksmith: "the dwarven breadsmiths"
+  Blacksmith: "the dwarven swordsmiths"
 ProgressiveShield:
   King Zora: "some shield for sale"
   Potion Shop: "fungus for some shield"
