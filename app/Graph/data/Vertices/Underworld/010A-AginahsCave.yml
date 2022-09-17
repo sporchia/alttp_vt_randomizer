@@ -1,0 +1,22 @@
+rooms:
+  - roomid: 0x010A
+    nodes:
+      regions:
+        - name: "Aginah's Cave"
+          inletid: 0x4D
+        - name: "Aginah's Cave - Chest Room"
+      exits:
+        - name: "Aginah's Cave - Exit"
+
+      items:
+        - name: "Aginah's Cave - Chest"
+          addresses: [0xE9F2]
+          type: "chest"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Desert Cave - Aginah"
+          position: { x: 0x19, y: 0x04, z: 0x00 }
+          subtype: 0x00
+          sprite: "Sahasrahla"
+          allow: ["Sahasrahla"]

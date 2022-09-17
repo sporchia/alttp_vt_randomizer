@@ -1,0 +1,29 @@
+rooms:
+  - roomid: 0xDA
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Antifairy Playground"
+
+      pots:
+        - name: "Eastern Palace - Antifairy Playground - Pot 1"
+          position: 0x1718
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Antifairy Playground - Pot 2"
+          position: 0x1724
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Antifairy Playground - Pot 3"
+          position: 0x1918
+          sprite: "FloorSwitch"
+        - name: "Eastern Palace - Antifairy Playground - Pot 4"
+          position: 0x1924
+          sprite: "MagicRefillSmall"
+
+      mobs:
+        - name: "Eastern Palace - Antifairy Playground - Antifairy 1"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Eastern Palace - Antifairy Playground - Antifairy 2"
+          position: { x: 0x08, y: 0x18, z: 0x00 }
+          sprite: "Antifairy"

@@ -1,0 +1,52 @@
+maps:
+  - map: 0x1a
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Castle Forest"
+
+      mobs:
+        - name: "Castle Forest - Fairy"
+          position: { x: 0x0d, y: 0x11 }
+          sprite: "Fairy"
+          state: [1, 2]
+
+        - name: "Castle Forest - Heart"
+          position: { x: 0x0a, y: 0x18 }
+          sprite: "Heart"
+          state: [1, 2]
+
+        - name: "Castle Forest - Blue Guard"
+          position: { x: 0x14, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Castle Forest - Green Guard"
+          position: { x: 0x0c, y: 0x0e }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Castle Forest - Blue Rupee"
+          position: { x: 0x17, y: 0x17 }
+          sprite: "RupeeBlue"
+          state: [1]
+
+        - name: "Castle Forest - Charging Red Guard"
+          position: { x: 0x0f, y: 0x18 }
+          sprite: "RedSpearGuard"
+          state: [1]
+
+        - name: "Castle Forest - Blue Guard 1"
+          position: { x: 0x0f, y: 0x08 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Castle Forest - Blue Guard 2"
+          position: { x: 0x0c, y: 0x0e }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Castle Forest - sprite.FastRedSpearGuard"
+          position: { x: 0x0f, y: 0x18 }
+          sprite: "FastRedSpearGuard"
+          state: [2]

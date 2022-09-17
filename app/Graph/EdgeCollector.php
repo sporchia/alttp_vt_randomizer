@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Graph;
 
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Yaml\Yaml;
-
 /**
  * Pull data files to create all edges for a given world configuration.
  */
@@ -20,14 +17,14 @@ class EdgeCollector
      */
     public function getForWorld(World $world): array
     {
-        $edges_data = $this->readDir(app_path('Graph/data/Edges/base'));
+        $edges_data = ymlReadDir(app_path('Graph/data/Edges/base'));
 
         switch ($world->config('mode.state')) {
             case 'standard':
                 $edges_data = array_merge_recursive(
                     $edges_data,
-                    $this->readDir(app_path('Graph/data/Edges/normal')),
-                    $this->readDir(app_path('Graph/data/Edges/standard'))
+                    ymlReadDir(app_path('Graph/data/Edges/normal')),
+                    ymlReadDir(app_path('Graph/data/Edges/standard'))
                 );
                 $edges_data['fixed']['directed'][] = ["start", "Rain - Link's House"];
                 $edges_data['RescueZelda']['directed'][] = ["start", "Sanctuary Hall"];
@@ -37,7 +34,7 @@ class EdgeCollector
             case 'inverted':
                 $edges_data = array_merge_recursive(
                     $edges_data,
-                    $this->readDir(app_path('Graph/data/Edges/inverted'))
+                    ymlReadDir(app_path('Graph/data/Edges/inverted'))
                 );
                 // @todo move these once we have the nodes made
                 $edges_data['fixed']['directed'][] = ["start", "Link's House - Bedroom"];
@@ -49,8 +46,8 @@ class EdgeCollector
             default:
                 $edges_data = array_merge_recursive(
                     $edges_data,
-                    $this->readDir(app_path('Graph/data/Edges/normal')),
-                    $this->readDir(app_path('Graph/data/Edges/open'))
+                    ymlReadDir(app_path('Graph/data/Edges/normal')),
+                    ymlReadDir(app_path('Graph/data/Edges/open'))
                 );
                 $edges_data['fixed']['directed'][] = ["start", "Link's House - Bedroom"];
                 $edges_data['fixed']['directed'][] = ["start", "Sanctuary Hall"];
@@ -60,7 +57,7 @@ class EdgeCollector
         foreach ($world->config('tech', []) as $tech) {
             $edges_data = array_merge_recursive(
                 $edges_data,
-                $this->readFile(app_path("Graph/data/Edges/tech/$tech.yml"))
+                ymlReadFile(app_path("Graph/data/Edges/tech/$tech.yml"))
             );
         }
 
@@ -81,33 +78,5 @@ class EdgeCollector
         }
 
         return $return_data;
-    }
-
-    /**
-     * Read and parse all Edge Yaml files in a directory recursively.
-     * 
-     * @param string $dir the directory to search
-     */
-    private function readDir(string $dir): array
-    {
-        $edges_data = [];
-        $finder = new Finder();
-        foreach ($finder->in($dir)->files()->name('*.yml')->size('!= 0') as $file) {
-            $edges_data = array_merge_recursive($edges_data, $this->readFile($file->getPathName()));
-        }
-
-        return $edges_data;
-    }
-
-    /**
-     * Read Yaml file and parse all edges within it.
-     * 
-     * @param string $file file to parse
-     */
-    private function readFile(string $file): array
-    {
-        $data = file_get_contents($file);
-
-        return ($data !== false) ? Yaml::parse($data) ?? [] : [];
     }
 }

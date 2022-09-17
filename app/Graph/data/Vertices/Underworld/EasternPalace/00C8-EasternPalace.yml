@@ -1,0 +1,136 @@
+rooms:
+  - roomid: 0xC8
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Boss Room"
+
+      items:
+        - name: "Eastern Palace - Boss"
+          addresses: [0x180150]
+          type: "drop"
+          itemset: ["eastern"]
+
+        - name: "Eastern Palace - Prize"
+          addresses: [null, 0x1209D, 0x53EF8, 0x53EF9, 0x180052, 0x18007C, 0xC6FE]
+          type: "prize"
+          itemset: ["prize"]
+
+    # this data might not end up living here?
+    bosses:
+      "Eastern Palace - Boss Room":
+        DefeatArmos:
+          - name: "Eastern Palace - Boss Room - Armos Knight 1"
+            position: { x: 0x14, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Eastern Palace - Boss Room - Armos Knight 2"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Eastern Palace - Boss Room - Armos Knight 3"
+            position: { x: 0x1a, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Eastern Palace - Boss Room - Armos Knight 4"
+            position: { x: 0x1a, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Eastern Palace - Boss Room - Armos Knight 5"
+            position: { x: 0x17, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Eastern Palace - Boss Room - Armos Knight 6"
+            position: { x: 0x14, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Eastern Palace - Boss Room - Armos Overlord"
+            position: { x: 0x17, y: 0x18, z: 0x00 }
+            sprite: "ArmosCoordinator"
+        DefeatLanmolas:
+          - name: "Eastern Palace - Boss Room - Lanmolas 1"
+            position: { x: 0x16, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Eastern Palace - Boss Room - Lanmolas 2"
+            position: { x: 0x19, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Eastern Palace - Boss Room - Lanmolas 3"
+            position: { x: 0x17, y: 0x19, z: 0x00 }
+            sprite: "Lanmolas"
+        DefeatMoldorm:
+          - name: "Eastern Palace - Boss Room - Moldorm"
+            position: { x: 0x12, y: 0x1e, z: 0x00 }
+            sprite: "Moldorm"
+        DefeatHelmasaur:
+          - name: "Eastern Palace - Boss Room - Helmasaur King"
+            position: { x: 0x17, y: 0x16, z: 0x00 }
+            sprite: "Helmasaur"
+        DefeatArrghus:
+          - name: "Eastern Palace - Boss Room - Arrghus"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "Arrghus"
+          - name: "Eastern Palace - Boss Room - Arrghi 1"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 2"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 3"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 4"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 5"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 6"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 7"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 8"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 9"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 10"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 11"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 12"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Eastern Palace - Boss Room - Arrghi 13"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+        DefeatMothula:
+          - name: "Eastern Palace - Boss Room - Mothula"
+            position: { x: 0x18, y: 0x16, z: 0x00 }
+            sprite: "Mothula"
+        DefeatBlind:
+          - name: "Eastern Palace - Boss Room - Blind"
+            position: { x: 0x19, y: 0x15, z: 0x00 }
+            sprite: "Blind"
+        DefeatKholdstare:
+          - name: "Eastern Palace - Boss Room - Kholdstare's Shell"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "KholdstareShell"
+          - name: "Eastern Palace - Boss Room - Falling Ice"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "FallingIce"
+          - name: "Eastern Palace - Boss Room - Kholdstare"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "Kholdstare"
+        DefeatVitreous:
+          - name: "Eastern Palace - Boss Room - Vitreous"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "Vitreous"
+        DefeatTrinexx:
+          - name: "Eastern Palace - Boss Room - Trinexx"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "Trinexx"
+          - name: "Eastern Palace - Boss Room - Trinexx (Fire Head)"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadFire"
+          - name: "Eastern Palace - Boss Room - Trinexx (Ice Head)"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadIce"

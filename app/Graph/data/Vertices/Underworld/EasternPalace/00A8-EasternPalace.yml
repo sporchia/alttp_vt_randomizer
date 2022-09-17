@@ -1,0 +1,61 @@
+rooms:
+  - roomid: 0xa8
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - West Wing - Top"
+        - name: "Eastern Palace - West Wing - Bottom Tile"
+        - name: "Eastern Palace - West Wing - Bottom"
+        - name: "Eastern Palace - West Wing - Stalfos Ambush"
+        - name: "Eastern Palace - West Wing - Corner"
+
+      shutters:
+        - name: "Eastern Palace - West Wing - Stalfos Ambush - Shutter Door"
+
+      items:
+        - name: "Eastern Palace - Compass Chest"
+          addresses: [0xE977]
+          type: "chest"
+          itemset: ["eastern"]
+
+      pots:
+        - name: "Eastern Palace - West Wing - Top - Pot 1"
+          position: 0x138a
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - West Wing - Top - Pot 2"
+          position: 0x181e
+          sprite: "RockHoarder"
+        - name: "Eastern Palace - West Wing - Top - Pot 3"
+          position: 0x13b2
+        - name: "Eastern Palace - West Wing - Top - Pot 4"
+          position: 0x1c8a
+        - name: "Eastern Palace - West Wing - Top - Pot 5"
+          position: 0x1cb2
+
+      mobs:
+        - name: "Eastern Palace - West Wing - Top - Stalfos 1"
+          position: { x: 0x16, y: 0x0e, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - West Wing - Top - Stalfos 2"
+          position: { x: 0x1a, y: 0x0e, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerVU"
+            - "RollerHL"
+
+        - name: "Eastern Palace - West Wing - Top - Stalfos 3"
+          position: { x: 0x16, y: 0x12, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - West Wing - Top - Stalfos 4"
+          position: { x: 0x1a, y: 0x12, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+
+        - name: "Eastern Palace - West Wing - Stalfos Ambush - Stalfos Party"
+          position: { x: 0x08, y: 0x16, z: 0x00 }
+          sprite: "InvisibleStalfos"
+          trophy: "EasternPalaceWestWingTrophy"

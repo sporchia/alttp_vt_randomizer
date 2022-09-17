@@ -1,0 +1,73 @@
+rooms:
+  - roomid: 0xAA
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - East Wing - Top"
+        - name: "Eastern Palace - East Wing - Bottom"
+        - name: "Eastern Palace - East Wing - Switch"
+        - name: "Eastern Palace - East Wing - Gap Right"
+        - name: "Eastern Palace - East Wing - Gap Left"
+
+      items:
+        - name: "Eastern Palace - Map Chest"
+          addresses: [0xE9F5]
+          type: "chest"
+          itemset: ["eastern"]
+
+      pots:
+        - name: "Eastern Palace - East Wing - Top - Pot 1"
+          position: 0x085e
+          sprite: "FloorSwitch"
+        - name: "Eastern Palace - East Wing - Top - Pot 2"
+          position: 0x376c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - East Wing - Top - Pot 3"
+          position: 0x386c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - East Wing - Top - Pot 4"
+          position: 0x396c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - East Wing - Top - Pot 5"
+          position: 0x05e8
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - East Wing - Top - Pot 6"
+          position: 0x0ae8
+        - name: "Eastern Palace - East Wing - Top - Pot 7"
+          position: 0x0ad4
+        - name: "Eastern Palace - East Wing - Top - Pot 8"
+          position: 0x05d4
+
+      mobs:
+        - name: "Eastern Palace - East Wing - Top - Antifairy"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Eastern Palace - East Wing - Top - Popo B 1"
+          position: { x: 0x0a, y: 0x07, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Eastern Palace - East Wing - Top - Stalfos 1"
+          position: { x: 0x06, y: 0x0b, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - East Wing - Top - Stalfos 2"
+          position: { x: 0x0c, y: 0x0c, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - East Wing - Top - Stalfos 3"
+          position: { x: 0x0c, y: 0x13, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - East Wing - Top - Popo B 2"
+          position: { x: 0x0a, y: 0x14, z: 0x00 }
+          sprite: "Popo2"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

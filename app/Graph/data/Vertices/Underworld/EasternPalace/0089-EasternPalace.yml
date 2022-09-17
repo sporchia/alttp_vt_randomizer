@@ -1,0 +1,14 @@
+rooms:
+  - roomid: 0x89
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Fairy Restock"
+      mobs:
+        - name: "Eastern Palace - Fairy Restock - Fairy 1"
+          position: { x: 0x10, y: 0x0a, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Eastern Palace - Fairy Restock - Fairy 2"
+          position: { x: 0x0f, y: 0x0b, z: 0x00 }
+          sprite: "Fairy"

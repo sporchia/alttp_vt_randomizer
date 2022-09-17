@@ -1,0 +1,65 @@
+rooms:
+  - roomid: 0x99
+    group: 2
+    dark: true
+    nodes:
+      regions:
+        - name: "Eastern Palace - Dark Popos"
+        - name: "Eastern Palace - Dark Popos darkness"
+        - name: "Eastern Palace - Dark Cash"
+
+      keydoors:
+        - name: "Eastern Palace - Stairs Door"
+          key: "KeyP1"
+
+      pots:
+        - name: "Eastern Palace - Dark Cash - Pot 1"
+          position: 0x1428
+          sprite: "MagicRefillFull"
+
+        - name: "Eastern Palace - Dark Cash - Pot 2"
+          position: 0x1454
+          sprite: "MagicRefillSmall"
+
+      mobs:
+        - name: "Eastern Palace - Eyegore Key - Right Eyegore"
+          position: { x: 0x11, y: 0x17, z: 0x00 }
+          sprite: "EyegoreGreen"
+          item: "KeyP1"
+          itemset: ["eastern"]
+
+        - name: "Eastern Palace - Dark Cash - Antifairy 1"
+          position: { x: 0x15, y: 0x06, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Eastern Palace - Dark Cash - Antifairy 2"
+          position: { x: 0x1a, y: 0x08, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Eastern Palace - Dark Cash - Green Eyegore 1"
+          position: { x: 0x0e, y: 0x17, z: 0x00 }
+          sprite: "EyegoreGreen"
+
+        - name: "Eastern Palace - Dark Cash - Popo 1"
+          position: { x: 0x0d, y: 0x18, z: 0x00 }
+          sprite: "Popo"
+
+        - name: "Eastern Palace - Dark Cash - Popo B 1"
+          position: { x: 0x12, y: 0x18, z: 0x00 }
+          sprite: "Popo"
+
+        - name: "Eastern Palace - Dark Cash - Popo B 2"
+          position: { x: 0x0e, y: 0x19, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Eastern Palace - Dark Cash - Popo B 3"
+          position: { x: 0x0f, y: 0x19, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Eastern Palace - Dark Cash - Popo B 4"
+          position: { x: 0x10, y: 0x19, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Eastern Palace - Dark Cash - Popo B 5"
+          position: { x: 0x11, y: 0x19, z: 0x00 }
+          sprite: "Popo2"

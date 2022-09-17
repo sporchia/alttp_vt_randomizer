@@ -1,0 +1,108 @@
+rooms:
+  - roomid: 0xBA
+    group: 2
+    dark: true
+    nodes:
+      regions:
+        - name: "Eastern Palace - Dark Antifairy Circle"
+        - name: "Eastern Palace - Dark Antifairy Circle darkness"
+        - name: "Eastern Palace - Dark Stalfos"
+      keydoors:
+        - name: "Eastern Palace - Bridge Door"
+          key: "KeyP1"
+
+      items:
+        - name: "Eastern Palace - Dark Stalfos - TR Pot"
+          position: 0x0670
+          item: "KeyP1"
+          itemset: ["eastern"]
+
+      pots:
+        - name: "Eastern Palace - Dark Stalfos - Pot 1"
+          position: 0x045e
+          sprite: "RockHoarder"
+        - name: "Eastern Palace - Dark Stalfos - Pot 2"
+          position: 0x064c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Dark Stalfos - Pot 3"
+          position: 0x0a4c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Dark Stalfos - Pot 4"
+          position: 0x0a70
+          sprite: "MagicRefillFull"
+        - name: "Eastern Palace - Dark Stalfos - Pot 5"
+          position: 0x0c5e
+          sprite: "RockHoarder"
+        - name: "Eastern Palace - Dark Stalfos - Pot 6"
+          position: 0x0858
+        - name: "Eastern Palace - Dark Stalfos - Pot 7"
+          position: 0x0864
+
+      mobs:
+        - name: "Eastern Palace - Dark Stalfos - Stalfos 1"
+          position: { x: 0x14, y: 0x04, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - Dark Stalfos - Antifairy 1"
+          position: { x: 0x03, y: 0x06, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Dark Stalfos - Stalfos 2"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - Dark Stalfos - Antifairy 2"
+          position: { x: 0x03, y: 0x09, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Dark Stalfos - Popo B 1"
+          position: { x: 0x0c, y: 0x09, z: 0x00 }
+          sprite: "Popo2"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Dark Stalfos - Stalfos 3"
+          position: { x: 0x18, y: 0x0a, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - Dark Stalfos - Popo B 2"
+          position: { x: 0x08, y: 0x0c, z: 0x00 }
+          sprite: "Popo2"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

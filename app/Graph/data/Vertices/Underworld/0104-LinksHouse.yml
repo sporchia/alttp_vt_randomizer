@@ -1,0 +1,33 @@
+rooms:
+  - roomid: 0x0104
+    nodes:
+      regions:
+        - name: "Link's House - Bedroom"
+          inletid: 0x01
+
+      exits:
+        - name: "Link's House - Exit"
+
+      items:
+        - name: "Link's House - Chest"
+          addresses: [0xE9BC]
+          type: "chest"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Link's House - Bedroom - Pot 1"
+          position: 0x15ca
+          sprite: "MagicRefillSmall"
+        - name: "Link's House - Bedroom - Pot 2"
+          position: 0x16ca
+          sprite: "MagicRefillSmall"
+        - name: "Link's House - Bedroom - Pot 3"
+          position: 0x17ca
+          sprite: "MagicRefillSmall"
+
+      mobs:
+        - name: "Link's House - Bedroom - Uncle"
+          position: { x: 0x1a, y: 0x17, z: 0x00 }
+          sprite: "Uncle"
+          allow:
+            - "Uncle"

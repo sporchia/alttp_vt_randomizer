@@ -1,0 +1,171 @@
+rooms:
+  - roomid: 0xD8
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Kill Room 1"
+        - name: "Eastern Palace - Kill Room 2"
+
+      shutters:
+        - name: "Eastern Palace - Kill Room 1 - Shutter Door"
+        - name: "Eastern Palace - Kill Room 2 - Shutter Door"
+
+      pots:
+        - name: "Eastern Palace - Kill Room 1 - Pot 1"
+          position: 0x08ca
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Kill Room 1 - Pot 2"
+          position: 0x08f2
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Kill Room 1 - Pot 3"
+          position: 0x0aca
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Kill Room 1 - Pot 4"
+          position: 0x0af2
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Kill Room 1 - Pot 5"
+          position: 0x0cca
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Kill Room 1 - Pot 6"
+          position: 0x0cf2
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Kill Room 1 - Pot 7"
+          position: 0x185c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Kill Room 1 - Pot 8"
+          position: 0x1860
+          sprite: "BombRefill1"
+
+      mobs:
+        - name: "Eastern Palace - Kill Room 2 - Red Eyegore L"
+          position: { x: 0x17, y: 0x05, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Red Eyegore R"
+          position: { x: 0x18, y: 0x05, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Popo B TL"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Popo B TR"
+          position: { x: 0x18, y: 0x09, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Popo B LT"
+          position: { x: 0x16, y: 0x0a, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Popo B RT"
+          position: { x: 0x19, y: 0x0a, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Popo LB"
+          position: { x: 0x16, y: 0x0b, z: 0x00 }
+          sprite: "Popo"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 2 - Popo RB"
+          position: { x: 0x19, y: 0x0b, z: 0x00 }
+          sprite: "Popo"
+          trophy: "EasternPalaceKillRoomTwoTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 1 - Red Eyegore"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: "EasternPalaceKillRoomOneTrophy"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Eastern Palace - Kill Room 1 - Stalfos T"
+          position: { x: 0x18, y: 0x16, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "EasternPalaceKillRoomOneTrophy"
+
+        - name: "Eastern Palace - Kill Room 1 - Stalfos B"
+          position: { x: 0x18, y: 0x1b, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "EasternPalaceKillRoomOneTrophy"

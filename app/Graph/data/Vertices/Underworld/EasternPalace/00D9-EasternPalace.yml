@@ -1,0 +1,34 @@
+rooms:
+  - roomid: 0xD9
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Eyegore Switches"
+        - name: "Eastern Palace - Dodgeball"
+
+      pots:
+        - name: "Eastern Palace - Dodgeball - Pot 1"
+          position: 0x145c
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Dodgeball - Pot 2"
+          position: 0x1c5c
+          sprite: "MagicRefillSmall"
+
+      mobs:
+        - name: "Eastern Palace - Dodgeball - Cannonballs"
+          position: { x: 0x0c, y: 0x14, z: 0x00 }
+          sprite: "FullRoomCannons"
+
+        - name: "Eastern Palace - Dodgeball - Green Eyegore 1"
+          position: { x: 0x18, y: 0x15, z: 0x00 }
+          sprite: "EyegoreGreen"
+          deny:
+            - "RollerHR"
+
+        - name: "Eastern Palace - Dodgeball - Green Eyegore 2"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "EyegoreGreen"
+
+        - name: "Eastern Palace - Dodgeball - Green Eyegore 3"
+          position: { x: 0x18, y: 0x1b, z: 0x00 }
+          sprite: "EyegoreGreen"

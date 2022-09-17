@@ -1,0 +1,74 @@
+rooms:
+  - roomid: 0xA9
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Main Room - Balcony"
+        - name: "Eastern Palace - Main Room"
+
+      items:
+        - name: "Eastern Palace - Big Chest"
+          addresses: [0xE97D]
+          type: "bigchest"
+          itemset: ["eastern"]
+
+      bigkeydoors:
+        - name: "Eastern Palace - Main Room Door"
+          key: "BigKeyP1"
+
+      pots:
+        - name: "Eastern Palace - Main Room - Pot 1"
+          position: 0x2b90
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Main Room - Pot 2"
+          position: 0x2bec
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Main Room - Pot 3"
+          position: 0x2c90
+          sprite: "BombRefill1"
+        - name: "Eastern Palace - Main Room - Pot 4"
+          position: 0x2cec
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Main Room - Pot 5"
+          position: 0x1410
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Main Room - Pot 6"
+          position: 0x146c
+          sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Main Room - Pot 7"
+          position: 0x130c
+        - name: "Eastern Palace - Main Room - Pot 8"
+          position: 0x1370
+
+      mobs:
+        - name: "Eastern Palace - Main Room - Green Eyegore 1"
+          position: { x: 0x09, y: 0x05, z: 0x01 }
+          sprite: "EyegoreGreen"
+
+        - name: "Eastern Palace - Main Room - Green Eyegore 2"
+          position: { x: 0x16, y: 0x05, z: 0x01 }
+          sprite: "EyegoreGreen"
+
+        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 1"
+          position: { x: 0x0d, y: 0x0c, z: 0x01 }
+          sprite: "FallingStalfos"
+
+        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 2"
+          position: { x: 0x12, y: 0x0c, z: 0x01 }
+          sprite: "FallingStalfos"
+
+        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 3"
+          position: { x: 0x0d, y: 0x12, z: 0x01 }
+          sprite: "FallingStalfos"
+
+        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 4"
+          position: { x: 0x12, y: 0x12, z: 0x01 }
+          sprite: "FallingStalfos"
+
+        - name: "Eastern Palace - Main Room - Stalfos 1"
+          position: { x: 0x0a, y: 0x10, z: 0x01 }
+          sprite: "Stalfos"
+
+        - name: "Eastern Palace - Main Room - Stalfos 2"
+          position: { x: 0x14, y: 0x10, z: 0x01 }
+          sprite: "Stalfos"

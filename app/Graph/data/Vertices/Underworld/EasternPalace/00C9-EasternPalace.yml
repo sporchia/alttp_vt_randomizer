@@ -1,0 +1,34 @@
+rooms:
+  - roomid: 0xC9
+    group: 2
+    nodes:
+      regions:
+        - name: "Eastern Palace - Entrance"
+          inletid: 0x08
+        - name: "Eastern Palace - Popo Switch"
+      exits:
+        - name: "Eastern Palace - Exit"
+
+      pots:
+        - name: "Eastern Palace - Entrance - Pot 1"
+          position: 0x161e
+          sprite: "RockHoarder"
+        - name: "Eastern Palace - Entrance - Pot 2"
+          position: 0x165e
+          sprite: "RockHoarder"
+        - name: "Eastern Palace - Entrance - Pot 3"
+          position: 0x163c
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Eastern Palace - Entrance - Popo B 1"
+          position: { x: 0x10, y: 0x05, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Eastern Palace - Entrance - Popo B 2"
+          position: { x: 0x0f, y: 0x06, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Eastern Palace - Entrance - Popo B 3"
+          position: { x: 0x10, y: 0x07, z: 0x00 }
+          sprite: "Popo2"

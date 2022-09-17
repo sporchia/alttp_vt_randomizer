@@ -11,14 +11,14 @@ return [
         'name' => "Aginah's Cave - Exit",
         'roomid' => 0x010a,
         'type' => 'exit',
-    ],    
+    ],
     [
         'name' => "Aginah's Cave - Chest Room",
         'roomid' => 0x010a,
         'type' => 'region',
-    ],    
+    ],
     [
-        'roomid' => 0x30,
+        'roomid' => 0x010a,
         'name' => "Aginah's Cave - Chest",
         'addresses' => [0xE9F2],
         'type' => 'chest',
