@@ -2,7 +2,7 @@
 
 return [
     [
-        'name' => "Lumberjack Shop",
+        'name' => "Village Of Outcasts Shop",
         'roomid' => 0x010F,
         'type' => 'shop',
         'shopkeeper' => 0xC1,
@@ -10,12 +10,12 @@ return [
         'inletid' => 0x60,
     ],
     [
-        'name' => "Lumberjack Shop - Exit",
+        'name' => "Village Of Outcasts Shop - Exit",
         'roomid' => 0x010F,
         'type' => 'exit',
     ],
     [
-        'name' => "Lumberjack Shop - Left",
+        'name' => "Village Of Outcasts Shop - Left",
         'roomid' => 0x010F,
         'type' => 'shopitem',
         'item' => 'RedPotion',
@@ -23,7 +23,7 @@ return [
         'itemset' => ['dw', 'shop'],
     ],
     [
-        'name' => "Lumberjack Shop - Middle",
+        'name' => "Village Of Outcasts Shop - Middle",
         'roomid' => 0x010F,
         'type' => 'shopitem',
         'item' => 'BlueShield',
@@ -31,7 +31,7 @@ return [
         'itemset' => ['dw', 'shop'],
     ],
     [
-        'name' => "Lumberjack Shop - Right",
+        'name' => "Village Of Outcasts Shop - Right",
         'roomid' => 0x010F,
         'type' => 'shopitem',
         'item' => 'TenBombs',
