@@ -309,9 +309,9 @@ PegasusBoots:
 BombUpgrade5:
   Master Sword Pedestal: "Increase bomb\nstorage, low\nlow price"
   Bombos Tablet: "Increase bomb\nstorage, low\nlow price"
-  Ether Tablet: "increase bomb\nstorage, low\nlow price"
+  Ether Tablet: "Increase bomb\nstorage, low\nlow price"
 BombUpgrade10:
-  Master Sword Pedestal: "increase bomb\nstorage, low\nlow price"
+  Master Sword Pedestal: "Increase bomb\nstorage, low\nlow price"
   Bombos Tablet: "Increase bomb\nstorage, low\nlow price"
   Ether Tablet: "Increase bomb\nstorage, low\nlow price"
 BombUpgrade50:
@@ -695,7 +695,7 @@ DefeatAgahnim2:
   Bombos Tablet: "Just take a\nlittle off\nthe top."
   Ether Tablet: "Just take a\nlittle off\nthe top."
 DefeatGanon:
-  Master Sword Pedestal: "Deus ex\n  machina"
+  Master Sword Pedestal: "  Deus ex\n  machina"
   Bombos Tablet: "  Deus ex\n  machina"
   Ether Tablet: "  Deus ex\n  machina"
 UncleSword:
