@@ -96,18 +96,76 @@ class VertexCollector
      */
     public function loadYmlData(World $world): array
     {
-        $vertex_files = collect(Yaml::parse(
-            file_get_contents(app_path('Graph/data/Bosses/SpriteLocations.yml'))
-        ) ?? []);
+        $vertex_data = array_merge_recursive(
+            ymlReadDir(app_path('Graph/data/Vertices')),
+            $world->config('vertex_data', [])
+        );
 
-        array_filter(File::allFiles(app_path('Graph/data/Vertices/')), fn ($f) => $f->getExtension() === 'php');
-        if ($vertex_files === false) {
-            throw new Exception('Error reading underlying data');
-        }
         $world_id = $world->id;
         $inverted = $world->config('mode.state') === 'inverted';
         $bunny_revive = in_array('dungeon_bunny_revival', $world->config('tech', []));
         $names = [];
+        $vertices = [];
+
+        // overworld
+        foreach ($vertex_data['maps'] as $map) {
+            $shared = [
+                'map' => $map['map'],
+            ];
+            foreach ($map['nodes']['regions'] ?? [] as $region) {
+                $vertices[] = array_merge(
+                    $shared,
+                    [
+                        'moonpearl' => $map['moonpearl'],
+                        'type' => 'region',
+                    ],
+                    $region
+                );
+            }
+            foreach ($map['nodes']['mobs'] ?? [] as $mob) {
+                $vertices[] = array_merge(
+                    $shared,
+                    [
+                        'type' => 'mob',
+                    ],
+                    $mob
+                );
+            }
+            foreach ($map['nodes']['items'] ?? [] as $item) {
+                $vertices[] = array_merge(
+                    $shared,
+                    [
+                        'type' => 'item',
+                    ],
+                    $item
+                );
+            }
+            foreach ($map['nodes']['entrances'] ?? [] as $entrance) {
+                if ($entrance['entranceid'] ?? false) {
+                    $vertices[] = array_merge(
+                        $shared,
+                        [
+                            'name' => $entrance['name'] . ' - In',
+                            'entranceid' => $entrance['entranceid'],
+                            'type' => 'entrance',
+                        ]
+                    );
+                }
+                if ($entrance['outletid'] ?? false) {
+                    $vertices[] = array_merge(
+                        $shared,
+                        [
+                            'name' => $entrance['name'] . ' - Out',
+                            'outletid' => $entrance['outletid'],
+                            'type' => 'outlet',
+                        ]
+                    );
+                }
+            }
+        }
+        dd($vertices);
+        // underworld
+        $vertex_data['rooms'];
 
         return array_map(static function ($v) use ($world_id, $inverted, $bunny_revive, &$names) {
             if (isset($v['itemset'])) {
@@ -132,8 +190,6 @@ class VertexCollector
             return array_merge($v, [
                 'name' => "{$v['name']}:$world_id",
             ]);
-        }, Arr::flatten(array_map(static function ($filename) {
-            return require($filename);
-        }, $vertex_files), 1));
+        }, $vertices);
     }
 }

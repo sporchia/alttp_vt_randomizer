@@ -95,7 +95,7 @@ final class World
         }
         $this->collected_items = new Inventory($items);
 
-        $vertices = resolve(VertexCollector::class)->getForWorld($this);
+        $vertices = resolve(VertexCollector::class)->loadYmlData($this);
         collect($vertices)->map(function ($data) {
             return $this->graph->newVertex($data);
         });

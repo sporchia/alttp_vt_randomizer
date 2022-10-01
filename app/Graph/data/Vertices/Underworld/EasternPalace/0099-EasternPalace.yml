@@ -16,7 +16,6 @@ rooms:
         - name: "Eastern Palace - Dark Cash - Pot 1"
           position: 0x1428
           sprite: "MagicRefillFull"
-
         - name: "Eastern Palace - Dark Cash - Pot 2"
           position: 0x1454
           sprite: "MagicRefillSmall"

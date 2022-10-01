@@ -4,6 +4,7 @@ rooms:
     nodes:
       regions:
         - name: "Eastern Palace - Fairy Restock"
+
       mobs:
         - name: "Eastern Palace - Fairy Restock - Fairy 1"
           position: { x: 0x10, y: 0x0a, z: 0x00 }

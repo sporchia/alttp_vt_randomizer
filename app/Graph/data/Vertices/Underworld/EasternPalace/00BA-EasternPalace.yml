@@ -11,12 +11,6 @@ rooms:
         - name: "Eastern Palace - Bridge Door"
           key: "KeyP1"
 
-      items:
-        - name: "Eastern Palace - Dark Stalfos - TR Pot"
-          position: 0x0670
-          item: "KeyP1"
-          itemset: ["eastern"]
-
       pots:
         - name: "Eastern Palace - Dark Stalfos - Pot 1"
           position: 0x045e
@@ -24,6 +18,10 @@ rooms:
         - name: "Eastern Palace - Dark Stalfos - Pot 2"
           position: 0x064c
           sprite: "MagicRefillSmall"
+        - name: "Eastern Palace - Dark Stalfos - TR Pot"
+          position: 0x0670
+          item: "KeyP1"
+          itemset: ["eastern"]
         - name: "Eastern Palace - Dark Stalfos - Pot 3"
           position: 0x0a4c
           sprite: "MagicRefillSmall"

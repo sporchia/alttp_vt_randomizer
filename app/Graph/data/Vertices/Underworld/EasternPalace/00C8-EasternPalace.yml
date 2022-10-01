@@ -17,6 +17,7 @@ rooms:
           itemset: ["prize"]
 
     # this data might not end up living here?
+    # but is not currently used, see data/Bosses/SpriteLocations.yml
     bosses:
       "Eastern Palace - Boss Room":
         DefeatArmos:
