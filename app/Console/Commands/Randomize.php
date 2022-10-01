@@ -159,6 +159,7 @@ class Randomize extends Command
             $logic = [
                 'none' => 'NoGlitches',
                 'overworld_glitches' => 'OverworldGlitches',
+                'hybrid_major_glitches' => 'HybridMajorGlitches',
                 'major_glitches' => 'MajorGlitches',
                 'no_logic' => 'NoLogic',
             ][$this->option('glitches')];

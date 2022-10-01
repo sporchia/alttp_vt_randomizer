@@ -128,7 +128,7 @@ abstract class World
                 $free_item_menu |= 0x0C;
         }
 
-        if (in_array($this->config('logic'), ['MajorGlitches', 'NoLogic']) || $this->config('canOneFrameClipUW', false)) {
+        if (in_array($this->config('logic'), ['HybridMajorGlitches', 'MajorGlitches', 'NoLogic']) || $this->config('canOneFrameClipUW', false)) {
             $free_item_menu |= 0x10;
         }
 
@@ -371,7 +371,7 @@ abstract class World
         if (
             $this->config['logic'] === 'NoLogic'
             || ($this->config['mode.state'] !== 'inverted'
-                && in_array($this->config['logic'], ['OverworldGlitches', 'MajorGlitches']))
+                && in_array($this->config['logic'], ['OverworldGlitches', 'HybridMajorGlitches', 'MajorGlitches']))
         ) {
             return [0, 0];
         }
@@ -1200,6 +1200,7 @@ abstract class World
         if ($this->config('mode.state') !== 'inverted') {
             switch ($this->config('rom.logicMode', $this->config['logic'])) {
                 case 'MajorGlitches':
+                case 'HybridMajorGlitches':
                 case 'NoLogic':
                 case 'OverworldGlitches':
                     $rom->setLockAgahnimDoorInEscape(false);
@@ -1241,6 +1242,7 @@ abstract class World
         $rom->initial_sram->setStartingTimer($this->config('rom.timerStart', 0) ?: 0);
 
         switch ($this->config('rom.logicMode', $this->config['logic'])) {
+            case 'HybridMajorGlitches':
             case 'MajorGlitches':
             case 'NoLogic':
                 $rom->setSwampWaterLevel(false);
