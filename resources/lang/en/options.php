@@ -29,7 +29,7 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of certain major glitches as well as knowledge of most minor glitches. Specifically:',
+                        'This setting requires knowledge of all glitches used in Overworld Glitches, as well as glitches in the underworld that can clip you into other dungeons.  Specifically:',
                         '<ul>'
                             . '<li>Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
                             . '</ul>',
@@ -44,7 +44,7 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of more advanced major glitches. Specifically:',
+                        'This setting requires knowledge of more advanced major glitches, as well as all glitches listed above. Specifically:',
                         '<ul>'
                             . '<li>Overworld fake flutes</li>'
                             . '<li>Overworld screenwraps</li>'
