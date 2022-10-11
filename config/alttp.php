@@ -299,9 +299,9 @@ return [
         ],
         'daily_weights' => [
             'glitches_required' => [
-                'none' => 84,
-                'overworld_glitches' => 10,
-                'hybrid_major_glitches' => 4,
+                'none' => 88,
+                'overworld_glitches' => 7,
+                'hybrid_major_glitches' => 3,
                 'major_glitches' => 2,
                 'no_logic' => 0,
             ],
