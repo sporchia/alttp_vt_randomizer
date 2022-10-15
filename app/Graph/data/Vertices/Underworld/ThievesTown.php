@@ -324,7 +324,7 @@ return [
     [
         'group' => 12,
         'name' => "Thieves' Town - Big Chest",
-        'type' => 'chest',
+        'type' => 'bigchest',
         'addresses' => [0xEA10],
         'itemset' => ['thieves'],
     ],
