@@ -84,6 +84,8 @@ fixed:
   - ["Kakariko Shop - Exit", "Kakariko Shop - Out"]
   - ["Lumberjack Shop - In", "Lumberjack Shop"]
   - ["Lumberjack Shop - Exit", "Lumberjack Shop - Out"]
+  - ["Village of Outcasts Storefront - In", "Village Of Outcasts Shop"]
+  - ["Village Of Outcasts Shop - Exit", "Village of Outcasts Storefront - Out"]
   - ["Tavern Back - In", "Tavern Back"]
   - ["Tavern Back - Exit", "Tavern Back - Out"]
   - ["Tavern Front - In", "Tavern Front"]

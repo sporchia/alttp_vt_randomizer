@@ -31,6 +31,8 @@ fixed:
     - ["Village of Outcasts", "Chest Game Room"]
     - ["Village of Outcasts", "Brewery Room"]
     - ["Village of Outcasts", "C-Shaped House C"]
+    - ["Village Of Outcasts Shop", "Village of Outcasts Storefront - In"]
+    - ["Village of Outcasts Storefront - Out", "Village Of Outcasts Shop"]
     - ["Bumper Cave Ledge", "Bumper Cave"]
     - ["West Dark Death Mountain Byrna Ledge", "Spike Cave Entrance"]
   undirected:
