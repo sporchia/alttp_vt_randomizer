@@ -406,20 +406,6 @@ class Rom
     }
 
     /**
-     * Set the starting Max Arrows
-     *
-     * @param int $max
-     *
-     * @return $this
-     */
-    public function setMaxArrows(int $max = 30): self
-    {
-        $this->write(0x180035, pack('C', $max));
-
-        return $this;
-    }
-
-    /**
      * Set the Digging Game Rng
      *
      * @param int $digs
@@ -430,20 +416,6 @@ class Rom
     {
         $this->write(0x180020, pack('C', $digs));
         $this->write(0xEFD95, pack('C', $digs));
-
-        return $this;
-    }
-
-    /**
-     * Set the starting Max Bombs
-     *
-     * @param int $max
-     *
-     * @return $this
-     */
-    public function setMaxBombs(int $max = 10): self
-    {
-        $this->write(0x180034, pack('C', $max));
 
         return $this;
     }

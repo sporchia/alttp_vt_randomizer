@@ -104,8 +104,8 @@ class InitialSram
     public function setStartingEquipment(ItemCollection $items, $config)
     {
         $starting_rupees = 0;
-        $starting_arrow_capacity_upgrades = 0;
-        $starting_bomb_capacity_upgrades = 0;
+        $starting_arrow_capacity = 0;
+        $starting_bomb_capacity = 0;
         // starting heart containers
         if ($items->heartCount(0) < 1) {
             $this->initial_sram_bytes[0x36C] = 0x18;
@@ -391,16 +391,16 @@ class InitialSram
                     $this->initial_sram_bytes[0x379] |= 0b00000100;
                     break;
                 case 'BombUpgrade5':
-                    $starting_bomb_capacity_upgrades += 5;
+                    $starting_bomb_capacity += 5;
                     break;
                 case 'BombUpgrade10':
-                    $starting_bomb_capacity_upgrades += 10;
+                    $starting_bomb_capacity += 10;
                     break;
                 case 'ArrowUpgrade5':
-                    $starting_arrow_capacity_upgrades += 5;
+                    $starting_arrow_capacity += 5;
                     break;
                 case 'ArrowUpgrade10':
-                    $starting_arrow_capacity_upgrades += 10;
+                    $starting_arrow_capacity += 10;
                     break;
                 case 'HalfMagic':
                     $this->initial_sram_bytes[0x37B] = 0x01;
@@ -620,8 +620,8 @@ class InitialSram
         $this->initial_sram_bytes[0x422] = $this->initial_sram_bytes[0x35A];
         $this->initial_sram_bytes[0x46E] = $this->initial_sram_bytes[0x35B];
 
-        $this->setValue(0x370, $starting_arrow_capacity_upgrades);
-        $this->setValue(0x371, $starting_bomb_capacity_upgrades);
+        $this->setValue(0x370, $starting_bomb_capacity);
+        $this->setValue(0x371, $starting_arrow_capacity);
 
         if ($config['mode.weapons'] == 'swordless') {
             $this->initial_sram_bytes[0x359] = 0xFF;
@@ -700,7 +700,7 @@ class InitialSram
                 break;
         }
     }
-    
+
     /**
      * Gets final initial SRAM table.
      *
@@ -708,7 +708,7 @@ class InitialSram
      *
      * @return array
      */
-    function getInitialSram() {
+    public function getInitialSram() {
         $table_size = count($this->initial_sram_bytes);
         if ($table_size !== $this::SRAM_SIZE) {
             throw new \Exception("Initial SRAM table exceeds size limit: " . $table_size);
