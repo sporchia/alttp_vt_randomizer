@@ -6,6 +6,7 @@ use ALttP\Item;
 use ALttP\World;
 use ArrayIterator;
 use Illuminate\Contracts\Support\Arrayable;
+use Traversable;
 
 /**
  * Collection of Items, maintains counts of items collected as well.
@@ -307,7 +308,7 @@ class ItemCollection extends Collection
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return (int) array_sum($this->item_counts);
     }
@@ -317,7 +318,7 @@ class ItemCollection extends Collection
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->toArray());
     }
@@ -329,7 +330,7 @@ class ItemCollection extends Collection
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->item_counts[$offset]);
         unset($this->items[$offset]);
@@ -442,8 +443,7 @@ class ItemCollection extends Collection
      */
     public function canAcquireFairy($world = null)
     {
-        if ($world !== null && !$world->config('rom.CatchableFairies', true))
-        {
+        if ($world !== null && !$world->config('rom.CatchableFairies', true)) {
             return False;
         }
         return True;
@@ -458,14 +458,13 @@ class ItemCollection extends Collection
     {
         $canBunnyRevive = $this->hasABottle() && $this->has('BugCatchingNet');
 
-        if ($world !== null)
-        {
+        if ($world !== null) {
             $canBunnyRevive = $canBunnyRevive && $this->canAcquireFairy($world);
         }
 
         return $canBunnyRevive;
-    }   
-    
+    }
+
     /**
      * Requirements for lobbing arrows at things
      *
@@ -479,15 +478,15 @@ class ItemCollection extends Collection
         switch ($min_level) {
             case 2:
                 return $this->has('BowAndSilverArrows')
-                    || ($this->has('ProgressiveBow', 2) 
+                    || ($this->has('ProgressiveBow', 2)
                         && (!$world->config('rom.rupeeBow', false) || $this->has('ShopArrow')))
                     || ($this->has('SilverArrowUpgrade')
                         && ($this->has('Bow') || $this->has('BowAndArrows') || $this->has('ProgressiveBow')));
             case 1:
             default:
-                return (($this->has('Bow') || $this->has('ProgressiveBow')) 
-                        && (!$world->config('rom.rupeeBow', false)
-                            || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
+                return (($this->has('Bow') || $this->has('ProgressiveBow'))
+                    && (!$world->config('rom.rupeeBow', false)
+                        || $this->has('ShopArrow') || $this->has('SilverArrowUpgrade')))
                     || $this->has('BowAndArrows')
                     || $this->has('BowAndSilverArrows');
         }

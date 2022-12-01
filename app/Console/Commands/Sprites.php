@@ -49,13 +49,23 @@ class Sprites extends Command
             return 102;
         }
 
-        $sprite_sheet = 'sprites.31.0.10.png';
+        $sprite_sheet = 'sprites.31.0.11.png';
 
         $this->sprToPng($sprite_dir);
 
         $files = collect(scandir($sprite_dir));
 
         $meta_data->groupBy('vtversion')->each(function ($sprites, $version) use ($sprite_dir, $files) {
+            $sprite_file_class = $sprites->pluck('file')->map(function ($val) {
+                return $val;
+            });
+
+            foreach ($sprite_file_class as $file) {
+                if (!file_exists("$sprite_dir/$file")) {
+                    throw new Exception("sprite $file does not exist");
+                };
+            }
+
             $sprite_class = $sprites->pluck('file')->map(function ($val) {
                 return "$val.lg.png";
             });
@@ -120,6 +130,12 @@ class Sprites extends Command
             return "$val.png";
         });
 
+        foreach ($sprite_images as $file) {
+            if (!file_exists("$sprite_dir/$file")) {
+                throw new Exception("missing sprite image $file");
+            };
+        }
+
         $found_files = $files->intersect($sprite_images);
         if ($found_files->isEmpty()) {
             $this->error('No files to process');
@@ -172,7 +188,7 @@ class Sprites extends Command
         $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n";
         $i = 0;
         foreach ($meta_data as $sprite) {
-            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage((%d - $next)/ $top) 0;\n}\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
+            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage(calc((%d - $next)/ $top)) 0;\n}\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
         }
         file_put_contents(resource_path('sass/_sprites.scss'), $scss_file);
 

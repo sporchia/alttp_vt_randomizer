@@ -326,9 +326,9 @@ class Text
 
             'talking_tree_info_start' => $converter->convertDialogCompressed("Whoa! I can talk again!"),
 
-            'talking_tree_info_1' => $converter->convertDialogCompressed("Yank on the pitchfork in the center of town, ya heard it here."),
+            'talking_tree_info_1' => $converter->convertDialogCompressed("Have you heard the good word about tree warp?"),
 
-            'talking_tree_info_2' => $converter->convertDialogCompressed("Ganon is such a dingus, no one likes him, ya heard it here."),
+            'talking_tree_info_2' => $converter->convertDialogCompressed("Yank on the pitchfork in the center of town, ya heard it here."),
             // 0x80
             'talking_tree_info_3' => $converter->convertDialogCompressed("There is a portal near the Lost Woods, ya heard it here."),
 
