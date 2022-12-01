@@ -18,7 +18,7 @@ class Dialog
     public function convertDialog(string $string, $max_bytes = 256)
     {
         $new_string = [];
-        $lines = explode("\n", mb_strtoupper($string));
+        $lines = explode("\n", $string);
         $i = 0;
         foreach ($lines as $line) {
             switch ($i) {
@@ -34,7 +34,7 @@ class Dialog
                     break;
             }
 
-            $line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
+            $line_chars = preg_split('//u', mb_substr($line, 0, 19), null, PREG_SPLIT_NO_EMPTY);
 
             if ($line_chars === false) {
                 continue;
@@ -75,23 +75,23 @@ class Dialog
      *
      * @return array
      */
-    public function convertDialogCompressed(string $string, $pause = true, $max_bytes = 2046, $wrap = 14)
+    public function convertDialogCompressed(string $string, $pause = true, $max_bytes = 2046, $wrap = 19)
     {
         $pad_out = false;
         $new_string = [0xFB];
-        $lines = explode("\n", mb_strtoupper($string));
+        $lines = explode("\n", $string);
         if ($wrap > 0) {
             $new_lines = [];
             foreach ($lines as $line) {
                 $new_line = mb_wordwrap($line, $wrap, "\n");
-                $new_lines = array_merge($new_lines, explode("\n", mb_strtoupper($new_line)));
+                $new_lines = array_merge($new_lines, explode("\n", $new_line));
             }
             $lines = $new_lines;
         }
         $i = 0;
         $line_count = (substr((string) end($lines), 0, 1) == '{') ? count($lines) - 1 : count($lines);
         foreach ($lines as $line) {
-            $line_chars = preg_split('//u', mb_substr($line, 0, 14), null, PREG_SPLIT_NO_EMPTY);
+            $line_chars = preg_split('//u', mb_substr($line, 0, 19), null, PREG_SPLIT_NO_EMPTY);
             if ($line_chars === false) {
                 continue;
             }
@@ -197,7 +197,7 @@ class Dialog
 
             // the first box needs to fill the full width with spaces as the palette is loaded weird.
             if ($pad_out && $i < 3) {
-                $line_chars = array_pad($line_chars, 14, ' ');
+                $line_chars = array_pad($line_chars, 19, ' ');
             }
 
             foreach ($line_chars as $char) {
@@ -422,6 +422,10 @@ class Dialog
 
         if (preg_match('/[A-Z]/', $char)) {
             return [ord($char) - 65 + 0xAA];
+        }
+
+        if (preg_match('/[a-z]/', $char)) {
+            return [ord($char) - 49];
         }
 
         return self::$characters[$char] ?? [0xFF];

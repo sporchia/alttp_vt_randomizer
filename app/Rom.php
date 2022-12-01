@@ -12,8 +12,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2021-09-04';
-    const HASH = 'e8447cbbe510754a1c572061d30c00f6';
+    const BUILD = '2022-11-26';
+    const HASH = 'a145f73e8400cec6d9a45c57a9076bf1';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -2437,8 +2437,8 @@ class Rom
         $this->text->setString('dark_sanctuary_yes', "{NOTEXT}", false);
         $this->text->setString('dark_sanctuary_no', "If you want that healing you're gonna need 20 rupees.");
 
-        $this->text->setString('menu_start_2', "{MENU}\n{SPEED0}\n≥@'s house\n Dark Chapel\n{CHOICE3}", false);
-        $this->text->setString('menu_start_3', "{MENU}\n{SPEED0}\n≥@'s house\n Dark Chapel\n Dark Mountain\n{CHOICE2}", false);
+        $this->text->setString('menu_start_2', "{MENU}\n{SPEED0}\n≥@'s House\n Dark Chapel\n{CHOICE3}", false);
+        $this->text->setString('menu_start_3', "{MENU}\n{SPEED0}\n≥@'s House\n Dark Chapel\n Dark Mountain\n{CHOICE2}", false);
 
         $this->text->setString('intro_main', "{INTRO}\n Episode  III\n{PAUSE3}\n A Link to\n   the Past\n"
             . "{PAUSE3}\nInverted\n  Randomizer\n{PAUSE3}\nAfter mostly disregarding what happened in the first two games,\n"
