@@ -164,7 +164,7 @@ class Text
 
             'kakariko_saharalasa_after_master_sword' => $converter->convertDialogCompressed("Cool sword!\n\n\n…\n\n\n…\n\n\nPlease save us"),
 
-            'kakariko_alert_guards' => $converter->convertDialogCompressed("GUARDS! HELP!\nThe creeper\n@ is here!"),
+            'kakariko_alert_guards' => $converter->convertDialogCompressed("Guards! Help!\nThe creeper\n@ is here!"),
             // 0x30
             'sahasrahla_quest_have_pendants' => $converter->convertDialogCompressed("{BOTTOM}\nCool beans, but I think you should mosey on over to the Lost Woods."),
 
@@ -214,7 +214,7 @@ class Text
 
             'sign_east_of_castle' => $converter->convertDialogCompressed("→ East Palace\n\n← Castle"),
 
-            'sign_north_of_lake' => $converter->convertDialogCompressed("\n Lake  Hiriah"),
+            'sign_north_of_lake' => $converter->convertDialogCompressed("\n Lake  Hylia"),
 
             'sign_desert_thief' => $converter->convertDialogCompressed("Don't talk to me or touch my sign!"),
 
