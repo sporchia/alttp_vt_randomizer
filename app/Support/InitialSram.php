@@ -673,7 +673,7 @@ class InitialSram
     }
 
     /**
-     * Set swordless mode. Removes curtains and sets starting sword to 0xFF.
+     * Set curtains open in swordless
      */
     public function setSwordlessCurtains() {
         $this->setValue($this::ROOM_DATA + 0x61, 0x80);

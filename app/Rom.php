@@ -2051,10 +2051,11 @@ class Rom
     {
         $this->write(0x18003F, pack('C*', $enable ? 0x01 : 0x00)); // Hammer Ganon
         $this->write(0x180041, pack('C*', $enable ? 0x01 : 0x00)); // Swordless Medallions
-        $this->initial_sram->setSwordlessCurtains();
-
         $this->setHammerTablet($enable);
         $this->setHammerBarrier(false);
+        if ($enable === true) {
+            $this->initial_sram->setSwordlessCurtains();
+        }
 
         return $this;
     }
