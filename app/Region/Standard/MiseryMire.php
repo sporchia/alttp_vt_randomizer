@@ -89,12 +89,14 @@ class MiseryMire extends Region
         $this->locations["Misery Mire - Big Key Chest"]->setRequirements(function ($locations, $items) {
             return $items->canLightTorches()
                 && (($locations["Misery Mire - Compass Chest"]->hasItem(Item::get('BigKeyD6', $this->world)) && $items->has('KeyD6', 2))
+                    || (($locations["Misery Mire - Big Key Chest"]->hasItem(Item::get('BigKeyD6', $this->world)) && $items->has('KeyD6', 2))
                     || $items->has('KeyD6', 3));
         });
 
         $this->locations["Misery Mire - Compass Chest"]->setRequirements(function ($locations, $items) {
             return $items->canLightTorches()
                 && (($locations["Misery Mire - Big Key Chest"]->hasItem(Item::get('BigKeyD6', $this->world)) && $items->has('KeyD6', 2))
+                    || (($locations["Misery Mire - Compass Chest"]->hasItem(Item::get('BigKeyD6', $this->world)) && $items->has('KeyD6', 2))
                     || $items->has('KeyD6', 3));
         });
 
