@@ -12,10 +12,10 @@ This assumes you're running Ubuntu 20.04 (either natively, or via Windows Subsys
 Native Windows is not currently supported.
 Users of either Mac OS or other Linux distributions will need to install the appropriate packages for their system.
 
-This version of the randomizer requires version 7.4 of PHP.
+This version of the randomizer requires version 8.1 of PHP.
 
 ```
-sudo apt-get install php7.4 php7.4-bcmath php7.4-dom php7.4-mbstring php7.4-curl -y
+sudo apt-get install php8.1 php8.1-bcmath php8.1-dom php8.1-mbstring php8.1-curl -y
 ```
 
 ### Installing PHP dependencies

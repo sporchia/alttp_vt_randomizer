@@ -181,6 +181,7 @@ return [
             'glitches_required' => [
                 'none' => 'None',
                 'overworld_glitches' => 'Overworld Glitches',
+                'hybrid_major_glitches' => 'Hybrid Major Glitches',
                 'major_glitches' => 'Major Glitches',
                 'no_logic' => 'No Logic',
             ],
@@ -299,7 +300,8 @@ return [
         'daily_weights' => [
             'glitches_required' => [
                 'none' => 88,
-                'overworld_glitches' => 10,
+                'overworld_glitches' => 7,
+                'hybrid_major_glitches' => 3,
                 'major_glitches' => 2,
                 'no_logic' => 0,
             ],

@@ -27,19 +27,28 @@ return [
                     ],
                 ],
                 [
-                    'header' => __('randomizer.glitches_required.options.major_glitches'),
+                    'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of more advanced major glitches. Specifically:',
+                        'This setting requires knowledge of all glitches used in Overworld Glitches, as well as glitches in the underworld that can clip you into other dungeons.  Specifically:',
                         '<ul>'
-                            . '<li>Overworld fake flutes</li>'
-                            . '<li>Overworld screenwraps</li>'
-                            . '<li>Overworld and Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
+                            . '<li>Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
                             . '</ul>',
                         'Some additional changes have also been made:',
                         '<ul>'
                             . '<li>Fake worlds exist as per the original game (e.g. dying in a Dark World dungeon without defeating Agahnim will put you in the fake Dark World)</li>'
                             . '<li>Crystals always drop regardless of pendant conflicts (QoL fix from the original)</li>'
                             . '<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>'
+                            . '</ul>',
+                    ],
+                ],
+                [
+                    'header' => __('randomizer.glitches_required.options.major_glitches'),
+                    'content' => [
+                        'This setting requires knowledge of more advanced major glitches, as well as all glitches listed above. Specifically:',
+                        '<ul>'
+                            . '<li>Overworld fake flutes</li>'
+                            . '<li>Overworld screenwraps</li>'
+                            . '<li>Overworld and Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
                             . '</ul>',
                     ],
                 ],

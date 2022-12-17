@@ -818,6 +818,7 @@ class Rom
                 $byte = 0x02;
                 break;
             case 'MajorGlitches':
+            case 'HybridMajorGlitches':
                 $byte = 0x01;
                 break;
             case 'off':
