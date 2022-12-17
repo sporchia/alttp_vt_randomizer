@@ -60,22 +60,15 @@ return [
         'itemset' => ['hera']
     ],
     [
-        // @todo need to figure out how to model this properly
         'group' => 5,
-        'name' => "Tower Of Hera - Tile Room - Key",
+        'name' => "Tower Of Hera - Basement Cage",
         'roomid' => 0x87,
-        'type' => 'mob',
+        'type' => 'standing',
         'position_x' => 0x08,
         'position_y' => 0x1a,
         'position_z' => 0x00,
-        'subtype' => 0x00,
-        'sprite' => Sprite::get("Key"),
-    ],
-    [
-        'group' => 5,
-        'name' => "Tower Of Hera - Basement Cage",
-        'type' => 'chest',
         'addresses' => [0x180162],
+        'item' => 'KeyP3',
         'itemset' => ['hera']
     ],
     [

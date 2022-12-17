@@ -75,6 +75,7 @@ fixed:
     - ["Chest Game Room", "Village of Outcasts"]
     - ["Brewery Room", "Village of Outcasts"]
     - ["C-Shaped House C", "Village of Outcasts"]
+    - ["Village Of Outcasts Shop", "Village Of Outcasts Shop - Exit"]
     - ["Peg Cave", "Hammer Pegs"]
     - ["Peg Cave", "Village Peg Puzzle East"]
     - ["Blacksmith House", "Smith's House"]
@@ -193,6 +194,9 @@ BuyItem:
     - ["Lumberjack Shop", "Lumberjack Shop - Left"]
     - ["Lumberjack Shop", "Lumberjack Shop - Middle"]
     - ["Lumberjack Shop", "Lumberjack Shop - Right"]
+    - ["Village Of Outcasts Shop", "Village Of Outcasts Shop - Left"]
+    - ["Village Of Outcasts Shop", "Village Of Outcasts Shop - Middle"]
+    - ["Village Of Outcasts Shop", "Village Of Outcasts Shop - Right"]
   undirected: []
 LogicalBottle:
   directed:

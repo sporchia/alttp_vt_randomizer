@@ -20,7 +20,7 @@ return [
         'inletid' => 0x4e,    
     ],
     [
-        'map' => 0x3b,
+        'roomid' => 0x010b,
         'name' => "Floodgate Chest",
         'addresses' => [0xE98C],
         'type' => 'chest',

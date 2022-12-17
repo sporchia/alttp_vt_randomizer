@@ -178,14 +178,14 @@ return [
         'type' => 'exit',
     ],
     [
-        'group' => 3,
+        'group' => 4,
         'name' => "Desert Palace - Back - Entrance",
         'roomid' => 0x63,
         'type' => 'region',
         'inletid' => 0x0c
     ],
     [
-        'group' => 3,
+        'group' => 4,
         'name' => "Desert Palace - Back - Exit",
         'type' => 'exit',
     ],
