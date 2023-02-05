@@ -196,12 +196,12 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                             && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                                 || ($items->has('FireRod')
                                     && (($items->canExtendMagic($this->world, 3)
-                                        && $items->has('MoonPearl')) || 
+                                        && $items->has('MoonPearl')) ||
                                     $items->canExtendMagic($this->world, 4))))) || ($items->hasSword(3)
                         && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                             || ($items->has('FireRod')
                                 && (($items->canExtendMagic($this->world, 2)
-                                    && $items->has('MoonPearl')) || 
+                                    && $items->has('MoonPearl')) ||
                                 $items->canExtendMagic($this->world, 3))))));
         });
 
