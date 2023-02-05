@@ -328,6 +328,9 @@ class LightWorldTest extends TestCase
             ["Bomb Merchant", true, ['Crystal5', 'Crystal6', 'DefeatAgahnim']],
             
             ["Ganon", false, []],
+            ["Ganon", false, [], ['DefeatAgahnim2']],
+            ["Ganon", false, [], ['FireRod', 'Lamp']],
+            ["Ganon", false, [], ['AnySword']],
         ];
     }
 }
