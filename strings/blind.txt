@@ -270,3 +270,7 @@ An empty fortune
 cookie is rather
 unfortunate.
 -
+A balloon joke?
+It'd go over
+people's heads.
+-
