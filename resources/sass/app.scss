@@ -14,8 +14,8 @@
 @import "vue-multiselect";
 @import "v-tooltip";
 @import "loading";
-@import "~flag-icon-css/sass/variables";
-@import "~flag-icon-css/sass/flag-icon-base";
+@import "~flag-icons/sass/variables";
+@import "~flag-icons/sass/flag-icons";
 @include flag-icon(us);
 @include flag-icon(fr);
 @include flag-icon(de);
@@ -148,6 +148,7 @@ ins.adsbygoogle {
   overflow: hidden;
   position: relative;
 }
+
 .btn-file input[type="file"] {
   background: white;
   cursor: inherit;
@@ -167,6 +168,7 @@ ins.adsbygoogle {
 .card-header {
   padding: 0.5rem 1.25rem;
 }
+
 .card-title {
   margin-top: 0.2rem;
   margin-bottom: 0;
@@ -200,6 +202,7 @@ ins.adsbygoogle {
   margin-bottom: 5px;
   margin-top: 5px;
 }
+
 .spoiler-toggle {
   color: #808080;
   cursor: default;
@@ -207,16 +210,20 @@ ins.adsbygoogle {
   font-weight: bold;
   padding: 5px;
 }
+
 .spoiler-text {
   padding: 5px;
 }
+
 .pulse {
   animation: pulse 4s infinite;
   border-radius: 50%;
 }
+
 .pulse:hover {
   animation: none;
 }
+
 .pb-5 {
   padding-bottom: 15px;
 }
@@ -224,17 +231,16 @@ ins.adsbygoogle {
 .handwritten {
   font-family: "Schoolbell", serif;
 }
+
 .prose {
   font-size: 16px;
   font-weight: 600;
   background-color: #f8f5de;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 210, 0, 0.4),
-    rgba(200, 160, 0, 0.1) 11%,
-    rgba(0, 0, 0, 0) 35%,
-    rgba(200, 160, 0, 0.1) 65%
-  );
+  background-image: linear-gradient(to right,
+      rgba(255, 210, 0, 0.4),
+      rgba(200, 160, 0, 0.1) 11%,
+      rgba(0, 0, 0, 0) 35%,
+      rgba(200, 160, 0, 0.1) 65%);
   box-shadow: inset 0 0 75px rgba(255, 210, 0, 0.3),
     inset 0 0 20px rgba(255, 210, 0, 0.4), inset 0 0 30px rgba(220, 120, 0, 0.8);
   color: rgba(0, 0, 0, 0.75);
@@ -248,15 +254,19 @@ ins.adsbygoogle {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
 }
+
 .alternate-color span:nth-of-type(4n) {
   color: #e1f7d5;
 }
+
 .alternate-color span:nth-of-type(4n + 1) {
   color: #ffbdbd;
 }
+
 .alternate-color span:nth-of-type(4n + 2) {
   color: #c9c9ff;
 }
+
 .alternate-color span:nth-of-type(4n + 3) {
   color: #f1cbff;
 }
@@ -265,22 +275,27 @@ ins.adsbygoogle {
   0% {
     -webkit-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0.4);
   }
+
   70% {
     -webkit-box-shadow: 0 0 0 10px rgba(200, 200, 200, 0);
   }
+
   100% {
     -webkit-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
   }
 }
+
 @keyframes pulse {
   0% {
     -moz-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0.4);
     box-shadow: 0 0 0 0 rgba(200, 200, 200, 0.4);
   }
+
   70% {
     -moz-box-shadow: 0 0 0 10px rgba(200, 200, 200, 0);
     box-shadow: 0 0 0 10px rgba(200, 200, 200, 0);
   }
+
   100% {
     -moz-box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
     box-shadow: 0 0 0 0 rgba(200, 200, 200, 0);
@@ -300,19 +315,22 @@ input[readonly].custom-drops-placed {
 }
 
 .tbody-striped {
-  > tbody {
-    > tr {
+  >tbody {
+    >tr {
       background-color: $table-bg-accent;
     }
-    > tr:nth-of-type(odd) {
+
+    >tr:nth-of-type(odd) {
       background-color: inherit;
     }
   }
-  > tbody:nth-of-type(odd) {
-    > tr {
+
+  >tbody:nth-of-type(odd) {
+    >tr {
       background-color: inherit;
     }
-    > tr:nth-of-type(odd) {
+
+    >tr:nth-of-type(odd) {
       background-color: $table-bg-accent;
     }
   }
@@ -322,7 +340,7 @@ input[readonly].custom-drops-placed {
   background-color: #eeeeee;
 }
 
-.table-hover > tbody > tr:hover {
+.table-hover>tbody>tr:hover {
   background-color: #d6d8db;
 }
 

@@ -12,7 +12,7 @@ return [
 
     'calendar' => 'Events Calendar',
 
-    'language' => '<span class="flag-icon flag-icon-us"></span> Language',
+    'language' => '<span class="fi fi-us"></span> Language',
 
     'help' => 'Help',
     'resources' => 'Resources',

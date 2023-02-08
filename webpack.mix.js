@@ -41,16 +41,17 @@ mix.webpackConfig({
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
-      }
+      },
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
-  }
+    extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"],
+    fallback: { "path": require.resolve("path-browserify") }
+  },
 });
 
 mix
-  .js("resources/js/app.js", "public/js")
+  .js("resources/js/app.js", "public/js").vue()
   .sass("resources/sass/app.scss", "public/css")
   .sourceMaps();
 

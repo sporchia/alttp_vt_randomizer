@@ -11,7 +11,7 @@ return [
 
     'calendar' => 'Calendrier des Événements',
 
-    'language' => '<span class="flag-icon flag-icon-fr"></span> Langue',
+    'language' => '<span class="fi fi-fr"></span> Langue',
 
     'help' => 'Aidez-moi',
     'resources' => 'Ressources',
