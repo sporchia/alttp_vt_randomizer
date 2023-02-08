@@ -539,6 +539,8 @@ class LightWorldTest extends TestCase
             ["Ganon", false, []],
             ["Ganon", false, [], ['MoonPearl']],
             ["Ganon", false, [], ['DefeatAgahnim2']],
+            ["Ganon", false, [], ['FireRod', 'Lamp']],
+            ["Ganon", false, [], ['AnySword']],
         ];
     }
 }
