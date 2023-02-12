@@ -135,6 +135,26 @@ abstract class World
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
 
+        # handle empty config values that might be sent from customizer
+        if ($this->config('item.overflow.count.Sword', null) === '') {
+            unset($this->config['item.overflow.count.Sword']);
+        }
+        if ($this->config('item.overflow.count.Armor', null) === '') {
+            unset($this->config['item.overflow.count.Armor']);
+        }
+        if ($this->config('item.overflow.count.Shield', null) === '') {
+            unset($this->config['item.overflow.count.Shield']);
+        }
+        if ($this->config('item.overflow.count.Bow', null) === '') {
+            unset($this->config['item.overflow.count.Bow']);
+        }
+        if ($this->config('item.overflow.count.BossHeartContainer', null) === '') {
+            unset($this->config['item.overflow.count.BossHeartContainer']);
+        }
+        if ($this->config('item.overflow.count.PieceOfHeart', null) === '') {
+            unset($this->config['item.overflow.count.PieceOfHeart']);
+        }
+
         switch ($this->config('item.pool')) {
             case 'superexpert':
                 $this->config['item.overflow.count.Sword'] = 2;

@@ -29,15 +29,15 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of all glitches used in Overworld Glitches, as well as glitches in the underworld that can clip you into other dungeons.  Specifically:',
+                        'Ce paramètre requiert la connaissance de tous les glitchs du monde extérieur, ainsi que des glitchs dans le monde inférieur qui peuvent clipper dans d’autres donjons, plus particulièrement:',
                         '<ul>'
-                            . '<li>Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
+                            . '<li>les clips d’Underworld sans les bottes (y compris les clips d’1 frame qui demandent du buffering)</li>'
                             . '</ul>',
-                        'Some additional changes have also been made:',
+                        'Quelques changements additionnels ont été faits:',
                         '<ul>'
-                            . '<li>Fake worlds exist as per the original game (e.g. dying in a Dark World dungeon without defeating Agahnim will put you in the fake Dark World)</li>'
-                            . '<li>Crystals always drop regardless of pendant conflicts (QoL fix from the original)</li>'
-                            . '<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>'
+                            . '<li>Les "faux mondes" existent à nouveau, comme dans le jeu original (Exemple : Mourir dans un donjon du monde des Ténèbres sans avoir défait Aganhim vous mettra dans le Faux Monde des Ténèbres)</li>'
+                            . '<li>Les Cristaux vont toujours apparaître, malgré les conflits de pendentifs (correction du jeu original pour la qualité de vie)</li>'
+                            . '<li>Les niveaux d’eau de Swamp Palace ne se re-drainent plus quand vous quittez l’écran du Monde Extérieur (sauf la première pièce)</li>'
                             . '</ul>',
                     ],
                 ],

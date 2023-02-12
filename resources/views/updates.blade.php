@@ -10,6 +10,7 @@
         <li>Players may now include lowercase letters and numbers in their file name.</li>
         <li>Winners of the 2022 Main Tournament, and 2022 No Logic tournaments have been added to their respective in-game signs.</li>
         <li>Hybrid Major Glitches is now a fully supported logic option.</li>
+        <li>Customizer: Added ability to set maximum number of boss heart containers, pieces of heart, sword, shield, and bow upgrades.</li>
     </ul>
     <li>Bug Fixes</li>
     <ul>
@@ -22,6 +23,9 @@
         <li>The player may now toggle the "free item menu" at the bottom of the menu even when they have no menu items.  Previously the menu would close.</li>
         <li>Inverted: Corrected a problem where the logic did not account for access to a fire source when fighting Ganon.  Thanks MichaelK__</li>
         <li>Inverted: The logic now allows mirroring to catfish when the player can get to the Light World Zora area.</li>
+        <li>Entrance: Flippers are now properly accounted for in inverted waterfall fairy access logic</li>
+        <li>Entrance: Castle tower door unlocked and side exit barriers removed in entrance glitched modes</li>
+        <li>The vanilla "sword and shield" item properly increments total item counter.  This item is only used in customizer games.</li>
     </ul>
     <li>Miscellaneous changes</li>
     <ul>
