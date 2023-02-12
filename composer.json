@@ -29,8 +29,8 @@
     "spatie/laravel-cookie-consent": "^3.2.2",
     "z3/enemizer_linux": "6.1.0.180",
     "z3/enemizer_osx": "6.1.0.180",
-    "z3/entrancerandomizer": "^0.6.3",
-    "z3/randomizer": "^31.0"
+    "z3/entrancerandomizer": "*",
+    "z3/randomizer": "*"
   },
   "require-dev": {
     "spatie/laravel-ignition": "^1.0",
@@ -45,11 +45,11 @@
       "type": "package",
       "package": {
         "name": "z3/randomizer",
-        "version": "31.0.11",
+        "version": "31.1",
         "source": {
           "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
-          "reference": "c6adf11a0dd64ceef5f08196a83e416907bcc07a"
+          "reference": "c2ea144bfb2c34eae24a9b9de4554d2d980595fb"
         }
       }
     },
@@ -79,11 +79,11 @@
       "type": "package",
       "package": {
         "name": "z3/entrancerandomizer",
-        "version": "0.6.3.10",
+        "version": "31.1",
         "source": {
-          "url": "https://github.com/KevinCathcart/ALttPEntranceRandomizer",
+          "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
           "type": "git",
-          "reference": "tags/0.6.3-pre10"
+          "reference": "6586fc3c7fbba95e66be8ef38ada3239e1a08eb6"
         }
       }
     }
