@@ -2,6 +2,40 @@
 
 @section('content')
 
+<h2>v31.1 (February 2023)</h2>
+<div class="card card-body bg-light mb-3">
+    <li>New Features</li>
+    <ul>
+        <li>The randomizer now uses a new font that is more compact and contains lowercase characters!  Thank you to total, kan, kara, Aerinon, and cassidymoen for the work on this feature.</li>
+        <li>Players may now include lowercase letters and numbers in their file name.</li>
+        <li>Winners of the 2022 Main Tournament, and 2022 No Logic tournaments have been added to their respective in-game signs.</li>
+        <li>Hybrid Major Glitches is now a fully supported logic option.</li>
+    </ul>
+    <li>Bug Fixes</li>
+    <ul>
+        <li>Fixed a small issue with the Tower of Hera boss music.  Thanks catobat!</li>
+        <li>Fixed a bug that causes the item in the potion shop to vanish (until the next screen transition) when fluting from race game to potion shop.  Thanks catobat!</li>
+        <li>Fixed a very small issue that could cause some vanilla glitches to not work properly under certain conditions.</li>
+        <li>Fixed an bug that could allow interaction with a goal NPC (such as Murahdahla) while the player has their menu open.</li>
+        <li>Fixed a bug where player could buy a shop shield and upgrade it's level improperly beyond what is allowed by the current item pool setting.</li>
+        <li>Fixed a bug where the player would spawn at the post-aga starting entrance if they died or saved and quit in the "opposite" world of the old man (dark world or light world in inverted) with Agahnim 1 dead and the mirror collected.</li>
+        <li>The player may now toggle the "free item menu" at the bottom of the menu even when you have no menu items.  Previously the menu would close.</li>
+        <li>Inverted: Corrected a problem where the logic did not account for access to a fire source when fighting Ganon.  Thanks MichaelK__</li>
+        <li>Inverted: The logic now allows mirroring to catfish when you can get to the Light World Zora area.</li>
+    </ul>
+    <li>Miscellaneous changes</li>
+    <ul>
+        <li>Updated the ZSNES warning to provide more information than just a blank screen.  Thanks kan!</li>
+        <li>Black Screen of Death (BSOD) now detects more crash scenarios.</li>
+        <li>Full SRAM rework by cassidymoen.  <a href="https://github.com/KatDevsGames/z3randomizer/pull/159">See the pull request for details.</a> Developers of autotrackers may want to test their software to ensure it works with v31.1.</li>
+        <li>
+    </ul>
+    <li>Added new player options</li>
+    <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.1.lg.png"
+        alt="Player sprite options" style="width:50%" />
+    </li>
+</div>
+
 <h2>v31.0.11 (January 2022)</h2>
 <div class="card card-body bg-light mb-3">
     <li>New Features</li>

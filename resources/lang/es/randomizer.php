@@ -47,6 +47,7 @@ return [
         'options' => [
             'none' => 'Ninguno',
             'overworld_glitches' => 'Glitches de la Superfície',
+            'hybrid_major_glitches' => 'Hybrid Major Glitches',
             'major_glitches' => 'Glitches Mayores',
             'no_logic' => 'Sin lógica',
         ],
