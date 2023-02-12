@@ -13,7 +13,7 @@ use Symfony\Component\Process\Process;
 class EntranceRandomizer implements RandomizerContract
 {
 	const LOGIC = -1;
-	const VERSION = '0.6.3';
+	const VERSION = '31.1';
 	protected $world;
 	/** @var array */
 	private $boss_shuffle_lookup = [
@@ -102,7 +102,7 @@ class EntranceRandomizer implements RandomizerContract
 
 		$proc = new Process(array_merge(
 			[
-				'python3',
+				'python3.9',
 				base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py'),
 				'--mode',
 				$mode,
@@ -136,8 +136,8 @@ class EntranceRandomizer implements RandomizerContract
 		$proc->run();
 
 		if (!$proc->isSuccessful()) {
-			Log::debug($proc->getOutput());
-			Log::debug($proc->getErrorOutput());
+			Log::error($proc->getOutput());
+			Log::error($proc->getErrorOutput());
 			throw new \Exception("Unable to generate");
 		}
 
