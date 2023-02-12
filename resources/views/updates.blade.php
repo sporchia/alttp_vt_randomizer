@@ -19,9 +19,9 @@
         <li>Fixed an bug that could allow interaction with a goal NPC (such as Murahdahla) while the player has their menu open.</li>
         <li>Fixed a bug where player could buy a shop shield and upgrade it's level improperly beyond what is allowed by the current item pool setting.</li>
         <li>Fixed a bug where the player would spawn at the post-aga starting entrance if they died or saved and quit in the "opposite" world of the old man (dark world or light world in inverted) with Agahnim 1 dead and the mirror collected.</li>
-        <li>The player may now toggle the "free item menu" at the bottom of the menu even when you have no menu items.  Previously the menu would close.</li>
+        <li>The player may now toggle the "free item menu" at the bottom of the menu even when they have no menu items.  Previously the menu would close.</li>
         <li>Inverted: Corrected a problem where the logic did not account for access to a fire source when fighting Ganon.  Thanks MichaelK__</li>
-        <li>Inverted: The logic now allows mirroring to catfish when you can get to the Light World Zora area.</li>
+        <li>Inverted: The logic now allows mirroring to catfish when the player can get to the Light World Zora area.</li>
     </ul>
     <li>Miscellaneous changes</li>
     <ul>
