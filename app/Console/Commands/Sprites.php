@@ -42,6 +42,7 @@ class Sprites extends Command
         }
 
         $meta_data = collect(json_decode(file_get_contents("$sprite_dir/sprites.json"), true))->sortBy('file');
+        // $this->info($meta_data->count() . ' sprites found');
 
         if ($meta_data === null || json_last_error() !== 0) {
             $this->error('json file is garbo');
@@ -49,7 +50,7 @@ class Sprites extends Command
             return 102;
         }
 
-        $sprite_sheet = 'sprites.31.0.11.png';
+        $sprite_sheet = 'sprites.31.1.png';
 
         $this->sprToPng($sprite_dir);
 
@@ -185,10 +186,10 @@ class Sprites extends Command
         $next = $top + 1;
 
         $scss_file = "[class^=\"icon-custom-\"],\n[class*=\" icon-custom-\"] {\n  width: 16px;\n  height: 24px;\n  vertical-align: bottom;\n  background-image: url(\"https://alttpr-assets.s3.us-east-2.amazonaws.com/$sprite_sheet\");\n}\n\n";
-        $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n";
+        $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n\n";
         $i = 0;
         foreach ($meta_data as $sprite) {
-            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage(calc((%d - $next)/ $top)) 0;\n}\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
+            $scss_file .= sprintf(".icon-custom-%s {\n  background-position: percentage((%d - $next)/ $top) 0;\n}\n\n", str_replace([' ', ')', '(', '.', "'", "/"], '', $sprite['name']), ++$i);
         }
         file_put_contents(resource_path('sass/_sprites.scss'), $scss_file);
 
