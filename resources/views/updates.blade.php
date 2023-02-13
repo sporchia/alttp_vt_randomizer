@@ -11,6 +11,8 @@
         <li>Winners of the 2022 Main Tournament, and 2022 No Logic tournaments have been added to their respective in-game signs.</li>
         <li>Hybrid Major Glitches is now a fully supported logic option.</li>
         <li>Customizer: Added ability to set maximum number of boss heart containers, pieces of heart, sword, shield, and bow upgrades.</li>
+        <li>Added a beveled border to the file select screen for restreamers to calibrate against.</li>
+        <li>Added a dot next to the game code on file select when accessibility features are enabled (this currently only applies to the Reduced flashing option).</li>
     </ul>
     <li>Bug Fixes</li>
     <ul>
@@ -26,13 +28,13 @@
         <li>Entrance: Flippers are now properly accounted for in inverted waterfall fairy access logic</li>
         <li>Entrance: Castle tower door unlocked and side exit barriers removed in entrance glitched modes</li>
         <li>The vanilla "sword and shield" item properly increments total item counter.  This item is only used in customizer games.</li>
+        <li>Fixed the vanilla bug that robbed the file select fairy of her proper skin color.</li>
     </ul>
     <li>Miscellaneous changes</li>
     <ul>
         <li>Updated the ZSNES warning to provide more information than just a blank screen.  Thanks kan!</li>
-        <li>Black Screen of Death (BSOD) now detects more crash scenarios.</li>
+        <li>A Black Screen of Death (BSOD) has been added which "detects" ingame crashes and supplies debug information.</li>
         <li>Full SRAM rework by cassidymoen.  <a href="https://github.com/KatDevsGames/z3randomizer/pull/159">See the pull request for details.</a> Developers of autotrackers may want to test their software to ensure it works with v31.1.</li>
-        <li>
     </ul>
     <li>Added new player options</li>
     <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.1.lg.png"
