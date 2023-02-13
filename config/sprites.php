@@ -17,22 +17,6 @@ return [
             1 => 'smz3',
         ],
     ],
-    '4slink-armors.2.zspr' => [
-        'name' => 'Four Swords Link',
-        'author' => 'Minnie Trethewey',
-        'file' => '4slink-armors.2.zspr',
-        'version' => 2,
-        'vtversion' => '26',
-        'tags' => [
-            0 => 'Link',
-            1 => 'Male',
-            2 => 'Legend of Zelda',
-        ],
-        'usage' => [
-            0 => 'smz3',
-            1 => 'commercial',
-        ],
-    ],
     'abigail.1.zspr' => [
         'name' => 'Abigail',
         'author' => 'Fish_waffle64',
@@ -1408,6 +1392,20 @@ return [
             1 => 'commercial',
         ],
     ],
+    'dark-matter.1.zspr' => [
+        'name' => 'Dark Matter',
+        'author' => 'Lougaroc',
+        'file' => 'dark-matter.1.zspr',
+        'version' => 2,
+        'vtversion' => '31.1',
+        'tags' => [
+            0 => 'Kirby',
+        ],
+        'usage' => [
+            0 => 'smz3',
+            1 => 'commercial',
+        ],
+    ],
     'dark-panda.1.zspr' => [
         'name' => 'Dark Panda',
         'author' => 'MM102',
@@ -1967,6 +1965,22 @@ return [
         ],
         'usage' => [
             0 => 'smz3',
+        ],
+    ],
+    'fourswordslink.3.zspr' => [
+        'name' => 'Four Swords Link',
+        'author' => 'Minnie Trethewey',
+        'file' => 'fourswordslink.3.zspr',
+        'version' => 3,
+        'vtversion' => '26',
+        'tags' => [
+            0 => 'Link',
+            1 => 'Male',
+            2 => 'Legend of Zelda',
+        ],
+        'usage' => [
+            0 => 'smz3',
+            1 => 'commercial',
         ],
     ],
     'foxlink.1.zspr' => [
@@ -3210,6 +3224,19 @@ return [
         'vtversion' => '31.1',
         'tags' => [
             0 => 'Deltarune',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'krissy.1.zspr' => [
+        'name' => 'Krissy',
+        'author' => '_aitchFactor',
+        'file' => 'krissy.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.1',
+        'tags' => [
+            0 => 'Personality',
         ],
         'usage' => [
             0 => 'smz3',
