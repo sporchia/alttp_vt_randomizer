@@ -29,15 +29,15 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of all glitches used in Overworld Glitches, as well as glitches in the underworld that can clip you into other dungeons.  Specifically:',
+                        'Esta configuración requiere el conocimiento de todos los glitches en la superficie junto las formas de atravesar diagonales o clips en mazmorras/cuevas. En particular :',
                         '<ul>'
-                            . '<li>Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
+                            . '<li> Clips en Mazmorras o Cuevas sin botas (incluyendo clips de 1 frame  que requieren buffering)</li>'
                             . '</ul>',
-                        'Some additional changes have also been made:',
+                        'Además se tienen los siguientes cambios técnicos:',
                         '<ul>'
-                            . '<li>Fake worlds exist as per the original game (e.g. dying in a Dark World dungeon without defeating Agahnim will put you in the fake Dark World)</li>'
-                            . '<li>Crystals always drop regardless of pendant conflicts (QoL fix from the original)</li>'
-                            . '<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>'
+                            . '<li>La mecánica de Mundo Falso existe como en el juego original (esto es que si mueres dentro de una mazmorra del mundo oscuro sin matar a Agahnim, una transición en la superficie te devuelve al mundo de la Luz)</li>'
+                            . '<li>Aunque esté presente el Mundo Falso, los cristales siempre aparecen al derrotar al jefe de la mazmorra (evitando tener que volver a cambiar el mundo como en el juego original)</li>'
+                            . '<li>En el palacio del pantano, el agua de las habitaciones no se restaura menos en la primera habitación</li>'
                             . '</ul>',
                     ],
                 ],
