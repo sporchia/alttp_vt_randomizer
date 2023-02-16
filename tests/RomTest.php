@@ -679,6 +679,13 @@ class RomTest extends TestCase
         $this->assertEquals(0x01, $this->rom->read(0x18003E));
     }
 
+    public function testSetGanonInvincibleTFH()
+    {
+        $this->rom->setGanonInvincible('tfh_ganon');
+
+        $this->assertEquals(0x05, $this->rom->read(0x18003E));
+    }
+
     public function testSetGanonInvincibleCustom()
     {
         $this->rom->setGanonInvincible('custom');
