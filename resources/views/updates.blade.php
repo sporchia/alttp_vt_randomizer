@@ -7,7 +7,7 @@
     <li>New Features</li>
     <ul>
         <li>The randomizer now uses a new font that is more compact and contains lowercase characters!  Thank you to total, kan, kara, Aerinon, and cassidymoen for the work on this feature.</li>
-        <li>A new goal called "Triforce Pieces & Defeat Ganon" has been added!  This goal is similar to the "Triforce Pieces" goal, but requires the player to defeat Ganon after collecting the triforce pieces instead of turning them into Murahdahla.</li>
+        <li>A new goal called "Triforce Pieces & Fast Ganon" has been added!  This goal is similar to the "Triforce Pieces" goal, but requires the player to defeat Ganon after collecting the triforce pieces instead of turning them into Murahdahla.</li>
         <li>Players may now include lowercase letters and numbers in their file name.</li>
         <li>Winners of the 2022 Main Tournament, and 2022 No Logic tournaments have been added to their respective in-game signs.</li>
         <li>Hybrid Major Glitches is now a fully supported logic option.</li>
