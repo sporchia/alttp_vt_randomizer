@@ -584,6 +584,9 @@ class Rom
             case 'custom':
                 $byte = pack('C', 0x04);
                 break;
+            case 'tfh_ganon':
+                $byte = pack('C', 0x05);
+                break;
             case 'no':
             default:
                 $byte = pack('C*', 0x00);

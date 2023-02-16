@@ -61,6 +61,7 @@ return [
             'dungeons' => 'Tous les Donjons',
             'pedestal' => 'Piédestal de la Master Sword',
             'triforce-hunt' => 'Morceaux de Triforce ',
+            'tfh_ganon' => 'Triforce Pieces & Defeat Ganon',
         ],
     ],
     'tower_open' => [

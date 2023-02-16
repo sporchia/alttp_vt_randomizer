@@ -102,7 +102,7 @@ abstract class World
             $collected_items->setChecksForWorld($this->id);
             return $collected_items->has('Triforce')
                 || ($this->regions['North East Light World']->canEnter($this->locations, $collected_items) &&
-                    $collected_items->has('TriforcePiece', $this->config('item.Goal.Required')));
+                    ($this->config('goal', 'ganon') == 'triforce-hunt' && $collected_items->has('TriforcePiece', $this->config('item.Goal.Required'))));
         };
 
         // Handle configuration options that map to switches.
@@ -1179,6 +1179,10 @@ abstract class World
                 break;
             case 'dungeons':
                 $rom->setGanonInvincible('dungeons');
+                break;
+            case 'tfh_ganon':
+                $rom->initial_sram->preOpenPyramid();
+                $rom->setGanonInvincible('tfh_ganon');
                 break;
             case 'fast_ganon':
                 $rom->initial_sram->preOpenPyramid();

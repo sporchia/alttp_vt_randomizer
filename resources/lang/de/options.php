@@ -116,6 +116,12 @@ return [
                         'Karten, Kompasse, kleine Schlüssel und große Schlüssel sind nicht mehr an ihren Palast gebunden (könnten trotzdem noch drin landen).',
                     ],
                 ],
+                [
+                    'header' => __('randomizer.goal.options.tfh_ganon'),
+                    'content' => [
+                        'The Triforce has been shattered into 60 pieces and scattered throughout Hyrule! You must first collect 40 of the 60 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
+                    ],
+                ],
             ],
         ],
         'accessibility' => [

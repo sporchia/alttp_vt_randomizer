@@ -131,7 +131,7 @@ class CustomizerController extends Controller
         // some simple validation
         // @TODO: move to validator type classes later
         if (
-            $request->input('goal', 'ganon') === 'triforce-hunt'
+            in_array($request->input('goal', 'ganon'), ['triforce-hunt', 'tfh_ganon'])
             && ($custom_data['item.Goal.Required'] ?? 0)
             > ($custom_data['item.count.TriforcePiece'] ?? 0) + ($placed_item_count['TriforcePiece:1'] ?? 0)
         ) {
