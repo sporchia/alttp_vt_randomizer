@@ -302,8 +302,8 @@ return [
                 'none' => 88,
                 'overworld_glitches' => 7,
                 'hybrid_major_glitches' => 3,
-                'major_glitches' => 2,
-                'no_logic' => 0,
+                'major_glitches' => 1,
+                'no_logic' => 1,
             ],
             'item_placement' => [
                 'basic' => 60,

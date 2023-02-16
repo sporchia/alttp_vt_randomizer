@@ -35,6 +35,7 @@
         <li>Updated the ZSNES warning to provide more information than just a blank screen.  Thanks kan!</li>
         <li>A Black Screen of Death (BSOD) has been added which "detects" ingame crashes and supplies debug information.</li>
         <li>Full SRAM rework by cassidymoen.  <a href="https://github.com/KatDevsGames/z3randomizer/pull/159">See the pull request for details.</a> Developers of autotrackers may want to test their software to ensure it works with v31.1.</li>
+        <li>There is now a 1% chance for No Logic to be chosen for the daily.  The chance of Major Glitches was decreased to 1% (was 2%).</li>
     </ul>
     <li>Added new player options</li>
     <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.1.lg.png"
