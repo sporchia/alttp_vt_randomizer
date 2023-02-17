@@ -103,7 +103,7 @@ class Randomizer implements RandomizerContract
             case 'ganon':
             case 'fast_ganon':
             case 'dungeons':
-            case 'tfh_ganon':
+            case 'ganonhunt':
                 $world->getLocation("Ganon")->setItem(Item::get('Triforce', $world));
                 break;
         }
@@ -1007,7 +1007,7 @@ class Randomizer implements RandomizerContract
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 
                 break;
-            case 'tfh_ganon':
+            case 'ganonhunt':
                 $ganon_require = sprintf('To beat Ganon you must collect %d Triforce Pieces.', $world->config('item.Goal.Required'));
                 $world->setText('sign_ganon', $ganon_require);
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");

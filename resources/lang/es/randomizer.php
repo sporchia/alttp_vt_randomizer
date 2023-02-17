@@ -61,7 +61,7 @@ return [
             'dungeons' => 'Todas las mazmorras',
             'pedestal' => 'Pedestal de la Espada Maestra',
             'triforce-hunt' => 'Piezas de la Trifuerza',
-            'tfh_ganon' => 'Triforce Pieces & Fast Ganon',
+            'ganonhunt' => 'Ganonhunt',
         ],
     ],
     'tower_open' => [

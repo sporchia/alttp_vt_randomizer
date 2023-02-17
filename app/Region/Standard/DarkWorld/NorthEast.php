@@ -184,7 +184,7 @@ class NorthEast extends Region
 
         $this->prize_location->setRequirements(function ($locations, $items) {
             if (
-                $this->world->config('goal') == 'tfh_ganon'
+                $this->world->config('goal') == 'ganonhunt'
                 && (!$items->has('TriforcePiece', $this->world->config('item.Goal.Required')))
             ) {
                     return false;

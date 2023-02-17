@@ -39,7 +39,7 @@ return [
                 ],
             ],
         ],
-        'tfh_ganon' => [
+        'ganonhunt' => [
             'item' => [
                 'count' => [
                     'TriforcePiece' => 60,
@@ -217,7 +217,7 @@ return [
                 'dungeons' => 'All Dungeons',
                 'pedestal' => 'Master Sword Pedestal',
                 'triforce-hunt' => 'Triforce Pieces',
-                'tfh_ganon' => 'Triforce Hunt + Ganon',
+                'ganonhunt' => 'Triforce Hunt + Ganon',
             ],
             'tower_open' => [
                 '0' => 'none',
@@ -338,7 +338,7 @@ return [
                 'dungeons' => 10,
                 'pedestal' => 10,
                 'triforce-hunt' => 10,
-                'tfh_ganon' => 0,
+                'ganonhunt' => 0,
             ],
             'tower_open' => [
                 '0' => 5,

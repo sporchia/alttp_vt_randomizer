@@ -186,7 +186,7 @@ export default {
       if (state.goal.value === "dungeons") {
         commit("setGanonOpen", "7");
       }
-      if (state.goal.value === "tfh_ganon") {
+      if (state.goal.value === "ganonhunt") {
         commit("setEntranceShuffle", "none");
       }
     },
@@ -221,7 +221,7 @@ export default {
         }
 
         // ER doesn't currently support TFH Ganon
-        if (state.goal.value === "tfh_ganon") {
+        if (state.goal.value === "ganonhunt") {
           commit("setGoal", "fast_ganon");
         }
 

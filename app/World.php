@@ -1180,9 +1180,9 @@ abstract class World
             case 'dungeons':
                 $rom->setGanonInvincible('dungeons');
                 break;
-            case 'tfh_ganon':
+            case 'ganonhunt':
                 $rom->initial_sram->preOpenPyramid();
-                $rom->setGanonInvincible('tfh_ganon');
+                $rom->setGanonInvincible('ganonhunt');
                 break;
             case 'fast_ganon':
                 $rom->initial_sram->preOpenPyramid();
