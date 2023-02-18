@@ -177,7 +177,7 @@ return [
                 [
                     'header' => __('randomizer.goal.options.ganonhunt'),
                     'content' => [
-                        'The Triforce has been shattered into 50 pieces and scattered throughout Hyrule! You must first collect 40 of the 50 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
+                        'La Triforce a été brisée en 50 morceaux et dispersée au travers d’Hyrule! Vous devez d’abord récupéré 40 de ces 50 morceaux, à ce moment seulement Ganon sera vulnérable à vos attaques! Comme en Ganon rapide, le trou vous conduisant à Ganon est toujours accessible. Cet objectif n’est pas disponible si les entrées sont mélangées. ',
                     ],
                 ],
             ],
