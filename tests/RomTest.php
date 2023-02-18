@@ -679,16 +679,16 @@ class RomTest extends TestCase
         $this->assertEquals(0x01, $this->rom->read(0x18003E));
     }
 
-    public function testSetGanonInvincibleGanonhunt()
+    public function testSetGanonInvincibleTriforcePieces()
     {
-        $this->rom->setGanonInvincible('ganonhunt');
+        $this->rom->setGanonInvincible('triforce_pieces');
 
         $this->assertEquals(0x05, $this->rom->read(0x18003E));
     }
 
-    public function testSetGanonInvincibleCustom()
+    public function testSetGanonInvincibleCrystalsOnly()
     {
-        $this->rom->setGanonInvincible('custom');
+        $this->rom->setGanonInvincible('crystals_only');
 
         $this->assertEquals(0x04, $this->rom->read(0x18003E));
     }
@@ -769,7 +769,7 @@ class RomTest extends TestCase
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA2C));
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA2E));
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA30));
-        
+
         $this->assertEquals($expectedFileByte, $this->rom->read(0x65561));
     }
 

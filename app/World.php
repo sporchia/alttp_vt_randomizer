@@ -375,7 +375,8 @@ abstract class World
      *
      * @return array
      */
-    public function getConfig(): array {
+    public function getConfig(): array
+    {
         $config_copy = $this->config;
         return $config_copy;
     }
@@ -1182,14 +1183,14 @@ abstract class World
                 break;
             case 'ganonhunt':
                 $rom->initial_sram->preOpenPyramid();
-                $rom->setGanonInvincible('ganonhunt');
+                $rom->setGanonInvincible('triforce_pieces');
                 break;
             case 'fast_ganon':
                 $rom->initial_sram->preOpenPyramid();
 
                 // no break
             default:
-                $rom->setGanonInvincible('custom');
+                $rom->setGanonInvincible('crystals_only');
         }
 
         if ($this->config('rom.mapOnPickup', false)) {
@@ -1329,7 +1330,8 @@ abstract class World
      *
      * @return void
      */
-    public function setEscapeFills(Rom $rom) {
+    public function setEscapeFills(Rom $rom)
+    {
         $uncle_items = new ItemCollection;
         $uncle_items->setChecksForWorld($this->id);
         $uncle_items = $uncle_items->addItem($this->getLocation("Link's Uncle")->getItem());
@@ -1347,9 +1349,11 @@ abstract class World
             $rom->setUncleSpawnRefills(0, 0, 0);
             $rom->setZeldaSpawnRefills(0, 0, 0);
             $rom->setMantleSpawnRefills(0, 0, 0);
-        } elseif ($uncle_items->has('FireRod')
+        } elseif (
+            $uncle_items->has('FireRod')
             || $uncle_items->has('CaneOfSomaria')
-            || ($uncle_items->has('CaneOfByrna') && $this->config('enemizer.enemyHealth', 'default') == 'default')) {
+            || ($uncle_items->has('CaneOfByrna') && $this->config('enemizer.enemyHealth', 'default') == 'default')
+        ) {
             $rom->setEscapeFills(0b00000100);
             $rom->setUncleSpawnRefills(
                 $this->config('rom.EscapeRefills.Uncle.Magic', 0x80),
