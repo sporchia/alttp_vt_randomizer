@@ -220,7 +220,7 @@ export default {
           commit("setDungeonItems", "standard");
         }
 
-        // ER doesn't currently support TFH Ganon
+        // ER doesn't currently support Ganonhunt
         if (state.goal.value === "ganonhunt") {
           commit("setGoal", "fast_ganon");
         }
