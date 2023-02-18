@@ -177,7 +177,7 @@ return [
                 [
                     'header' => __('randomizer.goal.options.ganonhunt'),
                     'content' => [
-                        'The Triforce has been shattered into 60 pieces and scattered throughout Hyrule! You must first collect 40 of the 60 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
+                        'The Triforce has been shattered into 50 pieces and scattered throughout Hyrule! You must first collect 40 of the 50 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
                     ],
                 ],
             ],
@@ -503,7 +503,7 @@ return [
                             . '<li>Canne de Somaria, avec un plein de magie</li>'
                             . '<li>Canne de Byrna,  avec un plein de magie</li>'
                             . '</ul>',
-                            'Si vous tombez à court de magie ou de munitions, alors Sauver et Quitter rendra une part de votre magie ou de vos flèches, afin que vous puissiez progresser.',
+                        'Si vous tombez à court de magie ou de munitions, alors Sauver et Quitter rendra une part de votre magie ou de vos flèches, afin que vous puissiez progresser.',
                     ],
                 ],
                 [
@@ -527,7 +527,7 @@ return [
                 [
                     'header' => __('randomizer.weapons.options.swordless'),
                     'content' => [
-                        'Toutes les épées sont retirées du jeu, remplacées par 20 rubis. Plusieurs changements ont été faits pour que ceci fonctionne:', 
+                        'Toutes les épées sont retirées du jeu, remplacées par 20 rubis. Plusieurs changements ont été faits pour que ceci fonctionne:',
                         '<ul>'
                             . '<li>Les épées ont été remplacées par des 20 rubis (verts).</li>'
                             . '<li>La barrière de la tour d’Agahnim peut être détruite avec le marteau.</li>'

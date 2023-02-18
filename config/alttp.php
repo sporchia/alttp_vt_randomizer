@@ -42,7 +42,7 @@ return [
         'ganonhunt' => [
             'item' => [
                 'count' => [
-                    'TriforcePiece' => 60,
+                    'TriforcePiece' => 50,
                 ],
                 'Goal' => [
                     'Required' => 40,

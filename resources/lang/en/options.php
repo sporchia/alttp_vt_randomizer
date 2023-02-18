@@ -171,7 +171,7 @@ return [
                 [
                     'header' => __('randomizer.goal.options.ganonhunt'),
                     'content' => [
-                        'The Triforce has been shattered into 60 pieces and scattered throughout Hyrule! You must first collect 40 of the 60 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
+                        'The Triforce has been shattered into 50 pieces and scattered throughout Hyrule! You must first collect 40 of the 50 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
                     ],
                 ],
             ],
@@ -627,11 +627,11 @@ return [
                     ],
                 ],
                 'shuffle_sfx' => [
-                	'header' => __('rom.settings.shuffle_sfx'),
-                	'content' => [
-						'Randomizes the sound effects within the game. This means everything can sound like anything else. Enable with caution!',
-					],
-				],
+                    'header' => __('rom.settings.shuffle_sfx'),
+                    'content' => [
+                        'Randomizes the sound effects within the game. This means everything can sound like anything else. Enable with caution!',
+                    ],
+                ],
                 'quickswap' => [
                     'header' => __('rom.settings.quickswap'),
                     'content' => [
