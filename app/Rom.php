@@ -581,8 +581,25 @@ class Rom
             case 'yes':
                 $byte = pack('C*', 0x01);
                 break;
-            case 'custom':
+            case 'crystals_only':
                 $byte = pack('C', 0x04);
+                break;
+            case 'ganonhunt':
+                $byte = pack('C', 0x05);
+                break;
+            case 'lightspeed':
+                // light world only, pull ped, kill aga 1
+                $byte = pack('C', 0x06);
+                break;
+            case 'crystals_bosses':
+                $byte = pack('C', 0x07);
+                break;
+            case 'bosses_only':
+                $byte = pack('C', 0x08);
+                break;
+            case 'dungeons_no_agahnim':
+                // all dungeons, aga 1 not required
+                $byte = pack('C', 0x09);
                 break;
             case 'no':
             default:

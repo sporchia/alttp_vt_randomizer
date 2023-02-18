@@ -61,6 +61,7 @@ return [
             'dungeons' => 'Todas las mazmorras',
             'pedestal' => 'Pedestal de la Espada Maestra',
             'triforce-hunt' => 'Piezas de la Trifuerza',
+            'ganonhunt' => 'Ganonhunt',
         ],
     ],
     'tower_open' => [

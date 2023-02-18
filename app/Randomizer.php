@@ -103,6 +103,7 @@ class Randomizer implements RandomizerContract
             case 'ganon':
             case 'fast_ganon':
             case 'dungeons':
+            case 'ganonhunt':
                 $world->getLocation("Ganon")->setItem(Item::get('Triforce', $world));
                 break;
         }
@@ -982,12 +983,12 @@ class Randomizer implements RandomizerContract
 
         switch ($world->config('goal')) {
             case 'ganon':
-                $ganon_crystals_singular = 'To beat Ganon you must collect %d crystal and defeat his minion at the top of his tower.';
-                $ganon_crystals_plural = 'To beat Ganon you must collect %d crystals and defeat his minion at the top of his tower.';
+                $ganon_crystals_singular = 'To beat Ganon you must collect %d Crystal and defeat his minion at the top of his tower.';
+                $ganon_crystals_plural = 'To beat Ganon you must collect %d Crystals and defeat his minion at the top of his tower.';
                 break;
             default:
-                $ganon_crystals_singular = 'You need %d crystal to beat Ganon.';
-                $ganon_crystals_plural = 'You need %d crystals to beat Ganon.';
+                $ganon_crystals_singular = 'You need %d Crystal to beat Ganon.';
+                $ganon_crystals_plural = 'You need %d Crystals to beat Ganon.';
                 break;
         }
 
@@ -1002,6 +1003,12 @@ class Randomizer implements RandomizerContract
                 break;
             case 'fast_ganon':
                 $ganon_require = sprintf($ganon_string, $world->config('crystals.ganon'));
+                $world->setText('sign_ganon', $ganon_require);
+                $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
+
+                break;
+            case 'ganonhunt':
+                $ganon_require = sprintf('To beat Ganon you must collect %d Triforce Pieces.', $world->config('item.Goal.Required'));
                 $world->setText('sign_ganon', $ganon_require);
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 

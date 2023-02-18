@@ -174,6 +174,12 @@ return [
                         'La Triforce a été brisée en 30 morceaux, éparpillés à travers Hyrule! Vous devez retrouver 20 des 30 pièces, et les emmener à Murahdhala pour recevoir la Triforce. Qui est ce Murahdahla, me direz-vous? Mais enfin, il est évidemment le petit frère de Sahasrahla et Aginah! De retour de ses vacances à Lorule, vous le trouverez dans la cour du Château d’Hyrule.',
                     ],
                 ],
+                [
+                    'header' => __('randomizer.goal.options.ganonhunt'),
+                    'content' => [
+                        'The Triforce has been shattered into 60 pieces and scattered throughout Hyrule! You must first collect 40 of the 60 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
+                    ],
+                ],
             ],
         ],
         'tower_open' => [

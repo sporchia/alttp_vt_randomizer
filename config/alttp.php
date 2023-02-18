@@ -39,6 +39,17 @@ return [
                 ],
             ],
         ],
+        'ganonhunt' => [
+            'item' => [
+                'count' => [
+                    'TriforcePiece' => 60,
+                ],
+                'Goal' => [
+                    'Required' => 40,
+                    'Icon' => 'triforce',
+                ],
+            ],
+        ],
     ],
     'randomizer' => [
         'item' => [
@@ -206,6 +217,7 @@ return [
                 'dungeons' => 'All Dungeons',
                 'pedestal' => 'Master Sword Pedestal',
                 'triforce-hunt' => 'Triforce Pieces',
+                'ganonhunt' => 'Ganonhunt',
             ],
             'tower_open' => [
                 '0' => 'none',
@@ -326,6 +338,7 @@ return [
                 'dungeons' => 10,
                 'pedestal' => 10,
                 'triforce-hunt' => 10,
+                'ganonhunt' => 0,
             ],
             'tower_open' => [
                 '0' => 5,
