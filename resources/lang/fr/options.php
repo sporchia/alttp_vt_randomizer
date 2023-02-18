@@ -177,7 +177,7 @@ return [
                 [
                     'header' => __('randomizer.goal.options.ganonhunt'),
                     'content' => [
-                        'La Triforce a été brisée en 50 morceaux et dispersée au travers d’Hyrule! Vous devez d’abord récupéré 40 de ces 50 morceaux, à ce moment seulement Ganon sera vulnérable à vos attaques! Comme en Ganon rapide, le trou vous conduisant à Ganon est toujours accessible. Cet objectif n’est pas disponible si les entrées sont mélangées. ',
+                        'La Triforce est brisée en 50 morceaux et est dispersée au travers d’Hyrule! Vous devez d’abord récupérer 40 de ces 50 morceaux ; ce n’est qu’à ce moment que  Ganon sera vulnérable à vos attaques! Comme en Ganon rapide, le trou vous conduisant à Ganon est toujours accessible. Cet objectif n’est pas disponible si les entrées sont mélangées.                        ',
                     ],
                 ],
             ],
