@@ -472,7 +472,7 @@ class Text
 
             'telepathic_tile_tower_of_hera_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a bad place, with a guy who will make you fall…\n\n\na lot."),
 
-            'houlihan_room' => $converter->convertDialogCompressed("Randomizer tournament winners\n{HARP}\n  ~~~2022~~~\nObscure\n\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
+            'houlihan_room' => $converter->convertDialogCompressed("Randomizer\ntournament winners\n\n{HARP}\n  ~~~2022~~~\nObscure\n\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
 
             'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
 
