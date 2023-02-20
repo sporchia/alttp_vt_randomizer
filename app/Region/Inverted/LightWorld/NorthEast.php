@@ -208,6 +208,7 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
         $this->can_enter = function ($locations, $items) {
             return
                 $items->has('DefeatAgahnim')
+                || ($items->canFly($this->world) && $items->canLiftDarkRocks())
                 || ($items->has('MoonPearl')
                     && (
                         ($items->has('Hammer')
