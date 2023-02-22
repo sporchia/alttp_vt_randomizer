@@ -116,12 +116,6 @@ return [
                         'Karten, Kompasse, kleine Schlüssel und große Schlüssel sind nicht mehr an ihren Palast gebunden (könnten trotzdem noch drin landen).',
                     ],
                 ],
-                [
-                    'header' => __('randomizer.goal.options.ganonhunt'),
-                    'content' => [
-                        'Das Triforce wurde in 50 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 40 von den 50 Teilen sammeln, um Ganon verwundbar zu machen! Wie bei Fast Ganon ist das Loch in der Pyramide permanent geöffnet. Dieses Ziel ist nicht verfügbar, wenn Eingänge vermischt sind.',
-                    ],
-                ],
             ],
         ],
         'accessibility' => [
@@ -178,6 +172,12 @@ return [
                     'header' => __('randomizer.goal.options.triforce-hunt'),
                     'content' => [
                         'Das Triforce wurde in 30 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 20 von den 30 Teilen sammeln und sie zu Murahdahla bringen um das Triforce zu erhalten. Wer Murahdahla ist fragst du? Wieso? Er ist doch ganz klar der jüngere Bruder von Sahasrahla und Aginah! Er ist zurück aus seine Urlaub in Lorule und hängt jetzt im Hof von Schloss Hyrule ab.',
+                    ],
+                ],
+                [
+                    'header' => __('randomizer.goal.options.ganonhunt'),
+                    'content' => [
+                        'Das Triforce wurde in 50 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 40 von den 50 Teilen sammeln, um Ganon verwundbar zu machen! Wie bei Fast Ganon ist das Loch in der Pyramide permanent geöffnet. Dieses Ziel ist nicht verfügbar, wenn Eingänge vermischt sind.',
                     ],
                 ],
             ],
