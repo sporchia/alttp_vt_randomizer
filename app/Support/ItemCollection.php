@@ -414,7 +414,7 @@ class ItemCollection extends Collection
      */
     public function canFly(World $world)
     {
-        return $this->has('OcarinaActive') || $this->has('OcarinaInactive') && $this->canActivateOcarina($world);
+        return $this->has('OcarinaActive') || ($this->has('OcarinaInactive') && $this->canActivateOcarina($world));
     }
 
     private function canActivateOcarina(World $world)
