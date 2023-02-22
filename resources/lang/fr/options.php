@@ -29,9 +29,9 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
                     'content' => [
-                        'Ce paramètre requiert la connaissance de tous les glitchs du monde extérieur, ainsi que des glitchs dans le monde inférieur qui peuvent clipper dans d’autres donjons, plus particulièrement:',
+                        'Ce paramètre requiert la connaissance de tous les glitchs du monde extérieur, ainsi que des glitchs dans le monde intérieur qui peuvent clipper dans d’autres donjons, plus particulièrement:',
                         '<ul>'
-                            . '<li>les clips d’Underworld sans les bottes (y compris les clips d’1 frame qui demandent du buffering)</li>'
+                            . '<li>Les clips du monde intérieur sans les bottes (y compris les clips d’1 frame qui demandent du buffering)</li>'
                             . '</ul>',
                         'Quelques changements additionnels ont été faits:',
                         '<ul>'

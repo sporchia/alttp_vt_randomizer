@@ -29,15 +29,15 @@ return [
                 [
                     'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
                     'content' => [
-                        'This setting requires knowledge of all glitches used in Overworld Glitches, as well as glitches in the underworld that can clip you into other dungeons.  Specifically:',
+                        'Für Hybrid Major Gitches wird Wissen über alle in Overworld Glitches vorkommenden Glitches vorausgesetzt, sowie über folgende Clips, um sich in der Underworld zwischen mehreren Höhlen und Dungeons bewegen zu können:',
                         '<ul>'
-                            . '<li>Underworld bootless clips (including 1-frame clips requiring buffering)</li>'
+                            . '<li>Underworld bootless clips (auch Ein-Frame-Clips, die Buffern benötigen)</li>'
                             . '</ul>',
-                        'Some additional changes have also been made:',
+                        'Sonstige Änderungen:',
                         '<ul>'
-                            . '<li>Fake worlds exist as per the original game (e.g. dying in a Dark World dungeon without defeating Agahnim will put you in the fake Dark World)</li>'
-                            . '<li>Crystals always drop regardless of pendant conflicts (QoL fix from the original)</li>'
-                            . '<li>Swamp Palace water levels do not drain when you exit the overworld screen (except for the first room)</li>'
+                            . '<li>Fake worlds existieren wie im normalen Spiel (z. B. in einem Dark World-Dungeon zu sterben, ohne Agahnim besiegt zu haben, bringt einen in die Fake Dark World)</li>'
+                            . '<li>Kristalle fallen immer, selbst bei Amulett-Konflikten (Verbesserung zum Original)</li>'
+                            . '<li>Die Wasserstände im Sumpfpalast (Swamp Palace) werden (abgesehen vom Eingangsraum) nicht zurückgesetzt, wenn man die Overworld betritt</li>'
                             . '</ul>',
                     ],
                 ],
@@ -119,7 +119,7 @@ return [
                 [
                     'header' => __('randomizer.goal.options.ganonhunt'),
                     'content' => [
-                        'The Triforce has been shattered into 50 pieces and scattered throughout Hyrule! You must first collect 40 of the 50 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
+                        'Das Triforce wurde in 50 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 40 von den 50 Teilen sammeln, um Ganon verwundbar zu machen! Wie bei Fast Ganon ist das Loch in der Pyramide permanent geöffnet. Dieses Ziel ist nicht verfügbar, wenn Eingänge vermischt sind.',
                     ],
                 ],
             ],

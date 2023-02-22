@@ -61,7 +61,7 @@ return [
             'dungeons' => 'Alle Dungeons',
             'pedestal' => 'Master-Schwert Sockel',
             'triforce-hunt' => 'Triforce-Splitter',
-            'ganonhunt' => 'Ganonhunt',
+            'ganonhunt' => 'Ganonjagd',
         ],
     ],
     'tower_open' => [
