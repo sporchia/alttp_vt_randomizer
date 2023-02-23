@@ -209,12 +209,12 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
             return
                 $items->has('DefeatAgahnim')
                 || ($items->has('MoonPearl')
-                    && (
-                        ($items->has('Hammer')
+                    && (($items->has('Hammer')
                             && $items->canLiftRocks()) ||
-                        $items->canLiftDarkRocks())) || (
+                            $items->canLiftDarkRocks()))
+                || ($items->canFly($this->world) && $items->canLiftDarkRocks())
                     // Glitched Access from DeathMountain
-                    $this->world->config('canOWYBA', false)
+                || ($this->world->config('canOWYBA', false)
                     && ($items->hasABottle(2)
                         || ($items->hasABottle()
                             && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))))
@@ -223,8 +223,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                     && (
                         ($this->world->config('canSuperSpeed', false)
                             && $items->canSpinSpeed()) || ($this->world->config('canBootsClip', false)
-                            && $items->has('PegasusBoots')))) ||
-                $this->world->config('canOneFrameClipOW', false);
+                            && $items->has('PegasusBoots'))))
+                || $this->world->config('canOneFrameClipOW', false);
         };
 
         return $this;
