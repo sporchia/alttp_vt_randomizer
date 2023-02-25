@@ -43,6 +43,18 @@ return [
             'item' => [
                 'count' => [
                     'TriforcePiece' => 50,
+                    'Arrow' => 1,
+                    'TenArrows' => 6,
+                    'Bomb' => 0,
+                    'ThreeBombs' => 10,
+                    'TenBombs' => 7,
+                    'OneRupee' => 0,
+                    'FiveRupees' => 0,
+                    'TwentyRupees' => 10,
+                    'TwentyRupees2' => 0,
+                    'FiftyRupees' => 14,
+                    'OneHundredRupees' => 10,
+                    'ThreeHundredRupees' => 8,
                 ],
                 'Goal' => [
                     'Required' => 40,
