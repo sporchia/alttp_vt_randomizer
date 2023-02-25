@@ -52,6 +52,9 @@
                 <li><i>Developer note: Stats will no longer lock after the game has been completed. This will be addressed
                         in a future patch. The in-game timer will remain locked after the game has been completed.</i></li>
             </ul>
+            <li>No Logic: The Hyrule Castle small key is no longer pinned to Hyrule Castle when playing Standard world
+                state. This only applies to No Logic.</li>
+            <li>Inverted: Light World access is now properly in logic when the player has a pre-activated flute.</li>
         </ul>
         <li>Miscellaneous changes</li>
         <ul>
