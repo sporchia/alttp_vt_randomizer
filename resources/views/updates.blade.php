@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h2>v31.1 (February 2023)</h2>
+    <h2>v31.1 (March 2023)</h2>
     <div class="card card-body bg-light mb-3">
         <li>New Features</li>
         <ul>
@@ -17,7 +17,6 @@
             <li>Hybrid Major Glitches is now a fully supported logic option.</li>
             <li>Customizer: Added ability to set maximum number of boss heart containers, pieces of heart, sword, shield,
                 and bow upgrades.</li>
-            <li>Added a beveled border to the file select screen for restreamers to calibrate against.</li>
             <li>Added a dot next to the game code on file select when accessibility features are enabled (this currently
                 only applies to the Reduced flashing option).</li>
         </ul>
@@ -52,8 +51,6 @@
                 <li><i>Developer note: Stats will no longer lock after the game has been completed. This will be addressed
                         in a future patch. The in-game timer will remain locked after the game has been completed.</i></li>
             </ul>
-            <li>No Logic: The Hyrule Castle small key is no longer pinned to Hyrule Castle when playing Standard world
-                state. This only applies to No Logic.</li>
             <li>Inverted: Light World access is now properly in logic when the player has a pre-activated flute.</li>
         </ul>
         <li>Miscellaneous changes</li>
