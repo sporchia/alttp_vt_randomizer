@@ -103,6 +103,7 @@ class Randomizer implements RandomizerContract
             case 'ganon':
             case 'fast_ganon':
             case 'dungeons':
+            case 'ganonhunt':
                 $world->getLocation("Ganon")->setItem(Item::get('Triforce', $world));
                 break;
         }
@@ -113,7 +114,7 @@ class Randomizer implements RandomizerContract
         $trash_items = $world->getItemPool();
 
         // @todo check a flag instead of logic here, as well as difficulty
-        if (in_array($world->config('logic'), ['MajorGlitches', 'OverworldGlitches', 'NoLogic']) && $world->config('difficulty') !== 'custom') {
+        if (in_array($world->config('logic'), ['MajorGlitches', 'HybridMajorGlitches', 'OverworldGlitches', 'NoLogic']) && $world->config('difficulty') !== 'custom') {
             $world->addPreCollectedItem(Item::get('PegasusBoots', $world));
             foreach ($advancement_items as $key => $item) {
                 if ($item == Item::get('PegasusBoots', $world)) {
@@ -315,7 +316,8 @@ class Randomizer implements RandomizerContract
         }
         if ($world->config('region.wildKeys', false)) {
             foreach ($dungeon_items as $key => $item) {
-                if ($item instanceof Item\Key && ($world->config('mode.state') != 'standard' || $item != Item::get('KeyH2', $world))) {
+                if ($item instanceof Item\Key && ($world->config('mode.state') !== 'standard' || $item != Item::get('KeyH2', $world)
+                    || $world->config('logic') === 'NoLogic')) {
                     unset($dungeon_items[$key]);
                     $advancement_items[] = $item;
                 }
@@ -686,11 +688,16 @@ class Randomizer implements RandomizerContract
         // handle hardmode shops
         if ($world->config('shops.HardMode', false)) {
             $world->getShop("Capacity Upgrade")->clearInventory();
-            $world->getShop("Dark World Potion Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-            $world->getShop("Dark World Forest Shop")->addInventory(0, Item::get('Nothing', $world), 0);
-            $world->getShop("Dark World Lumberjack Hut Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-            $world->getShop("Dark World Outcasts Shop")->addInventory(1, Item::get('Nothing', $world), 0);
-            $world->getShop("Dark World Lake Hylia Shop")->addInventory(1, Item::get('Nothing', $world), 0);
+        }
+        $shield_replacement = Item::get($world->config('item.overflow.replacement.Shield', 'TwentyRupees2'), $world);
+        if ($world->config('item.overflow.count.Shield', 3) < 2) {
+            $world->getShop("Dark World Forest Shop")->addInventory(0, $shield_replacement, 500);
+        }
+        if ($world->config('item.overflow.count.Shield', 3) < 1) {
+            $world->getShop("Dark World Potion Shop")->addInventory(1, $shield_replacement, 50);
+            $world->getShop("Dark World Lumberjack Hut Shop")->addInventory(1, $shield_replacement, 50);
+            $world->getShop("Dark World Outcasts Shop")->addInventory(1, $shield_replacement, 50);
+            $world->getShop("Dark World Lake Hylia Shop")->addInventory(1, $shield_replacement, 50);
         }
 
         if (
@@ -976,12 +983,12 @@ class Randomizer implements RandomizerContract
 
         switch ($world->config('goal')) {
             case 'ganon':
-                $ganon_crystals_singular = 'To beat Ganon you must collect %d crystal and defeat his minion at the top of his tower.';
-                $ganon_crystals_plural = 'To beat Ganon you must collect %d crystals and defeat his minion at the top of his tower.';
+                $ganon_crystals_singular = 'To beat Ganon you must collect %d Crystal and defeat his minion at the top of his tower.';
+                $ganon_crystals_plural = 'To beat Ganon you must collect %d Crystals and defeat his minion at the top of his tower.';
                 break;
             default:
-                $ganon_crystals_singular = 'You need %d crystal to beat Ganon.';
-                $ganon_crystals_plural = 'You need %d crystals to beat Ganon.';
+                $ganon_crystals_singular = 'You need %d Crystal to beat Ganon.';
+                $ganon_crystals_plural = 'You need %d Crystals to beat Ganon.';
                 break;
         }
 
@@ -996,6 +1003,12 @@ class Randomizer implements RandomizerContract
                 break;
             case 'fast_ganon':
                 $ganon_require = sprintf($ganon_string, $world->config('crystals.ganon'));
+                $world->setText('sign_ganon', $ganon_require);
+                $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
+
+                break;
+            case 'ganonhunt':
+                $ganon_require = sprintf('To beat Ganon you must collect %d Triforce Pieces.', $world->config('item.Goal.Required'));
                 $world->setText('sign_ganon', $ganon_require);
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 

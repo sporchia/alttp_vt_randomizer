@@ -27,6 +27,21 @@ return [
                     ],
                 ],
                 [
+                    'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
+                    'content' => [
+                        'Esta configuración requiere el conocimiento de todos los glitches en la superficie junto las formas de atravesar diagonales o clips en mazmorras/cuevas. En particular :',
+                        '<ul>'
+                            . '<li> Clips en Mazmorras o Cuevas sin botas (incluyendo clips de 1 frame  que requieren buffering)</li>'
+                            . '</ul>',
+                        'Además se tienen los siguientes cambios técnicos:',
+                        '<ul>'
+                            . '<li>La mecánica de Mundo Falso existe como en el juego original (esto es que si mueres dentro de una mazmorra del mundo oscuro sin matar a Agahnim, una transición en la superficie te devuelve al mundo de la Luz)</li>'
+                            . '<li>Aunque esté presente el Mundo Falso, los cristales siempre aparecen al derrotar al jefe de la mazmorra (evitando tener que volver a cambiar el mundo como en el juego original)</li>'
+                            . '<li>En el palacio del pantano, el agua de las habitaciones no se restaura menos en la primera habitación</li>'
+                            . '</ul>',
+                    ],
+                ],
+                [
                     'header' => __('randomizer.glitches_required.options.major_glitches'),
                     'content' => [
                         'Necesitas conocimiento de glitches mayores más avanzados. Específicamente:',
@@ -158,6 +173,12 @@ return [
                     'header' => __('randomizer.goal.options.triforce-hunt'),
                     'content' => [
                         '¡La Trifuerza se ha roto en 30 fragmentos esparcidos por todo Hyrule! Tienes que encontrar 20 de las 30 piezas y llevárselas a Murahdahla para recibir la Trifuerza. ¿Que preguntas quién es Murahdahala? ¡Pues obviamente es el hermano menor de Sahasrahla y Aginah! Ha vuelto de sus vacaciones en Lorule y puedes encontrarle pasando el rato en el patio del Castillo de Hyrule.',
+                    ],
+                ],
+                [
+                    'header' => __('randomizer.goal.options.ganonhunt'),
+                    'content' => [
+                        'La Trifuerza ha sido separada en 50 trozos y ¡se han perdido por todo Hyrule! Debes reunir 40 de las 50 piezas, y solo entonces Ganon  será vulnerable a tus ataques. Como en ganon rápido, el agujero que lleva a Ganon será accesible permanentemente. Esta meta no esta disponible con entradas randomizadas.',
                     ],
                 ],
             ],

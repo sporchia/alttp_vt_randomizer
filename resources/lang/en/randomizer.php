@@ -47,6 +47,7 @@ return [
         'options' => [
             'none' => 'None',
             'overworld_glitches' => 'Overworld Glitches',
+            'hybrid_major_glitches' => 'Hybrid Major Glitches',
             'major_glitches' => 'Major Glitches',
             'no_logic' => 'No Logic',
         ],
@@ -60,6 +61,7 @@ return [
             'dungeons' => 'All Dungeons',
             'pedestal' => 'Master Sword Pedestal',
             'triforce-hunt' => 'Triforce Pieces',
+            'ganonhunt' => 'Ganonhunt',
         ],
     ],
     'tower_open' => [

@@ -189,32 +189,32 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                     || $items->canShootArrows($this->world, 2)) && (
                     ($this->world->config('mode.weapons') == 'swordless'
                         && $items->has('Hammer') && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
-                            || ($items->has('FireRod') && ($items->canExtendMagic($this->world, 1)
-                                && $items->has('MoonPearl')) || $items->canExtendMagic($this->world, 4)))) 
+                            || ($items->has('FireRod') && (($items->canExtendMagic($this->world, 2)
+                                && $items->has('MoonPearl')) || $items->canExtendMagic($this->world, 3)))))
                     || (!$this->world->config('region.requireBetterSword', false)
-                        && ($items->hasSword(2)
+                        && $items->hasSword(2)
                             && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                                 || ($items->has('FireRod')
-                                    && ($items->canExtendMagic($this->world, 3)
+                                    && (($items->canExtendMagic($this->world, 3)
                                         && $items->has('MoonPearl')) ||
                                     $items->canExtendMagic($this->world, 4))))) || ($items->hasSword(3)
                         && ($items->has('Lamp', $this->world->config('item.require.Lamp', 1))
                             || ($items->has('FireRod')
-                                && ($items->canExtendMagic($this->world, 2)
+                                && (($items->canExtendMagic($this->world, 2)
                                     && $items->has('MoonPearl')) ||
-                                $items->canExtendMagic($this->world, 3)))));
+                                $items->canExtendMagic($this->world, 3))))));
         });
 
         $this->can_enter = function ($locations, $items) {
             return
                 $items->has('DefeatAgahnim')
                 || ($items->has('MoonPearl')
-                    && (
-                        ($items->has('Hammer')
+                    && (($items->has('Hammer')
                             && $items->canLiftRocks()) ||
-                        $items->canLiftDarkRocks())) || (
+                            $items->canLiftDarkRocks()))
+                || ($items->canFly($this->world) && $items->canLiftDarkRocks())
                     // Glitched Access from DeathMountain
-                    $this->world->config('canOWYBA', false)
+                || ($this->world->config('canOWYBA', false)
                     && ($items->hasABottle(2)
                         || ($items->hasABottle()
                             && $items->has('Lamp', $this->world->config('item.require.Lamp', 1)))))
@@ -223,8 +223,8 @@ class NorthEast extends Region\Standard\LightWorld\NorthEast
                     && (
                         ($this->world->config('canSuperSpeed', false)
                             && $items->canSpinSpeed()) || ($this->world->config('canBootsClip', false)
-                            && $items->has('PegasusBoots')))) ||
-                $this->world->config('canOneFrameClipOW', false);
+                            && $items->has('PegasusBoots'))))
+                || $this->world->config('canOneFrameClipOW', false);
         };
 
         return $this;

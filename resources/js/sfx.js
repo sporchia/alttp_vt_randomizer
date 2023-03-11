@@ -1,5 +1,5 @@
 import Prando from "prando";
-import { fy_shuffle, int16_as_bytes } from "./utils";
+import { fy_shuffle, int16_as_bytes, snes_to_pc } from "./utils";
 
 export default class SFX {
   constructor(seed) {
@@ -228,13 +228,13 @@ export default class SFX {
 
   randomize_sfx(rom) {
     const sfx_table = {
-      2: 0x1a8c29,
-      3: 0x1a8d25,
+      2: 0x1A8BD0,
+      3: 0x1A8CCC,
     };
 
     const sfx_accompaniment_table = {
-      2: 0x1a8ca7,
-      3: 0x1a8da3,
+      2: 0x1A8C4E,
+      3: 0x1A8D4A,
     };
 
     // shuffle the data structure first
@@ -244,12 +244,12 @@ export default class SFX {
     sfx_sets.forEach((shuffled_sfx) => {
       for (const id in shuffled_sfx) {
         let sfx = shuffled_sfx[id];
-        let base_address = sfx_table[sfx.target_set];
+        let base_address = snes_to_pc(sfx_table[sfx.target_set]);
         rom.write(
           base_address + sfx.target_id * 2 - 2,
           int16_as_bytes(sfx.addr)
         );
-        let ac_base = sfx_accompaniment_table[sfx.target_set];
+        let ac_base = snes_to_pc(sfx_accompaniment_table[sfx.target_set]);
         let last = sfx.target_id;
         // modify accompaniment table if necessary
         if (sfx.target_chain) {

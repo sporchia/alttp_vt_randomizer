@@ -184,6 +184,13 @@ class NorthEast extends Region
 
         $this->prize_location->setRequirements(function ($locations, $items) {
             if (
+                $this->world->config('goal') == 'ganonhunt'
+                && (!$items->has('TriforcePiece', $this->world->config('item.Goal.Required')))
+            ) {
+                return false;
+            }
+
+            if (
                 $this->world->config('goal') == 'dungeons'
                 && (!$items->has('PendantOfCourage')
                     || !$items->has('PendantOfWisdom')
@@ -215,7 +222,7 @@ class NorthEast extends Region
             }
 
             return ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
-                && ($items->has('DefeatAgahnim2') || $this->world->config('goal') === 'fast_ganon')
+                && ($items->has('DefeatAgahnim2') || in_array($this->world->config('goal'), ['fast_ganon', 'ganonhunt']))
                 && (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows($this->world, 2))
                 && (
                     ($this->world->config('mode.weapons') == 'swordless' && $items->has('Hammer')

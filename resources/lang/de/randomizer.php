@@ -47,6 +47,7 @@ return [
         'options' => [
             'none' => 'Keine',
             'overworld_glitches' => 'Overworld Glitches',
+            'hybrid_major_glitches' => 'Hybrid Major Glitches',
             'major_glitches' => 'Major Glitches',
             'no_logic' => 'Keine Logik',
         ],
@@ -60,6 +61,7 @@ return [
             'dungeons' => 'Alle Dungeons',
             'pedestal' => 'Master-Schwert Sockel',
             'triforce-hunt' => 'Triforce-Splitter',
+            'ganonhunt' => 'Ganonjagd',
         ],
     ],
     'tower_open' => [

@@ -164,7 +164,7 @@ class Text
 
             'kakariko_saharalasa_after_master_sword' => $converter->convertDialogCompressed("Cool sword!\n\n\n…\n\n\n…\n\n\nPlease save us"),
 
-            'kakariko_alert_guards' => $converter->convertDialogCompressed("GUARDS! HELP!\nThe creeper\n@ is here!"),
+            'kakariko_alert_guards' => $converter->convertDialogCompressed("Guards! Help!\nThe creeper\n@ is here!"),
             // 0x30
             'sahasrahla_quest_have_pendants' => $converter->convertDialogCompressed("{BOTTOM}\nCool beans, but I think you should mosey on over to the Lost Woods."),
 
@@ -214,7 +214,7 @@ class Text
 
             'sign_east_of_castle' => $converter->convertDialogCompressed("→ East Palace\n\n← Castle"),
 
-            'sign_north_of_lake' => $converter->convertDialogCompressed("\n Lake  Hiriah"),
+            'sign_north_of_lake' => $converter->convertDialogCompressed("\n Lake  Hylia"),
 
             'sign_desert_thief' => $converter->convertDialogCompressed("Don't talk to me or touch my sign!"),
 
@@ -326,9 +326,9 @@ class Text
 
             'talking_tree_info_start' => $converter->convertDialogCompressed("Whoa! I can talk again!"),
 
-            'talking_tree_info_1' => $converter->convertDialogCompressed("Yank on the pitchfork in the center of town, ya heard it here."),
+            'talking_tree_info_1' => $converter->convertDialogCompressed("Have you heard the good word about tree warp?"),
 
-            'talking_tree_info_2' => $converter->convertDialogCompressed("Ganon is such a dingus, no one likes him, ya heard it here."),
+            'talking_tree_info_2' => $converter->convertDialogCompressed("Yank on the pitchfork in the center of town, ya heard it here."),
             // 0x80
             'talking_tree_info_3' => $converter->convertDialogCompressed("There is a portal near the Lost Woods, ya heard it here."),
 
@@ -472,7 +472,7 @@ class Text
 
             'telepathic_tile_tower_of_hera_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a bad place, with a guy who will make you fall…\n\n\na lot."),
 
-            'houlihan_room' => $converter->convertDialogCompressed("Randomizer tournament winners\n{HARP}\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
+            'houlihan_room' => $converter->convertDialogCompressed("Randomizer\ntournament winners\n\n{HARP}\n  ~~~2022~~~\nObscure\n\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
 
             'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
 
@@ -884,7 +884,7 @@ class Text
 
             'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
             // 0x190
-            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("Glitched\ntournament\nwinners\n{HARP}\n~~~HMG 2021~~~\nKrithel\n\n~~~OWG 2019~~~\nGlan\n\n~~~OWG 2018~~~\nChristosOwen\nthe numpty"),
+            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("Glitched\ntournament\nwinners\n{HARP}\n~~~No Logic 2022~~~\nChexhuman\n\n~~~HMG 2021~~~\nKrithel\n\n~~~OWG 2019~~~\nGlan\n\n~~~OWG 2018~~~\nChristosOwen\nthe numpty"),
 
             'fish_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 

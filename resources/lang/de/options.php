@@ -27,6 +27,21 @@ return [
                     ],
                 ],
                 [
+                    'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
+                    'content' => [
+                        'Für Hybrid Major Gitches wird Wissen über alle in Overworld Glitches vorkommenden Glitches vorausgesetzt, sowie über folgende Clips, um sich in der Underworld zwischen mehreren Höhlen und Dungeons bewegen zu können:',
+                        '<ul>'
+                            . '<li>Underworld bootless clips (auch Ein-Frame-Clips, die Buffern benötigen)</li>'
+                            . '</ul>',
+                        'Sonstige Änderungen:',
+                        '<ul>'
+                            . '<li>Fake worlds existieren wie im normalen Spiel (z. B. in einem Dark World-Dungeon zu sterben, ohne Agahnim besiegt zu haben, bringt einen in die Fake Dark World)</li>'
+                            . '<li>Kristalle fallen immer, selbst bei Amulett-Konflikten (Verbesserung zum Original)</li>'
+                            . '<li>Die Wasserstände im Sumpfpalast (Swamp Palace) werden (abgesehen vom Eingangsraum) nicht zurückgesetzt, wenn man die Overworld betritt</li>'
+                            . '</ul>',
+                    ],
+                ],
+                [
                     'header' => __('randomizer.glitches_required.options.major_glitches'),
                     'content' => [
                         'Für Major Glitches wird Wissen über Major Glitches vorrausgesetzt die ein bisschen fortgeschrittener sind. Folgende Glitches die du beherrschen solltest:',
@@ -157,6 +172,12 @@ return [
                     'header' => __('randomizer.goal.options.triforce-hunt'),
                     'content' => [
                         'Das Triforce wurde in 30 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 20 von den 30 Teilen sammeln und sie zu Murahdahla bringen um das Triforce zu erhalten. Wer Murahdahla ist fragst du? Wieso? Er ist doch ganz klar der jüngere Bruder von Sahasrahla und Aginah! Er ist zurück aus seine Urlaub in Lorule und hängt jetzt im Hof von Schloss Hyrule ab.',
+                    ],
+                ],
+                [
+                    'header' => __('randomizer.goal.options.ganonhunt'),
+                    'content' => [
+                        'Das Triforce wurde in 50 Teile zerschlagen und in ganz Hyrule verteilt! Du musst 40 von den 50 Teilen sammeln, um Ganon verwundbar zu machen! Wie bei Fast Ganon ist das Loch in der Pyramide permanent geöffnet. Dieses Ziel ist nicht verfügbar, wenn Eingänge vermischt sind.',
                     ],
                 ],
             ],
@@ -481,7 +502,7 @@ return [
                             . '<li>Feuerstab + Volle Auffüllung der Magie</li>'
                             . '<li>Somaria Stab + Volle Auffüllung der Magie</li>'
                             . '<li>Byrna Stab + Volle Auffüllung der Magie</li>'
-                        . '</ul>',
+                            . '</ul>',
                         'Falls du keine Pfeile oder Magie mehr haben solltest, kannst du die Funktion "Save and Quit" nutzen um sie wieder teilweise aufzufüllen damit du fortfahren kannst.',
                     ],
                 ],

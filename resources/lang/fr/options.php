@@ -27,6 +27,21 @@ return [
                     ],
                 ],
                 [
+                    'header' => __('randomizer.glitches_required.options.hybrid_major_glitches'),
+                    'content' => [
+                        'Ce paramètre requiert la connaissance de tous les glitchs du monde extérieur, ainsi que des glitchs dans le monde intérieur qui peuvent clipper dans d’autres donjons, plus particulièrement:',
+                        '<ul>'
+                            . '<li>Les clips du monde intérieur sans les bottes (y compris les clips d’1 frame qui demandent du buffering)</li>'
+                            . '</ul>',
+                        'Quelques changements additionnels ont été faits:',
+                        '<ul>'
+                            . '<li>Les "faux mondes" existent à nouveau, comme dans le jeu original (Exemple : Mourir dans un donjon du monde des Ténèbres sans avoir défait Aganhim vous mettra dans le Faux Monde des Ténèbres)</li>'
+                            . '<li>Les Cristaux vont toujours apparaître, malgré les conflits de pendentifs (correction du jeu original pour la qualité de vie)</li>'
+                            . '<li>Les niveaux d’eau de Swamp Palace ne se re-drainent plus quand vous quittez l’écran du Monde Extérieur (sauf la première pièce)</li>'
+                            . '</ul>',
+                    ],
+                ],
+                [
                     'header' => __('randomizer.glitches_required.options.major_glitches'),
                     'content' => [
                         'Ce paramètre requiert la connaissance de glitchs plus avancés. Spécifiquement:',
@@ -157,6 +172,12 @@ return [
                     'header' => __('randomizer.goal.options.triforce-hunt'),
                     'content' => [
                         'La Triforce a été brisée en 30 morceaux, éparpillés à travers Hyrule! Vous devez retrouver 20 des 30 pièces, et les emmener à Murahdhala pour recevoir la Triforce. Qui est ce Murahdahla, me direz-vous? Mais enfin, il est évidemment le petit frère de Sahasrahla et Aginah! De retour de ses vacances à Lorule, vous le trouverez dans la cour du Château d’Hyrule.',
+                    ],
+                ],
+                [
+                    'header' => __('randomizer.goal.options.ganonhunt'),
+                    'content' => [
+                        'La Triforce est brisée en 50 morceaux et est dispersée au travers d’Hyrule! Vous devez d’abord récupérer 40 de ces 50 morceaux ; ce n’est qu’à ce moment que  Ganon sera vulnérable à vos attaques! Comme en Ganon rapide, le trou vous conduisant à Ganon est toujours accessible. Cet objectif n’est pas disponible si les entrées sont mélangées.                        ',
                     ],
                 ],
             ],
@@ -482,7 +503,7 @@ return [
                             . '<li>Canne de Somaria, avec un plein de magie</li>'
                             . '<li>Canne de Byrna,  avec un plein de magie</li>'
                             . '</ul>',
-                            'Si vous tombez à court de magie ou de munitions, alors Sauver et Quitter rendra une part de votre magie ou de vos flèches, afin que vous puissiez progresser.',
+                        'Si vous tombez à court de magie ou de munitions, alors Sauver et Quitter rendra une part de votre magie ou de vos flèches, afin que vous puissiez progresser.',
                     ],
                 ],
                 [
@@ -506,7 +527,7 @@ return [
                 [
                     'header' => __('randomizer.weapons.options.swordless'),
                     'content' => [
-                        'Toutes les épées sont retirées du jeu, remplacées par 20 rubis. Plusieurs changements ont été faits pour que ceci fonctionne:', 
+                        'Toutes les épées sont retirées du jeu, remplacées par 20 rubis. Plusieurs changements ont été faits pour que ceci fonctionne:',
                         '<ul>'
                             . '<li>Les épées ont été remplacées par des 20 rubis (verts).</li>'
                             . '<li>La barrière de la tour d’Agahnim peut être détruite avec le marteau.</li>'

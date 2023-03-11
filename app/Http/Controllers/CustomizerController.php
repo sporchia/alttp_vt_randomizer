@@ -112,6 +112,7 @@ class CustomizerController extends Controller
         $logic = [
             'none' => 'NoGlitches',
             'overworld_glitches' => 'OverworldGlitches',
+            'hybrid_major_glitches' => 'HybridMajorGlitches',
             'major_glitches' => 'MajorGlitches',
             'no_logic' => 'NoLogic',
         ][$request->input('glitches', 'none')];
@@ -130,7 +131,7 @@ class CustomizerController extends Controller
         // some simple validation
         // @TODO: move to validator type classes later
         if (
-            $request->input('goal', 'ganon') === 'triforce-hunt'
+            in_array($request->input('goal', 'ganon'), ['triforce-hunt', 'ganonhunt'])
             && ($custom_data['item.Goal.Required'] ?? 0)
             > ($custom_data['item.count.TriforcePiece'] ?? 0) + ($placed_item_count['TriforcePiece:1'] ?? 0)
         ) {
@@ -182,6 +183,7 @@ class CustomizerController extends Controller
             'spoilers' => $spoilers,
             'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
+            'pseudoboots' => $request->input('pseudoboots', false),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),
             'item.functionality' => $request->input('item.functionality', 'normal'),

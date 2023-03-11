@@ -273,6 +273,96 @@
           </Select>
         </div>
       </div>
+      <div class="row mb-3">
+        <div class="col">
+          <text-field
+            :value="context['item.overflow.count.PieceOfHeart']"
+            type="number"
+            placeholder="pieces"
+            maxlength="9"
+            @input="toggle($event, 'item.overflow.count.PieceOfHeart')"
+          >
+            Maximum Heart Pieces
+            <template
+              slot="tooltip"
+            >The maximum number of pieces of heart Link can aquire.</template>
+          </text-field>
+        </div>
+        <div class="col">
+          <text-field
+            :value="context['item.overflow.count.BossHeartContainer']"
+            type="number"
+            placeholder="containers"
+            maxlength="9"
+            @input="toggle($event, 'item.overflow.count.BossHeartContainer')"
+          >
+            Maximum Boss Heart Container
+            <template
+              slot="tooltip"
+            >The maximum number Boss Heart Containers Link can aquire.</template>
+          </text-field>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <text-field
+            :value="context['item.overflow.count.Sword']"
+            type="number"
+            placeholder="swords"
+            maxlength="9"
+            @input="toggle($event, 'item.overflow.count.Sword')"
+          >
+            Maximum Swords
+            <template
+              slot="tooltip"
+            >The maximum number swords Link can aquire.</template>
+          </text-field>
+        </div>
+        <div class="col">
+          <text-field
+            :value="context['item.overflow.count.Armor']"
+            type="number"
+            placeholder="armors"
+            maxlength="9"
+            @input="toggle($event, 'item.overflow.count.Armor')"
+          >
+            Maximum Armor Upgrades
+            <template
+              slot="tooltip"
+            >The maximum number armor upgrades Link can aquire.</template>
+          </text-field>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <text-field
+            :value="context['item.overflow.count.Shield']"
+            type="number"
+            placeholder="shields"
+            maxlength="9"
+            @input="toggle($event, 'item.overflow.count.Shield')"
+          >
+            Maximum Shield Upgrades
+            <template
+              slot="tooltip"
+            >The maximum number shield upgrades Link can aquire.</template>
+          </text-field>
+        </div>
+        <div class="col">
+          <text-field
+            :value="context['item.overflow.count.Bow']"
+            type="number"
+            placeholder="bows"
+            maxlength="9"
+            @input="toggle($event, 'item.overflow.count.Bow')"
+          >
+            Maximum Bow Upgrades
+            <template
+              slot="tooltip"
+            >The maximum number bow upgrades Link can aquire.</template>
+          </text-field>
+        </div>
+      </div>
     </div>
   </div>
 </template>

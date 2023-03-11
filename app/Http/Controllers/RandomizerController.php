@@ -110,6 +110,7 @@ class RandomizerController extends Controller
         $logic = [
             'none' => 'NoGlitches',
             'overworld_glitches' => 'OverworldGlitches',
+            'hybrid_major_glitches' => 'HybridMajorGlitches',
             'major_glitches' => 'MajorGlitches',
             'no_logic' => 'NoLogic',
         ][$request->input('glitches', 'none')];
@@ -153,6 +154,7 @@ class RandomizerController extends Controller
             'spoilers' => $spoilers,
             'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
+            'pseudoboots' => $request->input('pseudoboots', false),
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),

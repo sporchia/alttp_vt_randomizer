@@ -47,6 +47,7 @@ return [
         'options' => [
             'none' => 'Ninguno',
             'overworld_glitches' => 'Glitches de la Superfície',
+            'hybrid_major_glitches' => 'Glitches Mayores Híbridos',
             'major_glitches' => 'Glitches Mayores',
             'no_logic' => 'Sin lógica',
         ],
@@ -60,6 +61,7 @@ return [
             'dungeons' => 'Todas las mazmorras',
             'pedestal' => 'Pedestal de la Espada Maestra',
             'triforce-hunt' => 'Piezas de la Trifuerza',
+            'ganonhunt' => 'Caza de Ganon',
         ],
     ],
     'tower_open' => [

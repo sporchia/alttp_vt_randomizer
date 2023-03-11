@@ -23,4 +23,5 @@ return [
     'contribute' => 'Contribute',
     'discord' => 'Join us on Discord',
     'report_issue' => 'Report Issue',
+    'patreon_support' => 'Support us on Patreon',
 ];

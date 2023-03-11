@@ -66,7 +66,10 @@ class RandomAssumed extends Filler
         ));
 
         if ($remaining_fill_items->count() > $locations->getEmptyLocations()->count()) {
-            throw new \Exception("Trying to fill more items than available locations.");
+            throw new \Exception(
+                "Trying to fill more items than available locations." .
+                    $remaining_fill_items->count() . ' ' . $locations->getEmptyLocations()->count()
+            );
         }
 
         $worlds = new WorldCollection($this->worlds);

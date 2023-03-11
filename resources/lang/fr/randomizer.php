@@ -47,6 +47,7 @@ return [
         'options' => [
             'none' => 'Aucun',
             'overworld_glitches' => 'Glitchs Monde Extérieur',
+            'hybrid_major_glitches' => 'Glitchs Majeurs Hybrides',
             'major_glitches' => 'Glitchs Majeurs',
             'no_logic' => 'Sans Logique',
         ],
@@ -60,6 +61,7 @@ return [
             'dungeons' => 'Tous les Donjons',
             'pedestal' => 'Piédestal de la Master Sword',
             'triforce-hunt' => 'Morceaux de Triforce ',
+            'ganonhunt' => 'Ganonhunt',
         ],
     ],
     'tower_open' => [
