@@ -41,7 +41,7 @@
 		"vue-template-compiler": "^2.6.11",
 		"vue-timeago": "^5.1.2",
 		"vuex": "^3.4.0",
-		"webpack-bundle-analyzer": "^3.8.0"
+		"webpack-bundle-analyzer": "^4.8.0"
 	},
 	"dependencies": {
 		"@maseya/z3pr": "^1.0.1",
