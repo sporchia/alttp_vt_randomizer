@@ -1180,34 +1180,6 @@ class RomTest extends TestCase
         $this->assertEquals(0x00, $this->rom->read(0x180038));
     }
 
-    public function testSetLightWorldLampConeOn()
-    {
-        $this->rom->setLightWorldLampCone(true);
-
-        $this->assertEquals(0x01, $this->rom->read(0x180039));
-    }
-
-    public function testSetLightWorldLampConeOff()
-    {
-        $this->rom->setLightWorldLampCone(false);
-
-        $this->assertEquals(0x00, $this->rom->read(0x180039));
-    }
-
-    public function testSetDarkWorldLampConeOn()
-    {
-        $this->rom->setDarkWorldLampCone(true);
-
-        $this->assertEquals(0x01, $this->rom->read(0x18003A));
-    }
-
-    public function testSetDarkWorldLampConeOff()
-    {
-        $this->rom->setDarkWorldLampCone(false);
-
-        $this->assertEquals(0x00, $this->rom->read(0x18003A));
-    }
-
     public function testSetMirrorlessSaveAndQuitToLightWorldOn()
     {
         $this->rom->setMirrorlessSaveAndQuitToLightWorld(true);

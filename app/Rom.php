@@ -1553,8 +1553,6 @@ class Rom
     public function setOpenMode(bool $enable = true): self
     {
         $this->setSewersLampCone(!$enable);
-        $this->setLightWorldLampCone(false);
-        $this->setDarkWorldLampCone(false);
         $this->initial_sram->preOpenCastleGate();
         $this->initial_sram->setProgressIndicator(0x02);
         $this->initial_sram->setProgressFlags(0x14);
@@ -1571,8 +1569,6 @@ class Rom
     public function setStandardMode(): self
     {
         $this->setSewersLampCone(true);
-        $this->setLightWorldLampCone(false);
-        $this->setDarkWorldLampCone(false);
         $this->initial_sram->setProgressIndicator(0x00);
         $this->initial_sram->setProgressFlags(0x00);
         $this->initial_sram->setStartingEntrance(0x00);
@@ -2091,33 +2087,6 @@ class Rom
         return $this;
     }
 
-    /**
-     * Enable lampless light cone in Light World Dungeons
-     *
-     * @param bool $enable switch on or off
-     *
-     * @return $this
-     */
-    public function setLightWorldLampCone(bool $enable = true): self
-    {
-        $this->write(0x180039, pack('C*', $enable ? 0x01 : 0x00));
-
-        return $this;
-    }
-
-    /**
-     * Enable lampless light cone in Dark World Dungeons
-     *
-     * @param bool $enable switch on or off
-     *
-     * @return $this
-     */
-    public function setDarkWorldLampCone(bool $enable = true): self
-    {
-        $this->write(0x18003A, pack('C*', $enable ? 0x01 : 0x00));
-
-        return $this;
-    }
 
     /**
      * Enable/Disable the ROM Hack that doesn't leave Link stranded in DW
