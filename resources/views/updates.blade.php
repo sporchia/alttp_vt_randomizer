@@ -46,7 +46,7 @@
                 customizer games.</li>
             <li>Fixed the vanilla bug that robbed the file select fairy of her proper skin color.</li>
             <li>Progressive items will now properly update the item counter when upgrading, even after the game has been
-                completed and the credits ave rolled.</li>
+                completed and the credits have rolled.</li>
             <ul>
                 <li><i>Developer note: Stats will no longer lock after the game has been completed. This will be addressed
                         in a future patch. The in-game timer will remain locked after the game has been completed.</i></li>
@@ -63,6 +63,10 @@
                 with v31.1.</li>
             <li>There is now a 1% chance for No Logic to be chosen for the daily. The chance of Major Glitches was decreased
                 to 1% (was 2%).</li>
+            <li>The 100 and 300 rupee items have been promoted to the "nice" item pool.  This means that they won't be used
+                while pre-filling Ganon's Tower with junk items, and they won't be as easily removed from the item pool when
+                Triforce Pieces are added, such as with the Triforce Pieces and Ganonhunt goals.  This will make it more
+                likely to find these items earlier.</li>
         </ul>
         <li>Added new player options</li>
         <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.1.lg.png" alt="Player sprite options"
