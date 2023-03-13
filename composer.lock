@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "492d1e75cf91d4cab9dfc49c75ca6704",
+    "content-hash": "d26f832f2585c3e90b3844eefa4058d8",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -8180,7 +8180,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
-                "reference": "6586fc3c7fbba95e66be8ef38ada3239e1a08eb6"
+                "reference": "edd251bcad2b03626fd38f0f8b58a36bdcb77530"
             },
             "type": "library"
         },
