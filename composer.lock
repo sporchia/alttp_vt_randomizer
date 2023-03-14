@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d26f832f2585c3e90b3844eefa4058d8",
+    "content-hash": "cbed5f81758626946688d75e6f6a58ae",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -8190,7 +8190,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KatDevsGames/z3randomizer",
-                "reference": "95f0e9eed2c596308f09e6e1926961f5e01a9682"
+                "reference": "c7c5ac23a891f4a3b5a12c5b91009a754db8f89d"
             },
             "type": "library"
         }
