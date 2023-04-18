@@ -416,7 +416,7 @@ class Text
 
             'sign_north_village_of_outcasts' => $converter->convertDialogCompressed("↑ Skull Woods\n\n↓ Steve's Town"),
 
-            'sign_south_of_bumper_cave' => $converter->convertDialogCompressed("\n→ Karkat's cave"),
+            'sign_south_of_bumper_cave' => $converter->convertDialogCompressed("\n→ Kat's cave"),
 
             'sign_east_of_pyramid' => $converter->convertDialogCompressed("\n→ Dark Palace"),
 
