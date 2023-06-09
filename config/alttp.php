@@ -341,6 +341,7 @@ return [
                 'pedestal' => 10,
                 'triforce-hunt' => 10,
                 'ganonhunt' => 0,
+                'completionist' => 0,
             ],
             'tower_open' => [
                 '0' => 5,

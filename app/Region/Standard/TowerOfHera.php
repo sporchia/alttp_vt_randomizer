@@ -121,6 +121,8 @@ class TowerOfHera extends Region
             return $items->canLightTorches() && $items->has('KeyP3');
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyP3', $this->world);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('KeyP3', $this->world);
         });
 
         $this->locations["Tower of Hera - Compass Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {

@@ -51,6 +51,8 @@ class SwampPalace extends Region\Standard\SwampPalace
                     || ($hera($locations, $items) && $items->has('BigKeyP3')));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('BigKeyD2', $this->world);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('BigKeyD2', $this->world);
         });
 
         $this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {

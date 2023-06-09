@@ -356,7 +356,7 @@ class Rom
      *
      * @return void
      */
-    public function enableHudItemCounter(bool $enable = true): void
+    public function enableHudItemCounter(bool $enable = false): void
     {
         $this->write(0x180039, pack('C', $enable ? 0x01 : 0x00));
     }

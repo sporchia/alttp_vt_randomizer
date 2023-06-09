@@ -110,6 +110,8 @@ class SkullWoods extends Region
             return $items->has('BigKeyD3');
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('BigKeyD3', $this->world);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('BigKeyD3', $this->world);
         });
 
         $this->locations["Skull Woods - Bridge Room"]->setRequirements(function ($locations, $items) {

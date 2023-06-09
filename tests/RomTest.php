@@ -485,7 +485,7 @@ class RomTest extends TestCase
     {
         $this->rom->setTotalItemCount(216);
 
-        $this->assertEquals(0xD800, $this->rom->read(0x180196, 2));
+        $this->assertEquals([0xD8, 0x00], $this->rom->read(0x180196, 2));
     }
 
     public function testSetClockModeDefault()
@@ -1255,5 +1255,18 @@ class RomTest extends TestCase
         $this->rom->setSeedString('aaaaaaaaaaaaaaaaaaaaaaaaa');
 
         $this->assertEquals([97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97], $this->rom->read(0x7FC0, 25));
+    }
+
+    public function testSetHudItemCounterOn()
+    {
+        $this->rom->enableHudItemCounter(true);
+        $this->assertEquals(0x01, $this->rom->read(0x180039));
+
+    }
+
+    public function testSetHudItemCounterOff()
+    {
+        $this->rom->enableHudItemCounter(false);
+        $this->assertEquals(0x00, $this->rom->read(0x180039));
     }
 }

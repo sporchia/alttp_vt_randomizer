@@ -178,6 +178,8 @@ class TurtleRock extends Region
             return $items->has('KeyD7', 2);
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD7', $this->world) && $items->has('KeyD7', 3);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('KeyD7', $this->world);
         });
 
         $this->locations["Turtle Rock - Crystaroller Room"]->setRequirements(function ($locations, $items) use ($upper, $middle, $lower) {
