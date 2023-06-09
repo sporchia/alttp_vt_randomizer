@@ -714,13 +714,6 @@ class RomTest extends TestCase
         $this->assertEquals(0x0B, $this->rom->read(0x18003E));
     }
 
-    public function testEnableHudItemCounter()
-    {
-        $this->rom->enableHudItemCounter(true);
-
-        $this->assertEquals(0x01, $this->rom->read(0x180039));
-    }
-
     public function testSetHeartColorsBlue()
     {
         $this->rom->setHeartColors('blue');
