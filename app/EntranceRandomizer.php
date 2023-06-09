@@ -28,6 +28,7 @@ class EntranceRandomizer implements RandomizerContract
 		'dungeons' => 'dungeons',
 		'pedestal' => 'pedestal',
 		'triforce-hunt' => 'triforcehunt',
+		'completionist' => 'completionist',
 	];
 	/** @var array */
 	private $swords_lookup = [
@@ -98,6 +99,10 @@ class EntranceRandomizer implements RandomizerContract
 
 		if ($this->world->config('spoil.Hints') === 'on') {
 			$flags[] = '--hint';
+		}
+
+		if ($this->world->config('rom.hudItemCounter') === true) {
+			$flags[] = '--huditemcounter';
 		}
 
 		$proc = new Process(array_merge(

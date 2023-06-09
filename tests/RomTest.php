@@ -481,6 +481,13 @@ class RomTest extends TestCase
         $this->assertEquals(0x02, $this->rom->read(0x180195));
     }
 
+    public function testSetTotalItemCount()
+    {
+        $this->rom->setTotalItemCount(216);
+
+        $this->assertEquals(0xD800, $this->rom->read(0x180196, 2));
+    }
+
     public function testSetClockModeDefault()
     {
         $this->rom->setClockMode();
@@ -698,6 +705,20 @@ class RomTest extends TestCase
         $this->rom->setGanonInvincible('no');
 
         $this->assertEquals(0x00, $this->rom->read(0x18003E));
+    }
+
+    public function testSetGanonInvincibleCompletionist()
+    {
+        $this->rom->setGanonInvincible('completionist');
+
+        $this->assertEquals(0x0B, $this->rom->read(0x18003E));
+    }
+
+    public function testEnableHudItemCounter()
+    {
+        $this->rom->enableHudItemCounter(true);
+
+        $this->assertEquals(0x01, $this->rom->read(0x180039));
     }
 
     public function testSetHeartColorsBlue()

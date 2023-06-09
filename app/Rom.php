@@ -350,6 +350,18 @@ class Rom
     }
 
     /**
+     * Enable triforce-hunt turn in mode.
+     *
+     * @param bool  $enable  enable or disable turn in mode.
+     *
+     * @return void
+     */
+    public function enableHudItemCounter(bool $enable = true): void
+    {
+        $this->write(0x180039, pack('C', $enable ? 0x01 : 0x00));
+    }
+
+    /**
      * Set starting time for HUD clock.
      *
      * @param int $seconds time in seconds
@@ -600,6 +612,10 @@ class Rom
             case 'dungeons_no_agahnim':
                 // all dungeons, aga 1 not required
                 $byte = pack('C', 0x09);
+                break;
+            case 'completionist':
+                // 100% collection rate, all dungeons
+                $byte = pack('C', 0x0B);
                 break;
             case 'no':
             default:
@@ -2377,9 +2393,30 @@ class Rom
         return $this;
     }
 
+    /**
+     * Write the initial save data table.
+     *
+     * @return $this
+     */
     public function writeInitialSram(): self
     {
         $this->write(0x183000, pack('C*', ...$this->initial_sram->getInitialSram()));
+
+        return $this;
+    }
+
+    /**
+     * Write the total number of collectable items in the game. This applies to
+     * items with the "item get" animation but not dungeon prizes, absorable keys,
+     * or shop items.
+     *
+     * @param int $count total number of items
+     *
+     * @return $this
+     */
+    public function setTotalItemCount(int $count): self
+    {
+        $this->write(0x180196, pack('v', $count));
 
         return $this;
     }

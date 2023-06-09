@@ -189,6 +189,9 @@ export default {
       if (state.goal.value === "ganonhunt") {
         commit("setEntranceShuffle", "none");
       }
+      if (state.goal.value === "completionist") {
+        commit("setAccessibility", "locations");
+      }
     },
     setGanonOpen({ commit, state }, value) {
       commit("setGanonOpen", value);

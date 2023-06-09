@@ -62,6 +62,7 @@ return [
             'pedestal' => 'Master Sword Pedestal',
             'triforce-hunt' => 'Triforce Pieces',
             'ganonhunt' => 'Ganonhunt',
+            'completionist' => 'Completionist',
         ],
     ],
     'tower_open' => [

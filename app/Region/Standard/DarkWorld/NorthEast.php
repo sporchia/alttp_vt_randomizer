@@ -221,6 +221,12 @@ class NorthEast extends Region
                 return false;
             }
 
+            if ($this->world->config('goal') == 'completionist'
+                && $this->world->config('accessibility') !== 'locations'
+            ) {
+                return false;
+            }
+
             return ($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
                 && ($items->has('DefeatAgahnim2') || in_array($this->world->config('goal'), ['fast_ganon', 'ganonhunt']))
                 && (!$this->world->config('region.requireBetterBow', false) || $items->canShootArrows($this->world, 2))

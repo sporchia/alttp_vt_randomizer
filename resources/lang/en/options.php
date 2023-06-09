@@ -174,6 +174,12 @@ return [
                         'The Triforce has been shattered into 50 pieces and scattered throughout Hyrule! You must first collect 40 of the 50 pieces, and only then will Ganon be vulnerable to your attacks!  Like Fast Ganon, the hole leading to Ganon has been made permanently accessible.  This goal is not available if entrances are randomized.',
                     ],
                 ],
+                [
+                    'header' => __('randomizer.goal.options.completionist'),
+                    'content' => [
+                        'This setting requires collection of all items and full completion of all dungeons. This includes the 3 Light World pendant dungeons, the 7 Dark World crystal dungeons, Agahnim’s Tower and Ganon’s Tower.',
+                    ],
+                ],
             ],
         ],
         'tower_open' => [
