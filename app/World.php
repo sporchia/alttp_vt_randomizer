@@ -1298,9 +1298,8 @@ abstract class World
                 break;
         }
 
-        if (!in_array($this->config['goal'], ['triforce-hunt', 'ganonhunt'])) {
-            $rom->enableHudItemCounter($this->config('rom.hudItemCounter', false));
-        }
+        $triforce_hud = in_array($this->config('goal', 'ganon'), ['triforce-hunt', 'ganonhunt']);
+        $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', false));
 
         if ($this->config('crystals.tower') === 0) {
             $rom->initial_sram->preOpenGanonsTower();
