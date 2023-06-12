@@ -28,6 +28,7 @@ class EntranceRandomizer implements RandomizerContract
 		'dungeons' => 'dungeons',
 		'pedestal' => 'pedestal',
 		'triforce-hunt' => 'triforcehunt',
+		'ganonhunt' => 'ganonhunt',
 		'completionist' => 'completionist',
 	];
 	/** @var array */
