@@ -1279,6 +1279,7 @@ abstract class World
                 $rom->setWarningFlags(bindec('01100000'));
                 $rom->setAllowAccidentalMajorGlitch(true);
                 $rom->setSQEGFix(false);
+                $rom->setZeldaMirrorFix(false);
                 break;
             case 'OverworldGlitches':
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
@@ -1288,6 +1289,7 @@ abstract class World
                 $rom->setWarningFlags(bindec('01000000'));
                 $rom->setAllowAccidentalMajorGlitch(true);
                 $rom->setSQEGFix(false);
+                $rom->setZeldaMirrorFix(false);
                 break;
             case 'NoGlitches':
             default:
@@ -1295,6 +1297,7 @@ abstract class World
                 $rom->setWorldOnAgahnimDeath(true);
                 $rom->setAllowAccidentalMajorGlitch(false);
                 $rom->setSQEGFix(true);
+                $rom->setZeldaMirrorFix(true);
                 break;
         }
 

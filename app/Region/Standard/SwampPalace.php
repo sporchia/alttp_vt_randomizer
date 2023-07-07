@@ -30,6 +30,7 @@ class SwampPalace extends Region
         'KeyD2',
         'Map',
         'MapD2',
+        'Crystal2'
     ];
 
     /**
@@ -57,7 +58,7 @@ class SwampPalace extends Region
             new Location\Chest("Swamp Palace - Waterfall Room", [0xEAAF], null, $this),
             new Location\Drop("Swamp Palace - Boss", [0x180154], null, $this),
 
-            new Location\Prize\Crystal("Swamp Palace - Prize", [null, 0x120A0, 0x53F6C, 0x53F6D, 0x180055, 0x180071, 0xC701], null, $this),
+            new Location\Prize\Crystal("Swamp Palace - Prize", [null, 0x120A0, 0x53E88, 0x53E89, 0x180055, 0x180079, 0xC701], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Swamp Palace - Prize"];

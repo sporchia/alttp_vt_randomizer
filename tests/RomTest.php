@@ -488,6 +488,20 @@ class RomTest extends TestCase
         $this->assertEquals([0xD8, 0x00], $this->rom->read(0x180196, 2));
     }
 
+    public function testSetZeldaMirrorFixDefault()
+    {
+        $this->rom->setZeldaMirrorFix();
+
+        $this->assertEquals(0x04, $this->rom->read(0x159A8));
+    }
+
+    public function testSetZeldaMirrorFixOff()
+    {
+        $this->rom->setZeldaMirrorFix(false);
+
+        $this->assertEquals(0x04, $this->rom->read(0x159A8));
+    }
+
     public function testSetClockModeDefault()
     {
         $this->rom->setClockMode();

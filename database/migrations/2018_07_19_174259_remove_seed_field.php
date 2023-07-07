@@ -14,6 +14,7 @@ class RemoveSeedField extends Migration
     public function up()
     {
         Schema::table('seeds', function (Blueprint $table) {
+            $table->dropIndex(['seed']);
             $table->dropColumn(['seed']);
         });
     }
@@ -27,6 +28,7 @@ class RemoveSeedField extends Migration
     {
         Schema::table('seeds', function (Blueprint $table) {
             $table->bigInteger('seed');
+            $table->index('seed');
         });
     }
 }

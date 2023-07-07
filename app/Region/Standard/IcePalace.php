@@ -30,6 +30,7 @@ class IcePalace extends Region
         'KeyD5',
         'Map',
         'MapD5',
+        'Crystal5',
     ];
 
     /**
@@ -55,7 +56,7 @@ class IcePalace extends Region
             new Location\BigChest("Ice Palace - Big Chest", [0xE9AA], null, $this),
             new Location\Drop("Ice Palace - Boss", [0x180157], null, $this),
 
-            new Location\Prize\Crystal("Ice Palace - Prize", [null, 0x120A4, 0x53F5A, 0x53F5B, 0x180059, 0x180073, 0xC705], null, $this),
+            new Location\Prize\Crystal("Ice Palace - Prize", [null, 0x120A4, 0x53E86, 0x53E87, 0x180059, 0x180078, 0xC705], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Ice Palace - Prize"];

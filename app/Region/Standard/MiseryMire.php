@@ -30,6 +30,7 @@ class MiseryMire extends Region
         'KeyD6',
         'Map',
         'MapD6',
+        'Crystal6',
     ];
 
     /**
@@ -55,7 +56,7 @@ class MiseryMire extends Region
             new Location\Chest("Misery Mire - Spike Chest", [0xE9DA], null, $this),
             new Location\Drop("Misery Mire - Boss", [0x180158], null, $this),
 
-            new Location\Prize\Crystal("Misery Mire - Prize", [null, 0x120A2, 0x53F48, 0x53F49, 0x180057, 0x180075, 0xC703], null, $this),
+            new Location\Prize\Crystal("Misery Mire - Prize", [null, 0x120A2, 0x53E84, 0x53E85, 0x180057, 0x180077, 0xC703], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Misery Mire - Prize"];

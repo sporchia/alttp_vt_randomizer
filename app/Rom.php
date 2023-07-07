@@ -2037,7 +2037,8 @@ class Rom
     /**
      * Enable text box to show with free roaming items
      *
-     * ---o bmcs
+     * --po bmcs
+     * p - enabled for free crystals
      * o - enabled for outside dungeon items
      * b - enabled for inside big key items
      * m - enabled for inside map items
@@ -2407,7 +2408,7 @@ class Rom
 
     /**
      * Write the total number of collectable items in the game. This applies to
-     * items with the "item get" animation but not dungeon prizes, absorable keys,
+     * items with the "item get" animation but not dungeon prizes, absorbable keys,
      * or shop items.
      *
      * @param int $count total number of items
@@ -2417,6 +2418,20 @@ class Rom
     public function setTotalItemCount(int $count): self
     {
         $this->write(0x180196, pack('v', $count));
+
+        return $this;
+    }
+
+    /**
+     * Set Zelda Save and Quit Mirror Fix
+     *
+     * @param bool $enable
+     *
+     * @return $this
+     */
+    public function setZeldaMirrorFix(bool $enable = true): self
+    {
+        $this->write(0x159A8, pack('C*', $enable ? 0x04 : 0x02));
 
         return $this;
     }

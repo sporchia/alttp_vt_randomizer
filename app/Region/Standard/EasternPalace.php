@@ -30,6 +30,7 @@ class EasternPalace extends Region
         'KeyP1',
         'Map',
         'MapP1',
+        'PendantOfWisdom'
     ];
 
     /**
@@ -54,7 +55,7 @@ class EasternPalace extends Region
             new Location\Chest("Eastern Palace - Map Chest", [0xE9F5], null, $this),
             new Location\Drop("Eastern Palace - Boss", [0x180150], null, $this),
 
-            new Location\Prize\Pendant("Eastern Palace - Prize", [null, 0x1209D, 0x53EF8, 0x53EF9, 0x180052, 0x18007C, 0xC6FE], null, $this),
+            new Location\Prize\Pendant("Eastern Palace - Prize", [null, 0x1209D, 0x53E76, 0x53E77, 0x180052, 0x180070, 0xC6FE], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Eastern Palace - Prize"];

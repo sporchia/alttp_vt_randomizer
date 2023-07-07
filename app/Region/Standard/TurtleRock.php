@@ -33,6 +33,7 @@ class TurtleRock extends Region
         'KeyD7',
         'Map',
         'MapD7',
+        'Crystal7'
     ];
 
     /**
@@ -69,7 +70,7 @@ class TurtleRock extends Region
             new Location\Chest("Turtle Rock - Eye Bridge - Top Right", [0xEA28], null, $this),
             new Location\Drop("Turtle Rock - Boss", [0x180159], null, $this),
 
-            new Location\Prize\Crystal("Turtle Rock - Prize", [null, 0x120A7, 0x53F24, 0x53F25, 0x18005C, 0x180079, 0xC708], null, $this),
+            new Location\Prize\Crystal("Turtle Rock - Prize", [null, 0x120A7, 0x53E80, 0x53E81, 0x18005C, 0x180075, 0xC708], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Turtle Rock - Prize"];
