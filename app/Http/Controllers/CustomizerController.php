@@ -113,6 +113,7 @@ class CustomizerController extends Controller
             'overworld_glitches' => config('logic.overworld_glitches'),
             'major_glitches' => config('logic.major_glitches'),
             'no_logic' => ['*'],
+            default => [],
         };
 
         $spoilers = $request->input('spoilers', 'off');
@@ -176,7 +177,6 @@ class CustomizerController extends Controller
                 'goal' => $request->input('goal', 'ganon'),
                 'crystals.ganon' => $crystals_ganon,
                 'crystals.tower' => $crystals_tower,
-                'entrances' => $request->input('entrances', 'none'),
                 'mode.weapons' => $request->input('weapons', 'randomized'),
                 'tournament' => $request->input('tournament', false),
                 'spoilers' => $spoilers,
@@ -205,31 +205,32 @@ class CustomizerController extends Controller
                 } else {
                     $place_item = Item::get(preg_replace('/:\d+$/', '', $item), 0);
                 }
-                $location->setAttribute('item', $place_item);
+                $location->item = $place_item;
             }
         }
 
+        // TODO: Need to update names in FE for these... also this is a breaking name change
         foreach ($request->input('drops', []) as $pack => $items) {
-            foreach ($items as $place => $item) {
-                if ($item == 'auto_fill') {
-                    continue;
-                }
-
-                $drop = Sprite::get($item);
-
-                if (!$drop instanceof \App\Sprite\Droppable) {
-                    continue;
-                }
-
-                $rand->getWorld(0)->setDrop($pack, $place, $drop);
-            }
+            //    foreach ($items as $place => $item) {
+            //        if ($item == 'auto_fill') {
+            //            continue;
+            //        }
+            //
+            //        $drop = Sprite::get($item);
+            //
+            //        if (!$drop instanceof \App\Sprite\Droppable) {
+            //            continue;
+            //        }
+            //
+            //        $rand->getWorld(0)->setDrop($pack, $place, $drop);
+            //    }
         }
 
         $rom = new Rom(config('alttp.base_rom'));
         $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
-        $rand->randomize();
-        $world = $rand->getWorld(0);
+        $worlds = $rand->randomize();
+        $world = $worlds[0];
         $writer = new RomWriterService();
         $writer->writeWorldToRom($world, $rom);
 
@@ -238,7 +239,7 @@ class CustomizerController extends Controller
         }
 
         $spoilerService = new SpoilerService();
-        $spoiler = $spoilerService->getSpoiler($rand, array_merge([
+        $spoiler = $spoilerService->getSpoiler($world, array_merge([
             'entry_crystals_ganon' => $request->input('crystals.ganon', '7'),
             'entry_crystals_tower' => $request->input('crystals.tower', '7'),
             'worlds' => 1,

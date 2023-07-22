@@ -1,0 +1,25 @@
+rooms:
+  - roomid: 0x0115
+    nodes:
+      regions:
+        - name: "Desert Big Fairy"
+          inletid: 0x5e
+        - name: "Wetlands Big Fairy"
+          inletid: 0x5e
+        - name: "South of Ruins Big Fairy"
+          inletid: 0x5e
+        - name: "South of POD Big Fairy"
+          inletid: 0x5e
+        - name: "Mire Big Fairy"
+          inletid: 0x5e
+        - name: "Shopping Mall Big Fairy"
+          inletid: 0x5e
+        - name: "Death Mountain Big Fairy"
+          inletid: 0x5e
+
+      mobs:
+        - name: "Big Fairy - Fairy"
+          position: { x: 0x17, y: 0x16, z: 0x00 }
+          sprite: "FairyBig"
+          allow:
+            - "FairyBig"

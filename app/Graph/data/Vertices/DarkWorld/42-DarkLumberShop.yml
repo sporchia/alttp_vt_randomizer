@@ -1,0 +1,32 @@
+maps:
+  - map: 0x42
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Lumber Shop"
+
+      entrances:
+        - name: "Lumberjack Shop"
+          entranceid: 0x56
+          outletid: 0x62
+
+      mobs:
+        - name: "Lumberjack Shop - Snapdragon 1"
+          position: { x: 0x0c, y: 0x11 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "Lumberjack Shop - Snapdragon 2"
+          position: { x: 0x0c, y: 0x13 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "Lumberjack Shop - Fairy"
+          position: { x: 0x06, y: 0x16 }
+          sprite: "Fairy"
+          state: [1, 2]
+
+        - name: "Lumberjack Shop - Moblin"
+          position: { x: 0x0e, y: 0x19 }
+          sprite: "Moblin"
+          state: [1, 2]

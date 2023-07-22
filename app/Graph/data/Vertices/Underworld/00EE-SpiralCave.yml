@@ -1,0 +1,67 @@
+rooms:
+  - roomid: 0x00EE
+    nodes:
+      regions:
+        - name: "Spiral Cave Top"
+          inletid: 0x1d
+
+      mobs:
+        - name: "Spiral Cave Top - Mini Moldorm 1"
+          position: { x: 0x10, y: 0x04, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Spiral Cave Top - Mini Moldorm 2"
+          position: { x: 0x0b, y: 0x0e, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Spiral Cave Top - Mini Moldorm 3"
+          position: { x: 0x09, y: 0x1c, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Spiral Cave Top - Blue Bari 1"
+          position: { x: 0x03, y: 0x0b, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Spiral Cave Top - Blue Bari 2"
+          position: { x: 0x1c, y: 0x0c, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

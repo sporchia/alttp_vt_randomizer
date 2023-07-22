@@ -17,12 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Build extends Model
 {
-    /** @var array */
     protected $fillable = [
         'build',
         'hash',
     ];
-    /** @var array */
     protected $attributes = [
         'patch' => '[]',
     ];

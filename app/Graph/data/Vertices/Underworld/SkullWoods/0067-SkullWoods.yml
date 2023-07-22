@@ -1,0 +1,98 @@
+rooms:
+  - roomid: 0x67
+    group: 9
+    nodes:
+      regions:
+        - name: "Skull Woods - Trap Chest Room"
+        - name: "Skull Woods - Firebar Pits"
+          inletid: 0x77
+
+      items:
+        - name: "Skull Woods - Compass Chest"
+          addresses: [0xE992]
+          type: "chest"
+          itemset: ["skull"]
+
+      pots:
+        - name: "Skull Woods - Firebar Pits - Pot 1"
+          position: 0x070c
+          sprite: "@ArrowRefill5"
+        - name: "Skull Woods - Firebar Pits - Pot 2"
+          position: 0x0730
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Firebar Pits - Pot 3"
+          position: 0x1360
+          sprite: "@Heart"
+        - name: "Skull Woods - Firebar Pits - Pot 4"
+          position: 0x144a
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Firebar Pits - Pot 5"
+          position: 0x1712
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Firebar Pits - Pot 6"
+          position: 0x1a12
+          sprite: "@Heart"
+        - name: "Skull Woods - Firebar Pits - Pot 7"
+          position: 0x1c68
+          sprite: "@Heart"
+        - name: "Skull Woods - Firebar Pits - Pot 8"
+          position: 0x095c
+        - name: "Skull Woods - Firebar Pits - Pot 9"
+          position: 0x1c54
+        - name: "Skull Woods - Firebar Pits - Pot 10"
+          position: 0x1a16
+
+      mobs:
+        - name: "Skull Woods - Firebar Pits - Bumper"
+          position: { x: 0x07, y: 0x0c, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Firebar Pits - Blue Bari 1"
+          position: { x: 0x04, y: 0x06, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Skull Woods - Firebar Pits - Blue Bari 2"
+          position: { x: 0x0b, y: 0x06, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Skull Woods - Firebar Pits - Hardhat Beetle 1"
+          position: { x: 0x05, y: 0x0c, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Skull Woods - Firebar Pits - Hardhat Beetle 2"
+          position: { x: 0x13, y: 0x0f, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Skull Woods - Firebar Pits - Hardhat Beetle 3"
+          position: { x: 0x05, y: 0x13, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVD"
+
+        - name: "Skull Woods - Firebar Pits - Hardhat Beetle 4"
+          position: { x: 0x09, y: 0x13, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVD"
+
+        - name: "Skull Woods - Firebar Pits - Fire Bar (Clockwise)"
+          position: { x: 0x18, y: 0x14, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Skull Woods - Firebar Pits - Fire Bar (Counterclockwise)"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "FireBarCCW"
+
+        - name: "Skull Woods - Firebar Pits - Hardhat Beetle 5"
+          position: { x: 0x18, y: 0x1a, z: 0x00 }
+          sprite: "HardhatBeetle"

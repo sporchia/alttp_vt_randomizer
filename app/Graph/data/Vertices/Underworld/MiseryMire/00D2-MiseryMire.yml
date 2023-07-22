@@ -1,0 +1,68 @@
+rooms:
+  - roomid: 0xD2
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Mire 2"
+
+      shutters:
+        - name: "Misery Mire - Mire 2 - Shutter Door"
+
+      mobs:
+        - name: "Misery Mire - Mire 2 - Wizzrobe T"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Popo TR"
+          position: { x: 0x1a, y: 0x07, z: 0x00 }
+          sprite: "Popo"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Wizzrobe TL"
+          position: { x: 0x13, y: 0x08, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Wizzrobe TR"
+          position: { x: 0x1c, y: 0x08, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Beamos"
+          position: { x: 0x18, y: 0x0a, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Popo C"
+          position: { x: 0x16, y: 0x0c, z: 0x00 }
+          sprite: "Popo"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Popo L"
+          position: { x: 0x13, y: 0x0d, z: 0x00 }
+          sprite: "Popo"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Wizzrobe B"
+          position: { x: 0x13, y: 0x10, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "MiseryMireTwoTrophy"
+
+        - name: "Misery Mire - Mire 2 - Popo BL"
+          position: { x: 0x14, y: 0x14, z: 0x00 }
+          sprite: "Popo"
+          trophy: "MiseryMireTwoTrophy"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Mire 2 - Popo BR"
+          position: { x: 0x1c, y: 0x14, z: 0x00 }
+          sprite: "Popo"
+          trophy: "MiseryMireTwoTrophy"

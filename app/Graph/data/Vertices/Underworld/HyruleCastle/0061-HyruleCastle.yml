@@ -1,0 +1,20 @@
+rooms:
+  - roomid: 0x61
+    group: 1
+    nodes:
+      regions:
+        - name: "Hyrule Castle - Lobby"
+          inletid: 0x04
+
+      mobs:
+        - name: "Hyrule Castle - Lobby - Green Guard"
+          position: { x: 0x0c, y: 0x0e, z: 0x00 }
+          sprite: "GreenSwordGuard01"
+
+        - name: "Hyrule Castle - Lobby - Green Knife Guard 1"
+          position: { x: 0x0d, y: 0x12, z: 0x00 }
+          sprite: "GreenGuardRecruit"
+
+        - name: "Hyrule Castle - Lobby - Green Knife Guard 2"
+          position: { x: 0x12, y: 0x12, z: 0x00 }
+          sprite: "GreenGuardRecruit"

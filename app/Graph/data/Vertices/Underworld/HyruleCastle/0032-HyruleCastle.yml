@@ -1,0 +1,43 @@
+rooms:
+  - roomid: 0x32
+    group: 1
+    dark: true
+    nodes:
+      regions:
+        - name: "Sewers - Dark Cross"
+
+      keydoors:
+        - name: "Sewers - Dark Cross Door"
+          key: "KeyH2"
+
+      items:
+        - name: "Sewers - Dark Cross Chest"
+          addresses: [0xE96E]
+          type: "chest"
+          itemset: ["escape"]
+
+      pots:
+        - name: "Sewers - Dark Cross - Pot"
+          position: 0x0d1c
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Sewers - Dark Cross - Keese 1"
+          position: { x: 0x0b, y: 0x0d, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Dark Cross - Rope 1"
+          position: { x: 0x0f, y: 0x0d, z: 0x00 }
+          sprite: "Rope"
+
+        - name: "Sewers - Dark Cross - Keese 2"
+          position: { x: 0x13, y: 0x0d, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Dark Cross - Rope 2"
+          position: { x: 0x10, y: 0x0e, z: 0x00 }
+          sprite: "Rope"
+
+        - name: "Sewers - Dark Cross - Rope 3"
+          position: { x: 0x12, y: 0x0f, z: 0x00 }
+          sprite: "Rope"

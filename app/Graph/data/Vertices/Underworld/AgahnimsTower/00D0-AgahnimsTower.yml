@@ -1,0 +1,96 @@
+rooms:
+  - roomid: 0xD0
+    group: 6
+    dark: true
+    nodes:
+      regions:
+        - name: "Agahnims Tower - Keese Statue darkness"
+        - name: "Agahnims Tower - Keese Statue"
+        - name: "Agahnims Tower - Dark Maze"
+        - name: "Agahnims Tower - Dark Knife Guards"
+      keydoors:
+        - name: "Agahnims Tower - Second Door"
+          key: "KeyA1"
+
+      items:
+        - name: "Agahnims Tower - Second Chest"
+          addresses: [0xEAB2]
+          type: "chest"
+          itemset: ["agahnim"]
+
+      pots:
+        - name: "Agahnims Tower - Dark Maze - Pot 1"
+          position: 0x059e
+        - name: "Agahnims Tower - Dark Maze - Pot 2"
+          position: 0x0b8c
+          sprite: "@RupeeGreen"
+        - name: "Agahnims Tower - Dark Maze - Pot 3"
+          position: 0x0d2a
+          sprite: "@MagicRefillSmall"
+        - name: "Agahnims Tower - Dark Maze - Pot 4"
+          position: 0x1030
+          sprite: "@Heart"
+        - name: "Agahnims Tower - Dark Maze - Pot 5"
+          position: 0x14b0
+          sprite: "@RupeeGreen"
+        - name: "Agahnims Tower - Dark Maze - Pot 6"
+          position: 0x1792
+          sprite: "@RupeeBlue"
+        - name: "Agahnims Tower - Dark Maze - Pot 7"
+          position: 0x1c0c
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Agahnims Tower - Dark Maze - Keese 1"
+          position: { x: 0x0b, y: 0x05, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Agahnims Tower - Dark Maze - Blue Guard 1"
+          position: { x: 0x09, y: 0x07, z: 0x00 }
+          sprite: "BlueSwordGuard"
+
+        - name: "Agahnims Tower - Dark Maze - Keese 2"
+          position: { x: 0x17, y: 0x07, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Agahnims Tower - Dark Maze - Charging Blue Guard 1"
+          position: { x: 0x15, y: 0x0b, z: 0x00 }
+          sprite: "AssaultSwordGuard"
+
+        - name: "Agahnims Tower - Dark Maze - Keese 3"
+          position: { x: 0x09, y: 0x0c, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Agahnims Tower - Dark Maze - Keese 4"
+          position: { x: 0x08, y: 0x0f, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Agahnims Tower - Dark Maze - Blue Guard 2"
+          position: { x: 0x03, y: 0x10, z: 0x00 }
+          sprite: "BlueSwordGuard03"
+          deny:
+            - "Statue"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Agahnims Tower - Dark Maze - Blue Guard 3"
+          position: { x: 0x09, y: 0x14, z: 0x00 }
+          sprite: "BlueSwordGuard"
+
+        - name: "Agahnims Tower - Dark Maze - Charging Blue Guard 2"
+          position: { x: 0x1b, y: 0x16, z: 0x00 }
+          sprite: "AssaultSwordGuard"
+
+        - name: "Agahnims Tower - Dark Maze - Keese 5"
+          position: { x: 0x06, y: 0x19, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Agahnims Tower - Dark Maze - Charging Blue Guard 3"
+          position: { x: 0x1a, y: 0x19, z: 0x00 }
+          sprite: "AssaultSwordGuard"

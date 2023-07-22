@@ -1,0 +1,60 @@
+rooms:
+  - roomid: 0x65
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Attic Hall Right"
+
+      items:
+        - name: "Thieves' Town - Attic"
+          type: "chest"
+          addresses: [0xEA0D]
+          itemset: ["thieves"]
+
+        - name: "Thieves' Town - Attic Window"
+          type: "event"
+          item: "LightHole"
+          itemset: ["event"]
+
+      pots:
+        - name: "Thieves' Town - Attic Window - Pot 1"
+          position: 0x1c64
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Attic Window - Pot 2"
+          position: 0x1c68
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Thieves' Town - Attic Window - Rat 1"
+          position: { x: 0x13, y: 0x15, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerVU"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Thieves' Town - Attic Window - Rat 2"
+          position: { x: 0x09, y: 0x17, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+
+        - name: "Thieves' Town - Attic Window - Rat 3"
+          position: { x: 0x06, y: 0x18, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Thieves' Town - Attic Window - Rat 4"
+          position: { x: 0x16, y: 0x19, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Thieves' Town - Attic Window - Rat 5"
+          position: { x: 0x16, y: 0x1c, z: 0x00 }
+          sprite: "Rat"

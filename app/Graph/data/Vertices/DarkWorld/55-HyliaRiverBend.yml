@@ -1,0 +1,48 @@
+maps:
+  - map: 0x55
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Hylia River Bend"
+        - name: "Dark Hylia River Bend East"
+        - name: "Dark Hylia River Bend West"
+
+      warps:
+        - name: "Dark Hylia River Bend whirlpool"
+          position: { x: 0x11, y: 0x09 }
+
+      mobs:
+        - name: "Dark Hylia River Bend - Whirlpool"
+          position: { x: 0x11, y: 0x09 }
+          sprite: "Whirlpool"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Bend - Hinox 1"
+          position: { x: 0x16, y: 0x0e }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Bend - Stal"
+          position: { x: 0x18, y: 0x0e }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Bend - Blue Rupee"
+          position: { x: 0x1b, y: 0x0f }
+          sprite: "RupeeBlue"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Bend - Hinox 2"
+          position: { x: 0x07, y: 0x17 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Bend - Bee"
+          position: { x: 0x0a, y: 0x1a }
+          sprite: "Bee"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Bend - Ropa"
+          position: { x: 0x1a, y: 0x1b }
+          sprite: "Ropa"
+          state: [1, 2]

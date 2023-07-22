@@ -1,0 +1,12 @@
+rooms:
+  - roomid: 0x0113
+    nodes:
+      regions:
+        - name: "King's Tomb"
+          inletid: 0x5b
+
+      items:
+        - name: "King's Tomb Chest"
+          addresses: [0xE97A]
+          type: "chest"
+          itemset: ["lw"]

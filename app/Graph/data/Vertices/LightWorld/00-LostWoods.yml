@@ -1,0 +1,143 @@
+maps:
+  - map: 0x00
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Lost Woods Main Arbor"
+        - name: "Lost Woods West Logs"
+        - name: "Lost Woods Mushroom Niche"
+
+      entrances:
+        - name: "Thief Hideout"
+          entranceid: 0x2B
+          outletid: 0x36
+
+        - name: "High Stakes Chest Game"
+          entranceid: 0x3B
+          outletid: 0x4F
+
+      holes:
+        - name: "Thief Hideout - Hole"
+          entranceids: [0x07]
+
+      items:
+        - name: "Mushroom"
+          addresses: [0x180013]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Lost Woods - Raven 1"
+          position: { x: 0x12, y: 0x0b }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Lost Woods - Raven 2"
+          position: { x: 0x2d, y: 0x0a }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Lost Woods - Fake Master Sword 3"
+          position: { x: 0x39, y: 0x15 }
+          sprite: "FakeMasterSword"
+          state: [1]
+
+        - name: "Lost Woods - Thief 1"
+          position: { x: 0x0e, y: 0x22 }
+          sprite: "Thief"
+          state: [1]
+
+        - name: "Lost Woods - Bush Hoarder 2"
+          position: { x: 0x1e, y: 0x2d }
+          sprite: "BushHoarder"
+          state: [1]
+
+        - name: "Lost Woods - Rupee Pull"
+          position: { x: 0x2a, y: 0x27 }
+          sprite: "PullForRupees"
+          state: [1]
+
+        - name: "Lost Woods - Raven 3"
+          position: { x: 0x36, y: 0x2d }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Lost Woods - Fake Master Sword 4"
+          position: { x: 0x25, y: 0x35 }
+          sprite: "FakeMasterSword"
+          state: [1]
+
+        - name: "Lost Woods - Thief 2"
+          position: { x: 0x29, y: 0x35 }
+          sprite: "Thief"
+          state: [1]
+
+        - name: "Lost Woods - Blue Guard 1"
+          position: { x: 0x0f, y: 0x11 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Lost Woods - Thief 3"
+          position: { x: 0x0d, y: 0x1f }
+          sprite: "Thief"
+          state: [2]
+
+        - name: "Lost Woods - Rupee Pull 2"
+          position: { x: 0x2b, y: 0x08 }
+          sprite: "PullForRupees"
+          state: [2]
+
+        - name: "Lost Woods - Blue Guard 2"
+          position: { x: 0x33, y: 0x08 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Lost Woods - Thief 4"
+          position: { x: 0x2b, y: 0x0a }
+          sprite: "Thief"
+          state: [2]
+
+        - name: "Lost Woods - Bush Hoarder 3"
+          position: { x: 0x0d, y: 0x2c }
+          sprite: "BushHoarder"
+          state: [2]
+
+        - name: "Lost Woods - Blue Guard 3"
+          position: { x: 0x09, y: 0x33 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Lost Woods - Bush Hoarder 4"
+          position: { x: 0x28, y: 0x2f }
+          sprite: "BushHoarder"
+          state: [2]
+
+        - name: "Lost Woods - Fake Master Sword 1"
+          position: { x: 0x07, y: 0x12 }
+          sprite: "FakeMasterSword"
+          state: [1, 2]
+
+        - name: "Lost Woods - Mushroom"
+          position: { x: 0x1e, y: 0x15 }
+          sprite: "Mushroom"
+          state: [1, 2]
+
+        - name: "Lost Woods - Fake Master Sword 2"
+          position: { x: 0x28, y: 0x06 }
+          sprite: "FakeMasterSword"
+          state: [1, 2]
+
+        - name: "Lost Woods - Buzzblob"
+          position: { x: 0x31, y: 0x0a }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Lost Woods - Bush Hoarder 1"
+          position: { x: 0x2a, y: 0x10 }
+          sprite: "BushHoarder"
+          state: [1, 2]
+
+        - name: "Lost Woods - Bee"
+          position: { x: 0x29, y: 0x25 }
+          sprite: "Bee"
+          state: [1, 2]

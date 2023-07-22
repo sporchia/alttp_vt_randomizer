@@ -1,0 +1,19 @@
+rooms:
+  - roomid: 0x0107
+    nodes:
+      regions:
+        - name: "Library - Entrance"
+          inletid: 0x49
+
+      items:
+        - name: "Library"
+          addresses: [0x180012]
+          type: "bonk"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Bomb Hut - Dash Item"
+          position: { x: 0x03, y: 0x15, z: 0x00 }
+          sprite: "DashItem"
+          allow:
+            - "DashItem"

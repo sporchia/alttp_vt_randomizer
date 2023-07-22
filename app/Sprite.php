@@ -40,26 +40,6 @@ class Sprite
     }
 
     /**
-     * Get the Sprite by byte
-     *
-     * @param int $byte byte of Sprite
-     *
-     * @throws \Exception if the Sprite doesn't exist
-     *
-     * @return Sprite
-     */
-    public static function getWithByte($byte)
-    {
-        foreach (static::all() as $item) {
-            if ($item->byte === $byte) {
-                return $item;
-            }
-        }
-
-        throw new \Exception('Unknown Sprite: ' . $byte);
-    }
-
-    /**
      * Get the all known Sprites
      *
      * @return Collection
@@ -83,6 +63,7 @@ class Sprite
             new Sprite("Moldorm", 0x09, 0x00, [null, null, 0x30, null]),
             new Sprite("Octorok4", 0x0A, 0x00, [null, null, [0x0C, 0x18], null]),
             new Sprite("Chicken", 0x0B, 0x00, [null, null, null, [0x15, 0x50]]),
+            new Sprite("@Chicken", 0x0B, 0x00, [null, null, null, [0x15, 0x50]]),
             new Sprite("OctorokStone", 0x0C, 0x00, [null, null, [0x0C, 0x18], null]),
             new Sprite("Buzzblob", 0x0D, 0x00, [null, null, null, 0x11]),
             new Sprite("Snapdragon", 0x0E, 0x00, [0x16, null, 0x17, null]),
@@ -137,7 +118,17 @@ class Sprite
             new Sprite("TutorialGuard", 0x3F, 0x00, [0x48, 0x49, null, null]),
             new Sprite("LightningLock", 0x40, 0x00, [null, null, null, 0x1D]),
             new Sprite("BlueSwordGuard", 0x41, 0x00, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard01", 0x41, 0x01, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard02", 0x41, 0x02, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard03", 0x41, 0x03, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard05", 0x41, 0x05, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard13", 0x41, 0x13, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard15", 0x41, 0x15, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("BlueSwordGuard1B", 0x41, 0x1b, [null, [0x0D, 0x49], [0x13, 0x29], null]),
             new Sprite("GreenSwordGuard", 0x42, 0x00, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("GreenSwordGuard01", 0x42, 0x01, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("GreenSwordGuard03", 0x42, 0x03, [null, [0x0D, 0x49], [0x13, 0x29], null]),
+            new Sprite("GreenSwordGuard1B", 0x42, 0x1b, [null, [0x0D, 0x49], [0x13, 0x29], null]),
             new Sprite("RedSpearGuard", 0x43, 0x00, [null, 0x49, null, null]),
             new Sprite("AssaultSwordGuard", 0x44, 0x00, [0x46, 0x49, null, null]),
             new Sprite("FastRedSpearGuard", 0x45, 0x00, [null, 0x49, null, null]),
@@ -193,7 +184,7 @@ class Sprite
             new Sprite("Zelda", 0x76, 0x00, [null, null, null, null]),
             new Sprite("Antifairy2", 0x77, 0x00, [null, null, null, [0x52, 0x53]]),
             new Sprite("SahaWife", 0x78, 0x00, [null, null, 0x4A, null]),
-            new Sprite\Droppable("Bee", 0x79, 0x00, [null, null, null, null]),
+            new Sprite("Bee", 0x79, 0x00, [null, null, null, null]),
             new Sprite("Agahnim", 0x7A, 0x00, [null, [0x1A, 0x3D], 0x42, 0x43]),
             new Sprite("AgahnimBall", 0x7B, 0x00, [null, null, null, 0x43]),
             new Sprite("GreenStalfos", 0x7C, 0x00, [0x1F, null, null, null]),
@@ -203,8 +194,10 @@ class Sprite
             new Sprite("FireSnake", 0x80, 0x00, [0x1F, null, null, null]),
             new Sprite("Hover", 0x81, 0x00, [null, null, 0x22, null]),
             new Sprite("AntifairyCircle", 0x82, 0x00, [null, null, null, [0x52, 0x53]]),
-            new Sprite("EyegoreGreen", 0x83, 0x00, [null, 0x2C, 0x2E, null]),
-            new Sprite("EyegoreRed", 0x84, 0x00, [null, 0x2C, 0x2E, null]),
+            new Sprite("EyegoreGreen", 0x83, 0x00, [null, null, 0x2E, null]),
+            new Sprite("MimicGreen", 0x83, 0x01, [null, 0x2C, null, null]),
+            new Sprite("EyegoreRed", 0x84, 0x00, [null, null, 0x2E, null]),
+            new Sprite("MimicRed", 0x84, 0x01, [null, 0x2C, null, null]),
             new Sprite("StalfosYellow", 0x85, 0x00, [0x1F, null, null, null]),
             new Sprite("Kodongo", 0x86, 0x00, [null, null, 0x2A, null]),
             new Sprite("Flames", 0x87, 0x00, [null, null, 0x2A, null]),
@@ -250,13 +243,13 @@ class Sprite
             new Sprite("PipeU", 0xAF, 0x00, [null, null, null, null]),
             new Sprite("PipeR", 0xB0, 0x00, [null, null, null, null]),
             new Sprite("PipeL", 0xB1, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("BeeGood", 0xB2, 0x00, [null, null, null, null]),
+            new Sprite("BeeGood", 0xB2, 0x00, [null, null, null, null]),
             new Sprite("HylianPlaque", 0xB3, 0x00, [null, null, null, null]),
             new Sprite("PurpleChest", 0xB4, 0x00, [null, null, null, 0x15]),
             new Sprite("BombSalesman", 0xB5, 0x00, [null, 0x4D, null, 0x5A]),
             new Sprite("Kiki", 0xB6, 0x00, [null, null, null, 0x19]),
             new Sprite("BlindMaiden", 0xB7, 0x00, [null, null, null, null]),
-            new Sprite("DialogueTester", 0xB8, 0x00, [null, 0x2C, null, null]), // enemizer recodes this to mimics
+            new Sprite("DialogueTester", 0xB8, 0x00, [null, null, null, null]),
             new Sprite("FeudingFriends", 0xB9, 0x00, [null, null, null, 0x14]),
             new Sprite("Whirlpool", 0xBA, 0x00, [null, null, null, null]),
             new Sprite("Salesman", 0xBB, 0x00, [0x4B, 0x4D, null, 0x5A]),
@@ -288,19 +281,27 @@ class Sprite
             new Sprite("DiggingGameNPC", 0xD5, 0x00, [null, 0x2A, null, null]),
             new Sprite("Ganon", 0xD6, 0x00, [0x21, 0x41, 0x45, 0x33]),
             new Sprite("GanonInvisible", 0xD7, 0x00, [0x21, 0x41, 0x45, 0x33]),
-            new Sprite\Droppable("Heart", 0xD8, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("RupeeGreen", 0xD9, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("RupeeBlue", 0xDA, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("RupeeRed", 0xDB, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("BombRefill1", 0xDC, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("BombRefill4", 0xDD, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("BombRefill8", 0xDE, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("MagicRefillSmall", 0xDF, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("MagicRefillFull", 0xE0, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("ArrowRefill5", 0xE1, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("ArrowRefill10", 0xE2, 0x00, [null, null, null, null]),
-            new Sprite\Droppable("Fairy", 0xE3, 0x00, [null, null, null, null]),
+            new Sprite("Heart", 0xD8, 0x00, [null, null, null, null]),
+            new Sprite("@Heart", 0xD8, 0x00, [null, null, null, null]),
+            new Sprite("RupeeGreen", 0xD9, 0x00, [null, null, null, null]),
+            new Sprite("@RupeeGreen", 0xD9, 0x00, [null, null, null, null]),
+            new Sprite("RupeeBlue", 0xDA, 0x00, [null, null, null, null]),
+            new Sprite("@RupeeBlue", 0xDA, 0x00, [null, null, null, null]),
+            new Sprite("RupeeRed", 0xDB, 0x00, [null, null, null, null]),
+            new Sprite("BombRefill1", 0xDC, 0x00, [null, null, null, null]),
+            new Sprite("@BombRefill1", 0xDC, 0x00, [null, null, null, null]),
+            new Sprite("BombRefill4", 0xDD, 0x00, [null, null, null, null]),
+            new Sprite("BombRefill8", 0xDE, 0x00, [null, null, null, null]),
+            new Sprite("MagicRefillSmall", 0xDF, 0x00, [null, null, null, null]),
+            new Sprite("@MagicRefillSmall", 0xDF, 0x00, [null, null, null, null]),
+            new Sprite("MagicRefillFull", 0xE0, 0x00, [null, null, null, null]),
+            new Sprite("@MagicRefillFull", 0xE0, 0x00, [null, null, null, null]),
+            new Sprite("ArrowRefill5", 0xE1, 0x00, [null, null, null, null]),
+            new Sprite("@ArrowRefill5", 0xE1, 0x00, [null, null, null, null]),
+            new Sprite("ArrowRefill10", 0xE2, 0x00, [null, null, null, null]),
+            new Sprite("Fairy", 0xE3, 0x00, [null, null, null, null]),
             new Sprite("Key", 0xE4, 0x00, [null, null, null, null]),
+            new Sprite("@Key", 0xE4, 0x00, [null, null, null, null]),
             new Sprite("BigKey", 0xE5, 0x00, [null, null, null, null]),
             new Sprite("Shield", 0xE6, 0x00, [null, null, null, 0x1B]),
             new Sprite("Mushroom", 0xE7, 0x00, [null, null, null, null]),
@@ -352,15 +353,14 @@ class Sprite
     }
 
     /**
-     * Create a new Sprite
-     *
-     * @param string $name Unique name of item
-     * @param array $bytes data to write to Location addresses
-     * @param array|null $address Addresses in ROM to write back Location data if set
+     * @param string $name unique name of sprite
+     * @param int $byte data to write to put sprite in place
+     * @param int $subtype data to write to change sprite subtype
+     * @param array $sheets Sheets need for proper GFX display
      *
      * @return void
      */
-    public function __construct($name, int $byte, int $subtype = 0x00, array $sheets = [])
+    public function __construct($name, int $byte, int $subtype, array $sheets)
     {
         $this->name = $name;
         $this->nice_name = 'sprite.' . $name;
@@ -400,26 +400,14 @@ class Sprite
     }
 
     /**
-     * Get the addresses to write to
-     *
-     * @return array
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
      * converts 4bpp 8x8 to palette reference at a given offset
      *
      * @author Zarby89
      *
      * @param array $sprite byte array of gfx data
      * @param int $pos position in stream to pull 8x8 from
-     *
-     * @return array
      */
-    public static function load8x8(array $sprite, int $pos = 0)
+    public static function load8x8(array $sprite, int $pos = 0): array
     {
         //pos = 32 bytes to read per 8x8 tiles, will return an array of 64bytes
         $positions = [0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01];
@@ -430,16 +418,16 @@ class Sprite
                 //There's 4 bit per pixel, 2 at the start, 2 at the middle, for every pixels
                 //so we read all of them in order up to 32 byte
                 if (($sprite[$pos + ($x * 2)] & $positions[$y]) == $positions[$y]) {
-                    $tmpbyte += 1;
+                    $tmpbyte |= 1;
                 }
                 if (($sprite[$pos + ($x * 2) + 1] & $positions[$y]) == $positions[$y]) {
-                    $tmpbyte += 2;
+                    $tmpbyte |= 2;
                 }
                 if (($sprite[$pos + 16 + ($x * 2)] & $positions[$y]) == $positions[$y]) {
-                    $tmpbyte += 4;
+                    $tmpbyte |= 4;
                 }
                 if (($sprite[$pos + 16 + ($x * 2) + 1] & $positions[$y]) == $positions[$y]) {
-                    $tmpbyte += 8;
+                    $tmpbyte |= 8;
                 }
                 $temp_array[$y + ($x * 8)] = $tmpbyte;
             }
@@ -455,10 +443,8 @@ class Sprite
      *
      * @param array $sprite byte array of gfx data
      * @param int $pos position in stream to pull 8x8 from
-     *
-     * @return array
      */
-    public static function load16x16(array $sprite, int $pos = 0)
+    public static function load16x16(array $sprite, int $pos = 0): array
     {
         //pos 0x40 = head facing down, pos 0x4C0 = body facing down
         $temp_array = array_fill(0, 16, []);
@@ -479,73 +465,6 @@ class Sprite
         return $temp_array;
     }
 
-    public function dumpBinBlock(Rom $rom)
-    {
-        return [
-            '0x6B080' => sprintf("%08b", $rom->readByte(0x6B080 + (int) $this->bytes[0])),
-            '0x6B173' => sprintf("%08b", $rom->readByte(0x6B173 + (int) $this->bytes[0])),
-            '0x6B266' => sprintf("%08b", $rom->readByte(0x6B266 + (int) $this->bytes[0])),
-            '0x6B359' => sprintf("%08b", $rom->readByte(0x6B359 + (int) $this->bytes[0])),
-            '0x6B44C' => sprintf("%08b", $rom->readByte(0x6B44C + (int) $this->bytes[0])),
-            '0x6B53F' => sprintf("%08b", $rom->readByte(0x6B53F + (int) $this->bytes[0])),
-            '0x6B632' => sprintf("%08b", $rom->readByte(0x6B632 + (int) $this->bytes[0])),
-            '0x6B725' => sprintf("%08b", $rom->readByte(0x6B725 + (int) $this->bytes[0])),
-        ];
-    }
-
-    public function readPropertiesFromRom(Rom $rom)
-    {
-        $bytes = [
-            $rom->readByte(0x6B080 + (int) $this->bytes[0]),
-            $rom->readByte(0x6B173 + (int) $this->bytes[0]),
-            $rom->readByte(0x6B266 + (int) $this->bytes[0]),
-            $rom->readByte(0x6B359 + (int) $this->bytes[0]),
-            $rom->readByte(0x6B44C + (int) $this->bytes[0]),
-            $rom->readByte(0x6B53F + (int) $this->bytes[0]),
-            $rom->readByte(0x6B632 + (int) $this->bytes[0]),
-            $rom->readByte(0x6B725 + (int) $this->bytes[0]),
-        ];
-
-        // these need to be bit shifted with mask, otherwise the "flag" might appear wrong
-        return [
-            'harmless' => $bytes[0] >> 7 & 1,
-            'mastersword_ceremony' => $bytes[0] >> 6 & 1,
-            'towards_walls' => $bytes[0] >> 5 & 1,
-            'visibility' => $bytes[0] & 0x1F,
-            'hit_points' => $bytes[1],
-            'damage_type' => $bytes[2] & 0x0F,
-            'unknown' => $bytes[2] >> 4,
-            'death_animation_extra' => $bytes[3] >> 7 & 1,
-            'invincible' => $bytes[3] >> 6 & 1,
-            'width' => $bytes[3] >> 5 & 1,
-            'shadow' => $bytes[3] >> 4 & 1,
-            'palette' => $bytes[3] >> 1 & 0x07,
-            'unknown2' => $bytes[3] & 1,
-            'ignore_collision' => $bytes[4] >> 7 & 1,
-            'statis' => $bytes[4] >> 6 & 1,
-            'persist' => $bytes[4] >> 5 & 1,
-            'hitbox' => $bytes[4] & 0x1F,
-            'hitbox_interaction' => $bytes[5] >> 4,
-            'deflect_arrows' => $bytes[5] >> 3 & 1,
-            'unknown4' => $bytes[5] >> 2 & 1,
-            'death_boss' => $bytes[5] >> 1 & 1,
-            'falls_in_holes' => $bytes[5] & 1,
-            'disable_interactions' => $bytes[6] >> 7 & 1,
-            'water' => $bytes[6] >> 6 & 1,
-            'shield_destruction' => $bytes[6] >> 5 & 1,
-            'damage_sound' => $bytes[6] >> 4 & 1,
-            'prize_pack' => $bytes[6] & 0x0F,
-            'death_conditional' => $bytes[7] >> 7 & 1,
-            'death_conditional2' => $bytes[7] >> 6 & 1,
-            'unused2' => $bytes[7] >> 5 & 1,
-            'deflect_missles' => $bytes[7] >> 4 & 1,
-            'collide_less' => $bytes[7] >> 3 & 1,
-            'impervious_sword_hammer' => $bytes[7] >> 2 & 1,
-            'impervious_arrows' => $bytes[7] >> 1 & 1,
-            'disabled' => $bytes[7] & 1,
-        ];
-    }
-
     /**
      * serialized version of Sprite
      *
@@ -553,6 +472,6 @@ class Sprite
      */
     public function __toString()
     {
-        return $this->name . serialize($this->bytes);
+        return $this->name . serialize($this->byte);
     }
 }

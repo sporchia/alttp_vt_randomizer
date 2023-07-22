@@ -1,0 +1,69 @@
+rooms:
+  - roomid: 0xD5
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Eye Bridge"
+          inletid: 0x18
+
+      items:
+        - name: "Turtle Rock - Eye Bridge - Bottom Left"
+          addresses: [0xEA31]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+        - name: "Turtle Rock - Eye Bridge - Bottom Right"
+          addresses: [0xEA2E]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+        - name: "Turtle Rock - Eye Bridge - Top Left"
+          addresses: [0xEA2B]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+        - name: "Turtle Rock - Eye Bridge - Top Right"
+          addresses: [0xEA28]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+      mobs:
+        - name: "Turtle Rock - Eye Bridge - Laser Eye (Left) 1"
+          position: { x: 0x0e, y: 0x09, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Eye Bridge - Laser Eye (Right) 1"
+          position: { x: 0x01, y: 0x0d, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Eye Bridge - Laser Eye (Left) 2"
+          position: { x: 0x0e, y: 0x11, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Eye Bridge - Laser Eye (Right) 2"
+          position: { x: 0x01, y: 0x15, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Eye Bridge - Hardhat Beetle"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "Statue"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+            - "Bumper"

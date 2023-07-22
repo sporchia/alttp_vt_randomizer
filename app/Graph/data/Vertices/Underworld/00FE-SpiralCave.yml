@@ -1,0 +1,34 @@
+rooms:
+  - roomid: 0x00FE
+    nodes:
+      regions:
+        - name: "Spiral Cave Exit"
+          inletid: 0x1c
+        - name: "Spiral Cave Ledge"
+
+      items:
+        - name: "Spiral Cave"
+          addresses: [0xE9BF]
+          type: "chest"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Spiral Cave Exit - Mini Moldorm 1"
+          position: { x: 0x16, y: 0x12, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Spiral Cave Exit - Mini Moldorm 2"
+          position: { x: 0x14, y: 0x16, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Spiral Cave Exit - Mini Moldorm 3"
+          position: { x: 0x1a, y: 0x16, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Spiral Cave Exit - Blue Bari 1"
+          position: { x: 0x18, y: 0x12, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Spiral Cave Exit - Blue Bari 2"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"

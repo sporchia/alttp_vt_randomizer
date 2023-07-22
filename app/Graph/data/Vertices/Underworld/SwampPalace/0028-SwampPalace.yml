@@ -1,0 +1,52 @@
+rooms:
+  - roomid: 0x28
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Entrance Drained"
+          peg: "orange"
+        - name: "Swamp Palace - Entrance Filled"
+          peg: "orange"
+          inletid: 0x25
+        - name: "Swamp Palace - Entrance Ledge"
+
+      keydoors:
+        - name: "Swamp Palace - Entrance Door"
+          key: "KeyD2"
+
+      shutters:
+        - name: "Swamp Palace - Entrance Ledge - Shutter Chest"
+
+      items:
+        - name: "Swamp Palace - Entrance Chest"
+          addresses: [0xEA9D]
+          type: "chest"
+          itemset: ["swamp"]
+
+      mobs:
+        - name: "Swamp Palace - Entrance Ledge - Kyameron"
+          position: { x: 0x0a, y: 0x06, z: 0x00 }
+          sprite: "Kyameron"
+          trophy: "SwampPalaceEntranceTrophy"
+
+        - name: "Swamp Palace - Entrance Ledge - Hover 1"
+          position: { x: 0x08, y: 0x08, z: 0x00 }
+          sprite: "Hover"
+          trophy: "SwampPalaceEntranceTrophy"
+
+        - name: "Swamp Palace - Entrance Ledge - Hover 2"
+          position: { x: 0x0b, y: 0x0a, z: 0x00 }
+          sprite: "Hover"
+          trophy: "SwampPalaceEntranceTrophy"
+
+        - name: "Swamp Palace - Entrance Ledge - Hover 3"
+          position: { x: 0x07, y: 0x0d, z: 0x00 }
+          sprite: "Hover"
+          trophy: "SwampPalaceEntranceTrophy"
+
+        - name: "Swamp Palace - Entrance Ledge - Spike Trap"
+          position: { x: 0x08, y: 0x10, z: 0x00 }
+          sprite: "SpikeTrap"
+          trophy: "SwampPalaceEntranceTrophy"
+          deny:
+            - "RollerVU"

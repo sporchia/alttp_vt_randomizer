@@ -1,0 +1,60 @@
+rooms:
+  - roomid: 0x7E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Vanilla Ice"
+        - name: "Ice Palace - Freezor Room"
+        - name: "Ice Palace - Freezor Room Ledge"
+
+      items:
+        - name: "Ice Palace - Freezor Chest"
+          addresses: [0xE995]
+          type: "chest"
+          itemset: ["ice"]
+
+      pots:
+        - name: "Ice Palace - Vanilla Ice - Pot 1"
+          position: 0x0f56
+          sprite: "@Heart"
+        - name: "Ice Palace - Vanilla Ice - Pot 2"
+          position: 0x1a52
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Vanilla Ice - Pot 3"
+          position: 0x1a64
+          sprite: "FloorSwitch"
+        - name: "Ice Palace - Vanilla Ice - Pot 4"
+          position: 0x1a68
+
+      mobs:
+        - name: "Ice Palace - Vanilla Ice - Bumper"
+          position: { x: 0x17, y: 0x11, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Ice Palace - Vanilla Ice - Fire Bar (Counterclockwise) 1"
+          position: { x: 0x18, y: 0x0e, z: 0x00 }
+          sprite: "FireBarCCW"
+
+        - name: "Ice Palace - Vanilla Ice - Pengator 1"
+          position: { x: 0x14, y: 0x0f, z: 0x00 }
+          sprite: "Pengator"
+
+        - name: "Ice Palace - Vanilla Ice - Freezor 1"
+          position: { x: 0x07, y: 0x12, z: 0x00 }
+          sprite: "Freezor"
+          allow:
+            - "Freezor"
+
+        - name: "Ice Palace - Vanilla Ice - Freezor 2"
+          position: { x: 0x0a, y: 0x12, z: 0x00 }
+          sprite: "Freezor"
+          allow:
+            - "Freezor"
+
+        - name: "Ice Palace - Vanilla Ice - Pengator 2"
+          position: { x: 0x1b, y: 0x16, z: 0x00 }
+          sprite: "Pengator"
+
+        - name: "Ice Palace - Vanilla Ice - Fire Bar (Counterclockwise) 2"
+          position: { x: 0x17, y: 0x17, z: 0x00 }
+          sprite: "FireBarCCW"

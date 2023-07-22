@@ -1,0 +1,36 @@
+rooms:
+  - roomid: 0x5F
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Bari University"
+
+      items:
+        - name: "Ice Palace - Spike Room"
+          addresses: [0xE9E0]
+          type: "chest"
+          itemset: ["ice"]
+
+      pots:
+        - name: "Ice Palace - Bari University - Pot"
+          position: 0x1b2c
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Ice Palace - Bari University - Blue Bari 1"
+          position: { x: 0x04, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+
+        - name: "Ice Palace - Bari University - Blue Bari 2"
+          position: { x: 0x0b, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVD"
+            - "RollerHR"
+
+        - name: "Ice Palace - Bari University - Blue Bari 3"
+          position: { x: 0x08, y: 0x1b, z: 0x00 }
+          sprite: "BlueBari"

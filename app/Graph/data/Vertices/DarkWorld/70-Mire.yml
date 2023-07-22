@@ -1,0 +1,90 @@
+maps:
+  - map: 0x70
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Mire"
+        - name: "Mire Warp Ledge"
+
+      entrances:
+        - name: "Mire"
+          entranceid: 0x26
+          outletid: 0x28
+
+        - name: "Mire Shed"
+          entranceid: 0x5E
+          outletid: 0x5F
+
+        - name: "Mire Big Fairy"
+          entranceid: 0x55
+          outletid: 0x74
+
+        - name: "Mire Watto"
+          entranceid: 0x61
+          outletid: 0x6D
+
+      items:
+        - name: "Misery Mire - Entry"
+          type: "event"
+          itemset: ["mm-medallion"]
+
+      mobs:
+        - name: "Mire - Raven 1"
+          position: { x: 0x21, y: 0x1b }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Mire - Fireball Zora 1"
+          position: { x: 0x2b, y: 0x1c }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Mire - Fireball Zora 2"
+          position: { x: 0x12, y: 0x21 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Mire - Swamola 1"
+          position: { x: 0x1b, y: 0x24 }
+          sprite: "Swamola"
+          state: [1, 2]
+
+        - name: "Mire - Swamola 2"
+          position: { x: 0x10, y: 0x27 }
+          sprite: "Swamola"
+          state: [1, 2]
+
+        - name: "Mire - Raven 2"
+          position: { x: 0x07, y: 0x28 }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Mire - Fireball Zora 3"
+          position: { x: 0x16, y: 0x2b }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Mire - Fireball Zora 4"
+          position: { x: 0x1e, y: 0x2e }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Mire - Swamola 3"
+          position: { x: 0x17, y: 0x33 }
+          sprite: "Swamola"
+          state: [1, 2]
+
+        - name: "Mire - Fireball Zora 5"
+          position: { x: 0x11, y: 0x38 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Mire - Fireball Zora 6"
+          position: { x: 0x23, y: 0x2b }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Mire - Swamola 4"
+          position: { x: 0x27, y: 0x2c }
+          sprite: "Swamola"
+          state: [1, 2]

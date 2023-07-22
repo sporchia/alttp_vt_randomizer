@@ -1,0 +1,46 @@
+rooms:
+  - roomid: 0x80
+    group: 1
+    nodes:
+      regions:
+        - name: "Hyrule Castle - Basement Cells"
+        - name: "Hyrule Castle - Basement Locked Cell"
+
+      bigkeydoors:
+        - name: "Hyrule Castle - Basement Lock"
+          key: "BigKeyH2"
+
+      items:
+        - name: "Hyrule Castle - Zelda's Cell"
+          addresses: [0xEB09]
+          type: "chest"
+          itemset: ["escape"]
+
+      pots:
+        - name: "Hyrule Castle - Basement Cells - Pot 1"
+          position: 0x0430
+          sprite: "@Heart"
+        - name: "Hyrule Castle - Basement Cells - Pot 2"
+          position: 0x0434
+          sprite: "@Heart"
+        - name: "Hyrule Castle - Basement Cells - Pot 3"
+          position: 0x0438
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Hyrule Castle - Basement Cells - Ball N Chain Key"
+          position: { x: 0x1a, y: 0x09, z: 0x00 }
+          sprite: "BallNChainTrooper"
+          item: "BigKeyH2"
+          itemset: ["escape"]
+
+        - name: "Hyrule Castle - Basement Cells - Princess Zelda"
+          position: { x: 0x16, y: 0x03, z: 0x00 }
+          sprite: "Zelda"
+          allow: ["Zelda"]
+          item: "LostZelda"
+          itemset: ["event"]
+
+        - name: "Hyrule Castle - Basement Cells - Green Guard"
+          position: { x: 0x07, y: 0x09, z: 0x00 }
+          sprite: "GreenSwordGuard"

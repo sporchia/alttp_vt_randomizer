@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Graph;
 
-use App\Drops\PrizePack;
-use App\Sprite\Droppable;
 use Illuminate\Support\Collection;
 use App\Graph\Graph;
 
@@ -18,9 +16,8 @@ final class World
     public readonly Graph $graph;
     /** @var Collection<Vertex> */
     private Collection $vertices;
-    public Inventory $collected_items;
+    public readonly Inventory $collected_items;
     private array $config = [];
-    private array $prizepacks;
     public array $sprite_sheets = [
         'underworld' => [],
         'overworld' => [],
@@ -42,21 +39,8 @@ final class World
             'difficulty' => 'normal',
             'logic' => 'NoGlitches',
             'goal' => 'ganon',
+            'enemizer.enemyShuffle' => 'none',
         ], $config);
-
-        $this->prizepacks = [
-            '0' => new PrizePack('0', 8),
-            '1' => new PrizePack('1', 8),
-            '2' => new PrizePack('2', 8),
-            '3' => new PrizePack('3', 8),
-            '4' => new PrizePack('4', 8),
-            '5' => new PrizePack('5', 8),
-            '6' => new PrizePack('6', 8),
-            'pull' => new PrizePack('pull', 3),
-            'crab' => new PrizePack('crab', 2),
-            'stun' => new PrizePack('stun', 1),
-            'fish' => new PrizePack('fish', 1),
-        ];
 
         $this->graph = new Graph();
         $start = $this->graph->newVertex([
@@ -68,7 +52,7 @@ final class World
             'name' => 'Meta:' . $this->id,
             'type' => 'meta',
         ]);
-        $this->graph->addDirected($start, $meta, ['group' => 'fixed']);
+        $this->graph->addDirected($start, $meta, "fixed:{$this->id}");
 
         $items = array_merge([
             Item::get('MagicBar', $this->id),
@@ -97,6 +81,12 @@ final class World
 
         $vertices = resolve(VertexCollector::class)->loadYmlData($this);
         collect($vertices)->map(function ($data) {
+            if (isset($data['item']) && !$data['item'] instanceof Item) {
+                $data['item'] = Item::get($data['item'], $this->id);
+            }
+            if (isset($data['trophy']) && !$data['trophy'] instanceof Item) {
+                $data['trophy'] = Item::get($data['trophy'], $this->id);
+            }
             return $this->graph->newVertex($data);
         });
 
@@ -107,34 +97,29 @@ final class World
                     !$this->graph->getVertex($edge_data[1]) instanceof Vertex
                     || !$this->graph->getVertex($edge_data[0]) instanceof Vertex
                 ) {
-                    dd($edge_data);
+                    dd([
+                        'Name Connection Mismatch',
+                        $edge_data,
+                        $this->graph->getVertex($edge_data[1]),
+                        $this->graph->getVertex($edge_data[0]),
+                    ]);
                 }
-                $this->graph->addDirected(
-                    $this->graph->getVertex($edge_data[0]),
-                    $this->graph->getVertex($edge_data[1]),
-                    [
-                        'group' => $group,
-                        'graphviz.label' => $group,
-                    ]
-                );
+                $this->graph->addDirected($this->graph->getVertex($edge_data[0]), $this->graph->getVertex($edge_data[1]), $group);
             }
             foreach ($data['undirected'] as $edge_data) {
-                $this->graph->addDirected(
-                    $this->graph->getVertex($edge_data[0]),
-                    $this->graph->getVertex($edge_data[1]),
-                    [
-                        'group' => $group,
-                        'graphviz.label' => $group,
-                    ]
-                );
-                $this->graph->addDirected(
-                    $this->graph->getVertex($edge_data[1]),
-                    $this->graph->getVertex($edge_data[0]),
-                    [
-                        'group' => $group,
-                        'graphviz.label' => $group,
-                    ]
-                );
+                if (
+                    !$this->graph->getVertex($edge_data[1]) instanceof Vertex
+                    || !$this->graph->getVertex($edge_data[0]) instanceof Vertex
+                ) {
+                    dd([
+                        'Undirected Name Connection Mismatch',
+                        $edge_data,
+                        $this->graph->getVertex($edge_data[1]),
+                        $this->graph->getVertex($edge_data[0]),
+                    ]);
+                }
+                $this->graph->addDirected($this->graph->getVertex($edge_data[0]), $this->graph->getVertex($edge_data[1]), $group);
+                $this->graph->addDirected($this->graph->getVertex($edge_data[1]), $this->graph->getVertex($edge_data[0]), $group);
             }
         }
         // set special edges
@@ -143,14 +128,7 @@ final class World
                 ? 'Crystal:' . $this->id
                 : 'Crystal:' . $this->id . '|' . $this->config('crystals.tower', 7);
 
-            $this->graph->addDirected(
-                $this->graph->getVertex("Meta:{$this->id}"),
-                $this->graph->getVertex("TowerEntry:{$this->id}"),
-                [
-                    'group' => $entry,
-                    'graphviz.label' => $entry,
-                ]
-            );
+            $this->graph->addDirected($this->graph->getVertex("Meta:{$this->id}"), $this->graph->getVertex("TowerEntry:{$this->id}"), $entry);
         }
         if ($this->graph->getVertex("GanonVulnerable:{$this->id}")) {
             switch ($this->config('goal')) {
@@ -164,14 +142,7 @@ final class World
                         ? 'Crystal:' . $this->id
                         : 'Crystal:' . $this->id . '|' . $this->config('crystals.ganon', 7);
 
-                    $this->graph->addDirected(
-                        $this->graph->getVertex("Meta:{$this->id}"),
-                        $this->graph->getVertex("GanonVulnerable:{$this->id}"),
-                        [
-                            'group' => $vulnerable,
-                            'graphviz.label' => $vulnerable,
-                        ]
-                    );
+                    $this->graph->addDirected($this->graph->getVertex("Meta:{$this->id}"), $this->graph->getVertex("GanonVulnerable:{$this->id}"), $vulnerable);
             }
         }
 
@@ -182,7 +153,7 @@ final class World
     {
         $this->vertices = collect();
         foreach ($this->graph->getVertices() as $location) {
-            $this->vertices[$location->getAttribute('name')] = $location;
+            $this->vertices[$location->name] = $location;
         }
     }
 
@@ -203,48 +174,24 @@ final class World
      * Get a vertices by item contained.
      *
      * @param Item|null $item item to search for
+     * 
+     * @return Collection<Vertex>
      */
     public function getLocationsWithItem(Item $item = null): Collection
     {
-        return $this->vertices->filter(static function (Vertex $vertex) use ($item) {
-            return $vertex->item === $item;
-        });
+        return $this->vertices->filter(fn (Vertex $vertex) => $vertex->item === $item);
     }
 
     /**
      * Get a vertices by type.
      *
      * @param string $type type to search for
+     * 
+     * @return Collection<Vertex>
      */
     public function getLocationsOfType(string $type): Collection
     {
-        return $this->vertices->filter(static function (Vertex $vertex) use ($type) {
-            return $vertex->getAttribute('type') === $type;
-        });
-    }
-
-    /**
-     * Get a vertices by room.
-     *
-     * @param int $id room id
-     */
-    public function getLocationsInRoom(int $id): Collection
-    {
-        return $this->vertices->filter(static function (Vertex $vertex) use ($id) {
-            return $vertex->getAttribute('roomid') === $id;
-        });
-    }
-
-    /**
-     * Get a vertices by map.
-     *
-     * @param int $id map id
-     */
-    public function getLocationsInMap(int $id): Collection
-    {
-        return $this->vertices->filter(static function (Vertex $vertex) use ($id) {
-            return $vertex->getAttribute('map') === $id;
-        });
+        return $this->vertices->filter(fn (Vertex $vertex) => $vertex->type === $type);
     }
 
     /**
@@ -252,9 +199,7 @@ final class World
      */
     public function getWritableVertices(): Collection
     {
-        return $this->vertices->filter(function ($vertex) {
-            return $vertex->getAttribute('addresses', false);
-        });
+        return $this->vertices->filter(fn ($vertex) => $vertex->addresses !== null);
     }
 
     /**
@@ -267,41 +212,10 @@ final class World
      */
     public function config(string $key, $default = null)
     {
-        // @todo remove this block later only needed for prize packs
         if (!array_key_exists($key, $this->config)) {
-            $this->config[$key] = config(
-                "alttp.goals.{$this->config['goal']}.$key",
-                config(
-                    "alttp.$key",
-                    config(
-                        "logic.{$this->config['logic']}.$key",
-                        config($key, null)
-                    )
-                )
-            );
+            $this->config[$key] = config($key, null);
         }
 
         return $this->config[$key] ?? $default;
-    }
-
-    /**
-     * Set a drop in a PrizePackSlot in a given PrizePack.
-     * @todo sadness refactor drops into graph and remove this code
-     *
-     * @param string $pack the prize pack to set the drop in
-     * @param int $ind the index of the drop to set
-     * @param Droppable $drop the name of the drop to set
-     */
-    public function setDrop(string $pack, int $ind, Droppable $drop): void
-    {
-        $this->prizepacks[$pack]->getDrops()[$ind]->setDrop($drop);
-    }
-
-    /**
-     * Get all prize packs.
-     */
-    public function getPrizePacks(): array
-    {
-        return $this->prizepacks;
     }
 }

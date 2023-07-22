@@ -35,12 +35,14 @@ final class EntranceShuffler
         };
 
         if (is_string($definition) && is_readable(app_path("Graph/data/Edges/entrances/$definition"))) {
-            $this->definition = Yaml::parse(file_get_contents(app_path("Graph/data/Edges/entrances/$definition")));
-        } elseif (is_array($definition)) {
-            $this->definition = $definition;
-        } else {
+            $definition = Yaml::parse(file_get_contents(app_path("Graph/data/Edges/entrances/$definition")));
+        }
+
+        if (!is_array($definition)) {
             throw new Exception("No valid entrance definition found");
         }
+
+        $this->definition = $definition;
     }
 
     /**
@@ -56,12 +58,14 @@ final class EntranceShuffler
                 !$from instanceof Vertex
                 || !$to instanceof Vertex
             ) {
-                dd($connection);
+                dd([
+                    'ER',
+                    $connection,
+                    $from,
+                    $to,
+                ]);
             }
-            $this->world->graph->addDirected($from, $to, [
-                'group' => "fixed:$world_id",
-                'graphviz.label' => "fixed:$world_id",
-            ]);
+            $this->world->graph->addDirected($from, $to, "fixed:$world_id");
         }
 
         foreach ($this->definition['connections'] as $group) {
@@ -81,10 +85,7 @@ final class EntranceShuffler
                     $out = $out_items[$offset];
                     $from = $this->world->graph->getVertex($in . ":$world_id");
                     $to = $this->world->graph->getVertex($out . ":$world_id");
-                    $this->world->graph->addDirected($from, $to, [
-                        'group' => "fixed:$world_id",
-                        'graphviz.label' => "fixed:$world_id",
-                    ]);
+                    $this->world->graph->addDirected($from, $to, "fixed:$world_id");
                 }
             }
         }

@@ -82,7 +82,7 @@ final class BossShuffler
     /**
      * Add all the vertices to the graph for this region.
      *
-     * @param World $this->world world to reduce graph for
+     * @param World $world world to reduce graph for
      *
      * @return void
      */
@@ -223,17 +223,14 @@ final class BossShuffler
             throw new Exception("Can't place boss.");
         }
 
-        $to_boss->setAttribute('enemizerBoss', array_search($boss_item, self::BOSS_ITEMS));
+        $to_boss->enemizerBoss = array_search($boss_item, self::BOSS_ITEMS);
         $this->updateSprites($from, $boss_item);
-        $this->world->graph->addDirected($from, $to_boss, [
-            'group' => $world_boss_item,
-            'graphviz.label' => $world_boss_item,
-        ]);
+        $this->world->graph->addDirected($from, $to_boss, $world_boss_item);
     }
 
     private function updateSprites($bossRoom, $boss)
     {
-        foreach ($this->boss_location_map[$bossRoom->getAttribute('name')][$boss] as $sprite_definition) {
+        foreach ($this->boss_location_map[$bossRoom->name][$boss] as $sprite_definition) {
             $this->world->graph->newVertex(array_merge(
                 $sprite_definition,
                 [

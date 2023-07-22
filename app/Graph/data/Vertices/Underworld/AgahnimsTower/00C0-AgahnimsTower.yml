@@ -1,0 +1,67 @@
+rooms:
+  - roomid: 0xC0
+    group: 6
+    dark: true
+    nodes:
+      regions:
+        - name: "Agahnims Tower - Dark Corner"
+        - name: "Agahnims Tower - Dark Bridge"
+        - name: "Agahnims Tower - Dark Key Guards"
+        - name: "Agahnims Tower - Dark Key Guards darkness"
+      keydoors:
+        - name: "Agahnims Tower - Third Door"
+          key: "KeyA1"
+      shutters:
+        - name: "Agahnims Tower - Dark Key Guards - Shutter Door"
+
+      pots:
+        - name: "Agahnims Tower - Dark Corner - Pot 1"
+          position: 0x0a30
+          sprite: "@BombRefill1"
+        - name: "Agahnims Tower - Dark Corner - Pot 2"
+          position: 0x0e0c
+          sprite: "@RupeeBlue"
+        - name: "Agahnims Tower - Dark Corner - Pot 3"
+          position: 0x1a0c
+          sprite: "@Heart"
+        - name: "Agahnims Tower - Dark Corner - Pot 4"
+          position: 0x1b1c
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Agahnims Tower - Dark Key Guards - Blue Archer L"
+          position: { x: 0x14, y: 0x0b, z: 0x00 }
+          sprite: "BlueArcher"
+          item: "KeyA1"
+          itemset: ["agahnim"]
+          trophy: "AgahnimsTowerKeyGuardsTrophy"
+
+        - name: "Agahnims Tower - Dark Key Guards - Blue Guard"
+          position: { x: 0x17, y: 0x05, z: 0x00 }
+          sprite: "BlueSwordGuard"
+          trophy: "AgahnimsTowerKeyGuardsTrophy"
+
+        - name: "Agahnims Tower - Dark Key Guards - Blue Archer R"
+          position: { x: 0x1a, y: 0x07, z: 0x00 }
+          sprite: "BlueArcher"
+          trophy: "AgahnimsTowerKeyGuardsTrophy"
+
+        - name: "Agahnims Tower - Dark Corner - Blue Guard 2"
+          position: { x: 0x0b, y: 0x09, z: 0x00 }
+          sprite: "BlueSwordGuard"
+
+        - name: "Agahnims Tower - Dark Corner - Blue Guard 3"
+          position: { x: 0x06, y: 0x0e, z: 0x00 }
+          sprite: "BlueSwordGuard"
+
+        - name: "Agahnims Tower - Dark Corner - Blue Guard 4"
+          position: { x: 0x04, y: 0x18, z: 0x00 }
+          sprite: "BlueSwordGuard"
+
+        - name: "Agahnims Tower - Dark Corner - Blue Archer 3"
+          position: { x: 0x14, y: 0x1b, z: 0x00 }
+          sprite: "BlueArcher"
+
+        - name: "Agahnims Tower - Dark Corner - Blue Guard 5"
+          position: { x: 0x1b, y: 0x1b, z: 0x00 }
+          sprite: "BlueSwordGuard"

@@ -1,0 +1,17 @@
+rooms:
+  - roomid: 0xAF
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Ice Clock"
+
+      mobs:
+        - name: "Ice Palace - Ice Clock - Fire Bar (Clockwise)"
+          position: { x: 0x0a, y: 0x08, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

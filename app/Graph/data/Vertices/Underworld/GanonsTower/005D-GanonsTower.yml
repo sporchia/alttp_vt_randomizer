@@ -1,0 +1,105 @@
+rooms:
+  - roomid: 0x5D
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Gauntlet 1"
+        - name: "Ganon's Tower - Gauntlet 2"
+        - name: "Ganon's Tower - Gauntlet 3"
+
+      shutters:
+        - name: "Ganon's Tower - Gauntlet 1 - Shutter Door"
+        - name: "Ganon's Tower - Gauntlet 2 - Shutter Door"
+        - name: "Ganon's Tower - Gauntlet 3 - Shutter Door"
+
+      pots:
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 1"
+          position: 0x0510
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 2"
+          position: 0x052c
+          sprite: "@RupeeBlue"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 3"
+          position: 0x0b10
+          sprite: "@RupeeGreen"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 4"
+          position: 0x0b2c
+          sprite: "@ArrowRefill5"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 5"
+          position: 0x140c
+          sprite: "@ArrowRefill5"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 6"
+          position: 0x1430
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 7"
+          position: 0x1c0c
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Gauntlet 1 - Pot 8"
+          position: 0x1c30
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Ganon's Tower - Gauntlet 2 - Stalfos T"
+          position: { x: 0x07, y: 0x05, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "GanonsTowerGauntletTwoTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 2 - Beamos"
+          position: { x: 0x08, y: 0x06, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "GanonsTowerGauntletTwoTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 2 - Stalfos L"
+          position: { x: 0x03, y: 0x08, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "GanonsTowerGauntletTwoTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 1 - Red Zazak"
+          position: { x: 0x15, y: 0x08, z: 0x00 }
+          sprite: "ZazakRed"
+          trophy: "GanonsTowerGauntletOneTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 1 - Stalfos L"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "GanonsTowerGauntletOneTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 1 - Blue Zazak"
+          position: { x: 0x19, y: 0x08, z: 0x00 }
+          sprite: "ZazakBlue"
+          trophy: "GanonsTowerGauntletOneTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 1 - Stalfos R"
+          position: { x: 0x1b, y: 0x08, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "GanonsTowerGauntletOneTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 2 - Stalfos B"
+          position: { x: 0x07, y: 0x0b, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "GanonsTowerGauntletTwoTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 3 - Beamos TL"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "GanonsTowerGauntletThreeTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 3 - Blue Zazak TR"
+          position: { x: 0x0b, y: 0x15, z: 0x00 }
+          sprite: "ZazakBlue"
+          trophy: "GanonsTowerGauntletThreeTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 3 - Blue Zazak BL"
+          position: { x: 0x04, y: 0x1a, z: 0x00 }
+          sprite: "ZazakBlue"
+          trophy: "GanonsTowerGauntletThreeTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 3 - Blue Zazak B"
+          position: { x: 0x08, y: 0x1a, z: 0x00 }
+          sprite: "ZazakBlue"
+          trophy: "GanonsTowerGauntletThreeTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 3 - Beamos BR"
+          position: { x: 0x0b, y: 0x1a, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "GanonsTowerGauntletThreeTrophy"

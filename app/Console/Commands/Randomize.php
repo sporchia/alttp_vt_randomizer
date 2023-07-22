@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Graph\Randomizer;
+use App\Graph\Vertex;
 use App\Rom;
 use App\Services\RomWriterService;
 use App\Services\SpoilerService;
@@ -69,6 +70,10 @@ final class Randomize extends Command
     {
         ini_set('memory_limit', '2G');
         $hasher = new Hashids('local', 15);
+
+        $seed = 419847641; // mt_rand();
+        mt_srand($seed);
+        $this->info("Seed: $seed");
 
         if (
             !is_string($this->option('glitches'))
@@ -184,44 +189,43 @@ final class Randomize extends Command
                     'enemizer.enemyDamage' => 'default',
                     'enemizer.enemyHealth' => 'default',
                     'enemizer.potShuffle' => 'off',
-                    'region.shopSupply' => 'shuffled',
-                    'equipment' => [
-                        // for testing
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'BossHeartContainer:0',
-                        'ThreeHundredRupees:0',
-                        'ThreeHundredRupees:0',
-                        'PegasusBoots:0',
-                        'BowAndArrows:0',
-                        'ProgressiveSword:0',
-                        'ProgressiveSword:0',
-                        'ProgressiveSword:0',
-                        'ProgressiveGlove:0',
-                        'ProgressiveGlove:0',
-                        'Lamp:0',
-                        'OcarinaActive:0',
-                        'CaneOfSomaria:0',
-                        'FireRod:0',
-                        'MagicMirror:0',
-                        'Flippers:0',
-                        'MoonPearl:0',
-                        'Hookshot:0',
-                        'Hammer:0',
-                    ],
+                    //'region.shopSupply' => 'shuffled',
+                    //'equipment' => [
+                    //    // for testing
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'BossHeartContainer:0',
+                    //    'ThreeHundredRupees:0',
+                    //    'ThreeHundredRupees:0',
+                    //    'PegasusBoots:0',
+                    //    'BowAndArrows:0',
+                    //    'ProgressiveSword:0',
+                    //    'ProgressiveSword:0',
+                    //    'ProgressiveSword:0',
+                    //    'ProgressiveGlove:0',
+                    //    'ProgressiveGlove:0',
+                    //    'Lamp:0',
+                    //    'OcarinaActive:0',
+                    //    'CaneOfSomaria:0',
+                    //    'FireRod:0',
+                    //    'MagicMirror:0',
+                    //    'Flippers:0',
+                    //    'MoonPearl:0',
+                    //    'Hookshot:0',
+                    //    'Hammer:0',
+                    //],
                 ],
             ]);
             try {
-                $randomizer->randomize();
+                $worlds = $randomizer->randomize();
             } catch (Throwable $e) {
-                //(new Graphviz($randomizer->graph->newFromSearch($randomizer->start), 'svg'))->display();
                 throw $e;
             }
 
@@ -229,9 +233,9 @@ final class Randomize extends Command
                 throw new Exception('Game Unwinnable');
             }
             $writer = new RomWriterService();
-            $writer->writeWorldToRom($randomizer->getWorld(0), $rom);
+            $writer->writeWorldToRom($worlds[0], $rom);
 
-            $rom->muteMusic((bool) $this->option('no-music') ?? false);
+            $rom->muteMusic((bool) ($this->option('no-music') ?? false));
             $rom->setMenuSpeed($this->option('menu-speed'));
 
             $output_file = sprintf($filename, $hash, 'sfc');
@@ -265,7 +269,7 @@ final class Randomize extends Command
 
             if ($this->option('spoiler')) {
                 $spoilerService = new SpoilerService();
-                $spoiler = $spoilerService->getSpoiler($randomizer);
+                $spoiler = $spoilerService->getSpoiler($worlds[0]);
 
                 $spoiler_file = sprintf($filename, $hash, 'json');
 
@@ -273,7 +277,10 @@ final class Randomize extends Command
                 $this->info(sprintf('Spoiler Saved: %s', $spoiler_file));
             }
         }
-        $this->info(memory_get_peak_usage(true));
+
+        $this->info(vsprintf('Peak Memory: %d', [
+            memory_get_peak_usage(true),
+        ]));
     }
 
     /**

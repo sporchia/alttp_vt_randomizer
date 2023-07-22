@@ -1,0 +1,77 @@
+rooms:
+  - roomid: 0x15
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Cold Tubes"
+        - name: "Turtle Rock - Cold Tubes Exit Only"
+
+      pots:
+        - name: "Turtle Rock - Cold Tubes - Pot 1"
+          position: 0x0460
+          sprite: "@BombRefill1"
+        - name: "Turtle Rock - Cold Tubes - Pot 2"
+          position: 0x0464
+          sprite: "@MagicRefillSmall"
+        - name: "Turtle Rock - Cold Tubes - Pot 3"
+          position: 0x0468
+          sprite: "@Heart"
+        - name: "Turtle Rock - Cold Tubes - Pot 4"
+          position: 0x046c
+          sprite: "@MagicRefillSmall"
+        - name: "Turtle Rock - Cold Tubes - Pot 5"
+          position: 0x0470
+          sprite: "@ArrowRefill5"
+        - name: "Turtle Rock - Cold Tubes - Pot 6"
+          position: 0x060c
+          sprite: "@RupeeGreen"
+        - name: "Turtle Rock - Cold Tubes - Pot 7"
+          position: 0x0610
+          sprite: "@ArrowRefill5"
+        - name: "Turtle Rock - Cold Tubes - Pot 8"
+          position: 0x0614
+          sprite: "@RupeeBlue"
+        - name: "Turtle Rock - Cold Tubes - Pot 9"
+          position: 0x0b46
+          sprite: "@MagicRefillFull"
+
+      mobs:
+        - name: "Turtle Rock - Cold Tubes - Down Pipe 1"
+          position: { x: 0x04, y: 0x0c, z: 0x01 }
+          sprite: "PipeD"
+
+        - name: "Turtle Rock - Cold Tubes - Down Pipe 2"
+          position: { x: 0x11, y: 0x11, z: 0x01 }
+          sprite: "PipeD"
+
+        - name: "Turtle Rock - Cold Tubes - Up Pipe"
+          position: { x: 0x04, y: 0x17, z: 0x01 }
+          sprite: "PipeU"
+
+        - name: "Turtle Rock - Cold Tubes - Left Pipe"
+          position: { x: 0x16, y: 0x1b, z: 0x01 }
+          sprite: "PipeL"
+
+        - name: "Turtle Rock - Cold Tubes - Zol 1"
+          position: { x: 0x0a, y: 0x09, z: 0x01 }
+          sprite: "Zol"
+
+        - name: "Turtle Rock - Cold Tubes - Zol 2"
+          position: { x: 0x15, y: 0x09, z: 0x01 }
+          sprite: "Zol"
+
+        - name: "Turtle Rock - Cold Tubes - Antifairy 1"
+          position: { x: 0x09, y: 0x0a, z: 0x01 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Cold Tubes - Pokey"
+          position: { x: 0x18, y: 0x16, z: 0x01 }
+          sprite: "Pokey"
+
+        - name: "Turtle Rock - Cold Tubes - Antifairy 2"
+          position: { x: 0x08, y: 0x17, z: 0x01 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Cold Tubes - Antifairy 3"
+          position: { x: 0x17, y: 0x17, z: 0x01 }
+          sprite: "Antifairy"

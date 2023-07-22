@@ -1,0 +1,161 @@
+maps:
+  - map: 0x1E
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Eastern Ruins"
+
+      entrances:
+        - name: "Eastern Palace"
+          entranceid: 0x07
+          outletid: 0x09
+
+        - name: "Sahasrahla's Hut"
+          entranceid: 0x44
+          outletid: 0x56
+
+      mobs:
+        - name: "Eastern Ruins - Armos 1"
+          position: { x: 0x13, y: 0x08 }
+          sprite: "Armos"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (One Way) 1"
+          position: { x: 0x11, y: 0x1a }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Eastern Ruins - Blue Guard 1"
+          position: { x: 0x31, y: 0x10 }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (Four Way) 1"
+          position: { x: 0x35, y: 0x1d }
+          sprite: "Octorok4"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (Four Way) 2"
+          position: { x: 0x0f, y: 0x25 }
+          sprite: "Octorok4"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (One Way) 2"
+          position: { x: 0x09, y: 0x28 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (One Way) 3"
+          position: { x: 0x15, y: 0x2c }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (One Way) 4"
+          position: { x: 0x09, y: 0x36 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Eastern Ruins - Octorok (One Way) 5"
+          position: { x: 0x2e, y: 0x3b }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Eastern Ruins - sprite.FastRedSpearGuard 1"
+          position: { x: 0x11, y: 0x1a }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Eastern Ruins - Rupee Pull"
+          position: { x: 0x33, y: 0x04 }
+          sprite: "PullForRupees"
+          state: [2]
+
+        - name: "Eastern Ruins - sprite.FastRedSpearGuard 2"
+          position: { x: 0x31, y: 0x10 }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Eastern Ruins - Blue Guard 2"
+          position: { x: 0x0f, y: 0x25 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Eastern Ruins - sprite.FastRedSpearGuard 3"
+          position: { x: 0x09, y: 0x28 }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Eastern Ruins - Charging Red Guard"
+          position: { x: 0x15, y: 0x2c }
+          sprite: "RedSpearGuard"
+          state: [2]
+
+        - name: "Eastern Ruins - Armos 12"
+          position: { x: 0x31, y: 0x28 }
+          sprite: "Armos"
+          state: [2]
+
+        - name: "Eastern Ruins - Armos 13"
+          position: { x: 0x3a, y: 0x29 }
+          sprite: "Armos"
+          state: [2]
+
+        - name: "Eastern Ruins - Fairy"
+          position: { x: 0x22, y: 0x37 }
+          sprite: "Fairy"
+          state: [2]
+
+        - name: "Eastern Ruins - sprite.FastRedSpearGuard 4"
+          position: { x: 0x2d, y: 0x3a }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Eastern Ruins - Armos 2"
+          position: { x: 0x0e, y: 0x0e }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 3"
+          position: { x: 0x19, y: 0x1a }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 4"
+          position: { x: 0x33, y: 0x09 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 5"
+          position: { x: 0x37, y: 0x09 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 6"
+          position: { x: 0x2f, y: 0x17 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 7"
+          position: { x: 0x14, y: 0x33 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 8"
+          position: { x: 0x17, y: 0x33 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 9"
+          position: { x: 0x24, y: 0x25 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 10"
+          position: { x: 0x28, y: 0x29 }
+          sprite: "Armos"
+          state: [1, 2]
+
+        - name: "Eastern Ruins - Armos 11"
+          position: { x: 0x3d, y: 0x29 }
+          sprite: "Armos"
+          state: [1, 2]

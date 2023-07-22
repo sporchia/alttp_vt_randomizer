@@ -1,0 +1,45 @@
+maps:
+  - map: 0x1D
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Hylia River Peninsula"
+        - name: "Hylia River Peninsula Northeast Niche"
+        - name: "Hylia River Peninsula North River"
+        - name: "Hylia River Peninsula South River"
+
+      mobs:
+        - name: "Hylia River Peninsula - Apple"
+          position: { x: 0x0b, y: 0x06 }
+          sprite: "Apple"
+          state: [0, 1]
+
+        - name: "Hylia River Peninsula - Blue Archer 1"
+          position: { x: 0x1b, y: 0x0c }
+          sprite: "BlueArcher"
+          state: [1, 2]
+
+        - name: "Hylia River Peninsula - Blue Archer 2"
+          position: { x: 0x1b, y: 0x0f }
+          sprite: "BlueArcher"
+          state: [1, 2]
+
+        - name: "Hylia River Peninsula - Blue Guard"
+          position: { x: 0x07, y: 0x0d }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Hylia River Peninsula - Crab"
+          position: { x: 0x07, y: 0x12 }
+          sprite: "Crab"
+          state: [1]
+
+        - name: "Hylia River Peninsula - Bee"
+          position: { x: 0x0b, y: 0x06 }
+          sprite: "Bee"
+          state: [2]
+
+        - name: "Hylia River Peninsula - sprite.FastRedSpearGuard"
+          position: { x: 0x07, y: 0x0d }
+          sprite: "FastRedSpearGuard"
+          state: [2]

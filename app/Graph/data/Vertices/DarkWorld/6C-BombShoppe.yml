@@ -1,0 +1,37 @@
+maps:
+  - map: 0x6C
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Bomb Shoppe"
+
+      entrances:
+        - name: "Bomb Shoppe - Shoppe"
+          entranceid: 0x52
+          outletid: 0x7D
+
+      mobs:
+        - name: "Bomb Shoppe - Snapdragon"
+          position: { x: 0x15, y: 0x06 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "Bomb Shoppe - Moblin 1"
+          position: { x: 0x15, y: 0x0a }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Bomb Shoppe - Moblin 2"
+          position: { x: 0x14, y: 0x0d }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Bomb Shoppe - Hinox"
+          position: { x: 0x14, y: 0x16 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Bomb Shoppe - Ropa"
+          position: { x: 0x09, y: 0x19 }
+          sprite: "Ropa"
+          state: [1, 2]

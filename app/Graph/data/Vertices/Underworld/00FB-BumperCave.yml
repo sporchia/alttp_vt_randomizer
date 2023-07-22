@@ -1,0 +1,19 @@
+rooms:
+  - roomid: 0x00FB
+    nodes:
+      regions:
+        - name: "Bumper Cave Bottom"
+          inletid: 0x16
+
+      mobs:
+        - name: "Bumper Cave Bottom - Bumper"
+          position: { x: 0x17, y: 0x0d, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Bumper Cave Bottom - Hardhat Beetle 1"
+          position: { x: 0x19, y: 0x0a, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Bumper Cave Bottom - Hardhat Beetle 2"
+          position: { x: 0x15, y: 0x12, z: 0x00 }
+          sprite: "HardhatBeetle"

@@ -1,0 +1,6 @@
+rooms:
+  - roomid: 0xA3
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Elbow"

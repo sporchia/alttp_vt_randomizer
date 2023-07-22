@@ -1,0 +1,19 @@
+rooms:
+  - roomid: 0xA2
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Bridge Room - Overpass"
+        - name: "Misery Mire - Bridge Room - Left"
+        - name: "Misery Mire - Bridge Room - Right"
+
+      items:
+        - name: "Misery Mire - Bridge Chest"
+          type: "chest"
+          addresses: [0xEA61]
+          itemset: ["mire"]
+
+      pots:
+        - name: "Misery Mire - Bridge Room - Left - Pot"
+          position: 0x1c0c
+          sprite: "@MagicRefillFull"

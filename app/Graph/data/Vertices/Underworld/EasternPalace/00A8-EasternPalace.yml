@@ -21,10 +21,10 @@ rooms:
       pots:
         - name: "Eastern Palace - West Wing - Top - Pot 1"
           position: 0x138a
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - West Wing - Top - Pot 2"
           position: 0x181e
-          sprite: "RockHoarder"
+          sprite: "@RupeeGreen"
         - name: "Eastern Palace - West Wing - Top - Pot 3"
           position: 0x13b2
         - name: "Eastern Palace - West Wing - Top - Pot 4"

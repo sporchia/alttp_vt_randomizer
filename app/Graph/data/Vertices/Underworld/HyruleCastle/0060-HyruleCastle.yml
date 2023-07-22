@@ -1,0 +1,26 @@
+rooms:
+  - roomid: 0x60
+    group: 1
+    nodes:
+      regions:
+        - name: "Hyrule Castle - West"
+          inletid: 0x03
+
+      pots:
+        - name: "Hyrule Castle - West - Pot 1"
+          position: 0x044c
+          sprite: "@Heart"
+        - name: "Hyrule Castle - West - Pot 2"
+          position: 0x0470
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Hyrule Castle - West - Blue Guard"
+          position: { x: 0x13, y: 0x08, z: 0x00 }
+          sprite: "BlueSwordGuard13"
+          deny:
+            - "RollerVU"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

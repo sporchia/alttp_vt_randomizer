@@ -1,0 +1,40 @@
+maps:
+  - map: 0x6D
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Hammer Bridge North"
+        - name: "Hammer Bridge River"
+        - name: "Hammer Bridge Shallow Splotch"
+        - name: "Hammer Bridge South"
+
+      mobs:
+        - name: "Hammer Bridge North - Ropa"
+          position: { x: 0x0f, y: 0x05 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Hammer Bridge North - Hinox"
+          position: { x: 0x0d, y: 0x07 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Hammer Bridge North - Blue Guard 1"
+          position: { x: 0x12, y: 0x08 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Hammer Bridge North - Blue Guard 2"
+          position: { x: 0x10, y: 0x0a }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Hammer Bridge North - Stal 1"
+          position: { x: 0x10, y: 0x1a }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Hammer Bridge North - Stal 2"
+          position: { x: 0x13, y: 0x1b }
+          sprite: "Stal"
+          state: [1, 2]

@@ -1,0 +1,39 @@
+rooms:
+  - roomid: 0xBF
+    group: 13
+    nodes:
+      regions:
+        # we need to model this more properly for getting pots
+        - name: "Ice Palace - Restock Room"
+          switch: true
+
+      pots:
+        - name: "Ice Palace - Restock Room - Pot 1"
+          position: 0x1428
+          sprite: "@ArrowRefill5"
+        - name: "Ice Palace - Restock Room - Pot 2"
+          position: 0x142c
+          sprite: "@Heart"
+        - name: "Ice Palace - Restock Room - Pot 3"
+          position: 0x1430
+          sprite: "@BombRefill1"
+        - name: "Ice Palace - Restock Room - Pot 4"
+          position: 0x1c28
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Restock Room - Pot 5"
+          position: 0x1c2c
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Restock Room - Pot 6"
+          position: 0x1c30
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Ice Palace - Restock Room - Crystal Switch"
+          position: { x: 0x0b, y: 0x18, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Ice Palace - Restock Room - Bunny Beam"
+          position: { x: 0x0c, y: 0x15, z: 0x00 }
+          sprite: "BunnyBeam"

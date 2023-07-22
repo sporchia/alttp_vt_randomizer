@@ -1,0 +1,187 @@
+maps:
+  - map: 0x18
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Kakariko Village"
+        - name: "Kakariko Village Bomb Hut"
+        - name: "Kakariko Village Bush House"
+
+      entrances:
+        - name: "Kakariko Well"
+          entranceid: 0x38
+          outletid: 0x3a
+
+        - name: "Blind's Hideout Upstairs"
+          entranceid: 0x60
+          outletid: 0x79
+
+        - name: "Grandma's House Right"
+          entranceid: 0x0d
+          outletid: 0x0f
+
+        - name: "Grandma's House Left"
+          entranceid: 0x0c
+          outletid: 0x0e
+
+        - name: "West Snitch House"
+          entranceid: 0x3e
+          outletid: 0x50
+
+        - name: "East Snitch House"
+          entranceid: 0x3d
+          outletid: 0x51
+
+        - name: "Chicken Hut"
+          entranceid: 0x4a
+          outletid: 0x91
+
+        - name: "Sick Kid's House"
+          entranceid: 0x3f
+          outletid: 0x52
+
+        - name: "Kakariko Village Bomb Hut"
+          entranceid: 0x49
+          outletid: 0x5a
+
+        - name: "Kakariko Village Bush House"
+          entranceid: 0x43
+          outletid: 0x55
+
+        - name: "Kakariko Shop"
+          entranceid: 0x45
+          outletid: 0x81
+
+        - name: "Tavern Back"
+          entranceid: 0x42
+          outletid: 0x53
+
+        - name: "Tavern Front"
+          entranceid: 0x41
+          outletid: 0x54
+
+      holes:
+        - name: "Kakariko Well - Hole"
+          entranceids: [0x10, 0x11]
+
+      items:
+        - name: "Kakariko Village - Weathervane"
+          item: "OcarinaActive"
+          type: "event"
+          itemset: ["lw", "event"]
+
+        - name: "Bottle Merchant"
+          addresses: [0x2EB18]
+          type: "npc"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Kakariko Village - Fairy"
+          position: { x: 0x18, y: 0x0a }
+          sprite: "Fairy"
+          state: [1]
+
+        - name: "Kakariko Village - sprite.Position Target 1"
+          position: { x: 0x0c, y: 0x17 }
+          sprite: "Position Target"
+          state: [1]
+
+        - name: "Kakariko Village - Old Snitch"
+          position: { x: 0x0e, y: 0x1c }
+          sprite: "OldSnitch"
+          state: [1]
+
+        - name: "Kakariko Village - sprite.Position Target 2"
+          position: { x: 0x34, y: 0x1b }
+          sprite: "Position Target"
+          state: [1]
+
+        - name: "Kakariko Village - Running Man"
+          position: { x: 0x1d, y: 0x2e }
+          sprite: "RunningMan"
+          state: [1]
+
+        - name: "Kakariko Village - Sweeping Lady"
+          position: { x: 0x19, y: 0x2c }
+          sprite: "SweepingLady"
+          state: [1]
+
+        - name: "Kakariko Village - Village Kid"
+          position: { x: 0x18, y: 0x31 }
+          sprite: "VillageKid"
+          state: [1]
+
+        - name: "Kakariko Village - Chicken 2"
+          position: { x: 0x18, y: 0x36 }
+          sprite: "Chicken"
+          state: [1]
+
+        - name: "Kakariko Village - YoungSnitch"
+          position: { x: 0x33, y: 0x20 }
+          sprite: "YoungSnitch"
+          state: [1]
+
+        - name: "Kakariko Village - Blue Rupee"
+          position: { x: 0x36, y: 0x33 }
+          sprite: "RupeeBlue"
+          state: [1]
+
+        - name: "Kakariko Village - Blue Guard 1"
+          position: { x: 0x12, y: 0x08 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Village - Red Rupee"
+          position: { x: 0x18, y: 0x0a }
+          sprite: "RupeeRed"
+          state: [2]
+
+        - name: "Kakariko Village - Blue Guard 2"
+          position: { x: 0x07, y: 0x1c }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Village - Blue Guard 3"
+          position: { x: 0x35, y: 0x0b }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Village - Blue Guard 4"
+          position: { x: 0x12, y: 0x2e }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Village - Chicken 3"
+          position: { x: 0x14, y: 0x34 }
+          sprite: "Chicken"
+          state: [2]
+
+        - name: "Kakariko Village - Charging Red Guard"
+          position: { x: 0x39, y: 0x22 }
+          sprite: "RedSpearGuard"
+          state: [2]
+
+        - name: "Kakariko Village - Blue Guard 5"
+          position: { x: 0x20, y: 0x2e }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Village - Bee"
+          position: { x: 0x36, y: 0x33 }
+          sprite: "Bee"
+          state: [2]
+
+        - name: "Kakariko Village - Bottle Vendor"
+          position: { x: 0x18, y: 0x16 }
+          sprite: "BottleSalesman"
+          state: [1, 2]
+
+        - name: "Kakariko Village - Flute Quest"
+          position: { x: 0x20, y: 0x18 }
+          sprite: "FluteQuest"
+          state: [1, 2]
+
+        - name: "Kakariko Village - Chicken 1"
+          position: { x: 0x16, y: 0x35 }
+          sprite: "Chicken"
+          state: [1, 2]

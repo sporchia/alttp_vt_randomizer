@@ -1,0 +1,46 @@
+rooms:
+  - roomid: 0x23
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Laser Entrance Top"
+        - name: "Turtle Rock - Laser Entrance"
+          inletid: 0x15
+
+      pots:
+        - name: "Turtle Rock - Laser Entrance - Pot 1"
+          position: 0x1a56
+          sprite: "@RupeeGreen"
+        - name: "Turtle Rock - Laser Entrance - Pot 2"
+          position: 0x1a5a
+          sprite: "@Heart"
+        - name: "Turtle Rock - Laser Entrance - Pot 3"
+          position: 0x1a5e
+          sprite: "@RupeeGreen"
+        - name: "Turtle Rock - Laser Entrance - Pot 4"
+          position: 0x1a62
+          sprite: "@BombRefill1"
+        - name: "Turtle Rock - Laser Entrance - Pot 5"
+          position: 0x1a66
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Turtle Rock - Laser Entrance - Laser Eye (Down) 1"
+          position: { x: 0x15, y: 0x14, z: 0x00 }
+          sprite: "LaserEyeD"
+
+        - name: "Turtle Rock - Laser Entrance - Laser Eye (Down) 2"
+          position: { x: 0x16, y: 0x14, z: 0x00 }
+          sprite: "LaserEyeD"
+
+        - name: "Turtle Rock - Laser Entrance - Laser Eye (Down) 3"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "LaserEyeD"
+
+        - name: "Turtle Rock - Laser Entrance - Laser Eye (Down) 4"
+          position: { x: 0x18, y: 0x14, z: 0x00 }
+          sprite: "LaserEyeD"
+
+        - name: "Turtle Rock - Laser Entrance - Laser Eye (Down) 5"
+          position: { x: 0x19, y: 0x14, z: 0x00 }
+          sprite: "LaserEyeD"

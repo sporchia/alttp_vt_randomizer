@@ -1,0 +1,74 @@
+rooms:
+  - roomid: 0x31
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Beetle Gate"
+        - name: "Tower Of Hera - Beetle Trap"
+        - name: "Tower Of Hera - Maze"
+
+      shutters:
+        - name: "Tower Of Hera - Beetle Gate - Shutter Door"
+
+      pots:
+        - name: "Tower Of Hera - Maze - Pot 1"
+          position: 0x1c5c
+          sprite: "@BombRefill1"
+        - name: "Tower Of Hera - Maze - Pot 2"
+          position: 0x1c60
+
+      mobs:
+        - name: "Tower Of Hera - Beetle Gate - Crystal Switch 1"
+          position: { x: 0x18, y: 0x1a, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Maze - Crystal Switch 2"
+          position: { x: 0x16, y: 0x0b, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 1"
+          position: { x: 0x15, y: 0x05, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 2"
+          position: { x: 0x05, y: 0x06, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 3"
+          position: { x: 0x03, y: 0x09, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 4"
+          position: { x: 0x0b, y: 0x0c, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 5"
+          position: { x: 0x03, y: 0x15, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Beetle Gate - Hardhat Beetle R"
+          position: { x: 0x1b, y: 0x15, z: 0x00 }
+          sprite: "HardhatBeetle"
+          trophy: "TowerOfHeraBeetleGateTrophy"
+
+        - name: "Tower Of Hera - Beetle Gate - Hardhat Beetle L"
+          position: { x: 0x13, y: 0x16, z: 0x00 }
+          sprite: "HardhatBeetle"
+          trophy: "TowerOfHeraBeetleGateTrophy"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 8"
+          position: { x: 0x03, y: 0x18, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Beetle Gate - Hardhat Beetle B"
+          position: { x: 0x17, y: 0x19, z: 0x00 }
+          sprite: "HardhatBeetle"
+          trophy: "TowerOfHeraBeetleGateTrophy"
+
+        - name: "Tower Of Hera - Maze - Hardhat Beetle 10"
+          position: { x: 0x09, y: 0x1c, z: 0x00 }
+          sprite: "HardhatBeetle"

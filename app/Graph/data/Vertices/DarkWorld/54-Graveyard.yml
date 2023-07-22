@@ -1,0 +1,54 @@
+maps:
+  - map: 0x54
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Graveyard"
+        - name: "Dark Graveyard Interior Path"
+        - name: "Dark Graveyard Interior Two Square Niche"
+        - name: "Dark Graveyard King's Bonk Rocks"
+        - name: "Dark Graveyard North Nook"
+        - name: "Dark Graveyard Northwest Four Square Niche"
+        - name: "Dark Graveyard Northwest Lonely Square"
+        - name: "Dark Graveyard Northwest Nook"
+
+      mobs:
+        - name: "Dark Graveyard - Ropa 1"
+          position: { x: 0x14, y: 0x0d }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Bomb Refill (1)"
+          position: { x: 0x05, y: 0x0b }
+          sprite: "BombRefill1"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Red Rupee"
+          position: { x: 0x19, y: 0x0b }
+          sprite: "RupeeRed"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Ropa 2"
+          position: { x: 0x07, y: 0x0f }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Fairy"
+          position: { x: 0x0f, y: 0x0e }
+          sprite: "Fairy"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Ropa 3"
+          position: { x: 0x19, y: 0x10 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Ropa 4"
+          position: { x: 0x0d, y: 0x14 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark Graveyard - Hinox"
+          position: { x: 0x11, y: 0x19 }
+          sprite: "Hinox"
+          state: [1, 2]

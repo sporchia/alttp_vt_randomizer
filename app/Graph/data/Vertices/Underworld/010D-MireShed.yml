@@ -1,0 +1,26 @@
+rooms:
+  - roomid: 0x010D
+    nodes:
+      regions:
+        - name: "Mire Shed"
+          inletid: 0x5f
+
+      items:
+        - name: "Mire Shed - Left"
+          addresses: [0xEA73]
+          type: "chest"
+          itemset: ["dw"]
+
+        - name: "Mire Shed - Right"
+          addresses: [0xEA76]
+          type: "chest"
+          itemset: ["dw"]
+
+      mobs:
+        - name: "Mire Shed - Spark (Clockwise)"
+          position: { x: 0x05, y: 0x16, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Mire Shed - Spark (Counterclockwise)"
+          position: { x: 0x0a, y: 0x16, z: 0x00 }
+          sprite: "SparkCCW"

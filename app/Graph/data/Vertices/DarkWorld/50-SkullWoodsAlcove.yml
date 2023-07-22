@@ -1,0 +1,35 @@
+maps:
+  - map: 0x50
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Skull Woods Alcove Northeast"
+        - name: "Skull Woods Alcove Portal Nook"
+        - name: "Skull Woods Alcove Southeast"
+        - name: "Skull Woods Alcove West"
+
+      mobs:
+        - name: "Skull Woods Alcove West - Poe"
+          position: { x: 0x16, y: 0x0b }
+          sprite: "Poe"
+          state: [1, 2]
+
+        - name: "Skull Woods Alcove West - Moblin 1"
+          position: { x: 0x05, y: 0x0c }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Skull Woods Alcove West - Talking Tree"
+          position: { x: 0x08, y: 0x0e }
+          sprite: "TalkingTree"
+          state: [1, 2]
+
+        - name: "Skull Woods Alcove West - Chicken"
+          position: { x: 0x19, y: 0x13 }
+          sprite: "Chicken"
+          state: [1, 2]
+
+        - name: "Skull Woods Alcove West - Moblin 2"
+          position: { x: 0x08, y: 0x18 }
+          sprite: "Moblin"
+          state: [1, 2]

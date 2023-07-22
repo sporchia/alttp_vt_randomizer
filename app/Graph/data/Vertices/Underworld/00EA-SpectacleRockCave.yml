@@ -1,0 +1,21 @@
+rooms:
+  - roomid: 0x00EA
+    nodes:
+      regions:
+        - name: "Spectacle Rock Cave Top"
+          inletid: 0x23
+        - name: "Spectacle Rock Cave Ledge"
+
+      items:
+        - name: "Spectacle Rock Cave"
+          addresses: [0x180002]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        # this is required to have the standing item appear
+        - name: "Spectacle Rock Cave Top - Heart Piece"
+          position: { x: 0x0b, y: 0x0b, z: 0x00 }
+          sprite: "HeartPiece"
+          allow:
+            - "HeartPiece"

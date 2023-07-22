@@ -1,0 +1,102 @@
+rooms:
+  - roomid: 0x45
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Basement Block Totems"
+        - name: "Thieves' Town - Basement Block Totems Bottom"
+        - name: "Thieves' Town - Conveyer Pot"
+        - name: "Thieves' Town - Cells"
+        - name: "Thieves' Town - Cell 1"
+        - name: "Thieves' Town - Cell 2"
+        - name: "Thieves' Town - Cell 3"
+
+      shutters:
+        - name: "Thieves' Town - Basement Block Totems - Shutter Door"
+
+      items:
+        - name: "Thieves' Town - Blind's Cell"
+          addresses: [0xEA13]
+          type: "chest"
+          itemset: ["thieves"]
+
+      pots:
+        - name: "Thieves' Town - Basement Block Totems - Block"
+          position: 0x079c
+        - name: "Thieves' Town - Basement Block Totems - Pot 1"
+          position: 0x040c
+          sprite: "@ArrowRefill5"
+        - name: "Thieves' Town - Basement Block Totems - Pot 2"
+          position: 0x0c30
+          sprite: "@ArrowRefill5"
+        - name: "Thieves' Town - Cells - Pot 1"
+          position: 0x0b5c
+          xposition: { x: 0x2e, y: 0x16, z: 0x00 }
+        - name: "Thieves' Town - Cells - Pot 2"
+          position: 0x0b6c
+          sprite: "@Heart"
+        - name: "Thieves' Town - Cells - Pot 4"
+          position: 0x10dc
+          sprite: "@MagicRefillSmall"
+        - name: "Thieves' Town - Cells - Pot 5"
+          position: 0x10ec
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Thieves' Town - Cell 3 - Blind"
+          position: { x: 0x19, y: 0x06, z: 0x00 }
+          sprite: "BlindMaiden"
+          type: "follower"
+          item: "LostBlind"
+          itemset: ["event"]
+
+        - name: "Thieves' Town - Basement Block Totems - Red Zazak"
+          position: { x: 0x06, y: 0x06, z: 0x00 }
+          sprite: "ZazakRed"
+          trophy: "ThievesTownBlockTotemTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Thieves' Town - Basement Block Totems - Blue Zazak"
+          position: { x: 0x04, y: 0x0b, z: 0x00 }
+          sprite: "ZazakBlue"
+          trophy: "ThievesTownBlockTotemTrophy"
+
+        - name: "Thieves' Town - Basement Block Totems - Stalfos"
+          position: { x: 0x0b, y: 0x0b, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "ThievesTownBlockTotemTrophy"
+
+        - name: "Thieves' Town - Cells - Bunny Beam"
+          position: { x: 0x17, y: 0x0b, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Thieves' Town - Cells - Blue Zazak 2"
+          position: { x: 0x18, y: 0x0c, z: 0x00 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Cells - Blue Zazak 3"
+          position: { x: 0x1a, y: 0x0c, z: 0x00 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Cells - Blue Zazak 4"
+          position: { x: 0x18, y: 0x11, z: 0x00 }
+          sprite: "ZazakBlue"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Thieves' Town - Cells - Zol"
+          position: { x: 0x16, y: 0x18, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerHR"
+
+        - name: "Thieves' Town - Cells - Red Zazak 2"
+          position: { x: 0x19, y: 0x1b, z: 0x00 }
+          sprite: "ZazakRed"
+
+        - name: "Thieves' Town - Cells - Red Zazak 3"
+          position: { x: 0x07, y: 0x1c, z: 0x00 }
+          sprite: "ZazakRed"

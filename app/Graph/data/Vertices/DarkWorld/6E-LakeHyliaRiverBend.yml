@@ -1,0 +1,44 @@
+maps:
+  - map: 0x6E
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Lake Hylia River Bend"
+        - name: "Dark Lake Hylia River Bend Ledge"
+
+      entrances:
+        # outlet may be wrong here
+        - name: "Dark Lake Hylia River Bend Fairy"
+          entranceid: 0x6C
+          outletid: 0x73
+
+      mobs:
+        - name: "Dark Lake Hylia River Bend - Blue Rupee"
+          position: { x: 0x0c, y: 0x08 }
+          sprite: "RupeeBlue"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia River Bend - Bee"
+          position: { x: 0x10, y: 0x09 }
+          sprite: "Bee"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia River Bend - Apple"
+          position: { x: 0x14, y: 0x0a }
+          sprite: "Apple"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia River Bend - Blue Guard 1"
+          position: { x: 0x08, y: 0x0b }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia River Bend - Blue Guard 2"
+          position: { x: 0x10, y: 0x0e }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia River Bend - Ropa"
+          position: { x: 0x1a, y: 0x18 }
+          sprite: "Ropa"
+          state: [1, 2]

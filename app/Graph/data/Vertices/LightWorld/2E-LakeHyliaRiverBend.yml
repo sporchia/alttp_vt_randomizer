@@ -1,0 +1,48 @@
+maps:
+  - map: 0x2E
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Lake Hylia River Bend"
+        - name: "South of Ruins"
+
+      entrances:
+        - name: "South of Ruins Big Fairy"
+          entranceid: 0x5D
+          outletid: 0x6F
+
+      mobs:
+        - name: "Lake Hylia River Bend - Blue Guard 1"
+          position: { x: 0x0e, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Lake Hylia River Bend - Fairy"
+          position: { x: 0x0c, y: 0x09 }
+          sprite: "Fairy"
+          state: [2]
+
+        - name: "Lake Hylia River Bend - Bee"
+          position: { x: 0x14, y: 0x0b }
+          sprite: "Bee"
+          state: [2]
+
+        - name: "Lake Hylia River Bend - sprite.FastRedSpearGuard"
+          position: { x: 0x0e, y: 0x0c }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Lake Hylia River Bend - Blue Guard 2"
+          position: { x: 0x17, y: 0x0e }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Lake Hylia River Bend - Fireball Zora"
+          position: { x: 0x05, y: 0x12 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake Hylia River Bend - Octorok (One Way)"
+          position: { x: 0x19, y: 0x17 }
+          sprite: "Octorok1"
+          state: [1, 2]

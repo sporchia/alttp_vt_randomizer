@@ -37,6 +37,7 @@ final class ItemPooler
                 $this->getMaps($world),
                 $this->getCompasses($world),
                 $this->getBottles($world),
+                $this->getShopItems($world),
                 [
                     '*' => [
                         // placing behind keys for now.
@@ -447,6 +448,34 @@ final class ItemPooler
                     Item::get($bottles[get_random_int(0, count($bottles) - 1)], $world->id),
                     Item::get($bottles[get_random_int(0, count($bottles) - 1)], $world->id),
                     Item::get($bottles[get_random_int(0, count($bottles) - 1)], $world->id),
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Get Shop Items for world in proper placement groups.
+     * 
+     * @todo verify these counts, they are definitely wrong
+     *
+     * @param World $world world to get items for
+     */
+    private function getShopItems(World $world): array
+    {
+        if ($world->config('region.shopSupply') !== 'shuffled') {
+            return [];
+        }
+
+        return [
+            '*' => [
+                '_9999' => [
+                    array_fill(0, 6, Item::get('RedPotion', $world->id)),
+                    array_fill(0, 1, Item::get('GreenPotion', $world->id)),
+                    array_fill(0, 6, Item::get('BluePotion', $world->id)),
+                    array_fill(0, 10, Item::get('Heart', $world->id)),
+                    array_fill(0, 10, Item::get('TenBombs', $world->id)),
+                    array_fill(0, 2, Item::get('BlueShield', $world->id)),
+                    array_fill(0, 1, Item::get('RedShield', $world->id)),
                 ],
             ],
         ];

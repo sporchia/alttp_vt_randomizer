@@ -1,0 +1,61 @@
+maps:
+  - map: 0x45
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "East Dark Death Mountain Floating Island"
+        - name: "East Dark Death Mountain Running Man"
+        - name: "East Dark Death Mountain Running Man's Tail"
+        - name: "East Dark Death Mountain South East Cliff"
+        - name: "East Dark Death Mountain Summit"
+        - name: "Turtle Rock Outside Bridge"
+        - name: "Dark East Death Mountain Lonely Ledge"
+
+      entrances:
+        - name: "Dark Floating Island"
+          entranceid: 0x3A
+          outletid: 0x3C
+
+        - name: "East Dark Death Mountain Summit Rock"
+          entranceid: 0x39
+          outletid: 0x3B
+
+        - name: "East Dark Death Mountain Summit Bunny"
+          entranceid: 0x13
+          outletid: 0x15
+
+        - name: "East Dark Death Mountain Running Man Bunny"
+          entranceid: 0x12
+          outletid: 0x14
+
+        - name: "Turtle Rock Outside Bridge East"
+          entranceid: 0x18
+          outletid: 0x1A
+
+        - name: "Turtle Rock Outside Bridge West"
+          entranceid: 0x14
+          outletid: 0x16
+
+        - name: "Turtle Rock Outside Rest Area"
+          entranceid: 0x17
+          outletid: 0x19
+
+        - name: "East Dark Death Mountain Shop"
+          entranceid: 0x6D
+          outletid: 0x6A
+
+      mobs:
+        - name: "Turtle Rock Outside Bridge - Lynel 1"
+          position: { x: 0x06, y: 0x0c }
+          sprite: "Lynel"
+          state: [1, 2]
+
+        - name: "Turtle Rock Outside Bridge - Lynel 2"
+          position: { x: 0x1d, y: 0x0e }
+          sprite: "Lynel"
+          state: [1, 2]
+
+        - name: "Turtle Rock Outside Bridge - Lynel 3"
+          position: { x: 0x20, y: 0x0b }
+          sprite: "Lynel"
+          state: [1, 2]

@@ -1,0 +1,37 @@
+maps:
+  - map: 0x65
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Boulder Field"
+
+      mobs:
+        - name: "Boulder Field - Moblin 1"
+          position: { x: 0x13, y: 0x07 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Boulder Field - Stal"
+          position: { x: 0x0f, y: 0x0a }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Boulder Field - Moblin 2"
+          position: { x: 0x0e, y: 0x0c }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Boulder Field - Hinox"
+          position: { x: 0x05, y: 0x11 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Boulder Field - Moblin 3"
+          position: { x: 0x0a, y: 0x16 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Boulder Field - Moblin 4"
+          position: { x: 0x13, y: 0x16 }
+          sprite: "Moblin"
+          state: [1, 2]

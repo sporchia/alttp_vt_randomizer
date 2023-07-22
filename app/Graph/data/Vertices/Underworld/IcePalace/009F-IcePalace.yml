@@ -1,0 +1,81 @@
+rooms:
+  - roomid: 0x9F
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Pottery Barn"
+
+      pots:
+        - name: "Ice Palace - Pottery Barn Key"
+          position: 0x158a
+          item: "KeyD5"
+          itemset: ["ice"]
+        - name: "Ice Palace - Pottery Barn - Pot 1"
+          position: 0x138a
+          sprite: "@Heart"
+        - name: "Ice Palace - Pottery Barn - Pot 2"
+          position: 0x13b2
+          sprite: "@Heart"
+        - name: "Ice Palace - Pottery Barn - Pot 3"
+          position: 0x1528
+          sprite: "FloorSwitch"
+        - name: "Ice Palace - Pottery Barn - Pot 4"
+          position: 0x1b14
+          sprite: "@Heart"
+        - name: "Ice Palace - Pottery Barn - Pot 5"
+          position: 0x1b8a
+          sprite: "@Heart"
+        - name: "Ice Palace - Pottery Barn - Pot 6"
+          position: 0x1cb2
+          sprite: "@Heart"
+        - name: "Ice Palace - Pottery Barn - Pot 7"
+          position: 0x148a
+        - name: "Ice Palace - Pottery Barn - Pot 8"
+          position: 0x1514
+        - name: "Ice Palace - Pottery Barn - Pot 9"
+          position: 0x14b2
+        - name: "Ice Palace - Pottery Barn - Pot 10"
+          position: 0x15b2
+        - name: "Ice Palace - Pottery Barn - Pot 11"
+          position: 0x1ab2
+        - name: "Ice Palace - Pottery Barn - Pot 12"
+          position: 0x1bb2
+        - name: "Ice Palace - Pottery Barn - Pot 13"
+          position: 0x1b28
+        - name: "Ice Palace - Pottery Barn - Pot 14"
+          position: 0x1a8a
+        - name: "Ice Palace - Pottery Barn - Pot 15"
+          position: 0x1c8a
+
+      mobs:
+        - name: "Ice Palace - Pottery Barn - Babasu 1"
+          position: { x: 0x04, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Pottery Barn - Babasu 2"
+          position: { x: 0x06, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Pottery Barn - Babasu 3"
+          position: { x: 0x09, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Pottery Barn - Babasu 4"
+          position: { x: 0x0b, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Pottery Barn - Antifairy"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Ice Palace - Pottery Barn - Fire Bar (Clockwise)"
+          position: { x: 0x08, y: 0x18, z: 0x00 }
+          sprite: "FireBarCW"

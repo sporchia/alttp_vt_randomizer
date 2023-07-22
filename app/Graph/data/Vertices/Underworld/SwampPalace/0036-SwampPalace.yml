@@ -1,0 +1,99 @@
+rooms:
+  - roomid: 0x36
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Lobby"
+        - name: "Swamp Palace - Lobby Key Ledge"
+        - name: "Swamp Palace - Lobby Joke Ledge"
+        - name: "Swamp Palace - Lobby North Ledge"
+        - name: "Swamp Palace - Lobby West Ledge"
+
+      keydoors:
+        - name: "Swamp Palace - Lobby North Ledge Door"
+          key: "KeyD2"
+        - name: "Swamp Palace - Lobby North West Door"
+          key: "KeyD2"
+
+      items:
+        - name: "Swamp Palace - Big Chest"
+          addresses: [0xE989]
+          type: "bigchest"
+          itemset: ["swamp"]
+
+      pots:
+        - name: "Swamp Palace - Lobby Key Ledge Key"
+          position: 0x1072
+          item: "KeyD2"
+          itemset: ["swamp"]
+        - name: "Swamp Palace - Lobby - Pot 1"
+          position: 0x046c
+          sprite: "@BombRefill1"
+        - name: "Swamp Palace - Lobby - Pot 2"
+          position: 0x0470
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - Lobby - Pot 3"
+          position: 0x100a
+          sprite: "@Heart"
+        - name: "Swamp Palace - Lobby - Pot 4"
+          position: 0x0fde
+        - name: "Swamp Palace - Lobby - Pot 5"
+          position: 0x05c0
+        - name: "Swamp Palace - Lobby - Pot 6"
+          position: 0x05bc
+        - name: "Swamp Palace - Lobby - Pot 7"
+          position: 0x0f9a
+
+      mobs:
+        - name: "Swamp Palace - Lobby - Moblin"
+          position: { x: 0x17, y: 0x02, z: 0x00 }
+          sprite: "PirogusuSpawnerTop"
+
+        - name: "Swamp Palace - Lobby - Hover 1"
+          position: { x: 0x0b, y: 0x0a, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Lobby - Hover 2"
+          position: { x: 0x14, y: 0x0a, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Lobby - Medusa"
+          position: { x: 0x15, y: 0x0b, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Swamp Palace - Lobby - Octoballoon Hatchlings"
+          position: { x: 0x01, y: 0x0d, z: 0x00 }
+          sprite: "PirogusuSpawnerLeft"
+
+        - name: "Swamp Palace - Lobby - Kyameron"
+          position: { x: 0x14, y: 0x13, z: 0x00 }
+          sprite: "Kyameron"
+
+        - name: "Swamp Palace - Lobby - Hinox"
+          position: { x: 0x1e, y: 0x13, z: 0x00 }
+          sprite: "PirogusuSpawnerRight"
+
+        - name: "Swamp Palace - Lobby - Hover 3"
+          position: { x: 0x09, y: 0x14, z: 0x00 }
+          sprite: "Hover"
+          deny:
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Lobby - Hover 4"
+          position: { x: 0x12, y: 0x17, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Lobby - Mini Helmasaur 1"
+          position: { x: 0x0a, y: 0x1e, z: 0x00 }
+          sprite: "PirogusuSpawnerBottom"
+
+        - name: "Swamp Palace - Lobby - Mini Helmasaur 2"
+          position: { x: 0x14, y: 0x1e, z: 0x00 }
+          sprite: "PirogusuSpawnerBottom"

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Graph;
 
-use App\Sprite;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -33,22 +32,16 @@ final class Randomizer
         'prize',
         'pedestal',
         'refill',
-        'medallion',
     ];
 
-    public static array $hashes = [];
-    public static array $hash_graphs = [];
     public Graph $graph;
+    private Graph $starting_graph;
     private readonly array $graphs;
     private array $key_doors = [];
     /**
      * Key edges for just this door.
      */
     private array $key_door_edges = [];
-    /**
-     * All other door key edges related to this key door.
-     */
-    private array $key_edges = [];
     /** @var Collection<Vertex> */
     private Collection $vertices;
     private Inventory $assumed_items;
@@ -57,6 +50,7 @@ final class Randomizer
     public Vertex $start;
     /** @var array<array<Vertex>> */
     private array $set_locations = ['*' => []];
+    private array $worlds = [];
     private array $door_chains = [];
     static array $door_cache = [];
 
@@ -69,7 +63,7 @@ final class Randomizer
      *    to randomize and building them out
      * 5. and keeping track of all the vertices in the graph
      *
-     * @param array $config options for the worlds
+     * @param array $configs options for the worlds
      *
      * @return void
      */
@@ -79,12 +73,10 @@ final class Randomizer
         $this->start = $this->graph->newVertex([
             'name' => 'start',
             'type' => 'meta',
-            'graphviz.fillcolor' => 'green',
-            'graphviz.style' => 'filled',
         ]);
 
         $this->vertices = collect([$this->start])->keyBy(static function ($vertex) {
-            return $vertex->getAttribute('name');
+            return $vertex->name;
         });
         $this->set_locations = ['*' => []];
         $this->collected_items = new Inventory();
@@ -112,56 +104,22 @@ final class Randomizer
             $bunnifier = new BunnyGraphifier($this->worlds[$i]);
             $bunnifier->adjustEdges();
 
-            if (!$this->worlds[$i]->config('customPrizePacks', false)) {
-                $random_vanilla_packs = fy_shuffle([
-                    ['Heart', 'Heart', 'Heart', 'Heart', 'RupeeGreen', 'Heart', 'Heart', 'RupeeGreen'],
-                    ['RupeeBlue', 'RupeeGreen', 'RupeeBlue', 'RupeeRed', 'RupeeBlue', 'RupeeGreen', 'RupeeBlue', 'RupeeBlue'],
-                    ['MagicRefillFull', 'MagicRefillSmall', 'MagicRefillSmall', 'RupeeBlue', 'MagicRefillFull', 'MagicRefillSmall', 'Heart', 'MagicRefillSmall'],
-                    ['BombRefill1', 'BombRefill1', 'BombRefill1', 'BombRefill4', 'BombRefill1', 'BombRefill1', 'BombRefill8', 'BombRefill1'],
-                    ['ArrowRefill5', 'Heart', 'ArrowRefill5', 'ArrowRefill10', 'ArrowRefill5', 'Heart', 'ArrowRefill5', 'ArrowRefill10'],
-                    ['MagicRefillSmall', 'RupeeGreen', 'Heart', 'ArrowRefill5', 'MagicRefillSmall', 'BombRefill1', 'RupeeGreen', 'Heart'],
-                    ['Heart', 'Fairy', 'MagicRefillFull', 'RupeeRed', 'BombRefill8', 'Heart', 'RupeeRed', 'ArrowRefill10'],
-                ]);
-
-                foreach ($this->worlds[$i]->getPrizePacks() as $key => $pack) {
-                    if (!in_array($key, ['0', '1', '2', '3', '4', '5', '6'])) {
-                        continue;
-                    }
-
-                    for ($j = 0; $j < 8; $j++) {
-                        $drop = Sprite::get($random_vanilla_packs[$key][$j]);
-
-                        if ($drop instanceof \App\Sprite\Droppable) {
-                            $this->worlds[$i]->setDrop((string) $key, $j, $drop);
-                        }
-                    }
-                }
-            }
+            $prizepack_shuffler = new PrizePackShuffler($this->worlds[$i]);
+            $prizepack_shuffler->adjustEdges();
 
             $this->graph = $this->graph->merge($this->worlds[$i]->graph);
-            $this->graph->addDirected($this->start, $this->graph->getVertex("start:$i"), [
-                'group' => 'fixed',
-            ]);
-
-            collect($this->graph->getVertices())->each(static function (Vertex $vertex) use ($i) {
-                if ($vertex->getAttribute('item') && !$vertex->item instanceof Item) {
-                    $vertex->item = Item::get($vertex->getAttribute('item'), $i);
-                }
-                if ($vertex->getAttribute('trophy') && !$vertex->trophy instanceof Item) {
-                    $vertex->trophy = Item::get($vertex->getAttribute('trophy'), $i);
-                }
-            });
+            $this->graph->addDirected($this->start, $this->graph->getVertex("start:$i"), 'fixed');
 
             ++$i;
         }
 
         foreach ($this->graph->getVertices() as $location) {
-            $this->vertices[$location->getAttribute('name')] = $location;
-            if (!in_array($location->getAttribute('type'), self::ITEM_LOCATIONS)) {
+            $this->vertices[$location->name] = $location;
+            if (!in_array($location->type, self::ITEM_LOCATIONS)) {
                 continue;
             }
             $this->set_locations['*'][$location->id] = $location;
-            foreach ($location->getAttribute('itemset', []) as $set) {
+            foreach ($location->itemset as $set) {
                 $this->set_locations[$set] ??= [];
                 $this->set_locations[$set][$location->id] = $location;
             }
@@ -169,27 +127,23 @@ final class Randomizer
 
         // @todo this needs simplified!
         $graphs = [];
-        $edge_groups = array_map(fn ($edge) => $edge->getAttribute('group'), $this->graph->getEdges());
+        $edge_groups = array_map(fn ($edge) => $edge->group, $this->graph->getEdges());
         foreach ($edge_groups as $group) {
             if (isset($graphs[$group])) {
                 continue;
             }
 
-            if (strpos($group, 'Key') === 0 && strpos($group, 'KeyForKey') !== 0) {
-                $key_edges = array_filter(
-                    $this->graph->getEdges(),
-                    fn ($edge) => $edge->getAttribute('group') === $group
-                );
+            if (str_starts_with($group, 'Key') && !str_starts_with($group, 'KeyForKey')) {
+                $key_edges = array_filter($this->graph->getEdges(), fn ($edge) => $edge->group === $group);
+
                 foreach ($key_edges as $edge) {
                     $this->key_doors[$group][$edge->from->id] = $edge->from;
                 }
+
                 foreach ($this->key_doors[$group] as $key_door) {
-                    $this->key_edges[$key_door->id] = new Graph();
                     $this->key_door_edges[$key_door->id] = new Graph();
                     foreach ($key_edges as $edge) {
-                        if ($edge->from->id !== $key_door->id) {
-                            $this->key_edges[$key_door->id]->addEdge($edge);
-                        } else {
+                        if ($edge->from->id === $key_door->id) {
                             $this->key_door_edges[$key_door->id]->addEdge($edge);
                         }
                     }
@@ -198,30 +152,30 @@ final class Randomizer
                 $graphs[$group] = $this->graph->getSubgraph($group);
             }
         }
+
         $this->graphs = $graphs;
+
+        $this->starting_graph = $this->graphs['fixed'];
+        $this->starting_graph = $this->searchGraph($this->collected_items);
     }
 
     /**
      * Randomize the worlds. This handles creating a filler and placing those
      * items into the worlds.
+     * 
+     * @return World[]
      */
-    public function randomize(): void
+    public function randomize(): array
     {
-        $filler = new RandomAssumedFiller($this);
+        $filler = new RandomAssumedFiller($this, [
+            'accessibility' => array_map(fn ($world) => $world->config('accessibility'), $this->worlds),
+        ]);
 
         $sets = (new ItemPooler($this->worlds))->getPool();
 
         $filler->fillGraph($sets);
-    }
 
-    /**
-     * Get a world by id. These are always 0-indexed.
-     *
-     * @param int $id world id
-     */
-    public function getWorld(int $id): ?World
-    {
-        return $this->worlds[$id] ?? null;
+        return $this->worlds;
     }
 
     /**
@@ -239,7 +193,7 @@ final class Randomizer
     private function searchGraph(Inventory $collected, ?Graph $starting_graph = null, array $collected_item_map = []): Graph
     {
         /** @var Graph $search_graph */
-        $search_graph = $starting_graph ?? $this->graphs['fixed'];
+        $search_graph = $starting_graph ?? $this->starting_graph;
         $graphs = $this->graphs;
         do {
             $new = false;
@@ -250,36 +204,13 @@ final class Randomizer
                     unset($graphs[$item]);
                 }
             }
-            $hash = '';
-            foreach ($this->graphs as $item => $ugh) {
-                if ($collected->has($item)) {
-                    $hash .= '*' . $item;
-                }
-            }
-            if ($starting_graph === null && isset(self::$hash_graphs[$hash])) {
-                $search_graph = self::$hash_graphs[$hash];
-                self::$hashes[$hash] = (self::$hashes[$hash] ?? 0) + 1;
-            } else {
-                $search_graph = $search_graph->merge(...$sub_graphs);
-                $search_graph->search($this->start);
-                if ($starting_graph === null) {
-                    self::$hash_graphs[$hash] = $search_graph;
-                }
-            }
+
+            $search_graph = $search_graph->merge(...$sub_graphs);
+            $search_graph->search($this->start);
+
             foreach ($search_graph->getItems($this->start) as $vid => $item) {
                 if (!isset($collected_item_map[$vid])) {
-                    if (strpos($item->name, "BigRedBomb") === 0) {
-                        // @todo tidy up this exclude by only being hops/entrances.
-                        $exclude = [
-                            "hop:$item->world_id",
-                            "Flippers:$item->world_id",
-                            "DarkFlippers:$item->world_id",
-                        ];
-                        $bomb_search_graph = $search_graph->exclude(...$exclude);
-                        $bomb_search_graph->search($this->vertices["Bomb Shoppe Lobby:" . $item->world_id]);
-                        if (!isset($bomb_search_graph->getVisited($this->vertices["Bomb Shoppe Lobby:" . $item->world_id])[$this->vertices["Pyramid:" . $item->world_id]->id])) {
-                            continue;
-                        }
+                    if (str_starts_with($item->name, "BigRedBomb") && $this->dropOffSearch($item, $search_graph)) {
                         $collected = $collected->addItem(Item::get("BigRedBombActive", $item->world_id));
                     }
                     $new = true;
@@ -290,6 +221,22 @@ final class Randomizer
         } while ($new);
 
         return $search_graph;
+    }
+
+    private function dropOffSearch(Item $item, Graph $search_graph): bool
+    {
+        $start = $this->vertices["Bomb Shoppe Lobby:" . $item->world_id];
+        $end = $this->vertices["Pyramid:" . $item->world_id];
+        // @todo tidy up this exclude by only being hops/entrances.
+        $exclude = [
+            "hop:$item->world_id",
+            "Flippers:$item->world_id",
+            "DarkFlippers:$item->world_id",
+        ];
+        $bomb_search_graph = $search_graph->exclude(...$exclude);
+        $bomb_search_graph->search($start);
+
+        return isset($bomb_search_graph->getVisited($start)[$end->id]);
     }
 
     /**
@@ -490,19 +437,5 @@ final class Randomizer
     public function getLocation(string $location_name): ?Vertex
     {
         return $this->vertices[$location_name] ?? null;
-    }
-
-    /**
-     * Proxy a config request to the appropriate world.
-     *
-     * @param int $world_id id of world to proxy config request to
-     * @param string $key config to query
-     * @param mixed $default what to return if $key isn't set
-     *
-     * @return mixed
-     */
-    public function config(int $world_id, string $key, $default = null)
-    {
-        return $this->worlds[$world_id]->config($key, $default);
     }
 }

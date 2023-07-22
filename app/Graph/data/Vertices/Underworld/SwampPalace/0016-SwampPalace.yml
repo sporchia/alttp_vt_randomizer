@@ -1,0 +1,116 @@
+rooms:
+  - roomid: 0x16
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Tic Room C"
+        - name: "Swamp Palace - Tic Room I"
+        - name: "Swamp Palace - Tic Room T"
+        - name: "Swamp Palace - Pool"
+        - name: "Swamp Palace - Pool Left Ledge"
+        - name: "Swamp Palace - Pool Center Ledge"
+        - name: "Swamp Palace - Pool Right Ledge"
+        - name: "Swamp Palace - Pool Key Ledge"
+
+      keydoors:
+        - name: "Swamp Palace - Pool Door"
+          key: "KeyD2"
+
+      pots:
+        - name: "Swamp Palace - Pool Key Ledge Key"
+          position: 0x13f0
+          item: "KeyD2"
+          itemset: ["swamp"]
+        - name: "Swamp Palace - Pool - Pot 1"
+          position: 0x03bc
+          sprite: "@Heart"
+        - name: "Swamp Palace - Pool - Pot 2"
+          position: 0x03c0
+          sprite: "@Heart"
+        - name: "Swamp Palace - Pool - Pot 3"
+          position: 0x04bc
+          sprite: "@MagicRefillSmall"
+        - name: "Swamp Palace - Pool - Pot 4"
+          position: 0x04c0
+          sprite: "@MagicRefillSmall"
+        - name: "Swamp Palace - Pool - Pot 5"
+          position: 0x05bc
+          sprite: "@ArrowRefill5"
+        - name: "Swamp Palace - Pool - Pot 6"
+          position: 0x05c0
+          sprite: "@ArrowRefill5"
+        - name: "Swamp Palace - Pool - Pot 7"
+          position: 0x06bc
+          sprite: "@BombRefill1"
+        - name: "Swamp Palace - Pool - Pot 8"
+          position: 0x06c0
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Swamp Palace - Pool - Zol 1"
+          position: { x: 0x15, y: 0x07, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Pool - Zol 2"
+          position: { x: 0x15, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Pool - Blue Bari"
+          position: { x: 0x15, y: 0x09, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Pool - Zol 3"
+          position: { x: 0x10, y: 0x0a, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Pool - Hover 1"
+          position: { x: 0x0c, y: 0x18, z: 0x01 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Pool - Hover 2"
+          position: { x: 0x07, y: 0x1b, z: 0x01 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Pool - Hover 3"
+          position: { x: 0x14, y: 0x1b, z: 0x01 }
+          sprite: "Hover"

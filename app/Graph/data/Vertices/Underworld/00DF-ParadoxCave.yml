@@ -1,0 +1,27 @@
+rooms:
+  - roomid: 0x00DF
+    nodes:
+      regions:
+        - name: "Paradox Cave - Top"
+          inletid: 0x20
+
+      mobs:
+        - name: "Paradox Cave - Top - Mini Moldorm 1"
+          position: { x: 0x0c, y: 0x15, z: 0x01 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVD"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Paradox Cave - Top - Mini Moldorm 2"
+          position: { x: 0x0c, y: 0x16, z: 0x01 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVD"
+            - "RollerHR"
+            - "AntifairyCircle"

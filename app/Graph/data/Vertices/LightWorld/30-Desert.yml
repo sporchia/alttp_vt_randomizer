@@ -1,0 +1,174 @@
+maps:
+  - map: 0x30
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Desert"
+        - name: "Checkerboard Ledge"
+        - name: "Bombos Tablet Ledge West"
+        - name: "Desert Ledge"
+        - name: "Desert Ledge - Part 2"
+        - name: "Desert Ledge - Right"
+        - name: "Desert Rocks Ledge"
+
+      entrances:
+        - name: "Desert Palace - Lobby"
+          entranceid: 0x08
+          outletid: 0x0A
+
+        - name: "Desert Palace - West"
+          entranceid: 0x0A
+          outletid: 0x0C
+
+        - name: "Desert Palace - East"
+          entranceid: 0x09
+          outletid: 0x0B
+
+        - name: "Desert Palace - Back"
+          entranceid: 0x0B
+          outletid: 0x0D
+
+        - name: "Aginah's Cave"
+          entranceid: 0x4C
+          outletid: 0x5C
+
+        - name: "Checkerboard Cave"
+          entranceid: 0x7D
+          outletid: 0x8F
+
+      items:
+        - name: "Desert Ledge - Item"
+          addresses: [0x180143]
+          type: "standing"
+          itemset: ["lw"]
+
+        - name: "Bombos Tablet"
+          addresses: [0x180017]
+          type: "drop"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Desert - Landmine 1"
+          position: { x: 0x36, y: 0x21 }
+          sprite: "Landmine"
+          state: [1]
+
+        - name: "Desert - Landmine 2"
+          position: { x: 0x29, y: 0x25 }
+          sprite: "Landmine"
+          state: [1]
+
+        - name: "Desert - Geldman 9"
+          position: { x: 0x20, y: 0x2c }
+          sprite: "Geldman"
+          state: [1]
+
+        - name: "Desert - Landmine 3"
+          position: { x: 0x30, y: 0x32 }
+          sprite: "Landmine"
+          state: [1]
+
+        - name: "Desert - Landmine 4"
+          position: { x: 0x2d, y: 0x3b }
+          sprite: "Landmine"
+          state: [1]
+
+        - name: "Desert - Landmine"
+          position: { x: 0x0c, y: 0x23 }
+          sprite: "Landmine"
+          state: [2]
+
+        - name: "Desert - Geldman 11"
+          position: { x: 0x28, y: 0x2a }
+          sprite: "Geldman"
+          state: [2]
+
+        - name: "Desert - Desert Palace Barrier 1"
+          position: { x: 0x12, y: 0x14 }
+          sprite: "DesertPalaceBarrier"
+          state: [1, 2]
+
+        - name: "Desert - Plaque"
+          position: { x: 0x12, y: 0x19 }
+          sprite: "HylianPlaque"
+          state: [1, 2]
+
+        - name: "Desert - Desert Palace Barrier 2"
+          position: { x: 0x0e, y: 0x1c }
+          sprite: "DesertPalaceBarrier"
+          state: [1, 2]
+
+        - name: "Desert - Desert Palace Barrier 3"
+          position: { x: 0x16, y: 0x1c }
+          sprite: "DesertPalaceBarrier"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 1"
+          position: { x: 0x27, y: 0x19 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Vulture 1"
+          position: { x: 0x22, y: 0x1c }
+          sprite: "Vulture"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 2"
+          position: { x: 0x2a, y: 0x1f }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 3"
+          position: { x: 0x1d, y: 0x26 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Vulture 2"
+          position: { x: 0x07, y: 0x29 }
+          sprite: "Vulture"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 4"
+          position: { x: 0x0f, y: 0x29 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Heart Piece"
+          position: { x: 0x06, y: 0x2a }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 5"
+          position: { x: 0x1b, y: 0x2c }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 6"
+          position: { x: 0x0a, y: 0x30 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 7"
+          position: { x: 0x14, y: 0x35 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Medallion Tablet"
+          position: { x: 0x37, y: 0x2b }
+          sprite: "MedallionTablet"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 8"
+          position: { x: 0x22, y: 0x24 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Geldman 10"
+          position: { x: 0x23, y: 0x32 }
+          sprite: "Geldman"
+          state: [1, 2]
+
+        - name: "Desert - Vulture 3"
+          position: { x: 0x34, y: 0x33 }
+          sprite: "Vulture"
+          state: [1, 2]

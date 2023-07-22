@@ -1,0 +1,25 @@
+rooms:
+  - roomid: 0x00F8
+    nodes:
+      regions:
+        - name: "Super Bunny Entrance Bottom"
+          inletid: 0x13
+        - name: "Super Bunny Entrance Middle"
+        - name: "Super Bunny Entrance Top"
+        - name: "Super Bunny Treasure"
+
+      items:
+        - name: "Superbunny Cave - Top"
+          addresses: [0xEA7C]
+          type: "chest"
+          itemset: ["dw"]
+
+        - name: "Superbunny Cave - Bottom"
+          addresses: [0xEA7F]
+          type: "chest"
+          itemset: ["dw"]
+
+      pots:
+        - name: "Super Bunny Treasure - Pot"
+          position: 0x0df2
+          sprite: "@MagicRefillFull"

@@ -1,0 +1,27 @@
+rooms:
+  - roomid: 0x0119
+    nodes:
+      regions:
+        - name: "Blind's Hideout Upstairs"
+          inletid: 0x61
+
+      pots:
+        - name: "Blind's Hideout Upstairs - Pot 1"
+          position: 0x1c2c
+          sprite: "@Heart"
+        - name: "Blind's Hideout Upstairs - Pot 2"
+          position: 0x1c30
+          sprite: "@RupeeGreen"
+        - name: "Blind's Hideout Upstairs - Pot 3"
+          position: 0x1c4c
+          sprite: "@Heart"
+        - name: "Blind's Hideout Upstairs - Pot 4"
+          position: 0x1c50
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Blind's Hideout Upstairs - Adult"
+          position: { x: 0x0e, y: 0x18, z: 0x00 }
+          sprite: "Adult"
+          allow:
+            - "Adult"

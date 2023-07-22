@@ -1,0 +1,47 @@
+maps:
+  - map: 0x13
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Sanctuary"
+        - name: "Sanctuary Bonk Rocks"
+
+      entrances:
+        - name: "Sanctuary Hall"
+          entranceid: 0x01
+          outletid: 0x01
+
+        - name: "Sanctuary Bonk Rocks"
+          entranceid: 0x79
+          outletid: 0x8A
+
+      mobs:
+        - name: "Sanctuary - Apple"
+          position: { x: 0x18, y: 0x09 }
+          sprite: "Apple"
+          state: [1]
+
+        - name: "Sanctuary - Green Guard"
+          position: { x: 0x11, y: 0x17 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Sanctuary - Bee"
+          position: { x: 0x18, y: 0x09 }
+          sprite: "Bee"
+          state: [2]
+
+        - name: "Sanctuary - Bomb Refill (8)"
+          position: { x: 0x07, y: 0x0c }
+          sprite: "BombRefill8"
+          state: [2]
+
+        - name: "Sanctuary - Blue Guard 1"
+          position: { x: 0x0d, y: 0x17 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Sanctuary - Blue Guard 2"
+          position: { x: 0x12, y: 0x1a }
+          sprite: "BlueSwordGuard"
+          state: [2]

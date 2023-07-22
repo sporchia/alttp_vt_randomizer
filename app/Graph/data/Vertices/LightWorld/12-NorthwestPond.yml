@@ -1,0 +1,41 @@
+maps:
+  - map: 0x12
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Northwest Pond"
+
+      warps:
+        - name: "Northwest Pond whirlpool"
+          position: { x: 0x0F, y: 0x10 }
+
+      mobs:
+        - name: "Northwest Pond - Green Guard 1"
+          position: { x: 0x15, y: 0x0e }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Northwest Pond - Green Guard 2"
+          position: { x: 0x07, y: 0x10 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Northwest Pond - Fairy"
+          position: { x: 0x14, y: 0x0a }
+          sprite: "Fairy"
+          state: [2]
+
+        - name: "Northwest Pond - Blue Guard"
+          position: { x: 0x15, y: 0x0e }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Northwest Pond - Whirlpool"
+          position: { x: 0x0f, y: 0x10 }
+          sprite: "Whirlpool"
+          state: [1, 2]
+
+        - name: "Northwest Pond - Green Guard 3"
+          position: { x: 0x15, y: 0x15 }
+          sprite: "GreenSwordGuard"
+          state: [1, 2]

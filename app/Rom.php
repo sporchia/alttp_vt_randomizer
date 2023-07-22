@@ -1655,8 +1655,6 @@ final class Rom
      * Set Ball and Chain guard dungeon id
      *
      * @param int $dungeon_id
-     *
-     * @return $this
      */
     public function setBallNChainDungeon(int $dungeon_id): void
     {
@@ -1667,8 +1665,6 @@ final class Rom
      * Set totals for HUD compass counts.
      *
      * @param array $totals
-     *
-     * @return $this
      */
     public function setCompassCountTotals(array $totals = []): void
     {

@@ -1,0 +1,47 @@
+rooms:
+  - roomid: 0x011B
+    nodes:
+      regions:
+        - name: "Graveyard Cave"
+          inletid: 0x52
+        - name: "Graveyard Cave - Hidden Room"
+
+      items:
+        - name: "Graveyard Cave Item"
+          addresses: [0x180004]
+          type: "standing"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Graveyard Cave - Pot 1"
+          position: 0x165c
+          sprite: "@BombRefill1"
+        - name: "Graveyard Cave - Pot 2"
+          position: 0x1660
+          sprite: "@Heart"
+        - name: "Graveyard Cave - Pot 3"
+          position: 0x175c
+          sprite: "@BombRefill1"
+        - name: "Graveyard Cave - Pot 4"
+          position: 0x1760
+          sprite: "@Heart"
+        - name: "Graveyard Cave - Pot 5"
+          position: 0x185c
+          sprite: "@BombRefill1"
+        - name: "Graveyard Cave - Pot 6"
+          position: 0x1860
+          sprite: "@Heart"
+        - name: "Graveyard Cave - Pot 7"
+          position: 0x195c
+          sprite: "@BombRefill1"
+        - name: "Graveyard Cave - Pot 8"
+          position: 0x1960
+          sprite: "@Heart"
+
+      mobs:
+        # this is required to have the standing item appear
+        - name: "Graveyard Cave - Hidden Room - Heart Piece"
+          position: { x: 0x18, y: 0x9, z: 0x00 }
+          sprite: "HeartPiece"
+          allow:
+            - "HeartPiece"

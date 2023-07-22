@@ -1,0 +1,46 @@
+rooms:
+  - roomid: 0x41
+    group: 1
+    dark: true
+    nodes:
+      regions:
+        - name: "Sewers - Dark Cactus darkness"
+        - name: "Sewers - Dark Cactus"
+
+      pots:
+        - name: "Sewers - Dark Cactus - Pot 1"
+          position: 0x0a64
+          sprite: "@Heart"
+        - name: "Sewers - Dark Cactus - Pot 2"
+          position: 0x0f34
+          sprite: "@RupeeGreen"
+        - name: "Sewers - Dark Cactus - Pot 3"
+          position: 0x1034
+          sprite: "@MagicRefillSmall"
+        - name: "Sewers - Dark Cactus - Pot 4"
+          position: 0x1694
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Sewers - Dark Cactus - Rat 1"
+          position: { x: 0x11, y: 0x0a, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerHL"
+
+        - name: "Sewers - Dark Cactus - Rat 2"
+          position: { x: 0x1b, y: 0x0b, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+            - "RollerHR"
+
+        - name: "Sewers - Dark Cactus - Rat 3"
+          position: { x: 0x0f, y: 0x0d, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerVU"
+
+        - name: "Sewers - Dark Cactus - Rat 4"
+          position: { x: 0x06, y: 0x15, z: 0x00 }
+          sprite: "Rat"

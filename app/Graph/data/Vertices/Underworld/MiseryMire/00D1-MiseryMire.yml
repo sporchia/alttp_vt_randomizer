@@ -1,0 +1,66 @@
+rooms:
+  - roomid: 0xD1
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Joke Room"
+        - name: "Misery Mire - Sluggula"
+        - name: "Misery Mire - Drop Chest Room"
+        - name: "Misery Mire - Drop Chest Overlook"
+        - name: "Misery Mire - Drop Chest Return"
+
+      items:
+        - name: "Misery Mire - Big Key Chest"
+          type: "chest"
+          addresses: [0xEA6D]
+          itemset: ["mire"]
+
+      pots:
+        - name: "Misery Mire - Sluggula - Pot 1"
+          position: 0x0430
+          sprite: "@MagicRefillFull"
+        - name: "Misery Mire - Sluggula - Pot 2"
+          position: 0x044c
+          sprite: "@RupeeGreen"
+        - name: "Misery Mire - Sluggula - Pot 3"
+          position: 0x0470
+          sprite: "@ArrowRefill5"
+        - name: "Misery Mire - Sluggula - Pot 4"
+          position: 0x07a8
+          sprite: "@RupeeGreen"
+        - name: "Misery Mire - Sluggula - Pot 5"
+          position: 0x0c70
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Misery Mire - Sluggula - Beamos 1"
+          position: { x: 0x14, y: 0x06, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Misery Mire - Sluggula - Beamos 2"
+          position: { x: 0x1b, y: 0x06, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Misery Mire - Sluggula - Wizzrobe"
+          position: { x: 0x04, y: 0x07, z: 0x00 }
+          sprite: "Wizzrobe"
+
+        - name: "Misery Mire - Sluggula - Red Bari"
+          position: { x: 0x0c, y: 0x08, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Misery Mire - Sluggula - Yomo Medusa"
+          position: { x: 0x05, y: 0x09, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Misery Mire - Sluggula - Sluggula 1"
+          position: { x: 0x04, y: 0x0b, z: 0x00 }
+          sprite: "Sluggula"
+
+        - name: "Misery Mire - Sluggula - Sluggula 2"
+          position: { x: 0x0b, y: 0x0b, z: 0x00 }
+          sprite: "Sluggula"
+
+        - name: "Misery Mire - Sluggula - Sluggula 3"
+          position: { x: 0x1b, y: 0x0b, z: 0x00 }
+          sprite: "Sluggula"

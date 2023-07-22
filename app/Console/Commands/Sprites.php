@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Rom;
 use App\Sprite;
 use App\Support\Zspr;
 use Exception;
@@ -58,9 +59,7 @@ final class Sprites extends Command
         $files = collect(scandir($sprite_dir));
 
         $meta_data->groupBy('vtversion')->each(function ($sprites, $version) use ($sprite_dir, $files) {
-            $sprite_file_class = $sprites->pluck('file')->map(function ($val) {
-                return $val;
-            });
+            $sprite_file_class = $sprites->pluck('file')->map(fn ($val) => $val);
 
             foreach ($sprite_file_class as $file) {
                 if (!file_exists("$sprite_dir/$file")) {
@@ -68,9 +67,7 @@ final class Sprites extends Command
                 };
             }
 
-            $sprite_class = $sprites->pluck('file')->map(function ($val) {
-                return "$val.lg.png";
-            });
+            $sprite_class = $sprites->pluck('file')->map(fn ($val) => "$val.lg.png");
 
             $found_files = $files->intersect($sprite_class);
 
@@ -128,9 +125,7 @@ final class Sprites extends Command
             }
         });
 
-        $sprite_images = $meta_data->pluck('file')->map(function ($val) {
-            return "$val.png";
-        });
+        $sprite_images = $meta_data->pluck('file')->map(fn ($val) => "$val.png");
 
         foreach ($sprite_images as $file) {
             if (!file_exists("$sprite_dir/$file")) {
@@ -185,8 +180,9 @@ final class Sprites extends Command
         // deal with config file and scss
         $top = $meta_data->count();
         $next = $top + 1;
+        $url = config('filesystems.disks.images.url');
 
-        $scss_file = "[class^=\"icon-custom-\"],\n[class*=\" icon-custom-\"] {\n  width: 16px;\n  height: 24px;\n  vertical-align: bottom;\n  background-image: url(\"https://alttpr-assets.s3.us-east-2.amazonaws.com/$sprite_sheet\");\n}\n\n";
+        $scss_file = "[class^=\"icon-custom-\"],\n[class*=\" icon-custom-\"] {\n  width: 16px;\n  height: 24px;\n  vertical-align: bottom;\n  background-image: url(\"$url/$sprite_sheet\");\n}\n\n";
         $scss_file .= ".icon-custom-Random {\n  background-position: 0 0;\n}\n";
         $i = 0;
         foreach ($meta_data as $sprite) {
@@ -229,9 +225,7 @@ final class Sprites extends Command
                 $rom = new Rom(config('alttp.base_rom'));
                 $sprite = $rom->read(0x80000, 0x7000);
             }
-            $palette = array_map(function ($bytes) {
-                return $bytes[0] + ($bytes[1] << 8);
-            }, array_chunk(array_slice($spr->getPaletteBytes(), 0, 30), 2));
+            $palette = array_map(fn ($bytes) => $bytes[0] + ($bytes[1] << 8), array_chunk(array_slice($spr->getPaletteBytes(), 0, 30), 2));
 
             $im = imagecreatetruecolor(16, 24);
             imagesavealpha($im, true);

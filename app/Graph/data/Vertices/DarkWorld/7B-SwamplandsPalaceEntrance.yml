@@ -1,0 +1,42 @@
+maps:
+  - map: 0x7B
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Swamplands Palace Entrance"
+
+      entrances:
+        - name: "Swamp Palace"
+          entranceid: 0x24
+          outletid: 0x26
+
+      mobs:
+        - name: "Swamplands Palace Entrance - Blue Zirro"
+          position: { x: 0x12, y: 0x06 }
+          sprite: "ZirroBlue"
+          state: [1, 2]
+
+        - name: "Swamplands Palace Entrance - Pikit"
+          position: { x: 0x16, y: 0x0a }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Swamplands Palace Entrance - Moblin 1"
+          position: { x: 0x0d, y: 0x0f }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Swamplands Palace Entrance - Stal"
+          position: { x: 0x0a, y: 0x10 }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Swamplands Palace Entrance - Moblin 2"
+          position: { x: 0x13, y: 0x14 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Swamplands Palace Entrance - Ropa"
+          position: { x: 0x16, y: 0x18 }
+          sprite: "Ropa"
+          state: [1, 2]

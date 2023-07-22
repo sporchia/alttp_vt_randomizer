@@ -33,11 +33,11 @@ function mb_wordwrap(string $str, int $width = 75, string $break = "\n", bool $c
         return wordwrap($str, $width, $break, $cut);
     }
 
-    $lines = explode($break, $str);
-
-    if ($lines === false) {
+    if ($break === "") {
         return $str;
     }
+
+    $lines = explode($break, $str);
 
     foreach ($lines as &$line) {
         $line = rtrim($line);

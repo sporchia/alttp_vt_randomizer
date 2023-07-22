@@ -1,0 +1,50 @@
+maps:
+  - map: 0x77
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Shopping Mall"
+
+      entrances:
+        - name: "Dark Shopping Mall Big Fairy"
+          entranceid: 0x80
+          outletid: 0x75
+
+        - name: "Power Glove"
+          entranceid: 0x69
+          outletid: 0x61
+
+        - name: "Dev Cave"
+          entranceid: 0x7B
+          outletid: 0x8C
+
+      mobs:
+        - name: "Dark Shopping Mall - Octorok (One Way) 1"
+          position: { x: 0x11, y: 0x08 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Dark Shopping Mall - Stal"
+          position: { x: 0x09, y: 0x0a }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Dark Shopping Mall - Blue Zirro"
+          position: { x: 0x0d, y: 0x0b }
+          sprite: "ZirroBlue"
+          state: [1, 2]
+
+        - name: "Dark Shopping Mall - Octorok (One Way) 2"
+          position: { x: 0x18, y: 0x11 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Dark Shopping Mall - Fireball Zora 1"
+          position: { x: 0x07, y: 0x12 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Shopping Mall - Fireball Zora 2"
+          position: { x: 0x12, y: 0x19 }
+          sprite: "FireballZora"
+          state: [1, 2]

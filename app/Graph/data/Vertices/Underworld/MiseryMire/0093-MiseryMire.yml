@@ -1,0 +1,57 @@
+rooms:
+  - roomid: 0x93
+    group: 14
+    dark: true
+    nodes:
+      regions:
+        - name: "Misery Mire - Dark Switch darkness"
+        - name: "Misery Mire - Dark Switch"
+        - name: "Misery Mire - Room 45"
+        - name: "Misery Mire - Big Block"
+
+      keydoors:
+        - name: "Misery Mire - Basement Door"
+          key: "KeyD6"
+
+      pots:
+        - name: "Misery Mire - Dark Switch - Pot 1"
+          position: 0x071c
+          sprite: "FloorSwitch"
+        - name: "Misery Mire - Dark Switch - Pot 2"
+          position: 0x0760
+          sprite: "@Heart"
+        - name: "Misery Mire - Big Block - Block"
+          position: 0x179C
+
+      mobs:
+        - name: "Misery Mire - Room 45 - Medusa 1"
+          position: { x: 0x09, y: 0x09, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Room 45 - Medusa 2"
+          position: { x: 0x16, y: 0x09, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Room 45 - Medusa 3"
+          position: { x: 0x0c, y: 0x0c, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Room 45 - Medusa 4"
+          position: { x: 0x13, y: 0x0c, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Room 45 - Zol"
+          position: { x: 0x17, y: 0x0c, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Misery Mire - Room 45 - Stalfos 1"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Misery Mire - Room 45 - Stalfos 2"
+          position: { x: 0x0c, y: 0x1c, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Misery Mire - Room 45 - Antifairy"
+          position: { x: 0x04, y: 0x1c, z: 0x00 }
+          sprite: "Antifairy"

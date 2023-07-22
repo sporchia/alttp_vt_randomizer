@@ -1,0 +1,35 @@
+rooms:
+  - roomid: 0x0108
+    nodes:
+      regions:
+        - name: "Chicken Hut"
+          inletid: 0x4b
+        - name: "Chicken Hut Hidden Room"
+
+      items:
+        - name: "Chicken House"
+          addresses: [0xE9E9]
+          type: "chest"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Chicken Hut - Pot"
+          position: 0x13a6
+          sprite: "@Chicken"
+
+      mobs:
+        - name: "Chicken Hut - Chicken 1"
+          position: { x: 0x09, y: 0x16, z: 0x00 }
+          sprite: "Chicken"
+
+        - name: "Chicken Hut - Chicken 2"
+          position: { x: 0x0c, y: 0x16, z: 0x00 }
+          sprite: "Chicken"
+
+        - name: "Chicken Hut - Chicken 3"
+          position: { x: 0x09, y: 0x19, z: 0x00 }
+          sprite: "Chicken"
+
+        - name: "Chicken Hut - Chicken 4"
+          position: { x: 0x06, y: 0x1a, z: 0x00 }
+          sprite: "Chicken"

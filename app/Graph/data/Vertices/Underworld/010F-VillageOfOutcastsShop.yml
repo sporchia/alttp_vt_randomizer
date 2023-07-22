@@ -1,0 +1,28 @@
+rooms:
+  - roomid: 0x010F
+    nodes:
+      regions:
+        - name: "Village Of Outcasts Shop"
+          type: "shop"
+          shopkeeper: 0xC1
+          shopstyle: 0x03
+          inletid: 0x60
+
+      inventory:
+        - name: "Village Of Outcasts Shop - Left"
+          type: "shopitem"
+          item: "RedPotion"
+          cost: 150
+          itemset: ["dw", "shop"]
+
+        - name: "Village Of Outcasts Shop - Middle"
+          type: "shopitem"
+          item: "BlueShield"
+          cost: 50
+          itemset: ["dw", "shop"]
+
+        - name: "Village Of Outcasts Shop - Right"
+          type: "shopitem"
+          item: "TenBombs"
+          cost: 50
+          itemset: ["dw", "shop"]

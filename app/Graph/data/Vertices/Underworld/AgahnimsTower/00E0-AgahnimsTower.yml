@@ -1,0 +1,42 @@
+rooms:
+  - roomid: 0xE0
+    group: 6
+    nodes:
+      regions:
+        - name: "Agahnims Tower - Entrance"
+          inletid: 0x24
+        - name: "Agahnims Tower - Chain Guards"
+        - name: "Agahnims Tower - Knife Guards"
+      keydoors:
+        - name: "Agahnims Tower - First Door"
+          key: "KeyA1"
+      shutters:
+        - name: "Agahnims Tower - Chain Guards - Shutter Door"
+        - name: "Agahnims Tower - Knife Guards - Shutter Chest"
+
+      items:
+        - name: "Agahnims Tower - First Chest"
+          addresses: [0xEAB5]
+          type: "chest"
+          itemset: ["agahnim"]
+
+      mobs:
+        - name: "Agahnims Tower - Chain Guards - Ball 'n' Chain Guard L"
+          position: { x: 0x04, y: 0x06, z: 0x00 }
+          sprite: "BallNChainTrooper"
+          trophy: "AgahnimsTowerChainTrophy"
+
+        - name: "Agahnims Tower - Chain Guards - Ball 'n' Chain Guard R"
+          position: { x: 0x0b, y: 0x06, z: 0x00 }
+          sprite: "BallNChainTrooper"
+          trophy: "AgahnimsTowerChainTrophy"
+
+        - name: "Agahnims Tower - Knife Guards - Charging Blue Guard T"
+          position: { x: 0x1a, y: 0x06, z: 0x00 }
+          sprite: "AssaultSwordGuard"
+          trophy: "AgahnimsTowerKnifeTrophy"
+
+        - name: "Agahnims Tower - Knife Guards - Charging Blue Guard B"
+          position: { x: 0x1a, y: 0x09, z: 0x00 }
+          sprite: "AssaultSwordGuard"
+          trophy: "AgahnimsTowerKnifeTrophy"

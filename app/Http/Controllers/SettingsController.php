@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Graph\Item;
-use App\Graph\Randomizer;
+use App\Graph\World;
 use App\Rom;
-use App\Sprite;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
@@ -58,27 +57,32 @@ class SettingsController extends Controller
     public function customizer(): array
     {
         return Cache::rememberForever('customizer_settings', function () {
-            $rand = new Randomizer();
-            $world = $rand->getWorld(0);
+            $world = new World(0);
             $items = collect(Item::all(0));
-            $sprites = Sprite::all();
             return [
                 'locations' => array_values($world->getWritableVertices()->map(function ($location) {
                     return [
-                        'hash' => $location->getAttribute('name'),
-                        'name' => $location->getAttribute('name'),
+                        'hash' => $location->name,
+                        'name' => $location->name,
                         'region' => 'Unknown',
-                        'class' => $location->getAttribute('type') === 'refill' ? 'bottles'
-                            : ($location->getAttribute('type') === 'medallion' ? 'medallions'
-                                : ($location->getAttribute('type') === 'prize' ? 'prizes' : 'items')),
+                        'class' => $location->type === 'refill' ? 'bottles'
+                            : ($location->type === 'medallion' ? 'medallions'
+                                : ($location->type === 'prize' ? 'prizes' : 'items')),
                     ];
                 })->toArray()),
-                'prizepacks' => array_values(array_map(function ($pack) {
-                    return [
-                        'name' => $pack->name,
-                        'slots' => count($pack->getDrops()),
-                    ];
-                }, $world->getPrizePacks())),
+                'prizepacks' => [
+                    ["name" => "1", "slots" => 8],
+                    ["name" => "2", "slots" => 8],
+                    ["name" => "3", "slots" => 8],
+                    ["name" => "4", "slots" => 8],
+                    ["name" => "5", "slots" => 8],
+                    ["name" => "6", "slots" => 8],
+                    ["name" => "7", "slots" => 8],
+                    ["name" => "pull", "slots" => 3],
+                    ["name" => "crab", "slots" => 2],
+                    ["name" => "stun", "slots" => 1],
+                    ["name" => "fish", "slots" => 1],
+                ],
                 'items' => array_values(array_merge(
                     [
                         ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
@@ -162,21 +166,23 @@ class SettingsController extends Controller
                     ['value' => 'BottleWithGoldBee:0', 'name' => 'item.BottleWithGoldBee', 'count' => 0, 'placed' => 0],
                     ['value' => 'BottleWithFairy:0', 'name' => 'item.BottleWithFairy', 'count' => 0, 'placed' => 0],
                 ],
-                'droppables' => array_merge(
-                    [
-                        ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
-                    ],
-                    $sprites->filter(function ($sprite) {
-                        return $sprite instanceof Sprite\Droppable;
-                    })->map(function ($item) {
-                        return [
-                            'value' => $item->name,
-                            'name' => $item->nice_name,
-                            'count' => $this->drops[$item->name] ?? 0,
-                            'placed' => 0,
-                        ];
-                    })->values()->toArray()
-                ),
+                'droppables' => [
+                    ['value' => 'auto_fill', 'name' => 'item.Random', 'placed' => 0],
+                    ['value' => "Bee:0", 'name' => 'item.Bee', 'count' => 0, 'placed' => 0],
+                    ['value' => "BeeGood:0", 'name' => 'item.BeeGood', 'count' => 0, 'placed' => 0],
+                    ['value' => "Heart:0", 'name' => 'item.Heart', 'count' => 13, 'placed' => 0],
+                    ['value' => "RupeeGreen:0", 'name' => 'item.RupeeGreen', 'count' => 9, 'placed' => 0],
+                    ['value' => "RupeeBlue:0", 'name' => 'item.RupeeBlue', 'count' => 7, 'placed' => 0],
+                    ['value' => "RupeeRed:0", 'name' => 'item.RupeeRed', 'count' => 6, 'placed' => 0],
+                    ['value' => "BombRefill1:0", 'name' => 'item.BombRefill1', 'count' => 7, 'placed' => 0],
+                    ['value' => "BombRefill4:0", 'name' => 'item.BombRefill4', 'count' => 1, 'placed' => 0],
+                    ['value' => "BombRefill8:0", 'name' => 'item.BombRefill8', 'count' => 2, 'placed' => 0],
+                    ['value' => "MagicRefillSmall:0", 'name' => 'item.MagicRefillSmall', 'count' => 6, 'placed' => 0],
+                    ['value' => "MagicRefillFull:0", 'name' => 'item.MagicRefillFull', 'count' => 3, 'placed' => 0],
+                    ['value' => "ArrowRefill5:0", 'name' => 'item.ArrowRefill5', 'count' => 5, 'placed' => 0],
+                    ['value' => "ArrowRefill10:0", 'name' => 'item.ArrowRefill10', 'count' => 3, 'placed' => 0],
+                    ['value' => "Fairy:0", 'name' => 'item.Fairy', 'count' => 1, 'placed' => 0],
+                ],
             ];
         });
     }
@@ -201,16 +207,15 @@ class SettingsController extends Controller
      */
     public function sprites(): array
     {
-        return collect(config('sprites'))->map(function ($info, $file) {
-            return [
-                'name' => $info['name'],
-                'author' => $info['author'],
-                'version' => $info['version'],
-                'file' => 'https://alttpr-assets.s3.us-east-2.amazonaws.com/' . $file,
-                'preview' => 'https://alttpr-assets.s3.us-east-2.amazonaws.com/' . $file . '.png',
-                'tags' => $info['tags'] ?? [],
-                'usage' => $info['usage'] ?? []
-            ];
-        })->values()->all();
+        $url = config('filesystems.disks.images.url');
+        return collect(config('sprites'))->map(fn ($info, $file) => [
+            'name' => $info['name'],
+            'author' => $info['author'],
+            'version' => $info['version'],
+            'file' => $url . '/' . $file,
+            'preview' => $url . '/' . $file . '.png',
+            'tags' => $info['tags'] ?? [],
+            'usage' => $info['usage'] ?? []
+        ])->values()->all();
     }
 }

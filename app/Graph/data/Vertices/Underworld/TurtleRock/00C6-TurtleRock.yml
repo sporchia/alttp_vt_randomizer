@@ -1,0 +1,55 @@
+rooms:
+  - roomid: 0xC6
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Lobby SSE"
+        - name: "Turtle Rock - Lobby SSW"
+        - name: "Turtle Rock - Lobby WSW"
+        - name: "Turtle Rock - Lobby WNW"
+        - name: "Turtle Rock - Lobby NNW"
+        - name: "Turtle Rock - Lobby NNE"
+        - name: "Turtle Rock - Lobby ENE"
+        - name: "Turtle Rock - Lobby ESE"
+        - name: "Turtle Rock - Lobby track"
+
+      keydoors:
+        - name: "Turtle Rock - Lobby Door"
+          key: "KeyD7"
+
+      pots:
+        - name: "Turtle Rock - Lobby SSE - Pot 1"
+          position: 0x070c
+          sprite: "@MagicRefillFull"
+        - name: "Turtle Rock - Lobby SSE - Pot 2"
+          position: 0x190c
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Turtle Rock - Lobby SSE - Stalfos 1"
+          position: { x: 0x0b, y: 0x04, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Turtle Rock - Lobby SSE - Stalfos 2"
+          position: { x: 0x15, y: 0x04, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Turtle Rock - Lobby SSE - Blue Bari 1"
+          position: { x: 0x08, y: 0x09, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Turtle Rock - Lobby SSE - Blue Bari 2"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Turtle Rock - Lobby SSE - Green Stalfos"
+          position: { x: 0x10, y: 0x0e, z: 0x00 }
+          sprite: "GreenStalfos"
+
+        - name: "Turtle Rock - Lobby SSE - Blue Bari 3"
+          position: { x: 0x18, y: 0x14, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Turtle Rock - Lobby SSE - Blue Bari 4"
+          position: { x: 0x08, y: 0x17, z: 0x00 }
+          sprite: "BlueBari"

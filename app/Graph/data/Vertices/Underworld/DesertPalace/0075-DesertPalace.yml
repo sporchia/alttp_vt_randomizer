@@ -1,0 +1,69 @@
+rooms:
+  - roomid: 0x75
+    group: 3
+    nodes:
+      regions:
+        - name: "Desert Palace - Northeast Corner"
+        - name: "Desert Palace - Trap Room"
+
+      items:
+        - name: "Desert Palace - Big Key Chest"
+          addresses: [0xE9C2]
+          type: "chest"
+          itemset: ["desert"]
+
+      pots:
+        - name: "Desert Palace - Trap Room - Pot 1"
+          position: 0x1694
+          sprite: "@MagicRefillSmall"
+        - name: "Desert Palace - Trap Room - Pot 2"
+          position: 0x16a0
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Trap Room - Pot 3"
+          position: 0x16ac
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Desert Palace - Trap Room - Red Devalant 1"
+          position: { x: 0x08, y: 0x07, z: 0x00 }
+          sprite: "DevalantRed"
+
+        - name: "Desert Palace - Trap Room - Red Devalant 2"
+          position: { x: 0x04, y: 0x1b, z: 0x00 }
+          sprite: "DevalantRed"
+
+        - name: "Desert Palace - Trap Room - Leever 1"
+          position: { x: 0x06, y: 0x05, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Trap Room - Leever 2"
+          position: { x: 0x0a, y: 0x05, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Trap Room - Leever 3"
+          position: { x: 0x06, y: 0x0a, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Trap Room - Leever 4"
+          position: { x: 0x0a, y: 0x0a, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Trap Room - Moving Cannon (Right)"
+          position: { x: 0x11, y: 0x0b, z: 0x00 }
+          sprite: "CannonBallShooterR"
+          deny:
+            - "Kodongo"
+
+        - name: "Desert Palace - Trap Room - Moving Cannon (Left)"
+          position: { x: 0x1e, y: 0x0b, z: 0x00 }
+          sprite: "CannonBallShooterL"
+          deny:
+            - "Kodongo"
+
+        - name: "Desert Palace - Trap Room - Leever 5"
+          position: { x: 0x07, y: 0x19, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Trap Room - Leever 6"
+          position: { x: 0x09, y: 0x19, z: 0x00 }
+          sprite: "Leever"

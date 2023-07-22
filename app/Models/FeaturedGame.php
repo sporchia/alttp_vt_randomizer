@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FeaturedGame extends Model
 {
-    protected $dates = [
-        'day',
+    protected $casts = [
+        'day' => 'datetime',
     ];
     protected $fillable = [
         'day',

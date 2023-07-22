@@ -1,0 +1,119 @@
+rooms:
+  - roomid: 0x35
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - West Lever"
+          switch: true
+        - name: "Swamp Palace - West Lever Ditch"
+        - name: "Swamp Palace - Water 2"
+        - name: "Swamp Palace - Money Ledge"
+        - name: "Swamp Palace - West Moat - orange"
+          peg: "orange"
+        - name: "Swamp Palace - West Moat Top - blue"
+          peg: "blue"
+        - name: "Swamp Palace - West Moat Bottom - blue"
+          peg: "blue"
+        - name: "Swamp Palace - West Moat Bottom Left"
+
+      items:
+        - name: "Swamp Palace - Big Key Chest"
+          addresses: [0xEAA6]
+          type: "chest"
+          itemset: ["swamp"]
+
+      pots:
+        - name: "Swamp Palace - West Lever Key"
+          position: 0x063c
+          item: "KeyD2"
+          itemset: ["swamp"]
+        - name: "Swamp Palace - West Lever - Pot 1"
+          position: 0x0814
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - West Lever - Pot 2"
+          position: 0x0818
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - West Lever - Pot 3"
+          position: 0x081c
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - West Lever - Pot 4"
+          position: 0x0820
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - West Lever - Pot 5"
+          position: 0x0824
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - West Lever - Pot 6"
+          position: 0x1430
+          sprite: "@Heart"
+        - name: "Swamp Palace - West Lever - Pot 7"
+          position: 0x16f0
+          sprite: "@Heart"
+        - name: "Swamp Palace - West Lever - Pot 8"
+          position: 0x1c4c
+          sprite: "@Heart"
+        - name: "Swamp Palace - West Lever - Pot 9"
+          position: 0x1758
+        - name: "Swamp Palace - West Lever - Pot 10"
+          position: 0x174c
+        - name: "Swamp Palace - West Lever - Pot 11"
+          position: 0x1b64
+        - name: "Swamp Palace - West Lever - Pot 12"
+          position: 0x1cf2
+
+      mobs:
+        - name: "Swamp Palace - West Lever - Crystal Switch"
+          position: { x: 0x16, y: 0x06, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Swamp Palace - West Lever - Push Switch"
+          position: { x: 0x14, y: 0x05, z: 0x00 }
+          item: "SwampWater2"
+          itemset: ["event"]
+          sprite: "PushSwitch"
+          allow:
+            - "PushSwitch"
+
+        - name: "Swamp Palace - West Lever - Red Bari"
+          position: { x: 0x18, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Swamp Palace - West Lever - Spike Trap"
+          position: { x: 0x13, y: 0x09, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Swamp Palace - West Lever - Stalfos 1"
+          position: { x: 0x14, y: 0x0b, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Swamp Palace - West Lever - Zol"
+          position: { x: 0x07, y: 0x14, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Swamp Palace - West Lever - Stalfos 2"
+          position: { x: 0x14, y: 0x18, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerHR"
+
+        - name: "Swamp Palace - West Lever - Fire Snake"
+          position: { x: 0x16, y: 0x19, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Swamp Palace - West Lever - Yomo Medusa"
+          position: { x: 0x17, y: 0x1a, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Swamp Palace - West Lever - Blue Bari"
+          position: { x: 0x14, y: 0x1b, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Swamp Palace - West Lever - Stalfos 3"
+          position: { x: 0x1b, y: 0x1c, z: 0x00 }
+          sprite: "Stalfos"

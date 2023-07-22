@@ -1,0 +1,22 @@
+rooms:
+  - roomid: 0x51
+    group: 1
+    nodes:
+      regions:
+        - name: "Hyrule Castle - Throne Room"
+
+      mobs:
+        #- name: "Hyrule Castle - Throne Room - Mantle"
+        - name: "Hyrule Castle - Mantle"
+          position: { x: 0x0e, y: 0x02, z: 0x00 }
+          sprite: "Mantle"
+          allow:
+            - "Mantle"
+
+        - name: "Hyrule Castle - Throne Room - Blue Guard 1"
+          position: { x: 0x09, y: 0x17, z: 0x01 }
+          sprite: "BlueSwordGuard01"
+
+        - name: "Hyrule Castle - Throne Room - Blue Guard 2"
+          position: { x: 0x16, y: 0x17, z: 0x01 }
+          sprite: "BlueSwordGuard02"

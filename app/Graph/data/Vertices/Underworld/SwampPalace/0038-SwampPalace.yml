@@ -1,0 +1,56 @@
+rooms:
+  - roomid: 0x38
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Long Hall"
+
+      keydoors:
+        - name: "Swamp Palace - Long Hall Door"
+          key: "KeyD2"
+
+      pots:
+        - name: "Swamp Palace - Long Hall Key"
+          position: 0x13a4
+          item: "KeyD2"
+          itemset: ["swamp"]
+        - name: "Swamp Palace - Long Hall - Pot 1"
+          position: 0x0ca4
+          sprite: "@ArrowRefill5"
+        - name: "Swamp Palace - Long Hall - Pot 2"
+          position: 0x0da4
+          sprite: "@Key"
+        - name: "Swamp Palace - Long Hall - Pot 3"
+          position: 0x12a4
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Swamp Palace - Long Hall - Hover 1"
+          position: { x: 0x0c, y: 0x06, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Long Hall - Hover 2"
+          position: { x: 0x07, y: 0x0a, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Long Hall - Kyameron 1"
+          position: { x: 0x0c, y: 0x0c, z: 0x00 }
+          sprite: "Kyameron"
+
+        - name: "Swamp Palace - Long Hall - Medusa"
+          position: { x: 0x0c, y: 0x10, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Swamp Palace - Long Hall - Kyameron 2"
+          position: { x: 0x06, y: 0x14, z: 0x00 }
+          sprite: "Kyameron"
+          deny:
+            - "RollerHR"
+
+        - name: "Swamp Palace - Long Hall - Kyameron 3"
+          position: { x: 0x0c, y: 0x18, z: 0x00 }
+          sprite: "Kyameron"
+
+        - name: "Swamp Palace - Long Hall - Hover 3"
+          position: { x: 0x07, y: 0x1a, z: 0x00 }
+          sprite: "Hover"

@@ -1,0 +1,47 @@
+maps:
+  - map: 0x5D
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Hylia River Peninsula"
+        - name: "Dark Hylia River Peninsula Eastern Ledge"
+        - name: "Dark Hylia River Peninsula Lonely Square"
+        - name: "Dark Hylia River Peninsula Northeast Nook"
+        - name: "Dark Hylia River Peninsula Two Square Niche"
+        - name: "Dark Hylia River Peninsula Waters"
+
+      mobs:
+        - name: "Dark Hylia River Peninsula - Talking Tree"
+          position: { x: 0x0b, y: 0x08 }
+          sprite: "TalkingTree"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Peninsula - Hinox"
+          position: { x: 0x07, y: 0x09 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Peninsula - Snapdragon"
+          position: { x: 0x06, y: 0x0b }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Peninsula - Moblin 1"
+          position: { x: 0x18, y: 0x0b }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Peninsula - Stal"
+          position: { x: 0x17, y: 0x0e }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Peninsula - Moblin 2"
+          position: { x: 0x1a, y: 0x10 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Dark Hylia River Peninsula - Blue Guard"
+          position: { x: 0x08, y: 0x11 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]

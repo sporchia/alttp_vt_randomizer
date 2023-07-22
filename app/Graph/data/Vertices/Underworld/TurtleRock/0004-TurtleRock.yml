@@ -1,0 +1,124 @@
+rooms:
+  - roomid: 0x04
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Pokeys Choice"
+        - name: "Turtle Rock - Crystaroller Room"
+        - name: "Turtle Rock - Bomb Ambush"
+        - name: "Turtle Rock - Big Money"
+
+      shutters:
+        - name: "Turtle Rock - Bomb Ambush - Shutter Door"
+
+      keydoors:
+        - name: "Turtle Rock - Crystaroller Door"
+          key: "KeyD7"
+
+      items:
+        - name: "Turtle Rock - Crystaroller Room Chest"
+          addresses: [0xEA34]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+      pots:
+        - name: "Turtle Rock - Big Money - Pot 1"
+          position: 0x13cc
+          sprite: "@BombRefill1"
+        - name: "Turtle Rock - Big Money - Pot 2"
+          position: 0x13f0
+          sprite: "@BombRefill1"
+        - name: "Turtle Rock - Big Money - Pot 3"
+          position: 0x2d0c
+        - name: "Turtle Rock - Big Money - Pot 4"
+          position: 0x2d11
+        - name: "Turtle Rock - Big Money - Pot 5"
+          position: 0x330c
+        - name: "Turtle Rock - Big Money - Pot 6"
+          position: 0x3311
+
+      mobs:
+        - name: "Turtle Rock - Big Money - Crystal Switch"
+          position: { x: 0x09, y: 0x04, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Turtle Rock - Big Money - Roller (Vertical, Up)"
+          position: { x: 0x14, y: 0x04, z: 0x00 }
+          sprite: "RollerVU"
+
+        - name: "Turtle Rock - Big Money - Roller (Horizontal, Right)"
+          position: { x: 0x1b, y: 0x04, z: 0x00 }
+          sprite: "RollerHR"
+
+        - name: "Turtle Rock - Big Money - Roller (Horizontal, Left) 1"
+          position: { x: 0x05, y: 0x07, z: 0x00 }
+          sprite: "RollerHL"
+
+        - name: "Turtle Rock - Big Money - Roller (Horizontal, Left) 2"
+          position: { x: 0x15, y: 0x09, z: 0x00 }
+          sprite: "RollerHL"
+
+        - name: "Turtle Rock - Big Money - Sahasrahla / Aginah"
+          position: { x: 0x07, y: 0x12, z: 0x00 }
+          sprite: "ZoroSpawner"
+
+        - name: "Turtle Rock - Big Money - Pull Switch (Good)"
+          position: { x: 0x15, y: 0x15, z: 0x00 }
+          sprite: "PullSwitchGood"
+          allow:
+            - "PullSwitchGood"
+
+        - name: "Turtle Rock - Big Money - Pull Switch (Bad)"
+          position: { x: 0x1a, y: 0x15, z: 0x00 }
+          sprite: "PullSwitchBad"
+          allow:
+            - "PullSwitchBad"
+
+        - name: "Turtle Rock - Big Money - Bad Bomb 1"
+          position: { x: 0x18, y: 0x15, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Turtle Rock - Bomb Ambush - Zol 1"
+          position: { x: 0x1c, y: 0x15, z: 0x00 }
+          sprite: "Zol"
+          trophy: "TurtleRockBombAmbushTrophy"
+
+        - name: "Turtle Rock - Big Money - Bad Bomb 2"
+          position: { x: 0x16, y: 0x17, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Turtle Rock - Big Money - Bad Bomb 3"
+          position: { x: 0x1a, y: 0x17, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Turtle Rock - Big Money - Bad Bomb 4"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Turtle Rock - Bomb Ambush - Zol 2"
+          position: { x: 0x1a, y: 0x1a, z: 0x00 }
+          sprite: "Zol"
+          trophy: "TurtleRockBombAmbushTrophy"
+
+        - name: "Turtle Rock - Bomb Ambush - Zol 3"
+          position: { x: 0x15, y: 0x1b, z: 0x00 }
+          sprite: "Zol"
+          trophy: "TurtleRockBombAmbushTrophy"
+
+        - name: "Turtle Rock - Big Money - Pokey"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "Pokey"

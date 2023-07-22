@@ -1,0 +1,137 @@
+rooms:
+  - roomid: 0xA4
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Boss Room"
+
+      items:
+        - name: "Turtle Rock - Boss"
+          addresses: [0x180159]
+          type: "drop"
+          itemset: ["turtlerock"]
+
+        - name: "Turtle Rock - Prize"
+          addresses: [null, 0x120A7, 0x53F24, 0x53F25, 0x18005C, 0x180079, 0xC708]
+          type: "prize"
+          itemset: ["prize"]
+
+    # this data might not end up living here?
+    # but is not currently used, see data/Bosses/SpriteLocations.yml
+    bosses:
+      "Turtle Rock - Boss Room":
+        DefeatArmos:
+          - name: "Turtle Rock - Boss Room - Armos Knight 1"
+            position: { x: 0x04, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Turtle Rock - Boss Room - Armos Knight 2"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Turtle Rock - Boss Room - Armos Knight 3"
+            position: { x: 0x0a, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Turtle Rock - Boss Room - Armos Knight 4"
+            position: { x: 0x0a, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Turtle Rock - Boss Room - Armos Knight 5"
+            position: { x: 0x07, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Turtle Rock - Boss Room - Armos Knight 6"
+            position: { x: 0x04, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Turtle Rock - Boss Room - Armos Overlord"
+            position: { x: 0x07, y: 0x18, z: 0x00 }
+            sprite: "ArmosCoordinator"
+        DefeatLanmolas:
+          - name: "Turtle Rock - Boss Room - Lanmolas 1"
+            position: { x: 0x06, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Turtle Rock - Boss Room - Lanmolas 2"
+            position: { x: 0x09, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Turtle Rock - Boss Room - Lanmolas 3"
+            position: { x: 0x07, y: 0x19, z: 0x00 }
+            sprite: "Lanmolas"
+        DefeatMoldorm:
+          - name: "Turtle Rock - Boss Room - Moldorm"
+            position: { x: 0x02, y: 0x1e, z: 0x00 }
+            sprite: "Moldorm"
+        DefeatHelmasaur:
+          - name: "Turtle Rock - Boss Room - Helmasaur King"
+            position: { x: 0x07, y: 0x16, z: 0x00 }
+            sprite: "Helmasaur"
+        DefeatArrghus:
+          - name: "Turtle Rock - Boss Room - Arrghus"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "Arrghus"
+          - name: "Turtle Rock - Boss Room - Arrghi 1"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 2"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 3"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 4"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 5"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 6"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 7"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 8"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 9"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 10"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 11"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 12"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Turtle Rock - Boss Room - Arrghi 13"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+        DefeatMothula:
+          - name: "Turtle Rock - Boss Room - Mothula"
+            position: { x: 0x08, y: 0x16, z: 0x00 }
+            sprite: "Mothula"
+        DefeatBlind:
+          - name: "Turtle Rock - Boss Room - Blind"
+            position: { x: 0x09, y: 0x15, z: 0x00 }
+            sprite: "Blind"
+        DefeatKholdstare:
+          - name: "Turtle Rock - Boss Room - Kholdstare's Shell"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "KholdstareShell"
+          - name: "Turtle Rock - Boss Room - Falling Ice"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "FallingIce"
+          - name: "Turtle Rock - Boss Room - Kholdstare"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Kholdstare"
+        DefeatVitreous:
+          - name: "Turtle Rock - Boss Room - Vitreous"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Vitreous"
+        DefeatTrinexx:
+          - name: "Turtle Rock - Boss Room - Trinexx"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Trinexx"
+          - name: "Turtle Rock - Boss Room - Trinexx (Fire Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadFire"
+          - name: "Turtle Rock - Boss Room - Trinexx (Ice Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadIce"

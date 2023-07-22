@@ -1,0 +1,52 @@
+maps:
+  - map: 0x3F
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "South Shore Falls"
+        - name: "South Shore Falls Waters"
+
+      warps:
+        - name: "South Shore Falls whirlpool"
+          position: { x: 0xFF, y: 0xFF }
+
+      mobs:
+        - name: "South Shore Falls - Octorok (One Way) 1"
+          position: { x: 0x11, y: 0x04 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "South Shore Falls - Octorok (One Way) 2"
+          position: { x: 0x16, y: 0x05 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "South Shore Falls - Fireball Zora 1"
+          position: { x: 0x08, y: 0x0b }
+          sprite: "FireballZora"
+          state: [1]
+
+        - name: "South Shore Falls - Octoballoon 1"
+          position: { x: 0x10, y: 0x16 }
+          sprite: "Octoballoon"
+          state: [1]
+
+        - name: "South Shore Falls - Octorok (Four Way)"
+          position: { x: 0x16, y: 0x05 }
+          sprite: "Octorok4"
+          state: [2]
+
+        - name: "South Shore Falls - Fireball Zora 2"
+          position: { x: 0x06, y: 0x13 }
+          sprite: "FireballZora"
+          state: [2]
+
+        - name: "South Shore Falls - Octoballoon 2"
+          position: { x: 0x11, y: 0x16 }
+          sprite: "Octoballoon"
+          state: [2]
+
+        - name: "South Shore Falls - Whirlpool"
+          position: { x: 0x07, y: 0x0c }
+          sprite: "Whirlpool"
+          state: [1, 2]

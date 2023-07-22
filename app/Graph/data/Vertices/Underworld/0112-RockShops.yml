@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x0112
+    nodes:
+      regions:
+        - name: "Dark Death Mountain Shop"
+          inletid: 0x58
+
+      mobs:
+        - name: "Rock Wall - Shopkeeper"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

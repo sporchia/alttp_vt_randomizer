@@ -1,0 +1,22 @@
+rooms:
+  - roomid: 0xC7
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Torch Puzzle Overlook"
+        - name: "Turtle Rock - Torch Puzzle"
+        - name: "Turtle Rock - Torch Puzzle track"
+
+      pots:
+        - name: "Turtle Rock - Torch Puzzle - Pot 1"
+          position: 0x0a0c
+          sprite: "@Heart"
+        - name: "Turtle Rock - Torch Puzzle - Pot 2"
+          position: 0x0b0c
+          sprite: "@MagicRefillFull"
+        - name: "Turtle Rock - Torch Puzzle - Pot 3"
+          position: 0x160c
+          sprite: "@MagicRefillSmall"
+        - name: "Turtle Rock - Torch Puzzle - Pot 4"
+          position: 0x1c0c
+          sprite: "@ArrowRefill5"

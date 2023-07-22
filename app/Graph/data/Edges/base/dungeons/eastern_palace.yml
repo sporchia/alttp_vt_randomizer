@@ -1,6 +1,6 @@
 fixed:
   directed:
-    - ["Eastern Palace - Entrance", "Eastern Palace - Exit"]
+    - ["Eastern Palace - Entrance", "Eastern Palace - Entrance - Exit"]
     - ["Eastern Palace - Popo Switch", "Eastern Palace - Entrance"]
     - ["Eastern Palace - Cannonball Room", "Eastern Palace - Cannonball Chest"]
     - ["Eastern Palace - East Wing - Top", "Eastern Palace - Main Room - Balcony"]

@@ -1,0 +1,50 @@
+maps:
+  - map: 0x37
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Ice Cave Region"
+
+      entrances:
+        - name: "Ice Cave - West"
+          entranceid: 0x7F
+          outletid: 0x82
+
+        - name: "Ice Cave - East"
+          entranceid: 0x6A
+          outletid: 0x83
+
+        - name: "Ice Cave Thief Hideout"
+          entranceid: 0x7A
+          outletid: 0x8B
+
+      mobs:
+        - name: "Ice Cave - Raven"
+          position: { x: 0x0c, y: 0x15 }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Ice Cave - Crab 1"
+          position: { x: 0x08, y: 0x08 }
+          sprite: "Crab"
+          state: [1, 2]
+
+        - name: "Ice Cave - Crab 2"
+          position: { x: 0x10, y: 0x08 }
+          sprite: "Crab"
+          state: [1, 2]
+
+        - name: "Ice Cave - Crab 3"
+          position: { x: 0x0f, y: 0x0b }
+          sprite: "Crab"
+          state: [1, 2]
+
+        - name: "Ice Cave - Crab 4"
+          position: { x: 0x16, y: 0x11 }
+          sprite: "Crab"
+          state: [1, 2]
+
+        - name: "Ice Cave - Fireball Zora"
+          position: { x: 0x12, y: 0x19 }
+          sprite: "FireballZora"
+          state: [1, 2]

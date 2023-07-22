@@ -1,0 +1,58 @@
+rooms:
+  - roomid: 0x00E4
+    nodes:
+      regions:
+        - name: "Old Man Home"
+          inletid: 0x30
+        - name: "Old Man Home Back"
+
+      pots:
+        - name: "Old Man Home - Pot 1"
+          position: 0x0920
+          sprite: "@RupeeBlue"
+        - name: "Old Man Home - Pot 2"
+          position: 0x0a70
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Old Man Home - Lost Old Man"
+          position: { x: 0x06, y: 0x16, z: 0x00 }
+          sprite: "LostOldMan"
+          allow:
+            - "LostOldMan"
+
+        - name: "Old Man Home - Keese 1"
+          position: { x: 0x19, y: 0x07, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Old Man Home - Keese 2"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Old Man Home - Keese 3"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

@@ -1,0 +1,6 @@
+rooms:
+  - roomid: 0xF2
+    nodes:
+      regions:
+        - name: "Grandma's House Left"
+          inletid: 0x0d

@@ -1,0 +1,67 @@
+rooms:
+  - roomid: 0xC3
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - East Wing Top Left - orange"
+          peg: "orange"
+        - name: "Misery Mire - East Wing Top Middle - orange"
+          peg: "orange"
+        - name: "Misery Mire - East Wing Top Right - orange"
+          peg: "orange"
+        - name: "Misery Mire - East Wing Top - blue"
+          peg: "blue"
+        - name: "Misery Mire - East Wing Middle"
+        - name: "Misery Mire - East Wing Bottom"
+        - name: "Misery Mire - Falling Bridge"
+
+      items:
+        - name: "Misery Mire - Map Chest"
+          type: "chest"
+          addresses: [0xEA6A]
+          itemset: ["mire"]
+        - name: "Misery Mire - Big Chest"
+          type: "bigchest"
+          addresses: [0xEA67]
+          itemset: ["mire"]
+
+      pots:
+        - name: "Misery Mire - Falling Bridge - Medusa 1"
+          position: { x: 0x05, y: 0x06, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Falling Bridge - Laser Eye (Left) 1"
+          position: { x: 0x1e, y: 0x09, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Misery Mire - Falling Bridge - Laser Eye (Right) 1"
+          position: { x: 0x11, y: 0x0d, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Misery Mire - Falling Bridge - Laser Eye (Left) 2"
+          position: { x: 0x1e, y: 0x11, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Misery Mire - Falling Bridge - Laser Eye (Right) 2"
+          position: { x: 0x11, y: 0x15, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Misery Mire - Falling Bridge - Chicken"
+          position: { x: 0x17, y: 0x1a, z: 0x00 }
+          sprite: "FallingBridge"
+
+        - name: "Misery Mire - Falling Bridge - Antifairy"
+          position: { x: 0x0a, y: 0x1b, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Falling Bridge - Medusa 2"
+          position: { x: 0x07, y: 0x1c, z: 0x00 }
+          sprite: "Medusa"

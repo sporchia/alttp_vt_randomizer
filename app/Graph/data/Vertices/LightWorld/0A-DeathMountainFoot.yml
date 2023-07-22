@@ -1,0 +1,78 @@
+maps:
+  - map: 0x0A
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Death Mountain Foot"
+        - name: "Death Mountain Foot Cave Entrance"
+        - name: "Death Mountain Foot Descent Ledge"
+
+      entrances:
+        - name: "Death Mountain Foot Cave Entrance"
+          entranceid: 0x05
+          outletid: 0x07
+
+        - name: "Death Mountain Foot Descent Ledge"
+          entranceid: 0x2d
+          outletid: 0x2f
+
+      mobs:
+        - name: "Death Mountain Foot - Rupee Pull"
+          position: { x: 0x0e, y: 0x06 }
+          sprite: "PullForRupees"
+          state: [1]
+
+        - name: "Death Mountain Foot - Raven 1"
+          position: { x: 0x05, y: 0x09 }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Death Mountain Foot - Buzzblob 1"
+          position: { x: 0x10, y: 0x0d }
+          sprite: "Buzzblob"
+          state: [1]
+
+        - name: "Death Mountain Foot - Buzzblob 2"
+          position: { x: 0x0b, y: 0x0e }
+          sprite: "Buzzblob"
+          state: [1]
+
+        - name: "Death Mountain Foot - Buzzblob 3"
+          position: { x: 0x16, y: 0x16 }
+          sprite: "Buzzblob"
+          state: [1]
+
+        - name: "Death Mountain Foot - Blue Guard"
+          position: { x: 0x10, y: 0x0d }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Death Mountain Foot - Raven 4"
+          position: { x: 0x11, y: 0x16 }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Death Mountain Foot - Bee"
+          position: { x: 0x0e, y: 0x04 }
+          sprite: "Bee"
+          state: [1, 2]
+
+        - name: "Death Mountain Foot - Raven 2"
+          position: { x: 0x13, y: 0x16 }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Death Mountain Foot - Bush Hoarder"
+          position: { x: 0x0e, y: 0x16 }
+          sprite: "BushHoarder"
+          state: [1, 2]
+
+        - name: "Death Mountain Foot - Raven 3"
+          position: { x: 0x11, y: 0x17 }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Death Mountain Foot - Apple"
+          position: { x: 0x19, y: 0x1a }
+          sprite: "Apple"
+          state: [1, 2]

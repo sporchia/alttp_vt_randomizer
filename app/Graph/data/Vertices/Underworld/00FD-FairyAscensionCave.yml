@@ -1,0 +1,42 @@
+rooms:
+  - roomid: 0x00FD
+    nodes:
+      regions:
+        - name: "Fairy Ascension Cave - Bottom"
+          inletid: 0x1a
+        - name: "Fairy Ascension Cave - Fairy Alcove"
+
+      pots:
+        - name: "Fairy Ascension Cave - Bottom - Pot 1"
+          position: 0x0658
+          sprite: "@RupeeBlue"
+        - name: "Fairy Ascension Cave - Bottom - Pot 2"
+          position: 0x0664
+          sprite: "@RupeeBlue"
+        - name: "Fairy Ascension Cave - Bottom - Pot 3"
+          position: 0x1754
+          sprite: "@RupeeBlue"
+        - name: "Fairy Ascension Cave - Bottom - Pot 4"
+          position: 0x1854
+          sprite: "@RupeeBlue"
+
+      mobs:
+        - name: "Fairy Ascension Cave - Bottom - Mini Moldorm"
+          position: { x: 0x09, y: 0x0e, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Fairy Ascension Cave - Bottom - Blue Bari 1"
+          position: { x: 0x05, y: 0x08, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Fairy Ascension Cave - Bottom - Fairy 1"
+          position: { x: 0x16, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Ascension Cave - Bottom - Fairy 2"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Ascension Cave - Bottom - Blue Bari 2"
+          position: { x: 0x0f, y: 0x11, z: 0x00 }
+          sprite: "BlueBari"

@@ -1,0 +1,61 @@
+rooms:
+  - roomid: 0x1F
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Penguin Switch"
+        - name: "Ice Palace - Big Key View"
+        - name: "Ice Palace - Big Key right"
+
+      items:
+        - name: "Ice Palace - Big Key Chest"
+          addresses: [0xE9A4]
+          type: "chest"
+          itemset: ["ice"]
+
+      pots:
+        - name: "Ice Palace - Big Key View - Pot 1"
+          position: 0x191c
+          sprite: "FloorSwitch"
+        - name: "Ice Palace - Big Key View - Pot 2"
+          position: 0x1a56
+        - name: "Ice Palace - Big Key View - Pot 3"
+          position: 0x1b56
+        - name: "Ice Palace - Big Key View - Pot 4"
+          position: 0x171c
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Ice Palace - Big Key View - Pengator 1"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerHR"
+
+        - name: "Ice Palace - Big Key View - Pengator 2"
+          position: { x: 0x09, y: 0x15, z: 0x00 }
+          sprite: "Pengator"
+
+        - name: "Ice Palace - Big Key View - Antifairy"
+          position: { x: 0x06, y: 0x16, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Ice Palace - Big Key View - Bunny Beam"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Ice Palace - Big Key View - Pengator 3"
+          position: { x: 0x0a, y: 0x17, z: 0x00 }
+          sprite: "Pengator"
+
+        - name: "Ice Palace - Big Key View - Pengator 4"
+          position: { x: 0x0a, y: 0x19, z: 0x00 }
+          sprite: "Pengator"
+
+        - name: "Ice Palace - Big Key View - Pengator 5"
+          position: { x: 0x04, y: 0x1b, z: 0x00 }
+          sprite: "Pengator"
+
+        - name: "Ice Palace - Big Key View - Pengator 6"
+          position: { x: 0x09, y: 0x1b, z: 0x00 }
+          sprite: "Pengator"

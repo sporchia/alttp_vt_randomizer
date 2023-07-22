@@ -121,39 +121,17 @@ class HintService
                 $world->setText($tile, $hint);
             }
 
-            $hintables = array_filter($this->advancement_items, function ($item) use ($world) {
-                return !$item instanceof Item\Shield
-                    && !$item instanceof Item\Key
-                    && !$item instanceof Item\Map
-                    && !$item instanceof Item\Compass
-                    && ($world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey)
-                    && !$item instanceof Item\Bottle
-                    && !$item instanceof Item\Sword
-                    && !in_array($item->raw_name, ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
+            $hintables = array_filter($this->advancement_items, function ($item) {
+                return !in_array($item->raw_name, ['TenBombs', 'HalfMagic', 'BugCatchingNet', 'Powder', 'Mushroom']);
             });
 
-            $hints = array_slice(fy_shuffle($hintables ?? []), 0, min(4, count($tiles)));
+            $hints = array_slice(fy_shuffle($hintables), 0, min(4, count($tiles)));
 
             $hints = array_filter(array_map(function ($item) use ($world) {
-                return $world->getLocationsWithItem($item)->filter(function ($location) {
-                    return !$location instanceof Location\Medallion
-                        && !$location instanceof Location\Fountain
-                        && !$location instanceof Location\Prize
-                        && !$location instanceof Location\Trade;
-                })->random();
+                return $world->getLocationsWithItem($item)->random();
             }, $hints));
 
-            $locations_with_item = $world->getLocationsWithItem()->filter(function ($location) use ($world) {
-                $item = $location->getItem();
-                return !$location instanceof Location\Medallion
-                    && !$location instanceof Location\Fountain
-                    && !$location instanceof Location\Prize
-                    && !$location instanceof Location\Trade
-                    && !$item instanceof Item\Key
-                    && !$item instanceof Item\Map
-                    && !$item instanceof Item\Compass
-                    && ($world->config('region.wildBigKeys', false) || !$item instanceof Item\BigKey);
-            });
+            $locations_with_item = $world->getLocationsWithItem();
 
             $hint_locations = $locations_with_item->randomCollection(get_random_int((int) (floor((count($tiles) - count($hints)) / 2) - 1), count($tiles) - count($hints) - 1))->merge($hints);
 

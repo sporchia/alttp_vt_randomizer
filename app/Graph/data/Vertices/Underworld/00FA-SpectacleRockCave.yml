@@ -1,0 +1,20 @@
+rooms:
+  - roomid: 0x00FA
+    nodes:
+      regions:
+        - name: "Spectacle Rock Cave Middle"
+          inletid: 0x22
+        - name: "Spectacle Rock Cave Fairies"
+
+      mobs:
+        - name: "Spectacle Rock Cave Middle - Fairy 1"
+          position: { x: 0x17, y: 0x0e, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Spectacle Rock Cave Middle - Fairy 2"
+          position: { x: 0x18, y: 0x10, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Spectacle Rock Cave Middle - Fairy 3"
+          position: { x: 0x15, y: 0x11, z: 0x00 }
+          sprite: "Fairy"

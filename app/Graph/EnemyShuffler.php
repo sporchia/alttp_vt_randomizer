@@ -15,87 +15,6 @@ use Symfony\Component\Yaml\Yaml;
  */
 final class EnemyShuffler
 {
-    const CHALLENGE_ENEMIES = [
-        "Raven",
-        "Vulture",
-        "FlyingStalfosHead",
-        "Octorok1",
-        "Moldorm",
-        "Octorok4",
-        "Chicken",
-        "OctorokStone",
-        "Buzzblob",
-        "Snapdragon",
-        "Octoballoon",
-        "Octobaby",
-        "Hinox",
-        "Moblin",
-        "MiniHelmasaur",
-        "BushHoarder",
-        "MiniMoldorm",
-        "Poe",
-        "Sluggula",
-        "Ropa",
-        "RedBari",
-        "BlueBari",
-        "HardhatBeetle",
-        "Deadrock",
-        "RockHoarder",
-        "BlueSwordGuard",
-        "GreenSwordGuard",
-        "RedSpearGuard",
-        "AssaultSwordGuard",
-        "FastRedSpearGuard",
-        "BlueArcher",
-        "GreenArcher",
-        "RedJavelinGuard",
-        "RedJavelinGuard2",
-        "RedBombGuard",
-        "GreenGuardRecruit",
-        "Geldman",
-        "Rabbit",
-        "Popo",
-        "Popo2",
-        "Armos",
-        "WalkingZora",
-        "Crab",
-        "MasterSword",
-        "DevalantRed",
-        "BallNChainTrooper",
-        "CannonGuard",
-        "Rat",
-        "Rope",
-        "Leever",
-        "GreenStalfos",
-        // "Hover", // might need special casing?
-        "EyegoreGreen",
-        "EyegoreRed",
-        "Kodongo",
-        "Gibdo",
-        "Terrorpin",
-        "Zol",
-        "Wallmaster",
-        "StalfosKnight",
-        "Pengator",
-        "Wizzrobe",
-        "Zoro",
-        "Babasu",
-        "ZazakBlue",
-        "ZazakRed",
-        "Stalfos",
-        "ZirroGreen",
-        "ZirroBlue",
-        "Pikit",
-        "DialogueTester",
-        "Gibo",
-        "Thief",
-        "Pokey",
-        "Tektite",
-        "Swamola",
-        "Lynel",
-        "Stal",
-        "Landmine",
-    ];
     const CHALLENGE_ROOMS = [
         "Mini Moldorm Cave Entrance" => [
             "Mini Moldorm Cave - Mini Moldorm 1",
@@ -332,182 +251,6 @@ final class EnemyShuffler
             "Mimic Cave Entrance - Green Eyegore BR",
         ],
     ];
-    const CHALLENGE_CHESTS = [];
-    const NO_PLACE_SPRITES = [
-        "Empty",
-        "PullSwitchGood",
-        "PullSwitchGoodUnused",
-        "PullSwitchBad",
-        "PullSwitchBadUnused",
-        "Moldorm",
-        "OctorokStone",
-        "Octobaby",
-        "ForkGate",
-        "Sahasrahla",
-        "DwarfSmith",
-        "SpriteArrow",
-        "FluteQuest",
-        "CrystalSwitch",
-        "SickKid",
-        "PushSwitch",
-        "TalkingTree",
-        "Storyteller",
-        "Adult",
-        "SweepingLady",
-        "Hobo",
-        "ShootingGalleryNPC",
-        "Medusa",
-        "YomoMedusa",
-        "Lumberjack",
-        "TelepathyTile",
-        "FluteKid",
-        "RaceGameLady",
-        "RaceGameBoy",
-        "FortuneTeller",
-        "AngryBrother",
-        "PullForRupees",
-        "YoungSnitch",
-        "Innkeeper",
-        "Witch",
-        "Waterfall",
-        "ArrowTarget",
-        "AverageMan",
-        "MagicBat",
-        "DashItem",
-        "VillageKid",
-        "OldSnitch",
-        "TutorialGuard",
-        "LightningLock",
-        "Cannonball",
-        "KingZora",
-        "ArmosKnight",
-        "Lanmolas",
-        "DesertPalaceBarrier",
-        //        "Bird",
-        //        "Squirrel",
-        "MasterSword",
-        "MirrorPortal",
-        "HelmasaurFireball",
-        "PondActivation",
-        "Uncle",
-        "Priest",
-        "RunningMan",
-        "BottleSalesman",
-        "Zelda",
-        "SahaWife",
-        "Bee",
-        "Agahnim",
-        "AgahnimBall",
-        "Flames",
-        "Mothula",
-        "MothulaBeam",
-        "Arrghus",
-        "ArrghusSpawn",
-        "Wallmaster",
-        "Helmasaur",
-        //        "Bumper",
-        "Pirogisu",
-        "LaserEyeR",
-        "LaserEyeL",
-        "LaserEyeD",
-        "LaserEyeU",
-        "Zoro",
-        //        "OstrichHG",
-        //        "RabbitHG",
-        //        "BirdHG",
-        "Freezor",
-        "Kholdstare",
-        "KholdstareShell",
-        //        "FallingIce",
-        "Maiden",
-        "Apple",
-        "LostOldMan",
-        "PipeD",
-        "PipeU",
-        "PipeR",
-        "PipeL",
-        "BeeGood",
-        "HylianPlaque",
-        "PurpleChest",
-        "BombSalesman",
-        "Kiki",
-        "BlindMaiden",
-        "FeudingFriends",
-        "Whirlpool",
-        "Salesman",
-        "Drunkard",
-        "Vitreous",
-        "VitreousSmallEyeball",
-        "Lightning",
-        "Catfish",
-        "AgahnimCutscene",
-        "Boulder",
-        "FairyBig",
-        "Trinexx",
-        "TrinexxHeadFire",
-        "TrinexxHeadIce",
-        "Blind",
-        "BunnyBeam",
-        "DiggingGameNPC",
-        "Ganon",
-        "GanonInvisible",
-        "Heart",
-        "RupeeGreen",
-        "RupeeBlue",
-        "RupeeRed",
-        "BombRefill1",
-        "BombRefill4",
-        "BombRefill8",
-        "MagicRefillSmall",
-        "MagicRefillFull",
-        "ArrowRefill5",
-        "ArrowRefill10",
-        "Fairy",
-        "Key",
-        "BigKey",
-        "Shield",
-        "Mushroom",
-        "PotionShop",
-        "HeartContainer",
-        "HeartPiece",
-        "Throwable",
-        "SomariaPlatform",
-        "Mantle",
-        "SomariaPlatform1",
-        "SomariaPlatform2",
-        "SomariaPlatform3",
-        "MedallionTablet",
-        // only works in OW, don't use these next two in UW!!
-        "Position Target",
-        "Boulders",
-        // Overlords
-        "FullRoomCannons",
-        "VerticalCannon",
-        "FallingStalfos",
-        "BadSwitchSnake",
-        "MovingFloor",
-        "BlobSpawner",
-        "Wallmaster",
-        "FallingSquare",
-        "FallingBridge",
-        "FallingTilesWestToEast",
-        "FallingTilesNorthToSouth",
-        "FallingTilesEastToWest",
-        "FallingTilesSouthToNorth",
-        "PirogusuSpawnerLeft",
-        "PirogusuSpawnerRight",
-        "PirogusuSpawnerTop",
-        "PirogusuSpawnerBottom",
-        "TileRoom",
-        "WizzrobeSpawner",
-        "ZoroSpawner",
-        "PotTrap",
-        "InvisibleStalfos",
-        "ArmosCoordinator",
-        "BadSwitchBomb",
-        "Hole",
-        "FloorSwitch",
-    ];
     const PIT_ROOMS = [
         0x01,
     ];
@@ -531,6 +274,8 @@ final class EnemyShuffler
     ];
 
     private readonly array $defeats;
+    private readonly array $challenge_enemies;
+    private readonly array $no_place_sprites;
 
     /**
      * Add all the vertices to the graph for this region.
@@ -546,22 +291,25 @@ final class EnemyShuffler
      */
     public function __construct(private World $world)
     {
-        $this->defeats = Yaml::parse(file_get_contents(app_path('Graph/data/enemies.yml'))) ?? [];
+        $this->defeats = Yaml::parse(file_get_contents(app_path('Graph/data/Enemizer/enemies.yml'))) ?? [];
+        $this->challenge_enemies = Yaml::parse(file_get_contents(app_path('Graph/data/Enemizer/challenge.yml'))) ?? [];
+        $this->no_place_sprites = Yaml::parse(file_get_contents(app_path('Graph/data/Enemizer/noplace.yml'))) ?? [];
+
         $world_id = $this->world->id;
         foreach (array_keys($this->defeats) as $token) {
             $this->world->graph->newVertex([
                 'name' => "$token:$world_id",
                 'type' => 'meta',
-                'item' => $token,
+                'item' => Item::get($token, $world_id),
             ]);
         }
 
         $enemies = $world->getLocationsOfType('mob');
 
         /** @var array $enemy_rooms */
-        $enemy_rooms = $enemies->groupBy(fn ($enemy) => $enemy->getAttribute('roomid'));
+        $enemy_rooms = $enemies->groupBy(fn ($enemy) => $enemy->roomid);
         /** @var array $enemy_ows */
-        $enemy_ows = $enemies->groupBy(fn ($enemy) => $enemy->getAttribute('map'));
+        $enemy_ows = $enemies->groupBy(fn ($enemy) => $enemy->map);
 
         // Set up sprite sheets
         $sheetable_sprites = Sprite::all()->filter(
@@ -571,7 +319,7 @@ final class EnemyShuffler
         // requirements
         $nosheet_sprites = Sprite::all()->filter(
             fn ($s) => count(array_filter($s->sheets, fn ($v) => $v !== null)) === 0
-                && !in_array($s->name, static::NO_PLACE_SPRITES)
+                && !in_array($s->name, $this->no_place_sprites)
         )->all();
 
         $sheet_sets = array_fill(0, 124, [null, null, null, null]);
@@ -597,7 +345,7 @@ final class EnemyShuffler
                 }
                 if (!isset($ow_sheets[$i])) {
                     $fixed_set = [];
-                    $enemies = $enemy_ows[$i]->map(fn ($e) => $e->getAttribute('sprite'))->all();
+                    $enemies = $enemy_ows[$i]->map(fn ($e) => $e->sprite)->all();
                     foreach ($enemies as $sprite) {
                         $filtered_sprite = array_filter($sprite->sheets, fn ($v) => $v !== null);
                         $filtered_set = array_filter($fixed_set, fn ($v) => $v !== null);
@@ -633,13 +381,13 @@ final class EnemyShuffler
             }
             $filtered = $enemy_rooms[$i]->filter(
                 fn ($e) => $world->config('enemizer.enemyShuffle') === 'none'
-                    || in_array($e->getAttribute('sprite')->name, static::NO_PLACE_SPRITES)
+                    || in_array($e->sprite->name, $this->no_place_sprites)
             );
             if (count($filtered) === 0) {
                 continue;
             }
             $fixed_set = [];
-            $enemies = $filtered->map(fn ($e) => $e->getAttribute('sprite'))->all();
+            $enemies = $filtered->map(fn ($e) => $e->sprite)->all();
             foreach ($enemies as $sprite) {
                 $filtered_sprite = array_filter($sprite->sheets, fn ($v) => $v !== null);
                 $filtered_set = array_filter($fixed_set, fn ($v) => $v !== null);
@@ -693,7 +441,7 @@ final class EnemyShuffler
                     && ($sprite->sheets[1] === null || $set[1] === $sprite->sheets[1])
                     && ($sprite->sheets[2] === null || $set[2] === $sprite->sheets[2])
                     && ($sprite->sheets[3] === null || $set[3] === $sprite->sheets[3])
-                    && !in_array($sprite->name, static::NO_PLACE_SPRITES)
+                    && !in_array($sprite->name, $this->no_place_sprites)
                 ) {
                     $sheets_to_sprites[$i][$sprite->name] = $sprite;
                 }
@@ -715,16 +463,16 @@ final class EnemyShuffler
             $sheet = $room_sheets[$i];
             $filtered_placable = $enemy_rooms[$i]->filter(
                 fn ($e) => $world->config('enemizer.enemyShuffle') !== 'none'
-                    && !in_array($e->getAttribute('sprite')->name, static::NO_PLACE_SPRITES)
+                    && !in_array($e->sprite->name, $this->no_place_sprites)
             );
             if (count($filtered_placable) === 0) {
                 continue;
             }
             foreach ($filtered_placable as $enemy) {
-                if (in_array($enemy->getAttribute('name'), $all_challenge_enemies)) {
+                if (in_array($enemy->name, $all_challenge_enemies)) {
                     $new = get_random_element(array_filter(
                         $sheets_to_sprites[$sheet],
-                        fn ($sprite) => in_array($sprite->name, self::CHALLENGE_ENEMIES)
+                        fn ($sprite) => in_array($sprite->name, $this->challenge_enemies)
                     ));
                     if (!$new) {
                         throw new Exception('ugh');
@@ -733,10 +481,10 @@ final class EnemyShuffler
                     $new = get_random_element($sheets_to_sprites[$sheet]);
                 }
                 Log::debug(vsprintf('%s: placing %s', [
-                    $enemy->getAttribute('name'),
+                    $enemy->name,
                     $new->getNiceName(),
                 ]));
-                $enemy->setAttribute('sprite', $new);
+                $enemy->sprite = $new;
             }
         }
 
@@ -754,7 +502,7 @@ final class EnemyShuffler
             $sheet = $ow_sheets[$i];
             $filtered_placable = $enemy_ows[$i]->filter(
                 fn ($e) => $world->config('enemizer.enemyShuffle') !== 'none'
-                    && !in_array($e->getAttribute('sprite')->name, static::NO_PLACE_SPRITES)
+                    && !in_array($e->sprite->name, $this->no_place_sprites)
             );
             if (count($filtered_placable) === 0) {
                 continue;
@@ -762,10 +510,10 @@ final class EnemyShuffler
             foreach ($filtered_placable as $enemy) {
                 $new = get_random_element($sheets_to_sprites[$sheet]);
                 Log::debug(vsprintf('%s: placing %s', [
-                    $enemy->getAttribute('name'),
+                    $enemy->name,
                     $new->getNiceName(),
                 ]));
-                $enemy->setAttribute('sprite', $new);
+                $enemy->sprite = $new;
             }
         }
         ksort($ow_sheets);
@@ -804,10 +552,7 @@ final class EnemyShuffler
         foreach ($this->defeats as $token => $items) {
             $to = $this->world->graph->getVertex($token . ":$world_id");
             foreach ($items as $item) {
-                $this->world->graph->addDirected($from, $to, [
-                    'group' => "$item:$world_id",
-                    'graphviz.label' => "$item:$world_id",
-                ]);
+                $this->world->graph->addDirected($from, $to, "$item:$world_id");
             }
         }
 
@@ -815,11 +560,11 @@ final class EnemyShuffler
             $from = $this->world->getLocation($room);
             foreach ($enemies as $enemy) {
                 $to = $this->world->getLocation($enemy);
-                $take = 'Defeat' . $to->getAttribute('sprite')->name . ":$world_id";
-                $this->world->graph->addDirected($from, $to, [
-                    'group' => $take,
-                    'graphviz.label' => $take,
-                ]);
+                if (!$to) {
+                    dd([$enemy, $to]);
+                }
+                $take = 'Defeat' . $to->sprite->name . ":$world_id";
+                $this->world->graph->addDirected($from, $to, $take);
             }
         }
     }

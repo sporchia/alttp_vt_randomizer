@@ -1,6 +1,6 @@
 fixed:
   directed:
-    - ["Tower Of Hera - Entrance", "Tower Of Hera - Exit"]
+    - ["Tower Of Hera - Entrance", "Tower Of Hera - Entrance - Exit"]
     - ["Tower Of Hera - Entrance", "Tower Of Hera - Map Chest"]
     - ["Tower Of Hera - Entrance", "Tower Of Hera - Basement Door"]
     - ["Tower Of Hera - Tile Room", "Tower Of Hera - Entrance"]

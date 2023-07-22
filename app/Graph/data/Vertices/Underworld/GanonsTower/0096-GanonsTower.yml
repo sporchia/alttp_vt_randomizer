@@ -1,0 +1,68 @@
+rooms:
+  - roomid: 0x96
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Torches 1"
+        - name: "Ganon's Tower - Laser Restock"
+
+      pots:
+        - name: "Ganon's Tower - Torches 1 - Pot 1"
+          position: 0x1120
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Torches 1 - Pot 2"
+          position: 0x1820
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Torches 1 - Pot 3"
+          position: 0x154c
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Torches 1 - Pot 4"
+          position: 0x1570
+          sprite: "@MagicRefillFull"
+        - name: "Ganon's Tower - Torches 1 - Pot 5"
+          position: 0x0520
+        - name: "Ganon's Tower - Torches 1 - Pot 6"
+          position: 0x0b2e
+        - name: "Ganon's Tower - Torches 1 - Pot 7"
+          position: 0x120e
+        - name: "Ganon's Tower - Torches 1 - Pot 8"
+          position: 0x180e
+
+      mobs:
+        - name: "Ganon's Tower - Torches 1 - Fire Bar (Clockwise)"
+          position: { x: 0x08, y: 0x0b, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Torches 1 - Laser Eye (Left) 1"
+          position: { x: 0x1e, y: 0x15, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Ganon's Tower - Torches 1 - Laser Eye (Left) 2"
+          position: { x: 0x1e, y: 0x17, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Ganon's Tower - Torches 1 - Laser Eye (Left) 3"
+          position: { x: 0x1e, y: 0x19, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Ganon's Tower - Torches 1 - Laser Eye (Left) 4"
+          position: { x: 0x1e, y: 0x1b, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"

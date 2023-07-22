@@ -1,0 +1,184 @@
+maps:
+  - map: 0x1B
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Hyrule Castle - Outer Court"
+        - name: "Hyrule Castle - Outer Court East"
+        - name: "Hyrule Castle - Courtyard NE Nook"
+        - name: "Hyrule Castle - Courtyard"
+        - name: "Hyrule Castle - Wall Walk"
+        - name: "Rain - Hyrule Castle - Outer Court"
+        - name: "Rain - Hyrule Castle - Courtyard"
+        - name: "Rain - Hyrule Castle - Wall Walk"
+
+      entrances:
+        - name: "Hyrule Castle - Main Entrance"
+          entranceid: 0x03
+          outletid: 0x03
+
+        - name: "Hyrule Castle - West Entrance"
+          entranceid: 0x02
+          outletid: 0x02
+
+        - name: "Hyrule Castle - East Entrance"
+          entranceid: 0x04
+          outletid: 0x04
+
+        - name: "Secret Passage Stairs"
+          entranceid: 0x31
+          outletid: 0x33
+
+        - name: "Hyrule Castle - Agahnim's Tower Entrance"
+          entranceid: 0x23
+          outletid: 0x25
+
+      holes:
+        - name: "Secret Passage Uncle - Hole"
+          entranceids: [0x0c]
+
+      mobs:
+        - name: "Hyrule Castle - Courtyard - Lightning Lock"
+          position: { x: 0x1f, y: 0x06 }
+          sprite: "LightningLock"
+          state: [0, 1]
+
+        - name: "Hyrule Castle - Courtyard - Tutorial Guard 1"
+          position: { x: 0x01, y: 0x12 }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Tutorial Guard 2"
+          position: { x: 0x01, y: 0x14 }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Green Guard"
+          position: { x: 0x1f, y: 0x13 }
+          sprite: "GreenSwordGuard"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Green Knife Guard 1"
+          position: { x: 0x1f, y: 0x1a }
+          sprite: "GreenGuardRecruit"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Green Knife Guard 2"
+          position: { x: 0x20, y: 0x1a }
+          sprite: "GreenGuardRecruit"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Tutorial Guard 3"
+          position: { x: 0x2d, y: 0x25 }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Tutorial Guard 4"
+          position: { x: 0x20, y: 0x29 }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Hyrule Castle - Courtyard - Red Bush Guard 1"
+          position: { x: 0x09, y: 0x11 }
+          sprite: "RedJavelinGuard2"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Red Bush Guard 2"
+          position: { x: 0x0a, y: 0x13 }
+          sprite: "RedJavelinGuard2"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Red Bomb Guard 1"
+          position: { x: 0x0e, y: 0x19 }
+          sprite: "RedBombGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Blue Guard 1"
+          position: { x: 0x1f, y: 0x1a }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Rupee Pull"
+          position: { x: 0x29, y: 0x17 }
+          sprite: "PullForRupees"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Red Bomb Guard 2"
+          position: { x: 0x31, y: 0x19 }
+          sprite: "RedBombGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Blue Guard 2"
+          position: { x: 0x20, y: 0x1a }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Red Bomb Guard 3"
+          position: { x: 0x0e, y: 0x25 }
+          sprite: "RedBombGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Green Guard 1"
+          position: { x: 0x14, y: 0x2d }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Red Javelin Guard 1"
+          position: { x: 0x26, y: 0x2d }
+          sprite: "RedJavelinGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - Red Javelin Guard 2"
+          position: { x: 0x21, y: 0x32 }
+          sprite: "RedJavelinGuard"
+          state: [1]
+
+        - name: "Hyrule Castle - Courtyard - sprite.FastRedSpearGuard 1"
+          position: { x: 0x06, y: 0x0d }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - sprite.FastRedSpearGuard 2"
+          position: { x: 0x1f, y: 0x1a }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Blue Guard 3"
+          position: { x: 0x37, y: 0x13 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Whirlpool"
+          position: { x: 0x1e, y: 0x25 }
+          sprite: "Whirlpool"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Charging Red Guard"
+          position: { x: 0x08, y: 0x28 }
+          sprite: "RedSpearGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Green Guard 2"
+          position: { x: 0x1f, y: 0x2b }
+          sprite: "GreenSwordGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Blue Guard 4"
+          position: { x: 0x38, y: 0x29 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Blue Guard 5"
+          position: { x: 0x21, y: 0x2d }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - sprite.FastRedSpearGuard 3"
+          position: { x: 0x21, y: 0x32 }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Hyrule Castle - Courtyard - Apple"
+          position: { x: 0x16, y: 0x14 }
+          sprite: "Apple"
+          state: [1, 2]

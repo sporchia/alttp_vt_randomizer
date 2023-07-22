@@ -1,0 +1,53 @@
+rooms:
+  - roomid: 0x54
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - West Wing Attic"
+
+      pots:
+        - name: "Swamp Palace - West Wing Attic - Pot 1"
+          position: 0x19ba
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - West Wing Attic - Pot 2"
+          position: 0x1aba
+          sprite: "@Heart"
+        - name: "Swamp Palace - West Wing Attic - Pot 3"
+          position: 0x1bba
+          sprite: "@Heart"
+        - name: "Swamp Palace - West Wing Attic - Pot 4"
+          position: 0x1cba
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Swamp Palace - West Wing Attic - Kyameron 1"
+          position: { x: 0x0e, y: 0x05, z: 0x00 }
+          sprite: "Kyameron"
+
+        - name: "Swamp Palace - West Wing Attic - Hover 1"
+          position: { x: 0x0c, y: 0x0b, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - West Wing Attic - Medusa"
+          position: { x: 0x0b, y: 0x0e, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Swamp Palace - West Wing Attic - Fire Bar (Clockwise)"
+          position: { x: 0x0f, y: 0x0e, z: 0x00 }
+          sprite: "FireBarCW"
+
+        - name: "Swamp Palace - West Wing Attic - Hover 2"
+          position: { x: 0x10, y: 0x0f, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - West Wing Attic - Kyameron 2"
+          position: { x: 0x12, y: 0x14, z: 0x00 }
+          sprite: "Kyameron"
+
+        - name: "Swamp Palace - West Wing Attic - Hover 3"
+          position: { x: 0x0f, y: 0x15, z: 0x00 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - West Wing Attic - Kyameron 3"
+          position: { x: 0x0c, y: 0x17, z: 0x00 }
+          sprite: "Kyameron"

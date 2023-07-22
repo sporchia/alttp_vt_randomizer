@@ -1,0 +1,41 @@
+maps:
+  - map: 0x22
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Smith's House"
+        - name: "Smith's House Bat Ledge"
+
+      entrances:
+        - name: "Blacksmith House"
+          entranceid: 0x63
+          outletid: 0x84
+
+        - name: "Magic Bat"
+          entranceid: 0x10
+          outletid: 0x12
+
+      holes:
+        - name: "Magic Bat - Hole"
+          entranceids: [0x0D, 0x0E]
+
+      mobs:
+        - name: "Smith's House - Green Guard"
+          position: { x: 0x17, y: 0x12 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Smith's House - Chicken 1"
+          position: { x: 0x0c, y: 0x14 }
+          sprite: "Chicken"
+          state: [2]
+
+        - name: "Smith's House - Bunny Beam"
+          position: { x: 0x0c, y: 0x04 }
+          sprite: "BunnyBeam"
+          state: [1, 2]
+
+        - name: "Smith's House - Chicken"
+          position: { x: 0x12, y: 0x14 }
+          sprite: "Chicken"
+          state: [1, 2]

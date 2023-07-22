@@ -1,0 +1,30 @@
+rooms:
+  - roomid: 0x0127
+    nodes:
+      regions:
+        - name: "Peg Cave"
+          inletid: 0x83
+
+      items:
+        - name: "Hammer Pegs"
+          addresses: [0x180006]
+          type: "standing"
+          itemset: ["dw"]
+
+      pots:
+        - name: "Peg Cave - Pot 1"
+          position: 0x1918
+        - name: "Peg Cave - Pot 2"
+          position: 0x191c
+        - name: "Peg Cave - Pot 3"
+          position: 0x1920
+        - name: "Peg Cave - Pot 4"
+          position: 0x1924
+
+      mobs:
+        # this is required to have the standing item appear
+        - name: "Peg Cave - Heart Piece"
+          position: { x: 0x07, y: 0x16, z: 0x00 }
+          sprite: "HeartPiece"
+          allow:
+            - "HeartPiece"

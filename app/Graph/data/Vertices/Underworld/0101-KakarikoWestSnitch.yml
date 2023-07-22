@@ -1,0 +1,18 @@
+rooms:
+  - roomid: 0x0101
+    nodes:
+      regions:
+        - name: "West Snitch House"
+          inletid: 0x3f
+
+      pots:
+        - name: "West Snitch House - Pot"
+          position: 0x140c
+          sprite: "@Heart"
+
+      mobs:
+        - name: "West Snitch - Rupee Pull"
+          position: { x: 0x08, y: 0x13, z: 0x00 }
+          sprite: "PullForRupees"
+          allow:
+            - "PullForRupees"

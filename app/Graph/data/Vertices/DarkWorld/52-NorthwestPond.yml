@@ -1,0 +1,32 @@
+maps:
+  - map: 0x52
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Northwest Pond"
+
+      mobs:
+        - name: "Dark Northwest Pond - Stal"
+          position: { x: 0x12, y: 0x09 }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Dark Northwest Pond - Moblin 1"
+          position: { x: 0x15, y: 0x0d }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Dark Northwest Pond - Blue Guard 1"
+          position: { x: 0x07, y: 0x10 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Dark Northwest Pond - Blue Guard 2"
+          position: { x: 0x14, y: 0x17 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Dark Northwest Pond - Moblin 2"
+          position: { x: 0x0e, y: 0x18 }
+          sprite: "Moblin"
+          state: [1, 2]

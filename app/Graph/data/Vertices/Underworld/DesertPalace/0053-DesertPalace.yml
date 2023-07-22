@@ -1,0 +1,98 @@
+rooms:
+  - roomid: 0x53
+    group: 4
+    nodes:
+      regions:
+        - name: "Desert Palace - Bridge"
+        - name: "Desert Palace - Popo Genocide"
+        - name: "Desert Palace - Popo Hallway Bottom"
+        - name: "Desert Palace - Popo Hallway Top"
+
+      keydoors:
+        - name: "Desert Palace - Popo Hallway Door"
+          key: "KeyP2"
+
+      shutters:
+        - name: "Desert Palace - Popo Genocide - Shutter Door"
+
+      pots:
+        - name: "Desert Palace - Bridge - Pot 1"
+          position: 0x0b5c
+          sprite: "@Heart"
+        - name: "Desert Palace - Bridge - Pot 2"
+          position: 0x0b60
+          sprite: "@MagicRefillSmall"
+        - name: "Desert Palace - Bridge - Pot 3"
+          position: 0x0b68
+          sprite: "@Heart"
+        - name: "Desert Palace - Popo Hallway - Pot"
+          position: 0x0b64
+          item: "KeyP2"
+          itemset: ["desert"]
+
+      mobs:
+        - name: "Desert Palace - Bridge - Popo 1"
+          position: { x: 0x17, y: 0x07, z: 0x00 }
+          sprite: "Popo"
+
+        - name: "Desert Palace - Bridge - Beamos 1"
+          position: { x: 0x1c, y: 0x09, z: 0x00 }
+          sprite: "Beamos"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Desert Palace - Bridge - Popo B 1"
+          position: { x: 0x17, y: 0x0c, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Desert Palace - Bridge - Popo B 2"
+          position: { x: 0x1a, y: 0x0c, z: 0x00 }
+          sprite: "Popo2"
+
+        - name: "Desert Palace - Bridge - Beamos 2"
+          position: { x: 0x13, y: 0x0e, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Popo Genocide - Popo TL"
+          position: { x: 0x05, y: 0x15, z: 0x00 }
+          sprite: "Popo"
+          trophy: "DesertPalacePopoGenocideTrophy"
+          deny:
+            - "RollerVD"
+
+        - name: "Desert Palace - Popo Genocide - Popo TR"
+          position: { x: 0x0b, y: 0x16, z: 0x00 }
+          sprite: "Popo"
+          trophy: "DesertPalacePopoGenocideTrophy"
+
+        - name: "Desert Palace - Bridge - Popo 5"
+          position: { x: 0x1a, y: 0x17, z: 0x00 }
+          sprite: "Popo"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Desert Palace - Popo Genocide - Beamos"
+          position: { x: 0x07, y: 0x19, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "DesertPalacePopoGenocideTrophy"
+
+        - name: "Desert Palace - Popo Genocide - Popo BL"
+          position: { x: 0x04, y: 0x1a, z: 0x00 }
+          sprite: "Popo"
+          trophy: "DesertPalacePopoGenocideTrophy"
+
+        - name: "Desert Palace - Popo Genocide - Popo BR"
+          position: { x: 0x0b, y: 0x1a, z: 0x00 }
+          sprite: "Popo"
+          trophy: "DesertPalacePopoGenocideTrophy"
+
+        - name: "Desert Palace - Bridge - Beamos 4"
+          position: { x: 0x1b, y: 0x1a, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Bridge - Popo 8"
+          position: { x: 0x1a, y: 0x1b, z: 0x00 }
+          sprite: "Popo"

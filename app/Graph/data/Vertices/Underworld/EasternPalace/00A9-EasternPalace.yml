@@ -19,22 +19,22 @@ rooms:
       pots:
         - name: "Eastern Palace - Main Room - Pot 1"
           position: 0x2b90
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Main Room - Pot 2"
           position: 0x2bec
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Main Room - Pot 3"
           position: 0x2c90
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Main Room - Pot 4"
           position: 0x2cec
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Main Room - Pot 5"
           position: 0x1410
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Main Room - Pot 6"
           position: 0x146c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Main Room - Pot 7"
           position: 0x130c
         - name: "Eastern Palace - Main Room - Pot 8"
@@ -49,19 +49,19 @@ rooms:
           position: { x: 0x16, y: 0x05, z: 0x01 }
           sprite: "EyegoreGreen"
 
-        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 1"
+        - name: "Eastern Palace - Main Room - Falling Stalfos 1"
           position: { x: 0x0d, y: 0x0c, z: 0x01 }
           sprite: "FallingStalfos"
 
-        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 2"
+        - name: "Eastern Palace - Main Room - Falling Stalfos 2"
           position: { x: 0x12, y: 0x0c, z: 0x01 }
           sprite: "FallingStalfos"
 
-        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 3"
+        - name: "Eastern Palace - Main Room - Falling Stalfos 3"
           position: { x: 0x0d, y: 0x12, z: 0x01 }
           sprite: "FallingStalfos"
 
-        - name: "Eastern Palace - Main Room - Pull Switch (Unused) 4"
+        - name: "Eastern Palace - Main Room - Falling Stalfos 4"
           position: { x: 0x12, y: 0x12, z: 0x01 }
           sprite: "FallingStalfos"
 

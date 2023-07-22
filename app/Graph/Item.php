@@ -84,7 +84,7 @@ final class Item
             new Item('CaneOfSomaria', [0x15], $world_id),
             new Item('Bottle', [0x16], $world_id),
             new Item('FairyBottle', [0x16], $world_id),
-            new Item('PieceOfHeart', [0x17], $world_id, .25),
+            new Item('PieceOfHeart', [0x17], $world_id),
             new Item('CaneOfByrna', [0x18], $world_id),
             new Item('Cape', [0x19], $world_id),
             new Item('MagicMirror', [0x1A], $world_id),
@@ -98,7 +98,7 @@ final class Item
             new Item('RedMail', [0x23], $world_id),
             new Item('Key', [0x24], $world_id),
             new Item('Compass', [0x25], $world_id),
-            new Item('HeartContainerNoAnimation', [0x26], $world_id, 1),
+            new Item('HeartContainerNoAnimation', [0x26], $world_id),
             new Item('Bomb', [0x27], $world_id),
             new Item('ThreeBombs', [0x28], $world_id),
             new Item('Mushroom', [0x29], $world_id),
@@ -127,8 +127,8 @@ final class Item
             new Item('FairyBottleWithBee', [0x3C], $world_id),
             new Item('BottleWithFairy', [0x3D], $world_id),
             new Item('FairyBottleWithFairy', [0x3D], $world_id),
-            new Item('BossHeartContainer', [0x3E], $world_id, 1),
-            new Item('HeartContainer', [0x3F], $world_id, 1),
+            new Item('BossHeartContainer', [0x3E], $world_id),
+            new Item('HeartContainer', [0x3F], $world_id),
             new Item('OneHundredRupees', [0x40], $world_id),
             new Item('FiftyRupees', [0x41], $world_id),
             new Item('Heart', [0x42], $world_id),
@@ -249,7 +249,7 @@ final class Item
      * Create a new Item.
      *
      * @param string $name Unique name of item
-     * @param array $bytes data to write to Location addresses
+     * @param int[]|null[] $bytes data to write to Location addresses
      * @param int $world_id world for which the item belongs
      *
      * @return void

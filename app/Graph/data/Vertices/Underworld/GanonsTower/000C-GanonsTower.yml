@@ -1,0 +1,8 @@
+rooms:
+  - roomid: 0x0C
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Lobby"
+          peg: "orange"
+          inletid: 0x37

@@ -1,0 +1,37 @@
+maps:
+  - map: 0x7C
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Swamplands Ravine"
+
+      mobs:
+        - name: "Swamplands Ravine - Stal"
+          position: { x: 0x03, y: 0x05 }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Swamplands Ravine - Blue Guard"
+          position: { x: 0x07, y: 0x06 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Swamplands Ravine - Rupee Pull"
+          position: { x: 0x0f, y: 0x06 }
+          sprite: "PullForRupees"
+          state: [1, 2]
+
+        - name: "Swamplands Ravine - Hinox"
+          position: { x: 0x11, y: 0x11 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Swamplands Ravine - Ropa 1"
+          position: { x: 0x18, y: 0x15 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Swamplands Ravine - Ropa 2"
+          position: { x: 0x16, y: 0x19 }
+          sprite: "Ropa"
+          state: [1, 2]

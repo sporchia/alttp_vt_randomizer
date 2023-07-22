@@ -39,7 +39,7 @@ class RomWriterService
                 }
                 $item_bytes = $item->bytes;
 
-                foreach ($location->getAttribute('addresses', []) as $key => $address) {
+                foreach ($location->addresses ?? [] as $key => $address) {
                     if (!isset($item_bytes[$key]) || !isset($address)) {
                         continue;
                     }
@@ -147,18 +147,18 @@ class RomWriterService
             13 => 0x0040, // 'Ice Palace'
             14 => 0x0100, // 'Misery Mire'
             15 => 0x0008, // 'Turtle Rock'
-            16 => null, // 'Ganons Tower'
+            16 => null, // 'Ganon's Tower'
         ];
 
         if ($world->config('rom.mapOnPickup', false)) {
             $green_pendant_location = $world->getLocationsWithItem(Item::get('PendantOfCourage', $world->id))->first();
 
-            $rom->setMapRevealSahasrahla($map_reveals[$green_pendant_location->getAttribute('group')]);
+            $rom->setMapRevealSahasrahla($map_reveals[$green_pendant_location->group]);
 
             $crystal5_location = $world->getLocationsWithItem(Item::get('Crystal5', $world->id))->first();
             $crystal6_location = $world->getLocationsWithItem(Item::get('Crystal6', $world->id))->first();
 
-            $rom->setMapRevealBombShop($map_reveals[$crystal5_location->getAttribute('group')] | $map_reveals[$crystal6_location->getAttribute('group')]);
+            $rom->setMapRevealBombShop($map_reveals[$crystal5_location->group] | $map_reveals[$crystal6_location->group]);
         }
 
         $rom->setMapMode($world->config('rom.mapOnPickup', false));
@@ -256,43 +256,15 @@ class RomWriterService
         $rom->writeInitialSram();
     }
 
-    public function writePrizePacks($world, $rom): void
+    public function writePrizePacks(World $world, $rom): void
     {
-        $emptyDrops = [];
-        foreach ($world->getPrizePacks() as $pack) {
-            $emptyDrops = array_merge($emptyDrops, $pack->getEmptyDrops());
-        }
+        $prizepacks = $world->getLocationsOfType('prizepack');
 
-        $drops = [];
-        foreach ($world->config('item.drop', []) as $sprite_name => $count) {
-            $loop = min($world->config('drop.count.' . $sprite_name, $count), 63);
-            for ($i = 0; $i < $loop; ++$i) {
-                $drops[] = Sprite::get($sprite_name);
-            }
-        }
-        $drop_pool = fy_shuffle($drops);
-
-        for ($i = 0; $i < count($emptyDrops); $i++) {
-            $curDrop = $drop_pool[$i];
-            $emptyDrops[$i]->setDrop($curDrop);
-        }
-
-        $all_drops = [];
-        foreach ($world->getPrizePacks() as $pack) {
-            $all_drops = array_merge($all_drops, $pack->getDrops());
-        }
-
-        $drop_bytes = array_map(static function ($prize) {
-            return $prize->getDrop()->getByte();
-        }, $all_drops);
-
-        // hard+ does not allow fairies/full magics
-        if ($world->config('rom.HardMode', 0) >= 2) {
-            $drop_bytes = str_replace([0xE0, 0xE3], [0xDF, 0xD8], $drop_bytes);
+        foreach ($prizepacks as $prizepack) {
+            $rom->write(0x37A78 + $prizepack->offset, pack('C*', $prizepack->sprite->byte));
         }
 
         if ($world->config('rom.rupeeBow', false)) {
-            $drop_bytes = str_replace([0xE1, 0xE2], [0xDA, 0xDB], $drop_bytes);
             $rom->setOverworldDigPrizes([
                 0xB2, 0xD8, 0xD8, 0xD8,
                 0xD8, 0xD8, 0xD8, 0xD8, 0xD8,
@@ -309,13 +281,6 @@ class RomWriterService
                 0xE3, 0xE3, 0xE3, 0xE3, 0xE3,
             ]);
         }
-
-        // write to prize packs
-        $rom->write(0x37A78, pack('C*', ...array_slice($drop_bytes, 0, 56)));
-        $rom->setPullTreePrizes($drop_bytes[56], $drop_bytes[57], $drop_bytes[58]);
-        $rom->setRupeeCrabPrizes($drop_bytes[59], $drop_bytes[60]);
-        $rom->setStunnedSpritePrize($drop_bytes[61]);
-        $rom->setFishSavePrize($drop_bytes[62]);
     }
 
     /**
@@ -414,8 +379,9 @@ class RomWriterService
     {
         $enemies = $world->getLocationsOfType('mob');
 
+        // @TODO check if I can just use 'roomid'
         /** @var Collection<Collection<Vertex>> $enemy_rooms */
-        $enemy_rooms = $enemies->groupBy(fn ($enemy) => $enemy->getAttribute('roomid'));
+        $enemy_rooms = $enemies->groupBy(fn ($enemy) => $enemy->roomid);
 
         $output_offsets = [];
         // empty room ;)
@@ -429,12 +395,12 @@ class RomWriterService
             // Some OAM forcing magic stuff based on room_id
             $output_bytes[] = (int) in_array($i, [0x14, 0x15, 0x51, 0x59, 0x5B, 0x60, 0x62, 0x81, 0x86, 0xA8, 0xAA, 0xB2, 0xB9, 0xC2, 0xCB, 0xCC, 0xDB, 0xDC]);
             foreach ($enemy_rooms[$i] as $enemy) {
-                $sprite = $enemy->getAttribute('sprite');
+                $sprite = $enemy->sprite;
                 $output_bytes[] = (($sprite->subtype & 0x18) << 2)
-                    + ($enemy->getAttribute('position_z') << 7)
-                    + $enemy->getAttribute('position_y');
+                    + ($enemy->position['z'] << 7)
+                    + $enemy->position['y'];
                 $output_bytes[] = (($sprite->subtype & 0x07) << 5)
-                    + $enemy->getAttribute('position_x');
+                    + $enemy->position['x'];
                 $output_bytes[] = $sprite->byte;
                 if ($enemy->item) {
                     // @todo update this when we can place any item
@@ -460,7 +426,7 @@ class RomWriterService
         // empty map ;)
         $output_bytes = [0xFF];
         /** @var Collection<Collection<Vertex>> $enemy_maps */
-        $enemy_maps = $enemies->groupBy(fn ($enemy) => $enemy->getAttribute('map'));
+        $enemy_maps = $enemies->groupBy(fn ($enemy) => $enemy->map);
         $state_pointer_start = 0x9C881;
         $maps_bytes = [0x0000 => $output_bytes];
         foreach ([0 => 0x9C4F0, 1 => 0x9C504, 2 => 0x9C4FA] as $state => $pointers) {
@@ -478,13 +444,14 @@ class RomWriterService
                     continue;
                 }
                 $output_map = [];
+                /** @var Vertex $enemy */
                 foreach ($enemy_maps[$i] as $enemy) {
-                    if (!in_array($state, $enemy->getAttribute('state'))) {
+                    if (!in_array($state, $enemy->state)) {
                         continue;
                     }
-                    $output_map[] = $enemy->getAttribute('position_y');
-                    $output_map[] = $enemy->getAttribute('position_x');
-                    $output_map[] = $enemy->getAttribute('sprite')->byte;
+                    $output_map[] = $enemy->position['y'];
+                    $output_map[] = $enemy->position['x'];
+                    $output_map[] = $enemy->sprite->byte;
                 }
                 $output_map[] = 0xFF;
 
@@ -529,13 +496,13 @@ class RomWriterService
         /** @var Vertex $exit */
         foreach ($exits as $exit) {
             $target = $world->graph->getTargetVertex($exit);
-            if ($target->getAttribute('outletid') === null) {
+            if ($target->outletid === null) {
                 throw new Exception(vsprintf('bad target: `%s` from `%s`', [
-                    $target->getAttribute('name'),
-                    $exit->getAttribute('name'),
+                    $target->name,
+                    $exit->name,
                 ]));
             }
-            $rom->write($exits_outlets_address + $exit->getAttribute('roomid'), pack('C', $target->getAttribute('outletid')));
+            $rom->write($exits_outlets_address + $exit->roomid, pack('C', $target->outletid));
         }
 
         $entrances = $world->getLocationsOfType('entrance');
@@ -543,7 +510,12 @@ class RomWriterService
         /** @var Vertex $entrance */
         foreach ($entrances as $entrance) {
             $target = $world->graph->getTargetVertex($entrance);
-            $rom->write($entrances_rooms_address + $entrance->getAttribute('entranceid'), pack('C', $target->getAttribute('inletid')));
+            if (!$target) {
+                throw new Exception(vsprintf('Exit/Inlet mismatch: `%s`', [
+                    $entrance->name,
+                ]));
+            }
+            $rom->write($entrances_rooms_address + $entrance->entranceid, pack('C', $target->inletid));
         }
 
         $holes = $world->getLocationsOfType('hole');
@@ -551,8 +523,8 @@ class RomWriterService
         /** @var Vertex $hole */
         foreach ($holes as $hole) {
             $target = $world->graph->getTargetVertex($hole);
-            foreach ($hole->getAttribute('entranceids') as $entranceid) {
-                $rom->write($entrances_holes_address + $entranceid, pack('C', $target->getAttribute('inletid')));
+            foreach ($hole->entranceids ?? [] as $entranceid) {
+                $rom->write($entrances_holes_address + $entranceid, pack('C', $target->inletid));
             }
         }
     }
@@ -579,12 +551,12 @@ class RomWriterService
             $shop_data = array_merge(
                 $shop_data,
                 [$shop_id],
-                array_values(unpack('C*', pack('S', $shop->getAttribute('roomid') ?? 0))),
+                array_values(unpack('C*', pack('S', $shop->roomid ?? 0))),
                 [
-                    $shop->getAttribute('inletid'),
+                    $shop->inletid,
                     0x00,
-                    ($shop->getAttribute('shopstyle') & 0xFC) + count($inventory),
-                    $shop->getAttribute('shopkeeper'),
+                    ($shop->shopstyle & 0xFC) + count($inventory),
+                    $shop->shopkeeper,
                     $sram_offset,
                 ]
             );
@@ -599,8 +571,8 @@ class RomWriterService
                     $items_data,
                     [$shop_id],
                     $slot->item->bytes,
-                    array_values(unpack('C*', pack('S', $slot->getAttribute('cost') ?? 0))),
-                    [$slot->getAttribute('max') ?? 0, 0xFF],
+                    array_values(unpack('C*', pack('S', $slot->cost ?? 0))),
+                    [0, 0xFF], // max?
                     [0x00, 0x00]
                 );
             }

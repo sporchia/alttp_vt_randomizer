@@ -1,0 +1,134 @@
+rooms:
+  - roomid: 0x57
+    group: 10
+    nodes:
+      regions:
+        - name: "Skull Woods - Pot Prison Room"
+        - name: "Skull Woods - Statue Puzzle"
+          inletid: 0x29
+        - name: "Skull Woods - Big Key Room"
+        - name: "Skull Woods - Magic Refill"
+
+      items:
+        - name: "Skull Woods - Pot Prison"
+          addresses: [0xE9A1]
+          type: "chest"
+          itemset: ["skull"]
+
+        - name: "Skull Woods - Big Key Chest"
+          addresses: [0xE99E]
+          type: "chest"
+          itemset: ["skull"]
+
+      pots:
+        - name: "Skull Woods - Big Key Room - Pot 1"
+          position: 0x075c
+          sprite: "@MagicRefillFull"
+        - name: "Skull Woods - Big Key Room - Pot 2"
+          position: 0x140c
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Big Key Room - Pot 3"
+          position: 0x175c
+          sprite: "@BombRefill1"
+        - name: "Skull Woods - Big Key Room - Pot 4"
+          position: 0x1764
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Big Key Room - Pot 5"
+          position: 0x1954
+          sprite: "@RupeeBlue"
+        - name: "Skull Woods - Big Key Room - Pot 6"
+          position: 0x1b4c
+          sprite: "@Heart"
+        - name: "Skull Woods - Big Key Room - Pot 7"
+          position: 0x1430
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Big Key Room - Pot 8"
+          position: 0x161e
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Skull Woods - Big Key Room - Bunny Beam"
+          position: { x: 0x08, y: 0x04, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Skull Woods - Big Key Room - Red Bari"
+          position: { x: 0x0c, y: 0x04, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Skull Woods - Big Key Room - Spike Trap"
+          position: { x: 0x08, y: 0x05, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Skull Woods - Big Key Room - Stalfos 1"
+          position: { x: 0x04, y: 0x07, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Skull Woods - Big Key Room - Stalfos 2"
+          position: { x: 0x03, y: 0x0c, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Skull Woods - Big Key Room - Gibdo 1"
+          position: { x: 0x0c, y: 0x0c, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Big Key Room - Wallmaster"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "Wallmaster Overlord"
+
+        - name: "Skull Woods - Big Key Room - Gibdo 2"
+          position: { x: 0x05, y: 0x14, z: 0x00 }
+          sprite: "Gibdo"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Skull Woods - Big Key Room - Gibdo 3"
+          position: { x: 0x0a, y: 0x14, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Big Key Room - Gibdo 4"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Big Key Room - Gibdo 5"
+          position: { x: 0x19, y: 0x14, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Big Key Room - Stalfos 3"
+          position: { x: 0x15, y: 0x15, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Skull Woods - Big Key Room - Gibdo 6"
+          position: { x: 0x13, y: 0x17, z: 0x00 }
+          sprite: "Gibdo"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Skull Woods - Big Key Room - Blue Bari 1"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Skull Woods - Big Key Room - Blue Bari 2"
+          position: { x: 0x08, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Skull Woods - Big Key Room - Statue"
+          position: { x: 0x0b, y: 0x18, z: 0x00 }
+          sprite: "Statue"
+          allow:
+            - "Statue"

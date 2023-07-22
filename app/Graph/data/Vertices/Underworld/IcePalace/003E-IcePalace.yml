@@ -1,0 +1,92 @@
+rooms:
+  - roomid: 0x3E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Stalfos Ambush"
+        - name: "Ice Palace - Conveyor"
+          switch: true
+
+      keydoors:
+        - name: "Ice Palace - Conveyor Door"
+          key: "KeyD5"
+
+      shutters:
+        - name: "Ice Palace - Stalfos Ambush - Shutter Door"
+
+      pots:
+        - name: "Ice Palace - Conveyor - Pot 1"
+          position: 0x0660
+          sprite: "@BombRefill1"
+        - name: "Ice Palace - Conveyor - Pot 2"
+          position: 0x0664
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Conveyor - Pot 3"
+          position: 0x0a58
+          sprite: "@Heart"
+        - name: "Ice Palace - Conveyor - Pot 4"
+          position: 0x0a5c
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Ice Palace - Conveyor - Bari Key"
+          position: { x: 0x11, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          item: "KeyD5"
+          itemset: ["ice"]
+
+        - name: "Ice Palace - Conveyor - Crystal Switch"
+          position: { x: 0x06, y: 0x15, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Ice Palace - Stalfos Ambush - Stalfos Knight T"
+          position: { x: 0x19, y: 0x04, z: 0x00 }
+          sprite: "StalfosKnight"
+          trophy: "IcePalaceStalfosAmbushTrophy"
+
+        - name: "Ice Palace - Stalfos Ambush - Stalfos Knight B"
+          position: { x: 0x16, y: 0x0b, z: 0x00 }
+          sprite: "StalfosKnight"
+          trophy: "IcePalaceStalfosAmbushTrophy"
+
+        - name: "Ice Palace - Conveyor - Babasu 1"
+          position: { x: 0x05, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Conveyor - Babasu 2"
+          position: { x: 0x0e, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Conveyor - Moving Floor"
+          position: { x: 0x10, y: 0x12, z: 0x00 }
+          sprite: "MovingFloor"
+
+        - name: "Ice Palace - Conveyor - Babasu 3"
+          position: { x: 0x12, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Conveyor - Babasu 4"
+          position: { x: 0x15, y: 0x12, z: 0x00 }
+          sprite: "Babasu"
+          deny:
+            - "Kodongo"
+
+        - name: "Ice Palace - Conveyor - Blue Bari 1"
+          position: { x: 0x07, y: 0x16, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Ice Palace - Conveyor - Blue Bari 3"
+          position: { x: 0x15, y: 0x19, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Ice Palace - Conveyor - Blue Bari 4"
+          position: { x: 0x0b, y: 0x1a, z: 0x00 }
+          sprite: "BlueBari"

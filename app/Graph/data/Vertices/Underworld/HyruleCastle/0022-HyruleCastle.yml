@@ -1,0 +1,36 @@
+rooms:
+  - roomid: 0x22
+    group: 1
+    dark: true
+    nodes:
+      regions:
+        - name: "Sewers - Dark Three Islands"
+
+      mobs:
+        - name: "Sewers - Dark Three Islands - Rat 1"
+          position: { x: 0x06, y: 0x14, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark Three Islands - Rat 2"
+          position: { x: 0x08, y: 0x14, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark Three Islands - Rat 3"
+          position: { x: 0x11, y: 0x14, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark Three Islands - Rat 4"
+          position: { x: 0x12, y: 0x14, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark Three Islands - Rat 5"
+          position: { x: 0x11, y: 0x15, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark Three Islands - Rat 6"
+          position: { x: 0x12, y: 0x15, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark Three Islands - Rat 7"
+          position: { x: 0x09, y: 0x18, z: 0x00 }
+          sprite: "Rat"

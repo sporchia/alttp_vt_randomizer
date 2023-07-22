@@ -1,0 +1,14 @@
+rooms:
+  - roomid: 0x00F5
+    nodes:
+      regions:
+        - name: "Drop Great Fairy"
+        - name: "Drop Great Fairy Exit"
+          inletid: 0x38
+
+      mobs:
+        - name: "Drop Great Fairy - Fairy Queen"
+          position: { x: 0x07, y: 0x16, z: 0x00 }
+          sprite: "FairyBig"
+          allow:
+            - "FairyBig"

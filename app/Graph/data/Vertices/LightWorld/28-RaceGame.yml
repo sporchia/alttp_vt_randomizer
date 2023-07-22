@@ -1,0 +1,44 @@
+maps:
+  - map: 0x28
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Race Game"
+        - name: "Maze Race Start"
+
+      entrances:
+        - name: "Brothers House Left"
+          entranceid: 0x0E
+          outletid: 0x10
+
+      items:
+        - name: "Maze Race"
+          addresses: [0x180142]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Race Game - Blue Guard 1"
+          position: { x: 0x12, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Race Game - Blue Guard 2"
+          position: { x: 0x0c, y: 0x19 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Race Game - Heart Piece"
+          position: { x: 0x07, y: 0x13 }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "Race Game - Race Game Boy"
+          position: { x: 0x08, y: 0x12 }
+          sprite: "RaceGameBoy"
+          state: [1, 2]
+
+        - name: "Race Game - Race Game Lady"
+          position: { x: 0x19, y: 0x18 }
+          sprite: "RaceGameLady"
+          state: [1, 2]

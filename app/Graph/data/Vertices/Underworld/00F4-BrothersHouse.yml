@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x00F4
+    nodes:
+      regions:
+        - name: "Brothers House Left"
+          inletid: 0x0f
+
+      mobs:
+        - name: "Brothers House Left - Angry Brother"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "AngryBrother"
+          allow:
+            - "AngryBrother"

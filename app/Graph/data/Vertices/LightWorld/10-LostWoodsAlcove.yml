@@ -1,0 +1,45 @@
+maps:
+  - map: 0x10
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Lost Woods Alcove Portal"
+        - name: "Lost Woods Alcove West"
+        - name: "Lost Woods Alcove Southeast"
+        - name: "Lost Woods Alcove Northeast"
+
+      mobs:
+        - name: "Lost Woods Alcove West - Green Guard 1"
+          position: { x: 0x05, y: 0x0c }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Lost Woods Alcove West - Green Guard 2"
+          position: { x: 0x08, y: 0x18 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Lost Woods Alcove West - Blue Guard 1"
+          position: { x: 0x05, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Lost Woods Alcove West - Blue Guard 2"
+          position: { x: 0x07, y: 0x12 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Lost Woods Alcove West - Blue Guard 3"
+          position: { x: 0x08, y: 0x18 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Lost Woods Alcove West - Apple"
+          position: { x: 0x07, y: 0x0c }
+          sprite: "Apple"
+          state: [1, 2]
+
+        - name: "Lost Woods Alcove West - Full Magic Refill"
+          position: { x: 0x17, y: 0x0f }
+          sprite: "MagicRefillFull"
+          state: [1, 2]

@@ -15,7 +15,8 @@ fixed:
     - ["Death Mountain Foot Descent Ledge", "Death Mountain Descent Cave Left darkness"]
     - ["Lumberjacks", "Lumberjacks Cave"]
     - ["Lumberjacks", "Lumberjacks House"]
-    - ["Lost Woods Main Arbor", "Thief Hideout"]
+    - ["Lost Woods Main Arbor", "Thief Hideout - In"]
+    - ["Thief Hideout - Out", "Lost Woods Main Arbor"]
     - ["Lost Woods Mushroom Niche", "Mushroom"]
     - ["West Death Mountain Spectacle Peak", "West Death Mountain"]
     - ["West Death Mountain Spectacle Peak", "West Death Mountain Summit"]
@@ -42,8 +43,8 @@ fixed:
     - ["Grandma's House Left - Out", "Kakariko Village"]
     - ["Kakariko Village", "Bottle Merchant"]
 
-    - ["East Death Mountain Spiral Cave Balcony", "Sprial Cave Top"]
-    - ["East Death Mountain Running Man", "Sprial Cave Exit"]
+    - ["East Death Mountain Spiral Cave Balcony", "Spiral Cave Top"]
+    - ["East Death Mountain Running Man", "Spiral Cave Exit"]
     - ["West Death Mountain", "Spectacle Rock Cave Top - In"]
     - ["West Death Mountain", "Spectacle Rock Cave Middle - In"]
     - ["West Death Mountain", "Spectacle Rock Cave Exit - In"]
@@ -296,7 +297,7 @@ Hookshot:
 LiftBush:
   directed:
     - ["Hylia River North Bend West", "Drop Great Fairy Antechamber"]
-    - ["Lost Woods Main Arbor", "Thief Hideout - Ledge"]
+    - ["Lost Woods Main Arbor", "Thief Hideout - Hole"]
   undirected:
     - ["Hylia River Peninsula", "Hylia River Peninsula Northeast Niche"]
     - ["Graveyard", "Graveyard Northern Nook"]

@@ -1,0 +1,61 @@
+rooms:
+  - roomid: 0x46
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Big O Top"
+        - name: "Swamp Palace - Big O Top Left"
+        - name: "Swamp Palace - Big O Bottom"
+
+      items:
+        - name: "Swamp Palace - Compass Chest"
+          addresses: [0xEAA0]
+          type: "chest"
+          itemset: ["swamp"]
+
+      pots:
+        - name: "Swamp Palace - Big O Top - Pot 1"
+          position: 0x0560
+          sprite: "@Heart"
+        - name: "Swamp Palace - Big O Top - Pot 2"
+          position: 0x1b1c
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Swamp Palace - Big O Top - Hover 1"
+          position: { x: 0x16, y: 0x05, z: 0x00 }
+          sprite: "Hover"
+          deny:
+            - "RollerVU"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Big O Top - Hinox 1"
+          position: { x: 0x1b, y: 0x06, z: 0x00 }
+          sprite: "PirogusuSpawnerRight"
+
+        - name: "Swamp Palace - Big O Top - Hover 2"
+          position: { x: 0x09, y: 0x1a, z: 0x00 }
+          sprite: "Hover"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Big O Top - Hinox 2"
+          position: { x: 0x1b, y: 0x1a, z: 0x00 }
+          sprite: "PirogusuSpawnerRight"
+
+        - name: "Swamp Palace - Big O Top - Hover 3"
+          position: { x: 0x11, y: 0x1b, z: 0x00 }
+          sprite: "Hover"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

@@ -96,7 +96,7 @@ final class XXTEA
      * @param int $z
      * @param int $p
      * @param int $e
-     * @param int $k
+     * @param int[] $k
      */
     private function mx($sum, $y, $z, $p, $e, $k): int
     {

@@ -1,0 +1,142 @@
+maps:
+  - map: 0x40
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Skull Woods Back"
+        - name: "Skull Woods North East Pit Branch"
+        - name: "Skull Woods Southeast Branch"
+        - name: "Skull Woods Southwest Corner"
+        - name: "Skull Woods Southwest Nook"
+        - name: "Skull Woods Useless Divider"
+
+      entrances:
+        - name: "Skull Woods Back"
+          entranceid: 0x2A
+          outletid: 0x2C
+
+        - name: "Skull Woods Second Section West"
+          entranceid: 0x27
+          outletid: 0x29
+
+        - name: "Skull Woods Second Section East"
+          entranceid: 0x28
+          outletid: 0x2A
+
+        - name: "Skull Woods First Section"
+          entranceid: 0x29
+          outletid: 0x2B
+
+      holes:
+        - name: "Skull Woods Back - Hole"
+          entranceids: [0x05, 0x06]
+
+        - name: "Skull Woods First Section North - Hole"
+          entranceids: [0x00]
+
+        - name: "Skull Woods First Section East - Hole"
+          entranceids: [0x03, 0x04]
+
+        - name: "Skull Woods First Section West - Hole"
+          entranceids: [0x01, 0x02]
+
+      mobs:
+        - name: "Skull Woods Back - Ropa 1"
+          position: { x: 0x1a, y: 0x07 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 2"
+          position: { x: 0x12, y: 0x11 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 3"
+          position: { x: 0x0a, y: 0x1e }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 4"
+          position: { x: 0x2f, y: 0x09 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Snapdragon"
+          position: { x: 0x31, y: 0x0a }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 5"
+          position: { x: 0x33, y: 0x0b }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 6"
+          position: { x: 0x29, y: 0x14 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 7"
+          position: { x: 0x23, y: 0x16 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Pikit 1"
+          position: { x: 0x39, y: 0x17 }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 8"
+          position: { x: 0x0a, y: 0x21 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 9"
+          position: { x: 0x1a, y: 0x25 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Pikit 2"
+          position: { x: 0x0b, y: 0x28 }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 10"
+          position: { x: 0x1e, y: 0x30 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 11"
+          position: { x: 0x0e, y: 0x38 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 12"
+          position: { x: 0x11, y: 0x38 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 13"
+          position: { x: 0x1a, y: 0x39 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 14"
+          position: { x: 0x2d, y: 0x21 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 15"
+          position: { x: 0x32, y: 0x28 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Ropa 16"
+          position: { x: 0x37, y: 0x32 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Skull Woods Back - Pikit 3"
+          position: { x: 0x28, y: 0x37 }
+          sprite: "Pikit"
+          state: [1, 2]

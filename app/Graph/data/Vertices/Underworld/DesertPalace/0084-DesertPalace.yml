@@ -1,0 +1,73 @@
+rooms:
+  - roomid: 0x84
+    group: 3
+    nodes:
+      regions:
+        - name: "Desert Palace - Main Room - Center"
+          inletid: 0x09
+        - name: "Desert Palace - Main Room - Left"
+        - name: "Desert Palace - Main Room - Right"
+
+      pots:
+        - name: "Desert Palace - Main Room - Left - Pot 1"
+          position: 0x0718
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Main Room - Left - Pot 2"
+          position: 0x0764
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Main Room - Left - Pot 3"
+          position: 0x0618
+        - name: "Desert Palace - Main Room - Left - Pot 4"
+          position: 0x0664
+        - name: "Desert Palace - Main Room - Left - Pot 5"
+          position: 0x0e50
+        - name: "Desert Palace - Main Room - Left - Pot 6"
+          position: 0x113c
+        - name: "Desert Palace - Main Room - Left - Pot 7"
+          position: 0x0e2c
+        - name: "Desert Palace - Main Room - Left - Pot 8"
+          position: 0x1140
+
+      mobs:
+        - name: "Desert Palace - Main Room - Left - Leever 1"
+          position: { x: 0x03, y: 0x05, z: 0x00 }
+          sprite: "Leever"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Desert Palace - Main Room - Left - Leever 2"
+          position: { x: 0x1b, y: 0x05, z: 0x00 }
+          sprite: "Leever"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Desert Palace - Main Room - Left - Beamos"
+          position: { x: 0x0f, y: 0x07, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Main Room - Left - Leever 3"
+          position: { x: 0x09, y: 0x12, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Main Room - Left - Leever 4"
+          position: { x: 0x15, y: 0x12, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Main Room - Left - Leever 5"
+          position: { x: 0x09, y: 0x1b, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Main Room - Left - Leever 6"
+          position: { x: 0x15, y: 0x1b, z: 0x00 }
+          sprite: "Leever"

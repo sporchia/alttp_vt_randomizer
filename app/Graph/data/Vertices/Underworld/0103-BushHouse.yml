@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x0103
+    nodes:
+      regions:
+        - name: "Bush House"
+          inletid: 0x44
+
+      mobs:
+        - name: "Bush House - Innkeeper"
+          position: { x: 0x17, y: 0x17, z: 0x00 }
+          sprite: "Innkeeper"
+          allow:
+            - "Innkeeper"

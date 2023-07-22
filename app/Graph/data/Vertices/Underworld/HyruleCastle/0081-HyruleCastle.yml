@@ -1,0 +1,15 @@
+rooms:
+  - roomid: 0x81
+    group: 1
+    nodes:
+      regions:
+        - name: "Hyrule Castle - Basement Hallways"
+
+      mobs:
+        - name: "Hyrule Castle - Basement Hallways - Green Guard 1"
+          position: { x: 0x0b, y: 0x0b, z: 0x01 }
+          sprite: "GreenSwordGuard1B"
+
+        - name: "Hyrule Castle - Basement Hallways - Green Guard 2"
+          position: { x: 0x0e, y: 0x0b, z: 0x01 }
+          sprite: "GreenSwordGuard03"

@@ -1,0 +1,53 @@
+maps:
+  - map: 0x15
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Hylia River North Bend"
+        - name: "Hylia River North Bend East"
+        - name: "Hylia River North Bend West"
+
+      entrances:
+        - name: "Drop Great Fairy"
+          entranceid: 0x37
+          outletid: 0x39
+
+      holes:
+        - name: "Drop Great Fairy - Hole"
+          entranceids: [0x0B]
+
+      mobs:
+        - name: "Hylia River North Bend - Blue Guard 1"
+          position: { x: 0x16, y: 0x0e }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Hylia River North Bend - Blue Guard 2"
+          position: { x: 0x0b, y: 0x17 }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Hylia River North Bend - sprite.FastRedSpearGuard"
+          position: { x: 0x16, y: 0x0e }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Hylia River North Bend - Charging Red Guard"
+          position: { x: 0x0b, y: 0x17 }
+          sprite: "RedSpearGuard"
+          state: [2]
+
+        - name: "Hylia River North Bend - Apple"
+          position: { x: 0x04, y: 0x1a }
+          sprite: "Apple"
+          state: [2]
+
+        - name: "Hylia River North Bend - Whirlpool"
+          position: { x: 0x11, y: 0x09 }
+          sprite: "Whirlpool"
+          state: [1, 2]
+
+        - name: "Hylia River North Bend - Fairy"
+          position: { x: 0x1b, y: 0x0f }
+          sprite: "Fairy"
+          state: [1, 2]

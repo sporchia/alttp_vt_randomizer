@@ -1,0 +1,113 @@
+rooms:
+  - roomid: 0x64
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Attic Gate - orange"
+          peg: "orange"
+        - name: "Thieves' Town - Attic Gate - blue"
+          peg: "blue"
+        - name: "Thieves' Town - Attic Hall Left"
+
+      pots:
+        - name: "Thieves' Town - Attic Hall Left - Pot 1"
+          position: 0x160c
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Attic Hall Left - Pot 2"
+          position: 0x1610
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Attic Hall Left - Pot 3"
+          position: 0x1614
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Attic Hall Left - Pot 4"
+          position: 0x1c24
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Attic Hall Left - Pot 5"
+          position: 0x1c28
+          sprite: "@MagicRefillSmall"
+        - name: "Thieves' Town - Attic Hall Left - Pot 6"
+          position: 0x1c2c
+          sprite: "@MagicRefillSmall"
+        - name: "Thieves' Town - Attic Hall Left - Pot 7"
+          position: 0x1c30
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Thieves' Town - Attic Hall Left - Keese 1"
+          position: { x: 0x05, y: 0x12, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "Kodongo"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 1"
+          position: { x: 0x0b, y: 0x13, z: 0x00 }
+          sprite: "PullSwitchBad"
+          allow:
+            - "PullSwitchBad"
+
+        - name: "Thieves' Town - Attic Hall Left - Keese 2"
+          position: { x: 0x05, y: 0x13, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "Kodongo"
+
+        - name: "Thieves' Town - Attic Hall Left - Bunny Beam"
+          position: { x: 0x03, y: 0x16, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Thieves' Town - Attic Hall Left - Rat 1"
+          position: { x: 0x17, y: 0x17, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+
+        - name: "Thieves' Town - Attic Hall Left - Rat 2"
+          position: { x: 0x19, y: 0x19, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Thieves' Town - Attic Hall Left - Rat 3"
+          position: { x: 0x05, y: 0x1a, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 2"
+          position: { x: 0x09, y: 0x15, z: 0x00 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 3"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 4"
+          position: { x: 0x09, y: 0x17, z: 0x00 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 5"
+          position: { x: 0x0b, y: 0x17, z: 0x00 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 6"
+          position: { x: 0x09, y: 0x19, z: 0x00 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Thieves' Town - Attic Hall Left - Bad Snek 7"
+          position: { x: 0x0c, y: 0x1b, z: 0x00 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"

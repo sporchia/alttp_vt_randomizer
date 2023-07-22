@@ -1,0 +1,35 @@
+rooms:
+  - roomid: 0x3B
+    group: 7
+    nodes:
+      regions:
+        - name: "Palace of Darkness - Conveyor"
+
+      mobs:
+        - name: "Palace of Darkness - Conveyor - Spike Trap 1"
+          position: { x: 0x03, y: 0x06, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Palace of Darkness - Conveyor - Red Bari"
+          position: { x: 0x07, y: 0x09, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Palace of Darkness - Conveyor - Spike Trap 2"
+          position: { x: 0x0c, y: 0x0d, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Palace of Darkness - Conveyor - Blue Bari 1"
+          position: { x: 0x08, y: 0x0f, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Palace of Darkness - Conveyor - Spike Trap 3"
+          position: { x: 0x03, y: 0x13, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Palace of Darkness - Conveyor - Blue Bari 2"
+          position: { x: 0x07, y: 0x16, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Palace of Darkness - Conveyor - Spike Trap 4"
+          position: { x: 0x0c, y: 0x1a, z: 0x00 }
+          sprite: "SpikeTrap"

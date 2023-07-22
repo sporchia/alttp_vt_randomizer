@@ -1,0 +1,77 @@
+rooms:
+  - roomid: 0x39
+    group: 11
+    nodes:
+      regions:
+        - name: "Skull Woods - Play Pen"
+        - name: "Skull Woods - Boss Drop"
+
+      keydoors:
+        - name: "Skull Woods - Play Pen Door"
+          key: "KeyD3"
+
+      pots:
+        - name: "Skull Woods - Play Pen - Pot 1"
+          position: 0x140c
+          sprite: "@Heart"
+        - name: "Skull Woods - Boss Drop - Pot 1"
+          position: 0x1664
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Boss Drop - Pot 2"
+          position: 0x1a64
+          sprite: "@ArrowRefill5"
+        - name: "Skull Woods - Play Pen - Pot 2"
+          position: 0x1c30
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Skull Woods - Play Pen - Gibdo Key"
+          position: { x: 0x05, y: 0x15, z: 0x00 }
+          sprite: "Gibdo"
+          item: "KeyD3"
+          itemset: ["skull"]
+
+        - name: "Skull Woods - Play Pen - Mini Moldorm"
+          position: { x: 0x04, y: 0x18, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Skull Woods - Play Pen - Wallmaster"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "Wallmaster"
+
+        - name: "Skull Woods - Play Pen - Mini Helmasaur"
+          position: { x: 0x09, y: 0x15, z: 0x00 }
+          sprite: "MiniHelmasaur"
+          deny:
+            - "RollerVU"
+            - "RollerHL"
+
+        - name: "Skull Woods - Play Pen - Hardhat Beetle"
+          position: { x: 0x0b, y: 0x18, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+
+        - name: "Skull Woods - Boss Drop - Spike Trap 1"
+          position: { x: 0x17, y: 0x16, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "FireBarCW"
+            - "FireBarCCW"
+
+        - name: "Skull Woods - Boss Drop - Spike Trap 2"
+          position: { x: 0x17, y: 0x1a, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "FireBarCW"
+            - "FireBarCCW"

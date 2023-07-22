@@ -1,0 +1,48 @@
+maps:
+  - map: 0x80
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Master Sword Grove"
+
+      items:
+        - name: "Master Sword Pedestal"
+          addresses: [0x289B0]
+          type: "pedestal"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Master Sword Grove - Master Sword"
+          position: { x: 0x07, y: 0x08 }
+          sprite: "MasterSword"
+          state: [1, 2]
+
+        - name: "Master Sword Grove - Plaque"
+          position: { x: 0x07, y: 0x0a }
+          sprite: "HylianPlaque"
+          state: [1, 2]
+
+        - name: "Master Sword Grove - Squirrel 1"
+          position: { x: 0x0f, y: 0x14 }
+          sprite: "Squirrel"
+          state: [1, 2]
+
+        - name: "Master Sword Grove - Bird 1"
+          position: { x: 0x00, y: 0x16 }
+          sprite: "Bird"
+          state: [1, 2]
+
+        - name: "Master Sword Grove - Squirrel 2"
+          position: { x: 0x02, y: 0x18 }
+          sprite: "Squirrel"
+          state: [1, 2]
+
+        - name: "Master Sword Grove - Bird 2"
+          position: { x: 0x0e, y: 0x1a }
+          sprite: "Bird"
+          state: [1, 2]
+
+        - name: "Master Sword Grove - Squirrel 3"
+          position: { x: 0x0f, y: 0x1b }
+          sprite: "Squirrel"
+          state: [1, 2]

@@ -1,0 +1,19 @@
+rooms:
+  - roomid: 0x0121
+    nodes:
+      regions:
+        - name: "Blacksmith House"
+          inletid: 0x64
+
+      items:
+        - name: "Blacksmith"
+          addresses: [0x18002A]
+          type: "npc"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Blacksmith House - Dwarf Smith"
+          position: { x: 0x04, y: 0x17, z: 0x00 }
+          sprite: "DwarfSmith"
+          allow:
+            - "DwarfSmith"

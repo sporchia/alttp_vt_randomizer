@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x010E
+    nodes:
+      regions:
+        - name: "Hint Giver Cave - Glove"
+          inletid: 0x6A
+
+      mobs:
+        - name: "Hint Giver Cave - Power Glove"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "Storyteller"
+          allow:
+            - "Storyteller"

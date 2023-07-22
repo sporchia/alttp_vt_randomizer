@@ -1,0 +1,133 @@
+maps:
+  - map: 0x05
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "East Death Mountain Center Balcony"
+        - name: "East Death Mountain Hammer Bridge"
+        - name: "East Death Mountain Hookshot Bridge"
+        - name: "East Death Mountain Mimic Balcony"
+        - name: "East Death Mountain Running Man"
+        - name: "East Death Mountain Running Man's Tail"
+        - name: "East Death Mountain Spiral Cave Balcony"
+        - name: "East Death Mountain Summit"
+        - name: "East Death Mountain FLoating Island"
+
+      entrances:
+        - name: "Fairy Ascension Cave - Pits Right"
+          entranceid: 0x1A
+          outletid: 0x1C
+
+        - name: "Mimic Cave Entrance"
+          entranceid: 0x4E
+          outletid: 0x5D
+
+        - name: "Paradox Cave - Middle"
+          entranceid: 0x1E
+          outletid: 0x20
+
+        - name: "Paradox Cave - Bottom Entrance"
+          entranceid: 0x1D
+          outletid: 0x1F
+
+        - name: "Spiral Cave Exit"
+          entranceid: 0x1B
+          outletid: 0x1D
+
+        - name: "Fairy Pond Cave Entrance"
+          entranceid: 0x4F
+          outletid: 0x5E
+
+        - name: "Fairy Ascension Cave - Bottom"
+          entranceid: 0x19
+          outletid: 0x1B
+
+        - name: "Spiral Cave Top"
+          entranceid: 0x1C
+          outletid: 0x1E
+
+        - name: "Paradox Cave - Top"
+          entranceid: 0x1F
+          outletid: 0x21
+
+      items:
+        - name: "Floating Island"
+          addresses: [0x180141]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "East Death Mountain Summit - Deadrock 7"
+          position: { x: 0x07, y: 0x0b }
+          sprite: "Deadrock"
+          state: [2]
+
+        - name: "East Death Mountain Summit - Tektite 6"
+          position: { x: 0x08, y: 0x0d }
+          sprite: "Tektite"
+          state: [2]
+
+        - name: "East Death Mountain Summit - Deadrock 1"
+          position: { x: 0x1e, y: 0x0e }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Tektite 1"
+          position: { x: 0x1f, y: 0x0f }
+          sprite: "Tektite"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Heart Piece"
+          position: { x: 0x2f, y: 0x03 }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Deadrock 2"
+          position: { x: 0x35, y: 0x0d }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Tektite 2"
+          position: { x: 0x29, y: 0x0f }
+          sprite: "Tektite"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Deadrock 3"
+          position: { x: 0x35, y: 0x0f }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Fairy"
+          position: { x: 0x34, y: 0x10 }
+          sprite: "Fairy"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Tektite 3"
+          position: { x: 0x1e, y: 0x31 }
+          sprite: "Tektite"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Tektite 4"
+          position: { x: 0x35, y: 0x2a }
+          sprite: "Tektite"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Deadrock 4"
+          position: { x: 0x2a, y: 0x2f }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Tektite 5"
+          position: { x: 0x2f, y: 0x2f }
+          sprite: "Tektite"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Deadrock 5"
+          position: { x: 0x29, y: 0x36 }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "East Death Mountain Summit - Deadrock 6"
+          position: { x: 0x36, y: 0x36 }
+          sprite: "Deadrock"
+          state: [1, 2]

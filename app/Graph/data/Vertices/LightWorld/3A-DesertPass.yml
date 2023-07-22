@@ -1,0 +1,73 @@
+maps:
+  - map: 0x3A
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Desert Pass"
+        - name: "Bombos Tablet Ledge East"
+
+      entrances:
+        - name: "Desert Big Fairy"
+          entranceid: 0x71
+          outletid: 0x70
+
+        - name: "Desert Thief Hideout"
+          entranceid: 0x78
+          outletid: 0x89
+
+      items:
+        - name: "Purple Chest"
+          addresses: [0x33D68]
+          type: "npc"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Desert Pass - Raven"
+          position: { x: 0x0e, y: 0x09 }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Desert Pass - Rock Hoarder 2"
+          position: { x: 0x18, y: 0x0e }
+          sprite: "RockHoarder"
+          state: [1]
+
+        - name: "Desert Pass - Raven 1"
+          position: { x: 0x14, y: 0x0d }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Desert Pass - Raven 2"
+          position: { x: 0x13, y: 0x0e }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Desert Pass - Raven 3"
+          position: { x: 0x14, y: 0x0f }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Desert Pass - Raven 4"
+          position: { x: 0x13, y: 0x10 }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Desert Pass - sprite.FastRedSpearGuard"
+          position: { x: 0x11, y: 0x0f }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Desert Pass - Rock Hoarder 3"
+          position: { x: 0x17, y: 0x17 }
+          sprite: "RockHoarder"
+          state: [2]
+
+        - name: "Desert Pass - Locksmith"
+          position: { x: 0x17, y: 0x05 }
+          sprite: "AverageMan"
+          state: [1, 2]
+
+        - name: "Desert Pass - Rock Hoarder 1"
+          position: { x: 0x0b, y: 0x0a }
+          sprite: "RockHoarder"
+          state: [1, 2]

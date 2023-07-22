@@ -1,0 +1,87 @@
+rooms:
+  - roomid: 0x85
+    group: 3
+    nodes:
+      regions:
+        - name: "Desert Palace - Compass Room"
+        - name: "Desert Palace - East"
+          inletid: 0x0a
+        - name: "Desert Palace - Right Hallway"
+
+      keydoors:
+        - name: "Desert Palace - Compass Room Door"
+          key: "KeyP2"
+
+      shutters:
+        - name: "Desert Palace - Compass Room - Shutter Door"
+
+      items:
+        - name: "Desert Palace - Compass Chest"
+          addresses: [0xE9CB]
+          type: "chest"
+          itemset: ["desert"]
+
+      pots:
+        - name: "Desert Palace - Right Hallway - Pot 1"
+          position: 0x1c2c
+          sprite: "@Heart"
+        - name: "Desert Palace - Right Hallway - Pot 2"
+          position: 0x1c30
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Desert Palace - Right Hallway - Blue Devalant"
+          position: { x: 0x07, y: 0x0e, z: 0x00 }
+          sprite: "DevalantBlue"
+
+        - name: "Desert Palace - Right Hallway - Red Devalant"
+          position: { x: 0x09, y: 0x1b, z: 0x00 }
+          sprite: "DevalantRed"
+
+        - name: "Desert Palace - Compass Room - Popo TL"
+          position: { x: 0x14, y: 0x05, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "DesertPalaceCompassTrophy"
+          deny:
+            - "RollerHR"
+
+        - name: "Desert Palace - Compass Room - Popo TR"
+          position: { x: 0x1b, y: 0x05, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "DesertPalaceCompassTrophy"
+
+        - name: "Desert Palace - Compass Room - Popo BL"
+          position: { x: 0x16, y: 0x08, z: 0x00 }
+          sprite: "Popo2"
+          trophy: "DesertPalaceCompassTrophy"
+
+        - name: "Desert Palace - Compass Room - Beamos"
+          position: { x: 0x18, y: 0x0a, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "DesertPalaceCompassTrophy"
+
+        - name: "Desert Palace - Right Hallway - Leever 1"
+          position: { x: 0x03, y: 0x0e, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Right Hallway - Leever 2"
+          position: { x: 0x0c, y: 0x15, z: 0x00 }
+          sprite: "Leever"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Desert Palace - Right Entrance - Beamos"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Right Hallway - Leever 3"
+          position: { x: 0x07, y: 0x1c, z: 0x00 }
+          sprite: "Leever"

@@ -1,0 +1,126 @@
+rooms:
+  - roomid: 0x8D
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Tile Room"
+        - name: "Ganon's Tower - Long Torch Puzzle"
+        - name: "Ganon's Tower - Block Puzzle"
+
+      keydoors:
+        - name: "Ganon's Tower - Tile Room Door"
+          key: "KeyA2"
+
+      shutters:
+        - name: "Ganon's Tower - Tile Room - Shutter Chest"
+
+      items:
+        - name: "Ganon's Tower - Tile Room Chest"
+          type: "chest"
+          addresses: [0xEAE2]
+          itemset: ["gt"]
+
+      pots:
+        - name: "Ganon's Tower - Tile Room - Pot 1"
+          position: 0x0ecc
+          sprite: "@MagicRefillFull"
+        - name: "Ganon's Tower - Tile Room - Pot 2"
+          position: 0x171c
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Tile Room - Pot 3"
+          position: 0x1724
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Tile Room - Pot 4"
+          position: 0x1820
+          sprite: "@MagicRefillFull"
+
+      mobs:
+        - name: "Ganon's Tower - Tile Room - Tiles"
+          position: { x: 0x07, y: 0x08, z: 0x00 }
+          sprite: "TileRoom"
+          trophy: "GanonsTowerTileRoomTrophy"
+
+        - name: "Ganon's Tower - Tile Room - Yomo Medusa T"
+          position: { x: 0x07, y: 0x04, z: 0x00 }
+          sprite: "YomoMedusa"
+          trophy: "GanonsTowerTileRoomTrophy"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Tile Room - Antifairy"
+          position: { x: 0x09, y: 0x08, z: 0x00 }
+          sprite: "Antifairy"
+          trophy: "GanonsTowerTileRoomTrophy"
+
+        - name: "Ganon's Tower - Tile Room - Bunny Beam"
+          position: { x: 0x08, y: 0x09, z: 0x00 }
+          sprite: "BunnyBeam"
+          trophy: "GanonsTowerTileRoomTrophy"
+
+        - name: "Ganon's Tower - Tile Room - Yomo Medusa B"
+          position: { x: 0x09, y: 0x0c, z: 0x00 }
+          sprite: "YomoMedusa"
+          trophy: "GanonsTowerTileRoomTrophy"
+
+        - name: "Ganon's Tower - Tile Room - Gibdo"
+          position: { x: 0x13, y: 0x0d, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Ganon's Tower - Tile Room - Wallmaster"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "Wallmaster"
+          trophy: "GanonsTowerTileRoomTrophy"
+
+        - name: "Ganon's Tower - Tile Room - Spike Trap"
+          position: { x: 0x17, y: 0x10, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Tile Room - Stalfos"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Tile Room - Fire Bar (Clockwise)"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "Statue"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Tile Room - Blue Bari 1"
+          position: { x: 0x14, y: 0x1b, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Ganon's Tower - Tile Room - Medusa"
+          position: { x: 0x13, y: 0x1c, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Ganon's Tower - Tile Room - Blue Bari 2"
+          position: { x: 0x14, y: 0x1c, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"

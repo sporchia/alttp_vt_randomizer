@@ -1,0 +1,26 @@
+rooms:
+  - roomid: 0x12
+    group: 1
+    nodes:
+      regions:
+        - name: "Sanctuary Hall"
+          inletid: 0x02
+
+      items:
+        - name: "Sanctuary Chest"
+          addresses: [0xEA79]
+          type: "chest"
+          itemset: ["escape"]
+        - name: "Sanctuary - Princess Dropoff"
+          type: "event"
+          item: "RescueZelda"
+          itemset: ["event"]
+
+      mobs:
+        - name: "Sanctuary Hall - Priest"
+          position: { x: 0x0f, y: 0x07, z: 0x00 }
+          sprite: "Priest"
+
+        - name: "Sanctuary Hall - Princess Zelda"
+          position: { x: 0x10, y: 0x06, z: 0x00 }
+          sprite: "Zelda"

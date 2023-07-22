@@ -1,0 +1,83 @@
+rooms:
+  - roomid: 0x73
+    group: 3
+    nodes:
+      regions:
+        - name: "Desert Palace - Northwest Corner"
+        - name: "Desert Palace - Beemos Room"
+        - name: "Desert Palace - Big Chest Room"
+        - name: "Desert Palace - Torch Room"
+
+      items:
+        - name: "Desert Palace - Big Chest"
+          addresses: [0xE98F]
+          type: "bigchest"
+          itemset: ["desert"]
+        - name: "Desert Palace - Torch"
+          addresses: [0x180160]
+          type: "bonk"
+          itemset: ["desert"]
+
+      pots:
+        - name: "Desert Palace - Beemos Room - Pot 1"
+          position: 0x159a
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Beemos Room - Pot 2"
+          position: 0x159e
+          sprite: "@RupeeGreen"
+        - name: "Desert Palace - Beemos Room - Pot 3"
+          position: 0x1714
+          sprite: "FloorSwitch"
+        - name: "Desert Palace - Beemos Room - Pot 4"
+          position: 0x1724
+          sprite: "@RupeeBlue"
+        - name: "Desert Palace - Beemos Room - Pot 5"
+          position: 0x1890
+          sprite: "@Heart"
+        - name: "Desert Palace - Beemos Room - Pot 6"
+          position: 0x18a8
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Beemos Room - Pot 7"
+          position: 0x1a14
+          sprite: "@MagicRefillSmall"
+        - name: "Desert Palace - Beemos Room - Pot 8"
+          position: 0x1a24
+          sprite: "@Heart"
+        - name: "Desert Palace - Beemos Room - Pot 9"
+          position: 0x1b9a
+          sprite: "@RupeeGreen"
+        - name: "Desert Palace - Beemos Room - Pot 10"
+          position: 0x1b9e
+          sprite: "@RupeeBlue"
+
+      mobs:
+        - name: "Desert Palace - Northwest Corner - Red Devalant"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "DevalantRed"
+
+        - name: "Desert Palace - Torch Room - Beamos"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Northwest Corner - Leever 1"
+          position: { x: 0x15, y: 0x15, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Northwest Corner - Leever 2"
+          position: { x: 0x1b, y: 0x18, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Beemos Room - Beamos"
+          position: { x: 0x07, y: 0x19, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Northwest Corner - Leever 3"
+          position: { x: 0x16, y: 0x1b, z: 0x00 }
+          sprite: "Leever"
+
+        # this is required to have the standing item appear
+        - name: "Desert Palace - Torch Room - Dash Item"
+          position: { x: 0x14, y: 0x06, z: 0x00 }
+          sprite: "DashItem"
+          allow:
+            - "DashItem"

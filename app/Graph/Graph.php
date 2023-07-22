@@ -15,8 +15,6 @@ use SplQueue;
  */
 final class Graph
 {
-    use Attributes;
-
     private array $vertices = [];
     private array $vertices_name = [];
     private array $visited = [];
@@ -24,20 +22,7 @@ final class Graph
     private array $edges = [];
     private array $marked = [];
     private array $peg_marked = [];
-    private array $items = [];
     private array $recheck_nodes = [];
-
-    /**
-     * Create new Graph.
-     * 
-     * @param array $attributes any extra attributes on the graph
-     * 
-     * @return void
-     */
-    public function __construct(private array $attributes = [])
-    {
-        //
-    }
 
     /**
      * Get the Vertices in the Graph.
@@ -109,7 +94,7 @@ final class Graph
     public function addVertex(Vertex $vertex): void
     {
         $this->vertices[$vertex->id] = $vertex;
-        $this->vertices_name[$vertex->getAttribute('name', $vertex->id)] = $vertex;
+        $this->vertices_name[$vertex->name ?? $vertex->id] = $vertex;
         $this->adjency_matrix[$vertex->id] = [];
     }
 
@@ -128,11 +113,11 @@ final class Graph
      * 
      * @param Vertex $from from vertex
      * @param Vertex $to to vertex
-     * @param array $attributes any extra attributes on the edge
+     * @param string $group edge grouping
      */
-    public function addDirected(Vertex $from, Vertex $to, array $attributes = []): Edge
+    public function addDirected(Vertex $from, Vertex $to, string $group): Edge
     {
-        $edge = new Edge($from, $to, $attributes);
+        $edge = new Edge($from, $to, $group);
 
         $this->addEdge($edge);
 
@@ -167,10 +152,10 @@ final class Graph
      */
     public function getSubgraph(string $group): Graph
     {
-        $new = new static($this->attributes);
+        $new = new static();
 
         foreach ($this->edges as $edge) {
-            if ($edge->getAttribute('group') !== $group) {
+            if ($edge->group !== $group) {
                 continue;
             }
 
@@ -211,10 +196,10 @@ final class Graph
      */
     public function exclude(string ...$groups): Graph
     {
-        $new = new static($this->attributes);
+        $new = new static();
 
         foreach ($this->edges as $edge) {
-            if (in_array($edge->getAttribute('group'), $groups)) {
+            if (in_array($edge->group, $groups)) {
                 continue;
             }
 
@@ -307,65 +292,5 @@ final class Graph
         } while (!$queue->isEmpty() || !$peg_queue->isEmpty());
 
         return $this->visited[$start->id];
-    }
-
-    /**
-     * Create a new graph based on previous search.
-     * 
-     * @todo not used, consider removal?
-     * 
-     * @param Vertex $start vertex where search was started from
-     */
-    public function newFromSearch(Vertex $start): Graph
-    {
-        $found = $this->search($start);
-        $new = new static;
-
-        foreach ($found as $vertex) {
-            $new->addVertex($vertex);
-        }
-
-        foreach ($this->edges as $edge) {
-            if (isset($found[$edge->from->id]) && isset($found[$edge->to->id])) {
-                $new->adjency_matrix[$edge->from->id][$edge->to->id] = $edge->to;
-                $new->edges[$edge->id] = $edge;
-            }
-        }
-
-        return $new;
-    }
-
-    /**
-     * Grouped: count total number of different groups assigned to vertices.
-     */
-    public function getNumberOfGroups(): int
-    {
-        return count($this->getGroups());
-    }
-
-    /**
-     * Grouped: get array of all group numbers.
-     */
-    public function getGroups(): array
-    {
-        $groups = [];
-
-        foreach ($this->vertices as $vertex) {
-            $groups[(int) $vertex->getAttribute('group')] = true;
-        }
-
-        return array_keys($groups);
-    }
-
-    /**
-     * Grouped: get set of all Vertices in the given group.
-     *
-     * @param int $group group id to return Vertices from
-     */
-    public function getVerticesGroup(int $group): array
-    {
-        return array_filter($this->vertices, static function ($vertex) use ($group) {
-            return $vertex->getAttribute('group') === $group;
-        });
     }
 }

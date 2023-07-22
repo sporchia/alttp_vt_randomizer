@@ -1,0 +1,69 @@
+maps:
+  - map: 0x4A
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Bumper Cave Ledge"
+        - name: "Bumper Cave Entrance"
+        - name: "Bumper Cave Passway"
+
+      entrances:
+        - name: "Bumper Cave Ledge Top"
+          entranceid: 0x16
+          outletid: 0x18
+
+        - name: "Bumper Cave Entrance Bottom"
+          entranceid: 0x15
+          outletid: 0x17
+
+      items:
+        - name: "Bumper Cave"
+          addresses: [0x180146]
+          type: "standing"
+          itemset: ["dw"]
+
+      mobs:
+        - name: "Bumper Cave Ledge - Rupee Pull"
+          position: { x: 0x0e, y: 0x06 }
+          sprite: "PullForRupees"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Heart Piece"
+          position: { x: 0x18, y: 0x08 }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Moblin 1"
+          position: { x: 0x0b, y: 0x0f }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Moblin 2"
+          position: { x: 0x08, y: 0x10 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Moblin 3"
+          position: { x: 0x16, y: 0x13 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Raven 1"
+          position: { x: 0x13, y: 0x13 }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Raven 2"
+          position: { x: 0x13, y: 0x14 }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Ropa"
+          position: { x: 0x0e, y: 0x18 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Bumper Cave Ledge - Stal"
+          position: { x: 0x14, y: 0x1a }
+          sprite: "Stal"
+          state: [1, 2]

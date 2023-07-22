@@ -1,0 +1,112 @@
+rooms:
+  - roomid: 0x58
+    group: 9
+    nodes:
+      regions:
+        - name: "Skull Woods - Main Entrance"
+          inletid: 0x2A
+        - name: "Skull Woods - Big Chest Ledge"
+        - name: "Skull Woods - Hourglass Top"
+          inletid: 0x76
+        - name: "Skull Woods - Hourglass Bottom"
+        - name: "Skull Woods - Lever Room"
+
+      keydoors:
+        - name: "Skull Woods - Main Entrance Door"
+          key: "KeyD3"
+        - name: "Skull Woods - Pinball Door"
+          key: "KeyD3"
+
+      items:
+        - name: "Skull Woods - Big Chest"
+          addresses: [0xE998]
+          type: "bigchest"
+          itemset: ["skull"]
+
+        - name: "Skull Woods - Map Chest"
+          addresses: [0xE99B]
+          type: "chest"
+          itemset: ["skull"]
+
+      pots:
+        - name: "Skull Woods - Lever Room - Pot 1"
+          position: 0x0560
+          sprite: "@BombRefill1"
+        - name: "Skull Woods - Lever Room - Pot 2"
+          position: 0x0564
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Lever Room - Pot 3"
+          position: 0x070c
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Lever Room - Pot 4"
+          position: 0x075c
+          sprite: "@Heart"
+        - name: "Skull Woods - Lever Room - Pot 5"
+          position: 0x076c
+          sprite: "@Heart"
+        - name: "Skull Woods - Lever Room - Pot 6"
+          position: 0x0810
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Lever Room - Pot 7"
+          position: 0x0964
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Lever Room - Pot 8"
+          position: 0x0968
+          sprite: "@BombRefill1"
+        - name: "Skull Woods - Lever Room - Pot 9"
+          position: 0x0710
+        - name: "Skull Woods - Lever Room - Pot 10"
+          position: 0x0c0c
+        - name: "Skull Woods - Lever Room - Pot 11"
+          position: 0x065c
+        - name: "Skull Woods - Lever Room - Pot 12"
+          position: 0x085c
+        - name: "Skull Woods - Lever Room - Pot 13"
+          position: 0x0960
+        - name: "Skull Woods - Lever Room - Pot 14"
+          position: 0x086c
+        - name: "Skull Woods - Lever Room - Pot 15"
+          position: 0x066c
+        - name: "Skull Woods - Lever Room - Pot 16"
+          position: 0x0568
+
+      mobs:
+        - name: "Skull Woods - Lever Room - Mini Moldorm 1"
+          position: { x: 0x0c, y: 0x14, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Skull Woods - Lever Room - Mini Moldorm 2"
+          position: { x: 0x06, y: 0x16, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Skull Woods - Lever Room - Bumper"
+          position: { x: 0x16, y: 0x16, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Lever Room - Mini Helmasaur"
+          position: { x: 0x14, y: 0x04, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Skull Woods - Lever Room - Spark"
+          position: { x: 0x16, y: 0x06, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Skull Woods - Lever Room - Pull Switch"
+          position: { x: 0x08, y: 0x0a, z: 0x00 }
+          sprite: "PullSwitchGood"
+          allow:
+            - "PullSwitchGood"
+
+        - name: "Skull Woods - Lever Room - Hardhat Beetle 1"
+          position: { x: 0x1b, y: 0x0b, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Skull Woods - Lever Room - Hardhat Beetle 2"
+          position: { x: 0x16, y: 0x19, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerHL"
+
+        - name: "Skull Woods - Lever Room - Red Bari"
+          position: { x: 0x0a, y: 0x1a, z: 0x00 }
+          sprite: "RedBari"

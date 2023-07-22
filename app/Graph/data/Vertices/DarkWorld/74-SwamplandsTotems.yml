@@ -1,0 +1,48 @@
+maps:
+  - map: 0x74
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Swamplands Totems"
+        - name: "Swamplands Totems Pond"
+
+      entrances:
+        - name: "Hype Cave"
+          entranceid: 0x3C
+          outletid: 0x7F
+
+      mobs:
+        - name: "Swamplands Totems - Moblin 1"
+          position: { x: 0x0b, y: 0x0d }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Swamplands Totems - Rupee Pull"
+          position: { x: 0x17, y: 0x0e }
+          sprite: "PullForRupees"
+          state: [1, 2]
+
+        - name: "Swamplands Totems - Green Zirro"
+          position: { x: 0x10, y: 0x11 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Swamplands Totems - Moblin 2"
+          position: { x: 0x15, y: 0x11 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Swamplands Totems - Pikit"
+          position: { x: 0x0a, y: 0x12 }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Swamplands Totems - Apple"
+          position: { x: 0x0e, y: 0x14 }
+          sprite: "Apple"
+          state: [1, 2]
+
+        - name: "Swamplands Totems - Moblin 3"
+          position: { x: 0x11, y: 0x17 }
+          sprite: "Moblin"
+          state: [1, 2]

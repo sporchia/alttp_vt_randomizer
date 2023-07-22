@@ -1,0 +1,203 @@
+maps:
+  - map: 0x00
+    nodes:
+      prizepacks:
+        - name: "PrizePack01-00"
+          offset: 0x00
+          sprite: "Heart"
+        - name: "PrizePack01-01"
+          offset: 0x01
+          sprite: "Heart"
+        - name: "PrizePack01-02"
+          offset: 0x02
+          sprite: "Heart"
+        - name: "PrizePack01-03"
+          offset: 0x03
+          sprite: "Heart"
+        - name: "PrizePack01-04"
+          offset: 0x04
+          sprite: "RupeeGreen"
+        - name: "PrizePack01-05"
+          offset: 0x05
+          sprite: "Heart"
+        - name: "PrizePack01-06"
+          offset: 0x06
+          sprite: "Heart"
+        - name: "PrizePack01-07"
+          offset: 0x07
+          sprite: "RupeeGreen"
+
+        - name: "PrizePack02-00"
+          offset: 0x08
+          sprite: "RupeeBlue"
+        - name: "PrizePack02-01"
+          offset: 0x09
+          sprite: "RupeeGreen"
+        - name: "PrizePack02-02"
+          offset: 0x0A
+          sprite: "RupeeBlue"
+        - name: "PrizePack02-03"
+          offset: 0x0B
+          sprite: "RupeeRed"
+        - name: "PrizePack02-04"
+          offset: 0x0C
+          sprite: "RupeeBlue"
+        - name: "PrizePack02-05"
+          offset: 0x0D
+          sprite: "RupeeGreen"
+        - name: "PrizePack02-06"
+          offset: 0x0E
+          sprite: "RupeeBlue"
+        - name: "PrizePack02-07"
+          offset: 0x0F
+          sprite: "RupeeBlue"
+
+        - name: "PrizePack03-00"
+          offset: 0x10
+          sprite: "MagicRefillFull"
+        - name: "PrizePack03-01"
+          offset: 0x11
+          sprite: "MagicRefillSmall"
+        - name: "PrizePack03-02"
+          offset: 0x12
+          sprite: "MagicRefillSmall"
+        - name: "PrizePack03-03"
+          offset: 0x13
+          sprite: "RupeeBlue"
+        - name: "PrizePack03-04"
+          offset: 0x14
+          sprite: "MagicRefillFull"
+        - name: "PrizePack03-05"
+          offset: 0x15
+          sprite: "MagicRefillSmall"
+        - name: "PrizePack03-06"
+          offset: 0x16
+          sprite: "Heart"
+        - name: "PrizePack03-07"
+          offset: 0x17
+          sprite: "MagicRefillSmall"
+
+        - name: "PrizePack04-00"
+          offset: 0x18
+          sprite: "BombRefill1"
+        - name: "PrizePack04-01"
+          offset: 0x19
+          sprite: "BombRefill1"
+        - name: "PrizePack04-02"
+          offset: 0x1A
+          sprite: "BombRefill1"
+        - name: "PrizePack04-03"
+          offset: 0x1B
+          sprite: "BombRefill4"
+        - name: "PrizePack04-04"
+          offset: 0x1C
+          sprite: "BombRefill1"
+        - name: "PrizePack04-05"
+          offset: 0x1D
+          sprite: "BombRefill1"
+        - name: "PrizePack04-06"
+          offset: 0x1E
+          sprite: "BombRefill8"
+        - name: "PrizePack04-07"
+          offset: 0x1F
+          sprite: "BombRefill1"
+
+        - name: "PrizePack05-00"
+          offset: 0x20
+          sprite: "ArrowRefill5"
+        - name: "PrizePack05-01"
+          offset: 0x21
+          sprite: "Heart"
+        - name: "PrizePack05-02"
+          offset: 0x22
+          sprite: "ArrowRefill5"
+        - name: "PrizePack05-03"
+          offset: 0x23
+          sprite: "ArrowRefill10"
+        - name: "PrizePack05-04"
+          offset: 0x24
+          sprite: "ArrowRefill5"
+        - name: "PrizePack05-05"
+          offset: 0x25
+          sprite: "Heart"
+        - name: "PrizePack05-06"
+          offset: 0x26
+          sprite: "ArrowRefill5"
+        - name: "PrizePack05-07"
+          offset: 0x27
+          sprite: "ArrowRefill10"
+
+        - name: "PrizePack06-00"
+          offset: 0x28
+          sprite: "MagicRefillSmall"
+        - name: "PrizePack06-01"
+          offset: 0x29
+          sprite: "RupeeGreen"
+        - name: "PrizePack06-02"
+          offset: 0x2A
+          sprite: "Heart"
+        - name: "PrizePack06-03"
+          offset: 0x2B
+          sprite: "ArrowRefill5"
+        - name: "PrizePack06-04"
+          offset: 0x2C
+          sprite: "MagicRefillSmall"
+        - name: "PrizePack06-05"
+          offset: 0x2D
+          sprite: "BombRefill1"
+        - name: "PrizePack06-06"
+          offset: 0x2E
+          sprite: "RupeeGreen"
+        - name: "PrizePack06-07"
+          offset: 0x2F
+          sprite: "Heart"
+
+        - name: "PrizePack07-00"
+          offset: 0x30
+          sprite: "Heart"
+        - name: "PrizePack07-01"
+          offset: 0x31
+          sprite: "Fairy"
+        - name: "PrizePack07-02"
+          offset: 0x32
+          sprite: "MagicRefillFull"
+        - name: "PrizePack07-03"
+          offset: 0x33
+          sprite: "RupeeRed"
+        - name: "PrizePack07-04"
+          offset: 0x34
+          sprite: "BombRefill8"
+        - name: "PrizePack07-05"
+          offset: 0x35
+          sprite: "Heart"
+        - name: "PrizePack07-06"
+          offset: 0x36
+          sprite: "RupeeRed"
+        - name: "PrizePack07-07"
+          offset: 0x37
+          sprite: "ArrowRefill10"
+
+        - name: "PrizePackPull-00"
+          offset: 0x38
+          sprite: "RupeeGreen"
+        - name: "PrizePackPull-01"
+          offset: 0x39
+          sprite: "RupeeBlue"
+        - name: "PrizePackPull-02"
+          offset: 0x3A
+          sprite: "RupeeRed"
+
+        - name: "PrizePackCrab-00"
+          offset: 0x3B
+          sprite: "RupeeGreen"
+        - name: "PrizePackCrab-01"
+          offset: 0x3C
+          sprite: "RupeeRed"
+
+        - name: "PrizePackStun-00"
+          offset: 0x3D
+          sprite: "RupeeGreen"
+
+        - name: "PrizePackFish-00"
+          offset: 0x3E
+          sprite: "RupeeRed"

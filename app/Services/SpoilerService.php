@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Graph\Randomizer;
+use App\Graph\World;
 use App\Rom;
 
 /**
@@ -13,12 +13,11 @@ class SpoilerService
     /**
      * Get spoiler data.
      *
-     * @param Randomizer $randomizer
+     * @param World $world
      * @param array $meta etxra meta data to append to spoiler
      */
-    public function getSpoiler(Randomizer $randomizer, array $meta = []): array
+    public function getSpoiler(World $world, array $meta = []): array
     {
-        $world = $randomizer->getWorld(0);
         $spoiler = [
             'Equipped' => [],
             'Locations' => [],
@@ -31,17 +30,17 @@ class SpoilerService
         }
 
         foreach ($world->getWritableVertices() as $location) {
-            $parts = explode(' - ', $location->getAttribute('name'), 2);
+            $parts = explode(' - ', $location->name, 2);
             $group = isset($parts[1]) ? $parts[0] : 'Locations';
             $item = $location->item;
-            $spoiler[$group][$location->getAttribute('name')] = $item
+            $spoiler[$group][$location->name] = $item
                 ? $item->name
                 : 'Nothing';
         }
         foreach ($world->getLocationsOfType('mob') as $enemy) {
-            $parts = explode(' - ', $enemy->getAttribute('name'), 2);
+            $parts = explode(' - ', $enemy->name, 2);
             $group = isset($parts[1]) ? $parts[0] : 'Enemies';
-            $spoiler[$group][$enemy->getAttribute('name')] = $enemy->getAttribute('sprite')->name;
+            $spoiler[$group][$enemy->name] = $enemy->sprite->name;
         }
 
         // foreach ($this->getShops() as $shop) {
@@ -61,21 +60,21 @@ class SpoilerService
         // }
 
         $spoiler['Bosses'] = [
-            "Eastern Palace" => $world->getLocation("Eastern Palace - Boss")->getAttribute('enemizerBoss'),
-            "Desert Palace" => $world->getLocation("Desert Palace - Boss")->getAttribute('enemizerBoss'),
-            "Tower Of Hera" => $world->getLocation("Tower Of Hera - Boss")->getAttribute('enemizerBoss'),
+            "Eastern Palace" => $world->getLocation("Eastern Palace - Boss")->enemizerBoss,
+            "Desert Palace" => $world->getLocation("Desert Palace - Boss")->enemizerBoss,
+            "Tower Of Hera" => $world->getLocation("Tower Of Hera - Boss")->enemizerBoss,
             "Hyrule Castle" => "Agahnim",
-            "Palace Of Darkness" => $world->getLocation("Palace of Darkness - Boss")->getAttribute('enemizerBoss'),
-            "Swamp Palace" => $world->getLocation("Swamp Palace - Boss")->getAttribute('enemizerBoss'),
-            "Skull Woods" => $world->getLocation("Skull Woods - Boss")->getAttribute('enemizerBoss'),
-            "Thieves Town" => $world->getLocation("Thieves' Town - Boss")->getAttribute('enemizerBoss'),
-            "Ice Palace" => $world->getLocation("Ice Palace - Boss")->getAttribute('enemizerBoss'),
-            "Misery Mire" => $world->getLocation("Misery Mire - Boss")->getAttribute('enemizerBoss'),
-            "Turtle Rock" => $world->getLocation("Turtle Rock - Boss")->getAttribute('enemizerBoss'),
-            "Ganons Tower Basement" => $world->getLocation("Ganon's Tower - Ice Armos")->getAttribute('enemizerBoss'),
-            "Ganons Tower Middle" => $world->getLocation("Ganon's Tower - Lanmolas")->getAttribute('enemizerBoss'),
-            "Ganons Tower Top" => $world->getLocation("Ganon's Tower - Moldorm")->getAttribute('enemizerBoss'),
-            "Ganons Tower" => "Agahnim 2",
+            "Palace Of Darkness" => $world->getLocation("Palace of Darkness - Boss")->enemizerBoss,
+            "Swamp Palace" => $world->getLocation("Swamp Palace - Boss")->enemizerBoss,
+            "Skull Woods" => $world->getLocation("Skull Woods - Boss")->enemizerBoss,
+            "Thieves Town" => $world->getLocation("Thieves' Town - Boss")->enemizerBoss,
+            "Ice Palace" => $world->getLocation("Ice Palace - Boss")->enemizerBoss,
+            "Misery Mire" => $world->getLocation("Misery Mire - Boss")->enemizerBoss,
+            "Turtle Rock" => $world->getLocation("Turtle Rock - Boss")->enemizerBoss,
+            "Ganon's Tower Basement" => $world->getLocation("Ganon's Tower - Ice Armos")->enemizerBoss,
+            "Ganon's Tower Middle" => $world->getLocation("Ganon's Tower - Lanmolas")->enemizerBoss,
+            "Ganon's Tower Top" => $world->getLocation("Ganon's Tower - Moldorm")->enemizerBoss,
+            "Ganon's Tower" => "Agahnim 2",
             "Ganon" => "Ganon",
         ];
 

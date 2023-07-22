@@ -1,0 +1,119 @@
+rooms:
+  - roomid: 0x27
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Petting Zoo - Ledge"
+        - name: "Tower Of Hera - Petting Zoo"
+
+      items:
+        - name: "Tower Of Hera - Big Chest"
+          type: "bigchest"
+          addresses: [0xE9F8]
+          itemset: ["hera"]
+
+        - name: "Tower Of Hera - Compass Chest"
+          type: "chest"
+          addresses: [0xE9FB]
+          itemset: ["hera"]
+
+      pots:
+        - name: "Tower Of Hera - Petting Zoo - Pot 1"
+          position: 0x14a6
+          sprite: "@BombRefill1"
+        - name: "Tower Of Hera - Petting Zoo - Pot 2"
+          position: 0x15d6
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Petting Zoo - Pot 3"
+          position: 0x1c28
+          sprite: "@RupeeGreen"
+        - name: "Tower Of Hera - Petting Zoo - Pot 4"
+          position: 0x1c2c
+          sprite: "@RupeeGreen"
+        - name: "Tower Of Hera - Petting Zoo - Pot 5"
+          position: 0x1c50
+          sprite: "@RupeeBlue"
+        - name: "Tower Of Hera - Petting Zoo - Pot 6"
+          position: 0x1c54
+          sprite: "@RupeeBlue"
+        - name: "Tower Of Hera - Petting Zoo - Pot 7"
+          position: 0x0ca0
+        - name: "Tower Of Hera - Petting Zoo - Pot 8"
+          position: 0x13a6
+        - name: "Tower Of Hera - Petting Zoo - Pot 9"
+          position: 0x15a6
+        - name: "Tower Of Hera - Petting Zoo - Pot 10"
+          position: 0x13d6
+        - name: "Tower Of Hera - Petting Zoo - Pot 11"
+          position: 0x14d6
+        - name: "Tower Of Hera - Petting Zoo - Pot 12"
+          position: 0x1162
+        - name: "Tower Of Hera - Petting Zoo - Pot 13"
+          position: 0x1166
+        - name: "Tower Of Hera - Petting Zoo - Pot 14"
+          position: 0x116a
+        - name: "Tower Of Hera - Petting Zoo - Pot 15"
+          position: 0x0c5c
+
+      mobs:
+        - name: "Tower Of Hera - Petting Zoo - Mini Moldorm 1"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHL"
+            - "FireBarCW"
+
+        - name: "Tower Of Hera - Petting Zoo - Mini Moldorm 2"
+          position: { x: 0x18, y: 0x13, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Tower Of Hera - Petting Zoo - Mini Moldorm 3"
+          position: { x: 0x1b, y: 0x13, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Tower Of Hera - Petting Zoo - Mini Moldorm 4"
+          position: { x: 0x0c, y: 0x1a, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Tower Of Hera - Petting Zoo - Spark (Clockwise)"
+          position: { x: 0x0f, y: 0x06, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Tower Of Hera - Petting Zoo - Kodongo 1"
+          position: { x: 0x05, y: 0x0e, z: 0x00 }
+          sprite: "Kodongo"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Tower Of Hera - Petting Zoo - Kodongo 2"
+          position: { x: 0x04, y: 0x16, z: 0x00 }
+          sprite: "Kodongo"

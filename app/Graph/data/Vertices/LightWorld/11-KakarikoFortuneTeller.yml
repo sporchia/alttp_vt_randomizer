@@ -1,0 +1,44 @@
+maps:
+  - map: 0x11
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Kakariko Fortune Teller"
+        - name: "Kakariko Fortune Teller Niche Next to the Psychic"
+        - name: "Kakariko Fortune Teller Southwest Tree Niche"
+
+      entrances:
+        - name: "Kakariko Fortune Teller"
+          entranceid: 0x64
+          outletid: 0x85
+
+      mobs:
+        - name: "Kakariko Fortune Teller - Green Guard 1"
+          position: { x: 0x17, y: 0x0c }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Kakariko Fortune Teller - Green Guard 2"
+          position: { x: 0x1a, y: 0x0d }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Kakariko Fortune Teller - Blue Guard 1"
+          position: { x: 0x17, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Fortune Teller - Blue Guard 2"
+          position: { x: 0x1a, y: 0x0d }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Kakariko Fortune Teller - Bomb Refill (1)"
+          position: { x: 0x08, y: 0x10 }
+          sprite: "BombRefill1"
+          state: [1, 2]
+
+        - name: "Kakariko Fortune Teller - Chicken"
+          position: { x: 0x08, y: 0x17 }
+          sprite: "Chicken"
+          state: [1, 2]

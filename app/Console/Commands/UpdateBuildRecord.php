@@ -88,7 +88,7 @@ final class UpdateBuildRecord extends Command
             $git_log->run();
 
             if (!$git_log->isSuccessful()) {
-                $this->error($proc->getErrorOutput());
+                $this->error($git_log->getErrorOutput());
 
                 $this->error("Unable to retrieve last commit date.");
 

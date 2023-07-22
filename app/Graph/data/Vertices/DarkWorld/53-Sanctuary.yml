@@ -1,0 +1,37 @@
+maps:
+  - map: 0x53
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Sanctuary Cave"
+
+      entrances:
+        - name: "Dark Sanctuary"
+          entranceid: 0x59
+          outletid: 0x68
+
+      mobs:
+        - name: "Dark Sanctuary Cave - Stal"
+          position: { x: 0x06, y: 0x0b }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Dark Sanctuary Cave - Hinox"
+          position: { x: 0x15, y: 0x0c }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Dark Sanctuary Cave - Ropa"
+          position: { x: 0x08, y: 0x0d }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark Sanctuary Cave - Moblin"
+          position: { x: 0x0d, y: 0x15 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Dark Sanctuary Cave - Snapdragon"
+          position: { x: 0x16, y: 0x18 }
+          sprite: "Snapdragon"
+          state: [1, 2]

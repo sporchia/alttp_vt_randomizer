@@ -1,0 +1,14 @@
+rooms:
+  - roomid: 0x0D
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Boss Room"
+
+      mobs:
+        - name: "Ganon's Tower - Boss"
+          position: { x: 0x07, y: 0x15, z: 0x00 }
+          sprite: "Agahnim"
+          allow: ["Agahnim"]
+          item: "Agahnim2Defeated"
+          itemset: ["gt"]

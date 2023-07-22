@@ -1,0 +1,80 @@
+rooms:
+  - roomid: 0x98
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Entrance"
+          inletid: 0x27
+          peg: "orange"
+        - name: "Misery Mire - Entrance Right"
+
+      mobs:
+        - name: "Misery Mire - Entrance - Zol 1"
+          position: { x: 0x10, y: 0x13, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Entrance - Zol 2"
+          position: { x: 0x09, y: 0x14, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Entrance - Zol 3"
+          position: { x: 0x0c, y: 0x14, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Entrance - Zol 4"
+          position: { x: 0x0f, y: 0x14, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Entrance - Zol 5"
+          position: { x: 0x08, y: 0x17, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

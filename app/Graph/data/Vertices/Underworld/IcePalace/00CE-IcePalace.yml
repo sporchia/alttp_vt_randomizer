@@ -1,0 +1,99 @@
+rooms:
+  - roomid: 0xCE
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Over Boss - top"
+        - name: "Ice Palace - Over Boss - pit"
+
+      pots:
+        - name: "Ice Palace - Over Boss - top - Pot 1"
+          position: 0x084c
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Over Boss - top - Pot 2"
+          position: 0x0850
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Over Boss - top - Pot 3"
+          position: 0x0c6c
+          sprite: "@BombRefill1"
+        - name: "Ice Palace - Over Boss - top - Pot 4"
+          position: 0x0c70
+          sprite: "@ArrowRefill5"
+        - name: "Ice Palace - Over Boss - top - Pot 5"
+          position: 0x0bcc
+          sprite: "Hole"
+        - name: "Ice Palace - Over Boss - top - Pot 6"
+          position: 0x086c
+
+      mobs:
+        - name: "Ice Palace - Over Boss - top - Red Bari 1"
+          position: { x: 0x16, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "Antifairy"
+            - "Antifairy2"
+            - "BigSpikeTrap"
+            - "FireBarCCW"
+            - "Bumper"
+
+        - name: "Ice Palace - Over Boss - top - Red Bari 2"
+          position: { x: 0x19, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "Antifairy"
+            - "Antifairy2"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "Bumper"
+
+        - name: "Ice Palace - Over Boss - top - Pull Switch (Good)"
+          position: { x: 0x1c, y: 0x05, z: 0x00 }
+          sprite: "PullSwitchGood"
+          allow:
+            - "PullSwitchGood"
+
+        - name: "Ice Palace - Over Boss - top - Statue"
+          position: { x: 0x14, y: 0x09, z: 0x00 }
+          sprite: "Statue"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Antifairy"
+            - "Antifairy2"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Over Boss - top - Blue Bari 1"
+          position: { x: 0x1b, y: 0x08, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Ice Palace - Over Boss - top - Blue Bari 2"
+          position: { x: 0x1c, y: 0x08, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Ice Palace - Over Boss - top - Blue Bari 3"
+          position: { x: 0x1b, y: 0x09, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Ice Palace - Over Boss - top - Blue Bari 4"
+          position: { x: 0x1c, y: 0x09, z: 0x00 }
+          sprite: "BlueBari"

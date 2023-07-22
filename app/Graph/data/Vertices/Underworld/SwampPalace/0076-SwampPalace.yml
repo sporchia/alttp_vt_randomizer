@@ -1,0 +1,101 @@
+rooms:
+  - roomid: 0x76
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Toilet Right"
+        - name: "Swamp Palace - Toilet Left"
+        - name: "Swamp Palace - Toilet Bowl"
+        - name: "Swamp Palace - Thin Hallway"
+        - name: "Swamp Palace - Flooded Room Top"
+        - name: "Swamp Palace - Flooded Room"
+
+      items:
+        - name: "Swamp Palace - Flooded Room - Left"
+          addresses: [0xEAA9]
+          type: "chest"
+          itemset: ["swamp"]
+
+        - name: "Swamp Palace - Flooded Room - Right"
+          addresses: [0xEAAC]
+          type: "chest"
+          itemset: ["swamp"]
+
+      pots:
+        - name: "Swamp Palace - Toilet Left - Pot 1"
+          position: 0x0c70
+          sprite: "@Heart"
+        - name: "Swamp Palace - Toilet Left - Pot 2"
+          position: 0x1754
+          sprite: "@Heart"
+        - name: "Swamp Palace - Toilet Left - Pot 3"
+          position: 0x1760
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Swamp Palace - Toilet Right - Push Switch"
+          position: { x: 0x19, y: 0x03, z: 0x00 }
+          item: "SwampWater3"
+          itemset: ["event"]
+          sprite: "PushSwitch"
+          allow:
+            - "PushSwitch"
+
+        - name: "Swamp Palace - Toilet Left - Hover 1"
+          position: { x: 0x07, y: 0x0a, z: 0x00 }
+          sprite: "Hover"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Toilet Left - Kyameron"
+          position: { x: 0x07, y: 0x0f, z: 0x00 }
+          sprite: "Kyameron"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Toilet Left - Hover 2"
+          position: { x: 0x08, y: 0x11, z: 0x00 }
+          sprite: "Hover"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Toilet Left - Zol"
+          position: { x: 0x1b, y: 0x19, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Toilet Left - Mini Helmasaur"
+          position: { x: 0x08, y: 0x1c, z: 0x00 }
+          sprite: "PirogusuSpawnerBottom"
+
+        - name: "Swamp Palace - Toilet Left - Blue Bari"
+          position: { x: 0x1b, y: 0x1c, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVD"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

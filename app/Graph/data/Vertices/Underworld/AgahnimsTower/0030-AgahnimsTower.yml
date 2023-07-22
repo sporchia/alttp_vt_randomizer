@@ -1,0 +1,12 @@
+rooms:
+  - roomid: 0x30
+    group: 6
+    nodes:
+      regions:
+        - name: "Agahnims Tower - Antichamber"
+        - name: "Agahnims Tower - Bedroom"
+
+      mobs:
+        - name: "Agahnims Tower - Bedroom - Cutscene Agahnim"
+          position: { x: 0x07, y: 0x05, z: 0x00 }
+          sprite: "AgahnimCutscene"

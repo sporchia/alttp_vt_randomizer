@@ -1,0 +1,6 @@
+rooms:
+  - roomid: 0x0003
+    nodes:
+      regions:
+        - name: "Houlihan Room"
+          inletid: 0x82

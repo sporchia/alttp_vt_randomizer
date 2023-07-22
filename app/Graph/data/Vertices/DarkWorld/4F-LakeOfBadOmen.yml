@@ -1,0 +1,34 @@
+maps:
+  - map: 0x4F
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Lake of Bad Omen"
+        - name: "Lake of Bad Omen Waters"
+
+      items:
+        - name: "Catfish"
+          addresses: [0xEE185]
+          type: "standing"
+          itemset: ["dw"]
+
+      mobs:
+        - name: "Lake of Bad Omen - Fireball Zora"
+          position: { x: 0x19, y: 0x08 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake of Bad Omen - Catfish"
+          position: { x: 0x04, y: 0x0b }
+          sprite: "Catfish"
+          state: [1, 2]
+
+        - name: "Lake of Bad Omen - Stal"
+          position: { x: 0x18, y: 0x0d }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Lake of Bad Omen - Ropa"
+          position: { x: 0x1a, y: 0x11 }
+          sprite: "Ropa"
+          state: [1, 2]

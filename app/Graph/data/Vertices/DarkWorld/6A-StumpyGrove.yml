@@ -1,0 +1,19 @@
+maps:
+  - map: 0x6A
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Stumpy Grove"
+        - name: "Stumpy Grove Corner"
+
+      items:
+        - name: "Stumpy"
+          addresses: [0x330C7]
+          type: "npc"
+          itemset: ["dw"]
+
+      mobs:
+        - name: "Stumpy Grove - Flute Kid"
+          position: { x: 0x0e, y: 0x0f }
+          sprite: "FluteKid"
+          state: [1, 2]

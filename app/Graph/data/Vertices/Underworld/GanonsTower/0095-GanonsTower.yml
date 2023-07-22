@@ -1,0 +1,61 @@
+rooms:
+  - roomid: 0x95
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Conveyer Falling Bridge"
+
+      mobs:
+        - name: "Ganon's Tower - Conveyer Falling Bridge - Red Spear Guard 1"
+          position: { x: 0x16, y: 0x0c, z: 0x00 }
+          sprite: "RedSpearGuard"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+
+        - name: "Ganon's Tower - Conveyer Falling Bridge - Red Spear Guard 2"
+          position: { x: 0x17, y: 0x0c, z: 0x00 }
+          sprite: "RedSpearGuard"
+          deny:
+            - "Statue"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Conveyer Falling Bridge - Red Spear Guard 3"
+          position: { x: 0x18, y: 0x0c, z: 0x00 }
+          sprite: "RedSpearGuard"
+          deny:
+            - "Statue"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Conveyer Falling Bridge - Red Spear Guard 4"
+          position: { x: 0x19, y: 0x0c, z: 0x00 }
+          sprite: "RedSpearGuard"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+
+        - name: "Ganon's Tower - Conveyer Falling Bridge - Falling Bridge"
+          position: { x: 0x17, y: 0x1a, z: 0x00 }
+          sprite: "FallingBridge"

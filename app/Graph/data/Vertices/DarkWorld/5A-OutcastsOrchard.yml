@@ -1,0 +1,45 @@
+maps:
+  - map: 0x5A
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Outcasts Orchard"
+        - name: "Outcasts Orchard Intermediate Jump"
+        - name: "Outcasts Orchard Northeast Tree Niche"
+        - name: "Outcasts Orchard Shop Yard Nook"
+
+      entrances:
+        - name: "Outcasts Orchard Shop"
+          entranceid: 0x74
+          outletid: 0x66
+
+      mobs:
+        - name: "Outcasts Orchard - Moblin 1"
+          position: { x: 0x0f, y: 0x08 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Outcasts Orchard - Talking Tree"
+          position: { x: 0x12, y: 0x08 }
+          sprite: "TalkingTree"
+          state: [1, 2]
+
+        - name: "Outcasts Orchard - Stal"
+          position: { x: 0x12, y: 0x0d }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Outcasts Orchard - Moblin 2"
+          position: { x: 0x15, y: 0x0c }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Outcasts Orchard - Hinox"
+          position: { x: 0x0b, y: 0x0f }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "Outcasts Orchard - Moblin 3"
+          position: { x: 0x0e, y: 0x19 }
+          sprite: "Moblin"
+          state: [1, 2]

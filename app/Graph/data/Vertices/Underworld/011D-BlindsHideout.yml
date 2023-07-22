@@ -1,0 +1,48 @@
+rooms:
+  - roomid: 0x011D
+    nodes:
+      regions:
+        - name: "Blind's Hideout Trove"
+        - name: "Blind's Hideout Hidden"
+
+      items:
+        - name: "Blind's Hideout - Top"
+          addresses: [0xEB0F]
+          type: "chest"
+          itemset: ["lw"]
+        - name: "Blind's Hideout - Left"
+          addresses: [0xEB12]
+          type: "chest"
+          itemset: ["lw"]
+        - name: "Blind's Hideout - Right"
+          addresses: [0xEB15]
+          type: "chest"
+          itemset: ["lw"]
+        - name: "Blind's Hideout - Far Left"
+          addresses: [0xEB18]
+          type: "chest"
+          itemset: ["lw"]
+        - name: "Blind's Hideout - Far Right"
+          addresses: [0xEB1B]
+          type: "chest"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Blind's Hideout Trove - Pot 1"
+          position: 0x063c
+          sprite: "@RupeeBlue"
+        - name: "Blind's Hideout Trove - Pot 2"
+          position: 0x0640
+          sprite: "@RupeeBlue"
+        - name: "Blind's Hideout Trove - Pot 3"
+          position: 0x073c
+          sprite: "@RupeeBlue"
+        - name: "Blind's Hideout Trove - Pot 4"
+          position: 0x0740
+          sprite: "@RupeeBlue"
+        - name: "Blind's Hideout Trove - Pot 5"
+          position: 0x083c
+          sprite: "@RupeeBlue"
+        - name: "Blind's Hideout Trove - Pot 6"
+          position: 0x0840
+          sprite: "@RupeeBlue"

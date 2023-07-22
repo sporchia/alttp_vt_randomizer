@@ -1,0 +1,14 @@
+rooms:
+  - roomid: 0x0101
+    nodes:
+      regions:
+        - name: "East Snitch House"
+          inletid: 0x3e
+
+      pots:
+        - name: "East Snitch House - Pot 1"
+          position: 0x13e0
+          sprite: "@Chicken"
+        - name: "East Snitch House - Pot 2"
+          position: 0x13e4
+          sprite: "@Heart"

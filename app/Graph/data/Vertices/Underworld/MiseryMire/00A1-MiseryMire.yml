@@ -1,0 +1,89 @@
+rooms:
+  - roomid: 0xA1
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Fish Room Top - orange"
+          switch: true
+          peg: "orange"
+        - name: "Misery Mire - Fish Room Bottom - orange"
+          peg: "orange"
+        - name: "Misery Mire - Fish Room - blue"
+          switch: true
+          peg: "blue"
+
+      pots:
+        - name: "Misery Mire - Fish Room - Eye Pot"
+          position: 0x0696
+          item: "KeyD6"
+          itemset: ["mire"]
+        - name: "Misery Mire - Fish Room - blue - Pot 1"
+          position: 0x0b64
+          sprite: "@MagicRefillSmall"
+        - name: "Misery Mire - Fish Room - blue - Pot 2"
+          position: 0x0c68
+          sprite: "@Heart"
+        - name: "Misery Mire - Fish Room - blue - Pot 3"
+          position: 0x0d6c
+          sprite: "@MagicRefillSmall"
+        - name: "Misery Mire - Fish Room - blue - Pot 4"
+          position: 0x0e70
+          sprite: "@Heart"
+        - name: "Misery Mire - Fish Room - blue - Pot 5"
+          position: 0x1760
+          sprite: "@Heart"
+        - name: "Misery Mire - Fish Room - blue - Pot 6"
+          position: 0x155c
+        - name: "Misery Mire - Fish Room - blue - Pot 7"
+          position: 0x1c4c
+        - name: "Misery Mire - Fish Room - blue - Pot 8"
+          position: 0x1c70
+        - name: "Misery Mire - Fish Room - blue - Pot 9"
+          position: 0x1b60
+
+      mobs:
+        - name: "Misery Mire - Fish Room - blue - Crystal Switch"
+          position: { x: 0x0a, y: 0x08, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Misery Mire - Fish Room - blue - Spark (Clockwise) 1"
+          position: { x: 0x18, y: 0x07, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Misery Mire - Fish Room - blue - Spark (Clockwise) 2"
+          position: { x: 0x16, y: 0x0b, z: 0x00 }
+          sprite: "SparkCW"
+          deny:
+            - "Statue"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Fish Room - blue - Wizzrobe"
+          position: { x: 0x19, y: 0x10, z: 0x00 }
+          sprite: "Wizzrobe"
+
+        - name: "Misery Mire - Fish Room - blue - Medusa 1"
+          position: { x: 0x15, y: 0x15, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Fish Room - blue - Medusa 2"
+          position: { x: 0x1a, y: 0x15, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Fish Room - blue - Stalfos 1"
+          position: { x: 0x15, y: 0x19, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Misery Mire - Fish Room - blue - Bunny Beam"
+          position: { x: 0x17, y: 0x19, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Misery Mire - Fish Room - blue - Stalfos 2"
+          position: { x: 0x1b, y: 0x19, z: 0x00 }
+          sprite: "Stalfos"

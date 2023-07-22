@@ -1,6 +1,6 @@
 <?php
 
-namespace ALttP\Jobs;
+namespace App\Jobs;
 
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -13,15 +13,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use romanzipp\Twitch\Twitch;
 
-/**
- * Pull active streams that are streaming ALTTPR from twitch as well as devs.
- */
 class UpdateStreams implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    // @todo need to verify how static this is?
-    private const RANDOMIZER_TAG = '2fd30cb8-f2e5-415d-9d42-1316cfa61367';
     private const DEVS = [
         'veetorp',
         'ChristosOwen',
@@ -40,22 +35,22 @@ class UpdateStreams implements ShouldQueue
     {
         $twitch = new Twitch();
 
-        $request = $twitch->getGameByName('The Legend of Zelda: A Link to the Past');
+        $request = $twitch->getGames(['name' => 'The Legend of Zelda: A Link to the Past']);
         if (!$request->success()) {
             Log::error('Could not retrieve game');
             throw new Exception('Failure connecting to Twitch API: could not get game');
         }
         $game = $request->shift();
 
-        $streams = $twitch->getStreamsByGame($game->id, ['first' => 100]);
+        $streams = $twitch->getStreams(['game_id' => $game->id, 'first' => 100]);
         if (!$streams->success()) {
             Log::error('Could not retrieve game');
             throw new Exception('Failure connecting to Twitch API: could not get streams');
         }
 
-        Cache::put('streams', $this->prepStreams(collect($streams->data())), now()->addMinutes(10));
+        Cache::put('streams', $this->prepStreams($this->filterStreams(collect($streams->data()))), now()->addMinutes(10));
 
-        $dev_streams = $twitch->getStreamsByUserNames(self::DEVS);
+        $dev_streams = $twitch->getStreams(['user_login' => self::DEVS]);
         if (!$dev_streams->success()) {
             Log::error('Could not retrieve dev streams');
             throw new Exception('Failure connecting to Twitch API: could not get dev streams');
@@ -64,16 +59,23 @@ class UpdateStreams implements ShouldQueue
         Cache::put('dev_streams', $this->prepStreams(collect($dev_streams->data())), now()->addMinutes(10));
     }
 
+    private function filterStreams(Collection $streams): Collection
+    {
+        return $streams->filter(static function ($stream) {
+            return in_array('randomizer', array_map('strtolower', $stream->tags ?? []));
+        });
+    }
+
     /**
      * convert the raw stream data to something we can parse on the front end.
      *
      * @param Collection $streams stream data to convert
+     *
+     * @return Collection
      */
     private function prepStreams(Collection $streams): Collection
     {
-        return $streams->filter(static function ($stream) {
-            return in_array(self::RANDOMIZER_TAG, $stream->tag_ids ?? []);
-        })->map(static function ($stream) {
+        return $streams->map(static function ($stream) {
             return [
                 'href'  => "https://www.twitch.tv/{$stream->user_name}",
                 'title' => $stream->title,

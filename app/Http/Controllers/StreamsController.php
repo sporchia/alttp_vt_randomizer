@@ -1,6 +1,6 @@
 <?php
 
-namespace ALttP\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Cache;
 

@@ -1,0 +1,184 @@
+maps:
+  - map: 0x35
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Lake Hylia"
+        - name: "Lake Hylia North East Shore"
+        - name: "Lake Hylia North West Shore"
+        - name: "Lake Hylia South Shore"
+        - name: "Lake Hylia Fairy Island"
+        - name: "Lake Hylia Small Island"
+
+      entrances:
+        - name: "Lake Hylia Shop"
+          entranceid: 0x57
+          outletid: 0x69
+
+        - name: "Lake Hylia Fortune Teller"
+          entranceid: 0x72
+          outletid: 0x86
+
+        - name: "Mini Moldorm Cave"
+          entranceid: 0x7C
+          outletid: 0x88
+
+        - name: "Pond of Happiness"
+          entranceid: 0x5C
+          outletid: 0x6E
+
+      items:
+        - name: "Lake Hylia Island"
+          addresses: [0x180144]
+          type: "standing"
+          itemset: ["lw"]
+
+      warps:
+        - name: "Lake Hylia whirlpool"
+          position: { x: 0x29, y: 0x2B }
+
+      mobs:
+        - name: "Lake Hylia - Blue Archer"
+          position: { x: 0x0a, y: 0x0c }
+          sprite: "BlueArcher"
+          state: [1]
+
+        - name: "Lake Hylia - Crab 1"
+          position: { x: 0x07, y: 0x17 }
+          sprite: "Crab"
+          state: [1]
+
+        - name: "Lake Hylia - Raven 2"
+          position: { x: 0x0f, y: 0x35 }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Lake Hylia - Crab 2"
+          position: { x: 0x11, y: 0x3b }
+          sprite: "Crab"
+          state: [1]
+
+        - name: "Lake Hylia - Fireball Zora 4"
+          position: { x: 0x24, y: 0x2b }
+          sprite: "FireballZora"
+          state: [1]
+
+        - name: "Lake Hylia - Crab 3"
+          position: { x: 0x2e, y: 0x3a }
+          sprite: "Crab"
+          state: [1]
+
+        - name: "Lake Hylia - sprite.FastRedSpearGuard"
+          position: { x: 0x0a, y: 0x0c }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Lake Hylia - Octorok (Four Way)"
+          position: { x: 0x38, y: 0x0a }
+          sprite: "Octorok4"
+          state: [2]
+
+        - name: "Lake Hylia - Fireball Zora 7"
+          position: { x: 0x37, y: 0x19 }
+          sprite: "FireballZora"
+          state: [2]
+
+        - name: "Lake Hylia - Fireball Zora 8"
+          position: { x: 0x1b, y: 0x26 }
+          sprite: "FireballZora"
+          state: [2]
+
+        - name: "Lake Hylia - Raven 3"
+          position: { x: 0x0d, y: 0x2f }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Lake Hylia - Octorok (One Way) 4"
+          position: { x: 0x06, y: 0x34 }
+          sprite: "Octorok1"
+          state: [2]
+
+        - name: "Lake Hylia - Raven 1"
+          position: { x: 0x0e, y: 0x07 }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Octorok (One Way) 1"
+          position: { x: 0x0d, y: 0x09 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Heart Piece"
+          position: { x: 0x19, y: 0x13 }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Buzzblob 1"
+          position: { x: 0x19, y: 0x14 }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Fireball Zora 1"
+          position: { x: 0x11, y: 0x17 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Fireball Zora 2"
+          position: { x: 0x25, y: 0x0d }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Buzzblob 2"
+          position: { x: 0x27, y: 0x1f }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Buzzblob 3"
+          position: { x: 0x2f, y: 0x1f }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Octorok (One Way) 2"
+          position: { x: 0x0a, y: 0x35 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Fireball Zora 3"
+          position: { x: 0x14, y: 0x35 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Octorok (One Way) 3"
+          position: { x: 0x0b, y: 0x39 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Buzzblob 4"
+          position: { x: 0x19, y: 0x3a }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Whirlpool"
+          position: { x: 0x29, y: 0x2b }
+          sprite: "Whirlpool"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Fireball Zora 5"
+          position: { x: 0x39, y: 0x31 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Fireball Zora 6"
+          position: { x: 0x21, y: 0x36 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Buzzblob 5"
+          position: { x: 0x32, y: 0x37 }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Lake Hylia - Buzzblob 6"
+          position: { x: 0x34, y: 0x39 }
+          sprite: "Buzzblob"
+          state: [1, 2]

@@ -1,0 +1,57 @@
+rooms:
+  - roomid: 0x5E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Big Spike Cross"
+        - name: "Ice Palace - Lonely Firebar"
+        - name: "Ice Palace - Pit Trap"
+
+      keydoors:
+        - name: "Ice Palace - Big Spike Cross Door"
+          key: "KeyD5"
+
+      pots:
+        - name: "Ice Palace - Pit Trap - Pot 1"
+          position: 0x045c
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Pit Trap - Pot 2"
+          position: 0x0460
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Pit Trap - Pot 3"
+          position: 0x084c
+          sprite: "@Heart"
+        - name: "Ice Palace - Pit Trap - Pot 4"
+          position: 0x0870
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Ice Palace - Pit Trap - Trap"
+          position: { x: 0x1b, y: 0x05, z: 0x00 }
+          sprite: "FallingSquare"
+
+        - name: "Ice Palace - Pit Trap - Medusa 1"
+          position: { x: 0x1c, y: 0x05, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Ice Palace - Pit Trap - Medusa 2"
+          position: { x: 0x13, y: 0x0b, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Ice Palace - Big Spike Cross - Big Spike Trap"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "BigSpikeTrap"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Lonely Firebar - Fire Bar (Clockwise)"
+          position: { x: 0x08, y: 0x18, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "RollerVU"
+            - "RollerVD"

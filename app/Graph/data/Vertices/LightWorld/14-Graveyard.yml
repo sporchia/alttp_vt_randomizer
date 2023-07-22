@@ -1,0 +1,80 @@
+maps:
+  - map: 0x14
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Graveyard"
+        - name: "Graveyard Four Square Niche"
+        - name: "Graveyard King's Tomb"
+        - name: "Graveyard Ledge"
+        - name: "Graveyard Northern Nook"
+        - name: "Graveyard Northwest Niche"
+
+      entrances:
+        - name: "King's Tomb"
+          entranceid: 0x5A
+          outletid: 0x6B
+
+        - name: "Graveyard Cave"
+          entranceid: 0x51
+          outletid: 0x7C
+
+      holes:
+        - name: "Sewers - Block Puzzle - Hole"
+          entranceids: [0x12]
+
+      mobs:
+        - name: "Graveyard - Red Javelin Guard"
+          position: { x: 0x15, y: 0x11 }
+          sprite: "RedJavelinGuard"
+          state: [1]
+
+        - name: "Graveyard - Green Guard"
+          position: { x: 0x11, y: 0x19 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Graveyard - Medusa 1"
+          position: { x: 0x08, y: 0x0c }
+          sprite: "Medusa"
+          state: [1]
+
+        - name: "Graveyard - Medusa 2"
+          position: { x: 0x17, y: 0x11 }
+          sprite: "Medusa"
+          state: [1]
+
+        - name: "Graveyard - Medusa 3"
+          position: { x: 0x12, y: 0x0e }
+          sprite: "Medusa"
+          state: [1]
+
+        - name: "Graveyard - Poe 1"
+          position: { x: 0x0d, y: 0x0d }
+          sprite: "Poe"
+          state: [2]
+
+        - name: "Graveyard - Poe 2"
+          position: { x: 0x19, y: 0x0f }
+          sprite: "Poe"
+          state: [2]
+
+        - name: "Graveyard - Poe 3"
+          position: { x: 0x08, y: 0x10 }
+          sprite: "Poe"
+          state: [2]
+
+        - name: "Graveyard - Poe 4"
+          position: { x: 0x14, y: 0x11 }
+          sprite: "Poe"
+          state: [2]
+
+        - name: "Graveyard - Poe 5"
+          position: { x: 0x13, y: 0x14 }
+          sprite: "Poe"
+          state: [2]
+
+        - name: "Graveyard - Blue Guard"
+          position: { x: 0x11, y: 0x19 }
+          sprite: "BlueSwordGuard"
+          state: [2]

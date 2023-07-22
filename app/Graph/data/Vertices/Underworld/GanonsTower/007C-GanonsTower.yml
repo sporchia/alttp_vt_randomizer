@@ -1,0 +1,93 @@
+rooms:
+  - roomid: 0x7C
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Randomizer Room"
+        - name: "Ganon's Tower - Firebar Falling Bridge"
+
+      items:
+        - name: "Ganon's Tower - Randomizer Room - Top Left"
+          type: "chest"
+          addresses: [0xEAC4]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Randomizer Room - Top Right"
+          type: "chest"
+          addresses: [0xEAC7]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Randomizer Room - Bottom Left"
+          type: "chest"
+          addresses: [0xEACA]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Randomizer Room - Bottom Right"
+          type: "chest"
+          addresses: [0xEACD]
+          itemset: ["gt"]
+
+      pots:
+        - name: "Ganon's Tower - Randomizer Room - Pot 1"
+          position: 0x041c
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Randomizer Room - Pot 2"
+          position: 0x0420
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Randomizer Room - Pot 3"
+          position: 0x1524
+
+      mobs:
+        - name: "Ganon's Tower - Randomizer Room - Mini Moldorm"
+          position: { x: 0x19, y: 0x1c, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Ganon's Tower - Randomizer Room - Fire Bar (Counterclockwise)"
+          position: { x: 0x06, y: 0x0c, z: 0x00 }
+          sprite: "FireBarCCW"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Randomizer Room - Spike Trap"
+          position: { x: 0x07, y: 0x10, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Randomizer Room - Fire Bar (Clockwise)"
+          position: { x: 0x09, y: 0x14, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Randomizer Room - Hardhat Beetle"
+          position: { x: 0x0b, y: 0x18, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Randomizer Room - Blue Bari"
+          position: { x: 0x17, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Ganon's Tower - Randomizer Room - Falling Bridge"
+          position: { x: 0x07, y: 0x1a, z: 0x00 }
+          sprite: "FallingBridge"
