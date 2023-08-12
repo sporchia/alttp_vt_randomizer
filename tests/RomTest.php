@@ -779,12 +779,9 @@ class RomTest extends TestCase
                 $expectedFileByte = 0x09;
                 break;
             case 'red':
-                $expectedByte = 0x24;
-                $expectedFileByte = 0x05;
-                break;
             default:
-                $expectedByte = 0x00;
-                $expectedFileByte = 0x00;
+                $expectedByte = 0x24;
+                $expectedFileByte = 0x06;
         }
 
         $this->assertEquals($expectedByte, $this->rom->read(0x6FA1E));

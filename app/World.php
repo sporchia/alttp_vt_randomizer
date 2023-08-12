@@ -505,7 +505,7 @@ abstract class World
      * Get Locations considered collectable. I.E. can contain items that Link can have.
      * This is cached for faster retrevial
      *
-     * @return \ALttTotalItemCountocationCollection
+     * @return ALttP\Support\LocationCollection
      */
     public function getCollectableLocations(): LocationCollection
     {
@@ -518,6 +518,17 @@ abstract class World
         }
 
         return $this->collectable_locations;
+    }
+
+    /**
+     * Get total item locations. This includes everything with the "item get" animmation
+     * except for dungeon prizes and shop items.
+     *
+     * @return int
+     */
+    public function getTotalItemCount(): int
+    {
+        return count($this->getCollectableLocations()) - 45;
     }
 
     /**
@@ -1302,7 +1313,7 @@ abstract class World
         }
 
         $triforce_hud = in_array($this->config('goal', 'ganon'), ['triforce-hunt', 'ganonhunt']);
-        $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', false));
+        $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', $this->config['goal'] == 'completionist'));
 
         if ($this->config('crystals.tower') === 0) {
             $rom->initial_sram->preOpenGanonsTower();
@@ -1317,7 +1328,7 @@ abstract class World
         $rom->writeCredits();
         $rom->writeText();
         $rom->writeInitialSram();
-        $rom->setTotalItemCount(count($this->getCollectableLocations()) - 45);
+        $rom->setTotalItemCount($this->getTotalItemCount());
 
         if ($save) {
             $hash = $this->saveSeedRecord();

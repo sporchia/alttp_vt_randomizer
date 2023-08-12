@@ -199,10 +199,10 @@ class Credits
             if (!preg_match('/[a-z]/', $char)) {
                 switch ($char) {
                     case "'":
-                        $byte_array[] = 0x77;
+                        $byte_array[] = 0xD9;
                         break;
                     case '!':
-                        $byte_array[] = 0x78;
+                        $byte_array[] = 0xE5;
                         break;
                     default:
                         $byte_array[] = 0x9F;
@@ -231,10 +231,10 @@ class Credits
             if (!preg_match('/[a-z]/', $char)) {
                 switch ($char) {
                     case "'":
-                        $byte_array[] = 0x9D;
+                        $byte_array[] = 0xEC;
                         break;
                     case '!':
-                        $byte_array[] = 0x9E;
+                        $byte_array[] = 0xF8;
                         break;
                     default:
                         $byte_array[] = 0x9F;

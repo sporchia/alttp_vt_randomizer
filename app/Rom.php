@@ -350,9 +350,9 @@ class Rom
     }
 
     /**
-     * Enable triforce-hunt turn in mode.
+     * Enable HUD item counter
      *
-     * @param bool  $enable  enable or disable turn in mode.
+     * @param bool  $enable  enable or disable collection count / total item count on HUD
      *
      * @return void
      */
@@ -639,20 +639,20 @@ class Rom
         switch ($color) {
             case 'blue':
                 $byte = 0x2C;
-                $file_byte = 0x0D;
+                $file_byte = 0x0E;
                 break;
             case 'green':
                 $byte = 0x3C;
-                $file_byte = 0x19;
+                $file_byte = 0x1A;
                 break;
             case 'yellow':
                 $byte = 0x28;
-                $file_byte = 0x09;
+                $file_byte = 0x0A;
                 break;
             case 'red':
             default:
                 $byte = 0x24;
-                $file_byte = 0x05;
+                $file_byte = 0x06;
         }
         $this->write(0x6FA1E, pack('C*', $byte));
         $this->write(0x6FA20, pack('C*', $byte));

@@ -81,8 +81,8 @@ class Text
         // Numbers in comments refer to US text numbers. Except for
         // the first few entries, JP1.0 text numbers are smaller by 2
         return [
-            'set_cursor' => [0xFB, 0xFC, 0x00, 0xF9, 0xFF, 0xFF, 0xFF, 0xF8, 0xFF, 0xFF, 0xE4, 0xFE, 0x68],
-            'set_cursor2' => [0xFB, 0xFC, 0x00, 0xF8, 0xFF, 0xFF, 0xFF, 0xF9, 0xFF, 0xFF, 0xE4, 0xFE, 0x68],
+            'set_cursor' => [0xFB, 0xFC, 0x00, 0xF9, 0xFF, 0xFF, 0xFF, 0xF8, 0xFF, 0xFF, 0x99, 0xFE, 0x68],
+            'set_cursor2' => [0xFB, 0xFC, 0x00, 0xF8, 0xFF, 0xFF, 0xFF, 0xF9, 0xFF, 0xFF, 0x99, 0xFE, 0x68],
 
             'game_over_menu' => $converter->convertDialogCompressed("{SPEED0}\nSave-Continue\nSave-Quit\nContinue", false),
 
@@ -90,11 +90,11 @@ class Text
 
             'follower_no_enter' => $converter->convertDialogCompressed("Can't you take me some place nice."),
 
-            'choice_1_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xE4, 0xF8, 0xFF, 0xF9, 0xFF, 0xFE, 0x71],
-            'choice_2_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xE4, 0xF9, 0xFF, 0xFE, 0x71],
-            'choice_3_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xFF, 0xF9, 0xE4, 0xFE, 0x71],
-            'choice_1_2' => [0xFB, 0xFC, 0x00, 0xF7, 0xE4, 0xF8, 0xFF, 0xFE, 0x72],
-            'choice_2_2' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xE4, 0xFE, 0x72],
+            'choice_1_3' => [0xFB, 0xFC, 0x00, 0xF7, 0x99, 0xF8, 0xFF, 0xF9, 0xFF, 0xFE, 0x71],
+            'choice_2_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0x99, 0xF9, 0xFF, 0xFE, 0x71],
+            'choice_3_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xFF, 0xF9, 0x99, 0xFE, 0x71],
+            'choice_1_2' => [0xFB, 0xFC, 0x00, 0xF7, 0x99, 0xF8, 0xFF, 0xFE, 0x72],
+            'choice_2_2' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0x99, 0xFE, 0x72],
 
             'uncle_leaving_text' => $converter->convertDialogCompressed("I'm just going out for a pack of smokes."),
 
@@ -860,9 +860,9 @@ class Text
 
             'kakariko_flophouse_man' => $converter->convertDialogCompressed("I sure do have a lot of beds.\n\nDid you know if you played the flute in the center of town things could happen?"),
 
-            'menu_start_2' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Sanctuary\n{CHOICE3}", false),
+            'menu_start_2' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s House\n Sanctuary\n{CHOICE3}", false),
 
-            'menu_start_3' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Sanctuary\n Mountain Cave\n{CHOICE2}", false),
+            'menu_start_3' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s House\n Sanctuary\n Mountain Cave\n{CHOICE2}", false),
 
             'menu_pause' => $converter->convertDialogCompressed("{SPEED0}\n≥Continue\n Save and Quit\n{CHOICE3}", false),
 
@@ -878,7 +878,7 @@ class Text
 
             'game_digging_no_follower' => $converter->convertDialogCompressed("Something is following you. I don't like."),
 
-            'menu_start_4' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Mountain Cave\n{CHOICE3}", false),
+            'menu_start_4' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s House\n Mountain Cave\n{CHOICE3}", false),
 
             'ganon_fall_in_alt' => $converter->convertDialogCompressed("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!"),
 

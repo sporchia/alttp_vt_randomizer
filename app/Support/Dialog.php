@@ -218,26 +218,26 @@ class Dialog
 
     private static $characters = [
         ' ' => [0xFF],
+        "≥" => [0x99], // cursor
+        "…" => [0x9F],
         '?' => [0xC6],
         '!' => [0xC7],
         ',' => [0xC8],
         '-' => [0xC9],
-        "…" => [0xCC],
         '.' => [0xCD],
         '~' => [0xCE],
         '～' => [0xCE],
-        "'" => [0xD8],
-        "’" => [0xD8],
+        "'" => [0x9D],
+        "’" => [0x9D],
         "@" => [0xFE, 0x6A], // link's name compressed
-        ">" => [0xD2, 0xD3], // link face
-        "%" => [0xDD], // Hylian Bird
-        "^" => [0xDE], // Hylian Ankh
-        "=" => [0xDF], // Hylian Wavy lines
-        "↑" => [0xE0],
-        "↓" => [0xE1],
-        "→" => [0xE2],
-        "←" => [0xE3],
-        "≥" => [0xE4], // cursor
+        ">" => [0x9B, 0x9C], // link face
+        "%" => [0xFD, 0x10], // Hylian Bird
+        "^" => [0xFD, 0x11], // Hylian Ankh
+        "=" => [0xFD, 0x12], // Hylian Wavy lines
+        "↑" => [0xFD, 0x13],
+        "↓" => [0xFD, 0x14],
+        "→" => [0xFD, 0x15],
+        "←" => [0xFD, 0x16],
         "¼" => [0xE5, 0xE7], // ¼ heart
         "½" => [0xE6, 0xE7], // ½ heart
         "¾" => [0xE8, 0xE9], // ¾ heart
@@ -425,7 +425,7 @@ class Dialog
         }
 
         if (preg_match('/[a-z]/', $char)) {
-            return [ord($char) - 49];
+            return [ord($char) + 0x6F];
         }
 
         return self::$characters[$char] ?? [0xFF];

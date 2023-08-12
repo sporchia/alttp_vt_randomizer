@@ -366,20 +366,24 @@ export default class ROM {
       switch (color_on) {
         case "blue":
           byte = 0x2c;
-          file_byte = 0x0d;
+          file_byte = 0x0E;
 
           break;
         case "green":
           byte = 0x3c;
-          file_byte = 0x19;
+          file_byte = 0x1A;
 
           break;
         case "yellow":
           byte = 0x28;
-          file_byte = 0x09;
+          file_byte = 0x0A;
 
           break;
         case "red":
+          byte = 0x24;
+          file_byte = 0x06;
+
+          break;
         default:
         // do nothing
       }

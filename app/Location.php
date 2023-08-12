@@ -240,6 +240,31 @@ class Location
 
         $item = $this->item;
 
+        if ($this->region->getWorld()->config('rom.vanillaKeys', false)
+            && $item instanceof Item\Key && $this->region->isRegionItem($item)
+            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('KeyH2', $this->region->getWorld()))) {
+                $item = Item::get('Key', $this->region->getWorld());
+        }
+
+        if ($this->region->getWorld()->config('rom.vanillaBigKeys', false)
+            && $item instanceof Item\BigKey
+            && $this->region->isRegionItem($item)) {
+                $item = Item::get('BigKey', $this->region->getWorld());
+        }
+
+        if ($this->region->getWorld()->config('rom.vanillaMaps', false)
+            && $item instanceof Item\Map
+            && $this->region->isRegionItem($item)
+            && (!in_array($this->name, ["Secret Passage", "Link's Uncle"]) || $item != Item::get('MapH2', $this->region->getWorld()))) {
+                $item = Item::get('Map', $this->region->getWorld());
+        }
+
+        if ($this->region->getWorld()->config('rom.vanillaCompasses', false)
+            && $item instanceof Item\Compass
+            && $this->region->isRegionItem($item)) {
+                $item = Item::get('Compass', $this->region->getWorld());
+        }
+
         if ($this->region->getWorld()->config('rom.genericKeys', false) && $item instanceof Item\Key) {
             $item = Item::get('KeyGK', $this->region->getWorld());
         }

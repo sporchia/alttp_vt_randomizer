@@ -96,6 +96,10 @@ class Randomizer implements RandomizerContract
      */
     public function prepareWorld(World $world): void
     {
+        if ($world->config('goal') == 'completionist' && $world->config('accessibility') != 'locations') {
+            throw new \Exception("The Completionist goal requires 100% locations accessibility");
+        }
+
         switch ($world->config('goal')) {
             case 'pedestal':
                 $world->getLocation("Master Sword Pedestal")->setItem(Item::get('Triforce', $world));
