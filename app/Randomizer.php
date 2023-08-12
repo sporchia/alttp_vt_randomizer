@@ -1031,7 +1031,7 @@ class Randomizer implements RandomizerContract
 
                 break;
             case 'completionist':
-                $world->setText('sign_ganon', "You need to collect all items and defeat all bosses.");
+                $world->setText('sign_ganon', "You need to collect EVERY item and defeat EVERY boss.");
                 // no-break
             default:
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
