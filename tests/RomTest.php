@@ -499,7 +499,7 @@ class RomTest extends TestCase
     {
         $this->rom->setZeldaMirrorFix(false);
 
-        $this->assertEquals(0x04, $this->rom->read(0x159A8));
+        $this->assertEquals(0x02, $this->rom->read(0x159A8));
     }
 
     public function testSetClockModeDefault()
@@ -767,35 +767,20 @@ class RomTest extends TestCase
     {
         switch ($expectedColor) {
             case 'blue':
-                $expectedByte = 0x2C;
-                $expectedFileByte = 0x0D;
+                $expectedByte = 0x01;
                 break;
             case 'green':
-                $expectedByte = 0x3C;
-                $expectedFileByte = 0x19;
+                $expectedByte = 0x02;
                 break;
             case 'yellow':
-                $expectedByte = 0x28;
-                $expectedFileByte = 0x09;
+                $expectedByte = 0x03;
                 break;
             case 'red':
             default:
-                $expectedByte = 0x24;
-                $expectedFileByte = 0x06;
+                $expectedByte = 0x00;
         }
 
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA1E));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA20));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA22));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA24));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA26));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA28));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA2A));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA2C));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA2E));
-        $this->assertEquals($expectedByte, $this->rom->read(0x6FA30));
-
-        $this->assertEquals($expectedFileByte, $this->rom->read(0x65561));
+        $this->assertEquals($expectedByte, $this->rom->read(0x187020));
     }
 
     public function testSetText()

@@ -638,34 +638,19 @@ class Rom
     {
         switch ($color) {
             case 'blue':
-                $byte = 0x2C;
-                $file_byte = 0x0E;
+                $byte = 0x01;
                 break;
             case 'green':
-                $byte = 0x3C;
-                $file_byte = 0x1A;
+                $byte = 0x02;
                 break;
             case 'yellow':
-                $byte = 0x28;
-                $file_byte = 0x0A;
+                $byte = 0x03;
                 break;
             case 'red':
             default:
-                $byte = 0x24;
-                $file_byte = 0x06;
+                $byte = 0x00;
         }
-        $this->write(0x6FA1E, pack('C*', $byte));
-        $this->write(0x6FA20, pack('C*', $byte));
-        $this->write(0x6FA22, pack('C*', $byte));
-        $this->write(0x6FA24, pack('C*', $byte));
-        $this->write(0x6FA26, pack('C*', $byte));
-        $this->write(0x6FA28, pack('C*', $byte));
-        $this->write(0x6FA2A, pack('C*', $byte));
-        $this->write(0x6FA2C, pack('C*', $byte));
-        $this->write(0x6FA2E, pack('C*', $byte));
-        $this->write(0x6FA30, pack('C*', $byte));
-
-        $this->write(0x65561, pack('C*', $file_byte));
+        $this->write(0x187020, pack('C*', $byte));
 
         return $this;
     }

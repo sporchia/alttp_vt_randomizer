@@ -352,6 +352,6 @@ class RandomizerTest extends TestCase
         $this->world = World::factory('open', ['difficulty' => 'test_rules', 'goal' => 'completionist', 'accessibility' => 'locations']);
         $this->randomizer = new Randomizer([$this->world]);
 
-        $this->assertEquals(216, world->getTotalItemCount());
+        $this->assertEquals(216, $this->world->getTotalItemCount());
     }
 }
