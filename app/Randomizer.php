@@ -96,6 +96,10 @@ class Randomizer implements RandomizerContract
      */
     public function prepareWorld(World $world): void
     {
+        if ($world->config('goal') == 'completionist' && $world->config('accessibility') != 'locations') {
+            throw new \Exception("The Completionist goal requires 100% locations accessibility");
+        }
+
         switch ($world->config('goal')) {
             case 'pedestal':
                 $world->getLocation("Master Sword Pedestal")->setItem(Item::get('Triforce', $world));
@@ -104,6 +108,7 @@ class Randomizer implements RandomizerContract
             case 'fast_ganon':
             case 'dungeons':
             case 'ganonhunt':
+            case 'completionist':
                 $world->getLocation("Ganon")->setItem(Item::get('Triforce', $world));
                 break;
         }
@@ -1026,7 +1031,11 @@ class Randomizer implements RandomizerContract
                 break;
             case 'dungeons':
                 $world->setText('sign_ganon', "You need to defeat all of Ganon's bosses.");
+                $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");
 
+                break;
+            case 'completionist':
+                $world->setText('sign_ganon', "You need to collect EVERY item and defeat EVERY boss.");
                 // no-break
             default:
                 $world->setText('ganon_fall_in_alt', "You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!");

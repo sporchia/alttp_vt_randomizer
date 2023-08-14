@@ -22,6 +22,7 @@ return [
         ],
         'rom' => [
             'genericKeys' => false,
+            'hudItemCounter' => false,
         ],
         'spoil' => [
             'BootsLocation' => false,
@@ -218,6 +219,7 @@ return [
                 'pedestal' => 'Master Sword Pedestal',
                 'triforce-hunt' => 'Triforce Pieces',
                 'ganonhunt' => 'Ganonhunt',
+                'completionist' => 'Completionist',
             ],
             'tower_open' => [
                 '0' => 'none',
@@ -339,6 +341,7 @@ return [
                 'pedestal' => 10,
                 'triforce-hunt' => 10,
                 'ganonhunt' => 0,
+                'completionist' => 0,
             ],
             'tower_open' => [
                 '0' => 5,

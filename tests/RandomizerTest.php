@@ -346,4 +346,12 @@ class RandomizerTest extends TestCase
         $this->assertGreaterThanOrEqual(1, $bosses['Vitreous']);
         $this->assertGreaterThanOrEqual(1, $bosses['Trinexx']);
     }
+
+    public function testCompletionistItemCount()
+    {
+        $this->world = World::factory('open', ['difficulty' => 'test_rules', 'goal' => 'completionist', 'accessibility' => 'locations']);
+        $this->randomizer = new Randomizer([$this->world]);
+
+        $this->assertEquals(216, $this->world->getTotalItemCount());
+    }
 }

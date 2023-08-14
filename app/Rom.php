@@ -14,7 +14,7 @@ use Log;
 class Rom
 {
     const BUILD = '2023-03-15';
-    const HASH = '29b5b39ee65ddfa94638ba2e020a66cd';
+    const HASH = '848371d816fd98cecfa9fbad9a364407';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -350,6 +350,18 @@ class Rom
     }
 
     /**
+     * Enable HUD item counter
+     *
+     * @param bool  $enable  enable or disable collection count / total item count on HUD
+     *
+     * @return void
+     */
+    public function enableHudItemCounter(bool $enable = false): void
+    {
+        $this->write(0x180039, pack('C', $enable ? 0x01 : 0x00));
+    }
+
+    /**
      * Set starting time for HUD clock.
      *
      * @param int $seconds time in seconds
@@ -601,6 +613,10 @@ class Rom
                 // all dungeons, aga 1 not required
                 $byte = pack('C', 0x09);
                 break;
+            case 'completionist':
+                // 100% collection rate, all dungeons
+                $byte = pack('C', 0x0B);
+                break;
             case 'no':
             default:
                 $byte = pack('C*', 0x00);
@@ -622,34 +638,19 @@ class Rom
     {
         switch ($color) {
             case 'blue':
-                $byte = 0x2C;
-                $file_byte = 0x0D;
+                $byte = 0x01;
                 break;
             case 'green':
-                $byte = 0x3C;
-                $file_byte = 0x19;
+                $byte = 0x02;
                 break;
             case 'yellow':
-                $byte = 0x28;
-                $file_byte = 0x09;
+                $byte = 0x03;
                 break;
             case 'red':
             default:
-                $byte = 0x24;
-                $file_byte = 0x05;
+                $byte = 0x00;
         }
-        $this->write(0x6FA1E, pack('C*', $byte));
-        $this->write(0x6FA20, pack('C*', $byte));
-        $this->write(0x6FA22, pack('C*', $byte));
-        $this->write(0x6FA24, pack('C*', $byte));
-        $this->write(0x6FA26, pack('C*', $byte));
-        $this->write(0x6FA28, pack('C*', $byte));
-        $this->write(0x6FA2A, pack('C*', $byte));
-        $this->write(0x6FA2C, pack('C*', $byte));
-        $this->write(0x6FA2E, pack('C*', $byte));
-        $this->write(0x6FA30, pack('C*', $byte));
-
-        $this->write(0x65561, pack('C*', $file_byte));
+        $this->write(0x187020, pack('C*', $byte));
 
         return $this;
     }
@@ -2021,7 +2022,8 @@ class Rom
     /**
      * Enable text box to show with free roaming items
      *
-     * ---o bmcs
+     * --po bmcs
+     * p - enabled for free crystals
      * o - enabled for outside dungeon items
      * b - enabled for inside big key items
      * m - enabled for inside map items
@@ -2377,9 +2379,44 @@ class Rom
         return $this;
     }
 
+    /**
+     * Write the initial save data table.
+     *
+     * @return $this
+     */
     public function writeInitialSram(): self
     {
         $this->write(0x183000, pack('C*', ...$this->initial_sram->getInitialSram()));
+
+        return $this;
+    }
+
+    /**
+     * Write the total number of collectable items in the game. This applies to
+     * items with the "item get" animation but not dungeon prizes, absorbable keys,
+     * or shop items.
+     *
+     * @param int $count total number of items
+     *
+     * @return $this
+     */
+    public function setTotalItemCount(int $count): self
+    {
+        $this->write(0x180196, pack('v', $count));
+
+        return $this;
+    }
+
+    /**
+     * Set Zelda Save and Quit Mirror Fix
+     *
+     * @param bool $enable
+     *
+     * @return $this
+     */
+    public function setZeldaMirrorFix(bool $enable = true): self
+    {
+        $this->write(0x159A8, pack('C*', $enable ? 0x04 : 0x02));
 
         return $this;
     }

@@ -8,18 +8,19 @@
 ## Local Setup
 
 ### System Setup
-This assumes you're running Ubuntu 20.04 (either natively, or via Windows Subsystem for Linux).
+This assumes you're running Ubuntu 22.04 (either natively, or via Windows Subsystem for Linux).
 Native Windows is not currently supported.
 Users of either Mac OS or other Linux distributions will need to install the appropriate packages for their system.
 
 This version of the randomizer requires version 8.1 of PHP.
 
 ```
-sudo apt-get install php8.1 php8.1-bcmath php8.1-dom php8.1-mbstring php8.1-curl -y
+sudo apt-get install php8.1 php8.1-bcmath php8.1-xml php8.1-mbstring php8.1-curl php8.1-sqlite3 \
+php8.1-mysql php8.1-cli php8.1-opcache python3 mariadb-server sqlite3 composer -y
 ```
 
 ### Installing PHP dependencies
-You will need [Composer](https://getcomposer.org/) for the Laravel Dependency. Once you have that, run the following
+The above step installs the [Composer](https://getcomposer.org/) PHP package manager. Run:
 
 ```
 $ composer install
@@ -27,15 +28,15 @@ $ composer install
 
 ## Database setup
 
-Run the following command to create a new config for the app
+Run the following command to create a new config for the app:
 ```
 $ cp .env.example .env
 ```
 
 ### MySQL
-Create a new mysql database for the randomizer (see mysql documentation for how to do this, you'll need to install mysql server if it's not installed already)
+Create a new mysql database for the randomizer (see mysql documentation.) Modify .env with
+appropriate username, password, and database name. Change the db connection to `mysql`.
 
-Then modify .env with appropriate username, password, and database name. Change the db connection to mysql
 Example:
 ```
 DB_CONNECTION=mysql
@@ -47,7 +48,9 @@ DB_PASSWORD=bar
 ```
 
 ### SQLite
-SQLite can also be used too, this might be a better option for a quick setup.
+SQLite can also be used too, this might be a better option for a quick setup. The
+`php artisan migrate` command below will ask if you want to create this database if
+it doesn't exist.
 
 ```
 DB_CONNECTION=sqlite

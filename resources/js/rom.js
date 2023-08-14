@@ -365,36 +365,26 @@ export default class ROM {
 
       switch (color_on) {
         case "blue":
-          byte = 0x2c;
-          file_byte = 0x0d;
+          byte = 0x01;
 
           break;
         case "green":
-          byte = 0x3c;
-          file_byte = 0x19;
+          byte = 0x02;
 
           break;
         case "yellow":
-          byte = 0x28;
-          file_byte = 0x09;
+          byte = 0x03;
 
           break;
         case "red":
+          byte = 0x00;
+
+          break;
         default:
         // do nothing
       }
 
-      this.write(0x6fa1e, byte);
-      this.write(0x6fa20, byte);
-      this.write(0x6fa22, byte);
-      this.write(0x6fa24, byte);
-      this.write(0x6fa26, byte);
-      this.write(0x6fa28, byte);
-      this.write(0x6fa2a, byte);
-      this.write(0x6fa2c, byte);
-      this.write(0x6fa2e, byte);
-      this.write(0x6fa30, byte);
-      this.write(0x65561, file_byte);
+      this.write(0x187020, byte);
 
       resolve(this);
     });

@@ -186,8 +186,8 @@ export default {
       if (state.goal.value === "dungeons") {
         commit("setGanonOpen", "7");
       }
-      if (state.goal.value === "ganonhunt") {
-        commit("setEntranceShuffle", "none");
+      if (state.goal.value === "completionist") {
+        commit("setAccessibility", "locations");
       }
     },
     setGanonOpen({ commit, state }, value) {
@@ -218,11 +218,6 @@ export default {
 
         if (["full", "standard"].indexOf(state.dungeon_items.value) === -1) {
           commit("setDungeonItems", "standard");
-        }
-
-        // ER doesn't currently support Ganonhunt
-        if (state.goal.value === "ganonhunt") {
-          commit("setGoal", "fast_ganon");
         }
 
         if (state.item_pool.value === "crowd_control") {

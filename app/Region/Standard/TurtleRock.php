@@ -33,6 +33,7 @@ class TurtleRock extends Region
         'KeyD7',
         'Map',
         'MapD7',
+        'Crystal7'
     ];
 
     /**
@@ -69,7 +70,7 @@ class TurtleRock extends Region
             new Location\Chest("Turtle Rock - Eye Bridge - Top Right", [0xEA28], null, $this),
             new Location\Drop("Turtle Rock - Boss", [0x180159], null, $this),
 
-            new Location\Prize\Crystal("Turtle Rock - Prize", [null, 0x120A7, 0x53F24, 0x53F25, 0x18005C, 0x180079, 0xC708], null, $this),
+            new Location\Prize\Crystal("Turtle Rock - Prize", [null, 0x120A7, 0x53E80, 0x53E81, 0x18005C, 0x180075, 0xC708], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Turtle Rock - Prize"];
@@ -178,6 +179,8 @@ class TurtleRock extends Region
             return $items->has('KeyD7', 2);
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD7', $this->world) && $items->has('KeyD7', 3);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('KeyD7', $this->world);
         });
 
         $this->locations["Turtle Rock - Crystaroller Room"]->setRequirements(function ($locations, $items) use ($upper, $middle, $lower) {

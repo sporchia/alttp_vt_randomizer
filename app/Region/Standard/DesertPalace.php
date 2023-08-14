@@ -33,6 +33,8 @@ class DesertPalace extends Region
         'KeyP2',
         'Map',
         'MapP2',
+        'MapP2',
+        'PendantOfPower'
     ];
 
     /**
@@ -57,7 +59,7 @@ class DesertPalace extends Region
             new Location\Chest("Desert Palace - Compass Chest", [0xE9CB], null, $this),
             new Location\Drop("Desert Palace - Boss", [0x180151], null, $this),
 
-            new Location\Prize\Pendant("Desert Palace - Prize", [null, 0x1209E, 0x53F1C, 0x53F1D, 0x180053, 0x180078, 0xC6FF], null, $this),
+            new Location\Prize\Pendant("Desert Palace - Prize", [null, 0x1209E, 0x53E7A, 0x53E7B, 0x180053, 0x180072, 0xC6FF], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Desert Palace - Prize"];

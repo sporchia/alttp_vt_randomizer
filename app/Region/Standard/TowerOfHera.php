@@ -32,6 +32,7 @@ class TowerOfHera extends Region
         'KeyP3',
         'Map',
         'MapP3',
+        'PendantOfWisdom'
     ];
 
     /**
@@ -56,7 +57,7 @@ class TowerOfHera extends Region
             new Location\BigChest("Tower of Hera - Big Chest", [0xE9F8], null, $this),
             new Location\Drop("Tower of Hera - Boss", [0x180152], null, $this),
 
-            new Location\Prize\Pendant("Tower of Hera - Prize", [null, 0x120A5, 0x53F0A, 0x53F0B, 0x18005A, 0x18007A, 0xC706], null, $this),
+            new Location\Prize\Pendant("Tower of Hera - Prize", [null, 0x120A5, 0x53E78, 0x53E79, 0x18005A, 0x180071, 0xC706], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Tower of Hera - Prize"];
@@ -121,6 +122,8 @@ class TowerOfHera extends Region
             return $items->canLightTorches() && $items->has('KeyP3');
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyP3', $this->world);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('KeyP3', $this->world);
         });
 
         $this->locations["Tower of Hera - Compass Chest"]->setRequirements(function ($locations, $items) use ($main, $mire) {

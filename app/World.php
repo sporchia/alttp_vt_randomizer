@@ -505,7 +505,7 @@ abstract class World
      * Get Locations considered collectable. I.E. can contain items that Link can have.
      * This is cached for faster retrevial
      *
-     * @return \ALttP\Support\LocationCollection
+     * @return ALttP\Support\LocationCollection
      */
     public function getCollectableLocations(): LocationCollection
     {
@@ -518,6 +518,17 @@ abstract class World
         }
 
         return $this->collectable_locations;
+    }
+
+    /**
+     * Get total item locations. This includes everything with the "item get" animmation
+     * except for dungeon prizes and shop items.
+     *
+     * @return int
+     */
+    public function getTotalItemCount(): int
+    {
+        return count($this->getCollectableLocations()) - 45;
     }
 
     /**
@@ -1187,8 +1198,11 @@ abstract class World
                 break;
             case 'fast_ganon':
                 $rom->initial_sram->preOpenPyramid();
+                $rom->setGanonInvincible('crystals_only');
+            case 'completionist':
+                $rom->setGanonInvincible('completionist');
+                break;
 
-                // no break
             default:
                 $rom->setGanonInvincible('crystals_only');
         }
@@ -1276,6 +1290,7 @@ abstract class World
                 $rom->setWarningFlags(bindec('01100000'));
                 $rom->setAllowAccidentalMajorGlitch(true);
                 $rom->setSQEGFix(false);
+                $rom->setZeldaMirrorFix(false);
                 break;
             case 'OverworldGlitches':
                 $rom->setPreAgahnimDarkWorldDeathInDungeon(false);
@@ -1285,6 +1300,7 @@ abstract class World
                 $rom->setWarningFlags(bindec('01000000'));
                 $rom->setAllowAccidentalMajorGlitch(true);
                 $rom->setSQEGFix(false);
+                $rom->setZeldaMirrorFix(false);
                 break;
             case 'NoGlitches':
             default:
@@ -1292,8 +1308,12 @@ abstract class World
                 $rom->setWorldOnAgahnimDeath(true);
                 $rom->setAllowAccidentalMajorGlitch(false);
                 $rom->setSQEGFix(true);
+                $rom->setZeldaMirrorFix(true);
                 break;
         }
+
+        $triforce_hud = in_array($this->config('goal', 'ganon'), ['triforce-hunt', 'ganonhunt']);
+        $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', $this->config['goal'] == 'completionist'));
 
         if ($this->config('crystals.tower') === 0) {
             $rom->initial_sram->preOpenGanonsTower();
@@ -1308,6 +1328,7 @@ abstract class World
         $rom->writeCredits();
         $rom->writeText();
         $rom->writeInitialSram();
+        $rom->setTotalItemCount($this->getTotalItemCount());
 
         if ($save) {
             $hash = $this->saveSeedRecord();

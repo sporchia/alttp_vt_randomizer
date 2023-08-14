@@ -30,6 +30,7 @@ class ThievesTown extends Region
         'KeyD4',
         'Map',
         'MapD4',
+        'Crystal4'
     ];
 
     /**
@@ -55,7 +56,7 @@ class ThievesTown extends Region
             new Location\Chest("Thieves' Town - Blind's Cell", [0xEA13], null, $this),
             new Location\Drop("Thieves' Town - Boss", [0x180156], null, $this),
 
-            new Location\Prize\Crystal("Thieves' Town - Prize", [null, 0x120A6, 0x53F36, 0x53F37, 0x18005B, 0x180077, 0xC707], null, $this),
+            new Location\Prize\Crystal("Thieves' Town - Prize", [null, 0x120A6, 0x53E82, 0x53E83, 0x18005B, 0x180076, 0xC707], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Thieves' Town - Prize"];
@@ -75,13 +76,14 @@ class ThievesTown extends Region
 
         $this->locations["Thieves' Town - Big Chest"]->setRequirements(function ($locations, $items) {
             if ($locations["Thieves' Town - Big Chest"]->hasItem(Item::get('KeyD4', $this->world))) {
-                return $items->has('Hammer') && $items->has('BigKeyD4')
-                    && $this->world->config('accessibility') !== 'locations';
+                return $items->has('Hammer') && $items->has('BigKeyD4');
             }
 
             return $items->has('Hammer') && $items->has('KeyD4') && $items->has('BigKeyD4');
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('KeyD4', $this->world) && $items->has('Hammer');
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('KeyD4', $this->world);
         });
 
         $this->locations["Thieves' Town - Blind's Cell"]->setRequirements(function ($locations, $items) {
