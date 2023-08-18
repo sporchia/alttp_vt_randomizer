@@ -3,6 +3,8 @@
 namespace MajorGlitches;
 
 use ALttP\Item;
+use ALttP\Rom;
+use ALttP\Support\ItemCollection;
 use ALttP\World;
 use TestCase;
 
@@ -15,6 +17,13 @@ class DesertPalaceTest extends TestCase
     {
         parent::setUp();
         $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'logic' => 'MajorGlitches']);
+        $this->world_free_items = World::factory('standard', ['difficulty' => 'test_rules',
+            'logic' => 'MajorGlitches',
+            'region.wildKeys' => true,
+            'region.wildBigKeys' => true,
+            'region.wildCompasses' => true,
+            'region.wildMaps' => true,
+        ]);
         $this->addCollected(['RescueZelda']);
         $this->collected->setChecksForWorld($this->world->id);
     }
@@ -130,6 +139,39 @@ class DesertPalaceTest extends TestCase
             ["Desert Palace - Boss", false, [], ['BigKeyP2']],
             ["Desert Palace - Boss", false, [], ['Lamp', 'FireRod']],
             ["Desert Palace - Boss", true, ['UncleSword', 'KeyP2', 'Lamp', 'BigKeyP2']],
+        ];
+    }
+
+    /**
+     * @param string $chest_location
+     * @param string $item_name
+     * @param int $expected
+     * @param bool $free
+     *
+     * @dataProvider selfDungeonItemsPool
+     */
+    public function testDungeonItemWrite(string $chest_location, string $item_name, int $expected, bool $free)
+    {
+        $rom = new Rom();
+        $world = $free ? $this->world_free_items : $this->world;
+        $location = $world->getLocation($chest_location);
+        $location->fill(Item::get($item_name, $world), new ItemCollection(), false);
+        $location->writeItem($rom, Item::get($item_name, $world));
+
+        $this->assertEquals($expected, $rom->read($location->getAddress()[0]));
+    }
+
+    public function selfDungeonItemsPool()
+    {
+        return [
+            ["Desert Palace - Map Chest", "KeyP2", 0xA3, true],
+            ["Desert Palace - Map Chest", "KeyP2", 0x24, false],
+            ["Desert Palace - Map Chest", "BigKeyP2", 0x9C, true],
+            ["Desert Palace - Map Chest", "BigKeyP2", 0x32, false],
+            ["Desert Palace - Map Chest", "CompassP2", 0x8C, true],
+            ["Desert Palace - Map Chest", "CompassP2", 0x25, false],
+            ["Desert Palace - Map Chest", "MapP2", 0x7C, true],
+            ["Desert Palace - Map Chest", "MapP2", 0x33, false],
         ];
     }
 }

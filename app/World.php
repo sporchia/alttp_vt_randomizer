@@ -128,12 +128,25 @@ abstract class World
                 $free_item_menu |= 0x0C;
         }
 
-        if (in_array($this->config('logic'), ['HybridMajorGlitches', 'MajorGlitches', 'NoLogic']) || $this->config('canOneFrameClipUW', false)) {
+        $glitched_logic = (in_array($this->config('logic', 'NoGlitches'), ['HybridMajorGlitches', 'MajorGlitches', 'NoLogic'])
+            || $this->config('canOneFrameClipUW', false));
+
+        if ($glitched_logic) {
             $free_item_menu |= 0x10;
         }
 
         $this->config['rom.freeItemText'] = $free_item_text;
         $this->config['rom.freeItemMenu'] = $free_item_menu;
+
+        $wild_keys = $this->config('region.wildKeys', false);
+        $wild_big_keys = $this->config('region.wildBigKeys', false);
+        $wild_compasses = $this->config('region.wildCompasses', false);
+        $wild_maps = $this->config('region.wildMaps', false);
+
+        $this->config['rom.vanillaKeys'] = $this->config('rom.vanillaKeys', (!$wild_keys && $glitched_logic));
+        $this->config['rom.vanillaBigKeys'] = $this->config('rom.vanillaBigKeys', (!$wild_big_keys && $glitched_logic));
+        $this->config['rom.vanillaCompasses'] = $this->config('rom.vanillaCompasses', (!$wild_compasses && $glitched_logic));
+        $this->config['rom.vanillaMaps'] = $this->config('rom.vanillaMaps', (!$wild_maps && $glitched_logic));
 
         # handle empty config values that might be sent from customizer
         if ($this->config('item.overflow.count.Sword', null) === '') {
@@ -370,16 +383,6 @@ abstract class World
         return $copy;
     }
 
-    /**
-     * Get a copy of config array for this world (for testing.)
-     *
-     * @return array
-     */
-    public function getConfig(): array
-    {
-        $config_copy = $this->config;
-        return $config_copy;
-    }
 
     /**
      * Determine the junk fill range of Ganon's Tower for this world. This
@@ -1576,5 +1579,36 @@ abstract class World
             || $this->config('enemizer.enemyDamage') != 'default'
             || $this->config('enemizer.enemyHealth') != 'default'
             || $this->config('enemizer.potShuffle') != 'off';
+    }
+
+    /**
+     * Get a World config value for testing.
+     *
+     * @return string|int|bool
+     */
+    public function testGetConfig(string $config): string|int|bool
+    {
+        return $this->config[$config];
+    }
+
+    /**
+     * Get a World config clone for testing.
+     *
+     * @return array
+     */
+    public function testGetConfigClone(): array
+    {
+        $config_clone = $this->config;
+        return $config_clone;
+    }
+
+    /**
+     * Set a World config value for testing.
+     *
+     * @return void
+     */
+    public function testSetConfig(string $config, string|int|bool $value): void
+    {
+        $this->config[$config] = $value;
     }
 }

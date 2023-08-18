@@ -95,14 +95,14 @@ class RomTest extends TestCase
      */
     public function testSetStartingEquipment(array $result, array $items)
     {
-        $world = World::factory();
+        $world = World::factory('standard', ['difficulty' => 'test_rules', 'logic' => 'NoGlitches']);
         $object_items = array_map(function ($item_name) use ($world) {
             return Item::get($item_name, $world);
         }, $items);
 
         $item_collection = new ItemCollection($object_items);
-        $config = $world->getConfig();
-        $config['rom.rupeeBow'] = false;
+        $world->testSetConfig('rom.rupeeBow', false);
+        $config = $world->testGetConfigClone();
 
         $this->rom->initial_sram->setStartingEquipment($item_collection, $config);
         $this->rom->writeInitialSram();

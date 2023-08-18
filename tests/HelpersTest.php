@@ -25,14 +25,14 @@ class HelpersTest extends TestCase
     {
         $unsorted = [
             'zed' => [
-                '1' => '2',
                 'red' => '4',
                 'fed' => 0,
+                '1' => '2',
             ],
             'yo' => [
-                '3' => 'hello',
                 'goo' => 'foo',
                 'bar' => 'baz',
+                '3' => 'hello',
             ],
         ];
         ksortr($unsorted);
