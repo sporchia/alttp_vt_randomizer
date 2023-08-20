@@ -454,7 +454,15 @@ class Text
 
             'desert_entry_translated' => $converter->convertDialogCompressed("Kneel before this stone, and magic will move around you."),
 
-            'telepathic_tile_under_ganon' => $converter->convertDialogCompressed("Secondary tournament winners\n{HARP}\n  ~~~2019~~~\ndragonstrike\n\n  ~~~2018~~~\nChisame\n\n  ~~~2017~~~\nA: Zaen"),
+            'telepathic_tile_under_ganon' => $converter->convertDialogCompressed(
+                "   ALTTPR League"
+                ."          Winners\n{HARP}\n\n"
+                ."  ~~~Season 5~~~\n     OKDUDES: \n  GanonsGoneWild\n     Telethar\n   Hitsuyan1337\n\n"
+                ."  ~~~Season 4~~~\nThe Titan's Mitts:\n    SailorNep\n     Relkin\n     Daaanty\n\n"
+                ."  ~~~Season 3~~~\nPhenandra Drifters:\n     Megawott\n   Frostbite3030\n      Jet082\n\n"
+                ."  ~~~Season 2~~~\n    Team すごい:\n    IIYoshiII\n   Hitsuyan1337\n     Ramond\n\n"
+                ."  ~~~Season 1~~~\n    Team すごい:\n    IIYoshiII\n      Thalane\n   Hitsuyan1337\n\n"
+                ),
 
             'telepathic_tile_palace_of_darkness' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a funny looking Enemizer."),
             // 0xC0
@@ -472,7 +480,15 @@ class Text
 
             'telepathic_tile_tower_of_hera_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a bad place, with a guy who will make you fall…\n\n\na lot."),
 
-            'houlihan_room' => $converter->convertDialogCompressed("Randomizer\ntournament winners\n\n{HARP}\n  ~~~2023~~~\nGanonsGoneWild\n\n  ~~~2022~~~\nObscure\n\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
+            'houlihan_room' => $converter->convertDialogCompressed(
+                "Randomizer\ntournament winners\n\n{HARP}\n"
+                ."    ~~~2023~~~\n  GanonsGoneWild\n\n"
+                ."    ~~~2022~~~\n      Obscure\n\n"
+                ."    ~~~2021~~~\n      Daaanty\n\n"
+                ."    ~~~2019~~~\n      Jet082\n\n"
+                ."    ~~~2018~~~\n      S: Andy\n      A: Andy\n\n"
+                ."    ~~~2017~~~\n    S: ajneb174\n    A: ajneb174"
+            ),
 
             'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
 

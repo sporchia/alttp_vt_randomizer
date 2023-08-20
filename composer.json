@@ -47,9 +47,9 @@
         "name": "z3/randomizer",
         "version": "31.1",
         "source": {
-          "url": "https://github.com/KatDevsGames/z3randomizer",
+          "url": "https://github.com/spannerisms/z3randomizer",
           "type": "git",
-          "reference": "71d3f6cefe951d3d193b71590246f8cec525a20a"
+          "reference": "ba080ef5564a97efa59012972d9eb0566c7825e7"
         }
       }
     },
@@ -83,7 +83,7 @@
         "source": {
           "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
           "type": "git",
-          "reference": "4071cbc7022c46d440ab841d6e99f6a27b32e097"
+          "reference": "03e6cedc1aed7fb2cfe7c27f1ee866de3c83d4f3"
         }
       }
     }
