@@ -292,3 +292,7 @@ idea.
 Sign language
 is pretty handy!
 -
+Cook a potato?
+I'd make a hash
+of it.
+-
