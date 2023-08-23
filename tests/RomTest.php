@@ -683,49 +683,49 @@ class RomTest extends TestCase
     {
         $this->rom->setGanonInvincible('crystals');
 
-        $this->assertEquals(0x03, $this->rom->read(0x18003E));
+        $this->assertEquals(0x03, $this->rom->read(0x1801A8));
     }
 
     public function testSetGanonInvincibleDungeons()
     {
         $this->rom->setGanonInvincible('dungeons');
 
-        $this->assertEquals(0x02, $this->rom->read(0x18003E));
+        $this->assertEquals(0x02, $this->rom->read(0x1801A8));
     }
 
     public function testSetGanonInvincibleYes()
     {
         $this->rom->setGanonInvincible('yes');
 
-        $this->assertEquals(0x01, $this->rom->read(0x18003E));
+        $this->assertEquals(0x01, $this->rom->read(0x1801A8));
     }
 
     public function testSetGanonInvincibleTriforcePieces()
     {
         $this->rom->setGanonInvincible('triforce_pieces');
 
-        $this->assertEquals(0x05, $this->rom->read(0x18003E));
+        $this->assertEquals(0x05, $this->rom->read(0x1801A8));
     }
 
     public function testSetGanonInvincibleCrystalsOnly()
     {
         $this->rom->setGanonInvincible('crystals_only');
 
-        $this->assertEquals(0x04, $this->rom->read(0x18003E));
+        $this->assertEquals(0x04, $this->rom->read(0x1801A8));
     }
 
     public function testSetGanonInvincibleNo()
     {
         $this->rom->setGanonInvincible('no');
 
-        $this->assertEquals(0x00, $this->rom->read(0x18003E));
+        $this->assertEquals(0x00, $this->rom->read(0x1801A8));
     }
 
     public function testSetGanonInvincibleCompletionist()
     {
         $this->rom->setGanonInvincible('completionist');
 
-        $this->assertEquals(0x0B, $this->rom->read(0x18003E));
+        $this->assertEquals(0x0B, $this->rom->read(0x1801A8));
     }
 
     public function testSetHeartColorsBlue()

@@ -27,7 +27,6 @@ export default {
       "rom.rupeeBow": false,
       "rom.genericKeys": false,
       "rom.logicMode": "NoGlitches",
-      "rom.hudItemCounter": false,
       "spoil.BootsLocation": false
     },
     initializing: true

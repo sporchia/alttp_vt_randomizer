@@ -1202,6 +1202,7 @@ abstract class World
             case 'fast_ganon':
                 $rom->initial_sram->preOpenPyramid();
                 $rom->setGanonInvincible('crystals_only');
+                break;
             case 'completionist':
                 $rom->setGanonInvincible('completionist');
                 break;
@@ -1315,8 +1316,8 @@ abstract class World
                 break;
         }
 
-        $triforce_hud = in_array($this->config('goal', 'ganon'), ['triforce-hunt', 'ganonhunt']);
-        $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', $this->config['goal'] == 'completionist'));
+        $triforce_hud = in_array($this->config['goal'], ['triforce-hunt', 'ganonhunt']);
+        $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', $this->config('goal', 'ganon') == 'completionist'));
 
         if ($this->config('crystals.tower') === 0) {
             $rom->initial_sram->preOpenGanonsTower();
