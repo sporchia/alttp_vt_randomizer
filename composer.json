@@ -49,7 +49,7 @@
         "source": {
           "url": "https://github.com/spannerisms/z3randomizer",
           "type": "git",
-          "reference": "77e269ff31e5e6b5f1f37a1775cfd03c77d6331c"
+          "reference": "7e513c469663a6ac05d417d709dea3766e33e690"
         }
       }
     },
@@ -83,7 +83,7 @@
         "source": {
           "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
           "type": "git",
-          "reference": "5a6aa4abed23b2c76848d043912abd5e18b66977"
+          "reference": "aaaa7b92398bf562dbe9f03d4af6ebc11ff79ff6"
         }
       }
     }
