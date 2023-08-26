@@ -73,6 +73,34 @@ return [
             0 => 'smz3',
         ],
     ],
+    'agrias.1.zspr' => [
+        'name' => 'Agrias',
+        'author' => 'Tux',
+        'file' => 'agrias.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Final Fantasy',
+            1 => 'Female',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'alcoon.1.zspr' => [
+        'name' => 'Alcoon',
+        'author' => 'Wuffie',
+        'file' => 'alcoon.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Super Metroid',
+            1 => 'Enemy',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'alex.1.zspr' => [
         'name' => 'Alex',
         'author' => 'Fish_waffle64',
@@ -95,6 +123,21 @@ return [
         'vtversion' => '30.5',
         'tags' => [
             0 => 'Female',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'angel.1.zspr' => [
+        'name' => 'Angel',
+        'author' => 'NO_Body_The_Dragon',
+        'file' => 'angel.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Lilo and Stitch',
+            1 => 'Disney',
+            2 => 'Female',
         ],
         'usage' => [
             0 => 'smz3',
@@ -285,6 +328,19 @@ return [
             1 => 'commercial',
         ],
     ],
+    'axolotl.1.zspr' => [
+        'name' => 'Axolotl',
+        'author' => 'The_Nalox & Chika9516',
+        'file' => 'axolotl.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Animal',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'baba.2.zspr' => [
         'name' => 'Baba',
         'author' => 'malmo',
@@ -371,6 +427,20 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'bavarian-link.1.zspr' => [
+        'name' => 'Bavarian Link',
+        'author' => 'The_Nalox',
+        'file' => 'bavarian-link.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'ALTTP',
+            1 => 'Link',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'beau.1.zspr' => [
@@ -625,6 +695,19 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'bomberman.1.zspr' => [
+        'name' => 'Bomberman',
+        'author' => 'H.E.L.P.e.R.Mod2',
+        'file' => 'bomberman.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Bomberman',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'boo-two.1.zspr' => [
@@ -1726,6 +1809,19 @@ return [
             0 => 'smz3',
         ],
     ],
+    'drak.1.zspr' => [
+        'name' => 'Drak',
+        'author' => 'chpringles',
+        'file' => 'drak.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'drake.2.zspr' => [
         'name' => 'Drake The Dragon',
         'author' => 'NO Body The Dragon',
@@ -2096,6 +2192,20 @@ return [
             1 => 'commercial',
         ],
     ],
+    'gametal.1.zspr' => [
+        'name' => 'GaMetal',
+        'author' => 'TheRedMage and Mirby',
+        'file' => 'gametal.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
+            1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'ganon.2.zspr' => [
         'name' => 'Mini Ganon',
         'author' => 'atth3h3art0fwinter',
@@ -2399,6 +2509,20 @@ return [
         'tags' => [
             0 => 'Disney',
             1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'guandar.1.zspr' => [
+        'name' => 'Guandar',
+        'author' => 'MoeChicken',
+        'file' => 'guandar.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Chrono Trigger',
+            1 => 'Enemy',
         ],
         'usage' => [
             0 => 'smz3',
@@ -2767,6 +2891,19 @@ return [
             0 => 'smz3',
         ],
     ],
+    'imani.1.zspr' => [
+        'name' => 'Imani',
+        'author' => 'Bean',
+        'file' => 'imani.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'informant_woman.1.zspr' => [
         'name' => 'Informant Woman',
         'author' => 'Herowho',
@@ -2810,6 +2947,21 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'isabelle.1.zspr' => [
+        'name' => 'Isabelle',
+        'author' => 'pholyn',
+        'file' => 'isabelle.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Animal Crossing',
+            1 => 'Female',
+            2 => 'Animal',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'jack-frost.1.zspr' => [
@@ -3146,11 +3298,11 @@ return [
             1 => 'commercial',
         ],
     ],
-    'kite.1.zspr' => [
+    'kite.2.zspr' => [
         'name' => 'Kite',
         'author' => 'scoutjd',
-        'file' => 'kite.1.zspr',
-        'version' => 1,
+        'file' => 'kite.2.zspr',
+        'version' => 2,
         'vtversion' => '31.1',
         'tags' => [
             0 => '.hack',
@@ -3167,6 +3319,21 @@ return [
         'vtversion' => '31.1',
         'tags' => [
             0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'koopa.1.zspr' => [
+        'name' => 'Koopa',
+        'author' => 'Tryford',
+        'file' => 'koopa.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Super Mario Bros',
+            1 => 'Mario',
+            2 => 'Enemy',
         ],
         'usage' => [
             0 => 'smz3',
@@ -3276,6 +3443,19 @@ return [
         'vtversion' => '30',
         'tags' => [
             0 => 'Mario',
+        ],
+    ],
+    'lanux.1.zspr' => [
+        'name' => 'Lanux',
+        'author' => 'Nekoni_Hoozuki',
+        'file' => 'lanux.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'lapras.1.zspr' => [
@@ -3538,6 +3718,20 @@ return [
             0 => 'smz3',
         ],
     ],
+    'lord-hoell.1.zspr' => [
+        'name' => 'Lord Hoell',
+        'author' => 'Ochahime',
+        'file' => 'lord-hoell.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
+            1 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'lucario.1.zspr' => [
         'name' => 'Lucario',
         'author' => 'Achy',
@@ -3590,6 +3784,19 @@ return [
             0 => 'Personality',
             1 => 'Streamer',
             2 => 'Male',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'lugia.1.zspr' => [
+        'name' => 'Lugia',
+        'author' => 'Charmander106',
+        'file' => 'lugia.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Pokemon',
         ],
         'usage' => [
             0 => 'smz3',
@@ -4871,6 +5078,20 @@ return [
             1 => 'commercial',
         ],
     ],
+    'power-pigg.1.zspr' => [
+        'name' => 'Power Pigg',
+        'author' => 'looking4giants',
+        'file' => 'power-pigg.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Animal',
+            1 => 'Power Piggs of the Dark Age',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'power-ranger.1.zspr' => [
         'name' => 'Power Ranger',
         'author' => 'Zeta Xero',
@@ -5199,6 +5420,20 @@ return [
             0 => 'smz3',
         ],
     ],
+    'renoko.1.zspr' => [
+        'name' => 'Renoko',
+        'author' => 'CreatureUnknown',
+        'file' => 'renoko.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Animal',
+            1 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'reverse-mails.1.zspr' => [
         'name' => 'Reverse Mail Order',
         'author' => 'Wild Fang',
@@ -5257,6 +5492,20 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'rocky.1.zspr' => [
+        'name' => 'Rocky',
+        'author' => 'Charmander106',
+        'file' => 'rocky.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Pocky and Rocky',
+            1 => 'Animal',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'roronoa-zoro.1.zspr' => [
@@ -5536,6 +5785,36 @@ return [
             0 => 'smz3',
         ],
     ],
+    'sans-carld.1.zspr' => [
+        'name' => 'Sans (Carld923)',
+        'author' => 'Carld923',
+        'file' => 'sans-carld.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Undertale',
+            1 => 'Male',
+            2 => 'Sans',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'sans-tux.1.zspr' => [
+        'name' => 'Sans (Tux_66)',
+        'author' => 'tux_66',
+        'file' => 'sans-tux.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Undertale',
+            1 => 'Male',
+            2 => 'Sans',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'santahat-link.1.zspr' => [
         'name' => 'Santa Hat Link',
         'author' => 'Lexitik',
@@ -5761,6 +6040,19 @@ return [
         'vtversion' => '31.1',
         'tags' => [
             0 => 'Link',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'shoujo.1.zspr' => [
+        'name' => 'Shoujo',
+        'author' => 'JephWahl',
+        'file' => 'shoujo.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
         ],
         'usage' => [
             0 => 'smz3',
@@ -6038,6 +6330,20 @@ return [
             0 => 'smz3',
         ],
     ],
+    'spiritendo.1.zspr' => [
+        'name' => 'Spiritendo',
+        'author' => 'Nekoni_Hoozuki',
+        'file' => 'spiritendo.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Animal',
+            1 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
     'spongebob.1.zspr' => [
         'name' => 'Spongebob Squarepants',
         'author' => 'JJ0033LL',
@@ -6189,6 +6495,21 @@ return [
         'vtversion' => '30.5',
         'tags' => [
             0 => 'Personality',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'stitch.1.zspr' => [
+        'name' => 'Stitch',
+        'author' => 'NO_Body_The_Dragon',
+        'file' => 'stitch.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Disney',
+            1 => 'Male',
+            2 => 'Lilo and Stitch',
         ],
         'usage' => [
             0 => 'smz3',
@@ -6599,11 +6920,11 @@ return [
             0 => 'smz3',
         ],
     ],
-    'tunic.1.zspr' => [
+    'tunic.2.zspr' => [
         'name' => 'Tunic',
         'author' => 'tosh',
-        'file' => 'tunic.1.zspr',
-        'version' => 1,
+        'file' => 'tunic.2.zspr',
+        'version' => 2,
         'vtversion' => '31.1',
         'tags' => [
             0 => 'Tunic',
@@ -6693,6 +7014,20 @@ return [
         'usage' => [
             0 => 'smz3',
             1 => 'commercial',
+        ],
+    ],
+    'unicorn.1.zspr' => [
+        'name' => 'Unicorn',
+        'author' => 'Myric',
+        'file' => 'unicorn.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Animal',
+            1 => 'Unicorn',
+        ],
+        'usage' => [
+            0 => 'smz3',
         ],
     ],
     'valeera.1.zspr' => [
@@ -6805,6 +7140,19 @@ return [
         'tags' => [
             0 => 'Mario',
             1 => 'Female',
+        ],
+        'usage' => [
+            0 => 'smz3',
+        ],
+    ],
+    'wackerly.1.zspr' => [
+        'name' => 'Wackerly',
+        'author' => 'Wackerly',
+        'file' => 'wackerly.1.zspr',
+        'version' => 1,
+        'vtversion' => '31.2',
+        'tags' => [
+            0 => 'Personality',
         ],
         'usage' => [
             0 => 'smz3',
