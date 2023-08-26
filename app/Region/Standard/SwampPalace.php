@@ -85,9 +85,9 @@ class SwampPalace extends Region
         };
 
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) use ($mire) {
-            return (!$this->world->config('canOneFrameClipUW', false)
-                    && ($this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world)))
-                || $this->world->config('canOneFrameClipUW', false);
+            return $this->world->config('canOneFrameClipUW', false)
+                || $this->world->config('region.wildKeys', false)
+                || $item == Item::get('KeyD2', $this->world);
         });
 
         $this->locations["Swamp Palace - Big Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
