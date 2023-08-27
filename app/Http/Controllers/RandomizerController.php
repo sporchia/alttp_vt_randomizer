@@ -155,7 +155,6 @@ class RandomizerController extends Controller
             'allow_quickswap' => $request->input('allow_quickswap', true),
             'override_start_screen' => $request->input('override_start_screen', false),
             'pseudoboots' => $request->input('pseudoboots', false),
-            'fastrom' => $request->input('fastrom', true),
             'spoil.Hints' => $request->input('hints', 'on'),
             'logic' => $logic,
             'item.pool' => $request->input('item.pool', 'normal'),

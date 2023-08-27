@@ -47,7 +47,7 @@
         "name": "z3/randomizer",
         "version": "31.1",
         "source": {
-          "url": "https://github.com/spannerisms/z3randomizer",
+          "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
           "reference": "52d26165377dc3fb6cba56834779601a9e804018"
         }
