@@ -112,7 +112,7 @@ class EntranceRandomizer implements RandomizerContract
 
 		$proc = new Process(array_merge(
 			[
-				'python3.10',
+				'python3.9',
 				base_path('vendor/z3/entrancerandomizer/EntranceRandomizer.py'),
 				'--mode',
 				$mode,
