@@ -3,6 +3,8 @@
 namespace Inverted;
 
 use ALttP\Item;
+use ALttP\Rom;
+use ALttP\Support\ItemCollection;
 use ALttP\World;
 use TestCase;
 
@@ -15,6 +17,13 @@ class DesertPalaceTest extends TestCase
     {
         parent::setUp();
         $this->world = World::factory('inverted', ['difficulty' => 'test_rules', 'logic' => 'NoGlitches']);
+        $this->world_free_items = World::factory('standard', ['difficulty' => 'test_rules',
+            'logic' => 'NoGlitches',
+            'region.wildKeys' => true,
+            'region.wildBigKeys' => true,
+            'region.wildCompasses' => true,
+            'region.wildMaps' => true,
+        ]);
         $this->addCollected(['RescueZelda']);
         $this->collected->setChecksForWorld($this->world->id);
     }
@@ -193,7 +202,7 @@ class DesertPalaceTest extends TestCase
     public function testRegionLockedItems(bool $access, string $item_name, bool $free = null, string $config = null)
     {
         if ($config) {
-            config([$config => $free]);
+            $this->world->testSetConfig($config, $free);
         }
 
         $this->assertEquals($access, $this->world->getRegion('Desert Palace')->canFill(Item::get($item_name, $this->world)));
@@ -295,6 +304,39 @@ class DesertPalaceTest extends TestCase
             [true, 'CompassD7', true, 'region.wildCompasses'],
             [false, 'CompassA2', false, 'region.wildCompasses'],
             [true, 'CompassA2', true, 'region.wildCompasses'],
+        ];
+    }
+
+    /**
+     * @param string $chest_location
+     * @param string $item_name
+     * @param int $expected
+     * @param bool $free
+     *
+     * @dataProvider selfDungeonItemsPool
+     */
+    public function testDungeonItemWrite(string $chest_location, string $item_name, int $expected, bool $free)
+    {
+        $rom = new Rom();
+        $world = $free ? $this->world_free_items : $this->world;
+        $location = $world->getLocation($chest_location);
+        $location->fill(Item::get($item_name, $world), new ItemCollection(), false);
+        $location->writeItem($rom, Item::get($item_name, $world));
+
+        $this->assertEquals($expected, $rom->read($location->getAddress()[0]));
+    }
+
+    public function selfDungeonItemsPool()
+    {
+        return [
+            ["Desert Palace - Map Chest", "KeyP2", 0xA3, true],
+            ["Desert Palace - Map Chest", "KeyP2", 0xA3, false],
+            ["Desert Palace - Map Chest", "BigKeyP2", 0x9C, true],
+            ["Desert Palace - Map Chest", "BigKeyP2", 0x9C, false],
+            ["Desert Palace - Map Chest", "CompassP2", 0x8C, true],
+            ["Desert Palace - Map Chest", "CompassP2", 0x8C, false],
+            ["Desert Palace - Map Chest", "MapP2", 0x7C, true],
+            ["Desert Palace - Map Chest", "MapP2", 0x7C, false],
         ];
     }
 }

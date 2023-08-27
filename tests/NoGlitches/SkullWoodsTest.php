@@ -225,7 +225,7 @@ class SkullWoodsTest extends TestCase
     public function testRegionLockedItems(bool $access, string $item_name, bool $free = null, string $config = null)
     {
         if ($config) {
-            config([$config => $free]);
+            $this->world->testSetConfig($config, $free);
         }
 
         $this->assertEquals($access, $this->world->getRegion('Skull Woods')->canFill(Item::get($item_name, $this->world)));

@@ -13,8 +13,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2023-03-15';
-    const HASH = '848371d816fd98cecfa9fbad9a364407';
+    const BUILD = '2023-08-22';
+    const HASH = 'bdb7e2398eab6003577307763fd40128';
     const SIZE = 2097152;
 
     private $tmp_file;
@@ -622,7 +622,7 @@ class Rom
                 $byte = pack('C*', 0x00);
                 break;
         }
-        $this->write(0x18003E, $byte);
+        $this->write(0x1801A8, $byte);
 
         return $this;
     }
@@ -2275,7 +2275,7 @@ class Rom
      */
     public function setTowerCrystalRequirement(int $crystals = 7): self
     {
-        $this->write(0x18005E, pack('C', max(min($crystals, 7), 0)));
+        $this->write(0x18019A, pack('C', max(min($crystals, 7), 0)));
 
         return $this;
     }
@@ -2289,7 +2289,7 @@ class Rom
      */
     public function setGanonCrystalRequirement(int $crystals = 7): self
     {
-        $this->write(0x18005F, pack('C', max(min($crystals, 7), 0)));
+        $this->write(0x1801A6, pack('C', max(min($crystals, 7), 0)));
 
         return $this;
     }
@@ -2417,6 +2417,20 @@ class Rom
     public function setZeldaMirrorFix(bool $enable = true): self
     {
         $this->write(0x159A8, pack('C*', $enable ? 0x04 : 0x02));
+
+        return $this;
+    }
+
+    /**
+     * Set CPU speed written to MEMSEL on boot.
+     *
+     * @param bool $enable
+     *
+     * @return $this
+     */
+    public function enableFastRom(bool $enable = true): self
+    {
+        $this->write(0x187032, pack('C*', $enable ? 0x01 : 0x00));
 
         return $this;
     }

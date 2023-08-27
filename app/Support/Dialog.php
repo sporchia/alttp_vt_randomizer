@@ -227,6 +227,7 @@ class Dialog
         '.' => [0xCD],
         '~' => [0xCE],
         '～' => [0xCE],
+        ':' => [0xEA],
         "'" => [0x9D],
         "’" => [0x9D],
         "@" => [0xFE, 0x6A], // link's name compressed

@@ -244,11 +244,11 @@ export default class ROM {
               case "X": return [0x74, 0x9A];
               case "Y": return [0x75, 0x9B];
               case "Z": return [0x76, 0x9C];
-              case "'": return [0x77, 0x9d];
-              case ".": return [0xA0, 0xC0];
-              case "/": return [0xA2, 0xC2];
-              case ":": return [0xA3, 0xC3];
-              case "_": return [0xA6, 0xC6];
+              case "'": return [0xD9, 0xEC];
+              case ".": return [0xDC, 0xEF];
+              case "/": return [0xDB, 0xEE];
+              case ":": return [0xDD, 0xF0];
+              case "_": return [0xDE, 0xF1];
               default: return [0x9F, 0x9F];
           }
       });
