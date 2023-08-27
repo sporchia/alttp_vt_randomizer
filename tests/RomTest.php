@@ -1258,4 +1258,16 @@ class RomTest extends TestCase
         $this->rom->enableHudItemCounter(false);
         $this->assertEquals(0x00, $this->rom->read(0x180039));
     }
+
+    public function testEnableFastRomOn()
+    {
+        $this->rom->enableFastRom(true);
+        $this->assertEquals(0x01, $this->rom->read(0x187032));
+    }
+
+    public function testEnableFastRomOff()
+    {
+        $this->rom->enableFastRom(false);
+        $this->assertEquals(0x00, $this->rom->read(0x187032));
+    }
 }

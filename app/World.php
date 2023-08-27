@@ -1329,6 +1329,8 @@ abstract class World
 
         $rom->setPseudoBoots($this->config('pseudoboots', false));
 
+        $rom->enableFastRom($this->config('fastrom', true));
+
         $rom->writeCredits();
         $rom->writeText();
         $rom->writeInitialSram();

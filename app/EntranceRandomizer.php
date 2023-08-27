@@ -106,6 +106,10 @@ class EntranceRandomizer implements RandomizerContract
 			$flags[] = '--huditemcounter';
 		}
 
+		if ($this->world->config('fastrom', true) === false) {
+			$flags[] = '--nofastrom';
+		}
+
 		$proc = new Process(array_merge(
 			[
 				'python3.10',

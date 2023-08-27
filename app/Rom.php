@@ -2422,6 +2422,20 @@ class Rom
     }
 
     /**
+     * Set CPU speed written to MEMSEL on boot.
+     *
+     * @param bool $enable
+     *
+     * @return $this
+     */
+    public function enableFastRom(bool $enable = true): self
+    {
+        $this->write(0x187032, pack('C*', $enable ? 0x01 : 0x00));
+
+        return $this;
+    }
+
+    /**
      * Apply a patch to the ROM
      *
      * @param array $patch patch to apply
