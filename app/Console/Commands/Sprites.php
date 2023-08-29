@@ -50,7 +50,7 @@ class Sprites extends Command
             return 102;
         }
 
-        $sprite_sheet = 'sprites.31.1.png';
+        $sprite_sheet = 'sprites.31.2.png';
 
         $this->sprToPng($sprite_dir);
 
