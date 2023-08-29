@@ -614,7 +614,7 @@ class InitialSram
         $this->initial_sram_bytes[0x363] = $this->initial_sram_bytes[0x361] = $starting_rupees >> 8;
 
         // Set counters and highest equipment values
-        $this->initial_sram_bytes[0x471] = count_set_bits($this->initial_sram_bytes[0x37A]);
+        $this->initial_sram_bytes[0x476] = count_set_bits($this->initial_sram_bytes[0x37A]);
         $this->initial_sram_bytes[0x429] = count_set_bits($this->initial_sram_bytes[0x374]);
         $this->initial_sram_bytes[0x417] = $this->initial_sram_bytes[0x359];
         $this->initial_sram_bytes[0x422] = $this->initial_sram_bytes[0x35A];

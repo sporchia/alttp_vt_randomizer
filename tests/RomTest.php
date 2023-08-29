@@ -377,35 +377,35 @@ class RomTest extends TestCase
                 ['TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs', 'TenBombs'],
             ],
             [
-                [0x18337A => 0x02, 0x183471 => 0x01],
+                [0x18337A => 0x02, 0x183476 => 0x01],
                 ['Crystal1'],
             ],
             [
-                [0x18337A => 0x10, 0x183471 => 0x01],
+                [0x18337A => 0x10, 0x183476 => 0x01],
                 ['Crystal2'],
             ],
             [
-                [0x18337A => 0x40, 0x183471 => 0x01],
+                [0x18337A => 0x40, 0x183476 => 0x01],
                 ['Crystal3'],
             ],
             [
-                [0x18337A => 0x20, 0x183471 => 0x01],
+                [0x18337A => 0x20, 0x183476 => 0x01],
                 ['Crystal4'],
             ],
             [
-                [0x18337A => 0x04, 0x183471 => 0x01],
+                [0x18337A => 0x04, 0x183476 => 0x01],
                 ['Crystal5'],
             ],
             [
-                [0x18337A => 0x01, 0x183471 => 0x01],
+                [0x18337A => 0x01, 0x183476 => 0x01],
                 ['Crystal6'],
             ],
             [
-                [0x18337A => 0x08, 0x183471 => 0x01],
+                [0x18337A => 0x08, 0x183476 => 0x01],
                 ['Crystal7'],
             ],
             [
-                [0x18337A => 0x12, 0x183471 => 0x02],
+                [0x18337A => 0x12, 0x183476 => 0x02],
                 ['Crystal1', 'Crystal2'],
             ],
         ];

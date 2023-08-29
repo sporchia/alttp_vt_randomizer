@@ -204,6 +204,9 @@ class Credits
                     case '!':
                         $byte_array[] = 0xE5;
                         break;
+                    case '_':
+                        $byte_array[] = 0xDE;
+                        break;
                     default:
                         $byte_array[] = 0x9F;
                         break;
@@ -235,6 +238,9 @@ class Credits
                         break;
                     case '!':
                         $byte_array[] = 0xF8;
+                        break;
+                    case '_':
+                        $byte_array[] = 0xF1;
                         break;
                     default:
                         $byte_array[] = 0x9F;

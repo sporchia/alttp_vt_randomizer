@@ -459,7 +459,7 @@ class Text
                 ."          Winners\n{HARP}\n\n"
                 ."  ~~~Season 5~~~\n     OKDUDES: \n  GanonsGoneWild\n     Telethar\n   Hitsuyan1337\n\n"
                 ."  ~~~Season 4~~~\nThe Titan's Mitts:\n    SailorNep\n     Relkin\n     Daaanty\n\n"
-                ."  ~~~Season 3~~~\nPhenandra Drifters:\n     Megawott\n   Frostbite3030\n      Jet082\n\n"
+                ."  ~~~Season 3~~~\nPhendrana Drifters:\n     Megawott\n   Frostbite3030\n      Jet082\n\n"
                 ."  ~~~Season 2~~~\n    Team すごい:\n    IIYoshiII\n   Hitsuyan1337\n     Ramond\n\n"
                 ."  ~~~Season 1~~~\n    Team すごい:\n    IIYoshiII\n      Thalane\n   Hitsuyan1337\n\n"
                 ),
