@@ -16,7 +16,8 @@
         <ul>
             <li>Refactored the title screen to include almost all the hiragana. Sacrifices had to be made, and we had to remove the chiisai katakana and hiragana.</li>
             <li>Fixed issue with bootless OWG logic that caused an impossible scenario.</li>
-            <li>Fixed issue with the first chest in Swamp Palace in HMG.</li>
+            <li>Fixed issue with the first chest in Swamp Palace not being able to have Mire medallion in HMG.</li>
+            <li>Swamp Palace in HMG now always requires three Misery Mire small keys if the first chest is not a key.</li>
         </ul>
         <li>Miscellaneous changes</li>
         <ul>
