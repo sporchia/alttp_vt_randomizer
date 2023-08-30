@@ -474,20 +474,6 @@ return [
             0 => 'smz3',
         ],
     ],
-    'bel.1.zspr' => [
-        'name' => 'Bel',
-        'author' => 'Kishi/Krelbel',
-        'file' => 'bel.1.zspr',
-        'version' => 1,
-        'vtversion' => '31.0.10',
-        'tags' => [
-            0 => 'Personality',
-        ],
-        'usage' => [
-            0 => 'smz3',
-            1 => 'commercial',
-        ],
-    ],
     'bewp.1.zspr' => [
         'name' => 'Bewp',
         'author' => 'Valechec',
@@ -1680,22 +1666,6 @@ return [
         ],
         'usage' => [
             0 => 'smz3',
-        ],
-    ],
-    'demonlink.1.zspr' => [
-        'name' => 'Demon Link',
-        'author' => 'Krelbel',
-        'file' => 'demonlink.1.zspr',
-        'version' => 1,
-        'vtversion' => '25',
-        'tags' => [
-            0 => 'Link',
-            1 => 'Male',
-            2 => 'Legend of Zelda',
-        ],
-        'usage' => [
-            0 => 'smz3',
-            1 => 'commercial',
         ],
     ],
     'dennsen86.1.zspr' => [
@@ -4394,20 +4364,6 @@ return [
         ],
         'usage' => [
             0 => 'smz3',
-        ],
-    ],
-    'mog.2.zspr' => [
-        'name' => 'Mog',
-        'author' => 'Krelbel',
-        'file' => 'mog.2.zspr',
-        'version' => 2,
-        'vtversion' => '25',
-        'tags' => [
-            0 => 'Final Fantasy',
-        ],
-        'usage' => [
-            0 => 'smz3',
-            1 => 'commercial',
         ],
     ],
     'momiji.1.zspr' => [
