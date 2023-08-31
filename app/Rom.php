@@ -13,8 +13,8 @@ use Log;
  */
 class Rom
 {
-    const BUILD = '2023-08-30';
-    const HASH = '69f5f851d43590d3e84208e3820abdc7';
+    const BUILD = '2023-08-31';
+    const HASH = '6d93fa2aad627fe66fe7b287d732bfcc';
     const SIZE = 2097152;
 
     private $tmp_file;
