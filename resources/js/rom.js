@@ -355,36 +355,70 @@ export default class ROM {
 
   setHeartColor(color_on) {
     return new Promise(resolve => {
-      let byte = 0x24;
-      let file_byte = 0x05;
 
-      if (color_on === "random") {
-        const colorOptions = ["blue", "green", "yellow", "red"];
-        color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-      };
+      // Check ROM major version or for vanilla 0xFF value
+      let version = new Uint8Array(this.arrayBuffer)[0x7FE2];
+      if (version <= 0x03 || version == 0xFF) {
+        let byte = 0x24;
+        let file_byte = 0x05;
 
-      switch (color_on) {
-        case "blue":
-          byte = 0x01;
+        if (color_on === "random") {
+          const colorOptions = ["blue", "green", "yellow", "red"];
+          color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        };
 
-          break;
-        case "green":
-          byte = 0x02;
+        switch (color_on) {
+          case "blue":
+            byte = 0x2c;
+            file_byte = 0x0d;
+            break;
+          case "green":
+            byte = 0x3c;
+            file_byte = 0x19;
+            break;
+          case "yellow":
+            byte = 0x28;
+            file_byte = 0x09;
+            break;
+          case "red":
+          default:
+          // do nothing
+        }
 
-          break;
-        case "yellow":
-          byte = 0x03;
+        this.write(0x6fa1e, byte);
+        this.write(0x6fa20, byte);
+        this.write(0x6fa22, byte);
+        this.write(0x6fa24, byte);
+        this.write(0x6fa26, byte);
+        this.write(0x6fa28, byte);
+        this.write(0x6fa2a, byte);
+        this.write(0x6fa2c, byte);
+        this.write(0x6fa2e, byte);
+        this.write(0x6fa30, byte);
+        this.write(0x65561, file_byte);
+      } else {
+        if (color_on === "random") {
+          const colorOptions = ["blue", "green", "yellow", "red"];
+          color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        };
+        let byte = 0x00;
 
-          break;
-        case "red":
-          byte = 0x00;
+        switch (color_on) {
+          case "blue":
+            byte = 0x01;
+            break;
+          case "green":
+            byte = 0x02;
+            break;
+          case "yellow":
+            byte = 0x03;
+            break;
+          case "red":
+          default:
+        }
 
-          break;
-        default:
-        // do nothing
+        this.write(0x187020, byte);
       }
-
-      this.write(0x187020, byte);
 
       resolve(this);
     });
