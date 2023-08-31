@@ -244,11 +244,11 @@ export default class ROM {
               case "X": return [0x74, 0x9A];
               case "Y": return [0x75, 0x9B];
               case "Z": return [0x76, 0x9C];
-              case "'": return [0x77, 0x9d];
-              case ".": return [0xA0, 0xC0];
-              case "/": return [0xA2, 0xC2];
-              case ":": return [0xA3, 0xC3];
-              case "_": return [0xA6, 0xC6];
+              case "'": return [0xD9, 0xEC];
+              case ".": return [0xDC, 0xEF];
+              case "/": return [0xDB, 0xEE];
+              case ":": return [0xDD, 0xF0];
+              case "_": return [0xDE, 0xF1];
               default: return [0x9F, 0x9F];
           }
       });
@@ -355,46 +355,70 @@ export default class ROM {
 
   setHeartColor(color_on) {
     return new Promise(resolve => {
-      let byte = 0x24;
-      let file_byte = 0x05;
 
-      if (color_on === "random") {
-        const colorOptions = ["blue", "green", "yellow", "red"];
-        color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-      };
+      // Check ROM major version or for vanilla 0xFF value
+      let version = new Uint8Array(this.arrayBuffer)[0x7FE2];
+      if (version <= 0x03 || version == 0xFF) {
+        let byte = 0x24;
+        let file_byte = 0x05;
 
-      switch (color_on) {
-        case "blue":
-          byte = 0x2c;
-          file_byte = 0x0d;
+        if (color_on === "random") {
+          const colorOptions = ["blue", "green", "yellow", "red"];
+          color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        };
 
-          break;
-        case "green":
-          byte = 0x3c;
-          file_byte = 0x19;
+        switch (color_on) {
+          case "blue":
+            byte = 0x2c;
+            file_byte = 0x0d;
+            break;
+          case "green":
+            byte = 0x3c;
+            file_byte = 0x19;
+            break;
+          case "yellow":
+            byte = 0x28;
+            file_byte = 0x09;
+            break;
+          case "red":
+          default:
+          // do nothing
+        }
 
-          break;
-        case "yellow":
-          byte = 0x28;
-          file_byte = 0x09;
+        this.write(0x6fa1e, byte);
+        this.write(0x6fa20, byte);
+        this.write(0x6fa22, byte);
+        this.write(0x6fa24, byte);
+        this.write(0x6fa26, byte);
+        this.write(0x6fa28, byte);
+        this.write(0x6fa2a, byte);
+        this.write(0x6fa2c, byte);
+        this.write(0x6fa2e, byte);
+        this.write(0x6fa30, byte);
+        this.write(0x65561, file_byte);
+      } else {
+        if (color_on === "random") {
+          const colorOptions = ["blue", "green", "yellow", "red"];
+          color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        };
+        let byte = 0x00;
 
-          break;
-        case "red":
-        default:
-        // do nothing
+        switch (color_on) {
+          case "blue":
+            byte = 0x01;
+            break;
+          case "green":
+            byte = 0x02;
+            break;
+          case "yellow":
+            byte = 0x03;
+            break;
+          case "red":
+          default:
+        }
+
+        this.write(0x187020, byte);
       }
-
-      this.write(0x6fa1e, byte);
-      this.write(0x6fa20, byte);
-      this.write(0x6fa22, byte);
-      this.write(0x6fa24, byte);
-      this.write(0x6fa26, byte);
-      this.write(0x6fa28, byte);
-      this.write(0x6fa2a, byte);
-      this.write(0x6fa2c, byte);
-      this.write(0x6fa2e, byte);
-      this.write(0x6fa30, byte);
-      this.write(0x65561, file_byte);
 
       resolve(this);
     });

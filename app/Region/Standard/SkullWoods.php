@@ -37,6 +37,7 @@ class SkullWoods extends Region
         'KeyD3',
         'Map',
         'MapD3',
+        'Crystal3',
     ];
 
     /**
@@ -62,7 +63,7 @@ class SkullWoods extends Region
             new Location\Chest("Skull Woods - Pinball Room", [0xE9C8], null, $this),
             new Location\Drop("Skull Woods - Boss", [0x180155], null, $this),
 
-            new Location\Prize\Crystal("Skull Woods - Prize", [null, 0x120A3, 0x53F12, 0x53F13, 0x180058, 0x18007B, 0xC704], null, $this),
+            new Location\Prize\Crystal("Skull Woods - Prize", [null, 0x120A3, 0x53E7E, 0x53E7F, 0x180058, 0x180074, 0xC704], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
 
@@ -110,11 +111,13 @@ class SkullWoods extends Region
             return $items->has('BigKeyD3');
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('BigKeyD3', $this->world);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('BigKeyD3', $this->world);
         });
 
         $this->locations["Skull Woods - Bridge Room"]->setRequirements(function ($locations, $items) {
             return $items->has('FireRod') && ($items->has('MoonPearl')
-                || ($this->world->config('canDungeonRevive')
+                || ($this->world->config('canDungeonRevive') && $items->has('PegasusBoots')
                     && ($items->has('MagicMirror') || $items->hasABottle())));
         });
 
@@ -124,9 +127,9 @@ class SkullWoods extends Region
 
         $this->locations["Skull Woods - Boss"]->setRequirements(function ($locations, $items) {
             return $this->canEnter($locations, $items)
-                && ($items->has('MoonPearl') || ($this->world->config('canDungeonRevive')
+                && $items->has('FireRod') && ($items->has('MoonPearl')
+                || ($this->world->config('canDungeonRevive') && $items->has('PegasusBoots')
                     && ($items->has('MagicMirror') || $items->hasABottle())))
-                && $items->has('FireRod')
                 && ($this->world->config('mode.weapons') == 'swordless' || $items->hasSword())
                 && $items->has('KeyD3', 3)
                 && $this->boss->canBeat($items, $locations)

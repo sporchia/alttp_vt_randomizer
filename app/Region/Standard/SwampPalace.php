@@ -30,6 +30,7 @@ class SwampPalace extends Region
         'KeyD2',
         'Map',
         'MapD2',
+        'Crystal2'
     ];
 
     /**
@@ -57,7 +58,7 @@ class SwampPalace extends Region
             new Location\Chest("Swamp Palace - Waterfall Room", [0xEAAF], null, $this),
             new Location\Drop("Swamp Palace - Boss", [0x180154], null, $this),
 
-            new Location\Prize\Crystal("Swamp Palace - Prize", [null, 0x120A0, 0x53F6C, 0x53F6D, 0x180055, 0x180071, 0xC701], null, $this),
+            new Location\Prize\Crystal("Swamp Palace - Prize", [null, 0x120A0, 0x53E88, 0x53E89, 0x180055, 0x180079, 0xC701], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Swamp Palace - Prize"];
@@ -73,12 +74,7 @@ class SwampPalace extends Region
     {
         $mire = function ($locations, $items) {
             return $this->world->config('canOneFrameClipUW', false)
-                && (($locations->itemInLocations(Item::get('BigKeyD6', $this->world), [
-                    "Misery Mire - Compass Chest",
-                    "Misery Mire - Big Key Chest",
-                ])
-                    && $items->has('KeyD6', 2))
-                    || $items->has('KeyD6', 3))
+                && $items->has('KeyD6', 3)
                 && $this->world->getRegion('Misery Mire')->canEnter($locations, $items);
         };
 
@@ -89,8 +85,9 @@ class SwampPalace extends Region
         };
 
         $this->locations["Swamp Palace - Entrance"]->setFillRules(function ($item, $locations, $items) use ($mire) {
-            return $this->world->config('region.wildKeys', false) || $item == Item::get('KeyD2', $this->world)
-                || $mire($locations, $items);
+            return $this->world->config('canOneFrameClipUW', false)
+                || $this->world->config('region.wildKeys', false)
+                || $item == Item::get('KeyD2', $this->world);
         });
 
         $this->locations["Swamp Palace - Big Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {
@@ -102,6 +99,8 @@ class SwampPalace extends Region
                     || ($hera($locations, $items) && $items->has('BigKeyP3')));
         })->setAlwaysAllow(function ($item, $items) {
             return $this->world->config('accessibility') !== 'locations' && $item == Item::get('BigKeyD2', $this->world);
+        })->setFillRules(function ($item, $locations, $items) {
+            return $this->world->config('accessibility') !== 'locations' || $item != Item::get('BigKeyD2', $this->world);
         });
 
         $this->locations["Swamp Palace - Big Key Chest"]->setRequirements(function ($locations, $items) use ($mire, $hera) {

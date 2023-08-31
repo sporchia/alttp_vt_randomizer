@@ -45,11 +45,11 @@
       "type": "package",
       "package": {
         "name": "z3/randomizer",
-        "version": "31.1",
+        "version": "31.2",
         "source": {
           "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
-          "reference": "23ecf41b3365e818385ed819254ecdce5326aaa1"
+          "reference": "3a5974b456d75331797f3487366f7d8c37574069"
         }
       }
     },
@@ -59,7 +59,7 @@
         "name": "z3/enemizer_linux",
         "version": "6.1.0.180",
         "dist": {
-          "url": "https://github.com/tcprescott/Enimizer/releases/download/2mb-rom/ubuntu.16.04-x64.tar.gz",
+          "url": "https://github.com/cassidoxa/Enimizer/releases/download/linux-build-0.1.0/linux-x64.tar.gz",
           "type": "tar"
         }
       }
@@ -79,11 +79,11 @@
       "type": "package",
       "package": {
         "name": "z3/entrancerandomizer",
-        "version": "31.1",
+        "version": "31.2",
         "source": {
           "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
           "type": "git",
-          "reference": "edd251bcad2b03626fd38f0f8b58a36bdcb77530"
+          "reference": "409bab1f209d135d6646822d586b749a3e9cf98f"
         }
       }
     }
@@ -132,6 +132,9 @@
     },
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   }
 }

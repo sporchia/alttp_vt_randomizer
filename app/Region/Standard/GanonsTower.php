@@ -282,7 +282,8 @@ class GanonsTower extends Region
         $this->locations["Ganon's Tower - Bob's Chest"]->setRequirements(function ($locations, $items) {
             return (($items->has('Hammer') && $items->has('Hookshot'))
                 || ($items->has('FireRod') && $items->has('CaneOfSomaria')))
-                && $items->has('KeyA2', 3);
+                && $items->has('KeyA2', 3)
+                && ($this->world->config('itemPlacement') != 'basic' || ($items->has('FireRod') || ($items->has('Ether') && $items->hasSword(1))));
         });
 
         $this->locations["Ganon's Tower - Tile Room"]->setRequirements(function ($locations, $items) {

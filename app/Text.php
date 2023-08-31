@@ -81,8 +81,8 @@ class Text
         // Numbers in comments refer to US text numbers. Except for
         // the first few entries, JP1.0 text numbers are smaller by 2
         return [
-            'set_cursor' => [0xFB, 0xFC, 0x00, 0xF9, 0xFF, 0xFF, 0xFF, 0xF8, 0xFF, 0xFF, 0xE4, 0xFE, 0x68],
-            'set_cursor2' => [0xFB, 0xFC, 0x00, 0xF8, 0xFF, 0xFF, 0xFF, 0xF9, 0xFF, 0xFF, 0xE4, 0xFE, 0x68],
+            'set_cursor' => [0xFB, 0xFC, 0x00, 0xF9, 0xFF, 0xFF, 0xFF, 0xF8, 0xFF, 0xFF, 0x99, 0xFE, 0x68],
+            'set_cursor2' => [0xFB, 0xFC, 0x00, 0xF8, 0xFF, 0xFF, 0xFF, 0xF9, 0xFF, 0xFF, 0x99, 0xFE, 0x68],
 
             'game_over_menu' => $converter->convertDialogCompressed("{SPEED0}\nSave-Continue\nSave-Quit\nContinue", false),
 
@@ -90,11 +90,11 @@ class Text
 
             'follower_no_enter' => $converter->convertDialogCompressed("Can't you take me some place nice."),
 
-            'choice_1_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xE4, 0xF8, 0xFF, 0xF9, 0xFF, 0xFE, 0x71],
-            'choice_2_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xE4, 0xF9, 0xFF, 0xFE, 0x71],
-            'choice_3_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xFF, 0xF9, 0xE4, 0xFE, 0x71],
-            'choice_1_2' => [0xFB, 0xFC, 0x00, 0xF7, 0xE4, 0xF8, 0xFF, 0xFE, 0x72],
-            'choice_2_2' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xE4, 0xFE, 0x72],
+            'choice_1_3' => [0xFB, 0xFC, 0x00, 0xF7, 0x99, 0xF8, 0xFF, 0xF9, 0xFF, 0xFE, 0x71],
+            'choice_2_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0x99, 0xF9, 0xFF, 0xFE, 0x71],
+            'choice_3_3' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0xFF, 0xF9, 0x99, 0xFE, 0x71],
+            'choice_1_2' => [0xFB, 0xFC, 0x00, 0xF7, 0x99, 0xF8, 0xFF, 0xFE, 0x72],
+            'choice_2_2' => [0xFB, 0xFC, 0x00, 0xF7, 0xFF, 0xF8, 0x99, 0xFE, 0x72],
 
             'uncle_leaving_text' => $converter->convertDialogCompressed("I'm just going out for a pack of smokes."),
 
@@ -454,7 +454,15 @@ class Text
 
             'desert_entry_translated' => $converter->convertDialogCompressed("Kneel before this stone, and magic will move around you."),
 
-            'telepathic_tile_under_ganon' => $converter->convertDialogCompressed("Secondary tournament winners\n{HARP}\n  ~~~2019~~~\ndragonstrike\n\n  ~~~2018~~~\nChisame\n\n  ~~~2017~~~\nA: Zaen"),
+            'telepathic_tile_under_ganon' => $converter->convertDialogCompressed(
+                "   ALTTPR League"
+                ."          Winners\n{HARP}\n\n"
+                ."  ~~~Season 5~~~\n     OKDUDES: \n  GanonsGoneWild\n     Telethar\n   Hitsuyan1337\n\n"
+                ."  ~~~Season 4~~~\nThe Titan's Mitts:\n    SailorNep\n     Relkin\n     Daaanty\n\n"
+                ."  ~~~Season 3~~~\nPhendrana Drifters:\n     Megawott\n   Frostbite3030\n      Jet082\n\n"
+                ."  ~~~Season 2~~~\n    Team すごい:\n    IIYoshiII\n   Hitsuyan1337\n     Ramond\n\n"
+                ."  ~~~Season 1~~~\n    Team すごい:\n    IIYoshiII\n      Thalane\n   Hitsuyan1337\n\n"
+                ),
 
             'telepathic_tile_palace_of_darkness' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a funny looking Enemizer."),
             // 0xC0
@@ -472,7 +480,16 @@ class Text
 
             'telepathic_tile_tower_of_hera_entrance' => $converter->convertDialogCompressed("{NOBORDER}\nThis is a bad place, with a guy who will make you fall…\n\n\na lot."),
 
-            'houlihan_room' => $converter->convertDialogCompressed("Randomizer\ntournament winners\n\n{HARP}\n  ~~~2022~~~\nObscure\n\n  ~~~2021~~~\nDaaanty\n\n  ~~~2019~~~\nJet082\n\n  ~~~2018~~~\nAndy\n\n  ~~~2017~~~\nA: ajneb174\nS: ajneb174"),
+            'houlihan_room' => $converter->convertDialogCompressed(
+                "     Randomizer\n"
+                ."Tournament Winners\n\n{HARP}\n"
+                ."    ~~~2023~~~\n  GanonsGoneWild\n\n"
+                ."    ~~~2022~~~\n      Obscure\n\n"
+                ."    ~~~2021~~~\n      Daaanty\n\n"
+                ."    ~~~2019~~~\n      Jet082\n\n"
+                ."    ~~~2018~~~\n      S: Andy\n      A: Andy\n"
+                ."    ~~~2017~~~\n    S: ajneb174\n    A: ajneb174"
+            ),
 
             'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
 
@@ -860,9 +877,9 @@ class Text
 
             'kakariko_flophouse_man' => $converter->convertDialogCompressed("I sure do have a lot of beds.\n\nDid you know if you played the flute in the center of town things could happen?"),
 
-            'menu_start_2' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Sanctuary\n{CHOICE3}", false),
+            'menu_start_2' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s House\n Sanctuary\n{CHOICE3}", false),
 
-            'menu_start_3' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Sanctuary\n Mountain Cave\n{CHOICE2}", false),
+            'menu_start_3' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s House\n Sanctuary\n Mountain Cave\n{CHOICE2}", false),
 
             'menu_pause' => $converter->convertDialogCompressed("{SPEED0}\n≥Continue\n Save and Quit\n{CHOICE3}", false),
 
@@ -878,7 +895,7 @@ class Text
 
             'game_digging_no_follower' => $converter->convertDialogCompressed("Something is following you. I don't like."),
 
-            'menu_start_4' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s house\n Mountain Cave\n{CHOICE3}", false),
+            'menu_start_4' => $converter->convertDialogCompressed("{MENU}\n{SPEED0}\n≥@'s House\n Mountain Cave\n{CHOICE3}", false),
 
             'ganon_fall_in_alt' => $converter->convertDialogCompressed("You think you\nare ready to\nface me?\n\nI will not die\n\nunless you\ncomplete your\ngoals. Dingus!"),
 

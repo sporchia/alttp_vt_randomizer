@@ -30,6 +30,7 @@ class PalaceOfDarkness extends Region
         'KeyD1',
         'Map',
         'MapD1',
+        'Crystal1'
     ];
 
     /**
@@ -61,7 +62,7 @@ class PalaceOfDarkness extends Region
             new Location\Chest("Palace of Darkness - Dark Maze - Bottom", [0xEA58], null, $this),
             new Location\Drop("Palace of Darkness - Boss", [0x180153], null, $this),
 
-            new Location\Prize\Crystal("Palace of Darkness - Prize", [null, 0x120A1, 0x53F00, 0x53F01, 0x180056, 0x18007D, 0xC702], null, $this),
+            new Location\Prize\Crystal("Palace of Darkness - Prize", [null, 0x120A1, 0x53E7C, 0x53E7D, 0x180056, 0x180073, 0xC702], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Palace of Darkness - Prize"];

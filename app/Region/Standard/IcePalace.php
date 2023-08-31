@@ -30,6 +30,7 @@ class IcePalace extends Region
         'KeyD5',
         'Map',
         'MapD5',
+        'Crystal5',
     ];
 
     /**
@@ -55,7 +56,7 @@ class IcePalace extends Region
             new Location\BigChest("Ice Palace - Big Chest", [0xE9AA], null, $this),
             new Location\Drop("Ice Palace - Boss", [0x180157], null, $this),
 
-            new Location\Prize\Crystal("Ice Palace - Prize", [null, 0x120A4, 0x53F5A, 0x53F5B, 0x180059, 0x180073, 0xC705], null, $this),
+            new Location\Prize\Crystal("Ice Palace - Prize", [null, 0x120A4, 0x53E86, 0x53E87, 0x180059, 0x180078, 0xC705], null, $this),
         ]);
         $this->locations->setChecksForWorld($world->id);
         $this->prize_location = $this->locations["Ice Palace - Prize"];
@@ -73,26 +74,23 @@ class IcePalace extends Region
             return $items->has('Hammer') && $items->canLiftRocks()
                 && (!$this->world->config('region.cantTakeDamage', false)
                     || $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
-                && ($items->has('Hookshot') || $items->has('ShopKey')
-                    || ($items->has('KeyD5', 1) && (!$items->has('BigKeyD5') || $locations->itemInLocations(Item::get('BigKeyD5', $this->world), 
-                        ['Ice Palace - Map Chest','Ice Palace - Spike Room']))));
+                && ($this->locations["Ice Palace - Spike Room"]->canAccess($items));
         });
 
         $this->locations["Ice Palace - Map Chest"]->setRequirements(function ($locations, $items) {
             return $items->has('Hammer') && $items->canLiftRocks()
                 && (!$this->world->config('region.cantTakeDamage', false)
                     || $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
-                && ($items->has('Hookshot') || $items->has('ShopKey')
-                    || ($items->has('KeyD5', 1) && (!$items->has('BigKeyD5') || $locations->itemInLocations(Item::get('BigKeyD5', $this->world), 
-                        ['Ice Palace - Big Key Chest','Ice Palace - Spike Room']))));
+                && ($this->locations["Ice Palace - Spike Room"]->canAccess($items));
         });
 
         $this->locations["Ice Palace - Spike Room"]->setRequirements(function ($locations, $items) {
             return (!$this->world->config('region.cantTakeDamage', false)
                     || $items->has('CaneOfByrna') || $items->has('Cape') || $items->has('Hookshot'))
-                && ($items->has('Hookshot') || $items->has('ShopKey')
-                    || ($items->has('KeyD5', 1) && (!$items->has('BigKeyD5') || $locations->itemInLocations(Item::get('BigKeyD5', $this->world), 
-                        ['Ice Palace - Big Key Chest','Ice Palace - Map Chest']))));
+                    && (($items->has('Hookshot') || $items->has('ShopKey'))
+                        || $items->has('KeyD5', 1)
+                            && $locations->itemInLocations(Item::get('BigKeyD5', $this->world), 
+                            ['Ice Palace - Spike Room', 'Ice Palace - Big Key Chest','Ice Palace - Map Chest']));
         });
 
         $this->locations["Ice Palace - Freezor Chest"]->setRequirements(function ($locations, $items) {

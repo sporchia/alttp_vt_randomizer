@@ -2,6 +2,42 @@
 
 @section('content')
 
+    <h2>v31.2 (August 2023)</h2>
+    <div class="card card-body bg-light mb-3">
+        <li>New Features</li>
+        <ul>
+            <li>Pressing select will now toggle fast credits. X button remains functional.</li>
+            <li>Mirroring from Zelda's cell spawn point will correctly take you to Sanctuary for glitched modes.</li>
+            <li>The heart piece menu icon, file select hearts, and credits hearts now match the selected heart color.</li>
+            <li>Major items will be able to appear as dungeon prizes, the logic for this will be coming in a following release.</li>
+            <li>Added a new Completionist goal, requiring every item to be collected before Ganon can be defeated.</li>
+        </ul>
+        <li>Bug Fixes</li>
+        <ul>
+            <li>Refactored the title screen to include almost all the hiragana. Sacrifices had to be made, and we had to remove the chiisai katakana and hiragana.</li>
+            <li>Fixed issue with bootless OWG logic that caused an impossible scenario.</li>
+            <li>Fixed issue with the first chest in Swamp Palace not being able to have Mire medallion in HMG.</li>
+            <li>Swamp Palace in HMG now always requires three Misery Mire small keys if the first chest is not a key.</li>
+        </ul>
+        <li>Miscellaneous changes</li>
+        <ul>
+            <li>The whole game has been converted to Fast ROM, so it should generally run smoother with less lag.</li>
+            <li>Completely reworked the item backend. Hopefully nothing is different</li>
+            <li>No logic keysanity now removes self-dungeon keys in favor of explicit dungeon keys.</li>
+            <li>Graphics decompression is now a one-and-done for items. This will remove all the lag when receiving or loading an item.</li>
+            <li>The backend for inverted map changes has been made more data-driven. This shouldn't have a noticeable effect, but please report any errors.</li>
+            <li>The HUD has been refactored and optimized, which should help reduce lag in particularly lively areas.</li>
+            <li>The green pendant's item graphics now include a distinctive star.</li>
+            <li>Updated the tournament winner's messages.</li>
+            <li>HUD heart color has been moved to SNES address $B0:F020.</li>
+            <li>Dungeon prizes and icons have been moved to tables.asm</li>
+        </ul>
+        <li>Added new player options</li>
+        <img src="https://alttpr-assets.s3.us-east-2.amazonaws.com/sprites.31.2.lg.png" alt="Player sprite options"
+            style="width:50%" />
+        </li>
+    </div>
+
     <h2>v31.1 (March 2023)</h2>
     <div class="card card-body bg-light mb-3">
         <li>New Features</li>

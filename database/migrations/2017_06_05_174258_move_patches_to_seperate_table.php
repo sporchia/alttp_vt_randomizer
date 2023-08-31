@@ -30,6 +30,7 @@ class MovePatchesToSeperateTable extends Migration
         });
 
         Schema::table('seeds', function (Blueprint $table) {
+            $table->dropIndex(['vt_complexity', 'complexity']);
             $table->dropColumn(['vt_complexity', 'complexity']);
         });
 
@@ -57,6 +58,7 @@ class MovePatchesToSeperateTable extends Migration
         Schema::table('seeds', function (Blueprint $table) {
             $table->integer('complexity')->default(0);
             $table->integer('vt_complexity')->default(0);
+            $table->index(['vt_complexity', 'complexity']);
         });
 
         Schema::dropIfExists('patches');

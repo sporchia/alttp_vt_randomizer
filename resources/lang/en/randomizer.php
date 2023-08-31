@@ -39,7 +39,7 @@ return [
         'options' => [
             'items' => '100% Inventory',
             'locations' => '100% Locations',
-            'none' => 'Beatable',
+            'none' => 'Beatable Only',
         ],
     ],
     'glitches_required' => [
@@ -62,6 +62,7 @@ return [
             'pedestal' => 'Master Sword Pedestal',
             'triforce-hunt' => 'Triforce Pieces',
             'ganonhunt' => 'Ganonhunt',
+            'completionist' => 'Completionist',
         ],
     ],
     'tower_open' => [
