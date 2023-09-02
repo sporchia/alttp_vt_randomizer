@@ -17,8 +17,8 @@ use App\Text;
  */
 final class Rom
 {
-    const BUILD = '2022-07-23';
-    const HASH = 'c808fc9ed84e4b0d7decd48cbaebbce0';
+    const BUILD = '2023-03-07';
+    const HASH = '3eadc9feeabaf3a710847bc606a0a2d6';
     const SIZE = 2097152;
 
     private string $tmp_file;

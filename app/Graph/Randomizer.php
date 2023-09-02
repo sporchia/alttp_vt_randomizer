@@ -32,7 +32,6 @@ final class Randomizer
         'prize',
         'pedestal',
         'refill',
-        'medallion',
     ];
 
     public Graph $graph;
