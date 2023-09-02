@@ -1,0 +1,44 @@
+rooms:
+  - roomid: 0xB5
+    group: 15
+    dark: true
+    nodes:
+      regions:
+        - name: "Turtle Rock - Dark Maze Top darkness"
+        - name: "Turtle Rock - Dark Maze Top"
+        - name: "Turtle Rock - Dark Maze track"
+        - name: "Turtle Rock - Dark Maze Bottom"
+        - name: "Turtle Rock - Dark Maze Bottom darkness"
+
+      pots:
+        - name: "Turtle Rock - Dark Maze Top - Pot 1"
+          position: 0x0470
+          sprite: "@RupeeBlue"
+        - name: "Turtle Rock - Dark Maze Top - Pot 2"
+          position: 0x0f70
+          sprite: "@Heart"
+        - name: "Turtle Rock - Dark Maze Top - Pot 3"
+          position: 0x104c
+          sprite: "FloorSwitch"
+        - name: "Turtle Rock - Dark Maze Top - Pot 4"
+          position: 0x1070
+          sprite: "@MagicRefillFull"
+        - name: "Turtle Rock - Dark Maze Top - Pot 5"
+          position: 0x1170
+          sprite: "@Heart"
+        - name: "Turtle Rock - Dark Maze Top - Pot 6"
+          position: 0x1c70
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Turtle Rock - Dark Maze Top - Fire Bar (Clockwise) 1"
+          position: { x: 0x16, y: 0x0a, z: 0x00 }
+          sprite: "FireBarCW"
+
+        - name: "Turtle Rock - Dark Maze Top - Fire Bar (Clockwise) 2"
+          position: { x: 0x09, y: 0x0f, z: 0x00 }
+          sprite: "FireBarCW"
+
+        - name: "Turtle Rock - Dark Maze Top - Fire Bar (Clockwise) 3"
+          position: { x: 0x16, y: 0x16, z: 0x00 }
+          sprite: "FireBarCW"

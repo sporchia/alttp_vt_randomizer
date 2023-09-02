@@ -1,0 +1,35 @@
+maps:
+  - map: 0x29
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "South Kakariko"
+
+      entrances:
+        - name: "Library"
+          entranceid: 0x48
+          outletid: 0x59
+
+        - name: "Money Making Game Library"
+          entranceid: 0x66
+          outletid: 0x78
+
+        - name: "Brothers House Right"
+          entranceid: 0x0F
+          outletid: 0x11
+
+      mobs:
+        - name: "South Kakariko - Blue Guard 1"
+          position: { x: 0x0e, y: 0x05 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "South Kakariko - sprite.FastRedSpearGuard"
+          position: { x: 0x0c, y: 0x0c }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "South Kakariko - Blue Guard 2"
+          position: { x: 0x0b, y: 0x14 }
+          sprite: "BlueSwordGuard"
+          state: [2]

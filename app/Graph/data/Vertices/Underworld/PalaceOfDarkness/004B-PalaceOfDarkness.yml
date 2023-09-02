@@ -1,0 +1,73 @@
+rooms:
+  - roomid: 0x4B
+    group: 7
+    nodes:
+      regions:
+        - name: "Palace of Darkness - Mimics 1"
+        - name: "Palace of Darkness - Jelly Hall"
+        - name: "Palace of Darkness - Warp Hint"
+
+      shutters:
+        - name: "Palace of Darkness - Mimics 1 - Shutter Door"
+
+      pots:
+        - name: "Palace of Darkness - Mimics 1 - Pot 1"
+          position: 0x0614
+          sprite: "@ArrowRefill5"
+        - name: "Palace of Darkness - Mimics 1 - Pot 2"
+          position: 0x0628
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Palace of Darkness - Mimics 1 - Red Eyegore"
+          position: { x: 0x07, y: 0x04, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: "PalaceOfDarknessMimicsOneTrophy"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Palace of Darkness - Warp Hint - Antifairy 1"
+          position: { x: 0x17, y: 0x05, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "RollerHR"
+
+        - name: "Palace of Darkness - Warp Hint - Antifairy 2"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Palace of Darkness - Mimics 1 - Green Eyegore L"
+          position: { x: 0x04, y: 0x08, z: 0x00 }
+          sprite: "EyegoreGreen"
+          trophy: "PalaceOfDarknessMimicsOneTrophy"
+
+        - name: "Palace of Darkness - Mimics 1 - Green Eyegore R"
+          position: { x: 0x0b, y: 0x08, z: 0x00 }
+          sprite: "EyegoreGreen"
+          trophy: "PalaceOfDarknessMimicsOneTrophy"
+
+        - name: "Palace of Darkness - Jelly Hall - Blue Bari 1"
+          position: { x: 0x0f, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Palace of Darkness - Jelly Hall - Blue Bari 2"
+          position: { x: 0x0b, y: 0x19, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+
+        - name: "Palace of Darkness - Jelly Hall - Blue Bari 3"
+          position: { x: 0x12, y: 0x19, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "AntifairyCircle"
+            - "BigSpikeTrap"

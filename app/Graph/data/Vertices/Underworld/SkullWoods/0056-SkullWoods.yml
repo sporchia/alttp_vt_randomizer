@@ -1,0 +1,112 @@
+rooms:
+  - roomid: 0x56
+    group: 10
+    nodes:
+      regions:
+        - name: "Skull Woods - Falling Floor"
+        - name: "Skull Woods - Dumb Switches Top"
+          inletid: 0x79
+        - name: "Skull Woods - Dumb Switches Bottom"
+        - name: "Skull Woods - Bumper Buddy"
+          inletid: 0x28
+
+      keydoors:
+        - name: "Skull Woods - Useless Door"
+          key: "KeyD3"
+
+      pots:
+        - name: "Skull Woods - Bumper Buddy - TL Pot"
+          position: 0x140c
+          item: "KeyD3"
+          itemset: ["skull"]
+        - name: "Skull Woods - Bumper Buddy - Pot 1"
+          position: 0x0614
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bumper Buddy - Pot 2"
+          position: 0x0628
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bumper Buddy - Pot 3"
+          position: 0x0718
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bumper Buddy - Pot 4"
+          position: 0x0724
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bumper Buddy - Pot 5"
+          position: 0x080c
+          sprite: "@Heart"
+        - name: "Skull Woods - Bumper Buddy - Pot 6"
+          position: 0x0830
+          sprite: "@Heart"
+        - name: "Skull Woods - Bumper Buddy - Pot 7"
+          position: 0x0918
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bumper Buddy - Pot 8"
+          position: 0x0924
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bumper Buddy - Pot 9"
+          position: 0x0a14
+          sprite: "@RupeeBlue"
+        - name: "Skull Woods - Bumper Buddy - Pot 10"
+          position: 0x0a28
+          sprite: "@RupeeBlue"
+        - name: "Skull Woods - Bumper Buddy - Pot 11"
+          position: 0x0a5c
+        - name: "Skull Woods - Bumper Buddy - Pot 12"
+          position: 0x0a60
+        - name: "Skull Woods - Bumper Buddy - Pot 13"
+          position: 0x0664
+        - name: "Skull Woods - Bumper Buddy - Pot 14"
+          position: 0x1430
+
+      mobs:
+        - name: "Skull Woods - Bumper Buddy - Falling Squares"
+          position: { x: 0x0b, y: 0x05, z: 0x00 }
+          sprite: "FallingSquare"
+
+        - name: "Skull Woods - Bumper Buddy - Bumper 1"
+          position: { x: 0x07, y: 0x19, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Bumper Buddy - Bumper 2"
+          position: { x: 0x17, y: 0x19, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Bumper Buddy - Mini Helmasaur 1"
+          position: { x: 0x07, y: 0x04, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Skull Woods - Bumper Buddy - Hardhat Beetle 1"
+          position: { x: 0x1b, y: 0x05, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Skull Woods - Bumper Buddy - Mini Helmasaur 2"
+          position: { x: 0x03, y: 0x06, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Skull Woods - Bumper Buddy - Mini Helmasaur 3"
+          position: { x: 0x0c, y: 0x06, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Skull Woods - Bumper Buddy - Wallmaster"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "Wallmaster Overlord"
+
+        - name: "Skull Woods - Bumper Buddy - Hardhat Beetle 2"
+          position: { x: 0x13, y: 0x11, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Skull Woods - Bumper Buddy - Spike Trap"
+          position: { x: 0x18, y: 0x12, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Skull Woods - Bumper Buddy - Hardhat Beetle 3"
+          position: { x: 0x03, y: 0x1b, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Skull Woods - Bumper Buddy - Fire Snake"
+          position: { x: 0x13, y: 0x1c, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Skull Woods - Bumper Buddy - Hardhat Beetle 4"
+          position: { x: 0x19, y: 0x1c, z: 0x00 }
+          sprite: "HardhatBeetle"

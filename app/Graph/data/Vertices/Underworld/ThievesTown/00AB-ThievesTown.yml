@@ -1,0 +1,55 @@
+rooms:
+  - roomid: 0xAB
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Spike Dodge"
+          switch: true
+
+      keydoors:
+        - name: "Thieves' Town - Spike Dodge Door"
+          key: "keyD4"
+
+      pots:
+        - name: "Thieves' Town - Spike Dodge Pot Key"
+          position: 0x1814
+          item: "KeyD4"
+          itemset: ["thieves"]
+
+      mobs:
+        - name: "Thieves' Town - Spike Dodge - Crystal Switch"
+          position: { x: 0x04, y: 0x18, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Thieves' Town - Spike Dodge - Spike Trap 1"
+          position: { x: 0x03, y: 0x15, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Spike Dodge - Spike Trap 2"
+          position: { x: 0x0c, y: 0x16, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Spike Dodge - Spike Trap 3"
+          position: { x: 0x03, y: 0x17, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Spike Dodge - Zol"
+          position: { x: 0x06, y: 0x18, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Thieves' Town - Spike Dodge - Spike Trap 4"
+          position: { x: 0x03, y: 0x19, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Spike Dodge - Spike Trap 5"
+          position: { x: 0x0c, y: 0x1a, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Spike Dodge - Spike Trap 6"
+          position: { x: 0x03, y: 0x1b, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerHL"

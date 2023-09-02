@@ -1,0 +1,103 @@
+rooms:
+  - roomid: 0x66
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Waterfall Room"
+        - name: "Swamp Palace - Waterfall Joke"
+        - name: "Swamp Palace - Waterfall Exit"
+
+      items:
+        - name: "Swamp Palace - Waterfall Room Chest"
+          addresses: [0xEAAF]
+          type: "chest"
+          itemset: ["swamp"]
+
+      pots:
+        - name: "Swamp Palace - Waterfall Room - Pot 1"
+          position: 0x2530
+          sprite: "@ArrowRefill5"
+        - name: "Swamp Palace - Waterfall Room - Pot 2"
+          position: 0x2534
+          sprite: "@BombRefill1"
+        - name: "Swamp Palace - Waterfall Room - Pot 3"
+          position: 0x2538
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - Waterfall Room - Pot 4"
+          position: 0x0554
+          sprite: "@Heart"
+        - name: "Swamp Palace - Waterfall Room - Pot 5"
+          position: 0x0568
+          sprite: "@ArrowRefill5"
+        - name: "Swamp Palace - Waterfall Room - Pot 6"
+          position: 0x2630
+          sprite: "@ArrowRefill5"
+        - name: "Swamp Palace - Waterfall Room - Pot 7"
+          position: 0x2634
+          sprite: "@BombRefill1"
+        - name: "Swamp Palace - Waterfall Room - Pot 8"
+          position: 0x2638
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - Waterfall Room - Pot 9"
+          position: 0x0654
+          sprite: "@Heart"
+        - name: "Swamp Palace - Waterfall Room - Pot 10"
+          position: 0x0668
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Swamp Palace - Waterfall Room - Hover 1"
+          position: { x: 0x0b, y: 0x05, z: 0x01 }
+          sprite: "Hover"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Waterfall Room - Octoballoon Hatchlings 1"
+          position: { x: 0x04, y: 0x06, z: 0x01 }
+
+          sprite: "PirogusuSpawnerLeft"
+
+        - name: "Swamp Palace - Waterfall Room - Blue Bari 1"
+          position: { x: 0x16, y: 0x06, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Swamp Palace - Waterfall Room - Blue Bari 2"
+          position: { x: 0x1a, y: 0x07, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Swamp Palace - Waterfall Room - Waterfall"
+          position: { x: 0x17, y: 0x14, z: 0x01 }
+          sprite: "Waterfall"
+
+        - name: "Swamp Palace - Waterfall Room - Octoballoon Hatchlings 2"
+          position: { x: 0x01, y: 0x16, z: 0x01 }
+
+          sprite: "PirogusuSpawnerLeft"
+
+        - name: "Swamp Palace - Waterfall Room - Kyameron"
+          position: { x: 0x0f, y: 0x16, z: 0x01 }
+          sprite: "Kyameron"
+
+        - name: "Swamp Palace - Waterfall Room - Hover 2"
+          position: { x: 0x13, y: 0x16, z: 0x01 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Waterfall Room - Hover 3"
+          position: { x: 0x0b, y: 0x18, z: 0x01 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Waterfall Room - Hover 4"
+          position: { x: 0x0d, y: 0x19, z: 0x01 }
+          sprite: "Hover"
+
+        - name: "Swamp Palace - Waterfall Room - Hinox"
+          position: { x: 0x1e, y: 0x19, z: 0x01 }
+
+          sprite: "PirogusuSpawnerRight"
+
+        - name: "Swamp Palace - Waterfall Room - Hover 5"
+          position: { x: 0x17, y: 0x1b, z: 0x01 }
+          sprite: "Hover"

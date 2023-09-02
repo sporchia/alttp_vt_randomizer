@@ -1,0 +1,45 @@
+rooms:
+  - roomid: 0x011C
+    nodes:
+      regions:
+        - name: "Desert Thief Hideout"
+          inletid: 0x6d
+
+      pots:
+        - name: "Desert Thief Hideout - Pot 1"
+          position: 0x1414
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 2"
+          position: 0x1428
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 3"
+          position: 0x1514
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 4"
+          position: 0x1528
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 5"
+          position: 0x1614
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 6"
+          position: 0x1628
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 7"
+          position: 0x1818
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 8"
+          position: 0x181c
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 9"
+          position: 0x1820
+          sprite: "@RupeeBlue"
+        - name: "Desert Thief Hideout - Pot 10"
+          position: 0x1824
+          sprite: "@RupeeBlue"
+
+      mobs:
+        - name: "Desert Thief Hideout - Thief"
+          position: { x: 0x08, y: 0x16, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

@@ -1,0 +1,69 @@
+rooms:
+  - roomid: 0xB3
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Spike Room"
+        - name: "Misery Mire - Mesh Bridge"
+
+      keydoors:
+        - name: "Misery Mire - Spike Room Door"
+          key: "KeyD6"
+
+      items:
+        - name: "Misery Mire - Spike Chest"
+          type: "chest"
+          addresses: [0xE9DA]
+          itemset: ["mire"]
+
+      pots:
+        - name: "Misery Mire - Spike Room - Left Pot"
+          position: 0x140c
+          item: "KeyD6"
+          itemset: ["mire"]
+        - name: "Misery Mire - Spike Room - Pot 1"
+          position: 0x1430
+          sprite: "@MagicRefillSmall"
+        - name: "Misery Mire - Spike Room - Pot 2"
+          position: 0x1c30
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Misery Mire - Spike Room - Stalfos 1"
+          position: { x: 0x03, y: 0x15, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerVU"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+
+        - name: "Misery Mire - Spike Room - Stalfos 2"
+          position: { x: 0x0b, y: 0x15, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Misery Mire - Spike Room - Beamos"
+          position: { x: 0x06, y: 0x18, z: 0x00 }
+          sprite: "Beamos"
+          deny:
+            - "Statue"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "Bumper"
+
+        - name: "Misery Mire - Spike Room - Yomo Medusa"
+          position: { x: 0x0a, y: 0x1a, z: 0x00 }
+          sprite: "YomoMedusa"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Misery Mire - Spike Room - Stalfos 3"
+          position: { x: 0x07, y: 0x1c, z: 0x00 }
+          sprite: "Stalfos"

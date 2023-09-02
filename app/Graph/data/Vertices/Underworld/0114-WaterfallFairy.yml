@@ -1,0 +1,29 @@
+rooms:
+  - roomid: 0x0114
+    nodes:
+      regions:
+        - name: "Waterfall Fairy"
+          inletid: 0x5C
+
+      items:
+        - name: "Waterfall Fairy - Bottle"
+          addresses: [0x348FF]
+          type: "refill"
+          itemset: ["bottle"]
+
+        - name: "Waterfall Fairy - Right"
+          addresses: [0xE9D1]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Waterfall Fairy - Left"
+          addresses: [0xE9B0]
+          type: "chest"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Waterfall Fairy - Fairy Pond"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "PondActivation"
+          allow:
+            - "PondActivation"

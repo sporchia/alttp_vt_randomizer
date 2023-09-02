@@ -1,0 +1,48 @@
+rooms:
+  - roomid: 0x77
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Entrance"
+          inletid: 0x33
+
+      keydoors:
+        - name: "Tower Of Hera - Basement Door"
+          key: "KeyP3"
+
+      items:
+        - name: "Tower Of Hera - Map Chest"
+          type: "chest"
+          addresses: [0xE9AD]
+          itemset: ["hera"]
+
+      mobs:
+        - name: "Tower Of Hera - Entrance - Mini Moldorm"
+          position: { x: 0x0b, y: 0x09, z: 0x01 }
+          sprite: "MiniMoldorm"
+
+        - name: "Tower Of Hera - Entrance - Crystal Switch 1"
+          position: { x: 0x10, y: 0x18, z: 0x01 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Entrance - Crystal Switch 2"
+          position: { x: 0x09, y: 0x1a, z: 0x01 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Entrance - Crystal Switch 3"
+          position: { x: 0x16, y: 0x1a, z: 0x01 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Entrance - Kodongo 1"
+          position: { x: 0x07, y: 0x0a, z: 0x01 }
+          sprite: "Kodongo"
+
+        - name: "Tower Of Hera - Entrance - Kodongo 2"
+          position: { x: 0x17, y: 0x0a, z: 0x01 }
+          sprite: "Kodongo"

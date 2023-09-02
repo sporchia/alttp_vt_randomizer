@@ -1,0 +1,15 @@
+rooms:
+  - roomid: 0xB4
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Chasm Top"
+        - name: "Turtle Rock - Chasm Bottom"
+
+      pots:
+        - name: "Turtle Rock - Chasm Top - Pot 1"
+          position: 0x1c2c
+          sprite: "@MagicRefillFull"
+        - name: "Turtle Rock - Chasm Top - Pot 2"
+          position: 0x1c30
+          sprite: "@Heart"

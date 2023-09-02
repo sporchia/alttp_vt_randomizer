@@ -1,0 +1,63 @@
+rooms:
+  - roomid: 0x0123
+    nodes:
+      regions:
+        - name: "Mini Moldorm Cave Entrance"
+          inletid: 0x6c
+        - name: "Mini Moldorm Cave"
+
+      shutters:
+        - name: "Mini Moldorm Cave - Shutter Door"
+
+      items:
+        - name: "Mini Moldorm Cave - Far Left"
+          addresses: [0xEB42]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Mini Moldorm Cave - Left"
+          addresses: [0xEB45]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Mini Moldorm Cave - NPC"
+          addresses: [0x180010]
+          type: "npc"
+          itemset: ["lw"]
+
+        - name: "Mini Moldorm Cave - Right"
+          addresses: [0xEB48]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Mini Moldorm Cave - Far Right"
+          addresses: [0xEB4B]
+          type: "chest"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Mini Moldorm Cave - Mini Moldorm 1"
+          position: { x: 0x03, y: 0x16, z: 0x00 }
+          sprite: "MiniMoldorm"
+          trophy: "MiniMoldormCaveTrophy"
+
+        - name: "Mini Moldorm Cave - Mini Moldorm 2"
+          position: { x: 0x0c, y: 0x16, z: 0x00 }
+          sprite: "MiniMoldorm"
+          trophy: "MiniMoldormCaveTrophy"
+
+        - name: "Mini Moldorm Cave - Mini Moldorm 3"
+          position: { x: 0x08, y: 0x17, z: 0x00 }
+          sprite: "MiniMoldorm"
+          trophy: "MiniMoldormCaveTrophy"
+
+        - name: "Mini Moldorm Cave - Mini Moldorm 4"
+          position: { x: 0x03, y: 0x1a, z: 0x00 }
+          sprite: "MiniMoldorm"
+          trophy: "MiniMoldormCaveTrophy"
+
+        - name: "Mini Moldorm Cave - Shopkeeper"
+          position: { x: 0x08, y: 0x05, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

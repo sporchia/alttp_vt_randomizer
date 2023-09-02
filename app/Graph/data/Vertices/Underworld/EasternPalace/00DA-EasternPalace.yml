@@ -8,16 +8,16 @@ rooms:
       pots:
         - name: "Eastern Palace - Antifairy Playground - Pot 1"
           position: 0x1718
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Antifairy Playground - Pot 2"
           position: 0x1724
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Antifairy Playground - Pot 3"
           position: 0x1918
           sprite: "FloorSwitch"
         - name: "Eastern Palace - Antifairy Playground - Pot 4"
           position: 0x1924
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
 
       mobs:
         - name: "Eastern Palace - Antifairy Playground - Antifairy 1"

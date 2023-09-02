@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x97
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Torch Puzzle"
+        - name: "Misery Mire - Drop Hint"
+        - name: "Misery Mire - Drop Hole"
+
+      mobs:
+        - name: "Misery Mire - Torch Puzzle - Wizzrobe Spawner"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "WizzrobeSpawner"

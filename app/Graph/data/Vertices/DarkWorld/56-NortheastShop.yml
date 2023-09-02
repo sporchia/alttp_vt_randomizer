@@ -1,0 +1,39 @@
+maps:
+  - map: 0x56
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark World Northeast Shop"
+        - name: "Dark World Northeast Shop Rockblock Nook"
+        - name: "Dark World Northeast Shop Waters"
+
+      entrances:
+        - name: "Dark World Northeast Shop"
+          entranceid: 0x6E
+          outletid: 0x63
+
+      mobs:
+        - name: "Dark World Northeast Shop - Fireball Zora 1"
+          position: { x: 0x0a, y: 0x06 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark World Northeast Shop - Fireball Zora 2"
+          position: { x: 0x13, y: 0x0a }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark World Northeast Shop - Bee"
+          position: { x: 0x04, y: 0x0e }
+          sprite: "Bee"
+          state: [1, 2]
+
+        - name: "Dark World Northeast Shop - Ropa 1"
+          position: { x: 0x11, y: 0x17 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark World Northeast Shop - Ropa 2"
+          position: { x: 0x05, y: 0x1a }
+          sprite: "Ropa"
+          state: [1, 2]

@@ -1,0 +1,39 @@
+rooms:
+  - roomid: 0x00E2
+    nodes:
+      regions:
+        - name: "Lumberjacks Cave Fairies"
+          inletid: 0x7f
+        - name: "Lumberjacks Cave Ledge"
+        - name: "Lumberjacks Cave"
+          inletid: 0x12
+
+      items:
+        - name: "Lumberjack Tree"
+          addresses: [0x180001]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        # this is required to have the standing item appear
+        - name: "Lumberjacks Cave - Heart Piece"
+          position: { x: 0x13, y: 0x10, z: 0x00 }
+          sprite: "HeartPiece"
+          allow:
+            - "HeartPiece"
+
+        - name: "Lumberjacks Cave - Fairy 1"
+          position: { x: 0x07, y: 0x06, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Lumberjacks Cave - Fairy 2"
+          position: { x: 0x08, y: 0x06, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Lumberjacks Cave - Fairy 3"
+          position: { x: 0x07, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Lumberjacks Cave - Fairy 4"
+          position: { x: 0x08, y: 0x07, z: 0x00 }
+          sprite: "Fairy"

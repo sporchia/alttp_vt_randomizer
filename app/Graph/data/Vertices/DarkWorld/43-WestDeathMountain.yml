@@ -1,0 +1,32 @@
+maps:
+  - map: 0x43
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "West Dark Death Mountain"
+        - name: "West Dark Death Mountain Byrna Ledge"
+        - name: "West Dark Death Mountain Summit"
+
+      entrances:
+        - name: "Ganon's Tower"
+          entranceid: 0x36
+          outletid: 0x38
+
+        - name: "Spike Cave"
+          entranceid: 0x40
+          outletid: 0x77
+
+        - name: "West Death Mountain Big Fairy"
+          entranceid: 0x6F
+          outletid: 0x72
+
+      mobs:
+        - name: "West Dark Death Mountain - Crystal Cut Scene"
+          position: { x: 0x2f, y: 0x0c }
+          sprite: "Waterfall"
+          state: [1, 2]
+
+        - name: "West Dark Death Mountain - Bully and Victim"
+          position: { x: 0x20, y: 0x18 }
+          sprite: "FeudingFriends"
+          state: [1, 2]

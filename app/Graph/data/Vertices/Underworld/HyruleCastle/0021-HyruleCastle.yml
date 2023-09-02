@@ -1,0 +1,79 @@
+rooms:
+  - roomid: 0x21
+    group: 1
+    dark: true
+    nodes:
+      regions:
+        - name: "Sewers - Dark U darkness"
+        - name: "Sewers - Dark U"
+        - name: "Sewers - Dark Aquabats"
+
+      pots:
+        - name: "Sewers - Dark U - Pot 1"
+          position: 0x18a8
+          sprite: "@MagicRefillSmall"
+        - name: "Sewers - Dark U - Pot 2"
+          position: 0x1c30
+          sprite: "@Heart"
+        - name: "Sewers - Dark U - Pot 3"
+          position: 0x1c52
+          sprite: "@MagicRefillSmall"
+        - name: "Sewers - Dark U - Pot 4"
+          position: 0x14a0
+        - name: "Sewers - Dark U - Pot 5"
+          position: 0x1c64
+        - name: "Sewers - Dark U - Pot 6"
+          position: 0x1c68
+
+      mobs:
+        - name: "Sewers - Dark U - Left Mouse"
+          position: { x: 0x05, y: 0x06, z: 0x00 }
+          sprite: "Rat"
+          item: "KeyH2"
+          itemset: ["escape"]
+
+        - name: "Sewers - Dark U - Keese 1"
+          position: { x: 0x17, y: 0x06, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Dark U - Keese 2"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Dark U - Rat 2"
+          position: { x: 0x11, y: 0x09, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+
+        - name: "Sewers - Dark U - Rat 3"
+          position: { x: 0x0d, y: 0x0a, z: 0x00 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+
+        - name: "Sewers - Dark U - Rat 4"
+          position: { x: 0x07, y: 0x14, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark U - Keese 3"
+          position: { x: 0x0d, y: 0x14, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Dark U - Keese 4"
+          position: { x: 0x12, y: 0x14, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Dark U - Rat 5"
+          position: { x: 0x0d, y: 0x18, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark U - Rat 6"
+          position: { x: 0x0a, y: 0x1c, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Dark U - Rat 7"
+          position: { x: 0x13, y: 0x1c, z: 0x00 }
+          sprite: "Rat"

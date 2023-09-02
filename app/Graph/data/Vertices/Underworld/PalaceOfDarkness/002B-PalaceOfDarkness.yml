@@ -1,0 +1,85 @@
+rooms:
+  - roomid: 0x2B
+    group: 7
+    nodes:
+      regions:
+        # TODO: is there a region missing?
+        - name: "Palace of Darkness - Sexy Statue"
+        - name: "Palace of Darkness - Fairies"
+
+      items:
+        - name: "Palace of Darkness - Map Chest"
+          addresses: [0xea52]
+          type: "chest"
+          itemset: ["pod"]
+
+      pots:
+        - name: "Palace of Darkness - Fairies - Pot 1"
+          position: 0x0510
+          sprite: "@Heart"
+        - name: "Palace of Darkness - Fairies - Pot 2"
+          position: 0x052c
+          sprite: "FloorSwitch"
+        - name: "Palace of Darkness - Fairies - Pot 3"
+          position: 0x0610
+          sprite: "@Heart"
+        - name: "Palace of Darkness - Fairies - Pot 4"
+          position: 0x062c
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Fairies - Pot 5"
+          position: 0x0710
+          sprite: "@Heart"
+        - name: "Palace of Darkness - Fairies - Pot 6"
+          position: 0x072c
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Fairies - Pot 7"
+          position: 0x1592
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Fairies - Pot 8"
+          position: 0x15aa
+          sprite: "@ArrowRefill5"
+        - name: "Palace of Darkness - Fairies - Pot 9"
+          position: 0x1692
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Fairies - Pot 10"
+          position: 0x16aa
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Palace of Darkness - Fairies - Crystal Switch"
+          position: { x: 0x0a, y: 0x11, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Palace of Darkness - Fairies - Statue"
+          position: { x: 0x0a, y: 0x0a, z: 0x00 }
+          sprite: "Statue"
+          allow:
+            - "Statue"
+
+        - name: "Palace of Darkness - Fairies - Red Bari 1"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Palace of Darkness - Fairies - Fairy 1"
+          position: { x: 0x16, y: 0x17, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Palace of Darkness - Fairies - Fairy 2"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Palace of Darkness - Fairies - Red Bari 2"
+          position: { x: 0x05, y: 0x1a, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerHR"
+
+        - name: "Palace of Darkness - Fairies - Red Bari 3"
+          position: { x: 0x0a, y: 0x1a, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Palace of Darkness - Fairies - Fairy 3"
+          position: { x: 0x17, y: 0x1a, z: 0x00 }
+          sprite: "Fairy"

@@ -1,0 +1,10 @@
+rooms:
+  - roomid: 0x1D
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Agahnim's Antichamber"
+
+      bigkeydoors:
+        - name: "Ganon's Tower - Agahnim's Antichamber - Door"
+          key: "BigKeyA2"

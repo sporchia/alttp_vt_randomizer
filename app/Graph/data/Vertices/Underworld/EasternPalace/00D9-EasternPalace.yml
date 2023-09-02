@@ -9,10 +9,10 @@ rooms:
       pots:
         - name: "Eastern Palace - Dodgeball - Pot 1"
           position: 0x145c
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Dodgeball - Pot 2"
           position: 0x1c5c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
 
       mobs:
         - name: "Eastern Palace - Dodgeball - Cannonballs"

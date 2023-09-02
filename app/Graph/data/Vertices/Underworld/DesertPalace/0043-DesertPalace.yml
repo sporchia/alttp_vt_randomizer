@@ -1,0 +1,48 @@
+rooms:
+  - roomid: 0x43
+    group: 4
+    nodes:
+      regions:
+        - name: "Desert Palace - Tiles 2"
+        - name: "Desert Palace - Sliding Wall"
+
+      keydoors:
+        - name: "Desert Palace - Tiles 2 Door"
+          key: "KeyP2"
+
+      bigkeydoors:
+        - name: "Desert Palace - Sliding Wall Door"
+          key: "BigKeyP2"
+
+      pots:
+        - name: "Desert Palace - Sliding Wall - Pot 1"
+          position: 0x0442
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Sliding Wall - Pot 2"
+          position: 0x044e
+          sprite: "@MagicRefillSmall"
+        - name: "Desert Palace - Sliding Wall - Pot 3"
+          position: 0x0942
+          sprite: "@Heart"
+        - name: "Desert Palace - Sliding Wall - Pot 4"
+          position: 0x094e
+          sprite: "@Heart"
+        - name: "Desert Palace - Tiles 2 - TR Pot"
+          position: 0x1470
+          item: "KeyP2"
+          itemset: ["desert"]
+        - name: "Desert Palace - Tiles 2 - Pot 5"
+          position: 0x144c
+        - name: "Desert Palace - Tiles 2 - Pot 6"
+          position: 0x1c4c
+        - name: "Desert Palace - Tiles 2 - Pot 7"
+          position: 0x1c70
+
+      mobs:
+        - name: "Desert Palace - Tiles 2 - Red Eyegore"
+          position: { x: 0x0c, y: 0x06, z: 0x00 }
+          sprite: "EyegoreRed"
+
+        - name: "Desert Palace - Tiles 2 - TileRoom"
+          position: { x: 0x17, y: 0x18, z: 0x00 }
+          sprite: "TileRoom"

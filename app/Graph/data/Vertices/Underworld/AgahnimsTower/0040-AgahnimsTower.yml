@@ -1,0 +1,50 @@
+rooms:
+  - roomid: 0x40
+    group: 6
+    nodes:
+      regions:
+        - name: "Agahnims Tower - Push Statue"
+        - name: "Agahnims Tower - Bridge"
+
+      mobs:
+        - name: "Agahnims Tower - Bridge - Blue Guard 1"
+          position: { x: 0x09, y: 0x08, z: 0x01 }
+          sprite: "BlueSwordGuard"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Agahnims Tower - Bridge - Blue Guard 2"
+          position: { x: 0x09, y: 0x0f, z: 0x01 }
+          sprite: "BlueSwordGuard1B"
+          deny:
+            - "Statue"
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Agahnims Tower - Bridge - Statue"
+          position: { x: 0x18, y: 0x15, z: 0x01 }
+          sprite: "Statue"
+          allow:
+            - "Statue"
+
+        - name: "Agahnims Tower - Bridge - Red Spear Guard"
+          position: { x: 0x1b, y: 0x18, z: 0x01 }
+          sprite: "RedSpearGuard"
+
+        - name: "Agahnims Tower - Bridge - Blue Archer 1"
+          position: { x: 0x17, y: 0x1a, z: 0x01 }
+          sprite: "BlueArcher"
+
+        - name: "Agahnims Tower - Bridge - Blue Archer 2"
+          position: { x: 0x19, y: 0x1a, z: 0x01 }
+          sprite: "BlueArcher"

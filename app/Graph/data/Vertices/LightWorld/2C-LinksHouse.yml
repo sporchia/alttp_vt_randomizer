@@ -1,0 +1,52 @@
+maps:
+  - map: 0x2c
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Link's House"
+        - name: "Rain - Link's House"
+
+      entrances:
+        - name: "Link's House"
+          entranceid: 0x00
+          outletid: 0x00
+
+        - name: "Houlihan Room"
+          entranceid: 0x00
+          outletid: 0x3D
+
+      mobs:
+        - name: "Link's House - Tutorial Guard 1"
+          position: { x: 0x1e, y: 0x18 }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Link's House - Tutorial Guard 2"
+          position: { x: 0x1e, y: 0x1a }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Link's House - Tutorial Guard 3"
+          position: { x: 0x0d, y: 0x1e }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Link's House - Tutorial Guard 4"
+          position: { x: 0x0f, y: 0x1e }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Link's House - Blue Guard"
+          position: { x: 0x09, y: 0x19 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Link's House - Green Guard"
+          position: { x: 0x18, y: 0x14 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Link's House - Blue Guard 1"
+          position: { x: 0x18, y: 0x14 }
+          sprite: "BlueSwordGuard"
+          state: [2]

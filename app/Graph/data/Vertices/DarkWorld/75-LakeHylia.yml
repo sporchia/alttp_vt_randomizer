@@ -1,0 +1,140 @@
+maps:
+  - map: 0x75
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Lake Hylia"
+        - name: "Dark Lake Hylia Ice Palace Entrance"
+        - name: "Dark Lake Hylia Ice Palace Island"
+        - name: "Dark Lake Hylia Northeast Ledge"
+        - name: "Dark Lake Hylia Northern Tiny Island"
+        - name: "Dark Lake Hylia Northwest Ledge"
+        - name: "Dark Lake Hylia River End"
+        - name: "Dark Lake Hylia River End Brook"
+        - name: "Dark Lake Hylia Southeast Ledge"
+        - name: "Dark Lake Hylia Southern Shallow Water Splotch"
+        - name: "Dark Lake Hylia Southern Tiny Island"
+        - name: "Dark Lake Hylia Southwest Ledge"
+        - name: "Dark Lake Hylia Southwest Peninsula"
+        - name: "Dark Lake Hylia Splotch of Shallow Water That Is Circumscribed by 10 Rocks"
+        - name: "Dark Lake Hylia Splotch of Shallow Water That Is Naked"
+
+      entrances:
+        - name: "Dark Lake Hylia Shop"
+          entranceid: 0x73
+          outletid: 0x65
+
+        - name: "Ice Palace"
+          entranceid: 0x2C
+          outletid: 0x2E
+
+      mobs:
+        - name: "Dark Lake Hylia - Stal"
+          position: { x: 0x0a, y: 0x05 }
+          sprite: "Stal"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Blue Guard 1"
+          position: { x: 0x09, y: 0x07 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Blue Guard 2"
+          position: { x: 0x0b, y: 0x09 }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Octorok (One Way) 1"
+          position: { x: 0x07, y: 0x13 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Green Zirro 1"
+          position: { x: 0x18, y: 0x16 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Pikit 1"
+          position: { x: 0x09, y: 0x17 }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Fireball Zora 1"
+          position: { x: 0x30, y: 0x0c }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Blue Zirro 1"
+          position: { x: 0x29, y: 0x11 }
+          sprite: "ZirroBlue"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Green Zirro 2"
+          position: { x: 0x36, y: 0x15 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Pikit 2"
+          position: { x: 0x31, y: 0x1f }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Fireball Zora 2"
+          position: { x: 0x1b, y: 0x22 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Green Zirro 3"
+          position: { x: 0x14, y: 0x28 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Pikit 3"
+          position: { x: 0x16, y: 0x2e }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Green Zirro 4"
+          position: { x: 0x19, y: 0x32 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Blue Zirro 2"
+          position: { x: 0x0a, y: 0x35 }
+          sprite: "ZirroBlue"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Ropa"
+          position: { x: 0x08, y: 0x39 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Fireball Zora 3"
+          position: { x: 0x1b, y: 0x39 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Pikit 4"
+          position: { x: 0x2a, y: 0x26 }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Green Zirro 5"
+          position: { x: 0x32, y: 0x28 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Fireball Zora 4"
+          position: { x: 0x2a, y: 0x2c }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Fireball Zora 5"
+          position: { x: 0x32, y: 0x35 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia - Octorok (One Way) 2"
+          position: { x: 0x37, y: 0x39 }
+          sprite: "Octorok1"
+          state: [1, 2]

@@ -1,0 +1,37 @@
+maps:
+  - map: 0x6B
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "West of Bomb Shoppe"
+
+      entrances:
+        - name: "West of Bomb Shoppe Fairy Pond"
+          entranceid: 0x77
+          outletid: 0x8E
+
+      mobs:
+        - name: "West of Bomb Shoppe - Talking Tree 1"
+          position: { x: 0x16, y: 0x08 }
+          sprite: "TalkingTree"
+          state: [1, 2]
+
+        - name: "West of Bomb Shoppe - Ropa"
+          position: { x: 0x08, y: 0x09 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "West of Bomb Shoppe - Talking Tree 2"
+          position: { x: 0x17, y: 0x0f }
+          sprite: "TalkingTree"
+          state: [1, 2]
+
+        - name: "West of Bomb Shoppe - Moblin 1"
+          position: { x: 0x13, y: 0x16 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "West of Bomb Shoppe - Moblin 2"
+          position: { x: 0x0f, y: 0x19 }
+          sprite: "Moblin"
+          state: [1, 2]

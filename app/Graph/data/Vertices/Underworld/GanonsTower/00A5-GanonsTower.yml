@@ -1,0 +1,79 @@
+rooms:
+  - roomid: 0xA5
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Wizzrobes 1"
+        - name: "Ganon's Tower - Laser Bridge"
+        - name: "Ganon's Tower - Wizzrobes 2"
+
+      shutters:
+        - name: "Ganon's Tower - Wizzrobes 1 - Shutter Door"
+        - name: "Ganon's Tower - Wizzrobes 2 - Shutter Door"
+
+      mobs:
+        - name: "Ganon's Tower - Wizzrobes 2 - Wizzrobe TL"
+          position: { x: 0x16, y: 0x05, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesTwoTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 2 - Wizzrobe TR"
+          position: { x: 0x19, y: 0x05, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesTwoTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 1 - Wizzrobe TL"
+          position: { x: 0x04, y: 0x07, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesOneTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 1 - Wizzrobe TR"
+          position: { x: 0x0b, y: 0x07, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesOneTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 2 - Spike Trap"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "SpikeTrap"
+          trophy: "GanonsTowerWizzrobesTwoTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 2 - Wizzrobe BL"
+          position: { x: 0x15, y: 0x09, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesTwoTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 2 - Wizzrobe BR"
+          position: { x: 0x1a, y: 0x09, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesTwoTrophy"
+
+        - name: "Ganon's Tower - Wizzrobes 1 - Wizzrobe B"
+          position: { x: 0x08, y: 0x0a, z: 0x00 }
+          sprite: "Wizzrobe"
+          trophy: "GanonsTowerWizzrobesOneTrophy"
+
+        - name: "Ganon's Tower - Laser Bridge - Laser Eye (Down) L"
+          position: { x: 0x0c, y: 0x12, z: 0x00 }
+          sprite: "LaserEyeD"
+          deny:
+            - "Kodongo"
+
+        - name: "Ganon's Tower - Laser Bridge - Laser Eye (Down) R"
+          position: { x: 0x12, y: 0x12, z: 0x00 }
+          sprite: "LaserEyeD"
+          deny:
+            - "Kodongo"
+
+        - name: "Ganon's Tower - Laser Bridge - Red Spear Guard"
+          position: { x: 0x12, y: 0x17, z: 0x00 }
+          sprite: "RedSpearGuard"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Laser Bridge - Blue Guard"
+          position: { x: 0x13, y: 0x18, z: 0x00 }
+          sprite: "BlueSwordGuard"

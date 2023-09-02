@@ -1,0 +1,61 @@
+rooms:
+  - roomid: 0x002F
+    nodes:
+      regions:
+        - name: "Kakariko Well"
+          inletid: 0x80
+        - name: "Kakariko Well Hidden"
+        - name: "Kakariko Well - Water"
+          inletid: 0x39
+
+      items:
+        - name: "Kakariko Well - Top"
+          addresses: [0xEA8E]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Kakariko Well - Left"
+          addresses: [0xEA91]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Kakariko Well - Middle"
+          addresses: [0xEA94]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Kakariko Well - Right"
+          addresses: [0xEA97]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Kakariko Well - Bottom"
+          addresses: [0xEA9A]
+          type: "chest"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Kakariko Well - Pot 1"
+          position: 0x071c
+          sprite: "@Heart"
+        - name: "Kakariko Well - Pot 2"
+          position: 0x0720
+          sprite: "@Heart"
+        - name: "Kakariko Well - Pot 3"
+          position: 0x091c
+          sprite: "@RupeeBlue"
+        - name: "Kakariko Well - Pot 4"
+          position: 0x0920
+          sprite: "@RupeeBlue"
+        - name: "Kakariko Well - Pot 5"
+          position: 0x13ac
+          sprite: "@RupeeBlue"
+        - name: "Kakariko Well - Pot 6"
+          position: 0x13b4
+          sprite: "@RupeeBlue"
+        - name: "Kakariko Well - Pot 7"
+          position: 0x1b68
+          sprite: "@Heart"
+        - name: "Kakariko Well - Pot 8"
+          position: 0x1c68
+          sprite: "@Heart"

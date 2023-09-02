@@ -1,0 +1,145 @@
+rooms:
+  - roomid: 0x8C
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Torch Room"
+        - name: "Ganon's Tower - Big Chest Room - Upper Corner"
+        - name: "Ganon's Tower - Big Chest Room"
+        - name: "Ganon's Tower - Bob's Room"
+        - name: "Ganon's Tower - Hope Room"
+
+      keydoors:
+        - name: "Ganon's Tower - Useless Door"
+          key: "KeyA2"
+
+      items:
+        - name: "Ganon's Tower - Bob's Torch"
+          addresses: [0x180161]
+          type: "bonk"
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Big Chest"
+          type: "bigchest"
+          addresses: [0xEAD6]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Bob's Chest"
+          type: "chest"
+          addresses: [0xEADF]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Hope Room - Left"
+          type: "chest"
+          addresses: [0xEAD9]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Hope Room - Right"
+          type: "chest"
+          addresses: [0xEADC]
+          itemset: ["gt"]
+
+      pots:
+        - name: "Ganon's Tower - Hope Room - Pot 1"
+          position: 0x0c4c
+          sprite: "FloorSwitch"
+        - name: "Ganon's Tower - Hope Room - Pot 2"
+          position: 0x0c70
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Hope Room - Pot 3"
+          position: 0x144c
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Hope Room - Pot 4"
+          position: 0x145c
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Hope Room - Pot 5"
+          position: 0x1564
+          sprite: "@ArrowRefill5"
+        - name: "Ganon's Tower - Hope Room - Pot 6"
+          position: 0x1a68
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Hope Room - Pot 7"
+          position: 0x1b58
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Ganon's Tower - Hope Room - Pull Switch (Bad)"
+          position: { x: 0x1a, y: 0x03, z: 0x00 }
+          sprite: "PullSwitchBad"
+          allow: ["PullSwitchBad"]
+
+        - name: "Ganon's Tower - Hope Room - Dwarves 1"
+          position: { x: 0x18, y: 0x05, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Ganon's Tower - Hope Room - Dwarves 2"
+          position: { x: 0x15, y: 0x06, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Ganon's Tower - Hope Room - Dwarves 3"
+          position: { x: 0x1a, y: 0x06, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Ganon's Tower - Hope Room - Dwarves 4"
+          position: { x: 0x15, y: 0x0a, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Ganon's Tower - Hope Room - Dwarves 5"
+          position: { x: 0x1a, y: 0x0a, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Ganon's Tower - Hope Room - Spark (Clockwise) 1"
+          position: { x: 0x08, y: 0x08, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Ganon's Tower - Hope Room - Spike Trap"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Ganon's Tower - Hope Room - Stalfos 1"
+          position: { x: 0x0b, y: 0x09, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Ganon's Tower - Hope Room - Stalfos 2"
+          position: { x: 0x03, y: 0x0b, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Ganon's Tower - Hope Room - Fire Snake 1"
+          position: { x: 0x05, y: 0x17, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Ganon's Tower - Hope Room - Spark (Clockwise) 2"
+          position: { x: 0x16, y: 0x17, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Ganon's Tower - Hope Room - Antifairy 1"
+          position: { x: 0x14, y: 0x18, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Ganon's Tower - Hope Room - Fire Snake 2"
+          position: { x: 0x0b, y: 0x1b, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Ganon's Tower - Hope Room - Antifairy 2"
+          position: { x: 0x1a, y: 0x1c, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Ganon's Tower - Hope Room - Dash Item"
+          position: { x: 0x09, y: 0x07, z: 0x00 }
+          sprite: "DashItem"
+          allow: ["DashItem"]

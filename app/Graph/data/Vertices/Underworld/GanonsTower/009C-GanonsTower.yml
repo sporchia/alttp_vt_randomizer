@@ -1,0 +1,81 @@
+rooms:
+  - roomid: 0x9C
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Invisible Floor Maze"
+
+      pots:
+        - name: "Ganon's Tower - Invisible Floor Maze - Pot 1"
+          position: 0x0838
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Invisible Floor Maze - Pot 2"
+          position: 0x0938
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Ganon's Tower - Invisible Floor Maze - Hardhat Beetle 1"
+          position: { x: 0x13, y: 0x09, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Ganon's Tower - Invisible Floor Maze - Mini Helmasaur"
+          position: { x: 0x0b, y: 0x0a, z: 0x00 }
+          sprite: "MiniHelmasaur"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Invisible Floor Maze - Hardhat Beetle 2"
+          position: { x: 0x11, y: 0x0f, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Invisible Floor Maze - Hardhat Beetle 3"
+          position: { x: 0x17, y: 0x0e, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Invisible Floor Maze - Hardhat Beetle 4"
+          position: { x: 0x0d, y: 0x12, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Invisible Floor Maze - Hardhat Beetle 5"
+          position: { x: 0x09, y: 0x13, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Invisible Floor Maze - Fire Snake"
+          position: { x: 0x0f, y: 0x1c, z: 0x00 }
+          sprite: "FireSnake"

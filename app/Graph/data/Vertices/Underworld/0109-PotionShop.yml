@@ -1,0 +1,41 @@
+rooms:
+  - roomid: 0x0109
+    nodes:
+      regions:
+        - name: "Potion Shop"
+          type: "shop"
+          shopkeeper: 0xA0
+          shopstyle: 0x83
+          inletid: 0x4C
+
+      items:
+        - name: "Potion Shop Item"
+          addresses: [0x180014]
+          type: "standing"
+          itemset: ["lw"]
+
+      inventory:
+        - name: "Potion Shop - Left"
+          type: "shopitem"
+          item: "RedPotion"
+          cost: 120
+          itemset: ["lw", "shop"]
+
+        - name: "Potion Shop - Middle"
+          type: "shopitem"
+          item: "GreenPotion"
+          cost: 60
+          itemset: ["lw", "shop"]
+
+        - name: "Potion Shop - Right"
+          type: "shopitem"
+          item: "BluePotion"
+          cost: 160
+          itemset: ["lw", "shop"]
+
+      mobs:
+        - name: "Potion Shop - Potion Shop Entity"
+          position: { x: 0x0a, y: 0x1b, z: 0x00 }
+          sprite: "PotionShop"
+          allow:
+            - "PotionShop"

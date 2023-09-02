@@ -1,0 +1,139 @@
+rooms:
+  - roomid: 0x3D
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Torches 2"
+        - name: "Ganon's Tower - Mini Helmasaur Room"
+        - name: "Ganon's Tower - Conveyor Spikes"
+        - name: "Ganon's Tower - Pre-Moldorm"
+
+      keydoors:
+        - name: "Ganon's Tower - Mini Helmasaur Door"
+          key: "KeyA2"
+        - name: "Ganon's Tower - Moldorm Door"
+          key: "KeyA2"
+
+      items:
+        - name: "Ganon's Tower - Mini Helmasaur Room - Left"
+          type: "chest"
+          addresses: [0xEAFD]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Mini Helmasaur Room - Right"
+          type: "chest"
+          addresses: [0xEB00]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Pre-Moldorm Chest"
+          type: "chest"
+          addresses: [0xEB03]
+          itemset: ["gt"]
+
+      pots:
+        - name: "Ganon's Tower - Torches 2 - Pot 1"
+          position: 0x0c4c
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Torches 2 - Pot 2"
+          position: 0x0c70
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Torches 2 - Pot 3"
+          position: 0x1618
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Torches 2 - Pot 4"
+          position: 0x1628
+          sprite: "@ArrowRefill5"
+        - name: "Ganon's Tower - Torches 2 - Pot 5"
+          position: 0x1820
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Torches 2 - Pot 6"
+          position: 0x1a14
+          sprite: "@RupeeBlue"
+        - name: "Ganon's Tower - Torches 2 - Pot 7"
+          position: 0x1a24
+          sprite: "@MagicRefillFull"
+
+      mobs:
+        - name: "Ganon's Tower - Torches 2 - Crystal Switch 1"
+          position: { x: 0x05, y: 0x17, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow: ["CrystalSwitch"]
+
+        - name: "Ganon's Tower - Torches 2 - Crystal Switch 2"
+          position: { x: 0x0a, y: 0x19, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow: ["CrystalSwitch"]
+
+        - name: "Ganon's Tower - Mini Helmasaur Room - Mini Helmasaur - Left"
+          position: { x: 0x17, y: 0x07, z: 0x00 }
+          sprite: "MiniHelmasaur"
+          item: "KeyA2"
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Mini Helmasaur Room - Mini Helmasaur - Right"
+          position: { x: 0x18, y: 0x07, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Ganon's Tower - Mini Helmasaur Room - Medusa 1"
+          position: { x: 0x15, y: 0x08, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Ganon's Tower - Mini Helmasaur Room - Medusa 2"
+          position: { x: 0x1a, y: 0x08, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Ganon's Tower - Torches 2 - Spike Trap"
+          position: { x: 0x04, y: 0x0a, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Ganon's Tower - Torches 2 - Big Spike Trap"
+          position: { x: 0x03, y: 0x0b, z: 0x00 }
+          sprite: "BigSpikeTrap"
+
+        - name: "Ganon's Tower - Torches 2 - Falling Squares"
+          position: { x: 0x1b, y: 0x15, z: 0x00 }
+          sprite: "FallingSquare"
+
+        - name: "Ganon's Tower - Torches 2 - Spark (Counterclockwise)"
+          position: { x: 0x13, y: 0x16, z: 0x00 }
+          sprite: "SparkCCW"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Torches 2 - Spark (Clockwise) 1"
+          position: { x: 0x1c, y: 0x16, z: 0x00 }
+          sprite: "SparkCW"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Torches 2 - Spark (Clockwise) 2"
+          position: { x: 0x09, y: 0x16, z: 0x00 }
+          sprite: "SparkCW"
+
+        - name: "Ganon's Tower - Torches 2 - Bunny Beam"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "BunnyBeam"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Torches 2 - Antifairy"
+          position: { x: 0x08, y: 0x17, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"

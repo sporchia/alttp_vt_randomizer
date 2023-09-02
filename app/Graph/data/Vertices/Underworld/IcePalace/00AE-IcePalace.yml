@@ -1,0 +1,40 @@
+rooms:
+  - roomid: 0xAE
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Ice T"
+
+      items:
+        - name: "Ice Palace - Iced T Room"
+          addresses: [0xE9E3]
+          type: "chest"
+          itemset: ["ice"]
+
+      pots:
+        - name: "Ice Palace - Ice T - Pot"
+          position: 0x0c4c
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Ice Palace - Ice T - Blue Bari 1"
+          position: { x: 0x13, y: 0x07, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Ice T - Blue Bari 2"
+          position: { x: 0x15, y: 0x07, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

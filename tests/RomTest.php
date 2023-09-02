@@ -16,6 +16,8 @@ final class RomTest extends TestCase
 {
     use RefreshDatabase;
 
+    private Rom $rom;
+
     public function setUp(): void
     {
         parent::setUp();

@@ -1,0 +1,250 @@
+maps:
+  - map: 0x00
+    nodes:
+      meta:
+        - name: "Duck Airlines"
+
+        - name: "ActiveBombos"
+          item: "ActiveBombos"
+
+        - name: "ActiveEther"
+          item: "ActiveEther"
+
+        - name: "ActiveQuake"
+          item: "ActiveQuake"
+
+        - name: "TurtleRockEntry"
+          item: "TurtleRockEntry"
+
+        - name: "TurtleRockOpen"
+          item: "TurtleRockOpen"
+
+        - name: "MireEntry"
+          item: "MireEntry"
+
+        - name: "ActiveBookOfMudora"
+          item: "ActiveBookOfMudora"
+
+        - name: "FillSwamp"
+          item: "FillSwamp"
+
+        - name: "PowerGlove"
+          item: "PowerGlove"
+
+        - name: "TitansMitt"
+          item: "TitansMitt"
+
+        - name: "MirrorShield"
+          item: "MirrorShield"
+
+        - name: "TowerEntry"
+          item: "TowerEntry"
+
+        - name: "BowAndSilverArrows"
+          item: "BowAndSilverArrows"
+
+        - name: "GanonVulnerable"
+          item: "GanonVulnerable"
+
+        # Pendant Pseudo
+        - name: "1 Pendant C"
+
+        - name: "1 Pendant P"
+
+        - name: "1 Pendant W"
+
+        - name: "2 Pendant CP"
+
+        - name: "2 Pendant PW"
+
+        - name: "2 Pendant CW"
+
+        - name: "All Pendants"
+          item: "AllPendants"
+
+        - name: "Red Crystals"
+          item: "RedCrystals"
+
+        - name: "Bottle"
+          item: "Bottle"
+
+        - name: "BowAndArrows"
+          item: "BowAndArrows"
+
+        - name: "L3Sword"
+          item: "L3Sword"
+
+        - name: "MasterSword"
+          item: "L2Sword"
+
+        - name: "L1Sword"
+          item: "L1Sword"
+
+        - name: "ReturnedSmith"
+          item: "ReturnedSmith"
+
+        - name: "LostPurpleChest"
+          item: "LostPurpleChest"
+
+        # Boss beating metas
+        - name: "DefeatArmos"
+          item: "DefeatArmos"
+
+        - name: "DefeatLanmolas"
+          item: "DefeatLanmolas"
+
+        - name: "DefeatMoldorm"
+          item: "DefeatMoldorm"
+
+        - name: "DefeatAgahnim"
+          item: "DefeatAgahnim"
+
+        - name: "DefeatHelmasaur"
+          item: "DefeatHelmasaur"
+
+        - name: "ArrghusPullPuffs"
+          item: "ArrghusPullPuffs"
+
+        - name: "DefeatArrghus"
+          item: "DefeatArrghus"
+
+        - name: "DefeatMothula"
+          item: "DefeatMothula"
+
+        - name: "DefeatBlind"
+          item: "DefeatBlind"
+
+        - name: "KholdstareShellMelt"
+          item: "KholdstareShellMelt"
+
+        - name: "DefeatKholdstare"
+          item: "DefeatKholdstare"
+
+        - name: "DefeatVitreous"
+          item: "DefeatVitreous"
+
+        - name: "DefeatTrinexx"
+          item: "DefeatTrinexx"
+
+        - name: "Pendant-1"
+          item: "Pendant"
+
+        - name: "Crystal1"
+          item: "Crystal"
+
+        - name: "Crystal2"
+          item: "Crystal"
+
+        - name: "Crystal3"
+          item: "Crystal"
+
+        - name: "Crystal4"
+          item: "Crystal"
+
+        - name: "Crystal5"
+          item: "Crystal"
+
+        - name: "Crystal6"
+          item: "Crystal"
+
+        - name: "Crystal7"
+          item: "Crystal"
+
+        - name: "BottleMagicBar1"
+          item: "MagicBar"
+
+        - name: "BottleMagicBar2"
+          item: "MagicBar"
+
+        - name: "BottleMagicBar3"
+          item: "MagicBar"
+
+        - name: "BottleMagicBar4"
+          item: "MagicBar"
+
+        - name: "HalfMagicBar"
+          item: "MagicBar"
+
+        - name: "HalfMagicBar1"
+          item: "MagicBar"
+
+        - name: "HalfMagicBar2"
+          item: "MagicBar"
+
+        - name: "HalfMagicBar3"
+          item: "MagicBar"
+
+        - name: "HalfMagicBar4"
+          item: "MagicBar"
+
+        - name: "TrinexxMagic"
+          item: "TrinexxMagic"
+
+        - name: "TrinexxFireHead"
+          item: "TrinexxHead"
+
+        - name: "TrinexxIceHead"
+          item: "TrinexxHead"
+
+        - name: "TrinexxMainHead"
+          item: "TrinexxHead"
+
+        - name: "PHeart1"
+          item: "HeartContainer"
+
+        - name: "PHeart2"
+          item: "HeartContainer"
+
+        - name: "PHeart3"
+          item: "HeartContainer"
+
+        - name: "PHeart4"
+          item: "HeartContainer"
+
+        - name: "PHeart5"
+          item: "HeartContainer"
+
+        - name: "PHeart6"
+          item: "HeartContainer"
+
+        - name: "PHeart7"
+          item: "HeartContainer"
+
+        - name: "PHeart8"
+          item: "HeartContainer"
+
+        - name: "PHeart9"
+          item: "HeartContainer"
+
+        - name: "PHeart10"
+          item: "HeartContainer"
+
+        - name: "PHeart11"
+          item: "HeartContainer"
+
+        - name: "PHeart12"
+          item: "HeartContainer"
+
+        - name: "PHeart13"
+          item: "HeartContainer"
+
+        - name: "PHeart14"
+          item: "HeartContainer"
+
+        - name: "PHeart15"
+          item: "HeartContainer"
+
+        - name: "PHeart16"
+          item: "HeartContainer"
+
+        - name: "PHeart17"
+          item: "HeartContainer"
+
+        - name: "PHeart18"
+          item: "HeartContainer"
+
+        - name: "PHeart19"
+          item: "HeartContainer"
+
+        - name: "PHeart20"
+          item: "HeartContainer"

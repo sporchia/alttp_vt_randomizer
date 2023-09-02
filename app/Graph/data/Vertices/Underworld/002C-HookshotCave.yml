@@ -1,0 +1,36 @@
+rooms:
+  - roomid: 0x002C
+    nodes:
+      regions:
+        - name: "Hookshot Cave Corner"
+          inletid: 0x3B
+        - name: "Hookshot Cave Cross"
+        - name: "Hookshot Cave Fairy"
+        - name: "Hookshot Cave Faires"
+
+      pots:
+        - name: "Hookshot Cave Cross - Pot 1"
+          position: 0x186c
+          sprite: "@Heart"
+        - name: "Hookshot Cave Cross - Pot 2"
+          position: 0x1870
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Hookshot Cave Cross - Fairy Queen"
+          position: { x: 0x17, y: 0x05, z: 0x00 }
+          sprite: "FairyBig"
+          allow:
+            - "FairyBig"
+
+        - name: "Hookshot Cave Cross - Fairy 1"
+          position: { x: 0x09, y: 0x04, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Hookshot Cave Cross - Fairy 2"
+          position: { x: 0x06, y: 0x05, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Hookshot Cave Cross - Fairy 3"
+          position: { x: 0x08, y: 0x07, z: 0x00 }
+          sprite: "Fairy"

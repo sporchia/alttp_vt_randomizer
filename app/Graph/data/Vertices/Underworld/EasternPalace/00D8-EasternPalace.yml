@@ -13,28 +13,28 @@ rooms:
       pots:
         - name: "Eastern Palace - Kill Room 1 - Pot 1"
           position: 0x08ca
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Kill Room 1 - Pot 2"
           position: 0x08f2
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Kill Room 1 - Pot 3"
           position: 0x0aca
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Kill Room 1 - Pot 4"
           position: 0x0af2
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Kill Room 1 - Pot 5"
           position: 0x0cca
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
         - name: "Eastern Palace - Kill Room 1 - Pot 6"
           position: 0x0cf2
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Kill Room 1 - Pot 7"
           position: 0x185c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Kill Room 1 - Pot 8"
           position: 0x1860
-          sprite: "BombRefill1"
+          sprite: "@ArrowRefill5"
 
       mobs:
         - name: "Eastern Palace - Kill Room 2 - Red Eyegore L"

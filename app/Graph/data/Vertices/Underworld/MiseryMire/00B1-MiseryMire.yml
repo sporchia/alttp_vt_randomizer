@@ -1,0 +1,71 @@
+rooms:
+  - roomid: 0xB1
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Hourglass"
+        - name: "Misery Mire - Wizzrobe Ambush"
+        - name: "Misery Mire - Lonely Teleport"
+
+      keydoors:
+        - name: "Misery Mire - Hourglass Door"
+          key: "KeyD6"
+
+      bigkeydoors:
+        - name: "Misery Mire - Wizzrobe Ambush Door"
+          key: "BigKeyD6"
+
+      pots:
+        - name: "Misery Mire - Hourglass - Pot 1"
+          position: 0x044c
+          sprite: "@Heart"
+        - name: "Misery Mire - Hourglass - Pot 2"
+          position: 0x0470
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Misery Mire - Hourglass - Medusa 1"
+          position: { x: 0x15, y: 0x07, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Hourglass - Medusa 2"
+          position: { x: 0x1a, y: 0x07, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Hourglass - Spike Trap 1"
+          position: { x: 0x16, y: 0x0e, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Misery Mire - Hourglass - Spike Trap 2"
+          position: { x: 0x19, y: 0x11, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Misery Mire - Hourglass - Wizzrobe 1"
+          position: { x: 0x0c, y: 0x17, z: 0x00 }
+          sprite: "Wizzrobe"
+
+        - name: "Misery Mire - Hourglass - Big Spike Trap"
+          position: { x: 0x1a, y: 0x17, z: 0x00 }
+          sprite: "BigSpikeTrap"
+
+        - name: "Misery Mire - Hourglass - Yomo Medusa"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Misery Mire - Hourglass - Wizzrobe 2"
+          position: { x: 0x03, y: 0x1a, z: 0x00 }
+          sprite: "Wizzrobe"
+
+        - name: "Misery Mire - Hourglass - Antifairy"
+          position: { x: 0x15, y: 0x1a, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Hourglass - Wizzrobe 3"
+          position: { x: 0x08, y: 0x1c, z: 0x00 }
+          sprite: "Wizzrobe"

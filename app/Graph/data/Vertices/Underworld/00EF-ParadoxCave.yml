@@ -1,0 +1,56 @@
+rooms:
+  - roomid: 0x00EF
+    nodes:
+      regions:
+        - name: "Paradox Cave - Middle"
+          inletid: 0x1f
+        - name: "Paradox Cave - Middle Ledge"
+        - name: "Paradox Cave - Moldorm Room"
+
+      items:
+        - name: "Paradox Cave Lower - Far Left"
+          address: [0xEB2A]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Paradox Cave Lower - Left"
+          address: [0xEB2D]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Paradox Cave Lower - Right"
+          address: [0xEB30]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Paradox Cave Lower - Far Right"
+          address: [0xEB33]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Paradox Cave Lower - Middle"
+          address: [0xEB36]
+          type: "chest"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Paradox Cave - Middle - Mini Moldorm 1"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Paradox Cave - Middle - Mini Moldorm 2"
+          position: { x: 0x14, y: 0x0a, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Paradox Cave - Middle - Mini Moldorm 3"
+          position: { x: 0x1b, y: 0x0a, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Paradox Cave - Middle - Crystal Switch"
+          position: { x: 0x18, y: 0x06, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"

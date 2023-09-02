@@ -1,0 +1,79 @@
+rooms:
+  - roomid: 0xDC
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Grand Room SE"
+
+      items:
+        - name: "Thieves' Town - Compass Chest"
+          type: "chest"
+          addresses: [0xEA07]
+          itemset: ["thieves"]
+
+      pots:
+        - name: "Thieves' Town - Grand Room SE - Pot 1"
+          position: 0x0438
+          sprite: "@RupeeBlue"
+        - name: "Thieves' Town - Grand Room SE - Pot 2"
+          position: 0x0470
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Grand Room SE - Pot 3"
+          position: 0x1044
+          sprite: "@Heart"
+        - name: "Thieves' Town - Grand Room SE - Pot 4"
+          position: 0x1c0c
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Thieves' Town - Grand Room SE - Blue Zazak 1"
+          position: { x: 0x09, y: 0x0a, z: 0x01 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Grand Room SE - Spark (Counterclockwise)"
+          position: { x: 0x0e, y: 0x0a, z: 0x01 }
+          sprite: "SparkCCW"
+
+        - name: "Thieves' Town - Grand Room SE - Red Zazak 1"
+          position: { x: 0x0f, y: 0x0c, z: 0x01 }
+          sprite: "ZazakRed"
+
+        - name: "Thieves' Town - Grand Room SE - Zol 1"
+          position: { x: 0x0b, y: 0x10, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Thieves' Town - Grand Room SE - Zol 2"
+          position: { x: 0x16, y: 0x10, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Thieves' Town - Grand Room SE - Bunny Beam"
+          position: { x: 0x0c, y: 0x16, z: 0x01 }
+          sprite: "BunnyBeam"
+
+        - name: "Thieves' Town - Grand Room SE - Red Zazak 2"
+          position: { x: 0x0f, y: 0x16, z: 0x01 }
+          sprite: "ZazakRed"
+
+        - name: "Thieves' Town - Grand Room SE - Blue Zazak 2"
+          position: { x: 0x09, y: 0x17, z: 0x01 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Grand Room SE - Fire Snake 1"
+          position: { x: 0x16, y: 0x17, z: 0x01 }
+          sprite: "FireSnake"
+
+        - name: "Thieves' Town - Grand Room SE - Fire Snake 2"
+          position: { x: 0x05, y: 0x1c, z: 0x00 }
+          sprite: "FireSnake"
+          deny:
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Thieves' Town - Grand Room SE - Zol 3"
+          position: { x: 0x0f, y: 0x1c, z: 0x00 }
+          sprite: "Zol"

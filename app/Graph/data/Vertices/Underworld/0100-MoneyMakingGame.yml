@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x0100
+    nodes:
+      regions:
+        - name: "Money Making Game"
+          inletid: 0x3c
+
+      mobs:
+        - name: "Money Making Game - Shopkeeper"
+          position: { x: 0x0b, y: 0x1b, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

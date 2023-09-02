@@ -1,0 +1,62 @@
+rooms:
+  - roomid: 0x0E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Entrance"
+          peg: "orange"
+          inletid: 0x2D
+        - name: "Ice Palace - Bari Key"
+
+      keydoors:
+        - name: "Ice Palace - Bari Key Door"
+          key: "KeyD5"
+
+      shutters:
+        - name: "Ice Palace - Entrance - Shutter Door"
+        - name: "Ice Palace - Bari Key - Shutter Door"
+
+      mobs:
+        - name: "Ice Palace - Entrance - Freezor"
+          position: { x: 0x16, y: 0x12, z: 0x00 }
+          sprite: "Freezor"
+          allow:
+            - "Freezor"
+          trophy: "IcePalaceEntranceTrophy"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+
+        - name: "Ice Palace - Bari Key - Top Bari"
+          position: { x: 0x05, y: 0x16, z: 0x00 }
+          sprite: "BlueBari"
+          trophy: "IcePalaceBariKeyTrophy"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+
+        - name: "Ice Palace - Bari Key - Middle Bari"
+          position: { x: 0x05, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+          trophy: "IcePalaceBariKeyTrophy"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+
+        - name: "Ice Palace - Bari Key - Bottom Bari"
+          position: { x: 0x05, y: 0x1a, z: 0x00 }
+          sprite: "BlueBari"
+          item: "KeyD5"
+          itemset: ["ice"]
+          trophy: "IcePalaceBariKeyTrophy"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"

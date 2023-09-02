@@ -1,0 +1,78 @@
+rooms:
+  - roomid: 0x11
+    group: 1
+    nodes:
+      regions:
+        - name: "Sewers - Block Puzzle"
+          inletid: 0x81
+        - name: "Sewers - Block Puzzle Top"
+        - name: "Sewers - Secret Room"
+
+      keydoors:
+        - name: "Sewers - Last Door"
+          key: "KeyH2"
+
+      items:
+        - name: "Sewers - Secret Room - Left"
+          addresses: [0xEB5D]
+          type: "chest"
+          itemset: ["escape"]
+        - name: "Sewers - Secret Room - Middle"
+          addresses: [0xEB60]
+          type: "chest"
+          itemset: ["escape"]
+        - name: "Sewers - Secret Room - Right"
+          addresses: [0xEB63]
+          type: "chest"
+          itemset: ["escape"]
+
+      pots:
+        - name: "Sewers - Secret Room - Pot 1"
+          position: 0x0f90
+          sprite: "@Heart"
+        - name: "Sewers - Secret Room - Pot 2"
+          position: 0x0fa0
+          sprite: "@Heart"
+        - name: "Sewers - Secret Room - Pot 3"
+          position: 0x1390
+          sprite: "@Heart"
+        - name: "Sewers - Secret Room - Pot 4"
+          position: 0x13a0
+          sprite: "@Heart"
+        - name: "Sewers - Secret Room - Pot 5"
+          position: 0x0f98
+        - name: "Sewers - Secret Room - Pot 6"
+          position: 0x1398
+
+      mobs:
+        - name: "Sewers - Block Puzzle - Rat 1"
+          position: { x: 0x17, y: 0x0a, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Block Puzzle - Rat 2"
+          position: { x: 0x18, y: 0x0a, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Block Puzzle - Keese 1"
+          position: { x: 0x17, y: 0x0c, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Block Puzzle - Keese 2"
+          position: { x: 0x18, y: 0x0c, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Sewers - Block Puzzle - Rat 3"
+          position: { x: 0x1c, y: 0x11, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Block Puzzle - Rat 4"
+          position: { x: 0x1c, y: 0x12, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Block Puzzle - Rat 5"
+          position: { x: 0x1a, y: 0x16, z: 0x00 }
+          sprite: "Rat"
+
+        - name: "Sewers - Block Puzzle - Rat 6"
+          position: { x: 0x1b, y: 0x16, z: 0x00 }
+          sprite: "Rat"

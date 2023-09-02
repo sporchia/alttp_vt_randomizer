@@ -1,0 +1,115 @@
+rooms:
+  - roomid: 0x7B
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - DMs Room"
+        - name: "Ganon's Tower - Bari Corridor"
+        - name: "Ganon's Tower - Beetle Island"
+
+      keydoors:
+        - name: "Ganon's Tower - Bari Corridor Door"
+          key: "KeyA2"
+
+      items:
+        - name: "Ganon's Tower - DMs Room - Top Left"
+          type: "chest"
+          addresses: [0xEAB8]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - DMs Room - Top Right"
+          type: "chest"
+          addresses: [0xEABB]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - DMs Room - Bottom Left"
+          type: "chest"
+          addresses: [0xEABE]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - DMs Room - Bottom Right"
+          type: "chest"
+          addresses: [0xEAC1]
+          itemset: ["gt"]
+
+      pots:
+        - name: "Ganon's Tower - Bari Corridor Pot TR"
+          position: 0x0440
+          item: "KeyA2"
+          itemset: ["gt"]
+        - name: "Ganon's Tower - DMs Room - Pot 1"
+          position: 0x043c
+          sprite: "@Heart"
+        - name: "Ganon's Tower - DMs Room - Pot 2"
+          position: 0x0a30
+        - name: "Ganon's Tower - DMs Room - Pot 3"
+          position: 0x074c
+        - name: "Ganon's Tower - DMs Room - Pot 4"
+          position: 0x0a58
+
+      mobs:
+        - name: "Ganon's Tower - DMs Room - Blue Bari 1"
+          position: { x: 0x0b, y: 0x07, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - DMs Room - Blue Bari 2"
+          position: { x: 0x16, y: 0x09, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - DMs Room - Yomo Medusa 1"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Ganon's Tower - DMs Room - Stalfos 1"
+          position: { x: 0x0b, y: 0x15, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Ganon's Tower - DMs Room - Stalfos 2"
+          position: { x: 0x07, y: 0x17, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Ganon's Tower - DMs Room - Yomo Medusa 2"
+          position: { x: 0x09, y: 0x17, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Ganon's Tower - DMs Room - Statue"
+          position: { x: 0x13, y: 0x18, z: 0x00 }
+          sprite: "Statue"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - DMs Room - Hardhat Beetle"
+          position: { x: 0x17, y: 0x18, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ganon's Tower - DMs Room - Stalfos 3"
+          position: { x: 0x09, y: 0x19, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Ganon's Tower - DMs Room - Yomo Medusa 3"
+          position: { x: 0x05, y: 0x1a, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Ganon's Tower - DMs Room - Yomo Medusa 4"
+          position: { x: 0x0b, y: 0x1b, z: 0x00 }
+          sprite: "YomoMedusa"

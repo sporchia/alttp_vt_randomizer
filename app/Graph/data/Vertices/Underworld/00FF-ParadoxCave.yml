@@ -1,0 +1,60 @@
+rooms:
+  - roomid: 0x00FF
+    nodes:
+      regions:
+        - name: "Paradox Cave - Bottom Entrance"
+          type: "shop"
+          shopkeeper: 0xA0
+          shopstyle: 0x03
+          inletid: 0x1e
+        - name: "Paradox Cave - Bottom"
+        - name: "Paradox Cave - Treasure"
+        - name: "Paradox Cave - Shop"
+
+      items:
+        - name: "Paradox Cave Upper - Left"
+          addresses: [0xEB39]
+          type: "chest"
+          itemset: ["lw"]
+
+        - name: "Paradox Cave Upper - Right"
+          addresses: [0xEB3C]
+          type: "chest"
+          itemset: ["lw"]
+
+      inventory:
+        - name: "Paradox Cave - Shop - Left"
+          type: "shopitem"
+          item: "RedPotion"
+          cost: 150
+          itemset: ["lw", "shop"]
+
+        - name: "Paradox Cave - Shop - Middle"
+          type: "shopitem"
+          item: "Heart"
+          cost: 10
+          itemset: ["lw", "shop"]
+
+        - name: "Paradox Cave - Shop - Right"
+          type: "shopitem"
+          item: "TenBombs"
+          cost: 50
+          itemset: ["lw", "shop"]
+
+      pots:
+        - name: "Paradox Cave - Shop - Pot 1"
+          position: 0x085c
+          sprite: "@Heart"
+        - name: "Paradox Cave - Shop - Pot 2"
+          position: 0x0860
+          sprite: "@Heart"
+        - name: "Paradox Cave - Shop - Pot 3"
+          position: 0x1c70
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Paradox Cave - Shop - Shopkeeper"
+          position: { x: 0x07, y: 0x04, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

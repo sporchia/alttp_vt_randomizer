@@ -1,0 +1,67 @@
+maps:
+  - map: 0x25
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Octorok Field"
+
+      mobs:
+        - name: "Octorok Field - Octorok (One Way) 1"
+          position: { x: 0x0f, y: 0x08 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 2"
+          position: { x: 0x05, y: 0x0c }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 3"
+          position: { x: 0x14, y: 0x0c }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 4"
+          position: { x: 0x10, y: 0x0d }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 5"
+          position: { x: 0x0c, y: 0x11 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 6"
+          position: { x: 0x18, y: 0x16 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 7"
+          position: { x: 0x08, y: 0x17 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Octorok (One Way) 8"
+          position: { x: 0x10, y: 0x17 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Octorok Field - Blue Guard 1"
+          position: { x: 0x0e, y: 0x08 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Octorok Field - Blue Guard 2"
+          position: { x: 0x05, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Octorok Field - Blue Guard 3"
+          position: { x: 0x09, y: 0x11 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Octorok Field - sprite.FastRedSpearGuard"
+          position: { x: 0x19, y: 0x16 }
+          sprite: "FastRedSpearGuard"
+          state: [2]

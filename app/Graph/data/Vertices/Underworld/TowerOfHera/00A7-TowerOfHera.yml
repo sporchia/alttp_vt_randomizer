@@ -1,0 +1,15 @@
+rooms:
+  - roomid: 0xA7
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Fairy Refill"
+
+      mobs:
+        - name: "Tower Of Hera - Fairy Refill - Fairy 1"
+          position: { x: 0x06, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Tower Of Hera - Fairy Refill - Fairy 2"
+          position: { x: 0x06, y: 0x09, z: 0x00 }
+          sprite: "Fairy"

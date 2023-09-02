@@ -1,0 +1,73 @@
+maps:
+  - map: 0x3B
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Wetlands Dam"
+
+      entrances:
+        - name: "Floodgate"
+          entranceid: 0x4D
+          outletid: 0x93
+
+      items:
+        - name: "Sunken Treasure"
+          addresses: [0x180145]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Wetlands Dam - Green Archer"
+          position: { x: 0x13, y: 0x06 }
+          sprite: "GreenArcher"
+          state: [1]
+
+        - name: "Wetlands Dam - Blue Archer"
+          position: { x: 0x0c, y: 0x0a }
+          sprite: "BlueArcher"
+          state: [1]
+
+        - name: "Wetlands Dam - Raven 1"
+          position: { x: 0x08, y: 0x0b }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Wetlands Dam - Flopping Fish 2"
+          position: { x: 0x1b, y: 0x10 }
+          sprite: "FloppingFish"
+          state: [1]
+
+        - name: "Wetlands Dam - Rabbit"
+          position: { x: 0x0f, y: 0x14 }
+          sprite: "Rabbit"
+          state: [1]
+
+        - name: "Wetlands Dam - Octorok (One Way)"
+          position: { x: 0x0c, y: 0x0f }
+          sprite: "Octorok1"
+          state: [2]
+
+        - name: "Wetlands Dam - Octorok (Four Way)"
+          position: { x: 0x0f, y: 0x14 }
+          sprite: "Octorok4"
+          state: [2]
+
+        - name: "Wetlands Dam - Blue Guard"
+          position: { x: 0x17, y: 0x18 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Wetlands Dam - Flopping Fish 1"
+          position: { x: 0x13, y: 0x0d }
+          sprite: "FloppingFish"
+          state: [1, 2]
+
+        - name: "Wetlands Dam - Heart Piece"
+          position: { x: 0x14, y: 0x0e }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "Wetlands Dam - Raven 2"
+          position: { x: 0x14, y: 0x1b }
+          sprite: "Raven"
+          state: [1, 2]

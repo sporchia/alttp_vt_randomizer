@@ -1,0 +1,94 @@
+rooms:
+  - roomid: 0x26
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Statue Puzzle"
+        - name: "Swamp Palace - Forgotten Room"
+        - name: "Swamp Palace - Little Spoon"
+        - name: "Swamp Palace - Big Spoon"
+
+      pots:
+        - name: "Swamp Palace - Big Spoon - Pot 1"
+          position: 0x041c
+          sprite: "@BombRefill1"
+        - name: "Swamp Palace - Big Spoon - Pot 2"
+          position: 0x080c
+          sprite: "@MagicRefillSmall"
+        - name: "Swamp Palace - Big Spoon - Pot 3"
+          position: 0x1396
+          sprite: "FloorSwitch"
+        - name: "Swamp Palace - Big Spoon - Pot 4"
+          position: 0x1a16
+          sprite: "@RupeeBlue"
+        - name: "Swamp Palace - Big Spoon - Pot 5"
+          position: 0x1adc
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Swamp Palace - Big Spoon - Medusa 1"
+          position: { x: 0x03, y: 0x04, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Swamp Palace - Big Spoon - Red Bari 1"
+          position: { x: 0x1a, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Swamp Palace - Big Spoon - Red Bari 2"
+          position: { x: 0x05, y: 0x06, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Swamp Palace - Big Spoon - Stalfos 1"
+          position: { x: 0x09, y: 0x06, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Swamp Palace - Big Spoon - Stalfos 2"
+          position: { x: 0x04, y: 0x09, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Swamp Palace - Big Spoon - Medusa 2"
+          position: { x: 0x0c, y: 0x0c, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Swamp Palace - Big Spoon - Statue"
+          position: { x: 0x06, y: 0x17, z: 0x00 }
+          sprite: "Statue"
+          allow:
+            - "Statue"
+
+        - name: "Swamp Palace - Big Spoon - Yomo Medusa"
+          position: { x: 0x19, y: 0x17, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Swamp Palace - Big Spoon - Red Bari 3"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Swamp Palace - Big Spoon - Kyameron"
+          position: { x: 0x15, y: 0x18, z: 0x00 }
+          sprite: "Kyameron"
+          deny:
+            - "RollerHR"
+
+        - name: "Swamp Palace - Big Spoon - Blue Bari"
+          position: { x: 0x18, y: 0x19, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Swamp Palace - Big Spoon - Fire Snake"
+          position: { x: 0x1c, y: 0x1a, z: 0x00 }
+          sprite: "FireSnake"

@@ -1,0 +1,120 @@
+rooms:
+  - roomid: 0xBC
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Torch Hallway"
+        - name: "Thieves' Town - Firesnake Room Top"
+        - name: "Thieves' Town - Firesnake Room"
+        - name: "Thieves' Town - Firesnake Room Bottom"
+        - name: "Thieves' Town - Toilet"
+
+      keydoors:
+        - name: "Thieves' Town - Torch Hallway Door"
+          key: "keyD4"
+
+      pots:
+        - name: "Thieves' Town - Torch Hallway Pot Key"
+          position: 0x0466
+          item: "KeyD4"
+          itemset: ["thieves"]
+        - name: "Thieves' Town - Toilet - Pot 1"
+          position: 0x03b2
+          sprite: "FloorSwitch"
+        - name: "Thieves' Town - Toilet - Pot 2"
+          position: 0x0456
+          sprite: "@Heart"
+        - name: "Thieves' Town - Toilet - Pot 3"
+          position: 0x0c8a
+          sprite: "@Heart"
+        - name: "Thieves' Town - Toilet - Pot 4"
+          position: 0x140c
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Toilet - Pot 5"
+          position: 0x1430
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Toilet - Pot 6"
+          position: 0x151c
+          sprite: "@RupeeBlue"
+        - name: "Thieves' Town - Toilet - Pot 7"
+          position: 0x1520
+          sprite: "@RupeeBlue"
+        - name: "Thieves' Town - Toilet - Pot 8"
+          position: 0x1b1c
+          sprite: "@RupeeBlue"
+        - name: "Thieves' Town - Toilet - Pot 9"
+          position: 0x1b20
+          sprite: "@RupeeBlue"
+        - name: "Thieves' Town - Toilet - Pot 10"
+          position: 0x1c0c
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Toilet - Pot 11"
+          position: 0x1c30
+          sprite: "@BombRefill1"
+        - name: "Thieves' Town - Toilet - Pot 12"
+          position: 0x0cb2
+        - name: "Thieves' Town - Toilet - Pot 13"
+          position: 0x140c
+        - name: "Thieves' Town - Toilet - Pot 14"
+          position: 0x038a
+
+      mobs:
+        - name: "Thieves' Town - Toilet - Blue Zazak 1"
+          position: { x: 0x06, y: 0x05, z: 0x00 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Toilet - Stalfos 1"
+          position: { x: 0x0c, y: 0x05, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Thieves' Town - Toilet - Spike Trap 1"
+          position: { x: 0x08, y: 0x06, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Toilet - Red Zazak 1"
+          position: { x: 0x0a, y: 0x09, z: 0x00 }
+          sprite: "ZazakRed"
+
+        - name: "Thieves' Town - Toilet - Spike Trap 2"
+          position: { x: 0x09, y: 0x0a, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Thieves' Town - Toilet - Blue Zazak 2"
+          position: { x: 0x05, y: 0x0b, z: 0x00 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Toilet - Stalfos 2"
+          position: { x: 0x17, y: 0x0a, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Thieves' Town - Toilet - Stalfos 3"
+          position: { x: 0x18, y: 0x11, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Thieves' Town - Toilet - Stalfos 4"
+          position: { x: 0x16, y: 0x16, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Thieves' Town - Toilet - Blue Zazak 3"
+          position: { x: 0x08, y: 0x17, z: 0x00 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Toilet - Fire Snake"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Thieves' Town - Toilet - Red Zazak 2"
+          position: { x: 0x08, y: 0x19, z: 0x00 }
+          sprite: "ZazakRed"

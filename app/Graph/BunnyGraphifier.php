@@ -61,22 +61,16 @@ final class BunnyGraphifier
             'type' => 'meta',
         ]);
         $meta = $graph->getVertex("Meta:$world_id");
-        $graph->addDirected($meta, $moonpearl, [
-            'group' => "MoonPearl:$world_id",
-            'graphviz.label' => "MoonPearl:$world_id",
-        ]);
+        $graph->addDirected($meta, $moonpearl, "MoonPearl:$world_id");
 
         foreach (self::ITEM_MAP as $light_item => $dark_item) {
             $dark_vertex = $graph->newVertex([
                 'name' => "$dark_item:$world_id",
                 'type' => 'meta',
-                'item' => "$dark_item",
+                'item' => Item::get("$dark_item", $world_id),
             ]);
 
-            $this->world->graph->addDirected($moonpearl, $dark_vertex, [
-                'group' => "$light_item:$world_id",
-                'graphviz.label' => "$light_item:$world_id",
-            ]);
+            $this->world->graph->addDirected($moonpearl, $dark_vertex, "$light_item:$world_id");
         }
     }
 
@@ -85,13 +79,11 @@ final class BunnyGraphifier
      */
     public function adjustEdges(): void
     {
-        $world_id = $this->world->id;
-
         $work_queue = new SplQueue();
         $marked = new SplObjectStorage();
         $dark_nodes = array_filter(
             $this->world->graph->getVertices(),
-            fn (Vertex $node) => $node->getAttribute('moonpearl')
+            fn (Vertex $node) => $node->moonpearl
         );
 
         $edge_map = collect($this->world->graph->getEdges())
@@ -116,18 +108,15 @@ final class BunnyGraphifier
             /** @var Edge $edge */
             foreach ($edge_map[$node->id] as $edge) {
                 $alt_node = $edge->to;
-                if ($alt_node->getAttribute('moonpearl') !== false) {
+                if ($alt_node->moonpearl !== false) {
                     $work_queue->enqueue($alt_node);
 
-                    $group = preg_replace('/:\d+$/', '', $edge->getAttribute('group'));
+                    $group = preg_replace('/:\d+$/', '', $edge->group);
                     if (!isset(static::ITEM_MAP[$group])) {
                         continue;
                     }
 
-                    $edge->setAttributes([
-                        'group' => static::ITEM_MAP[$group] . ":$world_id",
-                        'graphviz.label' => static::ITEM_MAP[$group] . ":$world_id",
-                    ]);
+                    $edge->group = static::ITEM_MAP[$group] . ":" . $this->world->id;
                 }
             }
         }

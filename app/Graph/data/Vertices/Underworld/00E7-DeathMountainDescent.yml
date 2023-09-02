@@ -1,0 +1,84 @@
+rooms:
+  - roomid: 0xE7
+    dark: true
+    nodes:
+      regions:
+        - name: "Death Mountain Descent Cave Right"
+        - name: "Death Mountain Descent Cave Right darkness"
+          inletid: 0x2f
+
+      pots:
+        - name: "Death Mountain Descent Cave Right - Pot 1"
+          position: 0x0544
+          sprite: "@RupeeGreen"
+        - name: "Death Mountain Descent Cave Right - Pot 2"
+          position: 0x0548
+          sprite: "@RupeeGreen"
+
+      mobs:
+        - name: "Death Mountain Descent Cave Right - Keese 1"
+          position: { x: 0x10, y: 0x04, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerVU"
+            - "Kodongo"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Death Mountain Descent Cave Right - Keese 2"
+          position: { x: 0x13, y: 0x04, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerVU"
+            - "Kodongo"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Death Mountain Descent Cave Right - Keese 3"
+          position: { x: 0x15, y: 0x0b, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "Kodongo"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHR"
+
+        - name: "Death Mountain Descent Cave Right - Keese 4"
+          position: { x: 0x0b, y: 0x0c, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Death Mountain Descent Cave Right - Keese 5"
+          position: { x: 0x0b, y: 0x0d, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Death Mountain Descent Cave Right - Keese 6"
+          position: { x: 0x15, y: 0x0d, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "Kodongo"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHR"
+
+        - name: "Death Mountain Descent Cave Right - Keese 7"
+          position: { x: 0x15, y: 0x0f, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "Kodongo"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHR"

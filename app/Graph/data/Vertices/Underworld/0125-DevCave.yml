@@ -1,0 +1,20 @@
+rooms:
+  - roomid: 0x0125
+    nodes:
+      regions:
+        - name: "Dev Cave"
+          inletid: 0x70
+
+      pots:
+        - name: "Cheap Secret Thief - Pot 5"
+          position: 0x1658
+          sprite: "@Heart"
+        - name: "Cheap Secret Thief - Pot 6"
+          position: 0x1664
+          sprite: "@Heart"
+        - name: "Cheap Secret Thief - Pot 7"
+          position: 0x1c58
+          sprite: "@Heart"
+        - name: "Cheap Secret Thief - Pot 8"
+          position: 0x1c64
+          sprite: "@Heart"

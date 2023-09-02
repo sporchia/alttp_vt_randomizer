@@ -1,0 +1,28 @@
+rooms:
+  - roomid: 0x010C
+    nodes:
+      regions:
+        - name: "Fairy Pond Cave Entrance"
+          inletid: 0x50
+
+      pots:
+        - name: "Fairy Pond Cave - Pot"
+          position: 0x0e58
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Fairy Pond Cave - Fairy 1"
+          position: { x: 0x17, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Pond Cave - Fairy 2"
+          position: { x: 0x18, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Pond Cave - Fairy 3"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Pond Cave - Fairy 4"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "Fairy"

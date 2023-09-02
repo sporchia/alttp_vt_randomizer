@@ -25,7 +25,6 @@ final class EastTest extends TestCase
     {
         $randomizer = new Randomizer([[
             'mode.state' => 'open',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_map(fn ($i) => "$i:0", $items));
@@ -44,7 +43,6 @@ final class EastTest extends TestCase
     {
         $randomizer = new Randomizer([[
             'mode.state' => 'open',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_merge(["TurtleRockEntry$medallion:0"], array_map(fn ($i) => "$i:0", $items)));

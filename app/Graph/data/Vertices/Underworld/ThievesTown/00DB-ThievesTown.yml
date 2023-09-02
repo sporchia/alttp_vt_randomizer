@@ -1,0 +1,58 @@
+rooms:
+  - roomid: 0xDB
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Grand Room SW"
+          inletid: 0x34
+        - name: "Thieves' Town - Grand Room SW Pocket"
+
+      items:
+        - name: "Thieves' Town - Map Chest"
+          type: "chest"
+          addresses: [0xEA01]
+          itemset: ["thieves"]
+
+        - name: "Thieves' Town - Big Key Chest"
+          type: "chest"
+          addresses: [0xEA04]
+          itemset: ["thieves"]
+
+      pots:
+        - name: "Thieves' Town - Grand Room SW - Pot 1"
+          position: 0x0470
+          sprite: "@RupeeBlue"
+        - name: "Thieves' Town - Grand Room SW - Pot 2"
+          position: 0x1058
+          sprite: "@Heart"
+        - name: "Thieves' Town - Grand Room SW - Pot 3"
+          position: 0x233e
+
+      mobs:
+        - name: "Thieves' Town - Grand Room SW - Bunny Beam"
+          position: { x: 0x03, y: 0x04, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Thieves' Town - Grand Room SW - Spark (Clockwise)"
+          position: { x: 0x0e, y: 0x0a, z: 0x01 }
+          sprite: "SparkCW"
+
+        - name: "Thieves' Town - Grand Room SW - Red Zazak"
+          position: { x: 0x17, y: 0x0b, z: 0x01 }
+          sprite: "ZazakRed"
+
+        - name: "Thieves' Town - Grand Room SW - Blue Zazak 1"
+          position: { x: 0x0f, y: 0x0c, z: 0x01 }
+          sprite: "ZazakBlue"
+
+        - name: "Thieves' Town - Grand Room SW - Zol"
+          position: { x: 0x0b, y: 0x10, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Thieves' Town - Grand Room SW - Fire Snake"
+          position: { x: 0x14, y: 0x10, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Thieves' Town - Grand Room SW - Blue Zazak 2"
+          position: { x: 0x0f, y: 0x15, z: 0x01 }
+          sprite: "ZazakBlue"

@@ -1,0 +1,68 @@
+maps:
+  - map: 0x32
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Haunted Grove Entrance"
+        - name: "Cave 45 Ledge"
+
+      entrances:
+        - name: "Cave 45"
+          entranceid: 0x50
+          outletid: 0x7b
+
+      mobs:
+        - name: "Cave 45 Ledge - Bomb Refill (1)"
+          position: { x: 0x1a, y: 0x09 }
+          sprite: "BombRefill1"
+          state: [0]
+
+        - name: "Cave 45 Ledge - Green Bomb"
+          position: { x: 0x18, y: 0x12 }
+          sprite: "Heart"
+          state: [0]
+
+        - name: "Cave 45 Ledge - Blue Guard 1"
+          position: { x: 0x0b, y: 0x0b }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Cave 45 Ledge - Blue Guard 2"
+          position: { x: 0x12, y: 0x0b }
+          sprite: "BlueSwordGuard"
+          state: [1]
+
+        - name: "Cave 45 Ledge - Fairy"
+          position: { x: 0x19, y: 0x12 }
+          sprite: "Fairy"
+          state: [1]
+
+        - name: "Cave 45 Ledge - Green Guard 1"
+          position: { x: 0x0b, y: 0x0c }
+          sprite: "GreenSwordGuard"
+          state: [2]
+
+        - name: "Cave 45 Ledge - Blue Guard"
+          position: { x: 0x12, y: 0x0c }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Cave 45 Ledge - Green Guard 2"
+          position: { x: 0x13, y: 0x10 }
+          sprite: "GreenSwordGuard"
+          state: [2]
+
+        - name: "Cave 45 Ledge - Bomb Refill (4)"
+          position: { x: 0x19, y: 0x12 }
+          sprite: "BombRefill4"
+          state: [2]
+
+        - name: "Cave 45 Ledge - Landmine"
+          position: { x: 0x08, y: 0x15 }
+          sprite: "Landmine"
+          state: [2]
+
+        - name: "Cave 45 Ledge - Bonk Bomb"
+          position: { x: 0x1a, y: 0x09 }
+          sprite: "Heart"
+          state: [1, 2]

@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use ALttP\Jobs\UpdateStreams;
+use App\Jobs\UpdateStreams;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,20 +16,17 @@ class Kernel extends ConsoleKernel
         Commands\UpdateBuildRecord::class,
     ];
 
-    protected function commands()
+    protected function commands(): void
     {
         require base_path('routes/console.php');
     }
 
     /**
      * Define the application's command schedule.
-     *
-     * @param Schedule $schedule
-     *
-     * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->job(new UpdateStreams)->everyMinute();
+        // $schedule->command('cache:prune-stale-tags')->hourly();
     }
 }

@@ -1,0 +1,85 @@
+rooms:
+  - roomid: 0x2E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Penguin Chest"
+
+      items:
+        - name: "Ice Palace - Compass Chest"
+          addresses: [0xE9D4]
+          type: "chest"
+          itemset: ["ice"]
+
+      mobs:
+        - name: "Ice Palace - Penguin Chest - Pengator 1"
+          position: { x: 0x14, y: 0x06, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+
+        - name: "Ice Palace - Penguin Chest - Pengator 2"
+          position: { x: 0x1c, y: 0x06, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+
+        - name: "Ice Palace - Penguin Chest - Pengator 3"
+          position: { x: 0x16, y: 0x08, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+
+        - name: "Ice Palace - Penguin Chest - Pengator 4"
+          position: { x: 0x19, y: 0x08, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+
+        - name: "Ice Palace - Penguin Chest - Pengator 5"
+          position: { x: 0x14, y: 0x0b, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+
+        - name: "Ice Palace - Penguin Chest - Pengator 6"
+          position: { x: 0x1b, y: 0x0b, z: 0x00 }
+          sprite: "Pengator"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"

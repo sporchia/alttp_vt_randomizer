@@ -1,0 +1,125 @@
+rooms:
+  - roomid: 0x02
+    group: 1
+    nodes:
+      regions:
+        - name: "Sewers - Rat Pots"
+        - name: "Sewers - Switch Puzzle"
+
+      pots:
+        - name: "Sewers - Rat Pots - Pot 1"
+          position: 0x0650
+        - name: "Sewers - Rat Pots - Pot 2"
+          position: 0x0850
+        - name: "Sewers - Rat Pots - Pot 3"
+          position: 0x082c
+        - name: "Sewers - Rat Pots - Pot 4"
+          position: 0x0a2c
+
+      mobs:
+        - name: "Sewers - Rat Pots - Rat 1"
+          position: { x: 0x12, y: 0x05, z: 0x01 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+
+        - name: "Sewers - Rat Pots - Rat 2"
+          position: { x: 0x15, y: 0x06, z: 0x01 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+
+        - name: "Sewers - Rat Pots - Rat 3"
+          position: { x: 0x0f, y: 0x08, z: 0x01 }
+          sprite: "Rat"
+          deny:
+            - "RollerVU"
+
+        - name: "Sewers - Rat Pots - Rat 4"
+          position: { x: 0x10, y: 0x08, z: 0x01 }
+          sprite: "Rat"
+          deny:
+            - "RollerVU"
+
+        - name: "Sewers - Rat Pots - Rat 5"
+          position: { x: 0x18, y: 0x09, z: 0x01 }
+          sprite: "Rat"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 1"
+          position: { x: 0x0f, y: 0x17, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 2"
+          position: { x: 0x09, y: 0x18, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 3"
+          position: { x: 0x0b, y: 0x18, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 4"
+          position: { x: 0x0a, y: 0x19, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 5"
+          position: { x: 0x0c, y: 0x19, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 6"
+          position: { x: 0x09, y: 0x1a, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 7"
+          position: { x: 0x0b, y: 0x1b, z: 0x01 }
+          sprite: "BadSwitchSnake"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Bad) 8"
+          position: { x: 0x0a, y: 0x17, z: 0x01 }
+          sprite: "PullSwitchBad"
+          allow:
+            - "PullSwitchBad"
+
+        - name: "Sewers - Rat Pots - Pull Switch (Good)"
+          position: { x: 0x15, y: 0x17, z: 0x01 }
+          sprite: "PullSwitchGood"
+          allow:
+            - "PullSwitchGood"
+
+        - name: "Sewers - Rat Pots - Rat 6"
+          position: { x: 0x0d, y: 0x1a, z: 0x01 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+
+        - name: "Sewers - Rat Pots - Rat 7"
+          position: { x: 0x12, y: 0x1a, z: 0x01 }
+          sprite: "Rat"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"

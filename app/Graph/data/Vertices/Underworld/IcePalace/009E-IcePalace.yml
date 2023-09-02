@@ -1,0 +1,88 @@
+rooms:
+  - roomid: 0x9E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Big Chest Room - left"
+        - name: "Ice Palace - Big Chest Room - right"
+        - name: "Ice Palace - Block Drop - orange"
+          peg: "orange"
+        - name: "Ice Palace - Block Drop - left blue"
+          peg: "blue"
+        - name: "Ice Palace - Block Drop - right blue"
+          peg: "blue"
+        - name: "Ice Palace - Fairy Drop - orange"
+          peg: "orange"
+        - name: "Ice Palace - Fairy Drop - blue"
+          peg: "blue"
+
+      keydoors:
+        - name: "Ice Palace - Fairy Drop Door"
+          key: "KeyD5"
+
+      bigkeydoors:
+        - name: "Ice Palace - Block Drop - Big Key Door"
+          key: "BigKeyD5"
+
+      items:
+        - name: "Ice Palace - Big Chest"
+          addresses: [0xE9AA]
+          type: "bigchest"
+          itemset: ["ice"]
+
+      mobs:
+        - name: "Ice Palace - Fairy Drop - Red Bari 1"
+          position: { x: 0x18, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Fairy Drop - Red Bari 2"
+          position: { x: 0x16, y: 0x08, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Fairy Drop - Stalfos Knight"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "StalfosKnight"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Fairy Drop - Red Bari 3"
+          position: { x: 0x19, y: 0x08, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Block Drop - Freezor"
+          position: { x: 0x14, y: 0x12, z: 0x00 }
+          sprite: "Freezor"
+          allow:
+            - "Freezor"

@@ -1,0 +1,163 @@
+rooms:
+  - roomid: 0x1C
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Ice Armos"
+        - name: "Ganon's Tower - Ice Room"
+        - name: "Ganon's Tower - Empty Torch Room"
+        - name: "Ganon's Tower - Fairy Pit"
+        - name: "Ganon's Tower - Big Key Room"
+
+      items:
+        - name: "Ganon's Tower - Big Key Chest"
+          type: "chest"
+          addresses: [0xEAF1]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Big Key Room - Left"
+          type: "chest"
+          addresses: [0xEAF4]
+          itemset: ["gt"]
+
+        - name: "Ganon's Tower - Big Key Room - Right"
+          type: "chest"
+          addresses: [0xEAF7]
+          itemset: ["gt"]
+
+    mobs:
+      - name: "Ganon's Tower - Ice Room - Fairy 1"
+        position: { x: 0x07, y: 0x07, z: 0x00 }
+        sprite: "Fairy"
+
+      - name: "Ganon's Tower - Ice Room - Fairy 2"
+        position: { x: 0x08, y: 0x07, z: 0x00 }
+        sprite: "Fairy"
+
+      - name: "Ganon's Tower - Ice Room - Fairy 3"
+        position: { x: 0x07, y: 0x08, z: 0x00 }
+        sprite: "Fairy"
+
+      - name: "Ganon's Tower - Ice Room - Fairy 4"
+        position: { x: 0x08, y: 0x08, z: 0x00 }
+        sprite: "Fairy"
+
+    # this data might not end up living here?
+    # but is not currently used, see data/Bosses/SpriteLocations.yml
+    bosses:
+      "Ganon's Tower - Ice Room":
+        DefeatArmos:
+          - name: "Ganon's Tower - Ice Room - Armos Knight 1"
+            position: { x: 0x14, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Ice Room - Armos Knight 2"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Ice Room - Armos Knight 3"
+            position: { x: 0x1a, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Ice Room - Armos Knight 4"
+            position: { x: 0x1a, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Ice Room - Armos Knight 5"
+            position: { x: 0x17, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Ice Room - Armos Knight 6"
+            position: { x: 0x14, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Ice Room - Armos Overlord"
+            position: { x: 0x17, y: 0x18, z: 0x00 }
+            sprite: "ArmosCoordinator"
+        DefeatLanmolas:
+          - name: "Ganon's Tower - Ice Room - Lanmolas 1"
+            position: { x: 0x16, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Ganon's Tower - Ice Room - Lanmolas 2"
+            position: { x: 0x19, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Ganon's Tower - Ice Room - Lanmolas 3"
+            position: { x: 0x17, y: 0x19, z: 0x00 }
+            sprite: "Lanmolas"
+        DefeatMoldorm:
+          - name: "Ganon's Tower - Ice Room - Moldorm"
+            position: { x: 0x12, y: 0x1e, z: 0x00 }
+            sprite: "Moldorm"
+        DefeatHelmasaur:
+          - name: "Ganon's Tower - Ice Room - Helmasaur King"
+            position: { x: 0x17, y: 0x16, z: 0x00 }
+            sprite: "Helmasaur"
+        DefeatArrghus:
+          - name: "Ganon's Tower - Ice Room - Arrghus"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "Arrghus"
+          - name: "Ganon's Tower - Ice Room - Arrghi 1"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 2"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 3"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 4"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 5"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 6"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 7"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 8"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 9"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 10"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 11"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 12"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Ice Room - Arrghi 13"
+            position: { x: 0x17, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+        DefeatMothula:
+          - name: "Ganon's Tower - Ice Room - Mothula"
+            position: { x: 0x18, y: 0x16, z: 0x00 }
+            sprite: "Mothula"
+        DefeatBlind:
+          - name: "Ganon's Tower - Ice Room - Blind"
+            position: { x: 0x19, y: 0x15, z: 0x00 }
+            sprite: "Blind"
+        DefeatKholdstare:
+          - name: "Ganon's Tower - Ice Room - Kholdstare's Shell"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "KholdstareShell"
+          - name: "Ganon's Tower - Ice Room - Falling Ice"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "FallingIce"
+          - name: "Ganon's Tower - Ice Room - Kholdstare"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "Kholdstare"
+        DefeatVitreous:
+          - name: "Ganon's Tower - Ice Room - Vitreous"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "Vitreous"
+        DefeatTrinexx:
+          - name: "Ganon's Tower - Ice Room - Trinexx"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "Trinexx"
+          - name: "Ganon's Tower - Ice Room - Trinexx (Fire Head)"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadFire"
+          - name: "Ganon's Tower - Ice Room - Trinexx (Ice Head)"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadIce"

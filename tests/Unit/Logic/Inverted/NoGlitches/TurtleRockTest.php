@@ -27,7 +27,6 @@ final class TurtleRockTest extends TestCase
     {
         $randomizer = new Randomizer([[
             'mode.state' => 'inverted',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_merge(['TurtleRockEntryQuake:0'], array_map(fn ($i) => "$i:0", $items)));

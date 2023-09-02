@@ -1,0 +1,14 @@
+rooms:
+  - roomid: 0x011F
+    nodes:
+      regions:
+        - name: "Lumberjacks House"
+          inletid: 0x6b
+
+      pots:
+        - name: "Lumberjacks House - Pot 1"
+          position: 0x1cae
+          sprite: "@Heart"
+        - name: "Lumberjacks House - Pot 2"
+          position: 0x1cb2
+          sprite: "@Heart"

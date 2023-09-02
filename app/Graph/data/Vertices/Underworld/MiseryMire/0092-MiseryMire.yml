@@ -1,0 +1,88 @@
+rooms:
+  - roomid: 0x92
+    group: 14
+    dark: true
+    nodes:
+      regions:
+        - name: "Misery Mire - Dark Weave"
+          switch: true
+        - name: "Misery Mire - Room 90 Top"
+        - name: "Misery Mire - Room 90 Bottom"
+          switch: true
+        - name: "Misery Mire - Air Lock - orange"
+          peg: "orange"
+        - name: "Misery Mire - Air Lock - blue"
+          peg: "blue"
+        - name: "Misery Mire - Air Lock darkness"
+
+      pots:
+        - name: "Misery Mire - Dark Weave - Pot 1"
+          position: 0x1756
+        - name: "Misery Mire - Dark Weave - Pot 2"
+          position: 0x175C
+        - name: "Misery Mire - Dark Weave - Pot 3"
+          position: 0x1762
+        - name: "Misery Mire - Dark Weave - Pot 4"
+          position: 0x1768
+
+      mobs:
+        - name: "Misery Mire - Dark Weave - Crystal Switch 1"
+          position: { x: 0x18, y: 0x09, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Misery Mire - Dark Weave - Crystal Switch 2"
+          position: { x: 0x03, y: 0x0c, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Misery Mire - Dark Weave - Antifairy 1"
+          position: { x: 0x18, y: 0x04, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Dark Weave - Medusa 1"
+          position: { x: 0x0b, y: 0x05, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Dark Weave - Antifairy 2"
+          position: { x: 0x09, y: 0x08, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Dark Weave - Medusa 2"
+          position: { x: 0x17, y: 0x09, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Dark Weave - Yomo Medusa"
+          position: { x: 0x15, y: 0x0f, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Misery Mire - Dark Weave - Zoro Spawner"
+          position: { x: 0x07, y: 0x12, z: 0x00 }
+          sprite: "ZoroSpawner"
+
+        - name: "Misery Mire - Dark Weave - Spike Trap"
+          position: { x: 0x19, y: 0x12, z: 0x00 }
+          sprite: "SpikeTrap"
+          deny:
+            - "RollerVU"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Misery Mire - Dark Weave - Antifairy 3"
+          position: { x: 0x03, y: 0x14, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "RollerHR"
+
+        - name: "Misery Mire - Dark Weave - Stalfos"
+          position: { x: 0x0a, y: 0x16, z: 0x00 }
+          sprite: "Stalfos"
+          deny:
+            - "RollerHL"
+
+        - name: "Misery Mire - Dark Weave - Antifairy 4"
+          position: { x: 0x03, y: 0x1b, z: 0x00 }
+          sprite: "Antifairy"

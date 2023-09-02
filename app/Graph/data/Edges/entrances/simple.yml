@@ -21,7 +21,7 @@ connectons:
     # final section of Skull Woods (leading to the boss) but does not include any
     # other Skull Woods entrances.
     in:
-      - ["Tower Of Hera - Entrance - In", "Tower Of Hera - Exit"]
+      - ["Tower Of Hera - Entrance - In", "Tower Of Hera - Entrance - Exit"]
     out:
       - ["Tower Of Hera - Entrance", "Tower Of Hera - Entrance - Out"]
   - # Multi-Entrance Dungeons (excluding Skull Woods)

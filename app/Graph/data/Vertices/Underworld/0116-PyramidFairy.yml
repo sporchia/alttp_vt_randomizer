@@ -1,0 +1,29 @@
+rooms:
+  - roomid: 0x0116
+    nodes:
+      regions:
+        - name: "Pyramid Fairy"
+          inletid: 0x63
+
+      items:
+        - name: "Pyramid Fairy - Bottle"
+          addresses: [0x3493B]
+          type: "refill"
+          itemset: ["bottle"]
+
+        - name: "Pyramid Fairy - Right"
+          addresses: [0xE983]
+          type: "chest"
+          itemset: ["dw"]
+
+        - name: "Pyramid Fairy - Left"
+          addresses: [0xE980]
+          type: "chest"
+          itemset: ["dw"]
+
+      mobs:
+        - name: "Pyramid Fairy - Fairy Pond"
+          position: { x: 0x17, y: 0x18, z: 0x00 }
+          sprite: "PondActivation"
+          allow:
+            - "PondActivation"

@@ -1,0 +1,59 @@
+rooms:
+  - roomid: 0x4A
+    group: 7
+    nodes:
+      regions:
+        - name: "Palace of Darkness - Lobby"
+          inletid: 0x26
+        - name: "Palace of Darkness - Left Cage"
+        - name: "Palace of Darkness - Middle Cage"
+
+      keydoors:
+        - name: "Palace of Darkness - Middle Cage Door"
+          key: "KeyD1"
+
+      pots:
+        - name: "Palace of Darkness - Lobby - Pot 1"
+          position: 0x050e
+          sprite: "FloorSwitch"
+        - name: "Palace of Darkness - Lobby - Pot 2"
+          position: 0x0520
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Lobby - Pot 3"
+          position: 0x055c
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Lobby - Pot 4"
+          position: 0x056e
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Lobby - Pot 5"
+          position: 0x0838
+          sprite: "@BombRefill1"
+        - name: "Palace of Darkness - Lobby - Pot 6"
+          position: 0x0b0e
+          sprite: "@Heart"
+        - name: "Palace of Darkness - Lobby - Pot 7"
+          position: 0x0b20
+          sprite: "@RupeeGreen"
+        - name: "Palace of Darkness - Lobby - Pot 8"
+          position: 0x0b5c
+          sprite: "@RupeeGreen"
+        - name: "Palace of Darkness - Lobby - Pot 9"
+          position: 0x0b6e
+          sprite: "@Heart"
+        - name: "Palace of Darkness - Lobby - Pot 10"
+          position: 0x0844
+
+      mobs:
+        - name: "Palace of Darkness - Lobby - Statue"
+          position: { x: 0x14, y: 0x07, z: 0x00 }
+          sprite: "Statue"
+          allow:
+            - "Statue"
+
+        - name: "Palace of Darkness - Lobby - Mini Helmasaur 1"
+          position: { x: 0x08, y: 0x08, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Palace of Darkness - Lobby - Mini Helmasaur 2"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "MiniHelmasaur"

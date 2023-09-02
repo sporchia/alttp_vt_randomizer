@@ -1,0 +1,101 @@
+rooms:
+  - roomid: 0x7F
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Bari Pit left"
+        - name: "Ice Palace - Bari Pit right"
+        - name: "Ice Palace - Big Spikes"
+
+      mobs:
+        - name: "Ice Palace - Big Spikes - Red Bari 1"
+          position: { x: 0x06, y: 0x07, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "Statue"
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+
+        - name: "Ice Palace - Big Spikes - Red Bari 2"
+          position: { x: 0x08, y: 0x07, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "Statue"
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+
+        - name: "Ice Palace - Big Spikes - Red Bari 3"
+          position: { x: 0x0a, y: 0x08, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "Statue"
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+
+        - name: "Ice Palace - Big Spikes - Red Bari 4"
+          position: { x: 0x07, y: 0x09, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "Statue"
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "FireBarCW"
+            - "FireBarCCW"
+            - "SpikeTrap"
+
+        - name: "Ice Palace - Big Spikes - Big Spike Trap 1"
+          position: { x: 0x0b, y: 0x14, z: 0x00 }
+          sprite: "BigSpikeTrap"
+          deny:
+            - "RollerVD"
+
+        - name: "Ice Palace - Big Spikes - Big Spike Trap 2"
+          position: { x: 0x03, y: 0x17, z: 0x00 }
+          sprite: "BigSpikeTrap"
+          deny:
+            - "RollerVD"
+
+        - name: "Ice Palace - Big Spikes - Big Spike Trap 3"
+          position: { x: 0x0b, y: 0x19, z: 0x00 }
+          sprite: "BigSpikeTrap"
+
+        - name: "Ice Palace - Big Spikes - Big Spike Trap 4"
+          position: { x: 0x03, y: 0x1b, z: 0x00 }
+          sprite: "BigSpikeTrap"

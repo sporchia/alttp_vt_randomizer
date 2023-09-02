@@ -1,0 +1,46 @@
+rooms:
+  - roomid: 0x91
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Basement"
+          switch: true
+
+      pots:
+        - name: "Misery Mire - Basement - Pot 1"
+          position: 0x0454
+          sprite: "@Heart"
+        - name: "Misery Mire - Basement - Pot 2"
+          position: 0x0468
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Misery Mire - Basement - Crystal Switch"
+          position: { x: 0x18, y: 0x04, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Misery Mire - Basement - Spike Trap"
+          position: { x: 0x1b, y: 0x0e, z: 0x00 }
+          sprite: "SpikeTrap"
+
+        - name: "Misery Mire - Basement - Blob Spawner"
+          position: { x: 0x17, y: 0x0f, z: 0x00 }
+          sprite: "BlobSpawner"
+
+        - name: "Misery Mire - Basement - Medusa"
+          position: { x: 0x17, y: 0x12, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Basement - Bunny Beam"
+          position: { x: 0x18, y: 0x12, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Misery Mire - Basement - Antifairy 1"
+          position: { x: 0x19, y: 0x12, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Basement - Antifairy 2"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "Antifairy"

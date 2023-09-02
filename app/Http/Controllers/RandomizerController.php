@@ -84,7 +84,6 @@ class RandomizerController extends Controller
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($exception);
             }
-            throw $exception;
 
             return response($exception->getMessage(), 409);
         }
@@ -105,6 +104,8 @@ class RandomizerController extends Controller
 
     protected function prepSeed(CreateRandomizedGame $request, bool $save = true)
     {
+        // until we speed this up...
+        set_time_limit(360);
         $seed = get_random_int();
         // $seed = -5183973964395548770;
         mt_srand($seed);
@@ -121,6 +122,7 @@ class RandomizerController extends Controller
             'overworld_glitches' => config('logic.overworld_glitches'),
             'major_glitches' => config('logic.major_glitches'),
             'no_logic' => ['*'],
+            default => [],
         };
 
         $spoilers = $request->input('spoilers', 'off');
@@ -163,8 +165,8 @@ class RandomizerController extends Controller
             ]
         ]);
 
-        $rand->randomize();
-        $world = $rand->getWorld(0);
+        $worlds = $rand->randomize();
+        $world = $worlds[0];
         $writer = new RomWriterService();
         $writer->writeWorldToRom($world, $rom);
 
@@ -186,7 +188,7 @@ class RandomizerController extends Controller
         }
 
         $spoilerService = new SpoilerService();
-        $spoiler = $spoilerService->getSpoiler($rand, array_merge([
+        $spoiler = $spoilerService->getSpoiler($world, array_merge([
             'entry_crystals_ganon' => $request->input('crystals.ganon', '7'),
             'entry_crystals_tower' => $request->input('crystals.tower', '7'),
             'worlds' => 1,
@@ -202,6 +204,7 @@ class RandomizerController extends Controller
         $seed->logic = 32;
         $seed->game_mode = $request->input('glitches', 'none');
         $seed->build = Rom::BUILD;
+        $seed->spoiler = json_encode($spoiler);
         if ($save) {
             $seed->patch = json_encode($patch);
             $seed->save();

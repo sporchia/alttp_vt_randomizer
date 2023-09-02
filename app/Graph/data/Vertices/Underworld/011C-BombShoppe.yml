@@ -1,0 +1,19 @@
+rooms:
+  - roomid: 0x011C
+    nodes:
+      regions:
+        - name: "Bomb Shoppe Lobby"
+          inletid: 0x53
+
+      items:
+        - name: "Bomb Shoppe Item"
+          type: "follower"
+          item: "BigRedBomb"
+          itemset: ["follower"]
+
+      mobs:
+        - name: "Bomb Shoppe Lobby - Bomb Salesman"
+          position: { x: 0x09, y: 0x19, z: 0x00 }
+          sprite: "BombSalesman"
+          allow:
+            - "BombSalesman"

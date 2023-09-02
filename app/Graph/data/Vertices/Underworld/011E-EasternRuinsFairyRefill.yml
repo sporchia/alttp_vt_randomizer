@@ -1,0 +1,23 @@
+rooms:
+  - roomid: 0x011E
+    nodes:
+      regions:
+        - name: "Eastern Ruins Fairy Cave"
+          inletid: 0x55
+
+      mobs:
+        - name: "Eastern Ruins Fairy Cave - Fairy 1"
+          position: { x: 0x05, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Eastern Ruins Fairy Cave - Fairy 2"
+          position: { x: 0x06, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Eastern Ruins Fairy Cave - Fairy 3"
+          position: { x: 0x05, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Eastern Ruins Fairy Cave - Fairy 4"
+          position: { x: 0x06, y: 0x08, z: 0x00 }
+          sprite: "Fairy"

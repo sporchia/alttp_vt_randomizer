@@ -1,0 +1,82 @@
+rooms:
+  - roomid: 0xC4
+    group: 15
+    nodes:
+      # regions may need to be broken up later for switches here
+      regions:
+        - name: "Turtle Rock - Switch Block Puzzle"
+
+      pots:
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 1"
+          position: 0x0954
+          sprite: "@BombRefill1"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 2"
+          position: 0x0e18
+          sprite: "@Heart"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 3"
+          position: 0x1138
+          sprite: "@RupeeBlue"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 4"
+          position: 0x1154
+          sprite: "@BombRefill1"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 5"
+          position: 0x150c
+          sprite: "@ArrowRefill5"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 6"
+          position: 0x174c
+          sprite: "@RupeeGreen"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 7"
+          position: 0x1930
+          sprite: "@MagicRefillSmall"
+        - name: "Turtle Rock - Switch Block Puzzle - Pot 8"
+          position: 0x1a0c
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Turtle Rock - Switch Block Puzzle - Crystal Switch 1"
+          position: { x: 0x0b, y: 0x0a, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Crystal Switch 2"
+          position: { x: 0x18, y: 0x0f, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Crystal Switch 3"
+          position: { x: 0x1c, y: 0x1b, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Crystal Switch 4"
+          position: { x: 0x0f, y: 0x15, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Pokey"
+          position: { x: 0x0f, y: 0x0e, z: 0x00 }
+          sprite: "Pokey"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Antifairy 1"
+          position: { x: 0x0b, y: 0x0f, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Mini Helmasaur 1"
+          position: { x: 0x07, y: 0x14, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Mini Helmasaur 2"
+          position: { x: 0x18, y: 0x14, z: 0x00 }
+          sprite: "MiniHelmasaur"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Antifairy 2"
+          position: { x: 0x0b, y: 0x1a, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Switch Block Puzzle - Antifairy 3"
+          position: { x: 0x14, y: 0x1a, z: 0x00 }
+          sprite: "Antifairy"

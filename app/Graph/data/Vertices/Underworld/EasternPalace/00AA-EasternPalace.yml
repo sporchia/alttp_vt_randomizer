@@ -21,16 +21,16 @@ rooms:
           sprite: "FloorSwitch"
         - name: "Eastern Palace - East Wing - Top - Pot 2"
           position: 0x376c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - East Wing - Top - Pot 3"
           position: 0x386c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - East Wing - Top - Pot 4"
           position: 0x396c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - East Wing - Top - Pot 5"
           position: 0x05e8
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - East Wing - Top - Pot 6"
           position: 0x0ae8
         - name: "Eastern Palace - East Wing - Top - Pot 7"

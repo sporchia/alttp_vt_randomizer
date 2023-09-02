@@ -1,0 +1,164 @@
+maps:
+  - map: 0x81
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Zora's Domain"
+        - name: "Zora's Domain Ledge"
+
+      items:
+        - name: "King Zora"
+          addresses: [0xEE1C3]
+          type: "standing"
+          itemset: ["lw"]
+
+        - name: "Zora's Domain Ledge Item"
+          addresses: [0x180149]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Zora's Domain - Heart Piece"
+          position: { x: 0x1b, y: 0x26 }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 1"
+          position: { x: 0x0a, y: 0x06 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 2"
+          position: { x: 0x1c, y: 0x06 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 1"
+          position: { x: 0x11, y: 0x07 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 3"
+          position: { x: 0x16, y: 0x0a }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 2"
+          position: { x: 0x1a, y: 0x0a }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 3"
+          position: { x: 0x09, y: 0x0c }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 4"
+          position: { x: 0x12, y: 0x0d }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 4"
+          position: { x: 0x1a, y: 0x12 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 5"
+          position: { x: 0x07, y: 0x13 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 6"
+          position: { x: 0x14, y: 0x13 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 7"
+          position: { x: 0x08, y: 0x18 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 8"
+          position: { x: 0x04, y: 0x1c }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Giant Zora"
+          position: { x: 0x3b, y: 0x04 }
+          sprite: "KingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 5"
+          position: { x: 0x27, y: 0x08 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 6"
+          position: { x: 0x2d, y: 0x08 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 9"
+          position: { x: 0x22, y: 0x0e }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 7"
+          position: { x: 0x2d, y: 0x0e }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 8"
+          position: { x: 0x21, y: 0x14 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 10"
+          position: { x: 0x0d, y: 0x20 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 11"
+          position: { x: 0x08, y: 0x31 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 9"
+          position: { x: 0x14, y: 0x31 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 12"
+          position: { x: 0x0c, y: 0x33 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Fireball Zora 10"
+          position: { x: 0x0e, y: 0x35 }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 13"
+          position: { x: 0x08, y: 0x38 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 14"
+          position: { x: 0x3b, y: 0x28 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 15"
+          position: { x: 0x3a, y: 0x2b }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 16"
+          position: { x: 0x2d, y: 0x35 }
+          sprite: "WalkingZora"
+          state: [1, 2]
+
+        - name: "Zora's Domain - Walking Zora 17"
+          position: { x: 0x37, y: 0x36 }
+          sprite: "WalkingZora"
+          state: [1, 2]

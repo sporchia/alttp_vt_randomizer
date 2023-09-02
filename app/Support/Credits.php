@@ -85,9 +85,9 @@ final class Credits
      * @param string $scene Scene name to place credit line
      * @param int $line line number on screen
      * @param string $text the text to write
-     * @param string $alignment one of `center`, `left`, or `right`
+     * @param string $align one of `center`, `left`, or `right`
      *
-     * @throws Exception if out of bounds line number is passed.
+     * @throws OutOfBoundsException if out of bounds line number is passed.
      */
     public function updateCreditLine(string $scene, int $line, string $text, string $align = 'center'): void
     {
@@ -179,7 +179,7 @@ final class Credits
         return array_merge($header, $converted_text);
     }
 
-    private function getlargeConverted(array $record)
+    private function getLargeConverted(array $record)
     {
         $data = [];
 
@@ -199,7 +199,7 @@ final class Credits
      *
      * @param int $x horizontal postion
      * @param int $y vertical position
-     * @param int $lengh length of tiles in data
+     * @param int $length length of tiles in data
      */
     private function getHeader(int $x, int $y, int $length): array
     {

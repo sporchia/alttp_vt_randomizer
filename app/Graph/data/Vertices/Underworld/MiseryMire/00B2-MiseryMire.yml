@@ -1,0 +1,102 @@
+rooms:
+  - roomid: 0xB2
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Popo Push"
+        - name: "Misery Mire - Sluggula Cross"
+        - name: "Misery Mire - Antifairy Refill Overpass"
+        - name: "Misery Mire - Antifairy Refill"
+
+      shutters:
+        - name: "Misery Mire - Sluggula Cross - Shutter Door"
+
+      bigkeydoors:
+        - name: "Misery Mire - Antifairy Refill Door"
+          key: "BigKeyD6"
+
+      pots:
+        - name: "Misery Mire - Popo Push - Pot 1"
+          position: 0x2830
+          sprite: "@RupeeGreen"
+        - name: "Misery Mire - Popo Push - Pot 2"
+          position: 0x284c
+          sprite: "@RupeeGreen"
+        - name: "Misery Mire - Popo Push - Pot 3"
+          position: 0x294c
+          sprite: "@Heart"
+        - name: "Misery Mire - Popo Push - Pot 4"
+          position: 0x2930
+        - name: "Misery Mire - Popo Push - Pot 5"
+          position: 0x2A30
+        - name: "Misery Mire - Popo Push - Pot 6"
+          position: 0x2A4C
+
+      mobs:
+        - name: "Misery Mire - Popo Push - Wizzrobe"
+          position: { x: 0x14, y: 0x08, z: 0x01 }
+          sprite: "Wizzrobe"
+
+        - name: "Misery Mire - Popo Push - Bunny Beam 1"
+          position: { x: 0x0c, y: 0x0a, z: 0x01 }
+          sprite: "BunnyBeam"
+
+        - name: "Misery Mire - Popo Push - Antifairy 1"
+          position: { x: 0x12, y: 0x0a, z: 0x01 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Popo Push - Bunny Beam 2"
+          position: { x: 0x13, y: 0x0a, z: 0x01 }
+          sprite: "BunnyBeam"
+
+        - name: "Misery Mire - Popo Push - Antifairy 2"
+          position: { x: 0x07, y: 0x0b, z: 0x01 }
+          sprite: "Antifairy"
+
+        - name: "Misery Mire - Sluggula Cross - Sluggula TL"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "Sluggula"
+          trophy: "MiseryMireSluggulaCrossTrophy"
+
+        - name: "Misery Mire - Sluggula Cross - Sluggula TR"
+          position: { x: 0x0b, y: 0x15, z: 0x00 }
+          sprite: "Sluggula"
+          trophy: "MiseryMireSluggulaCrossTrophy"
+          deny:
+            - "RollerVU"
+            - "RollerHL"
+
+        - name: "Misery Mire - Sluggula Cross - Antifairy"
+          position: { x: 0x03, y: 0x16, z: 0x00 }
+          sprite: "Antifairy"
+          trophy: "MiseryMireSluggulaCrossTrophy"
+
+        - name: "Misery Mire - Popo Push - Medusa 1"
+          position: { x: 0x15, y: 0x18, z: 0x00 }
+          sprite: "Medusa"
+          deny:
+            - "RollerVD"
+
+        - name: "Misery Mire - Popo Push - Medusa 2"
+          position: { x: 0x1a, y: 0x18, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Sluggula Cross - Sluggula BL"
+          position: { x: 0x04, y: 0x1b, z: 0x00 }
+          sprite: "Sluggula"
+          trophy: "MiseryMireSluggulaCrossTrophy"
+          deny:
+            - "RollerVU"
+
+        - name: "Misery Mire - Sluggula Cross - Sluggula BR"
+          position: { x: 0x0b, y: 0x1b, z: 0x00 }
+          sprite: "Sluggula"
+          trophy: "MiseryMireSluggulaCrossTrophy"
+
+        - name: "Misery Mire - Popo Push - Popo 1"
+          position: { x: 0x14, y: 0x1b, z: 0x00 }
+          sprite: "Popo"
+
+        - name: "Misery Mire - Popo Push - Popo 2"
+          position: { x: 0x1b, y: 0x1b, z: 0x00 }
+          sprite: "Popo"

@@ -1,0 +1,152 @@
+rooms:
+  - roomid: 0x6C
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Gauntlet Refill"
+        - name: "Ganon's Tower - Lanmolas"
+        - name: "Ganon's Tower - Lame Refill"
+
+      pots:
+        - name: "Ganon's Tower - Lanmolas - Pot 1"
+          position: 0x0614
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Lanmolas - Pot 2"
+          position: 0x0628
+          sprite: "@ArrowRefill5"
+        - name: "Ganon's Tower - Lanmolas - Pot 3"
+          position: 0x0a14
+          sprite: "@BombRefill1"
+        - name: "Ganon's Tower - Lanmolas - Pot 4"
+          position: 0x0a28
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Ganon's Tower - Lanmolas - Bunny Beam"
+          position: { x: 0x17, y: 0x18, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Ganon's Tower - Lanmolas - Medusa"
+          position: { x: 0x03, y: 0x1c, z: 0x00 }
+          sprite: "Medusa"
+
+    # this data might not end up living here?
+    # but is not currently used, see data/Bosses/SpriteLocations.yml
+    bosses:
+      # this needs to be renamed in all code later
+      "Ganon's Tower - Gauntlet Refill":
+        DefeatArmos:
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Knight 1"
+            position: { x: 0x04, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Knight 2"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Knight 3"
+            position: { x: 0x0a, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Knight 4"
+            position: { x: 0x0a, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Knight 5"
+            position: { x: 0x07, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Knight 6"
+            position: { x: 0x04, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Ganon's Tower - Gauntlet Refill - Armos Overlord"
+            position: { x: 0x07, y: 0x18, z: 0x00 }
+            sprite: "ArmosCoordinator"
+        DefeatLanmolas:
+          - name: "Ganon's Tower - Gauntlet Refill - Lanmolas 1"
+            position: { x: 0x06, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Ganon's Tower - Gauntlet Refill - Lanmolas 2"
+            position: { x: 0x09, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Ganon's Tower - Gauntlet Refill - Lanmolas 3"
+            position: { x: 0x07, y: 0x19, z: 0x00 }
+            sprite: "Lanmolas"
+        DefeatMoldorm:
+          - name: "Ganon's Tower - Gauntlet Refill - Moldorm"
+            position: { x: 0x02, y: 0x1e, z: 0x00 }
+            sprite: "Moldorm"
+        DefeatHelmasaur:
+          - name: "Ganon's Tower - Gauntlet Refill - Helmasaur King"
+            position: { x: 0x07, y: 0x16, z: 0x00 }
+            sprite: "Helmasaur"
+        DefeatArrghus:
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghus"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "Arrghus"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 1"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 2"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 3"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 4"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 5"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 6"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 7"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 8"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 9"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 10"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 11"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 12"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Ganon's Tower - Gauntlet Refill - Arrghi 13"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+        DefeatMothula:
+          - name: "Ganon's Tower - Gauntlet Refill - Mothula"
+            position: { x: 0x08, y: 0x16, z: 0x00 }
+            sprite: "Mothula"
+        DefeatBlind:
+          - name: "Ganon's Tower - Gauntlet Refill - Blind"
+            position: { x: 0x09, y: 0x15, z: 0x00 }
+            sprite: "Blind"
+        DefeatKholdstare:
+          - name: "Ganon's Tower - Gauntlet Refill - Kholdstare's Shell"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "KholdstareShell"
+          - name: "Ganon's Tower - Gauntlet Refill - Falling Ice"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "FallingIce"
+          - name: "Ganon's Tower - Gauntlet Refill - Kholdstare"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Kholdstare"
+        DefeatVitreous:
+          - name: "Ganon's Tower - Gauntlet Refill - Vitreous"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Vitreous"
+        DefeatTrinexx:
+          - name: "Ganon's Tower - Gauntlet Refill - Trinexx"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Trinexx"
+          - name: "Ganon's Tower - Gauntlet Refill - Trinexx (Fire Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadFire"
+          - name: "Ganon's Tower - Gauntlet Refill - Trinexx (Ice Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadIce"

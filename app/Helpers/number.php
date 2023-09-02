@@ -8,7 +8,9 @@
  */
 function get_random_int($min = PHP_INT_MIN, $max = PHP_INT_MAX): int
 {
-    return random_int($min, $max);
+    return mt_rand($min, $max);
+    // @TODO use the below line when we are done with fixed PRNG
+    // return random_int($min, $max);
 }
 
 /**

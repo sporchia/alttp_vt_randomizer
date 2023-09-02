@@ -1,0 +1,98 @@
+rooms:
+  - roomid: 0x59
+    group: 11
+    nodes:
+      regions:
+        - name: "Skull Woods - Bridge Room"
+          inletid: 0x2B
+        - name: "Skull Woods - Bridge Room Alcove"
+        - name: "Skull Woods - Gibdo Bridge Room"
+
+      keydoors:
+        - name: "Skull Woods - Bridge Door"
+          key: "KeyD3"
+
+      items:
+        - name: "Skull Woods - Bridge Room Chest"
+          addresses: [0xE9FE]
+          type: "chest"
+          itemset: ["skull"]
+
+      pots:
+        - name: "Skull Woods - Bridge Room - Pot 1"
+          position: 0x2b1a
+          sprite: "@Heart"
+        - name: "Skull Woods - Bridge Room - Pot 2"
+          position: 0x1c4c
+        - name: "Skull Woods - Bridge Room - Pot 3"
+          position: 0x1c70
+
+      mobs:
+        - name: "Skull Woods - Bridge Room - Mini Moldorm 1"
+          position: { x: 0x07, y: 0x10, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Skull Woods - Bridge Room - Mini Moldorm 2"
+          position: { x: 0x08, y: 0x16, z: 0x00 }
+          sprite: "MiniMoldorm"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Skull Woods - Bridge Room - Bumper 1"
+          position: { x: 0x14, y: 0x0f, z: 0x01 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Bridge Room - Bumper 2"
+          position: { x: 0x1a, y: 0x0f, z: 0x01 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Bridge Room - Spike Trap 1"
+          position: { x: 0x1a, y: 0x0a, z: 0x01 }
+          sprite: "SpikeTrap"
+
+        - name: "Skull Woods - Bridge Room - Fire Snake"
+          position: { x: 0x08, y: 0x0b, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Skull Woods - Bridge Room - Spike Trap 2"
+          position: { x: 0x15, y: 0x0d, z: 0x01 }
+          sprite: "SpikeTrap"
+
+        - name: "Skull Woods - Bridge Room - Spark (Clockwise)"
+          position: { x: 0x05, y: 0x0e, z: 0x01 }
+          sprite: "SparkCW"
+
+        - name: "Skull Woods - Bridge Room - Bunny Beam"
+          position: { x: 0x1a, y: 0x13, z: 0x01 }
+          sprite: "BunnyBeam"
+
+        - name: "Skull Woods - Bridge Room - Gibdo 1"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "Gibdo"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Skull Woods - Bridge Room - Gibdo 2"
+          position: { x: 0x15, y: 0x15, z: 0x01 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Bridge Room - Gibdo 3"
+          position: { x: 0x1a, y: 0x15, z: 0x01 }
+          sprite: "Gibdo"

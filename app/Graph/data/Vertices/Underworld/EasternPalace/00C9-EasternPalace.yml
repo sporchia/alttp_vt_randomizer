@@ -6,16 +6,14 @@ rooms:
         - name: "Eastern Palace - Entrance"
           inletid: 0x08
         - name: "Eastern Palace - Popo Switch"
-      exits:
-        - name: "Eastern Palace - Exit"
 
       pots:
         - name: "Eastern Palace - Entrance - Pot 1"
           position: 0x161e
-          sprite: "RockHoarder"
+          sprite: "@RupeeGreen"
         - name: "Eastern Palace - Entrance - Pot 2"
           position: 0x165e
-          sprite: "RockHoarder"
+          sprite: "@RupeeGreen"
         - name: "Eastern Palace - Entrance - Pot 3"
           position: 0x163c
           sprite: "FloorSwitch"

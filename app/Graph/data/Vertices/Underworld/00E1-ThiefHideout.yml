@@ -1,0 +1,28 @@
+rooms:
+  - roomid: 0x00E1
+    nodes:
+      regions:
+        - name: "Thief Hideout - Ledge"
+          inletid: 0x7a
+        - name: "Thief Hideout"
+          inletid: 0x2c
+
+      items:
+        - name: "Lost Woods Hideout"
+          addresses: [0x180000]
+          type: "standing"
+          itemset: ["lw"]
+
+      mobs:
+        # this is required to have the standing item appear
+        - name: "Thief Hideout - Heart Piece"
+          position: { x: 0x17, y: 0x0d, z: 0x00 }
+          sprite: "HeartPiece"
+          allow:
+            - "HeartPiece"
+
+        - name: "Thief Hideout - Adult"
+          position: { x: 0x07, y: 0x12, z: 0x01 }
+          sprite: "Adult"
+          allow:
+            - "Adult"

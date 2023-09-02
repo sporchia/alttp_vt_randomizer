@@ -17,10 +17,10 @@ rooms:
           sprite: "FloorSwitch"
         - name: "Eastern Palace - Antifairy Circle - Pot 2"
           position: 0x1058
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Antifairy Circle - Pot 3"
           position: 0x1068
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
 
       mobs:
         - name: "Eastern Palace - Antifairy Circle - Popo 1"

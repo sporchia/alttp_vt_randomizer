@@ -1,0 +1,38 @@
+maps:
+  - map: 0x6F
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "East Dark World Portal Way"
+        - name: "East Dark World Portal Way Cage"
+
+      entrances:
+        - name: "East Dark World Portal Cave"
+          entranceid: 0x68
+          outletid: 0x60
+
+      mobs:
+        - name: "East Dark World Portal Way - Snapdragon 1"
+          position: { x: 0x0d, y: 0x08 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "East Dark World Portal Way - Snapdragon 2"
+          position: { x: 0x0f, y: 0x08 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "East Dark World Portal Way - Snapdragon 3"
+          position: { x: 0x0e, y: 0x0b }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "East Dark World Portal Way - Raven"
+          position: { x: 0x17, y: 0x0c }
+          sprite: "Raven"
+          state: [1, 2]
+
+        - name: "East Dark World Portal Way - Stal"
+          position: { x: 0x09, y: 0x17 }
+          sprite: "Stal"
+          state: [1, 2]

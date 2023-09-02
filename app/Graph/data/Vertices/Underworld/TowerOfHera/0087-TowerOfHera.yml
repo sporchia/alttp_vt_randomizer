@@ -1,0 +1,100 @@
+rooms:
+  - roomid: 0x87
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Tile Room"
+        - name: "Tower Of Hera - Basement Corner"
+        - name: "Tower Of Hera - Hidden Chest"
+        - name: "Tower Of Hera - Moldorm Cage"
+
+      items:
+        - name: "Tower Of Hera - Big Key Chest"
+          type: "chest"
+          addresses: [0xE9E6]
+          itemset: ["hera"]
+
+        # something needs addressed about this
+        - name: "Tower Of Hera - Basement Cage"
+          type: "chest"
+          addresses: [0x180162]
+          itemset: ["hera"]
+
+      pots:
+        - name: "Tower Of Hera - Tile Room - Pot 1"
+          position: 0x144c
+          sprite: "@MagicRefillSmall"
+        - name: "Tower Of Hera - Tile Room - Pot 2"
+          position: 0x1470
+          sprite: "@MagicRefillFull"
+        - name: "Tower Of Hera - Tile Room - Pot 3"
+          position: 0x0c28
+        - name: "Tower Of Hera - Tile Room - Pot 4"
+          position: 0x0c20
+        - name: "Tower Of Hera - Tile Room - Pot 5"
+          position: 0x0c18
+        - name: "Tower Of Hera - Tile Room - Pot 6"
+          position: 0x0c10
+        - name: "Tower Of Hera - Tile Room - Pot 7"
+          position: 0x0b10
+        - name: "Tower Of Hera - Tile Room - Pot 8"
+          position: 0x0b0c
+
+      mobs:
+        - name: "Tower Of Hera - Tile Room - Key"
+          position: { x: 0x08, y: 0x1a, z: 0x00 }
+          sprite: "Key"
+
+        - name: "Tower Of Hera - Tile Room - Mini Moldorm 1"
+          position: { x: 0x14, y: 0x05, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Tower Of Hera - Tile Room - Mini Moldorm 2"
+          position: { x: 0x1a, y: 0x07, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Tower Of Hera - Tile Room - Mini Moldorm 3"
+          position: { x: 0x13, y: 0x0b, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Tower Of Hera - Tile Room - Mini Moldorm 4"
+          position: { x: 0x06, y: 0x19, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Tower Of Hera - Tile Room - Tile Room"
+          position: { x: 0x07, y: 0x08, z: 0x00 }
+          sprite: "TileRoom"
+
+        - name: "Tower Of Hera - Tile Room - Crystal Switch 1"
+          position: { x: 0x17, y: 0x04, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Tile Room - Crystal Switch 2"
+          position: { x: 0x03, y: 0x0c, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Tile Room - Crystal Switch 3"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Tower Of Hera - Tile Room - Stalfos 1"
+          position: { x: 0x0b, y: 0x17, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Tower Of Hera - Tile Room - Stalfos 2"
+          position: { x: 0x19, y: 0x18, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Tower Of Hera - Tile Room - Stalfos 3"
+          position: { x: 0x04, y: 0x19, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Tower Of Hera - Tile Room - Stalfos 4"
+          position: { x: 0x15, y: 0x1c, z: 0x00 }
+          sprite: "Stalfos"

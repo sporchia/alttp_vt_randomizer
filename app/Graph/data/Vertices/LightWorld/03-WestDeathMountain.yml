@@ -1,0 +1,138 @@
+maps:
+  - map: 0x03
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "West Death Mountain"
+        - name: "West Death Mountain Spectacle Peak"
+        - name: "West Death Mountain Summit"
+
+      entrances:
+        - name: "Tower Of Hera - Entrance"
+          entranceid: 0x32
+          outletid: 0x2D
+
+        - name: "Spectacle Rock Cave Top"
+          entranceid: 0x22
+          outletid: 0x24
+
+        - name: "Spectacle Rock Cave Middle"
+          entranceid: 0x21
+          outletid: 0x23
+
+        - name: "Spectacle Rock Cave Exit"
+          entranceid: 0x20
+          outletid: 0x22
+
+        - name: "Death Mountain Descent"
+          entranceid: 0x2E
+          outletid: 0x30
+
+        - name: "Old Man Home"
+          entranceid: 0x2F
+          outletid: 0x31
+
+        - name: "Old Man Home Circle"
+          entranceid: 0x30
+          outletid: 0x32
+
+        - name: "Old Man Maze"
+          entranceid: 0x06
+          outletid: 0x08
+
+      items:
+        - name: "Old Man Found"
+          type: "meta"
+          item: "OldManFound"
+          itemset: ["lw"]
+
+        - name: "Old Man"
+          addresses: [0xF69FA]
+          type: "npc"
+          itemset: ["lw"]
+
+        - name: "Spectacle Rock"
+          addresses: [0x180140]
+          type: "standing"
+          itemset: ["lw"]
+
+        - name: "Ether Tablet"
+          addresses: [0x180016]
+          type: "drop"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "West Death Mountain - Tektite 1"
+          position: { x: 0x10, y: 0x1a }
+          sprite: "Tektite"
+          state: [2]
+
+        - name: "West Death Mountain - Tektite 2"
+          position: { x: 0x1a, y: 0x1e }
+          sprite: "Tektite"
+          state: [2]
+
+        - name: "West Death Mountain - Tektite 3"
+          position: { x: 0x2c, y: 0x15 }
+          sprite: "Tektite"
+          state: [2]
+
+        - name: "West Death Mountain - Tektite 4"
+          position: { x: 0x28, y: 0x19 }
+          sprite: "Tektite"
+          state: [2]
+
+        - name: "West Death Mountain - Boulders"
+          position: { x: 0x00, y: 0x00 }
+          sprite: "Boulders"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Medallion Tablet"
+          position: { x: 0x0b, y: 0x04 }
+          sprite: "MedallionTablet"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 1"
+          position: { x: 0x27, y: 0x0c }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Heart Piece"
+          position: { x: 0x22, y: 0x16 }
+          sprite: "HeartPiece"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 2"
+          position: { x: 0x0a, y: 0x35 }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 3"
+          position: { x: 0x06, y: 0x36 }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 4"
+          position: { x: 0x0d, y: 0x3b }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Old Man Target"
+          position: { x: 0x12, y: 0x3b }
+          sprite: "Position Target"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 5"
+          position: { x: 0x2c, y: 0x2d }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 6"
+          position: { x: 0x34, y: 0x33 }
+          sprite: "Deadrock"
+          state: [1, 2]
+
+        - name: "West Death Mountain - Deadrock 7"
+          position: { x: 0x2f, y: 0x34 }
+          sprite: "Deadrock"
+          state: [1, 2]

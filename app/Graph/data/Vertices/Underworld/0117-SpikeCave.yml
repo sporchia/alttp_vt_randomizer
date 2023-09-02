@@ -1,0 +1,41 @@
+rooms:
+  - roomid: 0x0117
+    nodes:
+      regions:
+        - name: "Spike Cave Entrance"
+          inletid: 0x41
+        - name: "Spike Cave Spike Floor Start"
+        - name: "Spike Cave Spike Floor End"
+        - name: "Spike Cave Refill"
+
+      items:
+        - name: "Spike Cave"
+          addresses: [0xEA8B]
+          type: "chest"
+          itemset: ["dw"]
+
+      pots:
+        - name: "Spike Cave Refill - Pot 1"
+          position: 0x038a
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 2"
+          position: 0x038e
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 3"
+          position: 0x03a6
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 4"
+          position: 0x03aa
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 5"
+          position: 0x048a
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 6"
+          position: 0x048e
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 7"
+          position: 0x04a6
+          sprite: "@Heart"
+        - name: "Spike Cave Refill - Pot 8"
+          position: 0x04aa
+          sprite: "@Heart"

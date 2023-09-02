@@ -1,0 +1,54 @@
+rooms:
+  - roomid: 0x5B
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Spike Alley"
+
+      pots:
+        - name: "Ganon's Tower - Spike Alley - Pot 1"
+          position: 0x25de
+          sprite: "FloorSwitch"
+        - name: "Ganon's Tower - Spike Alley - Pot 2"
+          position: 0x25da
+        - name: "Ganon's Tower - Spike Alley - Pot 3"
+          position: 0x25e2
+
+      mobs:
+        - name: "Ganon's Tower - Spike Alley - Crystal Switch 1"
+          position: { x: 0x17, y: 0x0c, z: 0x01 }
+          sprite: "CrystalSwitch"
+          allow: ["CrystalSwitch"]
+
+        - name: "Ganon's Tower - Spike Alley - Crystal Switch 2"
+          position: { x: 0x18, y: 0x13, z: 0x01 }
+          sprite: "CrystalSwitch"
+          allow: ["CrystalSwitch"]
+
+        - name: "Ganon's Tower - Spike Alley - Spike Trap 1"
+          position: { x: 0x17, y: 0x15, z: 0x01 }
+          sprite: "SpikeTrap"
+
+        - name: "Ganon's Tower - Spike Alley - Green Eyegore"
+          position: { x: 0x16, y: 0x08, z: 0x01 }
+          sprite: "EyegoreGreen"
+
+        - name: "Ganon's Tower - Spike Alley - Red Eyegore"
+          position: { x: 0x19, y: 0x08, z: 0x01 }
+          sprite: "EyegoreRed"
+
+        - name: "Ganon's Tower - Spike Alley - Spike Trap 2"
+          position: { x: 0x14, y: 0x0e, z: 0x01 }
+          sprite: "SpikeTrap"
+
+        - name: "Ganon's Tower - Spike Alley - Spike Trap 3"
+          position: { x: 0x1b, y: 0x10, z: 0x01 }
+          sprite: "SpikeTrap"
+
+        - name: "Ganon's Tower - Spike Alley - Spike Trap 4"
+          position: { x: 0x17, y: 0x11, z: 0x01 }
+          sprite: "SpikeTrap"
+
+        - name: "Ganon's Tower - Spike Alley - Spike Trap 5"
+          position: { x: 0x14, y: 0x12, z: 0x01 }
+          sprite: "SpikeTrap"

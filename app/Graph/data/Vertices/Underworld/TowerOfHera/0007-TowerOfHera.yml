@@ -1,0 +1,137 @@
+rooms:
+  - roomid: 0x07
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Boss Room"
+
+      items:
+        - name: "Tower Of Hera - Boss"
+          addresses: [0x180152]
+          type: "drop"
+          itemset: ["hera"]
+
+        - name: "Tower Of Hera - Prize"
+          addresses: [null, 0x120A5, 0x53F0A, 0x53F0B, 0x18005A, 0x18007A, 0xC706]
+          type: "prize"
+          itemset: ["prize"]
+
+    # this data might not end up living here?
+    # but is not currently used, see data/Bosses/SpriteLocations.yml
+    bosses:
+      "Tower Of Hera - Boss Room":
+        DefeatArmos:
+          - name: "Tower Of Hera - Boss Room - Armos Knight 1"
+            position: { x: 0x14, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Tower Of Hera - Boss Room - Armos Knight 2"
+            position: { x: 0x17, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Tower Of Hera - Boss Room - Armos Knight 3"
+            position: { x: 0x1a, y: 0x15, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Tower Of Hera - Boss Room - Armos Knight 4"
+            position: { x: 0x1a, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Tower Of Hera - Boss Room - Armos Knight 5"
+            position: { x: 0x17, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Tower Of Hera - Boss Room - Armos Knight 6"
+            position: { x: 0x14, y: 0x18, z: 0x00 }
+            sprite: "ArmosKnight"
+          - name: "Tower Of Hera - Boss Room - Armos Overlord"
+            position: { x: 0x17, y: 0x18, z: 0x00 }
+            sprite: "ArmosCoordinator"
+        DefeatLanmolas:
+          - name: "Tower Of Hera - Boss Room - Lanmolas 1"
+            position: { x: 0x06, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Tower Of Hera - Boss Room - Lanmolas 2"
+            position: { x: 0x09, y: 0x17, z: 0x00 }
+            sprite: "Lanmolas"
+          - name: "Tower Of Hera - Boss Room - Lanmolas 3"
+            position: { x: 0x07, y: 0x19, z: 0x00 }
+            sprite: "Lanmolas"
+        DefeatMoldorm:
+          - name: "Tower Of Hera - Boss Room - Moldorm"
+            position: { x: 0x12, y: 0x0e, z: 0x00 }
+            sprite: "Moldorm"
+        DefeatHelmasaur:
+          - name: "Tower Of Hera - Boss Room - Helmasaur King"
+            position: { x: 0x17, y: 0x16, z: 0x00 }
+            sprite: "Helmasaur"
+        DefeatArrghus:
+          - name: "Tower Of Hera - Boss Room - Arrghus"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "Arrghus"
+          - name: "Tower Of Hera - Boss Room - Arrghi 1"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 2"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 3"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 4"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 5"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 6"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 7"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 8"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 9"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 10"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 11"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 12"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+          - name: "Tower Of Hera - Boss Room - Arrghi 13"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            sprite: "ArrghusSpawn"
+        DefeatMothula:
+          - name: "Tower Of Hera - Boss Room - Mothula"
+            position: { x: 0x18, y: 0x16, z: 0x00 }
+            sprite: "Mothula"
+        DefeatBlind:
+          - name: "Tower Of Hera - Boss Room - Blind"
+            position: { x: 0x19, y: 0x15, z: 0x00 }
+            sprite: "Blind"
+        DefeatKholdstare:
+          - name: "Tower Of Hera - Boss Room - Kholdstare's Shell"
+            position: { x: 0x17, y: 0x05, z: 0x00 }
+            sprite: "KholdstareShell"
+          - name: "Tower Of Hera - Boss Room - Falling Ice"
+            position: { x: 0x17, y: 0x05, z: 0x00 }
+            sprite: "FallingIce"
+          - name: "Tower Of Hera - Boss Room - Kholdstare"
+            position: { x: 0x17, y: 0x05, z: 0x00 }
+            sprite: "Kholdstare"
+        DefeatVitreous:
+          - name: "Tower Of Hera - Boss Room - Vitreous"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Vitreous"
+        DefeatTrinexx:
+          - name: "Tower Of Hera - Boss Room - Trinexx"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "Trinexx"
+          - name: "Tower Of Hera - Boss Room - Trinexx (Fire Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadFire"
+          - name: "Tower Of Hera - Boss Room - Trinexx (Ice Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            sprite: "TrinexxHeadIce"

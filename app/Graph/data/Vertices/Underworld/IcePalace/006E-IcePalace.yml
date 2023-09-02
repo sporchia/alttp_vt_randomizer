@@ -1,0 +1,35 @@
+rooms:
+  - roomid: 0x6E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Penguin Line Up"
+
+      shutters:
+        - name: "Ice Palace - Penguin Line Up - Shutter Door"
+
+      mobs:
+        - name: "Ice Palace - Penguin Line Up - Pengator 1"
+          position: { x: 0x13, y: 0x08, z: 0x00 }
+          sprite: "Pengator"
+          trophy: "IcePalacePenguinTrophy"
+
+        - name: "Ice Palace - Penguin Line Up - Pengator 2"
+          position: { x: 0x13, y: 0x09, z: 0x00 }
+          sprite: "Pengator"
+          trophy: "IcePalacePenguinTrophy"
+
+        - name: "Ice Palace - Penguin Line Up - Pengator 3"
+          position: { x: 0x13, y: 0x0a, z: 0x00 }
+          sprite: "Pengator"
+          trophy: "IcePalacePenguinTrophy"
+
+        - name: "Ice Palace - Penguin Line Up - Pengator 4"
+          position: { x: 0x13, y: 0x0b, z: 0x00 }
+          sprite: "Pengator"
+          trophy: "IcePalacePenguinTrophy"
+
+        - name: "Ice Palace - Penguin Line Up - Pengator 5"
+          position: { x: 0x13, y: 0x0c, z: 0x00 }
+          sprite: "Pengator"
+          trophy: "IcePalacePenguinTrophy"

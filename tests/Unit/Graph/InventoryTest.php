@@ -59,31 +59,4 @@ final class InventoryTest extends TestCase
         $this->assertTrue($inventory->has($item1->name . '|2'));
         $this->assertTrue($inventory2->has($item1->name . '|3'));
     }
-
-    public function testGetCountKey(): void
-    {
-        $item1 = new Item('TestItem1', [], 0);
-        $inventory = new Inventory([$item1, $item1]);
-        $inventory2 = $inventory->addItem($item1);
-
-        $this->assertEquals($item1->name . '|2', $inventory->getCountKey($item1->name));
-        $this->assertEquals($item1->name . '|3', $inventory2->getCountKey($item1->name));
-    }
-
-    public function testGetCountKeyOneItem(): void
-    {
-        $item1 = new Item('TestItem1', [], 0);
-        $inventory = new Inventory([$item1]);
-
-        $this->assertEquals($item1->name, $inventory->getCountKey($item1->name));
-    }
-
-    public function testGetCountKeyNoItems(): void
-    {
-        $item1 = new Item('TestItem1', [], 0);
-        $item2 = new Item('TestItem2', [], 0);
-        $inventory = new Inventory([$item1]);
-
-        $this->assertEquals('', $inventory->getCountKey($item2->name));
-    }
 }

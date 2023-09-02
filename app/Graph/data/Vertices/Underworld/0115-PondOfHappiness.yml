@@ -1,0 +1,26 @@
+rooms:
+  - roomid: 0x0115
+    nodes:
+      regions:
+        - name: "Pond of Happiness"
+          inletid: 0x5d
+        - name: "Pond of Happiness - hidden room"
+
+      mobs:
+        - name: "Pond of Happiness - hidden room - Fairy 1"
+          position: { x: 0x17, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+        - name: "Pond of Happiness - hidden room - Fairy 2"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+        - name: "Pond of Happiness - hidden room - Fairy 3"
+          position: { x: 0x18, y: 0x07, z: 0x00 }
+          sprite: "Fairy"
+        - name: "Pond of Happiness - hidden room - Fairy 4"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+        - name: "Pond of Happiness - Pond"
+          position: { x: 0x07, y: 0x09, z: 0x00 }
+          sprite: "PondActivation"
+          allow:
+            - "PondActivation"

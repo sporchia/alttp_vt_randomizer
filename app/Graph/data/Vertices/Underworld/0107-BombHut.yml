@@ -1,0 +1,39 @@
+rooms:
+  - roomid: 0x0107
+    nodes:
+      regions:
+        - name: "Bomb Hut"
+          inletid: 0x4a
+
+      pots:
+        - name: "Bomb Hut - Pot 1"
+          position: 0x17d6
+          sprite: "@BombRefill1"
+        - name: "Bomb Hut - Pot 2"
+          position: 0x17de
+          sprite: "@ArrowRefill5"
+        - name: "Bomb Hut - Pot 3"
+          position: 0x17e6
+          sprite: "@BombRefill1"
+        - name: "Bomb Hut - Pot 4"
+          position: 0x19d6
+          sprite: "@RupeeGreen"
+        - name: "Bomb Hut - Pot 8"
+          position: 0x19de
+        - name: "Bomb Hut - Pot 5"
+          position: 0x19e6
+          sprite: "@RupeeGreen"
+        - name: "Bomb Hut - Pot 6"
+          position: 0x1bd6
+          sprite: "@BombRefill1"
+        - name: "Bomb Hut - Pot 7"
+          position: 0x1be6
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Bomb Hut - Rat 1"
+          position: { x: 0x17, y: 0x1b, z: 0x00 }
+          sprite: "Rat"
+        - name: "Bomb Hut - Rat 2"
+          position: { x: 0x18, y: 0x1b, z: 0x00 }
+          sprite: "Rat"

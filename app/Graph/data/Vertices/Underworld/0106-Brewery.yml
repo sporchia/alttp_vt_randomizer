@@ -1,0 +1,17 @@
+rooms:
+  - roomid: 0x0106
+    nodes:
+      regions:
+        - name: "Brewery Room"
+          inletid: 0x48
+
+      items:
+        - name: "Brewery"
+          addresses: [0xE9EC]
+          type: "chest"
+          itemset: ["dw"]
+
+      pots:
+        - name: "Brewery - Pot"
+          position: 0x1B6C
+          sprite: "@Heart"

@@ -1,0 +1,38 @@
+maps:
+  - map: 0x17
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Octorok Pit"
+        - name: "Octorok Pit River"
+
+      mobs:
+        - name: "Octorok Pit - Buzzblob 3"
+          position: { x: 0x0d, y: 0x0b }
+          sprite: "Buzzblob"
+          state: [1]
+
+        - name: "Octorok Pit - sprite.FastRedSpearGuard"
+          position: { x: 0x0d, y: 0x0b }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Octorok Pit - Buzzblob 1"
+          position: { x: 0x18, y: 0x08 }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Octorok Pit - Buzzblob 2"
+          position: { x: 0x17, y: 0x0a }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Octorok Pit - Buzzblob 4"
+          position: { x: 0x16, y: 0x0c }
+          sprite: "Buzzblob"
+          state: [1, 2]
+
+        - name: "Octorok Pit - Buzzblob 5"
+          position: { x: 0x08, y: 0x16 }
+          sprite: "Buzzblob"
+          state: [1, 2]

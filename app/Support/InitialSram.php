@@ -110,7 +110,7 @@ final class InitialSram
      * @param Inventory $items items to equip Link with
      * @param array $config 
      */
-    public function setStartingEquipment(Inventory $items, $config)
+    public function setStartingEquipment(Inventory $items, array $config): void
     {
         $starting_rupees = 0;
         $starting_arrow_capacity_upgrades = 0;
@@ -199,7 +199,7 @@ final class InitialSram
                     }
                     break;
                 case 'Progressivebow':
-                    min($this->initial_sram_bytes[0x340] + 2, 4);
+                    $this->initial_sram_bytes[0x340] = min($this->initial_sram_bytes[0x340] + 2, 4);
                     if ($config['rom.rupeeBow'] == true) {
                         $this->initial_sram_bytes[0x377] = 0x01;
                     } else {
@@ -632,7 +632,7 @@ final class InitialSram
         $this->setValue(0x370, $starting_arrow_capacity_upgrades);
         $this->setValue(0x371, $starting_bomb_capacity_upgrades);
 
-        if ($config['mode.weapons'] == 'swordless') {
+        if (isset($config['mode.weapons']) && $config['mode.weapons'] === 'swordless') {
             $this->initial_sram_bytes[0x359] = 0xFF;
             $this->initial_sram_bytes[0x417] = 0x00;
         }

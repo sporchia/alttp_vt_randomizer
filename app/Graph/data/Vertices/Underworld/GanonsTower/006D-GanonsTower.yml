@@ -1,0 +1,71 @@
+rooms:
+  - roomid: 0x6D
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Gauntlet 4"
+        - name: "Ganon's Tower - Gauntlet 5"
+
+      shutters:
+        - name: "Ganon's Tower - Gauntlet 4 - Shutter Door"
+        - name: "Ganon's Tower - Gauntlet 5 - Shutter Door"
+
+      pots:
+        - name: "Ganon's Tower - Gauntlet 4 - Pot 1"
+          position: 0x1a1c
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Gauntlet 4 - Pot 2"
+          position: 0x1a20
+          sprite: "@Heart"
+        - name: "Ganon's Tower - Gauntlet 4 - Pot 3"
+          position: 0x1b1c
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Gauntlet 4 - Pot 4"
+          position: 0x1b20
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Ganon's Tower - Gauntlet 4 - Red Zazak TL"
+          position: { x: 0x05, y: 0x06, z: 0x00 }
+          sprite: "ZazakRed"
+          trophy: "GanonsTowerGauntletFourTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 4 - Beamos TR"
+          position: { x: 0x0b, y: 0x06, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "GanonsTowerGauntletFourTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 4 - Beamos BL"
+          position: { x: 0x04, y: 0x09, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "GanonsTowerGauntletFourTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 4 - Red Zazak BR"
+          position: { x: 0x0a, y: 0x0b, z: 0x00 }
+          sprite: "ZazakRed"
+          trophy: "GanonsTowerGauntletFourTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 5 - Medusa"
+          position: { x: 0x04, y: 0x15, z: 0x00 }
+          sprite: "Medusa"
+          trophy: "GanonsTowerGauntletFiveTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 5 - Beamos"
+          position: { x: 0x0b, y: 0x15, z: 0x00 }
+          sprite: "Beamos"
+          trophy: "GanonsTowerGauntletFiveTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 5 - Stalfos"
+          position: { x: 0x05, y: 0x18, z: 0x00 }
+          sprite: "Stalfos"
+          trophy: "GanonsTowerGauntletFiveTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 5 - Red Zazak"
+          position: { x: 0x0a, y: 0x18, z: 0x00 }
+          sprite: "ZazakRed"
+          trophy: "GanonsTowerGauntletFiveTrophy"
+
+        - name: "Ganon's Tower - Gauntlet 5 - Spark"
+          position: { x: 0x06, y: 0x1a, z: 0x00 }
+          sprite: "SparkCCW"
+          trophy: "GanonsTowerGauntletFiveTrophy"

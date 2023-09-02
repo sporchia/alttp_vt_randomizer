@@ -1,0 +1,34 @@
+rooms:
+  - roomid: 0xA0
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Boss Antichamber Right - orange"
+          peg: "orange"
+        - name: "Misery Mire - Boss Antichamber Left - orange"
+          peg: "orange"
+        - name: "Misery Mire - Boss Antichamber - blue"
+          peg: "blue"
+
+      bigkeydoors:
+        - name: "Misery Mire - Boss Antichamber Door"
+          key: "BigKeyD6"
+
+      mobs:
+        - name: "Misery Mire - Boss Antichamber - blue - Medusa"
+          position: { x: 0x03, y: 0x08, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Boss Antichamber - blue - Antifairy"
+          position: { x: 0x0e, y: 0x08, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "RollerHL"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Misery Mire - Boss Antichamber - blue - Fire Snake"
+          position: { x: 0x14, y: 0x0c, z: 0x00 }
+          sprite: "FireSnake"

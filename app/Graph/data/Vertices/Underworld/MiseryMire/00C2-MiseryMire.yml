@@ -1,0 +1,75 @@
+rooms:
+  - roomid: 0xC2
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Main Lobby - orange"
+          peg: "orange"
+        - name: "Misery Mire - Main Lobby North - orange"
+          peg: "orange"
+        - name: "Misery Mire - Main Lobby North East - orange"
+          peg: "orange"
+        - name: "Misery Mire - Main Lobby - blue"
+          peg: "blue"
+
+      keydoors:
+        - name: "Misery Mire - Main Lobby Door"
+          key: "KeyD6"
+        - name: "Misery Mire - Main Lobby Top Right Door"
+          key: "KeyD6"
+
+      items:
+        - name: "Misery Mire - Main Lobby Chest"
+          type: "chest"
+          addresses: [0xEA5E]
+          itemset: ["mire"]
+
+      pots:
+        - name: "Misery Mire - Main Lobby - Pot 1"
+          position: 0x07b4
+          sprite: "FloorSwitch"
+        - name: "Misery Mire - Main Lobby - Pot 2"
+          position: 0x2e64
+          sprite: "@MagicRefillSmall"
+        - name: "Misery Mire - Main Lobby - Pot 3"
+          position: 0x3044
+          sprite: "@RupeeGreen"
+        - name: "Misery Mire - Main Lobby - Pot 4"
+          position: 0x3440
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Misery Mire - Main Lobby - Fire Snake 1"
+          position: { x: 0x15, y: 0x0b, z: 0x01 }
+          sprite: "FireSnake"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+
+        - name: "Misery Mire - Main Lobby - Fire Snake 2"
+          position: { x: 0x0b, y: 0x0c, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Misery Mire - Main Lobby - Medusa"
+          position: { x: 0x08, y: 0x10, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Misery Mire - Main Lobby - Spark (Clockwise) 1"
+          position: { x: 0x10, y: 0x12, z: 0x01 }
+          sprite: "SparkCW"
+
+        - name: "Misery Mire - Main Lobby - Spark (Clockwise) 2"
+          position: { x: 0x19, y: 0x12, z: 0x01 }
+          sprite: "SparkCW"
+
+        - name: "Misery Mire - Main Lobby - Bunny Beam"
+          position: { x: 0x10, y: 0x14, z: 0x01 }
+          sprite: "BunnyBeam"
+
+        - name: "Misery Mire - Main Lobby - Fire Snake 3"
+          position: { x: 0x08, y: 0x16, z: 0x01 }
+          sprite: "FireSnake"
+
+        - name: "Misery Mire - Main Lobby - Spark (Clockwise) 3"
+          position: { x: 0x16, y: 0x16, z: 0x01 }
+          sprite: "SparkCW"

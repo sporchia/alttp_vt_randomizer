@@ -1,0 +1,55 @@
+rooms:
+  - roomid: 0x13
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Pokey C"
+
+      keydoors:
+        - name: "Turtle Rock - Pokey C Door"
+          key: "KeyD7"
+
+      mobs:
+        - name: "Turtle Rock - Pokey C - Crystal Switch"
+          position: { x: 0x14, y: 0x11, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Turtle Rock - Pokey C - Pokey Key"
+          position: { x: 0x16, y: 0x18, z: 0x00 }
+          sprite: "Pokey"
+          item: "KeyD7"
+          itemset: ["turtlerock"]
+
+        - name: "Turtle Rock - Pokey C - Antifairy 1"
+          position: { x: 0x18, y: 0x04, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Pokey C - Antifairy 2"
+          position: { x: 0x1a, y: 0x04, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Pokey C - Antifairy 3"
+          position: { x: 0x18, y: 0x05, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Pokey C - Antifairy 4"
+          position: { x: 0x1a, y: 0x05, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Turtle Rock - Pokey C - Green Stalfos 1"
+          position: { x: 0x1b, y: 0x16, z: 0x00 }
+          sprite: "GreenStalfos"
+
+        - name: "Turtle Rock - Pokey C - Laser Eye (Left)"
+          position: { x: 0x1e, y: 0x18, z: 0x00 }
+          sprite: "LaserEyeL"
+
+        - name: "Turtle Rock - Pokey C - Green Stalfos 2"
+          position: { x: 0x14, y: 0x1a, z: 0x00 }
+          sprite: "GreenStalfos"
+
+        - name: "Turtle Rock - Pokey C - Bunny Beam"
+          position: { x: 0x1b, y: 0x1b, z: 0x00 }
+          sprite: "BunnyBeam"

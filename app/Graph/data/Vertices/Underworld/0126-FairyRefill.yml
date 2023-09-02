@@ -1,0 +1,25 @@
+rooms:
+  - roomid: 0x0126
+    nodes:
+      regions:
+        - name: "Fairy Refill"
+          inletid: 0x71
+        - name: "West Woods Fairy Pond"
+          inletid: 0x71
+
+      mobs:
+        - name: "Fairy Refill - Fairy 1"
+          position: { x: 0x07, y: 0x15, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Refill - Fairy 2"
+          position: { x: 0x08, y: 0x15, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Refill - Fairy 3"
+          position: { x: 0x07, y: 0x16, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Fairy Refill - Fairy 4"
+          position: { x: 0x08, y: 0x16, z: 0x00 }
+          sprite: "Fairy"

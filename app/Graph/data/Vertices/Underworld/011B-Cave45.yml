@@ -1,0 +1,40 @@
+rooms:
+  - roomid: 0x011B
+    nodes:
+      regions:
+        - name: "Cave 45 Right"
+          inletid: 0x51
+        - name: "Cave 45 Left"
+
+      items:
+        - name: "Cave 45"
+          addresses: [0x180003]
+          type: "standing"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Cave 45 - Pot 1"
+          position: 0x3618
+          sprite: "@Heart"
+        - name: "Cave 45 - Pot 2"
+          position: 0x3620
+          sprite: "@Heart"
+        - name: "Cave 45 - Pot 3"
+          position: 0x3628
+          sprite: "@Heart"
+        - name: "Cave 45 - Pot 4"
+          position: 0x3718
+          sprite: "@Heart"
+        - name: "Cave 45 - Pot 5"
+          position: 0x381c
+          sprite: "@Heart"
+        - name: "Cave 45 - Pot 6"
+          position: 0x3518
+
+      mobs:
+        # this is required to have the standing item appear
+        - name: "Cave 45 - Heart Piece"
+          position: { x: 0x05, y: 0x16, z: 0x01 }
+          sprite: "HeartPiece"
+          allow:
+            - "HeartPiece"

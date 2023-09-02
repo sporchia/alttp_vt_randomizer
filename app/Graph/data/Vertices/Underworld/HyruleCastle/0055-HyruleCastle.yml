@@ -1,0 +1,48 @@
+rooms:
+  - roomid: 0x55
+    group: 1
+    nodes:
+      regions:
+        - name: "Secret Passage Uncle"
+          inletid: 0x7d
+        - name: "Secret Passage Stairs"
+          inletid: 0x32
+
+      items:
+        - name: "Link's Uncle"
+          addresses: [0x2DF45]
+          type: "npc"
+          itemset: ["lw"]
+        - name: "Secret Passage"
+          addresses: [0xE971]
+          type: "chest"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Secret Passage Exit - Pot 1"
+          position: 0x18e6
+          sprite: "@MagicRefillSmall"
+        - name: "Secret Passage Exit - Pot 2"
+          position: 0x19e6
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Secret Passage Exit - Uncle"
+          position: { x: 0x0e, y: 0x08, z: 0x00 }
+          sprite: "Uncle"
+          allow:
+            - "Uncle"
+
+        - name: "Secret Passage Exit - Green Knife Guard 1"
+          position: { x: 0x14, y: 0x15, z: 0x00 }
+          sprite: "GreenGuardRecruit"
+          deny:
+            - "RollerVU"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Secret Passage Exit - Green Knife Guard 2"
+          position: { x: 0x0d, y: 0x16, z: 0x00 }
+          sprite: "GreenGuardRecruit"

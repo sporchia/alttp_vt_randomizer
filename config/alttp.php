@@ -2,7 +2,7 @@
 
 return [
     'banner' => env('BANNER_TEXT', null),
-    'base_rom' => env('ENEMIZER_BASE', null),
+    'base_rom' => storage_path(env('ENEMIZER_BASE', null)),
     'api_throttle_whitelist' => explode(',', env('API_THROTTLE_WHITELIST', '')),
     'custom' => [
         'prize' => [

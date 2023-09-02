@@ -1,0 +1,62 @@
+rooms:
+  - roomid: 0x00E5
+    dark: true
+    nodes:
+      regions:
+        - name: "Old Man Home Circle"
+          inletid: 0x31
+
+      pots:
+        - name: "Old Man Home Circle - Pot 1"
+          position: 0x0430
+          sprite: "@RupeeGreen"
+        - name: "Old Man Home Circle - Pot 2"
+          position: 0x044c
+          sprite: "@RupeeGreen"
+        - name: "Old Man Home Circle - Pot 3"
+          position: 0x1070
+          sprite: "@RupeeGreen"
+        - name: "Old Man Home Circle - Pot 4"
+          position: 0x1240
+          sprite: "@RupeeBlue"
+
+      mobs:
+        - name: "Old Man Home Circle - Keese 1"
+          position: { x: 0x0f, y: 0x09, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Old Man Home Circle - Keese 2"
+          position: { x: 0x10, y: 0x09, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Old Man Home Circle - Keese 3"
+          position: { x: 0x11, y: 0x09, z: 0x00 }
+          sprite: "Keese"
+
+        - name: "Old Man Home Circle - Keese 4"
+          position: { x: 0x1b, y: 0x0e, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "Kodongo"
+
+        - name: "Old Man Home Circle - Keese 5"
+          position: { x: 0x0f, y: 0x12, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Kodongo"
+            - "Bumper"
+
+        - name: "Old Man Home Circle - Keese 6"
+          position: { x: 0x11, y: 0x12, z: 0x00 }
+          sprite: "Keese"
+          deny:
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Kodongo"
+            - "Bumper"

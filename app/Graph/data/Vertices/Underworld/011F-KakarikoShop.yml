@@ -1,0 +1,37 @@
+rooms:
+  - roomid: 0x011F
+    shopkeeper: 0xA0
+    shopstyle: 0x03
+    nodes:
+      regions:
+        - name: "Kakariko Shop"
+          inletid: 0x46
+
+      items:
+        - name: "Kakariko Shop - Left"
+          addresses: []
+          type: "shopitem"
+          cost: 150
+          item: "RedPotion"
+          itemset: ["lw", "shop"]
+
+        - name: "Kakariko Shop - Middle"
+          addresses: []
+          type: "shopitem"
+          cost: 10
+          item: "Heart"
+          itemset: ["lw", "shop"]
+
+        - name: "Kakariko Shop - Right"
+          addresses: []
+          type: "shopitem"
+          cost: 50
+          item: "TenBombs"
+          itemset: ["lw", "shop"]
+
+      mobs:
+        - name: "Kakariko Shop - Shopkeeper"
+          position: { x: 0x17, y: 0x16, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

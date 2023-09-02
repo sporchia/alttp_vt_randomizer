@@ -1,0 +1,27 @@
+rooms:
+  - roomid: 0x0125
+    nodes:
+      regions:
+        - name: "Ice Cave Thief Hideout"
+          inletid: 0x6f
+
+      pots:
+        - name: "Cheap Secret Thief - Pot 1"
+          position: 0x1918
+          sprite: "@RupeeBlue"
+        - name: "Cheap Secret Thief - Pot 2"
+          position: 0x191c
+          sprite: "@RupeeBlue"
+        - name: "Cheap Secret Thief - Pot 3"
+          position: 0x1920
+          sprite: "@RupeeBlue"
+        - name: "Cheap Secret Thief - Pot 4"
+          position: 0x1924
+          sprite: "@RupeeBlue"
+
+      mobs:
+        - name: "Cheap Secret Thief - Thief"
+          position: { x: 0x08, y: 0x16, z: 0x00 }
+          sprite: "Salesman"
+          allow:
+            - "Salesman"

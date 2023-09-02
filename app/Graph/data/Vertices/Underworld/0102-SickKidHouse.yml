@@ -1,0 +1,27 @@
+rooms:
+  - roomid: 0x0102
+    nodes:
+      regions:
+        - name: "Sick Kid's House"
+          inletid: 0x40
+
+      items:
+        - name: "Sick Kid"
+          addresses: [0x339CF]
+          type: "npc"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Sick Kid House - Pot 1"
+          position: 0x1392
+          sprite: "@Heart"
+        - name: "Sick Kid House - Pot 2"
+          position: 0x1396
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Sick Kid House - Bug-Catching Kid"
+          position: { x: 0x03, y: 0x18, z: 0x00 }
+          sprite: "SickKid"
+          allow:
+            - "SickKid"

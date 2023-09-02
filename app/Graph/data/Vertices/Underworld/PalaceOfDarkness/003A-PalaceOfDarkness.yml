@@ -1,0 +1,38 @@
+rooms:
+  - roomid: 0x3A
+    group: 7
+    nodes:
+      regions:
+        # TODO: something is missing here??
+        - name: "Palace of Darkness - Pit Room"
+
+      items:
+        - name: "Palace of Darkness - Big Key Chest"
+          addresses: [0xea37]
+          type: "chest"
+          itemset: ["pod"]
+
+      mobs:
+        - name: "Palace of Darkness - Pit Room - Terrorpin 1"
+          position: { x: 0x0e, y: 0x11, z: 0x00 }
+          sprite: "Terrorpin"
+
+        - name: "Palace of Darkness - Pit Room - Terrorpin 2"
+          position: { x: 0x11, y: 0x11, z: 0x00 }
+          sprite: "Terrorpin"
+
+        - name: "Palace of Darkness - Pit Room - Medusa 1"
+          position: { x: 0x04, y: 0x14, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Palace of Darkness - Pit Room - Blue Bari 1"
+          position: { x: 0x0a, y: 0x14, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Palace of Darkness - Pit Room - Blue Bari 2"
+          position: { x: 0x15, y: 0x14, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Palace of Darkness - Pit Room - Medusa 2"
+          position: { x: 0x1b, y: 0x14, z: 0x00 }
+          sprite: "Medusa"

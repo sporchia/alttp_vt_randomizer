@@ -5,9 +5,6 @@ rooms:
         - name: "Link's House - Bedroom"
           inletid: 0x01
 
-      exits:
-        - name: "Link's House - Exit"
-
       items:
         - name: "Link's House - Chest"
           addresses: [0xE9BC]
@@ -17,13 +14,13 @@ rooms:
       pots:
         - name: "Link's House - Bedroom - Pot 1"
           position: 0x15ca
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Link's House - Bedroom - Pot 2"
           position: 0x16ca
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Link's House - Bedroom - Pot 3"
           position: 0x17ca
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
 
       mobs:
         - name: "Link's House - Bedroom - Uncle"

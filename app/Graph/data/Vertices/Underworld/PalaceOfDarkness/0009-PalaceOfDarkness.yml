@@ -1,0 +1,37 @@
+rooms:
+  - roomid: 0x09
+    group: 7
+    nodes:
+      regions:
+        - name: "Palace of Darkness - Shooter Room"
+        - name: "Palace of Darkness - Warp Room"
+
+      items:
+        - name: "Palace of Darkness - Shooter Room Chest"
+          addresses: [0xea5b]
+          type: "chest"
+          itemset: ["pod"]
+
+      pots:
+        - name: "Palace of Darkness - Shooter Room - Pot 1"
+          position: 0x040c
+          sprite: "@RupeeGreen"
+        - name: "Palace of Darkness - Shooter Room - Pot 2"
+          position: 0x0430
+          sprite: "@Heart"
+        - name: "Palace of Darkness - Shooter Room - Pot 3"
+          position: 0x0c0c
+          sprite: "FloorSwitch"
+
+      mobs:
+        - name: "Palace of Darkness - Shooter Room - Medusa 1"
+          position: { x: 0x07, y: 0x08, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Palace of Darkness - Shooter Room - Medusa 2"
+          position: { x: 0x08, y: 0x08, z: 0x00 }
+          sprite: "Medusa"
+
+        - name: "Palace of Darkness - Warp Room - Antifairy"
+          position: { x: 0x17, y: 0x0b, z: 0x00 }
+          sprite: "Antifairy"

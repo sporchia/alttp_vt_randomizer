@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Graph;
 
 use App\Graph\Item;
-use Illuminate\Support\Arr;
+use Exception;
 
 /**
  * Representation of Players inventory for graph based traversal.
@@ -21,7 +21,7 @@ final class Inventory
     /**
      * Create new Inventory instance.
      *
-     * @param iterable<Item> $items items to add
+     * @param iterable<Item|string> $items items to add
      *
      * @return void
      */
@@ -55,18 +55,19 @@ final class Inventory
         $this->item_count[$item_name] ??= 0;
         $this->item_count[$item_name]++;
 
-        if (strpos($item_name, 'HeartContainer') !== false) {
-            $world_id = Arr::last(explode(':', $item_name));
+        if (str_starts_with($item_name, 'HeartContainer')) {
+            $parts = explode(':', $item_name);
+            $world_id = end($parts);
             $this->health[$world_id] ??= 0;
             $this->health[$world_id] += 1;
-        }
-        if (strpos($item_name, 'PieceOfHeart') !== false) {
-            $world_id = Arr::last(explode(':', $item_name));
+        } else if (str_starts_with($item_name, 'PieceOfHeart')) {
+            $parts = explode(':', $item_name);
+            $world_id = end($parts);
             $this->health[$world_id] ??= 0;
             $this->health[$world_id] += .25;
-        }
-        if (strpos($item_name, 'Bottle') === 0) {
-            $world_id = Arr::last(explode(':', $item_name));
+        } else if (str_starts_with($item_name, 'Bottle')) {
+            $parts = explode(':', $item_name);
+            $world_id = end($parts);
             $this->addItemByName("LogicalBottle:$world_id");
         }
 
@@ -108,46 +109,13 @@ final class Inventory
      */
     public function getCount(string $key): int
     {
-        if (strpos($key, ':') === false) {
-            $key = "$key:0";
-        }
-
-        if (strpos($key, 'Bottle') === 0) {
-            $world_id = Arr::last(explode(':', $key));
+        if (str_starts_with($key, 'Bottle')) {
+            $parts = explode(':', $key);
+            $world_id = end($parts);
             $key = "LogicalBottle:$world_id";
         }
 
         return $this->item_count[$key] ?? 0;
-    }
-
-    /**
-     * Get the key to use for getting a count of items.
-     * 
-     * @param string $key name of item in subset
-     */
-    public function getCountKey(string $key): string
-    {
-        $key = preg_replace('/\|\d+$/', '', $key);
-        if (strpos($key, ':') === false) {
-            $key = "$key:0";
-        }
-
-        if (strpos($key, 'Bottle') === 0) {
-            $world_id = Arr::last(explode(':', $key));
-            $key = "LogicalBottle:$world_id";
-        }
-
-        $count = $this->item_count[$key] ?? 0;
-
-        if ($count === 0) {
-            return '';
-        }
-
-        if ($count === 1) {
-            return $key;
-        }
-
-        return "$key|$count";
     }
 
     /**
@@ -157,10 +125,6 @@ final class Inventory
      */
     public function has(string $item_name): bool
     {
-        if (strpos($item_name, ':') === false) {
-            $item_name = "$item_name:0";
-        }
-
         return ($this->item_count[$item_name] ?? 0) > 0;
     }
 

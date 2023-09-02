@@ -1,0 +1,54 @@
+rooms:
+  - roomid: 0x19
+    group: 7
+    dark: true
+    nodes:
+      regions:
+        - name: "Palace of Darkness - Dark Maze"
+        - name: "Palace of Darkness - Dark Maze darkness"
+
+      items:
+        - name: "Palace of Darkness - Dark Maze - Top"
+          addresses: [0xea55]
+          type: "chest"
+          itemset: ["pod"]
+
+        - name: "Palace of Darkness - Dark Maze - Bottom"
+          addresses: [0xea58]
+          type: "chest"
+          itemset: ["pod"]
+
+      mobs:
+        - name: "Palace of Darkness - Dark Maze - Kodongo 1"
+          position: { x: 0x16, y: 0x0a, z: 0x00 }
+          sprite: "Kodongo"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Palace of Darkness - Dark Maze - Kodongo 2"
+          position: { x: 0x1a, y: 0x0e, z: 0x00 }
+          sprite: "Kodongo"
+          deny:
+            - "RollerVU"
+
+        - name: "Palace of Darkness - Dark Maze - Kodongo 3"
+          position: { x: 0x16, y: 0x10, z: 0x00 }
+          sprite: "Kodongo"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+
+        - name: "Palace of Darkness - Dark Maze - Kodongo 4"
+          position: { x: 0x18, y: 0x16, z: 0x00 }
+          sprite: "Kodongo"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"

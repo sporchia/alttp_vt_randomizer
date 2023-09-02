@@ -1,0 +1,79 @@
+rooms:
+  - roomid: 0x68
+    group: 9
+    nodes:
+      regions:
+        - name: "Skull Woods - Pinball Room"
+          inletid: 0x78
+
+      items:
+        - name: "Skull Woods - Pinball Chest"
+          addresses: [0xE9C8]
+          type: "chest"
+          itemset: ["skull"]
+
+      pots:
+        - name: "Skull Woods - Pinball Room - Pot 1"
+          position: 0x0740
+          sprite: "@Heart"
+        - name: "Skull Woods - Pinball Room - Pot 2"
+          position: 0x0758
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Pinball Room - Pot 3"
+          position: 0x1040
+          sprite: "@Heart"
+        - name: "Skull Woods - Pinball Room - Pot 4"
+          position: 0x1840
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Pinball Room - Pot 5"
+          position: 0x1940
+          sprite: "@Heart"
+        - name: "Skull Woods - Pinball Room - Pot 6"
+          position: 0x0458
+        - name: "Skull Woods - Pinball Room - Pot 7"
+          position: 0x0558
+        - name: "Skull Woods - Pinball Room - Pot 8"
+          position: 0x0658
+        - name: "Skull Woods - Pinball Room - Pot 9"
+          position: 0x0c58
+        - name: "Skull Woods - Pinball Room - Pot 10"
+          position: 0x0d54
+        - name: "Skull Woods - Pinball Room - Pot 11"
+          position: 0x0e54
+        - name: "Skull Woods - Pinball Room - Pot 12"
+          position: 0x0f40
+        - name: "Skull Woods - Pinball Room - Pot 13"
+          position: 0x1140
+
+      mobs:
+        - name: "Skull Woods - Pinball Room - Bumper 1"
+          position: { x: 0x0e, y: 0x07, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Pinball Room - Bumper 2"
+          position: { x: 0x11, y: 0x07, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Pinball Room - Bumper 3"
+          position: { x: 0x0c, y: 0x0b, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Pinball Room - Bumper 4"
+          position: { x: 0x13, y: 0x0b, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Skull Woods - Pinball Room - Gibdo 1"
+          position: { x: 0x14, y: 0x08, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Pinball Room - Wallmaster"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "Wallmaster Overlord"
+
+        - name: "Skull Woods - Pinball Room - Gibdo 2"
+          position: { x: 0x0e, y: 0x12, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Pinball Room - Gibdo 3"
+          position: { x: 0x12, y: 0x12, z: 0x00 }
+          sprite: "Gibdo"

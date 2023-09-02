@@ -1,0 +1,172 @@
+rooms:
+  - roomid: 0x90
+    group: 14
+    nodes:
+      regions:
+        - name: "Misery Mire - Boss Room"
+
+      items:
+        - name: "Misery Mire - Boss"
+          addresses: [0x180158]
+          type: "drop"
+          itemset: ["mire"]
+
+        - name: "Misery Mire - Prize"
+          addresses: [null, 0x120A2, 0x53F48, 0x53F49, 0x180057, 0x180075, 0xC703]
+          type: "prize"
+          itemset: ["prize"]
+
+    # this data might not end up living here?
+    # but is not currently used, see data/Bosses/SpriteLocations.yml
+    bosses:
+      "Misery Mire - Boss Room":
+        DefeatArmos:
+          - name: "Misery Mire - Boss Room - Armos Knight 1"
+            position: { x: 0x04, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosKnight"
+          - name: "Misery Mire - Boss Room - Armos Knight 2"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosKnight"
+          - name: "Misery Mire - Boss Room - Armos Knight 3"
+            position: { x: 0x0a, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosKnight"
+          - name: "Misery Mire - Boss Room - Armos Knight 4"
+            position: { x: 0x0a, y: 0x18, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosKnight"
+          - name: "Misery Mire - Boss Room - Armos Knight 5"
+            position: { x: 0x07, y: 0x18, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosKnight"
+          - name: "Misery Mire - Boss Room - Armos Knight 6"
+            position: { x: 0x04, y: 0x18, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosKnight"
+          - name: "Misery Mire - Boss Room - Armos Overlord"
+            position: { x: 0x07, y: 0x18, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArmosCoordinator"
+        DefeatLanmolas:
+          - name: "Misery Mire - Boss Room - Lanmolas 1"
+            position: { x: 0x06, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "Lanmolas"
+          - name: "Misery Mire - Boss Room - Lanmolas 2"
+            position: { x: 0x09, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "Lanmolas"
+          - name: "Misery Mire - Boss Room - Lanmolas 3"
+            position: { x: 0x07, y: 0x19, z: 0x00 }
+            roomid: 0x90
+            sprite: "Lanmolas"
+        DefeatMoldorm:
+          - name: "Misery Mire - Boss Room - Moldorm"
+            position: { x: 0x02, y: 0x1e, z: 0x00 }
+            roomid: 0x90
+            sprite: "Moldorm"
+        DefeatHelmasaur:
+          - name: "Misery Mire - Boss Room - Helmasaur King"
+            position: { x: 0x07, y: 0x16, z: 0x00 }
+            roomid: 0x90
+            sprite: "Helmasaur"
+        DefeatArrghus:
+          - name: "Misery Mire - Boss Room - Arrghus"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "Arrghus"
+          - name: "Misery Mire - Boss Room - Arrghi 1"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 2"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 3"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 4"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 5"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 6"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 7"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 8"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 9"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 10"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 11"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 12"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+          - name: "Misery Mire - Boss Room - Arrghi 13"
+            position: { x: 0x07, y: 0x17, z: 0x00 }
+            roomid: 0x90
+            sprite: "ArrghusSpawn"
+        DefeatMothula:
+          - name: "Misery Mire - Boss Room - Mothula"
+            position: { x: 0x08, y: 0x16, z: 0x00 }
+            roomid: 0x90
+            sprite: "Mothula"
+        DefeatBlind:
+          - name: "Misery Mire - Boss Room - Blind"
+            position: { x: 0x09, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "Blind"
+        DefeatKholdstare:
+          - name: "Misery Mire - Boss Room - Kholdstare's Shell"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "KholdstareShell"
+          - name: "Misery Mire - Boss Room - Falling Ice"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "FallingIce"
+          - name: "Misery Mire - Boss Room - Kholdstare"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "Kholdstare"
+        DefeatVitreous:
+          - name: "Misery Mire - Boss Room - Vitreous"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "Vitreous"
+        DefeatTrinexx:
+          - name: "Misery Mire - Boss Room - Trinexx"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "Trinexx"
+          - name: "Misery Mire - Boss Room - Trinexx (Fire Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "TrinexxHeadFire"
+          - name: "Misery Mire - Boss Room - Trinexx (Ice Head)"
+            position: { x: 0x07, y: 0x15, z: 0x00 }
+            roomid: 0x90
+            sprite: "TrinexxHeadIce"

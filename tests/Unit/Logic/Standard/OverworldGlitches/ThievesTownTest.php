@@ -25,7 +25,6 @@ final class ThievesTownTest extends TestCase
     {
         $randomizer = new Randomizer([[
             'mode.state' => 'standard',
-            'difficulty' => 'test_rules',
             'tech' => config('logic.overworld_glitches'),
             'logic' => 'OverworldGlitches',
         ]]);

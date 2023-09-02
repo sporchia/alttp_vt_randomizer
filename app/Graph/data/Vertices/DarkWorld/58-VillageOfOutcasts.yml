@@ -1,0 +1,115 @@
+maps:
+  - map: 0x58
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Village of Outcasts"
+        - name: "Village of Outcasts Broken Hut"
+        - name: "Village of Outcasts Storefront"
+
+      entrances:
+        - name: "Thieves Town"
+          entranceid: 0x33
+          outletid: 0x35
+
+        - name: "Chest Game"
+          entranceid: 0x46
+          outletid: 0x57
+
+        - name: "Brewery"
+          entranceid: 0x47
+          outletid: 0x58
+
+        - name: "C House"
+          entranceid: 0x53
+          outletid: 0x92
+
+        - name: "Village of Outcasts Storefront"
+          entranceid: 0x5F
+          outletid: 0x64
+
+      mobs:
+        - name: "Village of Outcasts - Moblin 1"
+          position: { x: 0x13, y: 0x06 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Talking Tree 1"
+          position: { x: 0x18, y: 0x0c }
+          sprite: "TalkingTree"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Blue Guard 1"
+          position: { x: 0x07, y: 0x1c }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Moblin 2"
+          position: { x: 0x35, y: 0x0a }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Poe 1"
+          position: { x: 0x2b, y: 0x0c }
+          sprite: "Poe"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Thief 1"
+          position: { x: 0x2e, y: 0x17 }
+          sprite: "Thief"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Gargoyle's Domain Gate"
+          position: { x: 0x20, y: 0x1c }
+          sprite: "ForkGate"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Poe 2"
+          position: { x: 0x18, y: 0x25 }
+          sprite: "Poe"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Thief 2"
+          position: { x: 0x0d, y: 0x27 }
+          sprite: "Thief"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Poe 3"
+          position: { x: 0x1d, y: 0x28 }
+          sprite: "Poe"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Moblin 3"
+          position: { x: 0x12, y: 0x2e }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Chicken 1"
+          position: { x: 0x16, y: 0x34 }
+          sprite: "Chicken"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Chicken 2"
+          position: { x: 0x15, y: 0x37 }
+          sprite: "Chicken"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Chicken 3"
+          position: { x: 0x28, y: 0x27 }
+          sprite: "Chicken"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Blue Guard 2"
+          position: { x: 0x33, y: 0x2f }
+          sprite: "BlueSwordGuard"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Poe 4"
+          position: { x: 0x2c, y: 0x34 }
+          sprite: "Poe"
+          state: [1, 2]
+
+        - name: "Village of Outcasts - Talking Tree 2"
+          position: { x: 0x37, y: 0x35 }
+          sprite: "TalkingTree"
+          state: [1, 2]

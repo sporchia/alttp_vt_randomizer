@@ -1,0 +1,101 @@
+rooms:
+  - roomid: 0x49
+    group: 11
+    nodes:
+      regions:
+        - name: "Skull Woods - Bari Pits"
+        - name: "Skull Woods - Torch Room"
+        - name: "Skull Woods - Vine Door Room"
+
+      pots:
+        - name: "Skull Woods - Bari Pits - Pot 1"
+          position: 0x0f68
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bari Pits - Pot 2"
+          position: 0x1068
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bari Pits - Pot 3"
+          position: 0x1390
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bari Pits - Pot 4"
+          position: 0x14ac
+          sprite: "@Heart"
+        - name: "Skull Woods - Bari Pits - Pot 5"
+          position: 0x1b90
+          sprite: "@Heart"
+        - name: "Skull Woods - Bari Pits - Pot 6"
+          position: 0x1cac
+          sprite: "@MagicRefillSmall"
+        - name: "Skull Woods - Bari Pits - Pot 7"
+          position: 0x1490
+        - name: "Skull Woods - Bari Pits - Pot 8"
+          position: 0x17ac
+        - name: "Skull Woods - Bari Pits - Pot 9"
+          position: 0x18ac
+        - name: "Skull Woods - Bari Pits - Pot 10"
+          position: 0x1ba0
+        - name: "Skull Woods - Bari Pits - Pot 11"
+          position: 0x1b9c
+
+      mobs:
+        - name: "Skull Woods - Bari Pits - Mini Moldorm 1"
+          position: { x: 0x0b, y: 0x05, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Skull Woods - Bari Pits - Mini Moldorm 2"
+          position: { x: 0x04, y: 0x0b, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Skull Woods - Bari Pits - Mini Moldorm 3"
+          position: { x: 0x09, y: 0x0c, z: 0x00 }
+          sprite: "MiniMoldorm"
+
+        - name: "Skull Woods - Bari Pits - Bunny Beam"
+          position: { x: 0x08, y: 0x06, z: 0x00 }
+          sprite: "BunnyBeam"
+
+        - name: "Skull Woods - Bari Pits - Gibdo 1"
+          position: { x: 0x07, y: 0x08, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Bari Pits - Gibdo 2"
+          position: { x: 0x17, y: 0x0b, z: 0x00 }
+          sprite: "Gibdo"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Skull Woods - Bari Pits - Wallmaster"
+          position: { x: 0x0f, y: 0x0f, z: 0x00 }
+          sprite: "Wallmaster Overlord"
+
+        - name: "Skull Woods - Bari Pits - Gibdo 3"
+          position: { x: 0x17, y: 0x10, z: 0x00 }
+          sprite: "Gibdo"
+
+        - name: "Skull Woods - Bari Pits - Gibdo 4"
+          position: { x: 0x16, y: 0x14, z: 0x00 }
+          sprite: "Gibdo"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Skull Woods - Bari Pits - Blue Bari 1"
+          position: { x: 0x09, y: 0x16, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Skull Woods - Bari Pits - Red Bari"
+          position: { x: 0x0a, y: 0x17, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Skull Woods - Bari Pits - Blue Bari 2"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Skull Woods - Bari Pits - Gibdo 5"
+          position: { x: 0x1a, y: 0x18, z: 0x00 }
+          sprite: "Gibdo"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"

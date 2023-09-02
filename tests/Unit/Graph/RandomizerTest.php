@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Graph;
 
+use App\Graph\Item;
 use App\Graph\Randomizer;
 use Tests\TestCase;
 
@@ -19,12 +20,16 @@ final class RandomizerTest extends TestCase
         $this->assertInstanceOf(Randomizer::class, $randomizer);
     }
 
-    public function testRandomize(): void
+    public function testLocation(): void
     {
-        $this->doesNotPerformAssertions();
-
         $randomizer = new Randomizer();
 
-        $randomizer->randomize();
+        $randomizer->assumeItems([
+            //Item::get("L1Sword", 0),
+        ]);
+
+        $locations = $randomizer->getEmptyLocationsInSet();
+
+        $this->assertContains("Link's House - Chest:0", array_map(fn ($l) => $l->name, $locations));
     }
 }

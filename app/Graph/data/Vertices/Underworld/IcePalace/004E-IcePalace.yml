@@ -1,0 +1,68 @@
+rooms:
+  - roomid: 0x4E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - IPBJ - orange"
+          peg: "orange"
+        - name: "Ice Palace - IPBJ - blue top"
+          peg: "blue"
+        - name: "Ice Palace - IPBJ - blue right"
+          peg: "blue"
+        - name: "Ice Palace - Blob Alley"
+
+      pots:
+        - name: "Ice Palace - Blob Alley - Pot 1"
+          position: 0x0b8c
+          sprite: "FloorSwitch"
+        - name: "Ice Palace - Blob Alley - Pot 2"
+          position: 0x0c1c
+          sprite: "@Heart"
+        - name: "Ice Palace - Blob Alley - Pot 3"
+          position: 0x0c70
+          sprite: "@MagicRefillSmall"
+        - name: "Ice Palace - Blob Alley - Pot 4"
+          position: 0x078c
+        - name: "Ice Palace - Blob Alley - Pot 5"
+          position: 0x0a30
+
+      mobs:
+        - name: "Ice Palace - Blob Alley - Zol 1"
+          position: { x: 0x14, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Blob Alley - Zol 2"
+          position: { x: 0x16, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Blob Alley - Zol 3"
+          position: { x: 0x18, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - IPBJ - Fire Bar (Clockwise)"
+          position: { x: 0x07, y: 0x09, z: 0x00 }
+          sprite: "FireBarCW"

@@ -1,0 +1,6 @@
+rooms:
+  - roomid: 0x0010
+    nodes:
+      regions:
+        - name: "Ganon's Drop"
+          inletid: 0x36

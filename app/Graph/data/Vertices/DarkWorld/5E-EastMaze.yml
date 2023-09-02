@@ -1,0 +1,123 @@
+maps:
+  - map: 0x5E
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "East Dark World Maze"
+
+      entrances:
+        - name: "Palace of Darkness Door"
+          entranceid: 0x25
+          outletid: 0x27
+
+        - name: "Bonzai Cave"
+          entranceid: 0x67
+          outletid: 0x7A
+
+      mobs:
+        - name: "East Dark World Maze - Kiki"
+          position: { x: 0x15, y: 0x11 }
+          sprite: "Kiki"
+          state: [1, 2]
+          item: "LostKiki"
+          itemset: ["event"]
+
+        - name: "East Dark World Maze - Ropa 1"
+          position: { x: 0x0d, y: 0x04 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 2"
+          position: { x: 0x03, y: 0x11 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 3"
+          position: { x: 0x12, y: 0x1a }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 4"
+          position: { x: 0x27, y: 0x09 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 5"
+          position: { x: 0x2f, y: 0x10 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Moblin 1"
+          position: { x: 0x25, y: 0x15 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Hinox 1"
+          position: { x: 0x26, y: 0x17 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 6"
+          position: { x: 0x35, y: 0x18 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 7"
+          position: { x: 0x2a, y: 0x1e }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Moblin 2"
+          position: { x: 0x0a, y: 0x26 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Moblin 3"
+          position: { x: 0x0c, y: 0x2b }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 8"
+          position: { x: 0x07, y: 0x35 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Hinox 2"
+          position: { x: 0x16, y: 0x37 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Snapdragon 1"
+          position: { x: 0x09, y: 0x38 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Moblin 4"
+          position: { x: 0x32, y: 0x24 }
+          sprite: "Moblin"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Snapdragon 2"
+          position: { x: 0x35, y: 0x28 }
+          sprite: "Snapdragon"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Ropa 9"
+          position: { x: 0x24, y: 0x30 }
+          sprite: "Ropa"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Fairy"
+          position: { x: 0x30, y: 0x30 }
+          sprite: "Fairy"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Hinox 3"
+          position: { x: 0x35, y: 0x36 }
+          sprite: "Hinox"
+          state: [1, 2]
+
+        - name: "East Dark World Maze - Raven"
+          position: { x: 0x29, y: 0x37 }
+          sprite: "Raven"
+          state: [1, 2]

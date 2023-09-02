@@ -1,0 +1,57 @@
+maps:
+  - map: 0x3C
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Wetlands Ravine"
+
+      mobs:
+        - name: "Wetlands Ravine - Green Archer"
+          position: { x: 0x08, y: 0x0c }
+          sprite: "GreenArcher"
+          state: [1]
+
+        - name: "Wetlands Ravine - Raven 1"
+          position: { x: 0x0e, y: 0x0f }
+          sprite: "Raven"
+          state: [1]
+
+        - name: "Wetlands Ravine - Bush Hoarder"
+          position: { x: 0x09, y: 0x11 }
+          sprite: "BushHoarder"
+          state: [1]
+
+        - name: "Wetlands Ravine - Crab"
+          position: { x: 0x16, y: 0x17 }
+          sprite: "Crab"
+          state: [1]
+
+        - name: "Wetlands Ravine - Octorok (One Way) 2"
+          position: { x: 0x0b, y: 0x18 }
+          sprite: "Octorok1"
+          state: [1]
+
+        - name: "Wetlands Ravine - Raven 2"
+          position: { x: 0x0b, y: 0x09 }
+          sprite: "Raven"
+          state: [2]
+
+        - name: "Wetlands Ravine - Blue Guard"
+          position: { x: 0x08, y: 0x0a }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Wetlands Ravine - sprite.FastRedSpearGuard"
+          position: { x: 0x09, y: 0x11 }
+          sprite: "FastRedSpearGuard"
+          state: [2]
+
+        - name: "Wetlands Ravine - Octorok (One Way) 1"
+          position: { x: 0x14, y: 0x0f }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Wetlands Ravine - Octorok (Four Way)"
+          position: { x: 0x14, y: 0x15 }
+          sprite: "Octorok4"
+          state: [1, 2]

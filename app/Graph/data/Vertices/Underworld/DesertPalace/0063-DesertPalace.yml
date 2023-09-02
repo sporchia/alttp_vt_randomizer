@@ -1,0 +1,38 @@
+rooms:
+  - roomid: 0x63
+    group: 4
+    nodes:
+      regions:
+        - name: "Desert Palace - Beemos 2"
+          inletid: 0x0c
+        - name: "Desert Palace - Tiles 1"
+
+      keydoors:
+        - name: "Desert Palace - Tiles 1 Door"
+          key: "KeyP2"
+
+      pots:
+        - name: "Desert Palace - Tiles 1 - Pot 1"
+          position: 0x0830
+          sprite: "@Heart"
+        - name: "Desert Palace - Tiles 1 - Pot 2"
+          position: 0x080c
+        - name: "Desert Palace - Tiles 1 - Pot 3"
+          position: 0x040c
+        - name: "Desert Palace - Tiles 1 - Pot 4"
+          position: 0x0430
+        - name: "Desert Palace - Tiles 1 - Pot 5"
+          position: 0x0c30
+        - name: "Desert Palace - Tiles 1 - BL Pot"
+          position: 0x0c0c
+          item: "KeyP2"
+          itemset: ["desert"]
+
+      mobs:
+        - name: "Desert Palace - Tiles 1 - TileRoom"
+          position: { x: 0x07, y: 0x08, z: 0x00 }
+          sprite: "TileRoom"
+
+        - name: "Desert Palace - Tiles 1 - Beamos"
+          position: { x: 0x07, y: 0x18, z: 0x00 }
+          sprite: "Beamos"

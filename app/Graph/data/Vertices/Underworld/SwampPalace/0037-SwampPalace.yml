@@ -1,0 +1,80 @@
+rooms:
+  - roomid: 0x37
+    group: 8
+    nodes:
+      regions:
+        - name: "Swamp Palace - Hammer Switch overlook"
+        - name: "Swamp Palace - Hammer Switch South Drained"
+        - name: "Swamp Palace - Hammer Switch South Drained Ledge"
+        - name: "Swamp Palace - Water 1"
+        - name: "Swamp Palace - Hammer Switch South Filled"
+        - name: "Swamp Palace - Hammer Switch South Filled Top Ledge"
+        - name: "Swamp Palace - Hammer Switch South Filled Ledge"
+        - name: "Swamp Palace - Hammer Switch Ditch"
+        - name: "Swamp Palace - Hammer Switch"
+        - name: "Swamp Palace - Hammer Switch Lever"
+
+      keydoors:
+        - name: "Swamp Palace - Hammer Switch Door"
+          key: "KeyD2"
+
+      items:
+        - name: "Swamp Palace - Map Chest"
+          addresses: [0xE986]
+          type: "chest"
+          itemset: ["swamp"]
+
+      pots:
+        - name: "Swamp Palace - Hammer Switch Ditch Key"
+          position: 0x063c
+          item: "KeyD2"
+          itemset: ["swamp"]
+        - name: "Swamp Palace - Water 1 - Pot"
+          position: 0x1430
+
+      mobs:
+        - name: "Swamp Palace - Hammer Switch Lever - Push Switch"
+          position: { x: 0x0b, y: 0x04, z: 0x00 }
+          item: "SwampWater1"
+          itemset: ["event"]
+          sprite: "PushSwitch"
+          allow:
+            - "PushSwitch"
+
+        - name: "Swamp Palace - Water 1 - Stalfos 1"
+          position: { x: 0x05, y: 0x06, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Swamp Palace - Water 1 - Zol 1"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Swamp Palace - Water 1 - Zol 2"
+          position: { x: 0x1a, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+
+        - name: "Swamp Palace - Water 1 - Stalfos 2"
+          position: { x: 0x0c, y: 0x09, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Swamp Palace - Water 1 - Fire Snake"
+          position: { x: 0x15, y: 0x14, z: 0x00 }
+          sprite: "FireSnake"
+
+        - name: "Swamp Palace - Water 1 - Stalfos 3"
+          position: { x: 0x17, y: 0x17, z: 0x00 }
+          sprite: "Stalfos"
+
+        - name: "Swamp Palace - Water 1 - Blue Bari"
+          position: { x: 0x13, y: 0x19, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "RollerHR"
+
+        - name: "Swamp Palace - Water 1 - Yomo Medusa"
+          position: { x: 0x17, y: 0x1a, z: 0x00 }
+          sprite: "YomoMedusa"
+
+        - name: "Swamp Palace - Water 1 - Red Bari"
+          position: { x: 0x15, y: 0x1c, z: 0x00 }
+          sprite: "RedBari"

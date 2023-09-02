@@ -1,3 +1,4 @@
+/.phpunit.cache
 /node_modules
 /bin/enemizer
 /public/hot

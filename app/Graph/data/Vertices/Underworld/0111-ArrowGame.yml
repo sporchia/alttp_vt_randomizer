@@ -1,0 +1,13 @@
+rooms:
+  - roomid: 0x0111
+    nodes:
+      regions:
+        - name: "Arrow Game"
+          inletid: 0x59
+
+      mobs:
+        - name: "Arrow Game - Arrow Game Guy"
+          position: { x: 0x0b, y: 0x1b, z: 0x00 }
+          sprite: "ShootingGalleryNPC"
+          allow:
+            - "ShootingGalleryNPC"

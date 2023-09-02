@@ -1,0 +1,57 @@
+rooms:
+  - roomid: 0x010B
+    nodes:
+      regions:
+        - name: "Floodgate"
+          inletid: 0x4e
+
+      items:
+        - name: "Floodgate Chest"
+          addresses: [0xE98C]
+          type: "chest"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Floodgate - Pull Switch (Bad)"
+          position: { x: 0x0f, y: 0x03, z: 0x00 }
+          sprite: "PullSwitchBad"
+          allow:
+            - "PullSwitchBad"
+
+        - name: "Floodgate - Bad Bomb 1"
+          position: { x: 0x0d, y: 0x06, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Floodgate - Bad Bomb 2"
+          position: { x: 0x10, y: 0x06, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Floodgate - Bad Bomb 3"
+          position: { x: 0x12, y: 0x07, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Floodgate - Bad Bomb 4"
+          position: { x: 0x0f, y: 0x09, z: 0x00 }
+          sprite: "BadSwitchBomb"
+          allow:
+            - "BadSwitchSnake"
+            - "BadSwitchBomb"
+
+        - name: "Floodgate - Pull Switch (Good)"
+          position: { x: 0x12, y: 0x03, z: 0x00 }
+          sprite: "PullSwitchGood"
+          allow:
+            - "PullSwitchGood"
+
+        - name: "Floodgate - Antifairy"
+          position: { x: 0x0d, y: 0x07, z: 0x00 }
+          sprite: "Antifairy"

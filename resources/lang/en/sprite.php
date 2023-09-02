@@ -186,6 +186,7 @@ return [
     "Kiki" => "Kiki",
     "BlindMaiden" => "Blind Maiden",
     "DialogueTester" => "Dialogue Tester",
+    "Mimic" => "Mimic",
     "FeudingFriends" => "Bully and Victim",
     "Whirlpool" => "Whirlpool",
     "Salesman" => "Shopkeeper",

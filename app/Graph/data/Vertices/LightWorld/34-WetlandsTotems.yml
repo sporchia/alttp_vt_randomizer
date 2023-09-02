@@ -1,0 +1,67 @@
+maps:
+  - map: 0x34
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Wetlands Totems"
+
+      entrances:
+        - name: "Wetlands Big Fairy"
+          entranceid: 0x6B
+          outletid: 0x71
+
+      mobs:
+        - name: "Wetlands Totems - Blue Archer 1"
+          position: { x: 0x0b, y: 0x0d }
+          sprite: "BlueArcher"
+          state: [1]
+
+        - name: "Wetlands Totems - Rabbit"
+          position: { x: 0x15, y: 0x11 }
+          sprite: "Rabbit"
+          state: [1]
+
+        - name: "Wetlands Totems - Green Archer 1"
+          position: { x: 0x11, y: 0x12 }
+          sprite: "GreenArcher"
+          state: [1]
+
+        - name: "Wetlands Totems - Fairy"
+          position: { x: 0x0e, y: 0x13 }
+          sprite: "Fairy"
+          state: [1]
+
+        - name: "Wetlands Totems - Green Archer 2"
+          position: { x: 0x15, y: 0x17 }
+          sprite: "GreenArcher"
+          state: [1]
+
+        - name: "Wetlands Totems - Blue Archer 2"
+          position: { x: 0x0c, y: 0x18 }
+          sprite: "BlueArcher"
+          state: [1]
+
+        - name: "Wetlands Totems - Rupee Pull"
+          position: { x: 0x17, y: 0x0e }
+          sprite: "PullForRupees"
+          state: [2]
+
+        - name: "Wetlands Totems - Blue Guard"
+          position: { x: 0x11, y: 0x12 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Wetlands Totems - Octorok (One Way) 1"
+          position: { x: 0x06, y: 0x13 }
+          sprite: "Octorok1"
+          state: [2]
+
+        - name: "Wetlands Totems - Octorok (One Way) 2"
+          position: { x: 0x0c, y: 0x18 }
+          sprite: "Octorok1"
+          state: [2]
+
+        - name: "Wetlands Totems - Raven"
+          position: { x: 0x08, y: 0x13 }
+          sprite: "Raven"
+          state: [1, 2]

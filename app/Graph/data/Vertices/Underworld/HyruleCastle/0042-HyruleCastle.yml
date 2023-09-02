@@ -1,0 +1,83 @@
+rooms:
+  - roomid: 0x42
+    group: 1
+    dark: true
+    nodes:
+      regions:
+        - name: "Sewers - Dark Rope Corridor"
+
+      mobs:
+        - name: "Sewers - Dark Rope Corridor - Rope 1"
+          position: { x: 0x12, y: 0x06, z: 0x00 }
+          sprite: "Rope"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Sewers - Dark Rope Corridor - Rope 2"
+          position: { x: 0x13, y: 0x06, z: 0x00 }
+          sprite: "Rope"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Sewers - Dark Rope Corridor - Rope 3"
+          position: { x: 0x14, y: 0x06, z: 0x00 }
+          sprite: "Rope"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Sewers - Dark Rope Corridor - Rope 4"
+          position: { x: 0x12, y: 0x07, z: 0x00 }
+          sprite: "Rope"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Sewers - Dark Rope Corridor - Rope 5"
+          position: { x: 0x13, y: 0x07, z: 0x00 }
+          sprite: "Rope"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Sewers - Dark Rope Corridor - Rope 6"
+          position: { x: 0x14, y: 0x07, z: 0x00 }
+          sprite: "Rope"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

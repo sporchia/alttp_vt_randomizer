@@ -1,0 +1,33 @@
+rooms:
+  - roomid: 0x0114
+    nodes:
+      regions:
+        - name: "Watto Cave"
+          inletid: 0x62
+
+      pots:
+        - name: "Watto Cave - Pot 1"
+          position: 0x045c
+          sprite: "@Heart"
+        - name: "Watto Cave - Pot 2"
+          position: 0x0460
+          sprite: "@Heart"
+        - name: "Watto Cave - Pot 3"
+          position: 0x055c
+          sprite: "@BombRefill1"
+        - name: "Watto Cave - Pot 4"
+          position: 0x0560
+          sprite: "@BombRefill1"
+        - name: "Watto Cave - Pot 5"
+          position: 0x0a5c
+          sprite: "@ArrowRefill5"
+        - name: "Watto Cave - Pot 6"
+          position: 0x0a60
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Watto Cave - Storyteller"
+          position: { x: 0x19, y: 0x14, z: 0x00 }
+          sprite: "Storyteller"
+          allow:
+            - "Storyteller"

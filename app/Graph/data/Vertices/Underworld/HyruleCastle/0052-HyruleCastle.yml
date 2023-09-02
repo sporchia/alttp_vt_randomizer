@@ -1,0 +1,42 @@
+rooms:
+  - roomid: 0x52
+    group: 1
+    nodes:
+      regions:
+        - name: "Hyrule Castle - North East Passage"
+
+      pots:
+        - name: "Hyrule Castle - North East Passage - Pot 1"
+          position: 0x038a
+          sprite: "@Heart"
+        - name: "Hyrule Castle - North East Passage - Pot 2"
+          position: 0x1ac2
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Hyrule Castle - North East Passage - Green Guard"
+          position: { x: 0x07, y: 0x0d, z: 0x01 }
+          sprite: "GreenSwordGuard"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Hyrule Castle - North East Passage - Green Knife Guard 1"
+          position: { x: 0x08, y: 0x0f, z: 0x01 }
+          sprite: "GreenGuardRecruit"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Hyrule Castle - North East Passage - Green Knife Guard 2"
+          position: { x: 0x07, y: 0x12, z: 0x01 }
+          sprite: "GreenGuardRecruit"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "AntifairyCircle"
+            - "Bumper"

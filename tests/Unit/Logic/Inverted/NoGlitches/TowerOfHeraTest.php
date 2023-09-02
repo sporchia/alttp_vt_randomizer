@@ -19,7 +19,6 @@ final class TowerOfHeraTest extends TestCase
         $randomizer = new Randomizer([[
             'mode.state' => 'inverted',
             'accessibility' => 'item',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_map(fn ($i) => "$i:0", ['Lamp', 'Hammer', 'MoonPearl', 'OcarinaActive', 'Hookshot']));
@@ -38,7 +37,6 @@ final class TowerOfHeraTest extends TestCase
         $randomizer = new Randomizer([[
             'mode.state' => 'inverted',
             'accessibility' => 'locations',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_map(fn ($i) => "$i:0", $items));

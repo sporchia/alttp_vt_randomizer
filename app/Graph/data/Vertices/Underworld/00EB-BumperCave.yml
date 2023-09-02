@@ -1,0 +1,32 @@
+rooms:
+  - roomid: 0x00EB
+    nodes:
+      regions:
+        - name: "Bumper Cave Top Stairs Ledge"
+        - name: "Bumper Cave Top Refill"
+        - name: "Bumper Cave Top Exit"
+          inletid: 0x17
+
+      pots:
+        - name: "Bumper Cave Top Exit - Pot 1"
+          position: 0x08ce
+          sprite: "@RupeeBlue"
+        - name: "Bumper Cave Top Exit - Pot 2"
+          position: 0x08d2
+          sprite: "@RupeeBlue"
+        - name: "Bumper Cave Top Exit - Pot 3"
+          position: 0x0e58
+          sprite: "@MagicRefillSmall"
+        - name: "Bumper Cave Top Exit - Pot 4"
+          position: 0x0e5c
+          sprite: "@Heart"
+        - name: "Bumper Cave Top Exit - Pot 5"
+          position: 0x0e60
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Bumper Cave Top Exit - Bumper"
+          position: { x: 0x17, y: 0x14, z: 0x00 }
+          sprite: "Bumper"
+          allow:
+            - "Bumper"

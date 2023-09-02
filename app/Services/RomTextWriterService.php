@@ -69,8 +69,8 @@ class RomTextWriterService
             } else if (!$boots_location) {
                 $uncleBootsText = "I couldn't\nfind the Boots\ntoday.\nRIP me.";
             } else {
-                $uncleBootsText = "Lonk! Boots\nare in the\n" . $boots_location->getAttribute('name');
-                switch ($boots_location->getAttribute('name')) {
+                $uncleBootsText = "Lonk! Boots\nare in the\n" . $boots_location->name;
+                switch ($boots_location->name) {
                     case "Link's House":
                         $uncleBootsText = "Lonk!\nYou'll never\nfind the boots.";
                         break;
@@ -89,16 +89,16 @@ class RomTextWriterService
         $green_pendant_location = $world->getLocationsWithItem(Item::get('PendantOfCourage', $world->id))->first();
 
         $rom->setText('sahasrahla_bring_courage', "Want something\nfor free? Go\nearn the green\npendant in\n"
-            . ($this->strings['locations'][preg_replace('/:\d*/', '', $green_pendant_location->getAttribute('name'))]['region'] ?? 'I forget?')
+            . ($this->strings['locations'][preg_replace('/:\d*/', '', $green_pendant_location->name)]['region'] ?? 'I forget?')
             . "\nand I'll give\nyou something.");
 
         $crystal5_location = $world->getLocationsWithItem(Item::get('Crystal5', $world->id))->first();
         $crystal6_location = $world->getLocationsWithItem(Item::get('Crystal6', $world->id))->first();
 
         $rom->setText('bomb_shop', "bring me the\ncrystals from\n"
-            . ($this->strings['locations'][preg_replace('/:\d*/', '', $crystal5_location->getAttribute('name'))]['region'] ?? 'I forget?')
+            . ($this->strings['locations'][preg_replace('/:\d*/', '', $crystal5_location->name)]['region'] ?? 'I forget?')
             . "\nand\n"
-            . ($this->strings['locations'][preg_replace('/:\d*/', '', $crystal6_location->getAttribute('name'))]['region'] ?? 'I forget?')
+            . ($this->strings['locations'][preg_replace('/:\d*/', '', $crystal6_location->name)]['region'] ?? 'I forget?')
             . "\nso I can make\na big bomb!");
 
         $rom->setText('blind_by_the_light', Arr::first(fy_shuffle($this->strings['blind'])));
@@ -117,12 +117,12 @@ class RomTextWriterService
         if (!$silver_arrows_location) {
             $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows on\nPlanet Zebes?");
         } else {
-            switch ($silver_arrows_location->getAttribute('name')) {
-                case "Ganons Tower":
+            switch ($silver_arrows_location->name) {
+                case "Ganon's Tower":
                     $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\nMy tower?");
                     break;
                 default:
-                    $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $silver_arrows_location->getAttribute('name'));
+                    $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $silver_arrows_location->name);
             }
         }
 
@@ -132,24 +132,24 @@ class RomTextWriterService
         $progressive_bow_locations = $world->getLocationsWithItem(Item::get('ProgressiveBow', $world->id));
         if ($progressive_bow_locations->count() > 0) {
             $first_location = $progressive_bow_locations->pop();
-            switch ($first_location->getAttribute('name')) {
-                case "Ganons Tower":
+            $second_location = $progressive_bow_locations->pop();
+            switch ($first_location->name) {
+                case "Ganon's Tower":
                     $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\nMy tower?");
                     break;
                 default:
-                    $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->getAttribute('name'));
+                    $rom->setText('ganon_phase_3_no_silvers', "Did you find\nthe arrows in\n" . $first_location->name);
             }
             // Progressive Bow Alternate
             $first_location->item = new Item('ProgressiveBow', [0x65], $world->id);
 
-            if ($progressive_bow_locations->count() > 0) {
-                $second_location = $progressive_bow_locations->pop();
-                switch ($second_location->getAttribute('name')) {
-                    case "Ganons Tower":
+            if ($second_location !== null) {
+                switch ($second_location->name) {
+                    case "Ganon's Tower":
                         $rom->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\nMy tower?");
                         break;
                     default:
-                        $rom->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->getAttribute('name'));
+                        $rom->setText('ganon_phase_3_no_silvers_alt', "Did you find\nthe arrows in\n" . $second_location->name);
                 }
             }
             // Remove Hint in Hard+ Item Pool

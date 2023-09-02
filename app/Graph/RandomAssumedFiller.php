@@ -19,8 +19,10 @@ final class RandomAssumedFiller
      * 
      * @return void
      */
-    public function __construct(private Randomizer $randomizer)
-    {
+    public function __construct(
+        private Randomizer $randomizer,
+        private array $config = []
+    ) {
         //
     }
 
@@ -59,19 +61,13 @@ final class RandomAssumedFiller
             unset($fill_flat_items[$item_key]);
             $item_world_id = $item->world_id;
             $this->randomizer->assumeItems($fill_flat_items);
-            $required = false;
-            if (
-                $this->randomizer->config($item_world_id, 'accessibility') === 'none'
-                && $this->randomizer->collectItems()->has("Triforce:$item_world_id")
-            ) {
-                $locations = $this->randomizer->getEmptyLocationsInSet($item_set, $set_counts, false);
-            } else {
-                $required = true;
-                $locations = $this->randomizer->getEmptyLocationsInSet($item_set, $set_counts);
-            }
+
+            $required = $this->config['accessibility'][$item_world_id] !== 'none'
+                || !$this->randomizer->collectItems()->has("Triforce:$item_world_id");
+
+            $locations = $this->randomizer->getEmptyLocationsInSet($item_set, $set_counts, $required);
 
             if (empty($locations)) {
-                dd($this->randomizer->collectItems());
                 throw new Exception("No locations for: $item");
             }
 
@@ -80,7 +76,7 @@ final class RandomAssumedFiller
                 $item_weight,
                 $required ? 'R' : ' ',
                 $item,
-                $location->getAttribute('name'),
+                $location->name,
                 $item_set,
                 count($locations),
             ]));
@@ -113,6 +109,7 @@ final class RandomAssumedFiller
         });
 
         $current_key = '';
+        $locations = [];
         foreach ($fill_items as $item_key => $item) {
             $item_set = explode('.', $item_key)[0];
             if ($current_key !== $item_set) {
@@ -128,7 +125,7 @@ final class RandomAssumedFiller
             $location->item = $item;
             Log::debug(vsprintf('[FF] Placing: `%s` in `%s` (%s:%d)', [
                 $item,
-                $location->getAttribute('name'),
+                $location->name,
                 $item_set,
                 count($locations) + 1,
             ]));

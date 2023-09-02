@@ -1,0 +1,81 @@
+rooms:
+  - roomid: 0x44
+    group: 12
+    nodes:
+      regions:
+        - name: "Thieves' Town - Conveyer Bridge"
+        - name: "Thieves' Town - Joke Room"
+        - name: "Thieves' Town - Mole Room"
+        - name: "Thieves' Town - Mole Room Platform"
+
+      keydoors:
+        - name: "Thieves' Town - Big Chest Door"
+          key: "KeyD4"
+
+      items:
+        - name: "Thieves' Town - Big Chest"
+          addresses: [0xEA10]
+          type: "bigchest"
+          itemset: ["thieves"]
+
+      pots:
+        - name: "Thieves' Town - Conveyer Bridge - Block"
+          position: 0x07cc
+
+      mobs:
+        - name: "Thieves' Town - Joke Room - Bumper 1"
+          position: { x: 0x09, y: 0x06, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Thieves' Town - Joke Room - Bumper 2"
+          position: { x: 0x05, y: 0x08, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Thieves' Town - Joke Room - Blue Bari 1"
+          position: { x: 0x08, y: 0x04, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Thieves' Town - Joke Room - Blue Bari 2"
+          position: { x: 0x03, y: 0x08, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Thieves' Town - Joke Room - Zol"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "RollerVU"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Thieves' Town - Joke Room - Blue Bari 3"
+          position: { x: 0x08, y: 0x0c, z: 0x00 }
+          sprite: "BlueBari"
+
+        - name: "Thieves' Town - Joke Room - Red Bari"
+          position: { x: 0x17, y: 0x0f, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "BigSpikeTrap"
+
+        - name: "Thieves' Town - Mole Room - Falling Square"
+          position: { x: 0x0b, y: 0x15, z: 0x00 }
+          sprite: "FallingSquare"
+
+        - name: "Thieves' Town - Joke Room - Blue Bari 4"
+          position: { x: 0x18, y: 0x16, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "Statue"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"

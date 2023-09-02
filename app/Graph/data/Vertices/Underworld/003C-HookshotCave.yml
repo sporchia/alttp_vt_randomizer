@@ -1,0 +1,87 @@
+rooms:
+  - roomid: 0x003C
+    nodes:
+      regions:
+        - name: "Hookshot Cave"
+          inletid: 0x3A
+        - name: "Hookshot Cave - TR Pad"
+        - name: "Hookshot Cave - TL Pad"
+        - name: "Hookshot Cave - BR Pad"
+        - name: "Hookshot Cave - BL Pad"
+
+      items:
+        - name: "Hookshot Cave - Top Right"
+          addresses: [0xEB51]
+          type: "chest"
+          itemset: ["dw"]
+        - name: "Hookshot Cave - Top Left"
+          addresses: [0xEB54]
+          type: "chest"
+          itemset: ["dw"]
+        - name: "Hookshot Cave - Bottom Left"
+          addresses: [0xEB57]
+          type: "chest"
+          itemset: ["dw"]
+        - name: "Hookshot Cave - Bottom Right"
+          addresses: [0xEB5A]
+          type: "chest"
+          itemset: ["dw"]
+
+      pots:
+        - name: "Hookshot Cave - Pot 1"
+          position: 0x0818
+          sprite: "@MagicRefillSmall"
+        - name: "Hookshot Cave - Pot 2"
+          position: 0x0c40
+          sprite: "@RupeeBlue"
+        - name: "Hookshot Cave - Pot 3"
+          position: 0x0e14
+          sprite: "@RupeeGreen"
+        - name: "Hookshot Cave - Pot 4"
+          position: 0x1244
+          sprite: "@RupeeBlue"
+        - name: "Hookshot Cave - Pot 5"
+          position: 0x1360
+          sprite: "@Heart"
+        - name: "Hookshot Cave - Pot 6"
+          position: 0x1440
+          sprite: "@RupeeBlue"
+        - name: "Hookshot Cave - Pot 7"
+          position: 0x1a40
+          sprite: "@RupeeBlue"
+
+      mobs:
+        - name: "Hookshot Cave - Hardhat Beetle"
+          position: { x: 0x09, y: 0x08, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Hookshot Cave - Blue Bari 1"
+          position: { x: 0x0a, y: 0x14, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Hookshot Cave - Blue Bari 2"
+          position: { x: 0x12, y: 0x14, z: 0x00 }
+          sprite: "BlueBari"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

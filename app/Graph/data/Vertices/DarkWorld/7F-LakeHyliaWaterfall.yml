@@ -1,0 +1,49 @@
+maps:
+  - map: 0x7F
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Dark Lake Hylia Waterfall"
+        - name: "Dark Lake Hylia Waterfall Brook"
+        - name: "Dark Lake Hylia Waterfall The Falls"
+
+      warps:
+        - name: "Dark Lake Hylia Waterfall whirlpool"
+          # coords are wrong
+          position: { x: 0x11, y: 0x09 }
+
+      mobs:
+        - name: "Dark Lake Hylia Waterfall - Green Zirro 1"
+          position: { x: 0x10, y: 0x06 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia Waterfall - Octorok (One Way) 1"
+          position: { x: 0x16, y: 0x06 }
+          sprite: "Octorok1"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia Waterfall - Whirlpool"
+          position: { x: 0x07, y: 0x0c }
+          sprite: "Whirlpool"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia Waterfall - Fireball Zora"
+          position: { x: 0x07, y: 0x0e }
+          sprite: "FireballZora"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia Waterfall - Green Zirro 2"
+          position: { x: 0x0d, y: 0x13 }
+          sprite: "ZirroGreen"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia Waterfall - Pikit"
+          position: { x: 0x16, y: 0x14 }
+          sprite: "Pikit"
+          state: [1, 2]
+
+        - name: "Dark Lake Hylia Waterfall - Octorok (One Way) 2"
+          position: { x: 0x0f, y: 0x17 }
+          sprite: "Octorok1"
+          state: [1, 2]

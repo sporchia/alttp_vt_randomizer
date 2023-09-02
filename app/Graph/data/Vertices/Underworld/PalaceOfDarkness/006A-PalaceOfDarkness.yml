@@ -1,0 +1,85 @@
+rooms:
+  - roomid: 0x6A
+    group: 7
+    dark: true
+    nodes:
+      regions:
+        - name: "Palace of Darkness - Dark Alley"
+        - name: "Palace of Darkness - Dark Alley darkness"
+        - name: "Palace of Darkness - Dark Basement"
+        - name: "Palace of Darkness - Dark Basement darkness"
+
+      items:
+        - name: "Palace of Darkness - Dark Basement - Left"
+          addresses: [0xea4c]
+          type: "chest"
+          itemset: ["pod"]
+
+        - name: "Palace of Darkness - Dark Basement - Right"
+          addresses: [0xea4f]
+          type: "chest"
+          itemset: ["pod"]
+
+      bigkeydoors:
+        - name: "Palace of Darkness - Boss Door"
+          key: "BigKeyD1"
+
+      mobs:
+        - name: "Palace of Darkness - Dark Alley - Terrorpin 1"
+          position: { x: 0x17, y: 0x0a, z: 0x00 }
+          sprite: "Terrorpin"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Palace of Darkness - Dark Alley - Terrorpin 2"
+          position: { x: 0x18, y: 0x0a, z: 0x00 }
+          sprite: "Terrorpin"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Palace of Darkness - Dark Alley - Antifairy 1"
+          position: { x: 0x14, y: 0x0b, z: 0x00 }
+          sprite: "Antifairy"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Palace of Darkness - Dark Alley - Antifairy 2"
+          position: { x: 0x1c, y: 0x0b, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Palace of Darkness - Dark Alley - Terrorpin 3"
+          position: { x: 0x17, y: 0x0e, z: 0x00 }
+          sprite: "Terrorpin"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Palace of Darkness - Dark Alley - Terrorpin 4"
+          position: { x: 0x18, y: 0x0e, z: 0x00 }
+          sprite: "Terrorpin"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"

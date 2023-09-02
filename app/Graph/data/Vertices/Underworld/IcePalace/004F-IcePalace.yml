@@ -1,0 +1,19 @@
+rooms:
+  - roomid: 0x4F
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Fairy Restock"
+
+      mobs:
+        - name: "Ice Palace - Fairy Restock - Fairy 1"
+          position: { x: 0x17, y: 0x06, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Ice Palace - Fairy Restock - Fairy 2"
+          position: { x: 0x14, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Ice Palace - Fairy Restock - Fairy 3"
+          position: { x: 0x1a, y: 0x08, z: 0x00 }
+          sprite: "Fairy"

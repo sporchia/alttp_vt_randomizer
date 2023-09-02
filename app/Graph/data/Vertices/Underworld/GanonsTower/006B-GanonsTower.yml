@@ -1,0 +1,112 @@
+rooms:
+  - roomid: 0x6B
+    group: 16
+    nodes:
+      regions:
+        - name: "Ganon's Tower - Spike Switches"
+        - name: "Ganon's Tower - Mimics 1"
+        - name: "Ganon's Tower - Mimics 2"
+        - name: "Ganon's Tower - Dragmire Statues"
+
+      bigkeydoors:
+        - name: "Ganon's Tower - Dragmire Statues - Big Door"
+          key: "BigKeyA2"
+
+      shutters:
+        - name: "Ganon's Tower - Mimics 1 - Shutter Door"
+        - name: "Ganon's Tower - Mimics 2 - Shutter Door"
+
+      pots:
+        - name: "Ganon's Tower - Spike Switches - Pot 1"
+          position: 0x051c
+          sprite: "@Heart"
+        - name: "Ganon's Tower -Spike Switches - Pot 2"
+          position: 0x082c
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Spike Switches - Pot 3"
+          position: 0x0b1c
+          sprite: "@MagicRefillSmall"
+        - name: "Ganon's Tower - Mimics 2 - Pot 4"
+          position: 0x1962
+          sprite: "@ArrowRefill5"
+        - name: "Ganon's Tower - Spike Switches - Pot 5"
+          position: 0x052c
+        - name: "Ganon's Tower - Spike Switches - Pot 6"
+          position: 0x081c
+        - name: "Ganon's Tower - Spike Switches - Pot 7"
+          position: 0x0b2c
+        - name: "Ganon's Tower - Mimics 2 - Pot 8"
+          position: 0x195a
+
+      mobs:
+        - name: "Ganon's Tower - Spike Switches - Crystal Switch 1"
+          position: { x: 0x07, y: 0x04, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow: ["CrystalSwitch"],
+
+        - name: "Ganon's Tower - Spike Switches - Crystal Switch 2"
+          position: { x: 0x0b, y: 0x04, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow: ["CrystalSwitch"],
+
+        - name: "Ganon's Tower - Spike Switches - Green Eyegore"
+          position: { x: 0x0a, y: 0x06, z: 0x00 }
+          sprite: "EyegoreGreen"
+
+        - name: "Ganon's Tower - Spike Switches - Red Eyegore 1"
+          position: { x: 0x06, y: 0x09, z: 0x00 }
+          sprite: "EyegoreRed"
+
+        - name: "Ganon's Tower - Spike Switches - Antifairy"
+          position: { x: 0x0c, y: 0x0a, z: 0x00 }
+          sprite: "Antifairy"
+
+        - name: "Ganon's Tower - Mimics 1 - Statue"
+          position: { x: 0x06, y: 0x15, z: 0x00 }
+          sprite: "Statue"
+          trophy: 'GanonsTowerMimicsOneTrophy'
+
+        - name: "Ganon's Tower - Mimics 1 - Red Eyegore 2"
+          position: { x: 0x03, y: 0x18, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: 'GanonsTowerMimicsOneTrophy'
+
+        - name: "Ganon's Tower - Mimics 1 - Spike Trap 1"
+          position: { x: 0x04, y: 0x18, z: 0x00 }
+          sprite: "SpikeTrap"
+          trophy: 'GanonsTowerMimicsOneTrophy'
+          deny:
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "Bumper"
+
+        - name: "Ganon's Tower - Mimics 1 - Spike Trap 2"
+          position: { x: 0x04, y: 0x1b, z: 0x00 }
+          sprite: "SpikeTrap"
+          trophy: 'GanonsTowerMimicsOneTrophy'
+
+        - name: "Ganon's Tower - Mimics 1 - Red Eyegore 3"
+          position: { x: 0x0c, y: 0x1b, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: 'GanonsTowerMimicsOneTrophy'
+
+        - name: "Ganon's Tower - Mimics 2 - Red Eyegore T"
+          position: { x: 0x17, y: 0x15, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: 'GanonsTowerMimicsTwoTrophy'
+
+        - name: "Ganon's Tower - Mimics 2 - Beamos TR"
+          position: { x: 0x1b, y: 0x15, z: 0x00 }
+          sprite: "Beamos"
+          trophy: 'GanonsTowerMimicsTwoTrophy'
+
+        - name: "Ganon's Tower - Mimics 2 - Beamos BL"
+          position: { x: 0x14, y: 0x1b, z: 0x00 }
+          sprite: "Beamos"
+          trophy: 'GanonsTowerMimicsTwoTrophy'
+
+        - name: "Ganon's Tower - Mimics 2 - Red Eyegore B"
+          position: { x: 0x18, y: 0x1b, z: 0x00 }
+          sprite: "EyegoreRed"
+          trophy: 'GanonsTowerMimicsTwoTrophy'

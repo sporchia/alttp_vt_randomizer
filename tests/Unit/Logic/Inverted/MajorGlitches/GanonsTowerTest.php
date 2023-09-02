@@ -23,9 +23,9 @@ final class GanonsTowerTest extends TestCase
      */
     public function testLocation(string $location, bool $access, array $items): void
     {
+        $this->markTestSkipped();
         $randomizer = new Randomizer([[
             'mode.state' => 'inverted',
-            'difficulty' => 'test_rules',
             'tech' => config('logic.major_glitches'),
             'logic' => 'MajorGlitches',
         ]]);

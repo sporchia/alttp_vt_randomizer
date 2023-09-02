@@ -16,19 +16,19 @@
     "ext-bcmath": "*",
     "doctrine/dbal": "^3.4",
     "ezyang/htmlpurifier": "^4.9",
-    "graham-campbell/markdown": "^14.0",
-    "hashids/hashids": "^4.0",
-    "laraeast/laravel-vue-i18n-generator": "^2.0",
-    "laravel/framework": "^9.0",
+    "graham-campbell/markdown": "^15.0",
+    "hashids/hashids": "^5.0",
+    "laraeast/laravel-vue-i18n-generator": "^3.0",
+    "laravel/framework": "^10.0",
     "laravel/horizon": "^5.0",
-    "laravel/passport": "^10.0",
-    "laravel/tinker": "^2.2",
+    "laravel/passport": "^11.0",
+    "laravel/tinker": "^2.8",
     "laravel/ui": "^4.0",
     "league/flysystem-aws-s3-v3": "^3.0",
     "predis/predis": "^2.0",
     "romanzipp/laravel-twitch": "^4.4",
     "sentry/sentry": "^3.7",
-    "sentry/sentry-laravel": "^2.0",
+    "sentry/sentry-laravel": "^3.2",
     "spatie/laravel-cookie-consent": "^3.2.2",
     "symfony/yaml": "^6.0",
     "z3/enemizer_linux": "6.1.0.180",
@@ -36,16 +36,16 @@
     "z3/randomizer": "dev-v32.0"
   },
   "require-dev": {
+    "brianium/paratest": "^7.1",
     "fakerphp/faker": "^1.9.1",
-    "brianium/paratest": "^6.3",
+    "laravel/sail": "^1.23",
     "laravel/telescope": "^4.0",
     "mockery/mockery": "^1.4.2",
     "mohammedmanssour/form-request-tester": "dev-master",
-    "nunomaduro/collision": "^6.1",
-    "nunomaduro/larastan": "^2.1",
-    "phpunit/phpunit": "^9.3.3",
-    "sempro/phpunit-pretty-print": "^1.4",
-    "spatie/laravel-ignition": "^1.0"
+    "nunomaduro/collision": "^7.0",
+    "nunomaduro/larastan": "^2.0",
+    "phpunit/phpunit": "^10.0",
+    "spatie/laravel-ignition": "^2.0"
   },
   "repositories": [
     {
@@ -125,7 +125,9 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
     }
   }
 }

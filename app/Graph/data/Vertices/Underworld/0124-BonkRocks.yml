@@ -1,0 +1,12 @@
+rooms:
+  - roomid: 0x011C
+    nodes:
+      regions:
+        - name: "Bonk Rocks"
+          inletid: 0x6e
+
+      items:
+        - name: "Pegasus Rocks"
+          addresses: [0xEB3F]
+          type: "chest"
+          itemset: ["lw"]

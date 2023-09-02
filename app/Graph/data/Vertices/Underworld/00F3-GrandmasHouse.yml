@@ -1,0 +1,21 @@
+rooms:
+  - roomid: 0xF3
+    nodes:
+      regions:
+        - name: "Grandma's House Right"
+          inletid: 0x0e
+
+      pots:
+        - name: "Grandma's House Right - Pot 1"
+          position: 0x1428
+        - name: "Grandma's House Right - Pot 2"
+          position: 0x142c
+        - name: "Grandma's House Right - Pot 3"
+          position: 0x1430
+
+      mobs:
+        - name: "Grandma's House Right - Sahasrahla's wife"
+          position: { x: 0x06, y: 0x14, z: 0x00 }
+          sprite: "SahaWife"
+          allow:
+            - "SahaWife"

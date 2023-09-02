@@ -1,0 +1,31 @@
+rooms:
+  - roomid: 0xB7
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Roller Room"
+
+      items:
+        - name: "Turtle Rock - Roller Room - Left"
+          addresses: [0xEA1C]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+        - name: "Turtle Rock - Roller Room - Right"
+          addresses: [0xEA1F]
+          type: "chest"
+          itemset: ["turtlerock"]
+
+      pots:
+        - name: "Turtle Rock - Roller Room - Pot"
+          position: 0x051e
+          sprite: "@MagicRefillSmall"
+
+      mobs:
+        - name: "Turtle Rock - Roller Room - Roller (Horizontal, Left)"
+          position: { x: 0x04, y: 0x09, z: 0x00 }
+          sprite: "RollerHL"
+
+        - name: "Turtle Rock - Roller Room - Roller (Vertical, Up)"
+          position: { x: 0x04, y: 0x11, z: 0x00 }
+          sprite: "RollerVU"

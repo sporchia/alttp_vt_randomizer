@@ -1,0 +1,62 @@
+maps:
+  - map: 0x2B
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Link's House West Woods"
+
+      entrances:
+        - name: "West Woods Fairy Pond"
+          entranceid: 0x76
+          outletid: 0x8D
+
+      mobs:
+        - name: "Link's House West Woods - Tutorial Guard 1"
+          position: { x: 0x09, y: 0x1e }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Link's House West Woods - Tutorial Guard 2"
+          position: { x: 0x0b, y: 0x1e }
+          sprite: "TutorialGuard"
+          state: [0]
+
+        - name: "Link's House West Woods - Green Guard 1"
+          position: { x: 0x14, y: 0x11 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Link's House West Woods - Green Guard 2"
+          position: { x: 0x14, y: 0x15 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Link's House West Woods - Green Guard 3"
+          position: { x: 0x10, y: 0x17 }
+          sprite: "GreenSwordGuard"
+          state: [1]
+
+        - name: "Link's House West Woods - Blue Guard 1"
+          position: { x: 0x08, y: 0x06 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Link's House West Woods - Blue Guard 2"
+          position: { x: 0x14, y: 0x11 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Link's House West Woods - Blue Guard 3"
+          position: { x: 0x14, y: 0x15 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Link's House West Woods - Blue Guard 4"
+          position: { x: 0x10, y: 0x17 }
+          sprite: "BlueSwordGuard"
+          state: [2]
+
+        - name: "Link's House West Woods - Fairy"
+          position: { x: 0x16, y: 0x0d }
+          sprite: "Fairy"
+          state: [1, 2]

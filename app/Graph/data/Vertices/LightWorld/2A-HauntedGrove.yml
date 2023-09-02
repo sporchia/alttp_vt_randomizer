@@ -1,0 +1,58 @@
+maps:
+  - map: 0x2A
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Haunted Grove"
+
+      items:
+        - name: "Flute Spot"
+          addresses: [0x18014A]
+          type: "dig"
+          itemset: ["lw"]
+
+      mobs:
+        - name: "Haunted Grove - Red Rupee 1"
+          position: { x: 0x15, y: 0x14 }
+          sprite: "RupeeRed"
+          state: [2]
+
+        - name: "Haunted Grove - Red Rupee 2"
+          position: { x: 0x0f, y: 0x18 }
+          sprite: "RupeeRed"
+          state: [2]
+
+        - name: "Haunted Grove - Flute Quest"
+          position: { x: 0x09, y: 0x09 }
+          sprite: "FluteQuest"
+          state: [1, 2]
+
+        - name: "Haunted Grove - Ostrich (Haunted Grove)"
+          position: { x: 0x0e, y: 0x0c }
+          sprite: "OstrichHG"
+          state: [1, 2]
+
+        - name: "Haunted Grove - Birds (Haunted Grove) 1"
+          position: { x: 0x0d, y: 0x0e }
+          sprite: "BirdHG"
+          state: [1, 2]
+
+        - name: "Haunted Grove - Flute Kid"
+          position: { x: 0x0e, y: 0x0e }
+          sprite: "FluteKid"
+          state: [1, 2]
+
+        - name: "Haunted Grove - Birds (Haunted Grove) 2"
+          position: { x: 0x11, y: 0x0e }
+          sprite: "BirdHG"
+          state: [1, 2]
+
+        - name: "Haunted Grove - Rabbit (Haunted Grove) 1"
+          position: { x: 0x0c, y: 0x0f }
+          sprite: "RabbitHG"
+          state: [1, 2]
+
+        - name: "Haunted Grove - Rabbit (Haunted Grove) 2"
+          position: { x: 0x11, y: 0x10 }
+          sprite: "RabbitHG"
+          state: [1, 2]

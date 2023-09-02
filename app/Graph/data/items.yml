@@ -1,0 +1,372 @@
+Nothing:
+  bytes: [0x5A]
+L1Sword:
+  bytes: [0x49]
+L1SwordAndShield:
+  bytes: [0x00]
+L2Sword:
+  bytes: [0x01]
+MasterSword:
+  bytes: [0x50]
+L3Sword:
+  bytes: [0x02]
+L4Sword:
+  bytes: [0x03]
+BlueShield:
+  bytes: [0x04]
+RedShield:
+  bytes: [0x05]
+MirrorShield:
+  bytes: [0x06]
+FireRod:
+  bytes: [0x07]
+IceRod:
+  bytes: [0x08]
+Hammer:
+  bytes: [0x09]
+Hookshot:
+  bytes: [0x0A]
+Bow:
+  bytes: [0x0B]
+Boomerang:
+  bytes: [0x0C]
+Powder:
+  bytes: [0x0D]
+Bee:
+  bytes: [0x0E]
+Bombos:
+  bytes: [0x0f]
+Ether:
+  bytes: [0x10]
+Quake:
+  bytes: [0x11]
+MireEntryBombos:
+  bytes: [0x00, 0x31, 0x80, 0x00]
+MireEntryEther:
+  bytes: [0x01, 0x13, 0x9F, 0xF1]
+MireEntryQuake:
+  bytes: [0x02, 0x31, 0x88, 0x00]
+TurtleRockEntryBombos:
+  bytes: [0x00, 0x31, 0x90, 0x00]
+TurtleRockEntryEther:
+  bytes: [0x01, 0x31, 0x98, 0x00]
+TurtleRockEntryQuake:
+  bytes: [0x02, 0x14, 0xEF, 0xC4]
+Lamp:
+  bytes: [0x12]
+Shovel:
+  bytes: [0x13]
+OcarinaInactive:
+  bytes: [0x14]
+CaneOfSomaria:
+  bytes: [0x15]
+Bottle:
+  bytes: [0x16]
+FairyBottle:
+  bytes: [0x16]
+PieceOfHeart:
+  bytes: [0x17]
+CaneOfByrna:
+  bytes: [0x18]
+Cape:
+  bytes: [0x19]
+MagicMirror:
+  bytes: [0x1A]
+PowerGlove:
+  bytes: [0x1B]
+TitansMitt:
+  bytes: [0x1C]
+BookOfMudora:
+  bytes: [0x1D]
+Flippers:
+  bytes: [0x1E]
+MoonPearl:
+  bytes: [0x1F]
+BugCatchingNet:
+  bytes: [0x21]
+BlueMail:
+  bytes: [0x22]
+RedMail:
+  bytes: [0x23]
+Key:
+  bytes: [0x24]
+Compass:
+  bytes: [0x25]
+HeartContainerNoAnimation:
+  bytes: [0x26]
+Bomb:
+  bytes: [0x27]
+ThreeBombs:
+  bytes: [0x28]
+Mushroom:
+  bytes: [0x29]
+RedBoomerang:
+  bytes: [0x2A]
+BottleWithRedPotion:
+  bytes: [0x2B]
+FairyBottleWithRedPotion:
+  bytes: [0x2B]
+BottleWithGreenPotion:
+  bytes: [0x2C]
+FairyBottleWithGreenPotion:
+  bytes: [0x2C]
+BottleWithBluePotion:
+  bytes: [0x2D]
+FairyBottleWithBluePotion:
+  bytes: [0x2D]
+RedPotion:
+  bytes: [0x2E]
+GreenPotion:
+  bytes: [0x2F]
+BluePotion:
+  bytes: [0x30]
+TenBombs:
+  bytes: [0x31]
+BigKey:
+  bytes: [0x32]
+Map:
+  bytes: [0x33]
+OneRupee:
+  bytes: [0x34]
+FiveRupees:
+  bytes: [0x35]
+TwentyRupees:
+  bytes: [0x36]
+PendantOfCourage:
+  bytes: [0x37, 0x04, 0x38, 0x62, 0x00, 0x69, 0x01]
+PendantOfWisdom:
+  bytes: [0x38, 0x01, 0x32, 0x60, 0x00, 0x69, 0x03]
+PendantOfPower:
+  bytes: [0x39, 0x02, 0x34, 0x60, 0x00, 0x69, 0x02]
+BowAndArrows:
+  bytes: [0x3A]
+BowAndSilverArrows:
+  bytes: [0x3B]
+BottleWithBee:
+  bytes: [0x3C]
+FairyBottleWithBee:
+  bytes: [0x3C]
+BottleWithFairy:
+  bytes: [0x3D]
+FairyBottleWithFairy:
+  bytes: [0x3D]
+BossHeartContainer:
+  bytes: [0x3E]
+HeartContainer:
+  bytes: [0x3F]
+OneHundredRupees:
+  bytes: [0x40]
+FiftyRupees:
+  bytes: [0x41]
+Heart:
+  bytes: [0x42]
+Arrow:
+  bytes: [0x43]
+ShopArrow:
+  bytes: [0x43]
+TenArrows:
+  bytes: [0x44]
+SmallMagic:
+  bytes: [0x45]
+ThreeHundredRupees:
+  bytes: [0x46]
+TwentyRupees2:
+  bytes: [0x47]
+BottleWithGoldBee:
+  bytes: [0x48]
+FairyBottleWithGoldBee:
+  bytes: [0x48]
+OcarinaActive:
+  bytes: [0x4A]
+PegasusBoots:
+  bytes: [0x4B]
+BombUpgrade5:
+  bytes: [0x51]
+BombUpgrade10:
+  bytes: [0x52]
+BombUpgrade50:
+  bytes: [0x4C]
+ArrowUpgrade5:
+  bytes: [0x53]
+ArrowUpgrade10:
+  bytes: [0x54]
+ArrowUpgrade70:
+  bytes: [0x4D]
+HalfMagic:
+  bytes: [0x4E]
+QuarterMagic:
+  bytes: [0x4F]
+Programmable1:
+  bytes: [0x55]
+Programmable2:
+  bytes: [0x56]
+Programmable3:
+  bytes: [0x57]
+SilverArrowUpgrade:
+  bytes: [0x58]
+Rupoor:
+  bytes: [0x59]
+RedClock:
+  bytes: [0x5B]
+BlueClock:
+  bytes: [0x5C]
+GreenClock:
+  bytes: [0x5D]
+ProgressiveSword:
+  bytes: [0x5E]
+UncleSword:
+  bytes: [0x5E]
+ProgressiveShield:
+  bytes: [0x5F]
+ProgressiveArmor:
+  bytes: [0x60]
+ProgressiveGlove:
+  bytes: [0x61]
+singleRNG:
+  bytes: [0x62]
+multiRNG:
+  bytes: [0x63]
+ProgressiveBow:
+  bytes: [0x64]
+ProgressiveBowAlternate:
+  bytes: [0x65]
+Triforce:
+  bytes: [0x6A]
+PowerStar:
+  bytes: [0x6B]
+TriforcePiece:
+  bytes: [0x6C]
+MapLW:
+  bytes: [0x70]
+MapDW:
+  bytes: [0x71]
+MapA2:
+  bytes: [0x72]
+MapD7:
+  bytes: [0x73]
+MapD4:
+  bytes: [0x74]
+MapP3:
+  bytes: [0x75]
+MapD5:
+  bytes: [0x76]
+MapD3:
+  bytes: [0x77]
+MapD6:
+  bytes: [0x78]
+MapD1:
+  bytes: [0x79]
+MapD2:
+  bytes: [0x7A]
+MapA1:
+  bytes: [0x7B]
+MapP2:
+  bytes: [0x7C]
+MapP1:
+  bytes: [0x7D]
+MapH1:
+  bytes: [0x7E]
+MapH2:
+  bytes: [0x7F]
+CompassA2:
+  bytes: [0x82]
+CompassD7:
+  bytes: [0x83]
+CompassD4:
+  bytes: [0x84]
+CompassP3:
+  bytes: [0x85]
+CompassD5:
+  bytes: [0x86]
+CompassD3:
+  bytes: [0x87]
+CompassD6:
+  bytes: [0x88]
+CompassD1:
+  bytes: [0x89]
+CompassD2:
+  bytes: [0x8A]
+CompassA1:
+  bytes: [0x8B]
+CompassP2:
+  bytes: [0x8C]
+CompassP1:
+  bytes: [0x8D]
+CompassH1:
+  bytes: [0x8E]
+CompassH2:
+  bytes: [0x8F]
+BigKeyA2:
+  bytes: [0x92]
+BigKeyD7:
+  bytes: [0x93]
+BigKeyD4:
+  bytes: [0x94]
+BigKeyP3:
+  bytes: [0x95]
+BigKeyD5:
+  bytes: [0x96]
+BigKeyD3:
+  bytes: [0x97]
+BigKeyD6:
+  bytes: [0x98]
+BigKeyD1:
+  bytes: [0x99]
+BigKeyD2:
+  bytes: [0x9A]
+BigKeyA1:
+  bytes: [0x9B]
+BigKeyP2:
+  bytes: [0x9C]
+BigKeyP1:
+  bytes: [0x9D]
+BigKeyH1:
+  bytes: [0x9E]
+BigKeyH2:
+  bytes: [0x9F]
+KeyH2:
+  bytes: [0xA0]
+KeyH1:
+  bytes: [0xA1]
+KeyP1:
+  bytes: [0xA2]
+KeyP2:
+  bytes: [0xA3]
+KeyA1:
+  bytes: [0xA4]
+KeyD2:
+  bytes: [0xA5]
+KeyD1:
+  bytes: [0xA6]
+KeyD6:
+  bytes: [0xA7]
+KeyD3:
+  bytes: [0xA8]
+KeyD5:
+  bytes: [0xA9]
+KeyP3:
+  bytes: [0xAA]
+KeyD4:
+  bytes: [0xAB]
+KeyD7:
+  bytes: [0xAC]
+KeyA2:
+  bytes: [0xAD]
+KeyGK:
+  bytes: [0xAF]
+ShopKey:
+  bytes: [0xAF]
+Crystal1:
+  bytes: [0xB1, 0x02, 0x34, 0x64, 0x40, 0x7F, 0x06]
+Crystal2:
+  bytes: [0xB4, 0x10, 0x34, 0x64, 0x40, 0x79, 0x06]
+Crystal3:
+  bytes: [0xB6, 0x40, 0x34, 0x64, 0x40, 0x6C, 0x06]
+Crystal4:
+  bytes: [0xB5, 0x20, 0x34, 0x64, 0x40, 0x6D, 0x06]
+Crystal5:
+  bytes: [0xB2, 0x04, 0x32, 0x64, 0x40, 0x6E, 0x06]
+Crystal6:
+  bytes: [0xB0, 0x01, 0x32, 0x64, 0x40, 0x6F, 0x06]
+Crystal7:
+  bytes: [0xB3, 0x08, 0x34, 0x64, 0x40, 0x7C, 0x06]

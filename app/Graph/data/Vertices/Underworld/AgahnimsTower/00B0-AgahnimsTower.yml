@@ -1,0 +1,121 @@
+rooms:
+  - roomid: 0xB0
+    group: 6
+    nodes:
+      regions:
+        - name: "Agahnims Tower - Throwing Guards"
+        - name: "Agahnims Tower - Guards"
+        - name: "Agahnims Tower - Circle of Pots"
+        - name: "Agahnims Tower - Guard Mix"
+      keydoors:
+        - name: "Agahnims Tower - Fourth Door"
+          key: "KeyA1"
+      shutters:
+        - name: "Agahnims Tower - Throwing Guards - Shutter Door"
+        - name: "Agahnims Tower - Guards - Shutter Door"
+        - name: "Agahnims Tower - Circle of Pots - Shutter Door"
+
+      pots:
+        - name: "Agahnims Tower - Guards - Pot 1"
+          position: 0x1514
+          sprite: "@BombRefill1"
+        - name: "Agahnims Tower - Guards - Pot 2"
+          position: 0x151c
+          sprite: "@RupeeGreen"
+        - name: "Agahnims Tower - Guards - Pot 3"
+          position: 0x1520
+          sprite: "@RupeeBlue"
+        - name: "Agahnims Tower - Guards - Pot 4"
+          position: 0x1528
+          sprite: "@ArrowRefill5"
+        - name: "Agahnims Tower - Guards - Pot 5"
+          position: 0x1710
+          sprite: "@RupeeBlue"
+        - name: "Agahnims Tower - Guards - Pot 6"
+          position: 0x172c
+          sprite: "@RupeeGreen"
+        - name: "Agahnims Tower - Guards - Pot 7"
+          position: 0x1824
+          sprite: "@Heart"
+        - name: "Agahnims Tower - Guards - Pot 8"
+          position: 0x1910
+          sprite: "@Heart"
+        - name: "Agahnims Tower - Guards - Pot 9"
+          position: 0x1b1c
+          sprite: "@ArrowRefill5"
+        - name: "Agahnims Tower - Guards - Pot 10"
+          position: 0x1b28
+          sprite: "@BombRefill1"
+        - name: "Agahnims Tower - Guards - Pot 11"
+          position: 0x1b14
+        - name: "Agahnims Tower - Guards - Pot 12"
+          position: 0x1818
+        - name: "Agahnims Tower - Guards - Pot 13"
+          position: 0x192c
+        - name: "Agahnims Tower - Guards - Pot 14"
+          position: 0x1b20
+
+      mobs:
+        - name: "Agahnims Tower - Circle of Pots - Red Spear Guard C"
+          position: { x: 0x08, y: 0x18, z: 0x00 }
+          sprite: "RedSpearGuard"
+          item: "KeyA1"
+          itemset: ["agahnim"]
+          trophy: "AgahnimsTowerCircleOfPotsTrophy"
+
+        - name: "Agahnims Tower - Guards - Red Spear Guard C"
+          position: { x: 0x07, y: 0x07, z: 0x00 }
+          sprite: "RedSpearGuard"
+          trophy: "AgahnimsTowerGuardsTrophy"
+
+        - name: "Agahnims Tower - Throwing Guards - Keese L"
+          position: { x: 0x17, y: 0x07, z: 0x00 }
+          sprite: "Keese"
+          trophy: "AgahnimsTowerThrowingGuardsTrophy"
+
+        - name: "Agahnims Tower - Throwing Guards - Keese R"
+          position: { x: 0x18, y: 0x07, z: 0x00 }
+          sprite: "Keese"
+          trophy: "AgahnimsTowerThrowingGuardsTrophy"
+
+        - name: "Agahnims Tower - Throwing Guards - Red Javelin Guard L"
+          position: { x: 0x14, y: 0x08, z: 0x00 }
+          sprite: "RedJavelinGuard"
+          trophy: "AgahnimsTowerThrowingGuardsTrophy"
+
+        - name: "Agahnims Tower - Throwing Guards - Red Javelin Guard R"
+          position: { x: 0x1b, y: 0x08, z: 0x00 }
+          sprite: "RedJavelinGuard"
+          trophy: "AgahnimsTowerThrowingGuardsTrophy"
+
+        - name: "Agahnims Tower - Guards - Red Spear Guard B"
+          position: { x: 0x05, y: 0x0b, z: 0x00 }
+          sprite: "RedSpearGuard"
+          trophy: "AgahnimsTowerGuardsTrophy"
+
+        - name: "Agahnims Tower - Guard Mix - Ball 'n' Chain Guard"
+          position: { x: 0x16, y: 0x14, z: 0x00 }
+          sprite: "BallNChainTrooper"
+
+        - name: "Agahnims Tower - Circle of Pots - Keese TL"
+          position: { x: 0x04, y: 0x16, z: 0x00 }
+          sprite: "Keese"
+          trophy: "AgahnimsTowerCircleOfPotsTrophy"
+
+        - name: "Agahnims Tower - Circle of Pots - Keese TR"
+          position: { x: 0x0b, y: 0x16, z: 0x00 }
+          sprite: "Keese"
+          trophy: "AgahnimsTowerCircleOfPotsTrophy"
+
+        - name: "Agahnims Tower - Circle of Pots - Red Spear Guard TR"
+          position: { x: 0x0a, y: 0x16, z: 0x00 }
+          sprite: "RedSpearGuard"
+          trophy: "AgahnimsTowerCircleOfPotsTrophy"
+
+        - name: "Agahnims Tower - Guard Mix - Charging Blue Guard"
+          position: { x: 0x1b, y: 0x1a, z: 0x00 }
+          sprite: "AssaultSwordGuard"
+
+        - name: "Agahnims Tower - Guard Mix - Red Javelin Guard"
+          position: { x: 0x17, y: 0x1c, z: 0x00 }
+          sprite: "RedJavelinGuard"

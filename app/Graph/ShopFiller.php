@@ -16,7 +16,6 @@ final class ShopFiller
      */
     public function __construct(private World $world)
     {
-        /** @var Collection<Vertex> $shops */
         $shops = $world->getLocationsOfType('shop');
         $graph = $this->world->graph;
 
@@ -29,8 +28,7 @@ final class ShopFiller
                 $inventory = array_filter($graph->getTargets($shop), fn ($target) => $target->type === 'shopitem');
                 foreach ($inventory as $shop_item) {
                     $shop_item->item = null;
-                    $shop_item->setAttribute('item', null);
-                    $shop_item->setAttribute('cost', null);
+                    $shop_item->cost = null;
                 }
             }
         }

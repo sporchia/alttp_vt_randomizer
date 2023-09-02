@@ -1,0 +1,86 @@
+rooms:
+  - roomid: 0x17
+    group: 5
+    nodes:
+      regions:
+        - name: "Tower Of Hera - Bumper Room"
+
+      pots:
+        - name: "Tower Of Hera - Bumper Room - Pot 1"
+          position: 0x0d64
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 2"
+          position: 0x0e64
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 3"
+          position: 0x0f64
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 4"
+          position: 0x1064
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 5"
+          position: 0x1164
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 6"
+          position: 0x1264
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 7"
+          position: 0x0d68
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 8"
+          position: 0x0e68
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 9"
+          position: 0x0f68
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 10"
+          position: 0x1068
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 11"
+          position: 0x1168
+          sprite: "@Heart"
+        - name: "Tower Of Hera - Bumper Room - Pot 12"
+          position: 0x1268
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Tower Of Hera - Bumper Room - Bumper 1"
+          position: { x: 0x07, y: 0x0b, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Tower Of Hera - Bumper Room - Bumper 2"
+          position: { x: 0x10, y: 0x0e, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Tower Of Hera - Bumper Room - Bumper 3"
+          position: { x: 0x07, y: 0x16, z: 0x00 }
+          sprite: "Bumper"
+
+        - name: "Tower Of Hera - Bumper Room - Hardhat Beetle 1"
+          position: { x: 0x15, y: 0x07, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Bumper Room - Hardhat Beetle 2"
+          position: { x: 0x0b, y: 0x09, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Bumper Room - Fire Bar (Clockwise)"
+          position: { x: 0x06, y: 0x11, z: 0x00 }
+          sprite: "FireBarCW"
+          deny:
+            - "Beamos"
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Tower Of Hera - Bumper Room - Hardhat Beetle 3"
+          position: { x: 0x12, y: 0x11, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Bumper Room - Hardhat Beetle 4"
+          position: { x: 0x0b, y: 0x17, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Tower Of Hera - Bumper Room - Hardhat Beetle 5"
+          position: { x: 0x17, y: 0x17, z: 0x00 }
+          sprite: "HardhatBeetle"

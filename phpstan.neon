@@ -8,10 +8,4 @@ parameters:
     # The level 8 is the highest level
     level: 5
 
-    ignoreErrors:
-        - '#Unsafe usage of new static#'
-
-    excludes_analyse:
-        - /*/*/Tournament.php
-
     checkMissingIterableValueType: false

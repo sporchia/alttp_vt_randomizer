@@ -1,0 +1,41 @@
+maps:
+  - map: 0x02
+    moonpearl: false
+    nodes:
+      regions:
+        - name: "Lumberjacks"
+        - name: "Lumberjacks Tree"
+
+      entrances:
+        - name: "Lumberjacks Cave"
+          entranceid: 0x11
+          outletid: 0x13
+
+        - name: "Lumberjacks House"
+          entranceid: 0x75
+          outletid: 0x80
+
+      holes:
+        - name: "Lumberjacks Tree - Hole"
+          entranceids: [0x0F]
+
+      mobs:
+        - name: "Lumberjacks - Buzzblob"
+          position: { x: 0x04, y: 0x13 }
+          sprite: "Buzzblob"
+          state: [1]
+
+        - name: "Lumberjacks - Lumberjack"
+          position: { x: 0x0c, y: 0x13 }
+          sprite: "Lumberjack"
+          state: [1]
+
+        - name: "Lumberjacks - Bush Hoarder"
+          position: { x: 0x0d, y: 0x1a }
+          sprite: "BushHoarder"
+          state: [1]
+
+        - name: "Lumberjacks - Bonkable Item"
+          position: { x: 0x0d, y: 0x12 }
+          sprite: "DashItem"
+          state: [2]

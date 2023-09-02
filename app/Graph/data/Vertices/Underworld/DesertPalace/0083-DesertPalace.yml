@@ -1,0 +1,68 @@
+rooms:
+  - roomid: 0x83
+    group: 3
+    nodes:
+      regions:
+        - name: "Desert Palace - Left Hallway"
+        - name: "Desert Palace - Beemos Torches"
+        - name: "Desert Palace - Fairies"
+        - name: "Desert Palace - West"
+          inletid: 0x0b
+
+      pots:
+        - name: "Desert Palace - Left Hallway - Pot 1"
+          position: 0x044c
+          sprite: "@ArrowRefill5"
+        - name: "Desert Palace - Left Hallway - Pot 2"
+          position: 0x0450
+          sprite: "@RupeeGreen"
+        - name: "Desert Palace - Left Hallway - Pot 3"
+          position: 0x1c4c
+          sprite: "@RupeeBlue"
+        - name: "Desert Palace - Left Hallway - Pot 4"
+          position: 0x1c50
+          sprite: "@ArrowRefill5"
+
+      mobs:
+        - name: "Desert Palace - Left Hallway - Blue Devalant 1"
+          position: { x: 0x1b, y: 0x08, z: 0x00 }
+          sprite: "DevalantBlue"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+
+        - name: "Desert Palace - Left Hallway - Blue Devalant 2"
+          position: { x: 0x14, y: 0x10, z: 0x00 }
+          sprite: "DevalantBlue"
+
+        - name: "Desert Palace - Left Hallway - Leever 1"
+          position: { x: 0x14, y: 0x05, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Fairies - Fairy 1"
+          position: { x: 0x07, y: 0x06, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Desert Palace - Fairies - Fairy 2"
+          position: { x: 0x08, y: 0x08, z: 0x00 }
+          sprite: "Fairy"
+
+        - name: "Desert Palace - Left Hallway - Leever 2"
+          position: { x: 0x1b, y: 0x0b, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Left Hallway - Leever 3"
+          position: { x: 0x17, y: 0x10, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Beemos Torches - Beamos"
+          position: { x: 0x08, y: 0x17, z: 0x00 }
+          sprite: "Beamos"
+
+        - name: "Desert Palace - Left Hallway - Leever 4"
+          position: { x: 0x18, y: 0x18, z: 0x00 }
+          sprite: "Leever"
+
+        - name: "Desert Palace - Left Hallway - Leever 5"
+          position: { x: 0x14, y: 0x1b, z: 0x00 }
+          sprite: "Leever"

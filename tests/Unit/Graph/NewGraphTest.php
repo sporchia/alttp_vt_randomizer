@@ -24,12 +24,12 @@ final class NewGraphTest extends TestCase
         $a1 = $a->newVertex();
         $a2 = $a->newVertex();
         $a3 = $a->newVertex();
-        $a->addDirected($a1, $a2);
+        $a->addDirected($a1, $a2, 'test');
 
         $b = new Graph();
         $b->addVertex($a2);
         $b->addVertex($a3);
-        $b->addDirected($a2, $a3);
+        $b->addDirected($a2, $a3, 'test');
 
         $this->assertNotContains($a3, $a->search($a1));
 
@@ -46,8 +46,8 @@ final class NewGraphTest extends TestCase
         $a1 = $a->newVertex();
         $a2 = $a->newVertex();
         $a3 = $a->newVertex();
-        $a->addDirected($a1, $a2, ['group' => 'red']);
-        $a->addDirected($a2, $a3, ['group' => 'blue']);
+        $a->addDirected($a1, $a2, 'red');
+        $a->addDirected($a2, $a3, 'blue');
 
         $this->assertEqualsCanonicalizing([$a1, $a2], $a->getSubgraph('red')->getVertices());
         $this->assertEqualsCanonicalizing([$a2, $a3], $a->getSubgraph('blue')->getVertices());
@@ -71,13 +71,13 @@ final class NewGraphTest extends TestCase
                 'name' => 'start:' . $world_id,
                 'type' => 'meta',
             ]);
-            $graph->addDirected($start, $world_start, ['group' => 'fixed']);
+            $graph->addDirected($start, $world_start, 'fixed');
 
             $meta = $graph->newVertex([
                 'name' => 'Meta:' . $world_id,
                 'type' => 'meta',
             ]);
-            $graph->addDirected($world_start, $meta, ['group' => 'fixed']);
+            $graph->addDirected($world_start, $meta, 'fixed');
 
             $vertex_files = glob(app_path('Graph/data/Vertices/**/*.php'));
 
@@ -96,31 +96,20 @@ final class NewGraphTest extends TestCase
                 return require($filename);
             }, $vertex_files), 1));
 
-            $this->vertex_manager = new Vertices($graph, $vertices);
-
             $vertices = collect($graph->getVertices())->filter(static function ($vertex) use ($world_id) {
-                return $vertex->getAttribute('name') === 'start' || strpos($vertex->getAttribute('name'), ":$world_id") !== false;
+                return $vertex->name === 'start' || strpos($vertex->name, ":$world_id") !== false;
             })->keyBy(static function ($vertex) {
-                return $vertex->getAttribute('name');
+                return $vertex->name;
             });
 
             $edges = $this->getForWorld($world_id);
             foreach ($edges as $group => $data) {
                 foreach ($data['directed'] as $edge_data) {
-                    $graph->addDirected($vertices[$edge_data[0]], $vertices[$edge_data[1]], [
-                        'group' => $group,
-                        'graphviz.label' => $group,
-                    ]);
+                    $graph->addDirected($vertices[$edge_data[0]], $vertices[$edge_data[1]], $group);
                 }
                 foreach ($data['undirected'] as $edge_data) {
-                    $graph->addDirected($vertices[$edge_data[0]], $vertices[$edge_data[1]], [
-                        'group' => $group,
-                        'graphviz.label' => $group,
-                    ]);
-                    $graph->addDirected($vertices[$edge_data[1]], $vertices[$edge_data[0]], [
-                        'group' => $group,
-                        'graphviz.label' => $group,
-                    ]);
+                    $graph->addDirected($vertices[$edge_data[0]], $vertices[$edge_data[1]], $group);
+                    $graph->addDirected($vertices[$edge_data[1]], $vertices[$edge_data[0]], $group);
                 }
             }
         }

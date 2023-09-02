@@ -19,7 +19,6 @@ final class SwampPalaceTest extends TestCase
         $randomizer = new Randomizer([[
             'mode.state' => 'inverted',
             'accessibility' => 'item',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_map(fn ($i) => "$i:0", ['KeyD2', 'MagicMirror', 'MoonPearl', 'Flippers', 'TitansMitt', 'Hammer']));
@@ -38,7 +37,6 @@ final class SwampPalaceTest extends TestCase
         $randomizer = new Randomizer([[
             'mode.state' => 'inverted',
             'accessibility' => 'locations',
-            'difficulty' => 'test_rules',
             'logic' => 'NoGlitches',
         ]]);
         $randomizer->assumeItems(array_map(fn ($i) => "$i:0", $items));

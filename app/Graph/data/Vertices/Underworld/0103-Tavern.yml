@@ -1,0 +1,34 @@
+rooms:
+  - roomid: 0x0103
+    nodes:
+      regions:
+        - name: "Tavern Back"
+          inletid: 0x43
+        - name: "Tavern Front"
+          inletid: 0x42
+
+      items:
+        - name: "Kakariko Tavern"
+          addresses: [0xE9CE]
+          type: "chest"
+          itemset: ["lw"]
+
+      pots:
+        - name: "Tavern - Pot 1"
+          position: 0x078c
+          sprite: "@Chicken"
+        - name: "Tavern - Pot 2"
+          position: 0x0c0c
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Tavern - Drunkard"
+          position: { x: 0x06, y: 0x15, z: 0x00 }
+          sprite: "Drunkard"
+          allow:
+            - "Drunkard"
+        - name: "Tavern - Adult"
+          position: { x: 0x0a, y: 0x1b, z: 0x00 }
+          sprite: "Adult"
+          allow:
+            - "Adult"

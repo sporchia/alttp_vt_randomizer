@@ -1,0 +1,22 @@
+maps:
+  - map: 0x68
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "Digging Game"
+        - name: "Digging Game Arena"
+        - name: "Digging Game Bush Niche"
+        - name: "Digging Game Fencehop"
+        - name: "Digging Game Ledge"
+
+      items:
+        - name: "Digging Game - Item"
+          addresses: [0x180148]
+          type: "dig"
+          itemset: ["dw"]
+
+      mobs:
+        - name: "Digging Game - Digging Game Proprietor"
+          position: { x: 0x0e, y: 0x11 }
+          sprite: "DiggingGameNPC"
+          state: [1, 2]

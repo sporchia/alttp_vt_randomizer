@@ -1,0 +1,20 @@
+maps:
+  - map: 0x69
+    moonpearl: true
+    nodes:
+      regions:
+        - name: "South of Outcasts Fencehop"
+        - name: "South of Outcasts Frog Prison"
+        - name: "South of Outcasts North"
+        - name: "South of Outcasts South"
+
+      entrances:
+        - name: "Arrow Game"
+          entranceid: 0x58
+          outletid: 0x67
+
+      mobs:
+        - name: "South of Outcasts North - Dwarf Smith"
+          position: { x: 0x06, y: 0x09 }
+          sprite: "DwarfSmith"
+          state: [1, 2]

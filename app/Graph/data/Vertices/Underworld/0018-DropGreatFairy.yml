@@ -1,0 +1,6 @@
+rooms:
+  - roomid: 0x0018
+    nodes:
+      regions:
+        - name: "Drop Great Fairy Antechamber"
+          inletid: 0x7c

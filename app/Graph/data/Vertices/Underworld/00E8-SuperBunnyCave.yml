@@ -1,0 +1,47 @@
+rooms:
+  - roomid: 0x00E8
+    nodes:
+      regions:
+        - name: "Super Bunny Refill"
+        - name: "Super Bunny Hallway Bottom"
+        - name: "Super Bunny Hallway Top"
+        - name: "Super Bunny Exit"
+          inletid: 0x14
+
+      pots:
+        - name: "Super Bunny Exit - Pot"
+          position: 0x0460
+          sprite: "@Heart"
+
+      mobs:
+        - name: "Super Bunny Exit - Hardhat Beetle 1"
+          position: { x: 0x07, y: 0x05, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "AntifairyCircle"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Super Bunny Exit - Hardhat Beetle 2"
+          position: { x: 0x17, y: 0x08, z: 0x00 }
+          sprite: "HardhatBeetle"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Super Bunny Exit - Hardhat Beetle 3"
+          position: { x: 0x07, y: 0x0c, z: 0x00 }
+          sprite: "HardhatBeetle"
+
+        - name: "Super Bunny Exit - Hardhat Beetle 4"
+          position: { x: 0x19, y: 0x0c, z: 0x00 }
+          sprite: "HardhatBeetle"

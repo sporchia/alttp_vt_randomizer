@@ -1,0 +1,82 @@
+rooms:
+  - roomid: 0x1E
+    group: 13
+    nodes:
+      regions:
+        - name: "Ice Palace - Blob Ambush"
+        - name: "Ice Palace - Cross Puzzle - Left"
+        - name: "Ice Palace - Cross Puzzle - Bottom"
+        - name: "Ice Palace - Cross Puzzle - Right"
+        - name: "Ice Palace - Cross Puzzle - Top"
+        - name: "Ice Palace - Bomb Switch"
+          switch: true
+
+      pots:
+        - name: "Ice Palace - Blob Ambush - Pot"
+          position: 0x0954
+          sprite: "@BombRefill1"
+
+      mobs:
+        - name: "Ice Palace - Blob Ambush - Crystal Switch"
+          position: { x: 0x1a, y: 0x09, z: 0x00 }
+          sprite: "CrystalSwitch"
+          allow:
+            - "CrystalSwitch"
+
+        - name: "Ice Palace - Blob Ambush - Red Bari 1"
+          position: { x: 0x16, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Ice Palace - Blob Ambush - Red Bari 2"
+          position: { x: 0x19, y: 0x05, z: 0x00 }
+          sprite: "RedBari"
+
+        - name: "Ice Palace - Blob Ambush - Red Bari 3"
+          position: { x: 0x16, y: 0x0a, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Blob Ambush - Red Bari 4"
+          position: { x: 0x19, y: 0x0a, z: 0x00 }
+          sprite: "RedBari"
+          deny:
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Blob Ambush - Zol 1"
+          position: { x: 0x08, y: 0x18, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"
+
+        - name: "Ice Palace - Blob Ambush - Zol 2"
+          position: { x: 0x05, y: 0x1c, z: 0x00 }
+          sprite: "Zol"
+          deny:
+            - "SparkCW"
+            - "SparkCCW"
+            - "RollerVD"
+            - "RollerVU"
+            - "RollerHR"
+            - "RollerHL"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "Bumper"

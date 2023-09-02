@@ -1,0 +1,67 @@
+rooms:
+  - roomid: 0xC5
+    group: 15
+    nodes:
+      regions:
+        - name: "Turtle Rock - Catwalk"
+
+      keydoors:
+        - name: "Turtle Rock - Catwalk Door"
+          key: "KeyD7"
+
+      mobs:
+        - name: "Turtle Rock - Catwalk - Laser Eye (Left) 1"
+          position: { x: 0x0e, y: 0x09, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Catwalk - Laser Eye (Right) 1"
+          position: { x: 0x01, y: 0x0b, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Catwalk - Laser Eye (Left) 2"
+          position: { x: 0x0e, y: 0x0d, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Catwalk - Laser Eye (Right) 2"
+          position: { x: 0x01, y: 0x0f, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Catwalk - Laser Eye (Left) 3"
+          position: { x: 0x0e, y: 0x11, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Catwalk - Laser Eye (Right) 3"
+          position: { x: 0x01, y: 0x13, z: 0x00 }
+          sprite: "LaserEyeR"
+          deny:
+            - "Kodongo"
+
+        - name: "Turtle Rock - Catwalk - Mini Helmasaur"
+          position: { x: 0x07, y: 0x15, z: 0x00 }
+          sprite: "MiniHelmasaur"
+          deny:
+            - "RollerVU"
+            - "RollerVD"
+            - "RollerHL"
+            - "RollerHR"
+            - "Beamos"
+            - "AntifairyCircle"
+            - "BigSpikeTrap"
+            - "SpikeTrap"
+            - "Bumper"
+
+        - name: "Turtle Rock - Catwalk - Laser Eye (Left) 4"
+          position: { x: 0x0e, y: 0x15, z: 0x00 }
+          sprite: "LaserEyeL"
+          deny:
+            - "Statue"

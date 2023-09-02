@@ -7,6 +7,7 @@ rooms:
         - name: "Eastern Palace - Dark Antifairy Circle"
         - name: "Eastern Palace - Dark Antifairy Circle darkness"
         - name: "Eastern Palace - Dark Stalfos"
+
       keydoors:
         - name: "Eastern Palace - Bridge Door"
           key: "KeyP1"
@@ -14,23 +15,23 @@ rooms:
       pots:
         - name: "Eastern Palace - Dark Stalfos - Pot 1"
           position: 0x045e
-          sprite: "RockHoarder"
+          sprite: "@RupeeGreen"
         - name: "Eastern Palace - Dark Stalfos - Pot 2"
           position: 0x064c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Dark Stalfos - TR Pot"
           position: 0x0670
           item: "KeyP1"
           itemset: ["eastern"]
         - name: "Eastern Palace - Dark Stalfos - Pot 3"
           position: 0x0a4c
-          sprite: "MagicRefillSmall"
+          sprite: "@Heart"
         - name: "Eastern Palace - Dark Stalfos - Pot 4"
           position: 0x0a70
-          sprite: "MagicRefillFull"
+          sprite: "@MagicRefillSmall"
         - name: "Eastern Palace - Dark Stalfos - Pot 5"
           position: 0x0c5e
-          sprite: "RockHoarder"
+          sprite: "@RupeeGreen"
         - name: "Eastern Palace - Dark Stalfos - Pot 6"
           position: 0x0858
         - name: "Eastern Palace - Dark Stalfos - Pot 7"
