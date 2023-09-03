@@ -56,7 +56,6 @@ class UpdateBuildRecord extends Command
             $proc = new Process([
                 base_path("bin/asar/$system/asar"),
                 '--fix-checksum=off',
-                '-DFEATURE_NEW_TEXT=1',
                 base_path('vendor/z3/randomizer/LTTP_RND_GeneralBugfixes.asm'),
                 $romFile,
             ], base_path("vendor/z3/randomizer"));

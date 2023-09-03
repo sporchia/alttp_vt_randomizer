@@ -1316,7 +1316,8 @@ abstract class World
                 break;
         }
 
-        $triforce_hud = in_array($this->config['goal'], ['triforce-hunt', 'ganonhunt']);
+        $triforce_hud = in_array($this->config['goal'], ['triforce-hunt', 'ganonhunt'])
+            || ($this->config('item.Goal.Required', 0) > 0);
         $rom->enableHudItemCounter($triforce_hud ? false : $this->config('rom.hudItemCounter', $this->config('goal', 'ganon') == 'completionist'));
 
         if ($this->config('crystals.tower') === 0) {
