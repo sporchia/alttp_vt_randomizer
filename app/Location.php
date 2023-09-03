@@ -214,7 +214,7 @@ class Location
             $location_name = Arr::first(fy_shuffle($location_name));
         }
 
-        return "$item_name $location_name";
+        return ucfirst("$item_name $location_name");
     }
 
     /**
