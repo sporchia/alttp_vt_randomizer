@@ -491,9 +491,9 @@ class Text
                 ."    ~~~2017~~~\n    S: ajneb174\n    A: ajneb174"
             ),
 
-            'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ keep\n    release\n{CHOICE}"),
+            'caught_a_bee' => $converter->convertDialogCompressed("Caught a Bee\n  ≥ Keep\n    Release\n{CHOICE}"),
 
-            'caught_a_fairy' => $converter->convertDialogCompressed("Caught Fairy!\n  ≥ keep\n    release\n{CHOICE}"),
+            'caught_a_fairy' => $converter->convertDialogCompressed("Caught Fairy!\n  ≥ Keep\n    Release\n{CHOICE}"),
 
             'no_empty_bottles' => $converter->convertDialogCompressed("Whoa, bucko!\nNo empty bottles."),
 
