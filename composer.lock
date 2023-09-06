@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d25174e2c2a609d3c13257852b57735f",
+    "content-hash": "2e3698bb1364391eeee0c44267f1b7e9",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.280.2",
+            "version": "3.281.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d68b83b3bc39b70bf33e9b8b5166facbe3e4fe9b"
+                "reference": "e64af36b7951550ff3073cea260a641963ebcd8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d68b83b3bc39b70bf33e9b8b5166facbe3e4fe9b",
-                "reference": "d68b83b3bc39b70bf33e9b8b5166facbe3e4fe9b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e64af36b7951550ff3073cea260a641963ebcd8d",
+                "reference": "e64af36b7951550ff3073cea260a641963ebcd8d",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +151,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.280.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.281.0"
             },
-            "time": "2023-09-01T18:06:10+00:00"
+            "time": "2023-09-05T18:07:25+00:00"
         },
         {
             "name": "brick/math",
@@ -1901,16 +1901,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v5.19.2",
+            "version": "v5.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "16f2c0e00e5b0b9a3f85e95f6022b6dc0476993d"
+                "reference": "2fc2ba769a592e92d170d85e346a5631b3a90ed5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/16f2c0e00e5b0b9a3f85e95f6022b6dc0476993d",
-                "reference": "16f2c0e00e5b0b9a3f85e95f6022b6dc0476993d",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/2fc2ba769a592e92d170d85e346a5631b3a90ed5",
+                "reference": "2fc2ba769a592e92d170d85e346a5631b3a90ed5",
                 "shasum": ""
             },
             "require": {
@@ -1973,9 +1973,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/horizon/issues",
-                "source": "https://github.com/laravel/horizon/tree/v5.19.2"
+                "source": "https://github.com/laravel/horizon/tree/v5.20.0"
             },
-            "time": "2023-08-29T13:37:54+00:00"
+            "time": "2023-08-30T14:04:11+00:00"
         },
         {
             "name": "laravel/passport",
@@ -8453,7 +8453,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
-                "reference": "1862ed0b64fb05ccfdaa65a8e50fd9bd25120b01"
+                "reference": "d4a76cc9be22ad83ffbec73ccc4274fb28c69de0"
             },
             "type": "library"
         },
@@ -8463,7 +8463,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KatDevsGames/z3randomizer",
-                "reference": "9800a861893ff6347f5b3811b2e3a700a3ed35f2"
+                "reference": "5a0bd6dbe03e2a5cb060f2e7ac287a1ef81d37bc"
             },
             "type": "library"
         }
