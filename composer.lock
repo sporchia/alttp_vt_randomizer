@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e3698bb1364391eeee0c44267f1b7e9",
+    "content-hash": "203b7a8e245fe0349a44495430906ccd",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.281.0",
+            "version": "3.281.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "e64af36b7951550ff3073cea260a641963ebcd8d"
+                "reference": "d7a52685e00941636f25f4d53f26a4fa186f36d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e64af36b7951550ff3073cea260a641963ebcd8d",
-                "reference": "e64af36b7951550ff3073cea260a641963ebcd8d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d7a52685e00941636f25f4d53f26a4fa186f36d4",
+                "reference": "d7a52685e00941636f25f4d53f26a4fa186f36d4",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +151,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.281.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.281.1"
             },
-            "time": "2023-09-05T18:07:25+00:00"
+            "time": "2023-09-06T18:09:38+00:00"
         },
         {
             "name": "brick/math",
@@ -8453,7 +8453,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cassidoxa/ALttPEntranceRandomizer",
-                "reference": "d4a76cc9be22ad83ffbec73ccc4274fb28c69de0"
+                "reference": "71610e9aa751cdcb26696863009a433ebb20f1e0"
             },
             "type": "library"
         },

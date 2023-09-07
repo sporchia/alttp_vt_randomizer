@@ -1534,6 +1534,18 @@ abstract class World
     }
 
     /**
+     * Set the item placement accessibility option.
+     *
+     * @param string $accessibility item placement accessibility option
+     *
+     * @return void
+     */
+    public function setItemAccessibility(string $accessibility): void
+    {
+        $this->config['accessibility'] = $accessibility;
+    }
+
+    /**
      * Save a seed record to DB.
      *
      * @return string hash of record

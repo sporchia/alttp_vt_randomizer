@@ -97,7 +97,7 @@ class Randomizer implements RandomizerContract
     public function prepareWorld(World $world): void
     {
         if ($world->config('goal') == 'completionist' && $world->config('accessibility') != 'locations') {
-            throw new \Exception("The Completionist goal requires 100% locations accessibility");
+                $world->setItemAccessibility('locations');
         }
 
         switch ($world->config('goal')) {
