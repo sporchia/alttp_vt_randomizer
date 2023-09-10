@@ -10,7 +10,7 @@
             <li>Mirroring from Zelda's cell spawn point will correctly take you to Sanctuary for glitched modes.</li>
             <li>The heart piece menu icon, file select hearts, and credits hearts now match the selected heart color.</li>
             <li>Major items will be able to appear as dungeon prizes, the logic for this will be coming in a following release.</li>
-            <li>Added a new Completionist goal, requiring every item to be collected before Ganon can be defeated.</li>
+            <li>Added a new Completionist goal, requiring every item to be collected and all dungeons to be completed before Ganon can be defeated.</li>
         </ul>
         <li>Bug Fixes</li>
         <ul>
