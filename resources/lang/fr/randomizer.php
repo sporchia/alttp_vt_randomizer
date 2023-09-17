@@ -11,7 +11,6 @@ return [
             'crosskeys' => 'Clésordre et Entrées',
             'quick' => 'Super Rapide',
             'nightmare' => 'Cauchemars',
-            'tournament' => 'Tournoi',
             'custom' => 'Personnalisé',
         ],
     ],

@@ -11,7 +11,6 @@ return [
             'crosskeys' => 'Crosskeys',
             'quick' => 'Súper Rápido',
             'nightmare' => 'Pesadilla',
-            'tournament' => 'Torneo',
             'custom' => 'Personalizado',
         ],
     ],

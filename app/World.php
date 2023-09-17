@@ -524,14 +524,21 @@ abstract class World
     }
 
     /**
-     * Get total item locations. This includes everything with the "item get" animmation
+     * Get total item locations. This includes everything with the "item get" animation
      * except for dungeon prizes and shop items.
      *
      * @return int
      */
     public function getTotalItemCount(): int
     {
-        return count($this->getCollectableLocations()) - 45;
+        $collectable_locations = $this->locations->filter(function ($location) {
+            return ( !$location instanceof Location\Prize
+                && !$location instanceof Location\Fountain
+                && !$location instanceof Location\Medallion
+                && !$location instanceof Location\Trade);
+        });
+
+        return count($collectable_locations);
     }
 
     /**
