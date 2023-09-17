@@ -394,25 +394,35 @@ class GanonsTower extends Region
         $this->prize_location->setRequirements($this->can_complete);
 
         $this->can_enter = function ($locations, $items) {
-            return $items->has('RescueZelda')
-                && ($this->world->config('itemPlacement') !== 'basic'
-                    || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword(2)) && $items->hasHealth(12) && ($items->hasBottle(2) || $items->hasArmor())))
-                && ((($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
-                    && (((($items->has('Crystal1')
-                        + $items->has('Crystal2')
-                        + $items->has('Crystal3')
-                        + $items->has('Crystal4')
-                        + $items->has('Crystal5')
-                        + $items->has('Crystal6')
-                        + $items->has('Crystal7')) >= $this->world->config('crystals.tower', 7))
+      $playerCrystalCount = (
+        $items->has('Crystal1')
+        + $items->has('Crystal2')
+        + $items->has('Crystal3')
+        + $items->has('Crystal4')
+        + $items->has('Crystal5')
+        + $items->has('Crystal6')
+        + $items->has('Crystal7')
+      );
+
+      return $items->has('RescueZelda')
+        && ($this->world->config('itemPlacement') !== 'basic'
+          || (($this->world->config('mode.weapons') === 'swordless' || $items->hasSword(2)) && $items->hasHealth(12) && ($items->hasBottle(2) || $items->hasArmor())))
+        && (
+          (($items->has('MoonPearl') || ($this->world->config('canOWYBA', false) && $items->hasABottle()))
+            && ((($playerCrystalCount >= $this->world->config('crystals.tower', 7))
                         && $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items))
                         || ((($this->world->config('canBootsClip', false) && $items->has('PegasusBoots'))
                             || ($this->world->config('canSuperSpeed', false) && $items->has('PegasusBoots')
                                 && $items->has('Hookshot')))
                             && $this->world->getRegion('West Dark World Death Mountain')->canEnter($locations, $items))))
+
                     || ($this->world->config('canOneFrameClipOW', false)
                         && ($this->world->config('canDungeonRevive', false) || $items->has('MoonPearl')
-                            || ($this->world->config('canOWYBA', false) && $items->hasABottle()))));
+              || ($this->world->config('canOWYBA', false) && $items->hasABottle())))
+          || (($playerCrystalCount >= $this->world->config('crystals.tower', 7)) &&
+            $this->world->getRegion('East Dark World Death Mountain')->canEnter($locations, $items) &&
+            ($this->world->config('canDungeonRevive', false)))
+        );
         };
 
         return $this;
