@@ -901,7 +901,7 @@ class Text
 
             'ganon_phase_3_alt' => $converter->convertDialogCompressed("Got wax in your ears? I cannot die!"),
             // 0x190
-            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("Glitched\ntournament\nwinners\n{HARP}\n~~~No Logic 2022~~~\nChexhuman\n\n~~~HMG 2021~~~\nKrithel\n\n~~~OWG 2019~~~\nGlan\n\n~~~OWG 2018~~~\nChristosOwen\nthe numpty"),
+            'sign_east_death_mountain_bridge' => $converter->convertDialogCompressed("Glitched\ntournament\nwinners\n{HARP}\n~~~HMG 2023~~~\ntam\n\n~~~No Logic 2022~~~\nChexhuman\n\n~~~HMG 2021~~~\nKrithel\n\n~~~OWG 2019~~~\nGlan\n\n~~~OWG 2018~~~\nChristosOwen\nthe numpty"),
 
             'fish_money' => $converter->convertDialogCompressed("It's a secret to everyone."),
 
