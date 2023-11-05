@@ -62,7 +62,7 @@ return [
                 [
                     'header' => 'ALTTPR League',
                     'content' => [
-                        'The <a href="https://alttprleague.com/" target="_blank">ALTTPR League</a> is a yearly team-based ALTTPR Tournament.  Players form teams of three to complete head to head with other teams using various game settings.',
+                        'The <a href="https://alttprleague.com/" target="_blank">ALTTPR League</a> is a yearly team-based ALTTPR Tournament.  Players form teams of three to compete head to head with other teams using various game settings.',
                     ],
                 ],
                 [
