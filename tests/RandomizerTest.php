@@ -12,15 +12,29 @@ class RandomizerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full']);
+        $this->open_world = World::factory('open', ['difficulty' => 'test_rules', 'accessibility' => 'full']);
+        $this->inverted_world = World::factory('inverted', ['difficulty' => 'test_rules', 'accessibility' => 'full']);
+        $this->retro_world = World::factory('retro', ['difficulty' => 'test_rules', 'accessibility' => 'full']);
+
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
+        $this->open_randomizer = new Randomizer([$this->standard_world]);
+        $this->inverted_randomizer = new Randomizer([$this->standard_world]);
+        $this->retro_randomizer = new Randomizer([$this->standard_world]);
     }
 
     public function tearDown(): void
     {
         parent::tearDown();
-        unset($this->randomizer);
-        unset($this->world);
+        unset($this->retro_randomizer);
+        unset($this->inverted_randomizer);
+        unset($this->open_randomizer);
+        unset($this->standard_randomizer);
+
+        unset($this->retro_world);
+        unset($this->inverted_world);
+        unset($this->open_world);
+        unset($this->standard_world);
     }
 
     /**
@@ -31,23 +45,23 @@ class RandomizerTest extends TestCase
         Config::set('prize.crossWorld', true);
         Config::set('prize.shuffleCrystals', false);
 
-        $this->randomizer->randomize();
+        $this->standard_randomizer->randomize();
         $this->assertEquals([
-            Item::get('Crystal1', $this->world),
-            Item::get('Crystal2', $this->world),
-            Item::get('Crystal3', $this->world),
-            Item::get('Crystal4', $this->world),
-            Item::get('Crystal5', $this->world),
-            Item::get('Crystal6', $this->world),
-            Item::get('Crystal7', $this->world),
+            Item::get('Crystal1', $this->standard_world),
+            Item::get('Crystal2', $this->standard_world),
+            Item::get('Crystal3', $this->standard_world),
+            Item::get('Crystal4', $this->standard_world),
+            Item::get('Crystal5', $this->standard_world),
+            Item::get('Crystal6', $this->standard_world),
+            Item::get('Crystal7', $this->standard_world),
         ], [
-            $this->world->getLocation("Palace of Darkness - Prize")->getItem(),
-            $this->world->getLocation("Swamp Palace - Prize")->getItem(),
-            $this->world->getLocation("Skull Woods - Prize")->getItem(),
-            $this->world->getLocation("Thieves' Town - Prize")->getItem(),
-            $this->world->getLocation("Ice Palace - Prize")->getItem(),
-            $this->world->getLocation("Misery Mire - Prize")->getItem(),
-            $this->world->getLocation("Turtle Rock - Prize")->getItem(),
+            $this->standard_world->getLocation("Palace of Darkness - Prize")->getItem(),
+            $this->standard_world->getLocation("Swamp Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Skull Woods - Prize")->getItem(),
+            $this->standard_world->getLocation("Thieves' Town - Prize")->getItem(),
+            $this->standard_world->getLocation("Ice Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Misery Mire - Prize")->getItem(),
+            $this->standard_world->getLocation("Turtle Rock - Prize")->getItem(),
         ]);
     }
 
@@ -59,24 +73,24 @@ class RandomizerTest extends TestCase
         Config::set('prize.crossWorld', false);
         Config::set('prize.shuffleCrystals', false);
 
-        $this->randomizer->randomize();
+        $this->standard_randomizer->randomize();
 
         $this->assertEquals([
-            Item::get('Crystal1', $this->world),
-            Item::get('Crystal2', $this->world),
-            Item::get('Crystal3', $this->world),
-            Item::get('Crystal4', $this->world),
-            Item::get('Crystal5', $this->world),
-            Item::get('Crystal6', $this->world),
-            Item::get('Crystal7', $this->world),
+            Item::get('Crystal1', $this->standard_world),
+            Item::get('Crystal2', $this->standard_world),
+            Item::get('Crystal3', $this->standard_world),
+            Item::get('Crystal4', $this->standard_world),
+            Item::get('Crystal5', $this->standard_world),
+            Item::get('Crystal6', $this->standard_world),
+            Item::get('Crystal7', $this->standard_world),
         ], [
-            $this->world->getLocation("Palace of Darkness - Prize")->getItem(),
-            $this->world->getLocation("Swamp Palace - Prize")->getItem(),
-            $this->world->getLocation("Skull Woods - Prize")->getItem(),
-            $this->world->getLocation("Thieves' Town - Prize")->getItem(),
-            $this->world->getLocation("Ice Palace - Prize")->getItem(),
-            $this->world->getLocation("Misery Mire - Prize")->getItem(),
-            $this->world->getLocation("Turtle Rock - Prize")->getItem(),
+            $this->standard_world->getLocation("Palace of Darkness - Prize")->getItem(),
+            $this->standard_world->getLocation("Swamp Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Skull Woods - Prize")->getItem(),
+            $this->standard_world->getLocation("Thieves' Town - Prize")->getItem(),
+            $this->standard_world->getLocation("Ice Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Misery Mire - Prize")->getItem(),
+            $this->standard_world->getLocation("Turtle Rock - Prize")->getItem(),
         ]);
     }
 
@@ -89,16 +103,16 @@ class RandomizerTest extends TestCase
         Config::set('prize.crossWorld', false);
         Config::set('prize.shufflePendants', false);
 
-        $this->randomizer->randomize();
+        $this->standard_randomizer->randomize();
 
         $this->assertEquals([
-            Item::get('PendantOfCourage', $this->world),
-            Item::get('PendantOfPower', $this->world),
-            Item::get('PendantOfWisdom', $this->world),
+            Item::get('PendantOfCourage', $this->standard_world),
+            Item::get('PendantOfPower', $this->standard_world),
+            Item::get('PendantOfWisdom', $this->standard_world),
         ], [
-            $this->world->getLocation("Eastern Palace - Prize")->getItem(),
-            $this->world->getLocation("Desert Palace - Prize")->getItem(),
-            $this->world->getLocation("Tower of Hera - Prize")->getItem(),
+            $this->standard_world->getLocation("Eastern Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Desert Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Tower of Hera - Prize")->getItem(),
         ]);
     }
 
@@ -110,80 +124,80 @@ class RandomizerTest extends TestCase
         Config::set('prize.crossWorld', true);
         Config::set('prize.shufflePendants', false);
 
-        $this->randomizer->randomize();
+        $this->standard_randomizer->randomize();
 
         $this->assertEquals([
-            Item::get('PendantOfCourage', $this->world),
-            Item::get('PendantOfPower', $this->world),
-            Item::get('PendantOfWisdom', $this->world),
+            Item::get('PendantOfCourage', $this->standard_world),
+            Item::get('PendantOfPower', $this->standard_world),
+            Item::get('PendantOfWisdom', $this->standard_world),
         ], [
-            $this->world->getLocation("Eastern Palace - Prize")->getItem(),
-            $this->world->getLocation("Desert Palace - Prize")->getItem(),
-            $this->world->getLocation("Tower of Hera - Prize")->getItem(),
+            $this->standard_world->getLocation("Eastern Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Desert Palace - Prize")->getItem(),
+            $this->standard_world->getLocation("Tower of Hera - Prize")->getItem(),
         ]);
     }
     
     public function testVanillaSwordsSet()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full', 'mode.weapons' => 'vanilla']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full', 'mode.weapons' => 'vanilla']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->prepareWorld($this->world);
+        $this->standard_randomizer->prepareWorld($this->standard_world);
         
         $this->assertEquals([
-            Item::get('UncleSword', $this->world),
-            Item::get('Progressive Sword', $this->world),
-            Item::get('Progressive Sword', $this->world),
-            Item::get('Progressive Sword', $this->world),
+            Item::get('UncleSword', $this->standard_world),
+            Item::get('Progressive Sword', $this->standard_world),
+            Item::get('Progressive Sword', $this->standard_world),
+            Item::get('Progressive Sword', $this->standard_world),
         ], [
-            $this->world->getLocation("Link's Uncle")->getItem(),
-            $this->world->getLocation("Pyramid Fairy - Left")->getItem(),
-            $this->world->getLocation("Blacksmith")->getItem(),
-            $this->world->getLocation("Master Sword Pedestal")->getItem(),
+            $this->standard_world->getLocation("Link's Uncle")->getItem(),
+            $this->standard_world->getLocation("Pyramid Fairy - Left")->getItem(),
+            $this->standard_world->getLocation("Blacksmith")->getItem(),
+            $this->standard_world->getLocation("Master Sword Pedestal")->getItem(),
         ]);
     }
     
     public function testVanillaSwordsSetWithPedestalGoal()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full', 'mode.weapons' => 'vanilla', 'goal' => 'pedestal']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'accessibility' => 'full', 'mode.weapons' => 'vanilla', 'goal' => 'pedestal']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->prepareWorld($this->world);
+        $this->standard_randomizer->prepareWorld($this->standard_world);
         
         $this->assertEquals([
-            Item::get('UncleSword', $this->world),
-            Item::get('Progressive Sword', $this->world),
-            Item::get('Progressive Sword', $this->world),
-            Item::get('Triforce', $this->world),
+            Item::get('UncleSword', $this->standard_world),
+            Item::get('Progressive Sword', $this->standard_world),
+            Item::get('Progressive Sword', $this->standard_world),
+            Item::get('Triforce', $this->standard_world),
         ], [
-            $this->world->getLocation("Link's Uncle")->getItem(),
-            $this->world->getLocation("Pyramid Fairy - Left")->getItem(),
-            $this->world->getLocation("Blacksmith")->getItem(),
-            $this->world->getLocation("Master Sword Pedestal")->getItem(),
+            $this->standard_world->getLocation("Link's Uncle")->getItem(),
+            $this->standard_world->getLocation("Pyramid Fairy - Left")->getItem(),
+            $this->standard_world->getLocation("Blacksmith")->getItem(),
+            $this->standard_world->getLocation("Master Sword Pedestal")->getItem(),
         ]);
     }
     
     public function testSimpleBossShuffle()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'simple']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'simple']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->placeBosses($this->world);
+        $this->standard_randomizer->placeBosses($this->standard_world);
         
         $bosses = array_count_values ([ 
-                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
-                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
-                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
-                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
-                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+                    $this->standard_world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
         
         $this->assertEquals([2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
         [
@@ -202,25 +216,25 @@ class RandomizerTest extends TestCase
     
     public function testFullBossShuffle()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'full']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'full']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->placeBosses($this->world);
+        $this->standard_randomizer->placeBosses($this->standard_world);
         
         $bosses = array_count_values ([ 
-                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
-                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
-                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
-                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
-                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+                    $this->standard_world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
         
         $this->assertGreaterThanOrEqual(1, $bosses['Armos']);
         $this->assertGreaterThanOrEqual(1, $bosses['Lanmola']);
@@ -236,10 +250,10 @@ class RandomizerTest extends TestCase
     
     public function testNoBossShuffle()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'none']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'none']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->placeBosses($this->world);
+        $this->standard_randomizer->placeBosses($this->standard_world);
         
         $this->assertEquals([ 
             'Armos', 
@@ -256,45 +270,45 @@ class RandomizerTest extends TestCase
             'Lanmola', 
             'Moldorm'
           ], [ 
-            $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
-            $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
-            $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
-            $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
-            $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
-            $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
-            $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
-            $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
-            $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
-            $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
-            $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
-            $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
-            $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()
+            $this->standard_world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Desert Palace')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Skull Woods')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Thieves Town')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Misery Mire')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+            $this->standard_world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+            $this->standard_world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+            $this->standard_world->getRegion('Ganons Tower')->getBoss('top')->getEName()
           ]);
     }
     
     public function testSwordlessSimpleBossShuffle()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'simple', 'mode.weapons' => 'swordless']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'simple', 'mode.weapons' => 'swordless']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->placeBosses($this->world);
+        $this->standard_randomizer->placeBosses($this->standard_world);
         
         $bosses = array_count_values ([ 
-                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
-                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
-                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
-                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
-                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+                    $this->standard_world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
         
-        $this->assertEquals('Kholdstare', $this->world->getRegion('Ice Palace')->getBoss('')->getEName());
+        $this->assertEquals('Kholdstare', $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName());
         
         $this->assertEquals([2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
         [
@@ -313,27 +327,27 @@ class RandomizerTest extends TestCase
     
     public function testSwordlessFullBossShuffle()
     {
-        $this->world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'full', 'mode.weapons' => 'swordless']);
-        $this->randomizer = new Randomizer([$this->world]);
+        $this->standard_world = World::factory('standard', ['difficulty' => 'test_rules', 'enemizer.bossShuffle' => 'full', 'mode.weapons' => 'swordless']);
+        $this->standard_randomizer = new Randomizer([$this->standard_world]);
         
-        $this->randomizer->placeBosses($this->world);
+        $this->standard_randomizer->placeBosses($this->standard_world);
         
         $bosses = array_count_values ([ 
-                    $this->world->getRegion('Eastern Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Desert Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Tower of Hera')->getBoss('')->getEName(),
-                    $this->world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
-                    $this->world->getRegion('Swamp Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Skull Woods')->getBoss('')->getEName(),
-                    $this->world->getRegion('Thieves Town')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ice Palace')->getBoss('')->getEName(),
-                    $this->world->getRegion('Misery Mire')->getBoss('')->getEName(),
-                    $this->world->getRegion('Turtle Rock')->getBoss('')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
-                    $this->world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
+                    $this->standard_world->getRegion('Eastern Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Desert Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Tower of Hera')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Palace of Darkness')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Swamp Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Skull Woods')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Thieves Town')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Misery Mire')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Turtle Rock')->getBoss('')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('bottom')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('middle')->getEName(),
+                    $this->standard_world->getRegion('Ganons Tower')->getBoss('top')->getEName()]);
         
-        $this->assertEquals('Kholdstare', $this->world->getRegion('Ice Palace')->getBoss('')->getEName());
+        $this->assertEquals('Kholdstare', $this->standard_world->getRegion('Ice Palace')->getBoss('')->getEName());
         
         $this->assertGreaterThanOrEqual(1, $bosses['Armos']);
         $this->assertGreaterThanOrEqual(1, $bosses['Lanmola']);
@@ -349,9 +363,9 @@ class RandomizerTest extends TestCase
 
     public function testCompletionistItemCount()
     {
-        $this->world = World::factory('open', ['difficulty' => 'test_rules', 'goal' => 'completionist', 'accessibility' => 'locations']);
-        $this->randomizer = new Randomizer([$this->world]);
-
-        $this->assertEquals(216, $this->world->getTotalItemCount());
+        $this->assertEquals(216, $this->standard_world->getTotalItemCount());
+        $this->assertEquals(216, $this->open_world->getTotalItemCount());
+        $this->assertEquals(216, $this->inverted_world->getTotalItemCount());
+        $this->assertEquals(216, $this->retro_world->getTotalItemCount());
     }
 }
