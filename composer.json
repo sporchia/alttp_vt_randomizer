@@ -45,11 +45,11 @@
       "type": "package",
       "package": {
         "name": "z3/randomizer",
-        "version": "31.2",
+        "version": "31.2.2",
         "source": {
           "url": "https://github.com/KatDevsGames/z3randomizer",
           "type": "git",
-          "reference": "334f721a292f3c38cdee97c3ca05875d752d0161"
+          "reference": "ce8497e3d2f94b5c5cb276ba5e84a669ef5249fe"
         }
       }
     },
