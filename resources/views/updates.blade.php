@@ -1,6 +1,26 @@
 @extends('layouts.default', ['title' => 'Updates - '])
 
 @section('content')
+    <h2>v31.2.2 (February 2024)</h2>
+    <div class="card card-body bg-light mb-3">
+        <li>Updates</li>
+        <ul>
+            <li>Added a section to the credits to randomly recognize our patreon supporters.</li>
+            <li>Removed an old Tournament preset that was no longer in use.</li>
+            <li>Updated the glitched tournament winners signpost on the OWG landbridge.</li>
+            <li>Misc updates to Entrance Randomizer.</li>
+        </ul>
+        <li>Bug Fixes</li>
+        <ul>
+            <li>Completionist inverted and retro now appropriately require 216 of 216 checks before Ganon is vulnerable to damage.</li>
+            <li>Bonk keys no longer inadvertantly count twice for key collection stats.</li>
+            <li>Fixed an issue with the dungeon prize ancilla spawn.</li>
+            <li>Corrects a problem causing the HUD to not properly update when collecting a bonk key.</li>
+            <li>Fixes some crashes that can occur in No Logic when MSU-1 is in use.</li>
+            <li>General system stability improvements to enhance the user's experience™</li>
+        </ul>
+    </div>
+
     <h2>v31.2.1 (September 2023)</h2>
     <div class="card card-body bg-light mb-3">
         <li>Bug Fixes</li>
