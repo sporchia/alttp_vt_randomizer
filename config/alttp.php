@@ -117,7 +117,7 @@ return [
                     'glitches_required' => 'none',
                     'item_placement' => 'advanced',
                     'dungeon_items' => 'full',
-                    'accessibility' => 'items',
+                    'accessibility' => 'locations',
                     'goal' => 'fast_ganon',
                     'tower_open' => '7',
                     'ganon_open' => '7',
