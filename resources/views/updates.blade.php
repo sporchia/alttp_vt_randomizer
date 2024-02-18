@@ -9,7 +9,7 @@
             <li>Removed an old Tournament preset that was no longer in use.</li>
             <li>Updated the glitched tournament winners signpost on the OWG landbridge.</li>
             <li>Misc updates to Entrance Randomizer.</li>
-            <li>Website preset for Crosskeys now an item accessibility setting of <i>100% Locations</li> instead of <i>100% Inventory</li>.
+            <li>Website preset for Crosskeys now an item accessibility setting of <i>100% Locations</li> instead of <i>100% Inventory</i>.
         </ul>
         <li>Bug Fixes</li>
         <ul>
