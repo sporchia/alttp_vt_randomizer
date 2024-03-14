@@ -572,6 +572,14 @@ export default {
                     window.location.reload(true);
                   }
 
+                  if (
+                    this.rom.shuffle ||
+                    this.rom.spoilers == "mystery" ||
+                    this.rom.allow_quickswap
+                  ) {
+                    this.rom.allowQuickSwap = true;
+                  }
+
                   this.gameLoaded = true;
                   this.generating = false;
                   EventBus.$emit("gameLoaded", this.rom);
