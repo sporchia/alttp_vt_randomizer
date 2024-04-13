@@ -132,8 +132,11 @@ class DoorsRandomizer implements RandomizerContract
                 $this->world->config('crystals.ganon'),
                 '--crystals_gt',
                 $this->world->config('crystals.tower'),
+                '--rom',
+                config('alttp.base_rom'),
                 '--securerandom',
                 '--jsonout',
+                '--bps',
                 '--loglevel',
                 'error',
             ],
@@ -151,6 +154,7 @@ class DoorsRandomizer implements RandomizerContract
 
         $er = json_decode($proc->getOutput());
         $patch = $er->patch_t0_p1;
+        $bps = $er->bps_t0_p1 ?? '';
         array_walk($patch, function (&$write, $address) {
             $write = [$address => $write];
         });
@@ -158,7 +162,7 @@ class DoorsRandomizer implements RandomizerContract
 
         // possible temp fix
         $spoiler = json_decode($er->spoiler, true);
-        $spoiler['meta']['build'] = Rom::BUILD;
+        $spoiler['meta']['build'] = 'BPS';
         $spoiler['meta']['logic'] = 'dr-no-glitches-' . static::VERSION;
 
         $this->world->setSpoiler($spoiler);
