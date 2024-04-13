@@ -2,6 +2,7 @@
 
 namespace ALttP\Http\Controllers;
 
+use ALttP\DoorsRandomizer;
 use ALttP\Enemizer;
 use ALttP\EntranceRandomizer;
 use ALttP\Http\Requests\CreateRandomizedGame;
@@ -169,7 +170,9 @@ class RandomizerController extends Controller
         $rom = new Rom(config('alttp.base_rom'));
         $rom->applyPatchFile(Rom::getJsonPatchLocation());
 
-        if ($world->config('entrances') !== 'none') {
+        if ($world->config('doors') !== 'none') {
+            $rand = new DoorsRandomizer([$world]);
+        } elseif ($world->config('entrances') !== 'none') {
             $rand = new EntranceRandomizer([$world]);
         } else {
             $rand = new Randomizer([$world]);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "045ec3eb5db2eff516d0aab6ce9e3f98",
+    "content-hash": "8fef92a0fce37020394c62d73d2d24b7",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -8430,6 +8430,16 @@
             "time": "2022-06-03T18:03:27+00:00"
         },
         {
+            "name": "z3/doorsrandomizer",
+            "version": "31.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aerinon/ALttPDoorRandomizer",
+                "reference": "ce0c86bcf361f477cc270ee6f3b53c1c68238b35"
+            },
+            "type": "library"
+        },
+        {
             "name": "z3/enemizer_linux",
             "version": "6.1.0.180",
             "dist": {
@@ -10871,5 +10881,5 @@
     "platform-overrides": {
         "php": "8.1"
     },
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.6.0"
 }

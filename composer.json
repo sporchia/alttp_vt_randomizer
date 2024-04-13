@@ -30,6 +30,7 @@
     "z3/enemizer_linux": "6.1.0.180",
     "z3/enemizer_osx": "6.1.0.180",
     "z3/entrancerandomizer": "*",
+    "z3/doorsrandomizer": "*",
     "z3/randomizer": "*"
   },
   "require-dev": {
@@ -86,6 +87,18 @@
           "reference": "8a1ac4d451b397ec5fb424e3a24fb7f252773381"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "z3/doorsrandomizer",
+        "version": "31.2",
+        "source": {
+          "url": "https://github.com/aerinon/ALttPDoorRandomizer",
+          "type": "git",
+          "reference": "ce0c86bcf361f477cc270ee6f3b53c1c68238b35"
+        }
+      }
     }
   ],
   "autoload": {
@@ -114,6 +127,9 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
+    ],
+    "post-update-cmd": [
+      "cd vendor/z3/doorsrandomizer/resources/ci/common/ && python3.11 local_install.py && cd -"
     ],
     "test": [
       "phpunit --colors=always --coverage-clover=./report/coverage.clover --coverage-html=./report"
