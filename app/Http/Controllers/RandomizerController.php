@@ -150,6 +150,8 @@ class RandomizerController extends Controller
             'crystals.ganon' => $crystals_ganon,
             'crystals.tower' => $crystals_tower,
             'entrances' => $request->input('entrances', 'none'),
+            'doors' => $request->input('doors', 'none'),
+            'doors.keyDropShuffle' => $request->input('doors.keydrop', 'none'),
             'mode.weapons' => $request->input('weapons', 'randomized'),
             'tournament' => $request->input('tournament', false),
             'spoilers' => $spoilers,
@@ -181,8 +183,8 @@ class RandomizerController extends Controller
         $rand->randomize();
         $world->writeToRom($rom, $save);
 
-        // E.R. is responsible for verifying winnability of itself
-        if ($world->config('entrances') === 'none') {
+        // E.R./D.R. is responsible for verifying winnability of itself
+        if ($world->config('entrances') === 'none' && $world->config('doors') === 'none') {
             $worlds = new WorldCollection($rand->getWorlds());
 
             if (!$worlds->isWinnable()) {

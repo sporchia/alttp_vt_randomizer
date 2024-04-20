@@ -69,27 +69,6 @@ class DoorsRandomizer implements RandomizerContract
             $flags[] = '--keysanity';
         }
 
-        $mode = 'standard';
-        if ($this->world instanceof World\Open) {
-            $mode = 'open';
-        } elseif ($this->world instanceof World\Inverted) {
-            $mode = 'inverted';
-        }
-        if ($this->world instanceof World\Retro) {
-            $mode = 'open';
-            $flags[] = '--retro';
-        }
-
-        switch ($this->world->config('logic')) {
-            case 'no_logic':
-                $logic = 'nologic';
-
-                break;
-            case 'none':
-            default:
-                $logic = 'noglitches';
-        }
-
         if ($this->world->config('enemizer.bossShuffle') !== 'none') {
             $flags = array_merge($flags, [
                 '--shufflebosses',
@@ -114,9 +93,29 @@ class DoorsRandomizer implements RandomizerContract
                 'python3.11',
                 base_path('vendor/z3/doorsrandomizer/DungeonRandomizer.py'),
                 '--mode',
-                $mode,
+                match (get_class($this->world)) {
+                    World\Open::class => 'open',
+                    World\Inverted::class => 'inverted',
+                    World\Retro::class => 'retro',
+                    default => 'standard',
+                },
                 '--logic',
-                $logic,
+                match ($this->world->config('logic')) {
+                    'hybrid_major_glitches' => 'hybridglitches',
+                    'overworld_glitches' => 'owglitches',
+                    'major_glitches' => 'minorglitches',
+                    'no_logic' => 'nologic',
+                    default => 'noglitches',
+                },
+                '--door_shuffle',
+                match ($this->world->config('doors')) {
+                    'basic' => 'basic',
+                    'partitioned' => 'partitioned',
+                    'crossed' => 'crossed',
+                    default => 'vanilla',
+                },
+                '--dropshuffle',
+                $this->world->config('doors.keyDropShuffle'),
                 '--accessibility',
                 $this->world->config('accessibility'),
                 '--swords',

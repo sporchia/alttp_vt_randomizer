@@ -56,6 +56,12 @@ class CreateRandomizedGame extends FormRequest
             'mode' => [
                 Rule::in($valid_settings['world_state']),
             ],
+            'doors' => [
+                Rule::in($valid_settings['door_shuffle']),
+            ],
+            'doors.keydrop' => [
+                Rule::in($valid_settings['door_keydrop']),
+            ],
             'entrances' => [
                 Rule::in($valid_settings['entrance_shuffle']),
             ],

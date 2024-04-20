@@ -230,6 +230,17 @@ return [
                 'inverted' => 'Inverted',
                 'retro' => 'Retro',
             ],
+            'door_shuffle' => [
+                'none' => 'None',
+                "basic" => 'Basic',
+                "partitioned" => 'Partitioned',
+                "crossed" => 'Crossed',
+            ],
+            'door_keydrop' => [
+                'none' => 'None',
+                'keys' => 'Keys',
+                'underworld' => 'Underworld',
+            ],
             'entrance_shuffle' => [
                 'none' => 'None',
                 'simple' => 'Simple',
