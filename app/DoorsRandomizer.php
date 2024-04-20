@@ -37,6 +37,7 @@ class DoorsRandomizer implements RandomizerContract
         'vanilla' => 'vanilla',
         'swordless' => 'swordless',
     ];
+    public $bps = '';
 
     /**
      * Create a new Doors Randomizer. This currently only works with one
@@ -153,16 +154,13 @@ class DoorsRandomizer implements RandomizerContract
         }
 
         $er = json_decode($proc->getOutput());
-        $patch = $er->patch_t0_p1;
         $bps = $er->bps_t0_p1 ?? '';
-        array_walk($patch, function (&$write, $address) {
-            $write = [$address => $write];
-        });
-        $this->world->setOverridePatch(array_values((array) $patch));
+        $this->bps = $bps;
+        $this->world->setOverridePatch([]);
 
         // possible temp fix
         $spoiler = json_decode($er->spoiler, true);
-        $spoiler['meta']['build'] = 'BPS';
+        $spoiler['meta']['patch_format'] = 'BPS';
         $spoiler['meta']['logic'] = 'dr-no-glitches-' . static::VERSION;
 
         $this->world->setSpoiler($spoiler);

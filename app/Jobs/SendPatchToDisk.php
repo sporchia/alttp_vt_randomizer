@@ -73,7 +73,8 @@ class SendPatchToDisk implements ShouldQueue
 
         $json = json_encode([
             'logic' => $this->seed->logic,
-            'patch' => patch_merge_minify(json_decode($this->seed->patch)),
+            'patch' => $spoiler['meta']['patch_format'] !== 'BPS' ? patch_merge_minify(json_decode($this->seed->patch)) : [],
+            'bps' => $spoiler['meta']['patch_format'] !== 'BPS' ? '' : json_decode($this->seed->patch),
             'spoiler' => $return_spoiler,
             'hash' => $this->seed->hash,
             'size' => $spoiler['meta']['size'] ?? 2,

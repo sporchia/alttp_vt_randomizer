@@ -210,12 +210,13 @@ class RandomizerController extends Controller
         $patch = $rom->getWriteLog();
 
         if ($save) {
-            $world->updateSeedRecordPatch($patch);
+            $world->updateSeedRecordPatch($rand->bps ?? $patch);
         }
 
         return [
             'logic' => $world->config('logic'),
-            'patch' => patch_merge_minify($patch),
+            'patch' => $spoiler['meta']['patch_format'] !== 'BPS' ? patch_merge_minify($patch) : [],
+            'bps' => $rand->bps ?? '',
             'spoiler' => $spoiler,
             'hash' => $world->getSeedRecord()->hash,
             'generated' => $world->getSeedRecord()->created_at ? $world->getSeedRecord()->created_at->toIso8601String() : now()->toIso8601String(),

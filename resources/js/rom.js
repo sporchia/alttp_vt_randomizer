@@ -509,7 +509,10 @@ export default class ROM {
         this.special = data.spoiler.meta.special;
       }
 
-      if (data.patch && data.patch.length) {
+      if (data.bps && data.bps !== '') {
+        this.setBaseBPS(Uint8Array.from(atob(data.bps), c => c.charCodeAt(0)).buffer);
+        this.reset();
+      } else if (data.patch && data.patch.length) {
         data.patch.forEach((value, index) => {
           if (progressCallback)
             progressCallback(index / data.patch.length, this);

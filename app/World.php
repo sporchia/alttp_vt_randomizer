@@ -532,7 +532,7 @@ abstract class World
     public function getTotalItemCount(): int
     {
         $collectable_locations = $this->locations->filter(function ($location) {
-            return ( !$location instanceof Location\Prize
+            return (!$location instanceof Location\Prize
                 && !$location instanceof Location\Fountain
                 && !$location instanceof Location\Medallion
                 && !$location instanceof Location\Trade);
@@ -1584,7 +1584,7 @@ abstract class World
      *
      * @return void
      */
-    public function updateSeedRecordPatch(array $patch): void
+    public function updateSeedRecordPatch(array|string $patch): void
     {
         $this->seed->patch = json_encode($patch);
         $this->seed->save();
