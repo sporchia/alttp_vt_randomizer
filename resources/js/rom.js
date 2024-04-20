@@ -365,7 +365,7 @@ export default class ROM {
         if (color_on === "random") {
           const colorOptions = ["blue", "green", "yellow", "red"];
           color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-        };
+        }
 
         switch (color_on) {
           case "blue":
@@ -400,7 +400,7 @@ export default class ROM {
         if (color_on === "random") {
           const colorOptions = ["blue", "green", "yellow", "red"];
           color_on = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-        };
+        }
         let byte = 0x00;
 
         switch (color_on) {
@@ -512,6 +512,8 @@ export default class ROM {
       if (data.bps && data.bps !== '') {
         this.setBaseBPS(Uint8Array.from(atob(data.bps), c => c.charCodeAt(0)).buffer);
         this.reset();
+        // need to reset the underlyign u_array so it properly writes when saving.
+        this.u_array = new Uint8Array(this.arrayBuffer);
       } else if (data.patch && data.patch.length) {
         data.patch.forEach((value, index) => {
           if (progressCallback)
