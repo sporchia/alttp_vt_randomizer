@@ -9,7 +9,7 @@ return [
                     'header' => '',
                     'content' => [
                         'Most races are done through <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>. Be sure to check them out for more info on how to get in on the action!',
-                        'Before starting you should familiarize yourself with the <a href="http://alttp.mymm1.com/wiki/ALTTPR_Racing_Ruleset">ALTTPR Racing Council’s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure you’re in the clear!',
+                        'Before starting you should familiarize yourself with <a href="http://alttp.mymm1.com/wiki/Rulesets/ALTTPR/Racing">The ALTTPR Racing Community (TARC)’s General Racing Rules</a>, however individual tournaments or races may have rules that vary.  Check with the competition first to make sure you’re in the clear!',
                     ],
                 ],
                 [
@@ -25,15 +25,9 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'Overworld Glitches Weekly',
-                    'content' => [
-                        'The Overworld Glitches Weekly runs at 10:30pm Eastern every Wednesday on <a href="https://racetime.gg/alttpr" target="_blank">RaceTime.gg</a>.',
-                    ],
-                ],
-                [
                     'header' => 'Pickup Races',
                     'content' => [
-                        'Scheduled races not fitting in with your schedule? Looking to race with some more uncommon options? Join a pickup race! You’ll find willing players at all hours of the day. Join the #race-planning channel in our <a href="https://discord.gg/alttprandomizer" target="_blank">Discord</a>!',
+                        'Scheduled races not fitting in with your schedule? Looking to race with some more uncommon options? Join a pickup race! You’ll find willing players at all hours of the day. Join the #race-planning channel in the <a href="https://discord.gg/faSd5cnhs8" target="_blank">TARC Discord</a>!',
                     ],
                 ],
             ],
@@ -50,7 +44,7 @@ return [
                 [
                     'header' => 'ALTTP Randomizer Main Tournament',
                     'content' => [
-                        'Witness the best racers compete for the trophy and win themselves a coveted place on the Houlihan Telepathic Tile! Think you have what it takes to go toe-to-toe with the best? Join the <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Tournaments Discord</a> and keep an eye out for qualifying races!',
+                        'Witness the best racers compete for the trophy and win themselves a coveted place on the Houlihan Telepathic Tile! Think you have what it takes to go toe-to-toe with the best? Join the <a href="https://discord.gg/B2kGXxTD6g" target="_blank">ALTTPR Main Tournament Discord</a> and keep an eye out for qualifying races!',
                     ],
                 ],
                 [
@@ -72,12 +66,6 @@ return [
                     ],
                 ],
                 [
-                    'header' => 'ALTTPR Spoiler Tournament',
-                    'content' => [
-                        'The <a href="https://discord.gg/Jg34MuE" target="_blank">ALTTPR Spolier Tournament</a> is a yearly tournament that gives the player the spoiler log to study before the race!  This tournament is a test of execution and decision making abilities!',
-                    ],
-                ],
-                [
                     'header' => 'ALTTPR Glitched Tournaments',
                     'content' => [
                         '<a href="https://discord.gg/adac5FG" target="_blank">ALTTPR Glitched Tournaments</a> focuses on tournaments that involve the use of "major glitches" to beat the game in fun and unususal ways!',
@@ -89,6 +77,12 @@ return [
                         'The <a href="https://discord.gg/umCCQgr" target="_blank">ALTTPR Crossworld Keysanity Tournament</a> is a tournament for Crossworld entrance shuffle, plus keysanity (aka "Crosskeys").  Players put their note taking and memory to the test to be the top player of this mind-bending mode!',
                     ],
                 ],
+                [
+                    'header' => 'SpeedGaming Live',
+                    'content' => [
+                        '<a href="https://discord.gg/YGzQsUp" target="_blank">SpeedGaming Live</a> is a tournament with cash prizes that is held both online and in person in Herndon, VA, USA.  The online portion is a spoiler log tournament that gives the player the spoiler log to study before the race!  This tournament is a test of execution and decision making abilities!',
+                    ],
+                ],
             ],
         ],
         'foreign_language' => [
@@ -96,18 +90,18 @@ return [
             'languages' => [
                 [
                     'header' => 'Francophone',
-                    'description' => 'Si vous cherchez des passionnées francophones de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
+                    'description' => 'Si vous cherchez des passionnées francophones de ALTTP Randomizer, n’hésitez pas à nous rejoindre sur notre <a href="https://discord.gg/kcy9drjbKf" target="_blank">Discord</a>. Il y a toujours des gens prêts à vous donner un coup de main. Il y a souvent des courses amicales qui s’organisent de manière impromptue, et il y règne une bonne ambiance.',
                     'sections' => [
                         [
                             'header' => 'Tournoi Francophone',
                             'content' => [
-                                'Nous organisons habituellement un gros tournoi par année, ainsi qu’un micro tournoi à l’occasion. Surveillez le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord</a> pour être au courant des développements',
+                                'Nous organisons habituellement un gros tournoi par année, ainsi qu’un micro tournoi à l’occasion. Surveillez le <a href="https://discord.gg/kcy9drjbKf" target="_blank">Discord</a> pour être au courant des développements',
                             ],
                         ],
 						[
                             'header' => 'Hebdomadaire Francophone',
                             'content' => [
-                                'Chaque semaine, une course hebdomadaire entre francophones à lieu. L’horaire est voté par les joueurs sur le <a href="https://discord.gg/tpdpHt6" target="_blank">Discord de la communauté francophone</a> puis annoncé, au plaisir de tous!',
+                                'Chaque semaine, une course hebdomadaire entre francophones à lieu. L’horaire est voté par les joueurs sur le <a href="https://discord.gg/kcy9drjbKf" target="_blank">Discord de la communauté francophone</a> puis annoncé, au plaisir de tous!',
                             ],
                         ],
                     ],
