@@ -36,59 +36,59 @@ class Ether extends Location
 
         switch ($item->getTarget()->getRawName()) {
             case 'BigKeyA2':
-                return "The big key\nof evil's bane";
+                return "The Big Key\nto Ganon's Tower";
             case 'BigKeyD7':
-                return "The big key\nof terrapins";
+                return "The Big Key\nto Turtle Rock";
             case 'BigKeyD4':
-                return "The big key\nof rogues";
+                return "The Big Key\nto Thieves' Town";
             case 'BigKeyP3':
-                return "The big key\nto moldorm's\nheart";
+                return "The Big Key\nto The Tower\nof Hera";
             case 'BigKeyD5':
-                return "A frozen\nbig key\nrests here";
+                return "The Big Key\nto Ice Palace";
             case 'BigKeyD3':
-                return "The big key\nof the dark\nforest";
+                return "The Big Key\nto Skull Woods";
             case 'BigKeyD6':
-                return "The big key\nto Vitreous";
+                return "The Big Key\nto Misery Mire";
             case 'BigKeyD1':
-                return "Hammeryump\nwith this\nbig key";
+                return "The Big Key\nto Dark Palace";
             case 'BigKeyD2':
-                return "The big key\nto the swamp";
+                return "The Big Key\nto Swamp Palace";
             case 'BigKeyA1':
-                return "Okay, this big\nkey doesn't\nreally exist";
+                return "The Big Key\nto Agahnim's Tower";
             case 'BigKeyP2':
-                return "Sand spills\nout of this\nbig key";
+                return "The Big Key\nto Desert Palace";
             case 'BigKeyP1':
-                return "The big key\nof the east";
+                return "The Big Key\nto Eastern Palace";
             case 'BigKeyH1':
             case 'BigKeyH2':
-                return "You should\nhave got this\nfrom a guard";
+                return "The Big Key\nof Hyrule Castle";
             case 'KeyA2':
-                return "The small key\nof evil's bane";
+                return "A small key\nto Ganon's Tower";
             case 'KeyD7':
-                return "The small key\nof terrapins";
+                return "A small key\nto Turtle Rock";
             case 'KeyD4':
-                return "The small key\nof rogues";
+                return "A small key\nto Thieves' Town";
             case 'KeyP3':
-                return "The key\nto moldorm's\nbasement";
+                return "A small key\nto The Tower\nof Hera";
             case 'KeyD5':
-                return "A frozen\nsmall key\nrests here";
+                return "A small key\nto Ice Palace";
             case 'KeyD3':
-                return "The small key\nof the dark\nforest";
+                return "A small key\nto Skull Woods";
             case 'KeyD6':
-                return "The small key\nto Vitreous";
+                return "A small key\nto Misery Mire";
             case 'KeyD1':
-                return "A small key\nthat steals\nlight";
+                return "A small key\nto Dark Palace";
             case 'KeyD2':
-                return "Access to\nthe swamp\nis granted";
+                return "A small key\nto Swamp Palace";
             case 'KeyA1':
-                return "Agahnim\nhalfway\nunlocked";
+                return "A small key\nto Agahnim's Tower";
             case 'KeyP2':
-                return "Sand spills\nout of this\nsmall key";
+                return "A small key\nto Desert Palace";
             case 'KeyP1':
-                return "Okay, this\nkey doesn't\nreally exist";
+                return "A small key\nto Eastern Palace";
             case 'KeyH1':
             case 'KeyH2':
-                return "The key to\nthe castle";
+                return "A small key\nto Hyrule Castle";
         }
 
         switch (get_class($item->getTarget())) {
@@ -107,174 +107,174 @@ class Ether extends Location
         switch ($item->getTarget()->getRawName()) {
             case 'L1Sword':
             case 'L1SwordAndShield':
-                return "A pathetic\nsword rests\nhere!";
+                return "The Fighter Sword!";
             case 'L2Sword':
             case 'MasterSword':
-                return "Look at me!\nI am the\npedestal!";
+                return "The Master Sword!";
             case 'L3Sword':
-                return "I stole the\nblacksmith's\njob!";
+                return "The Tempered Sword!";
             case 'L4Sword':
-                return "The butter\nsword rests\nhere!";
+                return "The Golden Sword!";
             case 'BlueShield':
-                return "Now you can\ndefend against\npebbles!";
+                return "The Fighter Shield!";
             case 'RedShield':
-                return "Now you can\ndefend against\nfireballs!";
+                return "The Fire Shield!";
             case 'MirrorShield':
-                return "Now you can\ndefend against\nlasers!";
+                return "The Mirror Shield!";
             case 'FireRod':
-                return "I'm the hot\nrod. I make\nthings burn!";
+                return "The Fire Rod!";
             case 'IceRod':
-                return "I'm the cold\nrod. I make\nthings freeze!";
+                return "The Ice Rod!";
             case 'Hammer':
-                return "stop\nhammer time!";
+                return "The Magic Hammer!";
             case 'Hookshot':
-                return "BOING!!!\nBOING!!!\nBOING!!!";
+                return "The Hookshot!";
             case 'Bow':
             case 'ProgressiveBow':
-                return "You have\nchosen the\narcher class.";
+                return "The Bow!";
             case 'BowAndArrows':
-                return "You are now an\naverage archer";
+                return "The Bow!";
             case 'BowAndSilverArrows':
-                return "You are now a\nmaster archer!";
+                return "The Silver Arrows!";
             case 'Boomerang':
-                return "No matter what\nyou do, blue\nreturns to you";
+                return "The Boomerang!";
             case 'RedBoomerang':
-                return "No matter what\nyou do, red\nreturns to you";
+                return "The Magic Boomerang!";
             case 'Powder':
-                return "you can turn\nanti-faeries\ninto faeries";
+                return "The Magic Powder!";
             case 'Bombos':
-                return "Burn, baby,\nburn! Fear my\nring of fire!";
+                return "The Bombos Medallion!";
             case 'Ether':
-                return "This magic\ncoin freezes\neverything!";
+                return "The Ether Medallion!";
             case 'Quake':
-                return "Maxing out the\nRichter scale\nis what I do!";
+                return "The Quake Medallion!";
             case 'Lamp':
-                return "Baby, baby,\nbaby.\nLight my way!";
+                return "The Magic Lamp!";
             case 'Shovel':
-                return "Can\n   You\n      Dig it?";
+                return "The Shovel!";
             case 'CaneOfSomaria':
-                return "I make blocks\nto hold down\nswitches!";
+                return "The Cane of Somaria!";
             case 'CaneOfByrna':
-                return "Use this to\nbecome\ninvincible!";
+                return "The Cane of Byrna!";
             case 'Cape':
-                return "Wear this to\nbecome\ninvisible!";
+                return "The Magic Cape!";
             case 'MagicMirror':
-                return "Isn't your\nreflection so\npretty?";
+                return "The Magic Mirror!";
             case 'PowerGlove':
-                return "Now you can\nlift weak\nstuff!";
+                return "The Power Glove!";
             case 'TitansMitt':
-                return "Now you can\nlift heavy\nstuff!";
+                return "The Titan's Mitt!";
             case 'BookOfMudora':
-                return "This is a\nparadox?!";
+                return "The Book of Mudora!";
             case 'Flippers':
-                return "fancy a swim?";
+                return "The Flippers!";
             case 'MoonPearl':
-                return "  Bunny Link\n      be\n     gone!";
+                return "The Moon Pearl!";
             case 'BugCatchingNet':
-                return "Let's catch\nsome bees and\nfaeries!";
+                return "The Bug-Catching Net!";
             case 'BlueMail':
-                return "Now you're a\nblue elf!";
+                return "The Blue Mail!";
             case 'RedMail':
-                return "Now you're a\nred elf!";
+                return "The Red Mail!";
             case 'PieceOfHeart':
-                return "Just a little\npiece of love!";
+                return "A Piece of Heart!";
             case 'BossHeartContainer':
             case 'HeartContainer':
             case 'HeartContainerNoAnimation':
-                return "Maximum health\nincreased!\nYeah!";
+                return "A Heart Container!";
             case 'Bomb':
-                return "I make things\ngo BOOM! But\njust once.";
+                return "A Single Bomb!";
             case 'ThreeBombs':
-                return "I make things\ngo triple\nBOOM!!!";
+                return "Three Bombs!";
             case 'TenBombs':
-                return "I make things\ngo BOOM!\nso many times!";
+                return "Ten Bombs!";
             case 'Mushroom':
-                return "I'm a fun guy!\n\nI'm a funghi!";
+                return "The Mushroom!";
             case 'Bottle':
-                return "Now you can\nstore potions\nand stuff!";
+                return "A Bottle!";
             case 'BottleWithRedPotion':
-                return "You see red\ngoo in a\nbottle?";
+                return "A Bottle of\nRed Potion!";
             case 'BottleWithGreenPotion':
-                return "You see green\ngoo in a\nbottle?";
+                return "A Bottle of\nGreen Potion!";
             case 'BottleWithBluePotion':
-                return "You see blue\ngoo in a\nbottle?";
+                return "A Bottle of\nBlue Potion!";
             case 'BottleWithGoldBee':
             case 'BottleWithBee':
-                return "Release me\nso I can go\nbzzzzz!";
+                return "A Bottle with\na Bee Inside!";
             case 'BottleWithFairy':
-                return "If you die\nI will revive\nyou!";
+                return "A Bottle with\na Fairy Inside!";
             case 'Heart':
-                return "I'm a lonely\nheart.";
+                return "A single heart!";
             case 'Arrow':
-                return "a lonely arrow\nsits here.";
+                return "A single arrow!";
             case 'TenArrows':
-                return "This will give\nyou ten shots\nwith your bow!";
+                return "Ten arrows!";
             case 'SmallMagic':
-                return "A tiny magic\nrefill rests\nhere";
+                return "A small magic\ndecanter!";
             case 'OneRupee':
             case 'FiveRupees':
-                return "Just pocket\nchange. Move\nright along.";
+                return "Some Rupees!";
             case 'TwentyRupees':
             case 'TwentyRupees2':
             case 'FiftyRupees':
-                return "Just couch\ncash. Move\nright along.";
+                return "Some Rupees!";
             case 'OneHundredRupees':
-                return "A rupee stash!\nHell yeah!";
+                return "A lot of Rupees!";
             case 'ThreeHundredRupees':
-                return "A rupee hoard!\nHell yeah!";
+                return "A ton of Rupees!";
             case 'OcarinaInactive':
             case 'OcarinaActive':
-                return "Save the duck\nand fly to\nfreedom!";
+                return "The Flute!";
             case 'PegasusBoots':
-                return "Gotta go fast!";
+                return "The Pegasus Boots!";
             case 'BombUpgrade5':
             case 'BombUpgrade10':
             case 'BombUpgrade50':
-                return "increase bomb\nstorage, low\nlow price";
+                return "A Bomb Capacity\nUpgrade!";
             case 'ArrowUpgrade5':
             case 'ArrowUpgrade10':
             case 'ArrowUpgrade70':
-                return "increase arrow\nstorage, low\nlow price";
+                return "An Arrow Capacity\nUpgrade!";
             case 'SilverArrowUpgrade':
-                return "Do you fancy\nsilver tipped\narrows?";
+                return "The Silver Arrows!";
             case 'HalfMagic':
-                return "Your magic\npower has been\ndoubled!";
+                return "Half Magic!";
             case 'QuarterMagic':
-                return "Your magic\npower has been\nquadrupled!";
+                return "Quarter Magic!";
             case 'PendantOfCourage':
-                return "Courage for\nthose who\nalready had it";
+                return "The Pendant of\nCourage!";
             case 'PendantOfWisdom':
-                return "Wisdom for\nthose who\nalready had it";
+                return "The Pendant of\nWisdom!";
             case 'PendantOfPower':
-                return "Power for\nthose who\nalready had it";
+                return "The Pendant of\nPower!";
             case 'Rupoor':
-                return "This is not\nreally worth\nyour time";
+                return "A waste of time!";
             case 'RedClock':
-                return "like the sands\nthrough a red\nhourglass";
+                return "A Clock!";
             case 'BlueClock':
-                return "sapphire sand\ntrickles down";
+                return "A Clock!";
             case 'GreenClock':
-                return "tick tock\ntick tock";
+                return "A Clock!";
             case 'ProgressiveSword':
-                return "a better copy\nof your sword\nfor your time";
+                return "A Sword Upgrade!";
             case 'ProgressiveShield':
-                return "have a better\ndefense in\nfront of you";
+                return "A Shield Upgrade!";
             case 'ProgressiveArmor':
-                return "time for a\nchange of\nclothes?";
+                return "An Armor Upgrade!";
             case 'ProgressiveGlove':
-                return "a way to lift\nheavier things";
+                return "A Glove Upgrade!";
             case 'singleRNG':
             case 'multiRNG':
-                return "who knows? you\nprobably don't\nneed this.";
+                return "A Random Thing!";
             case 'Triforce':
-                return "\n   YOU WIN!";
+                return "The Triforce!";
             case 'PowerStar':
-                return "Aim for the\nmoon. You may\nhit a 'star'";
+                return "A Power Star!";
             case 'TriforcePiece':
-                return "a yellow\ntriangle\nyou need this";
+                return "A Triforce Piece!";
             case 'Nothing':
             default:
-                return "Don't waste\nyour time!";
+                return "A waste of time!";
         }
     }
 }
