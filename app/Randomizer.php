@@ -781,6 +781,8 @@ class Randomizer implements RandomizerContract
             "the return of the king",
             "fellowship of the ring",
             "the two towers",
+		"it's good to be the king",
+		"the road goes ever on",
         ])));
 
         $world->setCredit('sanctuary', Arr::first(fy_shuffle([
@@ -788,6 +790,8 @@ class Randomizer implements RandomizerContract
             "read a book",
             "sits in own pew",
             "heal plz",
+		"free kisses",
+		"johnny we hardly knew ye",
         ])));
 
         $name = Arr::first(fy_shuffle([
@@ -798,10 +802,38 @@ class Randomizer implements RandomizerContract
             "schmeering", "schmoosing", "shibboleth", "shovelnose", "sahananana", "sarararara", "salamander",
             "sharshalah", "shahabadoo", "sassafrass", "saddlebags", "sandalwood", "shagadelic", "sandcastle",
             "saltpeters", "shabbiness", "shlrshlrsh", "sassyralph", "sallyacorn", "sahasrahbot", "sasharalla",
+		"shlamalama", "saltpeter", "stupendous", "sillybilly", "sahasmoola", "stagmometer", "starfishes",
+		"starlessly", "superstars", "steatopygy", "shalashaska", "stepmother", "suppository", "sibyllism",
+		"shufflecap", "shunammite", "shuntwinder", "shagamomma", "shukulumbwe", "serenissimo", "sagvandite",
         ]));
-        $world->setCredit('kakariko', "$name's homecoming");
+	  switch (get_random_int(0, 63)) {
+		case 0:
+			$world->setCredit('kakariko', "$name's homcoming");
+			break;
+		case 1:
+			$world->setCredit('kakariko', "$name's homecoimng");
+			break;
+		case 2:
+			$world->setCredit('kakariko', "$name's hamecoming");
+			break;
+		case 3:
+			$world->setCredit('kakariko', "$name's homecomign");
+			break;
+		default:
+		      $world->setCredit('kakariko', "$name's homecoming");
+	  }
 
-        $world->setCredit('lumberjacks', Arr::first(fy_shuffle([
+        $world->setCredit('desert', Arr::first(fy_shuffle([
+            "vultures rule the desert",
+		"i don't like sand",
+		"coarse and rough",
+		"dududududu",
+		"son of a sandworm",
+		"read a book",
+		"embrace literacy",
+        ])));
+	  
+	  $world->setCredit('lumberjacks', Arr::first(fy_shuffle([
             "twin lumberjacks",
             "fresh flapjacks",
             "two woodchoppers",
@@ -809,13 +841,21 @@ class Randomizer implements RandomizerContract
             "lumberclones",
             "woodfellas",
             "dos axes",
+		"lumberjacks are okay",
+        ])));
+	  
+	  $world->setCredit('witch', Arr::first(fy_shuffle([
+            "mushroom soup",
+		"mushroom stew",
+		"fetch quests for everyone",
+		"potion merchant",
         ])));
 
-        switch (get_random_int(0, 1)) {
-            case 1:
-                $world->setCredit('smithy', "the dwarven breadsmiths");
-                break;
-        }
+        $world->setCredit('smithy', Arr::first(fy_shuffle([
+            "the dwarven swordsmiths",
+		"the dwarven breadsmiths",
+		"delicious baguettes",
+        ])));
 
         $world->setCredit('bridge', Arr::first(fy_shuffle([
             "the lost old man",
