@@ -457,6 +457,8 @@ class Text
             'telepathic_tile_under_ganon' => $converter->convertDialogCompressed(
                 "   ALTTPR League"
                 ."          Winners\n{HARP}\n\n"
+                ." ~~~Season 7~~~\n     Üsëdböw:\n     Jem\n   Telethar\n   StructuralMike\n\n"
+                ." ~~~Season 6~~~\nTo Infinity and Pgog:\n     willwc\n     Relkin\n   humbugh\n\n"
                 ."  ~~~Season 5~~~\n     OKDUDES: \n  GanonsGoneWild\n     Telethar\n   Hitsuyan1337\n\n"
                 ."  ~~~Season 4~~~\nThe Titan's Mitts:\n    SailorNep\n     Relkin\n     Daaanty\n\n"
                 ."  ~~~Season 3~~~\nPhendrana Drifters:\n     Megawott\n   Frostbite3030\n      Jet082\n\n"
@@ -483,6 +485,8 @@ class Text
             'houlihan_room' => $converter->convertDialogCompressed(
                 "     Randomizer\n"
                 ."Tournament Winners\n\n{HARP}\n"
+                ."    ~~~2025~~~\n    Gammachuu\n\n"
+                ."    ~~~2024~~~\n    Gammachuu\n\n"
                 ."    ~~~2023~~~\n  GanonsGoneWild\n\n"
                 ."    ~~~2022~~~\n      Obscure\n\n"
                 ."    ~~~2021~~~\n      Daaanty\n\n"
